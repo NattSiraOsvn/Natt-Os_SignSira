@@ -1,11 +1,12 @@
-/** Shim: THReatDetectionService with static methods */
+/** Shim: THReatDetectionService */
 export interface SecurityTHReat { id: string; level: string; }
 export interface SystemHealth { status: string; uptime: number; }
 
 export class THReatDetectionService {
   static getHealth(): SystemHealth { return { status: 'ok', uptime: 0 }; }
-  static subscribe(callback: (threat: SecurityTHReat) => void): { unsubscribe: () => void } {
-    return { unsubscribe: () => {} };
+  static subscribe(callback: (threat: SecurityTHReat) => void): () => void {
+    // Returns a callable unsubscribe function
+    return () => {};
   }
   static async scan(): Promise<SecurityTHReat[]> { return []; }
 }

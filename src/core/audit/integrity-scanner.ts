@@ -47,7 +47,7 @@ export class IntegrityScanner {
    */
   public async scanChain(tenantId: string, chainId: string): Promise<IntegrityState> {
       const state = await this.loadState();
-      const logs = AuditService.getInstance().getLogs(); // Fetch all logs (Mock DB)
+      const logs: any[] = AuditService.getInstance().getLogs() as any[]; // Fetch all logs (Mock DB)
       
       // Filter by tenant/chain
       const chainLogs = logs.filter((l: any) => l.tenant_id === tenantId && l.chain_id === chainId);
