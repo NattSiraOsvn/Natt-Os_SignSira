@@ -80,3 +80,5 @@ export class EInvoiceService {
 }
 
 export const EInvoiceEngine = EInvoiceService.getInstance();
+
+export default EInvoiceService;

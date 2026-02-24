@@ -172,7 +172,7 @@ export class PromotionService {
   }
 
   /** Apply promotion discount to order */
-  async applyPromotion(params: Record<string, unknown>): Promise<unknown> {
+  async applyPromotionAsync(params: Record<string, unknown>): Promise<unknown> {
     // TODO: Wire to promotion-cell domain logic
     throw new Error('Not implemented: promotion-cell.applyPromotion');
   }

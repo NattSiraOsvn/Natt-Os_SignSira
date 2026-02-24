@@ -205,6 +205,7 @@ export function evaluateRules(input: QuoteRequest): LaborRuleResult {
 
   // Fallback
   return { laborPrice: 3000000, type: 'MANUAL_QUOTE' };
+}
 
 /** Async wrapper for rule engine evaluation */
 export async function executeRulesAsync(input: Parameters<typeof evaluateRules>[0]): Promise<ReturnType<typeof evaluateRules>> {
