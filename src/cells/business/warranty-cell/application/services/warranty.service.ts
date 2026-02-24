@@ -26,4 +26,10 @@ export class WarrantyService {
   getClaimById(id: string): WarrantyClaim | undefined {
     return this.claims.find(c => c.id === id);
   }
+
+  /** Wired from warranty.engine.ts:49 — domain method */
+  async getClaimsByStatus(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to domain service warranty.engine.ts.getClaimsByStatus()
+    throw new Error('Not implemented: warranty-cell.getClaimsByStatus');
+  }
 }

@@ -121,4 +121,10 @@ export class CustomerService {
       VVIP: this.customers.filter(c => c.tier === 'VVIP').length,
     };
   }
+
+  /** Wired from customer.engine.ts:43 — domain method */
+  async getHighValueCustomers(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to domain service customer.engine.ts.getHighValueCustomers()
+    throw new Error('Not implemented: customer-cell.getHighValueCustomers');
+  }
 }

@@ -171,4 +171,16 @@ export class BuybackService {
       !['COMPLETED', 'CANCELLED', 'REJECTED'].includes(t.status)
     );
   }
+
+  /** Wired from buyback.engine.ts:46 — domain method */
+  async buildPolicyFromGDB(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to domain service buyback.engine.ts.buildPolicyFromGDB()
+    throw new Error('Not implemented: buyback-cell.buildPolicyFromGDB');
+  }
+
+  /** Wired from buyback.engine.ts:74 — domain method */
+  async getDefaultRates(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to domain service buyback.engine.ts.getDefaultRates()
+    throw new Error('Not implemented: buyback-cell.getDefaultRates');
+  }
 }
