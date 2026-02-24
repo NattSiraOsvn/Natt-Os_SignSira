@@ -147,4 +147,35 @@ export class ShowroomService {
     const noShows = this.appointments.filter(a => a.status === 'NO_SHOW').length;
     return total > 0 ? Math.round(noShows / total * 100) : 0;
   }
+
+
+  /** Register a new showroom location */
+  async registerShowroom(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to showroom-cell domain logic
+    throw new Error('Not implemented: showroom-cell.registerShowroom');
+  }
+
+  /** Update showroom operational status */
+  async updateShowroomStatus(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to showroom-cell domain logic
+    throw new Error('Not implemented: showroom-cell.updateShowroomStatus');
+  }
+
+  /** Assign inventory allocation to showroom */
+  async assignInventory(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to showroom-cell domain logic
+    throw new Error('Not implemented: showroom-cell.assignInventory');
+  }
+
+  /** Get performance metrics for showroom */
+  async getShowroomMetrics(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to showroom-cell domain logic
+    throw new Error('Not implemented: showroom-cell.getShowroomMetrics');
+  }
+
+  /** Sync showroom data with central system */
+  async syncShowroomData(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to showroom-cell domain logic
+    throw new Error('Not implemented: showroom-cell.syncShowroomData');
+  }
 }

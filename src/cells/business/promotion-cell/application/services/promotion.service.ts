@@ -157,4 +157,35 @@ export class PromotionService {
       !p.rules.applicableTiers || p.rules.applicableTiers.includes(tier)
     );
   }
+
+
+  /** Create a new promotion campaign */
+  async createPromotion(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to promotion-cell domain logic
+    throw new Error('Not implemented: promotion-cell.createPromotion');
+  }
+
+  /** Check if order/customer qualifies for promo */
+  async evaluateEligibility(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to promotion-cell domain logic
+    throw new Error('Not implemented: promotion-cell.evaluateEligibility');
+  }
+
+  /** Apply promotion discount to order */
+  async applyPromotion(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to promotion-cell domain logic
+    throw new Error('Not implemented: promotion-cell.applyPromotion');
+  }
+
+  /** Deactivate promotions past end date */
+  async deactivateExpired(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to promotion-cell domain logic
+    throw new Error('Not implemented: promotion-cell.deactivateExpired');
+  }
+
+  /** List all currently active promotions */
+  async getActivePromotions(params: Record<string, unknown>): Promise<unknown> {
+    // TODO: Wire to promotion-cell domain logic
+    throw new Error('Not implemented: promotion-cell.getActivePromotions');
+  }
 }
