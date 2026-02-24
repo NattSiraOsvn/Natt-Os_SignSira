@@ -1,6 +1,6 @@
 
-import { EInvoice, EInvoiceStatus } from '@/types';
-import { ShardingService } from './blockchainservice';
+import { EInvoice, EInvoiceStatus } from '@/types.ts';
+import { ShardingService } from './blockchainservice.ts';
 
 export class EInvoiceService {
   private static instance: EInvoiceService;
@@ -60,7 +60,7 @@ export class EInvoiceService {
     await new Promise(r => setTimeout(r, 1200));
     return ShardingService.generateShardHash({
       invoiceId,
-      signer: 'TAM_LUXURY_ADMIN_TOKEN',
+      signer: 'TAM_LUXURY_MASTER_TOKEN',
       timestamp: Date.now()
     });
   }
@@ -80,5 +80,3 @@ export class EInvoiceService {
 }
 
 export const EInvoiceEngine = EInvoiceService.getInstance();
-
-export default EInvoiceService;

@@ -144,10 +144,4 @@ export class OrderService {
   getDailyRevenue(date: Date): number {
     return OrderEngine.getDailyRevenue(this.orders, date);
   }
-
-  /** Wired from order.engine.ts:43 — domain method */
-  async getOrdersByBranch(params: Record<string, unknown>): Promise<unknown> {
-    // TODO: Wire to domain service order.engine.ts.getOrdersByBranch()
-    throw new Error('Not implemented: order-cell.getOrdersByBranch');
-  }
 }

@@ -24,7 +24,7 @@ export interface ApplyDiscountCommand {
   transactionId: string;
   discountVND: number;
   reason: string;
-  approvedBy?: string; // Bắt buộc nếu discount > tHReshold
+  approvedBy?: string; // Bắt buộc nếu discount > threshold
 }
 
 export interface CloseSaleCommand {
@@ -148,17 +148,5 @@ export class SalesService {
 
   getDailyRevenue(date: Date): number {
     return SalesEngine.getDailyRevenue(this.txs, date);
-  }
-
-  /** Wired from sales.engine.ts:26 — domain method */
-  async round(params: Record<string, unknown>): Promise<unknown> {
-    // TODO: Wire to domain service sales.engine.ts.round()
-    throw new Error('Not implemented: sales-cell.round');
-  }
-
-  /** Wired from sales.engine.ts:42 — domain method */
-  async getTopPerformers(params: Record<string, unknown>): Promise<unknown> {
-    // TODO: Wire to domain service sales.engine.ts.getTopPerformers()
-    throw new Error('Not implemented: sales-cell.getTopPerformers');
   }
 }
