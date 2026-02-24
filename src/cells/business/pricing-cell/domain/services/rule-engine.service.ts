@@ -206,9 +206,7 @@ export function evaluateRules(input: QuoteRequest): LaborRuleResult {
   // Fallback
   return { laborPrice: 3000000, type: 'MANUAL_QUOTE' };
 
-  /** Execute pricing rule engine */
-  async executeRules(params: Record<string, unknown>): Promise<unknown> {
-    // TODO: Wire to pricing domain logic
-    throw new Error('Not implemented: pricing-cell.executeRules');
-  }
+/** Async wrapper for rule engine evaluation */
+export async function executeRulesAsync(input: Parameters<typeof evaluateRules>[0]): Promise<ReturnType<typeof evaluateRules>> {
+  return evaluateRules(input);
 }
