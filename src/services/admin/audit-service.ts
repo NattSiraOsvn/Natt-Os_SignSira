@@ -1,7 +1,7 @@
 
-import { ShardingService } from '../blockchainService.ts';
+import { ShardingService } from '../blockchainservice';
 import { AuditItem } from '../../types.ts';
-import { NotifyBus } from '../notificationService.ts';
+import { NotifyBus } from '../notificationservice';
 import { PersonaID } from '../../types.ts';
 
 /**

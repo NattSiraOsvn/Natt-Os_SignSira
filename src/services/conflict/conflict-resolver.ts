@@ -3,11 +3,11 @@ import {
   DataPoint, ResolutionContext, ResolvedData, 
   ConflictResolutionMethod, ConflictResolutionRule, BusinessContext
 } from '../../types';
-import { ShardingService } from '../blockchainService';
+import { ShardingService } from '../blockchainservice';
 // 🛠️ Fixed: Changed import casing to match superdictionary.ts
 // Changed SUPER_DICTIONARY to superdictionary
 import { superdictionary } from '../../superdictionary';
-import { NotifyBus } from '../notificationService';
+import { NotifyBus } from '../notificationservice';
 import { PersonaID } from '../../types';
 import { ContextScoring } from '../scoring/ContextScoringEngine';
 

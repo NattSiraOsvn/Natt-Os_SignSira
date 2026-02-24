@@ -1,6 +1,6 @@
 
 import { QuantumTask } from '../types';
-import { NotifyBus } from './notificationService';
+import { NotifyBus } from './notificationservice';
 import { PersonaID } from '../types';
 
 class QuantumBufferService {
