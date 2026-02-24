@@ -1,0 +1,56 @@
+src/cells/infrastructure/warehouse-cell/application/warehouse.service.ts(166,36): error TS2345: Argument of type '{ id: string; sku: string; name: string; categoryCode: string; unit: string; quantity: number; unitCostVND: number; location: string; locationNote: string; minTHReshold: number; supplierId: string; ... 4 more ...; createdBy: string; }' is not assignable to parameter of type 'WarehouseItemProps'.
+  Types of property 'insuranceStatus' are incompatible.
+    Type 'string' is not assignable to type '"EXPIRED" | "COVERED" | "NOT_COVERED"'.
+src/cells/infrastructure/warehouse-cell/application/warehouse.service.ts(426,25): error TS2339: Property 'getAllItems' does not exist on type 'WarehouseService'.
+src/cells/infrastructure/warehouse-cell/application/warehouse.service.ts(426,52): error TS2339: Property 'getAllItems' does not exist on type 'WarehouseService'.
+src/cells/kernel/config-cell/config.service.ts(73,7): error TS2353: Object literal may only specify known properties, and 'event_version' does not exist in type 'BaseEvent'.
+src/components/admin-config-hub.tsx(164,133): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/components/sales-crm.tsx(8,26): error TS2307: Cannot find module '@/cells/sales-cell/salesterminal' or its corresponding type declarations.
+src/components/sales-tax-module.tsx(33,7): error TS2353: Object literal may only specify known properties, and 'vatRate' does not exist in type 'EInvoice'.
+src/components/sales-tax-module.tsx(44,46): error TS2345: Argument of type 'EInvoice' is not assignable to parameter of type 'Record<string, unknown>'.
+  Index signature for type 'string' is missing in type 'EInvoice'.
+src/components/sales-tax-module.tsx(58,66): error TS2345: Argument of type 'EInvoice' is not assignable to parameter of type 'Record<string, unknown>'.
+  Index signature for type 'string' is missing in type 'EInvoice'.
+src/components/sales-tax-module.tsx(61,32): error TS2339: Property 'taxCode' does not exist on type '{ success: boolean; code: string; }'.
+src/components/seller-terminal.tsx(57,10): error TS2554: Expected 1 arguments, but got 2.
+src/components/seller-terminal.tsx(70,8): error TS2554: Expected 1 arguments, but got 2.
+src/components/seller-terminal.tsx(78,7): error TS2353: Object literal may only specify known properties, and 'productSku' does not exist in type 'SellerReport'.
+src/components/seller-terminal.tsx(112,7): error TS2353: Object literal may only specify known properties, and 'lastInteraction' does not exist in type 'CustomerLead'.
+src/core/core/dictionary/services/dictionary-service.ts(24,7): error TS2353: Object literal may only specify known properties, and 'comment' does not exist in type 'DictionaryVersion'.
+src/core/core/processing/ai/aicore-processor.ts(8,15): error TS2339: Property 'updateStatus' does not exist on type 'typeof IngestionService'.
+src/core/core/processing/ai/aicore-processor.ts(31,17): error TS2339: Property 'updateStatus' does not exist on type 'typeof IngestionService'.
+src/core/core/processing/ai/aicore-processor.ts(38,17): error TS2339: Property 'updateStatus' does not exist on type 'typeof IngestionService'.
+src/core/core/processing/ai/ingestion/index.ts(1,47): error TS2307: Cannot find module '../../../../ingestion/ingestion-service' or its corresponding type declarations.
+src/core/core/smart-link-engine.ts(81,9): error TS2353: Object literal may only specify known properties, and 'createdAt' does not exist in type 'AccountingMappingRule'.
+src/core/core/smart-link-engine.ts(168,7): error TS2353: Object literal may only specify known properties, and 'createdAt' does not exist in type 'AccountingEntry'.
+src/core/runtime.ts(41,53): error TS2345: Argument of type '{ entityId: any; tenantId: string; entityType: string; fromState: string; toState: string; changedAt: number; changedBy: string; causationId: string; }' is not assignable to parameter of type 'StateChange'.
+  Type '{ entityId: any; tenantId: string; entityType: string; fromState: string; toState: string; changedAt: number; changedBy: string; causationId: string; }' is missing the following properties from type 'StateChange': domain, timestamp
+src/natt-os/bootstrap/omega-bootstrap.ts(45,74): error TS2554: Expected 2 arguments, but got 4.
+src/services/analytics/analytics-api.ts(30,9): error TS2353: Object literal may only specify known properties, and 'actual_value' does not exist in type 'GovernanceKPI'.
+src/services/analytics/analytics-api.ts(44,9): error TS2353: Object literal may only specify known properties, and 'actual_value' does not exist in type 'GovernanceKPI'.
+src/services/analytics/analytics-api.ts(58,9): error TS2353: Object literal may only specify known properties, and 'actual_value' does not exist in type 'GovernanceKPI'.
+src/services/analytics/analytics-service.ts(3,29): error TS2307: Cannot find module '../../event-bridge' or its corresponding type declarations.
+src/services/compliance/certification-service.ts(25,7): error TS2741: Property 'issuedBy' is missing in type '{ id: string; certificateNumber: string; title: string; description: string; type: string; issuingBody: string; issuedAt: number; expiryDate: number; status: "VALID"; verificationStatus: string; createdAt: number; updatedAt: number; }' but required in type 'Certification'.
+src/services/compliance/certification-service.ts(118,29): error TS2551: Property 'issueDate' does not exist on type '{ issuedAt: number; expiryDate: number; }'. Did you mean 'issuedAt'?
+src/services/dashboard-service.ts(30,7): error TS2741: Property 'label' is missing in type '{ id: string; name: string; value: any; unit: string; trend: "UP"; department: "SALES"; icon: string; }' but required in type 'HUDMetric'.
+src/services/dashboard-service.ts(39,7): error TS2741: Property 'label' is missing in type '{ id: string; name: string; value: any; unit: string; trend: "STABLE"; department: "PRODUCTION"; icon: string; }' but required in type 'HUDMetric'.
+src/services/dictionary-service.ts(31,7): error TS2353: Object literal may only specify known properties, and 'createdBy' does not exist in type 'DictionaryVersion'.
+src/services/dictionary-service.ts(49,7): error TS2353: Object literal may only specify known properties, and 'createdBy' does not exist in type 'DictionaryVersion'.
+src/services/dictionary-service.ts(84,7): error TS2353: Object literal may only specify known properties, and 'createdBy' does not exist in type 'DictionaryVersion'.
+src/services/fiscal/fiscal-workbench-service.ts(41,25): error TS2339: Property 'enforce' does not exist on type '{ activate: () => void; }'.
+src/services/fiscal/fiscal-workbench-service.ts(128,27): error TS2339: Property 'enforce' does not exist on type '{ activate: () => void; }'.
+src/services/hr-service.ts(44,4): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  Argument of type 'ClassMethodDecoratorContext<HRService, (params?: any) => Promise<{ data: DetailedPersonnel[]; meta: any; }>> & { ...; }' is not assignable to parameter of type 'string'.
+src/services/hr-service.ts(54,4): error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  Argument of type 'ClassMethodDecoratorContext<HRService, (employeeId: string) => Promise<HRAttendance[]>> & { name: "getAttendance"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+src/services/mapping/smart-link-mapping-engine.ts(70,9): error TS2353: Object literal may only specify known properties, and 'createdAt' does not exist in type 'AccountingMappingRule'.
+src/services/mapping/smart-link-mapping-engine.ts(92,9): error TS2353: Object literal may only specify known properties, and 'createdAt' does not exist in type 'AccountingMappingRule'.
+src/services/mapping/smart-link-mapping-engine.ts(183,7): error TS2561: Object literal may only specify known properties, but 'referenceId' does not exist in type 'AccountingEntry'. Did you mean to write 'reference'?
+src/services/mapping/smart-link-mapping-engine.ts(193,37): error TS2339: Property 'accountType' does not exist on type 'string'.
+src/services/recovery-engine.ts(26,11): error TS2741: Property 'actor' is missing in type '{ id: string; type: string; module: string; params: any; timestamp: number; status: "PENDING"; }' but required in type 'OperationRecord'.
+src/services/sales-core.ts(91,7): error TS2353: Object literal may only specify known properties, and 'profitMargin' does not exist in type 'OrderPricing'.
+src/services/sales-service.ts(7,31): error TS2307: Cannot find module '@/cells/sales-cell/sales.service' or its corresponding type declarations.
+src/services/tax-report-service.ts(19,7): error TS2353: Object literal may only specify known properties, and 'amount' does not exist in type '{ taxableIncome: number; standardRate: number; rate?: number; taxAmount: number; incentiveAmount: number; incentives?: Record<string, number>; finalTax: number; effectiveRate: number; }'.
+src/types.ts(689,3): error TS2300: Duplicate identifier 'destination'.
+src/types.ts(696,3): error TS2300: Duplicate identifier 'destination'.
+src/types.ts(696,3): error TS2717: Subsequent property declarations must have the same type.  Property 'destination' must be of type 'string', but here has type 'any'.

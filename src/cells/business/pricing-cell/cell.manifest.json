@@ -1,0 +1,57 @@
+{
+  "cell_id": "pricing-cell",
+  "version": "2.0.0",
+  "wave": "3",
+  "layer": "business",
+  "status": "ACTIVE",
+  "adn": {
+    "identity": {
+      "name": "Pricing Cell",
+      "domain": "Pricing & Cost Calculation",
+      "description": "Tâm Luxury jewelry pricing engine — gold prices, labor costs, markup tiers, full product pricing"
+    },
+    "capability": {
+      "primary": ["calculateProductPrice", "updateGoldMarketPrice", "determineLaborCost"],
+      "secondary": ["priceHistory", "markupManagement", "customQuoteDetection"]
+    },
+    "boundary": {
+      "owns": ["gold_prices", "markup_tiers", "labor_formulas", "product_pricing"],
+      "forbidden_imports": ["sales-cell", "order-cell", "customer-cell", "showroom-cell", "promotion-cell", "buyback-cell", "warranty-cell", "inventory-cell"],
+      "communicates_via": "shared-contracts-cell + EDA events"
+    },
+    "trace": {
+      "events_emitted": [
+        "pricing.gold.market.updated",
+        "pricing.product.calculated",
+        "pricing.markup.changed",
+        "pricing.custom_quote.required"
+      ],
+      "events_consumed": [
+        "external.gold.price.updated",
+        "inventory.material.received"
+      ]
+    },
+    "confidence": {
+      "labor_formulas": "VERIFIED — extracted from Bảng Giá 2025 Excel (4049-char formula)",
+      "gold_prices": "BASELINE — needs daily market update",
+      "markup_tiers": "VERIFIED — 3 tiers (15%, 20%, 30%) from SaleTerminal v2 review"
+    },
+    "smartlink": {
+      "depends_on": [],
+      "depended_by": ["sales-cell", "order-cell", "buyback-cell", "warranty-cell", "promotion-cell"]
+    },
+    "lifecycle": {
+      "created_at": "2026-02-10",
+      "scaffolded_at": "2026-02-10",
+      "implemented_at": "2026-02-11",
+      "implemented_by": "Băng (Data Steward & Architect)",
+      "approved_by": "Anh Natt (Gatekeeper)"
+    }
+  },
+  "structure": {
+    "current_structure": "5_LAYER",
+    "target_structure": "5_LAYER",
+    "layers": ["domain", "application", "interface", "infrastructure", "ports"],
+    "migration_status": "COMPLETE — upgraded from FLAT scaffold"
+  }
+}
