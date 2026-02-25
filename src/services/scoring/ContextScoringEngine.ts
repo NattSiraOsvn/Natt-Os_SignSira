@@ -112,7 +112,7 @@ export class ContextScoringEngine {
   }
 
   private async checkCrossReferences(dataPoint: DataPoint): Promise<number> {
-    if (dataPoint.payload.invoiceId) {
+    if ((dataPoint.payload as any)?.invoiceId) {
       return Math.random() > 0.1 ? 1.0 : 0.5;
     }
     return 0.8;

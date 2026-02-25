@@ -76,7 +76,7 @@ export class ConflictResolver {
       NotifyBus.push({
         type: 'RISK',
         title: 'Xung đột dữ liệu cần xem xét',
-        content: \`Xung đột tại \${context.businessType || 'UNKNOWN'}. Gap: \${(confidenceGap * 100).toFixed(1)}%. Winner Score: \${winner.calculatedConfidence}\`,
+        content: `Xung đột tại ${context.businessType || 'UNKNOWN'}. Gap: ${(confidenceGap * 100).toFixed(1)}%. Winner Score: ${winner.calculatedConfidence}`,
         persona: 'KRIS'
       });
     }
@@ -106,8 +106,8 @@ export class ConflictResolver {
 
   private loadConflictRule(dataType: string): ConflictResolutionRule {
     return {
-      id: \`RULE-\${dataType}\`,
-      name: \`\${dataType} Resolution Rule\`,
+      id: `RULE-${dataType}`,
+      name: `${dataType} Resolution Rule`,
       priority: 1,
       condition: 'default',
       method: ConflictResolutionMethod.PRIORITY_BASED,

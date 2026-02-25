@@ -1,9 +1,10 @@
 // NotifyBus — notification service shim for module integration
 export interface NotifyMessage {
-  type: 'RISK' | 'SUCCESS' | 'WARNING' | 'INFO';
+  type: 'RISK' | 'SUCCESS' | 'WARNING' | 'INFO' | 'NEWS';
   title: string;
   content: string;
   persona?: string;
+  priority?: string;
 }
 
 class NotificationService {

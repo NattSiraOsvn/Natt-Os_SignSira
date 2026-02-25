@@ -326,6 +326,7 @@ export interface EventEnvelope {
   event_id?: string;
   trace?: any;
   occurred_at?: string;
+  event_name?: string;
 }
 
 export interface EventMetadata {
@@ -592,6 +593,8 @@ export interface DataPoint {
   payload: unknown;
   confidence: number;
   timestamp: number;
+  calculatedConfidence?: number;
+  scoreDetails?: any;
 }
 
 export interface FileMetadata {
@@ -1454,15 +1457,7 @@ export type ConflictResolutionMethod = typeof ConflictResolutionMethod[keyof typ
 // Wave 3 Real Modules: Type definitions from archive
 // ═══════════════════════════════════════════════
 
-export interface DataPoint {
-  id: string;
-  source: string;
-  payload: any;
-  confidence: number;
-  timestamp: number;
-  calculatedConfidence?: number;
-  scoreDetails?: any;
-}
+// [MERGED] DataPoint — moved to line ~590
 
 export interface ScoreResult {
   finalScore: number;
@@ -1547,28 +1542,93 @@ export interface Supplier {
   xuHuong?: 'TANG' | 'GIAM' | 'ON_DINH';
 }
 
-export interface InputPersona {
-  OFFICE: number;
-  DATA_ENTRY: number;
-  PHARMACY: number;
-  EXPERT: number;
-  MASTER: number;
+
+// ═══════════════════════════════════════════════
+// NATTCELL KERNEL: Reconciliation types
+// ═══════════════════════════════════════════════
+
+export interface Transaction {
+  id: string;
+  amount: number;
+  currency: string;
+  timestamp: Date;
+  gateway: string;
+  status: string;
+  reference?: string;
 }
 
-export interface CalibrationData {
-  userId: string;
-  persona: keyof InputPersona;
-  avgCPM: number;
-  peakCPM: number;
-  errorRate: number;
-  burstCapacity: number;
-  lastCalibrated: number;
-  confidence: number;
+export interface GatewayReport {
+  gateway: string;
+  totalAmount: number;
+  transactions?: Transaction[];
+  reportDate?: Date;
 }
 
-export interface InputMetrics {
-  currentCPM: number;
-  keystrokes: number;
-  clicks: number;
-  intensity: number;
+export interface ReconciliationResult {
+  date: string;
+  localTransactions: Transaction[];
+  gatewayReports: GatewayReport[];
+  discrepancies: Discrepancy[];
+  summary: {
+    totalLocalAmount: number;
+    totalGatewayAmount: number;
+    totalDiscrepancies: number;
+    highSeverityDiscrepancies: number;
+  };
+}
+
+export interface Discrepancy {
+  type: string;
+  gateway: string;
+  localTotal: number;
+  gatewayTotal: number;
+  difference: number;
+  message: string;
+  severity: 'HIGH' | 'MEDIUM' | 'LOW';
+}
+
+// ═══════════════════════════════════════════════
+// NATTCELL KERNEL: Refund types
+// ═══════════════════════════════════════════════
+
+export interface RefundRequest {
+  id: string;
+  orderId: string;
+  amount: number;
+  reason: string;
+  submittedBy: string;
+  status: ApprovalStatus;
+  timestamp: number;
+}
+
+// ═══════════════════════════════════════════════
+// NATTCELL KERNEL: Enterprise Linker types
+// ═══════════════════════════════════════════════
+
+export interface LinkedRecord {
+  id: string;
+  sku: string;
+  productionCost: number;
+  goldWeight: number;
+  stoneWeight: number;
+  workerName: string;
+  salesPrice: number;
+  customerName: string;
+  invoiceId?: string;
+  bankTxId?: string;
+  receivedAmount: number;
+  taxPaid: number;
+  grossProfit: number;
+  status: 'MATCHED' | 'DISCREPANCY' | 'PENDING';
+}
+
+export interface AggregatedReport {
+  period: string;
+  totalRevenue: number;
+  totalCOGS: number;
+  totalOpEx: number;
+  netProfit: number;
+  margin: number;
+  discrepancyCount: number;
+  records: LinkedRecord[];
 }

@@ -53,7 +53,7 @@ class DictionaryApprovalService {
     NotifyBus.push({
       type: 'RISK',
       title: 'Yêu cầu thay đổi Từ điển',
-      content: \`User \${submitter} muốn \${type} trường \${target}. Mức độ ảnh hưởng: \${impact.riskLevel}\`,
+      content: `User ${submitter} muốn ${type} trường ${target}. Mức độ ảnh hưởng: ${impact.riskLevel}`,
       persona: 'KRIS'
     });
 
@@ -85,13 +85,13 @@ class DictionaryApprovalService {
     NotifyBus.push({
       type: 'SUCCESS',
       title: 'Dictionary Updated',
-      content: \`Thay đổi \${proposal.id} đã được áp dụng vào hệ thống lõi.\`,
+      content: `Thay đổi ${proposal.id} đã được áp dụng vào hệ thống lõi.`,
       persona: 'THIEN'
     });
   }
 
   private async applyChange(p: ChangeProposal) {
-    console.log(\`[Dictionary] Applying change \${p.type} on \${p.target} to \${JSON.stringify(p.newValue)}\`);
+    console.log(`[Dictionary] Applying change ${p.type} on ${p.target} to ${JSON.stringify(p.newValue)}`);
   }
 
   public getPendingProposals() { return this.pendingChanges.filter(p => p.status === 'PENDING'); }
