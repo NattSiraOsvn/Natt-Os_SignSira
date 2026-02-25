@@ -1448,3 +1448,127 @@ export const ConflictResolutionMethod = {
   AUTO_MERGE: 'AUTO_MERGE' as const,
 } as const;
 export type ConflictResolutionMethod = typeof ConflictResolutionMethod[keyof typeof ConflictResolutionMethod];
+
+
+// ═══════════════════════════════════════════════
+// Wave 3 Real Modules: Type definitions from archive
+// ═══════════════════════════════════════════════
+
+export interface DataPoint {
+  id: string;
+  source: string;
+  payload: any;
+  confidence: number;
+  timestamp: number;
+  calculatedConfidence?: number;
+  scoreDetails?: any;
+}
+
+export interface ScoreResult {
+  finalScore: number;
+  details: {
+    source: number;
+    temporal: number;
+    completeness: number;
+    validation: number;
+    crossRef: number;
+  };
+  confidenceLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+  recommendation: string;
+}
+
+export interface DiamondSpecs {
+  size: string;
+  clarity: string;
+  color: string;
+  quantity: number;
+}
+
+export interface GDBData {
+  customer: { name: string; phone: string; normalizedPhone: string };
+  product: {
+    code: string;
+    type: string;
+    description: string;
+    specifications: string[];
+    weight: number;
+    diamondSpecs?: DiamondSpecs;
+  };
+  valuation: { productValue: number; totalValue: number; totalValueInWords: string; exchangeRate: number };
+  exchangePolicy: { gold: { returnRate: number; exchangeRate: number }; diamond: { returnRate: number; exchangeRate: number } };
+  warranty: { diamondLossUnder3mm: boolean; freeMaintenance: boolean; conditions: string[] };
+  company: { name: string; address: string; phoneNumbers: string[]; website: string; email: string };
+  documentInfo: { issueDate: Date; sellerName: string; signature: string };
+}
+
+export interface GDBDocument {
+  type: 'GDB' | 'OTHER';
+  confidence: number;
+  extractedData: GDBData;
+  metadata: {
+    template: string;
+    extractionQuality: number;
+    ocrQuality: number;
+    matchedKeywords: string[];
+    reason?: string;
+    score?: number;
+  };
+}
+
+export interface Supplier {
+  id: string;
+  maNhaCungCap: string;
+  tenNhaCungCap: string;
+  diaChi: string;
+  maSoThue: string;
+  maNhomNCC?: string;
+  dienThoai?: string;
+  website?: string;
+  email?: string;
+  quocGia?: string;
+  tinhTP?: string;
+  soTaiKhoan?: string;
+  tenNganHang?: string;
+  ghiChu?: string;
+  transactionAmount?: number;
+  loaiNCC?: 'NUOC_NGOAI' | 'TO_CHUC' | 'CA_NHAN';
+  nhomHangChinh?: string[];
+  khuVuc?: 'BAC' | 'TRUNG' | 'NAM' | 'QUOC_TE';
+  phuongThucThanhToan?: 'TIEN_MAT' | 'CHUYEN_KHOAN' | 'QUOC_TE';
+  dichVuDacThu?: string[];
+  mucDoUuTien?: 'CAO' | 'TRUNG_BINH' | 'THAP';
+  trangThaiHopTac?: string;
+  mucDoTinCay?: string;
+  ngayBatDauHopTac?: string;
+  sentimentScore?: number;
+  coTienNang?: boolean;
+  diemDanhGia?: number;
+  quyMo?: 'LON' | 'VUA' | 'NHO';
+  xuHuong?: 'TANG' | 'GIAM' | 'ON_DINH';
+}
+
+export interface InputPersona {
+  OFFICE: number;
+  DATA_ENTRY: number;
+  PHARMACY: number;
+  EXPERT: number;
+  MASTER: number;
+}
+
+export interface CalibrationData {
+  userId: string;
+  persona: keyof InputPersona;
+  avgCPM: number;
+  peakCPM: number;
+  errorRate: number;
+  burstCapacity: number;
+  lastCalibrated: number;
+  confidence: number;
+}
+
+export interface InputMetrics {
+  currentCPM: number;
+  keystrokes: number;
+  clicks: number;
+  intensity: number;
+}
