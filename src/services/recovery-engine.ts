@@ -33,7 +33,8 @@ class RecoveryEngine {
       module,
       params,
       timestamp: Date.now(),
-      status: 'PENDING'
+      status: 'PENDING',
+      actor: 'SYSTEM'
     });
     if (this.opLog.length > 500) this.opLog.pop();
     return id;

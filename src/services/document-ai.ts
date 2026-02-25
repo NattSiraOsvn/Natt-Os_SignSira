@@ -1,5 +1,7 @@
 
-import { superdictionary, superdictionarycontrpl } from '../superdictionary';
+import { SuperDictionary, SUPER_DICTIONARY_CONTROL } from '../superdictionary';
+const superdictionary = SuperDictionary.getInstance();
+const superdictionarycontrpl = SUPER_DICTIONARY_CONTROL;
 import { StagingStore } from './staging/EventStagingLayer'; 
 
 export type IngestStatus = 'TỰ_ĐỘNG_CHỐT' | 'CHỜ_PHÊ_DUYỆT' | 'XUNG_ĐỘT_DỪNG' | 'LỖI_DỮ_LIỆU' | 'TRÙNG_LẶP_BỎ_QUA';

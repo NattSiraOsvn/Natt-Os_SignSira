@@ -20,7 +20,7 @@ export class DictionaryService {
     // Version 1 (Initial)
     this.versions.push({
       id: 'VER-001',
-      version: 1, // Fixed: changed from string to number
+      version: '1',
       versionNumber: 1,
       status: 'ARCHIVED',
       isFrozen: true,
@@ -37,7 +37,7 @@ export class DictionaryService {
     // Version 2 (Current)
     this.versions.push({
       id: 'VER-002',
-      version: 2, // Fixed: changed from string to number
+      version: '2',
       versionNumber: 2,
       status: 'ACTIVE',
       isFrozen: false,
@@ -69,7 +69,7 @@ export class DictionaryService {
 
     const newVersion: DictionaryVersion = {
       id: `VER-ROLLBACK-${Date.now()}`,
-      version: (this.getCurrentVersion().versionNumber || 0) + 1, // Fixed: string to number
+      version: String(Number(this.getCurrentVersion().versionNumber || 0) + 1),
       versionNumber: (this.getCurrentVersion().versionNumber || 0) + 1,
       status: 'ACTIVE',
       isFrozen: false,

@@ -6,14 +6,14 @@ import { ModuleConfig, ViewType, UserRole } from '../types';
  * Danh mục các Node Shard được phép vận hành trong hệ thống.
  */
 export const MODULE_REGISTRY: Record<string, ModuleConfig> = {
-  [ViewType.dashboard]: { 
-    id: ViewType.dashboard, 
+  [ViewType.DASHBOARD]: { 
+    id: ViewType.DASHBOARD, 
     title: 'TỔNG QUAN', 
     icon: '🏠', 
     group: 'CORE', 
     allowedRoles: [UserRole.MASTER, UserRole.ADMIN], 
     componentName: 'MasterDashboard', 
-    active: true 
+    active: true, name: 'Dashboard', isEnabled: true, version: '1.0', dependencies: [] 
   },
   [ViewType.sales_terminal]: { 
     id: ViewType.sales_terminal, 
@@ -21,17 +21,16 @@ export const MODULE_REGISTRY: Record<string, ModuleConfig> = {
     icon: '🛍️', 
     group: 'CORE', 
     allowedRoles: [UserRole.MASTER, UserRole.LEVEL_5], 
-    componentName: 'SaleTerminal', 
-    active: true 
+    componentName: 'SaleTerminal', active: true, name: 'Sales Terminal', isEnabled: true, version: '1.0', dependencies: [] 
   },
-  [ViewType.warehouse]: { 
-    id: ViewType.warehouse, 
+  [ViewType.WAREHOUSE]: { 
+    id: ViewType.WAREHOUSE, 
     title: 'KHO TỔNG', 
     icon: '📦', 
     group: 'CORE', 
     allowedRoles: [UserRole.MASTER, UserRole.LEVEL_2], 
     componentName: 'WarehouseManagement', 
-    active: true 
+    active: true, name: 'Warehouse', isEnabled: true, version: '1.0', dependencies: [] 
   },
   [ViewType.command]: { 
     id: ViewType.command, 
@@ -39,8 +38,7 @@ export const MODULE_REGISTRY: Record<string, ModuleConfig> = {
     icon: '🔱', 
     group: 'CORE', 
     allowedRoles: [UserRole.MASTER], 
-    componentName: 'ThienCommandCenter', 
-    active: true 
+    componentName: 'ThienCommandCenter', active: true, name: 'Command Center', isEnabled: true, version: '1.0', dependencies: [] 
   }
 };
 

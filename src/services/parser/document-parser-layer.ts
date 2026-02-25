@@ -26,12 +26,12 @@ export class DocumentParserLayer {
     // 2. Enqueue vào QuantumBuffer để xử lý background
     console.log(`[PARSER-LAYER] Enqueuing ${file.name} to Quantum Buffer...`);
     
-    QuantumBuffer.enqueue('MEDIA_INGEST', { 
+    QuantumBuffer.enqueue({ type: 'MEDIA_INGEST', priority: 2,  
       taskId, 
       fileName: file.name, 
       fileType: file.type,
       fileBlob: file // Giữ blob để OmegaProcessor pick up
-    }, 2); // Priority 2 cho Media Ingest
+    }); // Priority 2 cho Media Ingest
 
     NotifyBus.push({
       type: 'NEWS',

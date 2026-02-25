@@ -88,7 +88,7 @@ export class SellerEngine {
    * Tính lương thực lãnh dựa trên vị trí (CTV = 0 lương cứng)
    */
   static calculateIncome(identity: SellerIdentity, baseSalary: number, commission: number): number {
-    if (identity.isCollaborator) {
+    if ((identity as any).isCollaborator) {
         return commission; // CTVT chỉ ăn hoa hồng
     }
     return baseSalary + commission; // Nhân viên chính thức

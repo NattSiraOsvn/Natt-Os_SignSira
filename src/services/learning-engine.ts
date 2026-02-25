@@ -38,7 +38,7 @@ export class LearningEngine {
 
     // Luật phân quyền cứng trong Prompt
     const rbacInstruction = `
-      Vị trí người dùng: ${position.role}
+      Vị trí người dùng: ${(position as any).role}
       Cấp bậc (Role): ${role}
 
       LUẬT PHÂN QUYỀN TÁC VỤ (RBAC RULES):
@@ -136,7 +136,10 @@ export class LearningEngine {
 
       const result = JSON.parse(response.text || "{}");
       return {
-        position: position.role,
+        id: `TPL-${Date.now()}`,
+        name: `Template-${(position as any).role}`,
+        content: '',
+        position: (position as any).role,
         docTypeDetected: result.docTypeDetected,
         suggestions: result.suggestions,
         fields: result.fields,
@@ -160,7 +163,7 @@ export class LearningEngine {
 
   static getTemplate(position: UserPosition): LearnedTemplate | null {
     // Fixed: currentPosition is an object, access .role property
-    const key = `LEARNED_TPL_${position.role}`;
+    const key = `LEARNED_TPL_${(position as any).role}`;
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : null;
   }

@@ -126,7 +126,7 @@ class ThreatDetectionService {
   public trackKeystroke() { this.tracker.trackKey(); }
 
   private triggerStagingFlow(reason: string) {
-    QuantumBuffer.enqueue('TRAFFIC_STAGING', { reason }, 1);
+    QuantumBuffer.enqueue({ type: 'TRAFFIC_STAGING', priority: 1, reason });
     
     const threat: SecurityThreat = {
       id: `STAGE-${Date.now()}`,

@@ -36,43 +36,43 @@ export class AnalyticsAPI {
         kpi_id: 'KPI-001',
         kpi_name: 'Tổng doanh thu (NET)',
         category: 'FINANCIAL',
-        period_date: date,
+        period_date: Date.now(), // was string, now number
         target_value: 1000000000,
         actual_value: metrics.total_revenue_vnd || 449120000,
         previous_value: 410000000,
         change_percent: 9.5,
         status: 'OK',
         owner_team: 'Bối Bối (Team 1)',
-        threshold_warning: 800000000,
-        threshold_critical: 500000000
+        tHReshold_warning: 800000000,
+        tHReshold_critical: 500000000
       },
       {
         kpi_id: 'KPI-002',
         kpi_name: 'Hiệu suất chế tác',
         category: 'OPERATIONAL',
-        period_date: date,
+        period_date: Date.now(), // was string, now number
         target_value: 100,
         actual_value: metrics.production_efficiency || 96,
         previous_value: 94,
         change_percent: 2.1,
         status: 'OK',
         owner_team: 'Bối Bối (Team 1)',
-        threshold_warning: 90,
-        threshold_critical: 80
+        tHReshold_warning: 90,
+        tHReshold_critical: 80
       },
       {
         kpi_id: 'KPI-003',
         kpi_name: 'Tỷ lệ thanh toán thành công',
         category: 'FINANCIAL',
-        period_date: date,
+        period_date: Date.now(), // was string, now number
         target_value: 99,
         actual_value: metrics.total_orders > 0 ? (metrics.payments_received / metrics.total_orders) * 100 : 98,
         previous_value: 97.5,
         change_percent: 0.5,
         status: 'OK',
         owner_team: 'ChatGPT (Team 2)',
-        threshold_warning: 95,
-        threshold_critical: 90
+        tHReshold_warning: 95,
+        tHReshold_critical: 90
       }
     ];
 

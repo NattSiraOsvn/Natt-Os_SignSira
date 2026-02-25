@@ -1,7 +1,7 @@
 
-import { ShardingService } from '../blockchainservice';
+import { ShardingService } from '../blockchainservice.ts';
 import { AuditItem } from '../../types.ts';
-import { NotifyBus } from '../notificationservice';
+import { NotifyBus } from '../notificationservice.ts';
 import { PersonaID } from '../../types.ts';
 
 /**
@@ -59,6 +59,8 @@ export class AuditService {
       userId,
       timestamp,
       prevHash,
+      actor: userId,
+      module: action.split(".")[0] || "SYSTEM",
       causation_id
     };
 
@@ -70,7 +72,9 @@ export class AuditService {
       userId,
       action: isOrphan ? `[ORPHAN] ${action}` : action,
       details: typeof details === 'string' ? details : JSON.stringify(details),
-      hash,
+      hash: await hash,
+      actor: userId,
+      module: action.split(".")[0] || "SYSTEM",
       causation_id
     };
 

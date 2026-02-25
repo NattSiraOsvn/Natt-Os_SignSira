@@ -97,6 +97,9 @@ export const ViewType = {
 export type ViewType = typeof ViewType[keyof typeof ViewType];
 
 export const UserRole = {
+  MASTER: 'MASTER',
+  LEVEL_5: 'LEVEL_5',
+  LEVEL_2: 'LEVEL_2',
   ADMIN: 'ADMIN',
   MANAGER: 'MANAGER',
   SALES_STAFF: 'SALES_STAFF',
@@ -322,6 +325,7 @@ export interface EventEnvelope {
   payload?: any;
   event_id?: string;
   trace?: any;
+  occurred_at?: string;
 }
 
 export interface EventMetadata {
@@ -580,7 +584,7 @@ export interface SyncLog {
   message: string;
 }
 
-export type ConflictResolutionMethod = 'CONFIDENCE_BASED' | 'TIMESTAMP_BASED' | 'SOURCE_PRIORITY' | 'MANUAL';
+// (moved to const+type pattern below)
 
 export interface DataPoint {
   id: string;
@@ -1327,3 +1331,120 @@ export interface DetailedPersonnel { id: string; name?: string; fullName?: strin
 export type HRDepartment = unknown;
 export type HRPosition = unknown;
 export interface HRAttendance { employeeId: string; employee_id?: string; date: string; status: string; hoursWorked?: number; total_hours?: number; checkIn?: number; source?: unknown; [key: string]: unknown; }
+
+
+// ═══════════════════════════════════════════════
+// Wave 3 Recovery: Missing type definitions
+// ═══════════════════════════════════════════════
+
+export interface AuditItem {
+  id: string;
+  action: string;
+  actor: string;
+  module: string;
+  timestamp: number;
+  details?: any;
+  severity?: string;
+  hash?: string;
+  userId?: string;
+  role?: string;
+  oldValue?: string;
+  newValue?: string;
+  causation_id?: string;
+}
+
+export interface SagaLog {
+  sagaId: string;
+  steps: Array<{ stepName: string; status: string; timestamp: number; data?: any }>;
+  startedAt: number;
+  completedAt?: number;
+  status: 'RUNNING' | 'COMPLETED' | 'FAILED' | 'COMPENSATING';
+}
+
+export interface ResolutionContext {
+  source: string;
+  conflictType: string;
+  priority: number;
+  timestamp: number;
+  metadata?: any;
+  businessType?: string;
+}
+
+export interface ResolvedData {
+  resolvedValue: any;
+  method: string;
+  confidence: number;
+  source: string;
+  resolvedAt: number;
+  winner?: any;
+  scoredPoints?: any[];
+  confidenceGap?: number;
+  methodUsed?: string;
+  losers?: any[];
+  resolutionHash?: string;
+  isAutoResolved?: boolean;
+}
+
+export interface ConflictResolutionRule {
+  id: string;
+  name: string;
+  priority: number;
+  condition: string;
+  method: ConflictResolutionMethod;
+  fallbackMethod?: ConflictResolutionMethod;
+  defaultMethod?: ConflictResolutionMethod;
+  threshold?: number;
+  dataType?: string;
+}
+
+export interface BusinessContext {
+  module: string;
+  operation: string;
+  actor: string;
+  timestamp: number;
+  metadata?: Record<string, any>;
+  industry?: string;
+  dataType?: string;
+  region?: string;
+  priority?: string;
+}
+
+export interface RiskAssessment {
+  level: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  score: number;
+  factors: string[];
+  assessedAt: number;
+}
+
+export interface ComplianceCheck {
+  passed: boolean;
+  issues: Array<{ type: string; severity: string; message: string }>;
+  checkedAt: number;
+  requiredDocuments?: string[];
+}
+
+export interface TrackingStep {
+  id: string;
+  label: string;
+  status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED';
+  notes?: string;
+  timestamp?: number;
+}
+
+export interface DynamicField {
+  key: string;
+  label: string;
+  type: 'text' | 'number' | 'select' | 'date' | 'boolean';
+  value?: any;
+  options?: string[];
+  required?: boolean;
+}
+
+// ConflictResolutionMethod as const values (usable as both type and value)
+export const ConflictResolutionMethod = {
+  PRIORITY_BASED: 'PRIORITY_BASED' as const,
+  TIMESTAMP_BASED: 'TIMESTAMP_BASED' as const,
+  MANUAL_REVIEW: 'MANUAL_REVIEW' as const,
+  AUTO_MERGE: 'AUTO_MERGE' as const,
+} as const;
+export type ConflictResolutionMethod = typeof ConflictResolutionMethod[keyof typeof ConflictResolutionMethod];

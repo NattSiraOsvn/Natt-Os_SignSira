@@ -42,7 +42,7 @@ export class OmegaBootstrap {
       checks[3].status = 'PASS';
 
       // Ghi nhật ký khởi động Gold Master
-      await AuditProvider.logAction('GOLD_ADMIN_BOOT_SUCCESS', { action: 'SYSTEM', shards: 128, owner: 'ANH_NAT' });
+      await AuditProvider.logAction('GOLD_ADMIN_BOOT_SUCCESS', 'SYSTEM', 'BOOT', JSON.stringify({ action: 'SYSTEM', shards: 128, owner: 'ANH_NAT' }));
 
       return {
         success: true,

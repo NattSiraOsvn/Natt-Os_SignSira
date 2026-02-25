@@ -29,7 +29,7 @@ const MasterDashboard: React.FC<{ currentRole: UserRole, currentPosition: UserPo
             department: Department.SALES, icon: '💰'
           },
           {
-            id: 'M2', name: 'TỒN KHO CELL', value: WAREHOUSEData.total_items || 0, unit: 'SP',
+            id: 'M2', name: 'TỒN KHO CELL', value: (WAREHOUSEData as any).total_items || 0, unit: 'SP',
             trend: { direction: 'STABLE', percentage: 0, isPositive: true },
             department: Department.HEADQUARTER, icon: '📦'
           }

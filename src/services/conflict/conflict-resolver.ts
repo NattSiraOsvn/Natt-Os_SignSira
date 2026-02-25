@@ -1,12 +1,10 @@
 
-import { 
-  DataPoint, ResolutionContext, ResolvedData, 
-  ConflictResolutionMethod, ConflictResolutionRule, BusinessContext
-} from '../../types';
+import { DataPoint, ResolutionContext, ResolvedData, ConflictResolutionMethod, ConflictResolutionRule, BusinessContext } from '../../types';
 import { ShardingService } from '../blockchainservice';
 // 🛠️ Fixed: Changed import casing to match superdictionary.ts
 // Changed SUPER_DICTIONARY to superdictionary
-import { superdictionary } from '../../superdictionary';
+import { SuperDictionary } from '../../superdictionary';
+const superdictionary = SuperDictionary.getInstance();
 import { NotifyBus } from '../notificationservice';
 import { PersonaID } from '../../types';
 import { ContextScoring } from '../scoring/ContextScoringEngine';
@@ -32,16 +30,25 @@ export class ConflictResolver {
     if (dataPoints.length === 0) throw new Error("No data points to resolve");
     if (dataPoints.length === 1) {
       return {
+        resolvedValue: dataPoints[0].payload,
+        method: 'PRIORITY_BASED',
+        confidence: dataPoints[0].confidence || 0,
+        source: dataPoints[0].source || 'UNKNOWN',
+        resolvedAt: Date.now(),
         winner: dataPoints[0],
         losers: [],
         methodUsed: ConflictResolutionMethod.PRIORITY_BASED,
-        resolutionHash: ShardingService.generateShardHash(dataPoints[0]),
+        resolutionHash: await ShardingService.generateShardHash(dataPoints[0]),
         isAutoResolved: true
       };
     }
 
     // 1. Xác định ngữ cảnh doanh nghiệp để chấm điểm
     const businessContext: BusinessContext = {
+       module: 'CONFLICT_RESOLVER',
+       operation: 'RESOLVE',
+       actor: 'SYSTEM',
+       timestamp: Date.now(),
        industry: this.mapDomainToIndustry(context.businessType),
        region: 'VN',
        priority: 'NORMAL',
@@ -95,10 +102,15 @@ export class ConflictResolver {
     }
 
     return {
+      resolvedValue: scoredPoints[0].payload,
+      method: String(methodUsed),
+      confidence: scoredPoints[0].calculatedConfidence || 0,
+      source: scoredPoints[0].source || 'SCORED',
+      resolvedAt: Date.now(),
       winner: scoredPoints[0],
       losers: scoredPoints.slice(1),
       methodUsed,
-      resolutionHash: ShardingService.generateShardHash({ winner: scoredPoints[0].id, context }),
+      resolutionHash: await ShardingService.generateShardHash({ winner: scoredPoints[0].id, context }),
       isAutoResolved
     };
   }
@@ -117,6 +129,11 @@ export class ConflictResolver {
 
     if (!rule) {
       return {
+        id: 'RULE-GENERIC',
+        name: 'Generic Resolution',
+        priority: 1,
+        condition: 'default',
+        method: ConflictResolutionMethod.PRIORITY_BASED,
         dataType: 'GENERIC',
         threshold: 0.15,
         defaultMethod: ConflictResolutionMethod.PRIORITY_BASED,
@@ -125,6 +142,11 @@ export class ConflictResolver {
     }
 
     return {
+        id: rule.id || 'RULE-CUSTOM',
+        name: rule.name || 'Custom Rule',
+        priority: rule.priority || 1,
+        condition: rule.condition || 'custom',
+        method: rule.method || rule.defaultMethod,
         dataType: rule.dataType,
         threshold: rule.threshold,
         defaultMethod: rule.defaultMethod as ConflictResolutionMethod,
