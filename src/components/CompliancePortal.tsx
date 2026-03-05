@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { RBACEngine } from '../services/rbacEngine';
 import { ComplianceViolation, UserRole, PersonaID } from '../types';
 import AIAvatar from './AIAvatar';
-import { ExportEngine } from '../services/exportService';
+import { ExportEngine } from '@/services/export-service';
 
 // --- MOCK REGULATION DATABASE ---
 const REGULATIONS = [

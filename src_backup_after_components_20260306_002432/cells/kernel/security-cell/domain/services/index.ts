@@ -1,1 +1,0 @@
-export { THReatDetectionService } from './ThreatDetectionService';

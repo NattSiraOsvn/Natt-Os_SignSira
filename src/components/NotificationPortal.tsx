@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { GlobalAlert, NotifyBus } from '../services/notificationService';
+import { GlobalAlert, NotifyBus } from '@/services/notification-service';
 import AIAvatar from './AIAvatar';
 
 const NotificationPortal: React.FC = () => {

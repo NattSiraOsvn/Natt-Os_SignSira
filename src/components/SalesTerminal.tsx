@@ -2,9 +2,9 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCertificate, AlertLevel, IdentityData } from '../types';
 import { SAMPLE_PRODUCTS } from '../constants';
-import { NotifyBus } from '../services/notificationService';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
-import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '../services/geminiService';
+import { NotifyBus } from '@/services/notification-service';
+import { PaymentEngine, PaymentResponse } from '@/services/payment-service';
+import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/services/gemini-service';
 import { FraudGuard } from '../services/fraudGuard'; 
 import AIAvatar from './AIAvatar';
 

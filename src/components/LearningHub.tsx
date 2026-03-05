@@ -5,7 +5,7 @@ import { LearningEngine } from '../services/learningEngine';
 import AIAvatar from './AIAvatar';
 import * as XLSX from 'xlsx';
 import { SUPER_DICTIONARY } from '../SuperDictionary';
-import ThreatDetectionService from '../services/threatDetectionService';
+import ThreatDetectionService from '@/services/threat-detection-service';
 
 interface LearningHubProps {
   currentPosition: UserPosition;

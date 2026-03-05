@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import AIAvatar from './AIAvatar';
 import { PersonaID, BusinessMetrics, UserRole, UserPosition, ActionLog, HeatLevel } from '../types';
-import { ShardingService } from '../services/blockchainService';
+import { ShardingService } from '@/services/sharding-service';
 import { useAuthority } from '../hooks/useAuthority';
 
 interface ThienCommandCenterProps {

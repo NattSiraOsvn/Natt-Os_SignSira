@@ -7,9 +7,9 @@ import NotificationHub, { AppNotification } from './NotificationHub';
 import NotificationPortal from './NotificationPortal';
 import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionType, PersonaID } from '../types';
 import { RBACEngine } from '../services/rbacEngine';
-import { NotifyBus } from '../services/notificationService';
-import { ShardingService } from '../services/blockchainService';
-import OfflineService from '../services/offlineService';
+import { NotifyBus } from '@/services/notification-service';
+import { ShardingService } from '@/services/sharding-service';
+import OfflineService from '@/services/offline-service';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---
 import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/QuantumUIContext';

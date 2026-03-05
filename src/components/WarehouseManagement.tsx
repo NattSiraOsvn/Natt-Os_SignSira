@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { WarehouseEngine, AllocationPlan, WarehouseIntelligence } from '../services/warehouseService';
 import { InventoryItem, UserRole, BusinessMetrics, WarehouseLocation } from '../types';
-import { LogisticsCore } from '../services/logisticsService';
+import { LogisticsCore } from '@/services/logistics-service';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 

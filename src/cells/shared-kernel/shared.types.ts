@@ -3,6 +3,10 @@ export { UserRole, Department, PersonaID } from '../../types';
 export type { UserPosition, HUDMetric } from '../../types';
 
 export interface CellHealthState {
+  cell_id?: string;
+  uptime?: number;
+  last_heartbeat?: number;
+  message?: string;
   cellId: string;
   status: 'HEALTHY' | 'DEGRADED' | 'FAILED' | 'UNKNOWN';
   lastChecked: number;

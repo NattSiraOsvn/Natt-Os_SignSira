@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { ActionLog, UserRole, PersonaID } from '../types';
-import { ShardingService } from '../services/blockchain-service';
+import { ShardingService } from '@/services/sharding-service';
 
 interface AuditTrailModuleProps {
   actionLogs: ActionLog[];

@@ -2,9 +2,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { UserRole, UserPosition, PositionType, SellerReport, SellerIdentity, CustomerLead, PersonaID } from '../types';
 import { SellerEngine } from '../services/sellerEngine';
-import { NotifyBus } from '../services/notificationService';
+import { NotifyBus } from '@/services/notification-service';
 import AIAvatar from './AIAvatar';
-import { generatePersonaResponse } from '../services/geminiService';
+import { generatePersonaResponse } from '@/services/gemini-service';
 
 interface SellerTerminalProps {
   currentRole: UserRole;

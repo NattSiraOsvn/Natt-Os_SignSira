@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 // 🛠️ Fixed: Import casing for Types
 import { SyncJob, SyncConflictStrategy, SyncLog, ConflictResolutionMethod, DataPoint } from '@/types';
-import { OfflineService } from '@/services/offlineservice';
+import { OfflineService } from '@/services/offline-service';
 import { SUPER_DICTIONARY } from '@/superdictionary';
 import { ConflictEngine } from '@/services/conflict/conflictresolver';
 

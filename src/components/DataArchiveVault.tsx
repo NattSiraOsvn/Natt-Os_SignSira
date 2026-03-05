@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { ShardingService } from '../services/blockchainService';
-import { EventBridge } from '../services/eventBridge';
+import { ShardingService } from '@/services/sharding-service';
+import { EventBridge } from '@/services/event-bridge';
 import AIAvatar from './AIAvatar';
 import { PersonaID, UserRole, BusinessMetrics, UserPosition } from '../types';
 

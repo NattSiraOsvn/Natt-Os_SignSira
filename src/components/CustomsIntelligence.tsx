@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { CustomsDeclaration, CustomsDeclarationItem, PersonaID, ActionPlan } from '../types';
 import { CustomsRobotEngine } from '../services/customsService';
-import { NotifyBus } from '../services/notificationService';
+import { NotifyBus } from '@/services/notification-service';
 import AIAvatar from './AIAvatar';
 
 type ExtendedDeclaration = CustomsDeclaration & { actionPlans: ActionPlan[] };

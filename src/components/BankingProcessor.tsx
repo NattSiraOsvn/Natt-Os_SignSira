@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BankingEngine } from '../services/bankingService';
 import { BankTransaction, BankSummary, PersonaID } from '../types';
-import { NotifyBus } from '../services/notificationService';
+import { NotifyBus } from '@/services/notification-service';
 import AIAvatar from './AIAvatar';
 
 const BankingProcessor: React.FC = () => {

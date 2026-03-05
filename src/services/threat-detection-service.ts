@@ -1,9 +1,9 @@
 
-import { NotifyBus } from './notificationservice';
+import { NotifyBus } from '@/services/notification-service';
 import { PersonaID, AlertLevel, InputMetrics, InputPersona } from '../types';
-import { ShardingService } from './blockchainservice';
-import { QuantumBuffer } from './quantumbufferservice';
-import { Calibration } from './calibration/CalibrationEngine';
+import { ShardingService } from '@/services/sharding-service';
+import { QuantumBuffer } from '@/services/quantum-buffer-service';
+import { Calibration } from '@/services/calibration/calibration-engine';
 
 // --- TYPES ---
 export type ThreatLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'STAGING';

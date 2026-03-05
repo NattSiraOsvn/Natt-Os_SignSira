@@ -3,7 +3,7 @@
  * Source: NATTCELL KERNEL → Rewritten for goldmaster
  * Idempotency Key cấp độ bản ghi (Record Level).
  */
-import { ShardingService } from '../blockchainservice';
+import { ShardingService } from '@/services/sharding-service';
 
 export interface StagedEvent {
   id: string;

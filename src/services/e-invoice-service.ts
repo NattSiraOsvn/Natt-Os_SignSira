@@ -1,6 +1,6 @@
 
 import { EInvoice, EInvoiceStatus } from '@/types.ts';
-import { ShardingService } from './blockchainservice';
+import { ShardingService } from '@/services/sharding-service';
 
 export class EInvoiceService {
   private static instance: EInvoiceService;

@@ -4,8 +4,8 @@ import {
   DataPoint, ResolutionContext, ResolvedData,
   ConflictResolutionMethod, ConflictResolutionRule, BusinessContext
 } from '../../types';
-import { ShardingService } from '../blockchainservice';
-import { NotifyBus } from '../notificationservice';
+import { ShardingService } from '@/services/sharding-service';
+import { NotifyBus } from '@/services/notification-service';
 import { ContextScoring } from '../scoring/ContextScoringEngine';
 
 export class ConflictResolver {

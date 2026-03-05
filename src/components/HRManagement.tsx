@@ -4,7 +4,7 @@ import {
   UserRole, UserPosition, DetailedPersonnel, BusinessMetrics, PositionType 
 } from '../types';
 import { HREngine } from '../services/hrEngine';
-import { ExportEngine } from '../services/exportService';
+import { ExportEngine } from '@/services/export-service';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 import { 

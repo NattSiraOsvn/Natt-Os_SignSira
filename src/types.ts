@@ -109,6 +109,13 @@ export const UserRole = {
   VIEWER: 'VIEWER',
   STAFF: 'STAFF',
   SENIOR_STAFF: 'SENIOR_STAFF',
+  // V2 compatibility aliases
+  LEVEL_1: 'LEVEL_1',
+  LEVEL_3: 'LEVEL_3',
+  LEVEL_4: 'LEVEL_4',
+  LEVEL_6: 'LEVEL_6',
+  LEVEL_7: 'LEVEL_7',
+  LEVEL_8: 'LEVEL_8',
 } as const;
 export type UserRole = typeof UserRole[keyof typeof UserRole];
 
@@ -122,6 +129,12 @@ export const PositionType = {
   CHAIRMAN: 'CHAIRMAN',
   CONSULTANT: 'CONSULTANT',
   CFO: 'CFO',
+  // V2 compatibility
+  CEO: 'CEO',
+  ROUGH_FINISHER: 'ROUGH_FINISHER',
+  CASTING_MANAGER: 'CASTING_MANAGER',
+  PROD_DIRECTOR: 'PROD_DIRECTOR',
+  GENERAL_MANAGER: 'GENERAL_MANAGER',
 } as const;
 export type PositionType = typeof PositionType[keyof typeof PositionType];
 
@@ -176,6 +189,8 @@ export const WarehouseLocation = {
   HN_BRANCH: 'HN_BRANCH',
   MAIN_VAULT: 'MAIN_VAULT',
   SHOWROOM_FLOOR: 'SHOWROOM_FLOOR',
+  HANOI_BRANCH: 'HANOI_BRANCH',
+  DA_NANG_BRANCH: 'DA_NANG_BRANCH',
 } as const;
 export type WarehouseLocation = typeof WarehouseLocation[keyof typeof WarehouseLocation];
 
@@ -197,6 +212,12 @@ export const OrderStatus = {
   READY: 'READY',
   COMPLETED: 'COMPLETED',
   CANCELLED: 'CANCELLED',
+  DESIGNING: 'DESIGNING',
+  CASTING: 'CASTING',
+  COLD_WORK: 'COLD_WORK',
+  STONE_SETTING: 'STONE_SETTING',
+  FINISHING: 'FINISHING',
+  QC_PENDING: 'QC_PENDING',
 } as const;
 export type OrderStatus = typeof OrderStatus[keyof typeof OrderStatus];
 
@@ -205,6 +226,10 @@ export const SalesChannel = {
   REFERRAL: 'REFERRAL',
   ONLINE_INQUIRY: 'ONLINE_INQUIRY',
   EVENT: 'EVENT',
+  WHOLESALE: 'WHOLESALE',
+  ONLINE: 'ONLINE',
+  DIRECT_SALE: 'DIRECT_SALE',
+  LOGISTICS: 'LOGISTICS',
 } as const;
 export type SalesChannel = typeof SalesChannel[keyof typeof SalesChannel];
 
@@ -511,6 +536,8 @@ export interface WarehouseLocationDetail {
 }
 
 export interface CustomerLead {
+  tier?: string;
+  createdAt?: number;
   ownerId?: string;
   id: string;
   name: string;
@@ -529,6 +556,10 @@ export interface CustomerLead {
 }
 
 export interface ApprovalRequest {
+  title?: string;
+  data?: Record<string, unknown>;
+  requiredApprovers?: string[];
+  deadline?: number;
   id: string;
   type: string;
   requestedBy: string;
@@ -542,15 +573,22 @@ export interface ApprovalRequest {
   recordType?: string;
   reason?: string;
   priority?: string;
+
+  title?: string;
+  requiredApprovers?: string[];
+  deadline?: number;
 }
 
 export interface ApprovalTicket {
+  title?: string;
+  data?: Record<string, unknown>;
+  approvalHistory?: Array<{approver: string; action: string; timestamp: number; note?: string}>;
   workflowStep?: number;
   requestedAt?: number;
   id: string;
   approvalRequestId?: string;
   assignedTo?: string;
-  priority?: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  priority?: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'NORMAL';
   dueAt?: number;
 
   request?: any;
@@ -561,6 +599,8 @@ export interface ApprovalTicket {
   status?: string;
 
   totalSteps?: number;
+
+  approvalHistory?: Array<{ approverId: string; action: string; timestamp: number; comment?: string }>;
 }
 
 export interface SyncJob {
@@ -650,6 +690,11 @@ export interface CustomsDeclaration {
   currency: string;
   status: 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED';
   createdAt: number;
+
+  header?: { declarationNumber: string; streamCode: 'RED' | 'YELLOW' | 'GREEN'; };
+  riskAssessment?: { score: number; level: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'; factors: string[]; assessedAt: number; };
+  trackingTimeline?: Array<{ stage: string; timestamp: number; note?: string }>;
+  compliance?: { isCompliant: boolean; violations: string[] };
 }
 
 export interface CustomsDeclarationItem {
@@ -662,6 +707,20 @@ export interface CustomsDeclarationItem {
   weight: number;
   origin: string;
   riskScore?: number;
+
+  invoiceValue?: number;
+  originCountry?: string;
+  certNumber?: string;
+  totalTax?: number;
+  gemType?: string;
+  shape?: string;
+  color?: string;
+  clarity?: string;
+  weightCT?: number;
+  vatTaxableValue?: number;
+  vatRate?: number;
+  vatAmount?: number;
+  validationErrors?: string[];
 }
 
 export interface ActionPlan {
@@ -671,9 +730,16 @@ export interface ActionPlan {
   priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   dueAt?: number;
   status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
+
+  department?: string;
 }
 
 export interface AccountingEntry {
+  debit?: number;
+  credit?: number;
+  accountNumber?: string;
+  updated_at?: number;
+  total_orders?: number;
   status?: string;
   journalType?: string;
   transactionDate?: number;
@@ -689,9 +755,13 @@ export interface AccountingEntry {
   entries?: unknown[];
   journalId?: string;
   createdAt?: Date;
+
+  aiNote?: string;
 }
 
 export interface AccountingMappingRule {
+  sourceType?: string;
+  conditionField?: string;
   name?: string;
   enabled?: boolean;
   source?: { system: string; [key: string]: unknown };
@@ -837,6 +907,13 @@ export interface EmployeePayroll {
   taxableIncome?: number;
   personalTax?: number;
   status: 'PENDING' | 'APPROVED' | 'PAID';
+
+  actualWorkDays?: number;
+  startDate?: string;
+  insuranceSalary?: number;
+  dependents?: number;
+  grossSalary?: number;
+  seniority?: number;
 }
 
 export interface TeamPerformance {
@@ -871,6 +948,10 @@ export interface SellerIdentity {
   role: UserRole;
   branch: string;
   commissionRate: number;
+
+  fullName?: string;
+  stars?: number;
+  kpiPoints?: number;
 }
 
 export interface SellerReport {
@@ -903,6 +984,15 @@ export interface BusinessMetrics {
   netProfit: number;
   period: string;
   branch?: string;
+
+  revenue_pending?: number;
+  totalTaxDue?: number;
+  totalPayroll?: number;
+  currentOperatingCost?: number;
+  importVolume?: number;
+  pendingApprovals?: number;
+  cadPending?: number;
+  productionProgress?: number;
 }
 
 export interface GovernanceKPI {
@@ -1087,6 +1177,8 @@ export type RBACRole = string;
 export type RBACPermission = string;
 
 export interface UserPosition {
+  id: string;
+  role: string;
   userId: string;
   position: PositionType;
   department: Department;
@@ -1356,6 +1448,8 @@ export interface AuditItem {
   oldValue?: string;
   newValue?: string;
   causation_id?: string;
+
+  prevHash?: string;
 }
 
 export interface SagaLog {
@@ -1393,6 +1487,11 @@ export interface ResolvedData {
 export interface ConflictResolutionRule {
   id: string;
   name: string;
+  condition: string;
+  method: string;
+  strategy: 'last-write-wins' | 'merge' | 'manual' | string;
+  id: string;
+  name: string;
   priority: number;
   condition: string;
   method: ConflictResolutionMethod;
@@ -1400,6 +1499,10 @@ export interface ConflictResolutionRule {
   defaultMethod?: ConflictResolutionMethod;
   threshold?: number;
   dataType?: string;
+
+  conditionField?: string;
+  conditionValue?: string;
+  sourceType?: string;
 }
 
 export interface BusinessContext {
@@ -1645,6 +1748,10 @@ export interface SalaryRule {
   name: string;
   type: "ALLOWANCE" | "DEDUCTION" | "TAX";
   calculate: (base: number) => number;
+
+  division?: string;
+  grade?: string;
+  salary?: number;
 }
 
 // ═══ Logistics ═══
@@ -1688,13 +1795,14 @@ export interface BlockShard {
 }
 
 export interface AuditTrailEntry {
+  status?: string;
   id: string;
   timestamp: number;
   userId: string;
   role: UserRole;
   action: string;
-  oldValue: string;
-  newValue: string;
+  oldValue?: string;
+  newValue?: string;
   hash: string;
 }
 
@@ -2086,4 +2194,29 @@ export interface EmailMessage {
   hasAttachment: boolean;
   isRead: boolean;
   priority: 'CAO' | 'TRUNG BÌNH' | 'THẤP';
+}
+
+// ============================================================================
+// V2 COMPATIBILITY PATCH — Băng 2026-03-06
+// Fixes ~200 TypeScript errors from V2→V3 schema migration
+// ============================================================================
+
+export type TxStatus =
+  | 'BẢN NHÁP' | 'SẴN SÀNG KÝ' | 'ĐÃ KÝ SỐ' | 'BỊ TRẢ LẠI'
+  | 'BỊ TỪ CHỐI' | 'ĐÃ DUYỆT' | 'CHỜ DUYỆT'
+  | 'PENDING' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
+
+export interface ConflictRecord {
+  id: string;
+  entityType: string;
+  entityId: string;
+  sourceA: string;
+  sourceB: string;
+  conflictField: string;
+  valueA: unknown;
+  valueB: unknown;
+  detectedAt: number;
+  resolvedAt?: number;
+  resolution?: string;
+  resolvedBy?: string;
 }

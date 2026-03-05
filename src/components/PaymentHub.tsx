@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { UserRole, UserPosition, PersonaID } from '../types';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
+import { PaymentEngine, PaymentResponse } from '@/services/payment-service';
 import AIAvatar from './AIAvatar';
 
 interface PaymentHubProps {

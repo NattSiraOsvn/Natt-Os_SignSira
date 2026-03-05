@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Supplier, PersonaID } from '../types';
 import { SupplierEngine } from '../services/supplier/SupplierEngine';
 import { GmailIntelligence } from '../services/gmailService';
-import { ExportEngine } from '../services/exportService';
+import { ExportEngine } from '@/services/export-service';
 import AIAvatar from './AIAvatar';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
 

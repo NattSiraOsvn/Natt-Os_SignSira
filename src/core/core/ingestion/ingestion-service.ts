@@ -1,5 +1,5 @@
 import { IngestStatus, FileMetadata } from "../../../types";
-import { ShardingService } from "@/services/blockchainservice";
+import { ShardingService } from "@/services/sharding-service";
 
 export class IngestionService {
   private static instance: IngestionService;
