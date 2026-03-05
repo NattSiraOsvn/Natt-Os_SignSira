@@ -6,7 +6,7 @@
 
 import { AuditChainContract } from './audit-chain-contract';
 import { AuditRecord, IntegrityState, ScannerState } from '@/types';
-import { AuditService } from '@/services/admin/audit-service'; // Access DB layer
+import { AuditProvider as AuditService } from '@/cells/kernel/audit-cell/domain/services/audit.engine'; // Access DB layer
 
 export class IntegrityScanner {
   private static instance: IntegrityScanner;
