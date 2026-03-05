@@ -29,5 +29,6 @@
     "*.ts", 
     "*.tsx"
   ],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "src/governance/memory/*/baithicua*/**","node_modules", "dist"]
 }

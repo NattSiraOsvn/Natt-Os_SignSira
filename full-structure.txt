@@ -1,0 +1,1569 @@
+.
+├── HIEN-PHAP-NATT-OS-v4.0.md
+├── TaxCell_Specification_v1.docx
+├── _archive_pre_v4
+│   ├── constitutions
+│   │   ├── constitution-governance.zip
+│   │   ├── constitution-natt-os.zip
+│   │   ├── governance-constitution-v3.1
+│   │   │   ├── index.ts
+│   │   │   ├── roadload.state-based.constitution.md
+│   │   │   └── v3.1-final
+│   │   │       ├── HIEN-PHAP-NATT-OS-v3.1-FINAL.md
+│   │   │       ├── ai_council_memory.json
+│   │   │       ├── legal
+│   │   │       │   └── DISCLAIMER.md
+│   │   │       ├── security_checklist.json
+│   │   │       ├── technical
+│   │   │       │   └── constitution.json
+│   │   │       └── warnings
+│   │   │           └── SOVEREIGN_WARNINGS.md
+│   │   └── natt-os-constitution-sealed
+│   │       ├── ai-constitution.v1.0.txt
+│   │       ├── book_viii_evolution_failure.v1.0.txt
+│   │       ├── cell-manifest.schema.v1.json
+│   │       ├── constitution.v1.0.txt
+│   │       ├── immune-rulebook.v1.0.txt
+│   │       └── interpretation.v1.0.txt
+│   ├── debris
+│   │   ├── DECREE_COMPLIANCE_REPORT_20260211_031444.md
+│   │   ├── PRE_WAVE3_CHECKLIST_COMPLETE.md
+│   │   ├── PRE_WAVE3_FINAL_CHECKLIST.md
+│   │   ├── PRE_WAVE3_FINAL_CHECKLIST_VALIDATED.md
+│   │   ├── RECOVERY_REPORT.md
+│   │   ├── WAVE3_INITIATION_REPORT_20260211_032152.md
+│   │   ├── _trash_stubs
+│   │   │   ├── __mocks____blockchainservice.ts
+│   │   │   ├── __mocks____notificationservice.ts
+│   │   │   ├── admin__admin.service.ts
+│   │   │   ├── admin__audit-compliance.checker.ts
+│   │   │   ├── admin__audit-service.ts
+│   │   │   ├── admin__audit.interceptor.ts
+│   │   │   ├── admin__audit.service.ts
+│   │   │   ├── admin__auditservice.ts
+│   │   │   ├── admin__index.ts
+│   │   │   ├── admin__rbac.service.ts
+│   │   │   ├── analytics__analytics.api.ts
+│   │   │   ├── analytics__analytics.service.ts
+│   │   │   ├── analytics__analyticsapi.ts
+│   │   │   ├── analytics__index.ts
+│   │   │   ├── approval__index.ts
+│   │   │   ├── authservice.ts
+│   │   │   ├── conflict__conflictresolver.ts
+│   │   │   ├── customsservice.ts
+│   │   │   ├── dictionaryapprovalservice.ts
+│   │   │   ├── dictionaryservice.ts
+│   │   │   ├── documentai.ts
+│   │   │   ├── einvoiceservice.ts
+│   │   │   ├── fiscal__index.ts
+│   │   │   ├── index.ts
+│   │   │   ├── learningengine.ts
+│   │   │   ├── mapping__index.ts
+│   │   │   ├── moduleregistry.ts
+│   │   │   ├── notificationservice.ts
+│   │   │   ├── offlineservice.ts
+│   │   │   ├── parser__documentparserlayer.ts
+│   │   │   ├── paymentservice.ts
+│   │   │   ├── product-service.ts
+│   │   │   ├── quantumbufferservice.ts
+│   │   │   ├── quantumengine.ts
+│   │   │   ├── rbacservice.ts
+│   │   │   ├── recoveryengine.ts
+│   │   │   ├── sales-service.ts
+│   │   │   ├── sellerengine.ts
+│   │   │   ├── sharding-service.ts
+│   │   │   ├── shared__global-idempotency.enforcer.ts
+│   │   │   ├── showroom__index.ts
+│   │   │   ├── smart-link.ts
+│   │   │   ├── threatdetectionservice.ts
+│   │   │   ├── warehouse-service.ts
+│   │   │   └── warehouse.service.ts
+│   │   ├── avatar-backup-20260219163443.tar.gz
+│   │   ├── collision-report.json
+│   │   ├── goldmaster
+│   │   │   ├── goldmaster-analysis.txt
+│   │   │   ├── goldmaster-files.txt
+│   │   │   ├── goldmaster-names.txt
+│   │   │   ├── goldmaster_semantic_20260223_062429.md
+│   │   │   ├── goldmaster_semantic_20260223_063143.md
+│   │   │   ├── goldmaster_semantic_20260223_063308.md
+│   │   │   ├── goldmaster_semantic_20260223_064134.md
+│   │   │   ├── goldmaster_semantic_20260223_064936.md
+│   │   │   └── goldmaster_semantic_20260223_190206.md
+│   │   ├── logs
+│   │   │   ├── clean_v21.log
+│   │   │   ├── constitution-v4-deploy.log
+│   │   │   ├── current-errors-20260220-0204.log
+│   │   │   ├── current-errors-full.log
+│   │   │   ├── current-errors.log
+│   │   │   ├── debug.log
+│   │   │   ├── error-log.txt
+│   │   │   ├── final-check.log
+│   │   │   ├── final_fix_20260211_023932.log
+│   │   │   ├── full.log
+│   │   │   ├── goldmaster_dryrun.log
+│   │   │   ├── goldmaster_run.log
+│   │   │   ├── goldmaster_run_clean.log
+│   │   │   ├── huong-dan.txt
+│   │   │   ├── natt-os-scan-report.txt
+│   │   │   ├── natt_kernel_audit_20260211_021240.log
+│   │   │   ├── natt_kernel_audit_20260211_021620.log
+│   │   │   ├── phase_d_completion_20260211_023137.log
+│   │   │   ├── raw.txt
+│   │   │   ├── run_fix.log
+│   │   │   ├── script10.log
+│   │   │   ├── script7.log
+│   │   │   ├── script8-errors.log
+│   │   │   ├── script8.log
+│   │   │   ├── script9.log
+│   │   │   ├── services-errors.log
+│   │   │   ├── tsc-errors-20260220.log
+│   │   │   ├── tsc.core.log
+│   │   │   └── type-check-phase3.log
+│   │   ├── python-scripts
+│   │   │   ├── batch_a_merge.py
+│   │   │   ├── batch_b_merge.py
+│   │   │   ├── batch_c_merge.py
+│   │   │   ├── fix_all_13.py
+│   │   │   ├── fix_c1_controls.py
+│   │   │   ├── fix_utf8_corruption.py
+│   │   │   ├── hotfix_batch_a_plus_tsc.py
+│   │   │   ├── migrate_all_versions.py
+│   │   │   ├── migrate_old_source.py
+│   │   │   ├── natt_os_gov_fix.py
+│   │   │   ├── natt_os_recovery.py
+│   │   │   ├── natt_os_round2_fix.py
+│   │   │   ├── natt_os_round3_fix.py
+│   │   │   ├── natt_os_round4_fix.py
+│   │   │   ├── natt_os_round5_fix.py
+│   │   │   ├── quantum_buffer_install.py
+│   │   │   ├── recovery_204.py
+│   │   │   ├── script-10-python-fix.py
+│   │   │   ├── wave3_fix_64errors.py
+│   │   │   ├── wave3_fix_round2.py
+│   │   │   ├── wave3_fix_round3.py
+│   │   │   ├── wave3_fix_round4.py
+│   │   │   ├── wave3_fix_round5.py
+│   │   │   └── wave3_real_modules.py
+│   │   ├── shell-scripts
+│   │   │   ├── script-1-fix-types-duplicate.sh
+│   │   │   ├── script-2-fix-export-type.sh
+│   │   │   ├── script-3-fix-warehouse-casing.sh
+│   │   │   ├── script-4-fix-mock-modules.sh
+│   │   │   ├── script-5-final-fixes.sh
+│   │   │   ├── script-6-batch-fix.sh
+│   │   │   ├── script-7-discipline-fix.sh
+│   │   │   ├── script-8-awk-fix.sh
+│   │   │   ├── script-9-mini-syntax-fix.sh
+│   │   │   ├── script-9-syntax-fix.sh
+│   │   │   ├── supreme-purge-v8.2.sh
+│   │   │   └── tasks.sh
+│   │   ├── test_pre_wave3.js
+│   │   ├── test_pre_wave3_cjs.cjs
+│   │   ├── validation_report_20260211_023138.md
+│   │   └── wave3_patch.zip
+│   └── root-duplicates
+│       ├── animation
+│       │   └── use-staggered-animation.ts
+│       ├── app.tsx
+│       ├── apps
+│       │   ├── analytics-ingestion-service
+│       │   │   └── src
+│       │   │       ├── application
+│       │   │       │   └── ingestion-pipeline.ts
+│       │   │       └── domain
+│       │   │           └── projections
+│       │   │               └── saga-health-projection.ts
+│       │   ├── finance-service
+│       │   │   └── src
+│       │   │       ├── application
+│       │   │       │   ├── handlers
+│       │   │       │   │   ├── invoice-issued-handler.ts
+│       │   │       │   │   ├── payment-failed-handler.ts
+│       │   │       │   │   └── payment-succeeded-handler.ts
+│       │   │       │   ├── pipeline
+│       │   │       │   │   └── finance-event-pipeline.ts
+│       │   │       │   ├── projections
+│       │   │       │   │   └── risk-projection.ts
+│       │   │       │   ├── sagas
+│       │   │       │   │   ├── compensation-saga.ts
+│       │   │       │   │   ├── finance-saga.ts
+│       │   │       │   │   └── payment-saga.ts
+│       │   │       │   └── usecases
+│       │   │       │       └── create-invoice.ts
+│       │   │       ├── finance-production-base.ts
+│       │   │       ├── infrastructure
+│       │   │       │   ├── audit
+│       │   │       │   │   └── audit-logger.ts
+│       │   │       │   └── messaging
+│       │   │       │       ├── dead-letter-handler.ts
+│       │   │       │       └── retry-policy.ts
+│       │   │       └── production-base.ts
+│       │   ├── hr-service
+│       │   │   └── src
+│       │   │       ├── application
+│       │   │       │   └── handlers
+│       │   │       │       ├── employee-created-handler.ts
+│       │   │       │       ├── training-assigned-handler.ts
+│       │   │       │       └── training-completed-handler.ts
+│       │   │       └── production-base.ts
+│       │   └── shared
+│       │       ├── config.ts
+│       │       ├── health.ts
+│       │       └── logger.ts
+│       ├── context
+│       │   └── use-contextual-ui.ts
+│       ├── contexts
+│       │   ├── accounting-context.tsx
+│       │   └── mapping-context.tsx
+│       ├── data-3d
+│       │   └── data-point3-d.tsx
+│       ├── haptic
+│       │   └── haptic-engine.ts
+│       ├── hooks
+│       │   ├── use-authority.ts
+│       │   ├── use-permission.ts
+│       │   ├── use-real-time-sync.ts
+│       │   ├── use-smart-mapping.ts
+│       │   └── use-supplier-classification.ts
+│       ├── index.tsx
+│       ├── manifestations
+│       │   └── overlays
+│       │       ├── luxury-button.tsx
+│       │       └── quantum-container.tsx
+│       ├── motion
+│       │   └── use-motion-sensor.ts
+│       ├── neuro-link
+│       │   └── context
+│       │       └── quantum-uicontext.tsx
+│       ├── physics
+│       │   └── physics-engine.ts
+│       ├── quantum-buffer.service.ts
+│       ├── quantum-types.ts
+│       ├── services
+│       │   ├── admin
+│       │   │   ├── admin-service.ts
+│       │   │   ├── audit-compliance-checker.ts
+│       │   │   ├── audit-interceptor.ts
+│       │   │   └── audit-service.ts
+│       │   ├── ai-engine.ts
+│       │   ├── analytics
+│       │   │   ├── analytics-api.ts
+│       │   │   └── analytics-service.ts
+│       │   ├── approval
+│       │   │   └── approval-workflow-service.ts
+│       │   ├── auth-service.ts
+│       │   ├── banking-service.ts
+│       │   ├── blockchain-service.ts
+│       │   ├── calibration
+│       │   │   └── calibration-engine.ts
+│       │   ├── compliance
+│       │   │   ├── certification-service.ts
+│       │   │   └── compliance-service.ts
+│       │   ├── config
+│       │   │   └── config-hub.ts
+│       │   ├── config-hub.ts
+│       │   ├── config-service.ts
+│       │   ├── conflict
+│       │   │   └── conflict-resolver.ts
+│       │   ├── cost
+│       │   │   └── cost-allocation-system.ts
+│       │   ├── customs-service.ts
+│       │   ├── customs-utils.ts
+│       │   ├── dashboard-service.ts
+│       │   ├── dictionary-approval-service.ts
+│       │   ├── document-ai.ts
+│       │   ├── e-invoice-engine.ts
+│       │   ├── e-invoice-service.ts
+│       │   ├── enterprise-linker.ts
+│       │   ├── event-bridge.ts
+│       │   ├── export-service.ts
+│       │   ├── fraud-guard.ts
+│       │   ├── gdb-engine.ts
+│       │   ├── gemini-service.ts
+│       │   ├── gmail-service.ts
+│       │   ├── haptic
+│       │   │   └── haptic-engine.ts
+│       │   ├── hr
+│       │   │   ├── commission-engine.ts
+│       │   │   └── shift-service.ts
+│       │   ├── hr-core.ts
+│       │   ├── hr-engine.ts
+│       │   ├── hr-service.ts
+│       │   ├── ingestion
+│       │   │   ├── dictionary-guard.ts
+│       │   │   ├── extractors.ts
+│       │   │   ├── idempotency-manager.ts
+│       │   │   ├── ingestion-service.ts
+│       │   │   └── utils.ts
+│       │   ├── learning-engine.ts
+│       │   ├── logistics-service.ts
+│       │   ├── mapping
+│       │   │   └── smart-link-mapping-engine.ts
+│       │   ├── module-helpers.ts
+│       │   ├── module-registry.ts
+│       │   ├── monitoring
+│       │   │   └── orphan-detection-bot.ts
+│       │   ├── notification-service.ts
+│       │   ├── offline-service.ts
+│       │   ├── parser
+│       │   │   └── document-parser-layer.ts
+│       │   ├── payment-service.ts
+│       │   ├── personnel-engine.ts
+│       │   ├── physics
+│       │   │   └── physics-engine.ts
+│       │   ├── pricing
+│       │   │   ├── pricing-runtime.ts
+│       │   │   └── rule-engine.ts
+│       │   ├── product-service.ts
+│       │   ├── production-engine.ts
+│       │   ├── production-sales-flow.ts
+│       │   ├── production-service.ts
+│       │   ├── quantum-buffer-service.ts
+│       │   ├── quantum-engine.ts
+│       │   ├── rbac-engine.ts
+│       │   ├── rbac-service.ts
+│       │   ├── reconciliation-service.ts
+│       │   ├── recovery-engine.ts
+│       │   ├── refund-workflow-service.ts
+│       │   ├── sales-core.ts
+│       │   ├── scoring
+│       │   │   └── context-scoring-engine.ts
+│       │   ├── seller-engine.ts
+│       │   ├── shared
+│       │   │   └── global-idempotency-enforcer.ts
+│       │   ├── smart-link-engine.ts
+│       │   ├── smart-link.ts
+│       │   ├── staging
+│       │   │   └── event-staging-layer.ts
+│       │   ├── supplier
+│       │   │   └── supplier-engine.ts
+│       │   ├── task-router.ts
+│       │   ├── tax-report-service.ts
+│       │   ├── threat-detection-service.ts
+│       │   └── warehouse-service.ts
+│       ├── superdictionary.ts
+│       ├── types
+│       │   └── accounting.types.ts
+│       └── utils
+│           ├── supplier-classifier.ts
+│           └── supplier-import-helper.ts
+├── audit
+│   ├── reports
+│   │   └── audit_2026-02-23_221546.log
+│   └── summary
+│       ├── audit_2026-02-23.json
+│       └── latest.json
+├── audit_comprehensive.sh
+├── audit_fixed.sh
+├── audit_full_system.sh
+├── audit_goldmaster_20260224.txt
+├── audit_mac_local.txt
+├── báo cáo hệ thống 23022026 và Kế hoạch Toàn cảnh.pdf
+├── cây hệ thống.txt
+├── constitution-v4-deploy.log
+├── constitution-v4-deploy.sh
+├── database
+│   ├── schema
+│   │   ├── 002_fiscal_workbench.sql
+│   │   ├── approval.schema.sql
+│   │   ├── approval_schema.sql
+│   │   └── audit_schema.sql
+│   └── schema.sql
+├── deploy-nattos.sh
+├── docs
+│   ├── architecture
+│   │   └── CELL_MANIFEST_SCHEMA.json
+│   └── specs
+│       └── business
+│           └── inventory-cell
+│               ├── inventory-business-context.md
+│               └── inventory-cell-tests.spec.md
+├── files_with_ts1362.txt
+├── full-structure.txt
+├── index.html
+├── metadata.json
+├── natt-os
+│   ├── audit
+│   │   └── audit-trail-manager.ts
+│   ├── bootstrap
+│   │   └── omega-bootstrap.ts
+│   ├── constitution
+│   │   └── HIEN-PHAP-NATT-OS-v4.0.md
+│   ├── discipline
+│   │   ├── log-violation-001.txt
+│   │   ├── log_violation_004_negligence.txt
+│   │   └── log_violation_005_ultimate_negligence.txt
+│   ├── governance
+│   │   ├── blueprint.json
+│   │   ├── enforcement-engine.ts
+│   │   ├── integration
+│   │   │   └── policy-enforcer.ts
+│   │   └── plans
+│   │       └── omega-governance-longterm.plan.json
+│   ├── monitoring
+│   │   ├── ai-behavior-analytics.ts
+│   │   └── governance-health.ts
+│   ├── omega
+│   │   └── ai-omega-unified.json
+│   ├── rehabilitation
+│   │   └── ai-rehabilitation.ts
+│   ├── security
+│   │   ├── activate.ts
+│   │   ├── ai-kill-switch.ts
+│   │   ├── ai-lockdown.ts
+│   │   ├── ai-permissions.json
+│   │   ├── auto-kill-switch.ts
+│   │   ├── memory-governance-lock.ts
+│   │   └── sirasign-verifier.ts
+│   ├── storage
+│   │   └── idempotency-store.ts
+│   └── validation
+│       ├── cell-purity-enforcer.ts
+│       ├── cell-purity.validator.ts
+│       └── policy-hash-validator.ts
+├── natt_goldmaster_v2.1.sh
+├── natt_goldmaster_v2.sh
+├── natt_os_scan_20260209_200106.json
+├── package-lock.json
+├── package.json
+├── packages
+│   └── event-contracts
+│       └── finance
+│           ├── InvoiceCreated.v1.ts
+│           └── PaymentCompleted.v1.ts
+├── reference
+├── scripts
+│   ├── capability_scanner.js
+│   ├── deploy-production.sh
+│   ├── emergency-rollback.sh
+│   ├── final-casing-round.sh
+│   ├── fix-case-sensitivity.sh
+│   ├── ironclad-casing-v7.1.sh
+│   ├── kernel_phase1_scan.mjs
+│   ├── kim-step3-lock-gatekeeper.sh
+│   ├── phase2_cleanup_and_lock.sh
+│   ├── purge-v6-1.sh
+│   ├── supreme-purge-v8.1.sh
+│   ├── sync-tree-from-constitution.sh
+│   └── validate-manifests.js
+├── src
+│   ├── admin
+│   │   └── auditservice.ts
+│   ├── animation
+│   │   └── usestaggeredanimation.ts
+│   ├── apps
+│   │   ├── analytics-ingestion-service
+│   │   │   └── src
+│   │   │       ├── application
+│   │   │       │   └── ingestion-pipeline.ts
+│   │   │       └── domain
+│   │   │           └── projections
+│   │   │               └── saga-health.projection.ts
+│   │   ├── finance-service
+│   │   │   └── src
+│   │   │       ├── application
+│   │   │       │   ├── handlers
+│   │   │       │   │   ├── invoice-issued.handler.ts
+│   │   │       │   │   ├── payment-failed.handler.ts
+│   │   │       │   │   └── payment-succeeded.handler.ts
+│   │   │       │   ├── pipeline
+│   │   │       │   │   └── finance-event.pipeline.ts
+│   │   │       │   ├── projections
+│   │   │       │   │   └── risk.projection.ts
+│   │   │       │   ├── sagas
+│   │   │       │   │   ├── compensation.saga.ts
+│   │   │       │   │   ├── finance.saga.ts
+│   │   │       │   │   └── payment.saga.ts
+│   │   │       │   └── usecases
+│   │   │       │       └── create-invoice.usecase.ts
+│   │   │       ├── domain
+│   │   │       │   ├── invoice.aggregate.ts
+│   │   │       │   └── payment.aggregate.ts
+│   │   │       ├── finance-production.base.ts
+│   │   │       ├── infrastructure
+│   │   │       │   ├── audit
+│   │   │       │   │   └── audit-logger.ts
+│   │   │       │   └── messaging
+│   │   │       │       ├── dead-letter.handler.ts
+│   │   │       │       └── retry.policy.ts
+│   │   │       ├── production.base.ts
+│   │   │       └── readme.md
+│   │   ├── hr-service
+│   │   │   └── src
+│   │   │       ├── application
+│   │   │       │   └── handlers
+│   │   │       │       ├── employee-created.handler.ts
+│   │   │       │       ├── training-assigned.handler.ts
+│   │   │       │       └── training-completed.handler.ts
+│   │   │       └── production.base.ts
+│   │   ├── sale-terminal
+│   │   │   └── sale-terminal.tsx
+│   │   └── shared
+│   │       ├── config.ts
+│   │       ├── health.ts
+│   │       └── logger.ts
+│   ├── audit
+│   │   └── audit-engine.tsx
+│   ├── cells
+│   │   ├── business
+│   │   │   ├── buyback-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   └── services
+│   │   │   │   │       └── buyback.service.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── buyback-transaction.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── buyback.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       ├── buyback-rules.ts
+│   │   │   │   │       └── exchange-policy.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── buyback.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── buyback.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       └── buyback.contract.ts
+│   │   │   ├── customer-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   └── services
+│   │   │   │   │       └── customer.service.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── customer.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── customer.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       └── customer-tier.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── customer.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── customer.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       └── customer.contract.ts
+│   │   │   ├── inventory-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── inventory.service.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── check-availability.ts
+│   │   │   │   │       ├── deduct-item.ts
+│   │   │   │   │       ├── release-reservation.ts
+│   │   │   │   │       └── reserve-item.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── inventory-item.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── reservation.engine.ts
+│   │   │   │   │   │   └── stock-management.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       ├── item-status.ts
+│   │   │   │   │       ├── location-codes.ts
+│   │   │   │   │       └── reservation-rules.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── inventory.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── inventory.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── inventory.contract.ts
+│   │   │   │       └── inventory.port.ts
+│   │   │   ├── order-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   └── services
+│   │   │   │   │       └── order.service.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── order.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── order.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       └── order-status.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── order.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── order.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       └── order.contract.ts
+│   │   │   ├── pricing-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── pricing-runtime.service.ts
+│   │   │   │   │   │   └── pricing.service.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── calculate-product-price.ts
+│   │   │   │   │       └── update-gold-market-price.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── pricing-calculator.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── labor-cost.engine.ts
+│   │   │   │   │   │   └── rule-engine.service.ts
+│   │   │   │   │   ├── types
+│   │   │   │   │   │   └── pricing.types.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       ├── gold-types.ts
+│   │   │   │   │       ├── markup-tiers.ts
+│   │   │   │   │       └── product-categories.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── gold-price.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── pricing.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       └── pricing.contract.ts
+│   │   │   ├── promotion-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   └── services
+│   │   │   │   │       └── promotion.service.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── promotion.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── promotion.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       └── promotion-types.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── promotion.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── promotion.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       └── promotion.contract.ts
+│   │   │   ├── sales-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   └── services
+│   │   │   │   │       └── sales.service.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── sales-transaction.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── sales.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       └── sales-channel.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── sales.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── sales.interface.ts
+│   │   │   │   ├── ports
+│   │   │   │   │   └── sales.contract.ts
+│   │   │   │   ├── sales.service.ts
+│   │   │   │   └── salesterminal.tsx
+│   │   │   ├── showroom-cell
+│   │   │   │   ├── README.md
+│   │   │   │   ├── application
+│   │   │   │   │   └── services
+│   │   │   │   │       └── showroom.service.ts
+│   │   │   │   ├── boundary.policy.json
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   └── appointment.entity.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── showroom.engine.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       └── display-zone.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   └── repositories
+│   │   │   │   │       └── showroom.repository.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   └── showroom.interface.ts
+│   │   │   │   └── ports
+│   │   │   │       └── showroom.contract.ts
+│   │   │   └── warranty-cell
+│   │   │       ├── README.md
+│   │   │       ├── application
+│   │   │       │   └── services
+│   │   │       │       └── warranty.service.ts
+│   │   │       ├── boundary.policy.json
+│   │   │       ├── cell.manifest.json
+│   │   │       ├── domain
+│   │   │       │   ├── entities
+│   │   │       │   │   └── warranty-claim.entity.ts
+│   │   │       │   ├── services
+│   │   │       │   │   └── warranty.engine.ts
+│   │   │       │   └── value-objects
+│   │   │       │       ├── claim-status.ts
+│   │   │       │       └── warranty-policy.ts
+│   │   │       ├── index.ts
+│   │   │       ├── infrastructure
+│   │   │       │   └── repositories
+│   │   │       │       └── warranty.repository.ts
+│   │   │       ├── interface
+│   │   │       │   └── warranty.interface.ts
+│   │   │       └── ports
+│   │   │           └── warranty.contract.ts
+│   │   ├── infrastructure
+│   │   │   ├── shared-contracts-cell
+│   │   │   │   ├── application
+│   │   │   │   │   └── contract.registry.ts
+│   │   │   │   ├── domain
+│   │   │   │   │   └── contract.types.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── smartlink-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── SmartLinkApplicationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── CreateLinkUseCase.ts
+│   │   │   │   │       ├── ResolveLinkUseCase.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   ├── SmartLink.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── LinkResolver.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   ├── adapters
+│   │   │   │   │   │   ├── SmartLinkEventEmitterAdapter.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── repositories
+│   │   │   │   │       ├── InMemorySmartLinkRepository.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   ├── SmartLinkCell.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── SmartLinkEventEmitter.ts
+│   │   │   │       ├── SmartLinkRepository.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── smartlink-cell.contract.ts
+│   │   │   ├── sync-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── SyncApplicationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── StartSyncUseCase.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   ├── SyncConfig.ts
+│   │   │   │   │   │   ├── SyncJob.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── SyncEngine.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   ├── adapters
+│   │   │   │   │   │   ├── SyncEventEmitterAdapter.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── repositories
+│   │   │   │   │       ├── InMemorySyncRepository.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   ├── SyncCell.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── SyncEventEmitter.ts
+│   │   │   │       ├── SyncRepository.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── sync-cell.contract.ts
+│   │   │   └── warehouse-cell
+│   │   │       ├── QUARANTINE_README.md
+│   │   │       ├── application
+│   │   │       │   ├── README.md
+│   │   │       │   ├── services
+│   │   │       │   │   └── WarehouseApplicationService.ts
+│   │   │       │   ├── use-cases
+│   │   │       │   │   ├── ReceiveGoods.ts
+│   │   │       │   │   └── ReleaseGoods.ts
+│   │   │       │   └── warehouse.service.ts
+│   │   │       ├── cell.manifest.json
+│   │   │       ├── domain
+│   │   │       │   ├── README.md
+│   │   │       │   ├── entities
+│   │   │       │   │   ├── WarehouseEntity.ts
+│   │   │       │   │   └── warehouse.entity.ts
+│   │   │       │   ├── services
+│   │   │       │   │   ├── WarehouseDomainService.ts
+│   │   │       │   │   ├── warehouse-domain.service.ts
+│   │   │       │   │   └── warehouse.engine.ts
+│   │   │       │   └── value-objects
+│   │   │       │       └── warehouse-category.registry.ts
+│   │   │       ├── entities
+│   │   │       │   └── warehouse.entity.ts
+│   │   │       ├── index.js
+│   │   │       ├── index.ts
+│   │   │       ├── infrastructure
+│   │   │       │   ├── adapters
+│   │   │       │   │   └── WarehouseEventAdapter.ts
+│   │   │       │   ├── ports
+│   │   │       │   │   └── warehouse.contract.ts
+│   │   │       │   └── repositories
+│   │   │       │       └── InMemoryWarehouseRepository.ts
+│   │   │       ├── interface
+│   │   │       │   ├── WarehouseCell.ts
+│   │   │       │   └── index.ts
+│   │   │       ├── package.json
+│   │   │       ├── ports
+│   │   │       │   ├── WarehouseEventEmitter.ts
+│   │   │       │   ├── WarehouseRepository.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   └── warehouse.contract.ts
+│   │   │       ├── services
+│   │   │       │   ├── warehouse-domain.service.ts
+│   │   │       │   └── warehouse.engine.ts
+│   │   │       ├── value-objects
+│   │   │       │   └── warehouse-category.registry.ts
+│   │   │       └── warehouse-service.ts
+│   │   ├── kernel
+│   │   │   ├── audit-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── AuditApplicationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── LogAuditUseCase.ts
+│   │   │   │   │       ├── VerifyChainUseCase.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   ├── AuditEntry.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── AuditChainService.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   ├── adapters
+│   │   │   │   │   │   ├── AuditEventEmitterAdapter.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── noop-audit.adapter.ts
+│   │   │   │   │   └── repositories
+│   │   │   │   │       ├── InMemoryAuditRepository.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   ├── AuditCell.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── AuditEventEmitter.ts
+│   │   │   │       ├── AuditRepository.ts
+│   │   │   │       ├── audit-cell.contract.ts
+│   │   │   │       ├── audit.port.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── config-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── ConfigApplicationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── CreateSnapshotUseCase.ts
+│   │   │   │   │       ├── GetConfigUseCase.ts
+│   │   │   │   │       ├── RollbackConfigUseCase.ts
+│   │   │   │   │       ├── SetConfigUseCase.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── config.service.ts
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   ├── ConfigEntry.ts
+│   │   │   │   │   │   ├── ConfigSnapshot.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── ConfigValidationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── value-objects
+│   │   │   │   │       ├── ConfigKey.ts
+│   │   │   │   │       ├── ConfigMetadata.ts
+│   │   │   │   │       ├── ConfigValue.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   ├── adapters
+│   │   │   │   │   │   ├── ConfigEventEmitterAdapter.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── repositories
+│   │   │   │   │       ├── InMemoryConfigRepository.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   ├── ConfigCell.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── ConfigRepository.ts
+│   │   │   │       ├── EventEmitter.ts
+│   │   │   │       ├── config-cell.contract.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── index.ts
+│   │   │   ├── monitor-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── MonitorApplicationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── ReportHealthUseCase.ts
+│   │   │   │   │       ├── TriggerAlertUseCase.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   ├── Alert.ts
+│   │   │   │   │   │   ├── HealthReport.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── HealthAnalyzer.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   ├── adapters
+│   │   │   │   │   │   ├── MonitorEventEmitterAdapter.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── repositories
+│   │   │   │   │       ├── InMemoryMonitorRepository.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   ├── MonitorCell.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── MonitorEventEmitter.ts
+│   │   │   │       ├── MonitorRepository.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── monitor-cell.contract.ts
+│   │   │   ├── rbac-cell
+│   │   │   │   ├── application
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── RBACApplicationService.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── use-cases
+│   │   │   │   │       ├── AssignRoleUseCase.ts
+│   │   │   │   │       ├── CheckAccessUseCase.ts
+│   │   │   │   │       ├── RevokeRoleUseCase.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── cell.manifest.json
+│   │   │   │   ├── domain
+│   │   │   │   │   ├── entities
+│   │   │   │   │   │   ├── Permission.ts
+│   │   │   │   │   │   ├── Role.ts
+│   │   │   │   │   │   ├── UserRole.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── RBACValidationService.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infrastructure
+│   │   │   │   │   ├── adapters
+│   │   │   │   │   │   ├── RBACEventEmitterAdapter.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── repositories
+│   │   │   │   │       ├── InMemoryRBACRepository.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── interface
+│   │   │   │   │   ├── RBACCell.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── ports
+│   │   │   │       ├── RBACEventEmitter.ts
+│   │   │   │       ├── RBACRepository.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── rbac-cell.contract.ts
+│   │   │   └── security-cell
+│   │   │       ├── application
+│   │   │       │   ├── services
+│   │   │       │   │   ├── SecurityApplicationService.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   └── use-cases
+│   │   │       │       ├── DetectThreatUseCase.ts
+│   │   │       │       └── index.ts
+│   │   │       ├── cell.manifest.json
+│   │   │       ├── domain
+│   │   │       │   ├── entities
+│   │   │       │   │   ├── ThreatEvent.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   └── services
+│   │   │       │       ├── ThreatDetectionService.ts
+│   │   │       │       └── index.ts
+│   │   │       ├── index.ts
+│   │   │       ├── infrastructure
+│   │   │       │   ├── adapters
+│   │   │       │   │   ├── SecurityEventEmitterAdapter.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   └── repositories
+│   │   │       │       ├── InMemorySecurityRepository.ts
+│   │   │       │       └── index.ts
+│   │   │       ├── interface
+│   │   │       │   ├── SecurityCell.ts
+│   │   │       │   └── index.ts
+│   │   │       └── ports
+│   │   │           ├── SecurityEventEmitter.ts
+│   │   │           ├── SecurityRepository.ts
+│   │   │           ├── index.ts
+│   │   │           └── security-cell.contract.ts
+│   │   ├── natt-master-registry.json
+│   │   └── shared-kernel
+│   │       ├── shared.types.ts
+│   │       └── smartlink.registry.ts
+│   ├── common
+│   │   └── loadingspinner.tsx
+│   ├── components
+│   │   ├── admin
+│   │   │   └── audit-dashboard.tsx
+│   │   ├── admin-config-hub.tsx
+│   │   ├── analytics
+│   │   │   ├── governance-kpi-board.tsx
+│   │   │   └── governance-kpiboard.tsx
+│   │   ├── app-shell.tsx
+│   │   ├── app.tsx
+│   │   ├── approval
+│   │   │   ├── approval-dashboard.tsx
+│   │   │   └── approvalDASHBOARD.tsx
+│   │   ├── audit-trail-module.tsx
+│   │   ├── calibration
+│   │   │   └── calibration-wizard.tsx
+│   │   ├── common
+│   │   │   ├── error-boundary.tsx
+│   │   │   ├── error-display.tsx
+│   │   │   ├── loading-spinner.tsx
+│   │   │   ├── loadingspinner.tsx
+│   │   │   ├── luxury-button.tsx
+│   │   │   ├── natt-3d-icon.tsx
+│   │   │   └── permission-guard.tsx
+│   │   ├── compliance
+│   │   │   ├── certification-manager.tsx
+│   │   │   ├── compliance-dashboard.tsx
+│   │   │   └── policy-manager.tsx
+│   │   ├── customizationrequest.tsx
+│   │   ├── daily-report-module.tsx
+│   │   ├── dynamic-module-renderer.tsx
+│   │   ├── filterpanel.tsx
+│   │   ├── financial
+│   │   │   └── financial-dashboard.tsx
+│   │   ├── gatekeeper
+│   │   │   ├── emergency-dashboard.tsx
+│   │   │   └── production-gate.tsx
+│   │   ├── internal-lab-viewer.tsx
+│   │   ├── master-dashboard.tsx
+│   │   ├── monitoring-dashboard.tsx
+│   │   ├── notification-hub.tsx
+│   │   ├── product-card.tsx
+│   │   ├── product-catalog.tsx
+│   │   ├── product-detail-modal.tsx
+│   │   ├── productcard.tsx
+│   │   ├── productdetailmodal.tsx
+│   │   ├── sales-crm.tsx
+│   │   ├── sales-tax-module.tsx
+│   │   ├── seller-terminal.tsx
+│   │   ├── showroom
+│   │   │   ├── branch-context-panel.tsx
+│   │   │   ├── branchcontextpanel.tsx
+│   │   │   ├── experience-trust-block.tsx
+│   │   │   ├── experiencetrustblock.tsx
+│   │   │   ├── hero-media-block.tsx
+│   │   │   ├── heromediablock.tsx
+│   │   │   ├── owner-vault.tsx
+│   │   │   ├── ownervault.tsx
+│   │   │   ├── product-page.tsx
+│   │   │   ├── related-products.tsx
+│   │   │   ├── relatedproducts.tsx
+│   │   │   ├── reservation-modal.tsx
+│   │   │   ├── reservationmodal.tsx
+│   │   │   ├── specification-block.tsx
+│   │   │   └── specificationblock.tsx
+│   │   ├── system-monitor.tsx
+│   │   ├── unified-reporting-hub.tsx
+│   │   └── warehouse-management.tsx
+│   ├── constants.tsx
+│   ├── context
+│   │   └── usecontextualui.ts
+│   ├── contexts
+│   │   └── accounting-context.tsx
+│   ├── contracts
+│   │   ├── base-event.contract.ts
+│   │   ├── cell-dependency.ts
+│   │   ├── cell.contract.ts
+│   │   ├── event-authority.ts
+│   │   ├── event-bus.contract.ts
+│   │   ├── event-replay.contract.ts
+│   │   ├── events
+│   │   │   ├── audit.events.ts
+│   │   │   ├── base-event.ts
+│   │   │   ├── config.events.ts
+│   │   │   ├── event-versioning.ts
+│   │   │   ├── index.ts
+│   │   │   ├── monitor.events.ts
+│   │   │   ├── rbac.events.ts
+│   │   │   └── security.events.ts
+│   │   └── index.ts
+│   ├── core
+│   │   ├── audit
+│   │   │   ├── audit-chain-contract.ts
+│   │   │   ├── index.ts
+│   │   │   ├── integrity-scanner.ts
+│   │   │   ├── omega-lockdown.ts
+│   │   │   └── omegalockdown.ts
+│   │   ├── cell
+│   │   │   ├── _cell-internal.token.ts
+│   │   │   └── state-transition.cell.ts
+│   │   ├── chaos-engine.ts
+│   │   ├── core
+│   │   │   ├── analytics
+│   │   │   │   └── data-analytics-engine.tsx
+│   │   │   ├── architecture
+│   │   │   │   └── architecture-engine.tsx
+│   │   │   ├── customs
+│   │   │   │   └── customs-engine.tsx
+│   │   │   ├── design-tokens.ts
+│   │   │   ├── dictionary
+│   │   │   │   └── services
+│   │   │   │       └── dictionary-service.ts
+│   │   │   ├── ingestion
+│   │   │   │   ├── data-sync-engine.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   └── ingestion-service.ts
+│   │   │   ├── omega
+│   │   │   │   ├── omega-engine.tsx
+│   │   │   │   ├── quantum-flow-orchestrator.tsx
+│   │   │   │   └── quantum-pulse.tsx
+│   │   │   ├── processing
+│   │   │   │   └── ai
+│   │   │   │       ├── aicore-processor.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── ingestion
+│   │   │   │           └── index.ts
+│   │   │   ├── production
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── production-base.ts
+│   │   │   │   ├── production-enforcer.ts
+│   │   │   │   └── productionenforcer.ts
+│   │   │   ├── runtime
+│   │   │   │   ├── index.ts
+│   │   │   │   └── natt-os-runtime.ts
+│   │   │   ├── signals
+│   │   │   │   ├── index.ts
+│   │   │   │   └── types.ts
+│   │   │   └── smart-link-engine.ts
+│   │   ├── design-tokens.ts
+│   │   ├── dictionary
+│   │   │   └── services
+│   │   │       └── dictionary.service.ts
+│   │   ├── gatekeeper
+│   │   │   ├── index.ts
+│   │   │   ├── service.ts
+│   │   │   └── types.ts
+│   │   ├── idempotency-service.ts
+│   │   ├── idempotency.service.ts
+│   │   ├── index.ts
+│   │   ├── ingestion
+│   │   │   └── ingestion.service.ts
+│   │   ├── logger
+│   │   │   ├── index.ts
+│   │   │   ├── logger.interface.ts
+│   │   │   └── logger.service.ts
+│   │   ├── outbox-service.ts
+│   │   ├── outbox.service.ts
+│   │   ├── policy-engine.ts
+│   │   ├── processing
+│   │   │   └── ai
+│   │   │       └── ai-core.processor.ts
+│   │   ├── production
+│   │   │   ├── production-enforcer.ts
+│   │   │   └── production.base.ts
+│   │   ├── runtime
+│   │   │   └── natt-os.runtime.ts
+│   │   ├── runtime.ts
+│   │   ├── signals
+│   │   │   ├── index.ts
+│   │   │   └── types.ts
+│   │   ├── state
+│   │   │   ├── index.ts
+│   │   │   ├── registry.ts
+│   │   │   ├── types.ts
+│   │   │   └── validator.ts
+│   │   ├── state-manager.ts
+│   │   ├── trace-manager.ts
+│   │   ├── ui-runtime.tsx
+│   │   └── uiruntime.tsx
+│   ├── data-3d
+│   │   └── datapoint3d.tsx
+│   ├── eventbridge.ts
+│   ├── governance
+│   │   ├── CELL_MANIFEST_SCHEMA.json
+│   │   ├── KERNEL_PHASE1_GUARDRAILS.md
+│   │   ├── builder-audit-trail.json
+│   │   ├── builder-authority-lock.json
+│   │   ├── business.contracts.lock.json
+│   │   ├── constitution
+│   │   │   ├── index.ts
+│   │   │   └── v4.0
+│   │   │       └── HIEN-PHAP-NATT-OS-v4.0.md
+│   │   ├── gatekeeper
+│   │   │   ├── GatekeeperCore.ts
+│   │   │   ├── constitutional.ts
+│   │   │   ├── gatekeeper-core.ts
+│   │   │   ├── index.ts
+│   │   │   └── types.ts
+│   │   ├── infrastructure.contracts.lock.json
+│   │   ├── kernel.contracts.lock.json
+│   │   ├── memory
+│   │   │   ├── Can
+│   │   │   │   └── canmf.json
+│   │   │   ├── Thienlon
+│   │   │   │   ├── THIÊN MEMORY.json
+│   │   │   │   ├── bảng_tổng_hợp_chỉ_dạo_kim_bang_thien_lớn_pre_wave_3.md
+│   │   │   │   └── thienmf.json
+│   │   │   ├── bang
+│   │   │   │   ├── NATT_OS_Ground_Truth_v1.0.md
+│   │   │   │   ├── baithicuabmf270226
+│   │   │   │   │   ├── imprint-engine.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── neural-main.ts
+│   │   │   │   │   ├── qneu-collector.ts
+│   │   │   │   │   ├── qneu.types.ts
+│   │   │   │   │   └── stability-validator.ts
+│   │   │   │   ├── baithicuabmf270226.zip
+│   │   │   │   ├── bangfs.json
+│   │   │   │   ├── bangfs_v2.json
+│   │   │   │   ├── bangmf-expansion-audit-20260228.md
+│   │   │   │   ├── bangmf.json
+│   │   │   │   ├── bangmf_v3.0.0.json
+│   │   │   │   ├── bangmf_v3.1.0.json
+│   │   │   │   ├── bangmf_v4.0.0.json
+│   │   │   │   ├── lịch sử làm việc của bang
+│   │   │   │   │   ├── 05674d3eb9977543.css
+│   │   │   │   │   ├── 10489-7ab155ebefbabc80.js
+│   │   │   │   │   ├── 10778-c48a260452bfd60a.js
+│   │   │   │   │   ├── 10990-bff17b69ba47dd72.js
+│   │   │   │   │   ├── 12781-997c30d08a038f27.js
+│   │   │   │   │   ├── 1550-18b94f9df1488575.js
+│   │   │   │   │   ├── 16cce5c2e234666c.css
+│   │   │   │   │   ├── 1728-422aad33dfc3a0ed.js
+│   │   │   │   │   ├── 18113-a734643662394bdb.js
+│   │   │   │   │   ├── 19228-07b1d80a9c7b6f69.js
+│   │   │   │   │   ├── 19664-fdb46da4074899d8.js
+│   │   │   │   │   ├── 1f006d11-eacfa2d0372cca4e.js
+│   │   │   │   │   ├── 20326-1266babc735abfc7.js
+│   │   │   │   │   ├── 22747d63-984b10fc26d575fe.js
+│   │   │   │   │   ├── 2574-ecefe9007cc4c300.js
+│   │   │   │   │   ├── 28932-eb5dca9880ec94f3.js
+│   │   │   │   │   ├── 31113-759ca5a3e69011e5.js
+│   │   │   │   │   ├── 45312-4ca7be4c078ba17f.js
+│   │   │   │   │   ├── 52313-d3962411940bf321.js
+│   │   │   │   │   ├── 5309-89de7afd4086ab1d.js
+│   │   │   │   │   ├── 53396-f7a920260027d075.js
+│   │   │   │   │   ├── 57151-f2f3c85ef9bf2118.js
+│   │   │   │   │   ├── 57581-34c8b9bc322bd0a6.js
+│   │   │   │   │   ├── 57660070-98a0f4342774931d.js
+│   │   │   │   │   ├── 58033-5cfd7ab12bb72cb6.js
+│   │   │   │   │   ├── 59597-862bffea2be97ee1.js
+│   │   │   │   │   ├── 59666-63cfa196a90bfb30.js
+│   │   │   │   │   ├── 608c281e38412b55.css
+│   │   │   │   │   ├── 61440-63974e3b695277cf.js
+│   │   │   │   │   ├── 620c25d9-e10b8228988bf43d.js
+│   │   │   │   │   ├── 6492ae367fc05efc.css
+│   │   │   │   │   ├── 64939-83f9f921174990c0.js
+│   │   │   │   │   ├── 6527a925-e0966d52fa8247d2.js
+│   │   │   │   │   ├── 65fa9207b2a3f233.css
+│   │   │   │   │   ├── 66320-26dba06e9d4469f6.js
+│   │   │   │   │   ├── 67868-f6317013792a4164.js
+│   │   │   │   │   ├── 71245-87c6042cd18bd2c8.js
+│   │   │   │   │   ├── 71499-fa73cb2fc76d68ab.js
+│   │   │   │   │   ├── 73417-73d0bbb04c1686a1.js
+│   │   │   │   │   ├── 75212-c4e552375a36e584.js
+│   │   │   │   │   ├── 76779-15479cdc0cf96954.js
+│   │   │   │   │   ├── 7724-79d3078ded34c1ce.js
+│   │   │   │   │   ├── 78944-97984f0d5d53fae5.js
+│   │   │   │   │   ├── 7bf36345-53d6eab5e0cf9a8a.js
+│   │   │   │   │   ├── 7bf97b7f00340a78.css
+│   │   │   │   │   ├── 81488-31a4eeff37f58006.js
+│   │   │   │   │   ├── 81981-cc3fd93e84ab7e29.js
+│   │   │   │   │   ├── 82151-c11500a3a1de185e.js
+│   │   │   │   │   ├── 85948-08a3131d14c3ae74.js
+│   │   │   │   │   ├── 86674-3e184579cefed20d.js
+│   │   │   │   │   ├── 87836-353ca9f07a5e8c74.js
+│   │   │   │   │   ├── 87c73c54-c29c3ea92a45d1c3.js
+│   │   │   │   │   ├── 891cff7f-f60c50dd8ad01172.js
+│   │   │   │   │   ├── 92351-a37a496b92a1ec07.js
+│   │   │   │   │   ├── 93949-38cc378523c5c6fb.js
+│   │   │   │   │   ├── 94882-2af5ac23f9879f64.js
+│   │   │   │   │   ├── 95568-3473e208f0aa2341.js
+│   │   │   │   │   ├── 97114-9a77afb1c4b74a1f.js
+│   │   │   │   │   ├── 9af238c7-8ca88233f67b9298.js
+│   │   │   │   │   ├── acdaad1d23646914.css
+│   │   │   │   │   ├── aec2b0d1-e0b32d2df9bbfb46.js
+│   │   │   │   │   ├── c2fb8af2f7b87066.css
+│   │   │   │   │   ├── c3110d36-217e990019245d87.js
+│   │   │   │   │   ├── c7dfc041-a9ea445d92867d87.js
+│   │   │   │   │   ├── c91ff5f87fd3377b.css
+│   │   │   │   │   ├── d6bd087f08a7f52f.css
+│   │   │   │   │   ├── f614b4fc9a5ddba6.css
+│   │   │   │   │   ├── global-error-d403973821f7255c.js
+│   │   │   │   │   ├── isolated-segment.html
+│   │   │   │   │   ├── main-app-643032669a1f1f7a.js
+│   │   │   │   │   ├── not-found-60bc515dc662fc8c.js
+│   │   │   │   │   ├── polyfills-42372ed130431b0a.js
+│   │   │   │   │   ├── project-knowledge-dark-mode.svg
+│   │   │   │   │   ├── project-knowledge-light-mode.svg
+│   │   │   │   │   ├── saved_resource(1).html
+│   │   │   │   │   ├── saved_resource.html
+│   │   │   │   │   └── webpack-5be436a758c20f4a.js
+│   │   │   │   └── natt-os-pre-wave3.sh
+│   │   │   ├── boiboi
+│   │   │   │   ├── CV_BANG_BriefBoi_Wave4.docx
+│   │   │   │   ├── bmf.json
+│   │   │   │   ├── boiboi_memory_recap.json
+│   │   │   │   ├── boiboi_quick_memory.json
+│   │   │   │   └── boiboi_what_to_do.json
+│   │   │   ├── kim
+│   │   │   │   ├── KIM HUONG DAN BOIBOI.sh
+│   │   │   │   ├── Tích hợp và chạy thử.sh
+│   │   │   │   ├── baithicuakim
+│   │   │   │   │   ├── NeuralMAINCell.sh
+│   │   │   │   │   ├── baithi_report_20260227_020720.md
+│   │   │   │   │   ├── boundary.rule.ts
+│   │   │   │   │   ├── capability.manifest.ts
+│   │   │   │   │   ├── cell.manifest.json
+│   │   │   │   │   ├── confidence.score.ts
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   └── thresholds.json
+│   │   │   │   │   ├── core
+│   │   │   │   │   │   ├── behavior.anomaly.detector.ts
+│   │   │   │   │   │   ├── blindspot.detector.ts
+│   │   │   │   │   │   ├── freeze.proposer.ts
+│   │   │   │   │   │   └── graph.consistency.check.ts
+│   │   │   │   │   ├── formTestAi-NattOs.txt
+│   │   │   │   │   ├── identity.ts
+│   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   ├── data.fetcher.ts
+│   │   │   │   │   │   └── reporter.ts
+│   │   │   │   │   ├── smartlink.port.ts
+│   │   │   │   │   ├── submission.sira.txt
+│   │   │   │   │   ├── test
+│   │   │   │   │   │   └── validator.test.ts
+│   │   │   │   │   ├── thuyet-trinh.md
+│   │   │   │   │   └── trace.memory.ts
+│   │   │   │   ├── kfm.json
+│   │   │   │   ├── kmf6.1.json
+│   │   │   │   ├── kmf9.2.0.json
+│   │   │   │   ├── kmf9.2.1.json
+│   │   │   │   ├── kmf9.2.6.json
+│   │   │   │   ├── kmf9.2.7.json
+│   │   │   │   ├── kmf9.3.0.json
+│   │   │   │   ├── kmf9.3.1.json
+│   │   │   │   ├── kmf9.3.11.json
+│   │   │   │   ├── kmf9.3.2.json
+│   │   │   │   ├── kmf9.3.3.json
+│   │   │   │   ├── kmf9.3.4.json
+│   │   │   │   ├── kmf9.3.4a.json
+│   │   │   │   ├── kmf9.3.5.json
+│   │   │   │   ├── kmf9.3.6.json
+│   │   │   │   ├── kmf9.3.6a.json
+│   │   │   │   ├── kmf9.3.7.json
+│   │   │   │   ├── kmf9.3.9.json
+│   │   │   │   └── self_scan.sh
+│   │   │   └── thiennho
+│   │   │       └── thiennhomf.json
+│   │   ├── natt-master-registry-v2.json
+│   │   ├── rbac
+│   │   │   ├── RBACCore.tsx
+│   │   │   ├── aiavatar.tsx
+│   │   │   └── rbac-core.tsx
+│   │   ├── registry-summary.json
+│   │   ├── services
+│   │   │   ├── authservice.ts
+│   │   │   └── rbacservice.ts
+│   │   └── types.ts
+│   ├── haptic
+│   │   └── hapticengine.ts
+│   ├── hooks
+│   │   └── use-smart-mapping.ts
+│   ├── index.tsx
+│   ├── kernel
+│   │   └── boundary_guard.ts
+│   ├── manifestations
+│   │   └── overlays
+│   │       └── quantum-container.tsx
+│   ├── motion
+│   │   └── usemotionsensor.ts
+│   ├── natt-os
+│   │   ├── audit
+│   │   │   └── audit-trail-manager.ts
+│   │   ├── bootstrap
+│   │   │   ├── index.ts
+│   │   │   └── omega-bootstrap.ts
+│   │   ├── governance
+│   │   │   ├── enforcement-engine.ts
+│   │   │   ├── gatekeeper
+│   │   │   │   └── gatekeeper-core.ts
+│   │   │   └── rbac
+│   │   │       └── rbac-core.tsx
+│   │   ├── monitoring
+│   │   │   └── ai-behavior-analytics.ts
+│   │   ├── omega
+│   │   │   └── ai-omega-unified.json
+│   │   ├── security
+│   │   │   ├── ai-lockdown.ts
+│   │   │   ├── memory-governance-lock.ts
+│   │   │   └── sirasign-verifier.ts
+│   │   └── validation
+│   │       └── cell-purity-enforcer.ts
+│   ├── neuro-link
+│   │   └── context
+│   │       └── quantum-uicontext.tsx
+│   ├── physics
+│   │   └── physicsengine.ts
+│   ├── services
+│   │   ├── ReconciliationService.ts
+│   │   ├── RefundWorkflowService.ts
+│   │   ├── admin
+│   │   │   ├── AuditService.ts
+│   │   │   └── audit-service.ts
+│   │   ├── analytics
+│   │   │   ├── analytics-api.ts
+│   │   │   ├── analytics-service.ts
+│   │   │   └── analyticsapi.ts
+│   │   ├── approval
+│   │   │   └── approval-workflow-service.ts
+│   │   ├── authservice.ts
+│   │   ├── blockchainservice.ts
+│   │   ├── calibration
+│   │   │   ├── CalibrationEngine.ts
+│   │   │   └── calibration-engine.ts
+│   │   ├── compliance
+│   │   │   └── certification-service.ts
+│   │   ├── components
+│   │   │   ├── QuantumPulse.tsx
+│   │   │   ├── SecurityOverlay.tsx
+│   │   │   ├── personal-sphere.tsx
+│   │   │   └── sales-crm.tsx
+│   │   ├── conflict
+│   │   │   ├── conflict-resolver.ts
+│   │   │   └── conflictresolver.ts
+│   │   ├── customs-service.ts
+│   │   ├── customsUtils.ts
+│   │   ├── customsservice.ts
+│   │   ├── dashboard-service.ts
+│   │   ├── dictionary-approval-service.ts
+│   │   ├── dictionary-service.ts
+│   │   ├── dictionaryapprovalservice.ts
+│   │   ├── dictionaryservice.ts
+│   │   ├── document-ai.ts
+│   │   ├── documentai.ts
+│   │   ├── e-invoice-service.ts
+│   │   ├── einvoiceservice.ts
+│   │   ├── enterpriseLinker.ts
+│   │   ├── event-bridge.ts
+│   │   ├── eventBridge.ts
+│   │   ├── fiscal
+│   │   │   └── fiscal-workbench-service.ts
+│   │   ├── fraud-guard.ts
+│   │   ├── gdbEngine.ts
+│   │   ├── hr-engine.ts
+│   │   ├── hr-service.ts
+│   │   ├── learning-engine.ts
+│   │   ├── learningengine.ts
+│   │   ├── mapping
+│   │   │   └── smart-link-mapping-engine.ts
+│   │   ├── module-registry.ts
+│   │   ├── moduleregistry.ts
+│   │   ├── monitoring
+│   │   │   └── OrphanDetectionBot.ts
+│   │   ├── notification-service.ts
+│   │   ├── notificationservice.ts
+│   │   ├── offline-service.ts
+│   │   ├── offlineservice.ts
+│   │   ├── parser
+│   │   │   ├── document-parser-layer.ts
+│   │   │   └── documentparserlayer.ts
+│   │   ├── payment-service.ts
+│   │   ├── paymentservice.ts
+│   │   ├── personnel-engine.ts
+│   │   ├── quantum-buffer
+│   │   │   ├── index.ts
+│   │   │   ├── quantum-buffer.service.ts
+│   │   │   ├── quantum-buffer.test.ts
+│   │   │   ├── quantum-dlq.service.ts
+│   │   │   ├── quantum-types.ts
+│   │   │   └── quantum-worker.ts
+│   │   ├── quantum-buffer-service.ts
+│   │   ├── quantum-engine.ts
+│   │   ├── quantumbufferservice.ts
+│   │   ├── quantumengine.ts
+│   │   ├── recovery-engine.ts
+│   │   ├── recoveryengine.ts
+│   │   ├── sales-core.ts
+│   │   ├── scoring
+│   │   │   └── ContextScoringEngine.ts
+│   │   ├── seller-engine.ts
+│   │   ├── sellerengine.ts
+│   │   ├── sharding-service.ts
+│   │   ├── shared
+│   │   │   ├── global-idempotency.enforcer.ts
+│   │   │   └── quantum-types.ts
+│   │   ├── showroom
+│   │   │   └── api.ts
+│   │   ├── smart-link.ts
+│   │   ├── staging
+│   │   │   ├── EventStagingLayer.ts
+│   │   │   └── event-staging-layer.ts
+│   │   ├── supplier
+│   │   │   └── SupplierEngine.ts
+│   │   ├── tax-report-service.ts
+│   │   ├── threat-detection-service.ts
+│   │   └── threatdetectionservice.ts
+│   ├── super-dictionary.ts
+│   ├── superdictionary.ts
+│   ├── types
+│   │   ├── accounting.types.ts
+│   │   ├── enums.ts
+│   │   ├── fiscal_contracts.ts
+│   │   ├── global.d.ts
+│   │   ├── index.ts
+│   │   ├── interfaces.ts
+│   │   └── showroom.ts
+│   ├── types.ts
+│   └── utils
+│       ├── index.ts
+│       ├── supplier-classifier.ts
+│       ├── supplier-import.helper.ts
+│       ├── validate-product-media.ts
+│       ├── validateproductmedia.ts
+│       ├── xml-canonicalizer.ts
+│       └── xmlcanonicalizer.ts
+├── sw.js
+├── tsconfig.json
+├── validate-deployment.sh
+├── vite.config.ts
+└── wave3_nattcell_merge_analysis.md
+
+444 directories, 1123 files

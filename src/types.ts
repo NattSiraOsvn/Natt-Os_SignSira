@@ -865,6 +865,7 @@ export interface LaborRuleResult {
 }
 
 export interface SellerIdentity {
+  isCollaborator?: boolean;
   id: string;
   name: string;
   role: UserRole;
@@ -890,9 +891,10 @@ export interface SellerReport {
   depositAmount?: number;
   isReportedWithin24h?: boolean;
   documents?: Record<string, unknown>;
-  commission?: { total: number; shell: number; stone: number; policyId: string; baseRate: number; kpiFactor: number; estimatedAmount: number; finalAmount: number; status: string };
+  commission?: { total: number; shell: number; stone: number; policyId: string; baseRate: number; kpiFactor: number; estimatedAmount: number; finalAmount: number; status: string; };
   status?: string;
   timestamp?: number;
+  kpiPoints?: number;
 }
 
 export interface BusinessMetrics {
@@ -1631,4 +1633,162 @@ export interface AggregatedReport {
   margin: number;
   discrepancyCount: number;
   records: LinkedRecord[];
+}
+
+
+// ═══ Auth ═══
+export type RolePermissions = Record<string, Permission[]>;
+
+// ═══ HR ═══
+export interface SalaryRule {
+  id: string;
+  name: string;
+  type: "ALLOWANCE" | "DEDUCTION" | "TAX";
+  calculate: (base: number) => number;
+}
+
+// ═══ Logistics ═══
+export interface LogisticsSolution {
+  partnerId: string;
+  partnerName: string;
+  serviceType: string;
+  cost: { shippingFee: number; insuranceFee: number; codFee: number; fuelSurcharge: number; total: number; };
+  estimatedDelivery: number;
+  reliability: number;
+  totalCost: number;
+  score: number;
+  recommended: boolean;
+}
+
+export interface TransferOrder {
+  id: string;
+  transferId: string;
+  productId: string;
+  productName: string;
+  quantity: number;
+  fromWarehouse: string;
+  toWarehouse: string;
+  transferDate: number;
+  expectedDelivery: number;
+  status: string;
+  transportMethod: string;
+  documents: string[];
+}
+
+
+// ═══ Blockchain/Sharding types ═══
+
+export interface BlockShard {
+  shardId: string;
+  enterpriseId: string;
+  blockHash: string;
+  prevHash: string;
+  status: string;
+  timestamp: number;
+}
+
+export interface AuditTrailEntry {
+  id: string;
+  timestamp: number;
+  userId: string;
+  role: UserRole;
+  action: string;
+  oldValue: string;
+  newValue: string;
+  hash: string;
+}
+
+// SealingLevel already defined at line ~287
+
+export interface SealingRecord {
+  id: string;
+  level: SealingLevel;
+  period: string;
+  aggregateHash: string;
+  sealedAt: number;
+  sealedBy: string;
+  metrics: {
+    totalRevenue: number;
+    totalExpense: number;
+    totalTax: number;
+    checkSum: string;
+  };
+}
+
+
+// ═══════════════════════════════════════════════
+// NATT-OS PERMISSION ARCHITECTURE v2
+// Single-assign by MASTER. Anti-manipulation.
+// ═══════════════════════════════════════════════
+
+// --- System Roles (hardcode, không đổi) ---
+export const SystemRole = {
+  MASTER: "MASTER",
+  AI_AGENT: "AI_AGENT",
+  UI_DEV: "UI_DEV",
+} as const;
+export type SystemRole = typeof SystemRole[keyof typeof SystemRole];
+
+// --- Tenant Roles (BHXH-compatible, đa nhiệm) ---
+export const TenantRole = {
+  OWNER: "OWNER",
+  NATE: "NATE",
+  NATTE: "NATTE",
+  NAT: "NAT",
+} as const;
+export type TenantRole = typeof TenantRole[keyof typeof TenantRole];
+
+// --- Legacy UserRole → New System mapping ---
+// MASTER → SystemRole.MASTER
+// ADMIN, LEVEL_2 → TenantRole.OWNER
+// MANAGER, SENIOR_STAFF → TenantRole.NATE
+// SALES_STAFF, WAREHOUSE_STAFF, ACCOUNTANT, STAFF, LEVEL_5 → TenantRole.NATTE
+// AUDITOR, VIEWER → TenantRole.NAT
+
+// --- Data visibility level ---
+export const DataLevel = {
+  FULL: "FULL",
+  DEPT: "DEPT",
+  SCOPE: "SCOPE",
+  SELF: "SELF",
+} as const;
+export type DataLevel = typeof DataLevel[keyof typeof DataLevel];
+
+// --- Permission actions (value-based, usable as enum) ---
+export const PermAction = {
+  VIEW: "VIEW",
+  CREATE: "CREATE",
+  EDIT: "EDIT",
+  DELETE: "DELETE",
+  APPROVE: "APPROVE",
+  SIGN: "SIGN",
+  EXPORT: "EXPORT",
+} as const;
+export type PermAction = typeof PermAction[keyof typeof PermAction];
+
+// --- Role Assignment (MASTER-only) ---
+export interface RoleAssignment {
+  userId: string;
+  tenantId: string;
+  role: TenantRole;
+  modules: string[];
+  permissions: PermAction[];
+  departments: string[];
+  dataLevel: DataLevel;
+  assignedBy: "MASTER";
+  assignedAt: number;
+}
+
+// --- AI Command Fix ---
+export interface CommandFix {
+  id: string;
+  trigger: "AUTO" | "MANUAL";
+  target: string;
+  action: "PATCH" | "ROLLBACK" | "REBUILD";
+  status: "PENDING" | "APPLIED" | "REJECTED";
+  appliedBy: "AI_AGENT";
+  requiresApproval: boolean;
+  approvedBy?: "MASTER";
+  timestamp: number;
+  description: string;
 }
