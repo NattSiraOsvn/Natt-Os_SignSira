@@ -1,0 +1,45 @@
+{
+  "session_id": "SES-mmcozlq3-7w1gv4",
+  "entity_id": "THIEN",
+  "started_at": "2026-03-04T23:53:07.515Z",
+  "impacts": [
+    {
+      "id": "IMP-mmcozlq3-38fjvb",
+      "category": "AUDIT_DISCOVERY",
+      "description": "Discovered 13 duplicate types.ts files = root cause",
+      "raw_weight": 60,
+      "frequency_count": 1,
+      "adjusted_weight": 60,
+      "timestamp": "2026-03-04T23:53:07.515Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "Ground_Truth_v1.0:CAN_analysis"
+    },
+    {
+      "id": "IMP-mmcozlq4-koyu06",
+      "category": "ARCHITECTURE_DECISION",
+      "description": "Rule Engine = Advisor first, Executor later",
+      "raw_weight": 35,
+      "frequency_count": 1,
+      "adjusted_weight": 35,
+      "timestamp": "2026-03-04T23:53:07.516Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "Ground_Truth_v1.0"
+    },
+    {
+      "id": "IMP-mmcozlq5-taao3r",
+      "category": "CONSTITUTIONAL_COMPLIANCE",
+      "description": "Distinguished audit architecture vs audit thought — prevented thought police",
+      "raw_weight": 40,
+      "frequency_count": 1,
+      "adjusted_weight": 40,
+      "timestamp": "2026-03-04T23:53:07.517Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "Ground_Truth_v1.0"
+    }
+  ],
+  "penalties": [],
+  "score_before": 0,
+  "closed_at": "2026-03-04T23:53:07.518Z",
+  "score_after": 135,
+  "delta": 135
+}

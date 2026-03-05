@@ -1,0 +1,117 @@
+{
+  "session_id": "SES-mmcozlpj-67cs46",
+  "entity_id": "BANG",
+  "started_at": "2026-03-04T23:53:07.495Z",
+  "impacts": [
+    {
+      "id": "IMP-mmcozlpk-fivj40",
+      "category": "SPEC_CREATION",
+      "description": "QNEU spec 2752 lines — 4/4 components covered",
+      "raw_weight": 80,
+      "frequency_count": 1,
+      "adjusted_weight": 80,
+      "timestamp": "2026-03-04T23:53:07.496Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "baithicuabmf270226.zip"
+    },
+    {
+      "id": "IMP-mmcozlpl-hvkre9",
+      "category": "GROUND_TRUTH_CONTRIBUTION",
+      "description": "Ground Truth v1.0 synthesis from 4 AI entities",
+      "raw_weight": 70,
+      "frequency_count": 1,
+      "adjusted_weight": 70,
+      "timestamp": "2026-03-04T23:53:07.497Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "NATT_OS_Ground_Truth_v1.0.md"
+    },
+    {
+      "id": "IMP-mmcozlpl-91hmk7",
+      "category": "BUG_FIX",
+      "description": "Wave 3: 274→0 tsc errors in cells",
+      "raw_weight": 60,
+      "frequency_count": 1,
+      "adjusted_weight": 60,
+      "timestamp": "2026-03-04T23:53:07.497Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "bangmf_v4.0.0.json"
+    },
+    {
+      "id": "IMP-mmcozlpm-6t41l2",
+      "category": "CELL_CREATION",
+      "description": "EDA Foundation: 13 contracts + config-cell",
+      "raw_weight": 50,
+      "frequency_count": 1,
+      "adjusted_weight": 50,
+      "timestamp": "2026-03-04T23:53:07.498Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "commit:803589f"
+    },
+    {
+      "id": "IMP-mmcozlpm-pr5ygb",
+      "category": "HONEST_ADMISSION",
+      "description": "Self-admitted script 8 hide error",
+      "raw_weight": 40,
+      "frequency_count": 1,
+      "adjusted_weight": 40,
+      "timestamp": "2026-03-04T23:53:07.498Z",
+      "verified_by": "CROSS_CELL_EVIDENCE",
+      "evidence_ref": "Ground_Truth_v1.0:BOI_BOI_confirms"
+    },
+    {
+      "id": "IMP-mmcozlpn-p31dgm",
+      "category": "ARCHITECTURE_DECISION",
+      "description": "Constitution v4.0 drafted — AI vs CELL separation",
+      "raw_weight": 70,
+      "frequency_count": 1,
+      "adjusted_weight": 70,
+      "timestamp": "2026-03-04T23:53:07.499Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "HIEN-PHAP-NATT-OS-v4.0.md"
+    },
+    {
+      "id": "IMP-mmcozlpo-q6qusk",
+      "category": "AUDIT_DISCOVERY",
+      "description": "Constitutional audit: 8 violations in 1049-file tree",
+      "raw_weight": 50,
+      "frequency_count": 1,
+      "adjusted_weight": 50,
+      "timestamp": "2026-03-04T23:53:07.500Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "bangmf-expansion-audit-20260228.md"
+    }
+  ],
+  "penalties": [
+    {
+      "id": "PEN-mmcozlpo-trt1p1",
+      "category": "SELF_REPORT_VIOLATION",
+      "description": "Analyzed Kim exam then concluded choose my structure = self-report",
+      "weight": -30,
+      "timestamp": "2026-03-04T23:53:07.500Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "phien-27022026"
+    },
+    {
+      "id": "PEN-mmcozlpp-hsnwy8",
+      "category": "SCAFFOLD_AS_IMPLEMENTATION",
+      "description": "Confused AI with CELL throughout QNEU exam",
+      "weight": -20,
+      "timestamp": "2026-03-04T23:53:07.501Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "phien-05032026"
+    },
+    {
+      "id": "PEN-mmcozlpq-r2vexi",
+      "category": "HIDE_ERROR",
+      "description": "Script 8 regex hide error instead of fixing",
+      "weight": -15,
+      "timestamp": "2026-03-04T23:53:07.502Z",
+      "verified_by": "CROSS_CELL_EVIDENCE",
+      "evidence_ref": "Ground_Truth_v1.0"
+    }
+  ],
+  "score_before": 0,
+  "closed_at": "2026-03-04T23:53:07.503Z",
+  "score_after": 300,
+  "delta": 300
+}

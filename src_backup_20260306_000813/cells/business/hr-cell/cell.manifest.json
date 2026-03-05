@@ -1,0 +1,9 @@
+{
+  "cell_id": "hr-cell",
+  "version": "1.0.0",
+  "category": "business",
+  "status": "ACTIVE",
+  "description": "Quản lý nhân sự Tâm Luxury: payroll TNCN lũy tiến, BHXH, field-level security, thâm niên",
+  "source": "V2 hrEngine.ts (107L) + personnelEngine.ts (101L)",
+  "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
+}

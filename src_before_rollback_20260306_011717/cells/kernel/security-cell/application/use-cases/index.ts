@@ -1,0 +1,1 @@
+export { DetectTHReatUseCase } from './DetectThreatUseCase';

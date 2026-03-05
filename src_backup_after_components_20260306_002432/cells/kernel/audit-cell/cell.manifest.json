@@ -1,0 +1,16 @@
+{
+  "constitutionalAdn": {
+    "identity": "audit-cell",
+    "capability": [],
+    "boundary": "strict",
+    "trace": "audit",
+    "confidence": 0.5,
+    "smartlink": "event-bus",
+    "lifecycle": "ENFORCED"
+  },
+  "cell": "audit-cell",
+  "status": "ACTIVE",
+  "layer": "foundation_governance",
+  "wave": 0,
+  "governance_level": "IMMUTABLE_EXCEPT_GATEKEEPER"
+}

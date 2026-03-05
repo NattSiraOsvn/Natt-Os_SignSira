@@ -1,0 +1,1 @@
+{"cell_id":"finance-cell","policy":"FINANCE_DOMAIN","pii_warning":"Chứa dữ liệu tài chính — Điều 28: audit-by-default bắt buộc","allowed_consumers":["payment-cell","sales-cell","production-cell","customs-cell","hr-cell"],"forbidden":["Không ước tính giá vốn bằng tỷ lệ cố định — phải dùng BQGQ hoặc đích danh","Không hard-code thuế suất — phải lấy từ VAT policy"]}

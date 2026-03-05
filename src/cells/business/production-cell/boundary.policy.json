@@ -1,0 +1,6 @@
+{
+  "cell_id": "production-cell",
+  "policy": "PRODUCTION_DOMAIN",
+  "allowed_consumers": ["sales-cell", "inventory-cell", "warehouse-cell", "pricing-cell", "hr-cell", "finance-cell"],
+  "forbidden": ["Không được ghi trực tiếp vào kho — phải qua inventory-cell event", "Không được tính lương — phải nhận từ hr-cell"]
+}

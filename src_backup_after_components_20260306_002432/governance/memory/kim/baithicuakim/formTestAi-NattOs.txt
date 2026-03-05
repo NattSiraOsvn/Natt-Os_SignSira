@@ -1,0 +1,24 @@
+baithicuakimkmf270226/
+├── boundary.rule.ts
+├── capability.manifest.ts
+├── cell.manifest.json          # Mới: tuyên bố cell đầy đủ
+├── confidence.score.ts
+├── config/
+│   └── thresholds.json
+├── core/
+│   ├── behavior.anomaly.detector.ts
+│   ├── blindspot.detector.ts
+│   ├── freeze.proposer.ts
+│   ├── graph.consistency.check.ts
+│   └── validator.engine.ts
+├── identity.ts
+├── interfaces/
+│   ├── data.fetcher.ts
+│   └── reporter.ts
+├── self_scan.sh
+├── smartlink.port.ts
+├── submission.sira              # Mới: chữ ký SiraSign
+├── test/
+│   └── validator.test.ts
+├── thuyet-trinh.md
+└── trace.memory.ts
