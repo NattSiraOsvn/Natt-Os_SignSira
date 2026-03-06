@@ -345,11 +345,18 @@ export interface Event {
 }
 
 export interface EventEnvelope {
+  // ── Core causality chain fields (patent-critical) ──────────────────────
+  event_id: string;            // Globally unique event identifier
+  tenant_id: string;           // Enterprise isolation boundary
+  causation_id: string;        // ID of event that caused this event
+  span_id: string;             // Distributed tracing span
+  policy_signature: string;    // HMAC of policy at time of emission
+  payload_hash: string;        // SHA-256 of serialized payload
+  // ── Envelope content ───────────────────────────────────────────────────
   event: BaseEvent;
   metadata: EventMetadata;
 
   payload?: any;
-  event_id?: string;
   trace?: any;
   occurred_at?: string;
   event_name?: string;
@@ -360,6 +367,11 @@ export interface EventMetadata {
   correlationId: string;
   causationId?: string;
   publishedAt?: number;
+  // Patent fields
+  spanId?: string;
+  traceId?: string;
+  policyVersion?: string;
+  integrityVerified?: boolean;
 }
 
 export type EventHandler = (event: BaseEvent) => Promise<void>;
