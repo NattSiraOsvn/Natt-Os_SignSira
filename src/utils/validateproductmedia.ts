@@ -1,6 +1,4 @@
-// STUB
-export const getPrimaryMedia = (product: unknown): string | null => {
-  if (!product || typeof product !== 'object') return null;
-  const p = product as any;
-  return p.imageUrl ?? p.media?.[0]?.url ?? null;
-};
+import type { ShowroomMedia } from "@/types/showroom";
+export const getPrimaryMedia = (media: ShowroomMedia[]): ShowroomMedia | null =>
+  media.find(m => m.isPrimary) ?? media[0] ?? null;
+export const validateMedia = (media: ShowroomMedia[]): boolean => media.length > 0;

@@ -10,26 +10,26 @@
  */
 
 // Types — Shared DNA
-export * from './types';
+export * from './types.js';
 
 // Storage Interface — for engine swapping
-export type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface';
+export type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface.js';
 
 // Calculator — The Formula
-export { calculateQNEU, adjustWeight } from './calculator';
+export { calculateQNEU, adjustWeight } from './calculator.js';
 
 // Imprint Engine — Frequency → Permanent Node
-export { recordImprint, reinforceNode, applyDecay, lookupPermanentNode } from './imprint-engine';
+export { recordImprint, reinforceNode, applyDecay, lookupPermanentNode } from './imprint-engine.js';
 
 // Validator — Anti-Gaming (Điều 20)
-export { validateImpact, validatePenalty, validateEntityState, detectSpike } from './validator';
+export { validateImpact, validatePenalty, validateEntityState, detectSpike } from './validator.js';
 
 // Persistence — File-based storage (implements QNEUStorageEngine)
-export { FileStorageEngine, getStorageEngine, setStorageEngine, loadSystemState, saveSystemState, loadEntityState, saveEntityState, appendAuditEvent, readAuditLog, saveSession, loadSession, getDataDir } from './persistence';
+export { FileStorageEngine, getStorageEngine, setStorageEngine, loadSystemState, saveSystemState, loadEntityState, saveEntityState, appendAuditEvent, readAuditLog, saveSession, loadSession, getDataDir } from './persistence.js';
 
 // Runtime — Main orchestrator
-export { openSession, recordImpact, applyPenalty, closeSession, getScore, getEntityState, lookup, getAllScores, runDecayCycle } from './runtime';
+export { openSession, recordImpact, applyPenalty, closeSession, getScore, getEntityState, lookup, getAllScores, runDecayCycle } from './runtime.js';
 
 // Audit Bridge — SmartLink integration
-export type { QNEUAuditBridge, AuditFilter } from './audit-bridge';
-export { LocalAuditBridge } from './audit-bridge';
+export type { QNEUAuditBridge, AuditFilter } from './audit-bridge.js';
+export { LocalAuditBridge } from './audit-bridge.js';

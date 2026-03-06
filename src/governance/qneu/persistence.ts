@@ -15,9 +15,9 @@ import type {
   QNEUEntityState,
   QNEUAuditEvent,
   QNEUSession,
-} from './types';
-import type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface';
-import { QNEU_CONSTANTS } from './types';
+} from './types.js';
+import type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface.js';
+import { QNEU_CONSTANTS } from './types.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

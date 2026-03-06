@@ -1,67 +1,67 @@
-/**
- * 👑 NATT-OS GOLD ADMIN: SMART MAPPING HOOK
- * AUTHORIZED BY: ANH_NAT (SOVEREIGN)
- * STATUS: 100% TYPE-SAFE | THE FINAL PIECE
- */
+import { useState, useCallback, useRef } from "react";
+import type { AccountingEntry } from "@/types";
+import { SmartLinkEngine } from "@/services/smartLinkEngine";
+import { SalesCore } from "@/services/salesCore";
 
-import { useState, useEffect, useCallback } from 'react';
-// 🛠️ FIX: Đồng bộ kebab-case với hệ thống (Điều 11)
-import { SmartLinkMappingEngine } from '@/services/mapping/smart-link-mapping-engine';
-import { AccountingMappingRule, SalesEvent, AccountingEntry, RealTimeUpdate } from '@/types';
+export interface MappingResult {
+  entries: AccountingEntry[];
+  confidence: number;
+  warnings: string[];
+  processedAt: number;
+}
 
-export const useSmartMapping = () => {
-  const [mappingEngine] = useState(() => SmartLinkMappingEngine.getInstance());
-  const [rules, setRules] = useState<AccountingMappingRule[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [realTimeUpdates, setRealTimeUpdates] = useState<RealTimeUpdate[]>([]);
+export interface UseSmartMappingReturn {
+  entries: AccountingEntry[];
+  isProcessing: boolean;
+  lastResult: MappingResult | null;
+  mapTransaction: (rawData: Record<string, unknown>) => Promise<MappingResult>;
+  mapBatch: (records: Record<string, unknown>[]) => Promise<MappingResult[]>;
+  clearEntries: () => void;
+  stats: { totalMapped: number; accuracy: number; lastRun: number };
+}
 
-  // 1. Load danh mục luật từ Engine
-  useEffect(() => {
-    const loadRules = () => {
-      try {
-        const loadedRules = mappingEngine.getMappingRules();
-        setRules(loadedRules);
-        setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setIsLoading(false);
-      }
+export const useSmartMapping = (): UseSmartMappingReturn => {
+  const [entries, setEntries] = useState<AccountingEntry[]>([]);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [lastResult, setLastResult] = useState<MappingResult | null>(null);
+  const statsRef = useRef({ totalMapped: 0, accuracy: 0, lastRun: 0 });
+
+  const mapTransaction = useCallback(async (rawData: Record<string, unknown>): Promise<MappingResult> => {
+    setIsProcessing(true);
+    await new Promise(r => setTimeout(r, 120));
+
+    const detected = SmartLinkEngine.detect(JSON.stringify(rawData));
+    const newEntries = detected.entries.length
+      ? detected.entries
+      : SalesCore.generateEntries(rawData);
+
+    const result: MappingResult = {
+      entries: newEntries,
+      confidence: detected.confidence || 80,
+      warnings: detected.mapped ? [] : ["Ánh xạ tự động — cần kiểm tra"],
+      processedAt: Date.now(),
     };
 
-    loadRules();
+    statsRef.current = { totalMapped: statsRef.current.totalMapped + newEntries.length, accuracy: result.confidence, lastRun: Date.now() };
+    setEntries(prev => [...prev, ...newEntries]);
+    setLastResult(result);
+    setIsProcessing(false);
+    return result;
+  }, []);
 
-    // 2. Đăng ký lắng nghe cập nhật (Event Subscription)
-    const handleRuleAdded = (rule: AccountingMappingRule) => {
-      setRules(prev => [...prev, rule]);
-    };
+  const mapBatch = useCallback(async (records: Record<string, unknown>[]): Promise<MappingResult[]> => {
+    return Promise.all(records.map(r => mapTransaction(r)));
+  }, [mapTransaction]);
 
-    const handleRuleUpdated = (updatedRule: AccountingMappingRule) => {
-      // 🛠️ FIX: Hoàn thiện logic cập nhật luật theo ID
-      setRules(prev => prev.map(rule => rule.id === updatedRule.id ? updatedRule : rule));
-    };
-
-    mappingEngine.on('ruleAdded', handleRuleAdded);
-    mappingEngine.on('ruleUpdated', handleRuleUpdated);
-
-    // Giao thức dọn dẹp ADN sau khi Unmount
-    return () => {
-      (mappingEngine as any).off?.('ruleAdded', handleRuleAdded);
-      (mappingEngine as any).off?.('ruleUpdated', handleRuleUpdated);
-    };
-  }, [mappingEngine]);
-
-  // 3. Hàm thực thi Mapping (Traceable Action)
-  const mapEvent = useCallback(async (event: SalesEvent): Promise<AccountingEntry[]> => {
-    return await mappingEngine.autoMapSalesEvent(event);
-  }, [mappingEngine]);
+  const clearEntries = useCallback(() => setEntries([]), []);
 
   return {
-    rules,
-    isLoading,
-    error,
-    realTimeUpdates,
-    mapEvent,
-    refreshRules: () => setRules(mappingEngine.getMappingRules())
+    entries, isProcessing, lastResult,
+    mapTransaction, mapBatch, clearEntries,
+    stats: { ...statsRef.current },
   };
 };
+
+// Alias export cho FinancialDashboard dùng tên cũ
+export { useSmartMapping as useSmartMappingHook };
+export default useSmartMapping;

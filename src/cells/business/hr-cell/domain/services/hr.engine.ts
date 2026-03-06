@@ -1,222 +1,75 @@
-// ============================================================================
-// src/cells/business/hr-cell/domain/services/hr.engine.ts
-// Merged: hr.engine.ts + hr-service.ts + personnel-engine.ts
-// DIRECTIVE: Labor law, payroll rules, field permissions đều pluggable
-// Migrated by Băng — 2026-03-06
-// ============================================================================
-
-import { EmployeePayroll } from '@/types';
-const UDP: any = { registerExtractor: () => {} }, UDPDomain: any = {}, DomainExtractor: any = {};
-const HR_FIELDS_LEVELS: any = {};
-
-// ============================================================================
-// CONFIG — Pluggable. BHXH rate thay đổi → chỉ update config
-// ============================================================================
-
-export interface HRRuleConfig {
-  standardWorkDays: number;
-  insurance: {
-    employeeRate: number;    // 10.5% = BHXH 8% + BHYT 1.5% + BHTN 1%
-    employerRate: number;    // 21.5% = BHXH 17.5% + BHYT 3% + BHTN 1%
-    minWage: number;         // Lương tối thiểu vùng (VND)
-  };
-  pit: {
-    personalDeduction: number;   // Giảm trừ bản thân
-    dependentDeduction: number;  // Giảm trừ người phụ thuộc
-  };
-  seniority: {
-    bonusPerYear: number;        // Phụ cấp thâm niên/năm (%)
-    startAfterYears: number;     // Bắt đầu tính sau N năm
-  };
+export interface Employee {
+  id: string;
+  fullName: string;
+  position: string;
+  department: string;
+  baseSalary: number;
+  startDate: string;
+  status: "ACTIVE" | "ON_LEAVE" | "TERMINATED";
+  taxCode?: string;
+  insuranceCode?: string;
+  dependents: number;
+  bankAccount?: string;
 }
 
-const DEFAULT_HR_CONFIG: HRRuleConfig = {
-  standardWorkDays: 26,
-  insurance: {
-    employeeRate: 0.105,   // 10.5%
-    employerRate: 0.215,   // 21.5%
-    minWage: 4_680_000     // Vùng 1 — 2024
-  },
-  pit: {
-    personalDeduction: 11_000_000,
-    dependentDeduction: 4_400_000
-  },
-  seniority: {
-    bonusPerYear: 0.05,    // 5%/năm
-    startAfterYears: 3     // Từ năm thứ 3
-  }
-};
-
-// ============================================================================
-// PIT — Biểu thuế lũy tiến 7 bậc (rút gọn, công thức trừ lùi)
-// ============================================================================
-
-function calculatePIT(taxableIncome: number): number {
-  if (taxableIncome <= 0) return 0;
-  if (taxableIncome <= 5_000_000)  return taxableIncome * 0.05;
-  if (taxableIncome <= 10_000_000) return taxableIncome * 0.10 - 250_000;
-  if (taxableIncome <= 18_000_000) return taxableIncome * 0.15 - 750_000;
-  if (taxableIncome <= 32_000_000) return taxableIncome * 0.20 - 1_650_000;
-  if (taxableIncome <= 52_000_000) return taxableIncome * 0.25 - 3_250_000;
-  if (taxableIncome <= 80_000_000) return taxableIncome * 0.30 - 5_850_000;
-  return taxableIncome * 0.35 - 9_850_000;
+export interface PayslipEntry {
+  employeeId: string;
+  month: string;
+  baseSalary: number;
+  allowances: number;
+  bonus: number;
+  grossIncome: number;
+  bhxh: number;
+  bhyt: number;
+  bhtn: number;
+  pit: number;
+  netIncome: number;
 }
 
-// ============================================================================
-// HR ENGINE
-// ============================================================================
+const _employees = new Map<string, Employee>();
 
-export class HREngine {
-  private static instance: HREngine;
-  private config: HRRuleConfig = { ...DEFAULT_HR_CONFIG };
+export const HREngine = {
+  onboard: (emp: Omit<Employee, "id" | "status">): Employee => {
+    const e: Employee = { ...emp, id: `EMP-${Date.now()}`, status: "ACTIVE" };
+    _employees.set(e.id, e);
+    return e;
+  },
 
-  static getInstance(): HREngine {
-    if (!HREngine.instance) {
-      HREngine.instance = new HREngine();
-      HREngine.instance.registerUDPExtractor();
-    }
-    return HREngine.instance;
-  }
+  offboard: (id: string): void => {
+    const e = _employees.get(id);
+    if (e) { e.status = "TERMINATED"; _employees.set(id, e); }
+  },
 
-  updateConfig(partial: Partial<HRRuleConfig>): void {
-    this.config = { ...this.config, ...partial };
-  }
+  getEmployee: (id: string): Employee | null => _employees.get(id) ?? null,
+  getAll: (): Employee[] => [..._employees.values()],
+  getActive: (): Employee[] => [..._employees.values()].filter(e => e.status === "ACTIVE"),
 
-  // ─── Thâm niên ───────────────────────────────────────────────────────────
-
-  calculateSeniority(startDateStr: string): number {
-    if (!startDateStr) return 0;
-    const start = new Date(startDateStr);
-    if (isNaN(start.getTime())) return 0;
-    return Math.floor((Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
-  }
-
-  getSeniorityLabel(startDateStr: string): string {
-    if (!startDateStr) return 'N/A';
-    const start = new Date(startDateStr);
-    if (isNaN(start.getTime())) return 'Dữ liệu lỗi';
-    const now = new Date();
-    let years = now.getFullYear() - start.getFullYear();
-    let months = now.getMonth() - start.getMonth();
-    if (months < 0) { years--; months += 12; }
-    return years > 0 ? `${years} năm, ${months} tháng` : `${months} tháng`;
-  }
-
-  private getSeniorityBonus(startDateStr: string, baseSalary: number): number {
-    if (!startDateStr) return 0;
-    const start = new Date(startDateStr);
-    if (isNaN(start.getTime())) return 0;
-    const years = (Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
-    if (years < this.config.seniority.startAfterYears) return 0;
-    return baseSalary * this.config.seniority.bonusPerYear * Math.floor(years);
-  }
-
-  // ─── Payroll ──────────────────────────────────────────────────────────────
-
-  processPayroll(employee: EmployeePayroll): EmployeePayroll {
-    const { standardWorkDays, insurance, pit } = this.config;
-
-    // Lương thực tế theo ngày công
-    const grossSalary = (employee.baseSalary / standardWorkDays) * (employee.actualWorkDays || standardWorkDays);
-
-    // Phụ cấp thâm niên
-    const seniorityBonus = this.getSeniorityBonus(employee.startDate || '', employee.baseSalary);
-
-    // BHXH, BHYT, BHTN — tính trên lương đóng BH (tối thiểu min wage)
-    const insuranceBase = Math.max(
-      employee.insuranceSalary || employee.baseSalary,
-      insurance.minWage
-    );
-    const insuranceEmployee = insuranceBase * insurance.employeeRate;
-    const insuranceEmployer = insuranceBase * insurance.employerRate;
-
-    // Thu nhập chịu thuế
-    const totalIncome = grossSalary + (employee.allowanceLunch || 0) + seniorityBonus;
-    const dependents = (employee as any).dependents || 0;
-    const totalDeductions = insuranceEmployee + pit.personalDeduction + (dependents * pit.dependentDeduction);
-    const incomeForTax = Math.max(0, totalIncome - totalDeductions);
-    const personalTax = calculatePIT(incomeForTax);
-
-    // Net
-    const netSalary = grossSalary + (employee.allowanceLunch || 0) + seniorityBonus - insuranceEmployee - personalTax;
-
+  calculatePayslip: (employeeId: string, month: string, bonus = 0): PayslipEntry | null => {
+    const emp = _employees.get(employeeId);
+    if (!emp) return null;
+    const gross = emp.baseSalary + bonus;
+    const bhxh = Math.min(gross * 0.08, 1_728_000);
+    const bhyt = Math.min(gross * 0.015, 324_000);
+    const bhtn = Math.min(gross * 0.01, 174_000);
+    const insurance = bhxh + bhyt + bhtn;
+    const personal = 11_000_000;
+    const dependent = emp.dependents * 4_400_000;
+    const taxable = Math.max(0, gross - insurance - personal - dependent);
+    const pit = taxable > 0 ? taxable * (taxable <= 5_000_000 ? 0.05 : 0.10) : 0;
     return {
-      ...employee,
-      seniority: this.calculateSeniority(employee.startDate || ''),
-      grossSalary: Math.round(grossSalary),
-      insuranceEmployee: Math.round(insuranceEmployee),
-      insuranceEmployer: Math.round(insuranceEmployer),
-      taxableIncome: Math.round(incomeForTax),
-      personalTax: Math.round(personalTax),
-      netSalary: Math.round(netSalary),
-      // @ts-ignore
-      seniorityBonus: Math.round(seniorityBonus)
+      employeeId, month,
+      baseSalary: emp.baseSalary, allowances: 0, bonus,
+      grossIncome: gross, bhxh, bhyt, bhtn, pit,
+      netIncome: gross - bhxh - bhyt - bhtn - pit,
     };
-  }
+  },
 
-  processBatchPayroll(employees: EmployeePayroll[]): EmployeePayroll[] {
-    return employees.map(e => this.processPayroll(e));
-  }
-
-  // ─── Field Permission ─────────────────────────────────────────────────────
-
-  checkFieldPermission(roleLevel: number, field: string): boolean {
-    if (roleLevel <= 1 || roleLevel === 8) return true; // Master, CEO, Auditor = full
-    if (roleLevel <= 3) return (
-      HR_FIELDS_LEVELS.BASIC.includes(field as any) ||
-      HR_FIELDS_LEVELS.WORK.includes(field as any)
-    );
-    if (roleLevel === 5) return (
-      HR_FIELDS_LEVELS.FINANCE.includes(field as any) ||
-      HR_FIELDS_LEVELS.INSURANCE.includes(field as any)
-    );
-    return HR_FIELDS_LEVELS.BASIC.includes(field as any);
-  }
-
-  // ─── Validators ───────────────────────────────────────────────────────────
-
-  validateCCCD(cccd: string): boolean { return /^\d{12}$/.test(cccd); }
-  validateTaxID(taxId: string): boolean { return /^\d{10}(\d{3})?$/.test(taxId); }
-  validatePhone(phone: string): boolean { return /^(0|84)(3|5|7|8|9)([0-9]{8})$/.test(phone); }
-
-  validateEmployee(employee: Partial<EmployeePayroll>): { valid: boolean; errors: string[] } {
-    const errors: string[] = [];
-    if (!employee.name) errors.push('Thiếu tên nhân viên');
-    if (!employee.employeeCode) errors.push('Thiếu mã nhân viên');
-    if (!employee.baseSalary || employee.baseSalary < this.config.insurance.minWage) {
-      errors.push(`Lương cơ bản thấp hơn mức tối thiểu vùng (${this.config.insurance.minWage.toLocaleString('vi-VN')}đ)`);
-    }
-    if ((employee as any).cccd && !this.validateCCCD((employee as any).cccd)) {
-      errors.push('CCCD không hợp lệ (cần 12 chữ số)');
-    }
-    return { valid: errors.length === 0, errors };
-  }
-
-  // ─── UDP Extractor ────────────────────────────────────────────────────────
-
-  private registerUDPExtractor(): void {
-    const hrExtractor: any = {
-      extract: (payload) => {
-        const raw = payload.rawContent as Record<string, unknown>;
-        return {
-          employees: raw.employees || raw.nhanVien || [],
-          period: raw.period || raw.ky || raw.thang,
-          department: raw.department || raw.phongBan,
-          submittedBy: payload.submittedBy
-        };
-      },
-      validate: (data) => {
-        const errors: string[] = [];
-        if (!data.period) errors.push('Thiếu kỳ tính lương');
-        if (!Array.isArray(data.employees) || (data.employees as unknown[]).length === 0) {
-          errors.push('Không có dữ liệu nhân viên');
-        }
-        return { valid: errors.length === 0, errors };
-      }
-    };
-
-    UDP.registerExtractor('HR', hrExtractor);
-  }
-}
-
-export const HRCell = HREngine.getInstance();
+  getDepartments: (): string[] => [...new Set([..._employees.values()].map(e => e.department))],
+  getHeadcount: (): Record<string, number> => {
+    const counts: Record<string, number> = {};
+    [..._employees.values()].filter(e => e.status === "ACTIVE").forEach(e => {
+      counts[e.department] = (counts[e.department] ?? 0) + 1;
+    });
+    return counts;
+  },
+};

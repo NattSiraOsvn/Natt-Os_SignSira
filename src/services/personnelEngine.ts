@@ -1,0 +1,1 @@
+export const PersonnelEngine = { getProfileByPosition:(role:string)=>({ role, name:role, permissions:[], department:"Chung", avatar:null }), getByRole:(_:any)=>[], getAllPositions:()=>[], checkPermission:(_r:string,_p:string):boolean=>false };

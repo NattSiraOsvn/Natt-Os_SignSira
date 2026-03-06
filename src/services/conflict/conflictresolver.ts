@@ -1,1 +1,2 @@
-export { ConflictResolver, ConflictEngine } from './conflict-resolver';
+export enum ConflictResolutionMethod { LAST_WRITE_WINS="LAST_WRITE_WINS", FIRST_WRITE_WINS="FIRST_WRITE_WINS", MERGE="MERGE", MANUAL="MANUAL" }
+export const ConflictEngine = { detect:(l:any,r:any):boolean=>JSON.stringify(l)!==JSON.stringify(r), resolve:(l:any,r:any,m=ConflictResolutionMethod.LAST_WRITE_WINS):any=>m===ConflictResolutionMethod.FIRST_WRITE_WINS?l:m===ConflictResolutionMethod.MERGE?{...l,...r}:r, getUnresolved:():any[]=>[],};

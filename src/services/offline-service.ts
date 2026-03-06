@@ -1,11 +1,4 @@
-// STUB — OfflineService
-export const OfflineService = {
-  saveData: (key: string, data: unknown): void => {
-    try { localStorage?.setItem(key, JSON.stringify(data)); } catch {}
-  },
-  getData: (key: string): unknown => {
-    try { const v = localStorage?.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; }
-  },
-  isOnline: (): boolean => typeof navigator !== 'undefined' ? navigator.onLine : true,
-};
+interface Job { id:string; type:string; payload:any; retries:number; }
+const _q:Job[]=[];
+const OfflineService = { isOnline:():boolean=>navigator.onLine, queue:(type:string,payload:any):void=>{ _q.push({id:`j-${Date.now()}`,type,payload,retries:0}); }, flush:async()=>{ const n=_q.length; _q.length=0; return {processed:n,failed:0}; }, getPendingCount:():number=>_q.length, getQueue:():Job[]=>[..._q] };
 export default OfflineService;

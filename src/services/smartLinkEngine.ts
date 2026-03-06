@@ -1,0 +1,1 @@
+export const SmartLinkEngine = { mapToEntry:(_:Record<string,any>):any[]=>[],  detect:(text:string)=>({ mapped:false, confidence:0, entries:[] }), getSuggestions:(_:string):string[]=>[],  getStats:()=>({ totalMapped:0, accuracy:0, lastRun:Date.now() }) };

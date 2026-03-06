@@ -1,36 +1,25 @@
-
+// Showroom types — Tâm Luxury
 export interface ShowroomMedia {
-  type: 'IMAGE' | 'VIDEO' | '3D_MODEL';
-  url: string;
-  thumbnail?: string;
-  isPrimary?: boolean;
-}
-
-export interface ShowroomBranch {
   id: string;
-  name: string;
-  address: string;
-  manager: string;
-  status: 'OPEN' | 'BUSY' | 'CLOSED';
-}
-
-export interface ShowroomSpec {
-  key: string;
-  value: string;
-  isHighlight?: boolean;
+  url: string;
+  type: "IMAGE" | "VIDEO" | "360";
+  isPrimary: boolean;
+  caption?: string;
 }
 
 export interface ShowroomProduct {
   id: string;
-  sku: string;
   name: string;
+  sku: string;
+  category: string;
+  goldKarat: string;
+  goldWeight: number;
   price: number;
-  currency: string;
-  status: 'AVAILABLE' | 'RESERVED' | 'SOLD';
   description: string;
   media: ShowroomMedia[];
-  specs: ShowroomSpec[];
-  branch: ShowroomBranch;
-  trustScore: number;
-  vaultLocation?: string;
+  specifications: Record<string, string>;
+  available: boolean;
+  featured: boolean;
+  branch?: string;
+  certifications?: string[];
 }

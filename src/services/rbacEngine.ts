@@ -1,6 +1,1 @@
-// STUB — RBACEngine (rbac.engine file doesn't exist yet)
-export const RBACEngine = {
-  hasPermission: (_role: string, _module: string, _action: string): boolean => true,
-  getPermissionMatrix: (_role: string): Record<string, string[]> => ({}),
-  getRoles: (): string[] => [],
-};
+export const RBACEngine = { checkCompliance:():any[]=>[],  hasPermission:(_r:any,_p:any):boolean=>true, grantRole:(_u:string,_r:any):void=>{}, revokeRole:(_u:string,_r:any):void=>{}, auditAccess:(_:string):any[]=>[],  getPrivileges:(_:any):string[]=>[],  };

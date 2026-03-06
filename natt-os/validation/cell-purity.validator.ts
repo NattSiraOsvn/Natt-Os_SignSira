@@ -1,7 +1,7 @@
 
 /**
  * 🛡️ NATT-OS CELL-PURITY VALIDATOR v2.0
- * Owner: KIM (Team 3)
+ * Owner: A Natt
  */
 export const validateCellPurity = (filePath: string, content: string): { valid: boolean; violation?: string } => {
   const forbiddenPatterns = [

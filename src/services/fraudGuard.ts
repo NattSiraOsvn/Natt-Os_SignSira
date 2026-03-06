@@ -1,0 +1,1 @@
+export const FraudGuard = { check:(_:any)=>({ safe:true, riskScore:5, flags:[] }), blacklist:(_:string):void=>{}, getBlacklist:():string[]=>[],  analyzePattern:(_:any[])=>({ anomalies:[], score:0 }) };

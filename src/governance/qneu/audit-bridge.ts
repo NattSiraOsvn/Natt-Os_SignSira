@@ -11,7 +11,7 @@
  * File này là bridge — khi audit-cell sẵn sàng, swap implementation.
  */
 
-import type { QNEUAuditEvent } from './types';
+import type { QNEUAuditEvent } from './types.js';
 
 /**
  * Interface cho audit integration.

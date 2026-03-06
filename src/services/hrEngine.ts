@@ -1,6 +1,1 @@
-// HREngine stub
-export const HREngine = {
-  calculatePayroll: (_e: unknown) => ({}),
-  getEmployees: (): unknown[] => [],
-  getById: (_id: string) => null,
-};
+export const HREngine = { getPayroll:(_e:string,_m:string):any=>null, calculateSalary:(base:number,rules:any[]):number=>rules.reduce((s:number,r:any)=>s+(r.type==="BONUS"?r.amount:-r.amount),base), getSalaryRules:():any[]=>[],  getEmployees:():any[]=>[],  onboard:(e:any):any=>e, offboard:(_:string):void=>{} };

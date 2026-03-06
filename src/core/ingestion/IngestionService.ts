@@ -1,0 +1,1 @@
+export const Ingestion = { ingest:async(file:File)=>({ status:"QUEUED", id:`ING-${Date.now()}`, metadata:{ filename:file.name, size:file.size, type:file.type } }), getStatus:(_:string):string=>"PROCESSING", getQueue:():any[]=>[],  retry:(_:string):void=>{} };

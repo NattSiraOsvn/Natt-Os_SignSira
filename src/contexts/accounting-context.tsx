@@ -1,151 +1,57 @@
-/**
- * 👑 NATT-OS GOLD ADMIN: ACCOUNTING CONTEXT
- * AUTHORIZED BY: ANH_NAT (SOVEREIGN)
- * STATUS: 100% TYPE-SAFE | ZERO SYNTAX DEBRIS
- */
-
-import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-// 🛠️ FIX: Loại bỏ đuôi .ts trong import (Vi phạm TS Layer)
-import { SmartLinkMappingEngine } from '@/services/mapping/smart-link-mapping-engine';
-import { AccountingEntry, AccountingMappingRule, SalesEvent } from '@/types';
+import React, { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import type { AccountingEntry } from "@/types";
 
 interface AccountingContextType {
   entries: AccountingEntry[];
-  rules: AccountingMappingRule[];
-  isLoading: boolean;
-  error: string | null;
-  syncStatus: Record<string, any>;
-  mapSalesEvent: (event: SalesEvent) => Promise<AccountingEntry[]>;
-  addMappingRule: (rule: AccountingMappingRule) => void;
-  updateMappingRule: (id: string, updates: Partial<AccountingMappingRule>) => void;
-  postEntry: (id: string) => void;
-  refreshData: () => Promise<void>;
-  clearError: () => void;
-  getSummary: () => { totalRevenue: number, totalExpenses: number, pendingCount: number };
+  addEntry: (e: Omit<AccountingEntry, "id">) => AccountingEntry;
+  removeEntry: (id: string) => void;
+  getByAccount: (account: string) => AccountingEntry[];
+  getPeriodEntries: (year: number, month: number) => AccountingEntry[];
+  totalDebit: number;
+  totalCredit: number;
+  isBalanced: boolean;
 }
 
-const AccountingContext = createContext<AccountingContextType | undefined>(undefined);
+const AccountingContext = createContext<AccountingContextType | null>(null);
 
-export const useAccounting = () => {
-  const context = useContext(AccountingContext);
-  if (!context) {
-    throw new Error('useAccounting must be used within an AccountingProvider');
-  }
-  return context;
-};
-
-export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AccountingProvider = ({ children }: { children: ReactNode }) => {
   const [entries, setEntries] = useState<AccountingEntry[]>([]);
-  const [rules, setRules] = useState<AccountingMappingRule[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  // 🛠️ FIX: Khâu lại Generic Record, xóa bỏ mảnh vỡ {">>"}
-  const [syncStatus, setSyncStatus] = useState<Record<string, any>>({});
-  
-  // Singleton instance
-  const mappingEngine = SmartLinkMappingEngine.getInstance();
 
-  useEffect(() => {
-    initializeSystem();
-    
-    // Subscribe to engine events
-    const handleEntriesMapped = (data: any) => {
-        setEntries(prev => [...data.entries, ...prev]);
-    };
-    
-    const handleRuleAdded = (rule: AccountingMappingRule) => {
-        setRules(prev => [...prev, rule]);
-    };
-
-    mappingEngine.on('entriesMapped', handleEntriesMapped);
-    mappingEngine.on('ruleAdded', handleRuleAdded);
-
-    return () => {
-        mappingEngine.removeAllListeners();
-    };
+  const addEntry = useCallback((e: Omit<AccountingEntry, "id">): AccountingEntry => {
+    const entry = { ...e, id: `JE-${Date.now()}-${Math.random().toString(36).slice(2,5)}` };
+    setEntries(prev => [...prev, entry]);
+    return entry;
   }, []);
 
-  const initializeSystem = async () => {
-    try {
-      setIsLoading(true);
-      const loadedRules = mappingEngine.getMappingRules();
-      setRules(loadedRules);
-      await new Promise(r => setTimeout(r, 500));
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const removeEntry = useCallback((id: string) => {
+    setEntries(prev => prev.filter(e => e.id !== id));
+  }, []);
 
-  const mapSalesEvent = async (event: SalesEvent): Promise<AccountingEntry[]> => {
-    try {
-      const mappedEntries = await mappingEngine.autoMapSalesEvent(event);
-      return mappedEntries;
-    } catch (err: any) {
-      setError(err.message);
-      throw err;
-    }
-  };
+  const getByAccount = useCallback((account: string) =>
+    entries.filter(e => e.debitAccount === account || e.creditAccount === account), [entries]);
 
-  const addMappingRule = (rule: AccountingMappingRule) => {
-    mappingEngine.addMappingRule(rule);
-  };
+  const getPeriodEntries = useCallback((year: number, month: number) =>
+    entries.filter(e => e.date.startsWith(`${year}-${String(month).padStart(2,"0")}`)), [entries]);
 
-  const updateMappingRule = (id: string, updates: Partial<AccountingMappingRule>) => {
-    mappingEngine.updateMappingRule(id, updates);
-    setRules(prev => prev.map(r => r.id === id ? { ...r, ...updates } : r));
-  };
-
-  const postEntry = (id: string) => {
-    setEntries(prev => prev.map(e =>
-      e.journalId === id ? { ...e, status: 'POSTED' } : e
-    ));
-  };
-
-  const refreshData = async (): Promise<void> => {
-    setIsLoading(true);
-    await new Promise(r => setTimeout(r, 800));
-    setIsLoading(false);
-  };
-
-  const clearError = () => setError(null);
-
-  const getSummary = useCallback(() => {
-    let totalRevenue = 0;
-    let totalExpenses = 0;
-    let pendingCount = 0;
-
-    entries.forEach(e => {
-      if (e.status !== 'POSTED') pendingCount++;
-      e.entries.forEach(line => {
-        // 🛠️ Guard Rail: Check if accountNumber exists (Constitution Layer)
-        if ((line as any).accountNumber && (line as any).accountNumber.startsWith('511')) totalRevenue += (line as any).credit;
-        if ((line as any).accountNumber && ((line as any).accountNumber.startsWith('6') || (line as any).accountNumber.startsWith('8'))) totalExpenses += (line as any).debit;
-      });
-    });
-
-    return { totalRevenue, totalExpenses, pendingCount };
-  }, [entries]);
-
-  const value: AccountingContextType = {
-    entries,
-    rules,
-    isLoading,
-    error,
-    syncStatus,
-    mapSalesEvent,
-    addMappingRule,
-    updateMappingRule,
-    postEntry,
-    refreshData,
-    clearError,
-    getSummary
-  };
+  const totalDebit  = entries.reduce((s, e) => s + e.amount, 0);
+  const totalCredit = entries.reduce((s, e) => s + e.amount, 0);
 
   return (
-    <AccountingContext.Provider value={value}>
+    <AccountingContext.Provider value={{
+      entries, addEntry, removeEntry, getByAccount, getPeriodEntries,
+      totalDebit, totalCredit, isBalanced: totalDebit === totalCredit,
+    }}>
       {children}
     </AccountingContext.Provider>
   );
 };
+
+// Alias cho cả 2 kiểu import
+export const useAccounting = (): AccountingContextType => {
+  const ctx = useContext(AccountingContext);
+  if (!ctx) throw new Error("useAccounting must be used inside AccountingProvider");
+  return ctx;
+};
+
+export { AccountingContext };
+export default AccountingContext;

@@ -14,7 +14,7 @@ import type {
   QNEUEntityState,
   QNEUAuditEvent,
   QNEUSession,
-} from './types';
+} from './types.js';
 
 export interface QNEUStorageEngine {
   // ═══ System State ═══

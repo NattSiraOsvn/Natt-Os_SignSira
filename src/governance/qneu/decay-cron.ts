@@ -10,8 +10,8 @@
  *   0 3 * * * cd /path/to/natt-os && npx tsx src/governance/qneu/decay-cron.ts >> qneu-decay.log 2>&1
  */
 
-import { runDecayCycle, getAllScores } from './runtime';
-import { loadSystemState } from './persistence';
+import { runDecayCycle, getAllScores } from './runtime.js';
+import { loadSystemState } from './persistence.js';
 
 const timestamp = new Date().toISOString();
 console.log(`[${timestamp}] QNEU Decay Cycle starting...`);
