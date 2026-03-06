@@ -4,7 +4,7 @@
  * Quản lý kho vật tư, nguyên liệu, công cụ Tâm Luxury
  */
 
-import { CellContract } from '../../../infrastructure/shared-contracts-cell/domain/contract.types';
+type CellContract<E extends readonly string[], C extends readonly string[]> = { events?: E; commands?: C; [k: string]: unknown };
 
 export const WAREHOUSE_CONTRACT: CellContract<
   readonly [

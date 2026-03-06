@@ -46,8 +46,8 @@ export const useSmartMapping = () => {
 
     // Giao thức dọn dẹp ADN sau khi Unmount
     return () => {
-      mappingEngine.off('ruleAdded', handleRuleAdded);
-      mappingEngine.off('ruleUpdated', handleRuleUpdated);
+      (mappingEngine as any).off?.('ruleAdded', handleRuleAdded);
+      (mappingEngine as any).off?.('ruleUpdated', handleRuleUpdated);
     };
   }, [mappingEngine]);
 

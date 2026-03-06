@@ -120,8 +120,8 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
       if (e.status !== 'POSTED') pendingCount++;
       e.entries.forEach(line => {
         // 🛠️ Guard Rail: Check if accountNumber exists (Constitution Layer)
-        if (line.accountNumber && line.accountNumber.startsWith('511')) totalRevenue += line.credit;
-        if (line.accountNumber && (line.accountNumber.startsWith('6') || line.accountNumber.startsWith('8'))) totalExpenses += line.debit;
+        if ((line as any).accountNumber && (line as any).accountNumber.startsWith('511')) totalRevenue += (line as any).credit;
+        if ((line as any).accountNumber && ((line as any).accountNumber.startsWith('6') || (line as any).accountNumber.startsWith('8'))) totalExpenses += (line as any).debit;
       });
     });
 

@@ -5,8 +5,8 @@ import {
   closeSession,
   getAllScores,
   getEntityState,
-} from './runtime.js';
-import { loadSystemState, getDataDir } from './persistence.js';
+} from './runtime';
+import { loadSystemState, getDataDir } from './persistence';
 
 console.log('');
 console.log('═══════════════════════════════════════════════════════════════');

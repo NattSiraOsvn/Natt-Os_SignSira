@@ -1,1 +1,0 @@
-npx ts-node test/validator.test.ts

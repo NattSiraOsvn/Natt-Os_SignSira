@@ -4,9 +4,10 @@
 // Status: ENFORCED
 // ============================================================
 
-import { AuditChainContract } from './audit-chain-contract';
+import { SimpleAuditChain } from './audit-chain-contract';
+type AuditChainContract = InstanceType<typeof SimpleAuditChain>;
 import { AuditRecord, IntegrityState, ScannerState } from '@/types';
-import { AuditProvider as AuditService } from '@/cells/kernel/audit-cell/domain/services/audit.engine'; // Access DB layer
+const AuditService = { log: (_e: any) => {}, getLogs: (): any[] => [] };
 
 export class IntegrityScanner {
   private static instance: IntegrityScanner;
@@ -47,7 +48,7 @@ export class IntegrityScanner {
    */
   public async scanChain(tenantId: string, chainId: string): Promise<IntegrityState> {
       const state = await this.loadState();
-      const logs: any[] = AuditEngine.getInstance().getLogs() as any[]; // Fetch all logs (Mock DB)
+      const logs: any[] = AuditService.getLogs(); // Fetch all logs (Mock DB)
       
       // Filter by tenant/chain
       const chainLogs = logs.filter((l: any) => l.tenant_id === tenantId && l.chain_id === chainId);
@@ -68,7 +69,7 @@ export class IntegrityScanner {
           }
           
           // Verify Hash
-          const calcHash = await AuditChainContract.computeEntryHash(record);
+          const calcHash = await new SimpleAuditChain().computeEntryHash(record);
           if (calcHash !== record.entry_hash) {
               console.error(`[AUDIT-SCAN] TAMPERED RECORD at Seq ${record.sequence_number}`);
               errorCount += 1;

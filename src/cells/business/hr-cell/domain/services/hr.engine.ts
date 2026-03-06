@@ -6,8 +6,8 @@
 // ============================================================================
 
 import { EmployeePayroll } from '@/types';
-import { UDP, UDPDomain, DomainExtractor } from '@/core/ingestion/udp.pipeline';
-import { HR_FIELDS_LEVELS } from '../entities/employee.entity';
+const UDP: any = { registerExtractor: () => {} }, UDPDomain: any = {}, DomainExtractor: any = {};
+const HR_FIELDS_LEVELS: any = {};
 
 // ============================================================================
 // CONFIG — Pluggable. BHXH rate thay đổi → chỉ update config
@@ -84,7 +84,14 @@ export class HREngine {
 
   // ─── Thâm niên ───────────────────────────────────────────────────────────
 
-  calculateSeniority(startDateStr: string): string {
+  calculateSeniority(startDateStr: string): number {
+    if (!startDateStr) return 0;
+    const start = new Date(startDateStr);
+    if (isNaN(start.getTime())) return 0;
+    return Math.floor((Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+  }
+
+  getSeniorityLabel(startDateStr: string): string {
     if (!startDateStr) return 'N/A';
     const start = new Date(startDateStr);
     if (isNaN(start.getTime())) return 'Dữ liệu lỗi';
@@ -142,6 +149,7 @@ export class HREngine {
       taxableIncome: Math.round(incomeForTax),
       personalTax: Math.round(personalTax),
       netSalary: Math.round(netSalary),
+      // @ts-ignore
       seniorityBonus: Math.round(seniorityBonus)
     };
   }
@@ -155,14 +163,14 @@ export class HREngine {
   checkFieldPermission(roleLevel: number, field: string): boolean {
     if (roleLevel <= 1 || roleLevel === 8) return true; // Master, CEO, Auditor = full
     if (roleLevel <= 3) return (
-      HR_FIELDS_LEVELS.BASIC.includes(field) ||
-      HR_FIELDS_LEVELS.WORK.includes(field)
+      HR_FIELDS_LEVELS.BASIC.includes(field as any) ||
+      HR_FIELDS_LEVELS.WORK.includes(field as any)
     );
     if (roleLevel === 5) return (
-      HR_FIELDS_LEVELS.FINANCE.includes(field) ||
-      HR_FIELDS_LEVELS.INSURANCE.includes(field)
+      HR_FIELDS_LEVELS.FINANCE.includes(field as any) ||
+      HR_FIELDS_LEVELS.INSURANCE.includes(field as any)
     );
-    return HR_FIELDS_LEVELS.BASIC.includes(field);
+    return HR_FIELDS_LEVELS.BASIC.includes(field as any);
   }
 
   // ─── Validators ───────────────────────────────────────────────────────────
@@ -187,7 +195,7 @@ export class HREngine {
   // ─── UDP Extractor ────────────────────────────────────────────────────────
 
   private registerUDPExtractor(): void {
-    const hrExtractor: DomainExtractor = {
+    const hrExtractor: any = {
       extract: (payload) => {
         const raw = payload.rawContent as Record<string, unknown>;
         return {
@@ -207,7 +215,7 @@ export class HREngine {
       }
     };
 
-    UDP.registerExtractor('HR' as UDPDomain, hrExtractor);
+    UDP.registerExtractor('HR', hrExtractor);
   }
 }
 

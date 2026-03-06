@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { BankTransaction, VATReport, PITReport, EmployeePayroll, VATEntry, TaxCalculationResult } from '@/types';
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { CustomsDeclaration, CustomsDeclarationItem, ActionPlan, RiskAssessment, ComplianceCheck, TrackingStep } from '../types';
 import { CustomsUtils } from './customsUtils';

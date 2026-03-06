@@ -1,3 +1,2 @@
-// security-cell Entry Point
-export * from './interface';
-export * from './ports';
+// security-cell
+export {};

@@ -10,26 +10,26 @@
  */
 
 // Types — Shared DNA
-export * from './types.js';
+export * from './types';
 
 // Storage Interface — for engine swapping
-export type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface.js';
+export type { QNEUStorageEngine, AuditQueryOptions } from './storage.interface';
 
 // Calculator — The Formula
-export { calculateQNEU, adjustWeight } from './calculator.js';
+export { calculateQNEU, adjustWeight } from './calculator';
 
 // Imprint Engine — Frequency → Permanent Node
-export { recordImprint, reinforceNode, applyDecay, lookupPermanentNode } from './imprint-engine.js';
+export { recordImprint, reinforceNode, applyDecay, lookupPermanentNode } from './imprint-engine';
 
 // Validator — Anti-Gaming (Điều 20)
-export { validateImpact, validatePenalty, validateEntityState, detectSpike } from './validator.js';
+export { validateImpact, validatePenalty, validateEntityState, detectSpike } from './validator';
 
 // Persistence — File-based storage (implements QNEUStorageEngine)
-export { FileStorageEngine, getStorageEngine, setStorageEngine, loadSystemState, saveSystemState, loadEntityState, saveEntityState, appendAuditEvent, readAuditLog, saveSession, loadSession, getDataDir } from './persistence.js';
+export { FileStorageEngine, getStorageEngine, setStorageEngine, loadSystemState, saveSystemState, loadEntityState, saveEntityState, appendAuditEvent, readAuditLog, saveSession, loadSession, getDataDir } from './persistence';
 
 // Runtime — Main orchestrator
-export { openSession, recordImpact, applyPenalty, closeSession, getScore, getEntityState, lookup, getAllScores, runDecayCycle } from './runtime.js';
+export { openSession, recordImpact, applyPenalty, closeSession, getScore, getEntityState, lookup, getAllScores, runDecayCycle } from './runtime';
 
 // Audit Bridge — SmartLink integration
-export type { QNEUAuditBridge, AuditFilter } from './audit-bridge.js';
-export { LocalAuditBridge } from './audit-bridge.js';
+export type { QNEUAuditBridge, AuditFilter } from './audit-bridge';
+export { LocalAuditBridge } from './audit-bridge';

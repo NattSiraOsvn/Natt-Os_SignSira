@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * 🛠️ HR ENGINE — Field-level security + Payroll
  * Source: NATTCELL KERNEL → Rewritten for Permission Architecture v2

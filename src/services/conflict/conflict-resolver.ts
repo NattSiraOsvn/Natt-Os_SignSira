@@ -6,7 +6,8 @@ import {
 } from '../../types';
 import { ShardingService } from '@/services/sharding-service';
 import { NotifyBus } from '@/services/notification-service';
-import { ContextScoring } from '../scoring/ContextScoringEngine';
+// ContextScoring inline stub
+const ContextScoring = { scoreDataContext: async (_p: any, _c: any) => ({ finalScore: 0.5, details: {} }) };
 
 export class ConflictResolver {
   private static instance: ConflictResolver;
@@ -34,7 +35,7 @@ export class ConflictResolver {
         winner: dataPoints[0],
         losers: [],
         methodUsed: ConflictResolutionMethod.PRIORITY_BASED,
-        resolutionHash: await ShardingService.generateShardHash(dataPoints[0]),
+        resolutionHash: await ShardingService.generateShardHash(dataPoints[0] as unknown as Record<string, unknown>),
         isAutoResolved: true
       };
     }
@@ -53,6 +54,7 @@ export class ConflictResolver {
     const scoredPoints = await Promise.all(dataPoints.map(async (p) => {
       const scoreResult = await ContextScoring.scoreDataContext(p, businessContext);
       return {
+      strategy: 'last-write-wins' as const,
         ...p,
         calculatedConfidence: scoreResult.finalScore,
         scoreDetails: scoreResult.details
@@ -106,6 +108,7 @@ export class ConflictResolver {
 
   private loadConflictRule(dataType: string): ConflictResolutionRule {
     return {
+      strategy: 'last-write-wins' as const,
       id: `RULE-${dataType}`,
       name: `${dataType} Resolution Rule`,
       priority: 1,

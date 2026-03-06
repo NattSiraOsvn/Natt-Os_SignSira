@@ -1,20 +1,17 @@
-
-import React from 'react';
-
-export type OverlayType = 'LENS' | 'DRAWER' | 'VOID' | 'NONE';
-
-export interface QuantumSignal {
-  id: string;
-  source: string; // 'ACCOUNTING', 'SALES', etc.
-  type: 'INTENT' | 'ALERT' | 'OPPORTUNITY';
-  intensity: number; // 0.0 - 1.0
-  content: any; // Flexible payload
-  timestamp: number;
-}
-
+// NATT-OS Signal Types
+export type OverlayType = 'MODAL' | 'PANEL' | 'TOAST' | 'FULL' | 'DRAWER';
 export interface ManifestationConfig {
-  mode: OverlayType;
+  type: OverlayType;
+  id?: string;
   title?: string;
-  component?: React.ReactNode;
-  contextData?: any;
+  component?: string;
+  props?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+export interface SignalPayload {
+  signal: string;
+  source: string;
+  target?: string;
+  data?: unknown;
+  timestamp: number;
 }

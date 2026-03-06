@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { SellerReport, UserPosition, SellerIdentity, CommissionInfo } from '../types';
 

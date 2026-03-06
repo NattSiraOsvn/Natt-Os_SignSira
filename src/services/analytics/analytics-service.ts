@@ -1,7 +1,7 @@
 
-import { EventEnvelope, PersonaID, SagaLog } from '../../types.ts';
-import eventBridge from '../eventBridge.ts';
-import { AuditProvider } from '../admin/AuditService.ts';
+import { EventEnvelope, PersonaID, SagaLog } from '../../types';
+import eventBridge from '@/services/event-bridge';
+import { AuditProvider } from '@/services/admin/audit-service';
 
 /**
  * 🧠 ANALYTICS SERVICE (TEAM 4 - BĂNG)
@@ -24,10 +24,10 @@ export class AnalyticsService {
     console.log('🧊 [ANALYTICS] BĂNG Node activated. Observing system neural pulses...');
     
     // Subscribe to Core Events
-    eventBridge.on('sales.order.created.v1', (e) => this.projectOrderCreated(e));
-    eventBridge.on('finance.payment.completed.v1', (e) => this.projectPaymentSuccess(e));
-    eventBridge.on('finance.payment.failed.v1', (e) => this.projectPaymentFailure(e));
-    eventBridge.on('warehouse.inventory.reserved.v1', (e) => this.projectInventoryAction(e));
+    eventBridge.on('sales.order.created.v1', (e) => this.projectOrderCreated(e as any));
+    eventBridge.on('finance.payment.completed.v1', (e) => this.projectPaymentSuccess(e as any));
+    eventBridge.on('finance.payment.failed.v1', (e) => this.projectPaymentFailure(e as any));
+    eventBridge.on('warehouse.inventory.reserved.v1', (e) => this.projectInventoryAction(e as any));
     
     // Tự động khởi tạo dữ liệu ngày hiện tại nếu chưa có
     this.ensureDailyMetrics();

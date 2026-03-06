@@ -1,5 +1,5 @@
 /**
-import { __CELL_INVOCATION_TOKEN__ } from "./_cell-internal.token.js";
+import { __CELL_INVOCATION_TOKEN__ } from "./_cell-internal.token";
 import { GatekeeperCore } from "@/governance/gatekeeper/GatekeeperCore";
  * ============================================================
  * NATT CELL – STATE TRANSITION DISPATCHER

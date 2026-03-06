@@ -1,7 +1,0 @@
-{
-  "cell_id": "hr-cell",
-  "policy": "HR_DOMAIN",
-  "pii_warning": "Chứa PII nhân viên — Điều 47 Hiến pháp: audit trail bắt buộc mọi truy cập",
-  "allowed_consumers": ["finance-cell", "production-cell", "security-cell"],
-  "forbidden": ["UI không được đọc trực tiếp salary/insurance — phải qua RBAC filter"]
-}

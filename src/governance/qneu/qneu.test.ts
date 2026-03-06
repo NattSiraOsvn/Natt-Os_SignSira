@@ -12,11 +12,11 @@
  * 6. Imprint → promotion flow
  */
 
-import { calculateQNEU, adjustWeight } from './calculator.js';
-import { recordImprint, applyDecay, lookupPermanentNode } from './imprint-engine.js';
-import { validateImpact, validatePenalty, detectSpike } from './validator.js';
-import type { Impact, Penalty, QNEUEntityState } from './types.js';
-import { QNEU_CONSTANTS } from './types.js';
+import { calculateQNEU, adjustWeight } from './calculator';
+import { recordImprint, applyDecay, lookupPermanentNode } from './imprint-engine';
+import { validateImpact, validatePenalty, detectSpike } from './validator';
+import type { Impact, Penalty, QNEUEntityState } from './types';
+import { QNEU_CONSTANTS } from './types';
 
 let passed = 0;
 let failed = 0;

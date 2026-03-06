@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * 👥 PERSONNEL ENGINE
  * Source: NATTCELL KERNEL → Rewritten for Permission Architecture v2

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { SyncJob, SyncConflictStrategy, SyncLog, ConflictResolutionMethod, DataPoint } from '@/types';
 import { OfflineService } from '@/services/offline-service';
 import { SUPER_DICTIONARY } from '@/superdictionary';
-import { ConflictEngine } from '@/services/conflict/conflictresolver';
+import { ConflictEngine } from '@/services/conflict/conflict-resolver';
 
 const DataSyncEngine: React.FC = () => {
   const [isConnected, setIsConnected] = useState(true);
@@ -49,7 +49,7 @@ const DataSyncEngine: React.FC = () => {
           const p2: DataPoint = { id: 'D2', source: 'OMEGA_OCR', payload: { val: 105 }, confidence: 0.85, timestamp: Date.now() };
           
           // 🛠️ Fix: Added missing priorityModule to satisfy ResolutionContext interface
-          const resolution: any = await ConflictEngine.resolveConflicts([p1, p2], { businessType: 'ACCOUNTING', priorityModule: 'ACCOUNTING' });
+          const resolution: any = await ConflictEngine.resolveConflicts([p1, p2], { businessType: 'ACCOUNTING' } as any);
           
           if (resolution.isAutoResolved) {
              addLog(`✅ CRP Tự động giải quyết: Winner [${resolution.winner.source}] (Method: ${resolution.methodUsed})`, 'SUCCESS');

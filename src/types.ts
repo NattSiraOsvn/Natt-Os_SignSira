@@ -56,6 +56,7 @@ export const ModuleID = {
   SHOWROOM: 'SHOWROOM',
   ANALYTICS: 'ANALYTICS',
   GOVERNANCE: 'GOVERNANCE',
+  FINANCE: 'FINANCE',
 } as const;
 export type ModuleID = typeof ModuleID[keyof typeof ModuleID] | string;
 
@@ -365,6 +366,7 @@ export type EventHandler = (event: BaseEvent) => Promise<void>;
 
 export interface SalesEvent {
   order?: any;
+  orderId?: string;
   id: string;
   type: string;
   saleId: string;
@@ -536,8 +538,6 @@ export interface WarehouseLocationDetail {
 }
 
 export interface CustomerLead {
-  tier?: string;
-  createdAt?: number;
   ownerId?: string;
   id: string;
   name: string;
@@ -556,10 +556,7 @@ export interface CustomerLead {
 }
 
 export interface ApprovalRequest {
-  title?: string;
   data?: Record<string, unknown>;
-  requiredApprovers?: string[];
-  deadline?: number;
   id: string;
   type: string;
   requestedBy: string;
@@ -582,7 +579,6 @@ export interface ApprovalRequest {
 export interface ApprovalTicket {
   title?: string;
   data?: Record<string, unknown>;
-  approvalHistory?: Array<{approver: string; action: string; timestamp: number; note?: string}>;
   workflowStep?: number;
   requestedAt?: number;
   id: string;
@@ -691,10 +687,11 @@ export interface CustomsDeclaration {
   status: 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED';
   createdAt: number;
 
-  header?: { declarationNumber: string; streamCode: 'RED' | 'YELLOW' | 'GREEN'; };
+  header?: { declarationNumber: string; streamCode: 'RED' | 'YELLOW' | 'GREEN'; registrationDate?: string; customsOffice?: string; deptCode?: string; declarationType?: string; mainHsCode?: string; pageInfo?: string; };
   riskAssessment?: { score: number; level: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'; factors: string[]; assessedAt: number; };
-  trackingTimeline?: Array<{ stage: string; timestamp: number; note?: string }>;
+  trackingTimeline?: Array<{ stage: string; timestamp: number; note?: string; id?: string; status?: string; label?: string; location?: string; notes?: string }>;
   compliance?: { isCompliant: boolean; violations: string[] };
+  summary?: { totalItems: number; totalWeight?: number; totalValue?: number; hsCodeSummary?: string };
 }
 
 export interface CustomsDeclarationItem {
@@ -727,11 +724,12 @@ export interface ActionPlan {
   id: string;
   action: string;
   assignedTo: string;
-  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'URGENT';
   dueAt?: number;
   status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
 
   department?: string;
+  reason?: string;
 }
 
 export interface AccountingEntry {
@@ -757,11 +755,18 @@ export interface AccountingEntry {
   createdAt?: Date;
 
   aiNote?: string;
+  date?: string;
+  debitAccount?: string;
+  creditAccount?: string;
+  sourceType?: string;
+  sourceId?: string;
+  mappingRuleId?: string;
 }
 
 export interface AccountingMappingRule {
   sourceType?: string;
   conditionField?: string;
+  conditionValue?: string;
   name?: string;
   enabled?: boolean;
   source?: { system: string; [key: string]: unknown };
@@ -790,7 +795,15 @@ export interface BankTransaction {
   type: 'DEPOSIT' | 'WITHDRAWAL' | 'TRANSFER';
   timestamp: number;
   reference: string;
-  status: 'PENDING' | 'COMPLETED' | 'FAILED';
+  status: 'PENDING' | 'COMPLETED' | 'FAILED' | 'SYNCED';
+  date?: string;
+  refNo?: string;
+  bankName?: string;
+  accountNumber?: string;
+  taxRate?: number;
+  exchangeRate?: number;
+  attachment?: string;
+  processDate?: string;
 }
 
 export interface VATEntry {
@@ -862,7 +875,6 @@ export interface EInvoice {
   xmlPayload?: string;
   signatureHash?: string;
   taxCode?: string;
-  vatRate?: number;
   id: string;
   invoiceNumber: string;
   buyer: { name: string; taxCode: string; address: string 
@@ -914,6 +926,17 @@ export interface EmployeePayroll {
   dependents?: number;
   grossSalary?: number;
   seniority?: number;
+  insuranceEmployee?: number;
+  seniorityBonus?: number;
+  insuranceEmployer?: number;
+  allowancePosition?: number;
+  bankAccountNo?: string;
+  bankName?: string;
+  fullName?: string;
+  position?: string;
+  division?: string;
+  id?: string;
+  role?: string;
 }
 
 export interface TeamPerformance {
@@ -952,6 +975,7 @@ export interface SellerIdentity {
   fullName?: string;
   stars?: number;
   kpiPoints?: number;
+  userId?: string;
 }
 
 export interface SellerReport {
@@ -993,6 +1017,7 @@ export interface BusinessMetrics {
   pendingApprovals?: number;
   cadPending?: number;
   productionProgress?: number;
+  goldInventory?: number;
 }
 
 export interface GovernanceKPI {
@@ -1164,6 +1189,7 @@ export interface CustomizationRequest {
   type: string;
   value: string | number;
   additionalCost?: number;
+  specifications?: Record<string, unknown>;
 }
 
 export interface Permission {
@@ -1184,6 +1210,7 @@ export interface UserPosition {
   department: Department;
   branch: string;
   startDate: number;
+  scope?: string[];
 }
 
 export interface PersonaMetadata {
@@ -1445,6 +1472,7 @@ export interface AuditItem {
   hash?: string;
   userId?: string;
   role?: string;
+  targetId?: string;
   oldValue?: string;
   newValue?: string;
   causation_id?: string;
@@ -1485,10 +1513,6 @@ export interface ResolvedData {
 }
 
 export interface ConflictResolutionRule {
-  id: string;
-  name: string;
-  condition: string;
-  method: string;
   strategy: 'last-write-wins' | 'merge' | 'manual' | string;
   id: string;
   name: string;
@@ -1752,6 +1776,7 @@ export interface SalaryRule {
   division?: string;
   grade?: string;
   salary?: number;
+  role?: string;
 }
 
 // ═══ Logistics ═══
@@ -1801,9 +1826,11 @@ export interface AuditTrailEntry {
   userId: string;
   role: UserRole;
   action: string;
+  targetId?: string;
   oldValue?: string;
   newValue?: string;
   hash: string;
+  note?: string;
 }
 
 // SealingLevel already defined at line ~287
@@ -2204,6 +2231,7 @@ export interface EmailMessage {
 export type TxStatus =
   | 'BẢN NHÁP' | 'SẴN SÀNG KÝ' | 'ĐÃ KÝ SỐ' | 'BỊ TRẢ LẠI'
   | 'BỊ TỪ CHỐI' | 'ĐÃ DUYỆT' | 'CHỜ DUYỆT'
+  | 'CHỜ PHÊ DUYỆT'
   | 'PENDING' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
 
 export interface ConflictRecord {
@@ -2219,4 +2247,73 @@ export interface ConflictRecord {
   resolvedAt?: number;
   resolution?: string;
   resolvedBy?: string;
+}
+
+// ─── Added by Băng audit 2026-03-06 ────────────────────────────────────────
+
+export interface CellHealthState {
+  cellId: string;
+  status: 'HEALTHY' | 'DEGRADED' | 'CRITICAL' | 'OFFLINE';
+  uptime: number;
+  lastChecked: number;
+  message?: string;
+  cell_id?: string;
+  last_heartbeat?: number;
+}
+
+export interface InventoryItem {
+  id: string;
+  sku: string;
+  name: string;
+  quantity: number;
+  location?: string;
+  status?: string;
+  price?: number;
+  category?: string;
+}
+
+export interface ShowroomProduct {
+  id: string;
+  name: string;
+  sku: string;
+  price: number;
+  [key: string]: any;
+}
+
+export interface WorkflowNode {
+  id: string;
+  label: string;
+  view?: string;
+  x: number;
+  y: number;
+  color?: string;
+  icon?: string;
+  desc?: string;
+  status?: string;
+}
+
+export interface WorkflowEdge {
+  id: string;
+  source: string;
+  target: string;
+  label?: string;
+}
+
+export interface BankSummary {
+  totalIn: number;
+  totalOut: number;
+  balance: number;
+  count: number;
+}
+
+export interface WarehouseItem {
+  id: string;
+  sku: string;
+  name: string;
+  quantity: number;
+  category?: string;
+  location?: string;
+  status?: string;
+  weight?: number;
+  unit?: string;
 }
