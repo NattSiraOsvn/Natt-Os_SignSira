@@ -1,20 +1,15 @@
-import { LogAuditUseCase, VerifyChainUseCase } from '../use-cases';
-import { AuditChainService } from '../../domain/services';
-import { AuditRepository } from '../../ports/AuditRepository';
-import { AuditEventEmitter } from '../../ports/AuditEventEmitter';
+import { InMemoryAuditRepository } from "../../infrastructure/repositories/InMemoryAuditRepository";
+import { LogAuditUseCase } from "../use-cases/LogAuditUseCase";
+import { VerifyChainUseCase } from "../use-cases/VerifyChainUseCase";
+import type { AuditRecord } from "../../domain/entities/audit-record.entity";
 
-export class AuditApplicationService {
-  private readonly logAuditUseCase: LogAuditUseCase;
-  private readonly verifyChainUseCase: VerifyChainUseCase;
+const _repo = new InMemoryAuditRepository();
 
-  constructor(repository: AuditRepository, eventEmitter: AuditEventEmitter) {
-    const chainService = new AuditChainService();
-    this.logAuditUseCase = new LogAuditUseCase(repository, eventEmitter);
-    this.verifyChainUseCase = new VerifyChainUseCase(repository, eventEmitter, chainService);
-  }
-
-  log = (actor: string, action: string, resource: string, resourceId: string, options?: { oldValue?: unknown; newValue?: unknown }) =>
-    this.logAuditUseCase.execute(actor, action, resource, resourceId, options);
-
-  verifyChain = () => this.verifyChainUseCase.execute();
-}
+export const AuditApplicationService = {
+  log: (input: Omit<AuditRecord,"id"|"hash"|"prevHash"|"timestamp">) =>
+    new LogAuditUseCase(_repo).execute(input),
+  verify: () =>
+    new VerifyChainUseCase(_repo).execute(),
+  getAll: () => _repo.findAll(),
+  getByModule: (m: string) => _repo.findByModule(m),
+};

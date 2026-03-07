@@ -1,2 +1,2 @@
-export * from './interface/showroom.interface';
-export { SHOWROOM_CONTRACT } from './ports/showroom.contract';
+export * from "./domain/services";
+export * from "./ports";

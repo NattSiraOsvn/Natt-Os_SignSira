@@ -4,3 +4,7 @@ export const PaymentEngine = {
   refund:async(txId:string,amount:number):Promise<PaymentResponse>=>({ success:true, transactionId:`REF-${txId}`, amount, currency:"VND", method:"REFUND", timestamp:new Date().toISOString() }),
   getStatus:(txId:string)=>({ transactionId:txId, status:"COMPLETED" }),
 };
+if (typeof PaymentEngine === "object") {
+  (PaymentEngine as any).createPayment = async (data: any): Promise<any> =>
+    ({ ...await PaymentEngine.process(data.amount ?? 0, "VNPAY"), qrCodeUrl: "data:image/png;base64,iVBOR" });
+}

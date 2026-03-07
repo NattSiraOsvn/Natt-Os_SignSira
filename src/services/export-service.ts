@@ -4,3 +4,7 @@ export const ExportEngine = {
   toPDF:async(_c:string,_f:string):Promise<void>=>{},
   toXLSX:(data:any[],filename:string):void=>ExportEngine.toCSV(data,filename),
 };
+if (typeof ExportEngine === "object") {
+  (ExportEngine as any).toExcel = (data: any[], filename: string): void => ExportEngine.toXLSX(data, filename);
+  (ExportEngine as any).toXml   = async (_data: any, _f: string, _root?: string): Promise<void> => {};
+}

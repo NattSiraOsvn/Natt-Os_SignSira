@@ -42,7 +42,7 @@ import QuantumFlowOrchestrator from './QuantumFlowOrchestrator';
 import AdminConfigHub from './AdminConfigHub';
 import FinancialDashboard from './financial/FinancialDashboard'; 
 import PersonalSphere from './PersonalSphere'; 
-import CalibrationWizard from './calibration/CalibrationWizard';
+import CalibrationWizard from './CalibrationWizard';
 
 interface DynamicModuleRendererProps {
   view: ViewType;

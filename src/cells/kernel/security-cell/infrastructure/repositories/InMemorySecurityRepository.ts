@@ -1,15 +1,15 @@
-import { ThreatEvent } from '../../domain/entities';
-import { SecurityRepository } from '../../ports/SecurityRepository';
+import type { ISecurityRepository } from "../../ports/SecurityRepository";
+import type { Threat } from "../../domain/entities/threat.entity";
 
-export class InMemorySecurityRepository implements SecurityRepository {
-  private threats: ThreatEvent[] = [];
+const _store: Threat[] = [];
 
-  async logThreat(threat: ThreatEvent) { this.threats.push(threat); }
-  async getActiveThreats() { return this.threats.filter(t => !t.resolved); }
-  async resolveThreat(id: string) {
-    const idx = this.threats.findIndex(t => t.id === id);
-    if (idx >= 0) { this.threats[idx] = this.threats[idx].resolve(); return true; }
-    return false;
-  }
-  async getThreatHistory(limit = 100) { return this.threats.slice(-limit); }
+export class InMemorySecurityRepository implements ISecurityRepository {
+  async saveThreat(t: Threat): Promise<Threat>                       { _store.push(t); return t; }
+  async findById(id: string): Promise<Threat | null>                 { return _store.find(x => x.id === id) ?? null; }
+  async findActive(): Promise<Threat[]>                              { return _store.filter(x => !x.resolved); }
+  async findBySeverity(s: Threat["severity"]): Promise<Threat[]>    { return _store.filter(x => x.severity === s); }
+  async resolve(id: string, by: string): Promise<void>              { const t=_store.find(x=>x.id===id); if(t){t.resolved=true;t.resolvedBy=by;t.resolvedAt=Date.now();} }
+  async findAll(): Promise<Threat[]>                                  { return [..._store]; }
 }
+
+export const securityRepository = new InMemorySecurityRepository();

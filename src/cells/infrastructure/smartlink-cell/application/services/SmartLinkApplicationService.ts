@@ -1,22 +1,30 @@
-import { CreateLinkUseCase, ResolveLinkUseCase } from '../use-cases';
-import { LinkResolver } from '../../domain/services';
-import { SmartLinkRepository } from '../../ports/SmartLinkRepository';
-import { SmartLinkEventEmitter } from '../../ports/SmartLinkEventEmitter';
-import { LinkType } from '../../domain/entities';
+import { ResolveLinkUseCase } from "../use-cases/ResolveLinkUseCase";
+import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
+import { SmartLinkEngine } from "../../domain/services/smartlink.engine";
+import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
+import { SmartLinkStabilizer } from "../../domain/services/smartlink.stabilizer";
+import type { CellID } from "@/cells/shared-kernel/shared.types";
 
-export class SmartLinkApplicationService {
-  private readonly createLinkUseCase: CreateLinkUseCase;
-  private readonly resolveLinkUseCase: ResolveLinkUseCase;
+export const SmartLinkApplicationService = {
+  // Truyền signal qua governance gate → mapping → stabilizer
+  transmit: (fromCellId: CellID, signalType: string, payload: unknown) =>
+    new ResolveLinkUseCase().execute(fromCellId, signalType, payload),
 
-  constructor(repository: SmartLinkRepository, eventEmitter: SmartLinkEventEmitter) {
-    const linkResolver = new LinkResolver();
-    this.createLinkUseCase = new CreateLinkUseCase(repository, eventEmitter);
-    this.resolveLinkUseCase = new ResolveLinkUseCase(repository, linkResolver);
-  }
+  // Đăng ký kết nối 2 cell
+  registerMap: (fromCellId: CellID, toCellId: CellID, signalType: string) => {
+    SmartLinkEngine.recordTouch(fromCellId, toCellId, signalType);
+    return SmartLinkMappingEngine.register({ fromCellId, toCellId, signalType });
+  },
 
-  createLink = (sourceType: string, sourceId: string, targetType: string, targetId: string, linkType: LinkType, createdBy: string) =>
-    this.createLinkUseCase.execute(sourceType, sourceId, targetType, targetId, linkType, createdBy);
+  // Lấy sức khỏe mạng
+  getNetworkHealth: () => SmartLinkEngine.getNetworkHealth(),
 
-  resolveLinks = (entityType: string, entityId: string, maxDepth?: number) =>
-    this.resolveLinkUseCase.execute(entityType, entityId, maxDepth);
-}
+  // Lấy vi phạm governance
+  getViolations: () => SmartLinkGovernance.getViolations(),
+
+  // Kiểm tra ổn định biên độ
+  getStabilityReport: (cellId: CellID) => SmartLinkStabilizer.getStats(cellId),
+
+  // Block cell vi phạm
+  blockCell: (cellId: CellID) => SmartLinkGovernance.block(cellId),
+};

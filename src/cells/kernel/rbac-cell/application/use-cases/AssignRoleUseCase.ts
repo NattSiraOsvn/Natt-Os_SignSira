@@ -1,21 +1,13 @@
-import { UserRole } from '../../domain/entities';
-import { RBACRepository } from '../../ports/RBACRepository';
-import { RBACEventEmitter } from '../../ports/RBACEventEmitter';
+import type { IRBACRepository } from "../../ports/RBACRepository";
+import { RbacService } from "../../domain/services/rbac.service";
+import { RBACValidationService } from "../../domain/services/RBACValidationService";
 
 export class AssignRoleUseCase {
-  constructor(
-    private readonly repository: RBACRepository,
-    private readonly eventEmitter: RBACEventEmitter
-  ) {}
-
-  async execute(userId: string, roleId: string, assignedBy: string, expiresAt?: Date) {
-    const role = await this.repository.getRole(roleId);
-    if (!role) throw new Error(`Role not found: ${roleId}`);
-
-    const userRole = UserRole.create(userId, roleId, assignedBy, expiresAt);
-    await this.repository.assignRole(userRole);
-    await this.eventEmitter.emitRoleAssigned(userId, roleId, assignedBy);
-
-    return { userRole, role };
+  constructor(private repo: IRBACRepository) {}
+  async execute(assignerId: string, assignerRole: string, userId: string, targetRole: string) {
+    if (!RBACValidationService.validateAssignment(assignerRole, targetRole))
+      throw new Error(`${assignerRole} không đủ quyền cấp ${targetRole}`);
+    const assignment = RbacService.grant(userId, targetRole, assignerId);
+    return this.repo.save(assignment);
   }
 }

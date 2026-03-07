@@ -1,6 +1,1 @@
-// HREngine stub
-export const HREngine = {
-  calculatePayroll: (_e: unknown) => ({}),
-  getEmployees: (): unknown[] => [],
-  getById: (_id: string) => null,
-};
+export { HREngine as HRLegacyEngine } from "./hr.engine";

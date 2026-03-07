@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Calibration } from '../../services/calibration/CalibrationEngine';
-import { InputPersona, InputMetrics, PersonaID } from '../../types';
-import AIAvatar from '../AIAvatar';
+import { Calibration } from '@/services/calibration/CalibrationEngine';
+import { InputPersona, InputMetrics, PersonaID } from '@/types';
+import AIAvatar from '@/components/AIAvatar';
 
 export const CalibrationWizard: React.FC = () => {
   const [step, setStep] = useState<'intro' | 'testing' | 'result'>('intro');

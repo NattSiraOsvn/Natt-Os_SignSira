@@ -1,16 +1,16 @@
-import { SmartLinkRepository } from '../../ports/SmartLinkRepository';
-import { LinkResolver } from '../../domain/services';
+import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
+import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
+import type { CellID } from "@/cells/shared-kernel/shared.types";
 
 export class ResolveLinkUseCase {
-  constructor(
-    private readonly repository: SmartLinkRepository,
-    private readonly linkResolver: LinkResolver
-  ) {}
-
-  async execute(entityType: string, entityId: string, maxDepth = 3) {
-    const allLinks = await this.repository.getAll();
-    const startKey = `${entityType}:${entityId}`;
-    const resolved = this.linkResolver.resolveLinks(allLinks, startKey, maxDepth);
-    return { resolved, totalLinks: resolved.length };
+  async execute(fromCellId: CellID, signalType: string, payload: unknown) {
+    // Governance gate trước — Điều 22
+    const gate = SmartLinkGovernance.checkSignal(fromCellId, signalType);
+    if (!gate.allowed) {
+      return { success: false, reason: gate.reason, results: [] };
+    }
+    SmartLinkGovernance.stabilize(fromCellId);
+    const results = SmartLinkMappingEngine.resolve(fromCellId, signalType, payload);
+    return { success: true, results, count: results.length };
   }
 }

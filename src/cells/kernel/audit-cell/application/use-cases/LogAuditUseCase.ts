@@ -1,21 +1,12 @@
-import { AuditEntry } from '../../domain/entities';
-import { AuditRepository } from '../../ports/AuditRepository';
-import { AuditEventEmitter } from '../../ports/AuditEventEmitter';
+import type { IAuditRepository } from "../../ports/AuditRepository";
+import type { AuditRecord } from "../../domain/entities/audit-record.entity";
+import { AuditWriterService } from "../../domain/services/audit-writer.service";
 
 export class LogAuditUseCase {
-  constructor(
-    private readonly repository: AuditRepository,
-    private readonly eventEmitter: AuditEventEmitter
-  ) {}
+  constructor(private repo: IAuditRepository) {}
 
-  async execute(actor: string, action: string, resource: string, resourceId: string, options?: { oldValue?: unknown; newValue?: unknown }) {
-    const latest = await this.repository.getLatest();
-    const previousHash = latest?.hash || 'GENESIS';
-
-    const entry = AuditEntry.create(actor, action, resource, resourceId, previousHash, options);
-    await this.repository.append(entry);
-    await this.eventEmitter.emitEntryCreated(entry.id, actor, action);
-
-    return { entry };
+  async execute(input: Omit<AuditRecord,"id"|"hash"|"prevHash"|"timestamp">): Promise<AuditRecord> {
+    const record = AuditWriterService.write(input);
+    return this.repo.save(record);
   }
 }

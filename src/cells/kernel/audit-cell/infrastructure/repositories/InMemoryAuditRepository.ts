@@ -1,19 +1,16 @@
-import { AuditEntry } from '../../domain/entities';
-import { AuditRepository } from '../../ports/AuditRepository';
+import type { IAuditRepository } from "../../ports/AuditRepository";
+import type { AuditRecord } from "../../domain/entities/audit-record.entity";
 
-export class InMemoryAuditRepository implements AuditRepository {
-  private entries: AuditEntry[] = [];
+const _store: AuditRecord[] = [];
 
-  async append(entry: AuditEntry) { this.entries.push(entry); }
-  async getById(id: string) { return this.entries.find(e => e.id === id) || null; }
-  async getByResource(resource: string, resourceId: string) {
-    return this.entries.filter(e => e.resource === resource);
-  }
-  async getByActor(actor: string, limit = 100) {
-    return this.entries.filter(e => e.actor === actor).slice(-limit);
-  }
-  async getLatest() { return this.entries[this.entries.length - 1] || null; }
-  async getAll(limit = 1000) { return this.entries.slice(-limit); }
-  async count() { return this.entries.length; }
-  clear() { this.entries = []; }
+export class InMemoryAuditRepository implements IAuditRepository {
+  async save(r: AuditRecord): Promise<AuditRecord>          { _store.push(r); return r; }
+  async findById(id: string): Promise<AuditRecord | null>   { return _store.find(x => x.id === id) ?? null; }
+  async findByActor(actorId: string): Promise<AuditRecord[]>{ return _store.filter(x => x.actorId === actorId); }
+  async findByModule(module: string): Promise<AuditRecord[]>{ return _store.filter(x => x.module === module); }
+  async findAll(): Promise<AuditRecord[]>                    { return [..._store]; }
+  async getChain(): Promise<AuditRecord[]>                   { return [..._store].sort((a,b) => a.timestamp - b.timestamp); }
+  async count(): Promise<number>                             { return _store.length; }
 }
+
+export const auditRepository = new InMemoryAuditRepository();

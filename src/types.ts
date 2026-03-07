@@ -5,6 +5,7 @@
 
 // ── ENUMS ────────────────────────────────────────────────
 export enum PersonaID {
+  PHIEU = "PHIEU",
   BANG = "BANG", KIM = "KIM", THIEN = "THIEN", CAN = "CAN", BOI_BOI = "BOI_BOI", KRIS = "KRIS"
 }
 
@@ -20,6 +21,12 @@ export enum PositionType {
   SELLER = "SELLER", WAREHOUSE_STAFF = "WAREHOUSE_STAFF",
   HR_STAFF = "HR_STAFF", PRODUCTION_STAFF = "PRODUCTION_STAFF",
   CUSTOMS_OFFICER = "CUSTOMS_OFFICER", AUDITOR = "AUDITOR"
+  CHAIRMAN = "CHAIRMAN",
+  COLLABORATOR = "COLLABORATOR",
+  ROUGH_FINISHER = "ROUGH_FINISHER",
+  CASTING_MANAGER = "CASTING_MANAGER",
+  CONSULTANT = "CONSULTANT",
+  PROD_DIRECTOR = "PROD_DIRECTOR",
 }
 
 export enum ViewType {
@@ -53,6 +60,9 @@ export enum Domain {
 export enum Permission {
   READ = "READ", WRITE = "WRITE", DELETE = "DELETE", APPROVE = "APPROVE",
   EXPORT = "EXPORT", ADMIN = "ADMIN", OVERRIDE = "OVERRIDE"
+  VIEW = "VIEW",
+  SIGN = "SIGN",
+  ADMIN = "ADMIN",
 }
 
 export enum ModuleID {
@@ -66,11 +76,16 @@ export enum HeatLevel { COLD = "COLD", WARM = "WARM", HOT = "HOT", CRITICAL = "C
 export enum OrderStatus {
   PENDING = "PENDING", CONFIRMED = "CONFIRMED", PROCESSING = "PROCESSING",
   COMPLETED = "COMPLETED", CANCELLED = "CANCELLED", REFUNDED = "REFUNDED"
+  DESIGNING = "DESIGNING",
+  COLD_WORK = "COLD_WORK",
+  STONE_SETTING = "STONE_SETTING",
+  FINISHING = "FINISHING",
 }
 
 export enum EInvoiceStatus {
   DRAFT = "DRAFT", SIGNED = "SIGNED", SUBMITTED = "SUBMITTED",
   ACCEPTED = "ACCEPTED", REJECTED = "REJECTED", CANCELLED = "CANCELLED"
+  XML_BUILT = "XML_BUILT",
 }
 
 export enum TxStatus {
@@ -95,6 +110,8 @@ export interface UserPosition {
   department?: string;
   branch?: string;
   level?: number;
+  DIRECT_SALE = "DIRECT_SALE",
+  COMMITTED = "COMMITTED",
 }
 
 export interface ModuleConfig {
@@ -117,6 +134,8 @@ export interface ActionLog {
   ipAddress?: string;
   hash?: string;
   severity?: "INFO" | "WARNING" | "CRITICAL";
+
+  userPosition?: string;
 }
 
 export interface BusinessMetrics {
@@ -131,6 +150,16 @@ export interface BusinessMetrics {
   complianceScore?: number;
   period?: string;
   updatedAt?: number;
+
+  // Extended metrics fields
+  revenue?: number;
+  revenue_pending?: number;
+  totalTaxDue?: number;
+  totalPayroll?: number;
+  currentOperatingCost?: number;
+  importVolume?: number;
+  cadPending?: number;
+  productionProgress?: number;
 }
 
 // ── PRODUCT ───────────────────────────────────────────────
@@ -152,6 +181,18 @@ export interface Product {
   warehouseLocation?: string;
   serialNumber?: string;
   certificateId?: string;
+
+  // Extended fields for UI components
+  image?: string;
+  images?: string[];
+  videos?: string[];
+  specifications?: Record<string, string>;
+  leadTime?: number;
+  isCustomizable?: boolean;
+  tradeAssurance?: boolean;
+  moqUnit?: string;
+  rating?: number;
+  supplier?: { tenNhaCungCap: string; maNhaCungCap?: string };
 }
 
 export interface InventoryItem extends Product {
@@ -265,6 +306,12 @@ export interface EInvoiceItem {
   amount: number;
   vatRate: number;
   vatAmount: number;
+
+  stonePrice?: number;
+
+  laborPrice?: number;
+
+  totalBeforeTax?: number;
 }
 
 export interface EInvoice {
@@ -286,6 +333,16 @@ export interface EInvoice {
   signedAt?: number;
   submittedAt?: number;
   lookupCode?: string;
+
+  xmlPayload?: string;
+
+  signatureHash?: string;
+
+  issuedAt?: number;
+
+  taxAmount?: number;
+
+  orderId?: string;
 }
 
 export interface AccountingEntry {
@@ -298,6 +355,18 @@ export interface AccountingEntry {
   currency: string;
   reference: string;
   createdBy: string;
+
+  journalId?: string;
+
+  journalType?: string;
+
+  transactionDate?: number;
+
+  entries?: any[];
+
+  matchScore?: number;
+
+  aiNote?: string;
 }
 
 export interface VATReport {
@@ -337,6 +406,8 @@ export interface SalaryRule {
   name: string;
   amount: number;
   condition?: string;
+
+  division?: string;
 }
 
 // ── AUDIT / GOVERNANCE ────────────────────────────────────
@@ -382,6 +453,10 @@ export interface GovernanceRecord {
   madeAt: number;
   affectedCells: string[];
   status: "PROPOSED" | "ACTIVE" | "SUPERSEDED";
+
+  auditTrail?: any[];
+
+  operatorId?: string;
 }
 
 export interface GovernanceTransaction {
@@ -395,6 +470,8 @@ export interface GovernanceTransaction {
   moduleId: ModuleID;
   createdAt: number;
   notes?: string;
+
+  flags?: string[];
 }
 
 export interface OperationRecord {
@@ -417,6 +494,12 @@ export interface SellerReport {
   revenue: number;
   commission: number;
   topProducts?: string[];
+
+  productSku?: string;
+
+  shellRevenue?: number;
+
+  stoneRevenue?: number;
 }
 
 export interface SellerIdentity {
@@ -425,6 +508,12 @@ export interface SellerIdentity {
   tier: "STANDARD" | "SENIOR" | "EXPERT" | "MASTER";
   since: string;
   branch?: string;
+
+  kpiPoints?: number;
+
+  stars?: number;
+
+  isCollaborator?: boolean;
 }
 
 export interface CustomerLead {
@@ -438,6 +527,10 @@ export interface CustomerLead {
   status: "NEW" | "CONTACTED" | "QUALIFIED" | "CONVERTED" | "LOST";
   assignedTo?: string;
   createdAt: number;
+
+  expiryDate?: number;
+
+  lastInteraction?: number;
 }
 
 export interface LearnedTemplate {
@@ -510,6 +603,18 @@ export interface BankTransaction {
   reference: string;
   counterparty?: string;
   category?: string;
+
+  refNo?: string;
+
+  bankName?: string;
+
+  accountNumber?: string;
+
+  taxRate?: number;
+
+  exchangeRate?: number;
+
+  processDate?: string;
 }
 
 export interface BankSummary {
@@ -518,6 +623,12 @@ export interface BankSummary {
   openingBalance: number;
   closingBalance: number;
   transactionCount: number;
+
+  totalCogs?: number;
+
+  totalOperating?: number;
+
+  netFlow?: number;
 }
 
 // ── ANALYTICS ─────────────────────────────────────────────
@@ -528,6 +639,8 @@ export interface RFMData {
   frequency: number;
   monetary: number;
   segment?: "CHAMPION" | "LOYAL" | "POTENTIAL" | "AT_RISK" | "LOST";
+
+  score?: number;
 }
 
 export interface AggregatedReport {
@@ -560,6 +673,20 @@ export interface Supplier {
   contact?: string;
   email?: string;
   status: "ACTIVE" | "BLACKLISTED" | "UNDER_REVIEW";
+
+  loaiNCC?: string;
+
+  transactionAmount?: number;
+
+  sentimentScore?: number;
+
+  nhomHangChinh?: string[];
+
+  quyMo?: string;
+
+  xuHuong?: string;
+
+  coTienNang?: boolean;
 }
 
 // ── COLLABORATION ─────────────────────────────────────────
@@ -573,6 +700,18 @@ export interface ChatMessage {
   roomId?: string;
   persona?: PersonaID;
   read?: boolean;
+
+  personaId?: string;
+
+  isThinking?: boolean;
+
+  fileData?: string;
+
+  suggestedActions?: string[];
+
+  isEdited?: boolean;
+
+  history?: any[];
 }
 
 export interface RoomConfig {
@@ -618,6 +757,8 @@ export interface EmailMessage {
   labels: string[];
   attachments?: string[];
   category?: "INVOICE" | "SUPPLIER" | "CUSTOMS" | "INTERNAL" | "OTHER";
+
+  snippet?: string;
 }
 
 export interface DictionaryVersion {
@@ -625,6 +766,10 @@ export interface DictionaryVersion {
   changes: number;
   publishedAt: number;
   author: string;
+
+  versionNumber?: string;
+
+  metadata?: { reason?: string };
 }
 
 // ── SYNC ──────────────────────────────────────────────────
@@ -638,6 +783,8 @@ export interface SyncJob {
   createdAt: number;
   completedAt?: number;
   recordsProcessed?: number;
+
+  progress?: number;
 }
 
 export interface SyncLog {
@@ -672,6 +819,8 @@ export interface QuantumState {
   entanglement: number;
   entropy: number;
   timestamp: number;
+
+  superpositionCount?: number;
 }
 
 export interface ConsciousnessField {
@@ -679,6 +828,12 @@ export interface ConsciousnessField {
   resonance: number;
   dominantPersona: PersonaID;
   activeSignals: number;
+
+  mood?: string;
+
+  awarenessLevel?: number;
+
+  lastCollapse?: number;
 }
 
 export interface QuantumEvent {
@@ -688,6 +843,8 @@ export interface QuantumEvent {
   payload: unknown;
   timestamp: number;
   collapsed: boolean;
+
+  sensitivityVector?: { risk: number; financial: number; temporal: number };
 }
 
 // ── FILE INGESTION ────────────────────────────────────────
@@ -707,7 +864,15 @@ export interface TransferOrder {
   id: string;
   from: string;
   to: string;
-  items: Array<{ itemId: string; quantity: number }>;
+  items: Array<{ itemId: string; quantity: number 
+  transferId?: string;
+
+  fromWarehouse?: string;
+
+  toWarehouse?: string;
+
+  transferDate?: number;
+}>;
   status: "PENDING" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
   createdAt: number;
   deliveredAt?: number;
@@ -718,6 +883,16 @@ export interface LogisticsSolution {
   estimatedDays: number;
   cost: number;
   trackingId?: string;
+
+  recommended?: boolean;
+
+  partnerId?: string;
+
+  partnerName?: string;
+
+  estimatedDelivery?: number;
+
+  reliability?: number;
 }
 
 // ── BLOCKCHAIN ────────────────────────────────────────────
@@ -729,5 +904,7 @@ export interface BlockShard {
   data: Record<string, unknown>;
   timestamp: number;
   validator?: string;
+
+  enterpriseId?: string;
 }
 

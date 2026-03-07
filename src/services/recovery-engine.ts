@@ -6,3 +6,9 @@ export const RecoverySystem = {
   getLatest:():RecoverySnapshot|null=>null,
   runHealthCheck:async()=>({ healthy:true, issues:[] }),
 };
+// Patch missing methods
+if (typeof RecoverySystem === "object") {
+  (RecoverySystem as any).getDeadLetterQueue = (): any[] => [];
+  (RecoverySystem as any).replayOperation    = async (_id: string): Promise<void> => {};
+  (RecoverySystem as any).recordOperation    = (_op: string, _mod: string, _meta?: any): void => {};
+}

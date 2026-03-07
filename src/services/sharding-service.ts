@@ -5,3 +5,14 @@ export const ShardingService = {
   getChainStatus:()=>({ healthy:true, length:49382, lastBlock:Date.now() }),
   auditLog:[] as BlockShard[],
 };
+// Patch methods
+export const generateShardHash = (data: Record<string, any>): string =>
+  btoa(JSON.stringify(data)).slice(0, 32);
+// Thêm vào ShardingService nếu dùng object
+if (typeof ShardingService === "object") {
+  (ShardingService as any).generateShardHash = generateShardHash;
+  (ShardingService as any).createIsolatedShard = (enterpriseId: string): BlockShard => ({
+    ...ShardingService.createShard({ enterpriseId }),
+    enterpriseId,
+  });
+}

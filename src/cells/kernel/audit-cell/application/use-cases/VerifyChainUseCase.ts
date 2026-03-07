@@ -1,23 +1,15 @@
-import { AuditRepository } from '../../ports/AuditRepository';
-import { AuditEventEmitter } from '../../ports/AuditEventEmitter';
-import { AuditChainService } from '../../domain/services';
+import type { IAuditRepository } from "../../ports/AuditRepository";
+import { AuditChainService } from "../../domain/services/auditchainservice";
 
 export class VerifyChainUseCase {
-  constructor(
-    private readonly repository: AuditRepository,
-    private readonly eventEmitter: AuditEventEmitter,
-    private readonly chainService: AuditChainService
-  ) {}
+  constructor(private repo: IAuditRepository) {}
 
-  async execute() {
-    const entries = await this.repository.getAll();
-    const result = this.chainService.verifyChain(entries);
-
-    await this.eventEmitter.emitChainVerified(result.isValid, result.totalEntries);
-    if (!result.isValid && result.brokenAt) {
-      await this.eventEmitter.emitIntegrityAlert(result.brokenAt);
-    }
-
-    return result;
+  async execute(): Promise<{ valid: boolean; length: number; latestHash: string | null }> {
+    const chain = await this.repo.getChain();
+    return {
+      valid: AuditChainService.verify(chain),
+      length: chain.length,
+      latestHash: AuditChainService.getLatest(chain)?.hash ?? null,
+    };
   }
 }

@@ -1,8 +1,9 @@
-/**
- * NATT-OS smartlink-cell - EDA CONTRACT
- */
-export const SMARTLINK_CELL_CONTRACT = {
-  cellId: 'smartlink-cell',
-  emits: ['smartlink-cell.executed'],
-  consumes: []
+export const SMARTLINK_EVENTS = {
+  LINK_ESTABLISHED:    "smartlink.link_established",
+  LINK_BROKEN:         "smartlink.link_broken",
+  SIGNAL_TRANSMITTED:  "smartlink.signal_transmitted",
+  AMPLITUDE_STABILIZED:"smartlink.amplitude_stabilized",
+  TOPOLOGY_OVERLOADED: "smartlink.topology_overloaded",
+  GOVERNANCE_VIOLATED: "smartlink.governance_violated",
 } as const;
+export type SmartLinkEventType = typeof SMARTLINK_EVENTS[keyof typeof SMARTLINK_EVENTS];

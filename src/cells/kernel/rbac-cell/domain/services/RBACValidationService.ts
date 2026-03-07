@@ -1,37 +1,21 @@
-/**
- * RBACValidationService - Validates RBAC operations
- */
+import type { IRBACRepository } from "../../ports/RBACRepository";
 
-import { Role, Permission, UserRole } from '../entities';
+// Hierarchy: MASTER > LEVEL_1 > LEVEL_2 ... > GUEST
+const ROLE_WEIGHT: Record<string, number> = {
+  MASTER:5, LEVEL_1:4, LEVEL_2:3, LEVEL_3:3,
+  LEVEL_4:2, LEVEL_5:2, LEVEL_6:2, LEVEL_7:1, LEVEL_8:1, GUEST:0,
+};
 
-export interface AccessCheckResult {
-  allowed: boolean;
-  reason: string;
-  matchedPermissions: string[];
-}
-
-export class RBACValidationService {
-  checkAccess(roles: Role[], resource: string, action: string): AccessCheckResult {
-    const matchedPermissions: string[] = [];
-    
-    for (const role of roles) {
-      const permissionKey = `${resource}:${action}`;
-      if (role.hasPermission(permissionKey) || role.hasPermission(`${resource}:*`) || role.hasPermission('*')) {
-        matchedPermissions.push(`${role.name}:${permissionKey}`);
-      }
-    }
-
-    return {
-      allowed: matchedPermissions.length > 0,
-      reason: matchedPermissions.length > 0 ? 'Access granted' : 'No matching permissions',
-      matchedPermissions,
-    };
-  }
-
-  validateRole(role: Role): { isValid: boolean; errors: string[] } {
-    const errors: string[] = [];
-    if (!role.name || role.name.trim().length === 0) errors.push('Role name required');
-    if (role.name.length > 100) errors.push('Role name too long');
-    return { isValid: errors.length === 0, errors };
-  }
-}
+export const RBACValidationService = {
+  canPerform: async (repo: IRBACRepository, userId: string, requiredRole: string): Promise<boolean> => {
+    const assignments = await repo.findByUserId(userId);
+    const userMaxWeight = Math.max(...assignments.map(a => ROLE_WEIGHT[a.role] ?? 0), 0);
+    const requiredWeight = ROLE_WEIGHT[requiredRole] ?? 99;
+    return userMaxWeight >= requiredWeight;
+  },
+  getHighestRole: (roles: string[]): string => {
+    return roles.reduce((best, r) => (ROLE_WEIGHT[r]??0) > (ROLE_WEIGHT[best]??0) ? r : best, "GUEST");
+  },
+  validateAssignment: (assignerRole: string, targetRole: string): boolean =>
+    (ROLE_WEIGHT[assignerRole] ?? 0) > (ROLE_WEIGHT[targetRole] ?? 0),
+};

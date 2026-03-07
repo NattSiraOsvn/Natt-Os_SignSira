@@ -1,17 +1,10 @@
-import { Role, UserRole } from '../domain/entities';
+import type { RoleAssignment } from "../domain/entities/role-assignment.entity";
 
-export interface RBACRepository {
-  // Role operations
-  getRole(id: string): Promise<Role | null>;
-  getAllRoles(): Promise<Role[]>;
-  saveRole(role: Role): Promise<void>;
-  deleteRole(id: string): Promise<boolean>;
-
-  // User-Role operations
-  getUserRoles(userId: string): Promise<UserRole[]>;
-  assignRole(userRole: UserRole): Promise<void>;
-  revokeRole(userId: string, roleId: string): Promise<boolean>;
-  
-  // Query
-  getRolesByPermission(permission: string): Promise<Role[]>;
+export interface IRBACRepository {
+  save(assignment: RoleAssignment): Promise<RoleAssignment>;
+  findByUserId(userId: string): Promise<RoleAssignment[]>;
+  findByRole(role: string): Promise<RoleAssignment[]>;
+  revoke(userId: string, role: string): Promise<void>;
+  findAll(): Promise<RoleAssignment[]>;
+  hasRole(userId: string, role: string): Promise<boolean>;
 }

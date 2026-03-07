@@ -1,17 +1,14 @@
-import { Alert } from '../../domain/entities';
-import { MonitorRepository } from '../../ports/MonitorRepository';
-import { MonitorEventEmitter } from '../../ports/MonitorEventEmitter';
+import type { IMonitorRepository } from "../../ports/MonitorRepository";
+import { HealthAnalyzer } from "../../domain/services/HealthAnalyzer";
 
 export class TriggerAlertUseCase {
-  constructor(
-    private readonly repository: MonitorRepository,
-    private readonly eventEmitter: MonitorEventEmitter
-  ) {}
-
-  async execute(cellId: string, type: 'WARNING' | 'ERROR' | 'CRITICAL', message: string) {
-    const alert = Alert.create(cellId, type, message);
-    await this.repository.saveAlert(alert);
-    await this.eventEmitter.emitAlertTriggered(alert.id, cellId, type);
-    return { alert };
+  constructor(private repo: IMonitorRepository) {}
+  async execute(): Promise<{ alerts: Array<{ cellId: string; score: number; issues: string[] }> }> {
+    const degraded = await this.repo.findDegraded();
+    return {
+      alerts: degraded.filter(h => HealthAnalyzer.shouldAlert(h)).map(h => ({
+        cellId: h.cellId, score: h.confidenceScore, issues: h.issues,
+      })),
+    };
   }
 }

@@ -1,1 +1,1 @@
-export * from './inventory.port';
+export * from "./inventory-cell.contract";

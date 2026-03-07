@@ -1,10 +1,9 @@
-import { HealthReport, Alert } from '../domain/entities';
+import type { CellHealth } from "../domain/entities/cell-health.entity";
 
-export interface MonitorRepository {
-  saveHealthReport(report: HealthReport): Promise<void>;
-  getLatestHealthReport(cellId: string): Promise<HealthReport | null>;
-  getAllLatestReports(): Promise<HealthReport[]>;
-  saveAlert(alert: Alert): Promise<void>;
-  getActiveAlerts(): Promise<Alert[]>;
-  acknowledgeAlert(id: string): Promise<boolean>;
+export interface IMonitorRepository {
+  save(health: CellHealth): Promise<CellHealth>;
+  findByCellId(cellId: string): Promise<CellHealth | null>;
+  findAll(): Promise<CellHealth[]>;
+  findDegraded(): Promise<CellHealth[]>;
+  findByWave(wave: 1|2|3): Promise<CellHealth[]>;
 }

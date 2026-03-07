@@ -1,11 +1,11 @@
-import { AuditEntry } from '../domain/entities';
+import type { AuditRecord } from "../domain/entities/audit-record.entity";
 
-export interface AuditRepository {
-  append(entry: AuditEntry): Promise<void>;
-  getById(id: string): Promise<AuditEntry | null>;
-  getByResource(resource: string, resourceId: string): Promise<AuditEntry[]>;
-  getByActor(actor: string, limit?: number): Promise<AuditEntry[]>;
-  getLatest(): Promise<AuditEntry | null>;
-  getAll(limit?: number): Promise<AuditEntry[]>;
+export interface IAuditRepository {
+  save(record: AuditRecord): Promise<AuditRecord>;
+  findById(id: string): Promise<AuditRecord | null>;
+  findByActor(actorId: string): Promise<AuditRecord[]>;
+  findByModule(module: string): Promise<AuditRecord[]>;
+  findAll(): Promise<AuditRecord[]>;
+  getChain(): Promise<AuditRecord[]>;
   count(): Promise<number>;
 }

@@ -1,26 +1,14 @@
-import { CheckAccessUseCase, AssignRoleUseCase, RevokeRoleUseCase } from '../use-cases';
-import { RBACValidationService } from '../../domain/services';
-import { RBACRepository } from '../../ports/RBACRepository';
-import { RBACEventEmitter } from '../../ports/RBACEventEmitter';
+import { InMemoryRBACRepository } from "../../infrastructure/repositories/InMemoryRBACRepository";
+import { AssignRoleUseCase } from "../use-cases/AssignRoleUseCase";
+import { CheckAccessUseCase } from "../use-cases/CheckAccessUseCase";
 
-export class RBACApplicationService {
-  private readonly checkAccessUseCase: CheckAccessUseCase;
-  private readonly assignRoleUseCase: AssignRoleUseCase;
-  private readonly revokeRoleUseCase: RevokeRoleUseCase;
+const _repo = new InMemoryRBACRepository();
 
-  constructor(repository: RBACRepository, eventEmitter: RBACEventEmitter) {
-    const validationService = new RBACValidationService();
-    this.checkAccessUseCase = new CheckAccessUseCase(repository, eventEmitter, validationService);
-    this.assignRoleUseCase = new AssignRoleUseCase(repository, eventEmitter);
-    this.revokeRoleUseCase = new RevokeRoleUseCase(repository, eventEmitter);
-  }
-
-  checkAccess = (userId: string, resource: string, action: string) => 
-    this.checkAccessUseCase.execute(userId, resource, action);
-  
-  assignRole = (userId: string, roleId: string, assignedBy: string, expiresAt?: Date) => 
-    this.assignRoleUseCase.execute(userId, roleId, assignedBy, expiresAt);
-  
-  revokeRole = (userId: string, roleId: string, revokedBy: string) => 
-    this.revokeRoleUseCase.execute(userId, roleId, revokedBy);
-}
+export const RBACApplicationService = {
+  assign:     (assignerId: string, assignerRole: string, userId: string, role: string) =>
+    new AssignRoleUseCase(_repo).execute(assignerId, assignerRole, userId, role),
+  checkAccess: (userId: string, requiredRole: string) =>
+    new CheckAccessUseCase(_repo).execute(userId, requiredRole),
+  getRoles:    (userId: string) => _repo.findByUserId(userId),
+  hasRole:     (userId: string, role: string) => _repo.hasRole(userId, role),
+};

@@ -1,19 +1,13 @@
-import { DetectThreatUseCase } from '../use-cases';
-import { ThreatDetectionService } from '../../domain/services';
-import { SecurityRepository } from '../../ports/SecurityRepository';
-import { SecurityEventEmitter } from '../../ports/SecurityEventEmitter';
+import { InMemorySecurityRepository } from "../../infrastructure/repositories/InMemorySecurityRepository";
+import { DetectThreatUseCase } from "../use-cases/DetectThreatUseCase";
+import type { Threat } from "../../domain/entities/threat.entity";
 
-export class SecurityApplicationService {
-  private readonly detectThreatUseCase: DetectThreatUseCase;
-  private readonly detectionService: ThreatDetectionService;
+const _repo = new InMemorySecurityRepository();
 
-  constructor(repository: SecurityRepository, eventEmitter: SecurityEventEmitter) {
-    this.detectionService = new ThreatDetectionService();
-    this.detectThreatUseCase = new DetectThreatUseCase(repository, eventEmitter, this.detectionService);
-  }
-
-  detectThreat = (type: string, severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL', source: string, description: string) =>
-    this.detectThreatUseCase.execute(type, severity, source, description);
-
-  isLockdownActive = () => this.detectionService.isLockdownActive();
-}
+export const SecurityApplicationService = {
+  detect:      (input: Omit<Threat,"id"|"detected"|"resolved">) => new DetectThreatUseCase(_repo).execute(input),
+  resolve:     (id: string, by: string) => _repo.resolve(id, by),
+  getActive:   () => _repo.findActive(),
+  getCritical: () => _repo.findBySeverity("CRITICAL"),
+  getAll:      () => _repo.findAll(),
+};

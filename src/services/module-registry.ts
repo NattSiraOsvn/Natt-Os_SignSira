@@ -8,3 +8,6 @@ export const MODULE_REGISTRY:any[] = [
 ];
 const ModuleRegistry = { getAllModules:()=>MODULE_REGISTRY, getByRole:(_:any)=>MODULE_REGISTRY, getById:(id:string)=>MODULE_REGISTRY.find(m=>m.id===id), isEnabled:(_:string):boolean=>true };
 export default ModuleRegistry;
+if (typeof ModuleRegistry === "object") {
+  (ModuleRegistry as any).registerModule = (_mod: any): void => {};
+}

@@ -1,30 +1,43 @@
-// Kế toán types — TT200 compliant
-export interface AccountingEntry {
-  id: string;
-  date: string;
-  description: string;
-  debitAccount: string;
-  creditAccount: string;
-  amount: number;
-  currency: string;
-  reference: string;
-  createdBy: string;
-  module?: string;
-  verified?: boolean;
-}
+// Kế thừa từ Ground Truth — tránh circular/duplicate
+// AccountingEntry đã có trong src/types.ts
+// File này chỉ export các types KẾ TOÁN bổ sung
 
 export interface TrialBalance {
-  account: string;
-  accountName: string;
-  debitBalance: number;
-  creditBalance: number;
   period: string;
+  accounts: Array<{
+    code: string;
+    name: string;
+    debit: number;
+    credit: number;
+    balance: number;
+  }>;
+  totalDebit: number;
+  totalCredit: number;
+  balanced: boolean;
+  generatedAt: number;
 }
 
 export interface AccountingPeriod {
+  id: string;
   year: number;
-  month: number;
-  isClosed: boolean;
-  closedAt?: number;
+  quarter?: 1 | 2 | 3 | 4;
+  month?: number;
+  label: string;
+  startDate: string;
+  endDate: string;
+  status: "OPEN" | "CLOSED" | "LOCKED";
   closedBy?: string;
+  closedAt?: number;
+}
+
+export interface LedgerEntry {
+  id: string;
+  accountCode: string;
+  accountName: string;
+  debit: number;
+  credit: number;
+  balance: number;
+  date: string;
+  description: string;
+  reference: string;
 }

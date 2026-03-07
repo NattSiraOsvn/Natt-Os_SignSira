@@ -1,33 +1,15 @@
-import { Role, UserRole } from '../../domain/entities';
-import { RBACRepository } from '../../ports/RBACRepository';
+import type { IRBACRepository } from "../../ports/RBACRepository";
+import type { RoleAssignment } from "../../domain/entities/role-assignment.entity";
 
-export class InMemoryRBACRepository implements RBACRepository {
-  private roles = new Map<string, Role>();
-  private userRoles = new Map<string, UserRole[]>();
+const _store: RoleAssignment[] = [];
 
-  async getRole(id: string) { return this.roles.get(id) || null; }
-  async getAllRoles() { return Array.from(this.roles.values()); }
-  async saveRole(role: Role) { this.roles.set(role.id, role); }
-  async deleteRole(id: string) { return this.roles.delete(id); }
-
-  async getUserRoles(userId: string) { return this.userRoles.get(userId) || []; }
-  
-  async assignRole(userRole: UserRole) {
-    const existing = this.userRoles.get(userRole.userId) || [];
-    existing.push(userRole);
-    this.userRoles.set(userRole.userId, existing);
-  }
-
-  async revokeRole(userId: string, roleId: string) {
-    const existing = this.userRoles.get(userId) || [];
-    const filtered = existing.filter(ur => ur.roleId !== roleId);
-    this.userRoles.set(userId, filtered);
-    return existing.length !== filtered.length;
-  }
-
-  async getRolesByPermission(permission: string) {
-    return Array.from(this.roles.values()).filter(r => r.hasPermission(permission));
-  }
-
-  clear() { this.roles.clear(); this.userRoles.clear(); }
+export class InMemoryRBACRepository implements IRBACRepository {
+  async save(a: RoleAssignment): Promise<RoleAssignment>        { _store.push(a); return a; }
+  async findByUserId(id: string): Promise<RoleAssignment[]>     { return _store.filter(x => x.userId === id && x.active); }
+  async findByRole(role: string): Promise<RoleAssignment[]>     { return _store.filter(x => x.role === role && x.active); }
+  async revoke(userId: string, role: string): Promise<void>     { _store.filter(x => x.userId===userId && x.role===role).forEach(x=>x.active=false); }
+  async findAll(): Promise<RoleAssignment[]>                     { return [..._store]; }
+  async hasRole(userId: string, role: string): Promise<boolean> { return _store.some(x => x.userId===userId && x.role===role && x.active); }
 }
+
+export const rbacRepository = new InMemoryRBACRepository();

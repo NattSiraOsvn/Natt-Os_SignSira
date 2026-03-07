@@ -23,3 +23,30 @@ export interface ShowroomProduct {
   branch?: string;
   certifications?: string[];
 }
+
+export interface ShowroomBranch {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  phone: string;
+  isHeadquarter: boolean;
+  coordinates?: { lat: number; lng: number };
+}
+
+export interface ShowroomSpec {
+  label: string;
+  value: string;
+  unit?: string;
+  highlight?: boolean;
+}
+
+// Patch ShowroomProduct với fields bị thiếu
+declare module "./showroom" {
+  interface ShowroomProduct {
+    status?: string;
+    currency?: string;
+    specs?: Record<string, string>;
+    vaultLocation?: string;
+  }
+}

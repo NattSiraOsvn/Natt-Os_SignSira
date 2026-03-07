@@ -1,78 +1,45 @@
+import type { ShowroomProduct, ShowroomMedia } from "@/types/showroom";
 
-import { ShowroomProduct } from '@/types';
+const _catalog: ShowroomProduct[] = [];
 
-export class ShowroomService {
-  private static instance: ShowroomService;
+export const ShowroomService = {
+  addProduct: (p: ShowroomProduct): ShowroomProduct => {
+    _catalog.push(p); return p;
+  },
 
-  static getInstance() {
-    if (!ShowroomService.instance) ShowroomService.instance = new ShowroomService();
-    return ShowroomService.instance;
-  }
+  getById: (id: string): ShowroomProduct | null =>
+    _catalog.find(p => p.id === id) ?? null,
 
-  async getProduct(sku: string): Promise<ShowroomProduct> {
-    // Mock latency
-    await new Promise(r => setTimeout(r, 600));
+  getAll: (): ShowroomProduct[] => [..._catalog],
 
-    return {
-      id: 'prod-sr-001',
-      sku: sku || 'NNA-ROLEX-OMEGA',
-      name: 'Nhẫn Nam Rolex Custom Diamond (Omega Edition)',
-      price: 450000000,
-      currency: 'VND',
-      status: 'AVAILABLE',
-      description: 'Phiên bản giới hạn chế tác thủ công bởi nghệ nhân Master. Vàng 18K bọc kim cương toàn phần, hột chủ 7.2ly nước D.',
-      media: [
-        { type: 'IMAGE', url: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80', isPrimary: true },
-        { type: 'IMAGE', url: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80' }
-      ],
-      specs: [
-        { key: 'Chất liệu', value: 'Vàng 18K (Au750)', isHighlight: true },
-        { key: 'Đá chủ', value: 'Kim cương GIA 7.2mm' },
-        { key: 'Trọng lượng', value: '3.5 Chỉ' },
-        { key: 'Ni tay', value: '18 mm' }
-      ],
-      branch: {
-        id: 'br-hcm',
-        name: 'Showroom HCM Master',
-        address: 'Quận 5, TP.HCM',
-        manager: 'Trần Hoài Phúc',
-        status: 'OPEN'
-      },
-      trustScore: 98,
-      vaultLocation: 'Két A-01 (Tầng 2)'
-    };
-  }
+  getByCategory: (category: string): ShowroomProduct[] =>
+    _catalog.filter(p => p.category === category),
 
-  async getRelatedProducts(): Promise<ShowroomProduct[]> {
-    return [
-      {
-        id: 'prod-sr-002',
-        sku: 'NNU-HALO-QUEEN',
-        name: 'Nhẫn Nữ Halo Queen',
-        price: 85000000,
-        currency: 'VND',
-        status: 'AVAILABLE',
-        description: 'Vẻ đẹp quý phái.',
-        media: [{ type: 'IMAGE', url: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80', isPrimary: true }],
-        specs: [],
-        branch: { id: 'br-hcm', name: 'HCM', address: '', manager: '', status: 'OPEN' },
-        trustScore: 95
-      },
-      {
-        id: 'prod-sr-003',
-        sku: 'BT-DIAMOND-03',
-        name: 'Bông Tai Solitaire',
-        price: 32000000,
-        currency: 'VND',
-        status: 'AVAILABLE',
-        description: 'Đơn giản tinh tế.',
-        media: [{ type: 'IMAGE', url: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', isPrimary: true }],
-        specs: [],
-        branch: { id: 'br-hcm', name: 'HCM', address: '', manager: '', status: 'OPEN' },
-        trustScore: 92
-      }
-    ];
-  }
-}
+  getFeatured: (): ShowroomProduct[] =>
+    _catalog.filter(p => p.featured),
 
-export const ShowroomAPI = ShowroomService.getInstance();
+  getAvailable: (): ShowroomProduct[] =>
+    _catalog.filter(p => p.available),
+
+  search: (query: string): ShowroomProduct[] => {
+    const q = query.toLowerCase();
+    return _catalog.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q)
+    );
+  },
+
+  getPrimaryMedia: (product: ShowroomProduct): ShowroomMedia | null =>
+    product.media.find(m => m.isPrimary) ?? product.media[0] ?? null,
+
+  getRelated: (product: ShowroomProduct, limit = 4): ShowroomProduct[] =>
+    _catalog
+      .filter(p => p.id !== product.id && p.category === product.category)
+      .slice(0, limit),
+
+  updateAvailability: (id: string, available: boolean): void => {
+    const p = _catalog.find(x => x.id === id);
+    if (p) p.available = available;
+  },
+};
