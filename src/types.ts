@@ -276,20 +276,20 @@ export interface IdentityData {
 }
 
 export interface CustomizationRequest {
-  specifications?: Record<string, any>;
-  samples?: boolean | any[];
-  logo?: boolean | string;
-  packaging?: any;
-  materialOverride?: any;
-  hash?: string;
   id?: string;
-  productId: string;
-  quantity: number;
-  deadline: string;
-  notes: string;
-  specs: Record<string, string>;
+  productId?: string;
+  quantity?: number;
+  deadline?: string;
+  notes?: string;
+  specs?: Record<string, string>;
+  specifications?: Record<string, any>;
+  samples?: boolean;
+  logo?: boolean;
+  packaging?: string;
   engraving?: EngravingConfig;
   material?: MaterialOverride;
+  materialOverride?: any;
+  hash?: string;
   status?: "PENDING" | "APPROVED" | "IN_PRODUCTION" | "COMPLETED";
 }
 
