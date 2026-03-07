@@ -33,7 +33,7 @@ export const CalibrationWizard: React.FC = () => {
     const cpm = (testText.length / 0.5); // 30s = 0.5 min
     const results = { currentCPM: cpm, keystrokes: testText.length, clicks: 0, intensity: 0.8 };
     setMetrics(results);
-    const persona = Calibration.identifyPersona(results);
+    const persona = (Calibration as any).analyze ? (Calibration as any).analyze(results) : { persona: Calibration.identifyPersona(results), confidence: 85 };
     setDetectedPersona(persona);
     setStep('result');
   };
@@ -115,7 +115,7 @@ export const CalibrationWizard: React.FC = () => {
                 
                 <div className="mt-10 pt-10 border-t border-white/5 w-full">
                    <p className="text-[10px] text-gray-600 uppercase font-black mb-4 tracking-widest">Đề xuất Persona</p>
-                   <span className="px-6 py-2 bg-white text-black rounded-xl text-[10px] font-black uppercase tracking-widest">{detectedPersona.persona}</span>
+                   <span className="px-6 py-2 bg-white text-black rounded-xl text-[10px] font-black uppercase tracking-widest">{(detectedPersona.persona as any)?.name ?? String(detectedPersona.persona)}</span>
                    <p className="text-[9px] text-gray-500 mt-4 italic">Độ tin cậy: {(detectedPersona.confidence * 100).toFixed(1)}%</p>
                 </div>
              </div>

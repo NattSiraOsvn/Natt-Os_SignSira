@@ -2,7 +2,7 @@ import React from 'react';
 import { PersonaID } from '../types';
 
 interface AIAvatarProps {
-  personaId: PersonaID;
+  personaId: PersonaID | string;
   isThinking?: boolean;
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }

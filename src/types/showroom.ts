@@ -32,6 +32,7 @@ export interface ShowroomBranch {
   phone: string;
   isHeadquarter: boolean;
   coordinates?: { lat: number; lng: number };
+  manager?: string;
 }
 
 export interface ShowroomSpec {
@@ -39,6 +40,8 @@ export interface ShowroomSpec {
   value: string;
   unit?: string;
   highlight?: boolean;
+  isHighlight?: boolean;
+  key?: string;
 }
 
 // Patch ShowroomProduct với fields bị thiếu

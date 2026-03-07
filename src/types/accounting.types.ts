@@ -1,6 +1,7 @@
 // Kế thừa từ Ground Truth — tránh circular/duplicate
 // AccountingEntry đã có trong src/types.ts
-// File này chỉ export các types KẾ TOÁN bổ sung
+export type { AccountingEntry } from "@/types";
+// File này cũng export các types KẾ TOÁN bổ sung
 
 export interface TrialBalance {
   period: string;

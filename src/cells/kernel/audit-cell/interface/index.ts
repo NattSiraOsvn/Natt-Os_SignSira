@@ -1,1 +1,1 @@
-export { AuditCell, getAuditCell } from './AuditCell';
+export * from "./AuditCell";

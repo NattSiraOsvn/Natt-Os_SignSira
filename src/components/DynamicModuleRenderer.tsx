@@ -72,9 +72,9 @@ const DynamicModuleRenderer: React.FC<DynamicModuleRendererProps> = (props) => {
     AdminConfigHub, FinancialDashboard, PersonalSphere, CalibrationWizard
   };
 
-  if (view === 'dashboard' && isMaster) return <MasterDashboard {...commonProps} />;
+  if ((view as any) === 'dashboard' || view === ViewType.MASTER_DASHBOARD && isMaster) return <MasterDashboard {...commonProps} />;
   
-  const config = MODULE_REGISTRY[view];
+  const config = MODULE_REGISTRY[view] ?? MODULE_REGISTRY[String(view).toUpperCase()];
   const SelectedComponent = config ? ComponentMap[config.componentName] : null;
 
   if (!SelectedComponent) {

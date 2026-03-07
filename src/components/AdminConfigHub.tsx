@@ -49,11 +49,11 @@ const AdminConfigHub: React.FC = () => {
     }));
   };
 
-  const handleKeywordChange = (context: DetectedContext, newKeywords: string) => {
+  const handleKeywordChange = (context: DetectedContext | string, newKeywords: string) => {
     const list = newKeywords.split(',').map(k => k.trim()).filter(k => k);
     setScoringConfig(prev => ({
       ...prev,
-      keywords: { ...prev.keywords, [context as string]: list }
+      keywords: { ...prev.keywords, [context as unknown as string]: list }
     }));
   };
 
@@ -173,10 +173,10 @@ const AdminConfigHub: React.FC = () => {
                     <button onClick={saveMatrix} disabled={isSaving} className="px-6 py-3 bg-green-600 text-white font-black text-[10px] uppercase rounded-xl hover:bg-green-500 transition-all shadow-lg">{isSaving ? 'SAVING...' : 'SAVE CONFIG'}</button>
                  </div>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {(Object.keys(scoringConfig.keywords) as DetectedContext[]).map(ctx => (
-                       <div key={ctx} className="p-6 rounded-2xl bg-black/40 border border-white/10 hover:border-amber-500/30 transition-all">
-                          <h4 className="text-sm font-bold text-white uppercase mb-4">{ctx}</h4>
-                          <textarea className="w-full bg-white/5 border border-white/5 rounded-xl p-3 text-xs text-gray-300 font-mono h-24 focus:border-amber-500 outline-none resize-none" value={(scoringConfig.keywords[ctx] || []).join(', ')} onChange={(e) => handleKeywordChange(ctx, e.target.value)} />
+                    {(Object.keys(scoringConfig.keywords as Record<string,string[]>)).map((ctx: string) => (
+                       <div key={ctx as string} className="p-6 rounded-2xl bg-black/40 border border-white/10 hover:border-amber-500/30 transition-all">
+                          <h4 className="text-sm font-bold text-white uppercase mb-4">{ctx as string}</h4>
+                          <textarea className="w-full bg-white/5 border border-white/5 rounded-xl p-3 text-xs text-gray-300 font-mono h-24 focus:border-amber-500 outline-none resize-none" value={((scoringConfig.keywords as any)[ctx] || []).join(', ')} onChange={(e) => handleKeywordChange(ctx, e.target.value)} />
                        </div>
                     ))}
                  </div>

@@ -4,12 +4,16 @@ import type { AccountingEntry } from "@/types";
 interface AccountingContextType {
   entries: AccountingEntry[];
   addEntry: (e: Omit<AccountingEntry, "id">) => AccountingEntry;
+  postEntry: (e: Omit<AccountingEntry, "id"> | string) => AccountingEntry;
   removeEntry: (id: string) => void;
   getByAccount: (account: string) => AccountingEntry[];
   getPeriodEntries: (year: number, month: number) => AccountingEntry[];
+  refreshData: () => void;
+  getSummary: () => { totalDebit: number; totalCredit: number; entryCount: number; isBalanced: boolean };
   totalDebit: number;
   totalCredit: number;
   isBalanced: boolean;
+  isLoading?: boolean;
 }
 
 const AccountingContext = createContext<AccountingContextType | null>(null);
@@ -38,8 +42,10 @@ export const AccountingProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AccountingContext.Provider value={{
-      entries, addEntry, removeEntry, getByAccount, getPeriodEntries,
-      totalDebit, totalCredit, isBalanced: totalDebit === totalCredit,
+      entries, addEntry, postEntry: (e: any) => typeof e === 'string' ? ({ id: e } as AccountingEntry) : addEntry(e as any), removeEntry, getByAccount, getPeriodEntries,
+      refreshData: () => {},
+      getSummary: () => ({ totalDebit, totalCredit, entryCount: entries.length, isBalanced: totalDebit === totalCredit }),
+      totalDebit, totalCredit, isBalanced: totalDebit === totalCredit, isLoading: false,
     }}>
       {children}
     </AccountingContext.Provider>

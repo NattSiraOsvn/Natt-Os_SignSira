@@ -5,7 +5,13 @@ import { CustomsRobotEngine } from '../services/customsService';
 import { NotifyBus } from '@/services/notification-service';
 import AIAvatar from './AIAvatar';
 
-type ExtendedDeclaration = CustomsDeclaration & { actionPlans: ActionPlan[] };
+type ExtendedDeclaration = CustomsDeclaration & {
+  actionPlans: ActionPlan[];
+  riskAssessment?: { level: string; score: number; factors?: Array<string | { description: string; weight: number }>; flags?: string[]; recommendation?: string; };
+  trackingTimeline?: Array<{ id?: string; status: string; timestamp: number; note?: string; notes?: string; label?: string; location?: string }>;
+  header?: { declarationNumber?: string; streamCode?: string; declarantName?: string; portCode?: string; [key: string]: any };
+  compliance?: { isCompliant?: boolean; status?: string; violations?: string[]; score?: number };
+};
 
 const CustomsIntelligence: React.FC = () => {
   const [declarations, setDeclarations] = useState<ExtendedDeclaration[]>([]);
@@ -103,10 +109,10 @@ const CustomsIntelligence: React.FC = () => {
                     <span className="absolute text-3xl font-mono font-black">{selectedDecl.riskAssessment.score}</span>
                  </div>
                  <div className="space-y-2 flex-1">
-                    {selectedDecl.riskAssessment.factors.map((f, i) => (
+                    {selectedDecl.riskAssessment.factors.map((f: any, i) => (
                        <div key={i} className="flex justify-between items-center text-[10px] bg-black/40 p-2 rounded-lg border border-white/5">
-                          <span className="text-gray-300">{f.description}</span>
-                          <span className="text-red-400 font-bold">+{f.weight}</span>
+                          <span className="text-gray-300">{f.description ?? f}</span>
+                          <span className="text-red-400 font-bold">+{f.weight ?? ''}</span>
                        </div>
                     ))}
                  </div>

@@ -1,1 +1,5 @@
-export const ShowroomAPI = { getProducts:async():Promise<any[]>=>[],  getProduct:async(_:string):Promise<any>=>null, reserve:async(_p:string,_c:string)=>({ reservationId:`RES-${Date.now()}` }), getAvailability:async(_:string):Promise<boolean>=>true };
+export const ShowroomAPI = {
+  getProducts:async():Promise<any[]>=>[], getProduct:async(_:string):Promise<any>=>null,
+  reserve:async(_p:string,_c:string)=>({ reservationId:`RES-${Date.now()}` }),
+  getAvailability:async(_:string):Promise<boolean>=>true, getRelatedProducts:async(_id?:string):Promise<any[]>=>[], 
+};

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { useQuantumUI } from "../../neuro-link/context/QuantumUIContext";
 
-interface QuantumContainerProps { children: ReactNode; className?: string; }
+interface QuantumContainerProps { children: ReactNode; className?: string; mode?: string; isOpen?: boolean; onClose?: () => void; title?: string; }
 
 const QuantumContainer: React.FC<QuantumContainerProps> = ({ children, className = "" }) => {
   const { state } = useQuantumUI();

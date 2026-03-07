@@ -1,1 +1,1 @@
-export { SmartLinkCell, getSmartLinkCell } from './SmartLinkCell';
+export * from "./SmartLinkCell";

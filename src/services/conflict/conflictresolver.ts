@@ -1,2 +1,13 @@
-export enum ConflictResolutionMethod { LAST_WRITE_WINS="LAST_WRITE_WINS", FIRST_WRITE_WINS="FIRST_WRITE_WINS", MERGE="MERGE", MANUAL="MANUAL" }
-export const ConflictEngine = { detect:(l:any,r:any):boolean=>JSON.stringify(l)!==JSON.stringify(r), resolve:(l:any,r:any,m=ConflictResolutionMethod.LAST_WRITE_WINS):any=>m===ConflictResolutionMethod.FIRST_WRITE_WINS?l:m===ConflictResolutionMethod.MERGE?{...l,...r}:r, getUnresolved:():any[]=>[],};
+export const ConflictEngine = {
+  getUnresolved: (): any[] => [],
+  resolveConflicts: async (
+    items: any[],
+    _options?: { businessType?: string }
+  ): Promise<{ isAutoResolved: boolean; winner?: any; methodUsed?: string; conflicts?: any[] }> => {
+    if (items.length < 2) return { isAutoResolved: true, winner: items[0], methodUsed: 'TRIVIAL' };
+    const winner = items.reduce((best: any, cur: any) =>
+      (cur.confidence ?? 0) > (best.confidence ?? 0) ? cur : best, items[0]);
+    return { isAutoResolved: true, winner, methodUsed: 'CRP_CONFIDENCE' };
+  },
+};
+export default ConflictEngine;

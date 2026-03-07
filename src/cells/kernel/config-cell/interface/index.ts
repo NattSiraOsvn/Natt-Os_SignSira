@@ -1,1 +1,1 @@
-export { ConfigCell, getConfigCell } from './ConfigCell';
+export * from "./ConfigCell";

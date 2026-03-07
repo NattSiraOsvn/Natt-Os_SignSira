@@ -1,5 +1,5 @@
 import React from "react";
-interface Props { productId: string; onClose: () => void; }
+interface Props { productId?: string; onClose: () => void; }
 export const ReservationModal: React.FC<Props> = ({ productId, onClose }) => (
   <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
     <div className="bg-gray-900 p-8 rounded-xl max-w-md w-full">

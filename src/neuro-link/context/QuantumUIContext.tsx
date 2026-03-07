@@ -12,6 +12,8 @@ interface QuantumUIContextType {
   setTheme: (t: QuantumUIState["theme"]) => void;
   setActiveCell: (id: string | null) => void;
   triggerPulse: () => void;
+  overlayConfig?: Record<string, any>;
+  collapseWave?: () => void;
 }
 
 const QuantumUIContext = createContext<QuantumUIContextType | null>(null);
@@ -26,6 +28,8 @@ export const QuantumUIProvider = ({ children }: { children: ReactNode }) => {
       setTheme: (theme) => setState(s => ({ ...s, theme })),
       setActiveCell: (activeCell) => setState(s => ({ ...s, activeCell })),
       triggerPulse: () => { setState(s => ({ ...s, pulseActive: true })); setTimeout(() => setState(s => ({ ...s, pulseActive: false })), 500); },
+      overlayConfig: {},
+      collapseWave: () => {},
     }}>
       {children}
     </QuantumUIContext.Provider>

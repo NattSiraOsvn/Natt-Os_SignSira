@@ -36,7 +36,7 @@ const GovernanceWorkspace: React.FC<GovernanceWorkspaceProps> = ({ currentRole, 
   const canApprove = RBACEngine.getPermissionMatrix(currentRole)[ModuleID.FINANCE]?.includes(Permission.APPROVE);
   const canSign = RBACEngine.getPermissionMatrix(currentRole)[ModuleID.FINANCE]?.includes(Permission.SIGN);
 
-  const updateTxStatus = (id: string, newStatus: TxStatus) => {
+  const updateTxStatus = (id: string, newStatus: TxStatus | string) => {
     // 2️⃣ Fix: Map trạng thái sang Permission Enum tương ứng thay vì string literal
     const requiredAction = (newStatus === 'SẴN SÀNG KÝ' || newStatus === 'BỊ TRẢ LẠI') ? Permission.APPROVE : 
                           (newStatus === 'ĐÃ KÝ SỐ') ? Permission.SIGN : Permission.VIEW;
@@ -175,7 +175,7 @@ const GovernanceWorkspace: React.FC<GovernanceWorkspaceProps> = ({ currentRole, 
                              <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
                              <p className="text-[9px] text-red-400 font-black uppercase tracking-widest">Risk Flag</p>
                           </div>
-                          <p className="text-[11px] text-red-200 italic leading-relaxed">"{f.message}"</p>
+                          <p className="text-[11px] text-red-200 italic leading-relaxed">"{ (f as any).message ?? (typeof f === "string" ? f : "") }"</p>
                        </div>
                     ))}
                  </div>

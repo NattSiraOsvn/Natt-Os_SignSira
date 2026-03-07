@@ -4,10 +4,14 @@ import { SmartLinkEngine } from "@/services/smartLinkEngine";
 import { SalesCore } from "@/services/salesCore";
 
 export interface MappingResult {
+  id?: string;
+  type?: string;
   entries: AccountingEntry[];
   confidence: number;
   warnings: string[];
   processedAt: number;
+  data?: any;
+  timestamp?: number;
 }
 
 export interface UseSmartMappingReturn {
@@ -18,6 +22,8 @@ export interface UseSmartMappingReturn {
   mapBatch: (records: Record<string, unknown>[]) => Promise<MappingResult[]>;
   clearEntries: () => void;
   stats: { totalMapped: number; accuracy: number; lastRun: number };
+  realTimeUpdates: MappingResult[];
+  mapSalesEvent: (event: Record<string, unknown>) => Promise<MappingResult>;
 }
 
 export const useSmartMapping = (): UseSmartMappingReturn => {
@@ -59,6 +65,8 @@ export const useSmartMapping = (): UseSmartMappingReturn => {
     entries, isProcessing, lastResult,
     mapTransaction, mapBatch, clearEntries,
     stats: { ...statsRef.current },
+    realTimeUpdates: [] as MappingResult[],
+    mapSalesEvent: (event: Record<string, unknown>) => mapTransaction(event),
   };
 };
 

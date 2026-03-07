@@ -1,1 +1,1 @@
-export { MonitorCell, getMonitorCell } from './MonitorCell';
+export * from "./MonitorCell";

@@ -76,8 +76,8 @@ const AppShell: React.FC<AppShellProps> = ({
               {modules.map(item => (
                 <button 
                   key={item.id} 
-                  onClick={() => setActiveView(item.id)} 
-                  className={`w-full flex items-center p-3 rounded-xl transition-all relative group ${activeView === item.id ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20 shadow-lg' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}
+                  onClick={() => setActiveView(item.view as any)} 
+                  className={`w-full flex items-center p-3 rounded-xl transition-all relative group ${activeView === item.view ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20 shadow-lg' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}
                 >
                   <span className="text-lg w-6 text-center shrink-0">{item.icon}</span>
                   {isSidebarOpen && <span className="text-[10px] font-black uppercase tracking-widest ml-4 truncate">{item.title}</span>}

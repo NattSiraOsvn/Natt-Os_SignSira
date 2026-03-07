@@ -50,3 +50,7 @@ export const EventEnvelopeFactory = {
     timestamp: Date.now(),
   }),
 };
+
+export interface EnvelopeFactoryOptions {
+  targetCellId?: string; correlationId?: string; ttl?: number;
+}

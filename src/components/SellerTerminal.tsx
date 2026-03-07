@@ -125,7 +125,7 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
     }, 1500);
   };
 
-  const totalCommission = useMemo(() => reports.reduce((s, r) => s + r.commission.total, 0), [reports]);
+  const totalCommission = useMemo(() => reports.reduce((s, r) => s + ((r.commission as any)?.total || 0), 0), [reports]);
 
   return (
     <div className="h-full flex flex-col bg-[#050505] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
@@ -175,11 +175,11 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="ai-panel p-8 bg-green-500/5 border-green-500/20">
                    <p className="ai-sub-headline text-green-400">HH Vỏ (5%)</p>
-                   <p className="text-3xl font-mono font-black text-white mt-2">{(reports.reduce((s, r) => s + r.commission.shell, 0)).toLocaleString()} <span className="text-xs">đ</span></p>
+                   <p className="text-3xl font-mono font-black text-white mt-2">{(reports.reduce((s, r) => s + ((r.commission as any)?.shell ?? 0), 0)).toLocaleString()} <span className="text-xs">đ</span></p>
                 </div>
                 <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
                    <p className="ai-sub-headline text-blue-400">HH Viên (2-5%)</p>
-                   <p className="text-3xl font-mono font-black text-white mt-2">{(reports.reduce((s, r) => s + r.commission.stone, 0)).toLocaleString()} <span className="text-xs">đ</span></p>
+                   <p className="text-3xl font-mono font-black text-white mt-2">{(reports.reduce((s, r) => s + ((r.commission as any)?.stone ?? 0), 0)).toLocaleString()} <span className="text-xs">đ</span></p>
                 </div>
                 <div className="ai-panel p-8 bg-amber-500/10 border-amber-500/20 md:col-span-2 relative overflow-hidden">
                    <div className="relative z-10">
@@ -211,7 +211,7 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
                            <td className="p-6 font-mono text-[10px] opacity-60 italic">{new Date(r.timestamp).toLocaleString()}</td>
                            <td className="p-6 font-bold text-white uppercase">{r.productSku}</td>
                            <td className="p-6 text-right font-mono">{(r.shellRevenue + r.stoneRevenue).toLocaleString()} đ</td>
-                           <td className="p-6 text-right font-mono font-black text-amber-500">{(r.commission.total).toLocaleString()} đ</td>
+                           <td className="p-6 text-right font-mono font-black text-amber-500">{((r.commission as any)?.total ?? 0).toLocaleString()} đ</td>
                            <td className="p-6 text-center">
                               <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[8px] font-black uppercase text-gray-500">{r.status}</span>
                            </td>

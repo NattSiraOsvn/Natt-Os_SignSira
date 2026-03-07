@@ -45,3 +45,22 @@ export type Result<T, E = string> =
 
 export const ok  = <T>(data: T): Result<T>          => ({ success: true, data });
 export const err = <E = string>(e: E): Result<never, E> => ({ success: false, error: e });
+
+// Re-export PersonaID from types for monitoring-dashboard compatibility
+export type { PersonaID } from "@/types";
+
+export interface CellHealthState {
+  cell_id: string;
+  status: "HEALTHY" | "DEGRADED" | "CRITICAL" | "ELIMINATED";
+  uptime: number;
+  last_heartbeat: number;
+  error_count?: number;
+  warning_count?: number;
+  message?: string;
+}
+
+export interface CoordinationTask {
+  id: string; type: string; source_cell: string; target_cell?: string;
+  payload: unknown; status: "PENDING" | "IN_PROGRESS" | "DONE" | "FAILED";
+  created_at: number; completed_at?: number;
+}

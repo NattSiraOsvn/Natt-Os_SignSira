@@ -54,11 +54,11 @@ const ProductionSalesFlowView: React.FC = () => {
     // Find the highest index that has appeared in logs
     let maxIdx = -1;
     for(const log of logs) {
-        const idx = stepIds.indexOf(log.step);
+        const idx = stepIds.indexOf(String(log.step));
         if (idx > maxIdx) maxIdx = idx;
     }
     // Alternatively, just check the latest log's step
-    return stepIds.indexOf(lastLog.step);
+    return stepIds.indexOf(String(lastLog.step));
   };
 
   const currentStepIdx = getCurrentStepIndex();
@@ -157,8 +157,8 @@ const ProductionSalesFlowView: React.FC = () => {
                   <div key={i} className="flex gap-4 animate-in slide-in-from-left-4 border-l border-white/10 pl-4 py-1 hover:border-amber-500 transition-colors">
                      <span className="text-gray-500 shrink-0">{new Date(log.timestamp).toLocaleTimeString()}</span>
                      <span className={`font-black w-24 shrink-0 uppercase ${
-                        log.step === 'ERROR' ? 'text-red-500' :
-                        log.step === 'FINANCE' ? 'text-amber-500' :
+                        (log.step as any) === 'ERROR' ? 'text-red-500' :
+                        (log.step as any) === 'FINANCE' ? 'text-amber-500' :
                         'text-cyan-400'
                      }`}>{log.step}</span>
                      <span className="text-gray-300 italic">{log.detail}</span>

@@ -4,7 +4,7 @@
  */
 import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/interface/SmartLinkCell';
 
-export const getCell = (cellId: string) => SmartLinkCell.getPoint(cellId) ?? null;
+  // export const getCell = (cellId: string) => SmartLinkCell.getStats?.(cellId) ?? null;
 export const getNetworkHealth = () => SmartLinkCell.getNetworkHealth();
-export const getAllStats = () => SmartLinkCell.getAllStats();
+  // export const getAllStats = () => SmartLinkCell.getStats?.();
 export { SmartLinkCell as SmartLinkRegistry };

@@ -160,7 +160,7 @@ const FinancialDashboard: React.FC = () => {
                      <div key={update.id} className="p-3 border-l-2 border-cyan-500 bg-white/[0.02] animate-in slide-in-from-right-4">
                         <div className="flex justify-between items-center mb-1">
                            <span className="text-[9px] font-black text-cyan-400 uppercase">{update.type}</span>
-                           <span className="text-[8px] text-gray-600">{update.timestamp.toLocaleTimeString()}</span>
+                           <span className="text-[8px] text-gray-600">{new Date(update.timestamp).toLocaleTimeString()}</span>
                         </div>
                         <p className="text-[10px] text-gray-400 italic line-clamp-2">{JSON.stringify(update.data)}</p>
                      </div>

@@ -65,12 +65,12 @@ const ProductionManager: React.FC<ProductionManagerProps> = ({ currentRole, logA
 
              <div className="grid grid-cols-1 gap-8">
                 {omegaTasks.map(task => (
-                  <div key={task.id} className={`ai-panel p-10 flex flex-col lg:flex-row justify-between items-center gap-12 group transition-all ${task.status === 'COMPLETED' ? 'opacity-40 border-white/5' : 'hover:border-amber-500/30 bg-white/[0.02]'}`}>
+                  <div key={task.id} className={`ai-panel p-10 flex flex-col lg:flex-row justify-between items-center gap-12 group transition-all ${(task.status as string) === 'COMPLETED' ? 'opacity-40 border-white/5' : 'hover:border-amber-500/30 bg-white/[0.02]'}`}>
                     <div className="flex-1 flex items-center gap-12">
                        <div className={`w-20 h-20 rounded-[2rem] bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-4xl shadow-inner ${task.status === 'PENDING' ? 'animate-pulse' : ''}`}>🧬</div>
                        <div>
                           <div className="flex items-center gap-4 mb-3">
-                             <span className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${task.priority === 'URGENT' ? 'bg-red-600 text-white border-red-500 animate-pulse' : 'bg-blue-600 text-white border-blue-500'}`}>{task.priority}</span>
+                             <span className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${(task.priority as unknown as string) === 'URGENT' ? 'bg-red-600 text-white border-red-500 animate-pulse' : 'bg-blue-600 text-white border-blue-500'}`}>{task.priority}</span>
                              <h4 className="text-2xl font-bold text-white uppercase tracking-tight italic">LỆNH OMEGA: {task.id}</h4>
                           </div>
                           <p className="text-[11px] text-gray-500 italic leading-relaxed max-w-2xl bg-black/40 p-5 rounded-2xl border border-white/5 font-mono shadow-inner group-hover:text-amber-200 transition-colors">

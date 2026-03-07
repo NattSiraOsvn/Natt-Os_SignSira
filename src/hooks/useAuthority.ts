@@ -12,9 +12,10 @@ const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   [UserRole.LEVEL_7]: [Permission.READ],
   [UserRole.LEVEL_8]: [Permission.READ, Permission.EXPORT],
   [UserRole.GUEST]:   [],
+  [UserRole.ADMIN]:   Object.values(Permission),
 };
 
-export const useAuthority = (role: UserRole) => {
+export const useAuthority = (role: UserRole, _position?: any) => {
   return useMemo(() => ({
     can:         (p: Permission) => ROLE_PERMISSIONS[role]?.includes(p) ?? false,
     canApprove:  () => ROLE_PERMISSIONS[role]?.includes(Permission.APPROVE) ?? false,
@@ -23,6 +24,8 @@ export const useAuthority = (role: UserRole) => {
     isMaster:    () => role === UserRole.MASTER,
     permissions: ROLE_PERMISSIONS[role] ?? [],
     role,
+    level: role === UserRole.MASTER ? 'CORE' : `LEVEL_${Object.values(UserRole).indexOf(role)}`,
+    trustScore: role === UserRole.MASTER ? 100 : 80,
   }), [role]);
 };
 

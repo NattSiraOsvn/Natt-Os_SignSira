@@ -46,3 +46,40 @@ export const SmartLinkStabilizer = {
     return { cellId, samples: history.length, avgAmplitude: avg, isStable: SmartLinkStabilizer.isStable(cellId) };
   },
 };
+
+// SmartLinkCell export for cell-smartlink.component.ts
+export interface SmartLinkPoint {
+  getSensitivityTo(targetCellId: string): number;
+  getNetworkSize(): number;
+  getFiberCount(): number;
+  getStats(): Record<string, any>;
+}
+
+const _points = new Map<string, SmartLinkPoint & { cellId: string }>();
+
+export class SmartLinkCell {
+  private cellId: string;
+  constructor(cellId: string) { this.cellId = cellId; }
+  configure(config: StabilizerConfig): void { SmartLinkStabilizer.configure(config); }
+  recordAmplitude(amplitude: number): void { SmartLinkStabilizer.recordAmplitude(this.cellId, amplitude); }
+  getStableAmplitude(): number { return SmartLinkStabilizer.getStableAmplitude(this.cellId); }
+
+  // Static interface expected by CellSmartLinkComponent
+  static registerPoint(cellId: string): void {
+    if (!_points.has(cellId)) {
+      _points.set(cellId, {
+        cellId,
+        getSensitivityTo: (_: string) => 0,
+        getNetworkSize: () => _points.size,
+        getFiberCount: () => 0,
+        getStats: () => ({ cellId }),
+      });
+    }
+  }
+  static requestTouch(cellId: string, targetCellId: string, impulse: any): any {
+    return { transmitted: true, qneuImprint: null, cellId, targetCellId, impulse };
+  }
+  static getPoint(cellId: string): SmartLinkPoint | undefined {
+    return _points.get(cellId);
+  }
+}
