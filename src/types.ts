@@ -279,6 +279,9 @@ export interface CustomizationRequest {
   specifications?: Record<string, any>;
   samples?: boolean | any[];
   logo?: boolean | string;
+  packaging?: any;
+  materialOverride?: any;
+  hash?: string;
   id?: string;
   productId: string;
   quantity: number;
@@ -354,8 +357,8 @@ export interface EInvoiceItem {
 export interface EInvoice {
   id: string;
   invoiceNumber: string;
-  invoiceSeries: string;
-  issueDate: string;
+  invoiceSeries?: string;
+  issueDate?: string;
   status: EInvoiceStatus;
   sellerTaxCode?: string;
   sellerName?: string;
@@ -369,8 +372,8 @@ export interface EInvoice {
   totalAmount: number;
   vatAmount?: number;
   vatRate?: number;
-  grandTotal: number;
-  currency: string;
+  grandTotal?: number;
+  currency?: string;
   signedAt?: number;
   submittedAt?: number;
   lookupCode?: string;
