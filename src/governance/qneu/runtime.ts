@@ -358,3 +358,28 @@ export function runDecayCycle(): { decayed: number; removed: number } {
 
   return { decayed: totalDecayed, removed: totalRemoved };
 }
+
+// ═══════════════════════════════════════════
+// SMARTLINK WIRE — Cell network imprints → Audit trail
+// Không dùng recordImpact (AI Entity tầng khác)
+// SmartLink patterns ghi vào audit để UEI field đọc được
+// ═══════════════════════════════════════════
+
+import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
+import { appendAuditEvent } from './persistence';
+
+QneuBridge.onImprint((imprint) => {
+  appendAuditEvent({
+    event_id:    `SL-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,6)}`,
+    event_type:  'SMARTLINK_IMPRINT' as any,
+    entity_id:   imprint.cellId as any,
+    timestamp:   new Date(imprint.timestamp).toISOString(),
+    trace_id:    `SL-TRACE-${imprint.pattern.replace(/[^a-z0-9]/gi,'-')}`,
+    data: {
+      pattern:      imprint.pattern,
+      frequency:    imprint.frequency,
+      weight:       imprint.weight,
+      layers_active: imprint.layersActive,
+    },
+  });
+});
