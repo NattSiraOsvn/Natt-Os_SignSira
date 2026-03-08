@@ -89,6 +89,8 @@ export class SmartLinkCell {
     return result;
   }
 
+  static getRegisteredCellIds(): string[] { return Array.from(_points.keys()); }
+
   static getPoint(cellId: string): CoreSmartLinkPoint | undefined {
     return _points.get(cellId);
   }
