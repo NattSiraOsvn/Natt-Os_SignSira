@@ -366,7 +366,6 @@ export function runDecayCycle(): { decayed: number; removed: number } {
 // ═══════════════════════════════════════════
 
 import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
-import { appendAuditEvent } from './persistence';
 
 QneuBridge.onImprint((imprint) => {
   appendAuditEvent({
