@@ -22,6 +22,7 @@
 import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
 import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
 import type { ImpulsePayload, ImpulseResult } from '@/core/smartlink/smartlink.point';
+import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
 
 export class CellSmartLinkComponent {
   private readonly cellId: string;
@@ -42,6 +43,11 @@ export class CellSmartLinkComponent {
     impulse: ImpulsePayload
   ): Promise<ImpulseResult | { blocked: true; reason: string }> {
     const result = SmartLinkCell.requestTouch(this.cellId, targetCellId, impulse);
+
+    // NATTimer: ghi temporal record khi touch thành công
+    if ('transmitted' in result && result.transmitted) {
+      NATTimer.record(this.cellId, targetCellId);
+    }
 
     // Nếu được truyền và có imprint → gửi sang QNEU
     if ('transmitted' in result && result.qneuImprint) {
