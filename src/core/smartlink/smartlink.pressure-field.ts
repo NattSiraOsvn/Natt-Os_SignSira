@@ -116,9 +116,32 @@ function _normalize(map: Map<string, CellPressure>): void {
   const max = Math.max(...values.map(c => c.rawPressure));
   if (max === 0) return;
 
+  // Step 1: normalize rawPressure → normalizedPressure
+  // rawPressure KHÔNG bị chạm — giữ nguyên cho UEI đọc trung thực
   for (const cell of values) {
     cell.normalizedPressure = cell.rawPressure / max;
-    cell.pressureBonus = Math.round(cell.normalizedPressure * MAX_PRESSURE_BONUS);
+  }
+
+  // Step 2: tính entropy của distribution (Option B — dampen output, không dampen input)
+  // entropy thấp = tập trung → runaway risk
+  // entropy cao  = phân tán đều → healthy diversity
+  const total = values.reduce((s, c) => s + c.normalizedPressure, 0);
+  const entropy = total > 0
+    ? -values
+        .filter(c => c.normalizedPressure > 0)
+        .map(c => c.normalizedPressure / total)
+        .reduce((s, p) => s + p * Math.log2(p), 0) /
+      Math.log2(Math.max(2, values.length))
+    : 1;
+
+  // Step 3: entropy-based damping — chỉ áp dụng lên pressureBonus (router input)
+  // entropy=1.0 (đều) → dampingFactor=1.0 → không dampen
+  // entropy=0.3       → dampingFactor=0.65 → DOMINANT giảm 35% bonus
+  // entropy=0.0       → dampingFactor=0.5  → maximum dampen 50%
+  const dampingFactor = 0.5 + 0.5 * Math.min(1, entropy);
+
+  for (const cell of values) {
+    cell.pressureBonus = Math.round(cell.normalizedPressure * dampingFactor * MAX_PRESSURE_BONUS);
   }
 }
 
