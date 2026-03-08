@@ -47,15 +47,11 @@ export const SmartLinkStabilizer = {
   },
 };
 
-// SmartLinkCell export for cell-smartlink.component.ts
-export interface SmartLinkPoint {
-  getSensitivityTo(targetCellId: string): number;
-  getNetworkSize(): number;
-  getFiberCount(): number;
-  getStats(): Record<string, any>;
-}
+// SmartLinkCell — wire SmartLinkPoint thật (không còn stub)
+import { SmartLinkPoint as CoreSmartLinkPoint } from '@/core/smartlink/smartlink.point';
+export type { SmartLinkPoint } from '@/core/smartlink/smartlink.point';
 
-const _points = new Map<string, SmartLinkPoint & { cellId: string }>();
+const _points = new Map<string, CoreSmartLinkPoint>();
 
 export class SmartLinkCell {
   private cellId: string;
@@ -64,22 +60,50 @@ export class SmartLinkCell {
   recordAmplitude(amplitude: number): void { SmartLinkStabilizer.recordAmplitude(this.cellId, amplitude); }
   getStableAmplitude(): number { return SmartLinkStabilizer.getStableAmplitude(this.cellId); }
 
-  // Static interface expected by CellSmartLinkComponent
   static registerPoint(cellId: string): void {
     if (!_points.has(cellId)) {
-      _points.set(cellId, {
-        cellId,
-        getSensitivityTo: (_: string) => 0,
-        getNetworkSize: () => _points.size,
-        getFiberCount: () => 0,
-        getStats: () => ({ cellId }),
-      });
+      // Tạo SmartLinkPoint THẬT — vết hằn thật, fiber thật
+      _points.set(cellId, new CoreSmartLinkPoint(cellId));
     }
   }
-  static requestTouch(cellId: string, targetCellId: string, impulse: any): any {
-    return { transmitted: true, qneuImprint: null, cellId, targetCellId, impulse };
+
+  /**
+   * requestTouch — SmartLink trường ổn áp thật sự
+   * Gọi SmartLinkPoint.touch() thật → vết hằn → fiber → qneuImprint
+   * Xóa stub { transmitted: true, qneuImprint: null }
+   */
+  static requestTouch(
+    cellId: string,
+    targetCellId: string,
+    impulse: any
+  ): any {
+    if (!_points.has(cellId)) SmartLinkCell.registerPoint(cellId);
+    if (!_points.has(targetCellId)) SmartLinkCell.registerPoint(targetCellId);
+
+    const point = _points.get(cellId)!;
+    const result = point.touch(targetCellId, impulse);
+
+    // Ghi amplitude để ổn áp biên độ
+    SmartLinkStabilizer.recordAmplitude(cellId, result.sensitivity);
+
+    return result;
   }
-  static getPoint(cellId: string): SmartLinkPoint | undefined {
+
+  static getPoint(cellId: string): CoreSmartLinkPoint | undefined {
     return _points.get(cellId);
+  }
+
+  /** Snapshot toàn mạng — cửa sổ đọc UEI field */
+  static getNetworkHealth() {
+    const all = Array.from(_points.values());
+    return {
+      totalCells:    _points.size,
+      totalFibers:   all.reduce((s, p) => s + p.getFiberCount(), 0),
+      totalTouches:  all.reduce((s, p) =>
+        s + p.getTouches().reduce((t, r) => t + r.touchCount, 0), 0),
+      avgSensitivity: all.length
+        ? all.reduce((s, p) => s + p.getStats().avgSensitivity, 0) / all.length
+        : 0,
+    };
   }
 }
