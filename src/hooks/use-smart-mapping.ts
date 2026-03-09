@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import type { AccountingEntry } from "@/types";
-import { SmartLinkEngine } from "@/services/smartLinkEngine";
+import { SmartLinkEngine } from "@/core/smartlink/smartlink-legacy.engine";
 import { SalesCore } from "@/cells/business/sales-cell/domain/services/sales-core.engine";
 
 export interface MappingResult {

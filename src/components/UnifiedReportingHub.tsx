@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { EnterpriseLinker } from '../services/enterpriseLinker';
+import { EnterpriseLinker } from '@/cells/business/analytics-cell/domain/services/enterprise-linker.engine';
 import { AggregatedReport, PersonaID } from '../types';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,

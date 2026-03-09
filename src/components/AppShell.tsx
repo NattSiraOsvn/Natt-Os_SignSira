@@ -2,7 +2,7 @@
 import React, { useState, ReactNode, useMemo } from 'react';
 import { ViewType, UserRole, ModuleConfig, HeatLevel, UserPosition, PositionType } from '../types';
 import { PersonnelEngine } from '@/cells/business/hr-cell/domain/services/personnel.engine';
-import ModuleRegistry from '../services/moduleRegistry';
+import ModuleRegistry from '@/core/registry/moduleRegistry';
 import SystemTicker from './SystemTicker';
 
 interface AppShellProps {

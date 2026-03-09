@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ViewType, UserRole, UserPosition, BusinessMetrics, ActionLog } from '../types';
-import { MODULE_REGISTRY } from '../services/moduleRegistry';
+import { MODULE_REGISTRY } from '@/core/registry/moduleRegistry';
 
 // Components
 import Dashboard from './Dashboard';

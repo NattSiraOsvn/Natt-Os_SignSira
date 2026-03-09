@@ -5,7 +5,7 @@ import { ShardingService } from '@/core/audit/sharding-engine';
 import { aiEngine } from '@/cells/infrastructure/ai-connector-cell/domain/services/ai.engine';
 import { generatePatentContent } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { BlockShard, AuditItem, BusinessMetrics, PersonaID } from '../types';
-import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleRegistry';
+import ModuleRegistry, { MODULE_REGISTRY } from '@/core/registry/moduleRegistry';
 import { ExportEngine } from '@/core/infrastructure/export.engine';
 import AIAvatar from './AIAvatar';
 import SuperDictionary, { SUPER_DICTIONARY } from '../SuperDictionary';
