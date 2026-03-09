@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Utilities, AIScoringConfig, DetectedContext } from '@/services/document-ai';
+import { Utilities, AIScoringConfig, DetectedContext } from '@/core/ingestion/document-ai.engine';
 import ModuleRegistry, { MODULE_REGISTRY } from '@/core/registry/module-registry';
 import { UserRole, ModuleConfig, PersonaID, OperationRecord, DictionaryVersion } from '@/types';
 import { 

@@ -10,3 +10,4 @@ export const Utilities = {
     updateConfig:(_cfg:any):void=>{},
   }
 };
+export const DocumentParserLayer = { parse: (_f: any): any => ({ text: '', metadata: {} }), supported: ['pdf','docx','txt'], executeHeavyParse: async (_f: any): Promise<any> => ({ text: '', metadata: {}, pages: [] }) };

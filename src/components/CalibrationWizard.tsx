@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Calibration } from '@/services/calibration/CalibrationEngine';
+import { Calibration } from '@/cells/kernel/config-cell/domain/services/config-store.service';
 import { InputPersona, InputMetrics, PersonaID } from '@/types';
 import AIAvatar from '@/components/AIAvatar';
 

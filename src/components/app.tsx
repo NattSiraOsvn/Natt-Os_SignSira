@@ -9,7 +9,7 @@ import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionT
 import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
 import { ShardingService } from '@/core/audit/sharding-engine';
-import OfflineService from '@/services/offline-service';
+import OfflineService from '@/cells/infrastructure/sync-cell/domain/services/offline.engine';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---
 import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/QuantumUIContext';

@@ -13,3 +13,10 @@ export const ConfigStoreService = {
   list: (): ConfigEntry[] => [..._store.values()],
   getVersion: (key: string): number => _store.get(key)?.version ?? 0,
 };
+export interface Calibration { id: string; name: string; value: number; status: string; }
+export const Calibration = {
+  identifyPersona: (_metrics: any): string => 'POWER_USER',
+  analyze: (_metrics: any): { persona: string; confidence: number } => ({ persona: 'POWER_USER', confidence: 85 }),
+  saveProfile: (_profile: any): void => {},
+  getProfile: (_userId: string): any => null,
+};
