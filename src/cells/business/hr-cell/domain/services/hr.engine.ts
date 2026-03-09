@@ -72,11 +72,15 @@ export const HREngine = {
     });
     return counts;
   },
-};
 
-(HREngine as any).processPayroll = (emp:any,_rules?:any) => {
-  const base=emp.baseSalary??0,days=emp.actualWorkDays??26,lunch=emp.allowanceLunch??0,ins=emp.insuranceSalary??0;
-  const gross=(base/26*days)+lunch,insAmt=ins*0.105,taxable=Math.max(0,gross-insAmt-11000000-(emp.dependents??0)*4400000);
-  const tax=taxable>5000000?taxable*0.05:0,kpi=emp.kpiPoints??80,bonus=gross*(kpi>=90?0.15:kpi>=80?0.1:0);
-  return {id:emp.id??'',name:emp.name??emp.fullName??'',employeeCode:emp.employeeCode??emp.id??'',grossSalary:gross,netSalary:gross-insAmt-tax+bonus,insuranceEmployee:insAmt,personalTax:tax,taxableIncome:taxable,kpiPoints:kpi,performanceBonus:bonus};
+  processPayroll: (emp: any, _rules?: any) => {
+    const base=emp.baseSalary??0,days=emp.actualWorkDays??26,lunch=emp.allowanceLunch??0,ins=emp.insuranceSalary??0;
+    const gross=(base/26*days)+lunch,insAmt=ins*0.105,taxable=Math.max(0,gross-insAmt-11000000-(emp.dependents??0)*4400000);
+    const tax=taxable>5000000?taxable*0.05:0,kpi=emp.kpiPoints??80,bonus=gross*(kpi>=90?0.15:kpi>=80?0.1:0);
+    return {id:emp.id??'',name:emp.name??emp.fullName??'',employeeCode:emp.employeeCode??emp.id??'',
+      grossSalary:gross,netSalary:gross-insAmt-tax+bonus,insuranceEmployee:insAmt,
+      personalTax:tax,taxableIncome:taxable,kpiPoints:kpi,performanceBonus:bonus};
+  },
+
+  processPayrollBatch: (list: any[], rules?: any) => list.map((e: any) => HREngine.processPayroll(e, rules)),
 };

@@ -100,9 +100,17 @@ export const EInvoiceEngine = {
     const amount = quantity * unitPrice;
     return { lineNo, itemCode, description, unit, quantity, unitPrice, discount: 0, amount, vatRate, vatAmount: amount * vatRate };
   },
+
+  generateXML: (inv: any): string => `<?xml version="1.0"?><invoice id="${inv?.id ?? ''}"/>`,
+  signInvoice: async (inv: any): Promise<any> => ({ ...inv, status: "SIGNED", signatureHash: `SIG-${Date.now()}` }),
+  transmitToTaxAuthority: async (inv: any): Promise<any> => ({ ...inv, status: "SUBMITTED", lookupCode: `LOOK-${Date.now()}` }),
 };
 
-(EInvoiceEngine as any).generateXML = (inv:any):string => `<?xml version="1.0"?><invoice id="${inv?.id??''}"/>`;
-(EInvoiceEngine as any).signInvoice = async(inv:any):Promise<any> => ({...inv,status:"SIGNED",signatureHash:`SIG-${Date.now()}`});
-(EInvoiceEngine as any).transmitToTaxAuthority = async(inv:any):Promise<any> => ({...inv,status:"SUBMITTED",lookupCode:`LOOK-${Date.now()}`});
+// Legacy methods — backward compat
+export const EInvoiceEngineLegacy = {
+  generateXML: (inv: any): string => `<?xml version="1.0"?><invoice id="${inv?.id ?? ''}"/>`,
+  signInvoice: async (inv: any): Promise<any> => ({ ...inv, status: "SIGNED", signatureHash: `SIG-${Date.now()}` }),
+  transmitToTaxAuthority: async (inv: any): Promise<any> => ({ ...inv, status: "SUBMITTED", lookupCode: `LOOK-${Date.now()}` }),
+};
+Object.assign(EInvoiceEngine, EInvoiceEngineLegacy);
 export default EInvoiceEngine;
