@@ -1,1 +1,1 @@
-export { ConflictResolver, ConflictEngine } from './conflict-resolver';
+export { ConflictEngine, ConflictEngine as ConflictResolver } from './conflict-resolver';
