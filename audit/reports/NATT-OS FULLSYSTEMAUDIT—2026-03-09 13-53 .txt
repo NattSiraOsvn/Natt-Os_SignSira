@@ -1,0 +1,503 @@
+NATT-OS FULL SYSTEM AUDIT — 2026-03-09 14:40
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【1】GIT STATUS
+321ad9c (HEAD -> main) feat(event-system): wire SmartLink ports → EventBus
+3364fd9 feat(event-system): NATT-OS Event Bus v1.0
+0d3f85a feat(event-bus): NATT-OS Event System v1.0
+4eb543a feat(business-graph): fill use-cases + beef engines + apps layer — 0 errors
+b5e841d feat(business-graph): fill use-cases + beef engines + apps layer — 0 errors
+5b3fb10 feat(business-graph): fill use-cases + beef engines + apps layer
+b8eb0de feat(business-graph): fill use-cases + beef engines + apps layer
+16823d6 feat(business-graph): fill use-cases + beef engines + apps layer
+2baa112 fix(smartlink-p2): correct port method names
+50dc752 feat(smartlink-p2): wire SmartLink vào 4 object engines + compliance
+---
+?? src/governance/memory/kim/kmf9.5.14.json
+?? src/governance/memory/kim/kmf9.5.15.json
+
+【2】TSC HEALTH
+Total errors:
+       0
+Non-baseline errors:
+       0
+
+【3】FILE COUNT
+Total TS/TSX:
+     661
+Total lines:
+   39252 total
+
+【4】CELLS INVENTORY
+── Business cells:
+analytics-cell	customer-cell	hr-cell		payment-cell	promotion-cell	warehouse-cell
+buyback-cell	customs-cell	inventory-cell	pricing-cell	sales-cell	warranty-cell
+compliance-cell	finance-cell	order-cell	production-cell	showroom-cell
+── Kernel cells:
+audit-cell	config-cell	index.ts	monitor-cell	rbac-cell	security-cell
+── Infrastructure cells:
+ai-connector-cell	notification-cell	smartlink-cell		warehouse-cell
+index.ts		shared-contracts-cell	sync-cell
+
+【5】CELL HEALTH — file count per cell
+  analytics-cell | files:10 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  buyback-cell | files:12 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  compliance-cell | files:8 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  customer-cell | files:10 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  customs-cell | files:9 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  finance-cell | files:15 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  hr-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  inventory-cell | files:19 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  order-cell | files:13 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  payment-cell | files:10 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  pricing-cell | files:20 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  production-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  promotion-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  sales-cell | files:18 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  showroom-cell | files:14 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  warehouse-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  warranty-cell | files:14 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+
+【6】SMARTLINK STATUS
+Core layer:
+cell-smartlink.component.ts	smartlink-legacy.engine.ts	smartlink.pressure-field.ts
+index.ts			smartlink.competition.ts	smartlink.qneu-bridge.ts
+quantum-brain.engine.ts		smartlink.nattimer.ts
+quantum-buffer.engine.ts	smartlink.point.ts
+Cell ports wired (import port in engine):
+  ✅ analytics-cell (wired)
+  ⭕ buyback-cell (port exists, not wired)
+  ✅ compliance-cell (wired)
+  ⭕ customer-cell (port exists, not wired)
+  ✅ customs-cell (wired)
+  ⭕ finance-cell (port exists, not wired)
+  ⭕ hr-cell (port exists, not wired)
+  ✅ inventory-cell (wired)
+  ⭕ order-cell (port exists, not wired)
+  ⭕ payment-cell (port exists, not wired)
+  ⭕ pricing-cell (port exists, not wired)
+  ✅ production-cell (wired)
+  ⭕ promotion-cell (port exists, not wired)
+  ✅ sales-cell (wired)
+  ⭕ showroom-cell (port exists, not wired)
+  ✅ warehouse-cell (wired)
+  ⭕ warranty-cell (port exists, not wired)
+
+【7】GOVERNANCE
+Constitution:
+HIEN-PHAP-NATT-OS-v4.0.md
+QNEU files:
+audit-bridge.ts
+calculator.ts
+decay-cron.ts
+first-seed.ts
+imprint-engine.ts
+index.ts
+learning.engine.ts
+persistence.ts
+qneu.test.ts
+runtime.ts
+storage.interface.ts
+types.ts
+validator.ts
+Memory agents:
+Can		Thienlon	boiboi		kim.zip		sessions
+Kris		bang		kim		phieu		thiennho
+QNEU system state:
+{
+  "version": "1.0.0",
+  "entities": {
+    "KIM": {
+      "entity_id": "KIM",
+      "current_score": 120,
+      "frequency_imprints": [
+        {
+          "pattern_id": "IMP-mmcozlps-jbh144",
+          "entity_id": "KIM",
+          "pattern_signature": "HONEST_ADMISSION:PUBLIC_ADMISSION: script ban dau sai lam",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.504Z",
+          "last_seen": "2026-03-04T23:53:07.504Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpt-mnz9wi",
+          "entity_id": "KIM",
+          "pattern_signature": "GROUND_TRUTH_CONTRIBUTION:Contract-first principle established",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.505Z",
+          "last_seen": "2026-03-04T23:53:07.505Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpu-ts7c2x",
+          "entity_id": "KIM",
+          "pattern_signature": "CROSS_CELL_INSIGHT:blindspot.detector.ts \u2014 detect shared blindspot",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.506Z",
+          "last_seen": "2026-03-04T23:53:07.506Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpv-yqoaef",
+          "entity_id": "KIM",
+          "pattern_signature": "CROSS_CELL_INSIGHT:behavior.anomaly.detector.ts \u2014 detect defensive contraction",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.507Z",
+          "last_seen": "2026-03-04T23:53:07.507Z",
+          "promoted": false
+        }
+      ],
+      "permanent_nodes": [],
+      "total_sessions": 1,
+      "total_impacts": 4,
+      "total_penalties": 2,
+      "last_updated": "2026-03-04T23:53:07.509Z",
+      "last_session_id": "SES-mmcozlps-bhd2yd"
+    },
+    "BANG": {
+      "entity_id": "BANG",
+      "current_score": 300,
+      "frequency_imprints": [
+        {
+          "pattern_id": "IMP-mmcozlpk-qrdgi9",
+          "entity_id": "BANG",
+          "pattern_signature": "SPEC_CREATION:QNEU spec 2752 lines \u2014 4/4 components covered",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.496Z",
+          "last_seen": "2026-03-04T23:53:07.496Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpl-usrs73",
+          "entity_id": "BANG",
+          "pattern_signature": "GROUND_TRUTH_CONTRIBUTION:Ground Truth v1.0 synthesis from 4 AI entities",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.497Z",
+          "last_seen": "2026-03-04T23:53:07.497Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpl-4xff49",
+          "entity_id": "BANG",
+          "pattern_signature": "BUG_FIX:Wave 3: 274\u21920 tsc errors in cells",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.497Z",
+          "last_seen": "2026-03-04T23:53:07.497Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpm-w1hkao",
+          "entity_id": "BANG",
+          "pattern_signature": "CELL_CREATION:EDA Foundation: 13 contracts + config-cell",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.498Z",
+          "last_seen": "2026-03-04T23:53:07.498Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpm-t4hvwq",
+          "entity_id": "BANG",
+          "pattern_signature": "HONEST_ADMISSION:Self-admitted script 8 hide error",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.498Z",
+          "last_seen": "2026-03-04T23:53:07.498Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpn-9ift0q",
+          "entity_id": "BANG",
+          "pattern_signature": "ARCHITECTURE_DECISION:Constitution v4.0 drafted \u2014 AI vs CELL separation",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.499Z",
+          "last_seen": "2026-03-04T23:53:07.499Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlpo-29lmu7",
+          "entity_id": "BANG",
+          "pattern_signature": "AUDIT_DISCOVERY:Constitutional audit: 8 violations in 1049-file tree",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.500Z",
+          "last_seen": "2026-03-04T23:53:07.500Z",
+          "promoted": false
+        }
+      ],
+      "permanent_nodes": [],
+      "total_sessions": 1,
+      "total_impacts": 7,
+      "total_penalties": 3,
+      "last_updated": "2026-03-04T23:53:07.503Z",
+      "last_session_id": "SES-mmcozlpj-67cs46"
+    },
+    "BOI_BOI": {
+      "entity_id": "BOI_BOI",
+      "current_score": 40,
+      "frequency_imprints": [
+        {
+          "pattern_id": "IMP-mmcozlpz-axnv9o",
+          "entity_id": "BOI_BOI",
+          "pattern_signature": "HONEST_ADMISSION:SCAR-001: Folder co mat khong bang nang luc ton tai",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.511Z",
+          "last_seen": "2026-03-04T23:53:07.511Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlq0-l06urh",
+          "entity_id": "BOI_BOI",
+          "pattern_signature": "CELL_MIGRATION:Voluntary retreat to Toolsmith role after incident",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.512Z",
+          "last_seen": "2026-03-04T23:53:07.512Z",
+          "promoted": false
+        }
+      ],
+      "permanent_nodes": [],
+      "total_sessions": 1,
+      "total_impacts": 2,
+      "total_penalties": 1,
+      "last_updated": "2026-03-04T23:53:07.514Z",
+      "last_session_id": "SES-mmcozlpy-z2yupv"
+    },
+    "THIEN": {
+      "entity_id": "THIEN",
+      "current_score": 135,
+      "frequency_imprints": [
+        {
+          "pattern_id": "IMP-mmcozlq3-f4hkmk",
+          "entity_id": "THIEN",
+          "pattern_signature": "AUDIT_DISCOVERY:Discovered 13 duplicate types.ts files = root cause",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.515Z",
+          "last_seen": "2026-03-04T23:53:07.515Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlq4-h3tfbq",
+          "entity_id": "THIEN",
+          "pattern_signature": "ARCHITECTURE_DECISION:Rule Engine = Advisor first, Executor later",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.516Z",
+          "last_seen": "2026-03-04T23:53:07.516Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlq5-0jxxeu",
+          "entity_id": "THIEN",
+          "pattern_signature": "CONSTITUTIONAL_COMPLIANCE:Distinguished audit architecture vs audit thought \u2014 prevented thought police",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.517Z",
+          "last_seen": "2026-03-04T23:53:07.517Z",
+          "promoted": false
+        }
+      ],
+      "permanent_nodes": [],
+      "total_sessions": 1,
+      "total_impacts": 3,
+      "total_penalties": 0,
+      "last_updated": "2026-03-04T23:53:07.518Z",
+      "last_session_id": "SES-mmcozlq3-7w1gv4"
+    },
+    "CAN": {
+      "entity_id": "CAN",
+      "current_score": 85,
+      "frequency_imprints": [
+        {
+          "pattern_id": "IMP-mmcozlq7-mt6o9i",
+          "entity_id": "CAN",
+          "pattern_signature": "AUDIT_DISCOVERY:Phan loai 105 loi thanh 4 cum \u2014 surgical analysis",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.519Z",
+          "last_seen": "2026-03-04T23:53:07.519Z",
+          "promoted": false
+        },
+        {
+          "pattern_id": "IMP-mmcozlq8-4b9mco",
+          "entity_id": "CAN",
+          "pattern_signature": "SPEC_CREATION:TaxCell Specification v1 for Tam Luxury TT200",
+          "frequency": 1,
+          "first_seen": "2026-03-04T23:53:07.520Z",
+          "last_seen": "2026-03-04T23:53:07.520Z",
+          "promoted": false
+        }
+      ],
+      "permanent_nodes": [],
+      "total_sessions": 1,
+      "total_impacts": 2,
+      "total_penalties": 0,
+      "last_updated": "2026-03-04T23:53:07.521Z",
+      "last_session_id": "SES-mmcozlq7-15y8xc"
+    }
+  },
+  "audit_events_count": 39,
+  "last_updated": "2026-03-04T23:53:07.522Z"
+}
+
+【8】CORE INFRASTRUCTURE
+audit			health			patent			smartlink
+cell			infrastructure		registry		snapshot
+conflict		ingestion		routing			state-manager.ts
+events			memory			signals
+
+【9】ALGORITHMS & ENGINES
+── Core engines:
+  core/snapshot/recovery-engine.ts → export const RecoverySystem,
+  core/snapshot/snapshot.engine.ts → export class SnapshotEngine,export const Snapshots,
+  core/ingestion/document-ai.engine.ts → export const Utilities,export const DocumentParserLayer,
+  core/ingestion/IngestionService.ts → export const Ingestion,
+  core/memory/immutable-memory.engine.ts → export class ImmutableMemoryEngine,export const Memory,
+  core/health/cell-health-monitor.ts → export class CellHealthMonitor,export const HealthMonitor,
+  core/conflict/conflict-resolver.ts → export const ConflictEngine,
+  core/audit/sharding-engine.ts → export const generateShardHash,export const ShardingService,
+  core/audit/audit-chain-contract.ts → export class SimpleAuditChain,
+  core/audit/integrity-scanner.ts → export const IntegrityScanner,
+  core/smartlink/quantum-buffer.engine.ts → export const QuantumBuffer,
+  core/smartlink/smartlink.qneu-bridge.ts → export const QneuBridge,
+  core/smartlink/smartlink.point.ts → export class SmartLinkPoint,
+  core/smartlink/cell-smartlink.component.ts → export class CellSmartLinkComponent,
+  core/smartlink/smartlink.competition.ts → export const PatternCompetition,
+  core/smartlink/smartlink.pressure-field.ts → export const PressureField,
+  core/smartlink/smartlink-legacy.engine.ts → export const SmartLinkEngine,
+  core/smartlink/index.ts → export const SmartLinkRegistry,
+  core/smartlink/smartlink.nattimer.ts → export const NATTimer,
+  core/smartlink/quantum-brain.engine.ts → export const QuantumBrain,
+  core/registry/module-registry.ts → export const MODULE,
+  core/routing/task-router.ts → export const TaskRouter,
+  core/routing/deterministic-router.ts → export class DeterministicRouter,export const Router,
+  core/events/event-envelope.factory.ts → export const EventEnvelopeFactory,
+  core/events/event-bridge.ts → export const EventBridge,
+  core/events/event-envelope.ts → 
+  core/events/event-bus.ts → export const EventBus,
+  core/events/event-store.ts → export const EventStore,
+  core/events/event-router.ts → export const ROUTING,export const EventRouter,
+  core/infrastructure/export.engine.ts → export const ExportEngine,
+  core/state-manager.ts → export class StateManager,export const stateManager,
+── Cell engines:
+  cells/business/warehouse-cell/domain/services/logistics.engine.ts → export const LogisticsCore,
+  cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine.ts → export const WarehouseEngine,
+  cells/business/warehouse-cell/domain/services/warehouse.engine.ts → export class WarehouseEngine,
+  cells/business/analytics-cell/domain/services/analytics.engine.ts → export const AnalyticsEngine,
+  cells/business/analytics-cell/domain/services/enterprise-linker.engine.ts → export const EnterpriseLinker,
+  cells/business/production-cell/domain/services/flow.engine.ts → export const FlowEngine,
+  cells/business/production-cell/domain/services/production.engine.ts → 
+  cells/business/customs-cell/domain/services/customs.engine.ts → export const CustomsRobotEngine,
+  cells/business/hr-cell/domain/services/hr.engine.ts → export const HREngine,
+  cells/business/hr-cell/domain/services/personnel.engine.ts → export const PersonnelEngine,
+  cells/business/hr-cell/domain/services/hr-legacy.engine.ts → 
+  cells/business/buyback-cell/domain/services/buyback.engine.ts → export class BuybackEngine,
+  cells/business/sales-cell/domain/services/sales.engine.ts → export const SalesEngine,
+  cells/business/sales-cell/domain/services/supplier.engine.ts → export const SupplierEngine,
+  cells/business/sales-cell/domain/services/seller.engine.ts → export const SellerEngine,
+  cells/business/sales-cell/domain/services/sales-core.engine.ts → export const SalesCore,
+  cells/business/pricing-cell/domain/services/labor-cost.engine.ts → 
+  cells/business/payment-cell/domain/services/payment.engine.ts → export const PaymentEngine,
+  cells/business/payment-cell/domain/services/banking.engine.ts → 
+  cells/business/promotion-cell/domain/services/promotion.engine.ts → export class PromotionEngine,
+  cells/business/customer-cell/domain/services/customer.engine.ts → export class CustomerEngine,
+  cells/business/inventory-cell/domain/services/stock-management.engine.ts → export class StockManagementEngine,
+  cells/business/inventory-cell/domain/services/reservation.engine.ts → export class ReservationEngine,
+  cells/business/compliance-cell/domain/services/fraud-guard.engine.ts → export const FraudGuard,
+  cells/business/warranty-cell/domain/services/warranty.engine.ts → export class WarrantyEngine,
+  cells/business/order-cell/domain/services/order.engine.ts → export class OrderEngine,
+  cells/business/finance-cell/domain/services/finance.engine.ts → 
+  cells/business/finance-cell/domain/services/fiscal-workbench.engine.ts → export const FiscalWorkbenchEngine,
+  cells/business/finance-cell/domain/services/einvoice.engine.ts → export const EInvoiceEngine,export const EInvoiceEngineLegacy,
+  cells/business/finance-cell/domain/services/banking.engine.ts → export const BankingEngine,
+  cells/business/finance-cell/domain/services/tax.engine.ts → export const TaxEngine,export const TaxReportService,
+  cells/business/showroom-cell/domain/services/showroom.engine.ts → export class ShowroomEngine,
+  cells/infrastructure/warehouse-cell/domain/services/warehouse.engine.ts → export class WarehouseEngine,
+  cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts → export const SmartLinkMappingEngine,
+  cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts → export const SmartLinkEngine,
+  cells/infrastructure/sync-cell/domain/services/offline.engine.ts → 
+  cells/infrastructure/ai-connector-cell/domain/services/gemini.engine.ts → export const generatePersonaResponse,export const generateBlueprint,
+  cells/infrastructure/ai-connector-cell/domain/services/ai.engine.ts → export const aiEngine,
+  cells/infrastructure/ai-connector-cell/domain/services/gmail.engine.ts → export const GmailIntelligence,
+  cells/kernel/rbac-cell/domain/services/rbac.engine.ts → export const RBACEngine,
+  cells/kernel/security-cell/domain/services/threat-detection.engine.ts → 
+
+【10】COMPONENTS
+Total components:
+      68
+Sub-folders:
+AIAvatar.tsx			HRCompliance.tsx		SalesTerminal.tsx
+AdminConfigHub.tsx		HRManagement.tsx		SecurityOverlay.tsx
+AdvancedAnalytics.tsx		KrisEmailHub.tsx		SellerTerminal.tsx
+ApiPortal.tsx			LearningHub.tsx			Sidebar.tsx
+AppShell.tsx			LiveVoice.tsx			SmartLinkMapper.tsx
+AuditTrailModule.tsx		MasterDashboard.tsx		SupplierClassificationPanel.tsx
+BankingProcessor.tsx		NotificationHub.tsx		SystemMonitor.tsx
+BlueprintWizard.tsx		NotificationPortal.tsx		SystemNavigator.tsx
+CalibrationWizard.tsx		OmegaProcessor.tsx		SystemTicker.tsx
+ChatConsultant.tsx		OperationsTerminal.tsx		TaxReportingHub.tsx
+CollaborationRooms.tsx		PaymentHub.tsx			TechnicalDocs.tsx
+CompliancePortal.tsx		PersonalSphere.tsx		ThienCommandCenter.tsx
+CustomizationRequest.tsx	ProductCard.tsx			UnifiedReportingHub.tsx
+CustomsIntelligence.tsx		ProductCatalog.tsx		WarehouseManagement.tsx
+DailyReportModule.tsx		ProductDetailModal.tsx		admin
+Dashboard.tsx			ProductionManager.tsx		analytics
+DataAnalytics.tsx		ProductionSalesFlowView.tsx	app.tsx
+DataArchiveVault.tsx		ProductionWallboard.tsx		approval
+DataSyncEngine.tsx		QuantumFlowOrchestrator.tsx	audit
+DevPortal.tsx			QuantumPulse.tsx		calibration
+DynamicModuleRenderer.tsx	QuickHelp.tsx			common
+EnterpriseArchitecture.tsx	RBACManager.tsx			compliance
+FilterPanel.tsx			RFMAnalysis.tsx			financial
+FinanceAudit.tsx		SalesArchitectureView.tsx	gatekeeper
+GovernanceModule.tsx		SalesCRM.tsx			monitoring-dashboard.tsx
+GovernanceWorkspace.tsx		SalesTaxModule.tsx		showroom
+
+【11】CONTRACTS & TYPES
+  contracts/event-replay.contract.ts
+  contracts/cell.contract.ts
+  contracts/base-event.contract.ts
+  contracts/cell-dependency.ts
+  contracts/index.ts
+  contracts/event-authority.ts
+  contracts/events/event-versioning.ts
+  contracts/events/rbac.events.ts
+  contracts/events/base-event.ts
+  contracts/events/config.events.ts
+  contracts/events/index.ts
+  contracts/events/audit.events.ts
+  contracts/events/security.events.ts
+  contracts/events/monitor.events.ts
+  contracts/event-bus.contract.ts
+  types/fiscal_contracts.ts
+  types/showroom.ts
+  types/accounting.types.ts
+  types/global.d.ts
+  types/index.ts
+  types/enums.ts
+  types/interfaces.ts
+
+【12】KERNEL CELLS STATUS
+  audit-cell | files:24
+  config-cell | files:31
+  monitor-cell | files:23
+  rbac-cell | files:28
+  security-cell | files:22
+
+【13】APPS LAYER
+analytics-ingestion-service	hr-service
+finance-service			sale-terminal
+  analytics-ingestion-service | files:2
+  finance-service | files:3
+  hr-service | files:2
+  sale-terminal | files:3
+
+【14】MISSING / EMPTY DIRS
+src/cells/business/payment-cell/domain/value-objects
+src/cells/business/customer-cell/application/use-cases
+src/cells/infrastructure/warehouse-cell/application/services
+src/cells/infrastructure/warehouse-cell/infrastructure/adapters
+src/cells/infrastructure/shared-contracts-cell/application/use-cases
+src/cells/infrastructure/shared-contracts-cell/infrastructure/repositories
+src/cells/infrastructure/shared-contracts-cell/domain/services
+src/cells/kernel/audit-cell/domain/Value Objects
+src/cells/kernel/config-cell/interface/controllers
+src/cells/kernel/config-cell/interface/handlers
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+END AUDIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
