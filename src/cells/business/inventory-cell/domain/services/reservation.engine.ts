@@ -54,7 +54,7 @@ export class ReservationEngine {
    * Xử lý yêu cầu giữ hàng
    */
   static processReservation(request: ReservationRequest): ReservationResult {
-    InventorySmartLinkPort.notifyStockReserved(request.itemId, request.quantity);
+    InventorySmartLinkPort.notifyStockReserved(request.item.id, 1);
     const { item, customerId, customerTier, depositAmount } = request;
 
     // 1. Kiểm tra item có sẵn không
