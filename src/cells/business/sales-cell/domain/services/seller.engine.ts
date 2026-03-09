@@ -1,8 +1,23 @@
-export const SellerEngine = {
-  getReport:(position:any):any=>({ sellerId:position?.userId??"", date:new Date().toISOString().split("T")[0], totalSales:0, orderCount:0, revenue:0, commission:0 }),
-  getIdentity:(id:string):any=>({ userId:id, name:id, tier:"STANDARD" }),
-  getLeads:(_:string):any[]=>[], assignLead:(_s:string,_l:any):void=>{},
-  calculateCommission:(_data:any,_kpi?:number):any=>({ total:0, shell:0, stone:0 }),
-  check24hRule:(_ts:number):boolean=>(Date.now()-_ts)<86400000,
-  isLeadInactive:(_ts:number):boolean=>(Date.now()-_ts)>7*86400000,
+export interface Seller{id:string;name:string;branchCode:string;commissionRate:number;targetMonthly:number;status:"ACTIVE"|"ON_LEAVE"|"SUSPENDED";}
+export interface SellerPerformance{sellerId:string;period:string;totalRevenue:number;totalOrders:number;commissionEarned:number;targetAchievement:number;rank:number;}
+const _sellers=new Map<string,Seller>();
+const _perfs:SellerPerformance[]=[];
+export const SellerEngine={
+  register:(data:Omit<Seller,"id"|"status">):Seller=>{
+    const s:Seller={...data,id:`SEL-${Date.now()}`,status:"ACTIVE"};
+    _sellers.set(s.id,s);return s;
+  },
+  getAll:():Seller[]=>[..._sellers.values()],
+  getActive:():Seller[]=>[..._sellers.values()].filter(s=>s.status==="ACTIVE"),
+  getByBranch:(b:string):Seller[]=>[..._sellers.values()].filter(s=>s.branchCode===b),
+  calculateCommission:(id:string,revenue:number):number=>{
+    const s=_sellers.get(id); return s?Math.round(revenue*s.commissionRate):0;
+  },
+  recordPerformance:(sellerId:string,period:string,revenue:number,orders:number):SellerPerformance=>{
+    const s=_sellers.get(sellerId);
+    const perf:SellerPerformance={sellerId,period,totalRevenue:revenue,totalOrders:orders,commissionEarned:s?Math.round(revenue*s.commissionRate):0,targetAchievement:s?(revenue/s.targetMonthly)*100:0,rank:0};
+    _perfs.push(perf);return perf;
+  },
+  getLeaderboard:(period:string):SellerPerformance[]=>_perfs.filter(p=>p.period===period).sort((a,b)=>b.totalRevenue-a.totalRevenue).map((p,i)=>({...p,rank:i+1})),
+  suspend:(id:string):void=>{const s=_sellers.get(id);if(s){s.status="SUSPENDED";_sellers.set(id,s);}},
 };
