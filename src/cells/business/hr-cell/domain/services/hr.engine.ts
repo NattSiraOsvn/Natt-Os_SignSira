@@ -1,3 +1,4 @@
+import { HRSmartLinkPort } from "../../ports/hr-smartlink.port";
 export interface Employee {
   id: string;
   fullName: string;
@@ -32,12 +33,13 @@ export const HREngine = {
   onboard: (emp: Omit<Employee, "id" | "status">): Employee => {
     const e: Employee = { ...emp, id: `EMP-${Date.now()}`, status: "ACTIVE" };
     _employees.set(e.id, e);
+    HRSmartLinkPort.notifyOnboard(e.id);
     return e;
   },
 
   offboard: (id: string): void => {
     const e = _employees.get(id);
-    if (e) { e.status = "TERMINATED"; _employees.set(id, e); }
+    if (e) { e.status = "TERMINATED"; _employees.set(id, e); HRSmartLinkPort.notifyOffboard(id); }
   },
 
   getEmployee: (id: string): Employee | null => _employees.get(id) ?? null,
@@ -56,12 +58,14 @@ export const HREngine = {
     const dependent = emp.dependents * 4_400_000;
     const taxable = Math.max(0, gross - insurance - personal - dependent);
     const pit = taxable > 0 ? taxable * (taxable <= 5_000_000 ? 0.05 : 0.10) : 0;
-    return {
+    const result = {
       employeeId, month,
       baseSalary: emp.baseSalary, allowances: 0, bonus,
       grossIncome: gross, bhxh, bhyt, bhtn, pit,
       netIncome: gross - bhxh - bhyt - bhtn - pit,
     };
+    HRSmartLinkPort.notifyPayslip(employeeId, month, result.netIncome);
+    return result;
   },
 
   getDepartments: (): string[] => [...new Set([..._employees.values()].map(e => e.department))],
