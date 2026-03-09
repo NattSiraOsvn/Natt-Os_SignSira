@@ -1,3 +1,4 @@
+import { InventorySmartLinkPort } from "../../ports/inventory-smartlink.port";
 /**
  * NATT-OS — Inventory Cell
  * Domain Service: Reservation Engine
@@ -53,6 +54,7 @@ export class ReservationEngine {
    * Xử lý yêu cầu giữ hàng
    */
   static processReservation(request: ReservationRequest): ReservationResult {
+    InventorySmartLinkPort.notifyStockReserved(request.itemId, request.quantity);
     const { item, customerId, customerTier, depositAmount } = request;
 
     // 1. Kiểm tra item có sẵn không

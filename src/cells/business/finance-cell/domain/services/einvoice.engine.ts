@@ -1,3 +1,4 @@
+import { FinanceSmartLinkPort } from '../../ports/finance-smartlink.port';
 export type EInvoiceStatus = "DRAFT" | "SIGNED" | "SUBMITTED" | "ACCEPTED" | "REJECTED" | "CANCELLED";
 
 export interface EInvoiceItem {
@@ -62,6 +63,7 @@ export const EInvoiceEngine = {
       inv.grandTotal = inv.totalAmount + inv.vatAmount;
     }
     _invoices.push(inv);
+    FinanceSmartLinkPort.notifyInvoiceCreated(inv.id, inv.totalAmount);
     return inv;
   },
 

@@ -1,3 +1,4 @@
+import { AnalyticsSmartLinkPort } from "../../ports/analytics-smartlink.port";
 import type { BusinessMetrics } from "@/types";
 
 export interface AnalyticsReport {
