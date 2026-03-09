@@ -1,0 +1,23 @@
+{
+  "cellId": "quantum-defense-cell",
+  "version": "1.0.0",
+  "layer": "kernel",
+  "identity": {
+    "role": "immune-system",
+    "biologicalAnalog": "Immune System — không phải UEI/não"
+  },
+  "capability": {
+    "observe": "EventBus stream (all events)",
+    "detect": ["ai-agent", "entropy-spike", "constitutional-violation"],
+    "publish": ["hormone-events → EventBus"],
+    "cannotDo": ["direct-cell-intervention", "route-events", "store-data-long-term"]
+  },
+  "boundary": {
+    "readFrom": ["EventBus", "CalibrationEngine", "ConstitutionLoader"],
+    "writeTo": ["EventBus (publish only)"],
+    "forbidden": ["direct DB write", "call other cells directly", "modify event stream"]
+  },
+  "trace": { "auditTrail": true, "publishToAuditCell": true },
+  "confidence": { "threshold": 0.7, "decayOnError": true },
+  "smartlink": { "port": "quantum-defense-smartlink.port.ts" }
+}

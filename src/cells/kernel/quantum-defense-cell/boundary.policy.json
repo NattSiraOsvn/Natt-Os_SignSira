@@ -1,0 +1,12 @@
+{
+  "cellId": "quantum-defense-cell",
+  "readFrom": ["EventBus", "CalibrationEngine", "ConstitutionLoader"],
+  "writeTo": ["EventBus (publish only)"],
+  "forbidden": ["direct DB write", "call other cells directly", "modify event stream"],
+  "escalation": {
+    "STABLE":    { "action": "monitor" },
+    "CAUTIOUS":  { "action": "throttle+log" },
+    "CRITICAL":  { "action": "force-wave-collapse" },
+    "OMEGA_LOCK":{ "action": "shell-empty+gatekeeper-alert" }
+  }
+}
