@@ -67,6 +67,11 @@ let _cache: PressureFieldSnapshot | null = null;
 let _cacheAt = 0;
 const CACHE_TTL_MS = 5_000;
 
+// Base weight store — lưu weight GỐC trước khi inject pressure bonus
+// Key: `${cellId}::${intentType}` → baseWeight
+// Fix cho bonus-chồng-bonus trong refreshRouterWeights()
+const _baseWeights = new Map<string, number>();
+
 // ── Core ──────────────────────────────────────────────────────────────────────
 
 function _statusWeight(status: PatternCompetitor['status']): number {
@@ -109,7 +114,10 @@ function _buildPressureMap(snapshot: NetworkCompetitionSnapshot): Map<string, Ce
   return map;
 }
 
-function _normalize(map: Map<string, CellPressure>): void {
+function _normalize(
+  map: Map<string, CellPressure>,
+  competitionSnapshot?: Parameters<typeof _detectCircularPressure>[1]
+): void {
   const values = Array.from(map.values());
   if (values.length === 0) return;
 
@@ -134,15 +142,79 @@ function _normalize(map: Map<string, CellPressure>): void {
       Math.log2(Math.max(2, values.length))
     : 1;
 
-  // Step 3: entropy-based damping — chỉ áp dụng lên pressureBonus (router input)
-  // entropy=1.0 (đều) → dampingFactor=1.0 → không dampen
-  // entropy=0.3       → dampingFactor=0.65 → DOMINANT giảm 35% bonus
-  // entropy=0.0       → dampingFactor=0.5  → maximum dampen 50%
-  const dampingFactor = 0.5 + 0.5 * Math.min(1, entropy);
+  // Step 3: phát hiện circular pressure — tập trung bệnh lý vs lành mạnh
+  // Healthy clustering (sales→finance→audit): entropy thấp nhưng không circular → dampen ít
+  // Pathological loop (A↔B↔A): circular flag → dampen mạnh hơn
+  const circularCells = competitionSnapshot
+    ? _detectCircularPressure(map, competitionSnapshot)
+    : new Set<string>();
+
+  // Step 4: entropy-based damping + circular penalty
+  // entropy=1.0, không circular → factor=1.0 (không dampen)
+  // entropy=0.3, không circular → factor=0.65 (healthy cluster, dampen ít)
+  // entropy=0.3, circular       → factor=0.40 (pathological, dampen mạnh)
+  // entropy=0.0, circular       → factor=0.25 (maximum dampen)
+  const baseDamping = 0.5 + 0.5 * Math.min(1, entropy);
 
   for (const cell of values) {
+    const circularPenalty = circularCells.has(cell.cellId) ? 0.6 : 1.0;
+    const dampingFactor = baseDamping * circularPenalty;
     cell.pressureBonus = Math.round(cell.normalizedPressure * dampingFactor * MAX_PRESSURE_BONUS);
   }
+}
+
+// ── Circular pressure detection ─────────────────────────────────────────────
+//
+// Phân biệt 2 loại tập trung:
+//   HEALTHY:     sales → finance → audit → (tập trung theo chiều nghiệp vụ thật)
+//   PATHOLOGICAL: A → B → A  (feedback loop giả — A boost B, B boost lại A)
+//
+// Detection: nếu top pressure cell đang nhận pressure từ các cells
+// mà chính nó đã send ra → circular flag.
+//
+function _detectCircularPressure(
+  map: Map<string, CellPressure>,
+  competitionSnapshot: { hotspots: Array<{ targetCellId: string; competitors: Array<{ sourceCellId: string }> }> }
+): Set<string> {
+  const circular = new Set<string>();
+
+  // Build: ai đang push pressure đến ai?
+  // source → Set<targets> (cells mà source đang tạo pressure cho)
+  const pushMap = new Map<string, Set<string>>();
+  for (const comp of competitionSnapshot.hotspots) {
+    for (const p of comp.competitors) {
+      const set = pushMap.get(p.sourceCellId) ?? new Set();
+      set.add(comp.targetCellId);
+      pushMap.set(p.sourceCellId, set);
+    }
+  }
+
+  // Với mỗi cell có pressure cao — kiểm tra xem có feedback loop không
+  for (const cell of map.values()) {
+    if (cell.normalizedPressure < 0.6) continue; // chỉ check high-pressure cells
+
+    // Cell này đang nhận pressure từ ai?
+    const incomingSources = new Set<string>();
+    for (const comp of competitionSnapshot.hotspots) {
+      if (comp.targetCellId !== cell.cellId) continue;
+      for (const p of comp.competitors) incomingSources.add(p.sourceCellId);
+    }
+
+    // Cell này đang push pressure đến ai?
+    const outgoingTargets = pushMap.get(cell.cellId) ?? new Set();
+
+    // Overlap: cell nhận từ A, và A nhận từ cell → circular
+    for (const src of incomingSources) {
+      const srcTargets = pushMap.get(src) ?? new Set();
+      if (srcTargets.has(cell.cellId)) {
+        circular.add(cell.cellId);
+        circular.add(src);
+        break;
+      }
+    }
+  }
+
+  return circular;
 }
 
 // ── Public API ────────────────────────────────────────────────────────────────
@@ -161,7 +233,7 @@ export const PressureField = {
 
     const competition = PatternCompetition.getNetworkSnapshot();
     const pressureMap = _buildPressureMap(competition);
-    _normalize(pressureMap);
+    _normalize(pressureMap, competition);
 
     const cells = Array.from(pressureMap.values());
 
@@ -202,15 +274,20 @@ export const PressureField = {
    * Gọi quá sớm → pressure = 0 → không ảnh hưởng.
    */
   injectIntoRouter(candidate: RoutingCandidate, intentType: string): void {
+    // Lưu base weight trước khi inject — đây là source of truth
+    const key = `${candidate.cellId}::${intentType}`;
+    if (!_baseWeights.has(key)) {
+      _baseWeights.set(key, candidate.weight);
+    }
+
     const pressure = PressureField.getCellPressure(candidate.cellId);
     const bonus = pressure?.pressureBonus ?? 0;
+    const base = _baseWeights.get(key)!;
 
-    const boosted: RoutingCandidate = {
+    Router.register(intentType, {
       ...candidate,
-      weight: Math.min(100, candidate.weight + bonus),
-    };
-
-    Router.register(intentType, boosted);
+      weight: Math.min(100, base + bonus),
+    });
   },
 
   /**
@@ -224,13 +301,19 @@ export const PressureField = {
 
     for (const [intentType, candidates] of registered) {
       for (const candidate of candidates) {
-        const pressure = snapshot.cells.find(c => c.cellId === candidate.cellId);
-        if (!pressure) continue;
+        const key = `${candidate.cellId}::${intentType}`;
 
-        // Giữ base weight (không tăng mãi) — chỉ cộng bonus mới nhất
-        // Assumption: candidate.weight là base weight ban đầu (không có bonus)
-        // Không thể biết base weight sau khi đã inject → chỉ re-inject nếu bonus tăng
-        const newWeight = Math.min(100, candidate.weight + pressure.pressureBonus);
+        // Lấy base weight gốc — không dùng candidate.weight hiện tại
+        // vì candidate.weight đã có thể bị boost từ lần inject trước
+        const base = _baseWeights.get(key) ?? candidate.weight;
+        if (!_baseWeights.has(key)) {
+          _baseWeights.set(key, candidate.weight);
+        }
+
+        const pressure = snapshot.cells.find(c => c.cellId === candidate.cellId);
+        const bonus = pressure?.pressureBonus ?? 0;
+        const newWeight = Math.min(100, base + bonus);
+
         if (newWeight !== candidate.weight) {
           Router.register(intentType, { ...candidate, weight: newWeight });
         }
