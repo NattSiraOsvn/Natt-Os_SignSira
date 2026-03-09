@@ -1,12 +1,13 @@
-// NATT-OS EventBridge
-type Handler = (...args: unknown[]) => void;
-const listeners: Record<string, Handler[]> = {};
+// Event Bridge — global event bus
+type Handler = (payload: unknown) => void;
+const _bus = new Map<string, Handler[]>();
 export const EventBridge = {
-  on:          (e: string, h: Handler): void => { (listeners[e] ??= []).push(h); },
-  subscribe:   (e: string, h: Handler): void => { (listeners[e] ??= []).push(h); },
-  emit:        (e: string, ...a: unknown[]): void => { (listeners[e] ?? []).forEach(h => h(...a)); },
-  publish:     (e: string, ...a: unknown[]): void => { (listeners[e] ?? []).forEach(h => h(...a)); },
-  off:         (e: string, h: Handler): void => { listeners[e] = (listeners[e] ?? []).filter(x => x !== h); },
-  unsubscribe: (e: string, h: Handler): void => { listeners[e] = (listeners[e] ?? []).filter(x => x !== h); },
+  emit:(event:string,payload:unknown):void=>{ (_bus.get(event)??[]).forEach(h=>h(payload)); },
+  on:(event:string,handler:Handler):()=>void=>{ _bus.set(event,[...(_bus.get(event)??[]),handler]); return ()=>EventBridge.off(event,handler); },
+  off:(event:string,handler:Handler):void=>{ _bus.set(event,(_bus.get(event)??[]).filter(h=>h!==handler)); },
+  once:(event:string,handler:Handler):void=>{ const w:Handler=(p)=>{ handler(p); EventBridge.off(event,w); }; EventBridge.on(event,w); },
+  clear:(event?:string):void=>{ event?_bus.delete(event):_bus.clear(); },
+  publish:(event:string,payload:unknown):void=>{ (_bus.get(event)??[]).forEach(h=>h(payload)); },
+  subscribe:(event:string,handler:Handler):()=>void=>EventBridge.on(event,handler),
 };
 export default EventBridge;
