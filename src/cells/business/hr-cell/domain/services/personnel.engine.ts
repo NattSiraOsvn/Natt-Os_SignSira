@@ -31,4 +31,8 @@ export const PersonnelEngine={
   },
   getPendingLeaves:():LeaveRequest[]=>[..._leaves.values()].filter(l=>l.status==="PENDING"),
   getLeavesByEmployee:(employeeId:string):LeaveRequest[]=>[..._leaves.values()].filter(l=>l.employeeId===employeeId),
+  getProfileByPosition:(position:string):any=>({position,profile:null,skills:[],level:"JUNIOR"}),
 };
+
+// ── Legacy compat ──
+;(PersonnelEngine as any).getProfileByPosition=(position:string)=>null;

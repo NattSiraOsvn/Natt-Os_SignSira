@@ -6,4 +6,4 @@ export async function startSaleTerminal(config:SaleTerminalConfig=DEFAULT_CONFIG
   console.log(`[SaleTerminal] Ready — Branch:${config.branchCode} Seller:${config.sellerId}`);
   return session;
 }
-export{SaleTerminalSession,SaleTerminalConfig};
+export{SaleTerminalSession};export type{SaleTerminalConfig};

@@ -35,4 +35,24 @@ export const CustomsRobotEngine={
     return"OTHER";
   },
   getExchangeRate:async():Promise<number>=>25_400,
+  batchProcess:async(files:any[],rate=25_400):Promise<any[]>=>{
+    const goods:CustomsGood[]=files.map((f:any)=>({hsCode:f.hsCode??"7113",description:f.description??"",quantity:f.quantity??1,unit:f.unit??"PCS",cif_USD:f.cif_USD??0}));
+    const calcs=CustomsRobotEngine.calculateBatch(goods,rate);
+    return calcs.map((c,i)=>({
+      ...c,
+      id:`DECL-${Date.now()}-${i}`,
+      status:"SUBMITTED",
+      declarationType:"IMPORT" as const,
+      importerId:files[i]?.importerId??"",
+      totalCIF_VND:c.cif_VND,
+      totalDuty:c.dutyAmount,
+      totalVAT:c.vatAmount,
+      totalPayable:c.totalPayable,
+      createdAt:Date.now(),
+      actionPlans:c.totalPayable>50_000_000?[{priority:"URGENT",description:"Kiểm tra lại HS Code"}]:[],
+    }));
+  },
 };
+
+// ── Legacy compat ──
+;(CustomsRobotEngine as any).batchProcess=(goods:any[],rate:number)=>CustomsRobotEngine.calculateBatch(goods,rate);

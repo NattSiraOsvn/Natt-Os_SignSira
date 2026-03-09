@@ -1,6 +1,6 @@
 import{ProductionSmartLinkPort}from"../../ports/production-smartlink.port";
 export type ProductionStage="DESIGN"|"MATERIAL_PREP"|"CASTING"|"FILING"|"POLISHING"|"STONE_SETTING"|"PLATING"|"QC_CHECK"|"PACKAGING"|"COMPLETED";
-export interface FlowLog{orderId:string;stage:ProductionStage;enteredAt:number;exitedAt?:number;worker?:string;lossGram?:number;}
+export interface FlowLog{orderId:string;stage:ProductionStage;enteredAt:number;exitedAt?:number;worker?:string;lossGram?:number;step?:string;timestamp?:number;detail?:string;}
 const _logs=new Map<string,FlowLog[]>();
 const _stages=new Map<string,ProductionStage>();
 const SEQ:ProductionStage[]=["DESIGN","MATERIAL_PREP","CASTING","FILING","POLISHING","STONE_SETTING","PLATING","QC_CHECK","PACKAGING","COMPLETED"];
@@ -32,4 +32,12 @@ export const FlowEngine={
   },
   getActiveOrders:():string[]=>[..._stages.entries()].filter(([_,s])=>s!=="COMPLETED").map(([id])=>id),
   nextStage:(cur:ProductionStage):ProductionStage=>SEQ[Math.min(SEQ.indexOf(cur)+1,SEQ.length-1)],
+  subscribe:(cb:(logs:FlowLog[])=>void):()=>void=>{cb([]);return()=>{};},
+  fullFlow:async(materialType:string,quantity:number,channel:string):Promise<{logs:FlowLog[];stage:string}>=>(
+    {logs:[],stage:"DESIGN"}
+  ),
 };
+
+// ── Legacy compat methods (components cũ) ──
+;(FlowEngine as any).subscribe=(cb:any)=>{cb([]);return()=>{};};
+;(FlowEngine as any).fullFlow=(orderId:string)=>({logs:FlowEngine.getLogs(orderId),stage:FlowEngine.getCurrentStage(orderId)});
