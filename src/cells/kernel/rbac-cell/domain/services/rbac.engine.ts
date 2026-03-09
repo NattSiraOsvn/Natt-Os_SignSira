@@ -4,3 +4,6 @@ export const RBACEngine = {
   getPermissionMatrix: (_role: string): Record<string, string[]> => ({}),
   getRoles: (): string[] => [],
 };
+
+(RBACEngine as any).registerUser = (_u:any):void => {};
+(RBACEngine as any).checkCompliance = ():any[] => [];

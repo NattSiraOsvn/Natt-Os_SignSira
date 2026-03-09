@@ -7,10 +7,10 @@ import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, 
   ResponsiveContainer, Tooltip
 } from 'recharts';
-import { RecoverySystem } from '@/services/recovery-engine';
+import { RecoverySystem } from '@/core/snapshot/recovery-engine';
 import ApprovalDashboard from './approval/approval-dashboard';
-import { DictApproval, ChangeProposal } from '@/services/dictionary-approval-service';
-import { DictService } from '@/services/dictionary-service';
+import { DictApproval, ChangeProposal } from '@/governance/policy/dictionary-approval.engine';
+import { DictService } from '@/governance/policy/dictionary.engine';
 
 const AdminConfigHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'matrix' | 'modules' | 'core' | 'approval' | 'recovery' | 'versions'>('matrix');

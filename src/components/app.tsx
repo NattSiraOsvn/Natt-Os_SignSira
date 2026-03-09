@@ -6,9 +6,9 @@ import SecurityOverlay from './SecurityOverlay';
 import NotificationHub, { AppNotification } from './NotificationHub';
 import NotificationPortal from './NotificationPortal';
 import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionType, PersonaID } from '../types';
-import { RBACEngine } from '../services/rbacEngine';
-import { NotifyBus } from '@/services/notification-service';
-import { ShardingService } from '@/services/sharding-service';
+import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
+import { ShardingService } from '@/core/audit/sharding-engine';
 import OfflineService from '@/services/offline-service';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---

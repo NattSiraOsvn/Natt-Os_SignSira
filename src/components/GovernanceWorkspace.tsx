@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { UserRole, TxStatus, GovernanceTransaction, AuditTrailEntry, ModuleID, Permission } from '../types';
-import { RBACEngine } from '../services/rbacEngine';
+import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';
 
 interface GovernanceWorkspaceProps {
   currentRole: UserRole;

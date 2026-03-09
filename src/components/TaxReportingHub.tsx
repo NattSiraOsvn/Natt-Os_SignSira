@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { VATReport, PITReport, BusinessMetrics, UserRole, PersonaID } from '../types';
-import { TaxReportService } from '../services/taxReportService';
-import { ExportEngine } from '@/services/export-service';
+import { TaxReportService } from '@/cells/business/finance-cell/domain/services/tax.engine';
+import { ExportEngine } from '@/core/infrastructure/export.engine';
 import AIAvatar from './AIAvatar';
 
 interface TaxReportingHubProps {

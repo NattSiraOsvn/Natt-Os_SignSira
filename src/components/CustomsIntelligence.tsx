@@ -1,8 +1,8 @@
 
 import React, { useState, useRef } from 'react';
 import { CustomsDeclaration, CustomsDeclarationItem, PersonaID, ActionPlan } from '../types';
-import { CustomsRobotEngine } from '../services/customsService';
-import { NotifyBus } from '@/services/notification-service';
+import { CustomsRobotEngine } from '@/cells/business/customs-cell/domain/services/customs.engine';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
 import AIAvatar from './AIAvatar';
 
 type ExtendedDeclaration = CustomsDeclaration & {

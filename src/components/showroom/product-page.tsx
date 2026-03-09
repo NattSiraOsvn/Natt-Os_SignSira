@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ShowroomAPI } from '@/services/showroom/api';
+import { ShowroomAPI } from '@/cells/business/showroom-cell/domain/services/showroom.api';
 import { ShowroomProduct } from '@/types/showroom';
 import { HeroMediaBlock } from './heromediablock';
 import { BranchContextPanel } from './branchcontextpanel';

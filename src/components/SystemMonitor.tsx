@@ -11,9 +11,9 @@ import {
 } from 'lucide-react';
 // Import từ Shared Kernel (Điều 7)
 import { BusinessMetrics, PersonaID, OperationRecord } from '@/types';
-import THReatDetectionService, { SecurityTHReat, SystemHealth } from '@/services/threat-detection-service';
-import { RecoverySystem } from '@/services/recovery-engine';
-import { NotifyBus } from '@/services/notification-service';
+import THReatDetectionService, { SecurityTHReat, SystemHealth } from '@/cells/kernel/security-cell/domain/services/ThreatDetectionService';
+import { RecoverySystem } from '@/core/snapshot/recovery-engine';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
 
 interface SystemMonitorProps {
   logAction?: (action: string, details: string) => void;

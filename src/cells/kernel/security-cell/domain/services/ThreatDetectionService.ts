@@ -13,3 +13,8 @@ export class ThreatDetectionService {
   activateLockdown() { this.lockdownActive = true; }
   deactivateLockdown() { this.lockdownActive = false; }
 }
+
+export interface SecurityThreat { id:string; type:string; severity:"LOW"|"MEDIUM"|"HIGH"|"CRITICAL"; source:string; detected:number; resolved:boolean; description:string; details?:string; }
+export interface SecurityTHReat extends SecurityThreat {}
+export interface SystemHealth { score:number; status:"HEALTHY"|"DEGRADED"|"CRITICAL"; threats:number; lastScan:number; uptime:number; }
+export { ThreatDetectionService as default };

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { HREngine } from '../services/hrEngine';
-import { PersonnelEngine } from '../services/personnelEngine';
+import { HREngine } from '@/cells/business/hr-cell/domain/services/hr.engine';
+import { PersonnelEngine } from '@/cells/business/hr-cell/domain/services/personnel.engine';
 import { EmployeePayroll, SalaryRule, BusinessMetrics, UserPosition, PositionType } from '../types';
 
 interface HRComplianceProps {

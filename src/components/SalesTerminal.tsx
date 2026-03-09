@@ -2,10 +2,10 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCertificate, AlertLevel, IdentityData } from '../types';
 import { SAMPLE_PRODUCTS } from '../constants';
-import { NotifyBus } from '@/services/notification-service';
-import { PaymentEngine, PaymentResponse } from '@/services/payment-service';
-import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/services/gemini-service';
-import { FraudGuard } from '../services/fraudGuard'; 
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
+import { PaymentEngine, PaymentResponse } from '@/cells/business/payment-cell/domain/services/payment.engine';
+import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
+import { FraudGuard } from '@/cells/business/compliance-cell/domain/services/fraud-guard.engine'; 
 import AIAvatar from './AIAvatar';
 
 interface SalesTerminalProps {

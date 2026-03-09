@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { SyncJob, SyncConflictStrategy, SyncLog, ConflictResolutionMethod, DataPoint } from '../types';
 import OfflineService from '@/services/offline-service';
 import SuperDictionary from '../SuperDictionary';
-import { ConflictEngine } from '../services/conflict/ConflictResolver';
+import { ConflictEngine } from '@/core/conflict/conflict-resolver';
 
 const DataSyncEngine: React.FC = () => {
   const [isConnected, setIsConnected] = useState(true);

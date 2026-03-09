@@ -4,7 +4,7 @@ import {
   UserRole, UserPosition, OrderStatus, 
   ProductionOrder, PersonaID, LearnedTemplate
 } from '../types';
-import { LearningEngine } from '../services/learningEngine';
+import { LearningEngine } from '@/governance/qneu/learning.engine';
 import AIAvatar from './AIAvatar';
 
 interface DailyReportModuleProps {

@@ -1,7 +1,7 @@
 
 import React, { useState, ReactNode, useMemo } from 'react';
 import { ViewType, UserRole, ModuleConfig, HeatLevel, UserPosition, PositionType } from '../types';
-import { PersonnelEngine } from '../services/personnelEngine';
+import { PersonnelEngine } from '@/cells/business/hr-cell/domain/services/personnel.engine';
 import ModuleRegistry from '../services/moduleRegistry';
 import SystemTicker from './SystemTicker';
 

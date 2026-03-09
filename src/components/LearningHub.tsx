@@ -1,11 +1,11 @@
 
 import React, { useState, useRef } from 'react';
 import { UserPosition, UserRole, LearnedTemplate, PersonaID } from '../types';
-import { LearningEngine } from '../services/learningEngine';
+import { LearningEngine } from '@/governance/qneu/learning.engine';
 import AIAvatar from './AIAvatar';
 import * as XLSX from 'xlsx';
 import { SUPER_DICTIONARY } from '../SuperDictionary';
-import ThreatDetectionService from '@/services/threat-detection-service';
+import ThreatDetectionService from '@/cells/kernel/security-cell/domain/services/ThreatDetectionService';
 
 interface LearningHubProps {
   currentPosition: UserPosition;

@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { BankingEngine } from '../services/bankingService';
+import { BankingEngine } from '@/cells/business/finance-cell/domain/services/banking.engine';
 import { BankTransaction, BankSummary, PersonaID } from '../types';
-import { NotifyBus } from '@/services/notification-service';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
 import AIAvatar from './AIAvatar';
 
 const BankingProcessor: React.FC = () => {

@@ -1,10 +1,10 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { UserRole, UserPosition, PositionType, SellerReport, SellerIdentity, CustomerLead, PersonaID } from '../types';
-import { SellerEngine } from '../services/sellerEngine';
-import { NotifyBus } from '@/services/notification-service';
+import { SellerEngine } from '@/cells/business/sales-cell/domain/services/seller.engine';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
 import AIAvatar from './AIAvatar';
-import { generatePersonaResponse } from '@/services/gemini-service';
+import { generatePersonaResponse } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 
 interface SellerTerminalProps {
   currentRole: UserRole;

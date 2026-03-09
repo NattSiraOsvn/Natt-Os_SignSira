@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { ActionLog, UserRole, PersonaID } from '@/types';
-import { ShardingService } from '@/services/sharding-service';
+import { ShardingService } from '@/core/audit/sharding-engine';
 import { Copy, Check, ChevronDown, ChevronRight, Hash, Activity, ShieldCheck } from 'lucide-react';
 
 interface AuditTrailModuleProps {

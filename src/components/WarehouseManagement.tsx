@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { WarehouseEngine, AllocationPlan, WarehouseIntelligence } from '../services/warehouseService';
+import { WarehouseEngine, AllocationPlan, WarehouseIntelligence } from '@/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine';
 import { InventoryItem, UserRole, BusinessMetrics, WarehouseLocation } from '../types';
-import { LogisticsCore } from '@/services/logistics-service';
+import { LogisticsCore } from '@/cells/business/warehouse-cell/domain/services/logistics.engine';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 

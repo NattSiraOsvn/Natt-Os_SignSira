@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 /* Fix: Import SalesChannel from types directly */
 import { SalesChannel } from '../types';
-import { FlowEngine, FlowLog } from '../services/productionSalesFlow';
+import { FlowEngine, FlowLog } from '@/cells/business/production-cell/domain/services/flow.engine';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 

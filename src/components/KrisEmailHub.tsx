@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { GmailIntelligence } from '../services/gmailService';
+import { GmailIntelligence } from '@/cells/infrastructure/ai-connector-cell/domain/services/gmail.engine';
 import { EmailMessage, PersonaID, BusinessMetrics } from '../types';
-import { generatePersonaResponse } from '@/services/gemini-service';
+import { generatePersonaResponse } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 
 interface KrisEmailHubProps {
   logAction?: (action: string, details: string, undoData?: any) => void;

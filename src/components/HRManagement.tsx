@@ -3,8 +3,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { 
   UserRole, UserPosition, DetailedPersonnel, BusinessMetrics, PositionType 
 } from '../types';
-import { HREngine } from '../services/hrEngine';
-import { ExportEngine } from '@/services/export-service';
+import { HREngine } from '@/cells/business/hr-cell/domain/services/hr.engine';
+import { ExportEngine } from '@/core/infrastructure/export.engine';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 import { 

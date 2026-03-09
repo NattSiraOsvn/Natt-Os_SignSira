@@ -7,8 +7,8 @@ import CustomizationRequestModal from './CustomizationRequest';
 import FilterPanel from './FilterPanel';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
-import { PaymentEngine, PaymentResponse } from '@/services/payment-service';
-import { LogisticsCore } from '@/services/logistics-service';
+import { PaymentEngine, PaymentResponse } from '@/cells/business/payment-cell/domain/services/payment.engine';
+import { LogisticsCore } from '@/cells/business/warehouse-cell/domain/services/logistics.engine';
 
 interface ProductCatalogProps {
   logAction: (action: string, details: string) => void;

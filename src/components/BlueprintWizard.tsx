@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { generateBlueprint } from '@/services/gemini-service';
+import { generateBlueprint } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 
 const BlueprintWizard: React.FC = () => {
   const [desc, setDesc] = useState('');

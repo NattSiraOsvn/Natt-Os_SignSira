@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { SmartLinkEngine } from '../services/smartLinkEngine';
-import { SalesCore } from '../services/salesCore';
+import { SalesCore } from '@/cells/business/sales-cell/domain/services/sales-core.engine';
 import { AccountingEntry, UserRole } from '../types';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';

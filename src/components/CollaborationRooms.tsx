@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { RoomConfig, PersonaID, ChatMessage, RoomSettings, BusinessMetrics, UserRole, UserPosition, PositionType, JoinRequest } from '../types';
 import { PERSONAS } from '../constants';
-import { generatePersonaResponse } from '@/services/gemini-service';
+import { generatePersonaResponse } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import AIAvatar from './AIAvatar';
 
 interface CollaborationRoomsProps {

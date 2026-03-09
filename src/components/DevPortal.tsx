@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import TechnicalDocs from './TechnicalDocs';
-import { ShardingService } from '@/services/sharding-service';
-import { aiEngine } from '../services/aiEngine';
-import { generatePatentContent } from '@/services/gemini-service';
+import { ShardingService } from '@/core/audit/sharding-engine';
+import { aiEngine } from '@/cells/infrastructure/ai-connector-cell/domain/services/ai.engine';
+import { generatePatentContent } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { BlockShard, AuditItem, BusinessMetrics, PersonaID } from '../types';
 import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleRegistry';
-import { ExportEngine } from '@/services/export-service';
+import { ExportEngine } from '@/core/infrastructure/export.engine';
 import AIAvatar from './AIAvatar';
 import SuperDictionary, { SUPER_DICTIONARY } from '../SuperDictionary';
 

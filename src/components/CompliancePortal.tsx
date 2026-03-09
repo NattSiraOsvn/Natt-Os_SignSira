@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { RBACEngine } from '../services/rbacEngine';
+import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';
 import { ComplianceViolation, UserRole, PersonaID } from '../types';
 import AIAvatar from './AIAvatar';
-import { ExportEngine } from '@/services/export-service';
+import { ExportEngine } from '@/core/infrastructure/export.engine';
 
 // --- MOCK REGULATION DATABASE ---
 const REGULATIONS = [

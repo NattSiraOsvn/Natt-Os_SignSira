@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import ThreatDetectionService, { SecurityThreat } from '@/services/threat-detection-service';
+import ThreatDetectionService, { SecurityThreat } from '@/cells/kernel/security-cell/domain/services/ThreatDetectionService';
 import QuantumPulse from './QuantumPulse';
 import { QuantumBuffer } from '../services/quantumBufferService';
 

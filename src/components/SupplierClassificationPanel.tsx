@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Supplier, PersonaID } from '../types';
-import { SupplierEngine } from '../services/supplier/SupplierEngine';
-import { GmailIntelligence } from '../services/gmailService';
-import { ExportEngine } from '@/services/export-service';
+import { SupplierEngine } from '@/cells/business/sales-cell/domain/services/supplier.engine';
+import { GmailIntelligence } from '@/cells/infrastructure/ai-connector-cell/domain/services/gmail.engine';
+import { ExportEngine } from '@/core/infrastructure/export.engine';
 import AIAvatar from './AIAvatar';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
 

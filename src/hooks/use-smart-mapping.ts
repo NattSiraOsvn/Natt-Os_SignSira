@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import type { AccountingEntry } from "@/types";
 import { SmartLinkEngine } from "@/services/smartLinkEngine";
-import { SalesCore } from "@/services/salesCore";
+import { SalesCore } from "@/cells/business/sales-cell/domain/services/sales-core.engine";
 
 export interface MappingResult {
   id?: string;

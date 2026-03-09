@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Domain, ChatMessage, PersonaID } from '../types';
 import { DOMAINS, PERSONAS } from '../constants';
-import { generatePersonaResponse, speakText, requestApiKey } from '@/services/gemini-service';
+import { generatePersonaResponse, speakText, requestApiKey } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import AIAvatar from './AIAvatar';
 
 interface ChatConsultantProps {

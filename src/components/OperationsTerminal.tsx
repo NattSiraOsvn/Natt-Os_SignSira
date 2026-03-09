@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { UserRole, UserPosition, SellerReport, LogisticsSolution, TransferOrder } from '../types';
-import { LogisticsCore } from '@/services/logistics-service';
+import { LogisticsCore } from '@/cells/business/warehouse-cell/domain/services/logistics.engine';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 
