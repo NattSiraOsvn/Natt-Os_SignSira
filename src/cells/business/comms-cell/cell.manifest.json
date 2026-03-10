@@ -1,0 +1,24 @@
+{
+  "cellId": "comms-cell",
+  "cellName": "Comms Cell",
+  "version": "1.0.0",
+  "status": "ACTIVE",
+  "zone": "business",
+  "components": {
+    "identity": "comms-cell@1.0.0",
+    "capability": [
+      "partner-room",
+      "internal-chat",
+      "voice-call",
+      "file-transfer",
+      "invoice-ocr-match",
+      "payment-request",
+      "debt-statement",
+      "auto-chase-20h"
+    ],
+    "boundary": "boundary.policy.json",
+    "trace": "Message + InvoiceMatchResult + ChaseLog — immutable",
+    "confidence": 1.0,
+    "smartLink": "supplier-cell, payment-cell, finance-cell, audit-cell"
+  }
+}
