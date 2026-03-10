@@ -1,0 +1,8 @@
+{
+  "cell_id": "polishing-cell",
+  "version": "1.0.0",
+  "category": "business",
+  "status": "ACTIVE",
+  "description": "Phòng Nhám Bóng — hoàn thiện bề mặt, xuất thành phẩm vào inventory-cell",
+  "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
+}

@@ -1,0 +1,8 @@
+{
+  "cell_id": "casting-cell",
+  "version": "1.0.0",
+  "category": "business",
+  "status": "ACTIVE",
+  "description": "Phòng Đúc — quản lý quy trình đúc khuôn, hao hụt vàng đúc, lệnh sản xuất từ production-cell",
+  "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
+}
