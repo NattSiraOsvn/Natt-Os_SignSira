@@ -1,1 +1,1 @@
-{ "isolation": "strict", "allowedPorts": [] }
+{"cellId":"warehouse-cell","allowRead":["finance-cell","audit-cell","inventory-cell","production-cell"],"allowWrite":["supplier-cell","order-cell","casting-cell","polishing-cell"],"forbidden":["direct-ui-write"]}

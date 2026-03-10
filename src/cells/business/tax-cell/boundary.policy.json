@@ -1,0 +1,9 @@
+{
+  "cellId": "tax-cell",
+  "allowRead": ["finance-cell", "audit-cell", "warehouse-cell", "production-cell", "noi-vu-cell"],
+  "allowWrite": ["finance-cell", "audit-cell"],
+  "forbidden": [
+    "direct-ledger-modification",
+    "auto-approve-profit-retention"
+  ]
+}
