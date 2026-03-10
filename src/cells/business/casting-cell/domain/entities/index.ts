@@ -1,1 +1,1 @@
-export * from "./casting-order.entity"
+export * from './casting-order.entity'

@@ -1,1 +1,1 @@
-export * from "./polishing-order.entity"
+export * from './polishing-order.entity'
