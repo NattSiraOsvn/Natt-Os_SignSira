@@ -1,0 +1,9 @@
+{
+  "cell_id": "design-3d-cell",
+  "version": "1.0.0",
+  "category": "business",
+  "status": "ACTIVE",
+  "description": "Production Intelligence Core — ADN vật lý của từng SKU. 3D file gốc → định mức SX → audit chain. Blocking: audit-cell, TaxCell TT200, NaSi warranty.",
+  "source": "664GB Phòng Thiết Kế 3D — STL/OBJ/3DM files",
+  "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
+}
