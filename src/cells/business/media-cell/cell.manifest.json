@@ -1,0 +1,1 @@
+{"cellId":"media-cell","cellName":"Media Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"media-cell@1.0.0","capability":["asset-register","publish","archive","cost-tracking-641-642"],"boundary":"boundary.policy.json","trace":"MediaAsset log","confidence":1.0,"smartLink":"finance-cell, audit-cell, noi-vu-cell"}}
