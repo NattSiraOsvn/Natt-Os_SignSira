@@ -1,6 +1,6 @@
 export type ProcessorType =
   | "csv" | "excel" | "json" | "pdf"
-  | "image" | "video" | "3d-model"
+  | "image" | "video" | "3d-model" | "archive"
 
 export interface ProcessorResult {
   success: boolean
@@ -21,8 +21,10 @@ export interface NormalizerResult {
 }
 
 export interface MetabolismEvent {
-  type: "DataIngested" | "DataNormalized" | "DataAnomaly" | "ArchiveBridged"
+  type: "DataIngested" | "DataNormalized" | "DataAnomaly" | "ArchiveBridged" | "ProcessorError"
   source: string
+  processorType?: ProcessorType
+  cellTarget?: string
   payload: Record<string, unknown>
   timestamp: number
 }
