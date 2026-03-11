@@ -1,6 +1,6 @@
 {
   "constitutionalAdn": {
-    "identity": "hr-cell",
+    "identity": "event-cell",
     "capability": [],
     "boundary": "strict",
     "trace": "audit",
@@ -8,7 +8,7 @@
     "smartlink": "event-bus",
     "lifecycle": "active"
   },
-  "cell": "hr-cell",
+  "cell": "event-cell",
   "status": "ACTIVE",
   "layer": "infrastructure",
   "wave": 2

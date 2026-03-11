@@ -1,10 +1,10 @@
-~
+
 {
-  "id": "cell:sales",
-  "type": "CORE-CELL",
+  "id": "cell:shared-kernel",
+  "type": "UEI-CELL",
   "status": "ENFORCED",
   "identity": {
-    "adn_id": "0xNAT-2026-SUPREME-SALES",
+    "adn_id": "0xNAT-2026-SUPREME-SK",
     "version": "1.1.0",
     "owner": "ANH_NAT",
     "registry_signature": "SIG_BY_MASTER_NAT_2026"
@@ -15,8 +15,7 @@
     "lockdown_level": "STRICT"
   },
   "capabilities": [
-    { "id": "capability:sales:order:create", "intent": "CreateOrder" },
-    { "id": "capability:sales:stats:revenue", "intent": "GetRevenueStats" }
+    { "id": "capability:shared:types", "intent": "GetDefinitions" }
   ],
   "immune_integration": {
     "audit_enabled": true,

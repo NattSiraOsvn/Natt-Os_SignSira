@@ -1,3 +1,3 @@
-// hr-cell Entry Point
+// event-cell Entry Point
 export * from './interface';
 export * from './ports';
