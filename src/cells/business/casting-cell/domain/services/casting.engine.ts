@@ -1,3 +1,4 @@
+import { CastingSmartLinkPort } from "../../ports/casting-smartlink.port";
 import { CastingOrder } from "../entities"
 export interface CastingCompletedEvent {
   type: "CastingCompleted"

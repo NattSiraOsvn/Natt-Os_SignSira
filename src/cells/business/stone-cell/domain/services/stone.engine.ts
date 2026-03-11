@@ -1,3 +1,4 @@
+import { StoneSmartLinkPort } from "../../ports/stone-smartlink.port";
 import { StoneOrder } from "../entities"
 export interface StoneSettingCompletedEvent {
   type: "StoneSettingCompleted"

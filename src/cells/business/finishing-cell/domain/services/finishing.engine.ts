@@ -1,3 +1,4 @@
+import { FinishingSmartLinkPort } from "../../ports/finishing-smartlink.port";
 import { FinishingOrder } from "../entities"
 export interface FinishingQCPassedEvent {
   type: "FinishingQCPassed"; orderId: string; skuId: string; timestamp: number

@@ -1,3 +1,4 @@
+import { PolishingSmartLinkPort } from "../../ports/polishing-smartlink.port";
 import { PolishingOrder } from "../entities"
 export interface PolishingCompletedEvent {
   type: "PolishingCompleted"; orderId: string; skuId: string
