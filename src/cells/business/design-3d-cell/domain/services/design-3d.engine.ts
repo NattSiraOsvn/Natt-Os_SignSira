@@ -1,3 +1,4 @@
+import { Design3dSmartLinkPort } from "../../ports/design-3d-smartlink.port";
 import { SkuModel, ModelFormat } from "../entities"
 
 export interface SkuModelCreatedEvent {
