@@ -1,10 +1,13 @@
+import { ShowroomSmartLinkPort } from "../../ports/showroom-smartlink.port";
 import type { ShowroomProduct, ShowroomMedia } from "@/types/showroom";
 
 const _catalog: ShowroomProduct[] = [];
 
 export const ShowroomService = {
   addProduct: (p: ShowroomProduct): ShowroomProduct => {
-    _catalog.push(p); return p;
+    _catalog.push(p);
+    ShowroomSmartLinkPort.notifyProductViewed(p.id, 'system');
+    return p;
   },
 
   getById: (id: string): ShowroomProduct | null =>
@@ -40,6 +43,9 @@ export const ShowroomService = {
 
   updateAvailability: (id: string, available: boolean): void => {
     const p = _catalog.find(x => x.id === id);
-    if (p) p.available = available;
+    if (p) {
+      p.available = available;
+      if (available) ShowroomSmartLinkPort.notifyItemReserved(id, 'system');
+    }
   },
 };

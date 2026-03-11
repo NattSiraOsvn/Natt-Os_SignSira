@@ -1,3 +1,4 @@
+import { CustomerSmartLinkPort } from "../../ports/customer-smartlink.port";
 /**
  * NATT-OS — Customer Cell
  * Domain Service: CustomerEngine

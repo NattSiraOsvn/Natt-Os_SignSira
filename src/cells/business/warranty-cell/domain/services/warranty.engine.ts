@@ -1,3 +1,4 @@
+import { WarrantySmartLinkPort } from "../../ports/warranty-smartlink.port";
 /**
  * NATT-OS — Warranty Cell
  * Domain Service: Warranty Engine
