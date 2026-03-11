@@ -1,3 +1,4 @@
+import { PeriodCloseSmartLinkPort } from "../../ports/periodclose-smartlink.port";
 import { ClosingSession } from '../entities/closing-session.entity';
 
 export interface IRollbackManager {

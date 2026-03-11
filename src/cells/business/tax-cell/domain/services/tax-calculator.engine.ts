@@ -1,3 +1,4 @@
+import { TaxSmartLinkPort } from "../../ports/tax-smartlink.port";
 import { GtgtDeclaration, TaxTransaction, TaxType } from '../entities/tax-transaction.entity';
 
 export class TaxCalculator {

@@ -1,3 +1,4 @@
+import { PeriodCloseSmartLinkPort } from "../../ports/periodclose-smartlink.port";
 import { ValidationReport } from '../entities/validation-report.entity';
 import { ClosingSession } from '../entities/closing-session.entity';
 
