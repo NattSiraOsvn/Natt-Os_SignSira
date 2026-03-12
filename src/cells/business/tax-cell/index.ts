@@ -1,2 +1,1 @@
-export * from './domain/entities';
-export * from './domain/services';
+export { TaxEngine } from './infrastructure/Tax.engine';

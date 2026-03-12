@@ -1,2 +1,1 @@
-export * from './domain/entities'
-export * from './domain/services'
+export { FinishingEngine } from './infrastructure/Finishing.engine';

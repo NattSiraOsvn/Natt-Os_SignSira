@@ -1,8 +1,1 @@
-{
-  "cell_id": "stone-cell",
-  "version": "1.0.0",
-  "category": "business",
-  "status": "ACTIVE",
-  "description": "Phòng Hột — quản lý đá quý, gắn hột, định mức đá theo SKU từ design-3d-cell",
-  "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
-}
+{"id":"stone-cell","version":"1.0.0","qneu":100,"sprint":2}

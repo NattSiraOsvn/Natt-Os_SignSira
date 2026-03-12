@@ -1,1 +1,21 @@
-{ "cell_id": "order-cell", "version": "2.0.0", "wave": "3", "layer": "business", "status": "ACTIVE", "structure": { "current_structure": "5_LAYER", "migration_status": "COMPLETE" }, "adn": { "identity": { "name": "Order Cell", "domain": "Quản lý đơn hàng Tâm Luxury" }, "lifecycle": { "implemented_by": "Băng", "approved_by": "Anh Natt (Gatekeeper)" } } }
+{
+  "id": "order-cell",
+  "name": "Order Cell",
+  "version": "1.0.0",
+  "qneu": 100,
+  "sprint": 1,
+  "dependencies": [],
+  "smartlink": {
+    "subscribes": [],
+    "emits": ["ORDER_CREATED"]
+  },
+  "dataSource": "ĐIỀU_PHỐI_NĂM_2 / sheet ĐH UYÊN",
+  "components": {
+    "identity": "cell.manifest.json",
+    "capability": "application/order.usecase.ts",
+    "boundary": "ports/order.smartlink.port.ts",
+    "trace": "infrastructure/order.engine.ts (console.log)",
+    "confidence": "domain/order.entity.ts (type-safe)",
+    "smartlink": "ports/order.smartlink.port.ts"
+  }
+}

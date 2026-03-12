@@ -1,2 +1,1 @@
-export * from './domain/entities'
-export * from './domain/services'
+export { PolishingEngine } from './infrastructure/Polishing.engine';

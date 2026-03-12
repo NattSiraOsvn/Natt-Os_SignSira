@@ -1,0 +1,15 @@
+{
+  "id": "dust-recovery-cell",
+  "name": "Dust Recovery & Smart Benchmarking",
+  "version": "1.0.0",
+  "qneu": 180,
+  "qneuNote": "Đề xuất của Kim, chờ Gatekeeper phê duyệt",
+  "sprint": "2.5",
+  "dependencies": ["finishing-cell", "prdmaterials-cell"],
+  "smartlink": {
+    "subscribes": ["DUST_RETURNED", "PERIOD_CLOSE_REQUEST"],
+    "emits": ["DUST_RECOVERED", "DUST_ALERT", "CARRY_FORWARD_PROPOSAL", "DUST_CLOSE_REPORT"]
+  },
+  "dataSource": "BUI_VANG_2025.xlsx – sheet Vật tư phụ - Vàng sau nấu",
+  "rules": ["TR-006", "TR-007", "FS-024", "FS-025"]
+}

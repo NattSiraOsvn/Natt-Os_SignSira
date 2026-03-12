@@ -1,2 +1,1 @@
-export * from './domain/entities'
-export * from './domain/services'
+export { StoneEngine } from './infrastructure/Stone.engine';
