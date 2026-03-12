@@ -1,3 +1,4 @@
+import { SupplierSmartLinkPort } from "../../ports/supplier-smartlink.port";
 import { Supplier, PurchaseOrder, POItem } from '../entities/supplier.entity';
 export class SupplierEngine {
   static createPO(supplier: Supplier, items: POItem[], totalAmount: number, taxAmount: number, customsDuty?: number): PurchaseOrder {

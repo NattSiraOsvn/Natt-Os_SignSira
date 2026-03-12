@@ -1,3 +1,4 @@
+import { LogisticsSmartLinkPort } from "../../ports/logistics-smartlink.port";
 // @ts-nocheck
 // ═══════════════════════════════════════════════════════════
 // INHERITED FROM V2 — 2026-03-11

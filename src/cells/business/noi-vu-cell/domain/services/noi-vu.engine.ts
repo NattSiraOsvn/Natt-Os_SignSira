@@ -1,3 +1,4 @@
+import { NoiVuSmartLinkPort } from "../../ports/noivu-smartlink.port";
 import { OverheadExpense, NoiVuCategory, CostCenter } from '../entities/noi-vu.entity';
 export class NoiVuEngine {
   static resolveTk(category: NoiVuCategory, costCenter: CostCenter): '627' | '642' | '641' {
