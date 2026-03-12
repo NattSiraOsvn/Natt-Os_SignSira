@@ -4,7 +4,7 @@
  */
 
 import { Order, createOrder } from '../domain/order.entity';
-import { OrderCreatedEvent } from '@/governance/event-contracts/production-events';
+import { OrderCreatedEvent } from '../../../../governance/event-contracts/production-events';
 
 export interface IOrderRepository {
   findAll(): Promise<Order[]>;

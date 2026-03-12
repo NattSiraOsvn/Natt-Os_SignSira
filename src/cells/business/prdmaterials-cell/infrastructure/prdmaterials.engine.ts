@@ -3,7 +3,7 @@
  */
 
 import { CreateCastingRequestUseCase, ILapRepository, IPhieuInfoAdapter } from '../application/prdmaterials.usecase';
-import { CastingRequestEvent } from '@/governance/event-contracts/production-events';
+import { CastingRequestEvent } from '../../../../governance/event-contracts/production-events';
 import { Lap } from '../domain/prdmaterials.entity';
 
 export interface ISmartLinkPort {

@@ -1,61 +1,77 @@
 /**
- * finishing-cell / domain / finishing.entity.ts
- * Nguồn: SỔ GIAO THỢ + CÂN NGUYÊN LIỆU
- * 9 công đoạn nguội: NGUOI_1, NGUOI_2_RAP, NGUOI_3_RAP, NGUOI_SC, NB_1, NB_CUOI, HOT, DA_CHU, MOC_MAY
+ * finishing-cell — domain/finishing.entity.ts
+ * Sprint 2 | Tâm Luxury NATT-OS
  *
- * TR-007 / FS-025: role SX|SC BẮT BUỘC trong mọi event DUST_RETURNED
+ * FS-025: role SX|SC bắt buộc trong mọi DustIssue
  */
 
-import { WorkerRole, WipStage } from '@/governance/event-contracts/production-events';
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+export type FinishingStatus = 'IN_PROGRESS' | 'COMPLETED' | 'ON_HOLD';
 
 export interface WorkerAssignment {
-  workerId: string;
+  workerId:   string;
   workerName: string;
-  role: WorkerRole;   // BẮT BUỘC
-  stage: WipStage;
-  orderId: string;
-  lapId: string;
-  startedAt: Date;
-  completedAt?: Date;
-  timeSpent?: number; // phút
-  kpi?: number;
-  dinhMuc?: number;
+  role:       'SX' | 'SC'; // SX = sản xuất, SC = sửa chữa
+  assignedAt: Date;
 }
 
 export interface DustIssue {
-  id: string;
-  workerId: string;
-  role: WorkerRole;   // BẮT BUỘC – không được để undefined
-  vtType: string;
-  tlGiao: number;
-  issuedAt: Date;
-  periodId: string;
-  lapIds?: string[];
-  orderIds?: string[];
+  id:          string;
+  workerId:    string;
+  role:        'SX' | 'SC'; // FS-025 — không được bỏ trống
+  weightGram:  number;       // trọng lượng bụi xuất ra (gram)
+  issuedAt:    Date;
+  note?:       string;
 }
 
-/** Validate role trước khi tạo DustIssue – FS-025 */
+export interface FinishingRecord {
+  id:          string;
+  lapId:       string;
+  orderId:     string;
+  workers:     WorkerAssignment[];
+  dustIssues:  DustIssue[];
+  status:      FinishingStatus;
+  startedAt:   Date;
+  completedAt?: Date;
+}
+
+// ─── Factories ───────────────────────────────────────────────────────────────
+
+/**
+ * createDustIssue — FS-025 guard
+ * role PHẢI là 'SX' hoặc 'SC', không được undefined/null/''.
+ */
 export function createDustIssue(
-  workerId: string,
-  role: WorkerRole | undefined,
-  vtType: string,
-  tlGiao: number,
-  periodId: string,
-  lapIds?: string[],
-  orderIds?: string[],
+  workerId:   string,
+  role:       'SX' | 'SC',
+  weightGram: number,
+  note?:      string,
 ): DustIssue {
   if (!role || !['SX', 'SC'].includes(role)) {
-    throw new Error(`[finishing-cell] DustIssue phải có role SX|SC. workerId=${workerId} – FS-025`);
+    throw new Error(`[FS-025] DustIssue role invalid: "${role}". Must be SX or SC.`);
+  }
+  if (weightGram <= 0) {
+    throw new Error(`[finishing-cell] DustIssue weightGram must be > 0, got ${weightGram}`);
   }
   return {
-    id: `dust-issue:${workerId}:${role}:${vtType}:${Date.now()}`,
+    id:         `DUST-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
     workerId,
     role,
-    vtType,
-    tlGiao,
-    issuedAt: new Date(),
-    periodId,
-    lapIds,
-    orderIds,
+    weightGram,
+    issuedAt:   new Date(),
+    note,
+  };
+}
+
+export function createFinishingRecord(lapId: string, orderId: string): FinishingRecord {
+  return {
+    id:         `FIN-${lapId}-${Date.now()}`,
+    lapId,
+    orderId,
+    workers:    [],
+    dustIssues: [],
+    status:     'IN_PROGRESS',
+    startedAt:  new Date(),
   };
 }

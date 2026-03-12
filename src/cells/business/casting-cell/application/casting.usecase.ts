@@ -3,7 +3,7 @@
  */
 
 import { CastingRecord, createCastingRecord } from '../domain/casting.entity';
-import { CastingRequestEvent, WipPhoiEvent } from '@/governance/event-contracts/production-events';
+import { CastingRequestEvent, WipPhoiEvent } from '../../../../governance/event-contracts/production-events';
 
 export interface ICastingRepository {
   findById(id: string): Promise<CastingRecord | null>;

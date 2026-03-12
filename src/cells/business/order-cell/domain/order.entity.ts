@@ -3,7 +3,7 @@
  * Nguồn dữ liệu: ĐIỀU_PHỐI_NĂM_2 (sheet ĐH UYÊN)
  */
 
-import { OrderType } from '@/governance/event-contracts/production-events';
+import { OrderType } from '../../../../governance/event-contracts/production-events';
 
 export type OrderStatus =
   | 'PENDING'        // mới tạo, chưa xuống xưởng

@@ -9,7 +9,7 @@
  *   PHỔ% VH: KHÔNG hard-code – phải đo thực tế sau mỗi lần nấu
  */
 
-import { VatTuType, WorkerRole } from '@/governance/event-contracts/production-events';
+import { VatTuType, WorkerRole } from '../../../../governance/event-contracts/production-events';
 
 export interface DustRecord {
   id: string;

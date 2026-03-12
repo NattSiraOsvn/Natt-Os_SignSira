@@ -3,7 +3,7 @@
  */
 
 import { Lap, createLap, LapItem } from '../domain/prdmaterials.entity';
-import { CastingRequestEvent } from '@/governance/event-contracts/production-events';
+import { CastingRequestEvent } from '../../../../governance/event-contracts/production-events';
 
 export interface ILapRepository {
   findById(lapId: string): Promise<Lap | null>;

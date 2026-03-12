@@ -4,7 +4,7 @@
  */
 
 import { ProcessCastingRequestUseCase, ICastingRepository, ICastingSheetAdapter } from '../application/casting.usecase';
-import { CastingRequestEvent, WipPhoiEvent } from '@/governance/event-contracts/production-events';
+import { CastingRequestEvent, WipPhoiEvent } from '../../../../governance/event-contracts/production-events';
 import { CastingRecord } from '../domain/casting.entity';
 
 export interface ISmartLinkPort {

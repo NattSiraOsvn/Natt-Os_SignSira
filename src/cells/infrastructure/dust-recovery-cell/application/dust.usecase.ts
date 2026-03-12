@@ -17,7 +17,7 @@ import {
   DustAlertEvent,
   CarryForwardProposalEvent,
   DustCloseReportEvent,
-} from '@/governance/event-contracts/production-events';
+} from '../../../../governance/event-contracts/production-events';
 
 export interface IDustRepository {
   save(record: DustRecord): Promise<void>;

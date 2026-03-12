@@ -6,7 +6,7 @@
  */
 
 import { CreateOrderUseCase, IOrderRepository, IOrderSheetAdapter } from '../application/order.usecase';
-import { OrderCreatedEvent } from '@/governance/event-contracts/production-events';
+import { OrderCreatedEvent } from '../../../../governance/event-contracts/production-events';
 
 export interface ISmartLinkPort {
   emit(eventType: string, payload: unknown): void;

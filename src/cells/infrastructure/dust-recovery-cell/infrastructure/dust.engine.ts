@@ -14,7 +14,7 @@ import {
   DustAlertEvent,
   CarryForwardProposalEvent,
   DustCloseReportEvent,
-} from '@/governance/event-contracts/production-events';
+} from '../../../../governance/event-contracts/production-events';
 import { DustRecord, BenchmarkRecord } from '../domain/dust.entity';
 
 export interface ISmartLinkPort {
