@@ -14,9 +14,9 @@ import { TaxIntegrator } from './domain/services/tax.integrator';
 import { RollbackManager } from './domain/services/rollback.manager';
 
 export const PeriodCloseServices = {
-  validate: PrecloseValidator.validate,
-  execute: ClosingExecutor.execute,
-  allocate: AllocationEngine.allocate,
-  integrateTax: TaxIntegrator.integrate,
-  rollback: RollbackManager.rollback
+  validate: PrecloseValidator.validate.bind(PrecloseValidator),
+  execute: ClosingExecutor.execute.bind(ClosingExecutor),
+  allocate: AllocationEngine.allocate.bind(AllocationEngine),
+  integrateTax: TaxIntegrator.integrate.bind(TaxIntegrator),
+  rollback: RollbackManager.rollback.bind(RollbackManager),
 };

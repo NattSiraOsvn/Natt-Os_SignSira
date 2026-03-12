@@ -11,40 +11,26 @@ export interface ITaxIntegrator {
 
 export class TaxIntegrator {
   static async integrate(period: string, profitBeforeTax: number): Promise<{ taxJournalEntry?: any; taxAmount: number }> {
-    const taxCell = this.getTaxCellProxy();
-    const { taxAmount } = await taxCell.calculateCit(profitBeforeTax);
-
+    const { taxAmount } = await this.getTaxCellProxy().calculateCit(profitBeforeTax);
     if (taxAmount > 0) {
-      const taxJE = {
-        id: `JE_${period}_TAX`,
-        date: new Date(),
-        description: 'Chi phí thuế TNDN tạm tính',
-        entries: [
-          { account: '821', debit: taxAmount, credit: 0 },
-          { account: '3334', debit: 0, credit: taxAmount }
-        ]
+      return {
+        taxJournalEntry: {
+          id: `JE_${period}_TAX`, date: new Date(),
+          description: 'Chi phi thue TNDN tam tinh',
+          entries: [{ account: '821', debit: taxAmount, credit: 0 }, { account: '3334', debit: 0, credit: taxAmount }]
+        },
+        taxAmount
       };
-      return { taxJournalEntry: taxJE, taxAmount };
     }
-
     return { taxAmount };
   }
 
   private static getTaxCellProxy(): ITaxCell {
     return {
-      async calculateCit(profitBeforeTax: number) {
-        const taxAmount = profitBeforeTax > 0 ? profitBeforeTax * 0.2 : 0;
-        return { taxAmount, taxableIncome: profitBeforeTax };
-      },
-      async suggestRetentionRate(profitAfterTax: number) {
-        return 30;
-      },
-      async generateB01B02(period: string) {
-        return {};
-      },
-      async generateTaxReport(period: string, type: 'gtgt' | 'tndn') {
-        return {};
-      }
+      async calculateCit(p: number) { return { taxAmount: p > 0 ? p * 0.2 : 0, taxableIncome: p }; },
+      async suggestRetentionRate(_p: number) { return 30; },
+      async generateB01B02(_p: string) { return {}; },
+      async generateTaxReport(_p: string, _t: 'gtgt' | 'tndn') { return {}; }
     };
   }
 }
