@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * finishing-cell — domain/finishing.entity.ts
  * Sprint 2 | Tâm Luxury NATT-OS

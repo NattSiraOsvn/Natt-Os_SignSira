@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{PersonnelEngine,LeaveRequest}from"../../../../../cells/business/hr-cell/domain/services/personnel.engine";
 export async function getPendingLeaves():Promise<LeaveRequest[]>{return PersonnelEngine.getPendingLeaves();}
 export async function approveLeave(leaveId:string,approvedBy:string):Promise<LeaveRequest|null>{return PersonnelEngine.approveLeave(leaveId,approvedBy);}

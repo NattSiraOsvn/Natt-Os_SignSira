@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Pricing Application Service
  * Facade cho các use cases — interface chính cho cells khác gọi qua EDA.

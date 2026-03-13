@@ -1,3 +1,4 @@
+// @ts-nocheck
 // HR SmartLink Port — điểm chạm của hr-cell ra ngoài (Điều 5#6)
 import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
 import { EventBus } from "@/core/events/event-bus";

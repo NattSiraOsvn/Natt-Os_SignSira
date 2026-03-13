@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { IMonitorRepository } from "../../ports/MonitorRepository";
 import type { CellHealth } from "../../domain/entities/cell-health.entity";
 

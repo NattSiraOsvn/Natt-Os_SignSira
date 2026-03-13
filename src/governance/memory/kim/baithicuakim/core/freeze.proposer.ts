@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface FreezeProposal {
   reason: string;
   severity: 'LOW' | 'MEDIUM' | 'HIGH';

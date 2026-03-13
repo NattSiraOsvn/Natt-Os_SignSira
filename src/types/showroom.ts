@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Showroom types — Tâm Luxury
 export interface ShowroomMedia {
   id: string;

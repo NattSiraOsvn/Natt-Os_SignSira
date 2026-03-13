@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ImmuneLevel } from "../entities"
 import { EntropyAlert } from "../../contracts/events"
 

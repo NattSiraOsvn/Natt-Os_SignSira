@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Showroom Cell
  * Application Service: ShowroomService

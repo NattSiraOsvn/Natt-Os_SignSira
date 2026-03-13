@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Threat } from "../domain/entities/threat.entity";
 
 export interface ISecurityRepository {

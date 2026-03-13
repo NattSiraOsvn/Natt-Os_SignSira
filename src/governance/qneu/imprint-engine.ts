@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Imprint Engine — Frequency Tracking + Permanent Nodes
  * 

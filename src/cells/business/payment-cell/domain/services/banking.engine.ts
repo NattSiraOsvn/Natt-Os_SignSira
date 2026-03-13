@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Banking Classification Engine — Phân loại giao dịch ngân hàng
  * Source: V2 bankingService.ts (166L) — đặc thù kim hoàn

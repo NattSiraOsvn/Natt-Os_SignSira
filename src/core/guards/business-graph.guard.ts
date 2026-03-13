@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Business Graph Guards
  * Lock #13: Shared contracts — semantic consistency

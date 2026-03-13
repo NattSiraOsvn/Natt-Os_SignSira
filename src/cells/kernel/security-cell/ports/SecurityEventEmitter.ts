@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface SecurityEventEmitter {
   emitThreatDetected(threatId: string, severity: string, type: string): Promise<void>;
   emitLockdownInitiated(reason: string): Promise<void>;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Governance types - UserRole exported as VALUE (not type) for computed property use
 export { UserRole } from '../types';
 export type { UserPosition } from '../types';

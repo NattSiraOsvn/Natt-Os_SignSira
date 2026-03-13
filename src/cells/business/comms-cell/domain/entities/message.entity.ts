@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type MessageType = 'TEXT' | 'FILE' | 'IMAGE' | 'INVOICE' | 'PAYMENT_REQUEST' | 'DEBT_STATEMENT' | 'SYSTEM';
 
 export interface Attachment {

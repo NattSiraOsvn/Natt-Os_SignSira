@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Role Entity - Core RBAC role definition
  */

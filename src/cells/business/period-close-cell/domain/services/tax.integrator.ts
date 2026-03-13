@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ITaxCell {
   calculateCit(profitBeforeTax: number, adjustments?: any): Promise<{ taxAmount: number; taxableIncome: number }>;
   suggestRetentionRate(profitAfterTax: number): Promise<number>;

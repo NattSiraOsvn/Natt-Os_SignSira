@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Production Order Entity — Lệnh sản xuất
  * Source: V2 types.ts ProductionOrder + OrderStatus

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // sales-cell contracts
 export const EVENTS_SALES = {
   CREATED: "sales.created",

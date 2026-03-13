@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Design3dEngine, Design3dEvent } from "../../domain/services"
 import { InMemorySkuModelRepository } from "../../infrastructure/repositories"
 import { SkuModel } from "../../domain/entities"

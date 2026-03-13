@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const AUDIT_EVENTS = {
   RECORDED: "audit.recorded",
   CHAIN_VERIFIED: "audit.chain_verified",

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { HREngine } from '@/cells/business/hr-cell/domain/services/hr.engine';

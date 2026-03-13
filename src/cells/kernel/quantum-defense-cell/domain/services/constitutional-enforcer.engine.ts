@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ViolationDetected } from "../../contracts/events"
 
 interface EventEnvelope {

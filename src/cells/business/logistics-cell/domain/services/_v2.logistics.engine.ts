@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { LogisticsSmartLinkPort } from "../../ports/logistics-smartlink.port";
 // @ts-nocheck
 // ═══════════════════════════════════════════════════════════

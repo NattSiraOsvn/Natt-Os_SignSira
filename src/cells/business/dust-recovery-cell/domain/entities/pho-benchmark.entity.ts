@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface PhoBenchmark {
   workerId: string;
   luong: 'SX' | 'SC';

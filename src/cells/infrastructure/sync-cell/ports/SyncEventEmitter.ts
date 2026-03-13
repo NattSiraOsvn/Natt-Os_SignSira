@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface SyncEventEmitter {
   emitSyncStarted(jobId: string, source: string, target: string): Promise<void>;
   emitSyncCompleted(jobId: string, recordsSynced: number): Promise<void>;

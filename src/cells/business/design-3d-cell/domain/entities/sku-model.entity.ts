@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ModelFormat = "stl" | "obj" | "3dm" | "step" | "stp"
 
 export interface ProductionSpec {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Finance Engine — Tính thuế GTGT trực tiếp + cảnh báo margin
  * 

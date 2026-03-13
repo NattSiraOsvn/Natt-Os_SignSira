@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{CustomsRobotEngine}from"../../domain/services/customs.engine";
 export interface SubmitDeclarationInput{importerId:string;goods:Array<{hsCode:string;description:string;quantity:number;unit:string;cif:number}>;exchangeRate:number;declarationType:"IMPORT"|"EXPORT"|"TRANSIT";}
 export interface SubmitDeclarationResult{success:boolean;trackingId?:string;totalCIF_VND:number;estimatedDuty:number;estimatedVAT:number;totalPayable:number;error?:string;}

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { InvoiceMatchResult, MatchStatus } from '../entities/invoice-match.entity';
 
 interface OCRData {

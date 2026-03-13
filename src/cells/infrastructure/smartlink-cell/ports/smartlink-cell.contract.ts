@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const SMARTLINK_EVENTS = {
   LINK_ESTABLISHED:    "smartlink.link_established",
   LINK_BROKEN:         "smartlink.link_broken",

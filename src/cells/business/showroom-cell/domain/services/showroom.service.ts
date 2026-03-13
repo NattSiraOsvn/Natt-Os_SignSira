@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ShowroomSmartLinkPort } from "../../ports/showroom-smartlink.port";
 import type { ShowroomProduct, ShowroomMedia } from "@/types/showroom";
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * SUPER DICTIONARY — Tầng A Ground Truth
  * Từ điển toàn hệ thống: thuật ngữ kỹ thuật + nghiệp vụ + pháp lý

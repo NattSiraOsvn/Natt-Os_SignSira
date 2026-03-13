@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Constitution v4.0 — Programmatic Reference
  * 

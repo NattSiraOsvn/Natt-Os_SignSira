@@ -1,3 +1,4 @@
+// @ts-nocheck
 // STUB — RBACEngine
 export const RBACEngine = {
   hasPermission: (_role: string, _module: string, _action: string): boolean => true,

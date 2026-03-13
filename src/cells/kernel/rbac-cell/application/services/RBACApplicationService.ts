@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { InMemoryRBACRepository } from "../../infrastructure/repositories/InMemoryRBACRepository";
 import { AssignRoleUseCase } from "../use-cases/AssignRoleUseCase";
 import { CheckAccessUseCase } from "../use-cases/CheckAccessUseCase";

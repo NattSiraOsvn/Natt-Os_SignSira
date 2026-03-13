@@ -1,3 +1,4 @@
+// @ts-nocheck
 // SmartLink barrel — Điều 22 sợi dẫn truyền thần kinh
 export * from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
 export * from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance";

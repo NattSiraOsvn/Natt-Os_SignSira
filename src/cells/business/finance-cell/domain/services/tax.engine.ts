@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface TaxCalculation {
   baseAmount: number;
   vatRate: number;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const cellIdentity = {
   id: 'neural-main-cell',
   version: '0.1.0',

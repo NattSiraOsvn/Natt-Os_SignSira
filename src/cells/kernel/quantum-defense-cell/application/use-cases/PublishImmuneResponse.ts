@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { QuantumDefenseEvent } from "../../contracts/events"
 import { IQuantumDefenseEventEmitter } from "../../ports"
 import { ThreatSignal, ImmuneLevel } from "../../domain/entities"

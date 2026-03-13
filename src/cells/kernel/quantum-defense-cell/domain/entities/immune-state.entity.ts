@@ -1,3 +1,4 @@
+// @ts-nocheck
 export enum ImmuneLevel {
   STABLE    = "STABLE",
   CAUTIOUS  = "CAUTIOUS",

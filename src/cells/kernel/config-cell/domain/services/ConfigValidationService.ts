@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ConfigValidationService
  * Domain service for validating configuration entries

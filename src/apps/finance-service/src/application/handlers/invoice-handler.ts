@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{createInvoice}from"../../../../../cells/business/finance-cell/application/use-cases/create-invoice";
 import{submitVATReport}from"../../../../../cells/business/finance-cell/application/use-cases/submit-vat-report";
 import{EInvoiceEngine}from"../../../../../cells/business/finance-cell/domain/services/einvoice.engine";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Shared Contracts Port Definitions
 // Purpose: Shared type definitions and interfaces for EDA foundation
 

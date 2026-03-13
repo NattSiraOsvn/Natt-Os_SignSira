@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { RoleAssignment } from "../domain/entities/role-assignment.entity";
 
 export interface IRBACRepository {

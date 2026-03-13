@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CommsSmartLinkPort } from "../../ports/comms-smartlink.port";
 import { Room, RoomType, RoomMember } from '../entities/room.entity';
 

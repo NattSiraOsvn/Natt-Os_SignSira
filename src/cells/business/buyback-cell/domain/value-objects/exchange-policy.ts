@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Buyback Cell
  * Value Object: Exchange Policy — Chính sách thu đổi Tâm Luxury

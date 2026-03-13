@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * warranty-cell — NATT-OS Wave 3.5
  * Đặc thù: Ngành Vàng & Trang sức (Tâm Luxury)

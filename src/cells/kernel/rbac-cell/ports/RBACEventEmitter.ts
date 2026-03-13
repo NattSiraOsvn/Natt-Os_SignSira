@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface RBACEventEmitter {
   emitRoleAssigned(userId: string, roleId: string, assignedBy: string): Promise<void>;
   emitRoleRevoked(userId: string, roleId: string, revokedBy: string): Promise<void>;

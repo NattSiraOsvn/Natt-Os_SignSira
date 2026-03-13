@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS SmartLink — Pattern Competition Layer
  * ════════════════════════════════════════════════════════

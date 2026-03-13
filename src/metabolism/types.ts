@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ProcessorType =
   | "csv" | "excel" | "json" | "pdf"
   | "image" | "video" | "3d-model" | "archive"

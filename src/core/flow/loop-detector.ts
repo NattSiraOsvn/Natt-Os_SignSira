@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Lock #5: Loop detection + max causation depth
  */

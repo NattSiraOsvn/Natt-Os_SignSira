@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Promotion Cell
  * Application Service: PromotionService

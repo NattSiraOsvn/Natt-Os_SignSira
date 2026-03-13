@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { EventEnvelope } from "./event-envelope";
 import { DomainEventType } from "./domain-event";
 

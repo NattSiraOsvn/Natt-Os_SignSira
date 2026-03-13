@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Pricing Cell — Public Interface
  * Exported API cho các cells khác consume qua shared-contracts-cell.

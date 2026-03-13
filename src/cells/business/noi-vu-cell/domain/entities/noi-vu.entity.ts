@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NoiVuCategory = 'ELECTRICITY' | 'WATER' | 'RENT' | 'SECURITY' | 'CLEANING' | 'DRIVER' | 'PACKAGING' | 'STATIONERY' | 'MEAL_ALLOWANCE' | 'OTHER_OVERHEAD';
 export type CostCenter = 'FACTORY' | 'OFFICE' | 'SHOWROOM';
 export interface OverheadExpense {

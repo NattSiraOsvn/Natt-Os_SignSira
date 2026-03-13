@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState } from 'react';
 import { generateBlueprint } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';

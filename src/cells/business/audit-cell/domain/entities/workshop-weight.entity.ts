@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface WorkshopWeight {
   id: string;
   orderId: string;

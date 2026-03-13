@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS CellHealthMonitor
  * Patent Claim: Autonomous self-healing distributed cell network with

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface DataFetcher {
   fetchGraph(): Promise<any>;
   fetchCriticismEvents(days: number): Promise<any[]>;

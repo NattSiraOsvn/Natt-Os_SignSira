@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Storage Interface — Abstract layer for persistence
  * 

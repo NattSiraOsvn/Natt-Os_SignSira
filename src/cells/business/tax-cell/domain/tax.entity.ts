@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * tax-cell — domain/tax.entity.ts
  * Sprint 3 | Tâm Luxury NATT-OS

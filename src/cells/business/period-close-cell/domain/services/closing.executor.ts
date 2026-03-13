@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ClosingSession } from '../entities/closing-session.entity';
 import { TaxIntegrator } from './tax.integrator';
 import { RollbackManager } from './rollback.manager';

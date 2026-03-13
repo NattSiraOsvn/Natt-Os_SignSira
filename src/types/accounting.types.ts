@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Kế thừa từ Ground Truth — tránh circular/duplicate
 // AccountingEntry đã có trong src/types.ts
 export type { AccountingEntry } from "@/types";

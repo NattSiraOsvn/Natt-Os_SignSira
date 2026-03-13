@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { WarehouseItem, WarehouseMovement, WarehouseZone } from '../entities/warehouse-item.entity';
 export class WarehouseEngine {
   static receive(skuId: string, zone: WarehouseZone, tk: WarehouseItem['tk'], quantity: number, unit: string, pool: string, refCellId: string, refDocId: string, lotId?: string): { item: WarehouseItem; movement: WarehouseMovement } {

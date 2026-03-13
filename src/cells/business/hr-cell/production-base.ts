@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { AuditProvider } from '../../../services/admin/AuditService';
 

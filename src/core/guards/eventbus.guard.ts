@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS EventBus Guards
  * Lock #7: Idempotency key

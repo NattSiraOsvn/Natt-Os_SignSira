@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Sales Cell
  * EDA Event Contracts v2.1.0

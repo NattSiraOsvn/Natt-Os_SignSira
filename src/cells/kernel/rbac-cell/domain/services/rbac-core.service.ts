@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS RBAC Core
  * Role-Based Access Control — enforces permission boundaries

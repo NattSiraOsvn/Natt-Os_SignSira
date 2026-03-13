@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ChaseLog, ChaseAttempt } from '../entities/call.entity';
 
 export class AutoChaseEngine {

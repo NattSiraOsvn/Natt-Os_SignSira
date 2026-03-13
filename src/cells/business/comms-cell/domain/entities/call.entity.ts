@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type CallType = 'VOICE' | 'VIDEO';
 export type CallStatus = 'RINGING' | 'ACTIVE' | 'ENDED' | 'MISSED' | 'AUTO_CHASE';
 

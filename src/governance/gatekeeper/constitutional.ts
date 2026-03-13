@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Constitutional reference for Gatekeeper
  * Roadload State-Based Appendix

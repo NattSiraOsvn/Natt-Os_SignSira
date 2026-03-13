@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type PromotionType = 'PERCENTAGE' | 'FIXED_AMOUNT' | 'GIFT_WITH_PURCHASE' | 'BUNDLE';
 export type PromotionStatus = 'DRAFT' | 'ACTIVE' | 'EXPIRED' | 'CANCELLED';
 

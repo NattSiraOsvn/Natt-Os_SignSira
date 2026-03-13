@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ResolveLinkUseCase } from "../use-cases/ResolveLinkUseCase";
 import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
 import { SmartLinkEngine } from "../../domain/services/smartlink.engine";

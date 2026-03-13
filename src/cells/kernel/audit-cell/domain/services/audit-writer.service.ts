@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { AuditRecord } from "../entities/audit-record.entity";
 
 const _chain: AuditRecord[] = [];

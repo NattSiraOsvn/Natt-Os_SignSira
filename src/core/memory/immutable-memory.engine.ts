@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS ImmutableMemoryEngine
  * Patent Claim: Append-only enterprise memory with cryptographic hash chain

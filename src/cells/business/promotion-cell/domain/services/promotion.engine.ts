@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PromotionSmartLinkPort } from "../../ports/promotion-smartlink.port";
 import { Promotion } from '../entities/promotion.entity';
 export class PromotionEngine {

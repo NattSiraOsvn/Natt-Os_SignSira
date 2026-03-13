@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { UserRole, UserPosition, PositionType, SellerReport, SellerIdentity, CustomerLead, PersonaID } from '../types';

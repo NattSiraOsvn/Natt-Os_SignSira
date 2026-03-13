@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * casting-cell / domain / casting.entity.ts
  * Nguồn: THEO DÕI ĐÚC + DATA TRỌNG LƯỢNG

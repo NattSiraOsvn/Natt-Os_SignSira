@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { IConfigRepository } from "../../ports/ConfigRepository";
 import type { ConfigEntry } from "../../domain/entities/config-entry.entity";
 

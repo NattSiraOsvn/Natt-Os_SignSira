@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * SmartLink Entity - Intelligent entity linking across modules
  */

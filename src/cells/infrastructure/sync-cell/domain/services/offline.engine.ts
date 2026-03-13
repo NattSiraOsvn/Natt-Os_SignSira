@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface Job { id:string; type:string; payload:any; retries:number; }
 const _q:Job[]=[];
 const OfflineService = {

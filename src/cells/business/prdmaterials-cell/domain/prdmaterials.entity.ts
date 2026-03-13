@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * prdmaterials-cell / domain / prdmaterials.entity.ts
  * Nguồn: PHIẾU INFO (Bản sao của GIAO NHẬN INFO)

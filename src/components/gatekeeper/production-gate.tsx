@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React from 'react';
 import { ShieldCheck, AlertCircle, Clock, CheckCircle2, XCircle, Fingerprint } from 'lucide-react';

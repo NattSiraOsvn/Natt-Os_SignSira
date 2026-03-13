@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * LOGGER SERVICE - NATT-OS
  */

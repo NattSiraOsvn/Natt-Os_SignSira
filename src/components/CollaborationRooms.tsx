@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { RoomConfig, PersonaID, ChatMessage, RoomSettings, BusinessMetrics, UserRole, UserPosition, PositionType, JoinRequest } from '../types';

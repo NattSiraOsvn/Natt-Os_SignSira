@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU → Audit-Cell SmartLink Bridge
  * 

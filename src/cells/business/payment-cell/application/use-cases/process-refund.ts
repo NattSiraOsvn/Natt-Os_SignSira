@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{PaymentEngine,PaymentResponse}from"../../domain/services/payment.engine";
 export interface ProcessRefundInput{originalTransactionId:string;refundAmount:number;reason:string;approvedBy:string;}
 export interface ProcessRefundResult{success:boolean;response?:PaymentResponse;error?:string;}

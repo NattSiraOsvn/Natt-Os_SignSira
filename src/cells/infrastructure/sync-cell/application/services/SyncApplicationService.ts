@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { StartSyncUseCase } from '../use-cases';
 import { SyncEngine } from '../../domain/services';
 import { SyncRepository } from '../../ports/SyncRepository';

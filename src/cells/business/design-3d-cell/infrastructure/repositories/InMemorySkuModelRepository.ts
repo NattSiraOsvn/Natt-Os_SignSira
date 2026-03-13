@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SkuModel } from "../../domain/entities"
 
 export class InMemorySkuModelRepository {

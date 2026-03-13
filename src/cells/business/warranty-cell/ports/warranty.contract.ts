@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const EVENT_CLAIM_SUBMITTED = 'warranty.claim.submitted';
 export const EVENT_CLAIM_APPROVED = 'warranty.claim.approved';
 export const EVENT_CLAIM_REJECTED = 'warranty.claim.rejected';

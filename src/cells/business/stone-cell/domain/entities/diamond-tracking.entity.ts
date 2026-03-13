@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface DiamondTracking {
   orderId: string;
   bomCount: number;

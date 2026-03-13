@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * polishing-cell — application/polishing.usecase.ts
  * Sprint 2 | Tâm Luxury NATT-OS

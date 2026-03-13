@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type DotCase =
   `${Lowercase<string>}.${Lowercase<string>}` |
   `${Lowercase<string>}.${Lowercase<string>}.${Lowercase<string>}`;

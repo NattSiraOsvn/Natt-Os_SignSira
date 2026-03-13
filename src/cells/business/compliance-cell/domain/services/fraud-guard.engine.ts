@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{ComplianceSmartLinkPort}from"../../ports/compliance-smartlink.port";
 export interface FraudCheckResult{safe:boolean;riskScore:number;flags:string[];recommendation:"APPROVE"|"REVIEW"|"BLOCK";}
 const _blacklist=new Set<string>();

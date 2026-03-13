@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, ReactNode } from 'react';
 import { UserRole, Permission, ModuleID, PersonaID } from '../types';

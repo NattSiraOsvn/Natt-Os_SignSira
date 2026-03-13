@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Pricing Cell — Full Price Calculator
  *

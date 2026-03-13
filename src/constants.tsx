@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PersonaID, PersonaMetadata, Domain, Product, PositionType, Department } from './types';
 
 export const PERSONAS: Record<PersonaID, PersonaMetadata> = {

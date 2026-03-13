@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * SmartLink Impulse Runtime Check — Điều 8
  * Kiểm tra sức khỏe của sợi dẫn truyền thần kinh

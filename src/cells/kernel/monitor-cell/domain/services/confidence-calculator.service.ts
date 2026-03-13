@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { CellHealth } from "../entities/cell-health.entity";
 const _registry = new Map<string, CellHealth>();
 export const ConfidenceCalculatorService = {

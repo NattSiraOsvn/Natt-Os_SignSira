@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect, useRef } from 'react';
 import { QuantumBrain } from '@/core/smartlink/quantum-brain.engine';

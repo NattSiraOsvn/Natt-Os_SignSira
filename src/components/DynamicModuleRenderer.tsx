@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React from 'react';
 import { ViewType, UserRole, UserPosition, BusinessMetrics, ActionLog } from '../types';

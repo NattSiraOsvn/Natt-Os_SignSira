@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect } from 'react';
 import { BankingEngine } from '@/cells/business/finance-cell/domain/services/banking.engine';

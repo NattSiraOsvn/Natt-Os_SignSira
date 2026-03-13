@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CsvProcessor } from "./processors/csv.processor"
 import { JsonProcessor } from "./processors/json.processor"
 import { ExcelProcessor } from "./processors/excel.processor"

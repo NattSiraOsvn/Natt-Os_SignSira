@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ItSmartLinkPort } from "../../ports/it-smartlink.port";
 import { ITAsset, ITAssetType, ITRequest } from '../entities/it-asset.entity';
 

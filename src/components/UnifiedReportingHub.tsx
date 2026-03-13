@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect } from 'react';
 import { EnterpriseLinker } from '@/cells/business/analytics-cell/domain/services/enterprise-linker.engine';

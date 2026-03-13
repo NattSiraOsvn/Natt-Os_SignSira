@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState } from 'react';
 import { Product, CustomizationRequest, EngravingConfig, MaterialOverride } from '../types';

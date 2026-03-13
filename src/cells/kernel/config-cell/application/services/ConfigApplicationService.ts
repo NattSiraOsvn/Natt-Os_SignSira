@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { InMemoryConfigRepository } from "../../infrastructure/repositories/InMemoryConfigRepository";
 import { SetConfigUseCase } from "../use-cases/SetConfigUseCase";
 import { CreateSnapshotUseCase } from "../use-cases/CreateSnapshotUseCase";

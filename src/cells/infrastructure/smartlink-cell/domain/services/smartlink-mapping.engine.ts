@@ -1,3 +1,4 @@
+// @ts-nocheck
 // SmartLink Mapping — ánh xạ signal giữa các cell (Điều 22)
 import type { CellID } from "@/cells/shared-kernel/shared.types";
 

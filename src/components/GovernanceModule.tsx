@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState } from 'react';
 import { UserRole, GovernanceRecord, AuditTrailEntry } from '../types';

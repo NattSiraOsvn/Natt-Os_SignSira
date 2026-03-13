@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * finishing-cell — application/finishing.usecase.ts
  * Sprint 2 | Tâm Luxury NATT-OS

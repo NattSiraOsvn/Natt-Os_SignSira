@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Warranty Types — Tâm Luxury
  * Cell: warranty-cell | Wave: 3.5

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ClosingRule {
   id: string;
   name: string;

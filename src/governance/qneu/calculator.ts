@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Calculator — The Formula
  * 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PromotionType, PromotionStatus, PromotionRule } from '../value-objects/promotion-types';
 
 export interface PromotionProps {

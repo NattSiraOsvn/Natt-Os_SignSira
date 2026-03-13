@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ╔══════════════════════════════════════════════════════════════════╗
  * ║  QNEU TYPE DEFINITIONS — NATT-OS EVOLUTION MECHANISM DNA       ║

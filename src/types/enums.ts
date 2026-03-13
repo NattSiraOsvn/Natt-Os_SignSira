@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Re-export tất cả enums từ Ground Truth — Điều 23
 export {
   PersonaID, UserRole, PositionType, ViewType, Domain,

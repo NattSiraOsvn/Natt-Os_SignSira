@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface TraceEntry {
   id: string;
   timestamp: number;

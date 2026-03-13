@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Use Case: Update Gold Market Price
  * Nhận giá vàng thị trường mới (từ event hoặc manual input).

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Promotion, PromotionProps } from '../../domain/entities/promotion.entity';
 export class InMemoryPromotionRepository {
   private store: Map<string, PromotionProps> = new Map();

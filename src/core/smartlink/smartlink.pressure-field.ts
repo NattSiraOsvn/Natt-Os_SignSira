@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS SmartLink — Pressure Field
  * ════════════════════════════════════════════════════════

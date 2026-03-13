@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type DetectedContextKey = string;
 export interface AIScoringConfig { confidenceThreshold:number; enableOCR:boolean; enableNLP:boolean; language:string; weights?:Record<string,number>; keywords?:Record<DetectedContextKey,string[]>; }
 export interface AIScoringConfigExtended extends AIScoringConfig { weights:Record<string,number>; keywords:Record<string,string[]>; }

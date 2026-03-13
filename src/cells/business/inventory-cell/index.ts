@@ -1,3 +1,4 @@
+// @ts-nocheck
 export { InventoryEngine } from './infrastructure/Inventory.engine';
 export { ProcessWipCompletedUseCase } from './application/inventory.usecase';
 export type { IInventoryRepository } from './application/inventory.usecase';

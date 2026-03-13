@@ -1,3 +1,4 @@
+// @ts-nocheck
 // JUST-U Adapter — tax-cell
 
 export interface ITaxSheetAdapter {

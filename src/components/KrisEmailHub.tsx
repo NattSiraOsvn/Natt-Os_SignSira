@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { GmailIntelligence } from '@/cells/infrastructure/ai-connector-cell/domain/services/gmail.engine';

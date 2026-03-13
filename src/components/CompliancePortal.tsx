@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';

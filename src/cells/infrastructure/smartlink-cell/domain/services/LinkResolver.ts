@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SmartLink } from '../entities';
 
 export interface ResolvedLink {

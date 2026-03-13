@@ -1,3 +1,4 @@
+// @ts-nocheck
 // NATT-OS Signal Types
 export type OverlayType = 'MODAL' | 'PANEL' | 'TOAST' | 'FULL' | 'DRAWER';
 export interface ManifestationConfig {

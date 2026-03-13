@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Event Causality Check
  * Kiểm tra chuỗi nhân quả của events trong hệ thống

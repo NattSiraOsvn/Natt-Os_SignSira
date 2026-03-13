@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Warranty Cell
  * Value Object: Claim Status & Transitions

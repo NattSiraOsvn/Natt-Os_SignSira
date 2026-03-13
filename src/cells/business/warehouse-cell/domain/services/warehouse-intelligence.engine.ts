@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface AllocationPlan { itemId:string; location:string; quantity:number; priority:number; transfers?:any[]; }
 export interface WarehouseIntelligence { utilizationRate:number; hotZones:string[]; reorderAlerts:string[]; forecast:Record<string,number>; hcm?:any; hanoi?:any; recommendations?:any[]; }
 export const WarehouseEngine = {

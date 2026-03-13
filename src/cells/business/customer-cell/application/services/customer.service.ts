@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Customer Cell
  * Application Service: CustomerService

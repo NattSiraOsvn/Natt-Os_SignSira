@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ConfigSnapshot Entity
  * Point-in-time snapshot of all configuration

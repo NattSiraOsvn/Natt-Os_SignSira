@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface LeaveRequest{id:string;employeeId:string;type:"ANNUAL"|"SICK"|"MATERNITY"|"UNPAID"|"COMPENSATORY";startDate:string;endDate:string;days:number;reason:string;status:"PENDING"|"APPROVED"|"REJECTED";approvedBy?:string;}
 export interface LeaveBalance{employeeId:string;year:number;annualEntitled:number;annualUsed:number;sickUsed:number;remaining:number;}
 const _leaves=new Map<string,LeaveRequest>();

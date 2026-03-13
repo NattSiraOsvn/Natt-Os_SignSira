@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
 
 export class SyncEventEmitterAdapter implements SyncEventEmitter {

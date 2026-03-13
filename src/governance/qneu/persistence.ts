@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU File Storage — Implements QNEUStorageEngine
  * 

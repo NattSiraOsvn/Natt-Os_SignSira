@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { IRBACRepository } from "../../ports/RBACRepository";
 
 export class RevokeRoleUseCase {

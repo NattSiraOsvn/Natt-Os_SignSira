@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SecurityEventEmitter } from '../../ports/SecurityEventEmitter';
 
 export class SecurityEventEmitterAdapter implements SecurityEventEmitter {

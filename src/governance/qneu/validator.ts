@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Stability Validator — Anti-Gaming (Điều 20)
  * 

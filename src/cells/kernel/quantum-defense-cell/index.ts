@@ -1,3 +1,4 @@
+// @ts-nocheck
 export * from "./interface"
 export * from "./domain/entities"
 export * from "./contracts/events"

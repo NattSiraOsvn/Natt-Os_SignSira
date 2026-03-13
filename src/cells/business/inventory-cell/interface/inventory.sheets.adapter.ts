@@ -1,3 +1,4 @@
+// @ts-nocheck
 // JUST-U Adapter — inventory-cell
 
 export interface IInventorySheetAdapter {

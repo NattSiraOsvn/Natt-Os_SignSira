@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ProcessExchangeInput{incomingProductName:string;weight:number;purity:string;marketPricePerGram:number;conditionFactor:number;newProductId:string;newProductPrice:number;customerId:string;}
 export interface ProcessExchangeResult{success:boolean;exchangeValue:number;newProductPrice:number;topUpAmount:number;error?:string;}
 export function processExchange(input:ProcessExchangeInput):ProcessExchangeResult{

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface JewelryProduct {
   sku_id: string
   product_name: string

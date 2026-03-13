@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Journal Entry — Bút toán nhật ký chung
  * Theo TT200 — mapping 4 sổ

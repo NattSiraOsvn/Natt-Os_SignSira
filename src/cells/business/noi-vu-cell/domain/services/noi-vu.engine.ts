@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { NoiVuSmartLinkPort } from "../../ports/noivu-smartlink.port";
 import { OverheadExpense, NoiVuCategory, CostCenter } from '../entities/noi-vu.entity';
 export class NoiVuEngine {

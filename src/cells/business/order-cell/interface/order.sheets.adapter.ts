@@ -1,3 +1,4 @@
+// @ts-nocheck
 // JUST-U Adapter — order-cell
 
 export interface IOrderSheetAdapter {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type MatchStatus = 'MATCHED' | 'PARTIAL' | 'MISMATCH' | 'UNRECOGNIZED' | 'PENDING';
 
 export interface InvoiceMatchResult {

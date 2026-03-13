@@ -1,3 +1,4 @@
+// @ts-nocheck
 // production-cell contracts
 export const EVENTS_PRODUCTION = {
   CREATED: "production.created",

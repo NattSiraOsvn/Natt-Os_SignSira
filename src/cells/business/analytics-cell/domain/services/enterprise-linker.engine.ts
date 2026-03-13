@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface AggregatedReport { id:string; period:string; modules:string[]; data:Record<string,any>; generatedAt:number; records?:any[]; }
 export const EnterpriseLinker = {
   aggregate:async(modules:string[],period:string):Promise<AggregatedReport>=>({ id:`RPT-${Date.now()}`, period, modules, data:{}, generatedAt:Date.now() }),

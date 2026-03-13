@@ -24,11 +24,11 @@ const originalPublish = EventBusModule.EventBus.publish;
 const originalSubscribe = EventBusModule.EventBus.subscribe;
 
 // Thay thế tạm thời
-EventBusModule.EventBus.publish = (event: string, data: any) => {
+;(EventBusModule.EventBus as any).publish = (event: string, data: any) => {
   console.log(`[EVENT] ${event}`, data);
   // Có thể lưu lại để kiểm tra
 };
-EventBusModule.EventBus.subscribe = (event: string, cb: any) => {
+;(EventBusModule.EventBus as any).subscribe = (event: string, cb: any) => {
   // Không làm gì
 };
 

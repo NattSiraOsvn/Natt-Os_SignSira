@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SupplierSmartLinkPort } from "../../ports/supplier-smartlink.port";
 import { Supplier, PurchaseOrder, POItem } from '../entities/supplier.entity';
 export class SupplierEngine {

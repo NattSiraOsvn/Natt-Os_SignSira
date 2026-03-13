@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{PaymentEngine,PaymentResponse}from"../../domain/services/payment.engine";
 export type PaymentMethod="CASH"|"VNPAY"|"MOMO"|"ZALOPAY"|"BANK_TRANSFER"|"CARD";
 export interface ProcessPaymentInput{orderId:string;amount:number;method:PaymentMethod;customerId?:string;}

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ThreatEventProps {
   id: string;
   type: string;

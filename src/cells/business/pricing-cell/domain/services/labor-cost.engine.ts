@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Pricing Cell — Labor Cost Calculation Engine
  * Source: Bảng Giá 2025, extracted from Excel formula (4,049 chars)

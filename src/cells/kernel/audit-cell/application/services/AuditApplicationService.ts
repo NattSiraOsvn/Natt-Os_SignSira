@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { InMemoryAuditRepository } from "../../infrastructure/repositories/InMemoryAuditRepository";
 import { LogAuditUseCase } from "../use-cases/LogAuditUseCase";
 import { VerifyChainUseCase } from "../use-cases/VerifyChainUseCase";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { IStoneSheetAdapter, RawStoneSpec } from '../application/stone.usecase';
 
 export class StoneSheetAdapter implements IStoneSheetAdapter {

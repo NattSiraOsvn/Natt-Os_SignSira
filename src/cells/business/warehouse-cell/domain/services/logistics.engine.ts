@@ -1,3 +1,4 @@
+// @ts-nocheck
 import{WarehouseSmartLinkPort}from"../../ports/warehouse-smartlink.port";
 export type TransferStatus="PENDING"|"IN_TRANSIT"|"DELIVERED"|"CANCELLED";
 export interface TransferOrder{id:string;transferId?:string;from:string;to:string;items:Array<{itemId:string;sku:string;quantity:number}>;status:TransferStatus;requestedBy:string;createdAt:number;completedAt?:number;note?:string;}

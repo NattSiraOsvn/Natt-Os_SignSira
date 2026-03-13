@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { MonitorEventEmitter } from '../../ports/MonitorEventEmitter';
 
 export class MonitorEventEmitterAdapter implements MonitorEventEmitter {

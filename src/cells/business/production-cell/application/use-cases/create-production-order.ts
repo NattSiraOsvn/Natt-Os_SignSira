@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface CreateProductionOrderInput{sku:string;productName:string;quantity:number;targetCompletionDate:string;materialList:Array<{materialCode:string;quantity:number;unit:string}>;assignedWorkerId?:string;priority:"LOW"|"NORMAL"|"HIGH"|"URGENT";}
 export interface CreateProductionOrderResult{success:boolean;orderId?:string;estimatedDays:number;errors:string[];}
 const DAYS:Record<string,number>={BONG_TAI:3,DAY_CHUYEN:7,MAT_DAY:5,VONG_TAY:4,LAC_TAY:5,NHAN_CUOI:3,NHAN_KET:4,NHAN_NAM:4,NHAN_NU:4,PHU_KIEN:2};

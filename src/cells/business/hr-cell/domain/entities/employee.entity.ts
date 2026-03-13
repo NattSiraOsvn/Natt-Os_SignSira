@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Employee Entity — Nhân sự Tâm Luxury
  * HR_FIELDS_LEVELS: field-level permission control

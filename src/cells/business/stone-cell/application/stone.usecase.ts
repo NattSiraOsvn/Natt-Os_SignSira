@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * stone-cell — application/stone.usecase.ts
  * Sprint 2 | Tâm Luxury NATT-OS

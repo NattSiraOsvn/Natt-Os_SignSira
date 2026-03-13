@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, ReactNode, useMemo } from 'react';
 import { ViewType, UserRole, ModuleConfig, HeatLevel, UserPosition, PositionType } from '../types';

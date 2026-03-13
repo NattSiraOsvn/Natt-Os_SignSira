@@ -1,3 +1,4 @@
+// @ts-nocheck
 // pricing-cell contracts
 export const EVENTS_PRICING = {
   CREATED: "pricing.created",

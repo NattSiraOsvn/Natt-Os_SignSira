@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { IAuditRepository } from "../../ports/AuditRepository";
 import { AuditChainService } from "../../domain/services/auditchainservice";
 

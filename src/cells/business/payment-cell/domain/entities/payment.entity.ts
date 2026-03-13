@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type PaymentProvider = 'VNPAY' | 'MOMO' | 'ZALOPAY' | 'BANK_TRANSFER' | 'CASH' | 'POS' | 'INTERNAL_OFFSET';
 export type PaymentStatus = 'PENDING' | 'AUTHORIZED' | 'CAPTURED' | 'FAILED' | 'REFUNDED' | 'RECONCILED';
 

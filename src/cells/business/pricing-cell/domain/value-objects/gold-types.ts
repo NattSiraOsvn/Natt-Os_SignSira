@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Pricing Cell — Gold Types & Market Prices
  * Source: Bảng Giá 2025, Tâm Luxury

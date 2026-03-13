@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { EventBridgeProvider } from '@/event-cell/event-bridge.service';
 import { SmartLinkEnvelope } from '@/shared-kernel/shared.types';

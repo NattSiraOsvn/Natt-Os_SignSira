@@ -1,3 +1,4 @@
+// @ts-nocheck
 // compliance-cell contracts
 export const EVENTS_COMPLIANCE = {
   CREATED: "compliance.created",

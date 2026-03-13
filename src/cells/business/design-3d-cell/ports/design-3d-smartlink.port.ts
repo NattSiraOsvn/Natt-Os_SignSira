@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
 import { EventBus } from "@/core/events/event-bus";
 

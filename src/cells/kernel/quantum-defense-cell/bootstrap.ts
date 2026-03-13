@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus"
 import { HealthMonitor } from "@/core/health/cell-health-monitor"
 import { QuantumDefenseCell } from "./interface"

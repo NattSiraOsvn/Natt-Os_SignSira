@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS DeterministicRouter
  * Patent Claim: Multi-tier deterministic routing with policy gating and

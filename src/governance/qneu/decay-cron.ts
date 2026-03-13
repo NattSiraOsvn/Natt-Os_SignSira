@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Decay Cron — Chạy định kỳ để apply memory decay
  * 

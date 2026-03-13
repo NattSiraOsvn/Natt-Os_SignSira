@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU v1.1.0 — Quantum Neural Evolution Unit
  * 

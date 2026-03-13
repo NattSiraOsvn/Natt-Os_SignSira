@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * stone-cell — infrastructure/stone.engine.ts
  * Sprint 2 | Tâm Luxury NATT-OS

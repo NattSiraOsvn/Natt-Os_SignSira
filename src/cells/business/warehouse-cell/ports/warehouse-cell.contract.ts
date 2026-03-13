@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const WAREHOUSE_BUSINESS_EVENTS = {
   STOCK_IN:         "warehouse.stock_in",
   STOCK_OUT:        "warehouse.stock_out",

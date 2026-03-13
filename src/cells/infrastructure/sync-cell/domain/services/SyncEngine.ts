@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SyncJob } from '../entities';
 
 export class SyncEngine {

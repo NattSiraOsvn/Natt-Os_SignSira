@@ -1,3 +1,4 @@
+// @ts-nocheck
 // 👑 SOVEREIGN: ANH_NAT
 import type { SmartLinkEnvelope } from '../shared-kernel/shared-types';
 

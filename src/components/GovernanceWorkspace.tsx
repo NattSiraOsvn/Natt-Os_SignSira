@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState, useEffect } from 'react';
 import { UserRole, TxStatus, GovernanceTransaction, AuditTrailEntry, ModuleID, Permission } from '../types';

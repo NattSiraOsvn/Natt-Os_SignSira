@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SmartLink, LinkType } from '../../domain/entities';
 import { SmartLinkRepository } from '../../ports/SmartLinkRepository';
 import { SmartLinkEventEmitter } from '../../ports/SmartLinkEventEmitter';

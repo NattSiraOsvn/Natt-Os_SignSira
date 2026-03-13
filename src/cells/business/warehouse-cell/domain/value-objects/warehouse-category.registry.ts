@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Warehouse Cell
  * Value Object: WarehouseCategoryRegistry

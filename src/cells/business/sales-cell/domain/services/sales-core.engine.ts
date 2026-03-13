@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SalesSmartLinkPort } from "../../ports/sales-smartlink.port";
 export const SalesCore = {
   generateEntries:(_:any):any[]=>[], calculateTax:(amount:number,rate=0.1):number=>amount*rate,

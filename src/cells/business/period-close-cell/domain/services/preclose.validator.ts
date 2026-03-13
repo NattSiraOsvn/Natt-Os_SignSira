@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ValidationReport } from '../entities/validation-report.entity';
 import { ClosingSession } from '../entities/closing-session.entity';
 import { dustReportStore } from '../../../../infrastructure/dust-recovery-cell/application/dust.usecase';

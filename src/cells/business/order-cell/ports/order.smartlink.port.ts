@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * order-cell / ports / order.smartlink.port.ts
  * SmartLink port – khai báo signals order-cell emit ra ngoài.

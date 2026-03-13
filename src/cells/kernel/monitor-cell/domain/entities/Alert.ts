@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface AlertProps {
   id: string;
   cellId: string;

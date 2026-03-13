@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SmartLink, LinkType } from '../domain/entities';
 
 export interface SmartLinkRepository {

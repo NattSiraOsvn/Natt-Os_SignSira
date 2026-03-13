@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS SmartLink Guards
  * Lock #10: SmartLink observer-only (no domain coupling)

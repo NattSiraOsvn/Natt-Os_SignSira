@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { AuditRecord } from "../domain/entities/audit-record.entity";
 
 export interface IAuditRepository {

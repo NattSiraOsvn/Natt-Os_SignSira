@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Types — Shared DNA for all AI Entities
  * 

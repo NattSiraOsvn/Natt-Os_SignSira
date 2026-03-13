@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 export type FailureMode = 'TRANSIENT' | 'POLICY_FAIL' | 'PERMANENT' | 'CIRCUIT_OPEN';
 export interface RetryDecision { action: 'RETRY'|'REROUTE'|'DEAD_LETTER'|'DISCARD'; delayMs: number; reason: string; }

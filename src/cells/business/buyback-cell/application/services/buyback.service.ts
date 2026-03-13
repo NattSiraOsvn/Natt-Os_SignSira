@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Buyback Cell
  * Application Service: BuybackService

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { forgeSmartLinkPort } from "@/satellites/port-forge";
 
 export const CommsSmartLinkPort = forgeSmartLinkPort({

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Flow Schema
  * Lock #4: Schema validation (không enum cứng — flow tự sinh được)

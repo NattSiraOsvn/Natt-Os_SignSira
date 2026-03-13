@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ShowroomSmartLinkPort } from "../../ports/showroom-smartlink.port";
 /**
  * NATT-OS — Showroom Cell

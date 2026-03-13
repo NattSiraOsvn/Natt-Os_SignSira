@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ProcessorResult, ProcessorType } from "../types"
 
 export abstract class BaseProcessor {

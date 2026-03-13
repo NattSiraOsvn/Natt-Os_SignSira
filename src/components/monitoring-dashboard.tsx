@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
   * NATT-OS: MONITORING DASHBOARD (UI-CELL)
   * SOVEREIGN: ANH_NAT

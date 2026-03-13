@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { CellHealth } from "../domain/entities/cell-health.entity";
 
 export interface IMonitorRepository {

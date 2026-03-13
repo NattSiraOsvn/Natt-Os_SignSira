@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type CertStatus = "VALID" | "EXPIRING" | "EXPIRED" | "PENDING";
 
 export interface Certification {

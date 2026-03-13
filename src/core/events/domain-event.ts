@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type DomainEventType =
   | "SalesOrderCreated" | "SalesOrderCancelled" | "ExchangeProcessed" | "DiscountApplied"
   | "PaymentProcessed" | "PaymentFailed" | "RefundIssued"

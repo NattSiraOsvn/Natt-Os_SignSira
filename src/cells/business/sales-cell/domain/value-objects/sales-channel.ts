@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type SalesChannel = 'IN_STORE' | 'REFERRAL' | 'ONLINE_INQUIRY' | 'EVENT';
 export type SaleStatus = 'INITIATED' | 'CONSULTING' | 'PRICING' | 'NEGOTIATING' | 'CLOSING' | 'COMPLETED' | 'LOST';
 

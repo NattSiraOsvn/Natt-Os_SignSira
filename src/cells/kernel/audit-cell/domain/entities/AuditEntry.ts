@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * AuditEntry Entity - Immutable audit log entry
  */

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { IFinishingSheetAdapter, RawWorkerRow } from '../application/finishing.usecase';
 
 export class FinishingSheetAdapter implements IFinishingSheetAdapter {

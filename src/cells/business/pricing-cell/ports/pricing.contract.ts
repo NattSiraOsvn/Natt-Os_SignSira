@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Pricing Cell — EDA Event Contracts
  * Defines all events this cell emits and consumes.

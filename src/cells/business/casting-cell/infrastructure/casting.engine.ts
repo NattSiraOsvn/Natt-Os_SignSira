@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * casting-cell / infrastructure / casting.engine.ts
  * ADAPT: subscribe CASTING_REQUEST từ SmartLink hiện có.

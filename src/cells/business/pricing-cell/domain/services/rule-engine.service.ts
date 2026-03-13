@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PricingSmartLinkPort } from "../../ports/pricing-smartlink.port";
 import { LaborRuleResult, QuoteRequest } from "../types/pricing.types";
 

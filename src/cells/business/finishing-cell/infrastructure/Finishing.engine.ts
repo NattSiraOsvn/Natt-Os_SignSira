@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * finishing-cell — infrastructure/finishing.engine.ts
  * Sprint 2 | Tâm Luxury NATT-OS

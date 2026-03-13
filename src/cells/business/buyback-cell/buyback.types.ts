@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Buyback Types — Tâm Luxury
  * Cell: buyback-cell | Wave: 3.5

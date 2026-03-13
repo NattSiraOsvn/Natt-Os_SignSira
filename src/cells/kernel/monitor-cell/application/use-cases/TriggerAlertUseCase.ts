@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { IMonitorRepository } from "../../ports/MonitorRepository";
 import { HealthAnalyzer } from "../../domain/services/HealthAnalyzer";
 

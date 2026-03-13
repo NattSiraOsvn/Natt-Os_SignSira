@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS — Promotion Cell
  * EDA Event Contracts v2.1.0

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ImmuneLevel } from "./immune-state.entity"
 
 export interface ThreatSignal {

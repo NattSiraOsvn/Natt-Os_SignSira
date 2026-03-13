@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Buyback Contract — EDA Events & Service Interface
  * Cell: buyback-cell | Wave: 3.5

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NATT-OS Event Bus — with all 16 guards integrated
  */

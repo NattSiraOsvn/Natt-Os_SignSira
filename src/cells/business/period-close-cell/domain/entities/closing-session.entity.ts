@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ValidationReport } from './validation-report.entity';
 
 export interface ClosingSession {

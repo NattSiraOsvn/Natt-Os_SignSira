@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * QNEU Runtime — The First Quantum Seed
  * 

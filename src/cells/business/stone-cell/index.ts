@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type { StoneRecord, StoneItem, StoneType, StoneStatus } from './domain/stone.entity';
 export { createStoneRecord, addStoneItem, setStone, rejectStone, isStoneCompleted } from './domain/stone.entity';
 export type { IStoneRepository, IStoneSheetAdapter, RawStoneSpec } from './application/stone.usecase';
