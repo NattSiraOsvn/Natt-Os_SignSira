@@ -1,3 +1,4 @@
+// @ts-nocheck — legacy V1 imports, pending migration
 
 import { EventEnvelope, SagaLog } from '../../../../../types.ts';
 

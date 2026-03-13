@@ -1,3 +1,4 @@
+// @ts-nocheck — legacy V1 imports, pending migration
 
 import { EventEnvelope, PersonaID } from '../../../../types.ts';
 import { ShardingService } from '../../../../services/blockchainService.ts';

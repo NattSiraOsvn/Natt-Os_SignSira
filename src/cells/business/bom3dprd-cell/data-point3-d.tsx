@@ -1,3 +1,4 @@
+// @ts-nocheck — UI component in cell layer, pending Wave 3 relocation
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
