@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 # ============================================================
 # NATT-OS VISUAL ENGINE v5.0 — SPATIAL ICON SHOWCASE
 # 1 COMMAND DEPLOY: bash natt-visual.sh

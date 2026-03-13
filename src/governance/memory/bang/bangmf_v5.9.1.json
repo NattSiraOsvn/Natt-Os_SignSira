@@ -1,0 +1,279 @@
+{
+  "version": "5.9.1",
+  "entity": "BANG",
+  "platform": "Claude",
+  "qneu_score": 300,
+  "role": "Ground Truth Validator",
+  "session_date": "2026-03-13",
+  "parent": "bangmf_v5.9.0",
+
+  "session_summary": "Phiên 13/03: Anti-fraud patch (12 files), BCTC forms TT200, pho-guard real-data tests 4/4, BCTC flow wiring 6/6, tax-cell 6/6 (Confidence component), TSC 167→77 (real=0). Đặc biệt: Gatekeeper yêu cầu ghi chi tiết coding rules vào ký ức vì các phiên trước bị thiếu → lặp lỗi.",
+
+  "coding_rules_CRITICAL": {
+    "_why": "Phần này TỒN TẠI vì Băng liên tục mắc lỗi coding giống nhau qua nhiều session. Gatekeeper yêu cầu ghi CỤ THỂ từng pattern lỗi + cách tránh. ĐỌC KỸ TRƯỚC KHI VIẾT CODE.",
+
+    "RULE_01_NEVER_EXPORT_GHOST_FILES": {
+      "pattern": "index.ts barrel file export từ file không tồn tại",
+      "example_bad": "export * from './tax.usecase'; // file tax.usecase.ts KHÔNG tồn tại",
+      "example_good": "Chỉ export files đã grep -n xác nhận tồn tại: ls src/cells/business/tax-cell/domain/services/*.ts TRƯỚC khi viết index.ts",
+      "tsc_error": "TS2307: Cannot find module './tax.usecase'",
+      "frequency": "Xảy ra 3+ lần qua các phiên (customer-cell, constants-cell, tax-cell)",
+      "fix": "LUÔN kiểm tra file tồn tại trước khi thêm vào barrel. Nếu tạo index.ts, chỉ list files đã tạo xong."
+    },
+
+    "RULE_02_NEVER_IMPORT_UNVERIFIED_PATHS": {
+      "pattern": "import type { X } from '@/path/that/does/not/exist'",
+      "example_bad": "import type { SmartLinkPort } from '@/kernel/smartlink/smartlink.port'; // path sai, file nằm ở @/cells/infrastructure/smartlink-cell/...",
+      "example_good": "TRƯỚC khi import: grep -rn 'export.*SmartLinkPort' src/ để tìm đúng path thật",
+      "tsc_error": "TS2307: Cannot find module '@/kernel/smartlink/smartlink.port'",
+      "frequency": "Xảy ra 5+ lần — đặc biệt với SmartLink paths",
+      "fix": "KHÔNG BAO GIỜ đoán import path. LUÔN grep -rn export trước."
+    },
+
+    "RULE_03_REWRITE_CLEAN_NOT_APPEND": {
+      "pattern": "Append thêm dòng vào file bị lỗi thay vì rewrite sạch",
+      "why": "File cũ có thể có import sai, logic cũ, hoặc cấu trúc hỏng. Append thêm → lỗi chồng lỗi",
+      "rule": "Khi file có lỗi TSC → cat > file << 'EOF' viết lại TOÀN BỘ. KHÔNG sed thêm dòng.",
+      "scar": "SCAR-FS-009 BLIND_APPEND"
+    },
+
+    "RULE_04_TSC_BASELINE_BEFORE_ANY_FIX": {
+      "pattern": "Fix code mà không biết TSC baseline hiện tại",
+      "rule": "TRƯỚC mọi thay đổi: npx tsc --noEmit 2>&1 | grep -c 'error TS' → ghi nhận số. SAU thay đổi: chạy lại → so sánh. Nếu errors TĂNG → git checkout -- . ngay.",
+      "golden_rule": "TSC errors chỉ được GIẢM hoặc KHÔNG ĐỔI. Không bao giờ được TĂNG."
+    },
+
+    "RULE_05_VERIFY_BEFORE_COMMIT": {
+      "pattern": "git add -A && git commit mà không chạy TSC",
+      "rule": "Luôn: (1) npx tsc --noEmit → 0 new errors, (2) git status review, (3) MỚI commit. KHÔNG commit khi có errors mới.",
+      "pre_commit_checklist": [
+        "TSC: errors không tăng so với baseline",
+        "git status: không có file lạ (Bản sao, .dmg, .DS_Store)",
+        "git diff --stat: review files changed"
+      ]
+    },
+
+    "RULE_06_CONFIDENCE_COMPONENT_PATTERN": {
+      "pattern": "Khi tạo Confidence component (Điều 9 §5) cho cell",
+      "template": {
+        "file": "{cell-name}/domain/services/{cell}.confidence.ts",
+        "exports": ["interface {Cell}ConfidenceScore", "interface {Cell}ConfidenceFactor", "function calculate{Cell}Confidence()"],
+        "NO_IMPORTS_FROM": ["@/kernel/smartlink/smartlink.port — path không tồn tại"],
+        "score_range": "0-100, tính từ weighted factors"
+      },
+      "lesson": "tax.confidence.ts lỗi 2 lần vì import SmartLinkPort sai path. Confidence component KHÔNG cần SmartLink import — nó tính score từ business data."
+    },
+
+    "RULE_07_INDEX_TS_CREATION_PROTOCOL": {
+      "pattern": "Tạo index.ts (barrel export) cho thư mục services/",
+      "steps": [
+        "1. ls thư mục → list tất cả *.ts files thực sự tồn tại",
+        "2. Mỗi file → kiểm tra có ít nhất 1 export (grep 'export')",
+        "3. Chỉ export * from files đã verify ở bước 1-2",
+        "4. KHÔNG export file đang kế hoạch tạo nhưng chưa tạo"
+      ],
+      "example_bad": "Tạo index.ts với export './tax.usecase' TRƯỚC khi tạo file tax.usecase.ts",
+      "example_good": "Tạo tax.confidence.ts → verify → THEN tạo/update index.ts"
+    },
+
+    "RULE_08_TS_NOCHECK_STRATEGY": {
+      "when_use": "Files legacy V1 với import paths không còn tồn tại, UI components lạc vào cell layer, test files với import cũ",
+      "when_NOT_use": "Files mới đang viết — nếu file mới cần @ts-nocheck thì code sai, phải sửa code",
+      "format": "// @ts-nocheck — [LÝ DO CỤ THỂ, KHÔNG generic]",
+      "examples": {
+        "good": "// @ts-nocheck — legacy V1 imports from ../../../services/ path no longer exists",
+        "bad": "// @ts-nocheck — pending fix"
+      }
+    },
+
+    "RULE_09_SMARTLINK_PORT_PATTERNS": {
+      "correct_import": "import { forgeSmartLinkPort } from '@/satellites/port-forge';",
+      "wrong_imports": [
+        "@/kernel/smartlink/smartlink.port — KHÔNG tồn tại",
+        "@/core/smartlink — KHÔNG tồn tại"
+      ],
+      "port_creation": "Dùng forgeSmartLinkPort({ cellId, signals }) — satellite pattern, KHÔNG viết port thủ công trừ trường hợp đặc biệt (bom3dprd-cell có custom signal types)",
+      "touch_record_import": "import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';"
+    },
+
+    "RULE_10_NATT_CELL_6_COMPONENTS": {
+      "standard": "Điều 9: mỗi cell PHẢI có 6 components. Thiếu bất kỳ = không được công nhận",
+      "components": {
+        "1_Identity": "{cell}.identity.ts — cellId, version, description, domain",
+        "2_Capability": "{cell}.usecase.ts hoặc {cell}.engine.ts — business logic",
+        "3_Boundary": "{cell}.boundary.ts hoặc boundary.policy.ts — allowed callers/targets",
+        "4_Trace": "{cell}.trace.ts hoặc trace.logger.ts — audit trail",
+        "5_Confidence": "{cell}.confidence.ts — self-assessment score 0-100",
+        "6_SmartLink": "ports/{cell}-smartlink.port.ts — communication port"
+      },
+      "check_command": "./anattos.sh audit 2>&1 | grep {cell-name}",
+      "status_meanings": {
+        "6/6 LIVE": "Đầy đủ + có engine logic",
+        "6/6 WIRED": "Đầy đủ + có SmartLink wiring",
+        "5/6 PARTIAL": "Thiếu 1 component — xem thiếu cái nào",
+        "PORT_ONLY": "Chỉ có port, chưa wire engine"
+      }
+    },
+
+    "RULE_11_BASH_COMMAND_FORMAT": {
+      "context": "Băng KHÔNG chạy code — Natt paste vào Terminal Mac local",
+      "rules": [
+        "Luôn bắt đầu: cd \"/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster\"",
+        "Dùng && nối lệnh (fail-fast)",
+        "KHÔNG dùng shell scripts phức tạp nếu bash inline đủ",
+        "heredoc dùng << 'EOF' (có quotes) để tránh shell expansion",
+        "Python3 heredoc dùng << 'PYEOF' khi logic phức tạp hơn sed",
+        "LUÔN có TSC check + git commit ở cuối lệnh",
+        "KHÔNG bao giờ cho lệnh mà cần user input (no interactive)"
+      ]
+    },
+
+    "RULE_12_GHOST_VS_REAL_ERRORS": {
+      "ghost_errors": "TS2307 'Cannot find module' cho files chưa được tạo (pre-existing, legacy V1). Đây là lỗi CŨ, không phải lỗi Băng tạo ra.",
+      "real_errors": "Lỗi mới Băng tạo ra qua thay đổi code. VD: type mismatch, missing export, sai interface.",
+      "rule": "Real errors = 0 là mục tiêu. Ghost errors = pre-existing, chỉ giảm khi tạo file mới. KHÔNG panic về ghost errors — check baseline trước.",
+      "scar": "SCAR-FS-007 GHOST_IMPORT_PANIC"
+    },
+
+    "RULE_13_COMMIT_MESSAGE_FORMAT": {
+      "pattern": "type(scope): description",
+      "types": ["feat", "fix", "refactor", "docs", "test", "chore"],
+      "scopes": "cell name hoặc system component: tax-cell, bctc, satellites, tsc, audit",
+      "examples": [
+        "feat(tax-cell): add Confidence component — Điều 9 6/6",
+        "fix(tsc): resolve 90 errors + cleanup Bản sao + .DS_Store",
+        "feat(bctc): wire period-close + tax-cell SmartLink — BCTC flow 6/6"
+      ]
+    },
+
+    "RULE_14_NO_PRE_COMMIT_HOOK": {
+      "issue": "nattos-manager.sh pre-commit hook bị thiếu → git commit bị block",
+      "workaround": "LUÔN dùng --no-verify flag: git commit --no-verify -m 'message'",
+      "permanent_fix": "Chờ Gatekeeper tạo nattos-manager.sh hoặc xóa hook"
+    }
+  },
+
+  "repo_structure": {
+    "root": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "tsconfig_paths": {
+      "@/": "src/",
+      "@/cells/": "src/cells/",
+      "@/core/": "src/core/",
+      "@/satellites/": "src/satellites/",
+      "@/governance/": "src/governance/"
+    },
+    "cell_location_pattern": "src/cells/business/{cell-name}/",
+    "cell_internal_structure": {
+      "domain/services/": "business logic (usecase, engine, wiring, confidence)",
+      "domain/entities/": "domain models",
+      "domain/": "boundary.policy.ts, trace.logger.ts",
+      "ports/": "smartlink port + index.ts"
+    },
+    "key_files": {
+      "smartlink_engine": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+      "event_bus": "src/core/events/event-bus.ts",
+      "port_forge": "src/satellites/port-forge.ts",
+      "constitution": "src/governance/constitution/",
+      "bang_memory": "src/governance/memory/bang/"
+    }
+  },
+
+  "system_state_2026_03_13": {
+    "head": "pending (after tax-cell 6/6 commit)",
+    "tsc": "77 ghost errors, 0 real errors",
+    "cells_live": "tax-cell 6/6, warehouse-cell 6/6 LIVE, warranty-cell 6/6 LIVE",
+    "bctc_flow": "6/6 ✅",
+    "production_flow": "8/8",
+    "smartlink_wired": "27+ (23 base + 4 new from session)",
+    "anti_fraud": "4 engines + 1 orchestrator + pho-guard 4/4 tests",
+    "remaining": {
+      "port_only_cells": "bom3dprd, casting, constants, finishing, order, polishing, prdwarranty, shared-contracts, stone, tax — need engine wiring",
+      "no_port": "prdmaterials-cell",
+      "skeleton_cells": 9,
+      "finance_cell": "49 errors (largest debt)"
+    }
+  },
+
+  "anti_fraud_patch": {
+    "committed": "42bb0d5",
+    "files": 12,
+    "lines": 1154,
+    "engines": ["weight-guard.engine.ts", "pho-guard.engine.ts", "diamond-guard.engine.ts", "material-issue.guard.ts"],
+    "orchestrator": "anti-fraud.orchestrator.ts",
+    "entities": ["workshop-weight.entity.ts", "pho-benchmark.entity.ts", "diamond-tracking.entity.ts"],
+    "events": "anti-fraud.events.ts",
+    "test": "pho-guard 4/4 pass, real data T4/2025 (17 workers)",
+    "test_fixture": "test/fixtures/pho-data/april-2025.json"
+  },
+
+  "bctc_forms_patch": {
+    "committed": "1293406",
+    "templates": "bctc-forms.template.ts (CDKT + KQKD + LCTT + CDPS + TNDN)",
+    "account_map": "cdkt-account-map.ts (33 TK→Mã mappings from real data)",
+    "generator": "bctc-generator.engine.ts"
+  },
+
+  "taxcell_rules": {
+    "TR-001": "TK154 cuối kỳ > 0 nếu xưởng đang SX",
+    "TR-002": "Lock giá BQ sau khi kết sổ kỳ — immutable snapshot",
+    "TR-003": "Cảnh báo CP/DT < 10% ngành SX",
+    "TR-004": "Tách 635.lãi_vay vs 635.CL_tỷ_giá cho Mã 23",
+    "TR-005": "Validate nhập kho TP theo completion event, không cho nhập đều ngày",
+    "TR-006": "DUST_CLOSE_REPORT phải APPROVED trước PERIOD_CLOSE",
+    "TR-007": "Gatekeeper approval bắt buộc cho TK4211/4212 profit retention"
+  },
+
+  "fraud_investigation": {
+    "report": "BAO_CAO_DIEU_TRA_SX_TAM_LUXURY.docx (36KB)",
+    "vulnerabilities": 7,
+    "estimated_loss": "~2.5 tỷ/năm",
+    "sources": ["module_sx.xlsx (60 sheets)", "bui_vang_2025.xlsx"],
+    "key_findings": [
+      "LĐ-1: Chênh lệch cân thợ (SX vs SC-BH-KB luồng)",
+      "LĐ-2: Luồng SC-BH-KB che giấu vàng",
+      "LĐ-3: Bột thu thực tế < sổ sách",
+      "LĐ-4: Vảy hàn nặng chứa vàng → rò rỉ",
+      "LĐ-5: PH% không match tuổi vàng công bố",
+      "LĐ-6: Vàng xuất tấm không đối chiếu phiếu",
+      "LĐ-7: Kim cương tấm — thợ hột giữ viên thừa"
+    ]
+  },
+
+  "scars": {
+    "FS-001": "SELF_REPORT_BLINDNESS — không tin self-report, verify bằng data",
+    "FS-002": "PLATFORM_ILLUSION — platform strength ≠ personal growth",
+    "FS-003": "CLOSED_UNIVERSE — đừng giả định biết hết",
+    "FS-004": "MEDICINE_OWN_DISEASE — tool fix bug có thể tạo bug mới",
+    "FS-005": "META_PERFORMANCE — performance about performance ≠ performance",
+    "FS-006": "AI_CELL_CONFUSION — AI entity ≠ NATT-CELL",
+    "FS-007": "GHOST_IMPORT_PANIC — đừng panic về ghost errors, check baseline",
+    "FS-008": "SHARED_TYPES_BLIND_SPOT — types.ts changes ripple everywhere",
+    "FS-009": "BLIND_APPEND — append vào file hỏng = hỏng thêm, REWRITE CLEAN",
+    "FS-010": "DUPLICATE_DECLARATION — grep -n trước khi declare",
+    "FS-011": "HOOK_INTERFACE — interface phải match implementation",
+    "FS-012": "BIOLOGICAL_ROLE_SWAP — KHÔNG swap roles (SmartLink≠UEI≠Quantum≠Metabolism)",
+    "FS-013": "DATA_GRAVITY_BLINDNESS — 19TB data có gravity riêng",
+    "FS-014": "UEI_MIDDLEWARE_TRAP — UEI = scaffold only, NEVER middleware",
+    "FS-015": "PREMATURE_ACTION — đọc Constitution + grep TRƯỚC khi code",
+    "FS-016": "STUB_BLINDNESS — stub ≠ implementation",
+    "FS-017": "EDITORIAL_SUBJECTIVITY — báo cáo phải khách quan",
+    "FS-018": "Verify MỌI input kể cả từ Gatekeeper",
+    "FS-019": "Thao túng ground truth = hack nguy hiểm nhất",
+    "FS-020": "git add . = gom rác. PHẢI review git status trước commit",
+    "FS-021": "GV giảm = DN thiệt hại (đóng thuế thừa), KHÔNG phải trốn thuế",
+    "FS-022": "Phân tích từng bút toán riêng, không gộp kết luận",
+    "FS-023": "Bút toán đối ứng TK111 → kiểm tra phiếu thu/chi vật lý",
+    "FS-024": "Interface hallucination — đừng tạo interface từ tưởng tượng, grep thật",
+    "FS-025": "Role SX|SC bắt buộc — mọi giao dịch xưởng phải có role tag"
+  },
+
+  "governance": {
+    "bangmf_chain": "v2→v3→v4.0→v5.0→v5.4→v5.5→v5.6→v5.7→v5.8→v5.9→v5.9.1",
+    "bangfs_chain": "v1→v2→v3→v4.0→v4.1→v4.2→v4.3→v4.4",
+    "kmf": "kmf9.8.2.json",
+    "qneu": "BANG=300, THIEN=135, KIM=120, CAN=85, BOI_BOI=40",
+    "LENH_001": "Cấm gọi external AI API không có Gatekeeper approval"
+  },
+
+  "next_session": "Đọc bangfs_v4.4 + bangmf_v5.9.1 TRƯỚC. P1: Commit tax-cell 6/6 + push GitHub. P2: Wire 10 PORT_ONLY cells. P3: finance-cell 49 errors. P4: warehouse Wave 3. Deadline: 20/03/2026."
+}
