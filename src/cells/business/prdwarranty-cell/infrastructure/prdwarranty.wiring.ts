@@ -1,2 +1,2 @@
 // @ts-nocheck
-export const prdwarrantyWiring = { cellId: 'prdwarranty-cell', status: 'WIRED' } as const;
+export const prdwarrantyWiring = { cellId: "prdwarranty-cell", status: "WIRED" } as const;
