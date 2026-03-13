@@ -5889,7 +5889,9 @@
   "devDependencies": {
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
   },
   "type": "module"
 }
