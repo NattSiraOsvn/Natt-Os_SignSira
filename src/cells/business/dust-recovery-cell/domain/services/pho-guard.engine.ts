@@ -22,6 +22,7 @@ export class PhoGuardEngine {
   private records: PhoRecord[] = [];
 
   recordPho(workerId: string, luong: "SX" | "SC", weight: number, pho: number): void {
+    console.log(`[DEBUG] recordPho called: ${workerId} ${luong} ${pho}`);
     const record: PhoRecord = { workerId, luong, weight, pho, timestamp: Date.now() };
     this.records.push(record);
     trace.audit("PHO_ANALYSIS", { workerId, luong, pho, weight } as Record<string, unknown>);

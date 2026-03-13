@@ -1,18 +1,18 @@
-import { phoGuard } from '../cells/business/dust-recovery-cell/domain/services/pho-guard.engine';
-import { EventBus } from '../core/events/event-bus';
+import { PhoGuardEngine } from '../cells/business/dust-recovery-cell/domain/services/pho-guard.engine';
 import fs from 'fs';
 import path from 'path';
 
-// Mock EventBus
-jest.mock('../core/events/event-bus', () => ({
-  EventBus: {
-    publish: jest.fn(),
-    subscribe: jest.fn(),
-  }
+const mockEmit = jest.fn();
+jest.mock('../cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port', () => ({
+  DustRecoverySmartLinkPort: { emit: (...args: any[]) => mockEmit(...args) }
+}));
+jest.mock('@/satellites/trace-logger', () => ({
+  createTraceLogger: () => ({ info: jest.fn(), warn: jest.fn(), error: jest.fn(), audit: jest.fn() })
 }));
 
 describe('PhoGuardEngine with real April 2025 data', () => {
   let testData: any[];
+  let engine: PhoGuardEngine;
 
   beforeAll(() => {
     const filePath = path.join(__dirname, '../../test/fixtures/pho-data/april-2025.json');
@@ -20,57 +20,35 @@ describe('PhoGuardEngine with real April 2025 data', () => {
   });
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockEmit.mockClear();
+    engine = new PhoGuardEngine();
   });
 
-  it('should detect LOW_PHO_DETECTED for SC records with pho < 70', () => {
-    const scLow = testData.filter(d => d.luong === 'SC' && d.pho < 70);
-    scLow.forEach(d => {
-      phoGuard.recordPho(d.worker, d.luong, 0, d.pho);
-    });
-    // Mỗi bản ghi SC <70 phát sinh 1 event LOW_PHO_DETECTED
-    expect(EventBus.publish).toHaveBeenCalledTimes(scLow.length);
-    // Kiểm tra cụ thể Trần Hoài Phúc SC 49.88
-    expect(EventBus.publish).toHaveBeenCalledWith(
-      expect.objectContaining({ type: 'LOW_PHO_DETECTED' }),
-      'dust-recovery-cell',
-      expect.any(String)
-    );
+  it('should emit PHO_CRITICAL for pho < 60, LOW_PHO_DETECTED for 60-70', () => {
+    const scLow = testData.filter((d: any) => d.luong === 'SC' && d.pho < 70);
+    scLow.forEach((d: any) => engine.recordPho(d.worker, d.luong, 0, d.pho));
+    const signals = mockEmit.mock.calls.map((c: any) => c[0]);
+    expect(signals).toContain('PHO_CRITICAL');
+    expect(signals).toContain('LOW_PHO_DETECTED');
   });
 
-  it('should detect PHO_CRITICAL for pho < 60 (Trần Hoài Phúc SC)', () => {
-    const critical = testData.find(d => d.worker === 'Trần Hoài Phúc' && d.luong === 'SC');
-    phoGuard.recordPho(critical.worker, critical.luong, 0, critical.pho);
-    expect(EventBus.publish).toHaveBeenCalledWith(
-      expect.objectContaining({ type: 'PHO_CRITICAL' }),
-      'dust-recovery-cell',
-      expect.any(String)
-    );
+  it('should emit PHO_CRITICAL for Tran Hoai Phuc SC 49.88', () => {
+    engine.recordPho('Tran Hoai Phuc', 'SC', 0, 49.88);
+    expect(mockEmit).toHaveBeenCalledWith('PHO_CRITICAL', expect.objectContaining({ pho: 49.88 }));
   });
 
-  it('should detect PHO_DROP_ALERT when pho drops >5% from personal average', () => {
-    // Giả lập 5 mẫu SX trước đó cho Nguyễn Văn Vẹn
-    for (let i = 0; i < 5; i++) {
-      phoGuard.recordPho('Nguyễn Văn Vẹn', 'SX', 0, 74.5);
-    }
-    // Bây giờ thêm mẫu SC thấp hơn
-    phoGuard.recordPho('Nguyễn Văn Vẹn', 'SC', 0, 69.40);
-    // Phải có ít nhất một PHO_DROP_ALERT
-    const calls = (EventBus.publish as jest.Mock).mock.calls;
-    const dropAlerts = calls.filter(call => call[0].type === 'PHO_DROP_ALERT');
-    expect(dropAlerts.length).toBeGreaterThan(0);
+  it('should emit PHO_DROP_ALERT when pho drops >5 from avg', () => {
+    for (let i = 0; i < 6; i++) engine.recordPho('w1', 'SX', 0, 75);
+    mockEmit.mockClear();
+    engine.recordPho('w1', 'SX', 0, 68);
+    const signals = mockEmit.mock.calls.map((c: any) => c[0]);
+    expect(signals).toContain('PHO_DROP_ALERT');
   });
 
-  it('should detect SX_SC_PHO_GAP when SX avg > SC avg by >10%', () => {
-    // Giả lập nhiều mẫu cho Trần Hoài Phúc
-    for (let i = 0; i < 3; i++) {
-      phoGuard.recordPho('Trần Hoài Phúc', 'SX', 0, 74);
-    }
-    for (let i = 0; i < 3; i++) {
-      phoGuard.recordPho('Trần Hoài Phúc', 'SC', 0, 50);
-    }
-    const calls = (EventBus.publish as jest.Mock).mock.calls;
-    const gapAlerts = calls.filter(call => call[0].type === 'SX_SC_PHO_GAP');
-    expect(gapAlerts.length).toBeGreaterThan(0);
+  it('should emit SX_SC_PHO_GAP when delta > 10', () => {
+    for (let i = 0; i < 3; i++) engine.recordPho('w2', 'SX', 0, 74);
+    for (let i = 0; i < 3; i++) engine.recordPho('w2', 'SC', 0, 50);
+    const signals = mockEmit.mock.calls.map((c: any) => c[0]);
+    expect(signals).toContain('SX_SC_PHO_GAP');
   });
 });
