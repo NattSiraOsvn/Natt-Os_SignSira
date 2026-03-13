@@ -1,0 +1,2 @@
+// @ts-nocheck
+export const DUST_RECOVERY_IDENTITY={cellId:"dust-recovery-cell",cellName:"Dust Recovery — Thu hồi bột nguội Tâm Luxury",version:"1.0.0",wave:3,status:"ACTIVE",owner:"NATT-OS",registeredAt:"2026-03-15"} as const;

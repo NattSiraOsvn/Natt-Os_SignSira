@@ -1,0 +1,2 @@
+// @ts-nocheck
+export const DUST_RECOVERY_BOUNDARY={cellId:"dust-recovery-cell",canReceiveFrom:["warehouse-cell","polishing-cell","finishing-cell","gatekeeper"],canSendTo:["finance-cell","audit-cell"],prohibitedActions:["BYPASS_CONSTITUTION"]} as const;
