@@ -1,0 +1,9 @@
+{
+  "id": "FS-024",
+  "title": "Tạm thời vô hiệu hoá type checking bằng @ts-nocheck",
+  "context": "Phase 1 dọn dẹp anti-fraud, cần bypass 50+ lỗi type legacy để tiến hành test và phát triển.",
+  "lesson": "Không được lạm dụng @ts-nocheck, phải migrate triệt để các legacy imports trong Phase 2.",
+  "implication": "Cần có kế hoạch cụ thể để thay thế các import từ '@/services' bằng module thực tế hoặc mock phù hợp.",
+  "created": "2026-03-13",
+  "owner": "Kim"
+}

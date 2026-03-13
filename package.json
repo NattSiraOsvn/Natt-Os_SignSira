@@ -5887,11 +5887,18 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.0",
     "autoprefixer": "^10.4.27",
+    "jest": "^30.3.0",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",
+    "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  }
 }
