@@ -1,0 +1,28 @@
+// @ts-nocheck
+/**
+ * NATT-OS — warehouse-cell
+ * Điều 9 §3: Boundary Policy
+ */
+export const WAREHOUSE_BOUNDARY = {
+  cellId: 'warehouse-cell',
+  canReceiveFrom: [
+    'finance-cell',      // TK152/154/155/156 sync
+    'casting-cell',      // Phôi đúc nhập kho
+    'order-cell',        // Lệnh xuất kho theo đơn
+    'finishing-cell',    // BTP xuất xưởng
+    'stone-cell',        // Đá nhập/xuất
+    'prdmaterials-cell', // CCDC nhập kho
+    'production-cell',   // Lệnh SX
+  ],
+  canSendTo: [
+    'finance-cell',      // Ghi nhận biến động TK152→154→155
+    'audit-cell',        // Audit trail kho
+    'order-cell',        // Xác nhận xuất hàng
+  ],
+  prohibitedActions: [
+    'DELETE_MOVEMENT',   // Không xóa phiếu kho — chỉ reverse
+    'BACKDATED_ADJUST',  // Không điều chỉnh ngược > 30 ngày
+    'BYPASS_PHIEU',      // Mọi xuất/nhập phải có phiếu
+  ],
+  maxStockAdjustPercent: 5, // Kiểm kê — chênh lệch > 5% cần duyệt Gatekeeper
+} as const;
