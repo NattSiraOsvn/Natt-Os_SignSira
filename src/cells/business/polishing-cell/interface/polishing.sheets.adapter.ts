@@ -1,13 +1,20 @@
-/**
- * polishing-cell — interface/polishing.sheets.adapter.ts
- * STUB — chờ JUST-U adapter thật
- */
+// JUST-U Adapter — polishing-cell
 
-import { IPolishingSheetAdapter } from '../application/polishing.usecase';
+export interface IPolishingSheetAdapter {
+  fetchWeightVang(lapId: string): Promise<number>;
+}
 
-export class PolishingSheetAdapterStub implements IPolishingSheetAdapter {
-  async fetchWeightVang(_lapId: string, _orderId: string): Promise<number> {
-    // STUB: trả 0 — JUST-U sẽ cung cấp G4 thực tế
+export class PolishingSheetAdapter implements IPolishingSheetAdapter {
+  constructor(private readonly justU?: any) {}
+
+  async fetchWeightVang(lapId: string): Promise<number> {
+    if (this.justU) {
+      return this.justU.query('weight_vang', { lapId });
+    }
+    console.warn(`[polishing-cell] JUST-U not injected — lapId: ${lapId}`);
     return 0;
   }
 }
+
+// Backward compat
+export class PolishingSheetAdapterStub extends PolishingSheetAdapter {}

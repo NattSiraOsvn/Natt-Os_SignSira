@@ -3,3 +3,4 @@ export { createCastingRecord } from './domain/casting.entity';
 export type { ICastingRepository, ICastingSheetAdapter, RawCastingResult } from './application/casting.usecase';
 export { ProcessCastingRequestUseCase } from './application/casting.usecase';
 export { CastingEngine } from './infrastructure/casting.engine';
+export * from './ports/casting-smartlink.port';

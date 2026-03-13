@@ -1,17 +1,15 @@
-/**
- * prdmaterials-cell / interface / prdmaterials.sheets.adapter.ts
- * ADAPT: dùng JUST-U adapter thực tế thay stub bên dưới.
- */
+// JUST-U Adapter — prdmaterials-cell
 
-import { IPhieuInfoAdapter, RawPhieuInfo } from '../application/prdmaterials.usecase';
+export interface IPrdMaterialsSheetAdapter {
+  fetchPendingLaps(): Promise<Array<{ lapId: string; orderId: string; weightPhoi: number }>>;
+}
 
-export class PhieuInfoSheetsAdapter implements IPhieuInfoAdapter {
-  private readonly SPREADSHEET_ID = 'REPLACE_WITH_REAL_SPREADSHEET_ID';
-  private readonly SHEET_NAME = 'GIAO NHẬN INFO';
+export class PrdMaterialsSheetAdapter implements IPrdMaterialsSheetAdapter {
+  constructor(private readonly justU?: any) {}
 
-  async fetchPendingLaps(): Promise<RawPhieuInfo[]> {
-    // TODO: gọi JUST-U adapter thực tế
-    console.log('[prdmaterials-cell/adapter] fetchPendingLaps – STUB');
+  async fetchPendingLaps(): Promise<Array<{ lapId: string; orderId: string; weightPhoi: number }>> {
+    if (this.justU) return this.justU.query('pending_laps', {});
+    console.warn('[prdmaterials-cell] JUST-U not injected');
     return [];
   }
 }

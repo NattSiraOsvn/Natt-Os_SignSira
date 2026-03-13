@@ -1,9 +1,23 @@
-/**
- * tax-cell — interface/tax.sheets.adapter.ts
- * STUB — chờ JUST-U adapter thật
- */
-export class TaxSheetAdapterStub {
-  async fetchLaborCost(_lapId: string, _orderId: string): Promise<number> {
-    return 0; // STUB
+// JUST-U Adapter — tax-cell
+
+export interface ITaxSheetAdapter {
+  fetchLaborCost(lapId: string): Promise<number>;
+  fetchMaterialCost(lapId: string): Promise<number>;
+}
+
+export class TaxSheetAdapter implements ITaxSheetAdapter {
+  constructor(private readonly justU?: any) {}
+
+  async fetchLaborCost(lapId: string): Promise<number> {
+    if (this.justU) return this.justU.query('labor_cost', { lapId });
+    console.warn(`[tax-cell] JUST-U not injected — lapId: ${lapId}`);
+    return 0;
+  }
+
+  async fetchMaterialCost(lapId: string): Promise<number> {
+    if (this.justU) return this.justU.query('material_cost', { lapId });
+    return 0;
   }
 }
+
+export class TaxSheetAdapterStub extends TaxSheetAdapter {}

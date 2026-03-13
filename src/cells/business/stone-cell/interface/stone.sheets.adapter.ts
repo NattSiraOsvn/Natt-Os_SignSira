@@ -1,15 +1,17 @@
-/**
- * stone-cell — interface/stone.sheets.adapter.ts
- * STUB — ADAPT với JUST-U
- */
+// JUST-U Adapter — stone-cell
 
-import { IStoneSheetAdapter, RawStoneSpec } from '../application/stone.usecase';
+export interface IStoneSheetAdapter {
+  fetchStoneRequirements(orderId: string): Promise<{ required: boolean; daIds: string[]; soLuongDa: number[] }>;
+}
 
 export class StoneSheetAdapter implements IStoneSheetAdapter {
-  async fetchStoneSpec(orderId: string): Promise<RawStoneSpec[]> {
-    // STUB: return empty — no stone required by default
-    // TODO: connect JUST-U để lấy spec đá từ đơn hàng
-    console.warn(`[stone-cell] STUB adapter — orderId: ${orderId}`);
-    return [];
+  constructor(private readonly justU?: any) {}
+
+  async fetchStoneRequirements(orderId: string): Promise<{ required: boolean; daIds: string[]; soLuongDa: number[] }> {
+    if (this.justU) {
+      return this.justU.query('stone_requirements', { orderId });
+    }
+    console.warn(`[stone-cell] JUST-U not injected — orderId: ${orderId}`);
+    return { required: false, daIds: [], soLuongDa: [] };
   }
 }

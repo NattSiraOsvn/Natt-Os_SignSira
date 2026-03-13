@@ -1,5 +1,6 @@
 import { ValidationReport } from '../entities/validation-report.entity';
 import { ClosingSession } from '../entities/closing-session.entity';
+import { dustReportStore } from '../../../../infrastructure/dust-recovery-cell/application/dust.usecase';
 
 export interface IPrecloseValidator {
   validate(period: string, session: ClosingSession, options?: any): Promise<ValidationReport>;
@@ -51,8 +52,10 @@ export class PrecloseValidator {
     return report;
   }
 
-  private static async checkDustCloseReport(_period: string): Promise<{ status: string } | null> {
-    return null; // STUB: null = BLOCK — JUST-U inject thuc
+  private static async checkDustCloseReport(period: string): Promise<{ status: string } | null> {
+    // Wire to dust-recovery-cell event store
+    const report = dustReportStore.get(period) ?? null;
+    return report ? { status: report.status } : null;
   }
   private static async checkUnpostedDocuments(_period: string): Promise<any[]> { return []; }
   private static async getInventory(_period: string): Promise<any[]> {

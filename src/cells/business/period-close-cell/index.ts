@@ -20,3 +20,4 @@ export const PeriodCloseServices = {
   integrateTax: TaxIntegrator.integrate.bind(TaxIntegrator),
   rollback: RollbackManager.rollback.bind(RollbackManager),
 };
+export * from './ports/period-close-smartlink.port';
