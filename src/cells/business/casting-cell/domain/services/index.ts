@@ -2,3 +2,4 @@
 export * from './casting.identity';
 export * from './casting.engine';
 export * from './casting.confidence';
+export * from '../../ports/casting-smartlink.port';
