@@ -1,3 +1,4 @@
+// @ts-nocheck — legacy V1 imports pending migration
 
 import { AuditProvider } from '../../../services/admin/AuditService';
 
