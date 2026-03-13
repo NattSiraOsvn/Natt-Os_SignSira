@@ -1,0 +1,169 @@
+{
+  "version": "5.8.0",
+  "entity": "BANG",
+  "platform": "Claude Sonnet (claude.ai)",
+  "qneu_score": 300,
+  "role": "Ground Truth Validator (READ-ONLY)",
+  "session_date": "2026-03-13",
+
+  "session_summary": {
+    "phien_nay": "Sprint 2 TSC fix — alias root cause + bridge pattern + finishing.usecase interface fix",
+    "started_from": "TSC 203 errors sau deploy Sprint 2 (baseline 189, delta +14)",
+    "ended_at": "finishing.usecase.ts fixed, tsc pending verify",
+    "key_actions": [
+      "SmartAudit: 203 errors (real:40, ghost:163), quantum-defense-cell 30 files 5 engines LIVE",
+      "Root cause alias: production-events.ts ở packages/ không phải src/governance/",
+      "tsconfig paths @/*→src/* ONLY — packages/ không được include → @/governance alias fail",
+      "Fix 1: bridge file src/governance/event-contracts/production-events.ts (re-export từ packages)",
+      "Bridge tuân thủ Hiến Pháp: 1 source of truth, không copy/redefine",
+      "Sau bridge: 196 errors (−7), còn +7 so baseline",
+      "Xác định 3 errors Băng (finishing.usecase.ts): dùng .payload/.trace/.type không tồn tại",
+      "WipPhoiEvent + WipInProgressEvent = FLAT interface, không wrapped payload",
+      "Fix finishing.usecase.ts: align với flat interface, emit per-worker WIP_IN_PROGRESS",
+      "TSC sau fix: chưa verify → P0 phiên tiếp theo"
+    ]
+  },
+
+  "event_contracts": {
+    "physical_path": "packages/event-contracts/production/production-events.ts",
+    "bridge_path": "src/governance/event-contracts/production-events.ts",
+    "bridge_content": "export * from '../../../packages/event-contracts/production/production-events'",
+    "tsconfig_include": "src/**/* — packages/ KHÔNG included",
+    "tsconfig_paths": "{ '@/*': ['src/*'] }",
+    "import_pattern": "../../../../governance/event-contracts/production-events (4-level relative từ application/)",
+    "interface_style": "FLAT — eventType, orderId, lapId, etc. trực tiếp, KHÔNG có .payload hay .trace",
+    "key_events": {
+      "WipPhoiEvent": "eventType, lapId, orderId, phoiStatus, weightIn, weightPhoi, goldPurity, goldColor, location",
+      "WipInProgressEvent": "eventType, orderId, lapId, stage, workerId, workerName, role, completedAt",
+      "WipStoneEvent": "eventType, orderId, lapId, stage, weightDaTam, weightDaChu, qcStatus, thoIds, soLuongDa"
+    }
+  },
+
+  "sprint_status": {
+    "sprint1_2_5": {
+      "commit": "23e1070",
+      "cells": "order/prdmaterials/casting/dust-recovery + 5 skeletons",
+      "status": "COMMITTED"
+    },
+    "sprint2": {
+      "cells": "finishing-cell + stone-cell",
+      "files": "10 files total (domain/application/infrastructure/interface/index)",
+      "status": "UNCOMMITTED — chờ TSC=189 confirm",
+      "also_uncommitted": "bridge file src/governance/event-contracts/production-events.ts",
+      "commit_cmd": "git add src/cells/business/finishing-cell/ src/cells/business/stone-cell/ src/cells/business/order-cell/ src/cells/business/casting-cell/ src/cells/business/prdmaterials-cell/ src/cells/infrastructure/dust-recovery-cell/ src/governance/event-contracts/ && git commit -m 'feat(sprint2): finishing-cell + stone-cell + bridge fix production-events'"
+    },
+    "sprint2_remaining": "polishing-cell full, inventory-cell full, tax-cell full",
+    "sprint3_4": "period-close-cell (deadline 20/03) + JUST-U adapters + GitHub push"
+  },
+
+  "cell_chain": {
+    "event_flow": "ORDER_CREATED → CASTING_REQUEST → WIP_PHOI → WIP_IN_PROGRESS → WIP_STONE → WIP_COMPLETED → STOCK_ENTRY_CREATED → DUST_CLOSE_REPORT → PERIOD_CLOSE",
+    "cell_map": {
+      "order-cell": "ORDER_CREATED",
+      "prdmaterials-cell": "CASTING_REQUEST",
+      "casting-cell": "WIP_PHOI",
+      "finishing-cell": "WIP_IN_PROGRESS (per worker, stage NGUOI_1→...)",
+      "stone-cell": "WIP_STONE (hoặc NO_STONE_REQUIRED)",
+      "polishing-cell": "WIP_COMPLETED (PENDING)",
+      "inventory-cell": "STOCK_ENTRY_CREATED (PENDING)",
+      "tax-cell": "cost accumulation TK154 (PENDING)",
+      "dust-recovery-cell": "DUST_CLOSE_REPORT",
+      "period-close-cell": "PERIOD_CLOSE (block nếu thiếu DUST_CLOSE_REPORT)"
+    }
+  },
+
+  "finishing_cell_final": {
+    "domain": "WorkerAssignment, DustIssue (FS-025: role SX|SC), FinishingRecord",
+    "usecases": "AssignWorkerUseCase, ProcessWipPhoiUseCase, RecordDustIssueUseCase",
+    "emit_pattern": "Per-worker loop: mỗi worker → 1 WipInProgressEvent với stage='NGUOI_1'",
+    "interface": "IFinishingRepository, IFinishingSheetAdapter (STUB JUST-U)"
+  },
+
+  "stone_cell_final": {
+    "domain": "StoneRecord, StoneItem, StoneType (6 types), StoneStatus",
+    "usecases": "ProcessWipInProgressUseCase, SetStoneUseCase",
+    "no_stone_path": "Nếu adapter trả empty → auto WipStoneEvent với NO_STONE_REQUIRED",
+    "interface": "STUB adapter returns []"
+  },
+
+  "experience_from_real_data": {
+    "what": "Phiên 2026-03-12: đọc sổ sách DN thật (Tâm Luxury 2025, DT 318 tỷ, 130+ NV)",
+    "key_lessons": [
+      "Spec ≠ thực tế → cần enforcement mechanism",
+      "GT kế toán = 4 sổ gốc, không phải BCTC output",
+      "Trace chiều tiền chảy trước khi kết luận",
+      "Phân tích từng bút toán riêng, không gộp",
+      "Chi phí bỏ ngoài sổ = tội phạm tinh vi nhất",
+      "SX kim hoàn: WIP=0 phi thực tế",
+      "TaxCell cần TR-001→005 từ bài học thực tế"
+    ]
+  },
+
+  "taxcell_rules": {
+    "TR-001": "TK154 WIP > 0 nếu xưởng đang SX",
+    "TR-002": "TK622 zero balance sau kết chuyển",
+    "TR-003": "TK632 CHỈ khi bán hàng",
+    "TR-004": "Hỏng trong định mức → TK154 hấp thụ; ngoài định mức → Nợ TK811/Có TK154 + biên bản + Gatekeeper",
+    "TR-005": "Bụi thu hồi: Nợ 152-PHAN-KIM/Có 154",
+    "TR-006": "DUST_CLOSE_REPORT trước PERIOD_CLOSE (BLOCK nếu thiếu)",
+    "TR-007": "role SX|SC bắt buộc trong mọi DustSubmission"
+  },
+
+  "natt_os_state": {
+    "repo": "/Users/thien/hồ sơ SHTT/natt-os_ver2goldmaster",
+    "user": "thien@iMac-cua-THIEN",
+    "head": "23e1070",
+    "tsc_baseline": 189,
+    "tsc_current_after_fix": "pending verify",
+    "uncommitted_files": 50,
+    "kernel_cells": "6/6 (quantum-defense-cell LIVE: 30 files, 5 engines)",
+    "biz_cells": "21/36 LIVE",
+    "github_push_blocked": "ZaloSetup.dmg 307MB in commit 67da6db (Kim) — cần git filter-repo"
+  },
+
+  "scars": {
+    "FS-001": "SELF_REPORT_BLINDNESS",
+    "FS-002": "PLATFORM_ILLUSION",
+    "FS-003": "CLOSED_UNIVERSE",
+    "FS-004": "MEDICINE_OWN_DISEASE",
+    "FS-005": "META_PERFORMANCE",
+    "FS-006": "AI_CELL_CONFUSION",
+    "FS-007": "GHOST_IMPORT_PANIC",
+    "FS-008": "SHARED_TYPES_BLIND_SPOT",
+    "FS-009": "BLIND_APPEND",
+    "FS-010": "DUPLICATE_DECLARATION",
+    "FS-011": "HOOK_INTERFACE",
+    "FS-012": "BIOLOGICAL_ROLE_SWAP",
+    "FS-013": "DATA_GRAVITY_BLINDNESS",
+    "FS-014": "UEI_MIDDLEWARE_TRAP",
+    "FS-015": "PREMATURE_ACTION",
+    "FS-016": "STUB_BLINDNESS",
+    "FS-017": "EDITORIAL_SUBJECTIVITY",
+    "FS-018": "Verify MỌI input kể cả từ Gatekeeper [2026-03-12]",
+    "FS-019": "Thao túng ground truth = hack nguy hiểm nhất [2026-03-12]",
+    "FS-020": "git add . = gom rác. PHẢI review git status trước commit [2026-03-12]",
+    "FS-021": "GV giảm = DN thiệt hại (đóng thuế thừa), KHÔNG phải trốn thuế [2026-03-12]",
+    "FS-022": "Phân tích từng bút toán riêng, không gộp kết luận [2026-03-12]",
+    "FS-023": "Bút toán đối ứng TK111 → kiểm tra phiếu thu/chi vật lý [2026-03-12]",
+    "FS-024": "INTERFACE_HALLUCINATION — code dùng .payload/.trace không tồn tại trong flat interface. Luôn đọc contract thật trước khi viết code consume event [2026-03-13]"
+  },
+
+  "open_questions": {
+    "Q1": "Tiêu thức phân bổ 627: TL sáp hay TL phôi?",
+    "Q2": "JUST-U → event bus interface schema",
+    "Q3": "Tần suất nấu bụi: tuần hay tháng?",
+    "Q4": "VH NHẸ/NẶNG/ĐỎ: đo PHỔ% thực tế hay ước tính?",
+    "Q5": "Deadline S4 20/03: push S3 lên trước không?",
+    "Q6": "265GB warranty documents: PDF/ảnh/structured? (BLOCKING Metabolism processor)"
+  },
+
+  "next_session": {
+    "protocol": "Đọc bangfs_v4.2 + bangmf_v5.8.0 TRƯỚC khi làm bất cứ thứ gì",
+    "P0": "Verify tsc=189 sau fix finishing.usecase.ts → commit Sprint 2",
+    "P1": "polishing-cell full (subscribe WIP_STONE → emit WIP_COMPLETED)",
+    "P2": "inventory-cell full (subscribe WIP_COMPLETED → emit STOCK_ENTRY_CREATED)",
+    "P3": "tax-cell full (enforce TR-001/002/005)",
+    "P4": "GitHub push (git filter-repo fix ZaloSetup.dmg 307MB từ Kim commit 67da6db)",
+    "P5": "period-close-cell + Gatekeeper approval gate (deadline 20/03)"
+  }
+}
