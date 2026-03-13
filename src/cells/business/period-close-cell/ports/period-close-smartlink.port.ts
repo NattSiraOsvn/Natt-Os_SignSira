@@ -1,9 +1,9 @@
-import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
 
 export const PeriodCloseSmartLinkPort = forgeSmartLinkPort({
   cellId: 'period-close-cell',
   signals: {
-    subscribes: { DUST_CLOSE_REPORT: 'dust:close:report' },
-    emits: { PERIOD_CLOSE: 'period:close:completed' }
+    DUST_CLOSE_REPORT: { eventType: 'dust:close:report', routeTo: 'dust-recovery-cell' },
+    PERIOD_CLOSE: { eventType: 'period:close', routeTo: 'finance-cell' },
   }
 });

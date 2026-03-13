@@ -1,9 +1,9 @@
-import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
 
 export const StoneSmartLinkPort = forgeSmartLinkPort({
   cellId: 'stone-cell',
   signals: {
-    subscribes: { WIP_IN_PROGRESS: 'wip:in-progress' },
-    emits: { WIP_STONE: 'wip:stone:completed' }
+    WIP_IN_PROGRESS: { eventType: 'wip:in-progress', routeTo: 'finishing-cell' },
+    WIP_STONE: { eventType: 'wip:stone', routeTo: 'polishing-cell' },
   }
 });

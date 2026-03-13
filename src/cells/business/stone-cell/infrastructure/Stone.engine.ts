@@ -6,6 +6,7 @@
 import { StoneRecord } from '../domain/stone.entity';
 import { IStoneRepository, ProcessWipInProgressUseCase, SetStoneUseCase } from '../application/stone.usecase';
 import { StoneSheetAdapter } from '../interface/stone.sheets.adapter';
+import { IStoneSheetAdapter } from '../application/stone.usecase';
 import { WipInProgressEvent, WipStoneEvent } from '../../../../governance/event-contracts/production-events';
 
 // ─── InMemory Repository ─────────────────────────────────────────────────────
@@ -37,7 +38,7 @@ export class InMemoryStoneRepository implements IStoneRepository {
 
 export class StoneEngine {
   private repo    = new InMemoryStoneRepository();
-  private adapter = new StoneSheetAdapter();
+  private adapter: IStoneSheetAdapter = new StoneSheetAdapter();
 
   private pendingEvents: WipStoneEvent[] = [];
 

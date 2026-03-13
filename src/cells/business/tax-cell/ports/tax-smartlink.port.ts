@@ -1,9 +1,9 @@
-import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
 
 export const TaxSmartLinkPort = forgeSmartLinkPort({
   cellId: 'tax-cell',
   signals: {
-    subscribes: { STOCK_ENTRY_CREATED: 'stock:entry:created' },
-    emits: { DUST_CLOSE_REPORT: 'dust:close:report' }
+    STOCK_ENTRY_CREATED: { eventType: 'stock:entry:created', routeTo: 'inventory-cell' },
+    DUST_CLOSE_REPORT: { eventType: 'dust:close:report', routeTo: 'dust-recovery-cell' },
   }
 });

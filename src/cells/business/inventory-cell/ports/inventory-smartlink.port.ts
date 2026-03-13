@@ -1,9 +1,9 @@
-import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
 
 export const InventorySmartLinkPort = forgeSmartLinkPort({
   cellId: 'inventory-cell',
   signals: {
-    subscribes: { WIP_COMPLETED: 'wip:completed' },
-    emits: { STOCK_ENTRY_CREATED: 'stock:entry:created' }
+    WIP_COMPLETED: { eventType: 'wip:completed', routeTo: 'polishing-cell' },
+    STOCK_ENTRY_CREATED: { eventType: 'stock:entry:created', routeTo: 'tax-cell' },
   }
 });

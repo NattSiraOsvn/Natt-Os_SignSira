@@ -1,9 +1,9 @@
-import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
 
 export const CastingSmartLinkPort = forgeSmartLinkPort({
   cellId: 'casting-cell',
   signals: {
-    subscribes: { CASTING_REQUEST: 'casting:request:received' },
-    emits: { WIP_PHOI: 'wip:phoi:created' }
+    CASTING_REQUEST: { eventType: 'casting:request', routeTo: 'prdmaterials-cell' },
+    WIP_PHOI: { eventType: 'wip:phoi', routeTo: 'finishing-cell' },
   }
 });

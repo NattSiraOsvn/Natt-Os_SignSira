@@ -7,6 +7,7 @@ import { FinishingRecord } from '../domain/finishing.entity';
 import { IFinishingRepository } from '../application/finishing.usecase';
 import { ProcessWipPhoiUseCase, AssignWorkerUseCase } from '../application/finishing.usecase';
 import { FinishingSheetAdapter } from '../interface/finishing.sheets.adapter';
+import { IFinishingSheetAdapter } from '../application/finishing.usecase';
 import { WipPhoiEvent, WipInProgressEvent } from '../../../../governance/event-contracts/production-events';
 
 // ─── InMemory Repository ─────────────────────────────────────────────────────
@@ -34,7 +35,7 @@ export class InMemoryFinishingRepository implements IFinishingRepository {
 
 export class FinishingEngine {
   private repo    = new InMemoryFinishingRepository();
-  private adapter = new FinishingSheetAdapter();
+  private adapter: IFinishingSheetAdapter = new FinishingSheetAdapter();
 
   private pendingEvents: WipInProgressEvent[] = [];
 

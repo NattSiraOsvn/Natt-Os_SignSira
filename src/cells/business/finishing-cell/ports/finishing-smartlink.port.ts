@@ -1,9 +1,9 @@
-import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
 
 export const FinishingSmartLinkPort = forgeSmartLinkPort({
   cellId: 'finishing-cell',
   signals: {
-    subscribes: { WIP_PHOI: 'wip:phoi:created' },
-    emits: { WIP_IN_PROGRESS: 'wip:in-progress' }
+    WIP_PHOI: { eventType: 'wip:phoi', routeTo: 'casting-cell' },
+    WIP_IN_PROGRESS: { eventType: 'wip:in-progress', routeTo: 'stone-cell' },
   }
 });
