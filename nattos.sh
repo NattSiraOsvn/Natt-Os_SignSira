@@ -202,7 +202,7 @@ for cell_dir in src/cells/business/*/; do
   HAS_IDENTITY=$([[ -f "$cell_dir/cell.manifest.json" ]] && echo 1 || echo 0)
   HAS_CAPABILITY=$(find "$cell_dir" -name "*.engine.ts" -o -name "*.service.ts" 2>/dev/null | grep -v index | grep -q . && echo 1 || echo 0)
   HAS_BOUNDARY=$(find "$cell_dir" -name "*boundary*" -o -name "*policy*" 2>/dev/null | grep -q . && echo 1 || echo 0)
-  HAS_TRACE=$(find "$cell_dir" -name "*.entity.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_TRACE=$(find "$cell_dir" -name "*.entity.ts" -o -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
   HAS_CONFIDENCE=1  # manifest implies confidence
   HAS_SMARTLINK=$(find "$cell_dir" -name "*smartlink*" 2>/dev/null | grep -q . && echo 1 || echo 0)
 
