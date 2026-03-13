@@ -1,0 +1,2 @@
+// @ts-nocheck
+export const CUSTOMER_BOUNDARY={cellId:"customer-cell",canReceiveFrom:["sales-cell","order-cell","gatekeeper"],canSendTo:["audit-cell","sales-cell"],prohibitedActions:["BYPASS_CONSTITUTION"]} as const;

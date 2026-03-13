@@ -1,0 +1,2 @@
+// @ts-nocheck
+const _logs:any[]=[]; export const ComplianceTraceLogger={log(event:string,refId:string,actor:string,payload?:any){const e={traceId:"CMP-"+Date.now(),cellId:"compliance-cell" as const,event,refId,actor,payload,timestamp:new Date()};_logs.push(e);return e;},count:()=>_logs.length};
