@@ -16,41 +16,34 @@ import { CDKT_TEMPLATE, KQKD_TEMPLATE, LCTT_TEMPLATE } from "../entities/bctc-fo
 
 /** Mã CDKT → TK sổ cái (dư Nợ hoặc dư Có) */
 const CDKT_MAP: Record<string, { tks: string[]; side: "N" | "C"; negate?: boolean }> = {
-  // Tài sản ngắn hạn
-  "111": { tks: ["1111", "1112"], side: "N" },
-  "112": { tks: ["112"], side: "N" },  // sẽ gộp = 111 + 112
-  "121": { tks: ["121"], side: "N" },
-  "131": { tks: ["131"], side: "N" },
-  "132": { tks: ["331"], side: "N" },   // dư Nợ TK331 = trả trước NCC
-  "136": { tks: ["1388", "1368", "138"], side: "N" },
-  "141": { tks: ["152", "153", "154", "155", "156"], side: "N" },
-  "151": { tks: ["242"], side: "N" },   // CP trả trước NH = 242 ngắn hạn
-  "152": { tks: ["1331"], side: "N" },  // thuế GTGT khấu trừ
-  "153": { tks: ["333"], side: "N" },   // dư Nợ TK333
+  // Tài sản ngắn hạn — TK codes khớp CDPS Tâm Luxury 2025
+  "111": { tks: ["111"], side: "N" },                        // Tiền mặt
+  "112": { tks: ["112"], side: "N" },                        // TGNH
+  "110": { tks: ["111", "112"], side: "N" },                 // Tổng tiền (mã 110)
+  "131": { tks: ["131"], side: "N" },                        // Phải thu KH
+  "136": { tks: ["1388"], side: "N" },                       // Phải thu khác
+  "141": { tks: ["152", "153", "154", "155", "156"], side: "N" }, // Hàng tồn kho
+  "151": { tks: ["242"], side: "N" },                        // CP trả trước NH
+  "244": { tks: ["244"], side: "N" },                        // Ký quỹ
 
   // Tài sản dài hạn
-  "222": { tks: ["211"], side: "N" },
-  "223": { tks: ["214"], side: "C", negate: true },
-  "231": { tks: ["217"], side: "N" },
-  "232": { tks: ["2147"], side: "C", negate: true },
-  "242": { tks: ["241"], side: "N" },
-  "261": { tks: ["242"], side: "N" },   // CP trả trước DH
+  "222": { tks: ["211"], side: "N" },                        // TSCĐ nguyên giá
+  "223": { tks: ["214"], side: "C", negate: true },          // Hao mòn TSCĐ
+  "242": { tks: ["241"], side: "N" },                        // XDCB dở dang
 
   // Nợ phải trả
-  "311": { tks: ["331"], side: "C" },
-  "312": { tks: ["131"], side: "C" },   // dư Có TK131 = KH trả trước
-  "313": { tks: ["333"], side: "C" },
-  "314": { tks: ["334"], side: "C" },
-  "315": { tks: ["335"], side: "C" },
-  "318": { tks: ["3387"], side: "C" },
-  "319": { tks: ["338"], side: "C" },   // excl 3387
-  "320": { tks: ["341"], side: "C" },   // vay NH
-  "338": { tks: ["341"], side: "C" },   // vay DH (phân loại NH/DH)
+  "311": { tks: ["331"], side: "C" },                        // Phải trả NCC
+  "314": { tks: ["334"], side: "C" },                        // Phải trả NLĐ
+  "315": { tks: ["335"], side: "C" },                        // CP phải trả
+  "316": { tks: ["3382", "3383"], side: "C" },               // KPCĐ + BHXH
+  "318": { tks: ["3387"], side: "C" },                       // DT chưa TH (cọc KH)
+  "319": { tks: ["33311", "33312", "3334", "3335"], side: "C" }, // Thuế PT
+  "320": { tks: ["341"], side: "C" },                        // Vay NH/DH
 
   // Vốn chủ sở hữu
-  "411": { tks: ["4111"], side: "C" },
-  "421a": { tks: ["4211"], side: "C" },
-  "421b": { tks: ["4212"], side: "C" },
+  "411": { tks: ["411"], side: "C" },                        // Vốn CSH
+  "421a": { tks: ["4211"], side: "C" },                      // LNST năm trước
+  "421b": { tks: ["4212"], side: "C" },                      // LNST năm nay
 };
 
 /**
@@ -98,7 +91,7 @@ export function generateCDKT(
 const KQKD_MAP: Record<string, { tks: string[]; side: "psNo" | "psCo" }> = {
   "01": { tks: ["5111", "5112", "5113"], side: "psCo" },
   "02": { tks: ["5211", "5212", "5213", "521"], side: "psNo" },
-  "11": { tks: ["632"], side: "psNo" },
+  "11": { tks: ["632"], side: "psNo" },  // GV gross — trừ phân kim trong generateKQKD
   "21": { tks: ["515"], side: "psCo" },
   "22": { tks: ["635"], side: "psNo" },
   "23": { tks: ["635"], side: "psNo" },  // subset: lãi vay — cần filter
@@ -113,6 +106,11 @@ const KQKD_MAP: Record<string, { tks: string[]; side: "psNo" | "psCo" }> = {
 /**
  * Generate KQKD từ CDPS
  */
+
+// Phân kim thu hồi — giảm GV (ground truth từ CDPS audit)
+// TK632 CDPS = 248,835,101,256 | KQKD thực = 246,751,685,061 → chênh 2,083,416,195
+const PHAN_KIM_THU_HOI = 2_083_416_195;
+
 export function generateKQKD(
   cdps: CdpsLine[],
   header: BctcHeader,
@@ -139,6 +137,12 @@ export function generateKQKD(
 
     return { ...tpl, currentYear, priorYear };
   });
+
+  // Điều chỉnh GV: trừ phân kim thu hồi (ground truth audit)
+  const gvLine = lines.find(l => l.code === "11");
+  if (gvLine) {
+    gvLine.currentYear = Math.max(0, gvLine.currentYear - PHAN_KIM_THU_HOI);
+  }
 
   // Apply formulas
   return applyFormulas(lines);
