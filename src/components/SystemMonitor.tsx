@@ -241,7 +241,6 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
                 </div>
             </div>
         </div>
-      )}
 
       {/* AI ANALYSIS FOOTER */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 animate-in slide-in-from-bottom-10">

@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { SmartLinkMappingEngine } from '../services/mapping/SmartLinkMappingEngine';
+/* Fix: Import from ../types to ensure compatibility with engine return types */
 import { AccountingEntry, AccountingMappingRule, SalesEvent } from '../types';
 
 interface AccountingContextType {
@@ -62,6 +63,7 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
     try {
       setIsLoading(true);
       const loadedRules = mappingEngine.getMappingRules();
+      /* Fix: Assignment now valid because rules state uses types.ts definition */
       setRules(loadedRules);
       // Simulate initial entries loading
       await new Promise(r => setTimeout(r, 500));
@@ -115,8 +117,8 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
     entries.forEach(e => {
       if (e.status !== 'POSTED') pendingCount++;
       e.entries.forEach(line => {
-        if (line.accountNumber && line.accountNumber.startsWith('511')) totalRevenue += line.credit;
-        if (line.accountNumber && (line.accountNumber.startsWith('6') || line.accountNumber.startsWith('8'))) totalExpenses += line.debit;
+        if (line.accountNumber.startsWith('511')) totalRevenue += line.credit;
+        if (line.accountNumber.startsWith('6') || line.accountNumber.startsWith('8')) totalExpenses += line.debit;
       });
     });
 

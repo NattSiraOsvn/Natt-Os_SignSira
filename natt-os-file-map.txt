@@ -1,0 +1,310 @@
+# NATT-OS DL · Bản đồ File Đầy Đủ
+# Mục đích: anh tự merge vào nauion-v4.html
+# Cập nhật: 14/03/2026
+
+══════════════════════════════════════════
+ENTRY POINT
+══════════════════════════════════════════
+index.tsx
+  └── <AccountingProvider>       ← contexts/AccountingContext.tsx (148 lines)
+        └── <MappingProvider>    ← contexts/MappingContext.tsx (35 lines)
+              └── <App />        ← components/App.tsx (6,263 bytes)
+                    └── <AppShell>
+                          └── <DynamicModuleRenderer>  ← components/DynamicModuleRenderer.tsx
+
+══════════════════════════════════════════
+LAYER 0 — SHELL (đã merge vào v4)
+══════════════════════════════════════════
+✅ components/AppShell.tsx         (7,609 / src: 11,494)  → sidebar + header + ticker slot
+✅ components/SystemTicker.tsx     (3,505)                 → 2-row ticker
+✅ components/Sidebar.tsx          (3,822)                 → legacy (superseded by AppShell)
+✅ services/moduleRegistry.ts      (9,834)                 → 38 modules, 5 groups
+✅ services/rbacEngine.ts          (2,284)                 → role filter
+✅ services/blockchainService.ts   (2,639)                 → ShardingService.generateShardHash
+✅ services/notificationService.ts (1,243)                 → NotifyBus.push({type,title,content,persona})
+✅ services/offlineService.ts      (3,542)                 → OfflineService.init()
+✅ services/personnelEngine.ts     (3,255)                 → getProfileByPosition(role)
+✅ components/NotificationHub.tsx  (5,007)                 → AppNotification type + hub UI
+✅ components/NotificationPortal.tsx (4,745)              → toast portal
+✅ components/AIAvatar.tsx         (2,985)                 → <AIAvatar personaId size isThinking>
+✅ components/common/ErrorBoundary.tsx
+✅ components/common/LoadingSpinner.tsx
+
+══════════════════════════════════════════
+LAYER 1 — CORE (chưa merge)
+══════════════════════════════════════════
+⬜ core/SmartLinkEngine.ts          (2,784 lines!) → SmartLink decay engine
+   exports: SmartLinkEngine (singleton), createLink, decay, getLinks, gossipPropagate
+   NOTE: file size 6,209 bytes in core/ vs 641 bytes in services/ — đây là bản đầy đủ
+
+⬜ core/ingestion/IngestionService.ts  (1,616 lines)
+   exports: IngestionService, IngestResult, ValidationError
+
+⬜ core/processing/ai/AICoreProcessor.ts (1,721 lines)
+   exports: AICoreProcessor (singleton)
+
+⬜ core/dictionary/services/DictionaryService.ts (1,336 lines)
+   exports: DictionaryService
+
+⬜ core/signals/types.ts               (454 lines)
+   exports: OverlayType ('LENS'|'DRAWER'|'VOID'|'NONE'), ManifestationConfig
+   ← cần cho QuantumUIContext + QuantumContainer
+
+⬜ neuro-link/context/QuantumUIContext.tsx
+   exports: QuantumUIProvider, useQuantumUI
+   methods: openLens(content,title), openDrawer(content,title), enterVoid(content), collapseWave()
+
+⬜ manifestations/overlays/QuantumContainer.tsx
+   exports: QuantumContainer
+   animations: LENS(scale fade), DRAWER(slide right), VOID(fullscreen)
+   deps: framer-motion, AnimatePresence
+
+══════════════════════════════════════════
+LAYER 2 — CONTEXTS
+══════════════════════════════════════════
+⬜ contexts/AccountingContext.tsx  (148 lines)
+   exports: AccountingProvider, useAccounting
+   state: accounts[], transactions[], currentPeriod
+
+⬜ contexts/MappingContext.tsx     (35 lines)
+   exports: MappingProvider, useMapping
+   state: mappings{}, setMapping
+
+══════════════════════════════════════════
+LAYER 3 — STRATEGIC / COMMAND (chưa merge)
+══════════════════════════════════════════
+⬜ components/ThienCommandCenter.tsx   (6,255 bytes / 123 lines)
+   props: currentRole, onSelectDomain, metrics
+   sections: risk panel, scenario selector, 8 domains (AUDIT/SALES_TAX/CUSTOMS/JEWELRY/BRAND_LAB/LEGAL/IT/METAPHYSICS)
+   → ViewType.command
+
+⬜ components/MasterDashboard.tsx      (16,358 bytes / 226 lines)
+   → nâng cấp của Dashboard.tsx — Master-only view
+   sections: SUPREME HEADER, KPI grid, Audit trail, Advisory
+
+⬜ components/SystemNavigator.tsx      (8,396 bytes / 152 lines)
+   → ViewType.system_navigator — "BẢN ĐỒ LONG MẠCH"
+   sections: cell topology, signal flow, dependency graph
+
+⬜ components/QuantumFlowOrchestrator.tsx (11,558 bytes / 224 lines)
+   → ViewType.quantum_brain
+   deps: services/quantumEngine.ts, services/quantumBufferService.ts
+   sections: flow state, buffer monitor, consciousness nodes
+
+⬜ components/UnifiedReportingHub.tsx  (7,674 bytes / 144 lines)
+   → ViewType.unified_report
+   deps: recharts (LineChart, BarChart, PieChart)
+
+⬜ components/SmartLinkMapper.tsx      (11,308 bytes / 218 lines)
+   → ViewType.smart_link
+   deps: hooks/useSmartMapping.ts, services/mapping/SmartLinkMappingEngine.ts
+
+══════════════════════════════════════════
+LAYER 4 — FINANCE (chưa merge)
+══════════════════════════════════════════
+⬜ components/financial/FinancialDashboard.tsx (10,543 bytes)
+   → ViewType.smart_link (alias FINANCE)
+   deps: contexts/AccountingContext, services/bankingService
+
+⬜ components/BankingProcessor.tsx     (12,387 bytes)
+   → ViewType.banking_processor
+   deps: services/bankingService.ts (6,170 bytes)
+
+⬜ components/SalesTaxModule.tsx       (7,139 bytes / src: 11,236)
+   → ViewType.sales_tax
+   deps: services/taxReportService.ts, services/eInvoiceEngine.ts
+
+⬜ components/TaxReportingHub.tsx      (13,970 bytes)
+   → ViewType.tax_reporting
+
+⬜ components/PaymentHub.tsx           (12,045 bytes)
+   → ViewType.payment_hub
+   deps: services/paymentService.ts (1,216 bytes)
+
+⬜ components/FinanceAudit.tsx         (10,654 bytes)
+   → part of audit trail
+
+══════════════════════════════════════════
+LAYER 5 — SALES & PRODUCTION (chưa merge)
+══════════════════════════════════════════
+⬜ components/SalesTerminal.tsx        (13,265 / src: 32,556 bytes)
+   → ViewType.sales_terminal — NOTE: src/ version 2.4x larger = v2 nâng cấp
+   deps: services/salesCore.ts, services/sellerEngine.ts
+
+⬜ components/SalesArchitectureView.tsx (6,388 bytes)
+   → ViewType.sales_core
+
+⬜ components/SalesCRM.tsx             (19,325 bytes)
+   → CRM module
+
+⬜ components/SellerTerminal.tsx       (30,396 / src: 10,111 bytes)
+   → ViewType.seller_terminal — NOTE: root version 3x larger
+
+⬜ components/OperationsTerminal.tsx   (18,041 bytes)
+   → ViewType.ops_terminal
+   deps: services/logisticsService.ts (8,728 bytes)
+
+⬜ components/ProductionManager.tsx    (6,881 bytes)
+   → ViewType.production_manager
+   deps: services/productionService.ts, services/productionEngine.ts
+
+⬜ components/ProductionSalesFlowView.tsx (12,068 bytes)
+   → ViewType.production_flow
+   deps: services/productionSalesFlow.ts (9,512 bytes)
+
+⬜ components/ProductionWallboard.tsx  (5,192 bytes)
+   → ViewType.production_wallboard
+
+⬜ components/DailyReportModule.tsx    (12,398 bytes)
+   → ViewType.daily_report
+
+⬜ components/WarehouseManagement.tsx  (26,267 bytes)
+   → ViewType.warehouse
+   deps: services/warehouseService.ts (6,273 bytes)
+
+⬜ components/SupplierClassificationPanel.tsx (12,876 bytes)
+   → ViewType.suppliers
+   deps: services/supplier/SupplierEngine.ts, hooks/useSupplierClassification.ts
+
+══════════════════════════════════════════
+LAYER 6 — PRODUCT CATALOG
+══════════════════════════════════════════
+⬜ components/ProductCatalog.tsx       (27,657 bytes) → ViewType.showroom
+⬜ components/ProductCard.tsx          (4,072 bytes)
+⬜ components/ProductDetailModal.tsx   (5,749 bytes)
+⬜ components/CustomizationRequest.tsx (24,119 bytes) → đặt hàng tùy chỉnh
+⬜ components/FilterPanel.tsx          (5,213 bytes)
+
+══════════════════════════════════════════
+LAYER 7 — STRATEGIC ROOMS
+══════════════════════════════════════════
+⬜ components/CollaborationRooms.tsx   (27,851 bytes) → ViewType.rooms
+⬜ components/GovernanceWorkspace.tsx  (13,848 bytes) → ViewType.governance
+⬜ components/GovernanceModule.tsx     (9,747 bytes)
+⬜ components/CompliancePortal.tsx     (18,445 bytes) → ViewType.compliance
+⬜ components/AuditTrailModule.tsx     (11,487 bytes) → ViewType.audit_trail
+⬜ components/CustomsIntelligence.tsx  (21,438 bytes) → ViewType.customs_intelligence (đã có stub)
+⬜ components/RFMAnalysis.tsx          (4,965 bytes)  → ViewType.rfm_analysis
+⬜ components/AdvancedAnalytics.tsx    (7,437 bytes)  → ViewType.analytics
+⬜ components/ChatConsultant.tsx       (14,461 / src: 16,527) → ViewType.chat
+⬜ components/KrisEmailHub.tsx         (7,766 bytes)  → ViewType.kris_email
+
+══════════════════════════════════════════
+LAYER 8 — SYSTEM MODULES
+══════════════════════════════════════════
+⬜ components/AdminConfigHub.tsx       (6,341 / src: 18,677) → ViewType.admin_hub
+⬜ components/DataArchiveVault.tsx     (16,671 bytes) → ViewType.data_archive
+⬜ components/PersonalSphere.tsx       (3,557 bytes)  → ViewType.personal_sphere
+⬜ components/HRManagement.tsx         (7,612 bytes)  → ViewType.hr
+⬜ components/HRCompliance.tsx         (6,831 bytes)
+⬜ components/OmegaProcessor.tsx       (6,193 bytes)  → ViewType.processor
+⬜ components/LearningHub.tsx          (11,660 bytes) → ViewType.learning_hub
+⬜ components/SystemMonitor.tsx        (6,538 / src: 14,827) → ViewType.monitoring
+⬜ components/DevPortal.tsx            (26,303 bytes) → ViewType.dev
+⬜ components/RBACManager.tsx          (8,174 / src: 8,233) → ViewType.rbac_manager
+⬜ components/SecurityOverlay.tsx      (8,977 bytes)  → security lock screen / PIN
+⬜ components/DataSyncEngine.tsx       (11,939 bytes) → sync status
+⬜ components/calibration/CalibrationWizard.tsx (8,419) → ViewType.calibration_lab
+⬜ components/EnterpriseArchitecture.tsx (11,554)
+⬜ components/ApiPortal.tsx            (18,175 bytes)
+⬜ components/BlueprintWizard.tsx      (7,272 bytes)
+⬜ components/TechnicalDocs.tsx        (14,963 bytes)
+⬜ components/LiveVoice.tsx            (2,931 bytes)  → voice input
+⬜ components/QuantumPulse.tsx         (1,826 bytes)  → pulse animation component
+⬜ components/QuickHelp.tsx            (10,261 bytes)
+
+══════════════════════════════════════════
+SERVICES CHƯA DÙNG
+══════════════════════════════════════════
+⬜ services/geminiService.ts     (7,626)  → Gemini API wrapper (model: gemini-3-pro-preview)
+⬜ services/aiEngine.ts          (4,172)  → AI routing (Thiên/Cần/Kris)
+⬜ services/documentAI.ts        (12,530) → PDF/doc extraction
+⬜ services/gdbEngine.ts         (11,125) → GDB/graph DB engine
+⬜ services/customsService.ts    (12,677) → HQ/tờ khai service
+⬜ services/customsUtils.ts      (9,129)  → customs helpers
+⬜ services/quantumEngine.ts     (7,356)  → QuantumFlowEngine (getInstance)
+⬜ services/quantumBufferService.ts (1,921) → buffer
+⬜ services/learningEngine.ts    (6,485)  → learning hub
+⬜ services/fraudGuard.ts        (6,271)  → fraud detection
+⬜ services/threatDetectionService.ts (5,698) → threat detection
+⬜ services/salesCore.ts         (4,862)  → sales logic
+⬜ services/sellerEngine.ts      (3,093)  → seller CTV logic
+⬜ services/productionService.ts (3,637)  → production jobs
+⬜ services/productionEngine.ts  (2,484)  → production calc
+⬜ services/productionSalesFlow.ts (9,512) → P-S flow
+⬜ services/logisticsService.ts  (8,728)  → ops logistics
+⬜ services/warehouseService.ts  (6,273)  → warehouse ops
+⬜ services/hrEngine.ts          (4,459)  → HR/payroll
+⬜ services/authService.ts       (7,372)  → auth/session
+⬜ services/bankingService.ts    (6,170)  → banking ops
+⬜ services/taxReportService.ts  (2,342)  → tax calc
+⬜ services/eInvoiceEngine.ts    (3,201)  → e-invoice
+⬜ services/exportService.ts     (3,417)  → excel/pdf export
+⬜ services/enterpriseLinker.ts  (3,194)  → cell linking
+⬜ services/eventBridge.ts       (2,765)  → EventBridge singleton
+⬜ services/gmailService.ts      (2,497)  → Gmail API
+⬜ services/taskRouter.ts        (1,497)  → task routing
+⬜ services/dictionaryApprovalService.ts (3,467)
+⬜ services/mapping/SmartLinkMappingEngine.ts (276) → stub
+⬜ services/ingestion/ (5 files) → full ingestion pipeline
+
+══════════════════════════════════════════
+HOOKS
+══════════════════════════════════════════
+⬜ hooks/useAuthority.ts              → RBAC hook
+⬜ hooks/useRealTimeSync.ts           → sync hook
+⬜ hooks/useSmartMapping.ts           → SmartLink mapping hook
+⬜ hooks/useSupplierClassification.ts → supplier hook
+
+══════════════════════════════════════════
+DATABASE / SQL
+══════════════════════════════════════════
+⬜ database/schema/approval_schema.sql → approval flow DB schema
+
+══════════════════════════════════════════
+ROOT FILES
+══════════════════════════════════════════
+✅ types.ts / src/types.ts            → enums + interfaces
+⬜ SuperDictionary.ts (12,679)        → master dictionary
+⬜ utils/supplierClassifier.ts        → supplier utils
+⬜ utils/supplierImportHelper.ts      → import helper
+⬜ .env.local                         → VITE_GEMINI_API_KEY (check!)
+
+══════════════════════════════════════════
+PHÂN TÍCH: CÁC FILE CÓ 2 VERSIONS
+══════════════════════════════════════════
+Nhiều file có cả root/ và src/ — src/ thường là version mới hơn:
+
+  components/SalesTerminal.tsx  root:13,265 vs src:32,556  → src MỚI HƠN (2.4x)
+  components/SellerTerminal.tsx root:30,396 vs src:10,111  → root MỚI HƠN (3x)
+  components/AdminConfigHub.tsx root:6,341  vs src:18,677  → src MỚI HƠN (3x)
+  components/SystemMonitor.tsx  root:6,538  vs src:14,827  → src MỚI HƠN (2.3x)
+  components/ChatConsultant.tsx root:14,461 vs src:16,527  → src MỚI HƠN
+
+  → Rule: dùng file nào SIZE LỚN HƠN
+
+══════════════════════════════════════════
+THỨ TỰ MERGE ĐỀ XUẤT (nếu cần)
+══════════════════════════════════════════
+1. core/signals/types.ts           → OverlayType
+2. neuro-link/context/QuantumUIContext.tsx
+3. manifestations/overlays/QuantumContainer.tsx
+4. contexts/AccountingContext.tsx + MappingContext.tsx
+5. components/ThienCommandCenter.tsx    → view-command
+6. components/CustomsIntelligence.tsx   → view-customs (đang là stub)
+7. components/BankingProcessor.tsx      → view-banking
+8. components/AuditTrailModule.tsx      → view-audit
+9. components/SecurityOverlay.tsx       → global lock screen
+10. Remaining views theo priority business
+
+══════════════════════════════════════════
+DEPENDENCIES (package.json)
+══════════════════════════════════════════
+react + react-dom
+@google/genai          → Gemini API
+recharts               → charts (Line/Bar/Pie)
+xlsx                   → file parsing
+workbox-window         → PWA offline
+framer-motion          → animations (QuantumContainer)
+uuid                   → ID generation
+lucide-react           → icons

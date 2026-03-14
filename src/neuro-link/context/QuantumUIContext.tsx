@@ -1,46 +1,47 @@
-// @ts-nocheck
-import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface QuantumUIState {
-  theme: "DARK" | "LIGHT" | "QUANTUM";
-  ambientLevel: number;
-  activeCell: string | null;
-  pulseActive: boolean;
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { OverlayType, ManifestationConfig } from '../../core/signals/types';
+
+interface QuantumContextType {
+  overlayConfig: ManifestationConfig;
+  openLens: (content: ReactNode, title?: string) => void;
+  openDrawer: (content: ReactNode, title?: string) => void;
+  enterVoid: (content: ReactNode) => void;
+  collapseWave: () => void; // Close/Resolve
 }
 
-interface QuantumUIContextType {
-  state: QuantumUIState;
-  setTheme: (t: QuantumUIState["theme"]) => void;
-  setActiveCell: (id: string | null) => void;
-  triggerPulse: () => void;
-  overlayConfig?: Record<string, any>;
-  collapseWave?: () => void;
-}
+const QuantumContext = createContext<QuantumContextType | undefined>(undefined);
 
-const QuantumUIContext = createContext<QuantumUIContextType | null>(null);
+export const QuantumUIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [config, setConfig] = useState<ManifestationConfig>({ mode: 'NONE' });
 
-export const QuantumUIProvider = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState<QuantumUIState>({
-    theme: "DARK", ambientLevel: 0.5, activeCell: null, pulseActive: false,
-  });
+  const openLens = (content: ReactNode, title?: string) => {
+    setConfig({ mode: 'LENS', component: content, title });
+  };
+
+  const openDrawer = (content: ReactNode, title?: string) => {
+    setConfig({ mode: 'DRAWER', component: content, title });
+  };
+
+  const enterVoid = (content: ReactNode) => {
+    setConfig({ mode: 'VOID', component: content });
+  };
+
+  const collapseWave = () => {
+    setConfig({ mode: 'NONE' });
+  };
+
   return (
-    <QuantumUIContext.Provider value={{
-      state,
-      setTheme: (theme) => setState(s => ({ ...s, theme })),
-      setActiveCell: (activeCell) => setState(s => ({ ...s, activeCell })),
-      triggerPulse: () => { setState(s => ({ ...s, pulseActive: true })); setTimeout(() => setState(s => ({ ...s, pulseActive: false })), 500); },
-      overlayConfig: {},
-      collapseWave: () => {},
-    }}>
+    <QuantumContext.Provider value={{ overlayConfig: config, openLens, openDrawer, enterVoid, collapseWave }}>
       {children}
-    </QuantumUIContext.Provider>
+    </QuantumContext.Provider>
   );
 };
 
-export const useQuantumUI = (): QuantumUIContextType => {
-  const ctx = useContext(QuantumUIContext);
-  if (!ctx) throw new Error("useQuantumUI must be used within QuantumUIProvider");
-  return ctx;
+export const useQuantumUI = () => {
+  const context = useContext(QuantumContext);
+  if (!context) {
+    throw new Error('useQuantumUI must be used within a QuantumUIProvider');
+  }
+  return context;
 };
-
-export default QuantumUIContext;

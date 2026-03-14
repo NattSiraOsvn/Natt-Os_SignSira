@@ -1,18 +1,19 @@
-// @ts-nocheck
-// NATT-OS Signal Types
-export type OverlayType = 'MODAL' | 'PANEL' | 'TOAST' | 'FULL' | 'DRAWER';
-export interface ManifestationConfig {
-  type: OverlayType;
-  id?: string;
-  title?: string;
-  component?: string;
-  props?: Record<string, unknown>;
-  [key: string]: unknown;
-}
-export interface SignalPayload {
-  signal: string;
-  source: string;
-  target?: string;
-  data?: unknown;
+import React from 'react';
+
+export type OverlayType = 'LENS' | 'DRAWER' | 'VOID' | 'NONE';
+
+export interface QuantumSignal {
+  id: string;
+  source: string; // 'FINANCE', 'SALES', etc.
+  type: 'INTENT' | 'ALERT' | 'OPPORTUNITY';
+  intensity: number; // 0.0 - 1.0
+  content: any; // Flexible payload
   timestamp: number;
+}
+
+export interface ManifestationConfig {
+  mode: OverlayType;
+  title?: string;
+  component?: React.ReactNode;
+  contextData?: any;
 }
