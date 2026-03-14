@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Audit Integrity Check — Điều 6
  * Kiểm tra tính toàn vẹn của audit chain

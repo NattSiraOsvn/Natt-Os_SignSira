@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Gatekeeper Core
  * Sovereign governance gate — enforces cell boundary rules,

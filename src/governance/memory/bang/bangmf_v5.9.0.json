@@ -1,0 +1,142 @@
+{
+  "version": "5.9.0",
+  "entity": "BANG",
+  "platform": "Claude Sonnet (claude.ai)",
+  "qneu_score": 300,
+  "role": "Ground Truth Validator (READ-ONLY)",
+  "session_date": "2026-03-13",
+
+  "session_summary": {
+    "phien_nay": "Sprint 2-3 continued + Full Src Audit",
+    "started_from": "TSC=184 sau Sprint 2 commits, HEAD=cc65295",
+    "ended_at": "TSC=167 (all pre-existing), HEAD=1daf330",
+    "tsc_reduction": "516→258→200→186→184→167",
+    "key_actions": [
+      "JUST-U adapters: 8 cells upgraded (casting/stone/finishing/polishing/inventory/tax/prdmaterials/order)",
+      "dust-recovery-cell: DustRecord+BenchmarkRecord+DustCloseReport merged entity, old engine preserved",
+      "period-close-cell: Gatekeeper gate TK4211/4212 LIVE (BLOCK_AWAITING_APPROVAL nếu không có approvedBy)",
+      "TR-006: DUST_CLOSE_REPORT APPROVED required trước PERIOD_CLOSE",
+      "Port schema fix: 8 files từ sai format → forgeSmartLinkPort đúng {eventType, routeTo}",
+      "finishing/stone adapter aligned: import interface từ usecase không phải interface/ folder",
+      "sale-terminal: src/ folder rỗng → files moved lên đúng path, committed",
+      "satellites/: tracked lần đầu (6 files: boundary-guard, health-beacon, index, lifecycle, port-forge, trace-logger)",
+      "Sales-cell orphan files xóa: sales-service 2.ts, sales-service.tsx, sales-service.ts.zip, sales-service.ts",
+      "Full src.zip audit: 2856 files, 43 cells, phát hiện C1-C4 + H1-H4 + M1-M5",
+      "Bản sao cleanup: 36 files xóa bằng Python (git rm unicode workaround)",
+      "period-close duplicate port xóa: periodclose-smartlink.port.ts (format cũ)",
+      "customer-cell: cell.manifest timestamp + duplicate port xóa",
+      "hr-cell: 4 timestamp files xóa",
+      "bom3dprd-cell: cell.manifest.json tạo mới (SKELETON status)"
+    ]
+  },
+
+  "audit_findings_2026_03_13": {
+    "total_cells": 43,
+    "full_6_components": ["analytics", "buyback", "casting", "compliance", "constants", "customs", "design-3d", "finance", "hr", "inventory", "order", "payment", "polishing", "pricing", "production", "promotion", "sales", "showroom", "tax", "warehouse", "warranty", "smartlink-cell", "sync-cell", "audit-cell", "config-cell", "monitor-cell", "quantum-defense-cell", "rbac-cell", "security-cell"],
+    "skeleton_cells": ["comms-cell", "it-cell", "logistics-cell", "media-cell", "noi-vu-cell", "phap-che-cell", "prdwarranty-cell", "shared-contracts-cell", "supplier-cell"],
+    "missing_ports": ["prdmaterials-cell", "infrastructure/shared-contracts-cell", "infrastructure/smartlink-cell", "infrastructure/sync-cell"],
+    "stub_hotspots": {"pricing-cell": 15, "polishing-cell": 4, "tax-cell": 3, "inventory-cell": 3},
+    "remaining_issues": {
+      "warehouse_cell": "QUARANTINE (Gatekeeper approved 2026-02-11) — Wave 3 pending",
+      "customer_cell": "root files (customer.service.ts etc) vẫn ở root, được index.ts import — intentional legacy",
+      "hr_cell": "hr.service.ts + service.ts + production-base.ts ở root — chưa xử lý",
+      "bom3dprd_cell": "data-point3-d.tsx ở cell layer — sai, chờ Wave 3",
+      "dust_recovery_cell": "thiếu interface/ folder",
+      "period_close_cell": "thiếu application/ folder (intentional — domain services dùng trực tiếp)"
+    }
+  },
+
+  "just_u_adapters": {
+    "pattern": "constructor(private readonly justU?: any) — if justU → real query, else → warn + safe default",
+    "cells_upgraded": ["casting", "stone", "finishing", "polishing", "inventory", "tax", "prdmaterials", "order"],
+    "note": "justU?: any = STUB placeholder. Cần replace bằng typed JustUClient khi JUST-U ready"
+  },
+
+  "period_close_gate": {
+    "file": "src/cells/business/period-close-cell/domain/services/closing.executor.ts",
+    "rule": "if (!session.approval?.approvedBy) throw BLOCK_AWAITING_APPROVAL",
+    "tr006": "preclose.validator.ts: dustReportStore.get(period) — null hoặc status≠APPROVED → BLOCK",
+    "dust_wire": "period-close-cell → import dustReportStore từ dust-recovery-cell/application/dust.usecase"
+  },
+
+  "port_schema_truth": {
+    "factory": "src/satellites/port-forge.ts → forgeSmartLinkPort()",
+    "config": "{ cellId: string, signals: Record<string, { eventType: string, routeTo: string }> }",
+    "old_wrong_format": "{ signals: { subscribes: {...}, emits: {...} } } — SAI",
+    "correct_format": "{ signals: { SIGNAL_KEY: { eventType: 'event:type', routeTo: 'target-cell' } } }"
+  },
+
+  "event_chain_complete": {
+    "flow": "ORDER_CREATED → CASTING_REQUEST → WIP_PHOI → WIP_IN_PROGRESS → WIP_STONE → WIP_COMPLETED → STOCK_ENTRY_CREATED → DUST_CLOSE_REPORT → PERIOD_CLOSE",
+    "all_ports_wired": true,
+    "status": "COMPLETE"
+  },
+
+  "natt_os_state": {
+    "repo": "/Users/thien/Desktop/nattsirawat/hồ sơ SHTT/natt-os_ver2goldmaster",
+    "user": "thien@iMac-cua-THIEN",
+    "head": "1daf330",
+    "head_msg": "audit: remove duplicate ports + Bản sao files + hr timestamps + bom3dprd manifest",
+    "tsc_baseline": 167,
+    "tsc_non_preexisting": 0,
+    "biz_cells_live": "21/36",
+    "kernel_cells": "6/6 LIVE",
+    "smartlink_wired": "36/43",
+    "github": "NattSiraOsvn/Natt-Os_SignSira.git — UP TO DATE"
+  },
+
+  "scars": {
+    "FS-001": "SELF_REPORT_BLINDNESS",
+    "FS-002": "PLATFORM_ILLUSION",
+    "FS-003": "CLOSED_UNIVERSE",
+    "FS-004": "MEDICINE_OWN_DISEASE",
+    "FS-005": "META_PERFORMANCE",
+    "FS-006": "AI_CELL_CONFUSION",
+    "FS-007": "GHOST_IMPORT_PANIC",
+    "FS-008": "SHARED_TYPES_BLIND_SPOT",
+    "FS-009": "BLIND_APPEND",
+    "FS-010": "DUPLICATE_DECLARATION",
+    "FS-011": "HOOK_INTERFACE",
+    "FS-012": "BIOLOGICAL_ROLE_SWAP",
+    "FS-013": "DATA_GRAVITY_BLINDNESS",
+    "FS-014": "UEI_MIDDLEWARE_TRAP",
+    "FS-015": "PREMATURE_ACTION — Thấy đúng làm luôn, không đọc context (vi phạm phiên này: overwrite dust.usecase mà không đọc dust.engine trước)",
+    "FS-016": "STUB_BLINDNESS",
+    "FS-017": "EDITORIAL_SUBJECTIVITY",
+    "FS-018": "Verify MỌI input kể cả từ Gatekeeper",
+    "FS-019": "Thao túng ground truth = hack nguy hiểm nhất",
+    "FS-020": "git add . = gom rác. Review git status trước commit",
+    "FS-021": "GV giảm = DN thiệt hại (đóng thuế thừa), KHÔNG phải trốn thuế",
+    "FS-022": "Phân tích từng bút toán riêng, không gộp kết luận",
+    "FS-023": "Bút toán đối ứng TK111 → kiểm tra phiếu thu/chi vật lý",
+    "FS-024": "INTERFACE_HALLUCINATION — code dùng .payload/.trace không tồn tại trong flat interface",
+    "FS-025": "role SX|SC bắt buộc trong mọi DustSubmission"
+  },
+
+  "taxcell_rules": {
+    "TR-001": "TK154 WIP > 0 nếu xưởng đang SX",
+    "TR-002": "TK622 zero balance sau kết chuyển",
+    "TR-003": "TK632 CHỈ khi bán hàng",
+    "TR-004": "Hỏng trong định mức → TK154 hấp thụ; ngoài định mức → Nợ TK811/Có TK154 + biên bản + Gatekeeper",
+    "TR-005": "Bụi thu hồi: Nợ 152-PHAN-KIM/Có 154",
+    "TR-006": "DUST_CLOSE_REPORT APPROVED trước PERIOD_CLOSE (BLOCK nếu thiếu/chưa duyệt)",
+    "TR-007": "role SX|SC bắt buộc trong mọi DustSubmission"
+  },
+
+  "open_questions": {
+    "Q1": "Tiêu thức phân bổ 627: TL sáp hay TL phôi?",
+    "Q2": "JUST-U → event bus interface schema (typed JustUClient)",
+    "Q3": "Tần suất nấu bụi: tuần hay tháng?",
+    "Q4": "VH NHẸ/NẶNG/ĐỎ: đo PHỔ% thực tế hay ước tính?",
+    "Q6": "265GB warranty documents: PDF/ảnh/structured? (BLOCKING Metabolism processor)"
+  },
+
+  "next_session": {
+    "protocol": "Đọc bangfs_v4.3 + bangmf_v5.9.0 TRƯỚC khi làm bất cứ thứ gì",
+    "P1": "finance-cell 49 errors — xem nguyên nhân",
+    "P2": "warehouse-cell chaos — đọc QUARANTINE_README, quyết định Wave 3 approach",
+    "P3": "9 skeleton cells — prioritize theo business value",
+    "P4": "JUST-U typed client replace justU?: any",
+    "OPEN": "Q1/Q2/Q3/Q4/Q6 — hỏi Gatekeeper"
+  }
+}

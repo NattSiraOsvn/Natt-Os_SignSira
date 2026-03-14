@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type GatekeeperDecision = "ALLOW" | "DENY" | "QUARANTINE" | "REQUIRE_APPROVAL";
 
 export interface GatekeeperRequest {

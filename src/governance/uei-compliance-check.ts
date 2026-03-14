@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * UEI Compliance Check — Unified Enterprise Intelligence
  * Kiểm tra tính nhất quán của toàn bộ hệ thống

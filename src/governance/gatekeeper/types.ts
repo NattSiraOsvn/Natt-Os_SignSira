@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface GateContext {
   action: {
     name: string;

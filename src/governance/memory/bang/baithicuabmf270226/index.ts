@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * QNEU — Quantum Neural Evolution Unit
  * NATT-OS Evolution Mechanism

@@ -1,5 +1,4 @@
-// @ts-nocheck
-/**
+ /**
  * Event Causality Check
  * Kiểm tra chuỗi nhân quả của events trong hệ thống
  * Điều 6: No audit = doesn't exist
