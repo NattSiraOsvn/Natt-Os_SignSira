@@ -57,7 +57,7 @@ export function generateCDKT(
   const lookup = buildCdpsLookup(cdps);
   const priorLookup = priorCdps ? buildCdpsLookup(priorCdps) : null;
 
-  return CDKT_TEMPLATE.map(tpl => {
+  const result = CDKT_TEMPLATE.map(tpl => {
     let currentYear = 0;
     let priorYear = 0;
 
@@ -83,6 +83,31 @@ export function generateCDKT(
 
     return { ...tpl, currentYear, priorYear };
   });
+
+  // Aggregate group lines (level 1) from their children (level 2)
+  // Fixes 130, 140, 220, 310, 330, 410, 420 subtotals
+  const byCode2 = new Map(result.map(l => [l.code, l]));
+  const codes = result.map(l => l.code);
+  for (let i = 0; i < result.length; i++) {
+    const line = result[i];
+    if (line.currentYear !== 0) continue; // already has value
+    if (!line.level || line.level === 0) continue; // skip headings
+    // Sum all immediately following level-2 lines until next level-1/0
+    let sumCY = 0; let sumPY = 0; let found = false;
+    for (let j = i + 1; j < result.length; j++) {
+      const child = result[j];
+      if (child.level === undefined || child.level <= 1) break;
+      sumCY += child.currentYear;
+      sumPY += child.priorYear;
+      found = true;
+    }
+    if (found && sumCY !== 0) {
+      line.currentYear = sumCY;
+      line.priorYear = sumPY;
+    }
+  }
+
+  return applyFormulas(result);
 }
 
 // ═══════════ CDPS → KQKD MAPPING ═══════════
