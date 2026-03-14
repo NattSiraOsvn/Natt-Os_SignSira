@@ -25,7 +25,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
      });
      // Initial calc
      const cit = // TaxReportService.calculateCorporateTax(metrics.revenue, metrics.totalCogs + metrics.totalOperating, 0.1); // 10% incentive mock
-     setCitResult(cit);
+  // TODO: fix cit
 
      return unsubscribe;
   }, [metrics]);
