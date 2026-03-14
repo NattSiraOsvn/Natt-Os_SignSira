@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import React, { useState } from 'react';
 import { Product } from '../types';
@@ -13,6 +12,7 @@ interface ProductDetailModalProps {
 const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose, onAddToCart, onRequestCustomization }) => {
   const [activeImg, setActiveImg] = useState(0);
   const [qty, setQty] = useState(product.minOrder);
+  const [showAppraisal, setShowAppraisal] = useState(false);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300 overflow-hidden">
@@ -71,20 +71,86 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
                   </div>
                </div>
 
-               <div className="pt-10 flex gap-6">
-                  <div className="flex items-center border border-white/10 rounded-2xl bg-white/5 p-1">
-                     <button onClick={() => setQty(Math.max(1, qty-1))} className="w-14 h-14 text-2xl text-gray-500 hover:text-white">-</button>
-                     <input type="number" value={qty} onChange={(e) => setQty(Number(e.target.value))} className="w-20 bg-transparent text-center font-mono font-bold text-white focus:outline-none" />
-                     <button onClick={() => setQty(qty+1)} className="w-14 h-14 text-2xl text-gray-500 hover:text-white">+</button>
+               <div className="pt-10 flex flex-wrap gap-4">
+                  <div className="flex items-center border border-white/10 rounded-2xl bg-white/5 p-1 h-14">
+                     <button onClick={() => setQty(Math.max(1, qty-1))} className="w-12 h-full text-2xl text-gray-500 hover:text-white">-</button>
+                     <input type="number" value={qty} onChange={(e) => setQty(Number(e.target.value))} className="w-16 bg-transparent text-center font-mono font-bold text-white focus:outline-none" />
+                     <button onClick={() => setQty(qty+1)} className="w-12 h-full text-2xl text-gray-500 hover:text-white">+</button>
                   </div>
-                  <button onClick={() => { onAddToCart(product, qty); onClose(); }} className="flex-1 bg-white text-black font-black uppercase tracking-[0.3em] rounded-2xl shadow-2xl hover:bg-cyan-400 transition-all text-sm">Ủy nhiệm RFQ (Báo giá)</button>
+                  
+                  <button onClick={() => { onAddToCart(product, qty); onClose(); }} className="flex-1 h-14 bg-white text-black font-black uppercase tracking-[0.3em] rounded-2xl shadow-2xl hover:bg-cyan-400 transition-all text-[10px] px-6">
+                    Ủy nhiệm RFQ (Báo giá)
+                  </button>
+                  
                   {product.isCustomizable && (
-                    <button onClick={onRequestCustomization} className="px-10 py-5 border border-amber-500 text-amber-500 font-black uppercase tracking-widest rounded-2xl hover:bg-amber-500/10 transition-all text-[10px]">Customize</button>
+                    <button onClick={onRequestCustomization} className="h-14 px-8 border border-amber-500 text-amber-500 font-black uppercase tracking-widest rounded-2xl hover:bg-amber-500/10 transition-all text-[10px]">
+                      Customize
+                    </button>
                   )}
+
+                  <button 
+                    onClick={() => setShowAppraisal(true)}
+                    className="h-14 px-8 border border-white/10 text-white font-black uppercase tracking-widest rounded-2xl hover:bg-white/10 transition-all text-[10px]"
+                  >
+                    Request Appraisal
+                  </button>
                </div>
             </div>
           </div>
         </div>
+
+        {/* Appraisal Modal Overlay */}
+        {showAppraisal && (
+          <div className="absolute inset-0 z-[200] flex items-center justify-center p-4 bg-black/90 backdrop-blur-2xl animate-in zoom-in-95 duration-300">
+             <div className="bg-[#0a0a0a] w-full max-w-lg p-10 rounded-[3rem] border border-amber-500/30 relative shadow-[0_0_100px_rgba(245,158,11,0.1)] flex flex-col items-center text-center">
+                <button 
+                  onClick={() => setShowAppraisal(false)} 
+                  className="absolute top-8 right-8 text-2xl text-gray-600 hover:text-white transition-colors"
+                >✕</button>
+
+                <div className="w-20 h-20 rounded-3xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-4xl mb-6 shadow-xl">
+                   📜
+                </div>
+
+                <h3 className="text-3xl font-serif gold-gradient italic uppercase tracking-tighter mb-2">Digital Appraisal</h3>
+                <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.3em] mb-8">Chứng thư định giá Tài sản Master</p>
+
+                <div className="w-full bg-white/[0.02] border border-white/5 rounded-3xl p-6 space-y-4 mb-8">
+                   <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Sản phẩm</span>
+                      <span className="text-xs text-white font-bold max-w-[200px] truncate text-right">{product.name}</span>
+                   </div>
+                   <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Trọng lượng Vàng</span>
+                      <span className="text-xs text-amber-500 font-mono">{(product.weight || 1.25).toFixed(2)} chỉ (Est)</span>
+                   </div>
+                   <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Đá quý</span>
+                      <span className="text-xs text-cyan-400 font-mono">{product.specifications['Đá chủ'] || 'N/A'}</span>
+                   </div>
+                   <div className="flex justify-between items-center">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Giá trị ước tính</span>
+                      <span className="text-xl text-white font-mono font-black">{product.price.toLocaleString()} đ</span>
+                   </div>
+                </div>
+
+                <div className="flex gap-2 items-center text-[9px] text-gray-600 font-mono italic mb-8">
+                   <span>Signed by:</span>
+                   <span className="text-amber-600 font-bold">MASTER NATT (GEMOLOGIST)</span>
+                   <span>•</span>
+                   <span>{new Date().toLocaleDateString()}</span>
+                </div>
+
+                <button 
+                  onClick={() => setShowAppraisal(false)}
+                  className="w-full py-4 bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl hover:bg-amber-400 transition-all shadow-xl"
+                >
+                   TẢI VỀ CHỨNG THƯ (PDF)
+                </button>
+             </div>
+          </div>
+        )}
+
       </div>
     </div>
   );

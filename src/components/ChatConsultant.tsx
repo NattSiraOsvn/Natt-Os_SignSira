@@ -1,9 +1,8 @@
-// @ts-nocheck
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Domain, ChatMessage, PersonaID } from '../types';
 import { DOMAINS, PERSONAS } from '../constants';
-import { generatePersonaResponse, speakText, requestApiKey } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
+import { generatePersonaResponse, speakText, requestApiKey } from '../services/geminiService';
 import AIAvatar from './AIAvatar';
 
 interface ChatConsultantProps {
@@ -21,6 +20,10 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
   const [useMaps, setUseMaps] = useState(false);
   const [selectedFile, setSelectedFile] = useState<{data: string, type: string, mimeType: string, name: string} | null>(null);
   
+  // Voice Input State
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
+  
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -34,6 +37,15 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isLoading, errorMsg]);
+
+  // Cleanup speech recognition on unmount
+  useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, []);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -60,6 +72,48 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
     await requestApiKey();
     setQuotaExceeded(false);
     setErrorMsg(null);
+  };
+
+  const toggleListening = () => {
+    if (isListening) {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+        setIsListening(false);
+      }
+      return;
+    }
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Trình duyệt của bạn không hỗ trợ chức năng nhận dạng giọng nói. Vui lòng sử dụng Chrome hoặc Edge.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'vi-VN';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      setInput((prev) => (prev ? prev + ' ' + transcript : transcript));
+    };
+
+    recognition.onerror = (event: any) => {
+      console.error("Speech recognition error", event.error);
+      setIsListening(false);
+    };
+
+    recognitionRef.current = recognition;
+    recognition.start();
   };
 
   const handleSend = async (forcedInput?: string) => {
@@ -294,13 +348,25 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
             onChange={handleFileSelect} 
             accept=".pdf,.xlsx,.xls,.csv,.docx,.doc,.numbers,.pages,image/*,video/*" 
           />
+
+          <button
+            onClick={toggleListening}
+            className={`p-5 rounded-2xl border transition-all text-xl active:scale-90 ${
+              isListening
+                ? 'bg-red-500/20 text-red-500 border-red-500 animate-pulse'
+                : 'bg-white/5 border-white/10 hover:border-amber-500/50'
+            }`}
+            title="Nhập liệu giọng nói (Web Speech API)"
+          >
+            {isListening ? '🛑' : '🎙️'}
+          </button>
           
           <div className="flex-1 relative">
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={`Giao nhiệm vụ cho ${persona.name}...`}
-              className="w-full bg-white/5 border border-white/10 rounded-3xl px-6 py-5 text-white focus:outline-none focus:border-amber-500/50 transition-all resize-none h-16"
+              placeholder={isListening ? "Đang lắng nghe..." : `Giao nhiệm vụ cho ${persona.name}...`}
+              className={`w-full bg-white/5 border border-white/10 rounded-3xl px-6 py-5 text-white focus:outline-none focus:border-amber-500/50 transition-all resize-none h-16 ${isListening ? 'border-amber-500/50' : ''}`}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();

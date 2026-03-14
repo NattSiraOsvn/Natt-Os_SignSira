@@ -1,10 +1,10 @@
-// @ts-nocheck
 
-import React, { useState, useEffect } from 'react';
-import { EInvoice, EInvoiceStatus, BusinessMetrics, UserRole, PersonaID, EInvoiceItem } from '@/types';
-import EInvoiceEngine from '@/cells/business/finance-cell/domain/services/einvoice.engine';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
-import { FileCode, ShieldCheck, Send, CheckCircle2, Receipt, Cpu, Database, ChevronRight, Zap } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { EInvoice, BusinessMetrics, UserRole, DistributedTask } from '../types';
+import { TaskRouter } from '../services/taskRouter';
+import { TaxReportService } from '../services/taxReportService';
+import AIAvatar from './AIAvatar';
+import { PersonaID } from '../types';
 
 interface SalesTaxModuleProps {
   logAction: (action: string, details: string) => void;
@@ -13,203 +13,165 @@ interface SalesTaxModuleProps {
 }
 
 const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, currentRole }) => {
-  const [invoices, setInvoices] = useState<EInvoice[]>([]);
-  const [selectedInvoice, setSelectedInvoice] = useState<EInvoice | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [viewMode, setViewMode] = useState<'LEDGER' | 'WORKBENCH'>('LEDGER');
-
+  const [activeTab, setActiveTab] = useState<'foundation' | 'omega_queue' | 'cit_calc'>('omega_queue');
+  const [omegaTasks, setOmegaTasks] = useState<DistributedTask[]>([]);
+  
+  // CIT State
+  const [citResult, setCitResult] = useState<any>(null);
+  
   useEffect(() => {
-    // Khởi tạo một số hóa đơn mẫu để bóc tách
-    const mockItems: any[] = [
-      { id: 'it1', name: 'Nhẫn Nam Rolex 18K', goldWeight: 3.5, goldPrice: 24000000, stonePrice: 350000000, laborPrice: 5000000, taxRate: 10, totalBeforeTax: 379000000 }
-    ];
-    
-    const initialInv: EInvoice = {
-      id: 'INV-2026-0001',
-      invoiceNumber: 'HDon-2026-0001',
-      orderId: 'ORD-9988',
-      customerName: 'ANH NATT ADMIN',
-      buyer: { name: 'ANH NATT ADMIN', taxCode: '0123456789', address: 'TP.HCM' },
-      seller: { name: 'TÂM LUXURY', taxCode: '0987654321', address: 'Hà Nội' },
-      items: mockItems,
-      totalAmount: 379000000,
-      vatAmount: 37900000,
-      taxAmount: 37900000,
-      vatRate: 10,
-      status: EInvoiceStatus.DRAFT,
-      issuedAt: Date.now(),
-      createdAt: Date.now()
-    };
-    setInvoices([initialInv]);
-  }, []);
+     const unsubscribe = TaskRouter.subscribe((allTasks) => {
+        setOmegaTasks(allTasks.filter(t => t.targetModule === 'sales_tax'));
+     });
+     // Initial calc
+     const cit = TaxReportService.calculateCorporateTax(metrics.revenue, metrics.totalCogs + metrics.totalOperating, 0.1); // 10% incentive mock
+     setCitResult(cit);
 
-  const handleSignInvoice = async (inv: EInvoice) => {
-    setIsProcessing(true);
-    try {
-      // 1. Tạo XML
-      const xml = EInvoiceEngine.generateXML(inv as any);
-      inv.xmlPayload = xml;
-      inv.status = EInvoiceStatus.XML_BUILT;
-      
-      await new Promise(r => setTimeout(r, 1000));
-      
-      // 2. Ký số (Simulated Token)
-      const signature = await EInvoiceEngine.signInvoice(inv.id);
-      inv.signatureHash = signature;
-      inv.status = EInvoiceStatus.SIGNED;
-      
-      logAction('FISCAL_SIGN', `Đã ký số hóa đơn ${inv.id} chuẩn RSA-4096.`);
-      
-      // 3. Truyền tin lên TCT
-      const result = await EInvoiceEngine.transmitToTaxAuthority(inv as any);
-      if (result.success) {
-          inv.status = EInvoiceStatus.ACCEPTED;
-          inv.taxCode = (result as any).code;
-          inv.issuedAt = Date.now();
-          NotifyBus.push({
-            type: 'SUCCESS',
-            title: 'Hóa đơn đã được niêm phong TCT',
-            content: `Mã CQT: ${inv.taxCode} đã được băm vào sổ cái.`,
-            persona: PersonaID.CAN
-          });
-      }
-    } finally {
-      setIsProcessing(false);
-      setInvoices([...invoices]);
-    }
+     return unsubscribe;
+  }, [metrics]);
+
+  const handleQuickSign = (task: DistributedTask) => {
+    logAction('E_INVOICE_SIGN', `Ký số hóa đơn từ dữ liệu truyền tin Omega: ${task.id}`);
+    TaskRouter.completeTask(task.id);
+    alert(`🔐 ĐÃ KÝ SỐ THÀNH CÔNG: Giao dịch ${task.id} đã được truyền lên Tổng Cục Thuế.`);
+  };
+
+  const handleAutoFile = () => {
+    if (currentRole !== UserRole.MASTER && currentRole !== UserRole.LEVEL_1) return alert("Chỉ Master mới có quyền Auto-File.");
+    if (!window.confirm("Xác nhận nộp tờ khai thuế tự động lên TCT?")) return;
+    logAction('TAX_AUTO_FILE', 'Đã thực hiện Auto-Filing CIT & VAT.');
+    alert("🚀 Tờ khai đã được gửi thành công!");
   };
 
   return (
-    <div className="h-full flex flex-col p-8 lg:p-12 overflow-hidden gap-8 bg-[#020202] animate-in fade-in duration-700">
-      <header className="flex justify-between items-end border-b border-white/5 pb-8">
+    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
+      
+      <header className="border-b border-white/5 pb-10 flex flex-col lg:flex-row justify-between items-end gap-8">
         <div>
-          <div className="flex items-center gap-4">
-             <span className="px-3 py-1 bg-amber-500/20 text-amber-500 text-[10px] font-black rounded-full border border-amber-500/30 uppercase tracking-widest">Self-Built Node v5.2</span>
-             <h2 className="ai-headline text-5xl italic uppercase tracking-tighter text-white">Fiscal Terminal</h2>
-          </div>
-          <p className="ai-sub-headline text-stone-500 font-black uppercase tracking-[0.4em] mt-2">Bóc tách dòng hàng • Ký số RSA • Truyền tin Direct API</p>
+           <div className="flex items-center gap-4 mb-3">
+              <span className="px-3 py-1 bg-indigo-600 text-white text-[9px] font-black rounded-full uppercase tracking-widest animate-pulse shadow-lg shadow-indigo-500/20">Fiscal Node 2.0</span>
+              <h2 className="ai-headline text-5xl italic uppercase tracking-tighter leading-none">Fiscal Terminal</h2>
+           </div>
+          <p className="ai-sub-headline text-cyan-300/40 ml-1 italic uppercase font-black tracking-[0.3em]">Hệ thống Kế toán Thuế & Ký số hóa đơn liên Shard</p>
         </div>
-        
-        <div className="flex bg-black/60 p-4 rounded-3xl border border-white/5 shadow-2xl">
-            <div className="text-right">
-                <p className="text-[9px] text-stone-600 uppercase font-black">Digital Token Status</p>
-                <p className="text-sm font-black text-green-500 uppercase italic">SafeCA Online</p>
-            </div>
-        </div>
+
+        <nav className="flex bg-black/40 p-1.5 rounded-2xl border border-white/10 shrink-0">
+           {[
+             { id: 'omega_queue', label: 'Hàng chờ Omega' },
+             { id: 'cit_calc', label: 'Tính thuế TNDN (CIT)' },
+             { id: 'foundation', label: 'Phát hành mới' }
+           ].map(tab => (
+             <button
+               key={tab.id}
+               onClick={() => setActiveTab(tab.id as any)}
+               className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase transition-all relative ${activeTab === tab.id ? 'bg-indigo-500/20 text-cyan-300 border border-indigo-500/20 shadow-xl shadow-indigo-500/5' : 'text-gray-500 hover:text-white'}`}
+             >
+               {tab.label}
+               {tab.id === 'omega_queue' && omegaTasks.filter(t => t.status === 'PENDING').length > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-[8px] flex items-center justify-center rounded-full animate-bounce font-black">
+                     {omegaTasks.filter(t => t.status === 'PENDING').length}
+                  </span>
+               )}
+             </button>
+           ))}
+        </nav>
       </header>
 
-      <div className="flex gap-4 mb-2">
-         <button onClick={() => setViewMode('LEDGER')} className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'LEDGER' ? 'bg-amber-500 text-black shadow-lg' : 'bg-white/5 text-stone-500'}`}>1. Sổ cái hóa đơn</button>
-         <button onClick={() => setViewMode('WORKBENCH')} className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'WORKBENCH' ? 'bg-amber-500 text-black shadow-lg' : 'bg-white/5 text-stone-500'}`}>2. Bóc tách XML (Workbench)</button>
-      </div>
+      <main className="flex-1">
+        {/* TAB: CIT CALCULATION */}
+        {activeTab === 'cit_calc' && citResult && (
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 animate-in slide-in-from-right-10">
+              <div className="ai-panel p-10 bg-black/40 border-white/10 space-y-8">
+                 <h3 className="text-xl font-bold text-white uppercase tracking-widest border-b border-white/5 pb-4">Dự Tính Thuế TNDN (Corporate Tax)</h3>
+                 
+                 <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
+                       <span className="text-xs text-gray-400 font-bold uppercase">Thu nhập chịu thuế</span>
+                       <span className="text-xl font-mono text-white">{citResult.taxableIncome.toLocaleString()} đ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
+                       <span className="text-xs text-gray-400 font-bold uppercase">Thuế suất chuẩn</span>
+                       <span className="text-xl font-mono text-white">{citResult.rate}%</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-green-500/10 rounded-2xl border border-green-500/20">
+                       <span className="text-xs text-green-400 font-bold uppercase">Ưu đãi (Incentives)</span>
+                       <span className="text-xl font-mono text-green-400">-{citResult.incentives.toLocaleString()} đ</span>
+                    </div>
+                 </div>
 
-      <main className="flex-1 grid grid-cols-1 xl:grid-cols-12 gap-8 min-h-0">
-         {/* LEFT: CONTENT AREA */}
-         <div className="xl:col-span-8 ai-panel overflow-hidden border-white/5 bg-black/40 flex flex-col shadow-2xl">
-            {viewMode === 'LEDGER' ? (
-               <div className="flex-1 overflow-y-auto no-scrollbar">
-                  <table className="w-full text-left text-[11px] border-collapse">
-                     <thead>
-                        <tr className="text-stone-500 font-black uppercase tracking-widest border-b border-white/10 bg-black sticky top-0 z-10">
-                           <th className="p-6">Mã Hóa Đơn / Khách hàng</th>
-                           <th className="p-6 text-right">Tổng giá trị (Net)</th>
-                           <th className="p-6 text-center">Trạng thái Shard</th>
-                           <th className="p-6 text-right">Tác vụ</th>
-                        </tr>
-                     </thead>
-                     <tbody className="text-stone-300">
-                        {invoices.map(inv => (
-                          <tr key={inv.id} className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors cursor-pointer ${selectedInvoice?.id === inv.id ? 'bg-white/[0.05]' : ''}`} onClick={() => setSelectedInvoice(inv)}>
-                             <td className="p-6">
-                                <p className="font-bold text-white uppercase">{inv.id}</p>
-                                <p className="text-[9px] text-stone-600 font-mono mt-1">{inv.customerName}</p>
-                             </td>
-                             <td className="p-6 text-right font-mono font-black text-lg text-white">
-                                {(inv.totalAmount + inv.taxAmount).toLocaleString()} đ
-                             </td>
-                             <td className="p-6 text-center">
-                                <span className={`px-3 py-1 rounded-full text-[8px] font-black uppercase border ${
-                                    inv.status === EInvoiceStatus.ACCEPTED ? 'bg-green-600/10 text-green-500 border-green-500/30' : 
-                                    inv.status === EInvoiceStatus.SIGNED ? 'bg-blue-600/10 text-blue-500 border-blue-500/30' :
-                                    'bg-amber-500/10 text-amber-500 border-amber-500/30 animate-pulse'
-                                }`}>{inv.status}</span>
-                             </td>
-                             <td className="p-6 text-right">
-                                {inv.status === EInvoiceStatus.DRAFT && (
-                                   <button onClick={(e) => { e.stopPropagation(); handleSignInvoice(inv); }} className="px-6 py-2 bg-white text-black rounded-xl text-[9px] font-black uppercase hover:bg-amber-500 transition-all shadow-xl">Ký Số</button>
-                                )}
-                             </td>
-                          </tr>
-                        ))}
-                     </tbody>
-                  </table>
-               </div>
-            ) : (
-               <div className="flex-1 flex flex-col p-10 font-mono">
-                  <div className="flex justify-between items-center mb-6">
-                     <span className="text-[10px] text-stone-600 uppercase tracking-widest italic">// Cấu trúc bóc tách XML - TCT Standard v2.0</span>
-                     <button className="text-[9px] text-amber-500 underline uppercase font-black">Copy Payload</button>
-                  </div>
-                  <div className="flex-1 bg-black rounded-[2.5rem] border border-white/5 p-8 overflow-y-auto no-scrollbar shadow-inner text-green-500/80 leading-relaxed text-xs">
-                     {selectedInvoice?.xmlPayload || "<!-- Chọn một hóa đơn để xem cấu trúc băm Shard XML -->"}
-                  </div>
-               </div>
-            )}
-         </div>
+                 <div className="p-6 bg-indigo-500/20 rounded-[2rem] border border-indigo-500/30 text-center">
+                    <p className="text-[10px] text-indigo-300 font-black uppercase tracking-widest mb-2">TỔNG THUẾ PHẢI NỘP</p>
+                    <p className="text-4xl font-mono font-black text-white">{citResult.amount.toLocaleString()} đ</p>
+                 </div>
 
-         {/* RIGHT: DETAIL & ADVISOR */}
-         <div className="xl:col-span-4 flex flex-col gap-8">
-            {selectedInvoice ? (
-               <div className="ai-panel p-8 bg-white/[0.02] border-amber-500/20 flex flex-col gap-8 shadow-2xl animate-in slide-in-from-right-10">
-                  <h3 className="text-xl font-bold text-white uppercase italic tracking-widest flex items-center gap-3">
-                     <Receipt size={20} className="text-amber-500" />
-                     Bản thảo chi tiết
-                  </h3>
+                 <button onClick={handleAutoFile} className="w-full py-4 bg-red-600 text-white font-black text-[10px] uppercase rounded-xl hover:bg-red-500 transition-all shadow-lg flex items-center justify-center gap-2">
+                    <span>🚀</span> AUTO-FILE TO TAX AUTHORITY
+                 </button>
+              </div>
 
-                  <div className="space-y-6">
-                     <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest">Dòng hàng bóc tách (Vàng & Đá)</p>
-                     <div className="space-y-4">
-                        {selectedInvoice.items.map((item, idx) => (
-                           <div key={idx} className="p-5 bg-black/60 rounded-[2rem] border border-white/5">
-                              <p className="text-xs font-bold text-white uppercase mb-2">{item.name}</p>
-                              <div className="grid grid-cols-2 gap-4 text-[9px] font-mono text-stone-500">
-                                 <div>Vàng: {item.goldWeight} chỉ</div>
-                                 <div className="text-right">Đá: {item.stonePrice.toLocaleString()} đ</div>
-                                 <div>Công thợ: {item.laborPrice.toLocaleString()} đ</div>
-                                 <div className="text-right text-amber-500">Thuế: {item.taxRate}%</div>
-                              </div>
-                              <div className="mt-3 pt-3 border-t border-white/5 flex justify-between items-end">
-                                 <span className="text-[8px] font-black text-stone-600 uppercase">Thành tiền</span>
-                                 <span className="text-sm font-black text-white">{item.totalBeforeTax.toLocaleString()} đ</span>
-                              </div>
-                           </div>
-                        ))}
+              <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
+                 <div className="flex items-center gap-4 mb-6">
+                    <AIAvatar personaId={PersonaID.THIEN} size="md" />
+                    <h4 className="ai-sub-headline text-blue-400 italic">Thiên Advisor</h4>
+                 </div>
+                 <p className="text-[13px] text-gray-400 italic leading-relaxed font-light">
+                    "Dựa trên dòng tiền hiện tại, Thiên dự báo thuế TNDN quý này sẽ tăng 15%. Tuy nhiên, nhờ áp dụng ưu đãi 'Dự án Xã hội', chúng ta đã tiết kiệm được khoảng {(citResult.incentives/1000000).toFixed(0)} triệu đồng. Hãy cân nhắc nộp sớm để tránh phạt chậm nộp."
+                 </p>
+              </div>
+           </div>
+        )}
+
+        {/* TAB: OMEGA QUEUE */}
+        {activeTab === 'omega_queue' && (
+          <div className="space-y-8 animate-in slide-in-from-right-10 duration-700">
+             <div className="flex justify-between items-center mb-4">
+                <h3 className="text-2xl font-bold italic text-amber-500 uppercase tracking-tighter">Báo cáo dữ liệu từ Omega Sync</h3>
+                <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Xử lý {omegaTasks.length} tác vụ truyền tin</p>
+             </div>
+             
+             <div className="space-y-6">
+                {omegaTasks.map(task => (
+                  <div key={task.id} className={`ai-panel p-10 flex flex-col lg:flex-row justify-between items-center gap-10 group transition-all ${task.status === 'COMPLETED' ? 'opacity-40 border-white/5' : 'hover:border-cyan-500/40 bg-white/[0.01]'}`}>
+                     <div className="flex-1">
+                        <div className="flex items-center gap-6 mb-4">
+                           <span className="text-xl font-mono font-black text-cyan-400">{task.id}</span>
+                           <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] font-black uppercase text-gray-500">{new Date(task.timestamp).toLocaleString()}</span>
+                           {task.status === 'COMPLETED' && <span className="text-[9px] font-black text-green-500 uppercase italic">✓ Đã niêm phong Shard</span>}
+                        </div>
+                        <div className="p-6 bg-black/40 rounded-3xl border border-white/5 font-mono text-[11px] text-gray-400 group-hover:text-white transition-colors">
+                           <p className="uppercase font-black text-indigo-400 mb-2">Dữ liệu nguồn bóc tách:</p>
+                           {JSON.stringify(task.payload)}
+                        </div>
                      </div>
+                     {task.status === 'PENDING' && (
+                       <div className="flex gap-4">
+                          <button onClick={() => handleQuickSign(task)} className="px-10 py-5 bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl hover:bg-cyan-400 shadow-2xl transition-all active:scale-95">Xác thực Ký số</button>
+                          <button className="px-8 py-5 border border-white/10 text-gray-500 font-black text-[10px] uppercase rounded-2xl hover:text-white transition-all">Lưu trữ Shard</button>
+                       </div>
+                     )}
                   </div>
-
-                  <div className="p-6 bg-indigo-500/5 border border-indigo-500/20 rounded-3xl">
-                     <div className="flex items-center gap-3 mb-3">
-                        <ShieldCheck size={18} className="text-indigo-400" />
-                        <h4 className="text-[10px] font-black text-white uppercase tracking-widest">Mã băm chữ ký (RSA-4096)</h4>
-                     </div>
-                     <p className="text-[9px] text-stone-600 font-mono break-all leading-relaxed">
-                        {selectedInvoice.signatureHash || "Awaiting Sealing..."}
-                     </p>
+                ))}
+                
+                {omegaTasks.length === 0 && (
+                  <div className="py-48 text-center opacity-10 flex flex-col items-center gap-10">
+                     <span className="text-[120px] grayscale">🧾</span>
+                     <p className="text-3xl font-serif italic uppercase tracking-[0.4em]">Fiscal Queue Empty</p>
+                     <p className="text-xs font-black uppercase text-amber-500/50">Cổng truyền tin Fiscal đang ở trạng thái lắng nghe...</p>
                   </div>
-               </div>
-            ) : (
-               <div className="ai-panel p-12 border-dashed border-stone-800 flex flex-col items-center justify-center text-center opacity-30 flex-1">
-                  <Database size={64} className="text-stone-700 mb-6" />
-                  <p className="text-xl font-serif italic uppercase tracking-widest">Data Shard Awaiting Selection</p>
-               </div>
-            )}
+                )}
+             </div>
+          </div>
+        )}
 
-            <div className="ai-panel p-8 bg-black border-white/5 flex items-center gap-6">
-                <p className="text-[11px] text-stone-400 italic leading-relaxed font-light">
-                   "Thưa Anh Natt, Can đã bóc tách định mức 'Vàng 18K' và 'Kim cương rời' cho hóa đơn này. Mọi mục **Công thợ** đã được đối soát với Shard nhân sự để đảm bảo tính hợp lệ của chi phí sản xuất."
-                </p>
-            </div>
-         </div>
+        {activeTab === 'foundation' && (
+          <div className="ai-panel p-20 flex flex-col items-center justify-center text-center border-dashed border-white/10 opacity-30">
+             <span className="text-[100px] mb-12">🔐</span>
+             <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter">New Protocol Initiation</h3>
+             <p className="max-w-md mt-6 text-sm text-gray-500 leading-relaxed font-light italic">
+                Cổng khởi tạo hóa đơn thủ công. Khuyến nghị Anh Natt sử dụng bóc tách từ Omega Hub để đảm bảo 100% tính chính xác SSOT.
+             </p>
+          </div>
+        )}
       </main>
     </div>
   );

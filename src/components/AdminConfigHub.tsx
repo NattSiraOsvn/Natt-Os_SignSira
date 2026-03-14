@@ -1,17 +1,17 @@
-// @ts-nocheck
 
 import React, { useState, useEffect } from 'react';
-import { Utilities, AIScoringConfig, DetectedContext } from '@/core/ingestion/document-ai.engine';
-import ModuleRegistry, { MODULE_REGISTRY } from '@/core/registry/module-registry';
-import { UserRole, ModuleConfig, PersonaID, OperationRecord, DictionaryVersion } from '@/types';
+import { Utilities, AIScoringConfig, DetectedContext } from '../services/documentAI';
+import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleRegistry';
+import { UserRole, ModuleConfig, PersonaID, OperationRecord, DictionaryVersion } from '../types';
 import { 
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, 
   ResponsiveContainer, Tooltip
 } from 'recharts';
-import { RecoverySystem } from '@/core/snapshot/recovery-engine';
-import ApprovalDashboard from './approval/approval-dashboard';
-import { DictApproval, ChangeProposal } from '@/governance/policy/dictionary-approval.engine';
-import { DictService } from '@/governance/policy/dictionary.engine';
+import AIAvatar from './AIAvatar';
+import { RecoverySystem } from '../services/recoveryEngine';
+import ApprovalDashboard from './approval/ApprovalDashboard';
+import { DictApproval, ChangeProposal } from '../services/dictionaryApprovalService';
+import { DictService } from '../services/dictionaryService';
 
 const AdminConfigHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'matrix' | 'modules' | 'core' | 'approval' | 'recovery' | 'versions'>('matrix');
@@ -22,7 +22,7 @@ const AdminConfigHub: React.FC = () => {
     systemName: 'Natt-OS Unified',
     version: '3.1.26',
     autoLockDelay: 300000,
-    confidenceTHReshold: 75,
+    confidenceThreshold: 75,
     allowGuest: false
   });
 
@@ -43,18 +43,18 @@ const AdminConfigHub: React.FC = () => {
     }
   }, [activeTab]);
 
-  const handleWeightChange = (key: string, value: number) => {
+  const handleWeightChange = (key: keyof AIScoringConfig['weights'], value: number) => {
     setScoringConfig(prev => ({
       ...prev,
       weights: { ...prev.weights, [key]: value }
     }));
   };
 
-  const handleKeywordChange = (context: DetectedContext | string, newKeywords: string) => {
+  const handleKeywordChange = (context: DetectedContext, newKeywords: string) => {
     const list = newKeywords.split(',').map(k => k.trim()).filter(k => k);
     setScoringConfig(prev => ({
       ...prev,
-      keywords: { ...prev.keywords, [context as unknown as string]: list }
+      keywords: { ...prev.keywords, [context]: list }
     }));
   };
 
@@ -75,7 +75,7 @@ const AdminConfigHub: React.FC = () => {
   };
 
   const handleReview = async (id: string, decision: 'APPROVE' | 'REJECT') => {
-      await DictApproval.reviewChange(id, decision, 'ADMIN_NATT');
+      await DictApproval.reviewChange(id, decision, 'MASTER_NATT');
       setProposals(DictApproval.getPendingProposals());
   };
 
@@ -109,9 +109,10 @@ const AdminConfigHub: React.FC = () => {
     <div className="h-full bg-[#020202] flex flex-col overflow-hidden animate-in fade-in duration-700">
       
       {/* HEADER */}
-      <header className="p-8 border-b border-white/5 flex flex-col lg:flex-row justify-between items-end bg-black/40 backdrop-blur-xl sHRink-0 gap-4">
+      <header className="p-8 border-b border-white/5 flex flex-col lg:flex-row justify-between items-end bg-black/40 backdrop-blur-xl shrink-0 gap-4">
         <div>
            <div className="flex items-center gap-4 mb-2">
+              <AIAvatar personaId={PersonaID.THIEN} size="sm" />
               <h2 className="ai-headline text-4xl italic uppercase tracking-tighter">Admin Core Hub</h2>
            </div>
            <p className="ai-sub-headline text-gray-500 font-black tracking-[0.3em] ml-1">System Configuration & Neural Tuning</p>
@@ -174,10 +175,10 @@ const AdminConfigHub: React.FC = () => {
                     <button onClick={saveMatrix} disabled={isSaving} className="px-6 py-3 bg-green-600 text-white font-black text-[10px] uppercase rounded-xl hover:bg-green-500 transition-all shadow-lg">{isSaving ? 'SAVING...' : 'SAVE CONFIG'}</button>
                  </div>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {(Object.keys(scoringConfig.keywords as Record<string,string[]>)).map((ctx: string) => (
-                       <div key={ctx as string} className="p-6 rounded-2xl bg-black/40 border border-white/10 hover:border-amber-500/30 transition-all">
-                          <h4 className="text-sm font-bold text-white uppercase mb-4">{ctx as string}</h4>
-                          <textarea className="w-full bg-white/5 border border-white/5 rounded-xl p-3 text-xs text-gray-300 font-mono h-24 focus:border-amber-500 outline-none resize-none" value={((scoringConfig.keywords as any)[ctx] || []).join(', ')} onChange={(e) => handleKeywordChange(ctx, e.target.value)} />
+                    {(Object.keys(scoringConfig.keywords) as DetectedContext[]).map(ctx => (
+                       <div key={ctx} className="p-6 rounded-2xl bg-black/40 border border-white/10 hover:border-amber-500/30 transition-all">
+                          <h4 className="text-sm font-bold text-white uppercase mb-4">{ctx}</h4>
+                          <textarea className="w-full bg-white/5 border border-white/5 rounded-xl p-3 text-xs text-gray-300 font-mono h-24 focus:border-amber-500 outline-none resize-none" value={(scoringConfig.keywords[ctx] || []).join(', ')} onChange={(e) => handleKeywordChange(ctx, e.target.value)} />
                        </div>
                     ))}
                  </div>
@@ -217,7 +218,7 @@ const AdminConfigHub: React.FC = () => {
                                             {op.error}
                                         </div>
                                     </div>
-                                    <div className="flex flex-col gap-3 sHRink-0">
+                                    <div className="flex flex-col gap-3 shrink-0">
                                         <button onClick={() => handleReplay(op.id)} className="px-10 py-5 bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl hover:bg-green-400 shadow-2xl transition-all active:scale-95">
                                             REPLAY SHARD
                                         </button>

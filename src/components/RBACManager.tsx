@@ -1,16 +1,15 @@
-// @ts-nocheck
 
-import React, { useState, ReactNode } from 'react';
+import React, { useState } from 'react';
 import { UserRole, Permission, ModuleID, PersonaID } from '../types';
-import { RBACGuard } from '@/cells/kernel/rbac-cell/domain/services/auth.service';
+import { RBACGuard } from '../services/authService';
 import AIAvatar from './AIAvatar';
 
 const RBACManager: React.FC = () => {
   const [selectedRole, setSelectedRole] = useState<UserRole>(UserRole.ADMIN);
-  // Fixed: cast Object.values results as string arrays to resolve 'unknown' type issue
-  const roles = Object.values(UserRole) as string[];
-  const modules = Object.values(ModuleID) as string[];
-  const permissions = Object.values(Permission) as string[];
+  // Fix: safely get values from enums using keys
+  const roles = (Object.keys(UserRole) as Array<keyof typeof UserRole>).map(k => UserRole[k]);
+  const modules = (Object.keys(ModuleID) as Array<keyof typeof ModuleID>).map(k => ModuleID[k]);
+  const permissions = (Object.keys(Permission) as Array<keyof typeof Permission>).map(k => Permission[k]);
 
   const getMatrix = (role: UserRole) => RBACGuard.getPermissions(role);
 
@@ -27,7 +26,7 @@ const RBACManager: React.FC = () => {
         </div>
         
         <div className="flex bg-black/40 p-2 rounded-[2rem] border border-white/10 backdrop-blur-xl overflow-x-auto no-scrollbar">
-           {(roles as UserRole[]).map(role => (
+           {roles.map(role => (
              <button
                key={role}
                onClick={() => setSelectedRole(role)}
@@ -52,14 +51,14 @@ const RBACManager: React.FC = () => {
                     <thead>
                        <tr className="bg-white/[0.03] border-b border-white/10">
                           <th className="p-8 text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] w-64">Module / Shard</th>
-                          {permissions.map(p => (
+                          {permissions.map((p) => (
                             <th key={p as string} className="p-8 text-center text-[9px] font-black text-gray-500 uppercase tracking-widest">{p}</th>
                           ))}
                        </tr>
                     </thead>
                     <tbody>
-                       {modules.map(module => {
-                          const rolePerms = getMatrix(selectedRole)[module as ModuleID] || [];
+                       {modules.map((module) => {
+                          const rolePerms = getMatrix(selectedRole)[module] || [];
                           return (
                             <tr key={module as string} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors group">
                                <td className="p-8">
@@ -68,7 +67,7 @@ const RBACManager: React.FC = () => {
                                      <span className="text-white font-bold text-sm uppercase tracking-tight">{module}</span>
                                   </div>
                                </td>
-                               {permissions.map(p => {
+                               {permissions.map((p) => {
                                   const hasP = rolePerms.includes(p as Permission);
                                   return (
                                     <td key={p as string} className="p-8 text-center">

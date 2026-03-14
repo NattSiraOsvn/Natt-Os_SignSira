@@ -1,8 +1,8 @@
-// @ts-nocheck
+
 import React, { useState, useMemo } from 'react';
-import { ActionLog, UserRole, PersonaID } from '@/types';
-import { ShardingService } from '@/core/audit/sharding-engine';
-import { Copy, Check, ChevronDown, ChevronRight, Hash, Activity, ShieldCheck } from 'lucide-react';
+import { ActionLog, UserRole, PersonaID } from '../types';
+import AIAvatar from './AIAvatar';
+import { ShardingService } from '../services/blockchainService';
 
 interface AuditTrailModuleProps {
   actionLogs: ActionLog[];
@@ -13,8 +13,6 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
   const [searchTerm, setSearchTerm] = useState('');
   const [filterModule, setFilterModule] = useState('ALL');
   const [verifiedLogId, setVerifiedLogId] = useState<string | null>(null);
-  const [expandedLogId, setExpandedLogId] = useState<string | null>(null); // Accordion State
-  const [copiedHash, setCopiedHash] = useState<string | null>(null); // Copy Feedback
   const [dateFilter, setDateFilter] = useState('');
 
   const filteredLogs = useMemo(() => {
@@ -39,27 +37,17 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
     return ['ALL', ...Array.from(mods)];
   }, [actionLogs]);
 
-  const handleVerifyHash = (e: React.MouseEvent, log: ActionLog) => {
-    e.stopPropagation();
+  const handleVerifyHash = (log: ActionLog) => {
     const computedHash = ShardingService.generateShardHash({ 
       action: log.action, 
       details: log.details, 
       timestamp: log.timestamp, 
       user: log.userPosition 
     });
+    
+    // Check integrity (Mock check)
     setVerifiedLogId(log.id);
     setTimeout(() => setVerifiedLogId(null), 3000);
-  };
-
-  const handleCopyHash = (e: React.MouseEvent, hash: string) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(hash);
-    setCopiedHash(hash);
-    setTimeout(() => setCopiedHash(null), 2000);
-  };
-
-  const toggleExpand = (id: string) => {
-    setExpandedLogId(prev => prev === id ? null : id);
   };
 
   return (
@@ -88,7 +76,7 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Tìm User, Hành động..."
-                className="bg-white/[0.03] border border-white/10 rounded-2xl pl-12 pr-6 py-4 text-[10px] text-amber-500 focus:border-amber-500/50 outline-none w-80 uppercase font-black tracking-widest placeholder:text-gray-800 transition-all shadow-inner"
+                className="bg-white/[0.03] border border-white/10 rounded-2xl pl-12 pr-6 py-4 text-[10px] text-amber-500 focus:border-amber-500/50 outline-none w-64 uppercase font-black tracking-widest placeholder:text-gray-800 transition-all shadow-inner"
               />
            </div>
            <select 
@@ -106,133 +94,65 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
       <main className="flex-1 flex flex-col lg:flex-row gap-10 min-h-0">
          
          <div className="flex-1 ai-panel overflow-hidden border-white/5 bg-black/40 flex flex-col shadow-2xl relative">
-            <div className="p-6 border-b border-white/5 bg-white/[0.02] flex justify-between items-center sHRink-0">
+            <div className="p-6 border-b border-white/5 bg-white/[0.02] flex justify-between items-center shrink-0">
                <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em]">Audit Trail Entries</h3>
                <span className="text-[9px] text-amber-500/50 font-mono">Count: {filteredLogs.length} Records</span>
             </div>
 
             <div className="flex-1 overflow-y-auto no-scrollbar relative">
-               <div className="w-full text-left">
-                  {/* Table Header */}
-                  <div className="sticky top-0 z-20 bg-[#050505] border-b border-white/10 shadow-lg grid grid-cols-12 gap-4 px-6 py-4 text-[9px] font-black text-gray-600 uppercase tracking-widest">
-                     <div className="col-span-2">Thời gian / ID</div>
-                     <div className="col-span-3">Identity (User)</div>
-                     <div className="col-span-2">Module / Shard</div>
-                     <div className="col-span-3">Hành động / Chi tiết</div>
-                     <div className="col-span-2 text-right">Verification</div>
-                  </div>
-
-                  {/* Table Body */}
-                  <div className="text-[11px] font-medium text-gray-300">
-                    {filteredLogs.map((log) => {
-                      const isExpanded = expandedLogId === log.id;
-                      return (
-                        <div key={log.id} className="border-b border-white/5 group">
-                          {/* Row Summary */}
-                          <div 
-                             onClick={() => toggleExpand(log.id)}
-                             className={`grid grid-cols-12 gap-4 px-6 py-6 cursor-pointer transition-colors items-center ${isExpanded ? 'bg-white/[0.05]' : 'hover:bg-white/[0.02]'}`}
-                          >
-                             <div className="col-span-2">
-                                <div className="flex items-center gap-2">
-                                   {isExpanded ? <ChevronDown size={14} className="text-amber-500" /> : <ChevronRight size={14} className="text-gray-600" />}
-                                   <div>
-                                      <p className="text-white font-bold">{new Date(log.timestamp).toLocaleTimeString()}</p>
-                                      <p className="text-[8px] text-gray-600 font-mono mt-1 italic">{log.id}</p>
-                                   </div>
-                                </div>
-                             </div>
-                             <div className="col-span-3">
-                                <div className="flex items-center gap-4">
-                                   <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px]">👤</div>
-                                   <div>
-                                      <p className="font-black text-cyan-400 uppercase tracking-tight">{log.userId}</p>
-                                      <p className="text-[8px] text-gray-600 font-black uppercase mt-0.5">{log.userPosition}</p>
-                                   </div>
-                                </div>
-                             </div>
-                             <div className="col-span-2">
-                                <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] font-black text-gray-500 uppercase tracking-widest">
-                                   {log.module.replace('_', ' ')}
-                                </span>
-                             </div>
-                             <div className="col-span-3">
-                                <p className="text-white font-black uppercase tracking-tight group-hover:text-amber-500 transition-colors">{log.action}</p>
-                                <p className="text-[10px] text-gray-500 italic mt-1 line-clamp-1 group-hover:line-clamp-none transition-all">{log.details}</p>
-                             </div>
-                             <div className="col-span-2 text-right">
-                                <div className="flex justify-end items-center gap-4">
-                                   <p className="text-[8px] font-mono text-gray-700 group-hover:text-amber-500/50 transition-colors truncate w-24" title={log.hash}>
-                                      {log.hash.substring(0, 12)}...
-                                   </p>
-                                   <button 
-                                     onClick={(e) => handleVerifyHash(e, log)}
-                                     className={`text-[12px] hover:scale-110 transition-transform ${verifiedLogId === log.id ? 'text-green-500' : 'text-gray-600 hover:text-green-500'}`}
-                                     title="Verify Integrity"
-                                   >
-                                      {verifiedLogId === log.id ? <Check size={16} /> : <ShieldCheck size={16} />}
-                                   </button>
-                                </div>
-                             </div>
-                          </div>
-
-                          {/* Accordion Detail - MATRIX VIEW */}
-                          {isExpanded && (
-                            <div className="bg-[#050505] border-t border-white/5 p-8 animate-in slide-in-from-top-2 duration-300">
-                               <div className="grid grid-cols-2 gap-8">
-                                  <div className="space-y-4">
-                                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                                        <h4 className="text-[9px] font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
-                                           <Hash size={12} /> Full Cryptographic Hash
-                                        </h4>
-                                        <button 
-                                          onClick={(e) => handleCopyHash(e, log.hash)} 
-                                          className="flex items-center gap-2 text-[9px] text-gray-500 hover:text-white transition-colors"
-                                        >
-                                           {copiedHash === log.hash ? <span className="text-green-500 font-bold">COPIED</span> : <>Copy <Copy size={10} /></>}
-                                        </button>
-                                     </div>
-                                     <p className="font-mono text-[10px] text-gray-400 break-all leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5">
-                                        {log.hash}
-                                     </p>
-                                     
-                                     <div className="mt-4">
-                                        <h4 className="text-[9px] font-black text-indigo-400 uppercase tracking-widest flex items-center gap-2 mb-2">
-                                           <Activity size={12} /> Causation Chain
-                                        </h4>
-                                        <div className="flex items-center gap-2 text-[10px] text-gray-500">
-                                           <span className="px-2 py-0.5 bg-indigo-900/20 text-indigo-400 rounded">Root</span>
-                                           <span>→</span>
-                                           <span className="px-2 py-0.5 bg-indigo-900/20 text-indigo-400 rounded">...</span>
-                                           <span>→</span>
-                                           <span className="px-2 py-0.5 bg-white/10 text-white rounded border border-white/20">Current ({log.id})</span>
-                                        </div>
-                                     </div>
-                                  </div>
-
-                                  <div className="space-y-2">
-                                     <h4 className="text-[9px] font-black text-green-500 uppercase tracking-widest border-b border-white/10 pb-2">
-                                        Action Payload (Read-Only)
-                                     </h4>
-                                     <pre className="bg-[#0a0a0a] p-4 rounded-xl border border-white/10 text-[10px] text-green-400 font-mono overflow-x-auto max-h-48 custom-scrollbar">
-{JSON.stringify({
-  action: log.action,
-  module: log.module,
-  user: log.userId,
-  role: log.userPosition,
-  timestamp_iso: new Date(log.timestamp).toISOString(),
-  details_parsed: log.details
-}, null, 2)}
-                                     </pre>
-                                  </div>
+               <table className="w-full text-left border-collapse">
+                  <thead className="sticky top-0 z-20 bg-[#050505] border-b border-white/10 shadow-lg">
+                    <tr className="text-[9px] font-black text-gray-600 uppercase tracking-widest">
+                       <th className="p-6 w-48">Thời gian / ID</th>
+                       <th className="p-6 w-64">Identity (User)</th>
+                       <th className="p-6 w-56">Module / Shard</th>
+                       <th className="p-6">Hành động / Chi tiết</th>
+                       <th className="p-6 text-right">Blockchain Hash</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-[11px] font-medium text-gray-300">
+                    {filteredLogs.map((log) => (
+                      <tr key={log.id} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors group">
+                         <td className="p-6">
+                            <p className="text-white font-bold">{new Date(log.timestamp).toLocaleTimeString()}</p>
+                            <p className="text-[8px] text-gray-600 font-mono mt-1 italic">{log.id}</p>
+                         </td>
+                         <td className="p-6">
+                            <div className="flex items-center gap-4">
+                               <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px]">👤</div>
+                               <div>
+                                  <p className="font-black text-cyan-400 uppercase tracking-tight">{log.userId}</p>
+                                  <p className="text-[8px] text-gray-600 font-black uppercase mt-0.5">{log.userPosition}</p>
                                </div>
                             </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-               </div>
+                         </td>
+                         <td className="p-6">
+                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] font-black text-gray-500 uppercase tracking-widest">
+                               {log.module.replace('_', ' ')}
+                            </span>
+                         </td>
+                         <td className="p-6">
+                            <p className="text-white font-black uppercase tracking-tight group-hover:text-amber-500 transition-colors">{log.action}</p>
+                            <p className="text-[10px] text-gray-500 italic mt-1 line-clamp-1 group-hover:line-clamp-none transition-all">{log.details}</p>
+                         </td>
+                         <td className="p-6 text-right">
+                            <div className="flex justify-end items-center gap-4">
+                               <p className="text-[8px] font-mono text-gray-700 group-hover:text-amber-500/50 transition-colors truncate w-32" title={log.hash}>
+                                  {log.hash.substring(0, 16)}...
+                               </p>
+                               <button 
+                                 onClick={() => handleVerifyHash(log)}
+                                 className={`text-[12px] hover:scale-110 transition-transform ${verifiedLogId === log.id ? 'text-green-500' : 'text-gray-600 hover:text-green-500'}`}
+                                 title="Verify Integrity"
+                               >
+                                  {verifiedLogId === log.id ? '✓' : '🛡️'}
+                               </button>
+                            </div>
+                         </td>
+                      </tr>
+                    ))}
+                  </tbody>
+               </table>
                
                {filteredLogs.length === 0 && (
                  <div className="py-40 text-center opacity-10 flex flex-col items-center gap-10">
@@ -243,10 +163,11 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
             </div>
          </div>
 
-         <aside className="w-full lg:w-[400px] flex flex-col gap-8 sHRink-0">
+         <aside className="w-full lg:w-[400px] flex flex-col gap-8 shrink-0">
             <div className="ai-panel p-10 bg-amber-500/[0.03] border-amber-500/20 shadow-2xl relative overflow-hidden">
                <div className="absolute top-0 right-0 p-6 opacity-5 text-8xl">🛡️</div>
                <div className="flex items-center gap-4 mb-8">
+                  <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
                   <h4 className="ai-sub-headline text-amber-500">Cố Vấn Giám Sát</h4>
                </div>
                <div className="bg-black/60 p-8 rounded-[2.5rem] border border-white/5 relative z-10 shadow-inner">

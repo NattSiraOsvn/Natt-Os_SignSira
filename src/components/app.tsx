@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import React, { useState, useEffect, useCallback } from 'react';
 import AppShell from './AppShell';
@@ -7,10 +6,11 @@ import SecurityOverlay from './SecurityOverlay';
 import NotificationHub, { AppNotification } from './NotificationHub';
 import NotificationPortal from './NotificationPortal';
 import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionType, PersonaID } from '../types';
-import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/services/rbac.engine';
-import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notify-bus';
-import { ShardingService } from '@/core/audit/sharding-engine';
-import OfflineService from '@/cells/infrastructure/sync-cell/domain/services/offline.engine';
+import { RBACEngine } from '../services/rbacEngine';
+import { NotifyBus } from '../services/notificationService';
+import { ShardingService } from '../services/blockchainService';
+import OfflineService from '../services/offlineService';
+import { RealTimeService } from '../services/realTimeNotificationService';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---
 import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/QuantumUIContext';
@@ -55,6 +55,7 @@ const QuantumAppWrapper: React.FC = () => {
 
   useEffect(() => {
     OfflineService.init().catch(err => console.error("OfflineService init failed:", err));
+    RealTimeService.connect();
 
     RBACEngine.registerUser({
       fullName: 'Master Natt',
@@ -72,6 +73,10 @@ const QuantumAppWrapper: React.FC = () => {
           persona: PersonaID.THIEN
        });
     }, 1500);
+
+    return () => {
+      RealTimeService.disconnect();
+    };
   }, []);
 
   const pushNotification = useCallback((noti: Omit<AppNotification, 'id' | 'timestamp' | 'isRead'>) => {
