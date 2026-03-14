@@ -68,7 +68,7 @@ const testCases = [
     name: 'LĐ-7: Kim cương tấm (KD25-7047)',
     input: { orderId: 'KD25-7047', bom: 194, actual: 190 },
     expectAlert: 'DIAMOND_LOSS',
-    run: () => // // diamondGuard.checkOrder('KD25-7047', 194, 190)
+    run: () => // // // diamondGuard.checkOrder('KD25-7047', 194, 190)
   }
 ];
 
