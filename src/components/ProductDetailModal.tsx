@@ -122,7 +122,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
                    </div>
                    <div className="flex justify-between items-center pb-4 border-b border-white/5">
                       <span className="text-[10px] text-gray-400 font-bold uppercase">Trọng lượng Vàng</span>
-                      <span className="text-xs text-amber-500 font-mono">{(product.weight || 1.25).toFixed(2)} chỉ (Est)</span>
+                      <span className="text-xs text-amber-500 font-mono">{((product as any).weight || 1.25).toFixed(2)} chỉ (Est)</span>
                    </div>
                    <div className="flex justify-between items-center pb-4 border-b border-white/5">
                       <span className="text-[10px] text-gray-400 font-bold uppercase">Đá quý</span>

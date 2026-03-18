@@ -24,7 +24,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
         setOmegaTasks(allTasks.filter(t => t.targetModule === 'sales_tax'));
      });
      // Initial calc
-     const cit = // TaxReportService.calculateCorporateTax(metrics.revenue, metrics.totalCogs + metrics.totalOperating, 0.1); // 10% incentive mock
+     const cit = null; // TODO: wire calculateCorporateTax
   // TODO: fix cit
 
      return unsubscribe;

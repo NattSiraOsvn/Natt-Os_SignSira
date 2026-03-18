@@ -53,7 +53,7 @@ const QuantumContainer: React.FC<Props> = ({ mode, isOpen, onClose, title, child
 
           {/* MANIFESTATION CONTAINER */}
           <motion.div
-            variants={variants[mode]}
+            variants={variants[mode] as any}
             initial="hidden"
             animate="visible"
             exit="exit"
