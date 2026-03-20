@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { DataFetcher } from '../interfaces/data.fetcher';
 
 export interface GraphContradiction {

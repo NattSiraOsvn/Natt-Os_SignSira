@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from '../../../core/event-bus';
 import { createEnvelope } from '../../../shared-kernel/event-envelope';
 

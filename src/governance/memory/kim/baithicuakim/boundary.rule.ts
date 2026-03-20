@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const boundaryRule = {
   allowedIncoming: [
     'governance-cell',               // Governance có quyền kích hoạt

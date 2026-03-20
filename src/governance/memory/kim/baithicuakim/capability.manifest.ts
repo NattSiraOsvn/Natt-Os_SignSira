@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const capabilityManifest = {
   provides: [
     'stability:validate',           // Kiểm tra ổn định

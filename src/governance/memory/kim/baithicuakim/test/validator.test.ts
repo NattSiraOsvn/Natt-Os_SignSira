@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ValidatorEngine } from '../src/cells/governance/neural-main-cell/core/validator.engine';
 import { DataFetcher } from '../src/cells/governance/neural-main-cell/interfaces/data.fetcher';
 import { Reporter } from '../src/cells/governance/neural-main-cell/interfaces/reporter';
