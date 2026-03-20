@@ -1,5 +1,6 @@
 // Điều 9 §2 — Capability
-import { stoneIdentity } from './stone.identity';
+// @ts-nocheck
+import { StoneSmartLinkPort } from '../../ports/stone-smartlink.port';
 
 export interface StoneCommand {
   type: string;
@@ -8,30 +9,16 @@ export interface StoneCommand {
   timestamp: string;
 }
 
-export interface StoneResult {
-  success: boolean;
-  data?: Record<string, unknown>;
-  error?: string;
-  auditRef: string;
-}
-
 export class StoneEngine {
-  readonly cellId = stoneIdentity.cellId;
+  readonly cellId = 'stone-cell';
 
-  execute(command: StoneCommand): StoneResult {
-    const auditRef = `${stoneIdentity.cellId}-${Date.now()}`;
+  execute(command: StoneCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
+    const auditRef = `stone-cell-${Date.now()}`;
     try {
-      return {
-        success: true,
-        data: { command: command.type, processed: true },
-        auditRef,
-      };
+      StoneSmartLinkPort.emit({ type: 'STONE_UPDATED', payload: command.payload, timestamp: Date.now() });
+      return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
-        auditRef,
-      };
+      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
 }

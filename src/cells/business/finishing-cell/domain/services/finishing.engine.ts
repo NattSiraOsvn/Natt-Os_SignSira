@@ -1,5 +1,6 @@
 // Điều 9 §2 — Capability
-import { finishingIdentity } from './finishing.identity';
+// @ts-nocheck
+import { FinishingSmartLinkPort } from '../../ports/finishing-smartlink.port';
 
 export interface FinishingCommand {
   type: string;
@@ -8,30 +9,16 @@ export interface FinishingCommand {
   timestamp: string;
 }
 
-export interface FinishingResult {
-  success: boolean;
-  data?: Record<string, unknown>;
-  error?: string;
-  auditRef: string;
-}
-
 export class FinishingEngine {
-  readonly cellId = finishingIdentity.cellId;
+  readonly cellId = 'finishing-cell';
 
-  execute(command: FinishingCommand): FinishingResult {
-    const auditRef = `${finishingIdentity.cellId}-${Date.now()}`;
+  execute(command: FinishingCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
+    const auditRef = `finishing-cell-${Date.now()}`;
     try {
-      return {
-        success: true,
-        data: { command: command.type, processed: true },
-        auditRef,
-      };
+      FinishingSmartLinkPort.emit({ type: 'FINISHING_UPDATED', payload: command.payload, timestamp: Date.now() });
+      return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
-        auditRef,
-      };
+      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
 }

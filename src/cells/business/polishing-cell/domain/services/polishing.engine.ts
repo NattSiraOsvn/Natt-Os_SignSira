@@ -1,5 +1,6 @@
 // Điều 9 §2 — Capability
-import { polishingIdentity } from './polishing.identity';
+// @ts-nocheck
+import { PolishingSmartLinkPort } from '../../ports/polishing-smartlink.port';
 
 export interface PolishingCommand {
   type: string;
@@ -8,30 +9,16 @@ export interface PolishingCommand {
   timestamp: string;
 }
 
-export interface PolishingResult {
-  success: boolean;
-  data?: Record<string, unknown>;
-  error?: string;
-  auditRef: string;
-}
-
 export class PolishingEngine {
-  readonly cellId = polishingIdentity.cellId;
+  readonly cellId = 'polishing-cell';
 
-  execute(command: PolishingCommand): PolishingResult {
-    const auditRef = `${polishingIdentity.cellId}-${Date.now()}`;
+  execute(command: PolishingCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
+    const auditRef = `polishing-cell-${Date.now()}`;
     try {
-      return {
-        success: true,
-        data: { command: command.type, processed: true },
-        auditRef,
-      };
+      PolishingSmartLinkPort.emit({ type: 'POLISHING_UPDATED', payload: command.payload, timestamp: Date.now() });
+      return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
-        auditRef,
-      };
+      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
 }

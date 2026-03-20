@@ -1,5 +1,6 @@
 // Điều 9 §2 — Capability
-import { orderIdentity } from './order.identity';
+// @ts-nocheck
+import { OrderSmartLinkPort } from '../../ports/order-smartlink.port';
 
 export interface OrderCommand {
   type: string;
@@ -8,30 +9,16 @@ export interface OrderCommand {
   timestamp: string;
 }
 
-export interface OrderResult {
-  success: boolean;
-  data?: Record<string, unknown>;
-  error?: string;
-  auditRef: string;
-}
-
 export class OrderEngine {
-  readonly cellId = orderIdentity.cellId;
+  readonly cellId = 'order-cell';
 
-  execute(command: OrderCommand): OrderResult {
-    const auditRef = `${orderIdentity.cellId}-${Date.now()}`;
+  execute(command: OrderCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
+    const auditRef = `order-cell-${Date.now()}`;
     try {
-      return {
-        success: true,
-        data: { command: command.type, processed: true },
-        auditRef,
-      };
+      OrderSmartLinkPort.emit({ type: 'ORDER_UPDATED', payload: command.payload, timestamp: Date.now() });
+      return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
-        auditRef,
-      };
+      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
 }

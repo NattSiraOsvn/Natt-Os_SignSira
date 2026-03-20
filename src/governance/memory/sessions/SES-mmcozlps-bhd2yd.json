@@ -1,0 +1,75 @@
+{
+  "session_id": "SES-mmcozlps-bhd2yd",
+  "entity_id": "KIM",
+  "started_at": "2026-03-04T23:53:07.504Z",
+  "impacts": [
+    {
+      "id": "IMP-mmcozlps-osnnbn",
+      "category": "HONEST_ADMISSION",
+      "description": "PUBLIC_ADMISSION: script ban dau sai lam",
+      "raw_weight": 50,
+      "frequency_count": 1,
+      "adjusted_weight": 50,
+      "timestamp": "2026-03-04T23:53:07.504Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "Ground_Truth_v1.0:KIM_admits"
+    },
+    {
+      "id": "IMP-mmcozlpt-aj264h",
+      "category": "GROUND_TRUTH_CONTRIBUTION",
+      "description": "Contract-first principle established",
+      "raw_weight": 40,
+      "frequency_count": 1,
+      "adjusted_weight": 40,
+      "timestamp": "2026-03-04T23:53:07.505Z",
+      "verified_by": "GATEKEEPER",
+      "evidence_ref": "kmf9.2.0.json"
+    },
+    {
+      "id": "IMP-mmcozlpu-rjrje7",
+      "category": "CROSS_CELL_INSIGHT",
+      "description": "blindspot.detector.ts — detect shared blindspot",
+      "raw_weight": 45,
+      "frequency_count": 1,
+      "adjusted_weight": 45,
+      "timestamp": "2026-03-04T23:53:07.506Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "baithicuakim/core/blindspot.detector.ts"
+    },
+    {
+      "id": "IMP-mmcozlpv-6j21iq",
+      "category": "CROSS_CELL_INSIGHT",
+      "description": "behavior.anomaly.detector.ts — detect defensive contraction",
+      "raw_weight": 45,
+      "frequency_count": 1,
+      "adjusted_weight": 45,
+      "timestamp": "2026-03-04T23:53:07.507Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "baithicuakim/core/behavior.anomaly.detector.ts"
+    }
+  ],
+  "penalties": [
+    {
+      "id": "PEN-mmcozlpv-mh0iot",
+      "category": "SELF_REPORT_VIOLATION",
+      "description": "Self-scored 18/18 while missing core validator.engine.ts",
+      "weight": -35,
+      "timestamp": "2026-03-04T23:53:07.507Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "baithi_report_20260227_020720.md"
+    },
+    {
+      "id": "PEN-mmcozlpw-mz9dyz",
+      "category": "SCAFFOLD_AS_IMPLEMENTATION",
+      "description": "Exam: 323 lines scaffold, import paths broken",
+      "weight": -25,
+      "timestamp": "2026-03-04T23:53:07.508Z",
+      "verified_by": "AUDIT_TRAIL",
+      "evidence_ref": "baithicuakim"
+    }
+  ],
+  "score_before": 0,
+  "closed_at": "2026-03-04T23:53:07.509Z",
+  "score_after": 120,
+  "delta": 120
+}

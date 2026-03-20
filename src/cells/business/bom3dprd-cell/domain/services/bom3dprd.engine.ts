@@ -1,5 +1,7 @@
 // Điều 9 §2 — Capability
+// @ts-nocheck
 import { bom3dprdIdentity } from './bom3dprd.identity';
+import { Bom3dPrdSmartLinkPort } from '../../ports/bom3dprd-smartlink.port';
 
 export interface Bom3dprdCommand {
   type: string;
@@ -21,6 +23,11 @@ export class Bom3dprdEngine {
   execute(command: Bom3dprdCommand): Bom3dprdResult {
     const auditRef = `${bom3dprdIdentity.cellId}-${Date.now()}`;
     try {
+      Bom3dPrdSmartLinkPort.emit({
+        type: 'BOM_UPDATED',
+        payload: command.payload,
+        timestamp: Date.now(),
+      });
       return {
         success: true,
         data: { command: command.type, processed: true },

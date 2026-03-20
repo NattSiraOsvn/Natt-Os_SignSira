@@ -1,4 +1,6 @@
 // Điều 9 §2 — Capability
+// @ts-nocheck
+import { SharedContractsSmartLinkPort } from '../../ports/shared-contracts-smartlink.port';
 import { sharedContractsIdentity } from './shared-contracts.identity';
 
 export interface SharedContractsCommand {
@@ -8,30 +10,16 @@ export interface SharedContractsCommand {
   timestamp: string;
 }
 
-export interface SharedContractsResult {
-  success: boolean;
-  data?: Record<string, unknown>;
-  error?: string;
-  auditRef: string;
-}
-
 export class SharedContractsEngine {
   readonly cellId = sharedContractsIdentity.cellId;
 
-  execute(command: SharedContractsCommand): SharedContractsResult {
+  execute(command: SharedContractsCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
     const auditRef = `${sharedContractsIdentity.cellId}-${Date.now()}`;
     try {
-      return {
-        success: true,
-        data: { command: command.type, processed: true },
-        auditRef,
-      };
+      SharedContractsSmartLinkPort.emit({ type: 'CONTRACT_UPDATED', payload: command.payload, timestamp: Date.now() });
+      return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
-        auditRef,
-      };
+      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
 }

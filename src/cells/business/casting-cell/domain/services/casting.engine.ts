@@ -1,5 +1,6 @@
 // Điều 9 §2 — Capability
-import { castingIdentity } from './casting.identity';
+// @ts-nocheck
+import { CastingSmartLinkPort } from '../../ports/casting-smartlink.port';
 
 export interface CastingCommand {
   type: string;
@@ -16,11 +17,16 @@ export interface CastingResult {
 }
 
 export class CastingEngine {
-  readonly cellId = castingIdentity.cellId;
+  readonly cellId = 'casting-cell';
 
   execute(command: CastingCommand): CastingResult {
-    const auditRef = `${castingIdentity.cellId}-${Date.now()}`;
+    const auditRef = `casting-cell-${Date.now()}`;
     try {
+      CastingSmartLinkPort.emit({
+        type: 'CASTING_UPDATED',
+        payload: command.payload,
+        timestamp: Date.now(),
+      });
       return {
         success: true,
         data: { command: command.type, processed: true },

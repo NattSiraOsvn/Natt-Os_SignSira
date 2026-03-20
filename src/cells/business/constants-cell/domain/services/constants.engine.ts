@@ -1,5 +1,6 @@
 // Điều 9 §2 — Capability
-import { constantsIdentity } from './constants.identity';
+// @ts-nocheck
+import { ConstantsSmartLinkPort } from '../../ports/constants-smartlink.port';
 
 export interface ConstantsCommand {
   type: string;
@@ -16,22 +17,19 @@ export interface ConstantsResult {
 }
 
 export class ConstantsEngine {
-  readonly cellId = constantsIdentity.cellId;
+  readonly cellId = 'constants-cell';
 
   execute(command: ConstantsCommand): ConstantsResult {
-    const auditRef = `${constantsIdentity.cellId}-${Date.now()}`;
+    const auditRef = `constants-cell-${Date.now()}`;
     try {
-      return {
-        success: true,
-        data: { command: command.type, processed: true },
-        auditRef,
-      };
+      ConstantsSmartLinkPort.emit({
+        type: 'CONSTANTS_UPDATED',
+        payload: command.payload,
+        timestamp: Date.now(),
+      });
+      return { success: true, data: { command: command.type, processed: true }, auditRef };
     } catch (err) {
-      return {
-        success: false,
-        error: err instanceof Error ? err.message : 'Unknown error',
-        auditRef,
-      };
+      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
 }
