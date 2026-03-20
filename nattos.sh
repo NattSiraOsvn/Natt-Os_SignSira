@@ -323,17 +323,19 @@ if [[ "$EMPTY_DIRS" -gt 0 ]]; then
   if $FULL_MODE; then find src/cells -type d -empty 2>/dev/null | sed 's/^/    📁 /'; fi
 else ok "No empty dirs"; inc_ok; fi
 
-# Duplicate basenames (excluding index.ts)
-DUPES=$(find src -name "*.ts" -exec basename {} \; | grep -v "^index.ts$" | sort | uniq -d | wc -l | tr -d ' ')
+# Duplicate basenames — dùng full path để tránh false positive (NATT-CELL convention: mỗi cell có services/ riêng)
+DUPES=$(find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -d | wc -l | tr -d ' ')
 if [[ "$DUPES" -gt 0 ]]; then
-  warn "Duplicate filenames: $DUPES (check for conflicts)"; inc_warn "STRUCTURE: $DUPES duplicate filenames"
+  warn "Duplicate filenames (exact path): $DUPES (check for conflicts)"; inc_warn "STRUCTURE: $DUPES duplicate filenames"
   if $FULL_MODE; then
-    find src -name "*.ts" -exec basename {} \; | grep -v "^index.ts$" | sort | uniq -cd | sort -rn | head -10 | sed 's/^/    /'
+    find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -cd | sort -rn | head -10 | sed 's/^/    /'
   fi
 else ok "No duplicate filenames"; inc_ok; fi
 
-# Orphan imports (files importing deleted paths)
-ORPHAN_IMPORTS=$(grep -rn "from.*contracts/" src/ --include="*.ts" 2>/dev/null | grep -v "event-contracts\|shared-contracts\|node_modules" | wc -l | tr -d ' ')
+# Orphan imports — bỏ qua quantum-defense-cell/contracts (internal contracts = hợp lệ)
+ORPHAN_IMPORTS=$(grep -rn "from.*contracts/" src/ --include="*.ts" 2>/dev/null \
+  | grep -v "event-contracts\|shared-contracts\|node_modules\|quantum-defense-cell" \
+  | wc -l | tr -d ' ')
 if [[ "$ORPHAN_IMPORTS" -gt 0 ]]; then
   warn "Possible orphan imports: $ORPHAN_IMPORTS"; inc_warn "IMPORTS: $ORPHAN_IMPORTS possible orphan"
 else ok "No orphan imports detected"; inc_ok; fi
