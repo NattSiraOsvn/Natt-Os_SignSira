@@ -1,0 +1,40 @@
+// @ts-nocheck
+// ============================================================
+// SMARTLINK PORT (Điều 5, thành phần 6)
+// Pattern: forgeSmartLinkPort({ cellId, signals{} })
+// Điều 9-10: SmartLink only
+// ============================================================
+
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
+import { EventBus } from '@/core/events/event-bus';
+
+export const NEURAL_MAIN_EVENTS = {
+  CONTEXT_EXPORTED:     'neural-main.context.exported',
+  FREEZE_PROPOSED:      'neural-main.freeze.proposed',
+  ANOMALY_DETECTED:     'neural-main.anomaly.detected',
+  BLINDSPOT_DETECTED:   'neural-main.blindspot.detected',
+  VALIDATION_COMPLETE:  'neural-main.validation.complete',
+  AUDIT_QUERY_RESPONSE: 'audit.query.response',
+  GATEKEEPER_OVERRIDE:  'gatekeeper.qneu.override',
+} as const;
+
+export type NeuralMainEventType = typeof NEURAL_MAIN_EVENTS[keyof typeof NEURAL_MAIN_EVENTS];
+
+export const NeuralMainSmartLinkPort = forgeSmartLinkPort({
+  cellId: 'neural-main-cell',
+  signals: {
+    CONTEXT_EXPORTED:    { eventType: 'neural-main.context.exported',    routeTo: 'audit-cell' },
+    FREEZE_PROPOSED:     { eventType: 'neural-main.freeze.proposed',     routeTo: 'quantum-defense-cell' },
+    ANOMALY_DETECTED:    { eventType: 'neural-main.anomaly.detected',    routeTo: 'quantum-defense-cell' },
+    BLINDSPOT_DETECTED:  { eventType: 'neural-main.blindspot.detected',  routeTo: 'audit-cell' },
+    VALIDATION_COMPLETE: { eventType: 'neural-main.validation.complete', routeTo: 'audit-cell' },
+  },
+});
+
+export function publishNeuralEvent(type: NeuralMainEventType, payload: unknown): void {
+  EventBus.publish(
+    { type: type as any, payload },
+    'neural-main-cell',
+    undefined
+  );
+}

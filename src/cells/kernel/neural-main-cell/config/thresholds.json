@@ -1,0 +1,12 @@
+{
+  "permanentNodeThreshold": 5,
+  "minWeight": 0.1,
+  "decayCycleMs": 7776000000,
+  "decayRatePct": 10,
+  "maxExportNodes": 10,
+  "governanceMemoryDecay": false,
+  "blindSpotWarningThreshold": 3,
+  "consistencyCheckIntervalMs": 86400000,
+  "anomalyDetectionSensitivity": 0.7,
+  "freezeProposalMinViolations": 2
+}
