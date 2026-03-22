@@ -160,7 +160,7 @@ import json
 try:
   d=json.load(open('src/governance/qneu/data/system-state.json'))
   for e in ['BANG','THIEN','KIM','CAN','BOI_BOI']:
-    s=d.get('entities',{}).get(e,{}).get('current_score','?')
+    ent=d.get('entities',{}).get(e,{});s=ent.get('currentScore',ent.get('current_score','?'))
     print(f'    {e:<10} {s}')
 except: print('    (parse error)')
 " 2>/dev/null || echo "    (python3 not available)"
