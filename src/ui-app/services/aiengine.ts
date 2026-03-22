@@ -9,7 +9,7 @@
  */
 export class AdvancedAIEngine {
   constructor() {
-    // Guidelines: Do not create GoogleGenAI when the component/class is first initialized.
+    // LỆNH #001 — AI API disabled
   }
 
   /**

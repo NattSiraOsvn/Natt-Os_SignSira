@@ -10,7 +10,7 @@ const LiveVoice: React.FC = () => {
 
   const startLive = async () => {
     try {
-      // Use process.env.API_KEY directly as per guidelines
+      // LỆNH #001 — no API_KEY
       const ai = null /* LỆNH #001 */;
       setStatus('Đang kết nối Live API...');
       

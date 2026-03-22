@@ -4,7 +4,7 @@ import { FileMetadata, IngestStatus } from '../../../types';
 import { Ingestion } from '../../ingestion/IngestionService';
 
 export class AICoreProcessor {
-  private ai: GoogleGenAI;
+  // private ai: GoogleGenAI; // LỆNH #001
 
   constructor() {
     this.ai = null /* LỆNH #001 */;
