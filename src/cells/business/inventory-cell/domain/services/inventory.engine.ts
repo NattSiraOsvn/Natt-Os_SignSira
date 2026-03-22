@@ -1,26 +1,23 @@
 // @ts-nocheck
-import { INVENTORY_IDENTITY } from './inventory.identity';
-export interface InventoryCommand {
-  type: 'RECEIVE' | 'ISSUE' | 'ADJUST' | 'MONTH_END_CLOSE';
-  payload: Record<string, unknown>;
-  requestedBy: string;
-  timestamp: string;
+// inventory-cell/domain/services/inventory.engine.ts
+// Wave 6a — nhận StockReplenished → emit → pricing-cell
+import { EventBus } from '@/core/events/event-bus';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+
+const _touch: TouchRecord[] = [];
+function _emit(to: string, signal: string, payload: Record<string, unknown>) {
+  _touch.push({ fromCellId: 'inventory-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
+  EventBus.publish({ type: signal as any, payload }, 'inventory-cell', undefined);
 }
-export interface InventoryResult {
-  success: boolean;
-  data?: Record<string, unknown>;
-  error?: string;
-  auditRef: string;
-}
-export class InventoryDomainEngine {
-  readonly cellId = INVENTORY_IDENTITY.cellId;
-  execute(cmd: InventoryCommand): InventoryResult {
-    const auditRef = `${this.cellId}-${Date.now()}`;
-    try {
-      return { success: true, data: { type: cmd.type, processed: true }, auditRef };
-    } catch (err) {
-      return { success: false, error: err instanceof Error ? err.message : 'Unknown', auditRef };
-    }
-  }
-}
-export const inventoryDomainEngine = new InventoryDomainEngine();
+
+EventBus.subscribe('StockReplenished' as any, (envelope: any) => {
+  const p = envelope.payload;
+  if (!p?.orderId) return;
+  // Cập nhật tồn kho xong → pricing-cell tính giá
+  _emit('pricing-cell', 'StockReplenished', {
+    orderId: p.orderId, maHang: p.maHang, qty: p.qty,
+    action: 'PRICE_NEW_STOCK',
+  });
+}, 'inventory-cell');
+
+export const InventoryEngine = { getHistory: (): TouchRecord[] => [..._touch] };

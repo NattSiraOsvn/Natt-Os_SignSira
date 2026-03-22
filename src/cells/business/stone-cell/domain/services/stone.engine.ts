@@ -1,26 +1,23 @@
-// Điều 9 §2 — Capability
 // @ts-nocheck
-import { StoneSmartLinkPort } from '../../ports/stone-smartlink.port';
+// stone-cell/domain/services/stone.engine.ts
+// Wave 5a — nhận wip:stone, xử lý gắn đá, emit → polishing-cell
+import { EventBus } from '@/core/events/event-bus';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
-export interface StoneCommand {
-  type: string;
-  payload: Record<string, unknown>;
-  requestedBy: string;
-  timestamp: string;
+const _touch: TouchRecord[] = [];
+function _emit(to: string, signal: string, payload: Record<string, unknown>) {
+  _touch.push({ fromCellId: 'stone-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
+  EventBus.publish({ type: signal as any, payload }, 'stone-cell', undefined);
 }
 
-export class StoneEngine {
-  readonly cellId = 'stone-cell';
+EventBus.subscribe('wip:stone' as any, (envelope: any) => {
+  const p = envelope.payload;
+  if (!p?.orderId) return;
+  // Khi đá gắn xong → báo polishing-cell
+  _emit('polishing-cell', 'wip:stone' as any, {
+    orderId: p.orderId, maDon: p.maDon, maHang: p.maHang,
+    stoneStatus: 'DONE', source: 'stone-cell',
+  });
+}, 'stone-cell');
 
-  execute(command: StoneCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
-    const auditRef = `stone-cell-${Date.now()}`;
-    try {
-      StoneSmartLinkPort.emit({ type: 'STONE_UPDATED', payload: command.payload, timestamp: Date.now() });
-      return { success: true, data: { command: command.type, processed: true }, auditRef };
-    } catch (err) {
-      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
-    }
-  }
-}
-
-export const stoneEngine = new StoneEngine();
+export const StoneEngine = { getHistory: (): TouchRecord[] => [..._touch] };

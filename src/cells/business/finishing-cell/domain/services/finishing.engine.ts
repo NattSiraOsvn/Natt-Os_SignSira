@@ -1,26 +1,23 @@
-// Điều 9 §2 — Capability
 // @ts-nocheck
-import { FinishingSmartLinkPort } from '../../ports/finishing-smartlink.port';
+// finishing-cell/domain/services/finishing.engine.ts
+// Wave 5b — nhận wip:phoi (từ casting), ráp chi tiết, emit → polishing-cell
+import { EventBus } from '@/core/events/event-bus';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
-export interface FinishingCommand {
-  type: string;
-  payload: Record<string, unknown>;
-  requestedBy: string;
-  timestamp: string;
+const _touch: TouchRecord[] = [];
+function _emit(to: string, signal: string, payload: Record<string, unknown>) {
+  _touch.push({ fromCellId: 'finishing-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
+  EventBus.publish({ type: signal as any, payload }, 'finishing-cell', undefined);
 }
 
-export class FinishingEngine {
-  readonly cellId = 'finishing-cell';
+EventBus.subscribe('wip:phoi' as any, (envelope: any) => {
+  const p = envelope.payload;
+  if (!p?.orderId) return;
+  // Sau ráp chi tiết xong → polishing-cell
+  _emit('polishing-cell', 'wip:in-progress' as any, {
+    orderId: p.orderId, maDon: p.maDon, maHang: p.maHang,
+    finishStatus: 'DONE', source: 'finishing-cell',
+  });
+}, 'finishing-cell');
 
-  execute(command: FinishingCommand): { success: boolean; data?: Record<string, unknown>; error?: string; auditRef: string } {
-    const auditRef = `finishing-cell-${Date.now()}`;
-    try {
-      FinishingSmartLinkPort.emit({ type: 'FINISHING_UPDATED', payload: command.payload, timestamp: Date.now() });
-      return { success: true, data: { command: command.type, processed: true }, auditRef };
-    } catch (err) {
-      return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
-    }
-  }
-}
-
-export const finishingEngine = new FinishingEngine();
+export const FinishingEngine = { getHistory: (): TouchRecord[] => [..._touch] };

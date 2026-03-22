@@ -1,44 +1,123 @@
 // @ts-nocheck
-import{ProductionSmartLinkPort}from"../../ports/production-smartlink.port";
-export type ProductionStage="DESIGN"|"MATERIAL_PREP"|"CASTING"|"FILING"|"POLISHING"|"STONE_SETTING"|"PLATING"|"QC_CHECK"|"PACKAGING"|"COMPLETED";
-export interface FlowLog{orderId:string;stage:ProductionStage;enteredAt:number;exitedAt?:number;worker?:string;lossGram?:number;step?:string;timestamp?:number;detail?:string;}
-const _logs=new Map<string,FlowLog[]>();
-const _stages=new Map<string,ProductionStage>();
-const SEQ:ProductionStage[]=["DESIGN","MATERIAL_PREP","CASTING","FILING","POLISHING","STONE_SETTING","PLATING","QC_CHECK","PACKAGING","COMPLETED"];
-export const FlowEngine={
-  getLogs:(id:string):FlowLog[]=>_logs.get(id)??[],
-  getCurrentStage:(id:string):string=>_stages.get(id)??"DESIGN",
-  startStage:(orderId:string,stage:ProductionStage,worker?:string):FlowLog=>{
-    const log:FlowLog={orderId,stage,enteredAt:Date.now(),worker};
-    const logs=_logs.get(orderId)??[];logs.push(log);_logs.set(orderId,logs);_stages.set(orderId,stage);
-    if(stage!=="DESIGN")ProductionSmartLinkPort.notifyProductionStarted(orderId,[stage]);
-    return log;
-  },
-  complete:(orderId:string):void=>{
-    _stages.set(orderId,"COMPLETED");
-    ProductionSmartLinkPort.notifyProductionCompleted(orderId,1);
-  },
-  advanceStage:(orderId:string,worker?:string,lossGram?:number):ProductionStage=>{
-    const cur=_stages.get(orderId)??"DESIGN";
-    const idx=SEQ.indexOf(cur);
-    const next=SEQ[Math.min(idx+1,SEQ.length-1)];
-    const logs=_logs.get(orderId)??[];const last=logs[logs.length-1];
-    if(last&&!last.exitedAt){last.exitedAt=Date.now();last.lossGram=lossGram;}
-    if(next==="COMPLETED"){FlowEngine.complete(orderId);return"COMPLETED";}
-    FlowEngine.startStage(orderId,next,worker);return next;
-  },
-  getLossAlert:(orderId:string):boolean=>{
-    const logs=_logs.get(orderId)??[];
-    return logs.reduce((s,l)=>s+(l.lossGram??0),0)>0.5;
-  },
-  getActiveOrders:():string[]=>[..._stages.entries()].filter(([_,s])=>s!=="COMPLETED").map(([id])=>id),
-  nextStage:(cur:ProductionStage):ProductionStage=>SEQ[Math.min(SEQ.indexOf(cur)+1,SEQ.length-1)],
-  subscribe:(cb:(logs:FlowLog[])=>void):()=>void=>{cb([]);return()=>{};},
-  fullFlow:async(materialType:string,quantity:number,channel:string):Promise<{logs:FlowLog[];stage:string}>=>(
-    {logs:[],stage:"DESIGN"}
-  ),
-};
+// production-cell/domain/services/flow.engine.ts
+// Wave 3 — Orchestrator: nhận ProductionStarted → fan-out song song
+//   prdmaterials-cell (cấp vật liệu)
+//   bom3dprd-cell     (tạo BOM)
+//   design-3d-cell    (model 3D / resin)
+import { EventBus } from '@/core/events/event-bus';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
-// ── Legacy compat methods (components cũ) ──
-;(FlowEngine as any).subscribe=(cb:any)=>{cb([]);return()=>{};};
-;(FlowEngine as any).fullFlow=(orderId:string)=>({logs:FlowEngine.getLogs(orderId),stage:FlowEngine.getCurrentStage(orderId)});
+export type ProductionStage =
+  | 'DESIGN' | 'MATERIAL_PREP' | 'CASTING'
+  | 'FILING' | 'POLISHING' | 'STONE_SETTING'
+  | 'PLATING' | 'QC_CHECK' | 'PACKAGING' | 'COMPLETED';
+
+export interface FlowLog {
+  orderId: string;
+  stage: ProductionStage;
+  enteredAt: number;
+  exitedAt?: number;
+  worker?: string;
+  lossGram?: number;
+}
+
+const _logs   = new Map<string, FlowLog[]>();
+const _stages = new Map<string, ProductionStage>();
+const _touch  : TouchRecord[] = [];
+
+const SEQ: ProductionStage[] = [
+  'DESIGN','MATERIAL_PREP','CASTING','FILING',
+  'POLISHING','STONE_SETTING','PLATING','QC_CHECK','PACKAGING','COMPLETED',
+];
+
+function _emit(to: string, signal: string, payload: Record<string, unknown>) {
+  _touch.push({ fromCellId: 'production-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
+  EventBus.publish({ type: signal as any, payload }, 'production-cell', undefined);
+}
+
+// ── Subscribe ProductionStarted (từ showroom-cell hoặc sales-cell) ──
+EventBus.subscribe(
+  'ProductionStarted' as any,
+  (envelope: any) => {
+    const p = envelope.payload;
+    if (!p?.orderId) return;
+
+    _stages.set(p.orderId, 'DESIGN');
+    _logs.set(p.orderId, [{ orderId: p.orderId, stage: 'DESIGN', enteredAt: Date.now() }]);
+
+    const base = {
+      orderId:   p.orderId,
+      maDon:     p.maDon,
+      maHang:    p.maHang,
+      luongSP:   p.luongSP,
+      chungLoai: p.chungLoai,
+      tuoiVang:  p.tuoiVang,
+      mauSP:     p.mauSP,
+      ngayGiao:  p.ngayGiao,
+    };
+
+    // Fan-out song song 3 cell
+    _emit('prdmaterials-cell', 'StockReserved',        { ...base, action: 'RESERVE_MATERIAL' });
+    _emit('bom3dprd-cell',     'BomCreated',           { ...base, action: 'CREATE_BOM' });
+    _emit('design-3d-cell',    'ProductionSpecReady',  { ...base, action: 'PREPARE_3D_MODEL' });
+  },
+  'production-cell'
+);
+
+// ── Subscribe BomValidated (từ bom3dprd-cell) → trigger casting ──
+EventBus.subscribe(
+  'BomValidated' as any,
+  (envelope: any) => {
+    const p = envelope.payload;
+    if (!p?.orderId) return;
+    _emit('casting-cell', 'ProductionStageAdvanced', {
+      orderId: p.orderId,
+      stage: 'CASTING',
+      action: 'START_CASTING',
+    });
+  },
+  'production-cell'
+);
+
+// ── Subscribe MaterialLossReported → audit + compliance ──
+EventBus.subscribe(
+  'MaterialLossReported' as any,
+  (envelope: any) => {
+    const p = envelope.payload;
+    _emit('audit-cell',      'AuditLogged',       { ...p, event: 'MATERIAL_LOSS' });
+    _emit('compliance-cell', 'ViolationDetected',  { ...p, rule: 'LOSS_THRESHOLD' });
+  },
+  'production-cell'
+);
+
+export const FlowEngine = {
+  getLogs:          (id: string): FlowLog[]       => _logs.get(id) ?? [],
+  getCurrentStage:  (id: string): string          => _stages.get(id) ?? 'DESIGN',
+  getHistory:       ():           TouchRecord[]   => [..._touch],
+  getActiveOrders:  ():           string[]        =>
+    [..._stages.entries()].filter(([_, s]) => s !== 'COMPLETED').map(([id]) => id),
+
+  advanceStage: (orderId: string, worker?: string, lossGram?: number): ProductionStage => {
+    const cur  = _stages.get(orderId) ?? 'DESIGN';
+    const idx  = SEQ.indexOf(cur as ProductionStage);
+    const next = SEQ[Math.min(idx + 1, SEQ.length - 1)];
+
+    const logs = _logs.get(orderId) ?? [];
+    const last = logs[logs.length - 1];
+    if (last && !last.exitedAt) { last.exitedAt = Date.now(); last.lossGram = lossGram; }
+
+    _stages.set(orderId, next);
+    logs.push({ orderId, stage: next, enteredAt: Date.now(), worker });
+    _logs.set(orderId, logs);
+
+    if (next === 'COMPLETED') {
+      _emit('warehouse-cell', 'ProductionCompleted', { orderId, qty: 1 });
+    } else {
+      _emit('audit-cell', 'ProductionStageAdvanced', { orderId, stage: next, worker });
+    }
+    return next;
+  },
+
+  getLossAlert: (orderId: string): boolean =>
+    (_logs.get(orderId) ?? []).reduce((s, l) => s + (l.lossGram ?? 0), 0) > 0.5,
+};

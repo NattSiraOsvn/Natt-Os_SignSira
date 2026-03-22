@@ -1,63 +1,48 @@
 // @ts-nocheck
-import { ShowroomSmartLinkPort } from "../../ports/showroom-smartlink.port";
-/**
- * NATT-OS — Showroom Cell
- * Domain Service: ShowroomEngine
- */
+// showroom-cell/domain/services/showroom.engine.ts
+// Wave 2 — nhận SalesOrderCreated (SX-CT), forward → production-cell
+import { EventBus } from '@/core/events/event-bus';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
-import { Appointment } from '../entities/appointment.entity';
-import { DISPLAY_ZONES, DisplayZone } from '../value-objects/display-zone';
+const _touchHistory: TouchRecord[] = [];
 
-export class ShowroomEngine {
-  static getAppointmentsByDate(appts: Appointment[], date: Date): Appointment[] {
-    return appts.filter(a => {
-      const d = a.scheduledAt;
-      return d.getFullYear() === date.getFullYear()
-        && d.getMonth() === date.getMonth()
-        && d.getDate() === date.getDate();
-    });
-  }
-
-  static getUpcoming(appts: Appointment[]): Appointment[] {
-    const now = new Date();
-    return appts.filter(a =>
-      a.scheduledAt > now && a.status !== 'CANCELLED' && a.status !== 'COMPLETED'
-    );
-  }
-
-  static getNoShows(appts: Appointment[]): Appointment[] {
-    return appts.filter(a => a.status === 'NO_SHOW');
-  }
-
-  static getZoneCapacity(zone: DisplayZone, currentCount: number): { available: number; isFull: boolean } {
-    const config = DISPLAY_ZONES[zone];
-    return { available: config.maxItems - currentCount, isFull: currentCount >= config.maxItems };
-  }
-
-  /**
-   * Detect booking conflict — cùng khách, cùng branch, overlap thời gian
-   */
-  static detectConflict(
-    appts: Appointment[],
-    customerId: string,
-    branchCode: string,
-    scheduledAt: Date,
-    durationMinutes: number,
-  ): Appointment | null {
-    const newStart = scheduledAt.getTime();
-    const newEnd = newStart + durationMinutes * 60 * 1000;
-
-    for (const a of appts) {
-      if (a.customerId !== customerId) continue;
-      if (a.branchCode !== branchCode) continue;
-      if (['CANCELLED', 'COMPLETED', 'NO_SHOW'].includes(a.status)) continue;
-
-      const existStart = a.scheduledAt.getTime();
-      const existEnd = existStart + a.durationMinutes * 60 * 1000;
-
-      // Overlap check
-      if (newStart < existEnd && newEnd > existStart) return a;
-    }
-    return null;
-  }
+function _touch(to: string, signal: string) {
+  _touchHistory.push({ fromCellId: 'showroom-cell', toCellId: to, timestamp: Date.now(), signal, allowed: true });
 }
+
+// Subscribe khi module load
+EventBus.subscribe(
+  'SalesOrderCreated' as any,
+  (envelope: any) => {
+    const p = envelope.payload;
+    if (!p || p.luongSP !== 'SX-CT') return;   // Chỉ xử lý SX-CT
+
+    _touch('production-cell', 'PRODUCTION_REQUEST');
+
+    EventBus.publish(
+      {
+        type: 'ProductionStarted' as any,
+        payload: {
+          orderId:    p.orderId,
+          maDon:      p.maDon,
+          maHang:     p.maHang,
+          luongSP:    'SX-CT',
+          chungLoai:  p.chungLoai,
+          tuoiVang:   p.tuoiVang,
+          mauSP:      p.mauSP,
+          salesId:    p.salesId,
+          ngayGiao:   p.ngayGiao,
+          source:     'showroom-cell',
+          auditRef:   `showroom-${p.orderId}-${Date.now()}`,
+        },
+      },
+      'showroom-cell',
+      undefined
+    );
+  },
+  'showroom-cell'
+);
+
+export const ShowroomEngine = {
+  getHistory: (): TouchRecord[] => [..._touchHistory],
+};
