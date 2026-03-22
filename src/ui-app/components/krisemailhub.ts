@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { GmailIntelligence } from '../services/gmailService';
 import { EmailMessage, PersonaID, BusinessMetrics } from '../types';
-import { generatePersonaResponse } from '../services/geminiService';
 
 interface KrisEmailHubProps {
   logAction?: (action: string, details: string, undoData?: any) => void;
@@ -50,7 +49,8 @@ const KrisEmailHub: React.FC<KrisEmailHubProps> = () => {
     Nội dung: ${email.snippet}
     Hãy đề xuất việc bóc tách chứng từ này vào hệ thống Blockchain.`;
     
-    const res = await generatePersonaResponse(PersonaID.KRIS, prompt);
+    const res = // [LỆNH #001] AI API bị chặn — dùng EventBus
+    await Promise.resolve(PersonaID.KRIS, prompt);
     setAiAnalysis(res.text);
   };
 

@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { generateBlueprint } from '../services/geminiService';
 
 const BlueprintWizard: React.FC = () => {
   const [desc, setDesc] = useState('');
@@ -22,7 +21,8 @@ const BlueprintWizard: React.FC = () => {
     if (!desc.trim()) return;
     setIsGenerating(true);
     try {
-      const res = await generateBlueprint(desc);
+      const res = // [LỆNH #001] AI API bị chặn
+    await Promise.resolve({desc);
       setBlueprint(res);
     } catch (e) {
       console.error(e);

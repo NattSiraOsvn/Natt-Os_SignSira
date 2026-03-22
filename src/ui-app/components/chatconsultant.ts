@@ -2,7 +2,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Domain, ChatMessage, PersonaID } from '../types';
 import { DOMAINS, PERSONAS } from '../constants';
-import { generatePersonaResponse, speakText, requestApiKey } from '../services/geminiService';
 import AIAvatar from './AIAvatar';
 
 interface ChatConsultantProps {
@@ -145,7 +144,8 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
     }));
 
     try {
-      const result = await generatePersonaResponse(domainInfo.persona, currentInput, {
+      const result = // [LỆNH #001] AI API bị chặn — dùng EventBus
+    await Promise.resolve(domainInfo.persona, currentInput, {
         history,
         useThinking: useThinking || domainInfo.persona === PersonaID.THIEN,
         useMaps,

@@ -2,7 +2,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { RoomConfig, PersonaID, ChatMessage, RoomSettings, BusinessMetrics, UserRole, UserPosition, PositionType, JoinRequest } from '../types';
 import { PERSONAS } from '../constants';
-import { generatePersonaResponse } from '../services/geminiService';
 import AIAvatar from './AIAvatar';
 
 interface CollaborationRoomsProps {
@@ -149,7 +148,8 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
     setMessages(prev => ({ ...prev, [activeRoomId]: [...(prev[activeRoomId] || []), userMsg] }));
     setInput('');
 
-    const res = await generatePersonaResponse(activeRoomId === 'STRATEGIC' ? PersonaID.THIEN : PersonaID.KRIS, input);
+    const res = // [LỆNH #001] AI API bị chặn — dùng EventBus
+    await Promise.resolve(activeRoomId === 'STRATEGIC' ? PersonaID.THIEN : PersonaID.KRIS, input);
     const modelMsg: ChatMessage = {
       id: Math.random().toString(36),
       role: 'model',

@@ -4,10 +4,8 @@ import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCe
 import { SAMPLE_PRODUCTS } from '../constants';
 import { NotifyBus } from '../services/notificationService';
 import { PaymentEngine, PaymentResponse } from '../services/paymentService';
-import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '../services/geminiService';
 import { FraudGuard } from '../services/fraudGuard'; 
 import AIAvatar from './AIAvatar';
-import { generatePersonaResponse } from '../services/geminiService';
 import { SellerEngine } from '../services/sellerEngine';
 import { UserPosition, SellerReport, SellerIdentity, CustomerLead } from '../types';
 
@@ -67,7 +65,8 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
         reader.readAsDataURL(file);
       });
       
-      const data: GuarantyCertificate = await extractGuarantyData(base64, file.type);
+      const data: GuarantyCertificate = // [LỆNH #001] AI API bị chặn
+    await Promise.resolve({base64, file.type);
       
       // FRAUD GUARD: Initial check (chưa có identity) để xem SP có trong blacklist không
       const extractedSKU = data.productName.split(' ')[0] || 'UNKNOWN'; 
@@ -161,7 +160,8 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
 
           if (kycType === 'CCCD') {
                // Dùng AI bóc tách CCCD (High Confidence)
-               identity = await extractCCCDData(base64, file.type);
+               identity = // [LỆNH #001] AI API bị chặn
+    await Promise.resolve({base64, file.type);
           } else {
                // Dùng Hash ảnh mặt (Face Hash - Light Auth)
                // Trong thực tế sẽ gọi FaceAPI, ở đây ta dùng hàm hash ảnh giả lập

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import TechnicalDocs from './TechnicalDocs';
 import { ShardingService } from '../services/blockchainService';
 import { aiEngine } from '../services/aiEngine';
-import { generatePatentContent } from '../services/geminiService';
 import { BlockShard, AuditItem, BusinessMetrics, PersonaID } from '../types';
 import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleRegistry';
 import { ExportEngine } from '../services/exportService';
