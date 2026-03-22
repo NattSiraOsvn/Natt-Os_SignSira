@@ -4,7 +4,7 @@ import { UserRole, UserPosition, PositionType, SellerReport, SellerIdentity, Cus
 import { SellerEngine } from '../services/sellerEngine';
 import { NotifyBus } from '../services/notificationService';
 import AIAvatar from './AIAvatar';
-import { generatePersonaResponse } from '../services/geminiService';
+// [LỆNH #001] removed geminiService import
 
 interface SellerTerminalProps {
   currentRole: UserRole;
