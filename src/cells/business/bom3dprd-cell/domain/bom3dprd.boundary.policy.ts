@@ -1,23 +1,27 @@
+// @ts-nocheck
+// bom3dprd-cell/domain/bom3dprd.boundary.policy.ts
 // Điều 9 §3 — Boundary
 export const bom3dprdBoundaryPolicy = {
   cellId: 'bom3dprd-cell',
   allowedCallers: [
-    'finance-cell',
-    'warehouse-cell',
+    'production-cell',   // fan-out BomCreated
+    'design-3d-cell',    // BOM update khi spec thay đổi
     'audit-cell',
     'gatekeeper',
   ],
   allowedTargets: [
-    'smartlink-cell',
+    'production-cell',   // BomValidated / BomRejected
+    'design-3d-cell',    // BomRejected → sửa spec
     'audit-cell',
+    'smartlink-cell',
   ],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',
     'BYPASS_CONSTITUTION',
-    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+    'EXTERNAL_API_WITHOUT_GATEKEEPER',
   ],
   requiresGatekeeperApproval: [
-    'PERIOD_CLOSE',
+    'FORCE_VALIDATE_BOM',
     'BULK_DELETE',
   ],
 } as const;
