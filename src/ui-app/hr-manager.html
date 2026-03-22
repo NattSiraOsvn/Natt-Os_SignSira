@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tâm Luxury · HR</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}:root{--bg:#080a0d;--bg2:#0d1017;--bg3:#121820;--bg4:#181f2a;--gold:#c8922a;--gold2:#e8b84b;--border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.3);--text:#ede0c8;--text2:#a89070;--text3:#60503a;--green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;--purple:#a78bfa;--mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:rgba(200,146,42,.2);border-radius:2px}
+*{-webkit-user-select:none;user-select:none}input,textarea,select{-webkit-user-select:text!important;user-select:text!important}
+#wm{position:fixed;inset:0;z-index:9990;pointer-events:none;overflow:hidden;display:flex;flex-wrap:wrap;gap:60px;padding:40px;transform:rotate(-22deg) scale(1.6)}
+#wm span{font-size:9px;color:rgba(200,146,42,.04);font-family:var(--mono);white-space:nowrap}
+.login{display:flex;align-items:center;justify-content:center;height:100vh;background:radial-gradient(ellipse at 30% 40%,rgba(200,146,42,.07),transparent 60%)}
+.lbox{width:360px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:36px}
+.ln{text-align:center;font-family:var(--mono);font-size:18px;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.lsub{text-align:center;font-size:9px;color:var(--text3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px}
+.lf{margin-bottom:11px}.lf label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text3);text-transform:uppercase;display:block;margin-bottom:3px}
+.lf input,.lf select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 11px;font-size:12px;border-radius:3px;outline:none;font-family:var(--sans)}
+.lf input:focus{border-color:var(--gold)}.lf select option{background:var(--bg2)}
+.lbtn{width:100%;padding:11px;background:var(--gold);color:#000;border:none;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;margin-top:6px;font-family:var(--sans)}
+.app{display:none;grid-template-rows:52px 1fr;height:100vh}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;height:52px}
+.tl{font-family:var(--mono);font-size:13px;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.08em;padding-right:16px;border-right:1px solid var(--border)}
+.tt{display:flex;flex:1;height:100%;padding-left:4px}
+.tb{height:100%;padding:0 13px;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap;transition:all .15s}
+.tb:hover{color:var(--text)}.tb.active{color:var(--gold2);border-bottom-color:var(--gold);background:rgba(200,146,42,.05)}
+.tr2{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tu2{display:flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(200,146,42,.08);border:1px solid var(--border);border-radius:2px}
+.tdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(61,214,140,.5)}
+.tuname{font-family:var(--mono);font-size:10px;color:var(--gold2)}
+.ttime{font-family:var(--mono);font-size:11px;color:var(--text2);padding-left:12px;border-left:1px solid var(--border)}
+.tout{background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.2);color:var(--red);padding:4px 9px;border-radius:2px;font-size:10px;cursor:pointer;font-family:var(--mono)}
+.content{overflow-y:auto}
+.tp{display:none;padding:20px 24px}.tp.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}
+.sc{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:14px;text-align:center}
+.sc-v{font-family:var(--mono);font-size:22px;font-weight:500}
+.sc-l{font-size:9px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-top:5px}
+.search-row{display:flex;gap:8px;margin-bottom:14px}
+.search-row input,.search-row select{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 12px;font-size:11px;border-radius:3px;outline:none;font-family:var(--sans)}
+.search-row input{flex:1}.search-row input:focus,.search-row select:focus{border-color:var(--gold)}
+.search-row select option{background:var(--bg2)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text3);text-transform:uppercase;padding:7px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:400}
+.tbl td{padding:8px 12px;border-bottom:1px solid rgba(200,146,42,.05);font-size:12px;color:var(--text2)}
+.tbl tr:hover td{background:rgba(200,146,42,.04)}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px;font-weight:500}
+.bg{background:rgba(61,214,140,.1);color:var(--green);border:1px solid rgba(61,214,140,.2)}
+.br{background:rgba(240,80,80,.1);color:var(--red);border:1px solid rgba(240,80,80,.2)}
+.ba{background:rgba(240,160,48,.1);color:var(--amber);border:1px solid rgba(240,160,48,.2)}
+.bb{background:rgba(96,184,240,.1);color:var(--blue);border:1px solid rgba(96,184,240,.2)}
+.dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:18px}
+.dept-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:14px}
+.dept-name{font-size:12px;font-weight:600;margin-bottom:6px}
+.dept-count{font-family:var(--mono);font-size:24px;font-weight:500;color:var(--gold2)}
+.dept-sub{font-size:10px;color:var(--text3);margin-top:3px}
+.tw{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:7px;z-index:200}
+.toast{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:9px;box-shadow:0 4px 20px rgba(0,0,0,.5);animation:si .25s ease}
+.toast.success{border-left:3px solid var(--green)}.toast.info{border-left:3px solid var(--gold)}.toast.error{border-left:3px solid var(--red)}
+@keyframes si{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+</style></head><body>
+<div id="wm"></div>
+<div class="login" id="ls">
+  <div class="lbox">
+    <div class="ln">TÂM LUXURY</div><div class="lsub">HR Manager</div>
+    <div class="lf"><label>Mã NV</label><input id="lc" value="TLXR003"></div>
+    <div class="lf"><label>Họ Tên</label><input id="ln2" value="Nguyễn Trưởng HR"></div>
+    <button class="lbtn" onclick="doLogin()">VÀO HỆ THỐNG HR</button>
+  </div>
+</div>
+<div class="app" id="app">
+  <header class="topbar">
+    <div style="padding-right:14px;border-right:1px solid var(--border)"><div class="tl">HR · TÂM LUXURY</div></div>
+    <nav class="tt">
+      <button class="tb active" onclick="sw('list',this)">👥 Danh Sách NV</button>
+      <button class="tb" onclick="sw('salary',this)">💰 Bảng Lương</button>
+      <button class="tb" onclick="sw('dept',this)">🏢 Sơ Đồ Tổ Chức</button>
+      <button class="tb" onclick="sw('insurance',this)">🛡 BHXH/BHYT</button>
+    </nav>
+    <div class="tr2">
+      <div class="tu2"><div class="tdot"></div><div><div class="tuname" id="tu">—</div><div style="font-size:9px;color:var(--text3)">HR Manager</div></div></div>
+      <div class="ttime" id="clk">00:00:00</div>
+      <button class="tout" onclick="doLogout()">THOÁT</button>
+    </div>
+  </header>
+  <div class="content">
+    <!-- LIST -->
+    <div class="tp active" id="tab-list">
+      <div class="stats">
+        <div class="sc"><div class="sc-v" style="color:var(--gold2)">122</div><div class="sc-l">Tổng NV</div></div>
+        <div class="sc"><div class="sc-v" style="color:var(--green)">119</div><div class="sc-l">Đang Làm</div></div>
+        <div class="sc"><div class="sc-v" style="color:var(--amber)">3</div><div class="sc-l">Nghỉ Phép</div></div>
+        <div class="sc"><div class="sc-v" style="color:var(--blue)">2</div><div class="sc-l">Mới Tháng Này</div></div>
+        <div class="sc"><div class="sc-v" style="color:var(--red)">0</div><div class="sc-l">Nghỉ Việc</div></div>
+      </div>
+      <div class="search-row">
+        <input id="srch" placeholder="Tìm theo tên, mã NV..." oninput="renderList()">
+        <select id="deptF" onchange="renderList()">
+          <option value="">Tất Cả Phòng Ban</option>
+          <option>Khối Sản Xuất</option><option>Khối Kinh Doanh</option><option>Khối Vận Hành</option><option>Ban Giám Đốc</option>
+        </select>
+        <select id="statF" onchange="renderList()">
+          <option value="">Tất Cả Trạng Thái</option>
+          <option>Đang Làm</option><option>Nghỉ Phép</option><option>Thử Việc</option>
+        </select>
+      </div>
+      <table class="tbl"><thead><tr><th>Mã NV</th><th>Họ Tên</th><th>Phòng Ban</th><th>Chức Vụ</th><th>Ngày Vào</th><th>Lương CB</th><th>HĐ</th><th>Trạng Thái</th></tr></thead><tbody id="empList"></tbody></table>
+    </div>
+    <!-- SALARY -->
+    <div class="tp" id="tab-salary">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text2)">BẢNG LƯƠNG THÁNG 3/2026</div>
+        <div style="display:flex;gap:8px">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--gold2)">Tổng NET: 16,370,000,000₫</span>
+          <span class="badge bg">ĐÃ DUYỆT KTT</span>
+        </div>
+      </div>
+      <table class="tbl"><thead><tr><th>Mã NV</th><th>Họ Tên</th><th>Phòng</th><th>Lương CB</th><th>BHXH</th><th>BHYT</th><th>BHTN</th><th>PIT</th><th>Net Thực Lãnh</th></tr></thead><tbody id="salList"></tbody></table>
+    </div>
+    <!-- DEPT -->
+    <div class="tp" id="tab-dept">
+      <div class="dept-grid" id="deptGrid"></div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:20px">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text3);text-transform:uppercase;margin-bottom:14px">Sơ Đồ Tổ Chức</div>
+        <div style="display:grid;grid-template-columns:1fr;gap:0">
+          <div style="text-align:center;padding:10px;background:rgba(200,146,42,.08);border:1px solid var(--border2);border-radius:3px;margin-bottom:12px"><div style="font-size:13px;font-weight:700">BAN GIÁM ĐỐC (3 NV)</div><div style="font-size:10px;color:var(--text3);margin-top:2px">CEO · CFO · Chairman</div></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            ${[['Khối SX','54 NV','Tổ Đúc · Hột · Nguội · Nhám'],['Khối KD','38 NV','Sales · CTV · Marketing'],['Khối VH','27 NV','KT · HR · Kho · IT']].map(d=>`<div style="padding:12px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;text-align:center"><div style="font-size:12px;font-weight:600;margin-bottom:4px">${d[0]}</div><div style="font-family:var(--mono);font-size:18px;color:var(--gold2)">${d[1]}</div><div style="font-size:10px;color:var(--text3);margin-top:3px">${d[2]}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- INSURANCE -->
+    <div class="tp" id="tab-insurance">
+      <div class="stats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="sc"><div class="sc-v" style="color:var(--blue)">16.37<span style="font-size:12px">tỷ</span></div><div class="sc-l">Tổng Lương Đóng BH</div></div>
+        <div class="sc"><div class="sc-v" style="color:var(--amber)">2.95<span style="font-size:12px">tỷ</span></div><div class="sc-l">CTy Đóng (17.5%)</div></div>
+        <div class="sc"><div class="sc-v" style="color:var(--green)">1.69<span style="font-size:12px">tỷ</span></div><div class="sc-l">NLĐ Đóng (10.5%)</div></div>
+      </div>
+      <table class="tbl"><thead><tr><th>Mã NV</th><th>Họ Tên</th><th>Mã BHXH</th><th>Mức Lương BH</th><th>NLĐ (10.5%)</th><th>Cty (17.5%)</th><th>Nơi KCB</th><th>Trạng Thái</th></tr></thead>
+      <tbody id="insBody"></tbody></table>
+    </div>
+  </div>
+</div>
+<div class="tw" id="tw"></div>
+<script>
+const DEPTS=['Khối Sản Xuất','Khối Kinh Doanh','Khối Vận Hành','Ban Giám Đốc'];
+const ROLES=['Thợ','Sale Online','CTV','Kế Toán','NV Kho','Trưởng Nhóm','NV Thiết Kế','Bảo Vệ'];
+const STATUS=['Đang Làm','Đang Làm','Đang Làm','Đang Làm','Nghỉ Phép','Thử Việc'];
+const LAST=['Nguyễn','Trần','Lê','Phạm','Hoàng','Vũ','Đặng','Bùi','Đỗ','Hồ'];
+const MID=['Văn','Thị','Minh','Thanh','Thu','Hoài','Quốc','Ngọc'];
+const FIRST=['An','Bình','Cường','Dũng','Em','Phú','Giang','Hùng','Lan','Mai','Nam','Oanh','Phong','Quyên','Sơn','Tuấn','Uyên','Vinh','Xuân','Yến'];
+const HOSPITALS=['BV Nhân Dân 115','BV Chợ Rẫy','BV Bình Dân','BV ĐH Y Dược','Phòng khám Tân Bình'];
+function randName(){return`${LAST[~~(Math.random()*LAST.length)]} ${MID[~~(Math.random()*MID.length)]} ${FIRST[~~(Math.random()*FIRST.length)]}`;}
+function genEmps(){
+  const emps=[];
+  for(let i=1;i<=40;i++){
+    const dept=DEPTS[i%4];
+    const role=ROLES[i%ROLES.length];
+    const gross=[8500000,9000000,10000000,12000000,15000000][i%5];
+    const bhxh=Math.min(gross*.08,2340000*.08*20);const bhyt=Math.min(gross*.015,2340000*.015*20);const bhtn=Math.min(gross*.01,2340000*.01*20);
+    const taxable=Math.max(0,gross-bhxh-bhyt-bhtn-11e6);let pit=0;
+    if(taxable>0)[[5e6,.05],[10e6,.1],[18e6,.15],[32e6,.2],[Infinity,.35]].reduce((p,[c,r])=>{if(taxable>p)pit+=(Math.min(taxable,c)-p)*r;return Math.min(taxable,c)},0);
+    const d=new Date(2020+~~(Math.random()*5),~~(Math.random()*12),~~(Math.random()*28)+1);
+    emps.push({code:`TLXR${String(i).padStart(3,'0')}`,name:randName(),dept,role,gross,bhxh:~~bhxh,bhyt:~~bhyt,bhtn:~~bhtn,pit:~~pit,net:~~(gross+800000-bhxh-bhyt-bhtn-pit),join:d.toLocaleDateString('vi-VN'),status:STATUS[i%STATUS.length],bhxhCode:`BHXH-${String(i).padStart(4,'0')}-2024`,hospital:HOSPITALS[i%HOSPITALS.length],contract:i%7===0?'Thử việc':'HĐLĐ 12T'});
+  }
+  return emps;
+}
+let emps=[],user=null;
+function doLogin(){
+  const code=document.getElementById('lc').value.trim()||'TLXR003';
+  const name=document.getElementById('ln2').value.trim()||'HR';
+  user={code,name};
+  window.addEventListener('keydown',e=>{if(e.key==='PrintScreen'||e.key==='F12'){e.preventDefault();}},true);
+  window.addEventListener('contextmenu',e=>e.preventDefault(),true);
+  const wm=document.getElementById('wm');const ts=new Date().toLocaleString('vi-VN');
+  for(let i=0;i<40;i++){const s=document.createElement('span');s.textContent=`${name} · ${code} · HR · ${ts}`;wm.appendChild(s);}
+  emps=genEmps();
+  document.getElementById('ls').style.display='none';
+  document.getElementById('app').style.display='grid';
+  document.getElementById('tu').textContent=name;
+  renderList();renderSalary();renderDept();renderInsurance();
+  toast(`Xin chào ${name} — HR Dashboard`,'success');
+}
+function doLogout(){user=null;document.getElementById('app').style.display='none';document.getElementById('ls').style.display='flex';document.getElementById('wm').innerHTML='';}
+function renderList(){
+  const q=(document.getElementById('srch')?.value||'').toLowerCase();
+  const d=document.getElementById('deptF')?.value||'';
+  const s=document.getElementById('statF')?.value||'';
+  const filtered=emps.filter(e=>{
+    const mq=!q||e.name.toLowerCase().includes(q)||e.code.toLowerCase().includes(q);
+    const md=!d||e.dept===d;const ms=!s||e.status===s;return mq&&md&&ms;
+  });
+  document.getElementById('empList').innerHTML=filtered.map(e=>`
+    <tr><td style="font-family:var(--mono);font-size:11px;color:var(--gold)">${e.code}</td><td style="font-weight:500">${e.name}</td><td style="color:var(--text3)">${e.dept}</td><td>${e.role}</td><td style="font-family:var(--mono);font-size:10px;color:var(--text3)">${e.join}</td><td style="font-family:var(--mono)">${fmt(e.gross)}</td><td><span class="badge ${e.contract.includes('Thử')?'ba':'bb'}">${e.contract}</span></td><td><span class="badge ${e.status==='Đang Làm'?'bg':e.status==='Nghỉ Phép'?'ba':'bb'}">${e.status}</span></td></tr>`).join('');
+}
+function renderSalary(){
+  document.getElementById('salList').innerHTML=emps.slice(0,20).map(e=>`
+    <tr><td style="font-family:var(--mono);font-size:10px;color:var(--gold)">${e.code}</td><td style="font-weight:500">${e.name}</td><td style="color:var(--text3);font-size:11px">${e.dept}</td><td style="font-family:var(--mono)">${fmt(e.gross)}</td><td style="font-family:var(--mono);color:var(--amber)">${fmt(e.bhxh)}</td><td style="font-family:var(--mono);color:var(--amber)">${fmt(e.bhyt)}</td><td style="font-family:var(--mono);color:var(--amber)">${fmt(e.bhtn)}</td><td style="font-family:var(--mono);color:var(--amber)">${fmt(e.pit)}</td><td style="font-family:var(--mono);color:var(--green);font-weight:600">${fmt(e.net)}</td></tr>`).join('');
+}
+function renderDept(){
+  const deptData=[{name:'Khối Sản Xuất',count:54,roles:'Tổ Đúc: 18 · Tổ Hột: 15 · Tổ Nguội: 12 · Nhám: 9',color:'var(--amber)'},{name:'Khối Kinh Doanh',count:38,roles:'Sales Online: 22 · CTV: 12 · Marketing: 4',color:'var(--green)'},{name:'Khối Vận Hành',count:27,roles:'Kế Toán: 5 · HR: 3 · Kho: 8 · IT: 3 · Bảo Vệ: 8',color:'var(--blue)'},{name:'Ban Giám Đốc',count:3,roles:'CEO · CFO · Chairman',color:'var(--gold2)'}];
+  document.getElementById('deptGrid').innerHTML=deptData.map(d=>`<div class="dept-card" style="border-top:3px solid ${d.color}"><div class="dept-name">${d.name}</div><div class="dept-count" style="color:${d.color}">${d.count}</div><div class="dept-sub">${d.roles}</div></div>`).join('');
+}
+function renderInsurance(){
+  document.getElementById('insBody').innerHTML=emps.slice(0,20).map(e=>`
+    <tr><td style="font-family:var(--mono);font-size:10px;color:var(--gold)">${e.code}</td><td style="font-weight:500">${e.name}</td><td style="font-family:var(--mono);font-size:10px;color:var(--text3)">${e.bhxhCode}</td><td style="font-family:var(--mono)">${fmt(Math.min(e.gross,46800000))}</td><td style="font-family:var(--mono);color:var(--amber)">${fmt(e.bhxh+e.bhyt+e.bhtn)}</td><td style="font-family:var(--mono);color:var(--blue)">${fmt(~~((e.bhxh+e.bhyt+e.bhtn)/10.5*17.5))}</td><td style="color:var(--text3);font-size:11px">${e.hospital}</td><td><span class="badge bg">ĐÃ ĐÓNG</span></td></tr>`).join('');
+}
+function sw(name,el){document.querySelectorAll('.tb').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');}
+function fmt(n){return(n||0).toLocaleString('vi-VN')+'₫';}
+function p2(n){return String(n).padStart(2,'0');}
+function toast(msg,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.innerHTML=`<span style="color:${type==='success'?'var(--green)':type==='error'?'var(--red)':'var(--gold)'};font-weight:700">${type==='success'?'✓':type==='error'?'✕':'ℹ'}</span><span>${msg}</span>`;document.getElementById('tw').appendChild(el);setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),300)},3500);}
+setInterval(()=>{const n=new Date;document.getElementById('clk').textContent=`${p2(n.getHours())}:${p2(n.getMinutes())}:${p2(n.getSeconds())}`;},1000);
+</script></body></html>
