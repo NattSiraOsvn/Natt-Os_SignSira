@@ -1,58 +1,10 @@
-// @ts-nocheck — pending proper fix
-/**
- * ⚠️ NATT-OS CONSTITUTIONAL LOCK v1.1
- * CELL STATUS: QUARANTINED - DO NOT USE
- * 
- * VIOLATION CONSEQUENCES:
- * - Compile-time error if imported
- * - Runtime crash if instantiated
- * - Audit log recorded
- * 
- * QUARANTINE REASON:
- * Incomplete 5-layer structure - missing business logic
- * Wave 2 infrastructure not fully implemented
- * 
- * APPROVED BY: 
- * - GATEKEEPER ANH NAT
- * - THIÊN LỚN (Business Logic Architect)
- * - KIM (Governance Authority)
- */
+// @ts-nocheck
+// warehouse-cell/QUARANTINE_GUARD.ts
+// QUARANTINE LIFTED — 2026-03-22 — Gatekeeper: Anh Natt
+// Wave B production flow complete. Cell đã đủ 6 components Điều 9.
+// Giữ file để audit trail, KHÔNG throw nữa.
 
-import { CellViolationError } from '../shared-contracts-cell/ports';
-
-export const CELL_STATE = "QUARANTINED" as const;
-export const QUARANTINE_REASON = "Incomplete layers - Wave 2 pending";
-export const QUARANTINE_SINCE = "$(date -Iseconds)";
-
-export class WarehouseCellQuarantineError extends CellViolationError {
-    constructor() {
-        super(
-            "WAREHOUSE_CELL_QUARANTINED",
-            "Access to quarantined warehouse-cell is prohibited.",
-            {
-                cell: "warehouse-cell",
-                status: "QUARANTINED",
-                allowed: false,
-                requiredLayers: [
-                    "domain/entities",
-                    "domain/services", 
-                    "application/use-cases",
-                    "application/services",
-                    "infrastructure/repositories",
-                    "infrastructure/adapters"
-                ],
-                missingLayers: ["business-logic", "test-coverage"]
-            }
-        );
-    }
-}
-
-// Compile-time guard: Throw on import
-if (typeof require !== 'undefined' && require.main !== module) {
-    throw new WarehouseCellQuarantineError();
-}
-
-// Runtime guard
-export const ACCESS_GUARD = () => {
-    throw new WarehouseCellQuarantineError();
-};
+export const CELL_STATE    = "ACTIVE" as const;
+export const QUARANTINE_REASON = "LIFTED — production flow wired, seed data loaded";
+export const QUARANTINE_SINCE  = "2026-02-11";
+export const QUARANTINE_LIFTED = "2026-03-22";
