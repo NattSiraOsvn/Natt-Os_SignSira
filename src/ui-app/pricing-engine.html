@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tâm Luxury · Bảng Báo Giá</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a0d;--bg2:#0d1017;--bg3:#121820;--bg4:#181f2a;
+  --gold:#c8922a;--gold2:#e8b84b;--gold3:#f5d080;
+  --border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.3);
+  --text:#ede0c8;--text2:#a89070;--text3:#60503a;
+  --green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;
+  --mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:rgba(200,146,42,.2);border-radius:2px}
+*{-webkit-user-select:none;user-select:none}
+input,textarea,select{-webkit-user-select:text!important;user-select:text!important}
+#wm{position:fixed;inset:0;z-index:9990;pointer-events:none;overflow:hidden;display:flex;flex-wrap:wrap;gap:60px;padding:40px;transform:rotate(-22deg) scale(1.6)}
+#wm span{font-size:9px;color:rgba(200,146,42,.04);font-family:var(--mono);white-space:nowrap}
+/* LOGIN */
+.login{display:flex;align-items:center;justify-content:center;height:100vh;background:radial-gradient(ellipse at 40% 40%,rgba(200,146,42,.08),transparent 55%)}
+.lbox{width:400px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:36px;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.lname{text-align:center;font-family:var(--mono);font-size:20px;font-weight:500;background:linear-gradient(135deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px}
+.lsub{text-align:center;font-size:9px;color:var(--text3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:24px}
+.lf{margin-bottom:11px}.lf label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text3);text-transform:uppercase;display:block;margin-bottom:3px}
+.lf input,.lf select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 11px;font-size:12px;border-radius:3px;outline:none;font-family:var(--sans)}
+.lf input:focus,.lf select:focus{border-color:var(--gold)}.lf select option{background:var(--bg2)}
+.lbtn{width:100%;padding:11px;background:var(--gold);color:#000;border:none;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;margin-top:6px;font-family:var(--sans)}
+/* APP */
+.app{display:none;grid-template-rows:52px 1fr;height:100vh}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;height:52px}
+.tl{font-family:var(--mono);font-size:13px;font-weight:500;background:linear-gradient(135deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.08em;padding-right:16px;border-right:1px solid var(--border)}
+.tt{display:flex;flex:1;height:100%;padding-left:4px}
+.tb{height:100%;padding:0 14px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap;transition:all .15s}
+.tb:hover{color:var(--text)}.tb.active{color:var(--gold2);border-bottom-color:var(--gold);background:rgba(200,146,42,.05)}
+.tr2{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tu2{display:flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(200,146,42,.08);border:1px solid var(--border);border-radius:2px}
+.tdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(61,214,140,.5)}
+.tuname{font-family:var(--mono);font-size:10px;color:var(--gold2)}
+.ttime{font-family:var(--mono);font-size:11px;color:var(--text2);padding-left:12px;border-left:1px solid var(--border)}
+.tout{background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.2);color:var(--red);padding:4px 9px;border-radius:2px;font-size:10px;cursor:pointer;font-family:var(--mono)}
+.content{overflow-y:auto}
+.tp{display:none;padding:20px 24px}.tp.active{display:block}
+
+/* PRICING LAYOUT */
+.pricing-wrap{display:grid;grid-template-columns:420px 1fr;gap:14px;min-height:calc(100vh - 92px)}
+/* FORM PANEL */
+.form-panel{background:var(--bg2);border:1px solid var(--border);border-radius:6px;display:flex;flex-direction:column;overflow:hidden}
+.fp-hdr{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--bg3)}
+.fp-title{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--text2);text-transform:uppercase}
+.fp-body{padding:16px;flex:1;overflow-y:auto}
+.section-title{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;padding:6px 0 4px;border-bottom:1px solid var(--border);margin-bottom:8px;margin-top:14px}
+.section-title:first-child{margin-top:0}
+.ff{margin-bottom:8px}
+.ff label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;display:block;margin-bottom:3px}
+.ff input,.ff select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-size:12px;border-radius:3px;outline:none;font-family:var(--sans);transition:border .15s}
+.ff input:focus,.ff select:focus{border-color:var(--gold2)}
+.ff select option{background:var(--bg2)}
+.ff-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ff-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.gold-ref{background:rgba(200,146,42,.08);border:1px solid var(--border);border-radius:3px;padding:8px 10px;margin-bottom:8px;font-size:10px}
+.gold-ref-row{display:flex;justify-content:space-between;margin-bottom:3px}
+.gold-ref-lbl{color:var(--text3)}
+.gold-ref-val{font-family:var(--mono);color:var(--gold2)}
+
+/* QUOTE PANEL */
+.quote-panel{display:flex;flex-direction:column;gap:14px}
+/* BIG PRICE */
+.price-hero{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--border2);border-radius:6px;padding:24px;text-align:center;position:relative;overflow:hidden}
+.price-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,146,42,.08),transparent 60%)}
+.ph-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--text3);text-transform:uppercase;margin-bottom:8px}
+.ph-price{font-family:var(--mono);font-size:42px;font-weight:500;background:linear-gradient(135deg,var(--gold3),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.ph-range{font-size:11px;color:var(--text3);margin-top:8px}
+.ph-margin{font-family:var(--mono);font-size:12px;margin-top:6px}
+/* BREAKDOWN TABLE */
+.breakdown{background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.bd-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.bd-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase}
+.bd-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 16px;border-bottom:1px solid rgba(200,146,42,.05);font-size:12px;align-items:center}
+.bd-row:hover{background:rgba(200,146,42,.03)}
+.bd-row.subtotal{background:var(--bg3);font-weight:600}
+.bd-row.total{background:rgba(200,146,42,.06);border-top:1px solid var(--border2)}
+.bd-lbl{color:var(--text2)}
+.bd-cost{font-family:var(--mono);color:var(--text3);font-size:11px}
+.bd-price{font-family:var(--mono);color:var(--text);font-weight:500}
+.bd-row.total .bd-lbl{color:var(--gold2);font-size:13px}
+.bd-row.total .bd-price{color:var(--gold2);font-size:15px}
+/* QUOTE VARIANTS */
+.variants{background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.vr-hdr{padding:12px 16px;border-bottom:1px solid var(--border)}
+.vr-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase}
+.vr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}
+.vr-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:12px;cursor:pointer;transition:all .15s;text-align:center}
+.vr-card:hover{border-color:var(--border2)}
+.vr-card.selected{border-color:var(--gold);background:rgba(200,146,42,.08)}
+.vr-name{font-size:11px;font-weight:600;margin-bottom:4px}
+.vr-price{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--gold2);margin-bottom:3px}
+.vr-margin{font-size:10px;color:var(--text3)}
+/* QUOTE SHEET */
+.quote-sheet{background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.qs-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.qs-body{padding:16px}
+.qs-actions{display:flex;gap:8px}
+.btn{padding:7px 14px;border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);border:none;transition:all .15s}
+.btn-primary{background:var(--gold);color:#000}.btn-primary:hover{background:var(--gold2)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.btn-ghost:hover{border-color:var(--border2);color:var(--text)}
+/* HISTORY TAB */
+.quote-hist-item{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .15s}
+.quote-hist-item:hover{border-color:var(--border2)}
+.qhi-info{flex:1}
+.qhi-id{font-family:var(--mono);font-size:9px;color:var(--gold);margin-bottom:2px}
+.qhi-name{font-size:12px;font-weight:500;margin-bottom:2px}
+.qhi-meta{font-size:10px;color:var(--text3)}
+.qhi-price{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--gold2);flex-shrink:0}
+/* SETTINGS TAB */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* TOAST */
+.tw{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:7px;z-index:200}
+.toast{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:9px;animation:si .25s ease;max-width:320px}
+.toast.success{border-left:3px solid var(--green)}.toast.info{border-left:3px solid var(--gold)}.toast.error{border-left:3px solid var(--red)}
+@keyframes si{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+/* PRINT QUOTE */
+@media print{
+  body{background:#fff;color:#000}
+  .app{display:block!important}
+  .topbar,.form-panel,.tt,.tu2,.ttime,.tout{display:none!important}
+  .pricing-wrap{grid-template-columns:1fr;display:block}
+  .quote-panel{display:block}
+  .variants,.quote-sheet .qs-actions,.btn{display:none!important}
+  .price-hero{border:2px solid #c8922a;page-break-after:always}
+  .breakdown{border:1px solid #ccc}
+  .bd-row{border-bottom:1px solid #eee}
+}
+</style>
+</head>
+<body>
+<div id="wm"></div>
+
+<!-- LOGIN -->
+<div class="login" id="ls">
+  <div class="lbox">
+    <div class="lname">TÂM LUXURY</div>
+    <div class="lsub">Bảng Báo Giá · Pricing Engine</div>
+    <div class="lf"><label>Mã NV</label><input id="lc" value="TLXR025"></div>
+    <div class="lf"><label>Họ Tên</label><input id="ln" value="Nguyễn Thị Mai"></div>
+    <div class="lf"><label>Vai Trò</label>
+      <select id="lr">
+        <option value="sale">Sale Online / Showroom</option>
+        <option value="ctv">CTV</option>
+        <option value="kt">Kế Toán</option>
+        <option value="master">MASTER / Giám Đốc</option>
+      </select>
+    </div>
+    <button class="lbtn" onclick="doLogin()">VÀO BẢNG BÁO GIÁ</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <header class="topbar">
+    <div style="padding-right:16px;border-right:1px solid var(--border)"><div class="tl">BÁO GIÁ · TÂM LUXURY</div></div>
+    <nav class="tt">
+      <button class="tb active" onclick="sw('quote',this)">💎 Bảng Báo Giá</button>
+      <button class="tb" onclick="sw('history',this)">📋 Lịch Sử Báo Giá</button>
+      <button class="tb" onclick="sw('settings',this)">⚙️ Cài Đặt Giá</button>
+    </nav>
+    <div class="tr2">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--text3);padding-right:12px;border-right:1px solid var(--border)">
+        Vàng SJC: <span id="goldPriceTicker" style="color:var(--gold2)">82,500,000₫/lượng</span>
+      </div>
+      <div class="tu2"><div class="tdot"></div><div><div class="tuname" id="tu">—</div><div style="font-size:9px;color:var(--text3)" id="tu2">—</div></div></div>
+      <div class="ttime" id="clk">00:00:00</div>
+      <button class="tout" onclick="doLogout()">THOÁT</button>
+    </div>
+  </header>
+  <div class="content">
+
+    <!-- ── BẢNG BÁO GIÁ ── -->
+    <div class="tp active" id="tab-quote">
+      <div class="pricing-wrap">
+
+        <!-- FORM BÊN TRÁI -->
+        <div class="form-panel">
+          <div class="fp-hdr">
+            <div class="fp-title">📝 Thông Số Tính Giá</div>
+          </div>
+          <div class="fp-body">
+
+            <!-- LOẠI SP -->
+            <div class="section-title">Sản Phẩm</div>
+            <div class="ff"><label>Danh Mục</label>
+              <select id="f-cat" onchange="calc()">
+                <option value="ring_men">Nhẫn Nam</option>
+                <option value="ring_women">Nhẫn Nữ</option>
+                <option value="ring_couple">Nhẫn Kết / Nhẫn Cưới</option>
+                <option value="bracelet">Lắc</option>
+                <option value="necklace">Dây Chuyền / Choker</option>
+                <option value="earring">Bông Tai</option>
+                <option value="pendant">Mặt Dây</option>
+              </select>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Tên Sản Phẩm</label><input id="f-name" placeholder="VD: Nhẫn Nam Diamond" oninput="calc()"></div>
+              <div class="ff"><label>SKU</label><input id="f-sku" placeholder="NNA-TL-xxx" oninput="calc()"></div>
+            </div>
+
+            <!-- VÀNG -->
+            <div class="section-title">Vàng & Trọng Lượng</div>
+            <div class="gold-ref" id="goldRef">
+              <div class="gold-ref-row"><span class="gold-ref-lbl">Vàng 24K SJC</span><span class="gold-ref-val" id="ref-24k">—</span></div>
+              <div class="gold-ref-row"><span class="gold-ref-lbl">Vàng 18K (750)</span><span class="gold-ref-val" id="ref-18k">—</span></div>
+              <div class="gold-ref-row"><span class="gold-ref-lbl">Vàng 14K (585)</span><span class="gold-ref-val" id="ref-14k">—</span></div>
+              <div class="gold-ref-row" style="margin:0"><span class="gold-ref-lbl" style="color:var(--text3);font-size:9px">Cập nhật: <span id="goldRefTime">—</span></span><button onclick="refreshGoldPrice()" style="background:none;border:none;color:var(--gold);font-size:9px;cursor:pointer;font-family:var(--mono)">🔄 Làm Mới</button></div>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Tuổi Vàng</label>
+                <select id="f-gold" onchange="calc()">
+                  <option value="24K">Vàng 24K (999/9999)</option>
+                  <option value="18K" selected>Vàng 18K (750)</option>
+                  <option value="18K_W">Vàng 18K Trắng</option>
+                  <option value="18K_R">Vàng 18K Hồng</option>
+                  <option value="14K">Vàng 14K (585)</option>
+                  <option value="10K">Vàng 10K (417)</option>
+                </select>
+              </div>
+              <div class="ff"><label>Trọng Lượng (chỉ)</label>
+                <input type="number" id="f-weight" value="2.5" step="0.1" min="0" oninput="calc()">
+              </div>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Hao Hụt Gia Công (%)</label>
+                <input type="number" id="f-loss" value="2" step="0.1" min="0" max="10" oninput="calc()">
+              </div>
+              <div class="ff"><label>Phụ Liệu (₫)</label>
+                <input type="number" id="f-material" value="150000" oninput="calc()">
+              </div>
+            </div>
+
+            <!-- ĐÁ QUÝ -->
+            <div class="section-title">Đá Quý / Kim Cương</div>
+            <div class="ff"><label>Loại Đá Chủ</label>
+              <select id="f-stone-type" onchange="calc()">
+                <option value="none">Không Đá</option>
+                <option value="diamond_gia">Kim Cương GIA Cert</option>
+                <option value="diamond_cert">Kim Cương Cert Khác (IGI/HRD)</option>
+                <option value="diamond_no">Kim Cương Không Cert</option>
+                <option value="moissanite">Moissanite VVS1</option>
+                <option value="ruby">Ruby Tự Nhiên</option>
+                <option value="sapphire">Sapphire Tự Nhiên</option>
+                <option value="emerald">Emerald Tự Nhiên</option>
+                <option value="other">Đá Quý Khác</option>
+              </select>
+            </div>
+            <div class="ff-row3" id="stoneRow" style="display:none">
+              <div class="ff"><label>Kích Cỡ (ly/mm)</label><input type="number" id="f-stone-size" placeholder="7.2" step="0.1" oninput="calc()"></div>
+              <div class="ff"><label>Số Viên</label><input type="number" id="f-stone-qty" value="1" min="1" oninput="calc()"></div>
+              <div class="ff"><label>Giá/Viên (₫)</label><input type="number" id="f-stone-price" placeholder="0" oninput="calc()"></div>
+            </div>
+            <!-- Đá tấm -->
+            <div id="microStoneRow" style="display:none">
+              <div class="ff-row">
+                <div class="ff"><label>Đá Tấm (Micro Pavé)</label>
+                  <select id="f-micro" onchange="calc()">
+                    <option value="none">Không</option>
+                    <option value="light">Nhẹ (~20 viên)</option>
+                    <option value="medium">Vừa (~40 viên)</option>
+                    <option value="heavy">Dày (~80 viên)</option>
+                  </select>
+                </div>
+                <div class="ff"><label>Chất Lượng Đá Tấm</label>
+                  <select id="f-micro-q" onchange="calc()">
+                    <option value="moiss">Moissanite</option>
+                    <option value="diamond_vvs">Kim Cương VVS</option>
+                    <option value="diamond_si">Kim Cương SI</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- GIA CÔNG -->
+            <div class="section-title">Gia Công & Chi Phí</div>
+            <div class="ff"><label>Mức Độ Gia Công</label>
+              <select id="f-labor" onchange="calc()">
+                <option value="basic">Cơ Bản (đơn giản, không đá)</option>
+                <option value="medium" selected>Trung Bình (1-2 công đoạn phức tạp)</option>
+                <option value="complex">Phức Tạp (nhiều đá, khắc, tiện nổi)</option>
+                <option value="luxury">Luxury (full diamond, kỹ thuật cao)</option>
+              </select>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Xi Mạ</label>
+                <select id="f-plating" onchange="calc()">
+                  <option value="none">Không xi mạ</option>
+                  <option value="rhodium">Xi Rhodium (trắng)</option>
+                  <option value="gold18k">Mạ Vàng 18K</option>
+                  <option value="gold24k">Mạ Vàng 24K</option>
+                  <option value="black">Mạ Đen</option>
+                  <option value="rose">Mạ Hồng</option>
+                </select>
+              </div>
+              <div class="ff"><label>Khắc / Laser</label>
+                <select id="f-engrave" onchange="calc()">
+                  <option value="none">Không khắc</option>
+                  <option value="text">Khắc Chữ (≤20 ký tự)</option>
+                  <option value="pattern">Khắc Họa Tiết</option>
+                  <option value="3d_laser">Laser 3D Phức Tạp</option>
+                </select>
+              </div>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Đóng Gói</label>
+                <select id="f-pack" onchange="calc()">
+                  <option value="standard">Standard Box</option>
+                  <option value="premium">Premium Wood Box</option>
+                  <option value="velvet">Velvet Luxury</option>
+                  <option value="vault">Vault Box (kèm GĐB)</option>
+                </select>
+              </div>
+              <div class="ff"><label>Chi Phí Khác (₫)</label>
+                <input type="number" id="f-extra" value="0" oninput="calc()">
+              </div>
+            </div>
+
+            <!-- KÊNH BÁN & CHIẾT KHẤU -->
+            <div class="section-title">Kênh Bán & Chính Sách Giá</div>
+            <div class="ff"><label>Kênh Bán</label>
+              <select id="f-channel" onchange="calc()">
+                <option value="showroom">Showroom (markup chuẩn)</option>
+                <option value="online">Online (markup -5%)</option>
+                <option value="ctv">CTV / Đại Lý (hoa hồng 8-12%)</option>
+                <option value="b2b">B2B Sỉ (markup -15%)</option>
+                <option value="vip">VIP Khách Quen (markup -10%)</option>
+              </select>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Chiết Khấu Thêm (%)</label>
+                <input type="number" id="f-discount" value="0" step="0.5" min="0" max="30" oninput="calc()">
+              </div>
+              <div class="ff"><label>VAT</label>
+                <select id="f-vat" onchange="calc()">
+                  <option value="0">Không VAT (giá trọn gói)</option>
+                  <option value="10">VAT 10%</option>
+                  <option value="8">VAT 8% (ưu đãi)</option>
+                </select>
+              </div>
+            </div>
+            <div class="ff-row">
+              <div class="ff"><label>Bảo Hiểm Hàng (%)</label>
+                <input type="number" id="f-insurance" value="0.1" step="0.05" min="0" oninput="calc()">
+              </div>
+              <div class="ff"><label>Phí Giao Hàng (₫)</label>
+                <input type="number" id="f-ship" value="0" oninput="calc()">
+              </div>
+            </div>
+
+            <!-- KHÁCH HÀNG -->
+            <div class="section-title">Thông Tin Khách Hàng</div>
+            <div class="ff-row">
+              <div class="ff"><label>Tên KH</label><input id="f-cust" placeholder="Họ tên khách" oninput="calc()"></div>
+              <div class="ff"><label>SĐT</label><input id="f-phone" placeholder="0901234567"></div>
+            </div>
+            <div class="ff"><label>Ghi Chú</label><input id="f-note" placeholder="Yêu cầu đặc biệt..."></div>
+
+            <button class="btn btn-primary" style="width:100%;padding:10px;font-size:12px;margin-top:12px" onclick="saveQuote()">💾 Lưu Báo Giá</button>
+          </div>
+        </div>
+
+        <!-- QUOTE PANEL BÊN PHẢI -->
+        <div class="quote-panel">
+
+          <!-- BIG PRICE -->
+          <div class="price-hero" id="priceHero">
+            <div class="ph-label">GIÁ BÁN ĐỀ XUẤT</div>
+            <div class="ph-price" id="phPrice">— ₫</div>
+            <div class="ph-range" id="phRange">—</div>
+            <div class="ph-margin" id="phMargin">—</div>
+          </div>
+
+          <!-- BREAKDOWN -->
+          <div class="breakdown">
+            <div class="bd-hdr">
+              <span class="bd-title">Chi Tiết Giá Thành → Giá Bán</span>
+              <button class="btn btn-ghost" style="padding:5px 10px;font-size:10px" onclick="window.print()">🖨 In Báo Giá</button>
+            </div>
+            <div class="bd-row bd-row-hdr" style="background:var(--bg3);font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--text3);text-transform:uppercase">
+              <span>KHOẢN MỤC</span><span style="text-align:right">GIÁ VỐN</span><span style="text-align:right">GIÁ BÁN</span>
+            </div>
+            <div id="breakdownRows"></div>
+          </div>
+
+          <!-- VARIANTS -->
+          <div class="variants">
+            <div class="vr-hdr"><span class="vr-title">🎯 3 Mức Giá Gợi Ý</span></div>
+            <div class="vr-grid" id="variantGrid"></div>
+          </div>
+
+          <!-- QUOTE SHEET -->
+          <div class="quote-sheet">
+            <div class="qs-hdr">
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase">Phiếu Báo Giá</span>
+              <div class="qs-actions">
+                <button class="btn btn-ghost" onclick="copyQuote()">📋 Copy</button>
+                <button class="btn btn-primary" onclick="sendQuote()">📨 Gửi KH</button>
+              </div>
+            </div>
+            <div class="qs-body" id="quoteSheet">
+              <div style="color:var(--text3);font-size:11px">Điền thông số để xem phiếu báo giá</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LỊCH SỬ BÁO GIÁ ── -->
+    <div class="tp" id="tab-history">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text2)">LỊCH SỬ BÁO GIÁ</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--text3)"><span id="quoteCount">0</span> báo giá đã lưu</div>
+      </div>
+      <div id="quoteHistoryList">
+        <div style="color:var(--text3);font-size:11px;text-align:center;padding:40px">Chưa có báo giá nào được lưu</div>
+      </div>
+    </div>
+
+    <!-- ── CÀI ĐẶT GIÁ ── -->
+    <div class="tp" id="tab-settings">
+      <div class="settings-grid">
+        <div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:14px">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase">💰 Giá Vàng Hiện Tại</div>
+            <div style="padding:14px 16px">
+              ${['24K SJC (lượng)','18K (chỉ)','18K Trắng (chỉ)','14K (chỉ)','10K (chỉ)'].map((lbl,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                <label style="font-size:11px;color:var(--text2);min-width:150px">${lbl}</label>
+                <input type="number" id="gs-gold-${i}" style="flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-size:12px;border-radius:3px;outline:none;font-family:var(--mono)" onchange="updateGoldPrices()">
+              </div>`).join('')}
+              <button class="btn btn-primary" onclick="saveGoldPrices()" style="width:100%;margin-top:4px">Lưu Giá Vàng Hôm Nay</button>
+            </div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase">💎 Bảng Giá Đá Mặc Định</div>
+            <div style="padding:14px 16px" id="stonePriceSettings"></div>
+          </div>
+        </div>
+        <div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:14px">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase">📊 Markup & Hoa Hồng</div>
+            <div style="padding:14px 16px" id="markupSettings"></div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase">⚙️ Chi Phí Gia Công</div>
+            <div style="padding:14px 16px" id="laborSettings"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="tw" id="tw"></div>
+
+<script>
+// ════════════════════════════════════════════════════════
+// PRICING ENGINE — NATT-OS TÂMLUXURY v1.0
+// ════════════════════════════════════════════════════════
+
+// ── MASTER PRICE TABLE (cập nhật hàng ngày) ─────────────
+let GOLD_PRICES = {
+  '24K':   { per_luong: 82500000, per_chi: 8250000 },
+  '18K':   { per_chi: 3720000 },
+  '18K_W': { per_chi: 3780000 },   // Trắng cao hơn do phụ gia Palladium
+  '18K_R': { per_chi: 3700000 },   // Hồng
+  '14K':   { per_chi: 2900000 },
+  '10K':   { per_chi: 2100000 },
+};
+
+// ── STONE PRICE TABLE ────────────────────────────────────
+const STONE_PRICES = {
+  none:         { label:'Không Đá',               basePrice:0 },
+  diamond_gia:  { label:'Kim Cương GIA Cert',      basePrice:0 },  // user nhập
+  diamond_cert: { label:'Kim Cương Cert (IGI/HRD)',basePrice:0 },
+  diamond_no:   { label:'Kim Cương Không Cert',    basePrice:0 },
+  moissanite:   { label:'Moissanite VVS1',         basePrice:380000 },  // per viên 6.5ly
+  ruby:         { label:'Ruby Tự Nhiên',           basePrice:0 },
+  sapphire:     { label:'Sapphire',                basePrice:0 },
+  emerald:      { label:'Emerald',                 basePrice:0 },
+  other:        { label:'Đá Quý Khác',             basePrice:0 },
+};
+
+// Giá đá tấm micro pavé (per viên)
+const MICRO_PRICES = {
+  none:      { qty:0,  pricePerPiece:0 },
+  light:     { qty:20, pricePerPiece:0 },
+  medium:    { qty:40, pricePerPiece:0 },
+  heavy:     { qty:80, pricePerPiece:0 },
+};
+const MICRO_QUALITY = {
+  moiss:       85000,   // Moissanite per viên nhỏ
+  diamond_vvs: 280000,  // Kim cương VVS per viên nhỏ
+  diamond_si:  180000,  // Kim cương SI per viên nhỏ
+};
+
+// ── LABOR COSTS ──────────────────────────────────────────
+const LABOR_COSTS = {
+  basic:   { toDuc:600000, toNguoi:400000, toHot:0,       nhamBong:200000, label:'Cơ Bản' },
+  medium:  { toDuc:800000, toNguoi:600000, toHot:300000,  nhamBong:300000, label:'Trung Bình' },
+  complex: { toDuc:1200000,toNguoi:900000, toHot:600000,  nhamBong:500000, label:'Phức Tạp' },
+  luxury:  { toDuc:2000000,toNguoi:1500000,toHot:1200000, nhamBong:800000, label:'Luxury' },
+};
+const PLATING_COSTS = { none:0, rhodium:250000, gold18k:350000, gold24k:500000, black:300000, rose:280000 };
+const ENGRAVE_COSTS = { none:0, text:150000, pattern:350000, '3d_laser':700000 };
+const PACK_COSTS    = { standard:50000, premium:280000, velvet:450000, vault:650000 };
+
+// ── MARKUP TABLE (theo kênh) ─────────────────────────────
+const CHANNEL_MARKUP = {
+  showroom: { markup:2.2, commission:0,    label:'Showroom',     color:'var(--gold2)' },
+  online:   { markup:2.0, commission:0,    label:'Online',       color:'var(--blue)' },
+  ctv:      { markup:2.2, commission:0.10, label:'CTV',          color:'var(--green)' },
+  b2b:      { markup:1.8, commission:0,    label:'B2B Sỉ',       color:'var(--amber)' },
+  vip:      { markup:2.0, commission:0,    label:'VIP',          color:'var(--purple)' },
+};
+
+// ── QUOTE HISTORY ─────────────────────────────────────────
+const quoteHistory = [];
+let user = null;
+let currentQuote = null;
+
+// ═══════════════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════════════
+function doLogin() {
+  const code = document.getElementById('lc').value.trim()||'TLXR025';
+  const name = document.getElementById('ln').value.trim()||'Sale';
+  const role = document.getElementById('lr').value;
+  user = {code, name, role};
+  window.addEventListener('keydown',e=>{if(e.key==='PrintScreen'||(e.ctrlKey&&e.key==='p')){e.preventDefault();}},true);
+  window.addEventListener('contextmenu',e=>e.preventDefault(),true);
+  const wm=document.getElementById('wm');const ts=new Date().toLocaleString('vi-VN');
+  for(let i=0;i<40;i++){const s=document.createElement('span');s.textContent=`${name} · ${code} · ${ts}`;wm.appendChild(s);}
+  document.getElementById('ls').style.display='none';
+  document.getElementById('app').style.display='grid';
+  document.getElementById('tu').textContent=name;
+  document.getElementById('tu2').textContent=`${code} · ${role}`;
+  refreshGoldPrice();
+  initSettings();
+  calc();
+  // Hide CK settings from non-master/non-KT
+  toast(`Xin chào ${name} — Pricing Engine`,'success');
+}
+function doLogout(){user=null;document.getElementById('app').style.display='none';document.getElementById('ls').style.display='flex';document.getElementById('wm').innerHTML='';}
+
+// ═══════════════════════════════════════════════════════
+// MAIN CALC ENGINE
+// ═══════════════════════════════════════════════════════
+function calc() {
+  const goldType    = document.getElementById('f-gold')?.value || '18K';
+  const weight      = parseFloat(document.getElementById('f-weight')?.value)||0;
+  const lossRate    = parseFloat(document.getElementById('f-loss')?.value)||2;
+  const matCost     = parseInt(document.getElementById('f-material')?.value)||150000;
+  const stoneType   = document.getElementById('f-stone-type')?.value||'none';
+  const stoneSize   = parseFloat(document.getElementById('f-stone-size')?.value)||0;
+  const stoneQty    = parseInt(document.getElementById('f-stone-qty')?.value)||1;
+  const stonePrice  = parseInt(document.getElementById('f-stone-price')?.value)||0;
+  const microType   = document.getElementById('f-micro')?.value||'none';
+  const microQual   = document.getElementById('f-micro-q')?.value||'moiss';
+  const laborType   = document.getElementById('f-labor')?.value||'medium';
+  const plating     = document.getElementById('f-plating')?.value||'none';
+  const engrave     = document.getElementById('f-engrave')?.value||'none';
+  const packType    = document.getElementById('f-pack')?.value||'standard';
+  const extra       = parseInt(document.getElementById('f-extra')?.value)||0;
+  const channel     = document.getElementById('f-channel')?.value||'showroom';
+  const discount    = parseFloat(document.getElementById('f-discount')?.value)||0;
+  const vatRate     = parseFloat(document.getElementById('f-vat')?.value)||0;
+  const insRate     = parseFloat(document.getElementById('f-insurance')?.value)||0.1;
+  const ship        = parseInt(document.getElementById('f-ship')?.value)||0;
+  const cust        = document.getElementById('f-cust')?.value||'';
+  const prodName    = document.getElementById('f-name')?.value||'Trang Sức';
+
+  // Toggle stone row
+  const hasStone = stoneType !== 'none';
+  document.getElementById('stoneRow').style.display    = hasStone ? 'grid' : 'none';
+  document.getElementById('microStoneRow').style.display = 'block';
+
+  // ── 1. VÀNG ──────────────────────────────────────────
+  const goldPricePerChi = GOLD_PRICES[goldType]?.per_chi || GOLD_PRICES['18K'].per_chi;
+  const actualWeight = weight * (1 + lossRate/100);  // cộng hao hụt
+  const goldCost = Math.round(actualWeight * goldPricePerChi);
+
+  // ── 2. ĐÁ CHỦ ────────────────────────────────────────
+  const stoneCostTotal = hasStone ? stonePrice * stoneQty : 0;
+
+  // ── 3. ĐÁ TẤM ────────────────────────────────────────
+  const microData = MICRO_PRICES[microType];
+  const microCost = microType !== 'none' ? microData.qty * (MICRO_QUALITY[microQual]||0) : 0;
+
+  // ── 4. GIA CÔNG ───────────────────────────────────────
+  const labor = LABOR_COSTS[laborType];
+  const laborCost = labor.toDuc + labor.toNguoi + labor.toHot + labor.nhamBong;
+
+  // ── 5. PHỤ LIỆU & DỊCH VỤ THÊM ─────────────────────
+  const platingCost  = PLATING_COSTS[plating]  || 0;
+  const engraveCost  = ENGRAVE_COSTS[engrave]  || 0;
+  const packCost     = PACK_COSTS[packType]    || 0;
+
+  // ── 6. TỔNG GIÁ VỐN (COGS) ───────────────────────────
+  const cogs = goldCost + stoneCostTotal + microCost + laborCost + matCost + platingCost + engraveCost + packCost + extra;
+
+  // ── 7. GIÁ BÁN THEO KÊNH ─────────────────────────────
+  const ch = CHANNEL_MARKUP[channel] || CHANNEL_MARKUP.showroom;
+  const basePrice = Math.round(cogs * ch.markup);
+
+  // ── 8. CHIẾT KHẤU ─────────────────────────────────────
+  const discountAmt = Math.round(basePrice * (discount/100));
+  const afterDiscount = basePrice - discountAmt;
+
+  // ── 9. HOA HỒNG CTV (tính vào COGS khi bán CTV) ──────
+  const commissionAmt = channel === 'ctv' ? Math.round(afterDiscount * ch.commission) : 0;
+
+  // ── 10. VAT ───────────────────────────────────────────
+  const vatAmt = Math.round(afterDiscount * (vatRate/100));
+
+  // ── 11. BẢO HIỂM + GIAO HÀNG ─────────────────────────
+  const insAmt = Math.round(afterDiscount * (insRate/100));
+
+  // ── 12. GIÁ CUỐI ──────────────────────────────────────
+  const finalPrice = afterDiscount + vatAmt + insAmt + ship;
+
+  // ── 13. PROFIT ────────────────────────────────────────
+  const grossProfit = finalPrice - cogs - commissionAmt - insAmt - ship;
+  const marginPct   = cogs > 0 ? Math.round(grossProfit/finalPrice*100) : 0;
+
+  currentQuote = {
+    goldCost, stoneCostTotal, microCost, laborCost, matCost,
+    platingCost, engraveCost, packCost, extra,
+    cogs, basePrice, discountAmt, afterDiscount,
+    commissionAmt, vatAmt, insAmt, ship,
+    finalPrice, grossProfit, marginPct,
+    goldType, weight, lossRate, stoneType, stoneQty, stonePrice,
+    laborType, channel, discount, vatRate,
+    prodName, cust,
+    calcAt: new Date().toLocaleString('vi-VN'),
+  };
+
+  renderPriceHero(finalPrice, cogs, marginPct, channel);
+  renderBreakdown(currentQuote);
+  renderVariants(cogs, channel, discount, vatRate, insRate);
+  renderQuoteSheet(currentQuote);
+}
+
+// ─── RENDER FUNCTIONS ───────────────────────────────────
+function renderPriceHero(price, cogs, margin, channel) {
+  const ch = CHANNEL_MARKUP[channel];
+  const lo = Math.round(price * 0.95);
+  const hi = Math.round(price * 1.05);
+  document.getElementById('phPrice').textContent = fmtBig(price);
+  document.getElementById('phRange').textContent = `Khoảng: ${fmt(lo)} — ${fmt(hi)}`;
+  document.getElementById('phMargin').innerHTML  =
+    `<span style="color:${margin>=25?'var(--green)':margin>=15?'var(--amber)':'var(--red)'}">Biên LN: ${margin}%</span>
+     &nbsp;·&nbsp; Kênh: <span style="color:${ch?.color||'var(--text)'}">${ch?.label}</span>
+     &nbsp;·&nbsp; Vốn: ${fmt(cogs)}`;
+}
+
+function renderBreakdown(q) {
+  const rows = [
+    {lbl:'Vàng nguyên liệu',                    cost:q.goldCost,        price:Math.round(q.goldCost*1.05),  note:`${(document.getElementById('f-gold')?.value||'18K')} · ${document.getElementById('f-weight')?.value||0}chỉ + ${document.getElementById('f-loss')?.value||2}% hao hụt`},
+    ...(q.stoneCostTotal>0?[{lbl:'Đá chủ',      cost:q.stoneCostTotal,  price:Math.round(q.stoneCostTotal*1.1), note:`${q.stoneQty} viên`}]:[]),
+    ...(q.microCost>0?     [{lbl:'Đá tấm/Micro', cost:q.microCost,       price:Math.round(q.microCost*1.1), note:'Micro pavé'}]:[]),
+    {lbl:'Gia công xưởng',                       cost:q.laborCost,       price:Math.round(q.laborCost*1.2),  note:LABOR_COSTS[q.laborType]?.label},
+    {lbl:'Phụ liệu',                             cost:q.matCost,         price:Math.round(q.matCost*1.3),    note:'Keo, đinh, hóa chất...'},
+    ...(q.platingCost>0?   [{lbl:'Xi mạ',        cost:q.platingCost,     price:Math.round(q.platingCost*1.3), note:''}]:[]),
+    ...(q.engraveCost>0?   [{lbl:'Khắc/Laser',   cost:q.engraveCost,     price:Math.round(q.engraveCost*1.3), note:''}]:[]),
+    {lbl:'Đóng gói + GĐB',                       cost:q.packCost,        price:Math.round(q.packCost*1.2),   note:''},
+    ...(q.extra>0?         [{lbl:'Chi phí khác', cost:q.extra,           price:q.extra,                      note:''}]:[]),
+  ];
+  const subtotalCost  = rows.reduce((s,r)=>s+r.cost,0);
+  const subtotalSell  = rows.reduce((s,r)=>s+r.price,0);
+  const ch = CHANNEL_MARKUP[q.channel];
+  const markupDiff = q.basePrice - subtotalSell;
+
+  let html = rows.map(r=>`
+    <div class="bd-row">
+      <span class="bd-lbl">${r.lbl}${r.note?`<span style="font-size:9px;color:var(--text3);margin-left:4px">${r.note}</span>`:''}</span>
+      <span class="bd-cost" style="text-align:right">${fmt(r.cost)}</span>
+      <span class="bd-price" style="text-align:right">${fmt(r.price)}</span>
+    </div>`).join('');
+
+  html += `<div class="bd-row subtotal"><span class="bd-lbl">Tổng Giá Vốn (COGS)</span><span class="bd-cost" style="text-align:right;color:var(--text)">${fmt(subtotalCost)}</span><span class="bd-price" style="text-align:right;color:var(--text)">${fmt(subtotalSell)}</span></div>`;
+  html += `<div class="bd-row"><span class="bd-lbl">Markup Kênh ${ch?.label} (×${ch?.markup})</span><span class="bd-cost" style="text-align:right">—</span><span class="bd-price" style="text-align:right;color:var(--gold2)">+${fmt(markupDiff)}</span></div>`;
+  if(q.discountAmt>0) html+=`<div class="bd-row"><span class="bd-lbl">Chiết Khấu ${q.discount}%</span><span class="bd-cost" style="text-align:right">—</span><span class="bd-price" style="text-align:right;color:var(--red)">−${fmt(q.discountAmt)}</span></div>`;
+  if(q.commissionAmt>0) html+=`<div class="bd-row"><span class="bd-lbl">Hoa Hồng CTV 10%</span><span class="bd-cost" style="text-align:right">—</span><span class="bd-price" style="text-align:right;color:var(--amber)">−${fmt(q.commissionAmt)}</span></div>`;
+  if(q.vatAmt>0) html+=`<div class="bd-row"><span class="bd-lbl">VAT ${q.vatRate}%</span><span class="bd-cost" style="text-align:right">—</span><span class="bd-price" style="text-align:right;color:var(--amber)">+${fmt(q.vatAmt)}</span></div>`;
+  if(q.insAmt>0) html+=`<div class="bd-row"><span class="bd-lbl">Bảo Hiểm Hàng</span><span class="bd-cost" style="text-align:right">—</span><span class="bd-price" style="text-align:right">+${fmt(q.insAmt)}</span></div>`;
+  if(q.ship>0) html+=`<div class="bd-row"><span class="bd-lbl">Phí Giao Hàng</span><span class="bd-cost" style="text-align:right">—</span><span class="bd-price" style="text-align:right">+${fmt(q.ship)}</span></div>`;
+  html += `<div class="bd-row total">
+    <span class="bd-lbl">TỔNG THANH TOÁN</span>
+    <span class="bd-cost" style="text-align:right;color:var(--green)">LN: +${fmt(q.grossProfit)}</span>
+    <span class="bd-price" style="text-align:right">${fmt(q.finalPrice)}</span>
+  </div>`;
+
+  document.getElementById('breakdownRows').innerHTML = html;
+}
+
+function renderVariants(cogs, channel, extraDiscount, vatRate, insRate) {
+  const ch = CHANNEL_MARKUP[channel];
+  const variants = [
+    { name:'Giá Tốt Nhất',   markup:ch.markup * 0.92, desc:'Cạnh tranh nhất',      color:'var(--blue)' },
+    { name:'Giá Chuẩn',      markup:ch.markup,        desc:'Đề xuất mặc định',     color:'var(--gold2)' },
+    { name:'Giá Premium',    markup:ch.markup * 1.12, desc:'Biên LN cao',           color:'var(--green)' },
+  ];
+  document.getElementById('variantGrid').innerHTML = variants.map((v,i)=>{
+    const p = Math.round(cogs * v.markup * (1-(extraDiscount/100)) * (1+(vatRate/100)) * (1+(insRate/100)));
+    const m = Math.round((p - cogs) / p * 100);
+    return`<div class="vr-card ${i===1?'selected':''}" onclick="applyVariant(${v.markup})">
+      <div class="vr-name">${v.name}</div>
+      <div class="vr-price" style="color:${v.color}">${fmt(p)}</div>
+      <div class="vr-margin">Biên LN: ${m}%<br><span style="color:var(--text3)">${v.desc}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function applyVariant(markup) {
+  // Tạm set discount để đạt markup target
+  document.querySelectorAll('.vr-card').forEach(c=>c.classList.remove('selected'));
+  event?.target?.closest('.vr-card')?.classList.add('selected');
+  toast('Đã chọn mức giá này','info');
+}
+
+function renderQuoteSheet(q) {
+  if(!q || q.finalPrice === 0) return;
+  const quoteId = `BG-TL-${new Date().getFullYear()}${String(quoteHistory.length+1).padStart(4,'0')}`;
+  const now = new Date().toLocaleDateString('vi-VN');
+  const exp = new Date(Date.now()+7*864e5).toLocaleDateString('vi-VN');
+  document.getElementById('quoteSheet').innerHTML = `
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px;font-size:11px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold)">PHIẾU BÁO GIÁ · ${quoteId}</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">Ngày: ${now} · HH: ${exp}</div>
+      </div>
+      <div style="font-weight:600;font-size:13px;margin-bottom:2px">${q.prodName || 'Trang Sức'}</div>
+      ${q.cust?`<div style="color:var(--text3)">Khách hàng: ${q.cust}</div>`:''}
+      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        ${[['Chất liệu',q.goldType+' · '+document.getElementById('f-weight')?.value+' chỉ'],['Gia công',LABOR_COSTS[q.laborType]?.label],['Đóng gói',document.getElementById('f-pack').options[document.getElementById('f-pack').selectedIndex].text.split('(')[0]],['Kênh bán',CHANNEL_MARKUP[q.channel]?.label]].map(([l,v])=>`<div><span style="color:var(--text3)">${l}:</span> <span style="font-weight:500">${v}</span></div>`).join('')}
+      </div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:12px;color:var(--text2)">Tổng Thanh Toán</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:500;color:var(--gold2)">${fmt(q.finalPrice)}</div>
+      </div>
+      ${q.vatRate>0?`<div style="font-size:10px;color:var(--text3);margin-top:3px;text-align:right">Đã bao gồm VAT ${q.vatRate}%</div>`:''}
+      <div style="font-size:10px;color:var(--text3);margin-top:6px">
+        ✓ Giá có hiệu lực đến ${exp} · ✓ Bảo hành 12 tháng<br>
+        ✓ Kèm Giấy Đảm Bảo Tâm Luxury · ✓ Hỗ trợ thu đổi sau
+      </div>
+      <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:var(--text3);padding:5px 8px;background:rgba(200,146,42,.06);border-radius:2px">
+        NV: ${user?.name} (${user?.code}) · ${q.calcAt}
+      </div>
+    </div>`;
+}
+
+function saveQuote() {
+  if(!currentQuote || currentQuote.finalPrice === 0) { toast('Điền thông số trước','error'); return; }
+  const quoteId = `BG-TL-${new Date().getFullYear()}${String(quoteHistory.length+1).padStart(4,'0')}`;
+  quoteHistory.unshift({ ...currentQuote, id:quoteId, savedAt:new Date().toLocaleString('vi-VN'), savedBy:user?.name });
+  renderHistoryTab();
+  toast(`✓ Đã lưu báo giá ${quoteId}`,'success');
+}
+
+function renderHistoryTab() {
+  document.getElementById('quoteCount').textContent = quoteHistory.length;
+  document.getElementById('quoteHistoryList').innerHTML = quoteHistory.length === 0
+    ? '<div style="color:var(--text3);font-size:11px;text-align:center;padding:40px">Chưa có báo giá</div>'
+    : quoteHistory.map(q=>`
+      <div class="quote-hist-item" onclick="loadQuote('${q.id}')">
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(200,146,42,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💎</div>
+        <div class="qhi-info">
+          <div class="qhi-id">${q.id}</div>
+          <div class="qhi-name">${q.prodName||'Trang Sức'} · ${q.goldType} · ${q.weight}chỉ</div>
+          <div class="qhi-meta">KH: ${q.cust||'—'} · ${q.savedBy} · ${q.savedAt}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="qhi-price">${fmt(q.finalPrice)}</div>
+          <div style="font-size:10px;color:${q.marginPct>=25?'var(--green)':q.marginPct>=15?'var(--amber)':'var(--red)'}">LN: ${q.marginPct}%</div>
+        </div>
+      </div>`).join('');
+}
+
+function copyQuote() {
+  const q = currentQuote;
+  if(!q) return;
+  const text = `BÁO GIÁ TÂM LUXURY\n${q.prodName}\n${q.goldType} · ${q.weight}chỉ\nGiá: ${fmt(q.finalPrice)}\nHiệu lực 7 ngày · Bảo hành 12 tháng\nLH: ${user?.name}`;
+  navigator.clipboard?.writeText(text).then(()=>toast('✓ Đã copy báo giá','success')).catch(()=>toast('Copy thủ công','info'));
+}
+function sendQuote() { toast('📨 Chức năng gửi qua Zalo/Viber sẽ có khi deploy LAN','info'); }
+
+// ─── GOLD PRICE ─────────────────────────────────────────
+function refreshGoldPrice() {
+  // Dùng giá tham chiếu — thực tế KTT/HQ update manual hàng ngày
+  document.getElementById('ref-24k').textContent = fmt(GOLD_PRICES['24K'].per_chi)+'/chỉ';
+  document.getElementById('ref-18k').textContent = fmt(GOLD_PRICES['18K'].per_chi)+'/chỉ';
+  document.getElementById('ref-14k').textContent = fmt(GOLD_PRICES['14K'].per_chi)+'/chỉ';
+  document.getElementById('goldRefTime').textContent = new Date().toLocaleString('vi-VN');
+  document.getElementById('goldPriceTicker').textContent = fmt(GOLD_PRICES['24K'].per_luong)+'/lượng';
+  calc();
+}
+
+function updateGoldPrices() {
+  const inputs = [document.getElementById('gs-gold-0'),document.getElementById('gs-gold-1'),document.getElementById('gs-gold-2'),document.getElementById('gs-gold-3'),document.getElementById('gs-gold-4')];
+  const keys = ['24K_luong','18K','18K_W','14K','10K'];
+}
+function saveGoldPrices() {
+  const v = i => parseInt(document.getElementById('gs-gold-'+i)?.value)||0;
+  if(v(0)) GOLD_PRICES['24K'].per_luong = v(0);
+  if(v(1)) GOLD_PRICES['18K'].per_chi   = v(1);
+  if(v(2)) GOLD_PRICES['18K_W'].per_chi = v(2);
+  if(v(3)) GOLD_PRICES['14K'].per_chi   = v(3);
+  if(v(4)) GOLD_PRICES['10K'].per_chi   = v(4);
+  GOLD_PRICES['24K'].per_chi = Math.round(GOLD_PRICES['24K'].per_luong / 10);
+  refreshGoldPrice();
+  toast('✓ Đã cập nhật giá vàng hôm nay','success');
+}
+
+// ─── SETTINGS INIT ──────────────────────────────────────
+function initSettings() {
+  ['24K SJC (lượng)','18K (chỉ)','18K Trắng (chỉ)','14K (chỉ)','10K (chỉ)'].forEach((lbl,i)=>{
+    const el = document.getElementById('gs-gold-'+i);
+    if(el) el.value = [GOLD_PRICES['24K'].per_luong, GOLD_PRICES['18K'].per_chi, GOLD_PRICES['18K_W'].per_chi, GOLD_PRICES['14K'].per_chi, GOLD_PRICES['10K'].per_chi][i];
+  });
+
+  document.getElementById('stonePriceSettings').innerHTML = [
+    ['Moissanite VVS1 (≤6.5ly)', 380000],
+    ['Kim cương không cert 5ly', 3500000],
+    ['Kim cương không cert 7ly', 12000000],
+    ['Kim cương GIA 0.3ct', 25000000],
+    ['Kim cương GIA 0.5ct', 58000000],
+    ['Kim cương GIA 1.0ct', 140000000],
+  ].map(([lbl,val])=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+    <span style="font-size:11px;color:var(--text2);flex:1">${lbl}</span>
+    <span style="font-family:var(--mono);font-size:11px;color:var(--gold2)">${fmt(val)}</span>
+  </div>`).join('');
+
+  document.getElementById('markupSettings').innerHTML = Object.entries(CHANNEL_MARKUP).map(([k,v])=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:11px">
+      <span style="color:${v.color};font-weight:500">${v.label}</span>
+      <span style="font-family:var(--mono)">×${v.markup}${v.commission>0?' · HH '+v.commission*100+'%':''}</span>
+    </div>`).join('');
+
+  document.getElementById('laborSettings').innerHTML = Object.entries(LABOR_COSTS).map(([k,v])=>`
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:11px">
+      <div style="font-weight:500;margin-bottom:3px">${v.label}</div>
+      <div style="color:var(--text3);font-size:10px">Tổng: ${fmt(v.toDuc+v.toNguoi+v.toHot+v.nhamBong)}</div>
+    </div>`).join('');
+}
+
+// ─── UTILS ──────────────────────────────────────────────
+function sw(name,el){
+  document.querySelectorAll('.tb').forEach(t=>t.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(name==='history') renderHistoryTab();
+}
+function fmt(n){return(n||0).toLocaleString('vi-VN')+'₫';}
+function fmtBig(n){const b=n/1e6;return b.toFixed(1)+' triệu ₫';}
+function p2(n){return String(n).padStart(2,'0');}
+function toast(msg,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.innerHTML=`<span style="color:${type==='success'?'var(--green)':type==='error'?'var(--red)':'var(--gold)'};font-weight:700">${type==='success'?'✓':type==='error'?'✕':'ℹ'}</span><span>${msg}</span>`;document.getElementById('tw').appendChild(el);setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),300)},3500);}
+setInterval(()=>{const n=new Date;document.getElementById('clk').textContent=`${p2(n.getHours())}:${p2(n.getMinutes())}:${p2(n.getSeconds())}`;},1000);
+</script>
+</body>
+</html>
