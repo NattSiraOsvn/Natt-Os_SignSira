@@ -8,15 +8,24 @@
     "skipLibCheck": true,
     "strict": false,
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] },
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "allowJs": true,
     "checkJs": false
   },
-  "include": ["src/**/*", "scripts/**/*"],
+  "include": [
+    "src/**/*",
+    "scripts/**/*"
+  ],
   "exclude": [
-    "node_modules", "dist",
+    "node_modules",
+    "dist",
     "src/governance/memory/bang/baithicuabmf270226",
     "src/governance/memory/bang/kim",
-    "scripts/test-anti-fraud-full.ts"
+    "scripts/test-anti-fraud-full.ts",
+    "src/ui-app"
   ]
 }

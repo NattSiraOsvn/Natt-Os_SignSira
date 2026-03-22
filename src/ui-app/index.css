@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    @apply bg-gray-900 text-gray-100 font-sans antialiased;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Better responsive images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive typography */
+  h1 { @apply text-3xl sm:text-4xl md:text-5xl; }
+  h2 { @apply text-2xl sm:text-3xl; }
+  h3 { @apply text-xl sm:text-2xl; }
+  h4 { @apply text-lg sm:text-xl; }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-blue-500/30 text-white;
+  }
+}
+
+@layer components {
+  /* Glass effect panel */
+  .glass-panel {
+    @apply bg-gray-800/40 backdrop-blur-xl border border-gray-700/50;
+  }
+  
+  /* Button variants */
+  .btn-primary {
+    @apply px-4 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 
+           text-white font-semibold rounded-lg hover:opacity-90 
+           active:scale-95 transition-all duration-200 text-sm sm:text-base;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2.5 sm:px-6 sm:py-3 bg-gray-800 border border-gray-700 
+           text-white font-semibold rounded-lg hover:bg-gray-700 
+           active:scale-95 transition-all duration-200 text-sm sm:text-base;
+  }
+  
+  /* Input fields */
+  .input-field {
+    @apply w-full px-4 py-3 bg-gray-800 border border-gray-700 
+           rounded-lg text-white placeholder-gray-400 text-sm sm:text-base
+           focus:outline-none focus:ring-2 focus:ring-blue-500 
+           focus:border-transparent transition-all;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-gray-800/50 rounded-xl p-4 sm:p-6 border border-gray-700/30;
+  }
+  
+  /* Status indicators */
+  .status-indicator {
+    @apply w-2 h-2 rounded-full;
+  }
+  
+  .status-active { @apply bg-green-500; }
+  .status-warning { @apply bg-yellow-500; }
+  .status-error { @apply bg-red-500; }
+  
+  /* Terminal effects */
+  .terminal-cursor::after {
+    content: '▋';
+    @apply text-green-400;
+    animation: blink 1s step-end infinite;
+  }
+  
+  /* Loading shimmer */
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+@layer utilities {
+  /* Animations */
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  /* Responsive helpers */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Safe area padding for mobile */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  /* Grid patterns */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+}
+
+/* Mobile specific styles */
+@media (max-width: 640px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-flex-col {
+    flex-direction: column !important;
+  }
+  
+  .mobile-text-center {
+    text-align: center !important;
+  }
+}
+
+/* Tablet specific styles */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-hidden {
+    display: none !important;
+  }
+}
