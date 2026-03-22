@@ -1,5 +1,5 @@
 
-import { GoogleGenAI } from "@google/genai";
+// [LỆNH #001] AI API removed — pending EventBus wire
 import { FileMetadata, IngestStatus } from '../../../types';
 import { Ingestion } from '../../ingestion/IngestionService';
 
@@ -7,13 +7,13 @@ export class AICoreProcessor {
   private ai: GoogleGenAI;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    this.ai = null /* LỆNH #001 */;
   }
 
   async process(metadata: FileMetadata, fileContent: string): Promise<any> {
     Ingestion.updateStatus(metadata.id, IngestStatus.EXTRACTING);
 
-    const model = 'gemini-3-flash-preview';
+    const model = 'DISABLED_LỆNH_001';
     const prompt = `
       Bạn là chuyên gia bóc tách dữ liệu doanh nghiệp Omega.
       Phân tích nội dung sau và trích xuất thành JSON có cấu trúc:

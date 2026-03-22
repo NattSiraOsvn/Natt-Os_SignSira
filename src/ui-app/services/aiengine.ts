@@ -1,5 +1,5 @@
 
-import { GoogleGenAI, Type } from "@google/genai";
+// [LỆNH #001] AI API removed — pending EventBus wire
 
 /**
  * ============================================================================
@@ -16,11 +16,11 @@ export class AdvancedAIEngine {
    * Train custom models với dữ liệu thực tế (Simulated for UI/UX & Fine-tuning logic)
    */
   async trainProductRecognition(trainingData: any) {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = null /* LỆNH #001 */;
     console.log("Thiên đang huấn luyện Model nhận diện sản phẩm với bộ dữ liệu mới...", trainingData);
     
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'DISABLED_LỆNH_001',
       contents: `Huấn luyện hệ thống nhận diện sản phẩm với dữ liệu thực tế: ${JSON.stringify(trainingData)}. Hãy phân tích các pattern và cập nhật trọng số tri thức.`
     });
     return { 
@@ -33,10 +33,10 @@ export class AdvancedAIEngine {
   }
 
   async trainPricePrediction(salesData: any) {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = null /* LỆNH #001 */;
     console.log("Thiên đang huấn luyện Model dự báo giá với dữ liệu thương mại...", salesData);
     const response = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview',
+      model: 'DISABLED_LỆNH_001',
       contents: `Phân tích dữ liệu doanh thu và giá trị thị trường: ${JSON.stringify(salesData)}. Tối ưu hóa thuật toán XGBoost và cập nhật Elasticity.`
     });
     return { 
@@ -58,7 +58,7 @@ export class AdvancedAIEngine {
     rating: 'POSITIVE' | 'NEGATIVE', 
     correction?: string
   ) {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = null /* LỆNH #001 */;
     
     console.log(`[RLHF] Gửi tín hiệu ${rating} cho Model ${modelId}`);
 
@@ -82,9 +82,9 @@ export class AdvancedAIEngine {
    * Phân tích rủi ro & Đưa ra hành động gợi ý
    */
   async getNextActions(context: any) {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = null /* LỆNH #001 */;
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'DISABLED_LỆNH_001',
       contents: `Dựa trên dữ liệu: ${JSON.stringify(context)}, hãy đưa ra các gợi ý hành động tiếp theo (VD: Làm sạch dữ liệu, Tích hợp KHO, Tính hoa hồng...). Trả về JSON ARRAY.`,
       config: {
         responseMimeType: "application/json",

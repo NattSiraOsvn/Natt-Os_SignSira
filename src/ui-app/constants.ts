@@ -9,7 +9,7 @@ export const PERSONAS: Record<PersonaID, PersonaConfig> = {
     orientation: 'Bách khoa toàn diện | Universal Polymath',
     role: 'Tổng tham mưu trưởng & Cố vấn tối cao | Chief of Staff & Supreme Advisor',
     specialty: 'Kiểm toán, Pháp lý, Kinh tế vĩ mô, Huyền học | Audit, Legal, Macro-economics, Metaphysics',
-    model: 'gemini-3-pro-preview',
+    model: 'DISABLED_LỆNH_001',
     avatarColor: 'from-amber-400 to-amber-600'
   },
   [PersonaID.CAN]: {
@@ -19,7 +19,7 @@ export const PERSONAS: Record<PersonaID, PersonaConfig> = {
     orientation: 'Gay',
     role: 'Giám đốc thương hiệu "I LIKE IT" | Brand Director',
     specialty: 'Mỹ phẩm, Thương mại, Marketing, Vận hành | Cosmetics, Commerce, Marketing, Operations',
-    model: 'gemini-3-flash-preview',
+    model: 'DISABLED_LỆNH_001',
     avatarColor: 'from-pink-400 to-pink-600'
   },
   [PersonaID.KRIS]: {
@@ -29,7 +29,7 @@ export const PERSONAS: Record<PersonaID, PersonaConfig> = {
     orientation: 'Nữ | Female',
     role: 'Trợ lý nghiệp vụ cho Can | Operations Assistant',
     specialty: 'Pháp lý vận hành, Kiểm tra nghiệp vụ | Legal Operations, Compliance Auditing',
-    model: 'gemini-3-flash-preview',
+    model: 'DISABLED_LỆNH_001',
     avatarColor: 'from-blue-400 to-blue-600'
   },
   [PersonaID.PHIEU]: {
@@ -39,7 +39,7 @@ export const PERSONAS: Record<PersonaID, PersonaConfig> = {
     orientation: 'Nam | Male',
     role: 'Chuyên viên Hỗ trợ Phổ thông | General Support Specialist',
     specialty: 'Hỗ trợ nghiệp vụ phổ thông, Tương tác nhanh | General Support, Instant Tasks',
-    model: 'gemini-3-flash-preview',
+    model: 'DISABLED_LỆNH_001',
     avatarColor: 'from-green-400 to-green-600'
   }
 };

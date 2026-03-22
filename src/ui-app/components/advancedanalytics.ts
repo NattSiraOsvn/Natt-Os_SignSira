@@ -4,7 +4,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, BarChart, Bar, ComposedChart, Line
 } from 'recharts';
-import { GoogleGenAI } from "@google/genai";
+// [LỆNH #001] AI API removed — pending EventBus wire
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 
@@ -49,9 +49,9 @@ const AdvancedAnalytics: React.FC = () => {
     const runAISummary = async () => {
       setIsThinking(true);
       try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = null /* LỆNH #001 */;
         const response = await ai.models.generateContent({
-          model: 'gemini-3-flash-preview',
+          model: 'DISABLED_LỆNH_001',
           contents: `Phân tích dữ liệu: Lệch sổ sách 2024 (Kim cương tấm -227), Kịch bản 2026 (${scenario}). THIÊN tư vấn chiến lược.`
         });
         setAiAnalysis(response.text || '');

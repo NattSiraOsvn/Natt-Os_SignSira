@@ -1,5 +1,5 @@
 
-import { GoogleGenAI, Type } from "@google/genai";
+// [LỆNH #001] AI API removed — pending EventBus wire
 import { UserPosition, UserRole, LearnedTemplate, DynamicField } from "../types";
 
 export class LearningEngine {
@@ -11,8 +11,8 @@ export class LearningEngine {
     role: UserRole,
     context: { text?: string, files?: { data: string, mimeType: string, name?: string }[] }
   ): Promise<LearnedTemplate & { docTypeDetected?: string, suggestions?: string[], productionData?: any }> {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    const model = 'gemini-3-pro-preview';
+    const ai = null /* LỆNH #001 */;
+    const model = 'DISABLED_LỆNH_001';
     const parts: any[] = [];
     
     const safeText = context.text ? context.text.substring(0, 30000) : "";

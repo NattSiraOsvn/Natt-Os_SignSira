@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI, Modality } from '@google/genai';
+// [LỆNH #001] AI API removed — pending EventBus wire
 
 const LiveVoice: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
@@ -11,12 +11,12 @@ const LiveVoice: React.FC = () => {
   const startLive = async () => {
     try {
       // Use process.env.API_KEY directly as per guidelines
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = null /* LỆNH #001 */;
       setStatus('Đang kết nối Live API...');
       
       const sessionPromise = ai.live.connect({
         // Fixed: Use recommended model name for real-time audio conversation tasks
-        model: 'gemini-2.5-flash-native-audio-preview-12-2025',
+        model: 'DISABLED_LỆNH_001',
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {

@@ -1,9 +1,9 @@
 
-import { GoogleGenAI } from "@google/genai";
+// [LỆNH #001] AI API removed — pending EventBus wire
 import { Supplier, PersonaID, EmailMessage } from '../types';
 
 export class GmailIntelligence {
-  private static ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  private static ai = null /* LỆNH #001 */;
 
   /**
    * Phân tích Sentiment của chuỗi email (Giả lập tích hợp Gemini)
@@ -30,7 +30,7 @@ export class GmailIntelligence {
 
     try {
       const response = await this.ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'DISABLED_LỆNH_001',
         contents: prompt,
         config: { responseMimeType: "application/json" }
       });

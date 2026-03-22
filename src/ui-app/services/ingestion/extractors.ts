@@ -1,7 +1,7 @@
 
 // src/services/ingestion/extractors.ts
 import * as XLSX from 'xlsx';
-import { GoogleGenAI } from "@google/genai";
+// [LỆNH #001] AI API removed — pending EventBus wire
 import { CustomsUtils } from '../customsUtils';
 
 // --- INTERFACES ---
@@ -46,7 +46,7 @@ export const ExcelExtractor = {
 export const OCRExtractor = {
   async extract(file: File): Promise<ExtractedData> {
     console.log(`[OCRExtractor] Sending to Vision API: ${file.name}`);
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = null /* LỆNH #001 */;
     
     // Convert File to Base64
     const base64Data = await new Promise<string>((resolve) => {
@@ -55,7 +55,7 @@ export const OCRExtractor = {
       reader.onload = () => resolve((reader.result as string).split(',')[1]);
     });
 
-    const model = 'gemini-3-flash-preview'; // Faster for OCR
+    const model = 'DISABLED_LỆNH_001'; // Faster for OCR
     const prompt = `Trích xuất dữ liệu từ hình ảnh này. Trả về JSON với các trường: SKU, amount, weight, description. Nếu là bảng, hãy trả về mảng 'items'.`;
 
     try {
