@@ -717,7 +717,9 @@ function printOrder(id) {
     <table><tr>${STAGES.map(s=>`<th style="background:${o.stageHistory?.find(h=>h.stage===s.id)?'#d4edda':o.stage===s.id?'#fff3cd':'#f8f9fa'}">${s.name}</th>`).join('')}</tr>
     <tr>${STAGES.map(s=>{const h=o.stageHistory?.find(x=>x.stage===s.id);return`<td style="text-align:center">${h?'✅ '+h.at:o.stage===s.id?'🔄 Đang':''}</td>`;}).join('')}</tr></table>
     <div class="sign"><div><div class="sign-line"></div>Thợ Phụ Trách</div><div><div class="sign-line"></div>Trưởng Xưởng</div></div>
-    </body></html>`);
+    
+<script src="nattos-eod-engine.js"></script>
+</body></html>`);
   win.print();
 }
 

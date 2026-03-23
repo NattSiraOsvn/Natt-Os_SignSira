@@ -869,5 +869,7 @@ function p2(n){return String(n).padStart(2,'0');}
 function toast(msg,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.innerHTML=`<span style="color:${type==='success'?'var(--green)':type==='error'?'var(--red)':'var(--gold)'};font-weight:700">${type==='success'?'✓':type==='error'?'✕':'ℹ'}</span><span>${msg}</span>`;document.getElementById('tw').appendChild(el);setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),300)},3500);}
 setInterval(()=>{const n=new Date;document.getElementById('clk').textContent=`${p2(n.getHours())}:${p2(n.getMinutes())}:${p2(n.getSeconds())}`;},1000);
 </script>
+
+<script src="nattos-eod-engine.js"></script>
 </body>
 </html>
