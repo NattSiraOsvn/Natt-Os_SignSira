@@ -544,7 +544,169 @@ done
 echo -e "  ${W}Production flow: $PROD_OK/${#PROD_CELLS[@]} cells wired${N}"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "15" "SCORECARD"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "15" "UI APP — SCAN DEEP"
+# ═══════════════════════════════════════════════════════════════
+UI_APP_DIR="src/ui-app"
+if [[ ! -d "$UI_APP_DIR" ]]; then
+  fail "src/ui-app/ NOT FOUND"; inc_fail "UI_APP: directory missing"
+else
+
+  # ── Count HTML apps ──
+  HTML_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.html" ! -name "._*" | wc -l | tr -d ' ')
+  JS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.js" | wc -l | tr -d ' ')
+  CSS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.css" | wc -l | tr -d ' ')
+  ok "HTML apps: $HTML_COUNT | JS engines: $JS_COUNT | CSS: $CSS_COUNT"; inc_ok
+
+  # ── Required engine files ──
+  echo -e "\n  ${W}15a. Engine Files:${N}"
+  UI_ENGINES=("nattos-doc-engine.js" "nattos-eod-engine.js" "nattos-fx.js" "nattos-ui-theme.css" "nattos-loss-thresholds.js")
+  ENGINE_OK=0; ENGINE_MISS=()
+  for eng in "${UI_ENGINES[@]}"; do
+    if [[ -f "$UI_APP_DIR/$eng" ]]; then
+      ok "$eng"; ((ENGINE_OK++)) || true
+    else
+      fail "MISSING: $eng"; inc_fail "UI_APP: missing engine $eng"
+      ENGINE_MISS+=("$eng")
+    fi
+  done
+  echo -e "  Engines: $ENGINE_OK/${#UI_ENGINES[@]}"
+
+  # ── Per-app deep scan ──
+  echo -e "\n  ${W}15b. App Health Matrix:${N}"
+  printf "  %-38s %5s %6s %7s %4s %5s %4s %5s %4s\n" "APP" "LINES" "LOGIN" "RENDER" "PAY" "SHIP" "EOD" "THEME" "FX"
+  echo "  $(printf '─%.0s' {1..90})"
+
+  APP_TOTAL=0; APP_OK=0; APP_WARN=0
+  APP_NO_LOGIN=(); APP_NO_RENDER=(); APP_NO_PAYMENT=(); APP_NO_EOD=()
+  APP_BROKEN_LINKS=()
+
+  for fpath in "$UI_APP_DIR"/*.html; do
+    fname=$(basename "$fpath")
+    [[ "$fname" == "index.html" ]] && continue
+    [[ "${fname:0:2}" == "._" ]] && continue
+    ((APP_TOTAL++)) || true
+
+    LINES=$(wc -l < "$fpath" | tr -d ' ')
+    HAS_LOGIN=$(grep -c "doLogin\b" "$fpath" 2>/dev/null || echo 0)
+    HAS_RENDER=$(grep -cE "renderAll|renderGrid|renderList|tbody|\.innerHTML\s*=" "$fpath" 2>/dev/null || echo 0)
+    HAS_PAYMENT=$(grep -ciE "payment|thanh.to[aá]n|qr.code|vietqr|checkout|chuyen.khoan|zalopay" "$fpath" 2>/dev/null || echo 0)
+    HAS_SHIP=$(grep -ciE "GHN|Nh[aâ]t.T[ií]n|GHTK|Viettel.Post|van.chuyen|shipping|logistics" "$fpath" 2>/dev/null || echo 0)
+    HAS_EOD=$(grep -c "nattos-eod-engine" "$fpath" 2>/dev/null || echo 0)
+    HAS_THEME=$(grep -c "nattos-ui-theme" "$fpath" 2>/dev/null || echo 0)
+    HAS_FX=$(grep -c "nattos-fx" "$fpath" 2>/dev/null || echo 0)
+
+    # Status
+    IS_OK=true
+    [[ "$HAS_LOGIN" -eq 0 ]] && { IS_OK=false; APP_NO_LOGIN+=("$fname"); }
+    [[ "$HAS_RENDER" -eq 0 ]] && { IS_OK=false; APP_NO_RENDER+=("$fname"); }
+    [[ "$HAS_EOD" -eq 0 ]] && { IS_OK=false; APP_NO_EOD+=("$fname"); }
+
+    ICON="✅"
+    $IS_OK && ((APP_OK++)) || { ICON="⚠️ "; ((APP_WARN++)) || true; }
+
+    L_COLOR=$G; [[ "$HAS_LOGIN" -eq 0 ]] && L_COLOR=$R
+    R_COLOR=$G; [[ "$HAS_RENDER" -eq 0 ]] && R_COLOR=$R
+    P_COLOR=$G; [[ "$HAS_PAYMENT" -eq 0 ]] && P_COLOR=$Y
+    S_COLOR=$G; [[ "$HAS_SHIP" -eq 0 ]] && S_COLOR=$Y
+    E_COLOR=$G; [[ "$HAS_EOD" -eq 0 ]] && E_COLOR=$R
+    T_COLOR=$G; [[ "$HAS_THEME" -eq 0 ]] && T_COLOR=$R
+    X_COLOR=$G; [[ "$HAS_FX" -eq 0 ]] && X_COLOR=$R
+
+    printf "  ${ICON} %-36s %5s ${L_COLOR}%6s${N} ${R_COLOR}%7s${N} ${P_COLOR}%4s${N} ${S_COLOR}%5s${N} ${E_COLOR}%4s${N} ${T_COLOR}%5s${N} ${X_COLOR}%4s${N}\n" \
+      "$fname" "$LINES" \
+      "$([ "$HAS_LOGIN" -gt 0 ] && echo '✓' || echo '✗')" \
+      "$([ "$HAS_RENDER" -gt 0 ] && echo '✓' || echo '✗')" \
+      "$([ "$HAS_PAYMENT" -gt 0 ] && echo '✓' || echo '-')" \
+      "$([ "$HAS_SHIP" -gt 0 ] && echo '✓' || echo '-')" \
+      "$([ "$HAS_EOD" -gt 0 ] && echo '✓' || echo '✗')" \
+      "$([ "$HAS_THEME" -gt 0 ] && echo '✓' || echo '✗')" \
+      "$([ "$HAS_FX" -gt 0 ] && echo '✓' || echo '✗')"
+  done
+
+  # ── Issues summary ──
+  echo ""
+  echo -e "  Apps: $APP_TOTAL total | ${G}OK: $APP_OK${N} | ${Y}WARN: $APP_WARN${N}"
+
+  if [[ ${#APP_NO_LOGIN[@]} -gt 0 ]]; then
+    warn "Apps thiếu login (${#APP_NO_LOGIN[@]}): ${APP_NO_LOGIN[*]}"
+    inc_warn "UI_APP: ${#APP_NO_LOGIN[@]} apps thiếu doLogin()"
+  fi
+  if [[ ${#APP_NO_RENDER[@]} -gt 0 ]]; then
+    warn "Apps thiếu render (${#APP_NO_RENDER[@]}): ${APP_NO_RENDER[*]}"
+    inc_warn "UI_APP: ${#APP_NO_RENDER[@]} apps thiếu render logic"
+  fi
+  if [[ ${#APP_NO_EOD[@]} -gt 0 ]]; then
+    warn "Apps thiếu EOD engine (${#APP_NO_EOD[@]}): ${APP_NO_EOD[*]}"
+    inc_warn "UI_APP: ${#APP_NO_EOD[@]} apps thiếu nattos-eod-engine"
+  fi
+
+  # ── Index.html audit ──
+  echo -e "\n  ${W}15c. index.html Audit:${N}"
+  if [[ -f "$UI_APP_DIR/index.html" ]]; then
+    IDX_APPS=$(grep -oE "file:'[^']+\.html'" "$UI_APP_DIR/index.html" | wc -l | tr -d ' ')
+    IDX_BROKEN=0; IDX_BROKEN_LIST=()
+    while IFS= read -r app; do
+      app_file=$(echo "$app" | grep -oE "'[^']+'" | tr -d "'")
+      if [[ ! -f "$UI_APP_DIR/$app_file" ]]; then
+        ((IDX_BROKEN++)) || true
+        IDX_BROKEN_LIST+=("$app_file")
+      fi
+    done < <(grep -oE "file:'[^']+\.html'" "$UI_APP_DIR/index.html")
+
+    HAS_FX_IDX=$(grep -c "nattos-fx" "$UI_APP_DIR/index.html" 2>/dev/null || echo 0)
+
+    ok "index.html: $IDX_APPS apps registered"; inc_ok
+    if [[ "$IDX_BROKEN" -gt 0 ]]; then
+      fail "Broken links in index: $IDX_BROKEN → ${IDX_BROKEN_LIST[*]}"
+      inc_fail "UI_APP: ${IDX_BROKEN_LIST[*]} referenced but missing"
+    else
+      ok "Tất cả app links valid"; inc_ok
+    fi
+    [[ "$HAS_FX_IDX" -gt 0 ]] && { ok "nattos-fx.js in index"; inc_ok; } || { warn "nattos-fx.js MISSING từ index.html"; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
+  else
+    fail "index.html MISSING"; inc_fail "UI_APP: index.html not found"
+  fi
+
+  # ── Cloud Run status ──
+  echo -e "\n  ${W}15d. Cloud Run:${N}"
+  if [[ -f "Dockerfile" ]]; then
+    ok "Dockerfile: EXISTS"; inc_ok
+    DOCKER_COPY=$(grep "COPY src/ui-app" Dockerfile | head -1)
+    [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies src/ui-app"; inc_ok; } || { warn "Dockerfile may not copy ui-app"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
+  else
+    warn "Dockerfile: MISSING (needed for Cloud Run)"; inc_warn "UI_APP: Dockerfile missing"
+  fi
+  if [[ -f ".dockerignore" ]]; then
+    DOCKI_SDK=$(grep -c "google-cloud-sdk" .dockerignore 2>/dev/null || echo 0)
+    [[ "$DOCKI_SDK" -gt 0 ]] && { ok ".dockerignore excludes google-cloud-sdk"; inc_ok; } || { warn ".dockerignore MISSING google-cloud-sdk exclusion → 1.3GB build"; inc_warn "UI_APP: .dockerignore thiếu exclude sdk"; }
+  else
+    warn ".dockerignore: MISSING"; inc_warn "UI_APP: .dockerignore missing"
+  fi
+
+  # ── Payment feature audit ──
+  echo -e "\n  ${W}15e. Feature Coverage:${N}"
+  PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
+  SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
+  SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
+  SURV_FILE=$([ -f "nattos-sheets-server/surveillance.html" ] && echo "EXISTS" || echo "MISSING")
+  SHEETS_SERVER=$([ -f "nattos-sheets-server/server.js" ] && echo "EXISTS" || echo "MISSING")
+  SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY MISSING (gitignored)")
+
+  info "Payment support: $PAY_COUNT apps"
+  info "Shipping (GHN/NTX): $SHIP_COUNT apps"
+  info "SmartGetData: $SMART_COUNT apps"
+  info "Surveillance dashboard: $SURV_FILE"
+  info "GSheets server: $SHEETS_SERVER"
+  info "SA Key: $SA_KEY"
+
+  [[ "$PAY_COUNT" -lt 3 ]] && { warn "Ít app có payment ($PAY_COUNT) — cần thêm QR/CK"; inc_warn "UI_APP: thiếu payment feature"; }
+  [[ "$SURV_FILE" == "EXISTS" && "$SHEETS_SERVER" == "EXISTS" ]] && { ok "Surveillance stack ready"; inc_ok; }
+
+fi  # end UI_APP_DIR check
+
+hdr "16" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
 echo ""
 echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
