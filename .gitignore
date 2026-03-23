@@ -35,6 +35,6 @@ src/cells/business.zip
 .DS_Store
 
 # Google Service Account Keys — NEVER commit
-*.json
+# SA Key — không block package.json
 nattos-sheets-server/nattos-google-sa.json
-sys-*.json
+sys-*-*.json
