@@ -35,31 +35,31 @@ function getAuth() {
 }
 
 // ── SHEET IDs CONFIG ──────────────────────────────────────────────────────────
-
-
+// ── MASTER SHEET — Luồng SX (gộp tất cả tabs) ──
+// Sheet ID: 1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg
+// Anh Natt gộp 8 sheets → 1 master sheet nhiều tabs
 const MASTER_SHEET_ID = '1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg';
+
+// ── MASTER SHEET — Luồng SX ──
+const MASTER_SHEET_ID = '1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg';
+
+// Tab names thật từ sheet (verified 2026-03-24)
 const SHEETS = {
-  dh_phu_luc:   { id: MASTER_SHEET_ID, name: 'Phụ Lục ĐH',        category: 'orders',     tab: 'ĐIỀU PHỐI __PHỤ LỤC' },
-  dh_uyen:      { id: MASTER_SHEET_ID, name: 'ĐH Uyên',            category: 'orders',     tab: 'ĐIỀU PHỐI __ĐH UYÊN' },
-  qtsx:         { id: MASTER_SHEET_ID, name: 'QTSX',               category: 'production', tab: 'ĐIỀU PHỐI __QTSX' },
-  dh_hangngay:  { id: MASTER_SHEET_ID, name: 'ĐH Hàng Ngày',      category: 'orders',     tab: 'ĐIỀU PHỐI __ĐH hàng ngày' },
-  giao_nhan:    { id: MASTER_SHEET_ID, name: 'Giao Nhận',          category: 'logistics',  tab: 'ĐIỀU PHỐI __BÁO CÁO GIAO NHẬN' },
-  tong_hop_cho: { id: MASTER_SHEET_ID, name: 'Tổng Hợp Chờ',      category: 'orders',     tab: 'ĐIỀU PHỐI __TỔNG HỢP CHỜ' },
-  da_chu:       { id: MASTER_SHEET_ID, name: 'Đá Chủ',             category: 'production', tab: 'ĐIỀU PHỐI __Đá Chủ' },
-  psx_tong_hop: { id: MASTER_SHEET_ID, name: 'PSX Tổng Hợp',      category: 'production', tab: 'PSX- THEO __Tổng Hợp' },
-  psx_phu_luc:  { id: MASTER_SHEET_ID, name: 'PSX Phụ Lục',       category: 'production', tab: 'PSX- THEO __Phụ Lục' },
-  psx_data:     { id: MASTER_SHEET_ID, name: 'PSX Data',          category: 'production', tab: 'PSX- THEO __Data Nguồn' },
-  system_log:   { id: MASTER_SHEET_ID, name: 'System Log',        category: 'system',     tab: 'SYSTEM_LOG' },
-  data_map:     { id: MASTER_SHEET_ID, name: 'Data Map',          category: 'system',     tab: '_DATA_MAP' },
-  can_hangngay:  { id: MASTER_SHEET_ID, name: 'Cân Hàng Ngày',      category: 'surveillance', tab: 'PSX- THEO __Cân Hàng Ngày' },
-  can_ngulieu:   { id: MASTER_SHEET_ID, name: 'Cân Nguyên Liệu',    category: 'surveillance', tab: 'PSX- THEO __Cân Nguyên Liệu' },
-  giao_nhan_tho: { id: MASTER_SHEET_ID, name: 'Giao Nhận Thợ',      category: 'surveillance', tab: 'PSX- THEO __Giao Nhận Thợ Nguội' },
-  bao_cao_thang: { id: MASTER_SHEET_ID, name: 'Báo Cáo Tháng',    category: 'surveillance', tab: 'PSX- THEO __BÁO CÁO THÁNG' },
-  so_giao_tho:   { id: MASTER_SHEET_ID, name: 'Sổ Giao Thợ',      category: 'surveillance', tab: 'PSX- THEO __SỔ GIAO THỢ' },
-  xoan_master:   { id: MASTER_SHEET_ID, name: 'Danh Sách Xoàn',   category: 'surveillance', tab: 'MR. TIẾN __DANH SÁCH XOÀN' },
-  so_gt_09:      { id: MASTER_SHEET_ID, name: 'Sổ GT T9/2025',    category: 'surveillance', tab: 'PSX- THEO __09-2025 SỔ GIAO THỢ' },
-  so_gt_08:      { id: MASTER_SHEET_ID, name: 'Sổ GT T8/2025',    category: 'surveillance', tab: 'PSX- THEO __08-2025 SỔ GIAO THỢ' },
-  data_giao_nhan:{ id: MASTER_SHEET_ID, name: 'Data Giao Nhận',     category: 'surveillance', tab: 'PSX- THEO __Data Giao Nhận' },
+  // === ĐIỀU PHỐI ===
+  dh_phu_luc:     { id: MASTER_SHEET_ID, name: 'Phụ Lục ĐH',         category: 'orders',      tab: '[ĐIỀU PHỐI ]__PHỤ LỤC' },
+  dh_uyen:        { id: MASTER_SHEET_ID, name: 'ĐH Uyên',            category: 'orders',      tab: '[ĐIỀU PHỐI ]__ĐH UYÊN' },
+  qtsx:           { id: MASTER_SHEET_ID, name: 'QTSX',               category: 'production',  tab: '[ĐIỀU PHỐI ]__QTSX' },
+  dh_hangngay:    { id: MASTER_SHEET_ID, name: 'ĐH Hàng Ngày',      category: 'orders',      tab: '[ĐIỀU PHỐI ]__ĐH hàng ngày' },
+  giao_nhan:      { id: MASTER_SHEET_ID, name: 'Báo Cáo Giao Nhận', category: 'logistics',   tab: '[ĐIỀU PHỐI ]__BÁO CÁO GIAO NHẬN' },
+  tong_hop_cho:   { id: MASTER_SHEET_ID, name: 'Tổng Hợp Chờ',      category: 'orders',      tab: '[ĐIỀU PHỐI ]__TỔNG HỢP CHỜ' },
+  da_chu:         { id: MASTER_SHEET_ID, name: 'Đá Chủ',             category: 'production',  tab: '[ĐIỀU PHỐI ]__Đá Chủ' },
+  // === PSX THEO DÕI ===
+  psx_tong_hop:   { id: MASTER_SHEET_ID, name: 'PSX Tổng Hợp',      category: 'production',  tab: '[PSX- THEO ]__Tổng Hợp' },
+  psx_phu_luc:    { id: MASTER_SHEET_ID, name: 'PSX Phụ Lục',       category: 'production',  tab: '[PSX- THEO ]__Phụ Lục' },
+  psx_data:       { id: MASTER_SHEET_ID, name: 'PSX Data Nguồn',    category: 'production',  tab: '[PSX- THEO ]__Data Nguồn' },
+  // === HỆ THỐNG ===
+  system_log:     { id: MASTER_SHEET_ID, name: 'System Log',        category: 'system',      tab: 'SYSTEM_LOG' },
+  data_map:       { id: MASTER_SHEET_ID, name: 'Data Map',          category: 'system',      tab: '_DATA_MAP' },
 };
 
 // ── CACHE ─────────────────────────────────────────────────────────────────────
@@ -281,29 +281,35 @@ app.post('/api/cache/clear', (req, res) => {
 });
 
 
-// ── LOCAL XLSX READER ────────────────────────────────────────────────────
-const XLSX_PKG = (() => { try { return require('xlsx'); } catch { return null; } })();
-const XLSX_FILE = require('path').join(__dirname, 'line-production.xlsx');
+// ── SOURCE FILE IDs (19 Tâm Luxury files — từ JustU v9.0) ────────────────
+const SOURCE_FILE_IDS = [
+  '1hgjfgDLy55T-yS-iGImFdm8iUN5SQPA0z00Vaj8JLzc',
+  '1GRZ-u_fxbzua--IHpepeVql-6iBc8MOojuFn2yAbCDQ',
+  '1hgzVjtCE50HJnm3y49v0IMUIz3tvaqUnnIXlA9LQIv8',
+  '1S0GvwQbaDuaDL1k0OAAo68jOAqu2SOES48BB_Vt2_M0',
+  '1Yth_pfX-0_w6FNz4rPbmJm81IDCW3-d4C7E5QhfvAG8',
+  '1YlbwhCwpKIBpFeF2iT-EBPyGESao0Vad3ABSL67lAmg',
+  '1Eg0ASCDvKZZ1nqa6r5HhqWGb00-OFz0dy7d1cJqSYOk',
+  '1j9qDMrkcfiRVBHJAQWstOq8lA8OWK5mhB3ClNaO9d-g', // Luồng SX Master
+  '1VInd8649Mp12sVg3ye8YAyxxOJacedefeNy9p0vX3_8',
+  '1abzPzXy31s62QAK4EisU-n2JfxV7RBMcdft5H_pCcbQ',
+  '1lQeLKaSJ0b_HHmJp9XIIlDWlfCs6vbu1VAO9RWWcCnU',
+  '1d55ted6MfpUB5BmUgPst9CHHAU_ygUSERW9LEuQIKDY',
+  '1LHIvlYzPF_LcQigVXqN-hyW2bJ6VjDO-0kF8ygMIF4E',
+  '1o9rsEPUhwUmCB1nkwoOy0Kxeq2hVXJU9v5xHRQmzRlg',
+  '1Wk0hI8CHbsA2VWKN4ZyqWdH9DTUVMi8KMWA4_CpW_bY',
+  '1ju4kunETVvzgK36WREdWrHb26ej5kxJGLL3tUJQHHBw',
+  '1ocb3-BS6dyYoiaOR1e8-SfF6A8G3oyqmupuxvq2QPgA',
+  '1Ufq-HDa9kv_p1ZFF3b5Cft-TP0PjkmRsrX0IjZ1Ee_8',
+  '1lZV0uro17WIJGrbLTRLdvDXo1tJ_V6h42d_7-62Eocc',
+];
 
-app.get('/api/local/:tabName', (req, res) => {
-  if (!XLSX_PKG) return res.status(500).json({ error: 'npm install xlsx' });
-  const fs2 = require('fs');
-  if (!fs2.existsSync(XLSX_FILE)) return res.status(404).json({ error: 'File không tìm thấy', path: XLSX_FILE });
-  
-  const tabName = decodeURIComponent(req.params.tabName);
-  const wb = XLSX_PKG.readFile(XLSX_FILE);
-  
-  if (tabName === '_list') return res.json({ sheets: wb.SheetNames, total: wb.SheetNames.length });
-  
-  const found = wb.SheetNames.find(s =>
-    s === tabName || s.includes(tabName) || tabName.includes(s.replace(/[\[\]]/g,'').trim())
-  );
-  if (!found) return res.status(404).json({ error: `Không tìm thấy: ${tabName}`, available: wb.SheetNames });
-  
-  const data = XLSX_PKG.utils.sheet_to_json(wb.Sheets[found], { header:1, defval:'' });
-  const records = data.slice(1).filter(r => r.some(c => c !== ''));
-  res.json({ tab: found, rows: data.length, headers: data[0]||[], records: records.slice(0,100), total_records: records.length });
+// ── /api/sources — list tất cả file nguồn ────────────────────────────────
+app.get('/api/sources', (req, res) => {
+  res.json({ total: SOURCE_FILE_IDS.length, fileIds: SOURCE_FILE_IDS });
 });
+
+// ── /api/local/:tabName — upgrade: support tab fuzzy match ───────────────
 
 // ── START ──────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {

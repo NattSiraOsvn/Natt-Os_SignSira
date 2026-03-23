@@ -105,6 +105,104 @@ body{background-image:radial-gradient(ellipse at 50% 0%,rgba(240,80,80,.04),tran
 .toast.success{border-left:3px solid var(--green)}.toast.info{border-left:3px solid var(--gold)}.toast.error{border-left:3px solid var(--red)}.toast.critical{border-left:3px solid var(--red);background:rgba(240,80,80,.1)}
 @keyframes si{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
 </style>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// SMART CLASSIFY ENGINE — inline port for surveillance
+// ══════════════════════════════════════════════════════════
+const SmartClassify = (() => {
+  const norm = s => !s ? '' : String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
+  const BUYBACK_KW = ['thu sp','thu san pham','thu hang','thu mua','thu doi','doi hang','mua lai','thu hoi'];
+  const COMPANY_KW = ['cong ty','tnhh','cp jsc','co.,ltd','doanh nghiep','chi nhanh','group'];
+  const PERSONAL_N = ['nguyen','tran','le','pham','hoang','huynh','vo','dang','bui','do','ho'];
+
+  function detectAccountType(name='', desc='', corr='') {
+    const t = norm([name,desc,corr].join(' '));
+    for (const k of COMPANY_KW) if (t.includes(k)) return 'COMPANY';
+    for (const k of PERSONAL_N) if (t.includes(k)) return 'PERSONAL';
+    return 'UNKNOWN';
+  }
+
+  function detectBuyback(desc, accountType, debit, credit) {
+    const d = norm(desc);
+    for (const k of BUYBACK_KW) if (d.includes(k)) return { is: true, confidence: 'HIGH' };
+    if (accountType === 'PERSONAL' && debit > 0 && credit === 0) return { is: true, confidence: 'MEDIUM' };
+    return { is: false, confidence: 'LOW' };
+  }
+
+  function classify(desc='', accountName='', debit=0, credit=0, corr='') {
+    const isChi = debit > 0 && credit === 0;
+    const isThu = credit > 0 && debit === 0;
+    const acct  = detectAccountType(accountName, desc, corr);
+    const buyb  = detectBuyback(desc, acct, debit, credit);
+    const d     = norm(desc);
+
+    if (isChi) {
+      if (buyb.is)                                          return { cat:'THU MUA TỪ KHÁCH', group:'CHI_COGS', conf:buyb.confidence };
+      if (/thue|kbnn|nsnn/.test(d))                        return { cat:'THUẾ', group:'THUE', conf:'HIGH' };
+      if (/hai quan|to khai|nhap khau/.test(d))            return { cat:'HẢI QUAN', group:'CHI_COGS', conf:'HIGH' };
+      if (/phi chuyen khoan|phi gd/.test(d))               return { cat:'PHÍ NGÂN HÀNG', group:'CHI_OPERATING', conf:'HIGH' };
+      if (/luong|salary/.test(d))                          return { cat:'LƯƠNG', group:'CHI_OPERATING', conf:'HIGH' };
+      if (/bhxh|bhyt|bao hiem/.test(d))                    return { cat:'BẢO HIỂM', group:'CHI_OPERATING', conf:'HIGH' };
+      if (/mua vang|vang sjc/.test(d))                     return { cat:'MUA VÀNG B2B', group:'CHI_COGS', conf:'HIGH' };
+      if (/mua kim cuong|diamond/.test(d))                 return { cat:'MUA KC', group:'CHI_COGS', conf:'HIGH' };
+      if (/van chuyen|shipping|ghn|ghtk/.test(d))          return { cat:'VẬN CHUYỂN', group:'CHI_OPERATING', conf:'HIGH' };
+    }
+    if (isThu) {
+      if (/pos|the/.test(d))                               return { cat:'DOANH THU THẺ', group:'THU', conf:'HIGH' };
+      if (/qr|momo|zalopay/.test(d))                       return { cat:'DOANH THU VÍ', group:'THU', conf:'HIGH' };
+      if (acct === 'PERSONAL')                             return { cat:'DOANH THU CK', group:'THU', conf:'MEDIUM' };
+    }
+    return { cat:'CẦN KIỂM TRA', group:'UNKNOWN', conf:'LOW' };
+  }
+
+  return { classify, detectAccountType, detectBuyback };
+})();
+
+// ══════════════════════════════════════════════════════════
+// ORDER ENGINE — inline port for surveillance
+// ══════════════════════════════════════════════════════════
+const OrderEngine = (() => {
+  const PATTERNS = [
+    { re: /\bCT\d{2}-\d{4,6}\b/gi, stream:'SX_CHINH', risk:'low'  },
+    { re: /\bKD\d{2}-\d{4,6}\b/gi, stream:'SX_PHU',   risk:'low'  },
+    { re: /\bKB\d{2}-\d{4,6}\b/gi, stream:'BAO_HANH', risk:'medium'},
+    { re: /\b28\d{3}\b/gi,           stream:'SC_BH_KB', risk:'high' }, // ← luồng nguy hiểm
+  ];
+
+  function extractIds(text) {
+    if (!text) return [];
+    const str = String(text), out = [], seen = new Set();
+    PATTERNS.forEach(p => {
+      const re = new RegExp(p.re.source, p.re.flags);
+      let m;
+      while ((m = re.exec(str)) !== null) {
+        const id = m[0].toUpperCase();
+        if (!seen.has(id)) { seen.add(id); out.push({ id, stream: p.stream, risk: p.risk }); }
+      }
+    });
+    return out;
+  }
+
+  function analyzeRisk(rows) {
+    const stats = { SX_CHINH:0, SX_PHU:0, BAO_HANH:0, SC_BH_KB:0, UNKNOWN:0, total:0, highRisk:0 };
+    rows.forEach(row => {
+      const text = Object.values(row).join(' ');
+      const ids  = extractIds(text);
+      stats.total++;
+      if (!ids.length) { stats.UNKNOWN++; return; }
+      const s = ids[0].stream;
+      stats[s] = (stats[s]||0) + 1;
+      if (ids[0].risk === 'high') stats.highRisk++;
+    });
+    stats.scPercent = stats.total > 0 ? ((stats.SC_BH_KB/stats.total)*100).toFixed(1) : 0;
+    return stats;
+  }
+
+  return { extractIds, analyzeRisk };
+})();
+</script>
+
 </head>
 <body>
 
