@@ -7,3 +7,16 @@ src/governance/
 src/types/
 *.ts
 *.tsx
+google-cloud-sdk/
+google-cloud-cli-linux-x86_64.tar.gz
+.gcloud/
+src/cells/
+src/governance/
+src/core/
+src/services/
+src/components/
+src/types/
+nattos-sheets-server/
+**/*.ts
+**/*.tsx
+**/*.map
