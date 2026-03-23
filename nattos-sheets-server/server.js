@@ -35,15 +35,22 @@ function getAuth() {
 }
 
 // ── SHEET IDs CONFIG ──────────────────────────────────────────────────────────
+// ── MASTER SHEET — Luồng SX (gộp tất cả tabs) ──
+// Sheet ID: 1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg
+// Anh Natt gộp 8 sheets → 1 master sheet nhiều tabs
+const MASTER_SHEET_ID = '1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg';
+
 const SHEETS = {
-  sx1:  { id: '1jv01Fr72F9bGB2b6t3FTuDWgpn89-INSaXFZ7tTV0kE', name: 'Luồng SX 1',    category: 'production' },
-  sx2:  { id: '1qwKxqTkFzl50XbOyBtbQqq8tyhApFJjqyAczaIHqx5c', name: 'Luồng SX 2',    category: 'production' },
-  sx3:  { id: '1j9qDMrkcfiRVBHJAQWstOq8lA8OWK5mhB3ClNaO9d-g', name: 'Luồng SX 3',    category: 'production' },
-  sx4:  { id: '1mQg_VbbLBAk9vp7uh5vxqERp9vlqi9Mir8XCSVkNUAY', name: 'Luồng SX 4',    category: 'production' },
-  sx5:  { id: '1T3-6HTecivcBlFvRWY9mLXLi-eOAAKhjQQot8_bnIWs', name: 'Luồng SX 5',    category: 'production' },
-  sx6:  { id: '1WL6xm2LcTsUPdu_LhXZnkowbrfZ257kCR6H2xsqeOWI', name: 'Luồng SX 6',    category: 'production' },
-  sx7:  { id: '1BlC2VEl8fWTtApILaDBz_fLu40DzTOyckNhjB3-WcrM', name: 'Luồng SX 7',    category: 'production' },
-  sx8:  { id: '14Vud_u92iwY_V_4UXGEGBq4j5BykTRJBUIAxEjhxFSI', name: 'Luồng SX 8',    category: 'production' },
+  // Master sheet — đọc theo từng tab
+  sx:         { id: MASTER_SHEET_ID, name: 'Luồng SX',       category: 'production', tab: 'Luồng SX' },
+  production: { id: MASTER_SHEET_ID, name: 'Sản Xuất',       category: 'production', tab: 'SX' },
+  inventory:  { id: MASTER_SHEET_ID, name: 'Kho NVL',        category: 'warehouse',  tab: 'Kho' },
+  sales:      { id: MASTER_SHEET_ID, name: 'Doanh Thu',      category: 'sales',      tab: 'Doanh Thu' },
+  accounting: { id: MASTER_SHEET_ID, name: 'Kế Toán',        category: 'finance',    tab: 'KT' },
+  logistics:  { id: MASTER_SHEET_ID, name: 'Logistics',      category: 'logistics',  tab: 'Logistics' },
+  hr:         { id: MASTER_SHEET_ID, name: 'Nhân Sự',        category: 'hr',         tab: 'NS' },
+  dust:       { id: MASTER_SHEET_ID, name: 'Bụi Vàng',       category: 'production', tab: 'Bụi Vàng' },
+  orders:     { id: MASTER_SHEET_ID, name: 'Đơn Hàng',       category: 'sales',      tab: 'Đơn Hàng' },
 };
 
 // ── CACHE ─────────────────────────────────────────────────────────────────────
@@ -73,6 +80,13 @@ async function readSheet(sheetId, range = 'A1:Z200') {
     console.error(`[Sheets] Error reading ${sheetId}:`, err.message);
     throw err;
   }
+}
+
+
+// Helper: đọc theo tab name
+async function readSheetTab(sheetId, tabName, range = 'A1:Z500') {
+  const fullRange = tabName ? `${tabName}!${range}` : range;
+  return readSheet(sheetId, fullRange);
 }
 
 // ── GET SHEET META ────────────────────────────────────────────────────────────
