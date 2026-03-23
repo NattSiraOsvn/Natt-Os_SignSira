@@ -722,9 +722,12 @@ async function checkout(){
   const final = Math.max(0, sub-exch);
   const custName = document.getElementById('custName').value || 'Khách lẻ';
   const txId = `TL-${provider}-${Date.now().toString().slice(-6)}`;
-  const qrData = encodeURIComponent(JSON.stringify({orderId:txId,amount:final,provider}));
-  const color = {VNPAY:'005baa',MOMO:'ae2070',ZALOPAY:'00aaff'}[provider];
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${qrData}&bgcolor=ffffff&color=${color}`;
+  // VietQR chuẩn NAPAS — quét được mọi app ngân hàng VN
+  const BANK_CODE = '970415'; // Vietinbank
+  const BANK_ACC  = NattosPayment.CONFIG.bank.accountNo;
+  const BANK_NAME = encodeURIComponent(NattosPayment.CONFIG.bank.accountName);
+  const ckNote    = encodeURIComponent(`${txId} ${custName}`);
+  const qrUrl = `https://img.vietqr.io/image/${BANK_CODE}-${BANK_ACC}-compact2.png?amount=${Math.round(final)}&addInfo=${ckNote}&accountName=${BANK_NAME}`;
 
   currentOrder = { txId, amount:final, custName, provider, items:[...cart], exchange:[...exchangeItems] };
 
@@ -1153,5 +1156,7 @@ function handleGDBBuybackResult(result) {
 
 <script src="nattos-eod-engine.js"></script>
 <script src="nattos-fx.js"></script>
+
+<script src="nattos-payment.js"></script>
 </body>
 </html>

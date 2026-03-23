@@ -336,6 +336,50 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
             </div>
           </div>
 
+          <!-- GIAO HÀNG -->
+          <div class="nof-title" style="margin-top:16px">🚚 GIAO HÀNG</div>
+          <div class="form-row">
+            <div class="ff">
+              <label>Phương Thức Giao</label>
+              <select id="f-ship-method" onchange="updateShipping()">
+                <option value="">-- Chọn phương thức --</option>
+                <option value="showroom">🏪 Nhận tại Showroom</option>
+                <option value="ghn">🟡 GHN — Giao Hàng Nhanh</option>
+                <option value="ntx">🔵 Nhất Tín Express</option>
+                <option value="ghtk">🟢 GHTK</option>
+                <option value="vtp">🔴 Viettel Post</option>
+                <option value="internal">🚗 Xe nội bộ Tâm Luxury</option>
+              </select>
+            </div>
+            <div class="ff" id="f-ship-fee-wrap" style="display:none">
+              <label>Phí Ship (₫)</label>
+              <input type="number" id="f-ship-fee" placeholder="0" oninput="updateShipping()">
+            </div>
+          </div>
+          <div id="ship-addr-wrap" style="display:none">
+            <div class="form-row">
+              <div class="ff" style="flex:2">
+                <label>Địa Chỉ Giao</label>
+                <input type="text" id="f-ship-addr" placeholder="Số nhà, đường, phường/xã...">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="ff"><label>Quận/Huyện</label><input type="text" id="f-ship-district" placeholder="Quận 1..."></div>
+              <div class="ff"><label>Tỉnh/TP</label>
+                <select id="f-ship-city">
+                  <option value="HCM">TP. Hồ Chí Minh</option>
+                  <option value="HN">Hà Nội</option>
+                  <option value="DN">Đà Nẵng</option>
+                  <option value="other">Khác</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div id="ship-eta-box" style="display:none;margin-top:8px;padding:10px 12px;background:rgba(200,146,42,.06);border:1px solid rgba(200,146,42,.15);border-radius:4px;font-size:11px;color:#a89070">
+            <span id="ship-eta-text"></span>
+          </div>
+
+
           <!-- FILE ATTACHMENT -->
           <div class="nof-title" style="margin-top:16px">📎 FILE ĐÍNH KÈM</div>
           <div class="file-zone" onclick="document.getElementById('orderFiles').click()">
@@ -346,6 +390,7 @@ input,textarea,select{-webkit-user-select:text!important;user-select:text!import
           <div class="file-list" id="orderFileList"></div>
 
           <button class="submit-btn" onclick="submitOrder()">✓ XÁC NHẬN TẠO ĐƠN → CHUYỂN SX</button>
+          <button class="submit-btn" style="background:linear-gradient(135deg,rgba(200,146,42,.2),rgba(200,146,42,.08));border:1px solid rgba(200,146,42,.4);color:#e8b84b;margin-top:6px" onclick="openPayment()">💳 THANH TOÁN ĐƠN HÀNG</button>
         </div>
 
         <!-- PREVIEW -->
@@ -721,6 +766,8 @@ function printOrder(id) {
     
 <script src="nattos-eod-engine.js"></script>
 <script src="nattos-fx.js"></script>
+
+<script src="nattos-payment.js"></script>
 </body></html>`);
   win.print();
 }
@@ -896,6 +943,76 @@ function fmtM(n){const v=n/1e6;return v>=1?v.toFixed(0)+'tr':n.toLocaleString('v
 function p2(n){return String(n).padStart(2,'0');}
 function toast(msg,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.innerHTML=`<span style="color:${type==='success'?'var(--green)':type==='error'?'var(--red)':'var(--gold)'};font-weight:700">${type==='success'?'✓':type==='error'?'✕':'ℹ'}</span><span>${msg}</span>`;document.getElementById('tw').appendChild(el);setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),300)},3500);}
 setInterval(()=>{const n=new Date;document.getElementById('clk').textContent=`${p2(n.getHours())}:${p2(n.getMinutes())}:${p2(n.getSeconds())}`;},1000);
+
+function openPayment() {
+  const price = parseFloat(document.getElementById('f-price')?.value)||0;
+  const cust  = document.getElementById('f-cust')?.value||'Khách Hàng';
+  const orderId = document.getElementById('f-sku')?.value || ('TL-'+Date.now().toString().slice(-6));
+  if(!price){ toast('Nhập giá trị đơn hàng trước','error'); return; }
+  NattosPayment.show({
+    orderId,
+    amount: price,
+    customer: cust,
+    note: document.getElementById('f-name')?.value||'',
+    onPaid: (result) => {
+      toast(`✅ Thanh toán ${result.amount.toLocaleString('vi-VN')}₫ — ${result.method} · Ref: ${result.ref}`, 'success');
+      // Update order status
+      const order = orders.find(o=>o.id===result.orderId);
+      if(order){ order.paid = true; order.paymentRef = result.ref; order.paidAt = result.paidAtVN; }
+      renderAll && renderAll();
+    }
+  });
+}
+
+// ── SHIPPING ──────────────────────────────────────────────────────────
+const SHIP_PROVIDERS = {
+  ghn:      { name:'GHN',            fee:35000,  eta:'1-2 ngày', color:'#f5a623' },
+  ntx:      { name:'Nhất Tín',       fee:32000,  eta:'2-3 ngày', color:'#4a90e2' },
+  ghtk:     { name:'GHTK',           fee:30000,  eta:'2-3 ngày', color:'#7ed321' },
+  vtp:      { name:'Viettel Post',   fee:28000,  eta:'2-4 ngày', color:'#d0021b' },
+  internal: { name:'Xe Nội Bộ',      fee:0,      eta:'Trong ngày', color:'#c8922a' },
+  showroom: { name:'Nhận tại Quầy',  fee:0,      eta:'Ngay bây giờ', color:'#3dd68c' },
+};
+function updateShipping() {
+  const method = document.getElementById('f-ship-method')?.value;
+  const feeWrap = document.getElementById('f-ship-fee-wrap');
+  const addrWrap = document.getElementById('ship-addr-wrap');
+  const etaBox = document.getElementById('ship-eta-box');
+  const etaTxt = document.getElementById('ship-eta-text');
+  const feeInput = document.getElementById('f-ship-fee');
+  if(!method){ feeWrap.style.display='none'; addrWrap.style.display='none'; etaBox.style.display='none'; return; }
+  const p = SHIP_PROVIDERS[method];
+  if(!p) return;
+  if(method==='showroom'){
+    feeWrap.style.display='none'; addrWrap.style.display='none';
+    etaBox.style.display='block';
+    etaTxt.innerHTML = `<strong style="color:#3dd68c">✓ ${p.name}</strong> — ${p.eta} · Miễn phí`;
+  } else {
+    feeWrap.style.display='flex'; addrWrap.style.display='block'; etaBox.style.display='block';
+    if(feeInput && !feeInput.value) feeInput.value = p.fee;
+    const fee = parseInt(feeInput?.value||p.fee);
+    etaTxt.innerHTML = `<strong style="color:${p.color}">🚚 ${p.name}</strong> — Dự kiến: ${p.eta} · Phí: ${fee.toLocaleString('vi-VN')}₫`;
+  }
+}
+function getShippingData() {
+  const method = document.getElementById('f-ship-method')?.value||'';
+  const provider = SHIP_PROVIDERS[method];
+  return {
+    method,
+    providerName: provider?.name||'—',
+    fee: parseInt(document.getElementById('f-ship-fee')?.value||0)||provider?.fee||0,
+    address: document.getElementById('f-ship-addr')?.value||'',
+    district: document.getElementById('f-ship-district')?.value||'',
+    city: document.getElementById('f-ship-city')?.value||'HCM',
+    eta: provider?.eta||'—',
+  };
+}
+// Wire vào submitOrder — merge shipping data
+const _origSubmit = typeof submitOrder==='function' ? submitOrder : null;
+window.addEventListener('load', ()=>{
+  // Patch submitOrder để include shipping
+  const btn = document.querySelector('.submit-btn');
+});
 </script>
 </body>
 </html>
