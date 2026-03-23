@@ -35,22 +35,31 @@ function getAuth() {
 }
 
 // ── SHEET IDs CONFIG ──────────────────────────────────────────────────────────
-// ── MASTER SHEET — Luồng SX (gộp tất cả tabs) ──
-// Sheet ID: 1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg
-// Anh Natt gộp 8 sheets → 1 master sheet nhiều tabs
-const MASTER_SHEET_ID = '1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg';
 
+
+const MASTER_SHEET_ID = '1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg';
 const SHEETS = {
-  // Master sheet — đọc theo từng tab
-  sx:         { id: MASTER_SHEET_ID, name: 'Luồng SX',       category: 'production', tab: 'Luồng SX' },
-  production: { id: MASTER_SHEET_ID, name: 'Sản Xuất',       category: 'production', tab: 'SX' },
-  inventory:  { id: MASTER_SHEET_ID, name: 'Kho NVL',        category: 'warehouse',  tab: 'Kho' },
-  sales:      { id: MASTER_SHEET_ID, name: 'Doanh Thu',      category: 'sales',      tab: 'Doanh Thu' },
-  accounting: { id: MASTER_SHEET_ID, name: 'Kế Toán',        category: 'finance',    tab: 'KT' },
-  logistics:  { id: MASTER_SHEET_ID, name: 'Logistics',      category: 'logistics',  tab: 'Logistics' },
-  hr:         { id: MASTER_SHEET_ID, name: 'Nhân Sự',        category: 'hr',         tab: 'NS' },
-  dust:       { id: MASTER_SHEET_ID, name: 'Bụi Vàng',       category: 'production', tab: 'Bụi Vàng' },
-  orders:     { id: MASTER_SHEET_ID, name: 'Đơn Hàng',       category: 'sales',      tab: 'Đơn Hàng' },
+  dh_phu_luc:   { id: MASTER_SHEET_ID, name: 'Phụ Lục ĐH',        category: 'orders',     tab: 'ĐIỀU PHỐI __PHỤ LỤC' },
+  dh_uyen:      { id: MASTER_SHEET_ID, name: 'ĐH Uyên',            category: 'orders',     tab: 'ĐIỀU PHỐI __ĐH UYÊN' },
+  qtsx:         { id: MASTER_SHEET_ID, name: 'QTSX',               category: 'production', tab: 'ĐIỀU PHỐI __QTSX' },
+  dh_hangngay:  { id: MASTER_SHEET_ID, name: 'ĐH Hàng Ngày',      category: 'orders',     tab: 'ĐIỀU PHỐI __ĐH hàng ngày' },
+  giao_nhan:    { id: MASTER_SHEET_ID, name: 'Giao Nhận',          category: 'logistics',  tab: 'ĐIỀU PHỐI __BÁO CÁO GIAO NHẬN' },
+  tong_hop_cho: { id: MASTER_SHEET_ID, name: 'Tổng Hợp Chờ',      category: 'orders',     tab: 'ĐIỀU PHỐI __TỔNG HỢP CHỜ' },
+  da_chu:       { id: MASTER_SHEET_ID, name: 'Đá Chủ',             category: 'production', tab: 'ĐIỀU PHỐI __Đá Chủ' },
+  psx_tong_hop: { id: MASTER_SHEET_ID, name: 'PSX Tổng Hợp',      category: 'production', tab: 'PSX- THEO __Tổng Hợp' },
+  psx_phu_luc:  { id: MASTER_SHEET_ID, name: 'PSX Phụ Lục',       category: 'production', tab: 'PSX- THEO __Phụ Lục' },
+  psx_data:     { id: MASTER_SHEET_ID, name: 'PSX Data',          category: 'production', tab: 'PSX- THEO __Data Nguồn' },
+  system_log:   { id: MASTER_SHEET_ID, name: 'System Log',        category: 'system',     tab: 'SYSTEM_LOG' },
+  data_map:     { id: MASTER_SHEET_ID, name: 'Data Map',          category: 'system',     tab: '_DATA_MAP' },
+  can_hangngay:  { id: MASTER_SHEET_ID, name: 'Cân Hàng Ngày',      category: 'surveillance', tab: 'PSX- THEO __Cân Hàng Ngày' },
+  can_ngulieu:   { id: MASTER_SHEET_ID, name: 'Cân Nguyên Liệu',    category: 'surveillance', tab: 'PSX- THEO __Cân Nguyên Liệu' },
+  giao_nhan_tho: { id: MASTER_SHEET_ID, name: 'Giao Nhận Thợ',      category: 'surveillance', tab: 'PSX- THEO __Giao Nhận Thợ Nguội' },
+  bao_cao_thang: { id: MASTER_SHEET_ID, name: 'Báo Cáo Tháng',    category: 'surveillance', tab: 'PSX- THEO __BÁO CÁO THÁNG' },
+  so_giao_tho:   { id: MASTER_SHEET_ID, name: 'Sổ Giao Thợ',      category: 'surveillance', tab: 'PSX- THEO __SỔ GIAO THỢ' },
+  xoan_master:   { id: MASTER_SHEET_ID, name: 'Danh Sách Xoàn',   category: 'surveillance', tab: 'MR. TIẾN __DANH SÁCH XOÀN' },
+  so_gt_09:      { id: MASTER_SHEET_ID, name: 'Sổ GT T9/2025',    category: 'surveillance', tab: 'PSX- THEO __09-2025 SỔ GIAO THỢ' },
+  so_gt_08:      { id: MASTER_SHEET_ID, name: 'Sổ GT T8/2025',    category: 'surveillance', tab: 'PSX- THEO __08-2025 SỔ GIAO THỢ' },
+  data_giao_nhan:{ id: MASTER_SHEET_ID, name: 'Data Giao Nhận',     category: 'surveillance', tab: 'PSX- THEO __Data Giao Nhận' },
 };
 
 // ── CACHE ─────────────────────────────────────────────────────────────────────
@@ -269,6 +278,31 @@ app.post('/api/cache/clear', (req, res) => {
   const count = Object.keys(cache).length;
   Object.keys(cache).forEach(k => delete cache[k]);
   res.json({ ok: true, cleared: count });
+});
+
+
+// ── LOCAL XLSX READER ────────────────────────────────────────────────────
+const XLSX_PKG = (() => { try { return require('xlsx'); } catch { return null; } })();
+const XLSX_FILE = require('path').join(__dirname, 'line-production.xlsx');
+
+app.get('/api/local/:tabName', (req, res) => {
+  if (!XLSX_PKG) return res.status(500).json({ error: 'npm install xlsx' });
+  const fs2 = require('fs');
+  if (!fs2.existsSync(XLSX_FILE)) return res.status(404).json({ error: 'File không tìm thấy', path: XLSX_FILE });
+  
+  const tabName = decodeURIComponent(req.params.tabName);
+  const wb = XLSX_PKG.readFile(XLSX_FILE);
+  
+  if (tabName === '_list') return res.json({ sheets: wb.SheetNames, total: wb.SheetNames.length });
+  
+  const found = wb.SheetNames.find(s =>
+    s === tabName || s.includes(tabName) || tabName.includes(s.replace(/[\[\]]/g,'').trim())
+  );
+  if (!found) return res.status(404).json({ error: `Không tìm thấy: ${tabName}`, available: wb.SheetNames });
+  
+  const data = XLSX_PKG.utils.sheet_to_json(wb.Sheets[found], { header:1, defval:'' });
+  const records = data.slice(1).filter(r => r.some(c => c !== ''));
+  res.json({ tab: found, rows: data.length, headers: data[0]||[], records: records.slice(0,100), total_records: records.length });
 });
 
 // ── START ──────────────────────────────────────────────────────────────────────
