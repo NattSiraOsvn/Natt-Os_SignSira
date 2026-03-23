@@ -195,15 +195,11 @@ function upgradeElements() {
     el.classList.add('nfx-hover-lift', 'nfx-hover-glow');
   });
 
-  // Tables → nfx-table
-  document.querySelectorAll('.tbl, table').forEach(el => {
-    el.classList.add('nfx-table');
-  });
+  // Tables — skip auto upgrade
+  // document.querySelectorAll('.tbl, table').forEach(el => el.classList.add('nfx-table'));
 
-  // Inputs
-  document.querySelectorAll('input:not([type=file]):not([type=checkbox]):not([type=radio]), select, textarea').forEach(el => {
-    el.classList.add('nfx-input');
-  });
+  // Inputs — skip để tránh conflict với app CSS hiện có
+  // document.querySelectorAll('input, select, textarea').forEach(el => el.classList.add('nfx-input'));
 }
 
 // ── MAIN INIT ─────────────────────────────────────────────────────────────
