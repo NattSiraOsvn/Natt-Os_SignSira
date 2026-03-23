@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tâm Luxury · NATT-OS</title>
-<link rel="stylesheet" href="nattos-ui-theme.css">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -131,7 +130,7 @@ body{background-image:radial-gradient(ellipse at 20% 20%,rgba(200,146,42,.06) 0%
   <div class="hero-title">NATT-OS</div>
   <div class="hero-sub">Hệ thống vận hành Tâm Luxury — Phân phối cho toàn bộ nhân sự. Chọn ứng dụng phù hợp với vai trò của bạn.</div>
   <div class="hero-stats">
-    <div class="hs-item"><div class="hs-v">17</div><div class="hs-l">Ứng Dụng</div></div>
+    <div class="hs-item"><div class="hs-v">15</div><div class="hs-l">Ứng Dụng</div></div>
     <div class="hs-item"><div class="hs-v">130</div><div class="hs-l">Nhân Sự</div></div>
     <div class="hs-item"><div class="hs-v">2</div><div class="hs-l">Chi Nhánh</div></div>
     <div class="hs-item"><div class="hs-v">TSC=0</div><div class="hs-l">Build Status</div></div>
@@ -162,10 +161,6 @@ body{background-image:radial-gradient(ellipse at 20% 20%,rgba(200,146,42,.06) 0%
     <a class="qa-btn" href="chat-rooms.html">💬 Chat</a>
     <a class="qa-btn" href="personal-profile-v2.html">👤 Hồ Sơ</a>
     <a class="qa-btn" href="attendance.html">🕐 Chấm Công</a>
-    <a class="qa-btn" href="hr-admin.html">🎯 HR Admin</a>
-    <a class="qa-btn" href="kris-email-hub.html">📧 Kris Mail</a>
-    <a class="qa-btn" href="hr-admin.html">🎯 HR Admin</a>
-    <a class="qa-btn" href="kris-email-hub.html">📧 Kris Mail</a>
     <a class="qa-btn" href="master-dashboard.html">👑 CEO</a>
   </div>
 </div>
@@ -267,14 +262,7 @@ const APPS = [
   {
     group:'NHÂN SỰ & TÀI CHÍNH', icon:'👤', name:'Hồ Sơ Cá Nhân',
     desc:'Hồ sơ NV, ảnh đại diện, lương PIT, hợp đồng ký số, eTax/VNeID/BHXH, file đính kèm',
-    file:'personal-profile-v2.html'
-  },
-  {
-    group:'NHÂN SỰ & TÀI CHÍNH', icon:'🎯', name:'HR Admin',
-    desc:'Tuyển dụng, công việc hành chính, phúc lợi tháng, hồ sơ hợp đồng, kỷ luật',
-    file:'hr-admin.html', roles:['hr','management'],
-    tags:[{l:'HR Admin',c:'var(--purple)','b':'rgba(167,139,250,.1)'},{l:'Mới',c:'var(--green)','b':'rgba(61,214,140,.1)'}],
-    accent:'var(--purple)', status:'green',, roles:['sale','warehouse','factory','hr','management'],
+    file:'personal-profile-v2.html', roles:['sale','warehouse','factory','hr','management'],
     tags:[{l:'Tất Cả',c:'var(--green)','b':'rgba(61,214,140,.1)'}],
     accent:'var(--green)', status:'green',
   },
@@ -302,9 +290,9 @@ const APPS = [
     accent:'var(--blue)', status:'green',
   },
   {
-    group:'BAN QUẢN LÝ', icon:'🧬', name:'Kris Email Hub',
-    desc:'Phân tích email cty tự động — Wave 3, cell health, SmartLink, QNEU',
-    file:'kris-email-hub.html', roles:['management'],
+    group:'BAN QUẢN LÝ', icon:'🧬', name:'NaUion Monitor',
+    desc:'Monitoring hệ thống NATT-OS — Wave 3, cell health, SmartLink, QNEU',
+    file:'nauion-v9.html', roles:['management'],
     tags:[{l:'MASTER',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'System',c:'var(--amber)','b':'rgba(240,160,48,.1)'}],
     accent:'var(--purple)', status:'green',
   },
