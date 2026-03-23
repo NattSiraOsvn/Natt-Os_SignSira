@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v2.0
+# NATT-OS SmartAudit v3.0
 # Author: Băng — Ground Truth Validator
 # Usage:  bash smartAudit.sh [--json] [--full]
 #         Chạy từ root natt-os ver2goldmaster
@@ -50,7 +50,7 @@ echo "  ██║╚██╗██║██╔══██║   ██║      
 echo "  ██║ ╚████║██║  ██║   ██║      ██║         ╚██████╔╝███████║"
 echo "  ╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝      ╚═╝          ╚═════╝ ╚══════╝"
 echo -e "${N}"
-echo -e "  ${W}SmartAudit v2.0 — $TS${N}"
+echo -e "  ${W}SmartAudit v3.0 — $TS${N}"
 echo -e "  Root: $ROOT"
 
 # ═══════════════════════════════════════════════════════════════
@@ -589,30 +589,30 @@ else
     ((APP_TOTAL++)) || true
 
     LINES=$(wc -l < "$fpath" | tr -d ' ')
-    HAS_LOGIN=$(grep -c "doLogin\b" "$fpath" 2>/dev/null || echo 0)
-    HAS_RENDER=$(grep -cE "renderAll|renderGrid|renderList|tbody|\.innerHTML\s*=" "$fpath" 2>/dev/null || echo 0)
-    HAS_PAYMENT=$(grep -ciE "payment|thanh.to[aá]n|qr.code|vietqr|checkout|chuyen.khoan|zalopay" "$fpath" 2>/dev/null || echo 0)
-    HAS_SHIP=$(grep -ciE "GHN|Nh[aâ]t.T[ií]n|GHTK|Viettel.Post|van.chuyen|shipping|logistics" "$fpath" 2>/dev/null || echo 0)
-    HAS_EOD=$(grep -c "nattos-eod-engine" "$fpath" 2>/dev/null || echo 0)
-    HAS_THEME=$(grep -c "nattos-ui-theme" "$fpath" 2>/dev/null || echo 0)
-    HAS_FX=$(grep -c "nattos-fx" "$fpath" 2>/dev/null || echo 0)
+    HAS_LOGIN=$(grep -c "doLogin" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
+    HAS_RENDER=$(grep -cE "renderAll|renderGrid|renderList|tbody|innerHTML" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
+    HAS_PAYMENT=$(grep -ci "payment\|thanh toán\|vietqr\|checkout\|zalopay\|QR" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
+    HAS_SHIP=$(grep -ci "GHN\|Nhất Tín\|GHTK\|Viettel Post\|logistics" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
+    HAS_EOD=$(grep -c "nattos-eod-engine" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
+    HAS_THEME=$(grep -c "nattos-ui-theme" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
+    HAS_FX=$(grep -c "nattos-fx" "$fpath" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
 
     # Status
     IS_OK=true
-    [[ "$HAS_LOGIN" -eq 0 ]] && { IS_OK=false; APP_NO_LOGIN+=("$fname"); }
-    [[ "$HAS_RENDER" -eq 0 ]] && { IS_OK=false; APP_NO_RENDER+=("$fname"); }
-    [[ "$HAS_EOD" -eq 0 ]] && { IS_OK=false; APP_NO_EOD+=("$fname"); }
+    [ "${HAS_LOGIN:-0}" -eq 0 ] && { IS_OK=false; APP_NO_LOGIN+=("$fname"); }
+    [ "${HAS_RENDER:-0}" -eq 0 ] && { IS_OK=false; APP_NO_RENDER+=("$fname"); }
+    [ "${HAS_EOD:-0}" -eq 0 ] && { IS_OK=false; APP_NO_EOD+=("$fname"); }
 
     ICON="✅"
     $IS_OK && ((APP_OK++)) || { ICON="⚠️ "; ((APP_WARN++)) || true; }
 
-    L_COLOR=$G; [[ "$HAS_LOGIN" -eq 0 ]] && L_COLOR=$R
-    R_COLOR=$G; [[ "$HAS_RENDER" -eq 0 ]] && R_COLOR=$R
-    P_COLOR=$G; [[ "$HAS_PAYMENT" -eq 0 ]] && P_COLOR=$Y
-    S_COLOR=$G; [[ "$HAS_SHIP" -eq 0 ]] && S_COLOR=$Y
-    E_COLOR=$G; [[ "$HAS_EOD" -eq 0 ]] && E_COLOR=$R
-    T_COLOR=$G; [[ "$HAS_THEME" -eq 0 ]] && T_COLOR=$R
-    X_COLOR=$G; [[ "$HAS_FX" -eq 0 ]] && X_COLOR=$R
+    L_COLOR=$G; [ "${HAS_LOGIN:-0}" -eq 0 ] && L_COLOR=$R
+    R_COLOR=$G; [ "${HAS_RENDER:-0}" -eq 0 ] && R_COLOR=$R
+    P_COLOR=$G; [ "${HAS_PAYMENT:-0}" -eq 0 ] && P_COLOR=$Y
+    S_COLOR=$G; [ "${HAS_SHIP:-0}" -eq 0 ] && S_COLOR=$Y
+    E_COLOR=$G; [ "${HAS_EOD:-0}" -eq 0 ] && E_COLOR=$R
+    T_COLOR=$G; [ "${HAS_THEME:-0}" -eq 0 ] && T_COLOR=$R
+    X_COLOR=$G; [ "${HAS_FX:-0}" -eq 0 ] && X_COLOR=$R
 
     printf "  ${ICON} %-36s %5s ${L_COLOR}%6s${N} ${R_COLOR}%7s${N} ${P_COLOR}%4s${N} ${S_COLOR}%5s${N} ${E_COLOR}%4s${N} ${T_COLOR}%5s${N} ${X_COLOR}%4s${N}\n" \
       "$fname" "$LINES" \
@@ -655,16 +655,16 @@ else
       fi
     done < <(grep -oE "file:'[^']+\.html'" "$UI_APP_DIR/index.html")
 
-    HAS_FX_IDX=$(grep -c "nattos-fx" "$UI_APP_DIR/index.html" 2>/dev/null || echo 0)
+    HAS_FX_IDX=$(grep -c "nattos-fx" "$UI_APP_DIR/index.html" 2>/dev/null | tail -1 | tr -d " \n" || echo 0)
 
     ok "index.html: $IDX_APPS apps registered"; inc_ok
-    if [[ "$IDX_BROKEN" -gt 0 ]]; then
+    if [ "${IDX_BROKEN:-0}" -gt 0 ]; then
       fail "Broken links in index: $IDX_BROKEN → ${IDX_BROKEN_LIST[*]}"
       inc_fail "UI_APP: ${IDX_BROKEN_LIST[*]} referenced but missing"
     else
       ok "Tất cả app links valid"; inc_ok
     fi
-    [[ "$HAS_FX_IDX" -gt 0 ]] && { ok "nattos-fx.js in index"; inc_ok; } || { warn "nattos-fx.js MISSING từ index.html"; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
+    [ "${HAS_FX_IDX:-0}" -gt 0 ] && { ok "nattos-fx.js in index"; inc_ok; } || { warn "nattos-fx.js MISSING từ index.html"; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
   else
     fail "index.html MISSING"; inc_fail "UI_APP: index.html not found"
   fi
@@ -680,7 +680,7 @@ else
   fi
   if [[ -f ".dockerignore" ]]; then
     DOCKI_SDK=$(grep -c "google-cloud-sdk" .dockerignore 2>/dev/null || echo 0)
-    [[ "$DOCKI_SDK" -gt 0 ]] && { ok ".dockerignore excludes google-cloud-sdk"; inc_ok; } || { warn ".dockerignore MISSING google-cloud-sdk exclusion → 1.3GB build"; inc_warn "UI_APP: .dockerignore thiếu exclude sdk"; }
+    [ "${DOCKI_SDK:-0}" -gt 0 ] && { ok ".dockerignore excludes google-cloud-sdk"; inc_ok; } || { warn ".dockerignore MISSING google-cloud-sdk exclusion → 1.3GB build"; inc_warn "UI_APP: .dockerignore thiếu exclude sdk"; }
   else
     warn ".dockerignore: MISSING"; inc_warn "UI_APP: .dockerignore missing"
   fi
@@ -701,7 +701,7 @@ else
   info "GSheets server: $SHEETS_SERVER"
   info "SA Key: $SA_KEY"
 
-  [[ "$PAY_COUNT" -lt 3 ]] && { warn "Ít app có payment ($PAY_COUNT) — cần thêm QR/CK"; inc_warn "UI_APP: thiếu payment feature"; }
+  [ "${PAY_COUNT:-0}" -lt 3 ] && { warn "Ít app có payment ($PAY_COUNT) — cần thêm QR/CK"; inc_warn "UI_APP: thiếu payment feature"; }
   [[ "$SURV_FILE" == "EXISTS" && "$SHEETS_SERVER" == "EXISTS" ]] && { ok "Surveillance stack ready"; inc_ok; }
 
 fi  # end UI_APP_DIR check
