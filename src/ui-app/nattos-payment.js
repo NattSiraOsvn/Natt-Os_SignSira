@@ -21,9 +21,16 @@ const NattosPayment = (() => {
 const CONFIG = {
   bank: {
     name:      'Vietinbank',
-    bankCode:  '970415',          // Mã ngân hàng VietQR
-    accountNo: '108002580xxx',    // ← Anh điền TK thật vào đây
-    accountName: 'CONG TY TNHH VAT BAC DA QUY TAM LUXURY',
+    bankCode:  '970415',
+  },
+  bank2: {
+    name:        'Vietcombank',
+    bankCode:    '970436',
+    accountNo:   '1770129999',
+    accountName: 'CONG TY TNHH TAM LUXURY',
+    branch:      'Chi Nhanh Ho Chi Minh',,          // Mã ngân hàng VietQR
+    accountNo: '110604776999',    // ← Anh điền TK thật vào đây
+    accountName: 'CONG TY TNHH TAM LUXURY',
     branch:    'Chi Nhánh Hồ Chí Minh',
   },
   zaloPayUrl: 'https://zalopay.vn/qr-code/', // deeplink
