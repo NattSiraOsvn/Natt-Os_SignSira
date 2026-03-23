@@ -361,7 +361,6 @@ img{-webkit-user-drag:none;pointer-events:none}
           <input type="file" id="gdbFileInput" accept="image/*,.pdf" style="display:none" onchange="processGDBFile(this,'exchange')">
         </div>
         <div id="gdbExchangeResult"></div>
-        <button class="exch-scan-btn" onclick="scanGDB()" style="margin-top:6px">🎲 Demo scan (mock data)</button>
         <button class="bb-btn" onclick="triggerBuybackUpload()">💰 Thu Mua Lại SP — Upload GDB</button>
         <input type="file" id="gdbBuybackInput" accept="image/*,.pdf" style="display:none" onchange="processGDBFile(this,'buyback')">
         <div id="exchangeItems"></div>
@@ -705,20 +704,7 @@ function renderCart(){
 // ═══════════════════════════════════════════════════
 // EXCHANGE / GDB SCAN
 // ═══════════════════════════════════════════════════
-function scanGDB(){
-  // Simulate GDB scan — trong thực tế sẽ đọc file ảnh + parse local
-  const mockData = [
-    {name:'Nhẫn Nữ 18K - Cert TL2023-001', value: 8500000, rate:90},
-    {name:'Lắc Nữ 14K - Cert TL2022-088', value: 5200000, rate:85},
-    {name:'Dây Nam 18K - Cert TL2024-055', value: 12000000, rate:90},
-  ];
-  const picked = mockData[Math.floor(Math.random()*mockData.length)];
-  exchangeItems.push(picked);
-  renderCart();
-  toast(`✓ GDB scan: ${picked.name} — Thu ${picked.rate}% = ${fmt(picked.value)}`,'success');
-  Ledger.append('TRANSACTION', currentUser.code, currentUser.name,
-    'GDB_EXCHANGE_SCAN', {item:picked.name, value:picked.value});
-}
+function scanGDB(){ toast("Scan bằng cách upload file GDB thật","info"); }
 
 // ═══════════════════════════════════════════════════
 // PAYMENT
@@ -1068,20 +1054,8 @@ async function processGDBFile(input, mode) {
 }
 
 function mockGDBFromFilename(name) {
-  const n = name.toLowerCase();
-  return {
-    cert: 'TL2024-' + Math.floor(Math.random()*9000+1000),
-    customer: 'Khách Hàng (từ file: '+name.slice(0,20)+')',
-    phone: '0901234567',
-    productName: n.includes('nhan') ? 'Nhẫn Nữ 18K' : n.includes('lac') ? 'Lắc Tennis 18K' : 'Trang Sức 18K',
-    goldType: '18K', goldLabel: 'Vàng 18K (750)',
-    weight: 2.5, buyRate: 0.88,
-    purchasePrice: 42000000,
-    purchaseDate: '01/2024',
-    stoneSpec: 'Kim cương 5ly (est.)',
-    buybackPolicy: 20, exchangePolicy: 10,
-    confidence: 55,
-  };
+  // Không dùng mock — yêu cầu scan file thật
+  return { productName:'', goldType:'', weight:0, purchaseDate:'', price:0, buybackPolicy:0 };
 }
 
 function handleGDBExchangeResult(result) {
