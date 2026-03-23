@@ -33,3 +33,8 @@ test/
 src/cells/business.zip
 *.numbers
 .DS_Store
+
+# Google Service Account Keys — NEVER commit
+*.json
+nattos-sheets-server/nattos-google-sa.json
+sys-*.json

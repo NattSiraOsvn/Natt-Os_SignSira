@@ -1,53 +1,358 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>natt-os: absolute lowercase</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --midnight: #050505;
-            --gold: #ffd700;
-        }
-        body {
-            margin: 0; padding: 0;
-            background: var(--midnight);
-            color: #ffffff;
-            font-family: 'plus jakarta sans', sans-serif;
-            overflow: hidden;
-            width: 100vw; height: 100vh;
-            text-transform: lowercase;
-        }
-        .gold-gradient {
-            background: linear-gradient(135deg, #ffd700 0%, #ffc107 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        * { text-transform: lowercase !important; }
-    </style>
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.0.0?exports=useState:usestate,useEffect:useeffect,useMemo:usememo,useCallback:usecallback,createElement:create_element,StrictMode:strict_mode",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?exports=createRoot:create_root",
-    "lucide-react": "https://esm.sh/lucide-react@0.469.0?exports=Shield:shield,Activity:activity,Database:database,Lock:lock,Layers:layers,Fingerprint:fingerprint,Bell:bell,CircleCheck:circle_check",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
-    "recharts": "https://esm.sh/recharts@^3.7.0",
-    "xlsx": "https://esm.sh/xlsx@^0.18.5",
-    "framer-motion": "https://esm.sh/framer-motion@^12.29.2",
-    "uuid": "https://esm.sh/uuid@^13.0.0"
-  }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tâm Luxury · NATT-OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a0d;--bg2:#0d1017;--bg3:#121820;
+  --gold:#c8922a;--gold2:#e8b84b;--gold3:#f5d080;
+  --border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.28);
+  --text:#ede0c8;--text2:#a89070;--text3:#60503a;
+  --green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;--purple:#a78bfa;--teal:#2dd4bf;
+  --mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif;
 }
-</script>
-<link rel="stylesheet" href="/index.css">
+html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px}
+body{background-image:radial-gradient(ellipse at 20% 20%,rgba(200,146,42,.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(45,212,191,.04) 0%,transparent 50%)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(200,146,42,.2);border-radius:2px}
+
+/* HEADER */
+.header{padding:32px 40px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,rgba(200,146,42,.2),rgba(200,146,42,.05));border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:24px}
+.brand-name{font-family:var(--mono);font-size:20px;font-weight:500;background:linear-gradient(135deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.08em}
+.brand-sub{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.2em;text-transform:uppercase;margin-top:2px}
+.header-right{display:flex;align-items:center;gap:14px}
+.sys-status{display:flex;align-items:center;gap:6px;padding:6px 12px;background:rgba(61,214,140,.08);border:1px solid rgba(61,214,140,.15);border-radius:20px;font-family:var(--mono);font-size:10px;color:var(--green)}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;box-shadow:0 0 8px rgba(61,214,140,.5)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.version{font-family:var(--mono);font-size:10px;color:var(--text3)}
+.time-display{font-family:var(--mono);font-size:12px;color:var(--text2);padding:6px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:3px}
+
+/* HERO */
+.hero{padding:40px 40px 32px;text-align:center;position:relative}
+.hero::after{content:'';position:absolute;bottom:0;left:40px;right:40px;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.hero-title{font-family:var(--mono);font-size:42px;font-weight:500;background:linear-gradient(135deg,var(--gold3) 0%,var(--gold2) 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-.02em;margin-bottom:10px}
+.hero-sub{font-size:14px;color:var(--text2);max-width:600px;margin:0 auto;line-height:1.6}
+.hero-stats{display:flex;justify-content:center;gap:32px;margin-top:24px}
+.hs-item{text-align:center}
+.hs-v{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--gold2)}
+.hs-l{font-size:10px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+
+/* SEARCH */
+.search-wrap{padding:24px 40px;display:flex;gap:10px}
+.search-input{flex:1;max-width:480px;background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:11px 16px;font-size:13px;border-radius:4px;outline:none;font-family:var(--sans)}
+.search-input:focus{border-color:var(--gold2)}
+.search-input::placeholder{color:var(--text3)}
+.role-filter{background:var(--bg2);border:1px solid var(--border);color:var(--text2);padding:11px 14px;font-size:12px;border-radius:4px;outline:none;cursor:pointer}
+.role-filter option{background:var(--bg2)}
+
+/* APP GRID */
+.apps-wrap{padding:0 40px 48px}
+.group-title{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--text3);text-transform:uppercase;padding:20px 0 10px;display:flex;align-items:center;gap:10px}
+.group-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:8px}
+.app-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:18px;cursor:pointer;transition:all .18s;text-decoration:none;display:block;position:relative;overflow:hidden}
+.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:6px 6px 0 0;background:var(--accent-color,var(--gold))}
+.app-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.app-card:active{transform:translateY(-1px)}
+.app-icon{font-size:28px;margin-bottom:10px;display:block}
+.app-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.app-desc{font-size:11px;color:var(--text3);line-height:1.5;margin-bottom:10px}
+.app-tags{display:flex;flex-wrap:wrap;gap:4px}
+.app-tag{font-family:var(--mono);font-size:8px;padding:2px 6px;border-radius:2px;font-weight:500}
+.app-card.disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
+.app-card.disabled::after{content:'Sắp Có';position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:8px;padding:2px 7px;background:var(--bg3);border:1px solid var(--border);border-radius:2px;color:var(--text3)}
+.app-status{position:absolute;top:12px;right:14px;width:8px;height:8px;border-radius:50%}
+
+/* QUICK ACCESS */
+.quick-access{padding:0 40px 24px}
+.qa-title{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--text3);text-transform:uppercase;margin-bottom:10px}
+.qa-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.qa-btn{padding:7px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--text2);cursor:pointer;white-space:nowrap;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.qa-btn:hover{border-color:var(--border2);color:var(--text)}
+
+/* FOOTER */
+.footer{padding:20px 40px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-left{font-family:var(--mono);font-size:10px;color:var(--text3)}
+.footer-right{display:flex;gap:14px;font-family:var(--mono);font-size:10px;color:var(--text3)}
+
+/* NO RESULT */
+.no-result{padding:60px;text-align:center;color:var(--text3);font-size:12px;display:none}
+</style>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
-<script type="module" src="/index.tsx"></script>
+
+<header class="header">
+  <div class="brand">
+    <div class="brand-logo" style="background:none;border:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 104" width="44" height="38">
+        <defs>
+          <linearGradient id="gd1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f5d080"/>
+            <stop offset="50%" style="stop-color:#e8b84b"/>
+            <stop offset="100%" style="stop-color:#c8922a"/>
+          </linearGradient>
+        </defs>
+        <polygon points="60,2 18,34 38,2" fill="url(#gd1)" opacity=".92"/>
+        <polygon points="60,2 102,34 82,2" fill="url(#gd1)" opacity=".92"/>
+        <polygon points="38,2 60,2 52,34 18,34" fill="url(#gd1)" opacity=".68"/>
+        <polygon points="60,2 82,2 102,34 68,34" fill="url(#gd1)" opacity=".68"/>
+        <polygon points="52,34 68,34 60,2" fill="url(#gd1)" opacity=".48"/>
+        <line x1="18" y1="34" x2="102" y2="34" stroke="#c8922a" stroke-width="1.2" opacity=".7"/>
+        <polygon points="18,34 102,34 60,102" fill="url(#gd1)" opacity=".5"/>
+        <polygon points="18,34 52,34 60,102" fill="url(#gd1)" opacity=".28"/>
+        <polygon points="68,34 102,34 60,102" fill="url(#gd1)" opacity=".28"/>
+        <line x1="52" y1="34" x2="60" y2="102" stroke="#c8922a" stroke-width=".8" opacity=".5"/>
+        <line x1="68" y1="34" x2="60" y2="102" stroke="#c8922a" stroke-width=".8" opacity=".5"/>
+        <line x1="60" y1="2" x2="52" y2="34" stroke="#c8922a" stroke-width=".8" opacity=".5"/>
+        <line x1="60" y1="2" x2="68" y2="34" stroke="#c8922a" stroke-width=".8" opacity=".5"/>
+        <rect x="44" y="40" width="32" height="5.5" rx="1" fill="#7a5c00" opacity=".95"/>
+        <rect x="57" y="45.5" width="6" height="20" rx="1" fill="#7a5c00" opacity=".95"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand-name">TÂM LUXURY</div>
+      <div class="brand-sub">NATT-OS · Wave 3 · Production</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="sys-status"><div class="status-dot"></div>Hệ Thống Online</div>
+    <div class="version">HEAD · 221 commits</div>
+    <div class="time-display" id="clock">00:00:00</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-title">NATT-OS</div>
+  <div class="hero-sub">Hệ thống vận hành Tâm Luxury — Phân phối cho toàn bộ nhân sự. Chọn ứng dụng phù hợp với vai trò của bạn.</div>
+  <div class="hero-stats">
+    <div class="hs-item"><div class="hs-v">15</div><div class="hs-l">Ứng Dụng</div></div>
+    <div class="hs-item"><div class="hs-v">130</div><div class="hs-l">Nhân Sự</div></div>
+    <div class="hs-item"><div class="hs-v">2</div><div class="hs-l">Chi Nhánh</div></div>
+    <div class="hs-item"><div class="hs-v">TSC=0</div><div class="hs-l">Build Status</div></div>
+  </div>
+</section>
+
+<div class="search-wrap">
+  <input class="search-input" id="searchInput" placeholder="🔍  Tìm ứng dụng..." oninput="filterApps()">
+  <select class="role-filter" id="roleFilter" onchange="filterApps()">
+    <option value="">Tất Cả Vai Trò</option>
+    <option value="sale">Sale / Showroom</option>
+    <option value="warehouse">Kho / Vận Hành</option>
+    <option value="factory">Xưởng SX</option>
+    <option value="hr">HR / Kế Toán</option>
+    <option value="management">Ban Quản Lý</option>
+  </select>
+</div>
+
+<div class="quick-access">
+  <div class="qa-title">Truy Cập Nhanh</div>
+  <div class="qa-row">
+    <a class="qa-btn" href="showroom-sales.html">💎 Showroom</a>
+    <a class="qa-btn" href="tamluxury-v4.html">🏪 Sales Terminal</a>
+    <a class="qa-btn" href="order-flow.html">📋 Đặt Đơn</a>
+    <a class="qa-btn" href="pricing-engine.html">💰 Báo Giá</a>
+    <a class="qa-btn" href="warehouse-full.html">📦 Kho</a>
+    <a class="qa-btn" href="production-wallboard.html">🏭 Xưởng</a>
+    <a class="qa-btn" href="chat-rooms.html">💬 Chat</a>
+    <a class="qa-btn" href="personal-profile-v2.html">👤 Hồ Sơ</a>
+    <a class="qa-btn" href="attendance.html">🕐 Chấm Công</a>
+    <a class="qa-btn" href="master-dashboard.html">👑 CEO</a>
+  </div>
+</div>
+
+<main class="apps-wrap" id="appsWrap">
+  <!-- Rendered by JS -->
+</main>
+
+<div class="no-result" id="noResult">
+  <div style="font-size:32px;margin-bottom:12px">🔍</div>
+  <div>Không tìm thấy ứng dụng phù hợp</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-left">NATT-OS v2.0 · Tâm Luxury © 2026 · Bảo mật nội bộ — không chia sẻ ra ngoài</div>
+  <div class="footer-right">
+    <span>HCM: <span style="color:var(--green)">●</span> Online</span>
+    <span>HN: <span style="color:var(--green)">●</span> Online</span>
+    <span>Last sync: <span id="lastSync">—</span></span>
+  </div>
+</footer>
+
+<script>
+const APPS = [
+  // KINH DOANH
+  {
+    group:'KINH DOANH', icon:'💎', name:'Showroom & Hoa Hồng',
+    desc:'Catalog sản phẩm, tồn kho HCM+HN, báo cáo doanh số, tính hoa hồng realtime',
+    file:'showroom-sales.html', roles:['sale'],
+    tags:[{l:'Sale',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'CTV',c:'var(--purple)','b':'rgba(167,139,250,.1)'},{l:'Mới',c:'var(--green)','b':'rgba(61,214,140,.1)'}],
+    accent:'var(--gold2)', status:'green',
+  },
+  {
+    group:'KINH DOANH', icon:'🏪', name:'Sales Terminal',
+    desc:'Bán hàng showroom, quét GDB, thu mua lại, QR payment, biên bản thu hồi',
+    file:'tamluxury-v4.html', roles:['sale'],
+    tags:[{l:'Sale',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'Showroom',c:'var(--amber)','b':'rgba(240,160,48,.1)'}],
+    accent:'var(--gold)', status:'green',
+  },
+  {
+    group:'KINH DOANH', icon:'📋', name:'Đặt Đơn & Luồng SX',
+    desc:'Tạo đơn gia công, theo dõi tiến độ 6 công đoạn, in lệnh SX, kanban xưởng',
+    file:'order-flow.html', roles:['sale','factory','management'],
+    tags:[{l:'Sale',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'SX',c:'var(--amber)','b':'rgba(240,160,48,.1)'}],
+    accent:'var(--blue)', status:'green',
+  },
+  {
+    group:'KINH DOANH', icon:'💰', name:'Báo Giá Tự Động',
+    desc:'Tính giá vàng+đá+gia công → giá bán theo kênh, 3 mức giá, in phiếu báo giá',
+    file:'pricing-engine.html', roles:['sale','hr'],
+    tags:[{l:'Sale',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'KT',c:'var(--teal,#2dd4bf)','b':'rgba(45,212,191,.1)'}],
+    accent:'var(--green)', status:'green',
+  },
+  // SẢN XUẤT
+  {
+    group:'SẢN XUẤT', icon:'🏭', name:'Bảng Tiến Độ Xưởng',
+    desc:'Kanban 6 công đoạn realtime, OEE 86.5%, hao hụt theo tổ, chuyển công đoạn',
+    file:'production-wallboard.html', roles:['factory'],
+    tags:[{l:'Xưởng',c:'var(--amber)','b':'rgba(240,160,48,.1)'},{l:'Live',c:'var(--green)','b':'rgba(61,214,140,.1)'}],
+    accent:'var(--amber)', status:'green',
+  },
+  {
+    group:'SẢN XUẤT', icon:'⚙️', name:'Phòng Vận Hành',
+    desc:'Omega Queue, WAC định mức, hao hụt tracking, 3D Design Vault, logistics nội địa',
+    file:'operations-terminal.html', roles:['warehouse','factory','management'],
+    tags:[{l:'VH',c:'var(--blue)','b':'rgba(96,184,240,.1)'},{l:'WAC',c:'var(--purple)','b':'rgba(167,139,250,.1)'}],
+    accent:'var(--blue)', status:'green',
+  },
+  {
+    group:'SẢN XUẤT', icon:'📐', name:'Ngưỡng Hao Hụt',
+    desc:'Bảng ngưỡng ấn định 7 danh mục × 4 công đoạn, kiểm tra realtime, lịch sử vi phạm',
+    file:'loss-thresholds.html', roles:['factory','hr','management'],
+    tags:[{l:'KTT',c:'var(--teal,#2dd4bf)','b':'rgba(45,212,191,.1)'},{l:'GĐ',c:'var(--gold2)','b':'rgba(200,146,42,.1)'}],
+    accent:'var(--amber)', status:'green',
+  },
+  // KHO & HẬU CẦN
+  {
+    group:'KHO & HẬU CẦN', icon:'📦', name:'Kho & Hậu Cần',
+    desc:'Tồn kho 2 chi nhánh, CCDC+vật dùng KD, nhập/xuất, điều chuyển HCM↔HN, logistics, NK HQ',
+    file:'warehouse-full.html', roles:['warehouse','management'],
+    tags:[{l:'HCM',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'HN',c:'var(--teal,#2dd4bf)','b':'rgba(45,212,191,.1)'},{l:'NK',c:'var(--blue)','b':'rgba(96,184,240,.1)'}],
+    accent:'var(--teal,#2dd4bf)', status:'green',
+  },
+  // NHÂN SỰ & TÀI CHÍNH
+  {
+    group:'NHÂN SỰ & TÀI CHÍNH', icon:'👥', name:'HR Manager',
+    desc:'Danh sách 122 NV, bảng lương, BHXH/BHYT/BHTN, sơ đồ tổ chức 3 khối',
+    file:'hr-manager.html', roles:['hr','management'],
+    tags:[{l:'HR',c:'var(--purple)','b':'rgba(167,139,250,.1)'},{l:'Lương',c:'var(--green)','b':'rgba(61,214,140,.1)'}],
+    accent:'var(--purple)', status:'green',
+  },
+  {
+    group:'NHÂN SỰ & TÀI CHÍNH', icon:'🔑', name:'KTT Phê Duyệt',
+    desc:'Duyệt lệnh chuyển khoản, lương, buyback, hóa đơn — ký số ECDSA P-256',
+    file:'ktt-approval.html', roles:['hr','management'],
+    tags:[{l:'KTT',c:'var(--teal,#2dd4bf)','b':'rgba(45,212,191,.1)'},{l:'Ký Số',c:'var(--gold2)','b':'rgba(200,146,42,.1)'}],
+    accent:'var(--amber)', status:'green',
+  },
+  {
+    group:'NHÂN SỰ & TÀI CHÍNH', icon:'👤', name:'Hồ Sơ Cá Nhân',
+    desc:'Hồ sơ NV, ảnh đại diện, lương PIT, hợp đồng ký số, eTax/VNeID/BHXH, file đính kèm',
+    file:'personal-profile-v2.html', roles:['sale','warehouse','factory','hr','management'],
+    tags:[{l:'Tất Cả',c:'var(--green)','b':'rgba(61,214,140,.1)'}],
+    accent:'var(--green)', status:'green',
+  },
+  // NHÂN SỰ ADDITIONAL
+  {
+    group:'NHÂN SỰ & TÀI CHÍNH', icon:'🕐', name:'Chấm Công WiFi',
+    desc:'Tự động check-in/out qua mạng WiFi cty, theo dõi đúng giờ, export báo cáo chấm công',
+    file:'attendance.html', roles:['sale','warehouse','factory','hr','management'],
+    tags:[{l:'Tất Cả',c:'var(--green)','b':'rgba(61,214,140,.1)'},{l:'WiFi',c:'var(--blue)','b':'rgba(96,184,240,.1)'},{l:'Mới',c:'var(--gold2)','b':'rgba(200,146,42,.1)'}],
+    accent:'var(--green)', status:'green',
+  },
+  // QUẢN LÝ
+  {
+    group:'BAN QUẢN LÝ', icon:'👑', name:'Master Dashboard',
+    desc:'CEO overview: KPI, tài chính, QNEU scores, Blockchain Ledger, phê duyệt MASTER',
+    file:'master-dashboard.html', roles:['management'],
+    tags:[{l:'CEO',c:'var(--gold3,#f5d080)','b':'rgba(245,208,128,.1)'},{l:'MASTER',c:'var(--gold2)','b':'rgba(200,146,42,.1)'}],
+    accent:'var(--gold3,#f5d080)', status:'green',
+  },
+  {
+    group:'BAN QUẢN LÝ', icon:'💬', name:'Chat Nội Bộ',
+    desc:'6 phòng chat: Ban Chiến Lược, KD, Xưởng, KT, Kho, Toàn Công Ty — bảo mật nội bộ',
+    file:'chat-rooms.html', roles:['sale','warehouse','factory','hr','management'],
+    tags:[{l:'Tất Cả',c:'var(--green)','b':'rgba(61,214,140,.1)'},{l:'Nội Bộ',c:'var(--blue)','b':'rgba(96,184,240,.1)'}],
+    accent:'var(--blue)', status:'green',
+  },
+  {
+    group:'BAN QUẢN LÝ', icon:'🧬', name:'NaUion Monitor',
+    desc:'Monitoring hệ thống NATT-OS — Wave 3, cell health, SmartLink, QNEU',
+    file:'nauion-v9.html', roles:['management'],
+    tags:[{l:'MASTER',c:'var(--gold2)','b':'rgba(200,146,42,.1)'},{l:'System',c:'var(--amber)','b':'rgba(240,160,48,.1)'}],
+    accent:'var(--purple)', status:'green',
+  },
+];
+
+const ROLE_LABELS={sale:'Sale/CTV',warehouse:'Kho/VH',factory:'Xưởng',hr:'HR/KT',management:'BGĐ/QL'};
+
+function filterApps(){
+  const q=(document.getElementById('searchInput')?.value||'').toLowerCase();
+  const role=document.getElementById('roleFilter')?.value||'';
+  const filtered=APPS.filter(a=>{
+    const mq=!q||a.name.toLowerCase().includes(q)||a.desc.toLowerCase().includes(q)||a.group.toLowerCase().includes(q);
+    const mr=!role||a.roles.includes(role);
+    return mq&&mr;
+  });
+  renderApps(filtered);
+  document.getElementById('noResult').style.display=filtered.length===0?'block':'none';
+}
+
+function renderApps(list=APPS){
+  const groups=[...new Set(APPS.map(a=>a.group))];
+  const wrap=document.getElementById('appsWrap');
+  wrap.innerHTML='';
+  groups.forEach(g=>{
+    const groupApps=list.filter(a=>a.group===g);
+    if(groupApps.length===0) return;
+    const section=document.createElement('div');
+    section.innerHTML=`<div class="group-title">${g} <span style="font-family:var(--mono);font-size:8px;padding:1px 6px;border-radius:2px;background:var(--bg3);border:1px solid var(--border)">${groupApps.length}</span></div>`;
+    const grid=document.createElement('div');
+    grid.className='app-grid';
+    groupApps.forEach(a=>{
+      const card=document.createElement('a');
+      card.className='app-card';
+      card.href=a.file;
+      card.style.setProperty('--accent-color',a.accent);
+      card.innerHTML=`
+        <div class="app-status" style="background:${a.status==='green'?'var(--green)':'var(--amber)'}"></div>
+        <span class="app-icon">${a.icon}</span>
+        <div class="app-name">${a.name}</div>
+        <div class="app-desc">${a.desc}</div>
+        <div class="app-tags">
+          ${a.tags.map(t=>`<span class="app-tag" style="color:${t.c};background:${t.b};border:1px solid ${t.c}33">${t.l}</span>`).join('')}
+          ${a.roles.map(r=>`<span class="app-tag" style="color:var(--text3);background:var(--bg3);border:1px solid var(--border)">${ROLE_LABELS[r]||r}</span>`).join('')}
+        </div>`;
+      grid.appendChild(card);
+    });
+    section.appendChild(grid);
+    wrap.appendChild(section);
+  });
+}
+
+// Clock
+function p2(n){return String(n).padStart(2,'0');}
+setInterval(()=>{
+  const n=new Date;
+  document.getElementById('clock').textContent=`${p2(n.getHours())}:${p2(n.getMinutes())}:${p2(n.getSeconds())}`;
+},1000);
+document.getElementById('lastSync').textContent=new Date().toLocaleString('vi-VN');
+
+renderApps();
+</script>
 </body>
 </html>
