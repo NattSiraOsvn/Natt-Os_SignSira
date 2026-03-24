@@ -1,0 +1,339 @@
+/**
+ * NATT-OS Responsive CSS v1.0
+ * Responsive cho tất cả UI apps: daily-work, surveillance, master-dashboard, order-flow, payment
+ * Breakpoints: mobile 480, tablet 768, desktop 1024, wide 1280
+ *
+ * Import vào mọi HTML: <link rel="stylesheet" href="nattos-responsive.css">
+ * Hoặc thêm <link> vào index.html của ui-app
+ */
+
+/* ── RESET & BASE ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img, video, iframe { max-width: 100%; height: auto; }
+
+/* ── RESPONSIVE GRID ─────────────────────────────────────────────────────── */
+.natt-grid          { display: grid; gap: 16px; }
+.natt-grid-2        { grid-template-columns: repeat(2, 1fr); }
+.natt-grid-3        { grid-template-columns: repeat(3, 1fr); }
+.natt-grid-4        { grid-template-columns: repeat(4, 1fr); }
+.natt-grid-auto     { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.natt-grid-auto-sm  { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+/* ── FLEX UTILS ──────────────────────────────────────────────────────────── */
+.natt-flex          { display: flex; }
+.natt-flex-center   { display: flex; align-items: center; justify-content: center; }
+.natt-flex-between  { display: flex; align-items: center; justify-content: space-between; }
+.natt-flex-col      { display: flex; flex-direction: column; }
+.natt-flex-wrap     { flex-wrap: wrap; }
+.natt-gap-8         { gap: 8px; }
+.natt-gap-12        { gap: 12px; }
+.natt-gap-16        { gap: 16px; }
+.natt-gap-24        { gap: 24px; }
+
+/* ── CONTAINER ───────────────────────────────────────────────────────────── */
+.natt-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.natt-container-wide { max-width: 1400px; }
+.natt-container-sm   { max-width: 800px; }
+
+/* ── MAIN CONTENT PADDING ────────────────────────────────────────────────── */
+.natt-main {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── TOPBAR RESPONSIVE ───────────────────────────────────────────────────── */
+.natt-topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+  height: 60px;
+  width: 100%;
+}
+.natt-topbar-brand  { font-size: 16px; white-space: nowrap; }
+.natt-topbar-actions{ display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+/* ── KPI CARDS ───────────────────────────────────────────────────────────── */
+.natt-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.natt-kpi-card { padding: 16px; border-radius: 10px; }
+.natt-kpi-value { font-size: clamp(18px, 3vw, 28px); font-weight: 800; }
+
+/* ── TABLE RESPONSIVE ────────────────────────────────────────────────────── */
+.natt-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.natt-table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+.natt-table th, .natt-table td { padding: 10px 14px; text-align: left; }
+
+/* ── CARD ────────────────────────────────────────────────────────────────── */
+.natt-card { border-radius: 10px; padding: 20px; }
+.natt-card-sm { border-radius: 8px; padding: 14px; }
+
+/* ── BADGE ───────────────────────────────────────────────────────────────── */
+.natt-badge {
+  display: inline-block; border-radius: 20px;
+  padding: 3px 10px; font-size: 11px; font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── BUTTON ──────────────────────────────────────────────────────────────── */
+.natt-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 18px; border-radius: 8px; border: none;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: opacity .2s, transform .1s;
+  white-space: nowrap;
+}
+.natt-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.natt-btn-sm { padding: 6px 12px; font-size: 12px; }
+.natt-btn-block { width: 100%; justify-content: center; }
+
+/* ── INPUT ───────────────────────────────────────────────────────────────── */
+.natt-input {
+  width: 100%; padding: 10px 14px; border-radius: 8px;
+  font-size: 14px; outline: none; transition: border-color .2s;
+}
+
+/* ── SECTION TITLE ───────────────────────────────────────────────────────── */
+.natt-section-title {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 14px; margin-top: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.natt-section-title::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.2; }
+
+/* ── HIDE/SHOW HELPERS ───────────────────────────────────────────────────── */
+.natt-hide-mobile   { display: block; }
+.natt-hide-desktop  { display: none; }
+.natt-show-mobile   { display: none; }
+
+/* ── SCROLLBAR ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.6); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   WIDE DESKTOP ≥ 1280px
+════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1280px) {
+  .natt-grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .natt-main   { padding: 32px 40px; }
+  .natt-topbar { padding: 0 40px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   DESKTOP ≥ 1024px
+════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .natt-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .natt-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .natt-container { padding: 0 20px; }
+  .natt-main { padding: 20px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   TABLET ≤ 768px
+════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Grid collapse */
+  .natt-grid-4,
+  .natt-grid-3,
+  .natt-grid-2 { grid-template-columns: 1fr; }
+
+  .natt-grid-auto    { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .natt-grid-auto-sm { grid-template-columns: repeat(2, 1fr); }
+
+  /* Topbar */
+  .natt-topbar { padding: 0 16px; height: 56px; }
+  .natt-topbar-brand { font-size: 14px; }
+
+  /* Main */
+  .natt-main      { padding: 16px; }
+  .natt-container { padding: 0 16px; }
+
+  /* KPI */
+  .natt-kpi-strip { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .natt-kpi-card  { padding: 12px; }
+  .natt-kpi-value { font-size: 20px; }
+
+  /* Hide/show */
+  .natt-hide-mobile  { display: none !important; }
+  .natt-show-mobile  { display: block !important; }
+  .natt-hide-desktop { display: block !important; }
+
+  /* Table: horizontal scroll */
+  .natt-table-wrap { margin: 0 -16px; padding: 0 16px; }
+
+  /* Card */
+  .natt-card    { padding: 14px; }
+  .natt-card-sm { padding: 10px; }
+
+  /* Button */
+  .natt-btn { padding: 9px 14px; font-size: 12px; }
+
+  /* Font size scale */
+  h1 { font-size: clamp(20px, 5vw, 28px) !important; }
+  h2 { font-size: clamp(16px, 4vw, 22px) !important; }
+  h3 { font-size: clamp(14px, 3vw, 18px) !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   MOBILE ≤ 480px
+════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  /* Stack everything */
+  .natt-grid-auto    { grid-template-columns: 1fr; }
+  .natt-grid-auto-sm { grid-template-columns: 1fr; }
+  .natt-kpi-strip    { grid-template-columns: repeat(2, 1fr); }
+
+  /* Topbar: compact */
+  .natt-topbar       { height: 52px; padding: 0 12px; }
+  .natt-topbar-actions .natt-badge { display: none; }
+
+  /* Main */
+  .natt-main      { padding: 12px; }
+  .natt-container { padding: 0 12px; }
+
+  /* Card */
+  .natt-card    { padding: 12px; border-radius: 8px; }
+  .natt-card-sm { padding: 8px; }
+
+  /* Button block on mobile */
+  .natt-btn-mobile-block {
+    width: 100% !important;
+    justify-content: center;
+  }
+
+  /* Modal / overlay */
+  .natt-modal {
+    margin: 0 !important;
+    border-radius: 12px 12px 0 0 !important;
+    position: fixed !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* Section title smaller */
+  .natt-section-title { font-size: 10px; letter-spacing: 2px; }
+
+  /* Table font */
+  .natt-table th, .natt-table td { padding: 8px 10px; font-size: 12px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PRINT
+════════════════════════════════════════════════════════════════════════ */
+@media print {
+  .natt-topbar, .natt-hide-print { display: none !important; }
+  .natt-main { padding: 0; max-width: 100%; }
+  body { background: white; color: black; }
+  .natt-card { border: 1px solid #ddd; box-shadow: none; }
+  .natt-grid-auto { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   SURVEILLANCE APP SPECIFIC
+════════════════════════════════════════════════════════════════════════ */
+.surveillance-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  min-height: calc(100vh - 60px);
+}
+@media (max-width: 900px) {
+  .surveillance-grid { grid-template-columns: 1fr; }
+  .surveillance-sidebar { display: none; }
+  .surveillance-sidebar.open { display: block; position: fixed; inset: 60px 0 0 0; z-index: 50; overflow-y: auto; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   DAILY WORK APP SPECIFIC
+════════════════════════════════════════════════════════════════════════ */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .task-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+@media (max-width: 480px) {
+  .task-grid { grid-template-columns: 1fr; }
+}
+
+/* Team grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+@media (max-width: 480px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Login box */
+.login-box {
+  width: 380px;
+  max-width: calc(100vw - 32px);
+}
+@media (max-width: 480px) {
+  .login-box { border-radius: 12px; margin: 16px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   ORDER FLOW APP SPECIFIC
+════════════════════════════════════════════════════════════════════════ */
+.order-timeline {
+  display: flex; gap: 0; overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+.order-timeline::-webkit-scrollbar { height: 4px; }
+
+@media (max-width: 768px) {
+  .order-timeline { flex-direction: column; overflow-x: hidden; }
+  .order-timeline-step { width: 100% !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PAYMENT APP SPECIFIC
+════════════════════════════════════════════════════════════════════════ */
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .payment-grid { grid-template-columns: 1fr; }
+}
+
+.qr-container { text-align: center; }
+.qr-container img { max-width: 220px; width: 100%; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   ANIMATION: respect prefers-reduced-motion
+════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
