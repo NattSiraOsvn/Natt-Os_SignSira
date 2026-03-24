@@ -1,0 +1,68 @@
+/**
+ * NATT-OS Token System v1.0
+ * Liquid Glass + Pastel Luxury — Phase 2
+ * @import './nattos-tokens.css'; vào nattos-responsive.css
+ */
+
+:root {
+  /* ── BACKGROUND ─────────────────────── */
+  --bg: #020208;
+
+  /* ── PASTEL PALETTE ─────────────────── */
+  --gold:    #F5E2C0;
+  --gold-soft: rgba(245,226,192,0.3);
+  --mint:    #8FFFD4;
+  --ice:     #B8E8FF;
+  --lavender:#C8C0FF;
+  --rose:    #FFB8D4;
+  --peach:   #FFD4A8;
+
+  /* ── TEXT ───────────────────────────── */
+  --text-main:  rgba(238,225,200,0.88);
+  --text-sub:   rgba(238,225,200,0.48);
+  --text-muted: rgba(238,225,200,0.22);
+
+  /* ── GLASS BLUR TOKENS ──────────────── */
+  --lg-blur-light:  blur(14px) saturate(140%);
+  --lg-blur-medium: blur(24px) saturate(160%);
+  --lg-blur-strong: blur(40px) saturate(180%);
+
+  /* ── GLASS BG TOKENS ────────────────── */
+  --lg-bg-regular: rgba(6,6,18,0.72);
+  --lg-bg-clear:   rgba(6,6,18,0.28);
+
+  /* ── GLASS BORDER/SHADOW ────────────── */
+  --lg-border:    rgba(255,255,255,0.06);
+  --lg-highlight: rgba(255,255,255,0.08);
+  --lg-shadow:    0 32px 80px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.08);
+
+  /* ── STATE MATRIX ───────────────────── */
+  --state-default:  none;
+  --state-hover:    var(--lg-blur-light);
+  --state-focus:    var(--lg-blur-medium);
+  --state-active:   var(--lg-blur-strong);
+  --state-disabled: none;
+}
+
+/* ── GLASS CLASSES ──────────────────────────────────── */
+.glass-regular {
+  background: var(--lg-bg-regular);
+  backdrop-filter: var(--lg-blur-strong);
+  -webkit-backdrop-filter: var(--lg-blur-strong);
+  border: 1px solid var(--lg-border);
+  box-shadow: var(--lg-shadow);
+}
+
+.glass-clear {
+  background: var(--lg-bg-clear);
+  backdrop-filter: var(--lg-blur-medium);
+  -webkit-backdrop-filter: var(--lg-blur-medium);
+  border: 1px solid var(--lg-border);
+}
+
+/* ── STATE BINDINGS (interactive Layer 2/3 only) ────── */
+.glass-interactive:hover  { backdrop-filter: var(--state-hover);  -webkit-backdrop-filter: var(--state-hover); }
+.glass-interactive:focus  { backdrop-filter: var(--state-focus);  -webkit-backdrop-filter: var(--state-focus); }
+.glass-interactive:active { backdrop-filter: var(--state-active); -webkit-backdrop-filter: var(--state-active); }
+.glass-interactive:disabled,
+.glass-interactive[disabled] { backdrop-filter: var(--state-disabled); opacity: 0.38; cursor: not-allowed; }
