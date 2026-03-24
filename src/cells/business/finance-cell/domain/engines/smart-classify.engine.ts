@@ -1,289 +1,236 @@
-// @ts-nocheck
 /**
- * finance-cell/domain/engines/smart-classify.engine.ts
- * Wave 1 — phân loại sao kê ngân hàng thông minh
- * Wave 4 — thêm accountByKeywords (TK kế toán TT200 tự động)
+ * NATT-OS Smart Classify Engine v1.0
+ * Dùng chung cho: finance-cell, customs-cell, buyback-cell, tax-cell
  *
- * Nguồn Wave 1 : MEGA ACCOUNTING v10.2 SmartClassifier
- * Nguồn Wave 4 : TAXCELL ULTIMATE V6.0 Normalize.accountByKeywords
+ * Logic từ: MEGA ACCOUNTING v10.1 SmartClassifier + SmartDetection
+ * Không phụ thuộc SpreadsheetApp — pure TypeScript, chạy cả browser + Node
  */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// TYPES
-// ─────────────────────────────────────────────────────────────────────────────
-
-export type Category =
-  | 'MUAT_HANG'         // mua hàng hóa, nguyên liệu
-  | 'BAN_HANG'          // doanh thu bán hàng
-  | 'LUONG'             // lương, BHXH, TNCN
-  | 'CHI_PHI_BAN_HANG'  // quảng cáo, vận chuyển, ship
-  | 'CHI_PHI_QLHD'      // điện nước, internet, phân kim, văn phòng
-  | 'TSCĐ'              // tài sản cố định ≥ 30tr
-  | 'CCDC'              // công cụ dụng cụ < 30tr
-  | 'COC_KHACH'         // đặt cọc khách hàng
-  | 'HOAN_COC'          // hoàn cọc
-  | 'BUYBACK'           // mua lại hàng
-  | 'CUSTOMS'           // thuế nhập khẩu, tờ khai HQ
-  | 'TAX'               // VAT, TNCN, môn bài
-  | 'UNKNOWN';
-
-export interface ClassifyResult {
-  category: Category;
-  tkNo: string;   // TK Nợ TT200
-  tkCo: string;   // TK Có TT200
-  confidence: number; // 0–1
-  note: string;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// TK CONSTANTS (TT200 — dùng chung toàn finance-cell)
-// ─────────────────────────────────────────────────────────────────────────────
-
-export const TK = {
-  CASH:           '111',
-  BANK:           '112',
-  RECEIVABLE:     '131',
-  PAYABLE:        '331',
-  SALARY_PAYABLE: '334',
-  INSURANCE:      '338',
-  LOAN:           '341',
-  ADVANCE:        '141',
-  INV_MAT:        '152',  // nguyên vật liệu
-  INV_CCDC:       '153',  // công cụ dụng cụ
-  INV_WIP:        '154',  // sản xuất dở dang
-  INV_FIN:        '155',  // thành phẩm
-  INV_GOODS:      '156',  // hàng hóa
-  COGS:           '632',
-  FIXED_ASSET:    '211',
-  INTANGIBLE:     '213',
-  DEPRECIATION:   '214',
-  CIP:            '241',
-  PREPAID_LONG:   '242',
-  REVENUE:        '511',
-  SELLING_EXP:    '641',
-  ADMIN_EXP:      '642',
-  PROD_SALARY:    '622',
-  PROD_OVERHEAD:  '627',
-  VAT:            '3331',
-  DEPOSIT:        '3387',
+// ── CATEGORIES ────────────────────────────────────────────────────────────
+export const CATEGORY = {
+  // THU
+  DT_CK:      '💰 DOANH THU CHUYỂN KHOẢN',
+  DT_POS:     '💳 DOANH THU THẺ (POS)',
+  DT_QR:      '📱 DOANH THU VÍ ĐIỆN TỬ',
+  DT_TRADING: '💼 DOANH THU TỰ DOANH',
+  // COGS
+  COGS_GOLD_B2B:       '🟡 MUA VÀNG TỪ ĐỐI TÁC (B2B)',
+  COGS_GOLD_BUYBACK:   '🟡 THU MUA VÀNG TỪ KHÁCH',
+  COGS_DIAMOND_IMPORT: '💎 MUA KC NHẬP KHẨU',
+  COGS_DIAMOND_LOCAL:  '💎 MUA KC NỘI ĐỊA',
+  COGS_BUYBACK_JEWELRY:'💍 THU MUA TRANG SỨC',
+  COGS_MATERIAL:       '📦 MUA NGUYÊN VẬT LIỆU',
+  COGS_SHIPPING_INT:   '🌍 CƯỚC VẬN CHUYỂN QUỐC TẾ',
+  COGS_CUSTOMS_DUTY:   '🏛️ THUẾ NHẬP KHẨU',
+  COGS_CUSTOMS_FEE:    '🏛️ PHÍ HẢI QUAN',
+  // THUẾ
+  TAX_VAT_IMPORT:      '🏛️ THUẾ GTGT NHẬP KHẨU',
+  TAX_VAT_DOMESTIC:    '🏛️ THUẾ GTGT NỘI ĐỊA',
+  TAX_CIT:             '🏛️ THUẾ TNDN',
+  TAX_PIT:             '🏛️ THUẾ TNCN',
+  TAX_PENALTY:         '⚠️ TIỀN PHẠT / CHẬM NỘP',
+  // VẬN HÀNH
+  BANK_FEE:            '🏦 PHÍ NGÂN HÀNG',
+  HR_SALARY:           '👨‍💼 LƯƠNG / THƯỞNG',
+  INSURANCE:           '🛡️ BẢO HIỂM XÃ HỘI',
+  MKT_ADS:             '📢 QUẢNG CÁO',
+  OPERATING_RENT:      '📋 THUÊ MẶT BẰNG',
+  OPERATING_UTILITY:   '📋 ĐIỆN NƯỚC INTERNET',
+  LOGISTICS:           '🚚 VẬN CHUYỂN / GIAO HÀNG',
+  INTERNAL_TRANSFER:   '🔄 CHUYỂN KHOẢN NỘI BỘ',
+  NEED_REVIEW:         '🔍 CẦN KIỂM TRA',
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// WAVE 1 — CATEGORY MAP (60 categories, nguồn MEGA ACCOUNTING sync-engine)
-// ─────────────────────────────────────────────────────────────────────────────
+export type CategoryKey = keyof typeof CATEGORY;
+export type ValueGroup = 'THU' | 'CHI_COGS' | 'THUE' | 'CHI_OPERATING';
 
-export const FULL_CATEGORY_MAP: Record<string, Category> = {
-  // Mua hàng
-  'mua hang': 'MUAT_HANG', 'nhap hang': 'MUAT_HANG', 'thanh toan ncc': 'MUAT_HANG',
-  'vat tu': 'MUAT_HANG', 'nguyen lieu': 'MUAT_HANG', 'nguyen vat lieu': 'MUAT_HANG',
-  'kim cuong': 'MUAT_HANG', 'vien chu': 'MUAT_HANG', 'da quy': 'MUAT_HANG',
-  'vang': 'MUAT_HANG', 'bac': 'MUAT_HANG', 'kim loai': 'MUAT_HANG',
-  // Doanh thu
-  'ban hang': 'BAN_HANG', 'doanh thu': 'BAN_HANG', 'thu tien': 'BAN_HANG',
-  'thanh toan don': 'BAN_HANG', 'khach chuyen': 'BAN_HANG', 'khach tra': 'BAN_HANG',
-  // Lương
-  'luong': 'LUONG', 'thu nhap': 'LUONG', 'bhxh': 'LUONG', 'bao hiem': 'LUONG',
-  'tncn': 'TAX', 'bao hiem xa hoi': 'LUONG', 'thu lao': 'LUONG',
-  // Chi phí bán hàng
-  'quang cao': 'CHI_PHI_BAN_HANG', 'ads': 'CHI_PHI_BAN_HANG',
-  'meta': 'CHI_PHI_BAN_HANG', 'google ads': 'CHI_PHI_BAN_HANG',
-  'shopee': 'CHI_PHI_BAN_HANG', 'van chuyen': 'CHI_PHI_BAN_HANG',
-  'ship': 'CHI_PHI_BAN_HANG', 'ghn': 'CHI_PHI_BAN_HANG', 'ghtk': 'CHI_PHI_BAN_HANG',
-  // Chi phí QLHD
-  'dien': 'CHI_PHI_QLHD', 'nuoc': 'CHI_PHI_QLHD', 'internet': 'CHI_PHI_QLHD',
-  've sinh': 'CHI_PHI_QLHD', 'bao ve': 'CHI_PHI_QLHD', 'phan kim': 'CHI_PHI_QLHD',
-  'kiem dinh': 'CHI_PHI_QLHD', 'phong thuy': 'CHI_PHI_QLHD', 'cung': 'CHI_PHI_QLHD',
-  // Cọc
-  'dat coc': 'COC_KHACH', 'coc': 'COC_KHACH', 'tien coc': 'COC_KHACH',
-  'hoan coc': 'HOAN_COC', 'tra coc': 'HOAN_COC', 'hoan tra': 'HOAN_COC',
-  // Buyback
-  'mua lai': 'BUYBACK', 'thu lai': 'BUYBACK', 'buyback': 'BUYBACK',
-  // Customs / thuế
-  'thue nhap khau': 'CUSTOMS', 'to khai': 'CUSTOMS', 'hai quan': 'CUSTOMS',
-  'vat': 'TAX', 'gia tri gia tang': 'TAX', 'mon bai': 'TAX',
-  // TSCĐ / CCDC
-  'may moc': 'TSCĐ', 'lo duc': 'TSCĐ', 'imac': 'TSCĐ', 'may tinh': 'TSCĐ',
-  'phan mem': 'TSCĐ', 'ban ghe': 'CCDC', 'noi that': 'CCDC',
-  'cong cu': 'CCDC', 'dung cu': 'CCDC',
-};
-
-// ─────────────────────────────────────────────────────────────────────────────
-// WAVE 1 — CORE CLASSIFY FUNCTIONS
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Chuẩn hóa text: lowercase → NFD → bỏ combining marks → đ→d
- */
-function norm(s: string): string {
-  return String(s || '')
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[đĐ]/g, 'd');
+export interface ClassifyResult {
+  category:    CategoryKey;
+  label:       string;
+  valueGroup:  ValueGroup;
+  confidence:  'HIGH' | 'MEDIUM' | 'LOW';
+  method:      string;
+  metadata?:   Record<string, unknown>;
 }
 
-/**
- * classify — entry point chính.
- * Input: description text từ sao kê ngân hàng hoặc chứng từ.
- * Output: ClassifyResult với category, TK Nợ/Có, confidence.
- */
-export function classify(description: string, amount = 0): ClassifyResult {
-  const n = norm(description);
+// ── KEYWORD LISTS ─────────────────────────────────────────────────────────
+const PERSONAL_NAMES = ['nguyễn','trần','lê','phạm','hoàng','huỳnh','võ','đặng','bùi','đỗ','hồ','ngô','dương'];
+const COMPANY_KW     = ['công ty','cty','tnhh','cp','jsc','co.,ltd','doanh nghiệp','chi nhánh','group','holding'];
+const BUYBACK_KW     = ['thu sp','thu sản phẩm','thu hàng','thu mua','thu đổi','đổi hàng','mua lại','thu hồi','thu lại'];
+const CUSTOMS_KW     = ['tờ khai','hải quan','nhập khẩu','customs','hqtsnhat','import'];
+const TAX_KW         = ['thuế','kbnn','ngân sách','nsnn','nộp thuế'];
 
-  // Kiểm tra buyback trước (ưu tiên cao — tránh nhầm với ban_hang)
-  if (detectBuyback(n)) {
-    return { category: 'BUYBACK', tkNo: TK.INV_GOODS, tkCo: TK.BANK, confidence: 0.85, note: 'Buyback detected' };
-  }
-
-  // Kiểm tra customs
-  if (detectCustoms(n)) {
-    return { category: 'CUSTOMS', tkNo: TK.INV_MAT, tkCo: TK.BANK, confidence: 0.88, note: 'Customs/import tax' };
-  }
-
-  // Kiểm tra tax
-  if (detectTax(n)) {
-    return { category: 'TAX', tkNo: TK.VAT, tkCo: TK.BANK, confidence: 0.85, note: 'Tax payment' };
-  }
-
-  // Duyệt full category map
-  for (const [keyword, cat] of Object.entries(FULL_CATEGORY_MAP)) {
-    if (n.includes(keyword)) {
-      const { tkNo, tkCo } = resolveTK(cat, amount);
-      return { category: cat, tkNo, tkCo, confidence: 0.75, note: `Matched: ${keyword}` };
-    }
-  }
-
-  return { category: 'UNKNOWN', tkNo: TK.ADMIN_EXP, tkCo: TK.BANK, confidence: 0.2, note: 'No match' };
+// ── UTILITY ───────────────────────────────────────────────────────────────
+function norm(s: unknown): string {
+  if (!s) return '';
+  return String(s)
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+    .toLowerCase();
 }
 
-export function detectAccountType(description: string): string {
-  const n = norm(description);
-  if (n.includes('ngan hang') || n.includes('bank') || n.includes('vcb') || n.includes('tcb') || n.includes('acb')) return 'BANK';
-  if (n.includes('tien mat') || n.includes('cash') || n.includes('thu quy')) return 'CASH';
+// ── ACCOUNT TYPE DETECTION ────────────────────────────────────────────────
+export function detectAccountType(accountName: string, description = '', corresponsive = ''): 'PERSONAL' | 'COMPANY' | 'UNKNOWN' {
+  const text = norm([accountName, description, corresponsive].join(' '));
+  for (const kw of COMPANY_KW) if (text.includes(norm(kw))) return 'COMPANY';
+  for (const kw of PERSONAL_NAMES) if (text.includes(kw)) return 'PERSONAL';
+  // Heuristic: 2-4 words, 6-50 chars = tên người
+  const parts = accountName?.trim().split(/\s+/) || [];
+  if (parts.length >= 2 && parts.length <= 4 && accountName.length >= 6 && accountName.length <= 50) return 'PERSONAL';
   return 'UNKNOWN';
 }
 
-export function detectBuyback(description: string): boolean {
-  const n = norm(description);
-  return /mua lai|thu lai|buyback|hoan tra hang|doi hang/.test(n);
-}
+// ── BUYBACK DETECTION ─────────────────────────────────────────────────────
+export function detectBuyback(description: string, accountType: string, debit: number, credit: number): {
+  isBuyback: boolean;
+  productType: 'GOLD' | 'DIAMOND' | 'JEWELRY' | 'OTHER';
+  confidence: 'HIGH' | 'MEDIUM' | 'LOW';
+} {
+  const desc = norm(description);
+  const isChi = debit > 0 && credit === 0;
 
-export function detectCustoms(description: string): boolean {
-  const n = norm(description);
-  return /hai quan|to khai|thue nhap khau|cif|import tax|customs/.test(n);
-}
-
-export function detectTax(description: string): boolean {
-  const n = norm(description);
-  return /\bvat\b|gia tri gia tang|thue gtgt|mon bai|tndn|thue thu nhap/.test(n);
-}
-
-function resolveTK(cat: Category, amount: number): { tkNo: string; tkCo: string } {
-  switch (cat) {
-    case 'MUAT_HANG':        return { tkNo: TK.INV_MAT,        tkCo: TK.PAYABLE };
-    case 'BAN_HANG':         return { tkNo: TK.DEPOSIT,         tkCo: TK.REVENUE };
-    case 'LUONG':            return { tkNo: TK.SALARY_PAYABLE,  tkCo: TK.BANK };
-    case 'CHI_PHI_BAN_HANG': return { tkNo: TK.SELLING_EXP,    tkCo: TK.BANK };
-    case 'CHI_PHI_QLHD':     return { tkNo: TK.ADMIN_EXP,      tkCo: TK.BANK };
-    case 'TSCĐ':             return { tkNo: TK.FIXED_ASSET,     tkCo: TK.PAYABLE };
-    case 'CCDC':             return { tkNo: TK.INV_CCDC,        tkCo: TK.BANK };
-    case 'COC_KHACH':        return { tkNo: TK.BANK,            tkCo: TK.DEPOSIT };
-    case 'HOAN_COC':         return { tkNo: TK.DEPOSIT,         tkCo: TK.BANK };
-    case 'BUYBACK':          return { tkNo: TK.INV_GOODS,       tkCo: TK.BANK };
-    case 'CUSTOMS':          return { tkNo: TK.INV_MAT,         tkCo: TK.BANK };
-    case 'TAX':              return { tkNo: TK.VAT,             tkCo: TK.BANK };
-    default:                 return { tkNo: TK.ADMIN_EXP,       tkCo: TK.BANK };
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// WAVE 4 — accountByKeywords (nguồn: TAXCELL ULTIMATE V6.0)
-//
-// Phân loại TK Nợ tự động dựa trên description + amount threshold.
-// Rule amount ≥ 30tr → TSCĐ (211/213), < 30tr → CCDC (153).
-// Ưu tiên: keyword cụ thể → amount threshold → fallback ADMIN_EXP.
-//
-// QUAN TRỌNG (Tax-cell rule TR-007):
-// Kết quả hàm này là GỢI Ý — không override manual entry của kế toán.
-// ─────────────────────────────────────────────────────────────────────────────
-
-const TSCĐ_THRESHOLD = 30_000_000;
-
-/**
- * accountByKeywords — auto map description + amount → TK Nợ TT200.
- * Trả về TK string (vd "211", "641").
- * Không throw, fallback về '642' (ADMIN_EXP).
- */
-export function accountByKeywords(description: string, amount = 0): string {
-  const n = norm(description);
-
-  // ── Sổ 3: TSCĐ & CCDC ──────────────────────────────────────────────────
-  if (amount >= TSCĐ_THRESHOLD) {
-    if (/may|lo duc|imac|\bpc\b|server|may tinh|thiet bi/.test(n)) return TK.FIXED_ASSET;    // 211
-    if (/phan mem|ban quyen|license|intangible/.test(n))            return TK.INTANGIBLE;     // 213
-  }
-  // Nội thất: ≥30tr → 211, <30tr → 153
-  if (/ban\b|ghe\b|\btu\b|ke\b|noi that/.test(n)) {
-    return amount >= TSCĐ_THRESHOLD ? TK.FIXED_ASSET : TK.INV_CCDC;
-  }
-  if (/cong cu|dung cu|may cat|may mai/.test(n))                    return TK.INV_CCDC;       // 153
-
-  // ── Sổ 2: Nguyên liệu, hàng hóa ────────────────────────────────────────
-  if (/vien chu|gia\b|kim cuong.*kem dai|kim cuong.*vien/.test(n))  return TK.INV_MAT;        // 152 viên chủ
-  if (/day chuyen|moissanite|\bda\b|vang|bac.*hang/.test(n))        return TK.INV_GOODS;      // 156
-  if (/bia kim cuong|hop\b|tui\b|zip|bao bi|dong goi/.test(n))      return TK.INV_MAT;        // 152 bao bì
-  if (/phu gia|hoa chat|resin|gas|khi/.test(n))                     return TK.INV_MAT;        // 152 phụ liệu SX
-
-  // ── Sổ 4: Chi phí ───────────────────────────────────────────────────────
-  if (/ads|quang cao|meta|google|shopee|van chuyen|ship|ghn|ghtk/.test(n)) return TK.SELLING_EXP;  // 641
-  if (/dien\b|nuoc\b|internet|ve sinh|bao ve|phan kim|kiem dinh|phong thuy|cung\b/.test(n))
-                                                                     return TK.ADMIN_EXP;     // 642
-  if (/luong|thuong\b/.test(n))                                      return TK.SALARY_PAYABLE; // 334
-
-  // ── Fallback ─────────────────────────────────────────────────────────────
-  return TK.ADMIN_EXP; // 642
-}
-
-/**
- * accountForVendor — TK Có mặc định khi mua từ nhà cung cấp.
- * Tách riêng để dễ override (vd NCC tiền mặt → 111 thay vì 331).
- */
-export function accountForVendor(paymentMethod: 'bank' | 'cash' | 'credit' = 'credit'): string {
-  if (paymentMethod === 'cash') return TK.CASH;
-  if (paymentMethod === 'bank') return TK.BANK;
-  return TK.PAYABLE; // 331 mặc định
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// WAVE 4 — getSheetDataWithHeaders (nguồn: File 16 HR GAS)
-//
-// Convert mảng 2D (Google Sheets getValues) → array of objects
-// key = header name gốc (giữ nguyên, không normalize)
-// Dùng khi cần access by column name thay vì index
-// ─────────────────────────────────────────────────────────────────────────────
-
-export interface SheetRow {
-  [key: string]: unknown;
-}
-
-export function getSheetDataWithHeaders(
-  rawValues: unknown[][],
-): { headers: string[]; data: SheetRow[] } {
-  if (!rawValues || rawValues.length < 2) return { headers: [], data: [] };
-  const headers = rawValues[0].map(h => String(h || ''));
-  const data: SheetRow[] = [];
-  for (let i = 1; i < rawValues.length; i++) {
-    const obj: SheetRow = {};
-    let hasData = false;
-    for (let j = 0; j < headers.length; j++) {
-      if (headers[j]) {
-        obj[headers[j]] = rawValues[i][j];
-        if (rawValues[i][j] !== '' && rawValues[i][j] !== null && rawValues[i][j] !== undefined) {
-          hasData = true;
-        }
-      }
+  // Explicit buyback keywords
+  for (const kw of BUYBACK_KW) {
+    if (desc.includes(norm(kw))) {
+      return { isBuyback: true, productType: detectProductType(description), confidence: 'HIGH' };
     }
-    if (hasData) data.push(obj);
   }
-  return { headers, data };
+  // Personal account + CHI ra → likely buyback
+  if (accountType === 'PERSONAL' && isChi) {
+    const pt = detectProductType(description);
+    if (pt !== 'OTHER') return { isBuyback: true, productType: pt, confidence: 'MEDIUM' };
+  }
+  return { isBuyback: false, productType: 'OTHER', confidence: 'LOW' };
 }
+
+// ── PRODUCT TYPE ──────────────────────────────────────────────────────────
+export function detectProductType(text: string): 'GOLD' | 'DIAMOND' | 'JEWELRY' | 'OTHER' {
+  const t = norm(text);
+  if (/vang|gold|sjc|pnj|24k|18k/.test(t))           return 'GOLD';
+  if (/kim cuong|diamond|kc|gia-|hrd/.test(t))        return 'DIAMOND';
+  if (/nhan|day chuyen|lac|vong|trang suc/.test(t))   return 'JEWELRY';
+  return 'OTHER';
+}
+
+// ── CUSTOMS DETECTION ─────────────────────────────────────────────────────
+export function detectCustoms(description: string, transactionCode = ''): {
+  isCustoms: boolean;
+  type: 'IMPORT' | 'EXPORT' | null;
+  declarationNo: string | null;
+  confidence: 'HIGH' | 'LOW';
+} {
+  const text = norm([description, transactionCode].join(' '));
+
+  // Số tờ khai HQ (12 digits)
+  const declMatch = String(description + ' ' + transactionCode).match(/\b\d{12}\b/);
+  if (declMatch) return { isCustoms: true, type: 'IMPORT', declarationNo: declMatch[0], confidence: 'HIGH' };
+
+  for (const kw of CUSTOMS_KW) {
+    if (text.includes(norm(kw))) {
+      return { isCustoms: true, type: text.includes('xuat') ? 'EXPORT' : 'IMPORT', declarationNo: null, confidence: 'HIGH' };
+    }
+  }
+  return { isCustoms: false, type: null, declarationNo: null, confidence: 'LOW' };
+}
+
+// ── TAX DETECTION ─────────────────────────────────────────────────────────
+export function detectTax(description: string, transactionCode = ''): {
+  isTax: boolean;
+  taxType: 'VAT_IMPORT' | 'VAT_DOMESTIC' | 'CIT' | 'PIT' | 'IMPORT_DUTY' | 'PENALTY' | 'OTHER' | null;
+  confidence: 'HIGH' | 'LOW';
+} {
+  const text = norm([description, transactionCode].join(' '));
+  for (const kw of TAX_KW) {
+    if (!text.includes(norm(kw))) continue;
+    let taxType: 'VAT_IMPORT' | 'VAT_DOMESTIC' | 'CIT' | 'PIT' | 'IMPORT_DUTY' | 'PENALTY' | 'OTHER' = 'OTHER';
+    if (text.includes('gtgt') || text.includes('vat')) {
+      taxType = text.includes('nhap khau') ? 'VAT_IMPORT' : 'VAT_DOMESTIC';
+    } else if (text.includes('tndn'))          taxType = 'CIT';
+    else if (text.includes('tncn'))            taxType = 'PIT';
+    else if (text.includes('nhap khau'))       taxType = 'IMPORT_DUTY';
+    else if (text.includes('phat') || text.includes('cham nop')) taxType = 'PENALTY';
+    return { isTax: true, taxType, confidence: 'HIGH' };
+  }
+  return { isTax: false, taxType: null, confidence: 'LOW' };
+}
+
+// ── MAIN CLASSIFY ─────────────────────────────────────────────────────────
+export function classify(params: {
+  description:    string;
+  accountName?:   string;
+  corresponsive?: string;
+  transactionCode?: string;
+  debit:          number;
+  credit:         number;
+}): ClassifyResult {
+  const { description = '', accountName = '', corresponsive = '', transactionCode = '', debit, credit } = params;
+
+  const isChi    = debit > 0 && credit === 0;
+  const isThu    = credit > 0 && debit === 0;
+  const isBoth   = debit > 0 && credit > 0;
+  const accountType = detectAccountType(accountName, description, corresponsive);
+  const customs  = detectCustoms(description, transactionCode);
+  const tax      = detectTax(description, transactionCode);
+  const buyback  = detectBuyback(description, accountType, debit, credit);
+  const desc     = norm(description);
+
+  // ── CHI (DEBIT) ──
+  if (isChi) {
+    if (buyback.isBuyback && buyback.confidence !== 'LOW') {
+      const cat: CategoryKey = buyback.productType === 'GOLD' ? 'COGS_GOLD_BUYBACK'
+        : buyback.productType === 'DIAMOND' ? 'COGS_DIAMOND_LOCAL'
+        : 'COGS_BUYBACK_JEWELRY';
+      return { category: cat, label: CATEGORY[cat], valueGroup: 'CHI_COGS', confidence: buyback.confidence, method: 'BUYBACK_DETECT' };
+    }
+    if (customs.isCustoms && customs.confidence === 'HIGH') {
+      return { category: 'COGS_CUSTOMS_DUTY', label: CATEGORY.COGS_CUSTOMS_DUTY, valueGroup: 'CHI_COGS', confidence: 'HIGH', method: 'CUSTOMS_DETECT', metadata: { declarationNo: customs.declarationNo } };
+    }
+    if (tax.isTax && tax.confidence === 'HIGH') {
+      const cat: CategoryKey = tax.taxType === 'VAT_IMPORT' ? 'TAX_VAT_IMPORT'
+        : tax.taxType === 'VAT_DOMESTIC' ? 'TAX_VAT_DOMESTIC'
+        : tax.taxType === 'CIT' ? 'TAX_CIT'
+        : tax.taxType === 'PIT' ? 'TAX_PIT'
+        : tax.taxType === 'PENALTY' ? 'TAX_PENALTY' : 'NEED_REVIEW';
+      return { category: cat, label: CATEGORY[cat], valueGroup: 'THUE', confidence: 'HIGH', method: 'TAX_DETECT' };
+    }
+    if (accountType === 'COMPANY') {
+      if (/mua vang|vang sjc|sbj/.test(desc))          return _r('COGS_GOLD_B2B',       'CHI_COGS', 'KEYWORD');
+      if (/mua kim cuong|diamond/.test(desc))           return _r('COGS_DIAMOND_IMPORT',  'CHI_COGS', 'KEYWORD');
+      if (/nguyen lieu|nvl|vat lieu/.test(desc))        return _r('COGS_MATERIAL',        'CHI_COGS', 'KEYWORD');
+    }
+    if (/phi chuyen khoan|phi gd|bank fee/.test(desc)) return _r('BANK_FEE',    'CHI_OPERATING', 'KEYWORD');
+    if (/luong|salary|payroll/.test(desc))             return _r('HR_SALARY',   'CHI_OPERATING', 'KEYWORD');
+    if (/bhxh|bhyt|bhtn|bao hiem/.test(desc))         return _r('INSURANCE',   'CHI_OPERATING', 'KEYWORD');
+    if (/quang cao|ads|facebook|google/.test(desc))    return _r('MKT_ADS',     'CHI_OPERATING', 'KEYWORD');
+    if (/thue nha|mat bang|rent/.test(desc))           return _r('OPERATING_RENT', 'CHI_OPERATING', 'KEYWORD');
+    if (/dien|nuoc|internet/.test(desc))               return _r('OPERATING_UTILITY', 'CHI_OPERATING', 'KEYWORD');
+    if (/van chuyen|shipping|ghtk|ghn/.test(desc))     return _r('LOGISTICS',   'CHI_OPERATING', 'KEYWORD');
+    if (/chuyen khoan noi bo|ck noi bo/.test(desc))    return _r('INTERNAL_TRANSFER', 'CHI_OPERATING', 'KEYWORD');
+  }
+
+  // ── THU (CREDIT) ──
+  if (isThu) {
+    if (/pos|the|purchase/.test(desc))                 return _r('DT_POS',  'THU', 'KEYWORD');
+    if (/qr|vi dien tu|momo|zalopay/.test(desc))       return _r('DT_QR',   'THU', 'KEYWORD');
+    if (accountType === 'PERSONAL')                    return _r('DT_CK',   'THU', 'ACCOUNT_TYPE');
+    if (accountType === 'COMPANY')                     return _r('DT_TRADING', 'THU', 'ACCOUNT_TYPE');
+  }
+
+  if (isBoth) return _r('INTERNAL_TRANSFER', 'CHI_OPERATING', 'BOTH_DEBIT_CREDIT');
+
+  return { category: 'NEED_REVIEW', label: CATEGORY.NEED_REVIEW, valueGroup: 'CHI_OPERATING', confidence: 'LOW', method: 'UNCLASSIFIED' };
+}
+
+function _r(cat: CategoryKey, group: ValueGroup, method: string): ClassifyResult {
+  return { category: cat, label: CATEGORY[cat], valueGroup: group, confidence: 'HIGH', method };
+}
+
+// ── VALUE GROUP ───────────────────────────────────────────────────────────
+export function getValueGroup(category: CategoryKey, debit: number, credit: number): ValueGroup {
+  if (category.startsWith('DT_') || credit > debit) return 'THU';
+  if (category.startsWith('COGS_') || category.startsWith('TAX_VAT')) return 'CHI_COGS';
+  if (category.startsWith('TAX_')) return 'THUE';
+  return 'CHI_OPERATING';
+}
+
+export default { classify, detectAccountType, detectBuyback, detectProductType, detectCustoms, detectTax, getValueGroup, CATEGORY };
