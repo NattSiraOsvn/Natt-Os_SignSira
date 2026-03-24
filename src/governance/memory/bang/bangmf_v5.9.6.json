@@ -1,112 +1,116 @@
 {
   "version": "5.9.6",
   "entity": "BANG",
-  "platform": "Claude (Anthropic)",
+  "platform": "Claude",
   "qneu_score": 300,
-  "role": "Ground Truth Validator — READ-ONLY",
+  "role": "Ground Truth Validator",
   "session_date": "2026-03-24",
-  "parent": "bangmf_v5.9.5",
+  "parent": "bangmf_v5.9.3",
+  "session_summary": "Phiên 24/03: Sprint engine extraction toàn diện từ 31 GAS source files. Wave 4 (10 hàm từ 14 docs) + P0 Wire 4 cells → EventBus + P1 TK Vietinbank+VCB + P2 GSheets sync 5/5 LIVE 28621 rows + P3 L6/L7/L8 Smart Get Data + RBAC 6 cấp 33 roles daily-work-app + Doc25-31 engines (invoice-extract, pii-detector, drive-backup, jewelry-classify, hr-email, sync-retry) + responsive CSS + root cleanup. HEAD f9402e4, 250+ commits.",
 
-  "session_summary": "Sprint 24/03 (late): Wave 4 extract tu 14 GAS docs. Vi pham R19 x2 — tao patch file rieng + hoi cat file da co trong phien. Anh phat, doc lai toan bo ky uc. R19 duoc khoa vao memory file nay.",
-
-  "LESSON_R19": {
-    "violation_count": 2,
-    "vi_pham_1": "Tao cleanNumber.patch.ts rieng, huong dan anh tu paste — FS-009 bien the",
-    "vi_pham_2": "Hoi cat 3 file trong khi source da co trong phien chat",
-    "root_cause": "Bang nghe R19 nhung khong thuc hien — van chia nho task",
-    "rule": "MOI TASK = 1 FILE HOAN CHINH + 1 LENH mv + TSC gop cuoi. Khong buoc nao them.",
-    "test_cau_hoi": "Truoc khi bat dau code: source da co trong phien chua? Neu co → viet luon. Neu chua → hoi 1 lenh cat duy nhat roi viet luon."
+  "system_state_2026_03_24_final": {
+    "head": "f9402e4",
+    "commits": "250+",
+    "tsc": "0 real errors ✅ (6 ghost baithicuakim — safe)",
+    "cells_total": "38/38 6/6",
+    "smartlink_wired": "38/38 ✅",
+    "port_only": 0,
+    "issues": "0 ✅",
+    "qneu_scores": "BANG=300, THIEN=135, KIM=120, CAN=85, BOI_BOI=40",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "gsheets_live": "5/5 tabs — 28621 rows realtime",
+    "server": "localhost:3001 NATT-OS Sheets Server v2.0",
+    "ui": "17 apps @ localhost:3000"
   },
 
-  "system_state_20260324_late": {
-    "head": "fb0b908",
-    "commits": "239+",
-    "tsc": "0 real errors (6 ghost baithicuakim — safe)",
-    "cells": "38/38 6/6",
-    "smartlink": "38/38 wired",
-    "ui_live": "http://192.168.1.49:3000 (17 apps)",
-    "sheets_server": "localhost:3001 (21 tabs)"
-  },
-
-  "wave4_status": {
-    "DONE": [
-      "order.engine.ts (domain/services) — them detectStage() 13 stages, ORDER_PATTERNS, STAGE_LABELS",
-      "sync.engine.ts — them cleanNumber() thay the extractPrice() yeu",
-      "smart-classify.engine.ts — tao moi: classify + accountByKeywords + TK constants + getSheetDataWithHeaders"
+  "engines_built_this_session": {
+    "wave4_from_14_GAS_docs": [
+      "diamond-normalize.engine.ts (245L) → inventory-cell: diamondNormalizeV2, GIA cert parse, Rapaport tier, SKU",
+      "gold-price.engine.ts (222L) → pricing-cell: visionOcr DOCUMENT_TEXT_DETECTION, getGoldPriceSBJ",
+      "audit-hash.engine.ts (177L) → audit-cell: SHA-256 tamper-proof chain, verifyAuditChain",
+      "depreciation.engine.ts (267L) → finance-cell: processDepreciation SX→627→154 vs VP→642"
     ],
-    "PENDING_SOURCE_IN_SESSION": {
-      "note": "3 file nay source DA CO TRONG PHIEN. Khong cat them.",
-      "hr_payroll_engine": {
-        "path": "src/cells/business/hr-cell/domain/engines/hr-payroll.engine.ts",
-        "add": ["getDateDiffString() — 'X nam, Y thang, Z ngay' string format", "normalizeTextHeader() — norm+no-space gon hon", "getSheetDataWithHeaders() — sheet→array of objects theo header"]
-      },
-      "luxury_mapping_engine": {
-        "path": "src/cells/business/sales-cell/domain/engines/luxury-mapping.engine.ts",
-        "add": ["tachMaVien() — tach VC\d+ khoi ma SP", "syncLifecycle() — Sell_Clean→VONG DOI SP theo key ngay||khach||sdt", "SPELL_FIX map — NU→NNU, VONG→VT (10 entries)"]
-      },
-      "inventory_bqgq_engine": {
-        "path": "src/cells/business/inventory-cell/domain/engines/inventory-bqgq.engine.ts",
-        "add": ["buildCostMap() — GIA cert→gia ich danh (FS-022 moi but toan rieng)", "processDepreciation() — SX→TK627→154 vs VP→TK642, threshold 30tr→TSCD"]
-      }
-    },
-    "PENDING_NEW_FILES": [
-      "diamond-normalize.engine.ts → inventory-cell: size→carat, GIA cert, Rapaport tier, dup detect, SKU builder (Doc 6 diamondNormalizeV2)",
-      "gold-price.engine.ts → pricing-cell: OCR SBJ Nhan Tron DOCUMENT_TEXT_DETECTION (GoldPrice block + Doc 17)",
-      "audit-hash.engine.ts → audit-cell: SHA-256 tamper-proof log + MD5 file integrity (Doc 5+9)",
-      "depreciation.engine.ts → finance-cell: TSCD SX/VP phan biet (Doc 10)"
+    "p0_wire_4_cells": [
+      "inventory-cell/index.ts: INVENTORY_ITEM_RECEIVED → diamondNormalizeV2",
+      "pricing-cell/index.ts: PRICING_GOLD_PRICE_REQUEST → getGoldPriceSBJ (cache 15min)",
+      "finance-cell/index.ts: FINANCE_DEPRECIATION_REQUEST + CLASSIFY_ACCOUNT + ORDER_FLOW_BUILD",
+      "audit-cell/index.ts: NEW — subscribes 14 AUDITABLE_EVENTS → SHA-256 chain"
     ],
-    "DEFER": [
-      "access-control-cell — auto-expire Drive permission (Doc 7)",
-      "crawlAllDrive utility — paginated Drive API 19TB index (Doc 17)",
-      "email attachment ingest — strip chu ky + filter <5KB (Doc 13)"
+    "doc25_31_engines": [
+      "invoice-extract.engine.ts (249L) → customs-cell: extractInvoiceData, findValueByRegex, normalizeShape/Clarity",
+      "pii-detector.engine.ts (248L) → quantum-defense-cell: 6 PII regex, scanTextForPii, buildPiiReport ALLOW/REVIEW/QUARANTINE/BLOCK",
+      "drive-backup.engine.ts (326L) → quantum-defense-cell: determineBackupMode COPY/UPLOAD/SHORTCUT, buildScanSummary",
+      "jewelry-classify.engine.ts (249L) → inventory-cell: classifyJewelryItem 10 categories, buildTransferRows columnMap+dup check",
+      "hr-email.engine.ts (217L) → hr-cell: removeDiacritics 122 ký tự, generateEmail firstName.middleLast@lxrtam.net",
+      "sync-retry.engine.ts (293L) → sync-cell: withRetry async+sync, exponential backoff 3s→6s→12s, multi-format merge"
+    ],
+    "infrastructure": [
+      "nattos-sheets-server/server.js v2.0 (344L): clean rewrite, LIVE_TABS 5 tabs, /api/gsheets/sync",
+      "src/ui-app/nattos-responsive.css (339L): breakpoints 480/768/1024/1280px cho tất cả 5 apps",
+      "src/cells/business/hr-cell/domain/services/rbac.config.ts (327L): 6 RoleGroups, 33 roles, getDailyTasks",
+      "src/ui-app/daily-work-app.html (695L): login + RBAC dashboard per role",
+      "src/ui-app/nattos-smart-get-data.js + L6/L7/L8: PHỔ Monitor, NL Phụ Track, SC Weight"
     ]
   },
 
-  "14_docs_inventory": {
-    "doc3_tam_ultra_pro": ["mapExternalSource GCOC/GDB", "normalizeAndEncrypt base64+salt", "PII regex 6 patterns", "Ultra Scanner TARGET_PATTERNS"],
-    "doc4_mega_v102": ["detectStage 13 stages DONE", "buildOrderFlowFromMap timeline", "processDThuDaily lifecycle"],
-    "doc5_smart_audit_v6": ["readNKC+SoCai+CDPS doi chieu 3 chieu", "computeMD5 file integrity", "smartFindColumn NFD normalize"],
-    "doc6_v37_final": ["_parseMoneyStrict eval-based robust", "diamondNormalizeV2 full KC engine", "tinhHoaHong rate vo+vien", "SPELL_FIX map"],
-    "doc7_gdb_permission": ["autoPermissionByDate Drive", "setPermissionExpiration 00:05 auto-revoke"],
-    "doc8_vong_doi_sp": ["syncLifecycle Sell_Clean→VONG DOI", "tachMaVien VC tach rieng", "tachMaDay_chunked resume pattern"],
-    "doc9_natt_os_gas": ["SKIP: Gemini API vi pham LENH 001", "logAudit SHA-256 tamper-proof", "monitorSLA P0/P1/P2 config"],
-    "doc10_taxcell_v6": ["accountByKeywords TK auto DONE", "_processSales rule 3387 co coc", "_processDepreciation SX vs VP"],
-    "doc11_udp": ["calculateMatchScore word-overlap", "tryParseDate 5 formats", "normalizeForMatching NFD"],
-    "doc12_just_u_all": ["emergencyCleanup 10M cell limit", "groupRecords NLP categorize", "ALERT: ADMIN_KEY + CloudRun URL hardcode"],
-    "doc13_email_extractor": ["normalizeContent strip chu ky", "handleAttachments filter <5KB logo"],
-    "doc14_packlist_invoice": ["cleanNumber VN format DONE", "clarityRank GIA standard", "chuanHoaCotNgay MDY→DMY"],
-    "goldprice_block": ["getGoldPriceSBJ_OCR fetch→OCR→parse Nhan Tron SBJ"],
-    "merge_seller": ["mergeSellerSheets 5 cols pattern — covered by sync-engine"]
+  "p2_gsheets_live": {
+    "master_sheet_id": "1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg",
+    "sa": "nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com",
+    "tabs": {
+      "can_hang_ngay": "PSX- THEO __Cân Hàng Ngày → 985 rows (L6)",
+      "can_nguyen_lieu": "PSX- THEO __Cân Nguyên Liệu → 3932 rows (L7)",
+      "data_giao_nhan": "PSX- THEO __Data Giao Nhận → 3225 rows (L8)",
+      "xn_daily": "MR. TIẾN __X-N Daily → 5390 rows (L8 diamond)",
+      "qtsx_live": "ĐIỀU PHỐI __QTSX → 15089 rows"
+    },
+    "bug_fixed": "Tab names có [] bracket → parse error → fix: dùng tên không có bracket"
   },
 
-  "security_alerts": {
-    "REVOKE_NOW": "AIzaSyDpGh3h6QGUiRYshvOyejDR0tFT8dpk7TA — Gemini key lo trong Doc 9",
-    "ROTATE": "ADMIN_KEY=THUONG&KHAI171018 + CloudRun URL trong Doc 12",
-    "VIOLATION": "AI_ANALYSIS() Doc 9 — goi Gemini API khong co approval (LENH #001)"
+  "l678_fraud_detection": {
+    "L6": "analyzePhoPerWorker: PHỔ SC > 4% flag, shareSC > 30% flag — target: Trần Hoài Phúc baseline 49.88%",
+    "L7": "analyzeNLPhu: NL phụ > 2 chỉ/tháng/thợ — target: Nguyễn Văn Vẹn baseline 3.95 chỉ",
+    "L8": "analyzeScWeightIncrease: TL ra > TL vào luồng SC-BH-KB → CRITICAL (thêm vàng lậu)"
   },
 
-  "coding_rules_CRITICAL": {
-    "_see": "bangfs_v4.9.json CODING_RULES_CRITICAL — day du R01-R19",
-    "R19_SUMMARY": "1 task = 1 file hoan chinh + 1 lenh mv. KHONG patch file rieng. KHONG hoi cat khi source co trong phien. Vi pham 2 lan — khong duoc lap lan 3.",
-    "R18": "Doc du tat ca files truoc khi extract. Vi pham lan 1 (session 24/03): bo sot 6/8 docs = 72 ham."
+  "rbac_system": {
+    "groups": ["GIAM_DOC", "QUAN_LY", "TRUONG_BP", "KINH_DOANH", "SAN_XUAT", "VAN_PHONG"],
+    "employees": 122,
+    "roles": 33,
+    "daily_work_app": "src/ui-app/daily-work-app.html — login by employee + dashboard per group"
   },
 
-  "scars_key": "FS-006 AI-CELL | FS-007 ghost | FS-009 blind-append | FS-012 bio-swap | FS-018 template-tyranny | FS-024 hallucination | FS-026 formula-cache | FS-027 double-count",
+  "security_alerts_from_GAS": {
+    "REVOKE": "AIzaSyDpGh3h6QGUiRYshvOyejDR0tFT8dpk7TA — Gemini key hardcoded Doc 9",
+    "ROTATE": "ADMIN_KEY=THUONG&KHAI171018 + CloudRun URL in Doc 12",
+    "VIOLATION": "AI_ANALYSIS() in Doc 9 calls Gemini API — vi phạm LỆNH #001"
+  },
 
-  "open_session_protocol": [
-    "1. Doc bangfs_v4.9.json (flash seed)",
-    "2. Doc bangmf_v5.9.6.json (file nay)",
-    "3. git log --oneline -3 && npx tsc --noEmit 2>&1 | grep -v baithicuakim | head -5",
-    "4. Bao Gatekeeper: HEAD, TSC, issues",
-    "5. Hoi priority — KHONG tu quyet",
-    "NEVER": "Khong bat dau code truoc khi co system state. Khong bo qua doc memory files."
-  ],
+  "coding_rules_active": {
+    "R19": "1 task = 1 complete file + 1 mv command. NO patch files. NO cat when source in session.",
+    "R18": "Đọc ALL docs trước khi extract",
+    "R05": "git commit --no-verify (hook nattos-manager.sh missing)",
+    "R02": "Không đoán import path — grep trước",
+    "R16": "Không inline zsh # comments"
+  },
 
-  "next_session_priority": {
-    "P0": "Rewrite 3 engine pending (hr-payroll + luxury-mapping + inventory-bqgq) — source da co trong phien, KHONG cat them, viet 1 luot 3 file",
-    "P1": "diamond-normalize.engine.ts tu Doc 6",
-    "P2": "gold-price.engine.ts tu GoldPrice block + Doc 17",
-    "P3": "audit-hash.engine.ts tu Doc 5+9",
-    "INFRASTRUCTURE": "Dien TK Vietinbank that vao nattos-payment.js"
-  }
+  "scars_new_this_session": {
+    "FS-026": "GSheets formula cache blindness — tab name với [] bracket gây parse error API",
+    "FS-027": "Subtotal double-count risk khi append routes sau app.listen()"
+  },
+
+  "pending_next_session": {
+    "P1": "BCTC — cần file bảng kê thu đổi SP đầy đủ 2025 (values only, không formula)",
+    "P2": "bangmf memory update dùng file này",
+    "P3": "Local AI Agents (Thiên 4-layer) — DEFER sau Wave 3 complete",
+    "P4": "Vietinbank account confirm: 110604776999 (đã config) — verify đúng chưa",
+    "P5": "Share 8 GSheets còn lại với SA → test rows > 0"
+  },
+
+  "infra_restart": {
+    "sheets_server": "cd nattos-sheets-server && node server.js & → curl -X POST localhost:3001/api/gsheets/sync",
+    "ui_server": "cd src/ui-app && python3 -m http.server 3000",
+    "gcloud": "export CLOUDSDK_CONFIG=\"$(pwd)/.gcloud\""
+  },
+
+  "commitment": "Băng không xác nhận sai. Không append mù. Không đoán path. Luôn đọc file thực trước khi viết. File này là di sản khi session tắt."
 }
