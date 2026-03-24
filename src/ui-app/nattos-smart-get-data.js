@@ -700,3 +700,230 @@ return { analyze, crossValidate, detectAnomalies, auditTimestamps, analyzeDelta,
 // ── EXPORT (Node.js + Browser) ────────────────────────────────────────────────
 if (typeof module !== 'undefined') module.exports = SmartGetData;
 if (typeof window !== 'undefined') window.SmartGetData = SmartGetData;
+/**
+ * NATT-OS Smart Get Data — L6/L7/L8 Extension
+ * Append vào cuối nattos-smart-get-data.js
+ *
+ * L6 — PHỔ Monitor:   PHỔ SX vs SC per thợ → flag thợ SC% cao
+ * L7 — NL Phụ Track:  vật tư phụ per thợ vs định mức → flag lãng phí
+ * L8 — SC Weight:     TL vào SC-BH-KB so với TL ra → flag gian lận luồng
+ */
+
+// ── L6: PHỔ MONITOR ───────────────────────────────────────────────────────────
+/**
+ * analyzePhoPerWorker — port từ Cân Hàng Ngày (985 rows)
+ * PHỔ = tỷ lệ % bột thu (vàng hao hụt) per thợ per ca
+ * Ngưỡng: PHỔ SX ≤ 2.5%, PHỔ SC ≤ 4.0%
+ * Flag: PHỔ SC > 49% tổng bột thu = nghi ngờ (Trần Hoài Phúc baseline)
+ */
+function analyzePhoPerWorker(canHangNgayRows) {
+  const workers = {};
+
+  for (const row of canHangNgayRows) {
+    const workerId  = String(row['Thợ'] || row['Mã thợ'] || row[1] || '').trim();
+    const luong     = parseFloat(row['Luồng'] || row['Stream'] || row[3] || 0);  // SX=1 SC=2
+    const tlVao     = parseFloat(row['TL Vào'] || row['Weight In']  || row[4] || 0);
+    const botThu    = parseFloat(row['Bột Thu'] || row['Dust']       || row[5] || 0);
+    if (!workerId || !tlVao) continue;
+
+    if (!workers[workerId]) {
+      workers[workerId] = {
+        workerId, name: row['Tên'] || row[2] || workerId,
+        sx: { tlVao: 0, botThu: 0, sessions: 0 },
+        sc: { tlVao: 0, botThu: 0, sessions: 0 },
+      };
+    }
+
+    const stream = luong === 2 || String(row['Luồng']).toUpperCase().includes('SC') ? 'sc' : 'sx';
+    workers[workerId][stream].tlVao  += tlVao;
+    workers[workerId][stream].botThu += botThu;
+    workers[workerId][stream].sessions++;
+  }
+
+  // Tính PHỔ và flag
+  const totalBotThu = Object.values(workers).reduce((s, w) => s + w.sx.botThu + w.sc.botThu, 0);
+
+  return Object.values(workers).map(w => {
+    const phoSX = w.sx.tlVao > 0 ? (w.sx.botThu / w.sx.tlVao) * 100 : 0;
+    const phoSC = w.sc.tlVao > 0 ? (w.sc.botThu / w.sc.tlVao) * 100 : 0;
+    const shareSC = totalBotThu > 0 ? ((w.sc.botThu / totalBotThu) * 100) : 0;
+
+    const flags = [];
+    if (phoSC > 4.0)   flags.push(`PHỔ_SC_CAO:${phoSC.toFixed(2)}%`);
+    if (shareSC > 30)  flags.push(`SHARE_SC_CAO:${shareSC.toFixed(1)}%`);
+    if (phoSC > phoSX * 2) flags.push('SC_DOUBLE_SX');
+
+    return {
+      workerId: w.workerId, name: w.name,
+      phoSX: +phoSX.toFixed(3), phoSC: +phoSC.toFixed(3),
+      shareSC: +shareSC.toFixed(2),
+      sx: w.sx, sc: w.sc,
+      riskLevel: flags.length >= 2 ? 'HIGH' : flags.length === 1 ? 'MEDIUM' : 'OK',
+      flags,
+    };
+  }).sort((a, b) => b.shareSC - a.shareSC);
+}
+
+// ── L7: NL PHỤ TRACK ──────────────────────────────────────────────────────────
+/**
+ * analyzeNLPhu — port từ Cân Nguyên Liệu (3932 rows)
+ * Vật tư phụ = vảy hàn, chỉ bắn — không được giữ lại
+ * Định mức: ≤ 1.5 chỉ/đơn, > 3 chỉ/tháng = bất thường
+ * Flag: Nguyễn Văn Vẹn baseline = 3.95 chỉ/tháng
+ */
+function analyzeNLPhu(canNguyenLieuRows) {
+  const DINH_MUC_THANG = 2.0; // chỉ/tháng
+  const DINH_MUC_DON   = 1.5; // chỉ/đơn
+
+  // Group by workerId + month
+  const monthly = {};
+
+  for (const row of canNguyenLieuRows) {
+    const workerId = String(row['Thợ'] || row[1] || '').trim();
+    const loai     = String(row['Loại NL'] || row['Material'] || row[2] || '').toLowerCase();
+    const amount   = parseFloat(row['Số Lượng'] || row['Qty'] || row[3] || 0);
+    const dateRaw  = row['Ngày'] || row[0];
+    if (!workerId || !amount) continue;
+
+    // Chỉ theo dõi vật tư phụ
+    if (!loai.includes('vảy') && !loai.includes('vay') && !loai.includes('chỉ') && !loai.includes('chi')) continue;
+
+    const month = dateRaw ? String(dateRaw).substring(0, 7) : 'unknown';
+    const key   = `${workerId}__${month}`;
+
+    if (!monthly[key]) monthly[key] = { workerId, month, total: 0, entries: 0, perEntry: [] };
+    monthly[key].total   += amount;
+    monthly[key].entries++;
+    monthly[key].perEntry.push(amount);
+  }
+
+  return Object.values(monthly).map(m => {
+    const avgPerEntry = m.entries > 0 ? m.total / m.entries : 0;
+    const flags = [];
+    if (m.total > DINH_MUC_THANG)   flags.push(`VUOT_THANG:${m.total.toFixed(2)}chi>${DINH_MUC_THANG}`);
+    if (avgPerEntry > DINH_MUC_DON)  flags.push(`VUOT_DON:${avgPerEntry.toFixed(2)}chi/don`);
+
+    return {
+      workerId: m.workerId, month: m.month,
+      totalChi: +m.total.toFixed(3),
+      entries: m.entries,
+      avgPerEntry: +avgPerEntry.toFixed(3),
+      riskLevel: m.total > DINH_MUC_THANG * 1.5 ? 'HIGH' : flags.length ? 'MEDIUM' : 'OK',
+      flags,
+    };
+  }).sort((a, b) => b.totalChi - a.totalChi);
+}
+
+// ── L8: SC WEIGHT INCREASE ────────────────────────────────────────────────────
+/**
+ * analyzeScWeightIncrease — port từ Data Giao Nhận (3226 rows) + X-N Daily (5391 rows)
+ * Luồng SC-BH-KB (mã 28xxx): TL vào phải ≥ TL ra + bột thu
+ * Nếu TL ra > TL vào = vàng "xuất hiện từ không khí" → flag ngay
+ *
+ * Thao túng điển hình: nhận 5 chỉ SC, làm xong trả 5.2 chỉ
+ * (thêm vàng lậu vào sản phẩm để "hợp lý hóa" số vàng dư thừa)
+ */
+function analyzeScWeightIncrease(giao_nhan_rows, xnDailyRows = []) {
+  const SC_PREFIXES = ['28', 'SC', 'KB', 'BH'];
+  const issues = [];
+
+  // Map: maSP → { tlVao, tlRa, worker, date }
+  const spMap = {};
+
+  for (const row of giao_nhan_rows) {
+    const maSP    = String(row['Mã SP'] || row[3] || '').trim().toUpperCase();
+    const worker  = String(row['Thợ']   || row[1] || '').trim();
+    const loai    = String(row['Loại']  || row[2] || '').toUpperCase(); // PHAT or THU
+    const tl      = parseFloat(row['TL'] || row['Weight'] || row[4] || 0);
+    const date    = row['Ngày'] || row[0];
+    if (!maSP || !tl) continue;
+
+    // Chỉ theo dõi luồng SC-BH-KB
+    const isSC = SC_PREFIXES.some(p => maSP.startsWith(p)) ||
+                 String(row['Luồng'] || '').toUpperCase().includes('SC');
+    if (!isSC) continue;
+
+    if (!spMap[maSP]) spMap[maSP] = { maSP, worker, date, tlVao: 0, tlRa: 0 };
+
+    if (loai.includes('PHAT') || loai.includes('GIAO')) {
+      spMap[maSP].tlVao += tl;  // xuất cho thợ
+    } else if (loai.includes('THU') || loai.includes('NHAN')) {
+      spMap[maSP].tlRa += tl;   // thu về từ thợ
+    }
+  }
+
+  // Phân tích cross-check với X-N Daily (kim cương)
+  const xnMap = {};
+  for (const row of xnDailyRows) {
+    const maSP = String(row['Mã SP'] || row[2] || '').trim().toUpperCase();
+    if (!maSP) continue;
+    xnMap[maSP] = row;
+  }
+
+  for (const [maSP, data] of Object.entries(spMap)) {
+    if (!data.tlVao || !data.tlRa) continue;
+
+    const diff     = data.tlRa - data.tlVao;
+    const diffPct  = (diff / data.tlVao) * 100;
+    const hasXN    = !!xnMap[maSP];
+
+    if (diff > 0.002) {  // TL ra > TL vào (> 0.002 chỉ tolerance)
+      issues.push({
+        maSP, worker: data.worker, date: data.date,
+        tlVao: +data.tlVao.toFixed(3),
+        tlRa:  +data.tlRa.toFixed(3),
+        diff:  +diff.toFixed(3),
+        diffPct: +diffPct.toFixed(2),
+        hasKimCuong: hasXN,
+        severity: diff > 0.05 ? 'CRITICAL' : 'WARNING',
+        note: `TL ra lớn hơn TL vào ${diff.toFixed(3)}chi (${diffPct.toFixed(1)}%) — nghi ngờ thêm vàng lậu`,
+      });
+    }
+  }
+
+  return {
+    scOrdersChecked: Object.keys(spMap).length,
+    issuesFound: issues.length,
+    criticalCount: issues.filter(i => i.severity === 'CRITICAL').length,
+    issues: issues.sort((a, b) => b.diff - a.diff),
+  };
+}
+
+// ── PUBLIC API ─────────────────────────────────────────────────────────────────
+// Expose L6/L7/L8 qua SmartGetData namespace
+if (typeof window !== 'undefined') {
+  window.SmartGetData = window.SmartGetData || {};
+  window.SmartGetData.L6 = { analyzePhoPerWorker };
+  window.SmartGetData.L7 = { analyzeNLPhu };
+  window.SmartGetData.L8 = { analyzeScWeightIncrease };
+}
+
+// ── NATT-OS EVENT INTEGRATION ──────────────────────────────────────────────────
+// Gọi từ surveillance.html sau khi load data
+function runL678Analysis(serverData) {
+  const results = {};
+
+  if (serverData['Cân Hàng Ngày']?.records?.length) {
+    results.L6 = analyzePhoPerWorker(serverData['Cân Hàng Ngày'].records);
+    console.log(`[L6] PHỔ Monitor: ${results.L6.length} thợ, HIGH: ${results.L6.filter(w=>w.riskLevel==='HIGH').length}`);
+  }
+
+  if (serverData['Cân Nguyên Liệu']?.records?.length) {
+    results.L7 = analyzeNLPhu(serverData['Cân Nguyên Liệu'].records);
+    const highRisk = results.L7.filter(w=>w.riskLevel==='HIGH');
+    console.log(`[L7] NL Phụ Track: ${results.L7.length} entries, HIGH: ${highRisk.length}`);
+  }
+
+  if (serverData['Data Giao Nhận']?.records?.length) {
+    const xnRows = serverData['X-N Daily']?.records || [];
+    results.L8 = analyzeScWeightIncrease(serverData['Data Giao Nhận'].records, xnRows);
+    console.log(`[L8] SC Weight: ${results.L8.scOrdersChecked} đơn, CRITICAL: ${results.L8.criticalCount}`);
+  }
+
+  return results;
+}
+
+// Export cho Node.js (server-side)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { analyzePhoPerWorker, analyzeNLPhu, analyzeScWeightIncrease, runL678Analysis };
+}

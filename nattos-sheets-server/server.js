@@ -324,3 +324,228 @@ app.listen(PORT, () => {
   console.log(`  POST /api/sheets/:key/write  — ghi vào sheet`);
   console.log(`  POST /api/sheets/:key/append — thêm dòng\n`);
 });
+/**
+ * NATT-OS GSheets Sync Routes — P2
+ * Thêm vào server.js (append trước dòng app.listen)
+ *
+ * /api/gsheets/sync  — pull 5 tab quan trọng từ master sheet → cache local
+ * /api/gsheets/status — kiểm tra SA đã được share chưa
+ * /api/live/:tabKey  — đọc GSheets realtime (fallback → local xlsx)
+ */
+
+const LIVE_TABS = {
+  can_hang_ngay: {
+    gsheetName: '[PSX- THEO ]__Cân Hàng Ngày',
+    localName:  'Cân Hàng Ngày',
+    priority:   'L6_PHO_MONITOR',
+    maxRows:    2000,
+  },
+  can_nguyen_lieu: {
+    gsheetName: '[PSX- THEO ]__Cân Nguyên Liệu',
+    localName:  'Cân Nguyên Liệu',
+    priority:   'L7_NL_PHU',
+    maxRows:    5000,
+  },
+  data_giao_nhan: {
+    gsheetName: '[PSX- THEO ]__Data Giao Nhận',
+    localName:  'Data Giao Nhận',
+    priority:   'L8_SC_WEIGHT',
+    maxRows:    4000,
+  },
+  xn_daily: {
+    gsheetName: '[MR. TIẾN []__X-N Daily',
+    localName:  'MR. TIẾN X-N Daily',
+    priority:   'L8_DIAMOND',
+    maxRows:    6000,
+  },
+  qtsx: {
+    gsheetName: '[ĐIỀU PHỐI ]__QTSX',
+    localName:  'ĐIỀU PHỐI QTSX',
+    priority:   'PRODUCTION_FLOW',
+    maxRows:    20000,
+  },
+};
+
+// In-memory sync cache
+const liveCache = {};
+let lastSyncAt  = null;
+let syncStatus  = 'NEVER';
+
+// ── PULL FROM GSHEETS ─────────────────────────────────────────────────────────
+async function pullTabFromGSheets(tabKey) {
+  const tab = LIVE_TABS[tabKey];
+  if (!tab) return { error: 'Unknown tab key' };
+
+  try {
+    const auth   = getAuth();
+    const sheets = google.sheets({ version: 'v4', auth });
+    const range  = `'${tab.gsheetName}'!A1:Z${tab.maxRows}`;
+
+    const resp = await sheets.spreadsheets.values.get({
+      spreadsheetId: MASTER_SHEET_ID,
+      range,
+    });
+
+    const rows    = resp.data.values || [];
+    const headers = rows[0] || [];
+    const records = rows.slice(1).map(row => {
+      const obj = {};
+      headers.forEach((h, i) => { obj[h] = row[i] ?? ''; });
+      return obj;
+    });
+
+    liveCache[tabKey] = {
+      tabKey, gsheetName: tab.gsheetName, localName: tab.localName,
+      headers, rows: rows.length, records,
+      syncedAt: new Date().toISOString(), source: 'gsheets',
+    };
+
+    return liveCache[tabKey];
+  } catch (err) {
+    // Fallback: đọc từ local xlsx
+    const localData = readLocalTab(tab.localName);
+    if (localData) {
+      liveCache[tabKey] = { ...localData, tabKey, source: 'local_fallback', error: err.message };
+      return liveCache[tabKey];
+    }
+    return { error: err.message, tabKey, hint: 'Share sheet cho SA: nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com' };
+  }
+}
+
+// Helper đọc local xlsx theo tab name
+function readLocalTab(tabName) {
+  try {
+    const XLSX      = require('xlsx');
+    const xlsxPath  = path.join(__dirname, 'line-production.xlsx');
+    const wb        = XLSX.readFile(xlsxPath);
+    const ws        = wb.Sheets[tabName];
+    if (!ws) return null;
+    const rows    = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+    const headers = rows[0] || [];
+    const records = rows.slice(1).map(row => {
+      const obj = {};
+      headers.forEach((h, i) => { obj[h] = row[i] ?? ''; });
+      return obj;
+    });
+    return { localName: tabName, headers, rows: rows.length, records };
+  } catch { return null; }
+}
+
+// ── ROUTES ────────────────────────────────────────────────────────────────────
+
+// P2 — Status: SA được share chưa?
+app.get('/api/gsheets/status', async (req, res) => {
+  const checks = {};
+  try {
+    const auth   = getAuth();
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    // Thử đọc 1 cell để check quyền
+    const resp = await sheets.spreadsheets.values.get({
+      spreadsheetId: MASTER_SHEET_ID,
+      range: 'A1:B2',
+    });
+    checks.masterSheet = { ok: true, rows: resp.data.values?.length ?? 0 };
+  } catch (err) {
+    checks.masterSheet = {
+      ok: false, error: err.message,
+      fix: `Vào Google Sheets → Share → Thêm: nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com (Viewer)`,
+    };
+  }
+
+  res.json({
+    sa: 'nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com',
+    masterSheetId: MASTER_SHEET_ID,
+    lastSyncAt, syncStatus,
+    cacheKeys: Object.keys(liveCache),
+    checks,
+  });
+});
+
+// P2 — Sync: pull 5 tab từ GSheets vào cache
+app.post('/api/gsheets/sync', async (req, res) => {
+  syncStatus = 'RUNNING';
+  const results = {};
+  const keys = Object.keys(LIVE_TABS);
+
+  await Promise.allSettled(
+    keys.map(async key => {
+      const result = await pullTabFromGSheets(key);
+      results[key] = {
+        source:    result.source || 'error',
+        rows:      result.rows   || 0,
+        records:   result.records?.length || 0,
+        syncedAt:  result.syncedAt,
+        error:     result.error,
+        priority:  LIVE_TABS[key].priority,
+      };
+    })
+  );
+
+  lastSyncAt = new Date().toISOString();
+  const okCount = Object.values(results).filter(r => r.source !== 'error').length;
+  syncStatus = okCount === keys.length ? 'OK' : okCount > 0 ? 'PARTIAL' : 'FAILED';
+
+  res.json({
+    ok: okCount > 0, syncStatus, lastSyncAt,
+    summary: { total: keys.length, ok: okCount, failed: keys.length - okCount },
+    results,
+  });
+});
+
+// P2 — Live read: đọc tab từ cache hoặc pull realtime
+app.get('/api/live/:tabKey', async (req, res) => {
+  const { tabKey } = req.params;
+  const forceRefresh = req.query.refresh === '1';
+
+  if (!LIVE_TABS[tabKey]) {
+    return res.status(404).json({
+      error: 'Tab không tìm thấy',
+      available: Object.keys(LIVE_TABS),
+    });
+  }
+
+  // Serve from cache nếu còn mới (< 15 phút)
+  const cached = liveCache[tabKey];
+  const cacheAge = cached ? (Date.now() - new Date(cached.syncedAt).getTime()) : Infinity;
+  const CACHE_TTL = 15 * 60 * 1000;
+
+  if (!forceRefresh && cached && cacheAge < CACHE_TTL) {
+    return res.json({ ...cached, cacheAge: Math.round(cacheAge / 1000) + 's' });
+  }
+
+  // Pull fresh
+  const data = await pullTabFromGSheets(tabKey);
+  res.json(data);
+});
+
+// P3 — L678 analysis endpoint
+app.get('/api/l678/analyze', async (req, res) => {
+  // Load 3 tab cần thiết
+  const needed = ['can_hang_ngay', 'can_nguyen_lieu', 'data_giao_nhan', 'xn_daily'];
+  const serverData = {};
+
+  for (const key of needed) {
+    const tab = LIVE_TABS[key];
+    const cached = liveCache[key];
+    if (cached) {
+      serverData[tab.localName] = cached;
+    } else {
+      const pulled = await pullTabFromGSheets(key);
+      serverData[tab.localName] = pulled;
+    }
+  }
+
+  // Trả về raw data để client-side L678 engine xử lý
+  const summary = {};
+  for (const [name, data] of Object.entries(serverData)) {
+    summary[name] = { rows: data.rows, records: data.records?.length, source: data.source };
+  }
+
+  res.json({
+    ok: true,
+    summary,
+    data: serverData,
+    hint: 'Client: gọi SmartGetData.runL678Analysis(response.data)',
+  });
+});
