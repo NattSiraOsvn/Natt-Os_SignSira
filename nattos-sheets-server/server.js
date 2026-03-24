@@ -72,11 +72,11 @@ const SOURCE_FILE_IDS = [
 
 // P2 — Live tabs (L6/L7/L8 data sources)
 const LIVE_TABS = {
-  can_hang_ngay:   { gsheetName: '[PSX- THEO ]__Cân Hàng Ngày',   localName: 'Cân Hàng Ngày',    priority: 'L6_PHO',    maxRows: 2000 },
-  can_nguyen_lieu: { gsheetName: '[PSX- THEO ]__Cân Nguyên Liệu', localName: 'Cân Nguyên Liệu',  priority: 'L7_NL_PHU', maxRows: 5000 },
-  data_giao_nhan:  { gsheetName: '[PSX- THEO ]__Data Giao Nhận',  localName: 'Data Giao Nhận',   priority: 'L8_SC',     maxRows: 4000 },
-  xn_daily:        { gsheetName: '[MR. TIẾN []__X-N Daily',       localName: 'MR. TIẾN X-N Daily',priority: 'L8_KC',    maxRows: 6000 },
-  qtsx_live:       { gsheetName: '[ĐIỀU PHỐI ]__QTSX',            localName: 'ĐIỀU PHỐI QTSX',   priority: 'FLOW',      maxRows: 20000 },
+  can_hang_ngay:   { gsheetName: 'PSX- THEO __Cân Hàng Ngày',   localName: 'Cân Hàng Ngày',    priority: 'L6_PHO',    maxRows: 2000 },
+  can_nguyen_lieu: { gsheetName: 'PSX- THEO __Cân Nguyên Liệu', localName: 'Cân Nguyên Liệu',  priority: 'L7_NL_PHU', maxRows: 5000 },
+  data_giao_nhan:  { gsheetName: 'PSX- THEO __Data Giao Nhận',  localName: 'Data Giao Nhận',   priority: 'L8_SC',     maxRows: 4000 },
+  xn_daily:        { gsheetName: 'MR. TIẾN __X-N Daily',       localName: 'MR. TIẾN X-N Daily',priority: 'L8_KC',    maxRows: 6000 },
+  qtsx_live:       { gsheetName: 'ĐIỀU PHỐI __QTSX',            localName: 'ĐIỀU PHỐI QTSX',   priority: 'FLOW',      maxRows: 20000 },
 };
 
 // ── CACHE ────────────────────────────────────────────────────────────────
