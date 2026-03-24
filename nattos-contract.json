@@ -1,0 +1,274 @@
+[
+  {
+    "component": "Sidebar",
+    "selector": ".sc, .sc-l, .ff, .lf",
+    "layer": 2,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-strong)", "background": "var(--lg-bg-regular)", "borderRight": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-strong)" },
+      "focus": { "backdropFilter": "var(--lg-blur-strong)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["position fixed left", "content scroll behind", "z-index 90"],
+    "interaction_priority": "high",
+    "z_index_policy": "elevated",
+    "scroll_behavior": "fixed"
+  },
+  {
+    "component": "Header",
+    "selector": ".topbar, .tb, .tb-tabs, .tb-right, .tb-user",
+    "layer": 2,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-medium)", "background": "var(--lg-bg-regular)", "borderBottom": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-medium)" },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)" },
+      "active": { "backdropFilter": "var(--lg-blur-medium)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["position sticky top 0", "z-index 100", "content scrolls behind"],
+    "interaction_priority": "high",
+    "z_index_policy": "elevated",
+    "scroll_behavior": "sticky"
+  },
+  {
+    "component": "CommandCenter",
+    "selector": ".fg, .thiencommandcenter, .quantum-cc",
+    "layer": 3,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-strong)", "background": "var(--lg-bg-regular)", "boxShadow": "var(--lg-shadow), 0 0 40px rgba(200,192,255,0.08)" },
+      "hover": { "backdropFilter": "var(--lg-blur-strong)" },
+      "focus": { "backdropFilter": "var(--lg-blur-strong)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["highest z-index 210", "Quantum Glass lavender glow", "overlay isolation"],
+    "interaction_priority": "high",
+    "z_index_policy": "highest",
+    "scroll_behavior": "fixed"
+  },
+  {
+    "component": "Modal",
+    "selector": ".modal, .modal-bg, .mbody, .mhdr, .mfoot, .mtitle",
+    "layer": 3,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-strong)", "background": "var(--lg-bg-regular)", "boxShadow": "var(--lg-shadow)" },
+      "hover": { "backdropFilter": "var(--lg-blur-strong)" },
+      "focus": { "backdropFilter": "var(--lg-blur-strong)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["z-index 200", "overlay isolation", "strong blur"],
+    "interaction_priority": "high",
+    "z_index_policy": "highest",
+    "scroll_behavior": "fixed"
+  },
+  {
+    "component": "NavItem",
+    "selector": ".tb-tab, .tb-logout, .av, .nav-item",
+    "layer": 2,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "none", "opacity": 1 },
+      "hover": { "backdropFilter": "var(--lg-blur-light)", "background": "rgba(245,226,192,0.06)" },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)", "background": "rgba(245,226,192,0.10)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["interactive highlight", "glass on interaction only"],
+    "interaction_priority": "medium",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "Button",
+    "selector": ".btn, .btn-primary, .lbtn, .pay-btn, .login-btn",
+    "layer": 2,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "none", "opacity": 1 },
+      "hover": { "backdropFilter": "var(--lg-blur-light)", "transform": "translateY(-1px)", "opacity": 0.9 },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)", "boxShadow": "0 0 0 2px var(--gold)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)", "transform": "translateY(0)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38, "cursor": "not-allowed" }
+    },
+    "constraints": ["state-driven glass activation", "glass only on interaction"],
+    "interaction_priority": "medium",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "ButtonGhost",
+    "selector": ".btn-ghost, .lbtn-ghost, .mclose",
+    "layer": 2,
+    "material": "glass-clear",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-light)", "background": "var(--lg-bg-clear)", "border": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-medium)", "borderColor": "rgba(245,226,192,0.16)" },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)", "boxShadow": "0 0 0 2px var(--gold)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["glass-clear default", "escalate on interaction"],
+    "interaction_priority": "medium",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "KPI",
+    "selector": ".kpi-card, .kpi-strip, .kpi-value, .kpi-label, .kpi-sub, .stats, .sc-v",
+    "layer": 1,
+    "material": "solid",
+    "states": {
+      "default": { "backdropFilter": "none", "opacity": 1 },
+      "hover": { "backdropFilter": "none", "transform": "translateY(-2px)", "boxShadow": "0 8px 20px rgba(0,0,0,0.2)" },
+      "focus": { "backdropFilter": "none", "boxShadow": "0 0 0 2px var(--gold)" },
+      "active": { "backdropFilter": "none", "opacity": 1 },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["NO GLASS ever", "readability priority", "data integrity layer"],
+    "interaction_priority": "low",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "DataTable",
+    "selector": ".tbl, .tb-dot, .section-title, .stitle, .shdr",
+    "layer": 1,
+    "material": "solid",
+    "states": {
+      "default": { "backdropFilter": "none", "opacity": 1 },
+      "hover": { "backdropFilter": "none", "background": "rgba(245,226,192,0.04)" },
+      "focus": { "backdropFilter": "none", "opacity": 1 },
+      "active": { "backdropFilter": "none", "opacity": 1 },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["NO GLASS", "overflow-x auto", "data display only"],
+    "interaction_priority": "low",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "FloatingControl",
+    "selector": ".live-ticker, .tout, .ttime, .toast-wrap, .user-chip",
+    "layer": 2,
+    "material": "glass-clear",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-light)", "background": "var(--lg-bg-clear)", "border": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-medium)" },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)" },
+      "active": { "backdropFilter": "var(--lg-blur-medium)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["overlay on dynamic background", "z-index elevated"],
+    "interaction_priority": "medium",
+    "z_index_policy": "elevated",
+    "scroll_behavior": "fixed"
+  },
+  {
+    "component": "Input",
+    "selector": ".lf input, .cust-input, .login-field, .search-wrap input",
+    "layer": 2,
+    "material": "glass-clear",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-light)", "background": "var(--lg-bg-clear)", "border": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-light)", "borderColor": "rgba(245,226,192,0.16)" },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)", "borderColor": "var(--gold)", "boxShadow": "0 0 0 2px rgba(245,226,192,0.12)" },
+      "active": { "backdropFilter": "var(--lg-blur-medium)", "opacity": 1 },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38, "cursor": "not-allowed" }
+    },
+    "constraints": ["glass escalates on focus", "gold border on focus"],
+    "interaction_priority": "medium",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "LoginScreen",
+    "selector": ".login, .login-box, .login-screen, .lbox",
+    "layer": 3,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-strong)", "background": "var(--lg-bg-regular)", "border": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-strong)" },
+      "focus": { "backdropFilter": "var(--lg-blur-strong)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["fullscreen overlay", "z-index 300", "RBAC gate"],
+    "interaction_priority": "high",
+    "z_index_policy": "highest",
+    "scroll_behavior": "fixed"
+  },
+  {
+    "component": "QRModal",
+    "selector": ".qr-modal, .qr-box",
+    "layer": 3,
+    "material": "glass-regular",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-strong)", "background": "var(--lg-bg-regular)", "boxShadow": "var(--lg-shadow)" },
+      "hover": { "backdropFilter": "var(--lg-blur-strong)" },
+      "focus": { "backdropFilter": "var(--lg-blur-strong)" },
+      "active": { "backdropFilter": "var(--lg-blur-strong)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["z-index 210", "payment flow isolation"],
+    "interaction_priority": "high",
+    "z_index_policy": "highest",
+    "scroll_behavior": "fixed"
+  },
+  {
+    "component": "Badge",
+    "selector": ".badge, .badge-pill, .stock-dot, .tdot, .tb-dot",
+    "layer": 1,
+    "material": "solid",
+    "states": {
+      "default": { "backdropFilter": "none", "opacity": 1 },
+      "hover": { "backdropFilter": "none", "opacity": 1 },
+      "focus": { "backdropFilter": "none", "opacity": 1 },
+      "active": { "backdropFilter": "none", "opacity": 1 },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["NO GLASS", "semantic color only", "status indicator"],
+    "interaction_priority": "low",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "ContentCard",
+    "selector": ".content, .prod-card, .team-card, .task-card, .personal-panel, .lbox",
+    "layer": 1,
+    "material": "solid",
+    "states": {
+      "default": { "backdropFilter": "none", "border": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "none", "borderColor": "rgba(245,226,192,0.16)", "transform": "translateY(-1px)" },
+      "focus": { "backdropFilter": "none", "opacity": 1 },
+      "active": { "backdropFilter": "none", "opacity": 1 },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["NO GLASS", "content data primary"],
+    "interaction_priority": "low",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  },
+  {
+    "component": "SectionPanel",
+    "selector": ".section, .sbody, .shdr",
+    "layer": 2,
+    "material": "glass-clear",
+    "states": {
+      "default": { "backdropFilter": "var(--lg-blur-light)", "background": "var(--lg-bg-clear)", "border": "1px solid var(--lg-border)" },
+      "hover": { "backdropFilter": "var(--lg-blur-light)" },
+      "focus": { "backdropFilter": "var(--lg-blur-medium)" },
+      "active": { "backdropFilter": "var(--lg-blur-medium)" },
+      "disabled": { "backdropFilter": "none", "opacity": 0.38 }
+    },
+    "constraints": ["functional container", "light glass only"],
+    "interaction_priority": "low",
+    "z_index_policy": "inherit",
+    "scroll_behavior": "normal"
+  }
+]
