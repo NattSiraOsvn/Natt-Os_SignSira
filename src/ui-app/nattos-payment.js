@@ -20,21 +20,21 @@ const NattosPayment = (() => {
 // ── CONFIG — Thông tin tài khoản Tâm Luxury ──────────────────────────────
 const CONFIG = {
   bank: {
-    name:      'Vietinbank',
-    bankCode:  '970415',
+    name:        'Vietinbank',
+    bankCode:    '970415',
+    accountNo:   '110604776999',
+    accountName: 'CONG TY TNHH TAM LUXURY',
+    branch:      'Chi Nhanh Ho Chi Minh',
   },
   bank2: {
     name:        'Vietcombank',
     bankCode:    '970436',
     accountNo:   '1770129999',
     accountName: 'CONG TY TNHH TAM LUXURY',
-    branch:      'Chi Nhanh Ho Chi Minh',,          // Mã ngân hàng VietQR
-    accountNo: '110604776999',    // ← Anh điền TK thật vào đây
-    accountName: 'CONG TY TNHH TAM LUXURY',
-    branch:    'Chi Nhánh Hồ Chí Minh',
+    branch:      'Chi Nhanh Ho Chi Minh',
   },
-  zaloPayUrl: 'https://zalopay.vn/qr-code/', // deeplink
-  confirmTimeout: 120, // giây chờ xác nhận
+  zaloPayUrl:     'https://zalopay.vn/qr-code/',
+  confirmTimeout: 120,
 };
 
 // ── VIETQR URL GENERATOR ──────────────────────────────────────────────────
