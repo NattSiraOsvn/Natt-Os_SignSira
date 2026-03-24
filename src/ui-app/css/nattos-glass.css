@@ -1,0 +1,218 @@
+/* nattos-glass.css – v2.1 */
+@import './nattos-tokens.css';
+
+/* Glass Material Classes */
+.glass-regular {
+  background: var(--lg-bg-regular);
+  backdrop-filter: var(--lg-blur-strong);
+  border: 1px solid var(--lg-border);
+}
+.glass-clear {
+  background: var(--lg-bg-clear);
+  backdrop-filter: var(--lg-blur-light);
+  border: 1px solid var(--lg-border);
+}
+
+/* === Component Styles (layout preserved) === */
+
+/* Sidebar – glass only, no layout override */
+.sc, .sc-l, .ff, .lf {
+  backdrop-filter: var(--lg-blur-strong);
+  background: var(--lg-bg-regular);
+  border-right: 1px solid var(--lg-border);
+}
+
+/* Header – layout kept, glass added */
+.topbar, .tb, .tb-tabs, .tb-right, .tb-user {
+  backdrop-filter: var(--lg-blur-medium);
+  background: var(--lg-bg-regular);
+  border-bottom: 1px solid var(--lg-border);
+}
+
+/* CommandCenter – retains fixed layout from app, glass enhanced */
+.fg, .thiencommandcenter, .quantum-cc {
+  backdrop-filter: var(--lg-blur-strong);
+  background: var(--lg-bg-regular);
+  box-shadow: var(--lg-shadow), 0 0 40px rgba(200,192,255,0.08);
+}
+
+/* Modal – layout fixed from app, glass applied */
+.modal, .modal-bg, .mbody, .mhdr, .mfoot, .mtitle {
+  backdrop-filter: var(--lg-blur-strong);
+  background: var(--lg-bg-regular);
+  box-shadow: var(--lg-shadow);
+}
+
+/* NavItem – interactive glass on hover/focus */
+.tb-tab, .tb-logout, .av, .nav-item {
+  backdrop-filter: none;
+  transition: all 0.2s ease;
+}
+.tb-tab:hover, .tb-logout:hover, .av:hover, .nav-item:hover {
+  backdrop-filter: var(--lg-blur-light);
+  background: rgba(245,226,192,0.06);
+}
+.tb-tab:focus, .tb-logout:focus, .av:focus, .nav-item:focus {
+  backdrop-filter: var(--lg-blur-medium);
+}
+.tb-tab:active, .tb-logout:active, .av:active, .nav-item:active {
+  backdrop-filter: var(--lg-blur-strong);
+  background: rgba(245,226,192,0.10);
+}
+.tb-tab:disabled, .tb-logout:disabled, .av:disabled, .nav-item:disabled {
+  backdrop-filter: none;
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Button – glass on interaction only */
+.btn, .btn-primary, .lbtn, .pay-btn, .login-btn {
+  backdrop-filter: none;
+  transition: all 0.2s ease;
+}
+.btn:hover, .btn-primary:hover, .lbtn:hover, .pay-btn:hover, .login-btn:hover {
+  backdrop-filter: var(--lg-blur-light);
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+.btn:focus, .btn-primary:focus, .lbtn:focus, .pay-btn:focus, .login-btn:focus {
+  backdrop-filter: var(--lg-blur-medium);
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.btn:active, .btn-primary:active, .lbtn:active, .pay-btn:active, .login-btn:active {
+  backdrop-filter: var(--lg-blur-strong);
+  transform: translateY(0);
+}
+.btn:disabled, .btn-primary:disabled, .lbtn:disabled, .pay-btn:disabled, .login-btn:disabled {
+  backdrop-filter: none;
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* ButtonGhost – glass default with escalation */
+.btn-ghost, .lbtn-ghost, .mclose {
+  backdrop-filter: var(--lg-blur-light);
+  background: var(--lg-bg-clear);
+  border: 1px solid var(--lg-border);
+}
+.btn-ghost:hover, .lbtn-ghost:hover, .mclose:hover {
+  backdrop-filter: var(--lg-blur-medium);
+  border-color: rgba(245,226,192,0.16);
+}
+.btn-ghost:focus, .lbtn-ghost:focus, .mclose:focus {
+  backdrop-filter: var(--lg-blur-medium);
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.btn-ghost:active, .lbtn-ghost:active, .mclose:active {
+  backdrop-filter: var(--lg-blur-strong);
+}
+.btn-ghost:disabled, .lbtn-ghost:disabled, .mclose:disabled {
+  backdrop-filter: none;
+  opacity: 0.38;
+}
+
+/* KPI – no glass, only hover lift */
+.kpi-card, .kpi-strip, .kpi-value, .kpi-label, .kpi-sub, .stats, .sc-v {
+  backdrop-filter: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.kpi-card:hover, .kpi-strip:hover, .stats:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.kpi-card:focus, .kpi-strip:focus, .stats:focus {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+/* DataTable – no glass, removed .shdr */
+.tbl, .tb-dot, .section-title, .stitle {
+  backdrop-filter: none !important;
+  overflow-x: auto;
+}
+.tbl tr:hover, .tb-dot:hover {
+  background: rgba(245,226,192,0.04);
+}
+
+/* FloatingControl – only .toast-wrap is fixed */
+.live-ticker, .tout, .ttime {
+  backdrop-filter: var(--lg-blur-light);
+  background: var(--lg-bg-clear);
+  border: 1px solid var(--lg-border);
+}
+.toast-wrap {
+  position: fixed;
+  z-index: 150;
+  backdrop-filter: var(--lg-blur-light);
+  background: var(--lg-bg-clear);
+  border: 1px solid var(--lg-border);
+}
+.user-chip {
+  backdrop-filter: var(--lg-blur-light);
+  background: var(--lg-bg-clear);
+  border: 1px solid var(--lg-border);
+}
+.live-ticker:hover, .tout:hover, .ttime:hover, .toast-wrap:hover, .user-chip:hover {
+  backdrop-filter: var(--lg-blur-medium);
+}
+
+/* Input */
+.lf input, .cust-input, .login-field, .search-wrap input {
+  backdrop-filter: var(--lg-blur-light);
+  background: var(--lg-bg-clear);
+  border: 1px solid var(--lg-border);
+  transition: all 0.2s ease;
+}
+.lf input:hover, .cust-input:hover, .login-field:hover, .search-wrap input:hover {
+  border-color: rgba(245,226,192,0.16);
+}
+.lf input:focus, .cust-input:focus, .login-field:focus, .search-wrap input:focus {
+  backdrop-filter: var(--lg-blur-medium);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(245,226,192,0.12);
+  outline: none;
+}
+.lf input:disabled, .cust-input:disabled, .login-field:disabled, .search-wrap input:disabled {
+  backdrop-filter: none;
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* LoginScreen – no .lbox, retains layout */
+.login, .login-box, .login-screen {
+  backdrop-filter: var(--lg-blur-strong);
+  background: var(--lg-bg-regular);
+  border: 1px solid var(--lg-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* QRModal */
+.qr-modal, .qr-box {
+  backdrop-filter: var(--lg-blur-strong);
+  background: var(--lg-bg-regular);
+  box-shadow: var(--lg-shadow);
+}
+
+/* Badge – no glass */
+.badge, .badge-pill, .stock-dot, .tdot, .tb-dot {
+  backdrop-filter: none !important;
+}
+
+/* ContentCard – keep .lbox, no glass */
+.content, .prod-card, .team-card, .task-card, .personal-panel, .lbox {
+  backdrop-filter: none !important;
+  border: 1px solid var(--lg-border);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.content:hover, .prod-card:hover, .team-card:hover, .task-card:hover, .personal-panel:hover, .lbox:hover {
+  border-color: rgba(245,226,192,0.16);
+  transform: translateY(-1px);
+}
+
+/* SectionPanel – keep .shdr, glass-clear */
+.section, .sbody, .shdr {
+  backdrop-filter: var(--lg-blur-light);
+  background: var(--lg-bg-clear);
+  border: 1px solid var(--lg-border);
+}

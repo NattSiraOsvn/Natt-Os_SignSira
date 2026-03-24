@@ -1,0 +1,141 @@
+/* nattos-fx-advanced.css – Phase 2.5 (optional) */
+@import './nattos-tokens.css';
+
+/* ③ CSS @property for smooth animation */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --mouse-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ① Holo Card */
+.holo-card {
+  background: linear-gradient(var(--angle), rgba(143,255,212,0.2), rgba(200,192,255,0.2), rgba(255,184,212,0.2));
+  background-size: 200% 200%;
+  animation: holo-shift 6s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+.holo-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: holo-sweep 4s linear infinite;
+}
+@keyframes holo-shift {
+  0% { --angle: 0deg; background-position: 0% 0%; }
+  100% { --angle: 360deg; background-position: 100% 100%; }
+}
+@keyframes holo-sweep {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ② SVG Caustics */
+.caustic-bg {
+  position: relative;
+}
+.caustic-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.03' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08' /%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* ④ Conic metallic */
+.conic-metal {
+  background: conic-gradient(from var(--mouse-angle, 0deg), rgba(245,226,192,0.1), rgba(245,226,192,0.4), rgba(245,226,192,0.1));
+  transition: --mouse-angle 0.1s ease;
+}
+
+/* ⑤ DOF + Parallax */
+.parallax-layer {
+  transform: translateZ(calc(var(--depth, 1) * 1px));
+  transition: transform 0.2s ease-out;
+}
+
+/* ⑥ Reaction-Diffusion grain */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cfilter id='rd'%3E%3CfeTurbulence baseFrequency='0.1' numOctaves='2' /%3E%3CfeColorMatrix type='saturate' values='0' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23rd)' opacity='0.06' /%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+/* ⑦ Bloom */
+.bloom {
+  filter: drop-shadow(0 0 8px var(--glow-color, var(--gold))) brightness(1.05);
+  transition: filter 0.2s ease;
+}
+.bloom:hover {
+  filter: drop-shadow(0 0 16px var(--glow-color, var(--gold))) brightness(1.1);
+}
+
+/* ⑧ Specular sweep */
+.specular-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.specular-sweep::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.specular-sweep:hover::before {
+  opacity: 1;
+  animation: sweep 0.6s ease-out;
+}
+@keyframes sweep {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+/* ⑨ Fresnel edge */
+.fresnel-edge {
+  position: relative;
+}
+.fresnel-edge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245,226,192,0.2) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+/* ⑩ Chromatic aberration */
+.chromatic {
+  text-shadow: -1px 0 0 rgba(255,0,0,0.3), 1px 0 0 rgba(0,255,255,0.3);
+  animation: chroma-shift 3s ease infinite;
+}
+@keyframes chroma-shift {
+  0% { text-shadow: -1px 0 0 rgba(255,0,0,0.3), 1px 0 0 rgba(0,255,255,0.3); }
+  50% { text-shadow: -1px 0 0 rgba(255,0,0,0.5), 1px 0 0 rgba(0,255,255,0.5); }
+  100% { text-shadow: -1px 0 0 rgba(255,0,0,0.3), 1px 0 0 rgba(0,255,255,0.3); }
+}
