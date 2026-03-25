@@ -1,0 +1,468 @@
+/**
+ * nattos-glass.css — NATT-OS Liquid Glass UI v2.1
+ * 16 component contracts — Layer 0-3 glass material architecture
+ *
+ * Import sau nattos-tokens.css
+ * Không override layout — chỉ surface + visual layer
+ *
+ * Layer 0: Base glass surface
+ * Layer 1: Component glass (cards, panels)
+ * Layer 2: Interactive glass (buttons, inputs)
+ * Layer 3: Chromatic glass (state-driven color)
+ */
+
+/* ══════════════════════════════════════════════════════════
+   LAYER 0 — BASE GLASS SURFACE
+   ══════════════════════════════════════════════════════════ */
+
+.natt-glass {
+  background:           rgba(255, 255, 255, 0.06);
+  backdrop-filter:      blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border:               1px solid rgba(255, 255, 255, 0.12);
+  border-radius:        16px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.natt-glass-dark {
+  background:           rgba(0, 0, 0, 0.35);
+  backdrop-filter:      blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border:               1px solid rgba(255, 255, 255, 0.08);
+  border-radius:        16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.natt-glass-light {
+  background:           rgba(255, 255, 255, 0.15);
+  backdrop-filter:      blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border:               1px solid rgba(255, 255, 255, 0.25);
+  border-radius:        16px;
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ══════════════════════════════════════════════════════════
+   LAYER 1 — COMPONENT GLASS (16 contracts)
+   ══════════════════════════════════════════════════════════ */
+
+/* [1] Dashboard Panel */
+.natt-panel {
+  background:           rgba(255, 255, 255, 0.05);
+  backdrop-filter:      blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border:               1px solid rgba(255, 255, 255, 0.10);
+  border-radius:        20px;
+  padding:              24px;
+  box-shadow:           0 8px 32px rgba(0, 0, 0, 0.3);
+  transition:           box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.natt-panel:hover {
+  border-color:         rgba(255, 255, 255, 0.18);
+  box-shadow:           0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* [2] Card */
+.natt-card {
+  background:           rgba(255, 255, 255, 0.07);
+  backdrop-filter:      blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border:               1px solid rgba(255, 255, 255, 0.12);
+  border-radius:        14px;
+  padding:              20px;
+  box-shadow:           0 4px 20px rgba(0, 0, 0, 0.2);
+  transition:           transform 0.2s ease, box-shadow 0.2s ease;
+}
+.natt-card:hover {
+  transform:            translateY(-2px);
+  box-shadow:           0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+/* [3] Sidebar */
+.natt-sidebar {
+  background:           rgba(10, 10, 20, 0.7);
+  backdrop-filter:      blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border-right:         1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:           4px 0 24px rgba(0, 0, 0, 0.35);
+}
+
+/* [4] Topbar / Header */
+.natt-topbar {
+  background:           rgba(10, 10, 20, 0.6);
+  backdrop-filter:      blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom:        1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:           0 2px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* [5] Modal / Overlay */
+.natt-modal {
+  background:           rgba(15, 15, 30, 0.85);
+  backdrop-filter:      blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border:               1px solid rgba(255, 255, 255, 0.15);
+  border-radius:        24px;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* [6] Tooltip */
+.natt-tooltip {
+  background:           rgba(20, 20, 40, 0.9);
+  backdrop-filter:      blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border:               1px solid rgba(255, 255, 255, 0.15);
+  border-radius:        8px;
+  padding:              8px 12px;
+  font-size:            12px;
+  box-shadow:           0 4px 16px rgba(0, 0, 0, 0.4);
+  pointer-events:       none;
+}
+
+/* [7] Badge / Tag */
+.natt-badge {
+  background:           rgba(255, 255, 255, 0.10);
+  backdrop-filter:      blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border:               1px solid rgba(255, 255, 255, 0.15);
+  border-radius:        20px;
+  padding:              4px 10px;
+  font-size:            11px;
+  font-weight:          600;
+  letter-spacing:       0.5px;
+}
+
+/* [8] Table Row */
+.natt-table-row {
+  background:           rgba(255, 255, 255, 0.03);
+  border-bottom:        1px solid rgba(255, 255, 255, 0.06);
+  transition:           background 0.15s ease;
+}
+.natt-table-row:hover {
+  background:           rgba(255, 255, 255, 0.07);
+}
+
+/* [9] Divider */
+.natt-divider {
+  border:               none;
+  border-top:           1px solid rgba(255, 255, 255, 0.08);
+  margin:               16px 0;
+}
+
+/* [10] Input Field */
+.natt-input {
+  background:           rgba(255, 255, 255, 0.06);
+  backdrop-filter:      blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border:               1px solid rgba(255, 255, 255, 0.12);
+  border-radius:        10px;
+  padding:              10px 14px;
+  color:                rgba(255, 255, 255, 0.9);
+  outline:              none;
+  transition:           border-color 0.2s ease, box-shadow 0.2s ease;
+  width:                100%;
+  box-sizing:           border-box;
+}
+.natt-input:focus {
+  border-color:         rgba(180, 140, 255, 0.6);
+  box-shadow:           0 0 0 3px rgba(180, 140, 255, 0.15);
+}
+.natt-input::placeholder {
+  color:                rgba(255, 255, 255, 0.35);
+}
+
+/* [11] Button — Primary */
+.natt-btn {
+  background:           rgba(180, 140, 255, 0.20);
+  backdrop-filter:      blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border:               1px solid rgba(180, 140, 255, 0.35);
+  border-radius:        10px;
+  padding:              10px 20px;
+  color:                rgba(255, 255, 255, 0.95);
+  font-weight:          600;
+  cursor:               pointer;
+  transition:           all 0.2s ease;
+  box-shadow:           0 2px 12px rgba(180, 140, 255, 0.15);
+}
+.natt-btn:hover {
+  background:           rgba(180, 140, 255, 0.30);
+  border-color:         rgba(180, 140, 255, 0.55);
+  box-shadow:           0 4px 20px rgba(180, 140, 255, 0.25);
+  transform:            translateY(-1px);
+}
+.natt-btn:active {
+  transform:            translateY(0);
+  box-shadow:           0 2px 8px rgba(180, 140, 255, 0.15);
+}
+
+/* [12] Button — Ghost */
+.natt-btn-ghost {
+  background:           transparent;
+  border:               1px solid rgba(255, 255, 255, 0.15);
+  border-radius:        10px;
+  padding:              10px 20px;
+  color:                rgba(255, 255, 255, 0.7);
+  font-weight:          500;
+  cursor:               pointer;
+  transition:           all 0.2s ease;
+}
+.natt-btn-ghost:hover {
+  background:           rgba(255, 255, 255, 0.07);
+  border-color:         rgba(255, 255, 255, 0.25);
+  color:                rgba(255, 255, 255, 0.95);
+}
+
+/* [13] Avatar / Icon Container */
+.natt-avatar {
+  background:           rgba(255, 255, 255, 0.10);
+  backdrop-filter:      blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border:               1px solid rgba(255, 255, 255, 0.15);
+  border-radius:        50%;
+  display:              inline-flex;
+  align-items:          center;
+  justify-content:      center;
+  box-shadow:           0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* [14] Progress Bar */
+.natt-progress {
+  background:           rgba(255, 255, 255, 0.08);
+  border:               1px solid rgba(255, 255, 255, 0.10);
+  border-radius:        20px;
+  overflow:             hidden;
+  height:               8px;
+}
+.natt-progress-fill {
+  height:               100%;
+  border-radius:        20px;
+  background:           linear-gradient(90deg,
+    rgba(100, 180, 255, 0.8),
+    rgba(180, 140, 255, 0.9)
+  );
+  box-shadow:           0 0 12px rgba(180, 140, 255, 0.4);
+  transition:           width 0.4s ease;
+}
+
+/* [15] Notification / Alert */
+.natt-alert {
+  background:           rgba(255, 255, 255, 0.06);
+  backdrop-filter:      blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-left:          3px solid rgba(255, 255, 255, 0.3);
+  border-radius:        0 12px 12px 0;
+  padding:              14px 18px;
+  box-shadow:           0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* [16] Floating Action */
+.natt-fab {
+  background:           rgba(180, 140, 255, 0.25);
+  backdrop-filter:      blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border:               1px solid rgba(180, 140, 255, 0.40);
+  border-radius:        50%;
+  width:                56px;
+  height:               56px;
+  display:              flex;
+  align-items:          center;
+  justify-content:      center;
+  cursor:               pointer;
+  box-shadow:
+    0 8px 24px rgba(180, 140, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition:           all 0.3s ease;
+}
+.natt-fab:hover {
+  background:           rgba(180, 140, 255, 0.40);
+  box-shadow:
+    0 12px 32px rgba(180, 140, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform:            scale(1.08);
+}
+
+/* ══════════════════════════════════════════════════════════
+   LAYER 2 — INTERACTIVE STATE GLASS
+   ══════════════════════════════════════════════════════════ */
+
+.natt-glass-interactive {
+  transition:
+    background    0.2s ease,
+    border-color  0.2s ease,
+    box-shadow    0.2s ease,
+    transform     0.2s ease;
+  cursor: pointer;
+}
+
+.natt-glass-interactive:hover {
+  background:     rgba(255, 255, 255, 0.10);
+  border-color:   rgba(255, 255, 255, 0.20);
+}
+
+.natt-glass-interactive:active {
+  transform:      scale(0.98);
+  background:     rgba(255, 255, 255, 0.12);
+}
+
+.natt-glass-interactive.selected {
+  background:     rgba(180, 140, 255, 0.15);
+  border-color:   rgba(180, 140, 255, 0.40);
+  box-shadow:     0 0 0 2px rgba(180, 140, 255, 0.20);
+}
+
+.natt-glass-disabled {
+  opacity:        0.4;
+  pointer-events: none;
+  filter:         grayscale(50%);
+}
+
+/* ══════════════════════════════════════════════════════════
+   LAYER 3 — CHROMATIC GLASS (Điều 6 Hiến Pháp v5.0)
+   Signal từ ThresholdEngine → ChromaticState → UI
+   ══════════════════════════════════════════════════════════ */
+
+/* Nominal / Optimal — TÍM (khải hoàng) */
+.natt-chromatic-optimal,
+.natt-chromatic-nominal {
+  border-color:   rgba(180, 140, 255, 0.50) !important;
+  box-shadow:
+    0 4px 20px rgba(180, 140, 255, 0.20),
+    inset 0 1px 0 rgba(180, 140, 255, 0.15);
+  background:     rgba(180, 140, 255, 0.06) !important;
+}
+
+/* Stable — CHÀM */
+.natt-chromatic-stable {
+  border-color:   rgba(80, 120, 200, 0.50) !important;
+  box-shadow:
+    0 4px 20px rgba(80, 120, 200, 0.20),
+    inset 0 1px 0 rgba(80, 120, 200, 0.15);
+  background:     rgba(80, 120, 200, 0.06) !important;
+}
+
+/* Nominal — LAM */
+.natt-chromatic-lam {
+  border-color:   rgba(100, 180, 255, 0.50) !important;
+  box-shadow:
+    0 4px 20px rgba(100, 180, 255, 0.20),
+    inset 0 1px 0 rgba(100, 180, 255, 0.12);
+  background:     rgba(100, 180, 255, 0.05) !important;
+}
+
+/* Drift — LỤC */
+.natt-chromatic-drift {
+  border-color:   rgba(120, 200, 120, 0.55) !important;
+  box-shadow:
+    0 4px 20px rgba(120, 200, 120, 0.20),
+    inset 0 1px 0 rgba(120, 200, 120, 0.12);
+  background:     rgba(120, 200, 120, 0.05) !important;
+}
+
+/* Warning — CAM */
+.natt-chromatic-warning {
+  border-color:   rgba(255, 140, 60, 0.60) !important;
+  box-shadow:
+    0 4px 24px rgba(255, 140, 60, 0.25),
+    inset 0 1px 0 rgba(255, 140, 60, 0.15);
+  background:     rgba(255, 140, 60, 0.08) !important;
+}
+
+/* Risk — VÀNG */
+.natt-chromatic-risk {
+  border-color:   rgba(255, 165, 80, 0.65) !important;
+  box-shadow:
+    0 4px 28px rgba(255, 165, 80, 0.30),
+    inset 0 1px 0 rgba(255, 165, 80, 0.15);
+  background:     rgba(255, 165, 80, 0.08) !important;
+  animation:      natt-pulse-risk 3s ease-in-out infinite;
+}
+
+/* Critical — ĐỎ */
+.natt-chromatic-critical {
+  border-color:   rgba(255, 80, 80, 0.75) !important;
+  box-shadow:
+    0 4px 32px rgba(255, 80, 80, 0.40),
+    inset 0 1px 0 rgba(255, 100, 100, 0.20);
+  background:     rgba(255, 80, 80, 0.10) !important;
+  animation:      natt-pulse-critical 1.5s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════════════ */
+
+@keyframes natt-pulse-risk {
+  0%, 100% { box-shadow: 0 4px 28px rgba(255, 165, 80, 0.30), inset 0 1px 0 rgba(255, 165, 80, 0.15); }
+  50%       { box-shadow: 0 4px 36px rgba(255, 165, 80, 0.50), inset 0 1px 0 rgba(255, 165, 80, 0.25); }
+}
+
+@keyframes natt-pulse-critical {
+  0%, 100% { box-shadow: 0 4px 32px rgba(255, 80, 80, 0.40), inset 0 1px 0 rgba(255, 100, 100, 0.20); }
+  50%       { box-shadow: 0 4px 48px rgba(255, 80, 80, 0.65), inset 0 1px 0 rgba(255, 100, 100, 0.30); }
+}
+
+@keyframes natt-glass-appear {
+  from {
+    opacity:    0;
+    transform:  translateY(8px) scale(0.98);
+    filter:     blur(4px);
+  }
+  to {
+    opacity:    1;
+    transform:  translateY(0) scale(1);
+    filter:     blur(0);
+  }
+}
+
+.natt-glass-appear {
+  animation: natt-glass-appear 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ══════════════════════════════════════════════════════════
+   UTILITY
+   ══════════════════════════════════════════════════════════ */
+
+.natt-text-glass {
+  color:          rgba(255, 255, 255, 0.85);
+  text-shadow:    0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.natt-text-muted {
+  color:          rgba(255, 255, 255, 0.45);
+}
+
+.natt-text-accent {
+  color:          rgba(180, 140, 255, 0.95);
+}
+
+.natt-surface-inset {
+  background:     rgba(0, 0, 0, 0.15);
+  border-radius:  10px;
+  border:         1px solid rgba(0, 0, 0, 0.20);
+}
+
+/* Responsive glass intensity */
+@media (prefers-reduced-motion: reduce) {
+  .natt-chromatic-risk,
+  .natt-chromatic-critical {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .natt-glass,
+  .natt-panel,
+  .natt-card {
+    backdrop-filter:      blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}

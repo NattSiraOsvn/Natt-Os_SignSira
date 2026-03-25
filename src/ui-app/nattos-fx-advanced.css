@@ -1,0 +1,313 @@
+/**
+ * nattos-fx-advanced.css — NATT-OS Advanced FX v1.0
+ * 10 kỹ thuật visual nâng cao — Phase 2.5 sandbox
+ *
+ * Import sau nattos-glass.css
+ * Tất cả FX đều optional — không ảnh hưởng layout
+ */
+
+/* ══════════════════════════════════════════════════════════
+   FX-01 — AURORA GLOW (nền động shimmer)
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-aurora {
+  position: relative;
+  overflow: hidden;
+}
+.natt-fx-aurora::before {
+  content:    '';
+  position:   absolute;
+  inset:      -50%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(180, 140, 255, 0.0) 0deg,
+    rgba(100, 180, 255, 0.15) 60deg,
+    rgba(180, 140, 255, 0.20) 120deg,
+    rgba(80,  200, 160, 0.10) 180deg,
+    rgba(255, 165,  80, 0.08) 240deg,
+    rgba(180, 140, 255, 0.0) 360deg
+  );
+  animation:  natt-aurora-spin 12s linear infinite;
+  pointer-events: none;
+}
+@keyframes natt-aurora-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-02 — SCANLINE (retro CRT overlay)
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-scanline {
+  position: relative;
+}
+.natt-fx-scanline::after {
+  content:    '';
+  position:   absolute;
+  inset:      0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+  pointer-events: none;
+  border-radius:  inherit;
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-03 — HOLOGRAPHIC SHIMMER
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-holo {
+  position:   relative;
+  overflow:   hidden;
+}
+.natt-fx-holo::before {
+  content:    '';
+  position:   absolute;
+  top:        -100%;
+  left:       -100%;
+  width:      300%;
+  height:     300%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(180, 140, 255, 0.12) 52%,
+    rgba(100, 200, 255, 0.08) 54%,
+    transparent 64%
+  );
+  animation:  natt-holo-sweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes natt-holo-sweep {
+  0%   { transform: translateX(-30%) translateY(-30%); }
+  50%  { transform: translateX(30%)  translateY(30%);  }
+  100% { transform: translateX(-30%) translateY(-30%); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-04 — NEON BORDER GLOW
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-neon-purple {
+  box-shadow:
+    0 0 8px  rgba(180, 140, 255, 0.4),
+    0 0 24px rgba(180, 140, 255, 0.2),
+    0 0 48px rgba(180, 140, 255, 0.1),
+    inset 0 0 8px rgba(180, 140, 255, 0.05);
+  border-color: rgba(180, 140, 255, 0.7) !important;
+}
+
+.natt-fx-neon-blue {
+  box-shadow:
+    0 0 8px  rgba(100, 180, 255, 0.4),
+    0 0 24px rgba(100, 180, 255, 0.2),
+    0 0 48px rgba(100, 180, 255, 0.1);
+  border-color: rgba(100, 180, 255, 0.7) !important;
+}
+
+.natt-fx-neon-red {
+  box-shadow:
+    0 0 8px  rgba(255, 80, 80, 0.5),
+    0 0 24px rgba(255, 80, 80, 0.3),
+    0 0 48px rgba(255, 80, 80, 0.15);
+  border-color: rgba(255, 80, 80, 0.75) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-05 — DEPTH PARALLAX (3D tilt feel)
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-depth {
+  transform-style:  preserve-3d;
+  perspective:      800px;
+  transition:       transform 0.15s ease;
+}
+.natt-fx-depth:hover {
+  transform: perspective(800px) rotateX(2deg) rotateY(-2deg) translateZ(4px);
+}
+.natt-fx-depth:active {
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-06 — LIQUID RIPPLE (click effect)
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-ripple {
+  position:   relative;
+  overflow:   hidden;
+}
+.natt-fx-ripple .ripple-wave {
+  position:   absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transform:  scale(0);
+  animation:  natt-ripple-expand 0.6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes natt-ripple-expand {
+  to {
+    transform: scale(4);
+    opacity:   0;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-07 — NOISE TEXTURE OVERLAY
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-noise {
+  position: relative;
+}
+.natt-fx-noise::after {
+  content:    '';
+  position:   absolute;
+  inset:      0;
+  opacity:    0.035;
+  border-radius: inherit;
+  /* SVG noise pattern inline */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-08 — GRADIENT MESH BACKGROUND
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-mesh {
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(180, 140, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(100, 180, 255, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(80, 200, 160, 0.08) 0%, transparent 60%),
+    rgba(10, 10, 25, 0.95);
+}
+
+.natt-fx-mesh-animated {
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(180, 140, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(100, 180, 255, 0.12) 0%, transparent 50%),
+    rgba(10, 10, 25, 0.95);
+  background-size: 100% 100%, 100% 100%;
+  animation: natt-mesh-shift 20s ease-in-out infinite alternate;
+}
+@keyframes natt-mesh-shift {
+  0%   { background-position: 20% 20%, 80% 80%; }
+  50%  { background-position: 60% 40%, 40% 60%; }
+  100% { background-position: 30% 70%, 70% 30%; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   FX-09 — PARTICLE TRAIL (lightweight dot system)
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-particle-dot {
+  position:   absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation:  natt-particle-float 3s ease-out forwards;
+}
+@keyframes natt-particle-float {
+  0%   { opacity: 0.8; transform: translateY(0) scale(1); }
+  100% { opacity: 0;   transform: translateY(-60px) scale(0.3); }
+}
+
+/* Particle sizes */
+.natt-fx-particle-dot.sm { width: 3px;  height: 3px;  background: rgba(180, 140, 255, 0.8); }
+.natt-fx-particle-dot.md { width: 5px;  height: 5px;  background: rgba(100, 180, 255, 0.6); }
+.natt-fx-particle-dot.lg { width: 8px;  height: 8px;  background: rgba(255, 200, 100, 0.5); }
+
+/* ══════════════════════════════════════════════════════════
+   FX-10 — CHROMATIC ABERRATION (glitch effect)
+   dùng cho critical state / OMEGA alerts
+   ══════════════════════════════════════════════════════════ */
+
+.natt-fx-glitch {
+  position:   relative;
+  animation:  natt-glitch-shake 0.3s ease-in-out;
+}
+.natt-fx-glitch::before,
+.natt-fx-glitch::after {
+  content:    attr(data-text);
+  position:   absolute;
+  top:        0;
+  left:       0;
+  width:      100%;
+  height:     100%;
+  pointer-events: none;
+}
+.natt-fx-glitch::before {
+  color:      rgba(255, 80, 80, 0.7);
+  animation:  natt-glitch-red 0.3s ease-in-out;
+  clip-path:  polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+.natt-fx-glitch::after {
+  color:      rgba(100, 200, 255, 0.7);
+  animation:  natt-glitch-blue 0.3s ease-in-out;
+  clip-path:  polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+
+@keyframes natt-glitch-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-3px); }
+  40%       { transform: translateX(3px); }
+  60%       { transform: translateX(-2px); }
+  80%       { transform: translateX(2px); }
+}
+@keyframes natt-glitch-red {
+  0%, 100% { transform: translateX(0); }
+  33%       { transform: translateX(-4px); }
+  66%       { transform: translateX(4px); }
+}
+@keyframes natt-glitch-blue {
+  0%, 100% { transform: translateX(0); }
+  33%       { transform: translateX(4px); }
+  66%       { transform: translateX(-4px); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   UTILITY COMBOS — thường dùng nhất
+   ══════════════════════════════════════════════════════════ */
+
+/* Optimal card — TÍM + depth */
+.natt-card-optimal {
+  composes: natt-card natt-chromatic-optimal natt-fx-depth;
+}
+
+/* Critical alert — ĐỎ + neon + glitch */
+.natt-alert-critical {
+  border-left-color: rgba(255, 80, 80, 0.9) !important;
+  animation: natt-pulse-critical 1.5s ease-in-out infinite;
+}
+
+/* Gatekeeper panel — mesh + aurora */
+.natt-panel-gatekeeper {
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(180, 140, 255, 0.12) 0%, transparent 60%),
+    rgba(15, 10, 30, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   REDUCED MOTION SAFETY
+   ══════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .natt-fx-aurora::before,
+  .natt-fx-holo::before,
+  .natt-fx-mesh-animated,
+  .natt-fx-glitch,
+  .natt-fx-glitch::before,
+  .natt-fx-glitch::after {
+    animation: none !important;
+  }
+  .natt-fx-depth:hover {
+    transform: none;
+  }
+}
