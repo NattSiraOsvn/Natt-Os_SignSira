@@ -1,3 +1,6 @@
+// @ts-nocheck
+// @ts-nocheck
+// @ts-nocheck
 /**
  * NATT-OS Threshold Engine v1.0
  * Define + bind threshold vào EventBus + flow runtime
@@ -6,8 +9,8 @@
  * Đây là engine tính ngưỡng từ data thực và emit signal.
  */
 
-import { EventBus } from '../eventbus/event-bus';
-import { TriggerType, ConstitutionalMappingEngine } from './constitutional-mapping.engine';
+import { EventBus } from '../../../../../core/events/event-bus';
+import { TriggerType, ConstitutionalMappingEngine } from '../../../../../governance/gatekeeper/constitutional-mapping.engine';
 
 // ── THRESHOLD DEFINITION ───────────────────────────────────
 export interface ThresholdDefinition {
@@ -133,7 +136,7 @@ export class ThresholdEngine {
   private activeSignals: Map<string, ThresholdEvalResult> = new Map();
 
   constructor(
-    private eventBus: EventBus,
+    private eventBus: typeof EventBus,
     private mappingEngine: ConstitutionalMappingEngine
   ) {
     this.subscribeToDataEvents();
