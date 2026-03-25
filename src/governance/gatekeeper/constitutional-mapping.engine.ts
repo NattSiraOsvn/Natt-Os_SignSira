@@ -1,16 +1,20 @@
 // @ts-nocheck
-// @ts-nocheck
-// @ts-nocheck
 /**
- * NATT-OS Constitutional Mapping Engine v1.0
- * Unified trigger → response mapping layer
- * Replaces phân tán guard/engine pattern
- * 
- * Vai trò: DNA của hệ — không phải văn bản, là cơ chế sống
- * Source: governance/constitution/ → runtime enforcement
+ * NATT-OS Constitutional Mapping Engine v1.1
+ * CAN-02: DNA gate added to execute()
+ *
+ * Thay đổi từ v1.0:
+ *   execute() kiểm tra DNA trước khi chạy mapping
+ *   isValidTrigger → nếu sai → emit constitutional.violation
+ *   isOmegaTrigger → OMEGA_LOCK ngay, bypass confidence gate
  */
 
 import { EventBus } from '../../core/events/event-bus';
+import {
+  isValidTrigger,
+  isOmegaTrigger,
+  DNA_RULES,
+} from './dna-loader';
 
 // ── TRIGGER TYPES ──────────────────────────────────────────
 export enum TriggerType {
@@ -54,136 +58,143 @@ export enum ResponseType {
 
 // ── MAPPING ENTRY ──────────────────────────────────────────
 export interface MappingEntry {
-  trigger:    TriggerType;
-  responses:  ResponseType[];
-  chromatic:  'drift' | 'warning' | 'risk' | 'critical';
-  confidence: number;       // min confidence để activate
-  decay_ms:   number;       // DECAY: bao lâu signal này còn có giá trị
+  trigger:     TriggerType;
+  responses:   ResponseType[];
+  chromatic:   string;
+  confidence:  number;
+  decay_ms:    number;
   description: string;
 }
 
-// ── UNIFIED MAPPING TABLE ─────────────────────────────────
-// Đây là DNA thật — không phải văn bản
+// ── CONSTITUTIONAL MAPPING TABLE ───────────────────────────
 export const CONSTITUTIONAL_MAPPING: MappingEntry[] = [
-
-  // ── PRODUCTION ──────────────────────────────────────────
   {
-    trigger:    TriggerType.WEIGHT_ANOMALY,
-    responses:  [ResponseType.EMIT_WARNING, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:  'warning',
-    confidence: 0.70,
-    decay_ms:   4 * 60 * 60 * 1000, // 4 giờ
-    description: 'TL ra > TL vào luồng SC-BH-KB → thêm vàng lậu',
+    trigger:     TriggerType.WEIGHT_ANOMALY,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.7,
+    decay_ms:    300_000,
+    description: 'TL ra > TL vào luồng SC-BH-KB — nguy cơ thêm vàng lậu',
   },
   {
-    trigger:    TriggerType.POLISH_RATE_LOW,
-    responses:  [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
-    chromatic:  'drift',
-    confidence: 0.65,
-    decay_ms:   24 * 60 * 60 * 1000, // 24 giờ
-    description: 'PHỔ SC thấp bất thường so với baseline thợ',
+    trigger:     TriggerType.POLISH_RATE_LOW,
+    responses:   [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
+    chromatic:   'warning',
+    confidence:  0.6,
+    decay_ms:    600_000,
+    description: 'PHỔ SC per worker vượt ngưỡng',
   },
   {
-    trigger:    TriggerType.MATERIAL_LEAK,
-    responses:  [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:  'risk',
-    confidence: 0.75,
-    decay_ms:   2 * 60 * 60 * 1000, // 2 giờ
-    description: 'NL phụ > 2 chỉ/tháng/thợ — vật tư giữ lại',
+    trigger:     TriggerType.MATERIAL_LEAK,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.65,
+    decay_ms:    300_000,
+    description: 'NL phụ vượt định mức tháng',
   },
   {
-    trigger:    TriggerType.DIAMOND_SUBSTITUTION,
-    responses:  [ResponseType.EMIT_CRITICAL, ResponseType.ALERT_GATEKEEPER, ResponseType.ESCALATE_QUANTUM],
-    chromatic:  'critical',
-    confidence: 0.80,
-    decay_ms:   30 * 60 * 1000, // 30 phút — urgent
-    description: 'Kim cương tấm đổi size/giữ viên — fraud pattern',
+    trigger:     TriggerType.DIAMOND_SUBSTITUTION,
+    responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'critical',
+    confidence:  0.8,
+    decay_ms:    0,
+    description: 'Pattern thay kim cương — CRITICAL',
   },
   {
-    trigger:    TriggerType.SC_FLOW_SPIKE,
-    responses:  [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:  'risk',
-    confidence: 0.72,
-    decay_ms:   3 * 60 * 60 * 1000,
-    description: 'SC flow rate tăng đột biến — kênh SC-BH-KB',
-  },
-
-  // ── FINANCE ─────────────────────────────────────────────
-  {
-    trigger:    TriggerType.CASHFLOW_GAP,
-    responses:  [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
-    chromatic:  'warning',
-    confidence: 0.68,
-    decay_ms:   8 * 60 * 60 * 1000,
-    description: 'LNTT GT vs KTT chênh lệch vượt ngưỡng',
+    trigger:     TriggerType.SC_FLOW_SPIKE,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.7,
+    decay_ms:    300_000,
+    description: 'SC flow rate tăng bất thường',
   },
   {
-    trigger:    TriggerType.INVOICE_MISSING,
-    responses:  [ResponseType.EMIT_RISK, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
-    chromatic:  'risk',
-    confidence: 0.90,
-    decay_ms:   7 * 24 * 60 * 60 * 1000, // 7 ngày — tax risk
-    description: 'T10/2024: tiền NH có, HĐ=0 — rủi ro thuế',
+    trigger:     TriggerType.CASHFLOW_GAP,
+    responses:   [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
+    chromatic:   'warning',
+    confidence:  0.6,
+    decay_ms:    600_000,
+    description: 'Cashflow gap vượt ngưỡng',
   },
   {
-    trigger:    TriggerType.BCTC_MISMATCH,
-    responses:  [ResponseType.EMIT_CRITICAL, ResponseType.ALERT_GATEKEEPER, ResponseType.ESCALATE_QUANTUM],
-    chromatic:  'critical',
-    confidence: 0.85,
-    decay_ms:   60 * 60 * 1000, // 1 giờ
-    description: 'BCTC 4 sổ không khớp — data integrity breach',
-  },
-
-  // ── SECURITY ────────────────────────────────────────────
-  {
-    trigger:    TriggerType.AI_UNAUTHORIZED_CALL,
-    responses:  [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.ESCALATE_QUANTUM],
-    chromatic:  'critical',
-    confidence: 1.0, // zero tolerance
-    decay_ms:   0,   // không decay — vi phạm vĩnh viễn
-    description: 'LỆNH #001: AI gọi external API không được phép',
+    trigger:     TriggerType.INVOICE_MISSING,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.75,
+    decay_ms:    0,
+    description: 'Bank receipt không có invoice tương ứng — tax risk T10/2024',
   },
   {
-    trigger:    TriggerType.MULTI_SOURCE_CONFLICT,
-    responses:  [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
-    chromatic:  'risk',
-    confidence: 0.75,
-    decay_ms:   2 * 60 * 60 * 1000,
-    description: 'Số liệu đa nguồn xung đột — dấu hiệu thao túng',
+    trigger:     TriggerType.BCTC_MISMATCH,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.8,
+    decay_ms:    0,
+    description: 'BCTC 4 sổ chênh lệch',
   },
   {
-    trigger:    TriggerType.AUDIT_TAMPER_ATTEMPT,
-    responses:  [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_USER, ResponseType.ALERT_GATEKEEPER, ResponseType.ESCALATE_QUANTUM],
-    chromatic:  'critical',
-    confidence: 0.95,
-    decay_ms:   0, // không decay
-    description: 'Cố gắng sửa audit trail — vi phạm Hiến Pháp',
+    trigger:     TriggerType.TAX_EXPOSURE,
+    responses:   [ResponseType.EMIT_CRITICAL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'critical',
+    confidence:  0.85,
+    decay_ms:    0,
+    description: 'Tax exposure phát hiện',
   },
   {
-    trigger:    TriggerType.ROUND_NUMBER_ANOMALY,
-    responses:  [ResponseType.EMIT_WARNING, ResponseType.CROSS_VALIDATE],
-    chromatic:  'drift',
-    confidence: 0.60,
-    decay_ms:   24 * 60 * 60 * 1000,
-    description: 'Số quá tròn/khớp hoàn hảo — suspiciously round numbers',
-  },
-
-  // ── SYSTEM ──────────────────────────────────────────────
-  {
-    trigger:    TriggerType.CELL_HEALTH_DEGRADED,
-    responses:  [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
-    chromatic:  'warning',
-    confidence: 0.70,
-    decay_ms:   30 * 60 * 1000,
-    description: 'Cell QNEU score giảm liên tục',
+    trigger:     TriggerType.AI_UNAUTHORIZED_CALL,
+    responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_USER, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'critical',
+    confidence:  0.9,
+    decay_ms:    0,
+    description: 'LỆNH #001 vi phạm — AI API call không được phép',
   },
   {
-    trigger:    TriggerType.CONSTITUTION_VIOLATED,
-    responses:  [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_USER, ResponseType.ALERT_GATEKEEPER, ResponseType.ESCALATE_QUANTUM],
-    chromatic:  'critical',
-    confidence: 1.0,
-    decay_ms:   0,
-    description: 'Vi phạm Hiến Pháp NATT-OS v4.0 — maximum response',
+    trigger:     TriggerType.MULTI_SOURCE_CONFLICT,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.7,
+    decay_ms:    300_000,
+    description: 'Nhiều nguồn dữ liệu xung đột',
+  },
+  {
+    trigger:     TriggerType.AUDIT_TAMPER_ATTEMPT,
+    responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'critical',
+    confidence:  0.95,
+    decay_ms:    0,
+    description: 'Phát hiện cố gắng thay đổi audit trail — Điều 11',
+  },
+  {
+    trigger:     TriggerType.ROUND_NUMBER_ANOMALY,
+    responses:   [ResponseType.EMIT_WARNING, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
+    chromatic:   'warning',
+    confidence:  0.6,
+    decay_ms:    600_000,
+    description: 'Tỷ lệ số tròn bất thường trong batch',
+  },
+  {
+    trigger:     TriggerType.CELL_HEALTH_DEGRADED,
+    responses:   [ResponseType.EMIT_WARNING, ResponseType.ESCALATE_QUANTUM, ResponseType.LOG_AUDIT],
+    chromatic:   'warning',
+    confidence:  0.65,
+    decay_ms:    300_000,
+    description: 'Cell health score dưới ngưỡng',
+  },
+  {
+    trigger:     TriggerType.SMARTLINK_BROKEN,
+    responses:   [ResponseType.EMIT_RISK, ResponseType.ESCALATE_QUANTUM, ResponseType.LOG_AUDIT],
+    chromatic:   'risk',
+    confidence:  0.8,
+    decay_ms:    300_000,
+    description: 'SmartLink fiber broken / decay quá mức',
+  },
+  {
+    trigger:     TriggerType.CONSTITUTION_VIOLATED,
+    responses:   [ResponseType.EMIT_CRITICAL, ResponseType.FREEZE_CELL, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
+    chromatic:   'critical',
+    confidence:  0.95,
+    decay_ms:    0,
+    description: 'Hiến Pháp bị vi phạm — Điều 11 OMEGA LOCK',
   },
 ];
 
@@ -204,11 +215,57 @@ export class ConstitutionalMappingEngine {
     trigger: TriggerType,
     context: {
       source_cell: string;
-      confidence: number;
-      data?: Record<string, unknown>;
-      timestamp?: number;
+      confidence:  number;
+      data?:       Record<string, unknown>;
+      timestamp?:  number;
     }
   ): void {
+    const ts = context.timestamp ?? Date.now();
+
+    // ── CAN-02: DNA GATE — kiểm tra trước tất cả ──────────
+    if (!isValidTrigger(trigger)) {
+      // Trigger không có trong DNA → vi phạm Hiến Pháp
+      this.eventBus.emit('constitutional.violation', {
+        trigger,
+        level:       'OMEGA',
+        source_cell: context.source_cell,
+        reason:      `Trigger '${trigger}' không có trong DNA_VALID_TRIGGERS`,
+        dna_rule:    'DNA_TAMPER_RESPONSE',
+        timestamp:   new Date(ts).toISOString(),
+      });
+      this.eventBus.emit('audit.constitutional', {
+        trigger,
+        responses:   ['OMEGA_LOCK'],
+        source_cell: context.source_cell,
+        confidence:  context.confidence,
+        chromatic:   'critical',
+        timestamp:   new Date(ts).toISOString(),
+      });
+      return;
+    }
+
+    if (isOmegaTrigger(trigger)) {
+      // Trigger OMEGA — bypass confidence gate, kích hoạt ngay
+      this.eventBus.emit('constitutional.violation', {
+        trigger,
+        level:       'OMEGA',
+        source_cell: context.source_cell,
+        reason:      `OMEGA trigger: ${trigger}`,
+        dna_rule:    DNA_RULES.DNA_TAMPER_RESPONSE,
+        timestamp:   new Date(ts).toISOString(),
+      });
+      this.eventBus.emit('audit.constitutional', {
+        trigger,
+        responses:   ['OMEGA_LOCK', 'ALERT_GATEKEEPER'],
+        source_cell: context.source_cell,
+        confidence:  1.0,
+        chromatic:   'critical',
+        timestamp:   new Date(ts).toISOString(),
+      });
+      return;
+    }
+    // ── END DNA GATE ───────────────────────────────────────
+
     const mapping = getMappingForTrigger(trigger);
     if (!mapping) {
       console.warn(`[ConstitutionalMapping] No mapping for trigger: ${trigger}`);
@@ -217,10 +274,8 @@ export class ConstitutionalMappingEngine {
 
     // Confidence gate
     if (context.confidence < mapping.confidence) {
-      return; // Không đủ confidence — không kích hoạt
+      return;
     }
-
-    const ts = context.timestamp ?? Date.now();
 
     // Emit chromatic state signal
     this.eventBus.emit('cell.state', {
@@ -228,7 +283,7 @@ export class ConstitutionalMappingEngine {
       source_cell: context.source_cell,
       state:       mapping.chromatic,
       confidence:  context.confidence,
-      trigger:     trigger,
+      trigger,
       decay_ms:    mapping.decay_ms,
       timestamp:   new Date(ts).toISOString(),
     });
@@ -246,7 +301,7 @@ export class ConstitutionalMappingEngine {
       });
     }
 
-    // Audit log — bất khả xâm phạm
+    // Audit log — bất khả xâm phạm (Điều 7)
     this.eventBus.emit('audit.constitutional', {
       trigger,
       responses:   mapping.responses,
