@@ -1,13 +1,73 @@
-// @ts-nocheck
-export interface SecurityThreat { id:string; type:string; severity:"LOW"|"MEDIUM"|"HIGH"|"CRITICAL"; source:string; detected:number; resolved:boolean; description:string; details?:string; }
-export interface SecurityTHReat extends SecurityThreat {}
-export interface SystemHealth { score:number; status:"HEALTHY"|"DEGRADED"|"CRITICAL"; threats:number; lastScan:number; uptime:number; }
-const ThreatDetectionService = {
-  scan:async():Promise<SecurityThreat[]>=>[], getHealth:():SystemHealth=>({ score:98, status:"HEALTHY", threats:0, lastScan:Date.now(), uptime:99.9 }),
-  subscribe:(_:any):()=>void=>()=>{}, resolve:(id:string):void=>{ console.log(`Resolved: ${id}`); },
-  scanFile:async(_f:any):Promise<boolean>=>true, checkInputContent:(_t:string):void=>{},
-  trackUserActivity:(_e:string):void=>{}, trackKeystroke:():void=>{},
-};
-export default ThreatDetectionService;
-export { ThreatDetectionService as THReatDetectionService };
+// ── FILE 6 ──────────────────────────────────────────────────
+// threat-detection.engine.ts
+// Phát hiện mối đe dọa: brute force, session hijack, anomaly login
+// Path: src/cells/kernel/security-cell/domain/services/
+
+export interface ThreatSignal {
+  sourceIp:     string;
+  employeeId?:  string;
+  eventType:    'login_fail' | 'login_ok' | 'access_denied' | 'anomaly';
+  userAgent?:   string;
+  timestamp:    number;
+}
+
+export interface ThreatReport {
+  sourceIp:    string;
+  level:       'clean' | 'suspicious' | 'threat';
+  reasons:     string[];
+  confidence:  number;
+  blockRecommended: boolean;
+}
+
+export class ThreatDetectionEngine {
+  private failCounts: Map<string, number[]> = new Map();  // ip → timestamps
+
+  evaluate(signals: ThreatSignal[]): ThreatReport[] {
+    const byIp = new Map<string, ThreatSignal[]>();
+    for (const s of signals) {
+      if (!byIp.has(s.sourceIp)) byIp.set(s.sourceIp, []);
+      byIp.get(s.sourceIp)!.push(s);
+    }
+
+    const reports: ThreatReport[] = [];
+    for (const [ip, ipSignals] of byIp) {
+      const reasons: string[] = [];
+      let riskScore = 0;
+
+      const fails = ipSignals.filter(s => s.eventType === 'login_fail');
+      if (fails.length >= 5) {
+        reasons.push(`${fails.length} lần login thất bại — brute force nghi ngờ`);
+        riskScore += Math.min(0.5, fails.length * 0.08);
+      }
+
+      const denied = ipSignals.filter(s => s.eventType === 'access_denied');
+      if (denied.length >= 3) {
+        reasons.push(`${denied.length} lần bị từ chối truy cập`);
+        riskScore += 0.2;
+      }
+
+      // Bot detection: no user agent = HTTP-only bot
+      const botSignals = ipSignals.filter(s => !s.userAgent || s.userAgent.length < 5);
+      if (botSignals.length > 0) {
+        reasons.push(`${botSignals.length} request không có User-Agent — nghi ngờ bot`);
+        riskScore += 0.4;
+      }
+
+      riskScore = Math.min(1.0, riskScore);
+      const level: ThreatReport['level'] = riskScore >= 0.6 ? 'threat' : riskScore >= 0.3 ? 'suspicious' : 'clean';
+
+      if (level !== 'clean') {
+        EventBus.emit('cell.metric', {
+          cell: 'security-cell', metric: 'threat.risk_score',
+          value: riskScore, confidence: 0.85, sourceIp: ip,
+        });
+      }
+
+      reports.push({ sourceIp: ip, level, reasons, confidence: 0.85, blockRecommended: riskScore >= 0.7 });
+    }
+
+    return reports;
+  }
+}
+
 
