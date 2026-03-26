@@ -1,19 +1,50 @@
-// @ts-nocheck
-import { NoiVuSmartLinkPort } from "../../ports/noivu-smartlink.port";
-import { OverheadExpense, NoiVuCategory, CostCenter } from '../entities/noi-vu.entity';
+      summaries.push({ entityId, metrics: avgMetrics, sources: Array.from(sources), conflicts });
+    }
+
+    return summaries;
+  }
+}
+
+
+// ── noi-vu.engine.ts ────────────────────────────────────────
+// Internal operations: facilities, assets, admin
+// Path: src/cells/business/noi-vu-cell/domain/services/
+
+export interface AssetRecord {
+  assetId:   string;
+  name:      string;
+  category:  'equipment' | 'furniture' | 'vehicle' | 'other';
+  value:     number;
+  location:  string;
+  status:    'active' | 'maintenance' | 'disposed';
+  updatedAt: number;
+}
+
 export class NoiVuEngine {
-  static resolveTk(category: NoiVuCategory, costCenter: CostCenter): '627' | '642' | '641' {
-    if (costCenter === 'FACTORY') return '627';
-    if (costCenter === 'SHOWROOM' && (category === 'PACKAGING' || category === 'DRIVER')) return '641';
-    return '642';
+  private assets: Map<string, AssetRecord> = new Map();
+
+  register(asset: AssetRecord): void {
+    this.assets.set(asset.assetId, asset);
+    EventBus.emit('cell.metric', {
+      cell: 'noi-vu-cell', metric: 'asset.registered',
+      value: asset.value, confidence: 1.0, assetId: asset.assetId,
+    });
   }
-  static createExpense(category: NoiVuCategory, costCenter: CostCenter, amount: number, description: string, period: string, refDocId: string, paidVia: OverheadExpense['paidVia'], approvedBy: string): OverheadExpense {
-    return { expenseId: `NV-\${Date.now()}`, category, costCenter, tkDebit: NoiVuEngine.resolveTk(category, costCenter), amount, description, period, refDocId, paidVia, approvedBy, createdAt: new Date() };
+
+  updateStatus(assetId: string, status: AssetRecord['status']): boolean {
+    const asset = this.assets.get(assetId);
+    if (!asset) return false;
+    this.assets.set(assetId, { ...asset, status, updatedAt: Date.now() });
+    return true;
   }
-  static summarize624(expenses: OverheadExpense[], period: string): number {
-    return expenses.filter(e => e.period === period && e.tkDebit === '642').reduce((s, e) => s + e.amount, 0);
+
+  getByStatus(status: AssetRecord['status']): AssetRecord[] {
+    return Array.from(this.assets.values()).filter(a => a.status === status);
   }
-  static summarize627(expenses: OverheadExpense[], period: string): number {
-    return expenses.filter(e => e.period === period && e.tkDebit === '627').reduce((s, e) => s + e.amount, 0);
+
+  getTotalValue(): number {
+    return Array.from(this.assets.values())
+      .filter(a => a.status === 'active')
+      .reduce((s, a) => s + a.value, 0);
   }
 }

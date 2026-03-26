@@ -1,3 +1,5 @@
 // @ts-nocheck
-// STUB — Sprint 2-3
-export class InventoryEngine { start() {} stop() {} }
+// ── Inventory.engine.ts (infrastructure layer) ──────────────
+// Legacy wrapper — forward đến domain engine
+// Path: src/cells/business/inventory-cell/infrastructure/
+

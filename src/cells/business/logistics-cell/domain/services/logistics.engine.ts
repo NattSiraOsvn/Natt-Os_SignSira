@@ -1,11 +1,58 @@
 // @ts-nocheck
-import { Shipment, ShipmentDirection, LogisticsProvider, ShipmentItem } from '../entities/shipment.entity';
+/**
+ * logistics.engine.ts — GHN / Nhất Tín / GHTK shipping
+ * Path: src/cells/business/logistics-cell/domain/services/
+ */
+
+import { EventBus } from '../../../../../core/events/event-bus';
+
+export type ShippingProvider = 'GHN' | 'NTX' | 'GHTK' | 'VTP' | 'INTERNAL';
+
+export interface ShipmentRequest {
+  orderId:    string;
+  provider:   ShippingProvider;
+  weight:     number;    // gram
+  fromCity:   string;
+  toCity:     string;
+  cod:        number;    // COD amount VND
+  timestamp:  number;
+}
+
+export interface ShipmentResult {
+  orderId:      string;
+  trackingCode: string;
+  provider:     ShippingProvider;
+  estimatedDays: number;
+  fee:          number;   // VND
+}
+
+// Phí ước tính theo provider (simplified — không gọi API)
+const FEE_TABLE: Record<ShippingProvider, { base: number; perKg: number; days: number }> = {
+  GHN:      { base: 22_000, perKg: 2_500, days: 2 },
+  NTX:      { base: 20_000, perKg: 2_000, days: 3 },
+  GHTK:     { base: 20_000, perKg: 2_500, days: 2 },
+  VTP:      { base: 18_000, perKg: 2_000, days: 3 },
+  INTERNAL: { base: 0,      perKg: 0,     days: 1 },
+};
+
 export class LogisticsEngine {
-  static createShipment(direction: ShipmentDirection, provider: LogisticsProvider, sender: string, receiver: string, items: ShipmentItem[], shippingFee: number, refOrderId?: string, refSupplierId?: string): Shipment {
-    const tkShippingFee = direction === 'OUTBOUND' ? '641' : '152';
-    return { shipmentId: `SHIP-\${Date.now()}`, direction, provider, trackingCode: '', refOrderId, refSupplierId, senderAddress: sender, receiverAddress: receiver, items, shippingFee, tkShippingFee, status: 'PENDING', createdAt: new Date(), updatedAt: new Date() };
+  createShipment(req: ShipmentRequest): ShipmentResult {
+    const table    = FEE_TABLE[req.provider];
+    const weightKg = req.weight / 1000;
+    const fee      = Math.round(table.base + weightKg * table.perKg);
+    const tracking = `${req.provider}-${req.orderId}-${Date.now().toString(36).toUpperCase()}`;
+
+    EventBus.emit('cell.metric', {
+      cell: 'logistics-cell', metric: 'logistics.shipment_created',
+      value: fee, confidence: 1.0,
+      provider: req.provider, orderId: req.orderId,
+    });
+
+    return { orderId: req.orderId, trackingCode: tracking, provider: req.provider, estimatedDays: table.days, fee };
   }
-  static updateStatus(shipment: Shipment, status: Shipment['status'], trackingCode?: string): Shipment {
-    return { ...shipment, status, trackingCode: trackingCode ?? shipment.trackingCode, actualDelivery: status === 'DELIVERED' ? new Date() : shipment.actualDelivery, updatedAt: new Date() };
+
+  estimateFee(provider: ShippingProvider, weightGram: number): number {
+    const t = FEE_TABLE[provider];
+    return Math.round(t.base + (weightGram / 1000) * t.perKg);
   }
 }
