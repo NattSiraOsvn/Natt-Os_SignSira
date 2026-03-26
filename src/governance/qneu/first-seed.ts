@@ -1,8 +1,8 @@
 // ============================================================
-// FIRST SEED — QNEU v2.0
+// FIRST SEED — QNEU v2.1
 // Hiến Pháp Điều 16–20 + Kim's Qiint Framework
+// v2.1: ReplicatorDynamics wired vào frequency update
 //
-// Thay thế stub v1.0 (chỉ có version + timestamp)
 // Input: actions từ AUDIT_TRAIL (Điều 20 — no self-report)
 // Output: EntityScore đầy đủ với Permanent Nodes + Decay
 // ============================================================
@@ -25,9 +25,10 @@ import {
   QIINT_CONSTANTS,
 } from './qiint.engine';
 
+import { ReplicatorDynamics } from '../../metabolism/math/replicator-dynamics';
+
 // ============================================================
-// SEED CONFIG — khởi tạo base scores theo Điều 17
-// Các giá trị này là Ground Truth từ Gatekeeper
+// SEED CONFIG — Ground Truth từ Gatekeeper
 // ============================================================
 const SEED_BASES: Record<EntityId, number> = {
   BANG:    300,
@@ -36,6 +37,9 @@ const SEED_BASES: Record<EntityId, number> = {
   CAN:     85,
   BOI_BOI: 40,
 };
+
+// Singleton replicator — dùng chung toàn hệ
+const replicator = new ReplicatorDynamics();
 
 // ============================================================
 // Khởi tạo EntityScore mới từ seed
@@ -55,6 +59,7 @@ export function initEntityScore(entityId: EntityId): EntityScore {
 // ============================================================
 // Tính delta từ một batch actions (1 session)
 // Anti-spike: maxDeltaPerSession = 300 (Điều 17)
+// v2.1: dùng ReplicatorDynamics để cập nhật tần suất
 // ============================================================
 export function computeSessionDelta(
   entityId: EntityId,
@@ -82,7 +87,6 @@ export function computeSessionDelta(
 
     rawDelta += action.impact * weight.combined;
 
-    // Cập nhật frequency imprint
     const existing = updatedImprints.get(action.actionType);
     if (existing) {
       existing.count += 1;
@@ -97,8 +101,26 @@ export function computeSessionDelta(
       });
     }
 
-    // Cập nhật frequency map
     frequencyMap.set(action.actionType, (frequencyMap.get(action.actionType) ?? 0) + 1);
+  }
+
+  // --- v2.1: ReplicatorDynamics — cập nhật tần suất theo fitness ---
+  // Fitness của mỗi action type = totalWeight (phản ánh mức độ đóng góp thực tế)
+  const imprintArray = Array.from(updatedImprints.values());
+  if (imprintArray.length >= 2) {
+    const total = imprintArray.reduce((s, imp) => s + imp.count, 0);
+    const frequencies = imprintArray.map(imp => imp.count / total);
+    const fitness     = imprintArray.map(imp => imp.totalWeight);
+
+    // Chạy 1 bước replicator dynamics
+    const newFreqs = replicator.update(frequencies, fitness);
+
+    // Cập nhật count theo tần suất mới (scale theo total)
+    newFreqs.forEach((freq, i) => {
+      const imp = imprintArray[i];
+      imp.count = Math.round(freq * total);
+      updatedImprints.set(imp.actionType, imp);
+    });
   }
 
   // --- Anti-spike clamp (Điều 17) ---
@@ -107,7 +129,7 @@ export function computeSessionDelta(
 
   const newScore = Math.max(0, currentScore.currentScore + clampedDelta);
 
-  // --- Kiểm tra Permanent Node mới (Điều 18) ---
+  // --- Permanent Node (Điều 18) ---
   const newImprints = Array.from(updatedImprints.values());
   const updatedNodes = updatePermanentNodes(
     currentScore.permanentNodes,
@@ -161,10 +183,10 @@ export function initSystemState(): QNEUSystemState {
 }
 
 // ============================================================
-// Export cho external use
+// Export
 // ============================================================
 export const firstSeed = {
-  version: '2.0',
+  version: '2.1',
   timestamp: new Date().toISOString(),
   initEntityScore,
   initSystemState,

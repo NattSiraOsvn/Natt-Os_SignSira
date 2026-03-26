@@ -1,6 +1,7 @@
 // @ts-nocheck
 /**
  * NATT-OS Event Bus — with all 16 guards integrated
+ * v1.1: thêm on/emit aliases để compatible với engine pattern
  */
 import { EventEnvelope, createEnvelope } from "./event-envelope";
 import { DomainEvent, DomainEventPayload, DomainEventType } from "./domain-event";
@@ -33,39 +34,46 @@ class NATTEventBus {
   publish<T extends DomainEventPayload>(
     event: DomainEvent<T>,
     originCell: string,
-    correlationId: string,                // REQUIRED — Lock #1
+    correlationId: string,
     options?: Parameters<typeof createEnvelope>[3]
   ): EventEnvelope<T> {
-    // Lock #15: semantic events only
     SemanticEventGuard.assertSemanticEvent(event.type);
-
     const envelope = createEnvelope(event, originCell, correlationId, options);
-
-    // Lock #7: idempotency
     if (!IdempotencyGuard.check(envelope)) return envelope;
-
-    // Lock #5: loop detection + depth
     LoopDetector.register(envelope);
     LoopDetector.checkDepth(envelope);
-
-    // Store + count
     EventStore.append(envelope);
     _processedIds.add(envelope.event_id);
     this._count++;
-
-    // Dispatch
     this._dispatch(envelope);
     return envelope;
   }
 
-  // Replay — Lock #16: mark is_replay = true
+  // ── on/emit aliases — engine-friendly API ─────────────────
+  // Cho phép engines dùng eventBus.on('event', handler) thay vì subscribe()
+  on(eventType: string, handler: (payload: any) => void): () => void {
+    return this.subscribe(
+      eventType as DomainEventType,
+      (envelope) => handler(envelope.payload ?? envelope),
+      'engine-listener'
+    );
+  }
+
+  emit(eventType: string, payload: any): void {
+    this.publish(
+      { type: eventType as DomainEventType, payload },
+      'engine-emitter',
+      `emit-${Date.now()}-${Math.random().toString(36).slice(2,6)}`
+    );
+  }
+  // ── end aliases ────────────────────────────────────────────
+
   replay(envelopes: EventEnvelope[]): void {
     for (const original of envelopes) {
       const replayed = { ...original, is_replay: true };
-      // Only dispatch to non-QNEU subscribers
       const matched = this._subs.filter(s =>
         (s.eventType === "*" || s.eventType === replayed.event_type) &&
-        s.subscriberCell !== "qneu-bridge"   // Lock #16: block QNEU from replay
+        s.subscriberCell !== "qneu-bridge"
       );
       for (const sub of matched) {
         try { sub.handler(replayed); } catch(err) {
@@ -81,7 +89,6 @@ class NATTEventBus {
       const start = Date.now();
       try {
         await sub.handler(envelope);
-        // Lock #9: back-pressure tracking
         BackPressureGuard.recordLatency(sub.subscriberCell, Date.now() - start);
       } catch(err) {
         this._dead.push({ envelope, error: String(err), at: Date.now() });
