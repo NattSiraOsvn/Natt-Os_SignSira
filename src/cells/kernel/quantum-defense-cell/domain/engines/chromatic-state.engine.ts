@@ -1,6 +1,4 @@
 // @ts-nocheck
-// @ts-nocheck
-// @ts-nocheck
 /**
  * NATT-OS Chromatic State Engine v1.0
  * Engine tính state từ DATA THỰC — không phải mock

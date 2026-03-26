@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Threshold Engine v1.1
  * Cảnh Vệ toàn hệ — weighted signal aggregation

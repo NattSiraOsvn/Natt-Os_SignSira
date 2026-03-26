@@ -25,7 +25,6 @@ import {
   QIINT_CONSTANTS,
 } from './qiint.engine';
 
-import { ReplicatorDynamics } from '../../metabolism/math/replicator-dynamics';
 
 // ============================================================
 // SEED CONFIG — Ground Truth từ Gatekeeper
@@ -37,9 +36,6 @@ const SEED_BASES: Record<EntityId, number> = {
   CAN:     85,
   BOI_BOI: 40,
 };
-
-// Singleton replicator — dùng chung toàn hệ
-const replicator = new ReplicatorDynamics();
 
 // ============================================================
 // Khởi tạo EntityScore mới từ seed
@@ -104,23 +100,25 @@ export function computeSessionDelta(
     frequencyMap.set(action.actionType, (frequencyMap.get(action.actionType) ?? 0) + 1);
   }
 
-  // --- v2.1: ReplicatorDynamics — cập nhật tần suất theo fitness ---
-  // Fitness của mỗi action type = totalWeight (phản ánh mức độ đóng góp thực tế)
+  // --- v2.1: Replicator Dynamics inline — cập nhật tần suất theo fitness ---
+  // ẋᵢ = xᵢ(fᵢ - f̄) — không import module ngoài để tránh circular
   const imprintArray = Array.from(updatedImprints.values());
   if (imprintArray.length >= 2) {
     const total = imprintArray.reduce((s, imp) => s + imp.count, 0);
-    const frequencies = imprintArray.map(imp => imp.count / total);
-    const fitness     = imprintArray.map(imp => imp.totalWeight);
-
-    // Chạy 1 bước replicator dynamics
-    const newFreqs = replicator.update(frequencies, fitness);
-
-    // Cập nhật count theo tần suất mới (scale theo total)
-    newFreqs.forEach((freq, i) => {
-      const imp = imprintArray[i];
-      imp.count = Math.round(freq * total);
-      updatedImprints.set(imp.actionType, imp);
-    });
+    if (total > 0) {
+      const frequencies = imprintArray.map(imp => imp.count / total);
+      const fitness     = imprintArray.map(imp => imp.totalWeight);
+      const fBar = fitness.reduce((s, f, i) => s + f * frequencies[i], 0);
+      const updated = frequencies.map((x, i) => Math.max(0, x + x * (fitness[i] - fBar)));
+      const newTotal = updated.reduce((s, v) => s + v, 0);
+      if (newTotal > 0) {
+        updated.forEach((freq, i) => {
+          const imp = imprintArray[i];
+          imp.count = Math.max(1, Math.round((freq / newTotal) * total));
+          updatedImprints.set(imp.actionType, imp);
+        });
+      }
+    }
   }
 
   // --- Anti-spike clamp (Điều 17) ---
@@ -186,7 +184,7 @@ export function initSystemState(): QNEUSystemState {
 // Export
 // ============================================================
 export const firstSeed = {
-  version: '2.1',
+  version: '2.1', // ReplicatorDynamics inline — no external import
   timestamp: new Date().toISOString(),
   initEntityScore,
   initSystemState,

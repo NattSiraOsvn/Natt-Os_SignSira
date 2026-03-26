@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Constitutional Mapping Engine v1.1
  * CAN-02: DNA gate added to execute()
