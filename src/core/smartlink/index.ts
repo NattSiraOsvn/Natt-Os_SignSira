@@ -47,3 +47,6 @@ export const SmartLinkRegistry = {
 };
 
 SmartLinkRegistry.bootstrap();
+
+import { bootKernel } from '@/core/kernel-boot';
+bootKernel();
