@@ -117,3 +117,17 @@ EventBus.on('AuditLogged' as any, (env: any) => {
     trace: { causationId: 'AuditLogged', correlationId: p?.orderId },
   }, 'AuditLogged');
 });
+
+// ── anomaly.detected → audit trail ───────────────────────────────────────
+EventBus.on('anomaly.detected' as any, (env: any) => {
+  const p = env?.payload ?? env;
+  EventBus.emit('audit.record', {
+    action:   `anomaly.${p?.type ?? 'unknown'}`,
+    actor:    { id: 'anomaly-flow-engine', type: 'system' },
+    resource: p?.orderId ?? 'unknown',
+    result:   'fail',
+    timestamp: Date.now(),
+    trace: { causationId: p?.from, correlationId: p?.orderId },
+  }, 'anomaly.detected');
+  console.warn('[ANOMALY]', p?.type, '|', p?.from, '→', p?.expected, '| orderId:', p?.orderId);
+});

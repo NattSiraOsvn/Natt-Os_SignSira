@@ -5,6 +5,7 @@
  */
 
 import { bootstrapQuantumDefense } from '@/cells/kernel/quantum-defense-cell';
+import { bootstrapAnomalyFlowEngine } from '@/cells/kernel/quantum-defense-cell/domain/engines/anomaly-flow.engine';
 import { registerAuditHandlers }   from '@/cells/kernel/audit-cell/application/handlers/audithandler';
 
 let _booted = false;
@@ -15,6 +16,8 @@ export function bootKernel(): void {
   console.info('[KernelBoot] ✅ Audit handlers registered');
   bootstrapQuantumDefense();
   console.info('[KernelBoot] ✅ Quantum Defense bootstrapped');
+  bootstrapAnomalyFlowEngine();
+  console.info('[KernelBoot] ✅ AnomalyFlowEngine active — flow-break detection ON');
   _booted = true;
   console.info('[KernelBoot] 🧬 Kernel alive — Điều 7 + Điều 8 enforced');
 }

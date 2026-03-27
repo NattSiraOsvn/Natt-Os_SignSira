@@ -208,5 +208,875 @@
     "eventType": "audit.recorded",
     "cell": "engine-emitter",
     "action": "emit"
+  },
+  {
+    "timestamp": 1774650171817,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650171819,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650171820,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650171820,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650171820,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650171833,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323343,
+    "eventType": "order.created",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323343,
+    "eventType": "PRICING_GOLD_PRICE_REQUEST",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323344,
+    "eventType": "PRICING_PRODUCT_PRICE_REQUEST",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323348,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323348,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323349,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323349,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323350,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650323350,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650333352,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650333353,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373562,
+    "eventType": "order.created",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373562,
+    "eventType": "PRICING_GOLD_PRICE_REQUEST",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373563,
+    "eventType": "PRICING_PRODUCT_PRICE_REQUEST",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373563,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373564,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373564,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373565,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373565,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650373565,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650383567,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650383569,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650416551,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650416553,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650416553,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650416553,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650416554,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650416564,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417043,
+    "eventType": "order.created",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417043,
+    "eventType": "PRICING_GOLD_PRICE_REQUEST",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417044,
+    "eventType": "PRICING_PRODUCT_PRICE_REQUEST",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417048,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417049,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417049,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417049,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417050,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650417050,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650427052,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650427053,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650427053,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650427054,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650427055,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650427055,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650430057,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650430058,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650430059,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650430060,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650430061,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650430061,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650433063,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650433064,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650433064,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650433065,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650433066,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650433066,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650436067,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650436067,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650436068,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650436069,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650436069,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650436070,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650439071,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650439072,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650439072,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650439073,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650439074,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650439075,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650442076,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650442077,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650442078,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650442079,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650442080,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650442080,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650445082,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650445082,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650445083,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650445084,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650445084,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650445085,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650448086,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650448086,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650448087,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650448088,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650448088,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650448089,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650451091,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650451092,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650451092,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650451093,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650451093,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650451094,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650454094,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650454095,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650454097,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650454097,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650454098,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650454099,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650457100,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650457100,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650457101,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650457102,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650457102,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650457103,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650460104,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650460105,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650460105,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650460106,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650460106,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650460106,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650463107,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650463108,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650463109,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650463109,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650463110,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650463110,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650466112,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650466112,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650466113,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650466114,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650466114,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650466115,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650469116,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650469117,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650469118,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650469119,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650469120,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650469120,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650472121,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650472121,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650472122,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650472123,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650472123,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650472124,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650475124,
+    "eventType": "anomaly.detected",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650475125,
+    "eventType": "audit.record",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650475126,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650475126,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650475127,
+    "eventType": "cell.metric",
+    "cell": "engine-emitter",
+    "action": "emit"
+  },
+  {
+    "timestamp": 1774650475127,
+    "eventType": "audit.recorded",
+    "cell": "engine-emitter",
+    "action": "emit"
   }
 ]
