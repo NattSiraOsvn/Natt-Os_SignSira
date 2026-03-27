@@ -2,11 +2,11 @@
   "state": "CRITICAL",
   "risk": 50,
   "strengths": [
-    "Event coverage clean (2 orphans)"
+    "Event coverage clean (1 orphans)"
   ],
   "issues": [
-    "DEAD_WEIGHT: 42 unused engines",
+    "DEAD_WEIGHT: 36 unused engines",
     "SENSORY_DEFICIT: 26 blind cells",
-    "FLOW_DEFICIT: only 1 healthy chains"
+    "FLOW_DEFICIT: only 9 healthy chains"
   ]
 }
