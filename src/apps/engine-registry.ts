@@ -364,3 +364,25 @@ tryImport("../cells/business/production-cell/domain/services/weight-guard.engine
   wire("casting.complete",  "production-cell", () => eng?.execute?.());
   wire("finishing.complete","production-cell", () => eng?.execute?.());
 });
+
+// ── ANOMALY DETECTOR — Metabolism Layer sensing ───────────────────────────
+tryImport("../metabolism/healing/anomaly-detector", m => {
+  const detector = m.anomalyDetector ?? new (m.AnomalyDetector ?? m.default)();
+  const _metricBuffer: Record<string, number[]> = {};
+
+  // Listen cell.metric → feed AnomalyDetector
+  EventBus.on('cell.metric', (payload: any) => {
+    if (!payload || typeof payload.value !== 'number') return;
+    const key = `${payload.cell}.${payload.metric}`;
+    if (!_metricBuffer[key]) _metricBuffer[key] = [];
+    _metricBuffer[key].push(payload.value);
+    // Chỉ detect khi đủ data points
+    if (_metricBuffer[key].length >= 3) {
+      detector.detect(_metricBuffer[key], key);
+      // Giữ window 20 điểm gần nhất
+      if (_metricBuffer[key].length > 20) _metricBuffer[key].shift();
+    }
+  });
+
+  console.info('[AnomalyDetector] Wired to cell.metric — sensing active');
+});
