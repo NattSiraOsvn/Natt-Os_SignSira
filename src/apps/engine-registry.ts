@@ -25,13 +25,13 @@ function tryImport(path: string, callback: (mod: any) => void) {
 }
 
 // ── PRODUCTION FLOW: order.created → cash ─────────────────────────────────
-tryImport("../cells/business/production-cell/domain/services/production.engine", m => {
+tryImport("../cells/business/production-cell/domain/services/flow.engine", m => {
   const eng = new (m.ProductionEngine || m.default)();
   wire("order.created", "production-cell", () => eng.execute?.());
   wire("production.planned", "production-cell", () => eng.execute?.());
 });
 
-tryImport("../cells/business/casting-cell/infrastructure/casting.engine", m => {
+tryImport("../cells/business/casting-cell/domain/engines/casting.engine", m => {
   const eng = new (m.CastingEngine || m.default)();
   wire("production.planned", "casting-cell", () => eng.execute?.());
   EventBus.emit("cell.metric", { cell: "casting-cell", metric: "casting.alive", value: 1, ts: Date.now() });
@@ -47,7 +47,7 @@ tryImport("../cells/business/finishing-cell/domain/engines/finishing.engine", m 
   wire("stone.complete", "finishing-cell", () => eng.execute?.());
 });
 
-tryImport("../cells/business/polishing-cell/infrastructure/Polishing.engine", m => {
+tryImport("../cells/business/polishing-cell/domain/engines/polishing.engine", m => {
   const eng = new (m.PolishingEngine || m.default)();
   wire("finishing.complete", "polishing-cell", () => eng.execute?.());
 });
@@ -154,6 +154,17 @@ tryImport("../cells/business/promotion-cell/domain/services/promotion.engine", m
 tryImport("../cells/business/analytics-cell/domain/services/enterprise-linker.engine", m => {
   const eng = new (m.EnterpriseLinkerEngine || m.default)();
   wire("system.audit", "analytics-cell", () => eng.execute?.());
+});
+
+tryImport("../cells/business/pricing-cell/domain/services/rule-engine.service", m => {
+  const eng = new (m.RuleEngineService || m.default)();
+  wire("StockReplenished", "pricing-cell", () => eng.execute?.());
+});
+
+tryImport("../cells/business/design-3d-cell/domain/engines/design-3d.engine", m => {
+  const eng = new (m.Design3dEngine || m.default)();
+  wire("ProductionSpecReady", "design-3d-cell", () => eng.execute?.());
+  wire("BomRejected", "design-3d-cell", () => eng.execute?.());
 });
 
 tryImport("../cells/business/dust-recovery-cell/domain/services/dust-recovery.engine", m => {
