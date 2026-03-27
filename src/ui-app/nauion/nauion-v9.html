@@ -1979,6 +1979,50 @@ buildNav();
 buildCells();
 // Auto-nav to cell_organism from SYSTEM group uses the view
 document.querySelectorAll('.sb-btn').forEach(b=>{});
+
+// ── NATT-OS EventBus Bridge ───────────────────────────────────────────────
+const NattOS = {
+  SERVER: 'http://localhost:3001',
+  async emit(type, payload, cell) {
+    try {
+      const r = await fetch(this.SERVER+'/api/events/emit', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({type, payload, cell: cell||'ui'})
+      });
+      return await r.json();
+    } catch(e) { console.warn('[NattOS] emit failed:', e); }
+  },
+  async state(cell) {
+    try {
+      const r = await fetch(this.SERVER+'/api/state/'+cell);
+      return await r.json();
+    } catch(e) { return {}; }
+  },
+  async audit(limit) {
+    limit = limit||50;
+    try {
+      const r = await fetch(this.SERVER+'/api/audit?limit='+limit);
+      return await r.json();
+    } catch(e) { return {events:[],total:0}; }
+  },
+  async health() {
+    try {
+      const r = await fetch(this.SERVER+'/api/health');
+      return await r.json();
+    } catch(e) { return {status:'offline'}; }
+  }
+};
+
+window.addEventListener('load', function() {
+  NattOS.health().then(function(h) {
+    console.log('[NattOS Server]', h.status, h.ts||'');
+    if(h.status === 'ok') {
+      NattOS.emit('system.audit', {source:'nauion-ui', ts: Date.now()}, 'ui');
+    }
+  });
+});
+
 </script>
 </body>
 </html>
