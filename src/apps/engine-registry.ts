@@ -411,3 +411,51 @@ EventBus.on("sales.confirm", (payload: any) => {
     ts:      Date.now(),
   }, "sales.confirm");
 });
+
+// Wire: inventory.in → sales.confirm (chain chính ORDER→CASH)
+EventBus.on("inventory.in", (payload: any) => {
+  EventBus.emit("sales.confirm", {
+    orderId: payload?.orderId ?? payload?.originCell,
+    source:  "inventory-cell",
+    ts:      Date.now(),
+  }, "inventory.in");
+});
+
+// ── PRODUCTION CHAIN WIRING ───────────────────────────────────────────────
+// sales.confirm → ProductionSpecReady → ProductionStarted → ProductionStageAdvanced
+
+EventBus.on("sales.confirm", (payload: any) => {
+  EventBus.emit("ProductionSpecReady", {
+    orderId: payload?.orderId, items: payload?.items ?? [], source: "sales-cell", ts: Date.now(),
+  }, "sales.confirm");
+});
+
+EventBus.on("ProductionSpecReady", (payload: any) => {
+  EventBus.emit("ProductionStarted", {
+    orderId: payload?.orderId, stage: "init", source: "design-3d-cell", ts: Date.now(),
+  }, "ProductionSpecReady");
+});
+
+EventBus.on("ProductionStarted", (payload: any) => {
+  EventBus.emit("ProductionStageAdvanced", {
+    orderId: payload?.orderId, stage: "CASTING", source: "production-cell", ts: Date.now(),
+  }, "ProductionStarted");
+});
+
+// ── INVENTORY / WAREHOUSE FLOW ────────────────────────────────────────────
+EventBus.on("StockReserved", (payload: any) => {
+  EventBus.emit("cell.metric", { cell: "inventory-cell", metric: "stock.reserved", value: 1, ts: Date.now() });
+});
+
+EventBus.on("GoodsReceived", (payload: any) => {
+  EventBus.emit("inventory.in", { ...payload, source: "warehouse-cell", ts: Date.now() }, "GoodsReceived");
+});
+
+EventBus.on("StockReplenished", (payload: any) => {
+  EventBus.emit("cell.metric", { cell: "warehouse-cell", metric: "stock.replenished", value: 1, ts: Date.now() });
+});
+
+// ── MATERIAL LOSS → COMPLIANCE ────────────────────────────────────────────
+EventBus.on("MaterialLossReported", (payload: any) => {
+  EventBus.emit("cell.metric", { cell: "compliance-cell", metric: "material.loss", value: 1, ts: Date.now() });
+});
