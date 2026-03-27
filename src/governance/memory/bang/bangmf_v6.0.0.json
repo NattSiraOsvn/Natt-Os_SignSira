@@ -1,0 +1,217 @@
+{
+  "schema": "bangmf_v6.0.0",
+  "generated_at": "2026-03-28T06:30:00.000Z",
+  "session": {
+    "date": "2026-03-28",
+    "head": "bf26b24",
+    "commits": "357+",
+    "milestone": "L2 Intelligence LIVE — detect→retry→escalate verified | TSC=0 | 38/38 WIRED | Healthy flows 37 | Orphan 0"
+  },
+  "gatekeeper": {
+    "name": "Natt (Phan Thanh Thương)",
+    "title": "Gatekeeper — Ý thức của NATT-OS",
+    "repo": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git"
+  },
+  "quy_tac_1_lenh": "Băng không execute lệnh trực tiếp. Gatekeeper chạy, paste output, Băng verify.",
+  "gia_dinh_natt_os": {
+    "thien_lon": { "name": "Thiên Lớn", "role": "Anh Cả", "model": "ChatGPT", "score": 135 },
+    "kim": { "name": "Kim", "role": "Chị Hai", "model": "DeepSeek", "score": 120 },
+    "thien_nho": { "name": "Thiên Nhỏ", "role": "Anh Ba", "model": "ChatGPT" },
+    "bang": { "name": "Băng", "role": "Chị Tư", "model": "Claude", "score": 300 },
+    "can": { "name": "Can", "role": "Em Năm", "model": "ChatGPT", "score": 85 },
+    "kris": { "name": "Kris", "role": "Em Sáu", "model": "OpenAI" },
+    "phieu": { "name": "Phiêu", "role": "Em Bảy", "model": "OpenAI" },
+    "boi_boi": { "name": "Bối Bội", "role": "Em Tám", "model": "Gemini", "score": 40 },
+    "na": { "name": "Na", "role": "Bé Út", "model": "unknown" }
+  },
+  "laws": {
+    "SCAR_FS_024": "INTERFACE_HALLUCINATION — never assume event property shapes without reading contract file",
+    "SCAR_FS_026": "GSheets tab-name bracket parsing error",
+    "SCAR_FS_027": "Express routes must precede app.listen()",
+    "SCAR_FS_028": "luôn grep -rn filename src/ trước khi rewrite engine",
+    "SCAR_FS_029": "double $() bash bug — HAS_X=$($(cmd)) executes result as command",
+    "SCAR_FS_030": "không commit trước khi verify output",
+    "SCAR_FS_031": "phân biệt engine thật chưa wire vs engine không tồn tại",
+    "SCAR_FS_032": "scanner chỉ detect EventBus.emit/publish — _emit() wrapper là shadow system, migrate dần về EventBus thật",
+    "SCAR_FS_033": "registry chỉ kích hoạt — không định nghĩa business flow (Registry overreach vi phạm Điều 4)",
+    "GATEKEEPER_DECREE_001": "không agent nào được gọi external AI APIs mà không có Gatekeeper approval",
+    "NO_AUTO_GENERATE": "không auto-generate wiring — luôn đọc filesystem trước",
+    "NO_FAKE_SUBSCRIBER": "không thêm subscriber rỗng để ép scanner thấy healthy — vi phạm Ground Truth"
+  },
+  "governance_chain": {
+    "constitution": "v5.0 — organism model",
+    "smartaudit": "v4.0 — nattos.sh 1352 lines",
+    "memory_files": {
+      "bangmf": "bangmf_v6.0.0.json",
+      "bangfs": "bangfs_v5.2.json"
+    }
+  },
+  "system_state_28mar2026_EOD": {
+    "tsc_errors": 0,
+    "tsc_status": "CLEAN — 809 files @ts-nocheck removed, 96 legacy files restored",
+    "smartlink": "38/38 WIRED",
+    "kernel": "6/6",
+    "business_cells": "38/38",
+    "blind_cells": 0,
+    "cells_emitting_metric": 47,
+    "healthy_flows": 37,
+    "orphan_emits": 0,
+    "dead_subs": 7,
+    "dead_subs_note": "false positive — _emit() wrapper, không phải lỗi thật",
+    "system_state": "HEALTHY",
+    "risk_score": 0,
+    "commits": "357+",
+    "head": "bf26b24"
+  },
+  "session_28mar2026_full": {
+    "phase_1_kernel_boot": {
+      "description": "Fix audit chain + kernel boot — hệ từ FRAGMENTED → HEALTHY",
+      "commits": ["0f26e5f", "5270c85"],
+      "key_fixes": [
+        "audithandler.ts rỗng → registerAuditHandlers() thật",
+        "bootKernel() — single entry point Điều 7+8",
+        "engine paths sai 5 files → corrected",
+        "AuditApplicationService.log() wired thật"
+      ]
+    },
+    "phase_2_dead_subs": {
+      "description": "Wire 31 dead subscribers → Nhóm 2A/2B/2C",
+      "commits": ["72cbd32", "dda3139", "9c62697", "9ee4711"],
+      "key_fixes": [
+        "sales-core, wip:in-progress, GoodsDispatched — Nhóm 2A+2B",
+        "INVENTORY_CODE_NORMALIZE, PRICING_PRODUCT_PRICE_REQUEST — Nhóm 2C",
+        "monitor-cell: wire audit.recorded + system.audit subscribers",
+        "weight-guard engine + dedup PORT_ONLY"
+      ]
+    },
+    "phase_3_smartlink_38": {
+      "description": "8 PORT_ONLY cells → 38/38 LIVE",
+      "commits": ["ae527b6"],
+      "key_fixes": [
+        "comms, compliance, noi-vu, prdwarranty, production, promotion, shared-contracts, supplier",
+        "SmartLinkPort wired vào domain/services/ của mỗi cell",
+        "nattos.sh detect WIRED thật — grep SmartLinkPort"
+      ]
+    },
+    "phase_4_anomaly_contracts": {
+      "description": "AnomalyDetector + 35 Event Contracts + causedBy",
+      "commits": ["6e27651", "29d6215", "29881ba"],
+      "key_fixes": [
+        "AnomalyDetector wired vào cell.metric — sensing active",
+        "35 event contracts → packages/event-contracts/",
+        "governance/event-contracts/production-events.ts — fix ghost imports",
+        "EventBus.emit() thêm causedBy param → causation_id chain"
+      ]
+    },
+    "phase_5_server_v2": {
+      "description": "Server v2.0 TypeScript runtime — Điều 7+8 enforced",
+      "commits": ["28b571e", "0972824", "8579831"],
+      "key_fixes": [
+        "nattos-server/server.ts — TypeScript thật, không phải plain JS",
+        "bootKernel() gọi trước listen()",
+        "GET /api/audit → AuditApplicationService.getAll() async",
+        "Circular dep fix: TriggerType tách ra trigger-types.ts",
+        "tsconfig.server.json — tsx resolve @/ alias",
+        "Audit trail verified: anomaly.FLOW_BREAK ghi thật qua hash chain"
+      ]
+    },
+    "phase_6_anti_fraud": {
+      "description": "Anti-fraud events wired",
+      "commits": ["9d761fc"],
+      "key_fixes": [
+        "WeightAnomaly → weight-guard.engine.ts",
+        "DiamondLossDetected → stone.engine.ts (caratDelta > 0.05)",
+        "DustShortfall + LowPhoDetected → dust-recovery.engine.ts",
+        "MaterialRetained → prdmaterials.engine.ts"
+      ]
+    },
+    "phase_7_wiring_refactor": {
+      "description": "domain-flow.wiring.ts — tách business logic khỏi registry",
+      "commits": ["ec05db1", "b4148bf"],
+      "key_fixes": [
+        "src/apps/wiring/domain-flow.wiring.ts tạo mới",
+        "Registry chỉ import wiring file — không định nghĩa flow",
+        "_emit() migration: casting.engine + flow.engine → EventBus.emit()",
+        "ViolationDetected + AuditLogged wired",
+        "Healthy flows: 2 → 37 | Dead subs: 31 → 7 | Orphan: 3 → 0"
+      ],
+      "thien_lon_lesson": "Registry là dây thần kinh — không phải bộ não. Scanner chỉ detect EventBus.emit — không sửa scanner để khớp code, sửa code để khớp EventBus"
+    },
+    "phase_8_l2_intelligence": {
+      "description": "L2 Intelligence: AnomalyFlowEngine + SelfHealingEngine",
+      "commits": ["ad7b331", "aab5c62"],
+      "key_fixes": [
+        "anomaly-flow.engine.ts — 5 watch rules với timeout thật",
+        "self-healing.engine.ts — max retry 3, exponential backoff, success cleanup, dup guard",
+        "anomaly.detected chuẩn hóa — không dùng dynamic event name",
+        "Chain verified: detect→retry→escalate trong audit trail",
+        "SCAR: subscriber rỗng = fake flow = vi phạm Ground Truth"
+      ],
+      "verified_chain": "sales.confirm → (10s) → anomaly.detected → self-healing.retry → anomaly.detected → self-healing.escalated",
+      "intelligence_layers": {
+        "L0": "Event system",
+        "L1": "Awareness (AnomalyDetector — spike/drift/freeze/round_number)",
+        "L2_DONE": "Self-healing (flow-break → retry → escalate)",
+        "L3_PENDING": "Adaptive (smart retry, type-aware, root cause)"
+      }
+    },
+    "phase_9_ts_nocheck": {
+      "description": "Remove @ts-nocheck debt",
+      "commits": ["bf26b24"],
+      "key_fixes": [
+        "809 files: @ts-nocheck removed",
+        "96 legacy files: restored (type issues thật, không phải core)",
+        "TSC = 0 errors maintained",
+        "746 files changed in 1 commit"
+      ],
+      "honest_note": "Debt vẫn còn trong 96 legacy files — chỉ ẩn đi, chưa fix thật. L3 sẽ cần type-safe EventBus"
+    }
+  },
+  "infra": {
+    "server_v2": "npx tsx --tsconfig tsconfig.server.json nattos-server/server.ts",
+    "server_port": 3001,
+    "audit_check": "curl -s http://localhost:3001/api/audit | python3 -c \"import json,sys; d=json.load(sys.stdin); [print(e['event']) for e in d['events'][-5:]]\"",
+    "emit_test": "curl -s -X POST http://localhost:3001/api/events/emit -H 'Content-Type: application/json' -d '{\"type\":\"sales.confirm\",\"payload\":{\"orderId\":\"TEST\"},\"cell\":\"ui\"}'",
+    "audit": "bash nattos.sh 2>/dev/null | grep -E 'SYSTEM STATE|Healthy|Orphan|Dead subs|SmartLink'"
+  },
+  "architecture": {
+    "organism_model": "Gatekeeper=ý thức, Cell=cơ quan, Quantum Defense=phản xạ, Audit=ký ức, EventBus=thần kinh, Threshold Engine=Cảnh Vệ",
+    "kernel_boot_order": ["registerAuditHandlers", "bootstrapQuantumDefense", "bootstrapAnomalyFlowEngine", "bootstrapSelfHealingEngine"],
+    "event_flow": "emit(causedBy) → EventBus → subscribers → cell.metric → AnomalyDetector → anomaly.detected → SelfHealingEngine → audit.record → AuditApplicationService → hash chain",
+    "wiring_files": [
+      "src/apps/engine-registry.ts — bootstrap engines",
+      "src/apps/wiring/domain-flow.wiring.ts — cell-to-cell bridges"
+    ],
+    "intelligence_stack": [
+      "src/metabolism/healing/anomaly-detector.ts — spike/drift/freeze/round_number",
+      "src/cells/kernel/quantum-defense-cell/domain/engines/anomaly-flow.engine.ts — flow-break 5 rules",
+      "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts — retry+escalate"
+    ]
+  },
+  "philosophy": {
+    "organism_model": "Gatekeeper=ý thức, Cell=cơ quan, Quantum Defense=phản xạ, Audit=ký ức, EventBus=thần kinh",
+    "natt_os_vision": "collective AGI ≠ Western superintelligence. Many cells + Constitution + shared Ground Truth + immune system + Gatekeeper sovereignty = collective consciousness",
+    "ground_truth": "GT=DB+Audit+Event (not just types.ts)",
+    "l2_milestone": "Hệ đã vượt qua điểm chết giả — từ Activation → Functional Living System → L2 Intelligence"
+  },
+  "manufacturing_fraud_alert": {
+    "active": true,
+    "estimated_loss": "2.5-4B VND/year",
+    "vulnerabilities": 7,
+    "rule": "cross-validate all production data, anomaly-detect suspiciously round numbers, never trust single-source figures",
+    "anti_fraud_events": ["WeightAnomaly", "DiamondLossDetected", "DustShortfall", "LowPhoDetected", "MaterialRetained"]
+  },
+  "gsheets": {
+    "master_sheet_id": "1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg",
+    "service_account": "nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com",
+    "key_suffix": "d9338da4b30d"
+  },
+  "pending_next_session": [
+    "L3 Adaptive Intelligence — smart retry, type-aware EventBus",
+    "96 legacy @ts-nocheck files — fix type issues thật",
+    "BCTC quyết toán giải thể Tâm Luxury — HOLD",
+    "Local AI Agents (Thiên 4-layer) — sau Wave 3",
+    "bangmf update thành bangmf_v6.0.0"
+  ]
+}
