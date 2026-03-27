@@ -8,7 +8,7 @@
  * Nguồn: src/governance/HIEN-PHAP-NATT-OS-v5.0.md
  */
 
-import { TriggerType, ResponseType } from './constitutional-mapping.engine';
+import { TriggerType, ResponseType } from './trigger-types';
 
 // ── ĐIỀU 3 — 6 thành phần bắt buộc của NATT-CELL ──────────
 export const DNA_CELL_COMPONENTS = [

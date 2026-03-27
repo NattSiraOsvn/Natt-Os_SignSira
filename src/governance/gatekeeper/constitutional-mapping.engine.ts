@@ -9,6 +9,7 @@
  */
 
 import { EventBus } from '../../core/events/event-bus';
+import { TriggerType, ResponseType } from './trigger-types';
 import {
   isValidTrigger,
   isOmegaTrigger,
@@ -16,31 +17,8 @@ import {
 } from './dna-loader';
 
 // ── TRIGGER TYPES ──────────────────────────────────────────
-export enum TriggerType {
-  // Production
-  WEIGHT_ANOMALY         = 'WEIGHT_ANOMALY',
-  POLISH_RATE_LOW        = 'POLISH_RATE_LOW',
-  MATERIAL_LEAK          = 'MATERIAL_LEAK',
-  DIAMOND_SUBSTITUTION   = 'DIAMOND_SUBSTITUTION',
-  SC_FLOW_SPIKE          = 'SC_FLOW_SPIKE',
-
-  // Finance
-  CASHFLOW_GAP           = 'CASHFLOW_GAP',
-  INVOICE_MISSING        = 'INVOICE_MISSING',
-  BCTC_MISMATCH          = 'BCTC_MISMATCH',
-  TAX_EXPOSURE           = 'TAX_EXPOSURE',
-
-  // Security
-  AI_UNAUTHORIZED_CALL   = 'AI_UNAUTHORIZED_CALL',
-  MULTI_SOURCE_CONFLICT  = 'MULTI_SOURCE_CONFLICT',
-  AUDIT_TAMPER_ATTEMPT   = 'AUDIT_TAMPER_ATTEMPT',
-  ROUND_NUMBER_ANOMALY   = 'ROUND_NUMBER_ANOMALY',
-
-  // System
-  CELL_HEALTH_DEGRADED   = 'CELL_HEALTH_DEGRADED',
-  SMARTLINK_BROKEN       = 'SMARTLINK_BROKEN',
-  CONSTITUTION_VIOLATED  = 'CONSTITUTION_VIOLATED',
-}
+// TriggerType moved to trigger-types.ts
+export { TriggerType } from './trigger-types';
 
 // ── RESPONSE TYPES ─────────────────────────────────────────
 export enum ResponseType {
