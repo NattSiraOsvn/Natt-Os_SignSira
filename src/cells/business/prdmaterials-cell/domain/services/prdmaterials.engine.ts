@@ -114,6 +114,14 @@ export const PrdMaterialsEngine = {
     const lossPct   = lap.totalGoldWeight > 0 ? (lossGold / lap.totalGoldWeight) * 100 : 0;
 
     if (lossPct > threshold) {
+      EventBus.emit('MaterialRetained', {
+        orderId:      lap.orderId ?? 'unknown',
+        materialCode: lap.material ?? 'unknown',
+        issued:       lap.issuedWeight ?? 0,
+        returned:     lap.returnedWeight ?? 0,
+        source:       'prdmaterials-cell',
+        ts:           Date.now(),
+      });
       _emit('compliance-cell', 'MaterialLossReported', {
         orderId, lapId: lap.lapId, lossGold, lossPct, threshold, stage: 'CASTING',
       });

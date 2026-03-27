@@ -113,6 +113,14 @@ export class StoneEngine {
           confidence: 0.85,
           stoneId:    stone.id,
         });
+        EventBus.emit('DiamondLossDetected', {
+          orderId:    updated.productId ?? 'unknown',
+          bomCount:   1,
+          actualCount: 1,
+          loss:       caratDelta,
+          source:     'stone-cell',
+          ts:         Date.now(),
+        });
       }
     }
 

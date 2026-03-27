@@ -86,6 +86,20 @@ export class DustRecoveryEngine {
     });
 
     if (isAnomaly) {
+      EventBus.emit('DustShortfall', {
+        workerId:  workerId ?? 'unknown',
+        sach:      recoveredDust ?? 0,
+        actual:    dust,
+        source:    'dust-recovery-cell',
+        ts:        Date.now(),
+      });
+      EventBus.emit('LowPhoDetected', {
+        workerId:  workerId ?? 'unknown',
+        luong:     'SX',
+        pho:       lossRate,
+        source:    'dust-recovery-cell',
+        ts:        Date.now(),
+      });
       EventBus.emit('cell.metric', {
         cell:       'dust-recovery-cell',
         metric:     'dust.anomaly',

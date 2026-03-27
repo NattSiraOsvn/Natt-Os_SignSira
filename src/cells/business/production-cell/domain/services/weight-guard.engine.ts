@@ -58,6 +58,16 @@ export class WeightGuardEngine {
       });
     }
 
+    if (isAnomaly) {
+      EventBus.emit('WeightAnomaly', {
+        orderId:   record.batchId,
+        workerId:  record.workerId,
+        weightIn:  record.weightIn,
+        weightOut: record.weightOut,
+        source:    'weight-guard',
+        ts:        Date.now(),
+      });
+    }
     return { batchId: record.batchId, delta, deltaRatio, level, isAnomaly, confidence };
   }
 }
