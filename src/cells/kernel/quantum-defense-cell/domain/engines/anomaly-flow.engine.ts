@@ -19,10 +19,11 @@ interface WatchRule {
 }
 
 const WATCH_RULES: WatchRule[] = [
-  { from: 'order.created',    expect: 'ProductionStarted',    timeout: 10000, severity: 'HIGH'   },
-  { from: 'sales.confirm',    expect: 'payment.received',     timeout: 15000, severity: 'HIGH'   },
-  { from: 'ProductionStarted',expect: 'ProductionCompleted',  timeout: 30000, severity: 'MEDIUM' },
-  { from: 'casting.complete', expect: 'finishing.complete',   timeout: 20000, severity: 'MEDIUM' },
+  // order.created removed — không phải flow cần enforce downstream
+  { from: 'sales.confirm',    expect: 'payment.received',     timeout: 15000, severity: 'HIGH'    },
+  { from: 'sales.confirm',    expect: 'ProductionStarted',    timeout: 10000, severity: 'HIGH'    },
+  { from: 'ProductionStarted',expect: 'ProductionCompleted',  timeout: 30000, severity: 'MEDIUM'  },
+  { from: 'casting.complete', expect: 'finishing.complete',   timeout: 20000, severity: 'MEDIUM'  },
   { from: 'audit.record',     expect: 'audit.recorded',       timeout: 3000,  severity: 'CRITICAL'},
 ];
 
@@ -34,13 +35,16 @@ export function bootstrapAnomalyFlowEngine(): void {
 
       const timer = setTimeout(() => {
         EventBus.emit('anomaly.detected', {
-          type:      'FLOW_BREAK',
-          from:      rule.from,
-          expected:  rule.expect,
+          type:       'FLOW_BREAK',
+          from:       rule.from,
+          expected:   rule.expect,
           orderId,
-          severity:  rule.severity,
-          timeout:   rule.timeout,
-          ts:        Date.now(),
+          severity:   rule.severity,
+          timeout:    rule.timeout,
+          causedBy:   rule.from,
+          sourceCell: 'anomaly-flow-engine',
+          chain:      [rule.from, '(missing)', rule.expect],
+          ts:         Date.now(),
         }, rule.from);
 
         // Feed ThresholdEngine
