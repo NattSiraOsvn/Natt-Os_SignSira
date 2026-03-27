@@ -173,3 +173,6 @@ export class Design3dEngine {
 }
 
 export const design3dEngine = new Design3dEngine();
+
+// ── cell.metric heartbeat (SCAR S28 compliance) ──
+EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'design-3d-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'design-3d-cell', undefined);

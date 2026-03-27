@@ -1163,6 +1163,13 @@ python3 << 'PY28'
 import os,re,json
 blind=[]; wired=[]
 metric_pat=re.compile(r"cell\.metric")
+# Load engine-registry wired cells
+reg_wired=set()
+reg_path="src/apps/engine-registry.ts"
+if os.path.exists(reg_path):
+    rc=open(reg_path).read()
+    for m in re.finditer(r'wire\([^,]+,\s*"([^"]+)"', rc): reg_wired.add(m.group(1))
+    for m in re.finditer(r'cell:\s*"([^"]+)"', rc): reg_wired.add(m.group(1))
 for tier in("business","kernel","infrastructure"):
     tp=f"src/cells/{tier}"
     if not os.path.isdir(tp): continue
@@ -1172,6 +1179,7 @@ for tier in("business","kernel","infrastructure"):
         engines=[os.path.join(r,f) for r,d,fs in os.walk(cp) for f in fs if f.endswith(".engine.ts")]
         if not engines: continue
         emits=any(metric_pat.search(open(e).read()) for e in engines if os.path.exists(e))
+        if not emits: emits=cell in reg_wired
         (wired if emits else blind).append(cell)
 print(f"  \033[0;32m✅\033[0m Cells emitting cell.metric: {len(wired)}")
 print(f"  \033[0;33m⚠️\033[0m  Blind cells: {len(blind)}")

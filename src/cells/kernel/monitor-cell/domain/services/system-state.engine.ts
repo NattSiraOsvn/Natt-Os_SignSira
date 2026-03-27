@@ -73,3 +73,7 @@ export function getLastState(): StateSnapshot | null {
     return JSON.parse(fs.readFileSync(STATE_FILE, "utf-8"));
   } catch { return null; }
 }
+
+// ── cell.metric heartbeat ──
+import { EventBus } from '@/core/events/event-bus';
+EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'monitor-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'monitor-cell', undefined);

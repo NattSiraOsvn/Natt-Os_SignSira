@@ -8,3 +8,6 @@ export const aiEngine = {
   trainPricePrediction:async(_d:any):Promise<any>=>({ text:"OK" }),
   submitFeedback:async(..._args:any[]):Promise<any>=>({ text:"OK" }),
 };
+
+// ── cell.metric heartbeat ──
+EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'ai-connector-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'ai-connector-cell', undefined);

@@ -77,3 +77,6 @@ export function validateSystem(
     validatedAt: new Date(nowMs).toISOString(),
   };
 }
+
+// ── cell.metric heartbeat ──
+EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'neural-main-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'neural-main-cell', undefined);

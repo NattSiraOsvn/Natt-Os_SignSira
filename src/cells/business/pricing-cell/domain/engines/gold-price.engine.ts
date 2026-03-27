@@ -220,3 +220,6 @@ export default {
   visionOcr, parseGoldPriceText, calcProductPrice,
   extractImageUrlFromHtml, getGoldPriceSBJ,
 };
+
+// ── cell.metric heartbeat ──
+EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'pricing-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'pricing-cell', undefined);

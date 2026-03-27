@@ -59,3 +59,6 @@ export const SmartLinkEngine = {
   getTouchLog: (): TouchRecord[] => [..._touchLog],
   clearLog: (): void => { _touchLog.length = 0; },
 };
+
+// ── cell.metric heartbeat ──
+EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'smartlink-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'smartlink-cell', undefined);
