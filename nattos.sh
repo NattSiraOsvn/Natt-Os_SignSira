@@ -1227,7 +1227,7 @@ try: commit=subprocess.check_output(["git","rev-parse","--short","HEAD"],text=Tr
 except: commit="unknown"
 twin={"schema":"natt-os-digital-twin-v1.0","generated_at":datetime.now().isoformat(),"git":{"commit":commit},
   "system_vitals":{"state":inf.get("state","UNKNOWN"),"risk_score":inf.get("risk",-1)},
-  "event_intelligence":{"healthy":len(eg.get("healthy",[],"orphan_emits":len(eg.get("orphan",[])))},
+  "event_intelligence":{"healthy":len(eg.get("healthy",[])),"orphan_emits":len(eg.get("orphan",[]))},
   "engine_intelligence":{"declared":em.get("declared",0),"dead_count":len(em.get("dead",[]))},
   "signal_intelligence":{"wired":len(sm.get("wired",[])),"blind":len(sm.get("blind",[]))},
   "diagnosis":inf.get("issues",[])}
