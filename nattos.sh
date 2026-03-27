@@ -559,6 +559,8 @@ else
 
   # ── Count HTML apps ──
   HTML_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.html" ! -name "._*" | wc -l | tr -dc '0-9')
+  NAUION=$([ -f "$UI_APP_DIR/nauion/nauion-v9.html" ] && echo "1" || echo "0")
+  HTML_COUNT=$((HTML_COUNT + NAUION))
   JS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.js" | wc -l | tr -dc '0-9')
   CSS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.css" | wc -l | tr -dc '0-9')
   ok "HTML apps: $HTML_COUNT | JS engines: $JS_COUNT | CSS: $CSS_COUNT"; inc_ok
