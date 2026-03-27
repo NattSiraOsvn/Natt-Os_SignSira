@@ -1,6 +1,6 @@
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishCommsSignal } from '../../../ports/comms-smartlink.port';
+import { publishCommsSignal } from '../../ports/comms-smartlink.port';
 // CommsSmartLinkPort wired — signal available for cross-cell communication
 // @ts-nocheck
 import { ChaseLog, ChaseAttempt } from '../entities/call.entity';

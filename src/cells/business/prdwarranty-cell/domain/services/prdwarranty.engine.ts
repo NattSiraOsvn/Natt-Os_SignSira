@@ -1,6 +1,6 @@
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishWarrantySignal } from '../../../ports/prdwarranty-smartlink.port';
+import { publishWarrantySignal } from '../../ports/prdwarranty-smartlink.port';
 // PrdwarrantySmartLinkPort wired — signal available for cross-cell communication
 // @ts-nocheck
 // ── prdwarranty.engine.ts ─────────────────────────────────────
@@ -37,7 +37,7 @@ const WARRANTY_DAYS = {
 };
 
 export class ProductWarrantyEngine {
-  process(input: WarrantyInput): WarrantyResult {
+  process(input: WarrantyInput): WarrantyResult | undefined {
     const { productId, issueType, purchaseDate, reportDate } = input;
     const daysUsed    = Math.floor((reportDate - purchaseDate) / 86400000);
     const maxDays     = WARRANTY_DAYS[issueType];
@@ -73,5 +73,6 @@ export class ProductWarrantyEngine {
       productId, issueType, withinPeriod, isCritical,
     });
 
-}
+    return { productId, status, action, isCritical, daysUsed, withinPeriod, confidence: 0.9 };
+  }
 }

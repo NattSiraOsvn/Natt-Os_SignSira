@@ -1,6 +1,6 @@
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishContractSignal } from '../../../ports/shared-contracts-smartlink.port';
+import { publishContractSignal } from '../../ports/shared-contracts-smartlink.port';
 // SharedContractsSmartLinkPort wired — signal available for cross-cell communication
 // @ts-nocheck
 // ── shared-contracts.engine.ts ────────────────────────────────
@@ -31,7 +31,7 @@ export interface ContractResult {
 }
 
 export class SharedContractsEngine {
-  validate(contract: ContractInput): ContractResult {
+  validate(contract: ContractInput): ContractResult | undefined {
     const { id, value, parties, startDate, endDate, paidAmount = 0 } = contract;
     const riskFlags: string[] = [];
     const now          = Date.now();
@@ -73,5 +73,6 @@ export class SharedContractsEngine {
       });
     }
 
-}
+    return { contractId: id, status, riskFlags, paymentRatio, daysRemaining, confidence: 0.85 };
+  }
 }
