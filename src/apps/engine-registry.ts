@@ -72,7 +72,11 @@ tryImport("../cells/business/sales-cell/domain/engines/sales-core.engine", m => 
 
 tryImport("../cells/business/sales-cell/domain/engines/sales.engine", m => {
   const eng = new (m.SalesEngine || m.default)();
-  wire("sales.confirm", "sales-cell", () => eng.execute?.());
+  wire("sales.confirm", "sales-cell", () => {
+    eng.execute?.();
+    // Emit SalesOrderCreated để trigger sales-core.engine + showroom.engine
+    EventBus.emit("SalesOrderCreated", { source: "sales-cell", ts: Date.now() });
+  });
   wire("inventory.in", "sales-cell", () =>
     EventBus.emit("cell.metric", { cell: "sales-cell", metric: "sales.ready", value: 1, ts: Date.now() })
   );
@@ -337,6 +341,17 @@ tryImport("../cells/business/warehouse-cell/domain/services/warehouse-intelligen
 
 
 // ── CustomsRobotEngine — const object, không phải class ──────────────────
+// Wire customs.declaration emit khi order có hàng nhập khẩu
+EventBus.on("order.created", (payload: any) => {
+  if (payload && payload.hasImport) {
+    EventBus.emit("customs.declaration", {
+      orderId:  payload.orderId,
+      source:   "order-cell",
+      ts:       Date.now(),
+    });
+  }
+});
+
 tryImport("../cells/business/customs-cell/domain/services/customs.engine", m => {
   const eng = m.CustomsRobotEngine;
   if (!eng) return;
@@ -385,4 +400,14 @@ tryImport("../metabolism/healing/anomaly-detector", m => {
   });
 
   console.info('[AnomalyDetector] Wired to cell.metric — sensing active');
+});
+
+// Wire: sales.confirm → payment.received (chain causality)
+EventBus.on("sales.confirm", (payload: any) => {
+  EventBus.emit("payment.received", {
+    orderId: payload?.orderId ?? payload?.originCell,
+    amount:  payload?.amount ?? 0,
+    source:  "sales-cell",
+    ts:      Date.now(),
+  }, "sales.confirm");
 });
