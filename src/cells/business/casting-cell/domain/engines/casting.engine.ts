@@ -45,7 +45,7 @@ EventBus.subscribe(
     if (!p?.orderId || p.stage !== 'CASTING') return;
 
     // Emit casting request → prdmaterials-cell cấp vàng
-    _emit('prdmaterials-cell', 'StockReserved', {
+    EventBus.emit('StockReserved', {
       orderId:    p.orderId,
       action:     'ISSUE_GOLD_FOR_CASTING',
       tuoiVang:   p.tuoiVang,
@@ -64,7 +64,7 @@ export const CastingEngine = {
     const auditRef = `casting-${job.orderId}-${Date.now()}`;
 
     if (isLossExceeded) {
-      _emit('compliance-cell', 'MaterialLossReported', {
+      EventBus.emit('MaterialLossReported', {
         orderId: job.orderId, stage: 'CASTING',
         lossGram, lossPct, threshold: CASTING_LOSS_PCT,
       });
@@ -72,7 +72,7 @@ export const CastingEngine = {
 
     // Sau đúc xong → emit song song:
     // 1. WIP_PHOI → finishing-cell (ráp chi tiết bổ sung)
-    _emit('finishing-cell', 'wip:phoi' as any, {
+    EventBus.emit('wip:phoi', {
       orderId:    job.orderId,
       maDon:      job.maDon,
       maHang:     job.maHang,
@@ -82,7 +82,7 @@ export const CastingEngine = {
 
     // 2. Nếu có đá chủ → stone-cell song song
     if (job.hasStone) {
-      _emit('stone-cell', 'wip:stone' as any, {
+      EventBus.emit('wip:stone', {
         orderId:  job.orderId,
         maDon:    job.maDon,
         maHang:   job.maHang,
@@ -90,7 +90,7 @@ export const CastingEngine = {
       });
     }
 
-    _emit('audit-cell', 'ProductionStageAdvanced', {
+    EventBus.emit('ProductionStageAdvanced', {
       orderId: job.orderId, stage: 'POST_CASTING',
       castWeight, lossGram, auditRef,
     });

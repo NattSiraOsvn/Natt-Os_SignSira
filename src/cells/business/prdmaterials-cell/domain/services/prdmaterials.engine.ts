@@ -122,9 +122,9 @@ export const PrdMaterialsEngine = {
         source:       'prdmaterials-cell',
         ts:           Date.now(),
       });
-      _emit('compliance-cell', 'MaterialLossReported', {
+      EventBus.emit('MaterialLossReported', {
         orderId, lapId: lap.lapId, lossGold, lossPct, threshold, stage: 'CASTING',
-      });
+      }, 'prdmaterials-cell');
     }
   },
 

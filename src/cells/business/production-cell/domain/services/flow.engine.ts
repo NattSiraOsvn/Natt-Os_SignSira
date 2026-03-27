@@ -45,9 +45,9 @@ EventBus.subscribe('ProductionStarted' as any, (envelope: any) => {
   const base = { orderId: p.orderId, maDon: p.maDon, maHang: p.maHang, luongSP: p.luongSP,
     chungLoai: p.chungLoai, tuoiVang: p.tuoiVang, mauSP: p.mauSP,
     niSize: p.niSize, ochu: p.ochu, ngayGiao: p.ngayGiao };
-  _emit('prdmaterials-cell', 'StockReserved',       { ...base, action: 'RESERVE_MATERIAL', sapWeightGram: 2.0 });
-  _emit('bom3dprd-cell',    'BomCreated',           { ...base, action: 'CREATE_BOM' });
-  _emit('design-3d-cell',   'ProductionSpecReady',  { ...base, action: 'PREPARE_3D_MODEL' });
+  EventBus.emit('StockReserved',       { ...base, action: 'RESERVE_MATERIAL', sapWeightGram: 2.0 });
+  EventBus.emit('BomCreated',           { ...base, action: 'CREATE_BOM' });
+  EventBus.emit('ProductionSpecReady',  { ...base, action: 'PREPARE_3D_MODEL' });
 }, 'production-cell');
 
 // ── 2. BomValidated ──
@@ -60,7 +60,7 @@ EventBus.subscribe('BomValidated' as any, (envelope: any) => {
   const logs = _logs.get(p.orderId) ?? [];
   logs.push({ orderId: p.orderId, stage: 'MATERIAL_PREP', enteredAt: Date.now() });
   _logs.set(p.orderId, logs);
-  _emit('casting-cell', 'ProductionStageAdvanced', {
+  EventBus.emit('ProductionStageAdvanced', {
     orderId: p.orderId, stage: 'CASTING', hasStone: p.hasStone ?? false, bomId: p.bomId, action: 'START_CASTING',
   });
 }, 'production-cell');
@@ -77,14 +77,14 @@ EventBus.subscribe('SkuModelCreated' as any, (envelope: any) => {
 EventBus.subscribe('BomRejected' as any, (envelope: any) => {
   const p = envelope.payload;
   if (!p?.orderId) return;
-  _emit('audit-cell', 'ViolationDetected', { orderId: p.orderId, rule: 'BOM_REJECTED', reason: p.reason });
+  EventBus.emit('ViolationDetected', { orderId: p.orderId, rule: 'BOM_REJECTED', reason: p.reason });
 }, 'production-cell');
 
 // ── 5. MaterialLossReported ──
 EventBus.subscribe('MaterialLossReported' as any, (envelope: any) => {
   const p = envelope.payload;
-  _emit('audit-cell',      'AuditLogged',       { ...p, event: 'MATERIAL_LOSS' });
-  _emit('compliance-cell', 'ViolationDetected',  { ...p, rule: 'LOSS_THRESHOLD' });
+  EventBus.emit('AuditLogged',       { ...p, event: 'MATERIAL_LOSS' });
+  EventBus.emit('ViolationDetected',  { ...p, rule: 'LOSS_THRESHOLD' });
 }, 'production-cell');
 
 export const FlowEngine = {
@@ -114,9 +114,9 @@ export const FlowEngine = {
     logs.push({ orderId, stage: next, enteredAt: Date.now(), worker });
     _logs.set(orderId, logs);
     if (next === 'COMPLETED') {
-      _emit('warehouse-cell', 'ProductionCompleted', { orderId, qty: 1 });
+      EventBus.emit('ProductionCompleted', { orderId, qty: 1 });
     } else {
-      _emit('audit-cell', 'ProductionStageAdvanced', { orderId, stage: next, worker });
+      EventBus.emit('ProductionStageAdvanced', { orderId, stage: next, worker });
     }
     return next;
   },

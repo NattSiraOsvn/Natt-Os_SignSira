@@ -64,3 +64,56 @@ EventBus.on('sales.confirm' as any, (env: any) => {
     orderId: p?.orderId, items: p?.items ?? [], source: 'sales-cell', ts: Date.now(),
   }, 'sales.confirm');
 });
+
+// ── wip:phoi → finishing-cell trigger ────────────────────────────────────
+EventBus.on('wip:phoi' as any, (env: any) => {
+  const p = env?.payload ?? env;
+  EventBus.emit('cell.metric', {
+    cell: 'finishing-cell', metric: 'wip.phoi.received', value: 1,
+    orderId: p?.orderId, ts: Date.now(),
+  }, 'wip:phoi');
+});
+
+// ── ViolationDetected → audit + quantum ──────────────────────────────────
+EventBus.on('ViolationDetected' as any, (env: any) => {
+  const p = env?.payload ?? env;
+  EventBus.emit('constitutional.violation', {
+    trigger: p?.rule ?? 'UNKNOWN', level: 'WARNING',
+    source_cell: p?.cell ?? 'unknown', reason: p?.reason ?? '',
+    timestamp: new Date().toISOString(),
+  }, 'ViolationDetected');
+});
+
+// ── AuditLogged → audit trail ─────────────────────────────────────────────
+EventBus.on('AuditLogged' as any, (env: any) => {
+  const p = env?.payload ?? env;
+  EventBus.emit('audit.record', {
+    action: p?.event ?? 'audit.logged',
+    actor: { id: p?.workerId ?? 'system', type: 'system' },
+    resource: p?.orderId ?? 'unknown',
+    result: 'success', timestamp: Date.now(),
+    trace: { causationId: 'AuditLogged', correlationId: p?.orderId },
+  }, 'AuditLogged');
+});
+
+// ── ViolationDetected → audit + quantum ──────────────────────────────────
+EventBus.on('ViolationDetected' as any, (env: any) => {
+  const p = env?.payload ?? env;
+  EventBus.emit('constitutional.violation', {
+    trigger: p?.rule ?? 'UNKNOWN', level: 'WARNING',
+    source_cell: p?.cell ?? 'unknown', reason: p?.reason ?? '',
+    timestamp: new Date().toISOString(),
+  }, 'ViolationDetected');
+});
+
+// ── AuditLogged → audit trail ─────────────────────────────────────────────
+EventBus.on('AuditLogged' as any, (env: any) => {
+  const p = env?.payload ?? env;
+  EventBus.emit('audit.record', {
+    action: p?.event ?? 'audit.logged',
+    actor: { id: p?.workerId ?? 'system', type: 'system' },
+    resource: p?.orderId ?? 'unknown',
+    result: 'success', timestamp: Date.now(),
+    trace: { causationId: 'AuditLogged', correlationId: p?.orderId },
+  }, 'AuditLogged');
+});
