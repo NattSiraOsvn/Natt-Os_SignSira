@@ -1,11 +1,18 @@
 // @ts-nocheck
-import { forgeSmartLinkPort } from "@/satellites/port-forge";
+import { EventBus } from "@/core/events/event-bus";
+// ── comms-smartlink.port.ts ──────────────────────────────────
+export interface CommsSignal {
+  type: "MESSAGE_SENT" | "ALERT_RAISED" | "SYSTEM_NOTIFICATION";
+  payload: Record<string, unknown>;
+  timestamp: number;
+}
 
-export const CommsSmartLinkPort = forgeSmartLinkPort({
-  cellId: "comms-cell",
-  signals: {
-    MESSAGE_SENT:         { eventType: "MessageSent", routeTo: "audit-cell" },
-    INVOICE_MATCHED:      { eventType: "InvoiceMatched", routeTo: "finance-cell" },
-    AUTO_CHASE_TRIGGERED: { eventType: "AutoChaseTriggered", routeTo: "sales-cell" },
-  }
-});
+const COMMS_MAP: Record<string, string> = {
+  "MESSAGE_SENT":        "MessageSent",
+  "ALERT_RAISED":        "AlertRaised",
+  "SYSTEM_NOTIFICATION": "SystemNotification",
+};
+
+export function publishCommsSignal(signal: CommsSignal): void {
+  EventBus.emit(COMMS_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
+}

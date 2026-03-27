@@ -1,11 +1,22 @@
 // @ts-nocheck
-import { forgeSmartLinkPort } from "@/satellites/port-forge";
+import { EventBus } from "@/core/events/event-bus";
+// ── prdwarranty-smartlink.port.ts ───────────────────────────
+export interface WarrantySignal {
+  type: "WARRANTY_CLAIMED" | "WARRANTY_APPROVED" | "WARRANTY_CRITICAL" | "WARRANTY_EXPIRED";
+  payload: Record<string, unknown>;
+  timestamp: number;
+}
 
-export const PrdWarrantySmartLinkPort = forgeSmartLinkPort({
-  cellId: "prdwarranty-cell",
-  signals: {
-    WARRANTY_ISSUED:      { eventType: "WarrantyIssued", routeTo: "warranty-cell" },
-    WARRANTY_CLAIM:       { eventType: "WarrantyClaimed", routeTo: "finance-cell" },
-    NASI_CERT_GENERATED:  { eventType: "NaSiLinked", routeTo: "audit-cell" },
-  }
-});
+const WARRANTY_MAP: Record<string, string> = {
+  "WARRANTY_CLAIMED":   "WarrantyClaimed",
+  "WARRANTY_APPROVED":  "WarrantyApproved",
+  "WARRANTY_CRITICAL":  "WarrantyCritical",
+  "WARRANTY_EXPIRED":   "WarrantyExpired",
+};
+
+export function publishWarrantySignal(signal: WarrantySignal): void {
+  EventBus.emit(WARRANTY_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
+}
+
+// ────────────────────────────────────────────────────────────
+// @ts-nocheck
