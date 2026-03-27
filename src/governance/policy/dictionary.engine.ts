@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface DictionaryVersion { version:string; changes:number; publishedAt:number; author:string; }
 export const DictService = {
   lookup:(_:string):string|null=>null, addTerm:(_k:string,_v:string):void=>{},

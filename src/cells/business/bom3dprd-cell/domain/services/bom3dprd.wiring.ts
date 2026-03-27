@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * bom3dprd-cell/domain/services/bom3dprd.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

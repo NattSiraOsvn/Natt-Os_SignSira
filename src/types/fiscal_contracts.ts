@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 /**
  * 📜 FISCAL WORKBENCH CONTRACTS (PHASE 2 - ENFORCED)

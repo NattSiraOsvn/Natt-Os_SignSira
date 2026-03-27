@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * inventory-cell — domain/inventory.entity.ts
  * Sprint 2 | Tâm Luxury NATT-OS

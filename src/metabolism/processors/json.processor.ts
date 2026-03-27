@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { BaseProcessor } from "./base.processor"
 import { ProcessorResult } from "../types"
 

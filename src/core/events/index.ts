@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { EventBus } from "./event-bus";
 export { EventStore } from "./event-store";
 export { EventRouter, ROUTING_TABLE } from "./event-router";

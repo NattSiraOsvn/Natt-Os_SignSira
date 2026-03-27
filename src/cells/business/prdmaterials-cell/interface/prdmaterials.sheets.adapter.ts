@@ -1,4 +1,3 @@
-// @ts-nocheck
 // JUST-U Adapter — prdmaterials-cell
 
 export interface IPrdMaterialsSheetAdapter {

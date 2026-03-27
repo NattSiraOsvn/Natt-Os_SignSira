@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface HealingLog {
   id: string
   file: string

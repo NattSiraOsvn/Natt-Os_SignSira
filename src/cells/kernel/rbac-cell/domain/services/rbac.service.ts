@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { RoleAssignment } from "../entities/role-assignment.entity";
 const _assignments: RoleAssignment[] = [];
 export const RbacService = {

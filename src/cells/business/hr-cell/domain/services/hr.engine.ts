@@ -1,4 +1,3 @@
-// @ts-nocheck
 // hr-cell/domain/services/hr.engine.ts
 // Wave B — Seed 122 nhân viên từ sổ lương, payroll lũy tiến VN, wire EventBus
 //

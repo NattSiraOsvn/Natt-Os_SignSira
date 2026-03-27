@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS SnapshotEngine
  * Patent Claim: Deterministic system snapshot with manifest hash verification

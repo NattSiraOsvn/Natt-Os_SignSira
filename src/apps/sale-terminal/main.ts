@@ -1,4 +1,3 @@
-// @ts-nocheck
 import{SaleTerminalSession}from"./session";
 import{SaleTerminalConfig,DEFAULT_CONFIG}from"./config";
 export async function startSaleTerminal(config:SaleTerminalConfig=DEFAULT_CONFIG):Promise<SaleTerminalSession>{

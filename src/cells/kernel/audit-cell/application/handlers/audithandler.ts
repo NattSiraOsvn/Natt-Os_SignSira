@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * audithandler.ts — Subscriber cho audit.record
  * Điều 7 Hiến Pháp v5.0: mọi hành vi phải được ghi vào audit trail

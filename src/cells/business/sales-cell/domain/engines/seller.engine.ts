@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface Seller{id:string;name:string;branchCode:string;commissionRate:number;targetMonthly:number;status:"ACTIVE"|"ON_LEAVE"|"SUSPENDED";}
 export interface SellerPerformance{sellerId:string;period:string;totalRevenue:number;totalOrders:number;commissionEarned:number;targetAchievement:number;rank:number;}
 const _sellers=new Map<string,Seller>();

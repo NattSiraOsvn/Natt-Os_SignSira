@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const SECURITY_EVENTS = {
   THREAT_DETECTED: "security.threat_detected",
   LOCKDOWN_ACTIVATED: "security.lockdown_activated",

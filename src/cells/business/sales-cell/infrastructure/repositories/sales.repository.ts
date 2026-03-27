@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SalesTransaction, SalesTransactionProps } from '../../domain/entities/sales-transaction.entity';
 export class InMemorySalesRepository {
   private store: Map<string, SalesTransactionProps> = new Map();

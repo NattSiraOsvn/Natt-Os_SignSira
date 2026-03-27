@@ -1,4 +1,3 @@
-// @ts-nocheck
 const _blocklist = new Set<string>();
 export const BoundaryGuardService = {
   block: (sourceId: string): void => { _blocklist.add(sourceId); },

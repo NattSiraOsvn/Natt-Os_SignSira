@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Warehouse business contracts (khác với infrastructure/warehouse-cell)
 export type MovementType = "IN" | "OUT" | "TRANSFER" | "ADJUSTMENT" | "RETURN";
 

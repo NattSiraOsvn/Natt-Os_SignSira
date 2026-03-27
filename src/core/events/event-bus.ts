@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Event Bus — with all 16 guards integrated
  * v1.1: thêm on/emit aliases để compatible với engine pattern

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface CellHealth {
   cellId: string;
   confidenceScore: number;

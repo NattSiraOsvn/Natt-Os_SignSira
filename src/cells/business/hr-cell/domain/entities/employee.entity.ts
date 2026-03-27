@@ -1,4 +1,3 @@
-// @ts-nocheck
 // hr-cell/domain/entities/employee.entity.ts
 // Wave B — Cập nhật theo cấu trúc thực tế sổ lương Tâm Luxury
 

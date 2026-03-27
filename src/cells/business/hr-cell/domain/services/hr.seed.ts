@@ -1,4 +1,3 @@
-// @ts-nocheck
 // hr-cell/domain/services/hr.seed.ts
 // Wave B — Load employees_raw.json → seed HREngine
 // File này được import 1 lần duy nhất khi hr-cell khởi động

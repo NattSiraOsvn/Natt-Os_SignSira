@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
 import { __CELL_INVOCATION_TOKEN__ } from "./_cell-internal.token";
 import { GatekeeperCore } from "@/governance/gatekeeper/GatekeeperCore";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 // ── shared-contracts-smartlink.port.ts ──────────────────────
 export interface ContractSignal {
@@ -19,4 +18,3 @@ export function publishContractSignal(signal: ContractSignal): void {
 }
 
 // ────────────────────────────────────────────────────────────
-// @ts-nocheck

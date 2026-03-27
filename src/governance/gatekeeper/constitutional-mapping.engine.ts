@@ -9,7 +9,7 @@
  */
 
 import { EventBus } from '../../core/events/event-bus';
-import { TriggerType, ResponseType } from './trigger-types';
+import { TriggerType } from './trigger-types';
 import {
   isValidTrigger,
   isOmegaTrigger,

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // hr-cell/index.ts
 // Wave B — Re-export + trigger seed on load
 

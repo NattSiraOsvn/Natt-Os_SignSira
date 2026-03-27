@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — stone-cell
  * DiamondGuardEngine — Cross-check NK kim cương 3 chiều

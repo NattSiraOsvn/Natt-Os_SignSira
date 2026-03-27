@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * sales-cell/domain/services/sales.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

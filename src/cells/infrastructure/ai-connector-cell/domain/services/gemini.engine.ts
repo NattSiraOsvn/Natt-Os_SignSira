@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface GeminiResponse {
   text: string;
   citations?: string[];

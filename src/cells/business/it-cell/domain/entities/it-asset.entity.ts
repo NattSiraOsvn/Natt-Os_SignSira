@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type ITAssetType = 'HARDWARE' | 'SOFTWARE_LICENSE' | 'SUBSCRIPTION' | 'INFRASTRUCTURE';
 export type ITAssetStatus = 'ACTIVE' | 'MAINTENANCE' | 'RETIRED';
 

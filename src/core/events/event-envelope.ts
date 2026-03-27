@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { DomainEvent, DomainEventPayload, DomainEventType } from "./domain-event";
 import { generateEventId } from "../guards/event-identity.guard";
 

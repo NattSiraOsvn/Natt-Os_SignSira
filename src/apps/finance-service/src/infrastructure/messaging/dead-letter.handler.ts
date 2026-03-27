@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import { resolveRetry, FailureMode } from './retry.policy';
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /** Định mức hao hụt chuẩn Tâm Luxury */
 export const LOSS_THRESHOLDS = {
   CASTING: 1.5,

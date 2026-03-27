@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { ISecurityRepository } from "../../ports/SecurityRepository";
 import type { Threat } from "../../domain/entities/threat.entity";
 

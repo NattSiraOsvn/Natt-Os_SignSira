@@ -1,4 +1,3 @@
-// @ts-nocheck
 // casting-cell/domain/services/casting.seed.ts
 // Wave A — Load casting_batches_raw.json → populate batch history
 // 200 lô đúc gần nhất, 5091 đơn trong lô

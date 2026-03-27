@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * kernel-boot.ts — Khởi động kernel systems
  * Điều 5 + Điều 7 + Điều 8 Hiến Pháp v5.0

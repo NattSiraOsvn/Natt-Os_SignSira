@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Anomaly Detector v1.0
  * CAN-07 — "Cảm giác đau nhẹ" của Metabolism Layer

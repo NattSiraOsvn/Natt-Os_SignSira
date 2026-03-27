@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * SyncJob Entity - Represents a data syncHRonization job
  */

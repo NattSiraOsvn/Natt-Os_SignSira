@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Gold Price Repository
  * Persistence layer cho giá vàng thị trường.

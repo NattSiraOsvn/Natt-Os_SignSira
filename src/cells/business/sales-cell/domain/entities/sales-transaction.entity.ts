@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SaleStatus, SalesChannel, VALID_SALE_TRANSITIONS, COMMISSION_RATES } from '../value-objects/sales-channel';
 
 export interface SalesTransactionProps {

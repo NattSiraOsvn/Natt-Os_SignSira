@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — Customer Cell
  * Value Object: Customer Tier — Hạng khách Tâm Luxury

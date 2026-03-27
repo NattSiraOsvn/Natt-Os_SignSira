@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ── room.engine.ts ────────────────────────────────────────────
 // Communication nội bộ — dòng thông tin hệ
 // Path: src/cells/business/comms-cell/domain/services/

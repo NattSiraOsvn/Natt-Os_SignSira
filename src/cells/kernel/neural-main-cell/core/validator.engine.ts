@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // VALIDATOR ENGINE — QNEU Consistency Checker
 // Điều 22: Neural MAIN validate AI Entity evolution

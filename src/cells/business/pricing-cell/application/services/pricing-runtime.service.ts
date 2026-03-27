@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface GoldPrice {
   karat: "9K" | "10K" | "14K" | "18K" | "24K";
   buyPrice: number;

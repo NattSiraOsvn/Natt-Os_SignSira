@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface ReportMaterialLossInput{productionOrderId:string;materialCode:string;expectedQuantity:number;actualQuantity:number;unit:string;lossReason:"CASTING"|"FILING"|"POLISHING"|"SETTING"|"QUALITY_REJECT"|"OTHER";reportedBy:string;}
 export interface ReportMaterialLossResult{success:boolean;lossAmount:number;lossRate:number;isAlert:boolean;error?:string;}
 const THRESHOLDS:Record<string,number>={CASTING:0.03,FILING:0.02,POLISHING:0.01,SETTING:0.005,QUALITY_REJECT:0.02,OTHER:0.01};

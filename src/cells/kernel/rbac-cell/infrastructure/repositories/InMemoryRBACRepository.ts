@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { IRBACRepository } from "../../ports/RBACRepository";
 import type { RoleAssignment } from "../../domain/entities/role-assignment.entity";
 

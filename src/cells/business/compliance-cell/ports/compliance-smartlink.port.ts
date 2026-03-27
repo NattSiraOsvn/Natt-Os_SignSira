@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 // ── compliance-smartlink.port.ts ────────────────────────────
 export interface ComplianceSignal {
@@ -19,4 +18,3 @@ export function publishComplianceSignal(signal: ComplianceSignal): void {
 }
 
 // ────────────────────────────────────────────────────────────
-// @ts-nocheck

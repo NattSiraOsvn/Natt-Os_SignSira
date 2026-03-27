@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SmartLinkEventEmitter } from '../../ports/SmartLinkEventEmitter';
 
 export class SmartLinkEventEmitterAdapter implements SmartLinkEventEmitter {

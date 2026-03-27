@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { AuditRecord } from "@/cells/kernel/audit-cell/domain/entities/audit-record.entity";
 
 export interface ScanResult {

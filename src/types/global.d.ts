@@ -1,4 +1,3 @@
-// @ts-nocheck
 declare module '*.json' {
   const value: any;
   export default value;

@@ -1,4 +1,4 @@
-// @ts-nocheck — BCTC forms pending typed integration
+// — BCTC forms pending typed integration
 /**
  * bctc-forms.template.ts
  * 

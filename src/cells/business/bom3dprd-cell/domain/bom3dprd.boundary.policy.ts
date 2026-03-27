@@ -1,4 +1,3 @@
-// @ts-nocheck
 // bom3dprd-cell/domain/bom3dprd.boundary.policy.ts
 // Điều 9 §3 — Boundary
 export const bom3dprdBoundaryPolicy = {

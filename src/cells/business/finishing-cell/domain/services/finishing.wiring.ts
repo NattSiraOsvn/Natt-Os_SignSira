@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * finishing-cell/domain/services/finishing.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

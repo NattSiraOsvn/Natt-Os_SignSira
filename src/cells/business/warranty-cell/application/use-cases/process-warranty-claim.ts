@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface ProcessWarrantyClaimInput{warrantyId:string;customerId:string;claimType:"REPAIR"|"REPLACE"|"POLISH"|"RESIZE";issueDescription:string;receivedBy:string;}
 export interface ProcessWarrantyClaimResult{success:boolean;claimId?:string;estimatedDays:number;isFree:boolean;estimatedCost:number;error?:string;}
 const DAYS:Record<string,number>={REPAIR:5,REPLACE:10,POLISH:1,RESIZE:2};

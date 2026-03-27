@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ProcessorResult } from "../types"
 
 export class AutoOptimizer {

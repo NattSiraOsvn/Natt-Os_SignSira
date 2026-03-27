@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS sync-cell - EDA CONTRACT
  */

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // bom3dprd-cell/domain/services/bom3dprd.engine.ts
 // Wave C-2 — Tạo + validate BOM cho đơn 3D
 //

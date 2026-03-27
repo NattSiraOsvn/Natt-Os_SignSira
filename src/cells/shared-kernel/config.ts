@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 /**
  * Quản lý các tham số vận hành cho Finance & HR Services.

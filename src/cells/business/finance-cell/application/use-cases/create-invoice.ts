@@ -1,4 +1,3 @@
-// @ts-nocheck
 import{EInvoiceEngine,EInvoice,EInvoiceItem}from"../../domain/services/einvoice.engine";
 export interface CreateInvoiceInput{buyerName:string;buyerTaxCode?:string;buyerAddress?:string;items:Array<{itemCode:string;description:string;quantity:number;unitPrice:number;vatRate?:number;unit?:string;}>;createdBy:string;}
 export interface CreateInvoiceResult{success:boolean;invoice?:EInvoice;errors:string[];}

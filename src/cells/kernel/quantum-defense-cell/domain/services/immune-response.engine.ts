@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ImmuneLevel, ImmuneState, INITIAL_IMMUNE_STATE } from "../entities"
 import { ImmuneResponseEscalated, CellDegradationDetected,
          CellRegenerationRequired, CellIsolationRequired } from "../../contracts/events"

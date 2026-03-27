@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type ContractType = 'SUPPLIER' | 'CUSTOMER' | 'LABOR' | 'LEASE' | 'SERVICE' | 'OTHER';
 export type ContractStatus = 'DRAFT' | 'REVIEWING' | 'APPROVED' | 'ACTIVE' | 'EXPIRED' | 'TERMINATED';
 

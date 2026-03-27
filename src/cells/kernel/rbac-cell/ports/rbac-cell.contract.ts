@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const RBAC_EVENTS = {
   ROLE_GRANTED: "rbac.role_granted",
   ROLE_REVOKED: "rbac.role_revoked",

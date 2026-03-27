@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Product } from "@/types";
 
 export type OrderStatus = "PENDING" | "CONFIRMED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REFUNDED";

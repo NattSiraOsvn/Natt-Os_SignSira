@@ -1,4 +1,5 @@
-// @ts-nocheck — BCTC forms pending typed integration
+// @ts-nocheck
+// — BCTC forms pending typed integration
 /**
  * bctc-generator.engine.ts
  * 

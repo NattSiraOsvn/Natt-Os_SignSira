@@ -1,4 +1,3 @@
-// @ts-nocheck
 // design-3d-cell/domain/services/design-3d.engine.ts
 // Wave C-3 — Nhận ProductionSpecReady từ production-cell, tra cứu/tạo SkuModel,
 //             emit ProductionSpecReady (confirmed) → inventory-cell (hasStone → stone-cell)

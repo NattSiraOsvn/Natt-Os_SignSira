@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * ConfigEntry Entity
  * Core domain entity representing a single configuration entry

@@ -1,2 +1,1 @@
-// @ts-nocheck
 // 💀 TERMINATED: Use cells/hr-cell/hr.service.ts

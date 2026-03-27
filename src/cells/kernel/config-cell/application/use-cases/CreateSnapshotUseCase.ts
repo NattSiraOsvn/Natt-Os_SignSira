@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { IConfigRepository } from "../../ports/ConfigRepository";
 
 export class CreateSnapshotUseCase {

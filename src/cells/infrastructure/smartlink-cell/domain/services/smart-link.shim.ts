@@ -1,4 +1,3 @@
-// @ts-nocheck
 /** Shim: SmartLinkClient with static methods */
 export class SmartLinkClient {
   static createEnvelope(cell: string, action: string, payload: unknown): unknown {

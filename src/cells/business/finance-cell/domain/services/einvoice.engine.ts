@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { FinanceSmartLinkPort } from '../../ports/finance-smartlink.port';
 export type EInvoiceStatus = "DRAFT" | "SIGNED" | "SUBMITTED" | "ACCEPTED" | "REJECTED" | "CANCELLED";
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // BLINDSPOT DETECTOR
 // Phát hiện domain entity chưa có permanent node

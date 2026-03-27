@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { PhapCheSmartLinkPort } from "../../ports/phapche-smartlink.port";
 import { Contract, ContractType, LegalAlert } from '../entities/contract.entity';
 

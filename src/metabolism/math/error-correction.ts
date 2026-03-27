@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * error-correction.ts
  * Mã Hamming cho EventStore + contracts

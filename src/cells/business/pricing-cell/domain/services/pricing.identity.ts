@@ -1,2 +1,1 @@
-// @ts-nocheck
 export const PRICING_IDENTITY = { cellId: "pricing-cell", cellName: "Pricing — Định giá sản phẩm Tâm Luxury", version: "1.0.0", wave: 3, status: "ACTIVE", owner: "NATT-OS", registeredAt: "2026-03-15" } as const;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 interface HealthConfig {
   cellId: string;
   checkIntervalMs?: number;

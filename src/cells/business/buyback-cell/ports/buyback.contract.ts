@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — Buyback Cell
  * EDA Event Contracts v2.1.0

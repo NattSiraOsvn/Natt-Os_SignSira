@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 
 export class PeriodCloseGuard {

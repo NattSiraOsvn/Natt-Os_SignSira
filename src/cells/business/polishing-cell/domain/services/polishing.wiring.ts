@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * polishing-cell/domain/services/polishing.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

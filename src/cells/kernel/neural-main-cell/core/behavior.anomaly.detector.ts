@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // BEHAVIOR ANOMALY DETECTOR
 // Phát hiện pattern bất thường trong hành vi AI Entity

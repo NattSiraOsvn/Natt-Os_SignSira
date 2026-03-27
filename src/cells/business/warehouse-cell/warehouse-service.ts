@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 /**
  * ❌ DEPRECATED: DUPLICATE FILE DETECTED

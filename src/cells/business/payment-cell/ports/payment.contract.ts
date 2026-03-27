@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface PaymentCellContract {
   'payment.intent.created': { intentId: string; orderRef: string; amount: number; provider: string };
   'payment.captured': { intentId: string; transactionId: string; amount: number };

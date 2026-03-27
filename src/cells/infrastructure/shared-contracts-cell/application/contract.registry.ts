@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { CellContract } from '../domain/contract.types';
 
 export class ContractRegistry {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // production-cell/domain/services/production.seed.ts
 // Wave A — Load orders_raw.json → seed active orders vào FlowEngine context
 // Chỉ load đơn CHƯA HT để tracking trạng thái hiện tại

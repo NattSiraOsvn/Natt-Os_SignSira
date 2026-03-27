@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type { WarrantyType, WarrantyPolicy, ProductCategoryCode } from '../domain/value-objects/warranty-policy';
 export type { ClaimStatus } from '../domain/value-objects/claim-status';
 export type { WarrantyClaimProps } from '../domain/entities/warranty-claim.entity';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // buyback-cell contracts
 export const EVENTS_BUYBACK = {
   CREATED: "buyback.created",

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SyncApplicationService } from '../application/services/SyncApplicationService';
 import { InMemorySyncRepository } from '../infrastructure/repositories/InMemorySyncRepository';
 import { SyncEventEmitterAdapter } from '../infrastructure/adapters/SyncEventEmitterAdapter';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — warehouse-cell
  * Ground Truth: Tâm Luxury Production Warehouse Types

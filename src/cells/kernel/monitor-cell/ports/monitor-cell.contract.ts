@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const MONITOR_EVENTS = {
   CELL_DEGRADED: "monitor.cell_degraded",
   CELL_REGENERATED: "monitor.cell_regenerated",

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * prdmaterials-cell / infrastructure / prdmaterials.engine.ts
  */

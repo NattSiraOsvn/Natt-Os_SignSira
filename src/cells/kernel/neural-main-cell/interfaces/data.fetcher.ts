@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // DATA FETCHER — Interface lấy data từ audit-cell
 // Điều 20: Source phải là AUDIT_TRAIL

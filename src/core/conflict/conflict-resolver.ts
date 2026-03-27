@@ -1,4 +1,3 @@
-// @ts-nocheck
 export enum ConflictResolutionMethod { LAST_WRITE_WINS="LAST_WRITE_WINS", FIRST_WRITE_WINS="FIRST_WRITE_WINS", MERGE="MERGE", MANUAL="MANUAL" }
 export interface Conflict<T=unknown> { id:string; localValue:T; remoteValue:T; localTimestamp:number; remoteTimestamp:number; resolved:boolean; resolution?:T; resolvedBy?:ConflictResolutionMethod; }
 const _unresolved: Conflict[] = [];

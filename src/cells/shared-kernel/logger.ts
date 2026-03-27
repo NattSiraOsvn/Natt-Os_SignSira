@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 /**
  * 📝 SHARED LOGGER - OMEGA STANDARD

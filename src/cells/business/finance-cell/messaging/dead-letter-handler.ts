@@ -1,4 +1,5 @@
-// @ts-nocheck — legacy V1 imports pending migration
+// @ts-nocheck
+// — legacy V1 imports pending migration
 
 import { EventEnvelope, PersonaID } from '../../../../../types';
 import { NotifyBus } from '../../../../../services/notificationService';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * domain-flow.wiring.ts — Cell-to-Cell event bridges
  * Registry chỉ load file này — không chứa business logic

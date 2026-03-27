@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * fisher-info.ts
  * Đo độ nhạy cảm của chỉ số (coherence/entropy) với thay đổi hệ thống

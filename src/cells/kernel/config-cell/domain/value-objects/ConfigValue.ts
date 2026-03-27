@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * ConfigValue Value Object
  * Wraps configuration values with type safety

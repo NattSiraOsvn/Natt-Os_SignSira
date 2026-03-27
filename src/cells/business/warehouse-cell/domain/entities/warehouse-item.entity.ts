@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type WarehouseZone = 'RAW_MATERIAL' | 'WIP' | 'FINISHED_GOODS' | 'TRADING';
 export type WarehouseItemStatus = 'IN_STOCK' | 'RESERVED' | 'SHIPPED' | 'QUARANTINE';
 

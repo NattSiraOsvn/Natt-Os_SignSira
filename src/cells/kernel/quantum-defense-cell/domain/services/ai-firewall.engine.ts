@@ -1,6 +1,3 @@
-// @ts-nocheck
-// @ts-nocheck
-// @ts-nocheck
 // ── FILE 7 ──────────────────────────────────────────────────
 // ai-firewall.engine.ts
 // Phát hiện bot / AI agent — KHÔNG gọi AI API (LỆNH #001)

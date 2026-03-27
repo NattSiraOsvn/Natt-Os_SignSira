@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Customer, CustomerProps } from '../../domain/entities/customer.entity';
 export interface ICustomerRepository { findById(id: string): Promise<Customer | null>; findByPhone(phone: string): Promise<Customer | null>; save(c: Customer): Promise<void>; getAll(): Promise<Customer[]>; }
 export class InMemoryCustomerRepository implements ICustomerRepository {

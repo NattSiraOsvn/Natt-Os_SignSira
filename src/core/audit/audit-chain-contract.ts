@@ -1,4 +1,3 @@
-// @ts-nocheck
 // AuditChainContract
 export interface AuditChainContractI {
   chainId: string;

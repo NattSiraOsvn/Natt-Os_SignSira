@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Engine Registry v2.0
  * P2: Engine Resurrection — wire ALL real engines to EventBus

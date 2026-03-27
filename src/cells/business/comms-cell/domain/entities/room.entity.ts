@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type RoomType = 'DIRECT' | 'GROUP' | 'PARTNER_CHANNEL' | 'BROADCAST';
 
 export interface RoomMember {

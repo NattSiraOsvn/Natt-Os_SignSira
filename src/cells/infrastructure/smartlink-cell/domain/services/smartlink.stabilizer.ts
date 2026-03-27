@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Tầng 3: SmartLink Cell — nhà máy ổn áp (Điều 22 SmartLink Ground Truth v2)
 export interface StabilizerConfig {
   cellId: string;

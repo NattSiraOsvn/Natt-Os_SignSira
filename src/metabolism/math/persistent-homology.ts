@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * persistent-homology.ts
  * Phân tích tô-pô dữ liệu — phát hiện lỗ hổng trong mạng SmartLink

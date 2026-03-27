@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * order-cell / domain / order.entity.ts
  * Nguồn dữ liệu: ĐIỀU_PHỐI_NĂM_2 (sheet ĐH UYÊN)

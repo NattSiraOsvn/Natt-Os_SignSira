@@ -1,4 +1,5 @@
-// @ts-nocheck — use-case imports pending cell implementation
+// @ts-nocheck
+// — use-case imports pending cell implementation
 import{SaleTerminalConfig}from"./config";
 import{createSalesOrder}from"../../../cells/business/sales-cell/application/use-cases/create-sales-order";
 import{processPayment}from"../../../cells/business/payment-cell/application/use-cases/process-payment";

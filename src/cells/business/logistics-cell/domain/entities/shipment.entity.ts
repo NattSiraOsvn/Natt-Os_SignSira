@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type ShipmentStatus = 'PENDING' | 'PICKED_UP' | 'IN_TRANSIT' | 'DELIVERED' | 'RETURNED' | 'FAILED';
 export type ShipmentDirection = 'INBOUND' | 'OUTBOUND';
 export type LogisticsProvider = 'NHAT_TIN' | 'GHTK' | 'GHN' | 'VTP' | 'INTERNAL' | 'OTHER';

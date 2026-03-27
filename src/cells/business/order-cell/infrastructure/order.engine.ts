@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * order-cell / infrastructure / order.engine.ts
  * Poll Google Sheets mỗi 30 phút, emit ORDER_CREATED qua SmartLink.

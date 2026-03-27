@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — Buyback Cell
  * Value Object: Buyback Rules — Quy tắc thu mua Tâm Luxury

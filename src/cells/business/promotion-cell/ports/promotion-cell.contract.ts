@@ -1,4 +1,3 @@
-// @ts-nocheck
 // promotion-cell contracts
 export const EVENTS_PROMOTION = {
   CREATED: "promotion.created",

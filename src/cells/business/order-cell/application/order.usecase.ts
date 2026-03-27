@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * order-cell / application / order.usecase.ts
  * Use cases: poll Google Sheets → parse → emit ORDER_CREATED

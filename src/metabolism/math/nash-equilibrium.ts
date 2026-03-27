@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * nash-equilibrium.ts
  * Quantum Defense dùng để đánh giá tính ổn định của chiến lược phản ứng

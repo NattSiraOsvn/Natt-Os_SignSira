@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — finance-cell
  * LCTT 2025 — Lưu Chuyển Tiền Tệ

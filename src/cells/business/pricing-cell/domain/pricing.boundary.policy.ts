@@ -1,2 +1,1 @@
-// @ts-nocheck
 export const PRICING_BOUNDARY={cellId:"pricing-cell",canReceiveFrom:["sales-cell","order-cell","gatekeeper"],canSendTo:["audit-cell","sales-cell","finance-cell"],prohibitedActions:["BYPASS_CONSTITUTION"]} as const;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export class FieldMapper {
   private maps: Record<string, Record<string, string>> = {
     "jewelry-product": {

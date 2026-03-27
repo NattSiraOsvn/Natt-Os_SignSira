@@ -1,4 +1,3 @@
-// @ts-nocheck
 import{CustomsSmartLinkPort}from"../../ports/customs-smartlink.port";
 export type HSCodeCategory="PRECIOUS_METAL"|"GEMSTONE"|"JEWELRY"|"EQUIPMENT"|"CHEMICAL"|"OTHER";
 export type DutyRateScheme="ASEAN"|"MFN"|"FTA_EU"|"FTA_US";

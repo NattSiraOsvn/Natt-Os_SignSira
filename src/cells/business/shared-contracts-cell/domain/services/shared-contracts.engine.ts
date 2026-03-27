@@ -2,7 +2,6 @@
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
 import { publishContractSignal } from '../../ports/shared-contracts-smartlink.port';
 // SharedContractsSmartLinkPort wired — signal available for cross-cell communication
-// @ts-nocheck
 // ── shared-contracts.engine.ts ────────────────────────────────
 // Hợp đồng B2B / nội bộ — ràng buộc pháp lý + dòng tiền
 // Path: src/cells/business/shared-contracts-cell/domain/services/

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * banking.engine.ts — VietQR + bank transfer processing
  * Path: src/cells/business/finance-cell/domain/services/

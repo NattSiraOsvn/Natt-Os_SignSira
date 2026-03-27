@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // CONSTITUTIONAL ENFORCER ENGINE
 // Hiến Pháp Điều 9, 14, 26, 38-40

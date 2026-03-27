@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * casting-cell/domain/services/casting.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

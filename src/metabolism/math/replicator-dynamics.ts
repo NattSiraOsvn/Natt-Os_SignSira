@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * replicator-dynamics.ts
  * QNEU dùng để cập nhật tần suất pattern theo fitness thực tế

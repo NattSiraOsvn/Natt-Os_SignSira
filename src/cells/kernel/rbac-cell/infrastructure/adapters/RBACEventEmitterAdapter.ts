@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { RBACEventEmitter } from '../../ports/RBACEventEmitter';
 
 export class RBACEventEmitterAdapter implements RBACEventEmitter {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { PolishingEngine } from './infrastructure/Polishing.engine';
 export { ProcessWipStoneUseCase } from './application/polishing.usecase';
 export type { IPolishingRepository, IPolishingSheetAdapter } from './application/polishing.usecase';

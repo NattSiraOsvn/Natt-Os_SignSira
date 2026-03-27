@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { EInvoice } from "./einvoice.engine";
 
 export interface JournalEntry {

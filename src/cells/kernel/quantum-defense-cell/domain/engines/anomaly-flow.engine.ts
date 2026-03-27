@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * anomaly-flow.engine.ts — Flow-break detection
  * Điều 5 Hiến Pháp v5.0: Quantum Defense phản xạ tự nhiên

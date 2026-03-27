@@ -1,4 +1,3 @@
-// @ts-nocheck
 export * from "./quantum-defense-cell.contract"
 export * from "./QuantumDefenseEventEmitter"
 export * from "./QuantumDefenseRepository"

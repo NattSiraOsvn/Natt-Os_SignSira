@@ -1,4 +1,3 @@
-// @ts-nocheck
 export * from "./compliance.identity";
 export * from "./compliance.confidence";
 export * from "./certification.service";

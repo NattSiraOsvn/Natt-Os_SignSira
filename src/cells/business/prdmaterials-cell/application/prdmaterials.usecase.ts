@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * prdmaterials-cell / application / prdmaterials.usecase.ts
  */

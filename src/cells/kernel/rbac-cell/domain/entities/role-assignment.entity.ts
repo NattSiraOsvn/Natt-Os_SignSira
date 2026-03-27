@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface RoleAssignment {
   id: string;
   userId: string;

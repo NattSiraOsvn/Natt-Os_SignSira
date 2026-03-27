@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * self-healing.engine.ts — L2 Intelligence
  * Khi anomaly.detected → tự retry event đã gãy

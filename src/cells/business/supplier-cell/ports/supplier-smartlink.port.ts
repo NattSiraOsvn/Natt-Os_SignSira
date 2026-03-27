@@ -1,4 +1,3 @@
-// @ts-nocheck
 // supplier-smartlink.port.ts
 import { EventBus } from "@/core/events/event-bus";
 

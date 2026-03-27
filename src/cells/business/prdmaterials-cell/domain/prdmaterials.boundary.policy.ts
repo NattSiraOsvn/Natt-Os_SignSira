@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const PRDMATERIALS_BOUNDARY = {
   cellId: 'prdmaterials-cell',
   canReceiveFrom: ['order-cell', 'gatekeeper'],

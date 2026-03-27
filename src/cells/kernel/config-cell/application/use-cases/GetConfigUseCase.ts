@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { IConfigRepository } from "../../ports/ConfigRepository";
 
 export class GetConfigUseCase {

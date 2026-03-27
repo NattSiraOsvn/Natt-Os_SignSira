@@ -1,4 +1,3 @@
-// @ts-nocheck
 // warehouse-cell/QUARANTINE_GUARD.ts
 // QUARANTINE LIFTED — 2026-03-22 — Gatekeeper: Anh Natt
 // Wave B production flow complete. Cell đã đủ 6 components Điều 9.

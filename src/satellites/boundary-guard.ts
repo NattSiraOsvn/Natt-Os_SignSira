@@ -1,4 +1,3 @@
-// @ts-nocheck
 interface BoundaryConfig {
   cellId: string;
   allowedCallers: string[];

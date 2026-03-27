@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * stone-cell/domain/services/stone.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

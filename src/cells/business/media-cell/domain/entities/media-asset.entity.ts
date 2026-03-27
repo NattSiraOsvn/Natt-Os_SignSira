@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type MediaType = 'IMAGE' | 'VIDEO' | 'THREED_RENDER' | 'DOCUMENT' | 'SOCIAL_POST';
 export type MediaStatus = 'RAW' | 'PROCESSING' | 'APPROVED' | 'PUBLISHED' | 'ARCHIVED';
 export type MediaPlatform = 'SHOPEE' | 'TIKTOK' | 'INSTAGRAM' | 'FACEBOOK' | 'WEBSITE' | 'INTERNAL';

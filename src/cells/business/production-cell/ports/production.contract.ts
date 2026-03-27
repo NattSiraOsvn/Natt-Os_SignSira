@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface ProductionCellContract {
   'production.order.created': { orderId: string; sku: string; serialNumber: string };
   'production.material.issued': { orderId: string; materialId: string; weight: number };

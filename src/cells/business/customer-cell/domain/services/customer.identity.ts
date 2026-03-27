@@ -1,2 +1,1 @@
-// @ts-nocheck
 export const CUSTOMER_IDENTITY = { cellId: "customer-cell", cellName: "Customer — Quản lý khách hàng", version: "1.0.0", wave: 3, status: "ACTIVE", owner: "NATT-OS", registeredAt: "2026-03-15" } as const;

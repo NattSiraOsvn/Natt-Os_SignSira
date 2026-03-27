@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — Warranty Cell
  * Value Object: Warranty Policies — Chính sách bảo hành Tâm Luxury

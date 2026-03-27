@@ -1,4 +1,3 @@
-// @ts-nocheck
 export class DataCleanser {
   cleanse(data: Record<string, unknown>[]): Record<string, unknown>[] {
     return data

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * inventory-cell — application/inventory.usecase.ts
  * Sprint 2 | Tâm Luxury NATT-OS

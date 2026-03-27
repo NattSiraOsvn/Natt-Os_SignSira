@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Product } from "@/types";
 
 export interface SaleTransaction {

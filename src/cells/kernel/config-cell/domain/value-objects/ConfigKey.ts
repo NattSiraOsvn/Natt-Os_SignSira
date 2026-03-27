@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * ConfigKey Value Object
  * Immutable identifier for configuration entries

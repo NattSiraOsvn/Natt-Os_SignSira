@@ -1,2 +1,1 @@
-// @ts-nocheck
 export const pricingWiring = { cellId: "pricing-cell", status: "WIRED" } as const;

@@ -1,4 +1,5 @@
-// @ts-nocheck — legacy V1 imports pending migration
+// @ts-nocheck
+// — legacy V1 imports pending migration
 
 import { InvoiceState } from '../../domain/Invoice.aggregate';
 import { EventBridge } from '../../../../../services/eventBridge';

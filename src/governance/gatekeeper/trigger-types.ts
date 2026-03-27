@@ -1,4 +1,3 @@
-// @ts-nocheck
 // trigger-types.ts — tách ra để tránh circular dependency
 export enum TriggerType {
   WEIGHT_ANOMALY        = 'WEIGHT_ANOMALY',

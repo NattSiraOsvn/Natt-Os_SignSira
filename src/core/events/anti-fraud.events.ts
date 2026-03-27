@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface AntiFraudEvents {
   LowPhoDetected: { workerId: string; luong: 'SX' | 'SC'; pho: number };
   PhoCritical: { workerId: string; luong: 'SX' | 'SC'; pho: number };

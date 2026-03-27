@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * order-cell/domain/services/order.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

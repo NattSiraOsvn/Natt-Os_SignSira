@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type DeclarationStatus="DRAFT"|"SUBMITTED"|"PROCESSING"|"APPROVED"|"REJECTED"|"CLEARED";
 export type DeclarationType="IMPORT"|"EXPORT"|"TRANSIT";
 export interface DeclarationItem{lineNo:number;hsCode:string;description:string;quantity:number;unit:string;cif_USD:number;cif_VND:number;dutyRate:number;dutyAmount:number;vatAmount:number;}

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 // ── noi-vu-smartlink.port.ts ─────────────────────────────────
 export interface NoiVuSignal {
@@ -18,4 +17,3 @@ export function publishNoiVuSignal(signal: NoiVuSignal): void {
 }
 
 // ────────────────────────────────────────────────────────────
-// @ts-nocheck

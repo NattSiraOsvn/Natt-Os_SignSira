@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Use Case: Calculate Product Price
  * Orchestrates pricing calculation for a single product.

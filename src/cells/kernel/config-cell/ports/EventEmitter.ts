@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * ConfigEventEmitter Port
  * Interface for emitting config events

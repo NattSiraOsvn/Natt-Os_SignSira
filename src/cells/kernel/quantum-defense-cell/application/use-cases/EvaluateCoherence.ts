@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { QuantumDefenseEngine } from "../../domain/services"
 
 export class EvaluateCoherence {

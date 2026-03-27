@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ImmuneLevel } from "../../domain/entities"
 
 export interface CellDegradationDetected {

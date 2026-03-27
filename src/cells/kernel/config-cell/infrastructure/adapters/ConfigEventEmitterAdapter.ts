@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ConfigEventEmitter } from '../../ports/EventEmitter';
 
 export class ConfigEventEmitterAdapter implements ConfigEventEmitter {

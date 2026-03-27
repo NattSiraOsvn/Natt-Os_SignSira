@@ -1,4 +1,5 @@
-// @ts-nocheck — pending proper fix
+// @ts-nocheck
+// — pending proper fix
 
 import { ProductionBase } from '../../ProductionBase.ts';
 import { EventEnvelope, FinanceStatus } from '../../../../../types.ts';

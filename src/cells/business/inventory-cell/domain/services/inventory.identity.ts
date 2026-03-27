@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const INVENTORY_IDENTITY = {
   cellId:      'inventory-cell',
   cellName:    'Inventory — Tồn kho nguyên liệu Tâm Luxury',

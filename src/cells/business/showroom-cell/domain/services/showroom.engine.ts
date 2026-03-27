@@ -1,4 +1,3 @@
-// @ts-nocheck
 // showroom-cell/domain/services/showroom.engine.ts
 // Wave 2 — nhận SalesOrderCreated (SX-CT), forward → production-cell
 import { EventBus } from '@/core/events/event-bus';

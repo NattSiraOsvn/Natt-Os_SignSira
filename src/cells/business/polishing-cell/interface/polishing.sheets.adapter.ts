@@ -1,4 +1,3 @@
-// @ts-nocheck
 // JUST-U Adapter — polishing-cell
 
 export interface IPolishingSheetAdapter {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const INVENTORY_BOUNDARY = {
   cellId: 'inventory-cell',
   canReceiveFrom: [

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * casting-cell / application / casting.usecase.ts
  */

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const CONFIG_EVENTS = {
   UPDATED: "config.updated",
   DELETED: "config.deleted",

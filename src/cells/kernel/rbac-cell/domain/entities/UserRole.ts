@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * UserRole Entity - Maps users to roles
  */

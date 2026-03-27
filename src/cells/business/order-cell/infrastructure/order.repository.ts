@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * order-cell / infrastructure / order.repository.ts
  * In-memory store – swap sang SQLite khi Wave 3 sẵn sàng.

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface ValidationReport {
   id: string;
   period: string;

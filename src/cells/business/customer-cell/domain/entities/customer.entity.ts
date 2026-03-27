@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { CustomerTier, calculateTier } from '../value-objects/customer-tier';
 
 export interface CustomerProps {

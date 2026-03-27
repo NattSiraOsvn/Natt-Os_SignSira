@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type SupplierType = 'SERVICE' | 'B2B_MATERIAL';
 export type SupplierStatus = 'ACTIVE' | 'INACTIVE' | 'BLACKLISTED';
 export interface POItem { skuId: string; description: string; quantity: number; unit: string; unitPrice: number; pool?: string; lotId?: string; }

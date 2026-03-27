@@ -1,4 +1,3 @@
-// @ts-nocheck
 import{generatePayroll}from"../../../../../cells/business/hr-cell/application/use-cases/generate-payroll";
 import{onboardEmployee}from"../../../../../cells/business/hr-cell/application/use-cases/onboard-employee";
 import{PersonnelEngine}from"../../../../../cells/business/hr-cell/domain/services/personnel.engine";

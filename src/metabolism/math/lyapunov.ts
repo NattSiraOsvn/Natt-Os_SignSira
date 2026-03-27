@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * lyapunov.ts
  * Quantum Defense dùng để phát hiện hỗn loạn trong hệ

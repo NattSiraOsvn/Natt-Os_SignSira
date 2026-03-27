@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ThreatSignal } from "../../domain/entities"
 import { IQuantumDefenseRepository } from "../../ports"
 

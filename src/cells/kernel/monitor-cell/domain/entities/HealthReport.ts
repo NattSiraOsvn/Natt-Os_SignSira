@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface HealthReportProps {
   cellId: string;
   status: 'HEALTHY' | 'DEGRADED' | 'UNHEALTHY';

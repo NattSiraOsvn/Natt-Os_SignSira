@@ -1,4 +1,3 @@
-// @ts-nocheck
 // hr-legacy.engine.ts — deprecated wrapper, giữ để không break imports
 // Path: src/cells/business/hr-cell/domain/services/
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — warehouse-cell
  * Điều 9 §2: Capability — Production Engine

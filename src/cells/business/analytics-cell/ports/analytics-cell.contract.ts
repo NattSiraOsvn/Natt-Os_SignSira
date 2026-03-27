@@ -1,4 +1,3 @@
-// @ts-nocheck
 // analytics-cell contracts
 export const EVENTS_ANALYTICS = {
   CREATED: "analytics.created",

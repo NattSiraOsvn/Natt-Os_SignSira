@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS — warehouse-cell
  * Điều 9 §4: Trace Logger

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // polishing-cell/domain/services/polishing.engine.ts
 // Wave 5c — nhận wip:stone + wip:in-progress (chờ CẢ HAI xong)
 //   → khi đủ 2 → emit ProductionCompleted → inventory-cell + warehouse-cell

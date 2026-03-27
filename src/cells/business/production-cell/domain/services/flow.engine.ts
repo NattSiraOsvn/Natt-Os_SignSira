@@ -1,4 +1,3 @@
-// @ts-nocheck
 // production-cell/domain/services/flow.engine.ts
 // Wave A update — thêm _injectOrder() để seed loader inject trạng thái
 // (tất cả subscribe handlers giữ nguyên từ Wave C)

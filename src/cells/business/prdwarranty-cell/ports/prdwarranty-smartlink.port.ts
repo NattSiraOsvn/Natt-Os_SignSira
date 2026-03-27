@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 // ── prdwarranty-smartlink.port.ts ───────────────────────────
 export interface WarrantySignal {
@@ -19,4 +18,3 @@ export function publishWarrantySignal(signal: WarrantySignal): void {
 }
 
 // ────────────────────────────────────────────────────────────
-// @ts-nocheck

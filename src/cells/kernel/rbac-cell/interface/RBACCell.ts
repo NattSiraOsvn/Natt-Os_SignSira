@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { RBACApplicationService } from "../application/services/RBACApplicationService";
 import { AuthService } from "../domain/services/auth.service";
 

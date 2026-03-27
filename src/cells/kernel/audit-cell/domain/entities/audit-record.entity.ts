@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface AuditRecord {
   id: string;
   eventType: string;

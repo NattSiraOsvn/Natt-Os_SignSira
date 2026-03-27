@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ImmuneState } from "../domain/entities"
 
 export interface IQuantumDefenseCell {

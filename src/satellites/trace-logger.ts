@@ -1,4 +1,3 @@
-// @ts-nocheck
 interface TraceConfig {
   cellId: string;
   domain: string;

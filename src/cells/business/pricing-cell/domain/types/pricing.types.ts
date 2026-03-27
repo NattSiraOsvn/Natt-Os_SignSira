@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface Specs {
   weight: number;
   gold_ratio: number;

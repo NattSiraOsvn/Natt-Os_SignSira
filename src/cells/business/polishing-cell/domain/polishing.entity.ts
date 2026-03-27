@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * polishing-cell — domain/polishing.entity.ts
  * Sprint 2 | Tâm Luxury NATT-OS

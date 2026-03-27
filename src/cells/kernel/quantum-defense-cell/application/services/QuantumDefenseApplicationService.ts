@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { QuantumDefenseEngine } from "../../domain/services"
 import { IQuantumDefenseRepository, IQuantumDefenseEventEmitter } from "../../ports"
 import { ObserveEventStream } from "../use-cases/ObserveEventStream"

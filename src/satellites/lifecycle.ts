@@ -1,4 +1,3 @@
-// @ts-nocheck
 type CellState = "DORMANT" | "INITIALIZING" | "ACTIVE" | "DEGRADED" | "ELIMINATED";
 
 interface LifecycleConfig {

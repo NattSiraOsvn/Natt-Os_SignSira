@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface ChangeProposal { id:string; term:string; newValue:string; author:string; status:"PENDING"|"APPROVED"|"REJECTED"; createdAt:number; }
 export const DictApproval = {
   propose:(term:string,newValue:string,author:string):ChangeProposal=>({ id:`P-${Date.now()}`, term, newValue, author, status:"PENDING" as const, createdAt:Date.now() }),

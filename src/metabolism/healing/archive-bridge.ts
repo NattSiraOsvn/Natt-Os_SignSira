@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { MetabolismEvent } from "../types"
 
 export interface ArchiveEntry {

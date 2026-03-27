@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * hr-cell/domain/engines/hr-payroll.engine.ts
  * Wave 3 — Lương, BHXH, TNCN lũy tiến, thâm niên

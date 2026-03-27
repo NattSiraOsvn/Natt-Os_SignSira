@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Quantum Defense Engine v1.0
  * Hệ miễn dịch thị giác — build từ spec 12 sections

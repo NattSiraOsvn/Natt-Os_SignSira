@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { BuybackSmartLinkPort } from "../../ports/buyback-smartlink.port";
 /**
  * NATT-OS — Buyback Cell

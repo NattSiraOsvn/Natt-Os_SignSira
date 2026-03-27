@@ -1,4 +1,3 @@
-// @ts-nocheck
 export * from './replicator-dynamics';
 export * from './nash-equilibrium';
 export * from './lyapunov';

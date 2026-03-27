@@ -1,4 +1,3 @@
-// @ts-nocheck
 // SmartLink Governance — nhà máy ổn áp (Tầng 2 Điều 22)
 export interface AmplitudeRule {
   cellId: string;

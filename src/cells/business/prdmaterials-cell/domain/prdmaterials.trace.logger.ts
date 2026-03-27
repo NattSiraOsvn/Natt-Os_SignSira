@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type PrdMaterialsTraceEvent =
   | 'LAP_CREATED' | 'LAP_CASTING_REQUESTED' | 'DEFECT_MARKED'
   | 'GOLD_ALLOCATED' | 'PHIEU_FETCHED';

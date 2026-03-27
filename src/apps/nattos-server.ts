@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Server v1.0
  * Pure Event-Driven — no GSheets, no REST CRUD

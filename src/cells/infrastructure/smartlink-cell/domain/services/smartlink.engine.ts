@@ -1,4 +1,3 @@
-// @ts-nocheck
 // SmartLink Engine — điều phối 3 tầng (Điều 9-10)
 export interface TouchRecord {
   fromCellId: string;

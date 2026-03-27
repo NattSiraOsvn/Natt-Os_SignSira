@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Pricing Cell — Markup Tiers
  * Source: Bảng Giá 2025, Tâm Luxury

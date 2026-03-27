@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Plugin Manager
  * Load, unload, lifecycle — điều phối toàn bộ plugin system

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * ConfigMetadata Value Object
  * Metadata associated with configuration entries

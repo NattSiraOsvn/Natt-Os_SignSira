@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type Design3dTraceEvent = "SKU_CREATED" | "MODEL_UPLOADED" | "RESIN_PRINTED" | "CASTING_REQUESTED";
 export interface Design3dTraceLog { traceId: string; cellId: "design-3d-cell"; event: Design3dTraceEvent; refId: string; actor: string; payload?: Record<string, unknown>; timestamp: Date; }
 const _logs: Design3dTraceLog[] = [];

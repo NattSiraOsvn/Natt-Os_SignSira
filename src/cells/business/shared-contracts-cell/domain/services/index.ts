@@ -1,4 +1,3 @@
-// @ts-nocheck
 export * from './shared-contracts.identity';
 export * from './shared-contracts.engine';
 export * from './shared-contracts.confidence';

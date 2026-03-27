@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Permission Entity - Granular access control
  */

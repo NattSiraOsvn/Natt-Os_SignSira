@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * design-3d-cell/domain/services/design-3d.wiring.ts
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS Quantum Defense Cell — index.ts
  * CAN-03: Event flow wire

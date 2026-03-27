@@ -1,5 +1,5 @@
-// Điều 9 §2 — Capability
 // @ts-nocheck
+// Điều 9 §2 — Capability
 import { ConstantsSmartLinkPort } from '../../ports/constants-smartlink.port';
 
 export interface ConstantsCommand {

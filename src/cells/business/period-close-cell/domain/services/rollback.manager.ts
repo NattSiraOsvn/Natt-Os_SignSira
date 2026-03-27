@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ClosingSession } from '../entities/closing-session.entity';
 
 export interface IRollbackManager {

@@ -18,4 +18,3 @@ export function publishPromotionSignal(signal: PromotionSignal): void {
 }
 
 // ────────────────────────────────────────────────────────────
-// @ts-nocheck

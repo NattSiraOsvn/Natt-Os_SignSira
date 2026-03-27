@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * SyncConfig Entity - Configuration for sync operations
  */

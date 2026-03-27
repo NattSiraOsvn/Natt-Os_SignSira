@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { IRBACRepository } from "../../ports/RBACRepository";
 import { RBACValidationService } from "../../domain/services/RBACValidationService";
 

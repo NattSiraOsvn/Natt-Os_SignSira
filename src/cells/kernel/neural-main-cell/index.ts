@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // NEURAL MAIN CELL — Index (Điều 22)
 // Orchestrator: audit → extract → validate → detect → report

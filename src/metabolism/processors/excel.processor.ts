@@ -1,4 +1,4 @@
-// @ts-nocheck — pending proper fix
+// — pending proper fix
 import { BaseProcessor } from "./base.processor"
 import { ProcessorResult } from "../types"
 export class ExcelProcessor extends BaseProcessor {

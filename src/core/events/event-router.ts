@@ -1,4 +1,4 @@
-// @ts-nocheck — pending proper fix
+// — pending proper fix
 import { EventBus } from "./event-bus";
 import { EventStore } from "./event-store";
 import { DomainEventType } from "./domain-event";

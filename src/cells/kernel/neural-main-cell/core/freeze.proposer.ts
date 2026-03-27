@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // FREEZE PROPOSER
 // KHÔNG tự động freeze — chỉ PROPOSE (Điều 14: AI không tự quyết)

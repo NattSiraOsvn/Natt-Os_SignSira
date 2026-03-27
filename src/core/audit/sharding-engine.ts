@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface BlockShard { shardId:string; blockHeight:number; hash:string; prevHash:string; data:Record<string,any>; timestamp:number; validator?:string; enterpriseId?:string; }
 export const generateShardHash = (data:Record<string,any>):string => btoa(JSON.stringify(data)).slice(0,32);
 export const ShardingService = {

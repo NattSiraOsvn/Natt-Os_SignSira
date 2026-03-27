@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * tax-cell — application/tax.usecase.ts
  * Sprint 3 | Tâm Luxury NATT-OS

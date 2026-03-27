@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { IConfigRepository } from "../../ports/ConfigRepository";
 import type { ConfigEntry } from "../../domain/entities/config-entry.entity";
 import { ConfigStoreService } from "../../domain/services/config-store.service";

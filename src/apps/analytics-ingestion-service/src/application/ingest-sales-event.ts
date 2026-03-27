@@ -1,4 +1,3 @@
-// @ts-nocheck
 import{generateDailyReport}from"../../../../cells/business/analytics-cell/application/use-cases/generate-daily-report";
 import{AnalyticsEngine}from"../../../../cells/business/analytics-cell/domain/services/analytics.engine";
 export interface SalesEventPayload{date:string;branchCode?:string;orders:Array<{id:string;customerId?:string;isNewCustomer:boolean;items:Array<{sku:string;name:string;qty:number;unitPrice:number;cost:number}>;totalRevenue:number;totalCost:number;completedAt:number;}>;}

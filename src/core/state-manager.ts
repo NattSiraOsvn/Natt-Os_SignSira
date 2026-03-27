@@ -1,4 +1,3 @@
-// @ts-nocheck
 // StateManager
 export class StateManager {
   private static instance: StateManager;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SyncJob, SyncDirection } from '../../domain/entities';
 import { SyncEngine } from '../../domain/services';
 import { SyncRepository } from '../../ports/SyncRepository';

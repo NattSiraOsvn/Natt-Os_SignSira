@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 // ── production-smartlink.port.ts ────────────────────────────
 export interface ProductionSignal {
@@ -19,4 +18,3 @@ export function publishProductionSignal(signal: ProductionSignal): void {
 }
 
 // ────────────────────────────────────────────────────────────
-// @ts-nocheck

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { QuantumDefenseEngine } from "../domain/services"
 import { InMemoryThreatRepository } from "../infrastructure/repositories"
 import { QuantumDefenseEventEmitterAdapter } from "../infrastructure/adapters"

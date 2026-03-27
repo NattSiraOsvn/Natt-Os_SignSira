@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface ConfigEntry {
   key: string;
   value: unknown;

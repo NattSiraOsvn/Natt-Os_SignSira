@@ -1,4 +1,3 @@
-// @ts-nocheck
 // showroom-cell contracts
 export const EVENTS_SHOWROOM = {
   CREATED: "showroom.created",

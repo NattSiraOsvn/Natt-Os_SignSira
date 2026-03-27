@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NATT-OS PolicySignatureEngine
  * Patent Claim: Tamper-resistant constitutional governance through

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface Threat {
   id: string;
   type: "INJECTION" | "BRUTE_FORCE" | "XSS" | "ANOMALY" | "INTRUSION" | "POLICY_VIOLATION";

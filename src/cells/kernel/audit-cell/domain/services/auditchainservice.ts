@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { AuditRecord } from "../entities/audit-record.entity";
 
 export const AuditChainService = {

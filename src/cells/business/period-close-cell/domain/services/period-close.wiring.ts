@@ -1,4 +1,4 @@
-// @ts-nocheck — BCTC flow wiring
+// — BCTC flow wiring
 /**
  * period-close.wiring.ts
  * 

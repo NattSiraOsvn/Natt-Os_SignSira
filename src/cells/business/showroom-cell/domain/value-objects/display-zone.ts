@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type DisplayZone = 'WINDOW' | 'MAIN_FLOOR' | 'VIP_LOUNGE' | 'VAULT_DISPLAY' | 'SEASONAL';
 
 export interface DisplayConfig {

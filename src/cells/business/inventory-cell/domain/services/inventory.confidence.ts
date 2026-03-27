@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Điều 9 §5 — Confidence. KHÔNG import SmartLink/EventBus (R06)
 export interface InventoryConfidenceScore {
   cellId: 'inventory-cell';

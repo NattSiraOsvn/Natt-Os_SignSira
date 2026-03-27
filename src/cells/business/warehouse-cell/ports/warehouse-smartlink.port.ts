@@ -1,4 +1,3 @@
-// @ts-nocheck
 // warehouse-cell/ports/warehouse-smartlink.port.ts
 // Wave 1 — Thêm INGEST signals routing theo SCAR FS-018
 

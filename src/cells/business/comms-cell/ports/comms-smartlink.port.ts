@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { EventBus } from "@/core/events/event-bus";
 // ── comms-smartlink.port.ts ──────────────────────────────────
 export interface CommsSignal {

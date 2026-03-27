@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ============================================================
 // GRAPH CONSISTENCY CHECK
 // Kiểm tra tính nhất quán giữa permanent nodes của các entities

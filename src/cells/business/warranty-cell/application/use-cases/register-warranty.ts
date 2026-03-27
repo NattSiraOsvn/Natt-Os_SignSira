@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface RegisterWarrantyInput{orderId:string;customerId:string;productSku:string;productName:string;purchaseDate:string;serialNumber?:string;warrantyType:"STANDARD"|"EXTENDED"|"PREMIUM";}
 export interface RegisterWarrantyResult{success:boolean;warrantyId?:string;expiryDate?:string;coverage:string[];error?:string;}
 const MONTHS:Record<string,number>={STANDARD:12,EXTENDED:24,PREMIUM:36};

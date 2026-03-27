@@ -1,4 +1,3 @@
-// @ts-nocheck
 // casting-cell/domain/services/casting.engine.ts
 // Wave 4 — nhận ProductionStageAdvanced (stage=CASTING)
 //   → sau đúc xong emit WIP_PHOI → finishing-cell

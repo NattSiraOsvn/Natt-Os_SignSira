@@ -1,4 +1,3 @@
-// @ts-nocheck
 export interface GlobalAlert { id:string; type:"INFO"|"WARNING"|"ERROR"|"SUCCESS"|"NEWS"|"RISK"|"ORDER"; title:string; content:string; persona?:string; timestamp:number; read:boolean; pinned:boolean; metadata?:Record<string,any>; priority?:"LOW"|"MEDIUM"|"HIGH"|"CRITICAL"; }
 const _l: Array<(a:GlobalAlert)=>void>=[]; const _q:GlobalAlert[]=[];
 export const NotifyBus = {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { forgeSmartLinkPort } from '@/satellites/port-forge';
 export const PrdMaterialsSmartLinkPort = forgeSmartLinkPort({
   cellId: 'prdmaterials-cell',

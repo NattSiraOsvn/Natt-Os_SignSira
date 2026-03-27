@@ -1,4 +1,3 @@
-// @ts-nocheck
 // pricing-cell/domain/services/rule-engine.service.ts
 // Wave 6b — nhận StockReplenished (action=PRICE_NEW_STOCK)
 //   → tính giá → emit OrderConfirmed → payment, customer, warranty

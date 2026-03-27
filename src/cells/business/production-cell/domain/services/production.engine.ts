@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Production Engine — Logic sản xuất kim hoàn Tâm Luxury
  * Source: V2 productionEngine.ts (59L) + productionService.ts (107L)

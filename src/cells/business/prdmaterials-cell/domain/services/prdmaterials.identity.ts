@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const PRDMATERIALS_IDENTITY = {
   cellId:      'prdmaterials-cell',
   cellName:    'Production Materials — Phiếu INFO & Láp',

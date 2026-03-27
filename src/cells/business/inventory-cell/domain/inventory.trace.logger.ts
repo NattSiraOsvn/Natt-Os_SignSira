@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type InventoryTraceEvent =
   | 'STOCK_RECEIVED' | 'STOCK_ISSUED' | 'STOCK_ADJUSTED'
   | 'MONTH_END_CLOSED' | 'RECONCILE_RUN';
