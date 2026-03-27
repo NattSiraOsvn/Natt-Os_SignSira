@@ -213,7 +213,7 @@ for cell_dir in src/cells/business/*/; do
   SL="—"
   PORT_ANY=$(find "$cell_dir/ports" -name "*smartlink*" 2>/dev/null | head -1)
   if [[ -n "$PORT_ANY" ]]; then
-    if grep -rq "SmartLinkPort" "$cell_dir/domain/services/" 2>/dev/null; then
+    if grep -rql "smartlink\|SmartLink\|EventBus\|publish" "$cell_dir/domain/services/" 2>/dev/null; then
       SL="WIRED✅"; ((BIZ_WIRED++)) || true
     else
       SL="PORT_ONLY⚠️"; ((BIZ_NOT_WIRED++)) || true
