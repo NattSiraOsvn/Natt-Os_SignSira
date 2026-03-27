@@ -64,6 +64,12 @@ tryImport("../cells/business/warehouse-cell/domain/services/warehouse.engine", m
 });
 
 // ── SALES & FINANCE FLOW ──────────────────────────────────────────────────
+tryImport("../cells/business/sales-cell/domain/engines/sales-core.engine", m => {
+  // sales-core subscribe SalesOrderCreated → emit ProductionStarted (Wave 2)
+  // File tự subscribe khi import — chỉ cần load
+  EventBus.on("SalesOrderCreated", () => {});
+});
+
 tryImport("../cells/business/sales-cell/domain/engines/sales.engine", m => {
   const eng = new (m.SalesEngine || m.default)();
   wire("sales.confirm", "sales-cell", () => eng.execute?.());

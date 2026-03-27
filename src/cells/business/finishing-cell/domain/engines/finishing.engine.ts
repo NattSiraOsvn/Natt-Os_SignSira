@@ -80,6 +80,16 @@ export class FinishingEngine {
       });
     }
 
+    // Khi polish pass → emit wip:in-progress cho polishing-cell
+    if (stage === 'polish' && pass) {
+      EventBus.emit('wip:in-progress', {
+        productId,
+        qualityScore,
+        source: 'finishing-cell',
+        timestamp,
+      });
+    }
+
     return result;
   }
 }

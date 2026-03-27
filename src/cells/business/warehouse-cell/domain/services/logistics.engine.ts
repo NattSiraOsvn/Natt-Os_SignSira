@@ -1,17 +1,18 @@
 // @ts-nocheck
 import{WarehouseSmartLinkPort}from"../../ports/warehouse-smartlink.port";
+import{EventBus}from"../../../../core/events/event-bus";
 export type TransferStatus="PENDING"|"IN_TRANSIT"|"DELIVERED"|"CANCELLED";
 export interface TransferOrder{id:string;transferId?:string;from:string;to:string;items:Array<{itemId:string;sku:string;quantity:number}>;status:TransferStatus;requestedBy:string;createdAt:number;completedAt?:number;note?:string;}
 const _transfers=new Map<string,TransferOrder>();
 export const LogisticsCore={
   createTransferOrder:(from:string,to:string,items:any[],requestedBy="SYSTEM"):TransferOrder=>{
     const o:TransferOrder={id:`TO-${Date.now()}`,from,to,items,status:"PENDING",requestedBy,createdAt:Date.now()};
-    _transfers.set(o.id,o);WarehouseSmartLinkPort.notifyGoodsDispatched(o.id,from);return o;
+    _transfers.set(o.id,o);WarehouseSmartLinkPort.notifyGoodsDispatched(o.id,from);EventBus.emit("GoodsDispatched",{transferId:o.id,from,items:o.items,ts:Date.now()});return o;
   },
   createInternalTransfer:async(sku:string,name:string,quantity:number,from:string,to:string):Promise<TransferOrder>=>{
     const id=`TO-${Date.now()}`;
     const t:TransferOrder={id,transferId:id,from,to,items:[{itemId:sku,sku,quantity}],status:"PENDING",requestedBy:"SYSTEM",createdAt:Date.now()} as any;
-    _transfers.set(id,t);WarehouseSmartLinkPort.notifyGoodsDispatched(id,from);return t;
+    _transfers.set(id,t);WarehouseSmartLinkPort.notifyGoodsDispatched(id,from);EventBus.emit("GoodsDispatched",{transferId:id,from,ts:Date.now()});return t;
   },
   startTransit:(id:string):TransferOrder|null=>{
     const t=_transfers.get(id);if(!t||t.status!=="PENDING")return null;
