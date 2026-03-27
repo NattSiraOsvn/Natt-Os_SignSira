@@ -16,6 +16,14 @@ export interface Subscription { id:string; eventType:DomainEventType|"*"; handle
 const _processedIds = new Set<string>();
 
 class NATTEventBus {
+  // ── V5 RUNTIME HOOK (Condition 4) ─────────────────────────────────────
+  private _traceEmit(eventType: string, cell: string): void {
+    try {
+      const { recordHistory } = require("../../cells/kernel/monitor-cell/domain/services/flow-chain.engine");
+      recordHistory({ timestamp: Date.now(), eventType, cell, action: "emit" });
+    } catch { /* silent */ }
+  }
+
   private _subs: Subscription[] = [];
   private _dead: Array<{envelope:EventEnvelope;error:string;at:number}> = [];
   private _count = 0;
@@ -60,6 +68,7 @@ class NATTEventBus {
   }
 
   emit(eventType: string, payload: any): void {
+    this._traceEmit(eventType, 'engine-emitter');
     this.publish(
       { type: eventType as DomainEventType, payload },
       'engine-emitter',
