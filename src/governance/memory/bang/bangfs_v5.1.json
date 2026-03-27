@@ -1,0 +1,127 @@
+{
+  "version": "5.1",
+  "generated_at": "2026-03-28T01:15:00.000Z",
+  "schema": "bangfs_v5.1",
+  "session_date": "2026-03-28",
+  "filesystem_snapshot": {
+    "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "head_commit": "feat(cells): inject cell.metric — blind cells 26→0, sensing 100%",
+    "commits": 342,
+    "ts_files": 1306,
+    "ts_lines": 15124
+  },
+  "key_files": {
+    "constitution": "src/governance/constitution/natt-os-constitution.ts",
+    "bangmf": "src/governance/memory/bang/bangmf_v5.9.9.json",
+    "bangfs": "src/governance/memory/bang/bangfs_v5.1.json",
+    "engine_registry": "src/apps/engine-registry.ts",
+    "smartaudit": "nattos.sh",
+    "runtime_server": "nattos-server/server.js",
+    "ui_shell": "src/ui-app/nauion/nauion-v9.html",
+    "ui_index": "src/ui-app/index.html"
+  },
+  "cell_structure": {
+    "kernel_cells": 6,
+    "business_cells": 38,
+    "infrastructure_cells": 3,
+    "total": 47,
+    "all_6_6": true,
+    "smartlink_wired": 30,
+    "port_only": 8
+  },
+  "port_only_cells": [
+    "comms-cell",
+    "compliance-cell",
+    "noi-vu-cell",
+    "prdwarranty-cell",
+    "production-cell",
+    "promotion-cell",
+    "shared-contracts-cell",
+    "supplier-cell"
+  ],
+  "engine_registry": {
+    "declared": 72,
+    "wired": 70,
+    "dead": 2,
+    "dead_list": ["CryptoEngine", "CustomsRobotEngine"],
+    "dead_acknowledged": true
+  },
+  "sensing": {
+    "cells_emitting_metric": 47,
+    "blind_cells": 0,
+    "blind_cells_history": "26→7→0 (session 28/03/2026)"
+  },
+  "event_system": {
+    "eventbus_core": "5/5 files",
+    "emit_calls": 104,
+    "on_calls": 41,
+    "unique_events": 36,
+    "healthy_flows": 2,
+    "orphan_emits": 3,
+    "dead_subs": 31,
+    "orphans": ["system.audit", "audit.record", "order.created"]
+  },
+  "runtime": {
+    "server": "nattos-server/server.js",
+    "port": 3001,
+    "type": "pure Event-Driven Runtime",
+    "routes": [
+      "POST /api/events/emit",
+      "GET /api/state/:cell",
+      "GET /api/audit",
+      "GET /api/health"
+    ],
+    "event_chain": "order.created → 24 events (ORDER→CASH flow)",
+    "ui_bridge": "NattOS.emit/state/audit/health injected in nauion-v9.html"
+  },
+  "ui": {
+    "shell": "nauion-v9.html (NaUion v9)",
+    "port": 3000,
+    "server": "python3 -m http.server 3000",
+    "modules": 40,
+    "legacy_apps_removed": 22,
+    "index_redirect": true
+  },
+  "system_state": {
+    "label": "FRAGMENTED",
+    "risk": 25,
+    "previous_risk": 35,
+    "improvement": "26 blind cells fixed"
+  },
+  "scars": {
+    "FS_024": "INTERFACE_HALLUCINATION — never assume event property shapes without reading contract file",
+    "FS_026": "GSheets tab-name bracket parsing error",
+    "FS_027": "Express routes must precede app.listen()",
+    "FS_028": "Kim rewrote threshold.engine.ts without checking dependents — always grep before rewrite",
+    "FS_029": "double $() bash bug — HAS_X=$($(cmd)) executes result as command",
+    "FS_030": "không commit trước khi verify output",
+    "FS_031": "phân biệt engine thật chưa wire vs engine không tồn tại"
+  },
+  "qneu": {
+    "scores": {
+      "BANG": 300,
+      "THIEN": 135,
+      "KIM": 120,
+      "CAN": 85,
+      "BOI_BOI": 40
+    },
+    "first_seed": "v2.0",
+    "system_state_file": "src/governance/qneu/system-state.json"
+  },
+  "metabolism": {
+    "processors": 9,
+    "normalizers": 4,
+    "healing": 4,
+    "eventbus": "WIRED"
+  },
+  "bctc": {
+    "status": "HOLD",
+    "reason": "pending dissolution settlement data",
+    "cells_ready": "6/6"
+  },
+  "production_flow": {
+    "cells": ["design-3d", "production", "casting", "stone", "finishing", "polishing", "inventory", "warehouse"],
+    "status": "8/8 wired"
+  }
+}
