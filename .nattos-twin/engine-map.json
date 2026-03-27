@@ -1,17 +1,9 @@
 {
   "declared": 72,
-  "alive": 60,
+  "alive": 68,
   "dead": [
-    "AIFirewallEngine",
     "CryptoEngine",
     "CustomsRobotEngine",
-    "EInvoiceEngine",
-    "ExportEngine",
-    "InvoiceMatchEngine",
-    "LearningEngine",
-    "PaymentEngine",
-    "PersonnelEngine",
-    "RoomEngine",
     "SellerEngine",
     "WarehouseIntelligenceEngine"
   ]

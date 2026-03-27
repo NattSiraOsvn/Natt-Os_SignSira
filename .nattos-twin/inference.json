@@ -1,11 +1,11 @@
 {
-  "state": "CRITICAL",
-  "risk": 50,
+  "state": "FRAGMENTED",
+  "risk": 40,
   "strengths": [
     "Event coverage clean (3 orphans)"
   ],
   "issues": [
-    "DEAD_WEIGHT: 12 unused engines",
+    "ENGINE_WASTE: 4 unused",
     "SENSORY_DEFICIT: 26 blind cells",
     "FLOW_DEFICIT: only 2 healthy chains"
   ]
