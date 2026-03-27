@@ -318,6 +318,19 @@ tryImport("../cells/business/warehouse-cell/domain/services/warehouse-intelligen
   wire("system.audit", "warehouse-cell", () => eng.execute?.());
 });
 
+
+// ── CustomsRobotEngine — const object, không phải class ──────────────────
+tryImport("../cells/business/customs-cell/domain/services/customs.engine", m => {
+  const eng = m.CustomsRobotEngine;
+  if (!eng) return;
+  EventBus.on("customs.declaration", (env: any) => {
+    try {
+      eng.batchProcess?.(env?.payload?.goods ?? []);
+      EventBus.emit("cell.metric", { cell: "customs-cell", metric: "customs.executed", value: 1, ts: Date.now() });
+    } catch { /* silent */ }
+  });
+});
+
 export function triggerOrderFlow(orderId: string, payload?: any) {
   EventBus.emit("order.created", { orderId, payload: payload ?? {}, ts: Date.now() });
 }
