@@ -92,3 +92,15 @@ export function bootstrapQuantumDefense(): void {
 
   console.info('[QuantumDefense] Bootstrap complete — Cảnh Vệ đã sẵn sàng');
 }
+
+// Wire: monitor.health_checked → Quantum Defense awareness
+EventBus.on('monitor.health_checked', (payload: any) => {
+  EventBus.emit('cell.metric', {
+    cell:       'quantum-defense-cell',
+    metric:     'health.check.received',
+    value:      1,
+    confidence: 0.9,
+    source:     payload?.triggeredBy ?? 'monitor-cell',
+    ts:         Date.now(),
+  });
+});
