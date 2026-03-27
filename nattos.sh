@@ -58,12 +58,12 @@ hdr "1" "GIT STATUS"
 # ═══════════════════════════════════════════════════════════════
 if git rev-parse --git-dir > /dev/null 2>&1; then
   BRANCH=$(git branch --show-current 2>/dev/null || echo "detached")
-  COMMITS=$(git log --oneline 2>/dev/null | wc -l | tr -d ' ')
+  COMMITS=$(git log --oneline 2>/dev/null | wc -l | tr -dc '0-9')
   LAST_HASH=$(git log --oneline -1 2>/dev/null | cut -d' ' -f1)
   LAST_MSG=$(git log --oneline -1 2>/dev/null | cut -d' ' -f2-)
-  DIRTY=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
-  UNTRACKED=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l | tr -d ' ')
-  MODIFIED=$(git status --porcelain 2>/dev/null | grep "^ M\|^M " | wc -l | tr -d ' ')
+  DIRTY=$(git status --porcelain 2>/dev/null | wc -l | tr -dc '0-9')
+  UNTRACKED=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l | tr -dc '0-9')
+  MODIFIED=$(git status --porcelain 2>/dev/null | grep "^ M\|^M " | wc -l | tr -dc '0-9')
 
   ok "Branch: $BRANCH | Commits: $COMMITS"; inc_ok
   ok "HEAD: $LAST_HASH $LAST_MSG"; inc_ok
@@ -116,12 +116,12 @@ fi
 # ═══════════════════════════════════════════════════════════════
 hdr "3" "FILE METRICS"
 # ═══════════════════════════════════════════════════════════════
-TS_COUNT=$(find src -name "*.ts" -o -name "*.tsx" 2>/dev/null | wc -l | tr -d ' ')
-TS_LINES=$(find src -name "*.ts" -o -name "*.tsx" 2>/dev/null -exec cat {} + 2>/dev/null | wc -l | tr -d ' ')
-PKG_COUNT=$(find packages -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
-LEGACY_COUNT=$(find natt-os -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
-V2_FILES=$(find src -name "_v2.*" 2>/dev/null | wc -l | tr -d ' ')
-V1_FILES=$(find src -name "_v1.*" 2>/dev/null | wc -l | tr -d ' ')
+TS_COUNT=$(find src -name "*.ts" -o -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
+TS_LINES=$(find src -name "*.ts" -o -name "*.tsx" 2>/dev/null -exec cat {} + 2>/dev/null | wc -l | tr -dc '0-9')
+PKG_COUNT=$(find packages -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+LEGACY_COUNT=$(find natt-os -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+V2_FILES=$(find src -name "_v2.*" 2>/dev/null | wc -l | tr -dc '0-9')
+V1_FILES=$(find src -name "_v1.*" 2>/dev/null | wc -l | tr -dc '0-9')
 
 ok "src/ TS/TSX: $TS_COUNT files, $TS_LINES lines"; inc_ok
 info "packages/: $PKG_COUNT files (event-contracts)"
@@ -174,10 +174,10 @@ KERNEL_OK=0; KERNEL_TOTAL=${#KERNEL_EXPECTED[@]}
 for cell in "${KERNEL_EXPECTED[@]}"; do
   P="src/cells/kernel/$cell"
   if [[ -d "$P" ]]; then
-    FC=$(find "$P" -name "*.ts" | wc -l | tr -d ' ')
+    FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
     MF=$([[ -f "$P/cell.manifest.json" ]] && echo "MF✅" || echo "MF❌")
     PT=$([[ -d "$P/ports" ]] && echo "PORT✅" || echo "PORT❌")
-    ENG=$(find "$P" -name "*.engine.ts" 2>/dev/null | wc -l | tr -d ' ')
+    ENG=$(find "$P" -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
     ok "$cell | $FC files | $MF | $PT | engines:$ENG"; inc_ok; ((KERNEL_OK++)) || true
   else
     fail "$cell → MISSING"; inc_fail "KERNEL: $cell missing"
@@ -196,7 +196,7 @@ echo -e "  ───────────────────────
 for cell_dir in src/cells/business/*/; do
   CELL=$(basename "$cell_dir")
   ((BIZ_TOTAL++)) || true
-  FC=$(find "$cell_dir" -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+  FC=$(find "$cell_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 
   # 6 components check
   HAS_IDENTITY=$([[ -f "$cell_dir/cell.manifest.json" ]] && echo 1 || echo 0)
@@ -267,19 +267,19 @@ for f in "${EVT_FILES[@]}"; do
 done
 ok "EventBus core: $EVT_OK/${#EVT_FILES[@]} files"; inc_ok
 
-GUARD_COUNT=$(find src/core/guards -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+GUARD_COUNT=$(find src/core/guards -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ok "Constitutional Guards: $GUARD_COUNT files"; inc_ok
 
-CONTRACT_COUNT=$(find packages/event-contracts -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+CONTRACT_COUNT=$(find packages/event-contracts -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ok "Event Contracts: $CONTRACT_COUNT files"; inc_ok
 
 # ═══════════════════════════════════════════════════════════════
 hdr "9" "METABOLISM LAYER"
 # ═══════════════════════════════════════════════════════════════
 if [[ -d "src/metabolism" ]]; then
-  PROC_COUNT=$(find src/metabolism/processors -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -d ' ')
-  NORM_COUNT=$(find src/metabolism/normalizers -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -d ' ')
-  HEAL_COUNT=$(find src/metabolism/healing -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -d ' ')
+  PROC_COUNT=$(find src/metabolism/processors -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+  NORM_COUNT=$(find src/metabolism/normalizers -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+  HEAL_COUNT=$(find src/metabolism/healing -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 
   ok "Metabolism root: EXISTS"; inc_ok
   ok "Processors: $PROC_COUNT"; inc_ok
@@ -304,27 +304,27 @@ hdr "10" "LEGACY & TRASH DETECTION"
 # ═══════════════════════════════════════════════════════════════
 
 # Bản sao (macOS Finder copies)
-BANSAO=$(find src -name "Bản sao*" 2>/dev/null | wc -l | tr -d ' ')
+BANSAO=$(find src -name "Bản sao*" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$BANSAO" -gt 0 ]]; then
   fail "Bản sao files: $BANSAO (macOS Finder copies — DELETE)"; inc_trash "TRASH: $BANSAO Bản sao files"
   if $FULL_MODE; then find src -name "Bản sao*" | sed 's/^/    🗑️  /'; fi
 else ok "No Bản sao files"; inc_ok; fi
 
 # .DS_Store
-DS_COUNT=$(find . -name ".DS_Store" -not -path "./node_modules/*" 2>/dev/null | wc -l | tr -d ' ')
+DS_COUNT=$(find . -name ".DS_Store" -not -path "./node_modules/*" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$DS_COUNT" -gt 0 ]]; then
   warn ".DS_Store: $DS_COUNT files"; inc_trash "TRASH: $DS_COUNT .DS_Store"
 else ok "No .DS_Store"; inc_ok; fi
 
 # Empty directories
-EMPTY_DIRS=$(find src/cells -type d -empty 2>/dev/null | wc -l | tr -d ' ')
+EMPTY_DIRS=$(find src/cells -type d -empty 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$EMPTY_DIRS" -gt 0 ]]; then
   warn "Empty dirs in cells/: $EMPTY_DIRS"; inc_warn "STRUCTURE: $EMPTY_DIRS empty dirs"
   if $FULL_MODE; then find src/cells -type d -empty 2>/dev/null | sed 's/^/    📁 /'; fi
 else ok "No empty dirs"; inc_ok; fi
 
 # Duplicate basenames — dùng full path để tránh false positive (NATT-CELL convention: mỗi cell có services/ riêng)
-DUPES=$(find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -d | wc -l | tr -d ' ')
+DUPES=$(find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -d | wc -l | tr -dc '0-9')
 if [[ "$DUPES" -gt 0 ]]; then
   warn "Duplicate filenames (exact path): $DUPES (check for conflicts)"; inc_warn "STRUCTURE: $DUPES duplicate filenames"
   if $FULL_MODE; then
@@ -335,14 +335,14 @@ else ok "No duplicate filenames"; inc_ok; fi
 # Orphan imports — bỏ qua quantum-defense-cell/contracts (internal contracts = hợp lệ)
 ORPHAN_IMPORTS=$(grep -rn "from.*contracts/" src/ --include="*.ts" 2>/dev/null \
   | grep -v "event-contracts\|shared-contracts\|node_modules\|quantum-defense-cell" \
-  | wc -l | tr -d ' ')
+  | wc -l | tr -dc '0-9')
 if [[ "$ORPHAN_IMPORTS" -gt 0 ]]; then
   warn "Possible orphan imports: $ORPHAN_IMPORTS"; inc_warn "IMPORTS: $ORPHAN_IMPORTS possible orphan"
 else ok "No orphan imports detected"; inc_ok; fi
 
 # Legacy natt-os/ folder
 if [[ -d "natt-os" ]]; then
-  LEGACY_TS=$(find natt-os -name "*.ts" | wc -l | tr -d ' ')
+  LEGACY_TS=$(find natt-os -name "*.ts" | wc -l | tr -dc '0-9')
   info "natt-os/ legacy: $LEGACY_TS files (pending quantum-defense-cell migration)"
 fi
 
@@ -353,7 +353,7 @@ INFRA_CELLS=("smartlink-cell" "sync-cell" "shared-contracts-cell")
 for cell in "${INFRA_CELLS[@]}"; do
   P="src/cells/infrastructure/$cell"
   if [[ -d "$P" ]]; then
-    FC=$(find "$P" -name "*.ts" | wc -l | tr -d ' ')
+    FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
     ok "$cell: $FC files"; inc_ok
   else
     fail "$cell: MISSING"; inc_fail "INFRA: $cell missing"
@@ -363,10 +363,10 @@ done
 # ═══════════════════════════════════════════════════════════════
 hdr "12" "UI COMPONENTS — FULL HEALTH CHECK"
 # ═══════════════════════════════════════════════════════════════
-COMP_COUNT=$(find src/components -name "*.tsx" 2>/dev/null | wc -l | tr -d ' ')
-COMP_SUB=$(find src/components -mindepth 2 -name "*.tsx" 2>/dev/null | wc -l | tr -d ' ')
+COMP_COUNT=$(find src/components -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
+COMP_SUB=$(find src/components -mindepth 2 -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
 COMP_ROOT=$((COMP_COUNT - COMP_SUB))
-HOOK_COUNT=$(find src/hooks -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+HOOK_COUNT=$(find src/hooks -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ok "Components: $COMP_COUNT total ($COMP_ROOT root + $COMP_SUB subdirs)"; inc_ok
 ok "Hooks: $HOOK_COUNT files"; inc_ok
 
@@ -387,7 +387,7 @@ ok "Core UI: $CORE_OK/${#CORE_UI[@]}"; inc_ok
 echo -e "\n  ${W}12b. ViewType mapping:${N}"
 if [[ -f "src/components/DynamicModuleRenderer.tsx" ]]; then
   # Count ViewType references = roughly how many modules are routable
-  DMR_TYPES=$(grep -o "ViewType\.\w*\|viewType\.\w*\|case .*:" src/components/DynamicModuleRenderer.tsx 2>/dev/null | wc -l | tr -d ' ')
+  DMR_TYPES=$(grep -o "ViewType\.\w*\|viewType\.\w*\|case .*:" src/components/DynamicModuleRenderer.tsx 2>/dev/null | wc -l | tr -dc '0-9')
   info "DynamicModuleRenderer references: ~$DMR_TYPES ViewType mappings"
   # Check components NOT lazy-imported in DMR
   DMR_IMPORTS=$(grep "import\|from" src/components/DynamicModuleRenderer.tsx 2>/dev/null | grep -o "[A-Z][A-Za-z]*" | sort -u)
@@ -402,7 +402,7 @@ for f in src/components/*.tsx; do
   # Skip core UI
   case "$NAME" in app|AppShell|DynamicModuleRenderer|Sidebar|SecurityOverlay) continue ;; esac
   # Count imports across entire src/
-  REFS=$(grep -rn "$NAME" src/ --include="*.tsx" --include="*.ts" 2>/dev/null | grep -v "$(basename "$f")" | grep -v node_modules | wc -l | tr -d ' ')
+  REFS=$(grep -rn "$NAME" src/ --include="*.tsx" --include="*.ts" 2>/dev/null | grep -v "$(basename "$f")" | grep -v node_modules | wc -l | tr -dc '0-9')
   if [[ "$REFS" -eq 0 ]]; then
     ((UI_ORPHANS++)) || true
     UI_ORPHAN_LIST+=("$NAME")
@@ -458,7 +458,7 @@ echo -e "\n  ${W}12e. Dead shells (<20 lines):${N}"
 UI_DEAD=0; UI_DEAD_LIST=()
 for f in src/components/*.tsx; do
   [[ ! -f "$f" ]] && continue
-  LINES=$(wc -l < "$f" | tr -d ' ')
+  LINES=$(wc -l < "$f" | tr -dc '0-9')
   if [[ "$LINES" -lt 20 ]]; then
     ((UI_DEAD++)) || true
     UI_DEAD_LIST+=("$(basename "$f") (${LINES}L)")
@@ -487,7 +487,7 @@ else ok "No showroom casing dupes"; inc_ok; fi
 
 # 12g. Duplicate component names (different locations)
 echo -e "\n  ${W}12g. Cross-location duplicates:${N}"
-COMP_DUPES=$(find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | wc -l | tr -d ' ')
+COMP_DUPES=$(find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | wc -l | tr -dc '0-9')
 if [[ "$COMP_DUPES" -gt 0 ]]; then
   warn "Duplicate component names: $COMP_DUPES"
   inc_warn "UI: $COMP_DUPES duplicate component filenames"
@@ -554,9 +554,9 @@ if [[ ! -d "$UI_APP_DIR" ]]; then
 else
 
   # ── Count HTML apps ──
-  HTML_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.html" ! -name "._*" | wc -l | tr -d ' ')
-  JS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.js" | wc -l | tr -d ' ')
-  CSS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.css" | wc -l | tr -d ' ')
+  HTML_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.html" ! -name "._*" | wc -l | tr -dc '0-9')
+  JS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.js" | wc -l | tr -dc '0-9')
+  CSS_COUNT=$(find "$UI_APP_DIR" -maxdepth 1 -name "*.css" | wc -l | tr -dc '0-9')
   ok "HTML apps: $HTML_COUNT | JS engines: $JS_COUNT | CSS: $CSS_COUNT"; inc_ok
 
   # ── Required engine files ──
@@ -588,7 +588,7 @@ else
     [[ "${fname:0:2}" == "._" ]] && continue
     ((APP_TOTAL++)) || true
 
-    LINES=$(wc -l < "$fpath" | tr -d ' ')
+    LINES=$(wc -l < "$fpath" | tr -dc '0-9')
     HAS_LOGIN=$(grep -c "doLogin\b" "$fpath" 2>/dev/null || echo 0)
     HAS_RENDER=$(grep -cE "renderAll|renderGrid|renderList|tbody|\.innerHTML\s*=" "$fpath" 2>/dev/null || echo 0)
     HAS_PAYMENT=$(grep -ciE "payment|thanh.to[aá]n|qr.code|vietqr|checkout|chuyen.khoan|zalopay" "$fpath" 2>/dev/null || echo 0)
@@ -645,7 +645,7 @@ else
   # ── Index.html audit ──
   echo -e "\n  ${W}15c. index.html Audit:${N}"
   if [[ -f "$UI_APP_DIR/index.html" ]]; then
-    IDX_APPS=$(grep -oE "file:'[^']+\.html'" "$UI_APP_DIR/index.html" | wc -l | tr -d ' ')
+    IDX_APPS=$(grep -oE "file:'[^']+\.html'" "$UI_APP_DIR/index.html" | wc -l | tr -dc '0-9')
     IDX_BROKEN=0; IDX_BROKEN_LIST=()
     while IFS= read -r app; do
       app_file=$(echo "$app" | grep -oE "'[^']+'" | tr -d "'")
@@ -687,9 +687,9 @@ else
 
   # ── Payment feature audit ──
   echo -e "\n  ${W}15e. Feature Coverage:${N}"
-  PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
-  SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
-  SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
+  PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
+  SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
+  SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SURV_FILE=$([ -f "nattos-sheets-server/surveillance.html" ] && echo "EXISTS" || echo "MISSING")
   SHEETS_SERVER=$([ -f "nattos-sheets-server/server.js" ] && echo "EXISTS" || echo "MISSING")
   SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY MISSING (gitignored)")
@@ -714,7 +714,7 @@ hdr "17" "ENGINE COVERAGE MAP"
 ENGINE_TOTAL=0; ENGINE_CELLS=0; NO_ENGINE_CELLS=()
 for cell_dir in src/cells/business/*/; do
   cell=$(basename "$cell_dir")
-  engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v "node_modules" | wc -l | tr -d ' ')
+  engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v "node_modules" | wc -l | tr -dc '0-9')
   if [[ "$engines" -gt 0 ]]; then
     ((ENGINE_TOTAL += engines)) || true
     ((ENGINE_CELLS++)) || true
@@ -724,7 +724,7 @@ for cell_dir in src/cells/business/*/; do
 done
 
 # Kernel engines
-KERNEL_ENG=$(find src/cells/kernel -name "*.engine.ts" 2>/dev/null | wc -l | tr -d ' ')
+KERNEL_ENG=$(find src/cells/kernel -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ((ENGINE_TOTAL += KERNEL_ENG)) || true
 
 ok "Total engines: $ENGINE_TOTAL across business+kernel cells"
@@ -745,7 +745,7 @@ if [[ "$FULL_MODE" == "true" ]]; then
     cell=$(basename "$cell_dir")
     engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v node_modules)
     if [[ -n "$engines" ]]; then
-      count=$(echo "$engines" | wc -l | tr -d ' ')
+      count=$(echo "$engines" | wc -l | tr -dc '0-9')
       echo -e "  ${C}$cell${N}: $count engine(s)"
     fi
   done
@@ -757,8 +757,8 @@ fi
 hdr "18" "EVENTBUS FLOW TRACER"
 
 # Count emit events
-EMIT_COUNT=$(grep -rh "EventBus\.emit\|EventBus\.publish" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -d ' ')
-SUB_COUNT=$(grep -rh "EventBus\.on\|EventBus\.subscribe" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -d ' ')
+EMIT_COUNT=$(grep -rh "EventBus\.emit\|EventBus\.publish" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -dc '0-9')
+SUB_COUNT=$(grep -rh "EventBus\.on\|EventBus\.subscribe" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -dc '0-9')
 
 ok "EventBus.emit/publish calls: $EMIT_COUNT"
 ok "EventBus.on/subscribe calls: $SUB_COUNT"
@@ -793,19 +793,19 @@ CONTRACT_OK=0; CONTRACT_WARN=0
 for cell_dir in src/cells/*/; do
   contracts_dir="$cell_dir/contracts"
   if [[ -d "$contracts_dir" ]]; then
-    contract_files=$(find "$contracts_dir" -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+    contract_files=$(find "$contracts_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
     if [[ "$contract_files" -gt 0 ]]; then
       ((CONTRACT_OK++)) || true
     fi
   fi
 done
 
-TOTAL_CONTRACTS=$(find src/cells -path "*/contracts/*.ts" 2>/dev/null | wc -l | tr -d ' ')
+TOTAL_CONTRACTS=$(find src/cells -path "*/contracts/*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ok "Contract files found: $TOTAL_CONTRACTS across $CONTRACT_OK cells"
 
 # Check event-contracts package
 if [[ -d "src/contracts" ]]; then
-  PKG_CONTRACTS=$(find src/contracts -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+  PKG_CONTRACTS=$(find src/contracts -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
   ok "src/contracts: $PKG_CONTRACTS files"; inc_ok
 else
   warn "src/contracts: NOT FOUND"; inc_warn "CONTRACT: event-contracts package missing"
@@ -848,7 +848,7 @@ else
 fi
 
 # Check EventBus used as bridge (correct pattern)
-EB_BRIDGE=$(grep -rl "EventBus" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -d ' ')
+EB_BRIDGE=$(grep -rl "EventBus" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ok "Cells using EventBus as bridge: $EB_BRIDGE files"
 
 # ═══════════════════════════════════════════════════════════════
@@ -906,7 +906,7 @@ else
 fi
 
 # Check no .zip in memory
-ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -d ' ')
+ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$ZIP_IN_MEM" -gt 0 ]]; then
   warn "$ZIP_IN_MEM .zip file(s) in memory dir — should not be committed"
   inc_warn "MEMORY: .zip files present"
@@ -936,7 +936,7 @@ else
 fi
 
 # Plugin modules
-PLUGIN_FILES=$(find src/metabolism/plugins -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+PLUGIN_FILES=$(find src/metabolism/plugins -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$PLUGIN_FILES" -ge 3 ]]; then
   ok "Plugin system: $PLUGIN_FILES files ✅"; inc_ok
 else
@@ -944,7 +944,7 @@ else
 fi
 
 # Healing modules
-HEALING_FILES=$(find src/metabolism/healing -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+HEALING_FILES=$(find src/metabolism/healing -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$HEALING_FILES" -ge 3 ]]; then
   ok "Healing modules: $HEALING_FILES files ✅"; inc_ok
 else
@@ -1037,7 +1037,7 @@ else
 fi
 
 # Check for @ts-nocheck count (high count = technical debt)
-NOCHECK_COUNT=$(grep -rl "@ts-nocheck" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -d ' ')
+NOCHECK_COUNT=$(grep -rl "@ts-nocheck" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$NOCHECK_COUNT" -le 5 ]]; then
   ok "@ts-nocheck files: $NOCHECK_COUNT (healthy)"; inc_ok
 elif [[ "$NOCHECK_COUNT" -le 15 ]]; then
@@ -1054,7 +1054,7 @@ hdr "25" "NATTOS.SH SELF-HEALTH"
 SCRIPT="nattos.sh"
 if [[ ! -f "$SCRIPT" ]]; then SCRIPT="./nattos.sh"; fi
 
-SCRIPT_LINES=$(wc -l < "$SCRIPT" | tr -d ' ')
+SCRIPT_LINES=$(wc -l < "$SCRIPT" | tr -dc '0-9')
 ok "Script size: $SCRIPT_LINES lines"
 
 # Count sections
@@ -1062,7 +1062,7 @@ SECTION_COUNT=$(grep -c "^hdr " "$SCRIPT" 2>/dev/null || echo 0)
 ok "Sections: $SECTION_COUNT total"
 
 # Check bash 3.2 compat — no [[...]] with regex, no arrays with -A
-BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | wc -l | tr -d ' ')
+BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$BASH4_ONLY" -gt 0 ]]; then
   warn "bash 4+ syntax detected: $BASH4_ONLY instances — may break on macOS bash 3.2"
   inc_warn "SCRIPT: bash 4+ syntax present"
