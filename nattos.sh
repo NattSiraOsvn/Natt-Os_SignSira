@@ -50,6 +50,10 @@ echo "  ██║╚██╗██║██╔══██║   ██║      
 echo "  ██║ ╚████║██║  ██║   ██║      ██║         ╚██████╔╝███████║"
 echo "  ╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝      ╚═╝          ╚═════╝ ╚══════╝"
 echo -e "${N}"
+echo -e "  ${C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
+echo -e "  ${W}NattCell Kernel${N} ${C}·${N} Distributed Living Organism ${C}·${N} ${W}38 Cells${N}"
+echo -e "  ${C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
+echo ""
 echo -e "  ${W}SmartAudit v4.0 — $TS${N}"
 echo -e "  Root: $ROOT"
 
@@ -589,30 +593,30 @@ else
     ((APP_TOTAL++)) || true
 
     LINES=$(wc -l < "$fpath" | tr -dc '0-9')
-    HAS_LOGIN=$(grep -c "doLogin\b" "$fpath" 2>/dev/null || echo 0)
-    HAS_RENDER=$(grep -cE "renderAll|renderGrid|renderList|tbody|\.innerHTML\s*=" "$fpath" 2>/dev/null || echo 0)
-    HAS_PAYMENT=$(grep -ciE "payment|thanh.to[aá]n|qr.code|vietqr|checkout|chuyen.khoan|zalopay" "$fpath" 2>/dev/null || echo 0)
-    HAS_SHIP=$(grep -ciE "GHN|Nh[aâ]t.T[ií]n|GHTK|Viettel.Post|van.chuyen|shipping|logistics" "$fpath" 2>/dev/null || echo 0)
-    HAS_EOD=$(grep -c "nattos-eod-engine" "$fpath" 2>/dev/null || echo 0)
-    HAS_THEME=$(grep -c "nattos-ui-theme" "$fpath" 2>/dev/null || echo 0)
-    HAS_FX=$(grep -c "nattos-fx" "$fpath" 2>/dev/null || echo 0)
+    HAS_LOGIN=$(grep -c "doLogin" "$fpath" 2>/dev/null | tr -dc '0-9')
+    HAS_RENDER=$(grep -cE "renderAll|renderGrid|renderList|tbody" "$fpath" 2>/dev/null | tr -dc '0-9')
+    HAS_PAYMENT=$(grep -ciE "payment|vietqr|checkout|zalopay" "$fpath" 2>/dev/null | tr -dc '0-9')
+    HAS_SHIP=$(grep -ciE "GHN|GHTK|shipping|logistics" "$fpath" 2>/dev/null | tr -dc '0-9')
+    HAS_EOD=$(grep -c "nattos-eod-engine" "$fpath" 2>/dev/null | tr -dc '0-9')
+    HAS_THEME=$(grep -c "nattos-ui-theme" "$fpath" 2>/dev/null | tr -dc '0-9')
+    HAS_FX=$(grep -c "nattos-fx" "$fpath" 2>/dev/null | tr -dc '0-9')
 
     # Status
     IS_OK=true
-    [[ "$HAS_LOGIN" -eq 0 ]] && { IS_OK=false; APP_NO_LOGIN+=("$fname"); }
-    [[ "$HAS_RENDER" -eq 0 ]] && { IS_OK=false; APP_NO_RENDER+=("$fname"); }
-    [[ "$HAS_EOD" -eq 0 ]] && { IS_OK=false; APP_NO_EOD+=("$fname"); }
+    [ "${HAS_LOGIN:-0}" -eq 0 ] 2>/dev/null && { IS_OK=false; APP_NO_LOGIN+=("$fname"); }
+    [ "${HAS_RENDER:-0}" -eq 0 ] 2>/dev/null && { IS_OK=false; APP_NO_RENDER+=("$fname"); }
+    [ "${HAS_EOD:-0}" -eq 0 ] 2>/dev/null && { IS_OK=false; APP_NO_EOD+=("$fname"); }
 
     ICON="✅"
     $IS_OK && ((APP_OK++)) || { ICON="⚠️ "; ((APP_WARN++)) || true; }
 
-    L_COLOR=$G; [[ "$HAS_LOGIN" -eq 0 ]] && L_COLOR=$R
-    R_COLOR=$G; [[ "$HAS_RENDER" -eq 0 ]] && R_COLOR=$R
-    P_COLOR=$G; [[ "$HAS_PAYMENT" -eq 0 ]] && P_COLOR=$Y
-    S_COLOR=$G; [[ "$HAS_SHIP" -eq 0 ]] && S_COLOR=$Y
-    E_COLOR=$G; [[ "$HAS_EOD" -eq 0 ]] && E_COLOR=$R
-    T_COLOR=$G; [[ "$HAS_THEME" -eq 0 ]] && T_COLOR=$R
-    X_COLOR=$G; [[ "$HAS_FX" -eq 0 ]] && X_COLOR=$R
+    L_COLOR=$G; [ "${HAS_LOGIN:-0}" -eq 0 ] 2>/dev/null && L_COLOR=$R
+    R_COLOR=$G; [ "${HAS_RENDER:-0}" -eq 0 ] 2>/dev/null && R_COLOR=$R
+    P_COLOR=$G; [ "${HAS_PAYMENT:-0}" -eq 0 ] 2>/dev/null && P_COLOR=$Y
+    S_COLOR=$G; [ "${HAS_SHIP:-0}" -eq 0 ] 2>/dev/null && S_COLOR=$Y
+    E_COLOR=$G; [ "${HAS_EOD:-0}" -eq 0 ] 2>/dev/null && E_COLOR=$R
+    T_COLOR=$G; [ "${HAS_THEME:-0}" -eq 0 ] 2>/dev/null && T_COLOR=$R
+    X_COLOR=$G; [ "${HAS_FX:-0}" -eq 0 ] 2>/dev/null && X_COLOR=$R
 
     printf "  ${ICON} %-36s %5s ${L_COLOR}%6s${N} ${R_COLOR}%7s${N} ${P_COLOR}%4s${N} ${S_COLOR}%5s${N} ${E_COLOR}%4s${N} ${T_COLOR}%5s${N} ${X_COLOR}%4s${N}\n" \
       "$fname" "$LINES" \
@@ -664,7 +668,7 @@ else
     else
       ok "Tất cả app links valid"; inc_ok
     fi
-    [[ "$HAS_FX_IDX" -gt 0 ]] && { ok "nattos-fx.js in index"; inc_ok; } || { warn "nattos-fx.js MISSING từ index.html"; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
+    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { warn "nattos-fx.js MISSING từ index.html"; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
   else
     fail "index.html MISSING"; inc_fail "UI_APP: index.html not found"
   fi
