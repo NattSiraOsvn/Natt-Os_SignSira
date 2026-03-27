@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v2.0
+# NATT-OS SmartAudit v3.0
 # Author: Băng — Ground Truth Validator
 # Usage:  bash smartAudit.sh [--json] [--full]
 #         Chạy từ root natt-os ver2goldmaster
@@ -50,7 +50,7 @@ echo "  ██║╚██╗██║██╔══██║   ██║      
 echo "  ██║ ╚████║██║  ██║   ██║      ██║         ╚██████╔╝███████║"
 echo "  ╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝      ╚═╝          ╚═════╝ ╚══════╝"
 echo -e "${N}"
-echo -e "  ${W}SmartAudit v2.0 — $TS${N}"
+echo -e "  ${W}SmartAudit v3.0 — $TS${N}"
 echo -e "  Root: $ROOT"
 
 # ═══════════════════════════════════════════════════════════════
@@ -213,7 +213,7 @@ for cell_dir in src/cells/business/*/; do
   SL="—"
   PORT_ANY=$(find "$cell_dir/ports" -name "*smartlink*" 2>/dev/null | head -1)
   if [[ -n "$PORT_ANY" ]]; then
-    if grep -rql "smartlink\|SmartLink\|EventBus\|publish" "$cell_dir/domain/services/" 2>/dev/null; then
+    if grep -rq "SmartLinkPort" "$cell_dir/domain/services/" 2>/dev/null; then
       SL="WIRED✅"; ((BIZ_WIRED++)) || true
     else
       SL="PORT_ONLY⚠️"; ((BIZ_NOT_WIRED++)) || true
@@ -705,6 +705,387 @@ else
   [[ "$SURV_FILE" == "EXISTS" && "$SHEETS_SERVER" == "EXISTS" ]] && { ok "Surveillance stack ready"; inc_ok; }
 
 fi  # end UI_APP_DIR check
+
+# ═══════════════════════════════════════════════════════════════
+# S17 — ENGINE COVERAGE MAP
+# ═══════════════════════════════════════════════════════════════
+hdr "17" "ENGINE COVERAGE MAP"
+
+ENGINE_TOTAL=0; ENGINE_CELLS=0; NO_ENGINE_CELLS=()
+for cell_dir in src/cells/business/*/; do
+  cell=$(basename "$cell_dir")
+  engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v "node_modules" | wc -l | tr -d ' ')
+  if [[ "$engines" -gt 0 ]]; then
+    ((ENGINE_TOTAL += engines)) || true
+    ((ENGINE_CELLS++)) || true
+  else
+    NO_ENGINE_CELLS+=("$cell")
+  fi
+done
+
+# Kernel engines
+KERNEL_ENG=$(find src/cells/kernel -name "*.engine.ts" 2>/dev/null | wc -l | tr -d ' ')
+((ENGINE_TOTAL += KERNEL_ENG)) || true
+
+ok "Total engines: $ENGINE_TOTAL across business+kernel cells"
+ok "Business cells with engine: $ENGINE_CELLS"
+
+if [[ ${#NO_ENGINE_CELLS[@]} -gt 0 ]]; then
+  warn "Cells without engine (${#NO_ENGINE_CELLS[@]}): ${NO_ENGINE_CELLS[*]}"
+  inc_warn "ENGINE: ${#NO_ENGINE_CELLS[@]} cells have no engine"
+else
+  ok "All business cells have at least 1 engine"; inc_ok
+fi
+
+# List engines by cell (full mode)
+if [[ "$FULL_MODE" == "true" ]]; then
+  echo ""
+  info "Engine breakdown:"
+  for cell_dir in src/cells/business/*/; do
+    cell=$(basename "$cell_dir")
+    engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v node_modules)
+    if [[ -n "$engines" ]]; then
+      count=$(echo "$engines" | wc -l | tr -d ' ')
+      echo -e "  ${C}$cell${N}: $count engine(s)"
+    fi
+  done
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S18 — EVENTBUS FLOW TRACER
+# ═══════════════════════════════════════════════════════════════
+hdr "18" "EVENTBUS FLOW TRACER"
+
+# Count emit events
+EMIT_COUNT=$(grep -rh "EventBus\.emit\|EventBus\.publish" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -d ' ')
+SUB_COUNT=$(grep -rh "EventBus\.on\|EventBus\.subscribe" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -d ' ')
+
+ok "EventBus.emit/publish calls: $EMIT_COUNT"
+ok "EventBus.on/subscribe calls: $SUB_COUNT"
+
+# Find unique event types being emitted
+EVENT_TYPES=$(grep -roh "emit('[^']*'" src/ --include="*.ts" 2>/dev/null | sed "s/emit('//;s/'//" | sort -u | grep -v "^$")
+EVENT_COUNT=$(echo "$EVENT_TYPES" | grep -c "." 2>/dev/null || echo 0)
+
+ok "Unique event types emitted: $EVENT_COUNT"
+
+if [[ "$FULL_MODE" == "true" && -n "$EVENT_TYPES" ]]; then
+  info "Event types:"
+  echo "$EVENT_TYPES" | while read -r ev; do
+    [[ -n "$ev" ]] && echo "  ${C}→${N} $ev"
+  done
+fi
+
+# Check EventBus wired to Quantum Defense
+if grep -rq "cell.metric" src/cells/ --include="*.engine.ts" 2>/dev/null; then
+  ok "cell.metric signal: WIRED to engines"; inc_ok
+else
+  warn "cell.metric signal: not found in engines"
+  inc_warn "EVENTBUS: cell.metric not emitted from engines"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S19 — CONTRACT INTEGRITY
+# ═══════════════════════════════════════════════════════════════
+hdr "19" "CONTRACT INTEGRITY"
+
+CONTRACT_OK=0; CONTRACT_WARN=0
+for cell_dir in src/cells/*/; do
+  contracts_dir="$cell_dir/contracts"
+  if [[ -d "$contracts_dir" ]]; then
+    contract_files=$(find "$contracts_dir" -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+    if [[ "$contract_files" -gt 0 ]]; then
+      ((CONTRACT_OK++)) || true
+    fi
+  fi
+done
+
+TOTAL_CONTRACTS=$(find src/cells -path "*/contracts/*.ts" 2>/dev/null | wc -l | tr -d ' ')
+ok "Contract files found: $TOTAL_CONTRACTS across $CONTRACT_OK cells"
+
+# Check event-contracts package
+if [[ -d "packages/event-contracts" ]]; then
+  PKG_CONTRACTS=$(find packages/event-contracts -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+  ok "packages/event-contracts: $PKG_CONTRACTS files"; inc_ok
+else
+  warn "packages/event-contracts: NOT FOUND"; inc_warn "CONTRACT: event-contracts package missing"
+fi
+
+# Hiến Pháp DNA alignment
+if [[ -f "src/governance/gatekeeper/dna-loader.ts" ]]; then
+  DNA_TRIGGERS=$(grep -c "TriggerType\." src/governance/gatekeeper/dna-loader.ts 2>/dev/null || echo 0)
+  ok "DNA_VALID_TRIGGERS: $DNA_TRIGGERS trigger types registered"; inc_ok
+else
+  fail "dna-loader.ts: NOT FOUND"; inc_fail "CONTRACT: DNA loader missing"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S20 — DEPENDENCY GRAPH (Cross-cell import violations)
+# ═══════════════════════════════════════════════════════════════
+hdr "20" "DEPENDENCY GRAPH — CROSS-CELL IMPORT CHECK"
+
+VIOLATIONS=0; VIOLATION_LIST=()
+
+# Check if any cell imports directly from another cell (Điều 4 violation)
+while IFS= read -r file; do
+  cell=$(echo "$file" | sed 's|src/cells/[^/]*/\([^/]*\)/.*|\1|')
+  # Find imports from other cells
+  bad=$(grep -n "from.*src/cells" "$file" 2>/dev/null | grep -v "from '@/\|from \"@/" | head -3)
+  if [[ -n "$bad" ]]; then
+    VIOLATIONS=$((VIOLATIONS + 1))
+    VIOLATION_LIST+=("$file")
+  fi
+done < <(find src/cells -name "*.ts" ! -path "*/node_modules/*" 2>/dev/null | head -200)
+
+if [[ $VIOLATIONS -eq 0 ]]; then
+  ok "No direct cross-cell imports detected (Điều 4 ✅)"; inc_ok
+else
+  warn "$VIOLATIONS files with potential cross-cell imports"
+  inc_warn "DEP: $VIOLATIONS cross-cell import violations"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    for v in "${VIOLATION_LIST[@]}"; do echo "  ${Y}→${N} $v"; done
+  fi
+fi
+
+# Check EventBus used as bridge (correct pattern)
+EB_BRIDGE=$(grep -rl "EventBus" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -d ' ')
+ok "Cells using EventBus as bridge: $EB_BRIDGE files"
+
+# ═══════════════════════════════════════════════════════════════
+# S21 — MEMORY FILES HEALTH
+# ═══════════════════════════════════════════════════════════════
+hdr "21" "MEMORY FILES HEALTH"
+
+MEM_DIR="src/governance/memory"
+
+# bangmf
+BANGMF=$(find "$MEM_DIR/bang" -name "bangmf_v*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$BANGMF" ]]; then
+  BANGMF_VER=$(basename "$BANGMF" .json)
+  if python3 -c "import json,sys; json.load(open('$BANGMF'))" 2>/dev/null; then
+    ok "bangmf: $BANGMF_VER ✅ (valid JSON)"; inc_ok
+  else
+    fail "bangmf: $BANGMF_VER INVALID JSON"; inc_fail "MEMORY: bangmf JSON corrupted"
+  fi
+else
+  warn "bangmf: not found"; inc_warn "MEMORY: bangmf missing"
+fi
+
+# bangfs
+BANGFS=$(find "$MEM_DIR/bang" -name "bangfs_v*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$BANGFS" ]]; then
+  BANGFS_VER=$(basename "$BANGFS" .json)
+  if python3 -c "import json,sys; json.load(open('$BANGFS'))" 2>/dev/null; then
+    ok "bangfs: $BANGFS_VER ✅ (valid JSON)"; inc_ok
+  else
+    fail "bangfs: $BANGFS_VER INVALID JSON"; inc_fail "MEMORY: bangfs JSON corrupted"
+  fi
+else
+  warn "bangfs: not found"; inc_warn "MEMORY: bangfs missing"
+fi
+
+# thiennho
+THIENNHO=$(find "$MEM_DIR/thiennho" -name "*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$THIENNHO" ]]; then
+  THIENNHO_VER=$(basename "$THIENNHO" .json)
+  if python3 -c "import json,sys; json.load(open('$THIENNHO'))" 2>/dev/null; then
+    ok "thiennho: $THIENNHO_VER ✅ (valid JSON)"; inc_ok
+  else
+    fail "thiennho: INVALID JSON"; inc_fail "MEMORY: thiennho JSON corrupted"
+  fi
+else
+  warn "thiennho: not found"; inc_warn "MEMORY: thiennho missing"
+fi
+
+# kimf
+KIMF=$(find "$MEM_DIR/kim" -name "kmf*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$KIMF" ]]; then
+  ok "kimf: $(basename $KIMF .json) ✅"; inc_ok
+else
+  info "kimf: not found (optional)"
+fi
+
+# Check no .zip in memory
+ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$ZIP_IN_MEM" -gt 0 ]]; then
+  warn "$ZIP_IN_MEM .zip file(s) in memory dir — should not be committed"
+  inc_warn "MEMORY: .zip files present"
+else
+  ok "No .zip files in memory dir"; inc_ok
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S22 — MATH + METABOLISM COVERAGE
+# ═══════════════════════════════════════════════════════════════
+hdr "22" "MATH + METABOLISM COVERAGE"
+
+# Math modules
+MATH_MODULES=("replicator-dynamics" "nash-equilibrium" "lyapunov" "fisher-info" "persistent-homology" "error-correction")
+MATH_OK=0
+for m in "${MATH_MODULES[@]}"; do
+  if [[ -f "src/metabolism/math/$m.ts" ]]; then
+    ((MATH_OK++)) || true
+  else
+    warn "Math module missing: $m"
+  fi
+done
+if [[ $MATH_OK -eq ${#MATH_MODULES[@]} ]]; then
+  ok "Math modules: $MATH_OK/${#MATH_MODULES[@]} ✅"; inc_ok
+else
+  warn "Math modules: $MATH_OK/${#MATH_MODULES[@]}"; inc_warn "MATH: ${#MATH_MODULES[@]}-$MATH_OK modules missing"
+fi
+
+# Plugin modules
+PLUGIN_FILES=$(find src/metabolism/plugins -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$PLUGIN_FILES" -ge 3 ]]; then
+  ok "Plugin system: $PLUGIN_FILES files ✅"; inc_ok
+else
+  warn "Plugin system: only $PLUGIN_FILES files"; inc_warn "PLUGIN: incomplete"
+fi
+
+# Healing modules
+HEALING_FILES=$(find src/metabolism/healing -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$HEALING_FILES" -ge 3 ]]; then
+  ok "Healing modules: $HEALING_FILES files ✅"; inc_ok
+else
+  warn "Healing modules: $HEALING_FILES files"; inc_warn "HEALING: incomplete"
+fi
+
+# AnomalyDetector check
+if [[ -f "src/metabolism/healing/anomaly-detector.ts" ]]; then
+  ok "AnomalyDetector: EXISTS ✅"; inc_ok
+else
+  warn "AnomalyDetector: MISSING"; inc_warn "HEALING: anomaly-detector missing"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S23 — QNEU SCORE TREND
+# ═══════════════════════════════════════════════════════════════
+hdr "23" "QNEU SCORE TREND"
+
+BASELINE_BANG=300; BASELINE_THIEN=135; BASELINE_KIM=120
+BASELINE_CAN=85; BASELINE_BOIBOI=40
+
+# Read current scores from system-state if available
+STATE_FILE="src/governance/qneu/data/system-state.json"
+if [[ -f "$STATE_FILE" ]]; then
+  CURR_BANG=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('BANG',{}).get('currentScore',$BASELINE_BANG)))" 2>/dev/null || echo $BASELINE_BANG)
+  CURR_KIM=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('KIM',{}).get('currentScore',$BASELINE_KIM)))" 2>/dev/null || echo $BASELINE_KIM)
+
+  echo ""
+  printf "  %-12s %-10s %-10s %s\n" "Entity" "Baseline" "Current" "Trend"
+  printf "  %-12s %-10s %-10s %s\n" "──────" "────────" "───────" "─────"
+
+  for entity in BANG THIEN KIM CAN BOI_BOI; do
+    base_var="BASELINE_$entity"
+    base=${!base_var}
+    curr=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('$entity',{}).get('currentScore',$base)))" 2>/dev/null || echo $base)
+    delta=$((curr - base))
+    if [[ $delta -gt 0 ]]; then trend="↑ +$delta"
+    elif [[ $delta -lt 0 ]]; then trend="↓ $delta"
+    else trend="→ stable"; fi
+    printf "  %-12s %-10s %-10s %s\n" "$entity" "$base" "$curr" "$trend"
+  done
+  ok "QNEU scores loaded from system-state"; inc_ok
+else
+  info "system-state.json not found — showing seed baselines"
+  printf "  %-12s %s\n" "Entity" "Seed Score"
+  printf "  %-12s %s\n" "BANG" "300"
+  printf "  %-12s %s\n" "THIEN" "135"
+  printf "  %-12s %s\n" "KIM" "120"
+  printf "  %-12s %s\n" "CAN" "85"
+  printf "  %-12s %s\n" "BOI_BOI" "40"
+fi
+
+# Check first-seed version
+SEED_VER=$(grep -o "version:.*'[0-9.]*'" src/governance/qneu/first-seed.ts 2>/dev/null | head -1 | grep -o "[0-9.]*" | head -1)
+[[ -n "$SEED_VER" ]] && ok "first-seed version: v$SEED_VER" || info "first-seed version: unknown"
+
+# ═══════════════════════════════════════════════════════════════
+# S24 — DEAD CODE DETECTION
+# ═══════════════════════════════════════════════════════════════
+hdr "24" "DEAD CODE DETECTION"
+
+ORPHAN_COUNT=0; ORPHAN_LIST=()
+
+# Find .ts files not imported by anyone (sample check — expensive so limit)
+SAMPLE_FILES=$(find src/cells -name "*.ts" ! -name "index.ts" ! -name "*.d.ts" \
+  ! -path "*/node_modules/*" ! -path "*/baithicuakim/*" 2>/dev/null | head -100)
+
+while IFS= read -r file; do
+  [[ -z "$file" ]] && continue
+  filename=$(basename "$file" .ts)
+  # Check if this file is imported anywhere
+  imported=$(grep -rl "$filename" src/ --include="*.ts" 2>/dev/null | grep -v "^$file$" | head -1)
+  if [[ -z "$imported" ]]; then
+    ((ORPHAN_COUNT++)) || true
+    ORPHAN_LIST+=("$file")
+  fi
+done <<< "$SAMPLE_FILES"
+
+if [[ $ORPHAN_COUNT -eq 0 ]]; then
+  ok "Dead code: none detected in sampled files (100 files)"; inc_ok
+elif [[ $ORPHAN_COUNT -le 5 ]]; then
+  warn "Potential orphans: $ORPHAN_COUNT files"
+  inc_warn "DEAD: $ORPHAN_COUNT orphan files detected"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    for f in "${ORPHAN_LIST[@]}"; do echo "  ${Y}→${N} $f"; done
+  fi
+else
+  warn "Potential orphans: $ORPHAN_COUNT files (sample of 100)"
+  inc_warn "DEAD: high orphan count — review needed"
+fi
+
+# Check for @ts-nocheck count (high count = technical debt)
+NOCHECK_COUNT=$(grep -rl "@ts-nocheck" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$NOCHECK_COUNT" -le 5 ]]; then
+  ok "@ts-nocheck files: $NOCHECK_COUNT (healthy)"; inc_ok
+elif [[ "$NOCHECK_COUNT" -le 15 ]]; then
+  warn "@ts-nocheck files: $NOCHECK_COUNT (monitor)"; inc_warn "DEBT: $NOCHECK_COUNT ts-nocheck files"
+else
+  fail "@ts-nocheck files: $NOCHECK_COUNT (too many)"; inc_fail "DEBT: excessive ts-nocheck usage"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S25 — NATTOS.SH SELF-HEALTH
+# ═══════════════════════════════════════════════════════════════
+hdr "25" "NATTOS.SH SELF-HEALTH"
+
+SCRIPT="nattos.sh"
+if [[ ! -f "$SCRIPT" ]]; then SCRIPT="./nattos.sh"; fi
+
+SCRIPT_LINES=$(wc -l < "$SCRIPT" | tr -d ' ')
+ok "Script size: $SCRIPT_LINES lines"
+
+# Count sections
+SECTION_COUNT=$(grep -c "^hdr " "$SCRIPT" 2>/dev/null || echo 0)
+ok "Sections: $SECTION_COUNT total"
+
+# Check bash 3.2 compat — no [[...]] with regex, no arrays with -A
+BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$BASH4_ONLY" -gt 0 ]]; then
+  warn "bash 4+ syntax detected: $BASH4_ONLY instances — may break on macOS bash 3.2"
+  inc_warn "SCRIPT: bash 4+ syntax present"
+else
+  ok "bash 3.2 compatible: no bash4+ syntax detected"; inc_ok
+fi
+
+# Check script is executable
+if [[ -x "$SCRIPT" ]]; then
+  ok "Script executable: ✅"; inc_ok
+else
+  warn "Script not executable — run: chmod +x $SCRIPT"; inc_warn "SCRIPT: not executable"
+fi
+
+# Version check
+AUDIT_VER=$(grep -o "SmartAudit v[0-9.]*" "$SCRIPT" | head -1)
+ok "Version: $AUDIT_VER"
+
+# inc helper check
+if grep -q "inc_ok\|inc_warn\|inc_fail" "$SCRIPT" 2>/dev/null; then
+  ok "Counter helpers: present"; inc_ok
+fi
+
 
 hdr "16" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
