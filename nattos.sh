@@ -1134,6 +1134,7 @@ src="src"
 declared={}; instantiated={}
 cls_pat=re.compile(r"export\s+class\s+(\w+Engine)\b")
 new_pat=re.compile(r"new\s+(\w+Engine)\s*\(")
+new_pat2=re.compile(r"new\s+\(m\.(\w+Engine)")
 for root,dirs,files in os.walk(src):
     dirs[:]=[d for d in dirs if d not in("node_modules","baithicuakim")]
     for f in files:
@@ -1143,6 +1144,9 @@ for root,dirs,files in os.walk(src):
         except: continue
         for cls in cls_pat.findall(c): declared[cls]=path
         for cls in new_pat.findall(c):
+            if cls not in instantiated: instantiated[cls]=[]
+            instantiated[cls].append(path)
+        for cls in new_pat2.findall(c):
             if cls not in instantiated: instantiated[cls]=[]
             instantiated[cls].append(path)
 dead=set(declared)-set(instantiated); alive=set(declared)&set(instantiated)

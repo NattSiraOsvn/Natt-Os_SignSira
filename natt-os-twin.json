@@ -1,28 +1,28 @@
 {
   "schema": "natt-os-digital-twin-v1.0",
-  "generated_at": "2026-03-27T21:18:14.973429",
+  "generated_at": "2026-03-27T21:48:28.425230",
   "git": {
-    "commit": "0f2ff95"
+    "commit": "d6fa031"
   },
   "system_vitals": {
     "state": "CRITICAL",
     "risk_score": 50
   },
   "event_intelligence": {
-    "healthy": 9,
-    "orphan_emits": 1
+    "healthy": 2,
+    "orphan_emits": 3
   },
   "engine_intelligence": {
     "declared": 72,
-    "dead_count": 36
+    "dead_count": 12
   },
   "signal_intelligence": {
     "wired": 21,
     "blind": 26
   },
   "diagnosis": [
-    "DEAD_WEIGHT: 36 unused engines",
+    "DEAD_WEIGHT: 12 unused engines",
     "SENSORY_DEFICIT: 26 blind cells",
-    "FLOW_DEFICIT: only 9 healthy chains"
+    "FLOW_DEFICIT: only 2 healthy chains"
   ]
 }
