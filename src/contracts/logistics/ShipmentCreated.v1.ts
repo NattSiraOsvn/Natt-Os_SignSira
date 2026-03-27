@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 🚚 ShipmentCreated.v1 — TK 641 outbound / TK 152 inbound */
 export interface ShipmentCreatedPayload {
+  [key: string]: unknown;
   shipment_id: string; direction: 'INBOUND' | 'OUTBOUND';
   ref_order_id: string; ref_supplier_id?: string; provider: string;
   sender_address: string; receiver_address: string;

@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 🔧 WarrantyClaimCreated.v1 */
 export interface WarrantyClaimCreatedPayload {
+  [key: string]: unknown;
   claim_id: string; warranty_id: string; customer_id: string; sku: string;
   issue_description: string; claim_type: 'REPAIR' | 'REPLACEMENT' | 'INSPECTION';
   estimated_cost_vnd?: number; created_at: string;

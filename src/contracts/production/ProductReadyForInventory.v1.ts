@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 📦 ProductReadyForInventory.v1 — polishing → TK 155 */
 export interface ProductReadyForInventoryPayload {
+  [key: string]: unknown;
   polishing_order_id: string; order_id: string; sku: string;
   product_name: string; total_cost_vnd: number; ready_at: string;
 }

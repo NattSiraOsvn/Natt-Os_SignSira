@@ -1,7 +1,8 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 type OrderStatus = 'PENDING' | 'CONFIRMED' | 'IN_PRODUCTION' | 'READY' | 'DELIVERED' | 'CANCELLED';
 /** 🔄 OrderStatusChanged.v1 */
 export interface OrderStatusChangedPayload {
+  [key: string]: unknown;
   order_id: string;
   previous_status: OrderStatus;
   new_status: OrderStatus;

@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** ✅ CastingCompleted.v1 — hao hụt vàng vào TK 154 */
 export interface CastingCompletedPayload {
+  [key: string]: unknown;
   casting_order_id: string; order_id: string;
   gold_weight_input_gram: number; gold_weight_output_gram: number;
   loss_gram: number; loss_rate_pct: number; completed_at: string;

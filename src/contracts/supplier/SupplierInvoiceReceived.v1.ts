@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 🧾 SupplierInvoiceReceived.v1 — Nợ 152/642 + Nợ 1331 / Có 331 */
 export interface SupplierInvoiceReceivedPayload {
+  [key: string]: unknown;
   supplier_invoice_id: string; supplier_order_id: string; supplier_id: string;
   invoice_number: string; invoice_date: string;
   subtotal_vnd: number; vat_amount_vnd: number; total_vnd: number;

@@ -1,11 +1,12 @@
 
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 
 /**
  * 💰 PaymentCompleted.v1
  * Phát hành bởi Finance Service khi tiền đã thực vào tài khoản (Bank/Gate confirm).
  */
 export interface PaymentCompletedPayload {
+  [key: string]: unknown;
   payment_id: string;
   order_id: string;
   invoice_id: string;

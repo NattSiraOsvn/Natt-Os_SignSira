@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 👤 CustomerCreated.v1 */
 export interface CustomerCreatedPayload {
+  [key: string]: unknown;
   customer_id: string; type: 'INDIVIDUAL' | 'CORPORATE'; name: string;
   phone?: string; email?: string; tax_id?: string;
   tier: 'STANDARD' | 'VIP' | 'DIAMOND'; created_at: string;

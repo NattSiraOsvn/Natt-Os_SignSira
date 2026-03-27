@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 🔍 FinishingQCPassed.v1 */
 export interface FinishingQCPassedPayload {
+  [key: string]: unknown;
   finishing_order_id: string; order_id: string;
   qc_inspector: string; qc_notes?: string; passed_at: string;
 }

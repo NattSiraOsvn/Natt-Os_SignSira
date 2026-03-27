@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 🛒 OrderCreated.v1 */
 export interface OrderCreatedPayload {
+  [key: string]: unknown;
   order_id: string;
   customer_id: string;
   channel: 'SHOWROOM' | 'ONLINE' | 'B2B';

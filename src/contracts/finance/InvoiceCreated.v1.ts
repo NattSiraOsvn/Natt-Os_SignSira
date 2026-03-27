@@ -1,11 +1,12 @@
 
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 
 /**
  * 📄 InvoiceCreated.v1
  * Phát hành bởi Finance Service khi hóa đơn (Proforma/Final) được khởi tạo.
  */
 export interface InvoiceCreatedPayload {
+  [key: string]: unknown;
   invoice_id: string;
   order_id: string;
   type: 'PROFORMA' | 'FINAL';

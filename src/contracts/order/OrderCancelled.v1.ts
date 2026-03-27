@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** ❌ OrderCancelled.v1 */
 export interface OrderCancelledPayload {
+  [key: string]: unknown;
   order_id: string; customer_id: string; cancelled_by: string;
   reason: string; refund_required: boolean; refund_amount?: number; cancelled_at: string;
 }

@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 📥 StockIn.v1 */
 export interface StockInPayload {
+  [key: string]: unknown;
   movement_id: string; sku: string;
   zone: 'RAW_MATERIAL' | 'WIP' | 'FINISHED_GOODS' | 'TRADING';
   tk_account: string; quantity: number; unit_cost_vnd: number; total_cost_vnd: number;

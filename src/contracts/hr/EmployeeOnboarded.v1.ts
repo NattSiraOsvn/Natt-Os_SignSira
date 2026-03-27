@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 👷 EmployeeOnboarded.v1 */
 export interface EmployeeOnboardedPayload {
+  [key: string]: unknown;
   employee_id: string; department: 'FACTORY' | 'OFFICE' | 'SHOWROOM';
   position: string; tk_salary: '622' | '623' | '641' | '642';
   contract_type: 'FULLTIME' | 'PARTTIME' | 'PROBATION';

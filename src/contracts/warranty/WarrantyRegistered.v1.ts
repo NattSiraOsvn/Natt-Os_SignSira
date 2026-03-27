@@ -1,6 +1,7 @@
-import { EventEnvelope } from '../../../types';
+import { EventEnvelope } from '@/core/events/event-envelope';
 /** 🛡️ WarrantyRegistered.v1 */
 export interface WarrantyRegisteredPayload {
+  [key: string]: unknown;
   warranty_id: string; order_id: string; customer_id: string; sku: string;
   serial_number?: string; warranty_months: number;
   starts_at: string; expires_at: string; registered_at: string;
