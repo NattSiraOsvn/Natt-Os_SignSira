@@ -60,6 +60,3 @@ export class WeightGuardEngine {
 
 export const weightGuard = new WeightGuardEngine();
 
-export const weightGuard = new WeightGuardEngine();
-
-export const weightGuard = new WeightGuardEngine();

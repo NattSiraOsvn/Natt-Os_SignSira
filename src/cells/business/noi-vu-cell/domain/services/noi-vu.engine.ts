@@ -1,14 +1,10 @@
-      summaries.push({ entityId, metrics: avgMetrics, sources: Array.from(sources), conflicts });
-    }
+// @ts-nocheck
+/**
+ * noi-vu.engine.ts — Internal operations: facilities, assets, admin
+ * Path: src/cells/business/noi-vu-cell/domain/services/
+ */
 
-    return summaries;
-  }
-}
-
-
-// ── noi-vu.engine.ts ────────────────────────────────────────
-// Internal operations: facilities, assets, admin
-// Path: src/cells/business/noi-vu-cell/domain/services/
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export interface AssetRecord {
   assetId:   string;

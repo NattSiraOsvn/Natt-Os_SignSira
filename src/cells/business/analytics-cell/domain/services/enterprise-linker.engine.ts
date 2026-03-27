@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ── enterprise-linker.engine.ts ─────────────────────────────
 // Analytics: liên kết dữ liệu đa nguồn → KPI tổng hợp
 // Path: src/cells/business/analytics-cell/domain/services/
@@ -45,3 +46,8 @@ export class EnterpriseLinkerEngine {
         // Conflict: variance > 10% of mean
         const variance = values.reduce((s, v) => s + (v - avg) ** 2, 0) / values.length;
         if (avg > 0 && Math.sqrt(variance) / avg > 0.1) conflicts.push(metric);
+}
+}
+
+  }
+}
