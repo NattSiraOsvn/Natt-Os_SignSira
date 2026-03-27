@@ -67,12 +67,13 @@ class NATTEventBus {
     );
   }
 
-  emit(eventType: string, payload: any): void {
+  emit(eventType: string, payload: any, causedBy?: string): void {
     this._traceEmit(eventType, 'engine-emitter');
     this.publish(
       { type: eventType as DomainEventType, payload },
       'engine-emitter',
-      `emit-${Date.now()}-${Math.random().toString(36).slice(2,6)}`
+      `emit-${Date.now()}-${Math.random().toString(36).slice(2,6)}`,
+      { causationId: causedBy }
     );
   }
   // ── end aliases ────────────────────────────────────────────

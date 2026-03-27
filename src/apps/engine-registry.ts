@@ -14,7 +14,7 @@ function wire(event: string, cell: string, fn: () => void) {
     EventBus.on(event, (env: any) => {
       try {
         fn();
-        EventBus.emit("cell.metric", { cell, metric: event, value: 1, ts: Date.now() });
+        EventBus.emit("cell.metric", { cell, metric: event, value: 1, ts: Date.now() }, event);
       } catch { /* silent */ }
     });
   } catch { /* silent */ }
