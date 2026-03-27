@@ -694,14 +694,14 @@ else
   PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
-  SURV_FILE=$([ -f "nattos-sheets-server/surveillance.html" ] && echo "EXISTS" || echo "MISSING")
-  SHEETS_SERVER=$([ -f "nattos-sheets-server/server.js" ] && echo "EXISTS" || echo "MISSING")
+  SURV_FILE=$([ -f "src/ui-app/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "MISSING")
+  SHEETS_SERVER=$([ -f "nattos-server/server.js" ] && echo "EXISTS" || echo "MISSING")
   SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY MISSING (gitignored)")
 
   info "Payment support: $PAY_COUNT apps"
   info "Shipping (GHN/NTX): $SHIP_COUNT apps"
   info "SmartGetData: $SMART_COUNT apps"
-  info "Surveillance dashboard: $SURV_FILE"
+  info "NaUion v9 (UI shell): $SURV_FILE"
   info "GSheets server: $SHEETS_SERVER"
   info "SA Key: $SA_KEY"
 
