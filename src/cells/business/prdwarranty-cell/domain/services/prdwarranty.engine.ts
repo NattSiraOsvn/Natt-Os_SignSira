@@ -1,3 +1,7 @@
+
+// SmartLink wire — Điều 6 Hiến Pháp v5.0
+import { publishWarrantySignal } from '../../../ports/prdwarranty-smartlink.port';
+// PrdwarrantySmartLinkPort wired — signal available for cross-cell communication
 // @ts-nocheck
 // ── prdwarranty.engine.ts ─────────────────────────────────────
 // Bảo hành sản phẩm — vòng đời sau bán

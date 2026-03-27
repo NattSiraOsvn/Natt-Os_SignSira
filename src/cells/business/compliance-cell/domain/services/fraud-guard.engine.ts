@@ -1,3 +1,7 @@
+
+// SmartLink wire — Điều 6 Hiến Pháp v5.0
+import { publishComplianceSignal } from '../../../ports/compliance-smartlink.port';
+// ComplianceSmartLinkPort wired — signal available for cross-cell communication
 // @ts-nocheck
 // @ts-nocheck
 // @ts-nocheck

@@ -1,3 +1,7 @@
+
+// SmartLink wire — Điều 6 Hiến Pháp v5.0
+import { publishPromotionSignal } from '../../../ports/promotion-smartlink.port';
+// PromotionSmartLinkPort wired — signal available for cross-cell communication
 // @ts-nocheck
 /**
  * promotion.engine.ts — Rule-based khuyến mãi nữ trang
