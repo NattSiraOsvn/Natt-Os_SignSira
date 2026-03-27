@@ -1,0 +1,41 @@
+{
+  "healthy": [
+    "cell.metric"
+  ],
+  "orphan": [
+    "chromatic.state.changed",
+    "audit.record"
+  ],
+  "dead": [
+    "ProductionSpecReady",
+    "PRICING_PRODUCT_PRICE_REQUEST",
+    "SalesOrderCreated",
+    "wip:stone",
+    "INVENTORY_ITEM_RECEIVED",
+    "ProductionStageAdvanced",
+    "FINANCE_ORDER_FLOW_BUILD",
+    "StockReserved",
+    "PRICING_GOLD_PRICE_REQUEST",
+    "MaterialRetained",
+    "BomValidated",
+    "DustShortfall",
+    "BomRejected",
+    "LowPhoDetected",
+    "StockReplenished",
+    "ProductionStarted",
+    "SkuModelCreated",
+    "wip:in-progress",
+    "ProductionCompleted",
+    "DiamondLossDetected",
+    "INVENTORY_CODE_NORMALIZE",
+    "GoodsReceived",
+    "BomCreated",
+    "WeightAnomaly",
+    "FINANCE_DEPRECIATION_REQUEST",
+    "MaterialLossReported",
+    "FINANCE_CLASSIFY_ACCOUNT",
+    "GoodsDispatched",
+    "constitutional.violation",
+    "*"
+  ]
+}

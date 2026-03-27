@@ -1,0 +1,12 @@
+{
+  "state": "CRITICAL",
+  "risk": 50,
+  "strengths": [
+    "Event coverage clean (2 orphans)"
+  ],
+  "issues": [
+    "DEAD_WEIGHT: 42 unused engines",
+    "SENSORY_DEFICIT: 26 blind cells",
+    "FLOW_DEFICIT: only 1 healthy chains"
+  ]
+}

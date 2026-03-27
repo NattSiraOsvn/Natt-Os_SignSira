@@ -804,11 +804,11 @@ TOTAL_CONTRACTS=$(find src/cells -path "*/contracts/*.ts" 2>/dev/null | wc -l | 
 ok "Contract files found: $TOTAL_CONTRACTS across $CONTRACT_OK cells"
 
 # Check event-contracts package
-if [[ -d "packages/event-contracts" ]]; then
-  PKG_CONTRACTS=$(find packages/event-contracts -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
-  ok "packages/event-contracts: $PKG_CONTRACTS files"; inc_ok
+if [[ -d "src/contracts" ]]; then
+  PKG_CONTRACTS=$(find src/contracts -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
+  ok "src/contracts: $PKG_CONTRACTS files"; inc_ok
 else
-  warn "packages/event-contracts: NOT FOUND"; inc_warn "CONTRACT: event-contracts package missing"
+  warn "src/contracts: NOT FOUND"; inc_warn "CONTRACT: event-contracts package missing"
 fi
 
 # Hiến Pháp DNA alignment
@@ -1089,7 +1089,7 @@ fi
 
 # V4 SMART LAYER
 hdr "26" "V4 — EVENT FLOW GRAPH"
-python3 << \'PYEOF2\'
+python3 << 'PYEOF2'
 import os,re,json
 from collections import defaultdict
 src="src"
@@ -1118,7 +1118,7 @@ print(f"  \033[0;32m✅\033[0m Unique events: {len(all_ev)} | Healthy flows: {le
 for ev in orphan[:5]: print(f"      ⚠️  orphan: \'{ev}\' from {producers[ev][0]}")
 os.makedirs(".nattos-twin",exist_ok=True)
 json.dump({"healthy":healthy,"orphan":orphan,"dead":dead},open(".nattos-twin/event-graph.json","w"),indent=2)
-\'PYEOF2\'
+PYEOF2
 
 hdr "27" "V4 — ENGINE EXECUTION MAP"
 python3 << 'PY27'
