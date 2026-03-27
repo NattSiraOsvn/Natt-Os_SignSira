@@ -77,3 +77,70 @@ app.listen(PORT, () => {
 });
 
 module.exports = { EventBus };
+
+// ── ENGINE WIRING — Event Chain ───────────────────────────────────────────
+// ORDER → CASH flow
+EventBus.on('order.created', (env) => {
+  EventBus.emit('production.planned', { ...env.payload, ts: Date.now() });
+  EventBus.emit('customer.notified', { ...env.payload, ts: Date.now() });
+  EventBus.emit('audit.record', { event: 'order.created', ...env.payload });
+});
+
+EventBus.on('production.planned', (env) => {
+  EventBus.emit('casting.complete', { ...env.payload, ts: Date.now() });
+  EventBus.emit('cell.metric', { cell: 'production-cell', metric: 'production.started', value: 1 });
+});
+
+EventBus.on('casting.complete', (env) => {
+  EventBus.emit('stone.complete', { ...env.payload, ts: Date.now() });
+  EventBus.emit('dust.recovered', { ...env.payload, ts: Date.now() });
+  EventBus.emit('cell.metric', { cell: 'casting-cell', metric: 'casting.done', value: 1 });
+});
+
+EventBus.on('stone.complete', (env) => {
+  EventBus.emit('finishing.complete', { ...env.payload, ts: Date.now() });
+  EventBus.emit('cell.metric', { cell: 'stone-cell', metric: 'stone.done', value: 1 });
+});
+
+EventBus.on('finishing.complete', (env) => {
+  EventBus.emit('inventory.in', { ...env.payload, ts: Date.now() });
+  EventBus.emit('cell.metric', { cell: 'finishing-cell', metric: 'finishing.done', value: 1 });
+});
+
+EventBus.on('inventory.in', (env) => {
+  EventBus.emit('sales.confirm', { ...env.payload, ts: Date.now() });
+  EventBus.emit('cell.metric', { cell: 'inventory-cell', metric: 'inventory.updated', value: 1 });
+});
+
+EventBus.on('sales.confirm', (env) => {
+  EventBus.emit('payment.received', { ...env.payload, ts: Date.now() });
+  EventBus.emit('audit.record', { event: 'sales.confirm', ...env.payload });
+  EventBus.emit('cell.metric', { cell: 'sales-cell', metric: 'sales.confirmed', value: 1 });
+});
+
+EventBus.on('payment.received', (env) => {
+  EventBus.emit('audit.record', { event: 'payment.received', ...env.payload });
+  EventBus.emit('cell.metric', { cell: 'finance-cell', metric: 'payment.processed', value: 1 });
+  EventBus.emit('cell.metric', { cell: 'payment-cell', metric: 'payment.done', value: 1 });
+});
+
+EventBus.on('audit.record', (env) => {
+  EventBus.emit('cell.metric', { cell: 'audit-cell', metric: 'audit.recorded', value: 1 });
+});
+
+EventBus.on('buyback.requested', (env) => {
+  EventBus.emit('audit.record', { event: 'buyback.requested', ...env.payload });
+  EventBus.emit('cell.metric', { cell: 'buyback-cell', metric: 'buyback.started', value: 1 });
+});
+
+EventBus.on('customs.declaration', (env) => {
+  EventBus.emit('audit.record', { event: 'customs.declaration', ...env.payload });
+  EventBus.emit('cell.metric', { cell: 'customs-cell', metric: 'customs.processed', value: 1 });
+});
+
+EventBus.on('system.audit', (env) => {
+  EventBus.emit('cell.metric', { cell: 'audit-cell', metric: 'system.audit.run', value: 1 });
+  EventBus.emit('cell.metric', { cell: 'monitor-cell', metric: 'system.checked', value: 1 });
+});
+
+console.log('[EventBus] Engine chains wired: ORDER→CASH + PRODUCTION flow');
