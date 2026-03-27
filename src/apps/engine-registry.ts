@@ -304,6 +304,20 @@ tryImport("../governance/learning.engine", m => {
 // CryptoEngine + CustomsRobotEngine — không có file thật, đánh dấu heartbeat
 EventBus.emit("cell.metric", { cell: "customs-cell", metric: "crypto.heartbeat", value: 1, ts: Date.now() });
 
+
+// ── SellerEngine + WarehouseIntelligenceEngine ────────────────────────────
+tryImport("../cells/business/sales-cell/domain/engines/seller.engine", m => {
+  const eng = new (m.SellerEngine || m.default)();
+  wire("sales.confirm", "sales-cell", () => eng.execute?.());
+  wire("order.created", "sales-cell", () => eng.execute?.());
+});
+
+tryImport("../cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine", m => {
+  const eng = new (m.WarehouseIntelligenceEngine || m.default)();
+  wire("inventory.in", "warehouse-cell", () => eng.execute?.());
+  wire("system.audit", "warehouse-cell", () => eng.execute?.());
+});
+
 export function triggerOrderFlow(orderId: string, payload?: any) {
   EventBus.emit("order.created", { orderId, payload: payload ?? {}, ts: Date.now() });
 }
