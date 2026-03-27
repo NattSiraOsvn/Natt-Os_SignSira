@@ -34,6 +34,15 @@ export class ClosingExecutor {
       const allocationEntries = await AllocationEngine.allocate(period, session);
       journalEntries.push(...allocationEntries);
 
+      // Trigger finance order flow build — phân tích dòng tiền kỳ này
+      const { EventBus } = require('@/core/events/event-bus');
+      EventBus.emit('FINANCE_ORDER_FLOW_BUILD', {
+        records:   journalEntries,
+        period,
+        source:    'period-close-cell',
+        ts:        Date.now(),
+      });
+
       session.status = 'completed';
       session.updatedAt = new Date();
       session.updatedBy = 'system';

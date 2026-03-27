@@ -124,6 +124,12 @@ EventBus.subscribe('GoodsReceived' as any, async (envelope: any) => {
   }));
 
   await warehouseIngestHandler.process({ batchId, rows, requestedBy: 'supplier' });
+
+  // Notify inventory-cell → diamond normalize + code normalize
+  items.forEach((item: string) => {
+    EventBus.emit('INVENTORY_ITEM_RECEIVED', { itemId: item, rawText: item, source: 'warehouse-cell', ts: Date.now() });
+    EventBus.emit('INVENTORY_CODE_NORMALIZE', { rawCode: item, source: 'warehouse-cell', ts: Date.now() });
+  });
 }, 'warehouse-cell');
 
 // ── Public API ──

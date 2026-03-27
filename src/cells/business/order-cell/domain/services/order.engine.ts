@@ -168,3 +168,29 @@ export function extractOrderIds(text: unknown): ExtractedOrderId[] {
   }
   return out;
 }
+
+
+// Wire: order.created → PRICING requests
+import { EventBus } from '@/core/events/event-bus';
+
+EventBus.on('order.created', (payload: any) => {
+  if (!payload || !payload.orderId) return;
+
+  // Yêu cầu báo giá vàng
+  EventBus.emit('PRICING_GOLD_PRICE_REQUEST', {
+    orderId:   payload.orderId,
+    tuoiVang:  payload.tuoiVang ?? '75',
+    weightGram: payload.weightGram ?? 0,
+    source:    'order-cell',
+    ts:        Date.now(),
+  });
+
+  // Yêu cầu báo giá sản phẩm
+  EventBus.emit('PRICING_PRODUCT_PRICE_REQUEST', {
+    orderId:  payload.orderId,
+    maHang:   payload.maHang ?? '',
+    stream:   payload.stream ?? 'UNKNOWN',
+    source:   'order-cell',
+    ts:       Date.now(),
+  });
+});

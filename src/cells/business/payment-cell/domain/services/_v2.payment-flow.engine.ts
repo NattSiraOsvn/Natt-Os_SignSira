@@ -21,6 +21,19 @@ export interface PaymentResponse {
   transactionId: string;
 }
 
+import { EventBus } from '../../../../core/events/event-bus';
+
+// Wire: payment.received → FINANCE_CLASSIFY_ACCOUNT
+EventBus.on('payment.received', (payload: any) => {
+  if (!payload || !payload.amount) return;
+  EventBus.emit('FINANCE_CLASSIFY_ACCOUNT', {
+    description: payload.description ?? 'payment received',
+    amount: payload.amount,
+    source: 'payment-cell',
+    ts: Date.now(),
+  });
+});
+
 export class PaymentEngine {
   static async createPayment(req: PaymentRequest): Promise<PaymentResponse> {
     await new Promise(r => setTimeout(r, 1200));
