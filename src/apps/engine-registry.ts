@@ -357,3 +357,10 @@ export function triggerSystemAudit() {
 }
 
 export const EngineRegistry = { version: "2.0", timestamp: Date.now() };
+
+// ── weight-guard — production fraud detection ─────────────────────────────
+tryImport("../cells/business/production-cell/domain/services/weight-guard.engine", m => {
+  const eng = new (m.WeightGuardEngine ?? m.default)();
+  wire("casting.complete",  "production-cell", () => eng?.execute?.());
+  wire("finishing.complete","production-cell", () => eng?.execute?.());
+});
