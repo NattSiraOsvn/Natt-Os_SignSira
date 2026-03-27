@@ -122,7 +122,8 @@ EventBus.on('AuditLogged' as any, (env: any) => {
 EventBus.on('anomaly.detected' as any, (env: any) => {
   const p = env?.payload ?? env;
   EventBus.emit('audit.record', {
-    action:   `anomaly.${p?.type ?? 'unknown'}`,
+    action:   'anomaly.detected',
+    type:     p?.type ?? 'unknown',
     actor:    { id: 'anomaly-flow-engine', type: 'system' },
     resource: p?.orderId ?? 'unknown',
     result:   'fail',

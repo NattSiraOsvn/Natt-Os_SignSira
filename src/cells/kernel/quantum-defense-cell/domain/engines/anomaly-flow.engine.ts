@@ -33,6 +33,7 @@ export function bootstrapAnomalyFlowEngine(): void {
       const p = env?.payload ?? env;
       const orderId = p?.orderId ?? p?.originCell ?? 'unknown';
 
+      const timerKey = `${rule.from}:${rule.expect}:${orderId}`;
       const timer = setTimeout(() => {
         EventBus.emit('anomaly.detected', {
           type:       'FLOW_BREAK',
@@ -43,7 +44,8 @@ export function bootstrapAnomalyFlowEngine(): void {
           timeout:    rule.timeout,
           causedBy:   rule.from,
           sourceCell: 'anomaly-flow-engine',
-          chain:      [rule.from, '(missing)', rule.expect],
+          chain:      [rule.from, rule.expect],
+          missing:    true,
           ts:         Date.now(),
         }, rule.from);
 
@@ -59,9 +61,13 @@ export function bootstrapAnomalyFlowEngine(): void {
       }, rule.timeout);
 
       // Cancel nếu expected event xảy ra đúng hạn
-      const unsub = EventBus.on(rule.expect, () => {
-        clearTimeout(timer);
-        unsub();
+      const unsub = EventBus.on(rule.expect, (env2: any) => {
+        const p2 = env2?.payload ?? env2;
+        const incomingOrderId = p2?.orderId ?? p2?.originCell ?? 'unknown';
+        if (incomingOrderId === orderId) {
+          clearTimeout(timer);
+          unsub();
+        }
       });
     });
   }
