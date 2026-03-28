@@ -1103,7 +1103,7 @@ import os,re,json
 from collections import defaultdict
 src="src"
 producers=defaultdict(list); consumers=defaultdict(list)
-emit_pat=re.compile(r"EventBus\.(?:emit|publish)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
+emit_pat=re.compile(r"(?:EventBus\.(?:emit|publish)|typedEmit)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
 sub_pat=re.compile(r"EventBus\.(?:on|subscribe)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
 def get_cell(p):
     parts=p.split(os.sep)
