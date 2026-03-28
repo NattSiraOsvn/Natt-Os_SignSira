@@ -2069,6 +2069,31 @@ window.addEventListener('load', function() {
   });
 });
 
+
+function loadAuditTrail() {
+  if (window.NattOS) {
+    window.NattOS.audit(20).then(function(data) {
+      var events = data.events || [];
+      var el = document.getElementById('audit-live-events');
+      if (!el) return;
+      if (events.length === 0) {
+        el.innerHTML = '<div style="color:var(--t3);font-size:11px">No audit events — start server first</div>';
+        return;
+      }
+      var tot = document.getElementById('audit-total');
+      if (tot) tot.textContent = data.total;
+      el.innerHTML = events.slice().reverse().map(function(e) {
+        var color = e.event && e.event.indexOf('anomaly') > -1 ? 'var(--rose)' : e.event && e.event.indexOf('retry') > -1 ? 'var(--amber)' : 'var(--mint)';
+        return '<div style="display:flex;gap:8px;align-items:center;padding:4px 0;border-bottom:1px solid var(--border)">' +
+          '<span style="font-size:9px;color:var(--t3);min-width:60px">' + new Date(e.ts).toLocaleTimeString('vi') + '</span>' +
+          '<span style="font-size:10px;font-family:var(--mono);color:' + color + '">' + e.event + '</span>' +
+          '<span style="font-size:8px;color:var(--t3);margin-left:auto;font-family:var(--mono)">' + (e.hash||'').slice(0,8) + '</span>' +
+          '</div>';
+      }).join('');
+    }).catch(function() {
+      var el = document.getElementById('audit-live-events');
+      if (el) el.innerHTML = '<div style="color:var(--rose);font-size:11px">Server offline — start server first</div>';
+    });
+  }
+}
 </script>
-</body>
-</html>
