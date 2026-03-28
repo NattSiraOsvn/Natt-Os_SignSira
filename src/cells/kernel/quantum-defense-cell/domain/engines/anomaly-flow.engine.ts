@@ -9,6 +9,7 @@
  */
 
 import { EventBus } from '@/core/events/event-bus';
+import { typedEmit } from '@/core/events/typed-eventbus';
 
 interface WatchRule {
   from:     string;
@@ -34,7 +35,7 @@ export function bootstrapAnomalyFlowEngine(): void {
 
       const timerKey = `${rule.from}:${rule.expect}:${orderId}`;
       const timer = setTimeout(() => {
-        EventBus.emit('anomaly.detected', {
+        typedEmit('anomaly.detected', {
           type:       'FLOW_BREAK',
           from:       rule.from,
           expected:   rule.expect,
@@ -49,7 +50,7 @@ export function bootstrapAnomalyFlowEngine(): void {
         }, rule.from);
 
         // Feed ThresholdEngine
-        EventBus.emit('cell.metric', {
+        typedEmit('cell.metric', {
           cell:       'quantum-defense-cell',
           metric:     `anomaly.flow_break.${rule.from}`,
           value:      1,

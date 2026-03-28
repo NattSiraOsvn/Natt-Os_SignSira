@@ -10,6 +10,7 @@
  */
 
 import { EventBus } from '@/core/events/event-bus';
+import { typedEmit } from '@/core/events/typed-eventbus';
 
 const _retryCount: Map<string, number> = new Map();
 const MAX_RETRY = 3;
@@ -25,7 +26,7 @@ export function bootstrapSelfHealingEngine(): void {
 
     // CRITICAL — escalate thay vì retry
     if (p.severity === 'CRITICAL') {
-      EventBus.emit('audit.record', {
+      typedEmit('audit.record', {
         action:   'self-healing.escalated',
         actor:    { id: 'self-healing-engine', type: 'system' },
         resource: p.orderId,
@@ -42,7 +43,7 @@ export function bootstrapSelfHealingEngine(): void {
     // Max retry guard
     if (count >= MAX_RETRY) {
       console.warn(`[SelfHealing] MAX RETRY reached for ${key} — giving up`);
-      EventBus.emit('audit.record', {
+      typedEmit('audit.record', {
         action:   'self-healing.exhausted',
         actor:    { id: 'self-healing-engine', type: 'system' },
         resource: p.orderId,
@@ -69,7 +70,7 @@ export function bootstrapSelfHealingEngine(): void {
 
     setTimeout(() => {
       // Audit retry
-      EventBus.emit('audit.record', {
+      typedEmit('audit.record', {
         action:   'self-healing.retry',
         actor:    { id: 'self-healing-engine', type: 'system' },
         resource: p.orderId,
