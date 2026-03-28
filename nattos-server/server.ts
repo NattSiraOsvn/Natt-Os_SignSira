@@ -67,3 +67,19 @@ app.listen(PORT, () => {
 });
 
 export { EventBus };
+
+// ── L4 Intelligence API ───────────────────────────────────────────────────
+import { getFlowIntelligence } from '../src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine';
+
+app.get('/api/intelligence', (_req: any, res: any) => {
+  const intel = getFlowIntelligence();
+  const flows = Object.entries(intel).map(([flow, h]: [string, any]) => ({
+    flow,
+    failCount:     h.failCount,
+    successCount:  h.successCount,
+    avgRetries:    Math.round(h.avgRetries * 10) / 10,
+    adaptiveDelay: h.adaptiveDelay,
+    successRate:   h.failCount > 0 ? Math.round(h.successCount / h.failCount * 100) + '%' : 'N/A',
+  }));
+  res.json({ flows, total: flows.length, ts: Date.now() });
+});
