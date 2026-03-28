@@ -817,6 +817,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t);font-f
       </div>
 
       <!-- MONITORING -->
+      <div class="view" id="view-intelligence">
+        <div style="padding:24px">
+          <div class="db-hdr"><div class="db-t">L4 Intelligence — Flow Learning</div><div class="db-s">Adaptive retry history · Real-time</div></div>
+          <div id="intel-flows" style="margin-top:16px"></div>
+          <button onclick="loadIntelligence()" style="margin-top:16px;padding:8px 16px;background:var(--lav);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px">Refresh</button>
+        </div>
+      </div>
+
       <div class="view" id="view-monitoring">
         <div class="dash" style="overflow-y:auto">
           <div class="kpi-row">
@@ -1630,6 +1638,7 @@ const MODULES=[
   {id:'processor',title:'OMEGA SYNC',group:'SYSTEM',roles:['MASTER','LEVEL_8']},
   {id:'learning_hub',title:'NEURAL LEARNING',group:'SYSTEM',roles:['MASTER','LEVEL_1']},
   {id:'monitoring',title:'SYSTEM PULSE',group:'SYSTEM',roles:['MASTER']},
+  {id:'intelligence',title:'L4 INTELLIGENCE',group:'SYSTEM',roles:['MASTER']},
   {id:'dev',title:'LÕI HỆ THỐNG',icon:'⚙️',group:'SYSTEM',roles:['MASTER']},
   {id:'rbac_manager',title:'PHÂN QUYỀN & TẦNG KHỐI',icon:'🔐',group:'SYSTEM',roles:['MASTER','LEVEL_1']},
 ];
@@ -2015,6 +2024,22 @@ const NattOS = {
 };
 
 window.addEventListener('load', function() {
+  // L4 Intelligence API
+  NattOS.intelligence = async function() {
+    try {
+      const r = await fetch(this.SERVER+'/api/intelligence');
+      return await r.json();
+    } catch(e) { return {flows:[], total:0}; }
+  };
+
+  // All cells state
+  NattOS.allState = async function() {
+    try {
+      const r = await fetch(this.SERVER+'/api/state');
+      return await r.json();
+    } catch(e) { return {state:{}, cells:0}; }
+  };
+
   NattOS.health().then(function(h) {
     console.log('[NattOS Server]', h.status, h.ts||'');
     if(h.status === 'ok') {
