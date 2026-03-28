@@ -2086,17 +2086,5 @@ function loadAuditTrail() {
     }).join('');
   });
 }
-    el.innerHTML = events.map(function(e) {
-      var color = e.event && e.event.indexOf('anomaly') > -1 ? '#ff6b6b' : e.event && e.event.indexOf('retry') > -1 ? '#ffd93d' : '#6bcb77';
-      return '<div style="display:flex;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05)">' +
-        '<span style="font-size:9px;color:#666;min-width:60px">' + new Date(e.ts).toLocaleTimeString('vi') + '</span>' +
-        '<span style="font-size:10px;color:' + color + '">' + (e.event||'') + '</span>' +
-        '<span style="font-size:8px;color:#444;margin-left:auto">' + (e.hash||'').slice(0,8) + '</span>' +
-        '</div>';
-    }).join('');
-  }).catch(function() {
-    var el = document.getElementById('audit-live-events');
-    if (el) el.innerHTML = '<div style="color:#ff6b6b;font-size:11px">Server offline</div>';
-  });
 }
 </script>
