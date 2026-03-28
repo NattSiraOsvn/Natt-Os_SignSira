@@ -11,6 +11,7 @@
 //   GoldIssued           → casting-cell                  (xác nhận vàng đã xuất)
 
 import { EventBus } from '@/core/events/event-bus';
+import { typedEmit } from '@/core/events/typed-eventbus';
 import { createLap, markDefect, Lap, LapItem } from '../prdmaterials.entity';
 import { assessPrdMaterialsConfidence } from './prdmaterials.confidence';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
@@ -114,7 +115,7 @@ export const PrdMaterialsEngine = {
     const lossPct   = lap.totalGoldWeight > 0 ? (lossGold / lap.totalGoldWeight) * 100 : 0;
 
     if (lossPct > threshold) {
-      EventBus.emit('MaterialRetained', {
+      typedEmit('MaterialRetained', {
         orderId:      lap.orderId ?? 'unknown',
         materialCode: lap.material ?? 'unknown',
         issued:       lap.issuedWeight ?? 0,

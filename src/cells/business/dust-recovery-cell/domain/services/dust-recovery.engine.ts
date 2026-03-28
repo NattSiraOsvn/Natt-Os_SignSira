@@ -5,6 +5,7 @@
  */
 
 import { EventBus } from '../../../../core/events/event-bus';
+import { typedEmit } from '../../../../core/events/typed-eventbus';
 
 export type GoldMaterial = 'gold18k' | 'gold14k';
 
@@ -86,14 +87,14 @@ export class DustRecoveryEngine {
     });
 
     if (isAnomaly) {
-      EventBus.emit('DustShortfall', {
+      typedEmit('DustShortfall', {
         workerId:  workerId ?? 'unknown',
         sach:      recoveredDust ?? 0,
         actual:    dust,
         source:    'dust-recovery-cell',
         ts:        Date.now(),
       });
-      EventBus.emit('LowPhoDetected', {
+      typedEmit('LowPhoDetected', {
         workerId:  workerId ?? 'unknown',
         luong:     'SX',
         pho:       lossRate,

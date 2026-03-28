@@ -8,6 +8,7 @@ import { publishProductionSignal } from '../../ports/production-smartlink.port';
 // Path: src/cells/business/production-cell/domain/services/
 
 import { EventBus } from '../../../../../core/events/event-bus';
+import { typedEmit } from '../../../../../core/events/typed-eventbus';
 
 export interface WeightRecord {
   batchId:     string;
@@ -59,7 +60,7 @@ export class WeightGuardEngine {
     }
 
     if (isAnomaly) {
-      EventBus.emit('WeightAnomaly', {
+      typedEmit('WeightAnomaly', {
         orderId:   record.batchId,
         workerId:  record.workerId,
         weightIn:  record.weightIn,

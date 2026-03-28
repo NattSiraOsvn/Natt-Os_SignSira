@@ -5,6 +5,7 @@
  */
 
 import { EventBus } from '../../../../core/events/event-bus';
+import { typedEmit } from '../../../../core/events/typed-eventbus';
 
 export type StoneStatus = 'raw' | 'assigned' | 'mounted' | 'sold';
 export type StoneColor   = 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | string;
@@ -113,7 +114,7 @@ export class StoneEngine {
           confidence: 0.85,
           stoneId:    stone.id,
         });
-        EventBus.emit('DiamondLossDetected', {
+        typedEmit('DiamondLossDetected', {
           orderId:    updated.productId ?? 'unknown',
           bomCount:   1,
           actualCount: 1,
