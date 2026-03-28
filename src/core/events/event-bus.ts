@@ -58,6 +58,11 @@ class NATTEventBus {
 
   // ── on/emit aliases — engine-friendly API ─────────────────
   // Cho phép engines dùng eventBus.on('event', handler) thay vì subscribe()
+  // L3.5 — Decision Engine support
+  hasSubscriber(eventType: string): boolean {
+    return this._subs.some(s => s.eventType === eventType || s.eventType === '*');
+  }
+
   on(eventType: string, handler: (payload: any) => void): () => void {
     return this.subscribe(
       eventType as DomainEventType,

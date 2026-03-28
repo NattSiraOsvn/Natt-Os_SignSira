@@ -37,6 +37,20 @@ export function bootstrapSelfHealingEngine(): void {
       return;
     }
 
+    // L3.5 DECISION — No subscriber → escalate ngay, không retry vô ích
+    if (!EventBus.hasSubscriber(p.expected)) {
+      console.warn(`[SelfHealing] No subscriber for '${p.expected}' — skip retry, escalate`);
+      typedEmit('audit.record', {
+        action:   'self-healing.escalated',
+        actor:    { id: 'self-healing-engine', type: 'system' },
+        resource: p.orderId,
+        result:   'no-subscriber',
+        timestamp: Date.now(),
+        trace:    { causationId: 'anomaly.detected', correlationId: p.orderId, reason: 'NO_SUBSCRIBER' },
+      }, 'self-healing');
+      return;
+    }
+
     // Duplicate guard — chỉ retry 1 lần tại 1 thời điểm
     if (_retryCount.has(key)) return;
 
