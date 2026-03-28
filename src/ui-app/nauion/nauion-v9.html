@@ -808,7 +808,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t);font-f
             <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--g1),transparent)"></div><div class="kpi-l">Commits</div><div class="kpi-v" style="color:var(--g1)">195<span style="font-size:10px;color:var(--t3);margin-left:3px">total</span></div><div class="kpi-s">HEAD: 706fec1</div></div>
           </div>
           <div class="dblock" style="margin-top:12px">
-            <div class="db-hdr"><div class="db-t">SCAR Registry — FS-001 → FS-024</div><div class="db-s">Immutable audit trail</div></div>
+            <div class="db-hdr">
+              <div class="db-t">Live Audit Trail <span id="audit-total" style="color:var(--mint);font-size:10px;margin-left:6px">0</span> events</div>
+              <div class="db-s">Hash chain thật · Server v2.0 <button onclick="loadAuditTrail()" style="margin-left:8px;padding:2px 8px;background:var(--mint);color:#000;border:none;border-radius:4px;cursor:pointer;font-size:9px">Refresh</button></div>
+            </div>
+            <div id="audit-live-events" class="db-body" style="padding:8px 10px;max-height:200px;overflow-y:auto">
+              <div style="color:var(--t3);font-size:11px">Click Refresh to load...</div>
+            </div>
+            <div class="db-hdr" style="margin-top:8px"><div class="db-t">SCAR Registry — FS-001 → FS-033</div><div class="db-s">Immutable audit trail</div></div>
             <div class="db-body" style="padding:8px 10px">
               ${['FS-001: GHOST_EXPORT — không export file chưa tồn tại','FS-006: AI_CELL_CONFUSION — nhầm AI với NATT-CELL','FS-007: BARREL_GHOST — ghost export trong index.ts','FS-009: BLIND_APPEND — append thay vì rewrite sạch','FS-012: UEI_QUANTUM_SWAP — nhầm UEI với Quantum Defense','FS-018: TEMPLATE_TYRANNY — hard template trong EventBus','FS-024: INTERFACE_HALLUCINATION — tạo interface từ tưởng tượng'].map(s=>{const[code,desc]=s.split(': ');return `<div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">${code}</span><span class="sc-t" style="color:var(--t2);font-size:8px">${desc}</span></div>`}).join('')}
             </div>
@@ -2038,6 +2045,14 @@ window.addEventListener('load', function() {
       const r = await fetch(this.SERVER+'/api/state');
       return await r.json();
     } catch(e) { return {state:{}, cells:0}; }
+  };
+
+  // Auto-load khi nav vào view
+  const _origNav = window.nav;
+  window.nav = function(id) {
+    if (typeof _origNav === 'function') _origNav(id);
+    if (id === 'audit_trail') setTimeout(loadAuditTrail, 100);
+    if (id === 'intelligence') setTimeout(loadIntelligence, 100);
   };
 
   NattOS.health().then(function(h) {
