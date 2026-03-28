@@ -2073,16 +2073,19 @@ window.addEventListener('load', function() {
 
 function loadAuditTrail() {
   if (!window.NattOS) return;
-  window.NattOS.audit(50).then(function(data) {
+  window.NattOS.audit(50).then(function(d) {
     var el = document.getElementById('audit-live-events');
     var tot = document.getElementById('audit-total');
     if (!el) return;
-    if (tot) tot.textContent = data.total;
-    var events = (data.events || []).slice(-20).reverse();
-    if (events.length === 0) {
-      el.innerHTML = '<div style="color:var(--t3);font-size:11px">No audit events yet</div>';
-      return;
-    }
+    if (tot) tot.textContent = d.total;
+    var events = (d.events||[]).slice(-20).reverse();
+    if (events.length === 0) { el.innerHTML = '<div style="color:var(--t3);font-size:11px">No events yet</div>'; return; }
+    el.innerHTML = events.map(function(e) {
+      var color = e.event&&e.event.indexOf('anomaly')>-1?'#ff6b6b':e.event&&e.event.indexOf('retry')>-1?'#ffd93d':'#6bcb77';
+      return '<div style="display:flex;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05)"><span style="font-size:9px;color:#666;min-width:60px">'+new Date(e.ts).toLocaleTimeString('vi')+'</span><span style="font-size:10px;color:'+color+'">'+(e.event||'')+'</span><span style="font-size:8px;color:#444;margin-left:auto">'+(e.hash||'').slice(0,8)+'</span></div>';
+    }).join('');
+  });
+}
     el.innerHTML = events.map(function(e) {
       var color = e.event && e.event.indexOf('anomaly') > -1 ? '#ff6b6b' : e.event && e.event.indexOf('retry') > -1 ? '#ffd93d' : '#6bcb77';
       return '<div style="display:flex;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05)">' +
