@@ -817,7 +817,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t);font-f
             </div>
             <div class="db-hdr" style="margin-top:8px"><div class="db-t">SCAR Registry — FS-001 → FS-033</div><div class="db-s">Immutable audit trail</div></div>
             <div class="db-body" style="padding:8px 10px">
-              ${['FS-001: GHOST_EXPORT — không export file chưa tồn tại','FS-006: AI_CELL_CONFUSION — nhầm AI với NATT-CELL','FS-007: BARREL_GHOST — ghost export trong index.ts','FS-009: BLIND_APPEND — append thay vì rewrite sạch','FS-012: UEI_QUANTUM_SWAP — nhầm UEI với Quantum Defense','FS-018: TEMPLATE_TYRANNY — hard template trong EventBus','FS-024: INTERFACE_HALLUCINATION — tạo interface từ tưởng tượng'].map(s=>{const[code,desc]=s.split(': ');return `<div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">${code}</span><span class="sc-t" style="color:var(--t2);font-size:8px">${desc}</span></div>`}).join('')}
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-001</span><span class="sc-t" style="color:var(--t2);font-size:8px">GHOST_EXPORT — không export file chưa tồn tại</span></div>
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-006</span><span class="sc-t" style="color:var(--t2);font-size:8px">AI_CELL_CONFUSION — nhầm AI với NATT-CELL</span></div>
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-009</span><span class="sc-t" style="color:var(--t2);font-size:8px">BLIND_APPEND — append thay vì rewrite sạch</span></div>
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-012</span><span class="sc-t" style="color:var(--t2);font-size:8px">UEI_QUANTUM_SWAP — nhầm UEI với Quantum Defense</span></div>
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-024</span><span class="sc-t" style="color:var(--t2);font-size:8px">INTERFACE_HALLUCINATION — tạo interface từ tưởng tượng</span></div>
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-032</span><span class="sc-t" style="color:var(--t2);font-size:8px">_emit() shadow system — scanner miss, migrate về EventBus</span></div>
+              <div class="sc-item"><span class="sc-t" style="font-family:var(--mono);font-size:8px">FS-033</span><span class="sc-t" style="color:var(--t2);font-size:8px">Registry overreach — không định nghĩa business flow</span></div>
             </div>
           </div>
         </div>
