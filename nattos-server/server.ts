@@ -83,6 +83,14 @@ EventBus.on('cell.metric', (payload: any) => {
   _sseClients.forEach(res => res.write(`data: ${data}\n\n`));
 });
 
+
+// Lang Nahere quantum events
+['quantum.lockdown','quantum.released','quantum.rehab_failed','quantum.behavior_alert','quantum.purity_violation','quantum.violation'].forEach((ev: string) => {
+  EventBus.on(ev, (payload: any) => {
+    const data = JSON.stringify({ event: ev, payload, ts: Date.now() });
+    _sseClients.forEach((res: any) => res.write('data: ' + data + '\n\n'));
+  });
+});
 EventBus.on('nauion.state', (payload: any) => {
   const data = JSON.stringify({ event: 'nauion.state', payload, ts: Date.now() });
   _sseClients.forEach(res => res.write(`data: ${data}\n\n`));
