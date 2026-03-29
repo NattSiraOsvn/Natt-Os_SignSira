@@ -136,6 +136,14 @@ app.listen(PORT, () => {
   console.log('  Dieu 7+8 Hien Phap v5.0: ENFORCED\n');
 });
 
+
+// Kenh Cells — 38 cells status
+const CELLS_38 = ['analytics-cell','audit-cell','bom3dprd-cell','buyback-cell','casting-cell','comms-cell','compliance-cell','constants-cell','customer-cell','customs-cell','design-3d-cell','dust-recovery-cell','finance-cell','finishing-cell','hr-cell','inventory-cell','it-cell','logistics-cell','media-cell','noi-vu-cell','order-cell','payment-cell','period-close-cell','phap-che-cell','polishing-cell','prdmaterials-cell','prdwarranty-cell','pricing-cell','production-cell','promotion-cell','sales-cell','shared-contracts-cell','showroom-cell','stone-cell','supplier-cell','tax-cell','warehouse-cell','warranty-cell'];
+hey('/api/cells', (_req: any, res: any) => {
+  const cells = CELLS_38.map(name => ({ name, state: STATE[name]||{}, alive: !!STATE[name], lastSeen: STATE[name]?Math.max(...Object.values(STATE[name]).map((v: any)=>v.ts||0)):null }));
+  res.json({ cells, total: cells.length, alive: cells.filter((c: any)=>c.alive).length, ts: Date.now() });
+});
+
 export { EventBus };
 
 // ── L4 Intelligence API ───────────────────────────────────────────────────
