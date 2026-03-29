@@ -23,6 +23,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../src/ui-app')));
 app.use('/nauion', express.static(path.join(__dirname, 'nattos-ui')));
 
+
+
+// ── Nauion alias — ngôn ngữ nền tảng ────────────────────────────────────
+
+const hey = (path: string, handler: any) => hey(path, handler);
+
+const yeh = (path: string, handler: any) => yeh(path, handler);
+
 bootKernel();
 NauionVoice.wake();
 
@@ -34,36 +42,68 @@ EventBus.on('cell.metric', (payload: any) => {
   STATE[cell][metric] = { value, ts: Date.now() };
 });
 
-app.get('/api/nauion', (_req: any, res: any) => {
+hey('/api/nauion', (_req: any, res: any) => {
   res.json({ state: NauionVoice.currentState(), ts: Date.now() });
 });
 
-app.get('/api/health', (_req, res) => {
+hey('/api/health', (_req, res) => {
   res.json({ status: 'ok', server: 'NATT-OS Server v2.0', ts: new Date().toISOString() });
 });
 
-app.post('/api/events/emit', (req, res) => {
+yeh('/api/events/emit', (req, res) => {
   const { type, payload, cell } = req.body ?? {};
   if (!type) return res.status(400).json({ error: 'type required' });
   EventBus.emit(type, { ...payload, originCell: cell ?? 'ui' });
   res.json({ ok: true, type, ts: Date.now() });
 });
 
-app.get('/api/state/:cell', (req, res) => {
+hey('/api/state/:cell', (req, res) => {
   res.json({ cell: req.params.cell, state: STATE[req.params.cell] ?? {}, ts: Date.now() });
 });
 
-app.get('/api/state', (_req, res) => {
+hey('/api/state', (_req, res) => {
   res.json({ state: STATE, cells: Object.keys(STATE).length, ts: Date.now() });
 });
 
-app.get('/api/audit', async (_req, res) => {
+hey('/api/audit', async (_req, res) => {
   const all = await AuditApplicationService.getAll();
   const arr = Array.isArray(all) ? all : [];
   const events = arr.slice(-50).map((e: any) => ({
     event: e.action, actor: e.actorId, module: e.module, ts: e.timestamp, hash: e.hash,
   }));
   res.json({ events, total: arr.length });
+});
+
+
+// ── Mạch HeyNa — SSE stream, UI mã khoá vào để nhận Nahere ─────────────
+const _sseClients: any[] = [];
+
+EventBus.on('cell.metric', (payload: any) => {
+  const data = JSON.stringify({ event: 'cell.metric', payload, ts: Date.now() });
+  _sseClients.forEach(res => res.write(`data: ${data}\n\n`));
+});
+
+EventBus.on('nauion.state', (payload: any) => {
+  const data = JSON.stringify({ event: 'nauion.state', payload, ts: Date.now() });
+  _sseClients.forEach(res => res.write(`data: ${data}\n\n`));
+});
+
+EventBus.on('audit.record', (payload: any) => {
+  const data = JSON.stringify({ event: 'audit.record', payload, ts: Date.now() });
+  _sseClients.forEach(res => res.write(`data: ${data}\n\n`));
+});
+
+hey('/mach/heyna', (req: any, res: any) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.write('data: {"event":"Nahere","state":"NATT-OS đang ở đây"}\n\n');
+  _sseClients.push(res);
+  req.on('close', () => {
+    const i = _sseClients.indexOf(res);
+    if (i !== -1) _sseClients.splice(i, 1);
+  });
 });
 
 app.listen(PORT, () => {
@@ -78,7 +118,7 @@ export { EventBus };
 // ── L4 Intelligence API ───────────────────────────────────────────────────
 import { getFlowIntelligence } from '../src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine';
 
-app.get('/api/intelligence', (_req: any, res: any) => {
+hey('/api/intelligence', (_req: any, res: any) => {
   const intel = getFlowIntelligence();
   const flows = Object.entries(intel).map(([flow, h]: [string, any]) => ({
     flow,
