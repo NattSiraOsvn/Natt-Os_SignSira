@@ -138,10 +138,7 @@ app.listen(PORT, () => {
 
 
 // Kenh Cells — 38 cells status
-hey('/api/cells', (_req: any, res: any) => {
-  const cells = CELLS_38.map(name => ({ name, state: STATE[name]||{}, alive: !!STATE[name], lastSeen: STATE[name]?Math.max(...Object.values(STATE[name]).map((v: any)=>v.ts||0)):null }));
-  res.json({ cells, total: cells.length, alive: cells.filter((c: any)=>c.alive).length, ts: Date.now() });
-});
+
 
 export { EventBus };
 
