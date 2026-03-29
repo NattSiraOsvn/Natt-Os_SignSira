@@ -129,6 +129,19 @@ hey('/api/cells', (_req: any, res: any) => {
   res.json({ cells, total: cells.length, alive: cells.filter(c => c.alive).length, ts: Date.now() });
 });
 
+
+hey('/api/intelligence', (_req: any, res: any) => {
+  const intel = getFlowIntelligence();
+  const flows = Object.entries(intel).map(([flow, h]: [string, any]) => ({
+    flow,
+    failCount:     h.failCount,
+    successCount:  h.successCount,
+    avgRetries:    Math.round(h.avgRetries * 10) / 10,
+    adaptiveDelay: h.adaptiveDelay,
+    successRate:   h.failCount > 0 ? Math.round(h.successCount / h.failCount * 100) + '%' : 'N/A',
+  }));
+  res.json({ flows, total: flows.length, ts: Date.now() });
+
 app.listen(PORT, () => {
   console.log('\n[NATT-OS Server v2.0] http://localhost:' + PORT);
   console.log('  TypeScript EventBus: ACTIVE');
@@ -145,15 +158,4 @@ export { EventBus };
 // ── L4 Intelligence API ───────────────────────────────────────────────────
 import { getFlowIntelligence } from '../src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine';
 
-hey('/api/intelligence', (_req: any, res: any) => {
-  const intel = getFlowIntelligence();
-  const flows = Object.entries(intel).map(([flow, h]: [string, any]) => ({
-    flow,
-    failCount:     h.failCount,
-    successCount:  h.successCount,
-    avgRetries:    Math.round(h.avgRetries * 10) / 10,
-    adaptiveDelay: h.adaptiveDelay,
-    successRate:   h.failCount > 0 ? Math.round(h.successCount / h.failCount * 100) + '%' : 'N/A',
-  }));
-  res.json({ flows, total: flows.length, ts: Date.now() });
 });
