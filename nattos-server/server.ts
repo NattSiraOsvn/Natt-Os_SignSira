@@ -106,6 +106,29 @@ hey('/mach/heyna', (req: any, res: any) => {
   });
 });
 
+
+// ── Kênh Cells — danh sách 38 cells + trạng thái ────────
+const CELLS_38 = [
+  'analytics-cell','audit-cell','bom3dprd-cell','buyback-cell','casting-cell',
+  'comms-cell','compliance-cell','constants-cell','customer-cell','customs-cell',
+  'design-3d-cell','dust-recovery-cell','finance-cell','finishing-cell','hr-cell',
+  'inventory-cell','it-cell','logistics-cell','media-cell','noi-vu-cell',
+  'order-cell','payment-cell','period-close-cell','phap-che-cell','polishing-cell',
+  'prdmaterials-cell','prdwarranty-cell','pricing-cell','production-cell',
+  'promotion-cell','sales-cell','shared-contracts-cell','showroom-cell',
+  'stone-cell','supplier-cell','tax-cell','warehouse-cell','warranty-cell'
+];
+
+hey('/api/cells', (_req: any, res: any) => {
+  const cells = CELLS_38.map(name => ({
+    name,
+    state: STATE[name] || {},
+    alive: !!STATE[name],
+    lastSeen: STATE[name] ? Math.max(...Object.values(STATE[name]).map((v: any) => v.ts || 0)) : null,
+  }));
+  res.json({ cells, total: cells.length, alive: cells.filter(c => c.alive).length, ts: Date.now() });
+});
+
 app.listen(PORT, () => {
   console.log('\n[NATT-OS Server v2.0] http://localhost:' + PORT);
   console.log('  TypeScript EventBus: ACTIVE');
