@@ -2155,6 +2155,25 @@ document.getElementById('hmode').textContent=M.m;document.getElementById('hmode'
 // ──────────────────────────────────────
 buildNav();
 buildCells();
+
+// Sync cell status tu Kenh /api/cells
+async function syncCellsFromServer() {
+  try {
+    const r = await fetch('http://localhost:3001/api/cells');
+    const d = await r.json();
+    if (!d.cells) return;
+    d.cells.forEach(sc => {
+      const cell = CELLS.find(c => sc.name === c.t || sc.name.replace('-cell','') === c.t.replace('-cell',''));
+      if (cell) {
+        cell.alive = sc.alive;
+        if (sc.alive) { cell.st = 'LIVE'; cell.q = Math.min(1.0, cell.q + 0.05); }
+      }
+    });
+    buildCells();
+  } catch(e) { console.warn('[NaUion] syncCells:', e.message); }
+}
+syncCellsFromServer();
+setInterval(syncCellsFromServer, 5000);
 // Auto-nav to cell_organism from SYSTEM group uses the view
 document.querySelectorAll('.sb-btn').forEach(b=>{});
 
