@@ -2110,12 +2110,23 @@ async function syncCellsFromServer() {
     const r = await fetch('http://localhost:3001/api/cells');
     const d = await r.json();
     if (!d.cells) return;
+    // Build CELLS array tu server data
+    CELLS.length = 0;
     d.cells.forEach(sc => {
-      const cell = CELLS.find(c => sc.name === c.t || sc.name.replace('-cell','') === c.t.replace('-cell',''));
-      if (cell) {
-        cell.alive = sc.alive;
-        if (sc.alive) { cell.st = 'LIVE'; cell.q = Math.min(1.0, cell.q + 0.05); }
-      }
+      CELLS.push({
+        id: sc.name,
+        cat: 'Business',
+        t: sc.name,
+        st: sc.alive ? 'LIVE' : 'OFFLINE',
+        q: sc.alive ? 0.8 : 0.3,
+        cn: Object.keys(sc.state).length || 3,
+        ac: sc.alive ? 0.6 : 0.1,
+        sc: 0,
+        tc: sc.alive ? 0.8 : 0.3,
+        col: sc.alive ? '#8FFFD4' : '#555566',
+        f: { Status: sc.alive ? 'LIVE' : 'OFFLINE', LastSeen: sc.lastSeen ? new Date(sc.lastSeen).toLocaleTimeString('vi') : 'never' },
+        layers: { L0: sc.alive?'connected':'offline', L1: sc.alive?'LIVE':'OFFLINE', L2:'Flow',L3:'Business',L4:'QNEU',L5:'truth',L6:'activity',L7:'0 SCAR',L8:'cell' }
+      });
     });
     buildCells();
   } catch(e) { console.warn('[NaUion] syncCells:', e.message); }
