@@ -129,6 +129,54 @@ export const NauionDictionary = {
     vi: 'Trạng thái = hệ đang ở đâu trong vòng đời',
   },
 
+
+  // ── HTTP METHOD MAPPING (Nauion style) ────────────────────────────────
+
+  hey: {
+    loai: 'HTTP Method',
+    nghia: 'Gọi để nhận — tương đương GET, hỏi hệ một điều gì đó',
+    tuCu: 'GET',
+    vi: 'hey /mach/heyna = gọi để nhận Mạch HeyNa',
+  },
+
+  yeh: {
+    loai: 'HTTP Method', 
+    nghia: 'Gửi vào — tương đương POST/Response, đưa dữ liệu vào hệ hoặc trả về',
+    tuCu: 'POST / Response (res)',
+    vi: 'yeh = hệ trả lời, hoặc người dùng gửi vào hệ',
+  },
+
+
+  // ── KÊNH VÀ PHƯƠNG THỨC MỚI ──────────────────────────────────────────
+
+  machHeyNaSSE: {
+    loai: 'Mạch sống',
+    nghia: 'Kênh SSE liên tục — server phát, UI mã khoá vào để nhận Nahere liên tục',
+    tuCu: 'SSE endpoint /mach/heyna',
+    vi: 'Mạch HeyNa = hệ đang nói liên tục, UI cắm vào để nghe',
+  },
+
+  whaoFallback: {
+    loai: 'Polling',
+    nghia: 'Whao fallback — khi Mạch HeyNa bị gián đoạn, hệ tự Whao định kỳ để lấy Nahere',
+    tuCu: 'Poll fallback khi SSE mất kết nối',
+    vi: 'Whao fallback = hệ tự hỏi thăm khi mạch chính đứt',
+  },
+
+  yehNahere: {
+    loai: 'Response',
+    nghia: 'Hệ trả lời — yeh Nahere = server gửi trạng thái về cho UI',
+    tuCu: 'res.json() / server response',
+    vi: 'yeh Nahere = tao đang ở đây, đây là trạng thái của tao',
+  },
+
+  heyKenh: {
+    loai: 'Request',
+    nghia: 'Gọi vào kênh — hey Kênh = client gửi request lên server',
+    tuCu: 'GET request',
+    vi: 'hey /mach/heyna = tao muốn lắng nghe hệ',
+  },
+
 } as const;
 
 export type NauionWord = keyof typeof NauionDictionary;
