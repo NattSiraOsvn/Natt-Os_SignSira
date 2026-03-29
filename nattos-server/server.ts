@@ -12,6 +12,7 @@ import { EventBus } from '../src/core/events/event-bus';
 import { bootKernel } from '../src/core/kernel-boot';
 import { AuditApplicationService } from '../src/cells/kernel/audit-cell/application/services/AuditApplicationService';
 import '../src/apps/engine-registry';
+import { NauionVoice } from '../src/core/nauion/nauion.voice';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../src/ui-app')));
 
 bootKernel();
+NauionVoice.wake();
 
 const STATE: Record<string, Record<string, { value: number; ts: number }>> = {};
 EventBus.on('cell.metric', (payload: any) => {
@@ -29,6 +31,10 @@ EventBus.on('cell.metric', (payload: any) => {
   if (!cell) return;
   if (!STATE[cell]) STATE[cell] = {};
   STATE[cell][metric] = { value, ts: Date.now() };
+});
+
+app.get('/api/nauion', (_req: any, res: any) => {
+  res.json({ state: NauionVoice.currentState(), ts: Date.now() });
 });
 
 app.get('/api/health', (_req, res) => {
