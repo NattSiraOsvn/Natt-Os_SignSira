@@ -1,4 +1,5 @@
 // app.js — NATT-OS · Nauion Bootstrap
+// Mạch HeyNa = SSE chính, Whao fallback = poll mỗi 3s
 import { store }              from './core/store.js';
 import { fetchAudit, fetchIntelligence } from './core/adapter.js';
 import { toNauion, patternMemory, NAUION } from './nauion-engine.js';
@@ -49,31 +50,33 @@ function updateState() {
   }
 }
 
-function clsOf(sig, color) {
-  if (sig===NAUION.gây||sig==='gãy')  return {ts:'ts-gay',    dc:'dc-gay',    nb:'lech'};
-  if (color==='red')  return {ts:'ts-whao-r', dc:'dc-whao-r', nb:'whao-r'};
-  if (color==='yel')  return {ts:'ts-whao-y', dc:'dc-whao-y', nb:'whao-y'};
-  if (sig===NAUION.whau)   return {ts:'ts-whau',   dc:'dc-whao',   nb:'whau'};
-  if (sig===NAUION.nauion) return {ts:'ts-nauion', dc:'dc-nauion', nb:'nauion'};
-  if (sig===NAUION.Nahere) return {ts:'ts-nahere', dc:'dc-whao',   nb:'nahere'};
-  return {ts:'ts-whao', dc:'dc-whao', nb:'whao'};
+function clsOf(signal, color) {
+  const map = {
+    [NAUION.whao]:   { ts:'ts-whao',   dc:'dc-whao',   nb:'whao'   },
+    [NAUION.whau]:   { ts:'ts-whau',   dc:'dc-whau',   nb:'whau'   },
+    [NAUION.nauion]: { ts:'ts-nauion', dc:'dc-nauion', nb:'nauion' },
+    [NAUION.Nahere]: { ts:'ts-nahere', dc:'',          nb:'nahere' },
+    [NAUION.gay]:    { ts:'ts-gay',    dc:'dc-gay',    nb:'nahere' },
+    [NAUION.lech]:   { ts:'ts-whao-r', dc:'dc-whao-r', nb:'lech'   },
+  };
+  if (color==='red') return { ts:'ts-whao-r', dc:'dc-whao-r', nb:'whao-r' };
+  if (color==='yel') return { ts:'ts-whao-y', dc:'dc-whao-y', nb:'whao-y' };
+  return map[signal] || { ts:'ts-whao', dc:'dc-whao', nb:'whao' };
 }
 
 function bf(el, cls) {
-  if (!el) return;
-  el.classList.remove('bf-whao','bf-red','bf-yel','bf-nauion','bf-ripple');
-  void el.offsetWidth; el.classList.add(cls);
-  setTimeout(()=>el.classList.remove(cls), 700);
+  el.classList.add(cls);
+  setTimeout(() => el.classList.remove(cls), 800);
 }
 
 // ── TÍN HIỆU ─────────────────────────────────────────────
 function renderTS(evs) {
   const el=document.getElementById('audit-list'), cnt=document.getElementById('ts-cnt');
-  if (!el) return;
-  const em=el.querySelector('.empty-state'); if(em&&evs.length) em.remove();
-  evs.slice(-15).reverse().forEach(e=>{
+  if (!el||!evs.length) return;
+  const em=el.querySelector('.empty-state'); if(em) em.remove();
+  evs.slice(-8).forEach(e=>{
     const {signal,color,viet}=toNauion(e.event), c=clsOf(signal,color); totalTs++;
-    const d=document.createElement('div'); d.className=`ts-entry ${c.ts}`;
+    const d=document.createElement('div'); d.className=`ts-item ${c.ts}`;
     const ts=e.timestamp?new Date(e.timestamp).toLocaleTimeString('vi',{hour12:false}):'';
     d.innerHTML=`<div><span class="ts-sig">${signal}</span><span class="ts-viet">${viet}</span><span style="float:right;font-size:6.5px;color:var(--tx3)">${ts}</span></div><div class="ts-raw">${e.event}</div>`;
     el.insertBefore(d,el.firstChild);
@@ -110,14 +113,12 @@ function renderTT(flows) {
     sum.innerHTML=`<span class="isumm-chip isumm-h">${h} nauion</span>`+(f>0?`<span class="isumm-chip isumm-f">${f} lệch</span>`:'')+`<span class="isumm-chip isumm-o">${p} pattern</span>`;
   }
   el.innerHTML='';
-  // Patterns L4.5
   patternMemory.getTop().forEach(p=>{
     const maxC=Math.max(...patternMemory.patterns.map(x=>x.count),1);
     const d=document.createElement('div'); d.className=`pt-card ${p.meaning||''}`;
     d.innerHTML=`<div class="pt-flow">${p.flow}</div><div class="pt-row"><span>nghĩa</span><span class="pt-val">${p.meaning}</span></div><div class="pt-row"><span>lặp</span><span class="pt-val">${p.count}×</span></div><div class="pt-bar-wrap"><div class="pt-bar" style="width:${Math.round(p.count/maxC*100)}%;background:${/lệch|gãy/.test(p.meaning)?'#FF7070':'#C4BCFF'}"></div></div>`;
     el.appendChild(d);
   });
-  // Intelligence flows
   if(flows.length){
     const div=document.createElement('div'); div.style.cssText='height:1px;background:rgba(255,255,255,.05);margin:7px 4px'; el.appendChild(div);
     flows.forEach(f=>{
@@ -131,8 +132,8 @@ function renderTT(flows) {
   if(cnt) cnt.textContent=patternMemory.getTop().length+' pattern';
 }
 
-// ── TICK ─────────────────────────────────────────────────
-async function tick() {
+// ── WHAO FALLBACK (poll 3s) ───────────────────────────────
+async function whaoFallback() {
   try {
     const [audit, intel] = await Promise.all([fetchAudit(), fetchIntelligence()]);
     store.updateAudit(audit.events||[]);
@@ -144,13 +145,54 @@ async function tick() {
     const sb=document.getElementById('hdr-sub');
     if(sb&&sb.textContent==='HeyNa…') sb.textContent='Nahere — nauion';
   } catch(err) {
-    console.error('[Nauion] Tín hiệu đứt:', err.message);
-    const sb=document.getElementById('hdr-sub');
-    if(sb) sb.textContent='Nahere — lệch dòng';
+    console.error('[Nauion] Whao fallback lệch:', err.message);
     pushChain('lệch','lech');
   }
 }
 
-// HeyNa
-tick();
-setInterval(tick, 1000);
+// ── MẠCH HEYNA (SSE chính) ────────────────────────────────
+function machHeyNa() {
+  const sb = document.getElementById('hdr-sub');
+  let es;
+  try {
+    es = new EventSource('http://localhost:3001/mach/heyna');
+  } catch(e) {
+    console.warn('[Nauion] Mạch HeyNa không mở được — dùng Whao fallback');
+    setInterval(whaoFallback, 3000);
+    whaoFallback();
+    return;
+  }
+
+  es.onopen = () => {
+    if(sb) sb.textContent = 'Nahere — Mạch HeyNa sống';
+    pushChain('Nahere', 'nahere');
+  };
+
+  es.onmessage = (e) => {
+    try {
+      const data = JSON.parse(e.data);
+      // Khi nhận event qua Mạch HeyNa → render ngay
+      if (data.event && data.event !== 'Nahere') {
+        const ev = { event: data.event, payload: data.payload, timestamp: data.ts };
+        renderTS([ev]);
+        renderDC([ev]);
+        updateState();
+      }
+    } catch(err) {}
+  };
+
+  es.onerror = () => {
+    if(sb) sb.textContent = 'Nahere — Mạch đứt, Whao đang hồi';
+    pushChain('lệch', 'lech');
+    es.close();
+    // Thử lại sau 5s
+    setTimeout(machHeyNa, 5000);
+  };
+
+  // Whao fallback song song — đồng bộ intelligence + audit đầy đủ
+  setInterval(whaoFallback, 3000);
+}
+
+// ── HEYNA — KHỞI ĐỘNG ────────────────────────────────────
+whaoFallback(); // Whao ngay lập tức
+machHeyNa();    // Mã khoá Mạch HeyNa
