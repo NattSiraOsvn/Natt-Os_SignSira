@@ -94,16 +94,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t);font-f
   50%     { opacity:.42 }
 }
 
-/* Icon wrapper — quantum state */
-.si {
-  position: relative;
-  width: 20px; height: 20px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  /* Trong suốt mặc định — glass ẩn */
-  background: transparent;
-  transition: all .3s cubic-bezier(.23,1,.32,1);
-}
+
 
 /* Prismatic plasma ring — luôn có, nhưng mờ */
 .si::before {
@@ -1770,7 +1761,7 @@ const SI_CSS = {
 function getIcon(id){
   if(SI_PNG[id]) return `<img src="${SI_PNG[id]}" style="width:18px;height:18px;object-fit:contain"/>`;
   if(SI_CSS[id]) return SI_CSS[id];
-  return SI[id]||SI._default;
+  return `<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="14" height="14" rx="2" opacity=".5"/></svg>`;
 }
 
 const MODULES=[
@@ -2222,7 +2213,7 @@ window.addEventListener('load', function() {
   // Auto-load khi nav vào view
   const _origNav = window.nav;
   window.nav = function(id) {
-    if (typeof _origNav === 'function') _origNav(id);
+    nav2(id);
     if (id === 'audit_trail') setTimeout(loadAuditTrail, 100);
     if (id === 'intelligence') setTimeout(loadIntelligence, 100);
   };
@@ -2235,6 +2226,23 @@ window.addEventListener('load', function() {
   });
 });
 
+
+function loadIntelligence() {
+  var el = document.getElementById("intel-flows");
+  if (!el) return;
+  el.innerHTML = "<div style="color:var(--t3);font-size:11px">Loading...</div>";
+  if (!window.NattOS) { el.innerHTML = "<div style="color:var(--red);font-size:11px">NattOS not ready</div>"; return; }
+  window.NattOS.intelligence().then(function(d) {
+    var flows = d.flows || [];
+    if (!flows.length) { el.innerHTML = "<div style="color:var(--t3);font-size:11px">No flow history</div>"; return; }
+    el.innerHTML = flows.map(function(f) {
+      return "<div style="padding:8px;border:1px solid var(--b);margin-bottom:6px;font-family:var(--mono);font-size:9px">"
+        + "<div style="color:var(--lav)">" + (f.eventType||f.event||"unknown") + "</div>"
+        + "<div style="color:var(--t3);margin-top:4px">delay: " + (f.delay||0) + "ms xB7 retries: " + (f.retryCount||0) + "</div>"
+        + "</div>";
+    }).join("");
+  }).catch(function() { el.innerHTML = "<div style="color:var(--red);font-size:11px">Server offline</div>"; });
+}
 
 function loadAuditTrail() {
   if (!window.NattOS) return;
