@@ -27,9 +27,9 @@ app.use('/nauion', express.static(path.join(__dirname, 'nattos-ui')));
 
 // ── Nauion alias — ngôn ngữ nền tảng ────────────────────────────────────
 
-const hey = (path: string, handler: any) => hey(path, handler);
+const hey = (path: string, handler: any) => app.get(path, handler);
 
-const yeh = (path: string, handler: any) => yeh(path, handler);
+const yeh = (path: string, handler: any) => app.post(path, handler);
 
 bootKernel();
 NauionVoice.wake();
