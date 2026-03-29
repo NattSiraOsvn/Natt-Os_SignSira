@@ -2219,6 +2219,35 @@ window.addEventListener('load', function() {
     }
   });
 });
+
+
+
+
+  window.NattOS.intelligence().then(function(d) {
+    var flows = d.flows || [];
+    if (!flows.length) { el.innerHTML = "<div style="color:var(--t3);font-size:11px">No flow history</div>"; return; }
+    el.innerHTML = flows.map(function(f) {
+      return "<div style="padding:8px;border:1px solid var(--b);margin-bottom:6px;font-family:var(--mono);font-size:9px">"
+        + "<div style="color:var(--lav)">" + (f.eventType||f.event||"unknown") + "</div>"
+        + "<div style="color:var(--t3);margin-top:4px">delay: " + (f.delay||0) + "ms xB7 retries: " + (f.retryCount||0) + "</div>"
+        + "</div>";
+    }).join("");
+  }).catch(function() { el.innerHTML = "<div style="color:var(--red);font-size:11px">Server offline</div>"; });
+}
+
+
+  window.NattOS.intelligence().then(function(d) {
+    var flows = d.flows || [];
+    if (!flows.length) { el.innerHTML = '<div style="color:var(--t3)">No flow history</div>'; return; }
+    el.innerHTML = flows.map(function(f) {
+      return '<div style="padding:8px;border:1px solid rgba(255,255,255,.05);margin-bottom:6px;font-size:9px">'
+        + '<div style="color:#a78bfa">' + (f.eventType||f.event||'unknown') + '</div>'
+        + '<div style="color:#666;margin-top:4px">delay: ' + (f.delay||0) + 'ms</div>'
+        + '</div>';
+    }).join('');
+  }).catch(function() { el.innerHTML = '<div style="color:var(--red)">Server offline</div>'; });
+}
+
 function loadIntelligence() {
   var el = document.getElementById('intel-flows');
   if (!el) return;
