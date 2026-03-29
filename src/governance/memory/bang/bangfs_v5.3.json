@@ -1,0 +1,128 @@
+{
+  "version": "5.3",
+  "generated_at": "2026-03-28T14:00:00.000Z",
+  "schema": "bangfs_v5.3",
+  "session_date": "2026-03-28",
+  "filesystem_snapshot": {
+    "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "head_commit": "64cb88e+ — fix(UI): loadAuditTrail + Liquid Glass CSS inject",
+    "commits": "390+",
+    "ts_files": "1300+",
+    "ts_lines": "15000+"
+  },
+  "key_files": {
+    "constitution": "src/governance/constitution/natt-os-constitution.ts",
+    "bangmf": "src/governance/memory/bang/bangmf_v6.1.0.json",
+    "bangfs": "src/governance/memory/bang/bangfs_v5.3.json",
+    "engine_registry": "src/apps/engine-registry.ts",
+    "domain_wiring": "src/apps/wiring/domain-flow.wiring.ts",
+    "event_contracts": "src/core/events/event-contracts.ts",
+    "typed_eventbus": "src/core/events/typed-eventbus.ts",
+    "smartaudit": "nattos.sh",
+    "server_v2": "nattos-server/server.ts",
+    "tsconfig_server": "tsconfig.server.json",
+    "trigger_types": "src/governance/gatekeeper/trigger-types.ts",
+    "flow_history": ".nattos-twin/flow-history.json",
+    "nauion_v9": "src/ui-app/nauion/nauion-v9.html",
+    "milestone_doc": "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md"
+  },
+  "intelligence_files": {
+    "anomaly_detector": "src/metabolism/healing/anomaly-detector.ts",
+    "anomaly_flow_engine": "src/cells/kernel/quantum-defense-cell/domain/engines/anomaly-flow.engine.ts",
+    "self_healing_engine": "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+    "kernel_boot": "src/core/kernel-boot.ts"
+  },
+  "server_routes": {
+    "health": "GET /api/health",
+    "emit": "POST /api/events/emit",
+    "state_cell": "GET /api/state/:cell",
+    "state_all": "GET /api/state",
+    "audit": "GET /api/audit",
+    "intelligence": "GET /api/intelligence — L4 flow history"
+  },
+  "cell_structure": {
+    "kernel_cells": 6,
+    "business_cells": 38,
+    "infrastructure_cells": 3,
+    "total": 47,
+    "all_6_6": true,
+    "smartlink_wired": 38,
+    "port_only": 0
+  },
+  "event_system": {
+    "emit_calls": 173,
+    "on_calls": 73,
+    "unique_events": 44,
+    "healthy_flows": 38,
+    "orphan_emits": 0,
+    "dead_subs": 7,
+    "dead_subs_type": "false positive — _emit() wrapper",
+    "causedBy": "wired",
+    "typed_emit_applied": 7
+  },
+  "l4_learning": {
+    "adaptive_delay": "BASE_DELAY=2000ms, ×1.5 per fail, cap 30000ms",
+    "history_file": ".nattos-twin/flow-history.json",
+    "verified": "fails:1→3000ms, fails:2→4500ms",
+    "api": "GET /api/intelligence → {flows, failCount, adaptiveDelay, successRate}",
+    "decision": "hasSubscriber() — no subscriber → escalate, skip retry"
+  },
+  "ui_state": {
+    "nauion_v9_note": "SCAFFOLD TẠM — data cũ hardcode. Cần rewrite Ground Truth",
+    "server_connection": "NattOS object connect localhost:3001",
+    "liquid_glass_css": "INJECTED — tokens + regular/clear/qneu variants + quantum icon",
+    "quantum_icon": "Prismatic plasma — conic-gradient, qi-pulse 4s, qi-orbit animation",
+    "audit_trail": "6777+ events live — verified qua console, Refresh button fix in progress",
+    "intelligence_panel": "L4 Intelligence view added — loadIntelligence() wired",
+    "can_spec_files": ["NaUion.md", "specnauiontmp.md", "natt-v9.md", "natt-v8.md", "use-contextual-ui.ts"],
+    "gsheets_server": "REMOVED — không dùng nữa. sync-cell giữ lại"
+  },
+  "liquid_glass_tokens": {
+    "lg_blur_strong": "blur(40px) saturate(180%)",
+    "lg_blur_medium": "blur(24px) saturate(160%)",
+    "lg_blur_light": "blur(14px) saturate(140%)",
+    "lg_border": "rgba(255,255,255,.06)",
+    "lg_bg_regular": "rgba(6,6,18,.72)",
+    "lg_bg_clear": "rgba(6,6,18,.28)",
+    "usage": {
+      "sidebar": "glass-regular",
+      "header": "glass-regular",
+      "modal": "glass-regular strongest",
+      "command_center": "glass-qneu",
+      "media_overlay": "glass-clear",
+      "content_KPI_table": "NEVER GLASS"
+    }
+  },
+  "scars": {
+    "FS_024": "INTERFACE_HALLUCINATION",
+    "FS_026": "GSheets tab-name bracket parsing",
+    "FS_027": "Express routes before listen()",
+    "FS_028": "grep before rewrite",
+    "FS_029": "double $() bash",
+    "FS_030": "no commit before verify",
+    "FS_031": "distinguish wired vs non-existent engine",
+    "FS_032": "_emit() shadow system",
+    "FS_033": "registry = wire only, not flow logic"
+  },
+  "qneu": {
+    "BANG": 300, "THIEN": 135, "KIM": 120, "CAN": 85, "BOI_BOI": 40
+  },
+  "system_state": {
+    "label": "HEALTHY",
+    "risk": 0,
+    "journey": "FRAGMENTED → STABLE → HEALTHY → L2 → L3 → L4 Intelligence"
+  },
+  "commits_session_28mar_part2": [
+    "fe98929 — chore: update digital twin + docs/flag",
+    "f55f4f7 — feat(L3): typed overlay — event-contracts + typed-eventbus",
+    "a0f1f8f — feat(L3): apply typedEmit to anti-fraud + production engines",
+    "9a1c164 — fix(scanner): detect typedEmit in emit_pat",
+    "4908ce6 — feat(L3.5): decision engine — hasSubscriber() + no-subscriber escalate",
+    "f6dbc48 — feat(L4): learning system — adaptive delay + flow history persist",
+    "7eeb9ee — feat(UI): NaUion v9 — L4 Intelligence panel + allState()",
+    "e17769c — feat(UI): audit trail live — loadAuditTrail + hash display",
+    "69343cf — fix(UI): SCAR registry static HTML",
+    "64cb88e — fix(UI): remove orphan code — loadAuditTrail syntax fixed"
+  ]
+}

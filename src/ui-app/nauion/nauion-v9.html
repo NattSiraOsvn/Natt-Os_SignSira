@@ -37,6 +37,171 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t);font-f
 /* ─── SHELL ─── */
 .shell{position:relative;z-index:10;display:flex;height:100vh;overflow:hidden}
 
+/* ─── LIQUID GLASS SYSTEM — Spec Can / NaUion Vision Engine ─── */
+:root {
+  --lg-blur-strong: blur(40px) saturate(180%);
+  --lg-blur-medium: blur(24px) saturate(160%);
+  --lg-blur-light:  blur(14px) saturate(140%);
+  --lg-border:      rgba(255,255,255,.06);
+  --lg-highlight:   rgba(255,255,255,.08);
+  --lg-bg-regular:  rgba(6,6,18,.72);
+  --lg-bg-clear:    rgba(6,6,18,.28);
+  --lg-shadow:      0 32px 80px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* REGULAR GLASS — sidebar, header, modal */
+.glass-regular {
+  background: var(--lg-bg-regular);
+  backdrop-filter: var(--lg-blur-strong);
+  border: 1px solid var(--lg-border);
+  box-shadow: var(--lg-shadow);
+}
+
+/* CLEAR GLASS — overlay trên media */
+.glass-clear {
+  background: var(--lg-bg-clear);
+  backdrop-filter: var(--lg-blur-medium);
+  border: 1px solid var(--lg-border);
+}
+
+/* QUANTUM GLASS — Gatekeeper/Command/Core cell modal */
+.glass-qneu {
+  backdrop-filter: blur(30px) saturate(200%);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.06), transparent),
+    var(--lg-bg-regular);
+  box-shadow:
+    0 0 60px rgba(143,255,212,.12),
+    inset 0 1px 0 rgba(255,255,255,.1);
+  border: 1px solid var(--lg-border);
+}
+
+/* ── QUANTUM IRIDESCENT ICON — xung điện trường, prismatic plasma ── */
+@keyframes qi-pulse {
+  0%,100% { opacity:.38; filter:hue-rotate(0deg) }
+  25%      { opacity:.62; filter:hue-rotate(72deg) }
+  50%      { opacity:.5;  filter:hue-rotate(180deg) }
+  75%      { opacity:.68; filter:hue-rotate(288deg) }
+}
+@keyframes qi-orbit {
+  0%   { transform:rotate(0deg)   scale(1)    }
+  33%  { transform:rotate(120deg) scale(1.04) }
+  66%  { transform:rotate(240deg) scale(.97)  }
+  100% { transform:rotate(360deg) scale(1)    }
+}
+@keyframes qi-flicker {
+  0%,100% { opacity:.18 }
+  50%     { opacity:.42 }
+}
+
+/* Icon wrapper — quantum state */
+.si {
+  position: relative;
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  /* Trong suốt mặc định — glass ẩn */
+  background: transparent;
+  transition: all .3s cubic-bezier(.23,1,.32,1);
+}
+
+/* Prismatic plasma ring — luôn có, nhưng mờ */
+.si::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from var(--ha, 0deg),
+    rgba(200,192,255,.0)  0deg,
+    rgba(143,255,212,.3)  60deg,
+    rgba(184,232,255,.3)  120deg,
+    rgba(255,184,212,.2)  180deg,
+    rgba(200,192,255,.3)  240deg,
+    rgba(143,255,212,.2)  300deg,
+    rgba(200,192,255,.0)  360deg
+  );
+  opacity: 0;
+  transition: opacity .4s;
+  animation: qi-orbit 8s linear infinite;
+}
+
+/* Inner glass core — thể lượng tử */
+.si::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all .3s;
+}
+
+/* Hover — plasma thức dậy */
+.sb-btn:hover .si {
+  opacity: .85;
+  transform: scale(1.12);
+}
+.sb-btn:hover .si::before {
+  opacity: .7;
+}
+.sb-btn:hover .si::after {
+  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+  border-color: rgba(255,255,255,.1);
+  backdrop-filter: blur(4px);
+}
+
+/* Active — quantum field fully charged */
+.sb-btn.active .si {
+  opacity: 1;
+  width: 24px; height: 24px;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(var(--gc-rgb),.12) 0%,
+    rgba(var(--gc-rgb),.03) 60%,
+    transparent 100%);
+  backdrop-filter: blur(8px) saturate(180%);
+  border-radius: 50%;
+}
+.sb-btn.active .si::before {
+  opacity: 1;
+  background: conic-gradient(
+    from var(--ha, 0deg),
+    rgba(var(--gc-rgb),.0)  0deg,
+    rgba(var(--gc-rgb),.5)  60deg,
+    rgba(255,255,255,.3)    120deg,
+    rgba(var(--gc-rgb),.4)  180deg,
+    rgba(255,255,255,.15)   240deg,
+    rgba(var(--gc-rgb),.5)  300deg,
+    rgba(var(--gc-rgb),.0)  360deg
+  );
+  animation: qi-orbit 4s linear infinite;
+}
+.sb-btn.active .si::after {
+  background: radial-gradient(circle, rgba(var(--gc-rgb),.1) 0%, transparent 70%);
+  border-color: rgba(var(--gc-rgb),.25);
+  backdrop-filter: blur(6px) saturate(160%);
+  box-shadow:
+    0 0 12px rgba(var(--gc-rgb),.3),
+    inset 0 0 6px rgba(var(--gc-rgb),.1);
+}
+
+/* Icon glow — xung điện */
+.sb-btn.active .si svg {
+  filter:
+    drop-shadow(0 0 4px rgba(var(--gc-rgb),.8))
+    drop-shadow(0 0 8px rgba(var(--gc-rgb),.4))
+    drop-shadow(0 0 16px rgba(var(--gc-rgb),.2));
+  stroke-width: 1.6;
+  animation: qi-pulse 4s ease-in-out infinite;
+}
+.sb-btn.active .si img {
+  filter:
+    drop-shadow(0 0 6px rgba(var(--gc-rgb),.7))
+    drop-shadow(0 0 12px rgba(var(--gc-rgb),.35))
+    drop-shadow(0 0 20px rgba(var(--gc-rgb),.15));
+  animation: qi-pulse 4s ease-in-out infinite;
+}
+
 /* ─── SIDEBAR ─── */
 .sb{width:var(--sb);flex-shrink:0;display:flex;flex-direction:column;overflow:hidden;
   background:rgba(2,2,8,.92);backdrop-filter:blur(24px);
