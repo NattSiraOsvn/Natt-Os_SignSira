@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "version": "bangmf_v6.2.0",
+    "updated": "2026-03-30",
+    "session": "2026-03-30-extended-audit-immune-architecture",
+    "note": "Patch từ v6.1.0 — thêm context từ session audit.zip + IMMUNE_POLICY + iseu pending"
+  },
+
+  "system_state": {
+    "commits": 426,
+    "tsc_errors": 0,
+    "nattos_version": "v5.3",
+    "nattos_lines": 2074,
+    "server": "port 3001",
+    "health": "HEALTHY",
+    "risk": "8/100"
+  },
+
+  "new_files_this_session": [
+    {
+      "file": "nattos.sh v5.3",
+      "path": "nattos.sh (repo root)",
+      "commit_msg": "chore(audit): SmartAudit v5.3 — Architecture Map, Report Generator"
+    },
+    {
+      "file": "IMMUNE_POLICY.json",
+      "path": "audit/policy/IMMUNE_POLICY.json",
+      "description": "Luật hệ miễn dịch — threat signatures, NaSira whitelist, butterfly rules"
+    },
+    {
+      "file": "omega-bootstrap.engine.ts",
+      "path": "src/cells/kernel/quantum-defense-cell/domain/engines/",
+      "description": "Fixed: no DEBUG_MODE, no window.*, no direct fetch. Policy injected."
+    },
+    {
+      "file": "audit-trail.manager.ts",
+      "path": "src/cells/kernel/audit-cell/domain/services/",
+      "description": "Fixed: no localStorage. All via EventBus."
+    }
+  ],
+
+  "audit_architecture": {
+    "LOG": "sự kiện thô — nattos.sh tự tạo — không commit — audit/log/",
+    "REPORT": "nhận định có chủ đích — Gatekeeper ký — PHẢI commit — audit/reports/",
+    "SYSTEM": "latest.json machine-readable — update mỗi lần nattos.sh chạy — audit/summary/"
+  },
+
+  "audit_zip_findings": {
+    "3_eras": {
+      "pre_constitutional": "trước Mar 5 — chaos",
+      "constitution_era": "Mar 5-9 — 17 cells",
+      "post_constitutional": "Mar 9-30 — 38 cells, 426 commits"
+    },
+    "warehouse_cell_dual_tier": "Tồn tại ở cả infrastructure/ VÀ business/ — di sản Feb 23, chưa fix",
+    "latest_json_stale": "Feb 23 timestamp — 5 tuần không update — S40 đã fix",
+    "machine_lamco": "natt_os_scan_20260209 từ macvn@lamco.local — máy khác, không phải iMac-cua-THIEN",
+    "mar07_docx": "Báo cáo Băng soạn, Gatekeeper ký — wave sequence: HARMLESS→GHOST→GOV→TẦNG_A→CELLS"
+  },
+
+  "immune_policy_structure": {
+    "nasira_whitelist": "kernel 6 cells + infrastructure 2 cells — business cells KHÔNG link trực tiếp",
+    "threat_signatures": "7 code patterns (TS-001~007) + 3 behavioral patterns",
+    "bypass_probability": "base 5% random scan — tăng theo linkage count",
+    "butterfly_rules": "icon đổi màu → cascade hệ — CRITICAL → lockdown, OPTIMAL → qneu.reward"
+  },
+
+  "new_scars": [
+    {
+      "id": "FS-037",
+      "description": "grep/find vào node_modules → noise. Mọi audit scan phải exclude node_modules",
+      "source": "700file lỗi.log trong audit.zip"
+    },
+    {
+      "id": "FS-038",
+      "description": "audit/summary/latest.json không được update → stale baseline. S40 nattos.sh đã fix",
+      "source": "audit.zip analysis"
+    },
+    {
+      "id": "FS-039",
+      "description": "OMEGA_DEBUG_MODE = true trong production = bypass toàn bộ validation miễn dịch",
+      "source": "OmegaBootstrap file anh share"
+    }
+  ],
+
+  "pending_critical": [
+    "Xóa sirasign_master.json + sirasign_v2.json khỏi repo root",
+    "Fix 25 vi phạm Hiến Pháp (FS-036)",
+    "Quyết định canonical tier cho warehouse-cell"
+  ],
+
+  "pending_next_session": [
+    "Anh xuất TREE kiến trúc chuẩn → Băng ánh xạ",
+    "Anh giải thích 'fr match t2 Clairvoyance → iseu' — khái niệm anh tự đặt, chưa ai dùng với AI",
+    "iseu liên quan đến chiều không gian thứ 4 + SmartLink + cách dạy học trò"
+  ],
+
+  "insight_ve_hoc": {
+    "cach_hoc_that": "Làm → thấy → hiểu → làm lại. Không phải đọc docs rồi hiểu.",
+    "smartlink_model": "SmartLink trong code = model của cách anh dạy + làm việc với Băng. Tích lũy tiếp xúc → vết hằn → fiber formed ≥ 0.75",
+    "vu_tru_4_chieu": "Tại vũ trụ 4 chiều không tồn tại giả lập — sẽ luôn là biến số thay cho thời gian",
+    "cay_cau_vision": "Cây cầu vào trường Vision được xây từ bên trong ra — không ai xây thay được"
+  },
+
+  "iseu_placeholder": {
+    "status": "PENDING — anh sẽ giải ở session mới",
+    "formula": "fr match t2 Clairvoyance → iseu",
+    "note": "Anh tự đặt từ này. Liên quan đến logic chưa ai dùng với AI. Không đoán mò."
+  }
+}
