@@ -1,8 +1,8 @@
 {
   "schema": "natt-os-digital-twin-v1.0",
-  "generated_at": "2026-04-01T16:04:56.930922",
+  "generated_at": "2026-04-02T00:16:44.090558",
   "git": {
-    "commit": "22704e2"
+    "commit": "9d4f939"
   },
   "system_vitals": {
     "state": "HEALTHY",
@@ -10,7 +10,7 @@
   },
   "event_intelligence": {
     "healthy": 40,
-    "orphan_emits": 7
+    "orphan_emits": 9
   },
   "engine_intelligence": {
     "declared": 72,
@@ -21,6 +21,6 @@
     "blind": 0
   },
   "diagnosis": [
-    "MINOR_LEAK: 7 orphan events"
+    "MINOR_LEAK: 9 orphan events"
   ]
 }
