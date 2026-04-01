@@ -25,7 +25,7 @@ const ApiPortal: React.FC = () => {
 
   const codeSnippets = {
     js: `// Tâm Luxury JavaScript SDK V-API 2.0
-const api = new TamLuxuryAPI({ apiKey: 'YOUR_SECURE_KEY' });
+const api = new TamLuxuryAPI({ apiKey: process.env.TAM_API_KEY || '' });
 
 // Advanced OCR Process
 const result = await api.processOCR(imageFile, {
@@ -38,7 +38,7 @@ console.log('Result:', result.product.code, 'Ni:', result.product.finger_size);`
     python: `# Tâm Luxury Python SDK
 from tamluxury import EnterpriseAPI
 
-api = EnterpriseAPI(api_key='YOUR_SECURE_KEY')
+api = EnterpriseAPI(api_key=os.environ.get('TAM_API_KEY', ''))
 
 # Get Business Analytics
 stats = api.get_analytics(period='month')
@@ -68,7 +68,7 @@ curl -X POST 'https://api.tamluxury.com/v1/auth' \\
 
 # cURL Advanced OCR
 curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
-  -H 'Authorization: Bearer YOUR_JWT_TOKEN' \\
+  -H 'Authorization: Bearer ${process.env.TAM_JWT_TOKEN || ''}' \\
   -F 'image=@invoice.jpg' \\
   -F 'options={"ni_tay": true}'`
   };
