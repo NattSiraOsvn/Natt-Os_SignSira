@@ -1,7 +1,21 @@
 {
-  "healthy": 28,
-  "sick": 22,
+  "healthy": 44,
+  "sick": 15,
   "details": {
+    "ai-connector-cell": {
+      "tier": "infrastructure",
+      "score": 2,
+      "missing": [
+        "manifest",
+        "ports",
+        "application",
+        "smartlink"
+      ],
+      "present": [
+        "domain",
+        "engine"
+      ]
+    },
     "analytics-cell": {
       "tier": "business",
       "score": 6,
@@ -30,14 +44,13 @@
     },
     "bom3dprd-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
@@ -70,14 +83,13 @@
     },
     "comms-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
@@ -92,6 +104,20 @@
         "ports",
         "application",
         "engine",
+        "smartlink"
+      ]
+    },
+    "config-cell": {
+      "tier": "kernel",
+      "score": 5,
+      "missing": [
+        "engine"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
         "smartlink"
       ]
     },
@@ -149,14 +175,13 @@
     },
     "dust-recovery-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
@@ -215,58 +240,81 @@
     },
     "it-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
     },
     "logistics-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
     },
     "media-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "monitor-cell": {
+      "tier": "kernel",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
         "engine",
         "smartlink"
       ]
     },
     "noi-vu-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
+      ]
+    },
+    "notification-cell": {
+      "tier": "infrastructure",
+      "score": 1,
+      "missing": [
+        "manifest",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ],
+      "present": [
+        "domain"
       ]
     },
     "order-cell": {
@@ -297,28 +345,26 @@
     },
     "period-close-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
     },
     "phap-che-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
@@ -351,14 +397,13 @@
     },
     "prdwarranty-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
         "engine",
         "smartlink"
       ]
@@ -402,6 +447,19 @@
         "smartlink"
       ]
     },
+    "rbac-cell": {
+      "tier": "kernel",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
     "sales-cell": {
       "tier": "business",
       "score": 6,
@@ -415,18 +473,31 @@
         "smartlink"
       ]
     },
-    "shared-contracts-cell": {
-      "tier": "infrastructure",
-      "score": 4,
-      "missing": [
+    "security-cell": {
+      "tier": "kernel",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
         "engine",
         "smartlink"
+      ]
+    },
+    "shared-contracts-cell": {
+      "tier": "infrastructure",
+      "score": 5,
+      "missing": [
+        "engine"
       ],
       "present": [
         "manifest",
         "domain",
         "ports",
-        "application"
+        "application",
+        "smartlink"
       ]
     },
     "showroom-cell": {
@@ -457,14 +528,26 @@
     },
     "supplier-cell": {
       "tier": "business",
-      "score": 5,
-      "missing": [
-        "application"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "sync-cell": {
+      "tier": "infrastructure",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
         "engine",
         "smartlink"
       ]
@@ -508,44 +591,15 @@
         "smartlink"
       ]
     },
-    "config-cell": {
+    "neural-main-cell": {
       "tier": "kernel",
-      "score": 4,
-      "missing": [
-        "engine",
-        "smartlink"
-      ],
-      "present": [
-        "manifest",
-        "domain",
-        "ports",
-        "application"
-      ]
-    },
-    "monitor-cell": {
-      "tier": "kernel",
-      "score": 5,
-      "missing": [
-        "smartlink"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
         "application",
-        "engine"
-      ]
-    },
-    "neural-main-cell": {
-      "tier": "kernel",
-      "score": 3,
-      "missing": [
-        "domain",
-        "ports",
-        "application"
-      ],
-      "present": [
-        "manifest",
         "engine",
         "smartlink"
       ]
@@ -563,62 +617,6 @@
         "smartlink"
       ]
     },
-    "rbac-cell": {
-      "tier": "kernel",
-      "score": 5,
-      "missing": [
-        "smartlink"
-      ],
-      "present": [
-        "manifest",
-        "domain",
-        "ports",
-        "application",
-        "engine"
-      ]
-    },
-    "security-cell": {
-      "tier": "kernel",
-      "score": 5,
-      "missing": [
-        "smartlink"
-      ],
-      "present": [
-        "manifest",
-        "domain",
-        "ports",
-        "application",
-        "engine"
-      ]
-    },
-    "ai-connector-cell": {
-      "tier": "infrastructure",
-      "score": 2,
-      "missing": [
-        "manifest",
-        "ports",
-        "application",
-        "smartlink"
-      ],
-      "present": [
-        "domain",
-        "engine"
-      ]
-    },
-    "notification-cell": {
-      "tier": "infrastructure",
-      "score": 1,
-      "missing": [
-        "manifest",
-        "ports",
-        "application",
-        "engine",
-        "smartlink"
-      ],
-      "present": [
-        "domain"
-      ]
-    },
     "smartlink-cell": {
       "tier": "infrastructure",
       "score": 6,
@@ -631,44 +629,23 @@
         "engine",
         "smartlink"
       ]
-    },
-    "sync-cell": {
-      "tier": "infrastructure",
-      "score": 5,
-      "missing": [
-        "smartlink"
-      ],
-      "present": [
-        "manifest",
-        "domain",
-        "ports",
-        "application",
-        "engine"
-      ]
     }
   },
   "sick_list": [
+    "ai-connector-cell",
     "audit-cell",
-    "bom3dprd-cell",
-    "comms-cell",
-    "dust-recovery-cell",
-    "it-cell",
-    "logistics-cell",
-    "media-cell",
-    "noi-vu-cell",
-    "period-close-cell",
-    "phap-che-cell",
-    "prdwarranty-cell",
-    "shared-contracts-cell",
-    "supplier-cell",
     "config-cell",
     "monitor-cell",
-    "neural-main-cell",
+    "notification-cell",
     "rbac-cell",
     "security-cell",
+    "shared-contracts-cell",
+    "sync-cell",
+    "ai-connector-cell",
+    "config-cell",
+    "notification-cell",
     "ai-connector-cell",
     "notification-cell",
-    "shared-contracts-cell",
-    "sync-cell"
+    "shared-contracts-cell"
   ]
 }

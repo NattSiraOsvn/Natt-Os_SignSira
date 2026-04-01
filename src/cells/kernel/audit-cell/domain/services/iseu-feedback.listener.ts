@@ -1,4 +1,5 @@
 import { EventBus } from '@/core/events/event-bus';
+import { SmartLinkEngine } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 import { resolveDomainId } from '@/core/domain/resolver';
 
 export function startIseuFeedbackListener(): void {
@@ -26,12 +27,9 @@ export function startIseuFeedbackListener(): void {
     const domainId = resolveDomainId(causationId, record.payload);
     if (!domainId) return;
 
-    EventBus.emit('smartlink.feedback', {
-      fromCellId: 'audit-cell',
-      toCellId: domainId,
-      intensity: feedbackIntensity,
-      causationId,
-      domainId
-    });
+    const fromCell = record.payload?.fromCell || 'audit-cell';
+    const toCell = record.payload?.toCell || domainId;
+
+    SmartLinkEngine.receiveFeedbackPulse(fromCell, toCell, feedbackIntensity, domainId);
   });
 }

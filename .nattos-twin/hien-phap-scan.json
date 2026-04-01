@@ -1,7 +1,7 @@
 {
-  "total": 22,
+  "total": 21,
   "by_dieu": {
-    "Điều 7": 22
+    "Điều 7": 21
   },
   "violations": [
     {
@@ -17,19 +17,10 @@
       "dieu": "Điều 7",
       "severity": "🔴 CRITICAL",
       "cell": "monitor-cell",
-      "file": "cells/kernel/monitor-cell/domain/services/flow-chain.engine.ts",
-      "line": 31,
-      "detail": "Self-state storage (localStorage/fs.write)",
-      "code": "fs.writeFileSync(HISTORY_FILE, JSON.stringify(existing.slice(-1000), null, 2));"
-    },
-    {
-      "dieu": "Điều 7",
-      "severity": "🔴 CRITICAL",
-      "cell": "monitor-cell",
       "file": "cells/kernel/monitor-cell/domain/services/system-state.engine.ts",
       "line": 66,
       "detail": "Self-state storage (localStorage/fs.write)",
-      "code": "fs.writeFileSync(STATE_FILE, JSON.stringify(snapshot, null, 2));"
+      "code": "//     fs.writeFileSync(STATE_FILE, JSON.stringify(snapshot, null, 2));"
     },
     {
       "dieu": "Điều 7",
@@ -38,7 +29,7 @@
       "file": "cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
       "line": 35,
       "detail": "Self-state storage (localStorage/fs.write)",
-      "code": "fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));"
+      "code": "//     fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));"
     },
     {
       "dieu": "Điều 7",

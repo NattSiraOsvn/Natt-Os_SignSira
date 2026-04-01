@@ -1,1 +1,0 @@
-const _logs:any[]=[]; export const AuditTraceLogger={log(event:string,refId:string,actor:string,payload?:any){const e={traceId:"AUD-"+Date.now(),cellId:"audit-cell" as const,event,refId,actor,payload,timestamp:new Date()};_logs.push(e);return e;},count:()=>_logs.length};
