@@ -105,20 +105,20 @@ export interface SyncProgress {
 
 export class ProgressManager {
   private key = 'NATT_SYNC_PROGRESS';
+  private _cache: SyncProgress | null = null;
 
   save(progress: SyncProgress): void {
-    try { localStorage.setItem(this.key, JSON.stringify(progress)); } catch {}
+    this._cache = progress;
+    EventBus.emit('sync.progress.saved', { key: this.key, progress });
   }
 
   load(): SyncProgress | null {
-    try {
-      const raw = localStorage.getItem(this.key);
-      return raw ? JSON.parse(raw) : null;
-    } catch { return null; }
+    return this._cache;
   }
 
   clear(): void {
-    try { localStorage.removeItem(this.key); } catch {}
+    this._cache = null;
+    EventBus.emit('sync.progress.cleared', { key: this.key });
   }
 
   isExpired(maxAgeMs = 24 * 60 * 60 * 1000): boolean {
