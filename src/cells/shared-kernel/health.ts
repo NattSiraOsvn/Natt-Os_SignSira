@@ -17,7 +17,7 @@ export interface HealthStatus {
 export class HealthService {
   static async check(): Promise<HealthStatus> {
     const checks = {
-      storage: !!window.localStorage,
+      storage: !!window.localStorage, // HEALTH_CHECK: existence check only, not read/write
       eventBus: true, // Internal bridge is always up in browser
       memory: (performance as any).memory?.usedJSHeapSize || 0
     };
