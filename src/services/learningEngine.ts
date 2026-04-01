@@ -155,6 +155,8 @@ export class LearningEngine {
 
   static saveTemplate(template: LearnedTemplate) {
     const key = `LEARNED_TPL_${template.position}`;
+    /* audit */
+    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
     localStorage.setItem(key, JSON.stringify(template));
   }
 

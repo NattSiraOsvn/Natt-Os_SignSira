@@ -51,7 +51,9 @@ class EventStagingLayerService {
         keys: Array.from(this.processedKeys),
         timestamp: Date.now()
       };
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+      /* audit */
+    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
     } catch (e) {
       console.error("[ESL] Persist failed", e);
     }

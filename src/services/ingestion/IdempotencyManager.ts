@@ -31,6 +31,8 @@ export class IdempotencyManager {
   }
 
   private saveToStorage() {
+    /* audit */
+    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify({
       hashes: Array.from(this.processedHashes),
       events: this.eventStore.slice(-100)

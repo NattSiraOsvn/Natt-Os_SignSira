@@ -24,6 +24,8 @@ export class CalibrationEngine {
    */
   public saveProfile(profile: CalibrationData) {
     this.userProfiles.set(profile.userId, profile);
+    /* audit */
+    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
     localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile));
     console.log(`[CALIBRATION] Profile locked for ${profile.userId}: ${profile.persona} @ ${profile.avgCPM} CPM`);
   }
