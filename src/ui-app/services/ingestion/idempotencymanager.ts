@@ -35,6 +35,7 @@ export class IdempotencyManager {
       hashes: Array.from(this.processedHashes),
       events: this.eventStore.slice(-100)
     }));
+    EventBus.emit('audit.record', { type: 'idempotency.saved', count: this.processedHashes.size });
   }
 
   async generateHash(file: File): Promise<string> {
