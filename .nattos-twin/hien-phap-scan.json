@@ -1,0 +1,234 @@
+{
+  "total": 25,
+  "by_dieu": {
+    "Điều 7": 24,
+    "Điều 11": 1
+  },
+  "violations": [
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "cells/shared-kernel/health.ts",
+      "line": 20,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "storage: !!window.localStorage,"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "sync-cell",
+      "file": "cells/infrastructure/sync-cell/domain/services/sync.engine.ts",
+      "line": 110,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "try { localStorage.setItem(this.key, JSON.stringify(progress)); } catch {}"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "sync-cell",
+      "file": "cells/infrastructure/sync-cell/domain/services/sync.engine.ts",
+      "line": 115,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const raw = localStorage.getItem(this.key);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "monitor-cell",
+      "file": "cells/kernel/monitor-cell/domain/services/flow-chain.engine.ts",
+      "line": 30,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "fs.writeFileSync(HISTORY_FILE, JSON.stringify(existing.slice(-1000), null, 2));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "monitor-cell",
+      "file": "cells/kernel/monitor-cell/domain/services/system-state.engine.ts",
+      "line": 65,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "fs.writeFileSync(STATE_FILE, JSON.stringify(snapshot, null, 2));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "quantum-defense-cell",
+      "file": "cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+      "line": 34,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));"
+    },
+    {
+      "dieu": "Điều 11",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/components/apiportal.ts",
+      "line": 41,
+      "detail": "Hardcoded credential/key",
+      "code": "***REDACTED***"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/learningengine.ts",
+      "line": 158,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(key, JSON.stringify(template));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/learningengine.ts",
+      "line": 162,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const data = localStorage.getItem(`LEARNED_TPL_${position}`);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/ingestion/idempotencymanager.ts",
+      "line": 22,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const data = localStorage.getItem(this.STORAGE_KEY);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/ingestion/idempotencymanager.ts",
+      "line": 34,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify({"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/staging/eventstaginglayer.ts",
+      "line": 38,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const raw = localStorage.getItem(this.STORAGE_KEY);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/staging/eventstaginglayer.ts",
+      "line": 54,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/calibration/calibrationengine.ts",
+      "line": 27,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile))"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "ui-app/services/calibration/calibrationengine.ts",
+      "line": 35,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const stored = localStorage.getItem(`CALIB_PROFILE_${userId}`);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "governance/persistence.ts",
+      "line": 86,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8');"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "governance/persistence.ts",
+      "line": 152,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "fs.writeFileSync("
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/learningEngine.ts",
+      "line": 158,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(key, JSON.stringify(template));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/learningEngine.ts",
+      "line": 162,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const data = localStorage.getItem(`LEARNED_TPL_${position}`);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/ingestion/IdempotencyManager.ts",
+      "line": 22,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const data = localStorage.getItem(this.STORAGE_KEY);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/ingestion/IdempotencyManager.ts",
+      "line": 34,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify({"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/staging/EventStagingLayer.ts",
+      "line": 38,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const raw = localStorage.getItem(this.STORAGE_KEY);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/staging/EventStagingLayer.ts",
+      "line": 54,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/calibration/CalibrationEngine.ts",
+      "line": 27,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile))"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "services/calibration/CalibrationEngine.ts",
+      "line": 35,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const stored = localStorage.getItem(`CALIB_PROFILE_${userId}`);"
+    }
+  ]
+}

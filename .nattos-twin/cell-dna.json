@@ -1,0 +1,676 @@
+{
+  "healthy": 27,
+  "sick": 23,
+  "details": {
+    "analytics-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "audit-cell": {
+      "tier": "kernel",
+      "score": 5,
+      "missing": [
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine"
+      ]
+    },
+    "bom3dprd-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "buyback-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "casting-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "comms-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "compliance-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "constants-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "customer-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "customs-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "design-3d-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "dust-recovery-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "finance-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "finishing-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "hr-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "inventory-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "it-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "logistics-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "media-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "noi-vu-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "order-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "payment-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "period-close-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "phap-che-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "polishing-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "prdmaterials-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "prdwarranty-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "pricing-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "production-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "promotion-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "sales-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "shared-contracts-cell": {
+      "tier": "infrastructure",
+      "score": 4,
+      "missing": [
+        "engine",
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application"
+      ]
+    },
+    "showroom-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "stone-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "supplier-cell": {
+      "tier": "business",
+      "score": 5,
+      "missing": [
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "tax-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "warehouse-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "warranty-cell": {
+      "tier": "business",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "config-cell": {
+      "tier": "kernel",
+      "score": 4,
+      "missing": [
+        "engine",
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application"
+      ]
+    },
+    "monitor-cell": {
+      "tier": "kernel",
+      "score": 5,
+      "missing": [
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine"
+      ]
+    },
+    "neural-main-cell": {
+      "tier": "kernel",
+      "score": 3,
+      "missing": [
+        "domain",
+        "ports",
+        "application"
+      ],
+      "present": [
+        "manifest",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "quantum-defense-cell": {
+      "tier": "kernel",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "rbac-cell": {
+      "tier": "kernel",
+      "score": 5,
+      "missing": [
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine"
+      ]
+    },
+    "security-cell": {
+      "tier": "kernel",
+      "score": 5,
+      "missing": [
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine"
+      ]
+    },
+    "ai-connector-cell": {
+      "tier": "infrastructure",
+      "score": 2,
+      "missing": [
+        "manifest",
+        "ports",
+        "application",
+        "smartlink"
+      ],
+      "present": [
+        "domain",
+        "engine"
+      ]
+    },
+    "notification-cell": {
+      "tier": "infrastructure",
+      "score": 1,
+      "missing": [
+        "manifest",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ],
+      "present": [
+        "domain"
+      ]
+    },
+    "smartlink-cell": {
+      "tier": "infrastructure",
+      "score": 6,
+      "missing": [],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine",
+        "smartlink"
+      ]
+    },
+    "sync-cell": {
+      "tier": "infrastructure",
+      "score": 5,
+      "missing": [
+        "smartlink"
+      ],
+      "present": [
+        "manifest",
+        "domain",
+        "ports",
+        "application",
+        "engine"
+      ]
+    }
+  },
+  "sick_list": [
+    "audit-cell",
+    "bom3dprd-cell",
+    "comms-cell",
+    "dust-recovery-cell",
+    "it-cell",
+    "logistics-cell",
+    "media-cell",
+    "noi-vu-cell",
+    "period-close-cell",
+    "phap-che-cell",
+    "prdwarranty-cell",
+    "shared-contracts-cell",
+    "supplier-cell",
+    "audit-cell",
+    "config-cell",
+    "monitor-cell",
+    "neural-main-cell",
+    "rbac-cell",
+    "security-cell",
+    "ai-connector-cell",
+    "notification-cell",
+    "shared-contracts-cell",
+    "sync-cell"
+  ]
+}
