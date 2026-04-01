@@ -198,3 +198,11 @@ EventBus.publish(
   { type: 'cell.metric' as any, payload: { cell: 'smartlink-cell', metric: 'alive', value: 1, ts: Date.now() } },
   'smartlink-cell', undefined
 );
+
+// Listen for feedback pulses from audit-cell
+EventBus.on('smartlink.feedback', (payload: any) => {
+  const { fromCellId, toCellId, intensity, domainId } = payload;
+  if (toCellId) {
+    SmartLinkEngine.receiveFeedbackPulse(fromCellId, toCellId, intensity, domainId);
+  }
+});
