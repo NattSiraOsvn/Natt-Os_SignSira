@@ -156,10 +156,6 @@ export const SmartLinkEngine = {
     record.lastFeedbackIntensity = intensity;
     if (domainId) record.domainId = domainId;
 
-    EventBus.publish(
-      { type: 'smartlink.iseu.updated' as any, payload: { from: fromCellId, to: toCellId, domainId, impedanceZ: record.impedanceZ } },
-      'smartlink-cell', undefined
-    );
   },
 
   // ── Reflection coefficient (pure math, no logic) ──
@@ -201,7 +197,7 @@ EventBus.publish(
 );
 
 // Listen for feedback pulses from audit-cell
-EventBus.on('smartlink.feedback', (payload: any) => {
+EventBus.on('iseu.feedback', (payload: any) => {
   const { fromCellId, toCellId, intensity, domainId } = payload;
   if (toCellId) {
     SmartLinkEngine.receiveFeedbackPulse(fromCellId, toCellId, intensity, domainId);
