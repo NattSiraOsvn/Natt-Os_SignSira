@@ -195,8 +195,9 @@ export const SmartLinkEngine = {
 
 // ── heartbeat ──
 EventBus.publish(
-  { type: 'cell.metric' as any, payload: { cell: 'smartlink-cell', metric: 'alive', value: 1, ts: Date.now() } },
-  'smartlink-cell', undefined
+  { type: "cell.metric" as any, payload: { cell: "smartlink-cell", metric: "alive", value: 1, ts: Date.now() } },
+  "smartlink-cell",
+  "system.heartbeat"
 );
 
 // Listen for feedback pulses from audit-cell
