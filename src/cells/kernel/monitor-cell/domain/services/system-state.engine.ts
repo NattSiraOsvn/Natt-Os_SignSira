@@ -62,6 +62,7 @@ export function captureStateSnapshot(signals: Partial<StateSnapshot["signals"]>)
   const snapshot: StateSnapshot = { state, riskScore, timestamp: Date.now(), signals: fullSignals, issues, strengths };
   try {
     if (!fs.existsSync(TWIN_DIR)) fs.mkdirSync(TWIN_DIR, { recursive: true });
+    /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
     fs.writeFileSync(STATE_FILE, JSON.stringify(snapshot, null, 2));
   } catch { /* silent */ }
   return snapshot;

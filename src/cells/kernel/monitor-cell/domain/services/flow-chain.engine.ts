@@ -27,6 +27,7 @@ export function recordHistory(entry: HistoryEntry): void {
     const existing: HistoryEntry[] = fs.existsSync(HISTORY_FILE)
       ? JSON.parse(fs.readFileSync(HISTORY_FILE, "utf-8")) : [];
     existing.push(entry);
+    /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
     fs.writeFileSync(HISTORY_FILE, JSON.stringify(existing.slice(-1000), null, 2));
   } catch { /* silent */ }
 }
