@@ -1,6 +1,6 @@
 {
-  "healthy": 27,
-  "sick": 23,
+  "healthy": 28,
+  "sick": 22,
   "details": {
     "analytics-cell": {
       "tier": "business",
@@ -17,16 +17,15 @@
     },
     "audit-cell": {
       "tier": "kernel",
-      "score": 5,
-      "missing": [
-        "smartlink"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
         "application",
-        "engine"
+        "engine",
+        "smartlink"
       ]
     },
     "bom3dprd-cell": {
@@ -662,7 +661,6 @@
     "prdwarranty-cell",
     "shared-contracts-cell",
     "supplier-cell",
-    "audit-cell",
     "config-cell",
     "monitor-cell",
     "neural-main-cell",

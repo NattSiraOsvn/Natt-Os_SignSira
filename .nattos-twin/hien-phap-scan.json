@@ -1,8 +1,7 @@
 {
-  "total": 25,
+  "total": 22,
   "by_dieu": {
-    "Điều 7": 24,
-    "Điều 11": 1
+    "Điều 7": 22
   },
   "violations": [
     {
@@ -12,32 +11,14 @@
       "file": "cells/shared-kernel/health.ts",
       "line": 20,
       "detail": "Self-state storage (localStorage/fs.write)",
-      "code": "storage: !!window.localStorage,"
-    },
-    {
-      "dieu": "Điều 7",
-      "severity": "🔴 CRITICAL",
-      "cell": "sync-cell",
-      "file": "cells/infrastructure/sync-cell/domain/services/sync.engine.ts",
-      "line": 110,
-      "detail": "Self-state storage (localStorage/fs.write)",
-      "code": "try { localStorage.setItem(this.key, JSON.stringify(progress)); } catch {}"
-    },
-    {
-      "dieu": "Điều 7",
-      "severity": "🔴 CRITICAL",
-      "cell": "sync-cell",
-      "file": "cells/infrastructure/sync-cell/domain/services/sync.engine.ts",
-      "line": 115,
-      "detail": "Self-state storage (localStorage/fs.write)",
-      "code": "const raw = localStorage.getItem(this.key);"
+      "code": "storage: !!window.localStorage, // HEALTH_CHECK: existence check only, not read/"
     },
     {
       "dieu": "Điều 7",
       "severity": "🔴 CRITICAL",
       "cell": "monitor-cell",
       "file": "cells/kernel/monitor-cell/domain/services/flow-chain.engine.ts",
-      "line": 30,
+      "line": 31,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "fs.writeFileSync(HISTORY_FILE, JSON.stringify(existing.slice(-1000), null, 2));"
     },
@@ -46,7 +27,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "monitor-cell",
       "file": "cells/kernel/monitor-cell/domain/services/system-state.engine.ts",
-      "line": 65,
+      "line": 66,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "fs.writeFileSync(STATE_FILE, JSON.stringify(snapshot, null, 2));"
     },
@@ -55,25 +36,16 @@
       "severity": "🔴 CRITICAL",
       "cell": "quantum-defense-cell",
       "file": "cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
-      "line": 34,
+      "line": 35,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));"
-    },
-    {
-      "dieu": "Điều 11",
-      "severity": "🔴 CRITICAL",
-      "cell": "core",
-      "file": "ui-app/components/apiportal.ts",
-      "line": 41,
-      "detail": "Hardcoded credential/key",
-      "code": "***REDACTED***"
     },
     {
       "dieu": "Điều 7",
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "ui-app/services/learningengine.ts",
-      "line": 158,
+      "line": 160,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(key, JSON.stringify(template));"
     },
@@ -82,7 +54,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "ui-app/services/learningengine.ts",
-      "line": 162,
+      "line": 164,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "const data = localStorage.getItem(`LEARNED_TPL_${position}`);"
     },
@@ -118,7 +90,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "ui-app/services/staging/eventstaginglayer.ts",
-      "line": 54,
+      "line": 56,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));"
     },
@@ -127,7 +99,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "ui-app/services/calibration/calibrationengine.ts",
-      "line": 27,
+      "line": 29,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile))"
     },
@@ -136,7 +108,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "ui-app/services/calibration/calibrationengine.ts",
-      "line": 35,
+      "line": 37,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "const stored = localStorage.getItem(`CALIB_PROFILE_${userId}`);"
     },
@@ -145,7 +117,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "governance/persistence.ts",
-      "line": 86,
+      "line": 87,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8');"
     },
@@ -154,7 +126,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "governance/persistence.ts",
-      "line": 152,
+      "line": 154,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "fs.writeFileSync("
     },
@@ -163,7 +135,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "services/learningEngine.ts",
-      "line": 158,
+      "line": 160,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(key, JSON.stringify(template));"
     },
@@ -172,7 +144,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "services/learningEngine.ts",
-      "line": 162,
+      "line": 164,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "const data = localStorage.getItem(`LEARNED_TPL_${position}`);"
     },
@@ -190,7 +162,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "services/ingestion/IdempotencyManager.ts",
-      "line": 34,
+      "line": 36,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify({"
     },
@@ -208,7 +180,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "services/staging/EventStagingLayer.ts",
-      "line": 54,
+      "line": 56,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));"
     },
@@ -217,7 +189,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "services/calibration/CalibrationEngine.ts",
-      "line": 27,
+      "line": 29,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile))"
     },
@@ -226,7 +198,7 @@
       "severity": "🔴 CRITICAL",
       "cell": "core",
       "file": "services/calibration/CalibrationEngine.ts",
-      "line": 35,
+      "line": 37,
       "detail": "Self-state storage (localStorage/fs.write)",
       "code": "const stored = localStorage.getItem(`CALIB_PROFILE_${userId}`);"
     }

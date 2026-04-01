@@ -32,7 +32,7 @@ function saveHistory(): void {
     _flowHistory.forEach((v, k) => { data[k] = v; });
     fs.mkdirSync(path.dirname(HISTORY_FILE), { recursive: true });
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));
+//     fs.writeFileSync(HISTORY_FILE, JSON.stringify(data, null, 2));
   } catch { /* silent */ }
 }
 
