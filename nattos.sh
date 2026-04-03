@@ -77,7 +77,7 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
   else
     warn "Uncommitted: $DIRTY files (modified: $MODIFIED, untracked: $UNTRACKED)"
     inc_warn "Git: $DIRTY uncommitted files"
-    if $FULL_MODE; then
+    if [[ "$FULL_MODE" == "true" ]]; then
       git status --porcelain | head -20 | sed 's/^/    /'
     fi
   fi
@@ -111,7 +111,7 @@ if command -v npx &>/dev/null; then
       fail "TSC: $TSC_TOTAL errors (real: $TSC_REAL | ghost: $TSC_GHOST)"
       inc_fail "TSC: $TSC_REAL real errors"
     fi
-    if $FULL_MODE; then echo "$TSC_OUT" | grep "error TS" | head -20 | sed 's/^/    /'; fi
+    if [[ "$FULL_MODE" == "true" ]]; then echo "$TSC_OUT" | grep "error TS" | head -20 | sed 's/^/    /'; fi
   fi
 else
   warn "npx not found — skip TSC"; inc_warn "TSC: npx not available"
@@ -311,7 +311,7 @@ hdr "10" "LEGACY & TRASH DETECTION"
 BANSAO=$(find src -name "Bản sao*" 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$BANSAO" -gt 0 ]]; then
   fail "Bản sao files: $BANSAO (macOS Finder copies — DELETE)"; inc_trash "TRASH: $BANSAO Bản sao files"
-  if $FULL_MODE; then find src -name "Bản sao*" | sed 's/^/    🗑️  /'; fi
+  if [[ "$FULL_MODE" == "true" ]]; then find src -name "Bản sao*" | sed 's/^/    🗑️  /'; fi
 else ok "No Bản sao files"; inc_ok; fi
 
 # .DS_Store
@@ -324,14 +324,14 @@ else ok "No .DS_Store"; inc_ok; fi
 EMPTY_DIRS=$(find src/cells -type d -empty 2>/dev/null | wc -l | tr -dc '0-9')
 if [[ "$EMPTY_DIRS" -gt 0 ]]; then
   warn "Empty dirs in cells/: $EMPTY_DIRS"; inc_warn "STRUCTURE: $EMPTY_DIRS empty dirs"
-  if $FULL_MODE; then find src/cells -type d -empty 2>/dev/null | sed 's/^/    📁 /'; fi
+  if [[ "$FULL_MODE" == "true" ]]; then find src/cells -type d -empty 2>/dev/null | sed 's/^/    📁 /'; fi
 else ok "No empty dirs"; inc_ok; fi
 
 # Duplicate basenames — dùng full path để tránh false positive (NATT-CELL convention: mỗi cell có services/ riêng)
 DUPES=$(find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -d | wc -l | tr -dc '0-9')
 if [[ "$DUPES" -gt 0 ]]; then
   warn "Duplicate filenames (exact path): $DUPES (check for conflicts)"; inc_warn "STRUCTURE: $DUPES duplicate filenames"
-  if $FULL_MODE; then
+  if [[ "$FULL_MODE" == "true" ]]; then
     find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -cd | sort -rn | head -10 | sed 's/^/    /'
   fi
 else ok "No duplicate filenames"; inc_ok; fi
@@ -415,7 +415,7 @@ done
 if [[ "$UI_ORPHANS" -gt 0 ]]; then
   warn "Orphan components: $UI_ORPHANS (not imported anywhere)"
   inc_warn "UI: $UI_ORPHANS orphan components"
-  if $FULL_MODE; then
+  if [[ "$FULL_MODE" == "true" ]]; then
     for o in "${UI_ORPHAN_LIST[@]}"; do echo "    🔌 $o.tsx"; done
   else
     # Show first 5
@@ -471,7 +471,7 @@ done
 if [[ "$UI_DEAD" -gt 0 ]]; then
   warn "Possible dead shells: $UI_DEAD components (<20 lines)"
   inc_warn "UI: $UI_DEAD possible dead shell components"
-  if $FULL_MODE; then for d in "${UI_DEAD_LIST[@]}"; do echo "    💀 $d"; done; fi
+  if [[ "$FULL_MODE" == "true" ]]; then for d in "${UI_DEAD_LIST[@]}"; do echo "    💀 $d"; done; fi
 else ok "No dead shells"; inc_ok; fi
 
 # 12f. Showroom duplicate casing
@@ -495,7 +495,7 @@ COMP_DUPES=$(find src/components -name "*.tsx" -exec basename {} \; | sort | uni
 if [[ "$COMP_DUPES" -gt 0 ]]; then
   warn "Duplicate component names: $COMP_DUPES"
   inc_warn "UI: $COMP_DUPES duplicate component filenames"
-  if $FULL_MODE; then
+  if [[ "$FULL_MODE" == "true" ]]; then
     find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | while read dup; do
       echo "    📋 $dup:"
       find src/components -name "$dup" | sed 's/^/       /'
@@ -1071,7 +1071,7 @@ SECTION_COUNT=$(grep -c "^hdr " "$SCRIPT" 2>/dev/null || echo 0)
 ok "Sections: $SECTION_COUNT total"
 
 # Check bash 3.2 compat — no [[...]] with regex, no arrays with -A
-BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | wc -l | tr -dc '0-9')
+BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | grep -v "BASH4_ONLY" | wc -l | tr -dc '0-9')
 if [[ "$BASH4_ONLY" -gt 0 ]]; then
   warn "bash 4+ syntax detected: $BASH4_ONLY instances — may break on macOS bash 3.2"
   inc_warn "SCRIPT: bash 4+ syntax present"
@@ -1533,7 +1533,7 @@ if os.path.exists(SNAPSHOT_FILE):
 # Compare với lần cuối
 if history:
     prev = history[-1]
-    print(f"  So sánh: {prev['ts']} → {TODAY_TS}\n")
+    print(f"  So sánh: {prev.get('ts', 'unknown')} → {TODAY_TS}\n")
 
     diffs = []
     for key in ["commits", "ts_files", "ts_lines", "engines", "dirty", "root_files"]:
