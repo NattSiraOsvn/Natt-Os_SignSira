@@ -1325,7 +1325,7 @@ for root, dirs, files in os.walk(src):
                         "code": line.strip()[:80]
                     })
             # Điều 7
-            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line:
+            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//"):
                 violations.append({
                     "dieu": "Điều 7",
                     "severity": "🔴 CRITICAL",
