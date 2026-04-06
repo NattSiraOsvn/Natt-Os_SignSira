@@ -84,7 +84,7 @@ export class FileStorageEngine implements QNEUStorageEngine {
     ensureDataDir();
     const updated = { ...state, last_updated: new Date().toISOString() };
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8');
+    fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8'); // TWIN_PERSIST
   }
 
   // --- Entity State ---
@@ -151,7 +151,7 @@ export class FileStorageEngine implements QNEUStorageEngine {
   saveSession(session: QNEUSession): void {
     ensureDataDir();
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    fs.writeFileSync(
+    fs.writeFileSync( // TWIN_PERSIST
       path.join(SESSIONS_DIR, `${session.session_id}.json`),
       JSON.stringify(session, null, 2),
       'utf-8',
