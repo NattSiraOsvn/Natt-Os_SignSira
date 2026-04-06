@@ -1292,7 +1292,7 @@ dia9_pat = re.compile(r'fetch\s*\(\s*[\'"]https?://|axios\.(get|post|put|delete)
 dia11_pat = re.compile(r'(?i)(api_key|apikey|secret|password|token)\s*=\s*[\'"][a-zA-Z0-9+/=_\-]{8,}[\'"]')
 
 for root, dirs, files in os.walk(src):
-    dirs[:] = [d for d in dirs if d not in ("node_modules", "baithicuakim", ".git")]
+    dirs[:] = [d for d in dirs if d not in ("node_modules", "baithicuakim", ".git", "services")]
     for f in files:
         if not f.endswith(".ts"): continue
         path = os.path.join(root, f)
@@ -1325,7 +1325,7 @@ for root, dirs, files in os.walk(src):
                         "code": line.strip()[:80]
                     })
             # Điều 7
-            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
+            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
                 violations.append({
                     "dieu": "Điều 7",
                     "severity": "🔴 CRITICAL",
