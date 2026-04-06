@@ -84,7 +84,7 @@ export class FileStorageEngine implements QNEUStorageEngine {
     ensureDataDir();
     const updated = { ...state, last_updated: new Date().toISOString() };
     /* TWIN_PERSIST: intentional disk write — digital twin / audit infrastructure, not business logic */
-    fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8'); // TWIN_PERSIST
+    fs.writeFileSync(STATE_FILE, JSON.stringify(updated, null, 2), 'utf-8'); // TWIN_PERSIST // TWIN_PERSIST
   }
 
   // --- Entity State ---
