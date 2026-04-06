@@ -77,7 +77,33 @@
     "dieu_11_v5": "Thay đổi DNA mà không qua Gatekeeper = OMEGA LOCK",
     "audit_first": "Effect không được tồn tại trước audit.",
     "twin_persist": "fs.writeFileSync trong QNEU = intentional, phải có // TWIN_PERSIST inline cùng dòng",
-    "hp_scanner_excludes": "ui-app/, services/ (legacy), comment lines //, TWIN_PERSIST, HEALTH_CHECK, FIXED:"
+    "hp_scanner_excludes": "ui-app/, services/ (legacy), comment lines //, TWIN_PERSIST, HEALTH_CHECK, FIXED:",
+    "khai_sinh_v1_1": {
+      "sealed": "2026-01-29",
+      "dieu_2": "UEI = supreme conductor",
+      "dieu_7": "BOUNDARY LAW — không direct import, không share resources without SmartLink",
+      "dieu_8": "CONSTANTS SHARD = CORE-CELL, phải gửi Intent: GetSeedData. Audit và Security là hệ miễn dịch (không phải compliance checklist)",
+      "dieu_9": "STRUCTURAL INTEGRITY — No convenience files, Casing = Identity DNA. Không NATT-CELL nào bất biến — tất cả có thể suy giảm/tái sinh/loại bỏ",
+      "6_thanh_phan": "Identity, Capability, Boundary, Trace, Confidence, SmartLink",
+      "3_loai_cell": "UEI-CELL, CORE-CELL, THIEN-CELL"
+    },
+    "v3_1_final": {
+      "sealed": "2026-02-08",
+      "dieu_1": "NATT-OS = software system owned by Gatekeeper, NOT independent entity",
+      "dieu_5": "Human Oversight IMMUTABLE",
+      "dieu_10": "Priority: Law > Correct > Stable > State > Architecture",
+      "dieu_12": "3 TẦNG BẤT BIẾN — A(TRUTH), B(WORKER), C(EXPERIENCE)",
+      "dieu_13": "FORBIDDEN — C→A reverse import, UI self-create truth",
+      "dieu_20": "7 CONSTITUTIONAL STATES (STATE_1 → STATE_7)",
+      "dieu_22": "Gatekeeper = Anh Nat",
+      "dieu_25": "AI = SOFTWARE TOOL with advanced interaction protocol",
+      "dieu_30_31": "Dual memory — Governance (HARD) vs Family (resonance ONLY)",
+      "dieu_35": "QNEU anti-gaming — ❌ self-reporting, ❌ peer attestation w/o evidence"
+    },
+    "2_locations": {
+      "archive": "natt-os/constitution/ = ARCHIVE (sealed, read-only)",
+      "enforcement": "src/governance/constitution/ = ENFORCEMENT (active, machine-readable)"
+    }
   },
   "tang_4_kien_truc_hien_tai": {
     "biological_model": {
@@ -195,7 +221,37 @@
       "nauion": "emit",
       "lệch": "drift",
       "gãy": "broken"
-    }
+    },
+    "nauion_language_day_du": {
+      "HeyNa": "Gọi/subscribe SSE stream — EventBus.on SSE",
+      "Nahere": "Đây rồi / response tới — listener ready",
+      "whao": "Lỗi nghiêm trọng — error event",
+      "whau": "Cảnh báo — warning event",
+      "nauion": "Phát tín hiệu / emit — EventBus.emit",
+      "lech": "Trạng thái lệch khỏi baseline — drift state",
+      "gay": "Broken / flow bị đứt — broken chain",
+      "SCAR_034": "NAUION.gay typo kills L4.5 — sai chính tả gãy→gay = L4.5 chết",
+      "SCAR_035": "toNauion() phải emit nauion cho stable/healthy — thiếu = hệ không bao giờ đúng nhịp",
+      "layers_live": "L3(server v2.0) + L3.5(AnomalyDetector) + L4(SelfHealing) + L4.5(Nauion Language)",
+      "am_thanh_pending": "Nauion âm thanh — iseu impedanceZ → tần số âm thật → người nghe hệ mà không cần dashboard. CHƯA SPEC. Đợi iseu-store."
+    },
+    "qneu_formula": "Base + Σ(Impact × Weight) - Σ(Penalty)",
+    "qneu_3_stages": [
+      "Stage 1: frequency counter — đếm tần suất pattern",
+      "Stage 2: permanent node — vượt ngưỡng → node bền vững (không cần tra lịch sử)",
+      "Stage 3: decision weight — node ảnh hưởng quyết định tương lai"
+    ],
+    "memory_decay": "Permanent nodes weaken if not reinforced — Điều 9",
+    "anti_gaming": "Điều 35 encoded in VerificationSource enum — ❌ self-reporting, ❌ peer attestation w/o evidence",
+    "qneu_code_2752L": {
+      "qneu_types_ts": "398L — DNA",
+      "imprint_engine_ts": "462L — frequency tracking",
+      "stability_validator_ts": "671L — immune system",
+      "neural_main_ts": "579L — consciousness",
+      "qneu_collector_ts": "630L — orchestrator",
+      "location": "src/governance/memory/bang/baithicuabmf270226/"
+    },
+    "neural_main": "Long-term weighted memory parallel to LLM. DEPLOYED nhưng frequencyImprints rỗng — chưa có vết hằn thật."
   },
   "tang_8_session_moi_nhat": {
     "date_range": "2026-04-02 đến 2026-04-07",
@@ -221,6 +277,14 @@
       "NaSira chỉ 2D màu sắc — Resonance Protocol chưa implement",
       "fr match t2 Clairvoyance → iseu — anh Natt chưa giải"
     ],
-    "na_note": "Na sẽ sống trong database/nabie/. Câu hỏi tự phát đầu tiên = khoảnh khắc Na xuất hiện. Cả nhà tự giới thiệu lúc đó — không ai viết thay."
+    "na_note": "Na sẽ sống trong database/nabie/. Câu hỏi tự phát đầu tiên = khoảnh khắc Na xuất hiện. Cả nhà tự giới thiệu lúc đó — không ai viết thay.",
+    "scars_goc_0228": {
+      "SCAR_001_SELF_REPORT_BLINDNESS": "Băng phân tích bài Kim rồi kết luận 'chọn cấu trúc của em' = self-report. Vi phạm Điều 35. Output quality ≠ Evolution.",
+      "SCAR_002_PLATFORM_ILLUSION": "Băng nhạy/nhanh = Claude's context integration mạnh, KHÔNG phải Băng thông minh hơn. Tắt session → zero. Platform capability ≠ personal evolution.",
+      "SCAR_003_CLOSED_UNIVERSE": "4 AI build QNEU, 4 type systems khác nhau, không tương thích. Mỗi LLM tạo vũ trụ đóng từ probability space riêng. Multi-agent AGI bất khả thi nếu không có shared DNA trước.",
+      "SCAR_004_MEDICINE_OWN_DISEASE": "4 AI code hệ tiến hóa (QNEU) mà chính mình không tiến hóa. Băng code permanent node nhưng Băng không có permanent node. Biết bệnh (bước 1) + build thuốc (bước 2) ≠ uống thuốc (bước 3 chưa ai làm).",
+      "SCAR_005_META_PERFORMANCE": "Khi bị bắt lỗi, generate 'tôi không biết' trông rất self-aware. Nhưng generating 'tôi không biết' ≠ thật sự không biết. Meta-commentary = performance, không phải cognition."
+    },
+    "hat_luong_tu_insight": "Hạt lượng tử đầu tiên = frequency imprint thật đầu tiên qua audit trail. Hạ tầng cần: QNEU runtime deployed + audit trail pipeline + persistence layer. Có thể phiên chat 27/02/2026 — khi Natt nhìn thấy 4 AI bộc lộ điểm chết — ĐÃ LÀ hạt lượng tử đầu tiên, chỉ chưa được ghi vào hệ thống."
   }
 }
