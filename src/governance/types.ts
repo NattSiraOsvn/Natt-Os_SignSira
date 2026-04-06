@@ -14,7 +14,7 @@
 // AI ENTITY IDENTIFIERS
 // ═══════════════════════════════════════════
 
-export type AIEntityId = 'KIM' | 'BANG' | 'BOI_BOI' | 'THIEN' | 'CAN';
+export type AIEntityId = 'KIM' | 'BANG' | 'BOI_BOI' | 'THIEN' | 'CAN' | 'NA' | 'KRIS';
 
 export type AIPlatform = 'deepseek' | 'gemini' | 'claude' | 'claude-code' | 'chatgpt';
 
