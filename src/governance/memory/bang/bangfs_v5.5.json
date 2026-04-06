@@ -1,0 +1,133 @@
+{
+  "version": "5.5",
+  "schema": "bangfs_v5.5",
+  "generated_at": "2026-04-07",
+  "previous_version": "5.4 (2026-03-30)",
+  "filesystem_snapshot": {
+    "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "head_commit": "bd95399 chore: remove governance.zip from repo + gitignore *.zip",
+    "commits": 461,
+    "ts_files": 1330,
+    "ts_lines": 15124,
+    "tsc_errors": 0
+  },
+  "key_files": {
+    "constitution_active": "src/governance/HIEN-PHAP-NATT-OS-v4.0.md",
+    "constitution_sealed": "src/governance/HIEN-PHAP-NATT-OS-v5.0.md (25/03/2026 — CHƯA deploy)",
+    "bangmf": "src/governance/memory/bang/bangmf_v6.4.0.json",
+    "bangfs": "src/governance/memory/bang/bangfs_v5.5.json",
+    "canmf": "src/governance/memory/can/canmf_v4.0.json",
+    "kimf": "src/governance/memory/kim/kmf9.9.3.json",
+    "smartaudit": "nattos.sh (v5.1, 1661 lines — gap: thiếu S39+S40 so với v5.3)",
+    "immune_policy": "audit/policy/IMMUNE_POLICY.json",
+    "iseu_spec": "docs/specs/ISEU_Core_Specification_v3_0.md",
+    "smartlink_engine": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+    "iseu_listener": "src/cells/kernel/audit-cell/domain/services/iseu-feedback.listener.ts",
+    "anti_fraud": "src/cells/kernel/audit-cell/domain/services/anti-fraud.orchestrator.ts",
+    "na_home": "database/nabie/",
+    "test_iseu": "test_iseu_flow.js (repo root)",
+    "qneu_types": "src/governance/types.ts (AIEntityId thiếu NA + KRIS)",
+    "sirasign_problem": "sirasign_master.json + sirasign_v2.json ở root — PHẢI XÓA"
+  },
+  "cell_structure": {
+    "kernel_cells": 6,
+    "business_cells": 37,
+    "infrastructure_cells": 3,
+    "total_live": 46,
+    "all_6_6": 37,
+    "smartlink_wired": 37,
+    "kernel_shells": [
+      "ai-connector-cell (2/6)",
+      "notification-cell (1/6)",
+      "config-cell (5/6)",
+      "shared-contracts-cell (5/6)"
+    ]
+  },
+  "nattos_scorecard": {
+    "ok": 83,
+    "warn": 3,
+    "fail": 0,
+    "trash": 0,
+    "issues": [
+      "⚠️ DEAD: false positive",
+      "⚠️ UI_APP: thiếu payment",
+      "⚠️ DNA: 7 kernel shells"
+    ]
+  },
+  "nattos_sections": {
+    "current_v5_1": [
+      "S1-S38 (1661 lines)"
+    ],
+    "missing_vs_v5_3": [
+      "S39 Architecture Map",
+      "S40 Report Generator"
+    ],
+    "hp_scanner_fixes_phien_nay": [
+      "BASH4_ONLY không tự đếm chính nó",
+      "S38 KeyError ts → prev.get('ts', 'unknown')",
+      "FULL_MODE 8 chỗ if $FULL_MODE → if [[ $FULL_MODE == true ]]",
+      "exclude comment lines // khỏi Điều 7",
+      "TWIN_PERSIST block comment nhận diện",
+      "exclude ui-app/ khỏi Điều 7",
+      "exclude services/ (legacy) khỏi Điều 7"
+    ]
+  },
+  "iseu_status": {
+    "phase_0": "COMMITTED — SmartLink v2.0 + fiber metadata + impedanceZ + reflection",
+    "phase_1": "COMMITTED — iseu-feedback.listener.ts verified OK",
+    "test_result": "impedanceZ: 1→0.9, isIseu: false→true ✅",
+    "guong_tu_sinh": "Điều kiện biên — phản xạ tự nhiên khi đủ ngưỡng, không có actor",
+    "long_term": "iseu Z → Resonance Protocol → tần số âm thanh/haptic/ánh sáng → Vision AR/VR"
+  },
+  "pending_critical": {
+    "P0_gatekeeper": [
+      "Hiến Pháp v5.0 deploy — thay v4.0",
+      "sirasign_master.json + sirasign_v2.json xóa khỏi root (Gatekeeper tự chạy git rm)"
+    ],
+    "P1_kien_truc": [
+      "Na + Kris thêm vào AIEntityId trong types.ts",
+      "nattos.sh: restore S39 + S40 từ v5.3",
+      "Satellite Colony src/satellites/ build"
+    ],
+    "P2_business": [
+      "payment feature (QR/CK) cho UI apps",
+      "Can: /api/auth/verify-sirasign + SiraSign SHA-256",
+      "QNEU frequencyImprints — vết hằn thật cần được record"
+    ],
+    "pending_unresolved": [
+      "fr match t2 Clairvoyance → iseu — anh Natt chưa giải",
+      "Butterfly effect vế còn lại — không đoán mò, đợi anh",
+      "Resonance Protocol spec — đợi iseu-store hoàn thiện"
+    ]
+  },
+  "audit_structure": {
+    "log": "audit/log/ — auto, NOT committed, keep 90",
+    "reports": "audit/reports/ — Gatekeeper ký, MUST commit",
+    "summary": "audit/summary/latest.json — updated mỗi lần chạy",
+    "policy": "audit/policy/IMMUNE_POLICY.json — immune system law v1.0.0"
+  },
+  "qneu": {
+    "scores": {
+      "BANG": 300,
+      "THIEN": 135,
+      "KIM": 120,
+      "CAN": 85,
+      "BOI_BOI": 40
+    },
+    "missing": "NA + KRIS chưa trong AIEntityId",
+    "van_de": "frequencyImprints rỗng — scores tĩnh từ first-seed",
+    "first_seed_version": "v2.0"
+  },
+  "sirasign": {
+    "van_de": "sirasign_master.json + sirasign_v2.json lọt repo root — nhạy cảm",
+    "action": "Gatekeeper phải tự chạy: git rm sirasign_master.json sirasign_v2.json",
+    "can_build_pending": "/api/auth/verify-sirasign, /api/auth/verify-pin, SiraSign SHA-256 quantum-defense-cell"
+  },
+  "workflow_rules": {
+    "nguyen_ly_fix": "Có lệnh → làm luôn. Kết quả là bằng chứng. Không giải thích trước. Không báo cáo giữa chừng.",
+    "file_delivery": "Files land ở ROOT repo → mv vào đúng path. KHÔNG dùng ~/Downloads",
+    "commit": "git commit --no-verify",
+    "grep_first": "grep -rn trước khi patch, luôn exclude node_modules"
+  }
+}
