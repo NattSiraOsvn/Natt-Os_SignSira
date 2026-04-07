@@ -1,12 +1,11 @@
 {
   "state": "HEALTHY",
-  "risk": 8,
+  "risk": 0,
   "strengths": [
-    "Engine wiring healthy (2 unused)",
-    "Signal coverage: 46 cells wired",
-    "Event flows: 40 healthy chains"
+    "Event coverage clean (0 orphans)",
+    "Engine wiring healthy (0 unused)",
+    "Signal coverage: 51 cells wired",
+    "Event flows: 49 healthy chains"
   ],
-  "issues": [
-    "MINOR_LEAK: 9 orphan events"
-  ]
+  "issues": []
 }

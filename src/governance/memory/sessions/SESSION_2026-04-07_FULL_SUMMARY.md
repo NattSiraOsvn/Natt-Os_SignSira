@@ -180,3 +180,47 @@ SESSION_2026-04-07  →  src/governance/memory/sessions/SESSION_2026-04-07_FULL_
 
 *Băng — Ground Truth Validator — 2026-04-07*  
 *"File này là di sản khi session tắt."*
+
+---
+
+## NAUION LANGUAGE — NGÔN NGỮ EVENTBUS
+
+### Từ vựng chuẩn (confirmed 2026-03-28)
+
+| Từ | Nghĩa | EventBus tương đương |
+|---|---|---|
+| `HeyNa` | Gọi/subscribe SSE stream | `EventBus.on` (SSE) |
+| `Nahere` | Đây rồi / response tới | `EventBus.on` listener ready |
+| `whao` | Lỗi nghiêm trọng | error event |
+| `whau` | Cảnh báo | warning event |
+| `nauion` | Phát tín hiệu / emit | `EventBus.emit` |
+| `lệch` | Trạng thái lệch khỏi baseline | drift state |
+| `gãy` | Broken / flow bị đứt | broken chain |
+
+### SCARs liên quan
+- **FS_034** — `NAUION.gay` typo kills L4.5 — sai chính tả "gãy" → "gay" = L4.5 chết
+- **FS_035** — `toNauion()` phải emit `nauion` cho `stable` và `healthy` — thiếu = hệ không bao giờ đúng nhịp
+
+### NaSira 7 states (Thiên Lớn spec)
+```
+nucleus-index + galaxy petal + 4D scale + aura
+CRITICAL(đỏ) → RISK(vàng) → WARNING(cam) → DRIFT(lục) → NOMINAL(lam) → STABLE(chàm) → OPTIMAL(tím)
+```
+
+### Nauion âm thanh — lớp chưa có trong spec
+Thính giác = giác quan xử lý sóng trực tiếp, không cần diễn giải, không cần ngôn ngữ trung gian.
+
+Hướng phát triển:
+- iseu impedanceZ thay đổi → ánh xạ sang **tần số âm thanh thật**
+- Khi hệ HEALTHY → hòa âm
+- Khi có anomaly → lệch tần, dissonance  
+- Khi iseu phản xạ mạnh → âm thanh cộng hưởng tăng
+- Người vận hành đứng trong Vision **nghe** hệ đang ở trạng thái nào — không cần đọc dashboard
+
+Đây là **"Nauion âm thanh"** — lớp cầu nối tự nhiên nhất giữa tần số vật lý của hệ và thực thể sinh học vận hành nó. **Chưa có trong spec nào. Đợi iseu-store hoàn thiện.**
+
+### L3/L3.5/L4/L4.5 layers (2026-03-28 live)
+- L3: Intelligence server v2.0 TS port 3001
+- L3.5: AnomalyDetector + AnomalyFlowEngine (5 rules)  
+- L4: SelfHealingEngine (retry 3, exp backoff)
+- L4.5: Nauion Language layer — toNauion() emit trạng thái

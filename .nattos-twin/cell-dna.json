@@ -1,6 +1,6 @@
 {
-  "healthy": 44,
-  "sick": 7,
+  "healthy": 51,
+  "sick": 0,
   "details": {
     "analytics-cell": {
       "tier": "business",
@@ -394,15 +394,14 @@
     },
     "shared-contracts-cell": {
       "tier": "infrastructure",
-      "score": 5,
-      "missing": [
-        "engine"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
         "application",
+        "engine",
         "smartlink"
       ]
     },
@@ -486,16 +485,15 @@
     },
     "ai-connector-cell": {
       "tier": "infrastructure",
-      "score": 2,
-      "missing": [
+      "score": 6,
+      "missing": [],
+      "present": [
         "manifest",
+        "domain",
         "ports",
         "application",
+        "engine",
         "smartlink"
-      ],
-      "present": [
-        "domain",
-        "engine"
       ]
     },
     "audit-cell": {
@@ -513,15 +511,14 @@
     },
     "config-cell": {
       "tier": "kernel",
-      "score": 5,
-      "missing": [
-        "engine"
-      ],
+      "score": 6,
+      "missing": [],
       "present": [
         "manifest",
         "domain",
         "ports",
         "application",
+        "engine",
         "smartlink"
       ]
     },
@@ -553,16 +550,15 @@
     },
     "notification-cell": {
       "tier": "infrastructure",
-      "score": 1,
-      "missing": [
+      "score": 6,
+      "missing": [],
+      "present": [
         "manifest",
+        "domain",
         "ports",
         "application",
         "engine",
         "smartlink"
-      ],
-      "present": [
-        "domain"
       ]
     },
     "quantum-defense-cell": {
@@ -631,13 +627,5 @@
       ]
     }
   },
-  "sick_list": [
-    "shared-contracts-cell",
-    "ai-connector-cell",
-    "config-cell",
-    "notification-cell",
-    "ai-connector-cell",
-    "notification-cell",
-    "shared-contracts-cell"
-  ]
+  "sick_list": []
 }

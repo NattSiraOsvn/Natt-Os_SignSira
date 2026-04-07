@@ -37,17 +37,20 @@
     "tax-cell",
     "warehouse-cell",
     "warranty-cell",
+    "ai-connector-cell",
     "audit-cell",
+    "config-cell",
     "monitor-cell",
     "neural-main-cell",
+    "notification-cell",
     "quantum-defense-cell",
     "rbac-cell",
     "security-cell",
     "ai-connector-cell",
+    "notification-cell",
+    "shared-contracts-cell",
     "smartlink-cell",
     "sync-cell"
   ],
-  "blind": [
-    "notification-cell"
-  ]
+  "blind": []
 }
