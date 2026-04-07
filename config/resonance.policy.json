@@ -1,0 +1,12 @@
+{
+  "base_frequency": 432,
+  "mapping": "log",
+  "tick_ms": 200,
+  "freq_min": 200,
+  "freq_max": 1200,
+  "amp_min": 0.01,
+  "amp_max": 0.12,
+  "cooldown_ms": 300,
+  "pulse_on_anomaly": true,
+  "mute_if_z_above": 5.0
+}
