@@ -638,6 +638,93 @@ setTimeout(() => {
     trigger(c, 'bctc', {clientX: r.left + r.width/2, clientY: r.top + r.height/2});
   }
 }, 1600);
+
+// ── Mạch HeyNa — wire cell state real-time ──────────────────
+const _lastSeen = {};
+const STATE_MAP = {
+  alive:    'optimal',
+  warning:  'warning',
+  critical: 'critical',
+  drift:    'drift',
+};
+
+function applyMachState(cellId, newState) {
+  const cell = MAP[cellId];
+  if (!cell) return;
+  cell.state = newState;
+  const card = document.getElementById('card-' + cellId);
+  if (!card) return;
+  const col = ST[newState] || '#7FFFCC';
+  // Update dot color
+  const dot = card.querySelector('.c-dot');
+  if (dot) { dot.style.background = col; dot.style.boxShadow = `0 0 8px ${col}`; }
+  // Update state bar
+  const bar = card.querySelector('.c-state-fill');
+  if (bar) bar.style.background = col;
+  // Update abbr color
+  const abbr = card.querySelector('.c-abbr');
+  if (abbr) abbr.style.color = col;
+}
+
+function handleMachEvent(data) {
+  if (!data || !data.event) return;
+  const ev = data.event;
+  const payload = data.payload || {};
+
+  // cell.metric → cell alive
+  if (ev === 'cell.metric' && payload.cell) {
+    const cellId = payload.cell;
+    _lastSeen[cellId] = Date.now();
+    applyMachState(cellId, 'optimal');
+  }
+
+  // audit.record → flash ripple trên cell liên quan
+  if (ev === 'audit.record' && payload.cell) {
+    const card = document.getElementById('card-' + payload.cell);
+    if (card) {
+      const r = card.getBoundingClientRect();
+      spawnRipple(r.left + r.width/2, r.top + r.height/2);
+    }
+  }
+
+  // constitutional.violation → warning
+  if (ev === 'constitutional.violation' && payload.cell) {
+    applyMachState(payload.cell, 'warning');
+  }
+
+  // iseu.reinforcement → flash
+  if (ev === 'iseu.reinforcement' && payload.sourceCell) {
+    const card = document.getElementById('card-' + payload.sourceCell);
+    if (card) {
+      const r = card.getBoundingClientRect();
+      spawnRipple(r.left + r.width/2, r.top + r.height/2);
+    }
+  }
+}
+
+// Drift check: cell không emit 30s → drift
+setInterval(() => {
+  const now = Date.now();
+  Object.entries(_lastSeen).forEach(([cellId, ts]) => {
+    if (now - ts > 30000) {
+      applyMachState(cellId, 'drift');
+    }
+  });
+}, 5000);
+
+// Subscribe Mạch HeyNa
+(function startMach() {
+  const mach = new EventSource('http://localhost:3001/mach/heyna');
+  mach.onopen = () => console.log('[Mapping] Mạch HeyNa — Nahere');
+  mach.onmessage = (e) => {
+    try { handleMachEvent(JSON.parse(e.data)); } catch {}
+  };
+  mach.onerror = () => {
+    mach.close();
+    setTimeout(startMach, 3000);
+    console.warn('[Mapping] Mạch đứt — retry 3s');
+  };
+})();
 </script>
 </body>
 </html>
