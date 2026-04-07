@@ -14,6 +14,7 @@ import { bootKernel } from '../src/core/kernel-boot';
 import { AuditApplicationService } from '../src/cells/kernel/audit-cell/application/services/AuditApplicationService';
 import '../src/apps/engine-registry';
 import { NauionVoice } from '../src/core/nauion/nauion.voice';
+import { computeSystemImpedance } from '../src/cells/kernel/neural-main-cell/domain/services/impedance.engine';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -44,7 +45,15 @@ EventBus.on('cell.metric', (payload: any) => {
 });
 
 hey('/api/nauion', (_req: any, res: any) => {
-  res.json({ state: NauionVoice.currentState(), ts: Date.now() });
+  const snapshot = computeSystemImpedance();
+  res.json({
+    state: NauionVoice.currentState(),
+    impedanceZ: snapshot.Z,
+    event_rate: snapshot.event_rate,
+    error_ratio: snapshot.error_ratio,
+    anomaly_score: snapshot.anomaly_score,
+    ts: Date.now(),
+  });
 });
 
 hey('/api/health', (_req, res) => {
