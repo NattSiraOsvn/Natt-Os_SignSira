@@ -1,57 +1,5 @@
 [
   {
-    "timestamp": 1775031618696,
-    "eventType": "cell.metric",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "timestamp": 1775031618697,
-    "eventType": "cell.metric",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "timestamp": 1775031618698,
-    "eventType": "cell.metric",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "timestamp": 1775031618714,
-    "eventType": "cell.metric",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "timestamp": 1775031618731,
-    "eventType": "nauion.state",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "ts": "2026-04-03 20:29:42",
-    "commits": 452,
-    "ts_files": 1227,
-    "ts_lines": 81383,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 125,
-    "dirty": 3,
-    "root_files": 22
-  },
-  {
-    "ts": "2026-04-03 20:31:46",
-    "commits": 453,
-    "ts_files": 1227,
-    "ts_lines": 81383,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 125,
-    "dirty": 3,
-    "root_files": 22
-  },
-  {
     "ts": "2026-04-03 20:41:41",
     "commits": 454,
     "ts_files": 1227,
@@ -302,6 +250,83 @@
     "kernel_cells": 9,
     "engines": 129,
     "dirty": 6,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:43:53",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 3,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:45:10",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:46:36",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:47:48",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:50:47",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:55:59",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
+    "root_files": 18
+  },
+  {
+    "ts": "2026-04-07 09:56:45",
+    "commits": 496,
+    "ts_files": 1251,
+    "ts_lines": 81976,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
     "root_files": 18
   }
 ]
