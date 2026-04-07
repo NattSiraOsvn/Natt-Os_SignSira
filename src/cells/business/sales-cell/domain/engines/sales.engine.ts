@@ -73,4 +73,6 @@ export const SalesEngine = {
     const RATES: Record<string, number> = { MASTER: 0.03, EXPERT: 0.025, SENIOR: 0.02, STANDARD: 0.015 };
     return total * (RATES[sellerTier] ?? 0.015);
   },
+  EventBus.emit('cell.metric', { cell: 'sales-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
 };

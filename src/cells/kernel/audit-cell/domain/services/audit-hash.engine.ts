@@ -160,6 +160,8 @@ export function smartFindColumn(headers: unknown[], keywords: string[]): number 
     const h = removeVietnameseDiacritics(String(headers[i] ?? ''));
     if (normKw.some(k => h.includes(k) || k.includes(h))) return i;
   }
+  EventBus.emit('cell.metric', { cell: 'audit-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
   return -1;
 }
 

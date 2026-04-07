@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { WarrantySmartLinkPort } from "../../ports/warranty-smartlink.port";
 /**
  * NATT-OS — Warranty Cell
@@ -53,6 +54,7 @@ export class WarrantyEngine {
 
   static getOverdueClaims(claims: WarrantyClaim[], maxDays: number = 14): WarrantyClaim[] {
     const now = new Date();
+    EventBus.emit('cell.metric', { cell: 'warranty-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return claims.filter(c => {
       if (c.status === 'RETURNED' || c.status === 'REJECTED') return false;
       const days = Math.floor((now.getTime() - c.claimDate.getTime()) / (24 * 3600000));

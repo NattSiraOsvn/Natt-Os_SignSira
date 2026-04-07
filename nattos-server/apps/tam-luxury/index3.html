@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Tâm Luxury · 4D Sinh Thể Số · Cánh Bướm</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background: #000;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+body {
+  background: radial-gradient(circle at 20% 30%, #03050a, #000000);
+}
+input, textarea { user-select: text; }
+
+/* 3D canvas fullscreen */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+canvas.webgl {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* UI overlay - living organism style */
+#app {
+  position: relative;
+  z-index: 20;
+  min-height: 100vh;
+  backdrop-filter: blur(3px);
+  pointer-events: auto;
+}
+
+/* header evolved */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(2, 5, 12, 0.65);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200, 146, 42, 0.3);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  height: 62px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,215,120,0.15);
+}
+.tlogo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f5e6b0, #e0b85b, #c9942a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 12px rgba(200,146,66,0.4);
+}
+.tsub {
+  font-size: 8px;
+  color: #9c8758;
+  letter-spacing: 0.28em;
+  margin-left: 12px;
+  font-weight: 400;
+}
+.t-r {
+  margin-left: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.t-chip {
+  background: rgba(10, 14, 25, 0.7);
+  border: 1px solid rgba(200,146,42,0.4);
+  border-radius: 60px;
+  padding: 5px 14px;
+  font-family: monospace;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(8px);
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+}
+.pls {
+  animation: pulseGlow 1.8s infinite;
+}
+@keyframes pulseGlow {
+  0% { opacity: 0.4; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+#hdr-gold, #hdr-state {
+  font-weight: 700;
+  color: #f5cf8c;
+  letter-spacing: 0.5px;
+}
+
+/* Hero - 4D living signature */
+.hero {
+  text-align: center;
+  padding: 36px 24px 28px;
+  position: relative;
+}
+.hero-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffdf9c, #f7bc45, #e4a022, #ffdd99);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldWave 5s ease infinite;
+  text-shadow: 0 0 18px rgba(230,170,40,0.4);
+}
+@keyframes goldWave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hero-sub {
+  font-size: 9px;
+  color: #b8a87a;
+  letter-spacing: 0.3em;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+.hero-chips {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.hc {
+  padding: 4px 16px;
+  border-radius: 40px;
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 500;
+  background: rgba(25, 20, 35, 0.7);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(210, 160, 50, 0.5);
+  color: #e6cfa0;
+}
+.hc-green {
+  border-color: #6fe6a8;
+  background: rgba(61,214,140,0.12);
+  color: #b0ffd0;
+}
+
+/* group labels - iridescent */
+.group-label {
+  padding: 14px 28px 6px;
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: #cbb875;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.group-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200,146,42,0.4), rgba(200,146,42,0.05));
+}
+
+/* grid cards — butterfly wing reactive */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+  padding: 0 28px 20px;
+}
+
+.app-card {
+  background: rgba(8, 12, 22, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(200,146,42,0.25);
+  border-radius: 24px;
+  padding: 18px 22px;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-decoration: none;
+  color: #f0e6d0;
+  transform-style: preserve-3d;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+.app-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(230,190,90,0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.app-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: #e2b74a;
+  background: rgba(15, 20, 34, 0.85);
+  box-shadow: 0 18px 32px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(220,180,70,0.3);
+}
+.app-card:hover::before {
+  opacity: 1;
+}
+.app-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 6px #c9942a);
+}
+.app-info {
+  flex: 1;
+}
+.app-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffe2b5;
+  letter-spacing: 0.3px;
+}
+.app-desc {
+  font-size: 10px;
+  color: #a5926e;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.app-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-family: monospace;
+  font-size: 8px;
+  font-weight: 600;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(210,170,50,0.5);
+}
+.ab-gold { background: rgba(200,146,42,0.2); color: #ffdc9e; }
+.ab-green { background: rgba(61,214,140,0.2); color: #a5f0ca; }
+.ab-blue { background: rgba(96,184,240,0.2); color: #b4e0ff; }
+.ab-amber { background: rgba(240,160,48,0.2); color: #ffcf8a; }
+.ab-red { background: rgba(240,80,80,0.2); color: #ffaaaa; }
+
+/* ticker - iridescent pulse */
+.ticker {
+  position: sticky;
+  bottom: 0;
+  height: 30px;
+  background: rgba(2, 5, 12, 0.85);
+  backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(200,146,42,0.4);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 90;
+}
+.tick-tag {
+  background: linear-gradient(95deg, #c9942a, #f0c674);
+  color: #0b0a05;
+  font-size: 8px;
+  font-weight: 900;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2em;
+}
+.tick-scroll {
+  white-space: nowrap;
+  animation: marquee 48s linear infinite;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-left: 20px;
+  font-family: monospace;
+}
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.ti { font-size: 9px; color: #b8a27a; }
+.ti-gold { color: #fad47c; font-weight: bold; }
+
+/* butterfly reactive hover particles (canvas will handle) */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #05070c;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9942a;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .grid { padding: 0 16px; gap: 12px; }
+  .hero-title { font-size: 24px; }
+  .topbar { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<div id="canvas-container"></div>
+<div id="app">
+  <header class="topbar">
+    <div class="tlogo">TÂM LUXURY</div>
+    <span class="tsub">4D SINH THỂ · CÁNH BƯỚM</span>
+    <div class="t-r">
+      <div class="t-chip"><div class="dot pls" style="background:#3dd68c; box-shadow:0 0 8px #3dd68c;"></div><span id="hdr-gold">9999: --</span></div>
+      <div class="t-chip"><div class="dot pls" style="background:#f0bc5a; box-shadow:0 0 8px #f0bc5a;"></div><span id="hdr-state">NATU·4D</span></div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-title">⟡ CÁNH BƯỚM LƯỢNG TỬ ⟡</div>
+    <div class="hero-sub">SINH THỂ SỐ · HIỆU ỨNG 4D · CHUẨN NHẬP VAI</div>
+    <div class="hero-chips">
+      <span class="hc">26 MODULES</span>
+      <span class="hc">LIVE 4D ENGINE</span>
+      <span class="hc hc-green" id="hc-z">Z = 1.000</span>
+      <span class="hc">VIETINBANK 110604776999</span>
+      <span class="hc">VAT 10%</span>
+    </div>
+  </div>
+
+  <!-- BÁN HÀNG -->
+  <div class="group-label">💎 Bán Hàng & Showroom</div>
+  <div class="grid">
+    <a class="app-card" href="tamluxury-v4.html"><span class="app-icon">🛒</span><div class="app-info"><div class="app-name">Sales Terminal v4</div><div class="app-desc">POS quầy · Giỏ hàng · QR thanh toán</div><span class="app-badge ab-gold">CORE</span></div></a>
+    <a class="app-card" href="showroom-sales.html"><span class="app-icon">💎</span><div class="app-info"><div class="app-name">Showroom Sales</div><div class="app-desc">Luxury showroom · Tư vấn tinh hoa</div><span class="app-badge ab-gold">SHOWROOM</span></div></a>
+    <a class="app-card" href="order-flow.html"><span class="app-icon">📋</span><div class="app-info"><div class="app-name">Order Flow</div><div class="app-desc">Tracking đơn hàng · Luồng sản xuất</div><span class="app-badge ab-gold">FLOW</span></div></a>
+    <a class="app-card" href="pricing-engine.html"><span class="app-icon">💰</span><div class="app-info"><div class="app-name">Pricing Engine</div><div class="app-desc">Giá vàng live · BQGQ · Phổ SX</div><span class="app-badge ab-gold">LIVE PRICE</span></div></a>
+    <a class="app-card" href="ktt-approval.html"><span class="app-icon">✅</span><div class="app-info"><div class="app-name">KTT Approval</div><div class="app-desc">Phê duyệt giao dịch · Master flow</div><span class="app-badge ab-amber">APPROVAL</span></div></a>
+  </div>
+
+  <div class="group-label">⚒️ Sản Xuất & Xưởng 4D</div>
+  <div class="grid">
+    <a class="app-card" href="production-wallboard.html"><span class="app-icon">📺</span><div class="app-info"><div class="app-name">Production Wallboard</div><div class="app-desc">Kanban xưởng realtime · OEE</div><span class="app-badge ab-green">LIVE</span></div></a>
+    <a class="app-card" href="loss-thresholds.html"><span class="app-icon">⚖️</span><div class="app-info"><div class="app-name">Loss Thresholds</div><div class="app-desc">Ngưỡng hao hụt · NĐ 24/2012</div><span class="app-badge ab-green">HAO HỤT</span></div></a>
+    <a class="app-card" href="warehouse-full.html"><span class="app-icon">📦</span><div class="app-info"><div class="app-name">Warehouse Full</div><div class="app-desc">Kho nguyên liệu + thành phẩm</div><span class="app-badge ab-green">KHO</span></div></a>
+    <a class="app-card" href="warehouse-ops.html"><span class="app-icon">🏭</span><div class="app-info"><div class="app-name">Warehouse Ops</div><div class="app-desc">Tác nghiệp kho · Nhập xuất nhanh</div><span class="app-badge ab-green">OPS</span></div></a>
+    <a class="app-card" href="daily-work-app.html"><span class="app-icon">📝</span><div class="app-info"><div class="app-name">Daily Work App</div><div class="app-desc">Chấm công · Báo cáo ca</div><span class="app-badge ab-green">DAILY</span></div></a>
+    <a class="app-card" href="operations-terminal.html"><span class="app-icon">🚚</span><div class="app-info"><div class="app-name">Operations Terminal</div><div class="app-desc">Hậu cần · Vận chuyển</div><span class="app-badge ab-amber">OPS</span></div></a>
+  </div>
+
+  <div class="group-label">💰 Tài Chính & Quản Lý</div>
+  <div class="grid">
+    <a class="app-card" href="master-dashboard.html"><span class="app-icon">🔱</span><div class="app-info"><div class="app-name">Master Dashboard</div><div class="app-desc">Tổng quan CEO · KPI toàn hệ thống</div><span class="app-badge ab-gold">MASTER</span></div></a>
+    <a class="app-card" href="kris-email-hub.html"><span class="app-icon">📧</span><div class="app-info"><div class="app-name">Kris Email Hub</div><div class="app-desc">Email AI · Phân loại tự động</div><span class="app-badge ab-blue">KRIS AI</span></div></a>
+    <a class="app-card" href="surveillance.html"><span class="app-icon">👁️</span><div class="app-info"><div class="app-name">Surveillance</div><div class="app-desc">Risk score · Loss chain</div><span class="app-badge ab-amber">SECURITY</span></div></a>
+  </div>
+
+  <div class="group-label">👥 Nhân Sự & Cộng Đồng</div>
+  <div class="grid">
+    <a class="app-card" href="hr-admin.html"><span class="app-icon">👥</span><div class="app-info"><div class="app-name">HR Admin</div><div class="app-desc">Hợp đồng · Lương · BHXH</div><span class="app-badge ab-blue">HR</span></div></a>
+    <a class="app-card" href="hr-manager.html"><span class="app-icon">📊</span><div class="app-info"><div class="app-name">HR Manager</div><div class="app-desc">KPI nhân viên · Hiệu suất</div><span class="app-badge ab-blue">MANAGER</span></div></a>
+    <a class="app-card" href="attendance.html"><span class="app-icon">⏰</span><div class="app-info"><div class="app-name">Attendance</div><div class="app-desc">Chấm công · Nghỉ phép</div><span class="app-badge ab-blue">CHẤM CÔNG</span></div></a>
+    <a class="app-card" href="personal-profile-v2.html"><span class="app-icon">👤</span><div class="app-info"><div class="app-name">Personal Profile v2</div><div class="app-desc">Kỹ năng · Đánh giá</div><span class="app-badge ab-blue">PROFILE</span></div></a>
+    <a class="app-card" href="personal-profile.html"><span class="app-icon">👤</span><div class="app-info"><div class="app-name">Personal Profile</div><div class="app-desc">Hồ sơ cơ bản</div><span class="app-badge ab-blue">v1</span></div></a>
+    <a class="app-card" href="chat-rooms.html"><span class="app-icon">💬</span><div class="app-info"><div class="app-name">Chat Rooms</div><div class="app-desc">Phòng họp · AI Kris</div><span class="app-badge ab-blue">COLLAB</span></div></a>
+  </div>
+
+  <div class="group-label">🗂️ Legacy Archive</div>
+  <div class="grid">
+    <a class="app-card" href="tamluxury-v2.html" style="opacity:0.7;"><span class="app-icon">📁</span><div class="app-info"><div class="app-name">Tâm Luxury v2</div><div class="app-desc">Archive legacy</div><span class="app-badge ab-amber">v2</span></div></a>
+    <a class="app-card" href="tamluxury-v3.html" style="opacity:0.7;"><span class="app-icon">📁</span><div class="app-info"><div class="app-name">Tâm Luxury v3</div><div class="app-desc">Phiên bản cũ</div><span class="app-badge ab-amber">v3</span></div></a>
+  </div>
+  <div style="height:12px"></div>
+
+  <div class="ticker">
+    <div class="tick-tag">4D BUTTERFLY</div>
+    <div class="tick-scroll" id="tick-scroll"><span class="ti">⟡ khởi tạo cánh bướm lượng tử ⟡</span></div>
+  </div>
+</div>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+    }
+  }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+  
+// --- setup 4D scene ---
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x010205);
+scene.fog = new THREE.FogExp2(0x010205, 0.008);
+
+const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 1.2, 5.2);
+camera.lookAt(0, 0.5, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.toneMapping = THREE.ReinhardToneMapping;
+renderer.toneMappingExposure = 1.2;
+container.appendChild(renderer.domElement);
+
+// composer bloom
+const renderScene = new RenderPass(scene, camera);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.85, 0.4, 0.2);
+bloomPass.threshold = 0.1;
+bloomPass.strength = 0.65;
+bloomPass.radius = 0.8;
+const effectComposer = new EffectComposer(renderer);
+effectComposer.addPass(renderScene);
+effectComposer.addPass(bloomPass);
+
+// subtle auto-rotation for 4D depth
+let time = 0;
+let mouseX = 0, mouseY = 0;
+window.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+});
+
+// --- BUTTERFLY WING ENTITY (sinh thể số) ---
+const wingGroup = new THREE.Group();
+// wing geometry: custom curved plane with vertex animation
+const width = 2.4;
+const height = 2.0;
+const widthSegments = 48;
+const heightSegments = 48;
+const geometryLeft = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
+const geometryRight = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
+// rotate left wing, right wing
+geometryLeft.rotateY(Math.PI);
+geometryLeft.translate(-width/2, 0, 0);
+geometryRight.translate(width/2, 0, 0);
+
+// shader material for iridescent butterfly wings
+const vertexShader = `
+  varying vec2 vUv;
+  uniform float uTime;
+  void main() {
+    vUv = uv;
+    vec3 pos = position;
+    // wing flutter: sine wave along X and Z based on uv.y
+    float flutter = sin(pos.y * 4.0 + uTime * 6.0) * 0.035 * (1.0 - uv.y);
+    pos.z += flutter * (uv.x - 0.5) * 1.2;
+    pos.x += sin(pos.y * 3.0 + uTime * 5.0) * 0.008;
+    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+    gl_PointSize = 1.0;
+    gl_Position = projectionMatrix * mvPosition;
+  }
+`;
+
+const fragmentShader = `
+  uniform float uTime;
+  varying vec2 vUv;
+  void main() {
+    vec2 uv = vUv;
+    float iridescence = sin(uv.y * 18.0 - uTime * 3.0) * 0.5 + 0.5;
+    float goldPattern = sin(uv.x * 25.0 + uTime) * 0.4;
+    vec3 colorA = vec3(0.98, 0.78, 0.35); // gold
+    vec3 colorB = vec3(0.85, 0.45, 0.75); // purple iridescent
+    vec3 colorC = vec3(0.35, 0.85, 0.92); // cyan shimmer
+    vec3 final = mix(colorA, colorB, iridescence);
+    final = mix(final, colorC, sin(uv.x * 12.0 + uTime * 2.5) * 0.5 + 0.5);
+    final += vec3(0.25, 0.15, 0.05) * (1.0 - uv.y);
+    float alpha = 0.88;
+    gl_FragColor = vec4(final, alpha);
+  }
+`;
+
+const wingMaterial = new THREE.ShaderMaterial({
+  uniforms: { uTime: { value: 0 } },
+  vertexShader: vertexShader,
+  fragmentShader: fragmentShader,
+  transparent: true,
+  side: THREE.DoubleSide,
+  blending: THREE.AdditiveBlending
+});
+
+const leftWing = new THREE.Mesh(geometryLeft, wingMaterial);
+const rightWing = new THREE.Mesh(geometryRight, wingMaterial);
+leftWing.position.set(-1.2, 0.2, -0.1);
+rightWing.position.set(1.2, 0.2, -0.1);
+wingGroup.add(leftWing, rightWing);
+
+// core body - glowing organic
+const bodyGeo = new THREE.SphereGeometry(0.32, 32, 32);
+const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe8b64d, emissive: 0xaa5522, emissiveIntensity: 0.9, metalness: 0.85, roughness: 0.3 });
+const coreBody = new THREE.Mesh(bodyGeo, bodyMat);
+coreBody.position.set(0, 0.15, 0);
+wingGroup.add(coreBody);
+
+// antennae with curves
+const curvePoints = [];
+for (let i = 0; i <= 20; i++) {
+  const t = i / 20;
+  curvePoints.push(new THREE.Vector3(0.28, 0.55 + t * 0.45, 0.05 + Math.sin(t * Math.PI) * 0.08));
+}
+const antennaGeo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(curvePoints), 16, 0.022, 4, false);
+const antennaMat = new THREE.MeshStandardMaterial({ color: 0xffbb77, emissive: 0xdd8822 });
+const antennaL = new THREE.Mesh(antennaGeo, antennaMat);
+antennaL.position.set(-0.28, -0.1, 0);
+const antennaR = antennaL.clone();
+antennaR.position.set(0.28, -0.1, 0);
+wingGroup.add(antennaL, antennaR);
+
+// particle system: butterfly scales (thousands)
+const particleCount = 3800;
+const particlesGeometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particleCount * 3);
+const colors = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount; i++) {
+  // distribution around wings
+  const angle = Math.random() * Math.PI * 2;
+  const radius = 1.2 + Math.random() * 2.4;
+  const x = (Math.random() - 0.5) * 3.8;
+  const y = Math.random() * 1.6 - 0.2;
+  const z = (Math.sin(angle) * radius) * (Math.random() * 1.5);
+  positions[i*3] = x;
+  positions[i*3+1] = y;
+  positions[i*3+2] = z - 0.6;
+  const goldness = 0.6 + Math.random() * 0.5;
+  colors[i*3] = 0.9 + Math.random()*0.3;
+  colors[i*3+1] = 0.6 + Math.random()*0.4;
+  colors[i*3+2] = 0.3 + Math.random()*0.5;
+}
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+const particleMat = new THREE.PointsMaterial({ size: 0.025, vertexColors: true, transparent: true, blending: THREE.AdditiveBlending });
+const particleSys = new THREE.Points(particlesGeometry, particleMat);
+wingGroup.add(particleSys);
+
+// floating orbs (4D depth)
+const orbGroup = new THREE.Group();
+const orbMat = new THREE.MeshStandardMaterial({ color: 0xf0a850, emissive: 0xc96f1a, emissiveIntensity: 0.6 });
+for (let i = 0; i < 35; i++) {
+  const orb = new THREE.Mesh(new THREE.SphereGeometry(0.045, 12, 12), orbMat);
+  orb.userData = { speed: 0.5 + Math.random(), offset: Math.random() * Math.PI * 2, radius: 1.2 + Math.random() * 2.2, angle: Math.random() * Math.PI * 2 };
+  orbGroup.add(orb);
+}
+scene.add(wingGroup);
+scene.add(orbGroup);
+
+// Lights
+const ambientLight = new THREE.AmbientLight(0x221a0c);
+scene.add(ambientLight);
+const mainLight = new THREE.DirectionalLight(0xffd195, 1.2);
+mainLight.position.set(2, 3, 2);
+scene.add(mainLight);
+const backLight = new THREE.PointLight(0xcc8844, 0.6);
+backLight.position.set(0, 1, -2.2);
+scene.add(backLight);
+const fillLight = new THREE.PointLight(0x77aaff, 0.45);
+fillLight.position.set(1, 1.5, 1.5);
+scene.add(fillLight);
+
+// starfield dynamic
+const starGeo = new THREE.BufferGeometry();
+const starCount = 1500;
+const starPos = [];
+for (let i = 0; i < starCount; i++) {
+  starPos.push((Math.random() - 0.5) * 200);
+  starPos.push((Math.random() - 0.5) * 100);
+  starPos.push((Math.random() - 0.5) * 60 - 20);
+}
+starGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(starPos), 3));
+const starMat = new THREE.PointsMaterial({ color: 0xffeebb, size: 0.08, transparent: true, opacity: 0.6 });
+const stars = new THREE.Points(starGeo, starMat);
+scene.add(stars);
+
+// --- 4D interactive animation loop ---
+let clock = new THREE.Clock();
+
+function animate() {
+  const delta = clock.getDelta();
+  const elapsed = performance.now() / 1000;
+  time = elapsed;
+  
+  // wing shader time
+  wingMaterial.uniforms.uTime.value = elapsed;
+  
+  // dynamic flapping (rotation for living effect)
+  const flap = Math.sin(elapsed * 2.8) * 0.26;
+  leftWing.rotation.z = -0.35 + flap * 0.55;
+  rightWing.rotation.z = 0.35 - flap * 0.55;
+  leftWing.rotation.x = Math.sin(elapsed * 1.9) * 0.08;
+  rightWing.rotation.x = Math.sin(elapsed * 1.9) * 0.08;
+  
+  // particle swarm movement (butterfly scales)
+  particleSys.rotation.y = Math.sin(elapsed * 0.2) * 0.3;
+  particleSys.rotation.x = Math.sin(elapsed * 0.35) * 0.2;
+  
+  // orb motion (4D depth wandering)
+  orbGroup.children.forEach((orb, idx) => {
+    const data = orb.userData;
+    if (data) {
+      const t = elapsed * 0.8;
+      orb.position.x = Math.sin(t * data.speed + data.offset) * data.radius * 0.7;
+      orb.position.z = Math.cos(t * data.speed * 0.9 + data.offset) * data.radius * 0.8;
+      orb.position.y = Math.sin(t * 1.2 + idx) * 0.5;
+    }
+  });
+  
+  // dynamic camera for 4D parallax
+  const targetX = mouseX * 0.18;
+  const targetY = mouseY * 0.08;
+  camera.position.x += (targetX - camera.position.x) * 0.05;
+  camera.position.y += (targetY - camera.position.y) * 0.05;
+  camera.lookAt(0, 0.4, 0);
+  
+  // rotate stars slowly
+  stars.rotation.y = elapsed * 0.02;
+  stars.rotation.x = elapsed * 0.01;
+  
+  // body pulse
+  const intensity = 0.85 + Math.sin(elapsed * 7) * 0.3;
+  bodyMat.emissiveIntensity = intensity;
+  
+  effectComposer.render();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// resize handler
+window.addEventListener('resize', onWindowResize, false);
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  effectComposer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// --- existing fetch gold & SSE integration ---
+const API_URL = 'http://localhost:3001';
+async function loadGold() {
+  try {
+    const res = await fetch(`${API_URL}/kenh/gia-vang`);
+    const data = await res.json();
+    const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '—';
+    document.getElementById('hdr-gold').innerHTML = `9999: ${fmt(data.gold9999)} · 18K: ${fmt(data.gold18k)}`;
+    const items = [`🏆 SJC MUA ${Number(data.sjc_buy||0).toLocaleString('vi-VN')}đ`, `BÁN ${Number(data.sjc_sell||0).toLocaleString('vi-VN')}đ`,
+      `💎 9999: ${Number(data.gold9999||0).toLocaleString('vi-VN')}đ`, `✨ 18K: ${Number(data.gold18k||0).toLocaleString('vi-VN')}đ`,
+      `⟡ TÂM LUXURY · 4D BUTTERFLY ⟡`, `🏦 Vietinbank 110604776999`];
+    const tickDiv = document.getElementById('tick-scroll');
+    if(tickDiv) tickDiv.innerHTML = items.map(t => `<span class="ti ti-gold">${t}</span>`).join('');
+  } catch(e) { console.warn(e); }
+}
+function initSSE() {
+  const evtSource = new EventSource(`${API_URL}/mach/heyna`);
+  evtSource.onmessage = (e) => {
+    try {
+      const d = JSON.parse(e.data);
+      if(d.event === 'nauion.state') {
+        const z = d.payload?.impedanceZ;
+        if(z) document.getElementById('hc-z').innerHTML = `Z = ${z.toFixed(3)}`;
+        const st = d.payload?.state;
+        if(st) document.getElementById('hdr-state').innerHTML = st === 'nauion' ? 'HEALTHY 4D' : st.toUpperCase();
+      }
+      if(d.event === 'gia-vang.updated') loadGold();
+    } catch(err) {}
+  };
+  evtSource.onerror = () => { evtSource.close(); setTimeout(initSSE, 4000); };
+}
+loadGold();
+initSSE();
+
+// watermark dynamic
+const wmDiv = document.createElement('div');
+wmDiv.style.position = 'fixed';
+wmDiv.style.bottom = '8px';
+wmDiv.style.right = '12px';
+wmDiv.style.fontSize = '7px';
+wmDiv.style.fontFamily = 'monospace';
+wmDiv.style.color = 'rgba(200,146,42,0.2)';
+wmDiv.style.zIndex = '999';
+wmDiv.style.pointerEvents = 'none';
+wmDiv.innerText = '⟡ TÂM LUXURY · 4D SINH THỂ · CÁNH BƯỚM ⟡';
+document.body.appendChild(wmDiv);
+</script>
+</body>
+</html>

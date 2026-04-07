@@ -98,4 +98,6 @@ export const CastingEngine = {
   },
 
   getHistory: (): TouchRecord[] => [..._touch],
+  EventBus.emit('cell.metric', { cell: 'casting-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
 };

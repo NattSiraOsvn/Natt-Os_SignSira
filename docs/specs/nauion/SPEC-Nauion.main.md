@@ -992,7 +992,493 @@ echo "🎉 All critical checks passed"
 ```
 
 ---
+### 11.4 FULL ADVANCED GALAXY ENGINE ACCESSORY LAYER
+⚙️ 0. Kiến trúc gắn vào hệ Nauion (rất quan trọng)
 
+Mapping đúng theo 3 layer :
+
+Layer    Module thêm    Vai trò
+Truth Layer    ❌ không thêm    giữ sạch
+Worker Layer    particle + depth + field    tạo “không gian sống”
+Experience Layer    shader + nebula + fog    render cảm nhận
+
+👉 Tức là:
+
+Galaxy = nền sống (Worker + Experience)
+KHÔNG chạm vào Truth Layer (đúng Hiến pháp)
+🌌 1. RAYMARCHING NEBULA (core cao nhất)
+🔧 Mục tiêu
+Tạo nebula volumetric thật (không phải ảnh)
+Có chiều sâu + density thay đổi theo camera
+🧠 SPEC
+Technique: raymarching
+Sampling: 32–64 steps
+Density: fractal noise (fbm)
+🔥 Shader pseudo:
+float nebula(vec3 p) {
+  float d = 0.0;
+  float scale = 1.0;
+
+  for(int i=0;i<5;i++){
+    d += noise(p * scale) / scale;
+    scale *= 2.0;
+  }
+
+  return smoothstep(0.4, 1.0, d);
+}
+🎯 Integration
+attach vào: Experience Layer
+blend mode: additive + soft light
+🧬 2. SHADER-BASED GALAXY (rotation + spiral field)
+🔧 Mục tiêu
+tạo galaxy xoáy nhẹ (không lộ hình xoắn rõ)
+center không nằm giữa → tạo cảm giác “infinite”
+SPEC
+polar coordinate distortion
+radial falloff
+angular velocity
+float angle = atan(p.y, p.x);
+float radius = length(p);
+
+float spiral = sin(angle * 4.0 + time * 0.1) * 0.2;
+radius += spiral;
+
+float density = exp(-radius * 2.0);
+🌊 3. PROCEDURAL SPACE BACKGROUND
+🔧 Vai trò
+nền base thay vì dùng image
+SPEC
+gradient + noise + color drift
+vec3 color = mix(
+  vec3(0.01,0.01,0.05),
+  vec3(0.02,0.0,0.08),
+  noise(uv * 0.5)
+);
+
+👉 quan trọng:
+
+luôn giữ dark base < 0.1 brightness
+✨ 4. GPU PARTICLE SYSTEM (chuẩn VR)
+🔧 Loại particle
+Type    Vai trò
+Star    điểm sáng xa
+Dust    lớp trung
+Energy    glow gần
+SPEC chi tiết
+Particle config:
+{
+  count: 3000,
+  size: [0.5, 2.0],
+  speed: 0.01,
+  drift: 0.02,
+  opacity: [0.2, 0.8],
+}
+Motion:
+pos += velocity * delta;
+pos += noise(pos) * drift;
+GPU:
+WebGL instancing / compute shader
+không render từng particle (CPU sẽ chết)
+🧊 5. 3D DEPTH LAYERING (cực kỳ quan trọng)
+🔧 Chia layer:
+Layer    Z-depth    Nội dung
+L0    -1000    star background
+L1    -500    nebula
+L2    -200    dust
+L3    -50    energy particles
+L4    0    UI
+🎯 Parallax:
+layer.position.x += camera.x * depthFactor;
+
+👉 DepthFactor:
+
+xa: 0.02
+gần: 0.2
+🌫️ 6. NOISE-BASED ANIMATION (Perlin / Simplex)
+🔧 Vai trò:
+tạo chuyển động organic
+SPEC:
+dùng cho:
+nebula flow
+particle drift
+light flicker
+ví dụ:
+let n = noise3D(x, y, time * 0.1);
+position += n * 0.05;
+loại noise:
+simplex (mượt hơn perlin)
+fbm (fractal brownian motion)
+💡 7. LIGHT SYSTEM (VisionOS vibe)
+SPEC:
+loại    mô tả
+ambient    ánh nền
+bloom    glow
+volumetric    tia sáng
+rim light    viền
+bloom:
+threshold: 0.6
+strength: 1.2
+radius: 0.8
+🧠 8. DYNAMIC RESPONSE (điểm khác biệt NATT-OS)
+🔥 kết nối EventBus (quan trọng)
+
+Ví dụ:
+
+EventBus.on('butterfly.tsunami', () => {
+  nebula.intensity += 0.3;
+  particles.speed += 0.02;
+});
+
+👉 tức là:
+
+background phản ứng theo hệ
+không phải chỉ “đẹp”
+⚙️ 9. PERFORMANCE CONTROL (theo spec anh đang có)
+
+Align chuẩn với Adaptive Performance
+
+RAM    config
+<4GB    tắt raymarching
+4–8GB    giảm particle
+>8GB    full
+🧩 10. FULL MODULE MAPPING (để gắn vào repo)
+
+ add module:
+
+galaxy.engine.ts
+nebula.shader.ts
+particle.system.ts
+depth.layer.ts
+noise.engine.ts
+light.engine.ts
+
+
+### 11.5 Bắt buộc phải có đủ 6 thứ:
+
+1. Raymarching nebula
+2. Shader galaxy
+3. Procedural background
+4. GPU particles
+5. Depth layering (parallax)
+6. Noise animation
+⚠️ CẢNH BÁO 
+- thiếu raymarching → nhìn fake
+- thiếu depth → nhìn 2D
+- thiếu noise → nhìn dead
+- thiếu event binding → không phải hệ sống
+### 11.6 🔥 📜 ** Bố Cục**
+
+---
+
+# 🧠 I. NGUYÊN TẮC TỐI CAO (KHÔNG ĐƯỢC VI PHẠM)
+
+```txt
+1. EventBus là backbone duy nhất
+2. Mọi hành vi UI phải emit Event
+3. Không UI nào gọi Engine trực tiếp
+4. Mọi Event phải có audit + causality_id
+5. Idempotency enforced tại DB (event_id + tenant_id)
+6. UI chỉ render Projection (không chứa logic)
+```
+
+---
+
+# 🧩 II. APP SHELL (ROOT STRUCTURE)
+
+```txt
+AppShell
+ ├── Sidebar (Navigation Root)
+ ├── MainFeed (Scroll System)
+ ├── OverlayLayer (Modal / Command)
+ └── GestureLayer (Input Capture)
+```
+
+---
+
+# 🧭 III. SIDEBAR (ROOT NAVIGATION)
+
+```txt
+- Tổng quan
+- Bán hàng
+- Sản xuất
+- Kho
+- Tài chính
+- Nhân sự
+```
+
+---
+
+## Event Contract:
+
+```ts
+ui.nav.change → intent.view.switch
+```
+
+---
+
+# 🧠 IV. MAIN FEED (CORE SYSTEM)
+
+```txt
+HeroSection (AI)
+↓
+SalesSection
+↓
+ProductionSection
+↓
+InventorySection
+↓
+FinanceSection
+↓
+SmartSuggestionSection
+```
+
+---
+
+# 🔥 V. SECTION → CELL PROJECTION MAPPING
+
+| UI Section | Cell                  | Engine            |
+| ---------- | --------------------- | ----------------- |
+| Hero       | analytics + smartlink | analytics.engine  |
+| Sales      | sales-cell            | sales.engine      |
+| Production | production-cell       | production.engine |
+| Inventory  | warehouse-cell        | inventory.engine  |
+| Finance    | finance-cell          | finance.engine    |
+
+---
+
+# 🧩 VI. CARD MODEL (UI UNIT)
+
+```txt
+Card
+ ├── Title
+ ├── Context
+ ├── Status
+ └── SuggestedAction
+```
+
+---
+
+# ✋ VII. GESTURE → INTENT → POLICY → ACTION
+
+## ❗ BẮT BUỘC 4 LỚP (KHÔNG RÚT GỌN)
+
+---
+
+## 1. UI EMIT
+
+```ts
+ui.swipe.right → intent.accept
+ui.swipe.left → intent.reject
+ui.tap.card → intent.open
+ui.scroll.section → intent.context.visible
+```
+
+---
+
+## 2. POLICY LAYER (BẮT BUỘC)
+
+```ts
+intent.accept
+ → policy.validate(userRole, state)
+ → command.execute
+```
+
+---
+
+## 3. COMMAND HANDLER
+
+```ts
+command.execute
+ → EventBus.emit("action.accept.production")
+```
+
+---
+
+## 4. ENGINE EXECUTION
+
+```ts
+action.accept.production
+ → production.engine.advance()
+```
+
+---
+
+# ⚡ VIII. EVENT ENVELOPE (BẮT BUỘC)
+
+```ts
+EventEnvelope {
+  event_id: string
+  tenant_id: string
+  causation_id: string
+  correlation_id?: string
+  timestamp: number
+  source: string
+  type: string
+  payload: object
+}
+```
+
+---
+
+# 🧾 IX. AUDIT (MANDATORY)
+
+```ts
+EventBus.emit("audit.record", {
+  event_id,
+  tenant_id,
+  type,
+  payload
+})
+```
+
+---
+
+# 🔁 X. IDEMPOTENCY (DB LAYER)
+
+```txt
+PRIMARY KEY: (event_id, tenant_id)
+```
+
+---
+
+# 🧠 XI. SMART SUGGESTION (SMARTLINK ENGINE)
+
+---
+
+## Input:
+
+```txt
+- SmartLink.touchCount
+- Analytics state
+- UserContext
+```
+
+---
+
+## Output:
+
+```txt
+NextAction[]
+```
+
+---
+
+## BẮT BUỘC EMIT EVENT:
+
+```ts
+EventBus.emit("suggestion.generated", {
+  suggestion_id,
+  causation_id,
+  tenant_id,
+  audit: true
+})
+```
+
+---
+
+# 🎯 XII. DATA FLOW (KHÔNG ĐƯỢC SAI)
+
+```txt
+UI
+ → EventBus
+ → Policy
+ → Command
+ → Engine
+ → Audit
+ → Projection
+ → UI
+```
+
+---
+
+# 🧠 XIII. RENDER PIPELINE
+
+```txt
+Event → State → Projection → Component Render
+```
+
+---
+
+# 🎨 XIV. ICON SYSTEM (CHUẨN BẮT BUỘC)
+
+* SVG only
+* Emissive glow
+* Không emoji
+
+```css
+.icon-core {
+  filter:
+    drop-shadow(0 0 6px rgba(255,255,255,0.6))
+    drop-shadow(0 0 16px rgba(255,215,0,0.6))
+    drop-shadow(0 0 32px rgba(255,200,120,0.3));
+}
+```
+
+---
+
+# 📱 XV. RESPONSIVE (MODE-BASED)
+
+---
+
+## Mode Detection:
+
+```ts
+desktop / tablet / mobile
+```
+
+---
+
+## Behavior:
+
+| Mode    | Behavior        |
+| ------- | --------------- |
+| Desktop | full feed       |
+| Tablet  | reduced density |
+| Mobile  | stacked cards   |
+
+---
+
+## Core Rule:
+
+```txt
+Layout phải đổi behavior, không chỉ scale
+```
+
+---
+
+# 🚫 XVI. VI PHẠM BỊ CẤM TUYỆT ĐỐI
+
+* ❌ UI gọi engine trực tiếp
+* ❌ Bỏ qua EventBus
+* ❌ Không có audit
+* ❌ Không có causality_id
+* ❌ Không idempotency
+* ❌ State nằm trong UI
+* ❌ Dashboard grid truyền thống
+
+---
+
+# 🏁 XVII. OUTPUT yêu cầu
+
+Sau khi  build:
+
+---
+
+## UI:
+
+* giống App Store (stacked feed)
+* giống VisionOS (depth + glass)
+* giống OS (event-driven)
+
+---
+
+## System:
+
+* trace được mọi hành động
+* replay được event
+* không mất causality
+
+-
 ## ĐIỀU CUỐI CÙNG
 
 **Bảng SPEC này là bất biến (Immutable).** Mọi thay đổi về UI, event, ISEU, butterfly, liquid glass đều phải được **Gatekeeper phê duyệt** và ghi **Audit Trail**.

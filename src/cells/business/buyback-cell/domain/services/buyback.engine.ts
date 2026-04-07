@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { BuybackSmartLinkPort } from "../../ports/buyback-smartlink.port";
 /**
  * NATT-OS — Buyback Cell
@@ -73,6 +74,7 @@ export class BuybackEngine {
    * Gợi ý rates mặc định theo category — để pre-fill UI trước khi quét GĐB
    */
   static getDefaultRates(category: string) {
+    EventBus.emit('cell.metric', { cell: 'buyback-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return CATEGORY_EXCHANGE_DEFAULTS[category as keyof typeof CATEGORY_EXCHANGE_DEFAULTS] ?? null;
   }
 }

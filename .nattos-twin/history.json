@@ -1,126 +1,5 @@
 [
   {
-    "ts": "2026-04-07 11:57:33",
-    "commits": 509,
-    "ts_files": 1250,
-    "ts_lines": 81376,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 11,
-    "root_files": 19
-  },
-  {
-    "ts": "2026-04-07 11:59:03",
-    "commits": 510,
-    "ts_files": 1250,
-    "ts_lines": 81376,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 8,
-    "root_files": 19
-  },
-  {
-    "ts": "2026-04-07 12:09:36",
-    "commits": 511,
-    "ts_files": 1249,
-    "ts_lines": 81140,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 8,
-    "root_files": 19
-  },
-  {
-    "ts": "2026-04-07 12:38:19",
-    "commits": 514,
-    "ts_files": 1249,
-    "ts_lines": 81140,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 2,
-    "root_files": 21
-  },
-  {
-    "ts": "2026-04-07 12:39:25",
-    "commits": 514,
-    "ts_files": 1249,
-    "ts_lines": 81140,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 4,
-    "root_files": 21
-  },
-  {
-    "ts": "2026-04-07 12:55:53",
-    "commits": 519,
-    "ts_files": 1249,
-    "ts_lines": 81140,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 2,
-    "root_files": 20
-  },
-  {
-    "ts": "2026-04-07 14:06:51",
-    "commits": 522,
-    "ts_files": 1249,
-    "ts_lines": 81166,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 10,
-    "root_files": 21
-  },
-  {
-    "ts": "2026-04-07 14:08:37",
-    "commits": 522,
-    "ts_files": 1249,
-    "ts_lines": 81166,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 10,
-    "root_files": 21
-  },
-  {
-    "ts": "2026-04-07 14:09:21",
-    "commits": 522,
-    "ts_files": 1249,
-    "ts_lines": 81166,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 10,
-    "root_files": 21
-  },
-  {
-    "ts": "2026-04-07 14:11:33",
-    "commits": 523,
-    "ts_files": 1249,
-    "ts_lines": 81166,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 2,
-    "root_files": 21
-  },
-  {
-    "ts": "2026-04-07 14:11:48",
-    "commits": 523,
-    "ts_files": 1249,
-    "ts_lines": 81166,
-    "biz_cells": 37,
-    "kernel_cells": 9,
-    "engines": 130,
-    "dirty": 4,
-    "root_files": 21
-  },
-  {
     "ts": "2026-04-07 14:19:48",
     "commits": 524,
     "ts_files": 1249,
@@ -327,6 +206,127 @@
     "kernel_cells": 9,
     "engines": 130,
     "dirty": 252,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 02:20:32",
+    "commits": 554,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 14,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:04:28",
+    "commits": 555,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 24,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:12:55",
+    "commits": 555,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 27,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:16:03",
+    "commits": 555,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 28,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:17:08",
+    "commits": 555,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 29,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:18:33",
+    "commits": 555,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 32,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:21:54",
+    "commits": 556,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 32,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:22:13",
+    "commits": 556,
+    "ts_files": 1084,
+    "ts_lines": 55071,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 33,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:29:10",
+    "commits": 556,
+    "ts_files": 1084,
+    "ts_lines": 55109,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 54,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:30:02",
+    "commits": 556,
+    "ts_files": 1084,
+    "ts_lines": 55109,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 55,
+    "root_files": 20
+  },
+  {
+    "ts": "2026-04-08 03:30:17",
+    "commits": 556,
+    "ts_files": 1084,
+    "ts_lines": 55109,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 130,
+    "dirty": 56,
     "root_files": 20
   }
 ]

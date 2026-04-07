@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 // @ts-nocheck
 // ── enterprise-linker.engine.ts ─────────────────────────────
 // Analytics: liên kết dữ liệu đa nguồn → KPI tổng hợp
@@ -50,4 +51,5 @@ export class EnterpriseLinkerEngine {
 }
 
   }
+  execute() { EventBus.emit('cell.metric', { cell: 'analytics-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
 }

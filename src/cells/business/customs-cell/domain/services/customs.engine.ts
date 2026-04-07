@@ -8,6 +8,8 @@ function getDutyRate(hs:string,scheme:DutyRateScheme):number{
   const base=DUTY_RATES[hs.substring(0,4)]??0.10;
   if(scheme==="ASEAN")return Math.max(0,base-0.05);
   if(scheme==="FTA_EU"||scheme==="FTA_US")return 0;
+  EventBus.emit('cell.metric', { cell: 'customs-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
   return base;
 }
 export const CustomsRobotEngine={

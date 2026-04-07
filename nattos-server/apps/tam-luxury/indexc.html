@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>NATT-OS · GALAXY ENGINE · EventBus</title>
+  <title>NATT-OS · CONTROL TOWER · Responsive</title>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     /* ---------- RESET & TOKENS ---------- */
@@ -33,7 +33,7 @@
     #connectionCanvas { z-index: 1; }
     #butterflyCanvas { z-index: 2; }
 
-    /* ----- CONTROL TOWER GRID (responsive) ----- */
+    /* ----- CONTROL TOWER GRID LAYOUT (responsive) ----- */
     #ui-overlay {
       position: absolute;
       inset: 0;
@@ -46,6 +46,7 @@
       pointer-events: none;
     }
 
+    /* Tất cả panel tự bắt sự kiện */
     .header, .left-panel, .core-panel, .right-panel, .bottom-stream {
       pointer-events: auto;
       backdrop-filter: blur(12px);
@@ -55,7 +56,7 @@
       overflow: hidden;
     }
 
-    /* Header */
+    /* ----- HEADER (NAVIGATION) ----- */
     .header {
       grid-column: 1 / 4;
       grid-row: 1;
@@ -84,7 +85,10 @@
       flex: 1;
       padding-bottom: 4px;
       scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
     }
+    .nav-center::-webkit-scrollbar { height: 2px; }
+    .nav-center::-webkit-scrollbar-thumb { background: rgba(200,146,42,0.5); border-radius: 4px; }
     .nav-btn {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.15);
@@ -107,7 +111,12 @@
       border-color: rgba(255,215,0,0.6);
       color: #FFD700;
     }
-    .nav-right { display: flex; gap: 12px; margin-left: auto; }
+    .nav-btn:hover { background: rgba(255,255,255,0.15); transform: translateY(-1px); }
+    .nav-right {
+      display: flex;
+      gap: 12px;
+      margin-left: auto;
+    }
     .nav-icon {
       background: transparent;
       border: none;
@@ -115,9 +124,11 @@
       font-size: 20px;
       cursor: pointer;
       filter: drop-shadow(0 0 6px gold);
+      transition: 0.2s;
     }
+    .nav-icon:hover { transform: scale(1.1); }
 
-    /* Left panel */
+    /* ----- LEFT PANEL (STATE) ----- */
     .left-panel {
       grid-column: 1;
       grid-row: 2;
@@ -158,8 +169,9 @@
       margin-top: auto;
       backdrop-filter: blur(8px);
     }
+    .alert-item.warning { border-left-color: #e6b800; background: rgba(230,184,0,0.15); }
 
-    /* Core panel */
+    /* ----- CENTER CORE (ORBIT) ----- */
     .core-panel {
       grid-column: 2;
       grid-row: 2;
@@ -187,15 +199,18 @@
       z-index: 60;
       pointer-events: auto;
     }
+
+    /* Medal style */
     .medal {
       position: relative;
       width: var(--medal-size);
       height: var(--medal-size);
       border-radius: 50%;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       flex-shrink: 0;
     }
+    .medal:hover { transform: scale(1.05); z-index: 100; }
     .medal-inner {
       position: absolute;
       inset: 0;
@@ -204,13 +219,42 @@
       backdrop-filter: blur(12px);
       background: radial-gradient(circle at 30% 30%, rgba(255,255,240,0.15), rgba(0,0,0,0.5));
       border: 1px solid rgba(255,215,0,0.5);
+      box-shadow: 0 0 30px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .medal-icon { font-size: clamp(24px, 5vw, 34px); margin-bottom: 4px; }
-    .medal-title { font-size: clamp(7px, 1.5vw, 9px); font-weight: 800; text-transform: uppercase; }
+    .liquid-glass-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      backdrop-filter: blur(6px);
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,245,0.2) 0%, transparent 70%);
+    }
+    .medal-icon {
+      font-size: clamp(24px, 5vw, 34px);
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.5));
+      margin-bottom: 4px;
+    }
+    .medal-title {
+      font-size: clamp(7px, 1.5vw, 9px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #ffefc0, #e0b050);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .qneu-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .qneu-ring svg { width: 100%; height: 100%; }
     .confidence-badge {
       position: absolute;
       bottom: -10px;
@@ -222,11 +266,22 @@
       border-radius: 20px;
       font-size: clamp(6px, 1vw, 7px);
       font-family: monospace;
+      font-weight: bold;
       white-space: nowrap;
       border: 0.5px solid rgba(200,146,42,0.5);
     }
+    .scar-indicator {
+      position: absolute;
+      inset: -8%;
+      border-radius: 50%;
+      border: 2px solid #800020;
+      box-shadow: 0 0 12px rgba(128,0,32,0.7);
+      animation: scarPulse 1.8s infinite;
+      pointer-events: none;
+    }
+    @keyframes scarPulse { 0%{ opacity: 0.6; transform: scale(1); } 100%{ opacity: 1; transform: scale(1.02); }}
 
-    /* Right panel */
+    /* ----- RIGHT PANEL (COMMAND) ----- */
     .right-panel {
       grid-column: 3;
       grid-row: 2;
@@ -250,7 +305,9 @@
       font-size: clamp(9px, 1.5vw, 11px);
       font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 1px;
       cursor: pointer;
+      transition: 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -259,10 +316,18 @@
     .task-btn:hover {
       background: rgba(255,215,0,0.25);
       transform: translateY(-3px);
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
       border-color: rgba(255,215,0,0.5);
     }
+    .task-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+    }
 
-    /* Bottom stream */
+    /* ----- BOTTOM STREAM (LIVE EVENT) ----- */
     .bottom-stream {
       grid-column: 1 / 4;
       grid-row: 3;
@@ -288,18 +353,60 @@
       background: rgba(200,146,42,0.2);
       padding: 4px 10px;
       border-radius: 30px;
+      font-size: inherit;
+    }
+    .event-stream {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: inherit;
+    }
+    .event-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .event-time {
+      color: #6a6a8a;
+      font-size: 0.9em;
     }
 
-    /* Responsive */
+    /* ----- RESPONSIVE BREAKPOINTS ----- */
     @media (max-width: 1024px) {
-      #ui-overlay { grid-template-columns: clamp(160px, 25vw, 220px) 1fr; }
+      #ui-overlay {
+        grid-template-columns: clamp(160px, 25vw, 220px) 1fr;
+      }
       .right-panel { display: none; }
     }
+
     @media (max-width: 720px) {
-      #ui-overlay { grid-template-columns: 1fr; grid-template-rows: 60px auto 80px; }
+      #ui-overlay {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px auto auto 80px;
+      }
       .left-panel, .right-panel { display: none; }
-      .bottom-stream { position: fixed; bottom: 0; left: 0; right: 0; margin: 0; border-radius: 0; }
+      .header { grid-column: 1; }
+      .core-panel { grid-column: 1; grid-row: 2; margin: 8px; }
+      .bottom-stream {
+        grid-column: 1;
+        grid-row: 3;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        border-top: 1px solid rgba(200,146,42,0.6);
+      }
+      .nav-center { justify-content: flex-start; }
+      .nav-left { font-size: 16px; }
+      .t-chip { display: none; }
     }
+
+    /* Tùy chỉnh thanh cuộn cho bottom stream */
+    .bottom-stream::-webkit-scrollbar { height: 2px; }
+    .bottom-stream::-webkit-scrollbar-thumb { background: rgba(200,146,42,0.5); }
   </style>
 </head>
 <body>
@@ -321,14 +428,14 @@
     <div class="nav-right">
       <button class="nav-icon">⚙️</button>
       <button class="nav-icon">🔍</button>
-      <div class="t-chip" style="display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.3); border-radius: 40px; padding: 4px 10px; font-size: 10px; color: #e8b84b;">
+      <div class="t-chip" style="margin-left: 8px; display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.3); border-radius: 40px; padding: 4px 10px; font-size: 10px; color: #e8b84b;">
         <div class="dot" style="background:#3dd68c; width:6px; height:6px; border-radius:50%; animation:pulse 2s infinite;"></div>
         <span id="stateBadge">HEALTHY</span>
       </div>
     </div>
   </div>
 
-  <!-- LEFT PANEL -->
+  <!-- LEFT PANEL (STATE) -->
   <div class="left-panel">
     <div class="panel-title">⚙️ SYSTEM STATE</div>
     <div class="stat-item"><span>QNEU AVG</span><span class="stat-value" id="qneuAvg">--%</span></div>
@@ -341,20 +448,32 @@
     </div>
   </div>
 
-  <!-- CENTER CORE -->
+  <!-- CENTER CORE (ORBIT) -->
   <div class="core-panel">
     <div class="medals-container" id="medalsGrid"></div>
   </div>
 
-  <!-- RIGHT PANEL -->
+  <!-- RIGHT PANEL (COMMAND) -->
   <div class="right-panel">
     <div class="panel-title">⚡ COMMAND</div>
-    <button class="task-btn" id="triggerButterflyBtn">🔥 Trigger Butterfly</button>
-    <button class="task-btn" id="simulateFlowBtn">⚡ Simulate Flow</button>
-    <button class="task-btn" id="aiAnalyzeBtn">🧠 AI Analyze</button>
-    <button class="task-btn" id="resetStateBtn">🧹 Reset State</button>
+    <button class="task-btn" id="triggerButterflyBtn">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      🔥 Trigger Butterfly
+    </button>
+    <button class="task-btn" id="simulateFlowBtn">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      ⚡ Simulate Flow
+    </button>
+    <button class="task-btn" id="aiAnalyzeBtn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      🧠 AI Analyze
+    </button>
+    <button class="task-btn" id="resetStateBtn">
+      <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9m0 0v6h6"/></svg>
+      🧹 Reset State
+    </button>
     <div style="flex:1"></div>
-    <div style="font-size: 9px; color: #888; text-align: center;">NATT-OS · v3.0.0</div>
+    <div style="font-size: 9px; color: #888; text-align: center; margin-top: 12px;">NATT-OS · v2.0.4</div>
   </div>
 
   <!-- BOTTOM STREAM -->
@@ -378,49 +497,25 @@
   import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
   import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
-  // ---------- EVENT BUS (MANDATORY) ----------
-  const EventBus = {
-    events: {},
-    on(event, callback) { if (!this.events[event]) this.events[event] = []; this.events[event].push(callback); },
-    emit(event, data) {
-      const envelope = {
-        event_id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36),
-        tenant_id: 'natt-os',
-        causation_id: data?.causation_id || 'ui',
-        timestamp: Date.now(),
-        type: event,
-        payload: data
-      };
-      console.log('[EVENT]', envelope);
-      (this.events[event] || []).forEach(cb => cb(envelope));
-      // Audit
-      this.emit('audit.record', { original: envelope });
-    }
-  };
-
-  // ---------- CONFIG ----------
+  // --- CONFIG ---
   const CONFIG = {
-    bloom: { threshold: 0.15, strength: 0.8, radius: 0.9 },
-    nebulaIntensity: 1.0,
-    galaxySpeed: 0.1,
-    particleSpeed: 0.01
+    bloom: { threshold: 0.1, strength: 0.65, radius: 0.8 },
+    backgroundReactivity: 0.0
   };
 
-  // ---------- SCENE SETUP (PROCEDURAL BACKGROUND) ----------
+  // --- SCENE SETUP (Vision Engine) ---
   const scene = new THREE.Scene();
-  // Procedural background via shader material on a full-screen quad (or canvas gradient)
-  // But we'll use a CanvasTexture gradient as fallback, then add raymarching nebula via shader.
   const canvas = document.createElement('canvas');
   canvas.width = 64; canvas.height = 64;
   const ctx = canvas.getContext('2d');
-  const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  grad.addColorStop(0, '#030210');
-  grad.addColorStop(0.6, '#0a0818');
-  grad.addColorStop(1, '#020108');
-  ctx.fillStyle = grad;
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, '#050518');
+  gradient.addColorStop(0.5, '#1a1025');
+  gradient.addColorStop(1, '#0a0510');
+  ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   scene.background = new THREE.CanvasTexture(canvas);
-  scene.fog = new THREE.FogExp2(0x050510, 0.0008);
+  scene.fog = new THREE.FogExp2(0x0a0510, 0.0012);
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
   camera.position.set(0, 0, 12);
@@ -430,7 +525,7 @@
     mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
   });
 
-  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), alpha: false, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), alpha: false });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.toneMapping = THREE.ReinhardToneMapping;
@@ -443,220 +538,69 @@
   bloomPass.radius = CONFIG.bloom.radius;
   composer.addPass(bloomPass);
 
-  // ---------- DEPTH LAYERING (Parallax) ----------
-  const layerFar = new THREE.Group(); layerFar.position.z = -20;
-  const layerMid = new THREE.Group(); layerMid.position.z = -8;
+  const layerFar = new THREE.Group(); layerFar.position.z = -15;
+  const layerMid = new THREE.Group(); layerMid.position.z = -5;
   const layerNear = new THREE.Group(); layerNear.position.z = 2;
   scene.add(layerFar); scene.add(layerMid); scene.add(layerNear);
 
-  // ---------- 1. RAYMARCHING NEBULA (SHADER) ----------
-  // Tạo một mặt phẳng lớn với shader material giả lập raymarching nebula
-  const nebulaPlaneGeo = new THREE.PlaneGeometry(30, 30);
-  const nebulaUniforms = {
-    time: { value: 0 },
-    intensity: { value: CONFIG.nebulaIntensity },
-    cameraPos: { value: camera.position }
-  };
-  const nebulaMaterial = new THREE.ShaderMaterial({
-    uniforms: nebulaUniforms,
-    vertexShader: `
-      varying vec2 vUv;
-      varying vec3 vPosition;
-      void main() {
-        vUv = uv;
-        vPosition = position;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      precision highp float;
-      varying vec2 vUv;
-      uniform float time;
-      uniform float intensity;
-      uniform vec3 cameraPos;
-      
-      // Simplex noise functions (compact)
-      vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-      vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-      vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
-      vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
-      float snoise(vec3 v) {
-        const vec2 C = vec2(1.0/6.0, 1.0/3.0);
-        const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
-        vec3 i  = floor(v + dot(v, C.yyy) );
-        vec3 x0 = v -   i + dot(i, C.xxx);
-        vec3 g = step(x0.yzx, x0.xyz);
-        vec3 l = 1.0 - g;
-        vec3 i1 = min( g.xyz, l.zxy );
-        vec3 i2 = max( g.xyz, l.zxy );
-        vec3 x1 = x0 - i1 + C.xxx;
-        vec3 x2 = x0 - i2 + C.yyy;
-        vec3 x3 = x0 - D.yyy;
-        i = mod289(i);
-        vec4 p = permute( permute( permute( 
-                  i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
-                + i.y + vec4(0.0, i1.y, i2.y, 1.0 )) 
-                + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
-        float n_ = 0.142857142857;
-        vec3  ns = n_ * D.wyz - D.xzx;
-        vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
-        vec4 x_ = floor(j * ns.z);
-        vec4 y_ = floor(j - 7.0 * x_);
-        vec4 x = x_ *ns.x + ns.yyyy;
-        vec4 y = y_ *ns.x + ns.yyyy;
-        vec4 h = 1.0 - abs(x) - abs(y);
-        vec4 b0 = vec4( x.xy, y.xy );
-        vec4 b1 = vec4( x.zw, y.zw );
-        vec4 s0 = floor(b0)*2.0 + 1.0;
-        vec4 s1 = floor(b1)*2.0 + 1.0;
-        vec4 sh = -step(h, vec4(0.0));
-        vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
-        vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
-        vec3 p0 = vec3(a0.xy,h.x);
-        vec3 p1 = vec3(a0.zw,h.y);
-        vec3 p2 = vec3(a1.xy,h.z);
-        vec3 p3 = vec3(a1.zw,h.w);
-        vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
-        p0 *= norm.x;
-        p1 *= norm.y;
-        p2 *= norm.z;
-        p3 *= norm.w;
-        vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
-        m = m * m;
-        return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3) ) );
-      }
-      
-      float fbm(vec3 p) {
-        float sum = snoise(p);
-        sum += snoise(p*2.0)*0.5;
-        sum += snoise(p*4.0)*0.25;
-        return sum * 0.5 + 0.5;
-      }
-      
-      void main() {
-        // Map UV to world pos (plane facing camera, positioned at z=-5)
-        vec3 ro = cameraPos;
-        vec3 rd = normalize(vec3(vUv * 2.0 - 1.0, 1.0));
-        float t = 0.0;
-        float density = 0.0;
-        for (int i=0; i<32; i++) {
-          vec3 p = ro + rd * t;
-          p += vec3(time*0.02, time*0.01, time*0.03);
-          float n = fbm(p * 0.8);
-          density += n * 0.1;
-          t += 0.15;
-          if (t > 20.0) break;
-        }
-        density = clamp(density * intensity, 0.0, 1.0);
-        vec3 col1 = vec3(0.7, 0.4, 0.9); // lavender
-        vec3 col2 = vec3(0.2, 0.5, 0.9); // ice blue
-        vec3 nebulaColor = mix(col1, col2, density);
-        gl_FragColor = vec4(nebulaColor * density * 0.8, density * 0.6);
-      }
-    `,
-    transparent: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-    side: THREE.DoubleSide
-  });
-  const nebulaPlane = new THREE.Mesh(nebulaPlaneGeo, nebulaMaterial);
-  nebulaPlane.position.z = -8;
-  layerMid.add(nebulaPlane);
-
-  // ---------- 2. SHADER GALAXY (spiral field) ----------
-  const galaxyCount = 8000;
-  const galaxyGeo = new THREE.BufferGeometry();
-  const positions = [];
-  const colors = [];
-  for (let i = 0; i < galaxyCount; i++) {
-    const r = Math.pow(Math.random(), 1.5) * 6;
-    const angle = Math.random() * Math.PI * 2;
-    const spiralOffset = Math.sin(angle * 5) * 0.8;
-    const x = Math.cos(angle) * (r + spiralOffset);
-    const z = Math.sin(angle) * (r + spiralOffset);
-    const y = (Math.random() - 0.5) * 0.8;
-    positions.push(x, y, z);
-    const hue = 0.6 + Math.random() * 0.2;
-    const col = new THREE.Color().setHSL(hue, 0.7, 0.5);
-    colors.push(col.r, col.g, col.b);
-  }
-  galaxyGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
-  galaxyGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
-  const galaxyMat = new THREE.PointsMaterial({ size: 0.08, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.7 });
-  const galaxyPoints = new THREE.Points(galaxyGeo, galaxyMat);
-  galaxyPoints.position.y = -0.5;
-  layerFar.add(galaxyPoints);
-
-  // ---------- 3. GPU PARTICLES (Stars + Dust + Energy) ----------
-  function createParticles(count, sizeRange, colorHint, layer, driftSpeed) {
+  // Nebula cloud
+  function createNebulaCloud() {
+    const count = 4000;
     const geo = new THREE.BufferGeometry();
-    const pos = [];
-    const col = [];
+    const pos = []; const color = []; const speed = [];
     for (let i = 0; i < count; i++) {
-      const r = 5 + Math.random() * 15;
+      const r = 4 + Math.random() * 8;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta) * 0.5;
+      const y = r * Math.sin(phi) * Math.sin(theta) * 0.7;
       const z = r * Math.cos(phi);
       pos.push(x, y, z);
-      const c = new THREE.Color(colorHint).multiplyScalar(0.8 + Math.random()*0.5);
-      col.push(c.r, c.g, c.b);
+      const hue = 0.75 + Math.random() * 0.2;
+      const c = new THREE.Color().setHSL(hue, 0.5 + Math.random()*0.3, 0.5 + Math.random()*0.3);
+      color.push(c.r, c.g, c.b);
+      speed.push((Math.random()-0.5)*0.008, (Math.random()-0.5)*0.008, (Math.random()-0.5)*0.008);
     }
     geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(pos), 3));
-    geo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(col), 3));
-    const mat = new THREE.PointsMaterial({ size: sizeRange, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true });
-    const points = new THREE.Points(geo, mat);
-    points.userData = { drift: driftSpeed, initialPos: pos.slice() };
-    layer.add(points);
-    return points;
+    geo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(color), 3));
+    geo.userData.speed = speed;
+    return new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.15, vertexColors: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
   }
+  const nebulaCloud = createNebulaCloud(); layerMid.add(nebulaCloud);
 
-  const starsFar = createParticles(2500, 0.15, '#ffffff', layerFar, 0.002);
-  const dustMid = createParticles(2000, 0.1, '#aaccff', layerMid, 0.005);
-  const energyNear = createParticles(800, 0.2, '#ffdd99', layerNear, 0.008);
+  // Stars
+  const stars = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(Array.from({length:4000},()=>(Math.random()-0.5)*400).concat(Array.from({length:4000},()=>(Math.random()-0.5)*200), Array.from({length:4000},()=>(Math.random()-0.5)*100-30))), 3)), new THREE.PointsMaterial({color:0xfff5e6, size:0.25, blending: THREE.AdditiveBlending}));
+  layerFar.add(stars);
 
-  // ---------- 4. NOISE ANIMATION cho particles ----------
-  function animateParticles(time) {
-    [starsFar, dustMid, energyNear].forEach(pts => {
-      const posAttr = pts.geometry.attributes.position;
-      const pos = posAttr.array;
-      const init = pts.userData.initialPos;
-      const drift = pts.userData.drift;
-      for (let i = 0; i < pos.length; i+=3) {
-        const idx = i/3;
-        // simple noise offset
-        const nx = Math.sin(init[i]*0.5 + time*0.5) * 0.1;
-        const ny = Math.cos(init[i+1]*0.4 + time*0.3) * 0.1;
-        const nz = Math.sin(init[i+2]*0.6 + time*0.4) * 0.1;
-        pos[i] = init[i] + nx + Math.sin(time*0.2 + idx)*drift;
-        pos[i+1] = init[i+1] + ny + Math.cos(time*0.15 + idx)*drift;
-        pos[i+2] = init[i+2] + nz + Math.sin(time*0.25 + idx)*drift;
-      }
-      posAttr.needsUpdate = true;
-    });
+  // Galaxy
+  const galGeo = new THREE.BufferGeometry();
+  const galPos = []; const galCol = [];
+  for (let i=0; i<6000; i++) {
+    const r = Math.pow(Math.random(),1.8)*7;
+    const angle = Math.random()*Math.PI*2;
+    const spiral = Math.sin(angle*4)*0.5;
+    galPos.push(Math.cos(angle)*(r+spiral), (Math.random()-0.5)*1.2, Math.sin(angle)*(r+spiral));
+    const c = new THREE.Color().setHSL(0.08+Math.random()*0.1, 0.6, 0.4);
+    galCol.push(c.r, c.g, c.b);
   }
+  galGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(galPos), 3));
+  galGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(galCol), 3));
+  const galaxy = new THREE.Points(galGeo, new THREE.PointsMaterial({size:0.09, vertexColors:true, blending:THREE.AdditiveBlending, transparent:true, opacity:0.5}));
+  layerMid.add(galaxy);
 
-  // ---------- 5. EVENT BUS BINDING (Dynamic Response) ----------
-  EventBus.on('butterfly.tsunami', (env) => {
-    CONFIG.nebulaIntensity = Math.min(1.8, CONFIG.nebulaIntensity + 0.4);
-    nebulaUniforms.intensity.value = CONFIG.nebulaIntensity;
-    bloomPass.strength = 1.2;
-    setTimeout(() => {
-      CONFIG.nebulaIntensity = 1.0;
-      nebulaUniforms.intensity.value = 1.0;
-      bloomPass.strength = CONFIG.bloom.strength;
-    }, 2000);
-    addEventToStream('🌊 GALAXY REACTS: TSUNAMI WAVE');
-  });
+  // Dust
+  const dustGeo = new THREE.BufferGeometry();
+  const dustPos = []; const dustVel = [];
+  for (let i=0; i<1500; i++) {
+    dustPos.push((Math.random()-0.5)*40, (Math.random()-0.5)*20, (Math.random()-0.5)*30 -10);
+    dustVel.push((Math.random()-0.5)*0.005, (Math.random()-0.5)*0.003, (Math.random()-0.5)*0.005);
+  }
+  dustGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(dustPos), 3));
+  dustGeo.userData.vel = dustVel;
+  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({color:0xc0a080, size:0.06, blending:THREE.AdditiveBlending}));
+  layerNear.add(dust);
 
-  EventBus.on('butterfly.local', (env) => {
-    CONFIG.nebulaIntensity = 1.2;
-    nebulaUniforms.intensity.value = 1.2;
-    setTimeout(() => { CONFIG.nebulaIntensity = 1.0; nebulaUniforms.intensity.value = 1.0; }, 800);
-  });
-
-  // ---------- UI LOGIC (chỉ emit event) ----------
+  // --- DATA & UI ---
   const cells = [
     { id: 'sales', title: 'SALES', icon: '💎', qneu: 0.87, confidence: 0.92, scars: [], colorTheme: 'mint', connections: ['showroom','prod'] },
     { id: 'showroom', title: 'SHOWROOM', icon: '✨', qneu: 0.76, confidence: 0.68, scars: [], colorTheme: 'champagne', connections: ['sales','master'] },
@@ -669,7 +613,6 @@
   const colorMap = { mint: '#E0FFE0', champagne: '#F7E7CE', ice: '#E0FFFF', gold: '#FFD700', lavender: '#E6E6FA', rose: '#FFE4E1' };
   const medalElements = new Map();
 
-  // Canvas connections
   const connCanvas = document.getElementById('connectionCanvas');
   const connectionCtx = connCanvas.getContext('2d');
   function drawAllConnections() {
@@ -697,14 +640,29 @@
     return { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
   }
 
-  function addEventToStream(text) {
-    const container = document.getElementById('eventStreamContainer');
-    const time = new Date().toLocaleTimeString('en-GB', { hour12: false });
-    const div = document.createElement('div');
-    div.className = 'event-item';
-    div.innerHTML = `<span class="event-time">${time}</span> ${text}`;
-    container.prepend(div);
-    if (container.children.length > 6) container.removeChild(container.lastChild);
+  // Butterfly particles
+  const butterflyCanvas = document.getElementById('butterflyCanvas');
+  const bCtx = butterflyCanvas.getContext('2d');
+  let particles = [];
+  function spawnRainbowParticles(x, y, dirX, dirY, count=22) {
+    const rainbow = ['#ff4d4d','#ffaa33','#ffff66','#66ff66','#3399ff','#8c5eff','#c77dff'];
+    for (let i=0; i<count; i++) {
+      const angle = Math.atan2(dirY, dirX) + (Math.random()-0.5)*1.2;
+      const speed = 2+Math.random()*5;
+      particles.push({x,y, vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed, life:1.0, size:3+Math.random()*5, color: rainbow[Math.floor(Math.random()*rainbow.length)]});
+    }
+  }
+
+  function updateStats() {
+    const avgQneu = cells.reduce((sum, c) => sum + c.qneu, 0) / cells.length;
+    document.getElementById('qneuAvg').textContent = `${Math.round(avgQneu*100)}%`;
+    document.getElementById('activeFlows').textContent = cells.filter(c=>c.connections.length).length;
+    const gold = (87650000 + Math.random()*200000)/1e6;
+    document.getElementById('goldPriceSmall').textContent = `${gold.toFixed(2)}M`;
+    const prodCell = cells.find(c=>c.id==='prod');
+    if (prodCell && prodCell.qneu < 0.7) {
+      document.getElementById('alertMessage').innerHTML = `⚠ PROD unstable · QNEU ${Math.round(prodCell.qneu*100)}%`;
+    }
   }
 
   function renderMedals() {
@@ -721,13 +679,16 @@
           <div class="confidence-badge">Q:${(cell.qneu*100).toFixed(0)}% C:${(cell.confidence*100).toFixed(0)}%</div>
         </div>
         <div class="qneu-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,200,0.2)" stroke-width="3"/><circle cx="50" cy="50" r="46" fill="none" stroke="${colorMap[cell.colorTheme]}" stroke-width="3" stroke-dasharray="${cell.qneu*289} 289"/></svg></div>
+        ${cell.scars.length ? '<div class="scar-indicator"></div>' : ''}
       `;
-      medal.addEventListener('click', () => {
-        EventBus.emit('ui.medal.click', { cellId: cell.id });
-        // local ripple effect (UI animation)
-        medal.style.animation = 'none';
-        medal.offsetHeight;
-        medal.style.animation = 'ripple-pulse 0.6s ease-out';
+      medal.addEventListener('click', () => triggerButterfly(cell.id));
+      medal.addEventListener('mousemove', (e) => {
+        const rect = medal.getBoundingClientRect();
+        const overlay = medal.querySelector('.liquid-glass-overlay');
+        if (overlay) {
+          overlay.style.setProperty('--mx', `${((e.clientX-rect.left)/rect.width)*100}%`);
+          overlay.style.setProperty('--my', `${((e.clientY-rect.top)/rect.height)*100}%`);
+        }
       });
       container.appendChild(medal);
       medalElements.set(cell.id, medal);
@@ -735,32 +696,76 @@
     setTimeout(drawAllConnections, 50);
   }
 
-  // Subscribe to ui events
-  EventBus.on('ui.medal.click', ({ payload }) => {
-    const cell = cells.find(c => c.id === payload.cellId);
-    if (cell) {
-      addEventToStream(`🦋 Butterfly from ${cell.title}`);
-      EventBus.emit('butterfly.local', { source: cell.id });
-      if (cell.qneu < 0.55) EventBus.emit('butterfly.tsunami', {});
+  function localRipple(cellId) {
+    const medal = medalElements.get(cellId);
+    if (medal) {
+      medal.style.animation = 'none';
+      medal.offsetHeight;
+      medal.style.animation = 'ripple-pulse 0.6s ease-out';
+      const pos = getMedalPos(cellId);
+      if (pos) spawnRainbowParticles(pos.x, pos.y, (Math.random()-0.5)*2, (Math.random()-0.5)*2, 20);
     }
-  });
+    const cell = cells.find(c=>c.id===cellId);
+    if (cell) { cell.qneu = Math.min(0.99, cell.qneu+0.005); updateMedalUI(cellId); }
+    updateStats();
+  }
 
+  function colonyTsunami() {
+    CONFIG.backgroundReactivity = 0.9;
+    cells.forEach(cell => { const pos = getMedalPos(cell.id); if(pos) spawnRainbowParticles(pos.x, pos.y, 0, -1, 28); localRipple(cell.id); });
+    addEvent('🌊 BUTTERFLY TSUNAMI · COLONY WAVE');
+  }
+
+  function triggerButterfly(cellId) {
+    localRipple(cellId);
+    CONFIG.backgroundReactivity = 0.5;
+    const cell = cells.find(c=>c.id===cellId);
+    if (cell) {
+      cell.connections.forEach(target => setTimeout(() => { localRipple(target); }, 120));
+      addEvent(`🦋 Butterfly from ${cell.title}`);
+    }
+    if (cell && cell.qneu < 0.55) colonyTsunami();
+  }
+
+  function addEvent(text) {
+    const container = document.getElementById('eventStreamContainer');
+    const time = new Date().toLocaleTimeString('en-GB', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const newEvent = document.createElement('div');
+    newEvent.className = 'event-item';
+    newEvent.innerHTML = `<span class="event-time">${time}</span> ${text}`;
+    container.prepend(newEvent);
+    if (container.children.length > 8) container.removeChild(container.lastChild);
+  }
+
+  function updateMedalUI(id) {
+    const cell = cells.find(c=>c.id===id);
+    const div = medalElements.get(id);
+    if (!div) return;
+    const ring = div.querySelector('.qneu-ring svg circle:last-child');
+    if (ring) ring.setAttribute('stroke-dasharray', `${cell.qneu*289} 289`);
+    div.querySelector('.confidence-badge').textContent = `Q:${(cell.qneu*100).toFixed(0)}% C:${(cell.confidence*100).toFixed(0)}%`;
+  }
+
+  // Command buttons
   document.getElementById('triggerButterflyBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.trigger', { action: 'butterfly' });
+    const master = cells.find(c=>c.id==='master');
+    if (master) triggerButterfly(master.id);
+    else colonyTsunami();
   });
-  EventBus.on('ui.command.trigger', () => EventBus.emit('butterfly.tsunami', {}));
-
   document.getElementById('simulateFlowBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.simulate', {});
-    addEventToStream('⚡ Flow simulated');
+    addEvent('⚡ Flow simulated: sales → prod → delivery');
+    cells.forEach(c => { c.qneu = Math.min(0.99, c.qneu + 0.01); updateMedalUI(c.id); });
+    updateStats();
+    CONFIG.backgroundReactivity = 0.3;
   });
   document.getElementById('aiAnalyzeBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.analyze', {});
-    addEventToStream('🧠 AI analysis running');
+    addEvent('🧠 AI analysis: system entropy 0.23 · recommend increase QNEU');
   });
   document.getElementById('resetStateBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.reset', {});
-    addEventToStream('🧹 System reset');
+    cells.forEach(c => { c.qneu = 0.7 + Math.random()*0.25; c.confidence = 0.6+Math.random()*0.3; updateMedalUI(c.id); });
+    updateStats();
+    addEvent('🧹 System state reset to baseline');
+    CONFIG.backgroundReactivity = 0.0;
   });
 
   // Navigation
@@ -768,86 +773,77 @@
     btn.addEventListener('click', () => {
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      EventBus.emit('ui.nav.change', { view: btn.dataset.view });
+      addEvent(`📌 View: ${btn.textContent}`);
     });
   });
 
-  // Update stats
-  function updateStats() {
-    const avgQneu = cells.reduce((sum, c) => sum + c.qneu, 0) / cells.length;
-    document.getElementById('qneuAvg').textContent = `${Math.round(avgQneu*100)}%`;
-    document.getElementById('activeFlows').textContent = cells.filter(c=>c.connections.length).length;
-    const gold = (87650000 + Math.random()*200000)/1e6;
-    document.getElementById('goldPriceSmall').textContent = `${gold.toFixed(2)}M`;
-  }
-  setInterval(updateStats, 5000);
-  updateStats();
-
-  // Animation loop
+  // RAF animation
   let clock = new THREE.Clock();
   function animate() {
     const delta = clock.getDelta();
-    const elapsedTime = performance.now() * 0.001;
-    
-    // Update shader time
-    nebulaUniforms.time.value = elapsedTime * 0.5;
-    
-    // Noise animation for particles
-    animateParticles(elapsedTime);
-    
-    // Galaxy rotation
-    galaxyPoints.rotation.y += 0.001;
-    
-    // Parallax
-    camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.03;
-    camera.position.y += (-mouseY * 0.8 - camera.position.y) * 0.03;
-    camera.lookAt(0, 0, 0);
-    
-    layerFar.rotation.y += 0.0005;
-    layerMid.rotation.y += 0.0003;
-    
+    // Nebula drift
+    if (nebulaCloud.geometry.attributes.position) {
+      const pos = nebulaCloud.geometry.attributes.position.array;
+      const speed = nebulaCloud.geometry.userData.speed;
+      for (let i=0; i<pos.length; i+=3) {
+        pos[i] += speed[i]*delta*30; pos[i+1] += speed[i+1]*delta*30; pos[i+2] += speed[i+2]*delta*30;
+        if (Math.abs(pos[i])>14) pos[i]*=-0.9;
+        if (Math.abs(pos[i+1])>10) pos[i+1]*=-0.9;
+        if (Math.abs(pos[i+2])>14) pos[i+2]*=-0.9;
+      }
+      nebulaCloud.geometry.attributes.position.needsUpdate = true;
+    }
+    // Dust drift
+    if (dust.geometry.attributes.position) {
+      const pos = dust.geometry.attributes.position.array;
+      const vel = dust.geometry.userData.vel;
+      for (let i=0; i<pos.length; i+=3) {
+        pos[i] += vel[i]*delta*30; pos[i+1] += vel[i+1]*delta*30; pos[i+2] += vel[i+2]*delta*30;
+        if (Math.abs(pos[i])>25) pos[i]*=-0.9;
+        if (Math.abs(pos[i+1])>15) pos[i+1]*=-0.9;
+        if (Math.abs(pos[i+2])>20) pos[i+2]*=-0.9;
+      }
+      dust.geometry.attributes.position.needsUpdate = true;
+    }
+    // Parallax + reactivity
+    const reactivity = CONFIG.backgroundReactivity;
+    camera.position.x += (mouseX*1.2*(1+reactivity*0.5) - camera.position.x)*0.04;
+    camera.position.y += (mouseY*0.8*(1+reactivity*0.3) - camera.position.y)*0.04;
+    camera.lookAt(0,0,0);
+    layerFar.rotation.y += 0.001;
+    layerMid.rotation.y += 0.0005;
+    stars.rotation.y += 0.0002;
+    galaxy.rotation.y += 0.0008;
+    if (reactivity > 0.01) {
+      bloomPass.strength = CONFIG.bloom.strength + reactivity*0.5;
+      scene.fog.density = 0.0012 + reactivity*0.001;
+      CONFIG.backgroundReactivity *= 0.98;
+    } else {
+      bloomPass.strength = CONFIG.bloom.strength;
+      scene.fog.density = 0.0012;
+    }
     drawAllConnections();
     composer.render();
     requestAnimationFrame(animate);
   }
 
-  // Butterfly particles (UI effect)
-  const butterflyCanvas = document.getElementById('butterflyCanvas');
-  const bCtx = butterflyCanvas.getContext('2d');
-  let particles = [];
-  function spawnParticles(x, y) {
-    for (let i=0; i<15; i++) {
-      particles.push({
-        x, y, vx: (Math.random()-0.5)*4, vy: (Math.random()-0.5)*4-1,
-        life: 1.0, color: `hsl(${Math.random()*60 + 200}, 80%, 60%)`
-      });
-    }
-  }
-  function animateParticles2D() {
+  function animateParticles() {
     bCtx.clearRect(0,0,butterflyCanvas.width,butterflyCanvas.height);
-    particles = particles.filter(p => {
-      p.x += p.vx; p.y += p.vy; p.life -= 0.02;
-      if (p.life <= 0) return false;
-      bCtx.globalAlpha = p.life;
+    for (let i=particles.length-1; i>=0; i--) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      p.life -= 0.015;
+      if (p.life<=0) { particles.splice(i,1); continue; }
+      bCtx.globalAlpha = p.life*0.9;
       bCtx.fillStyle = p.color;
       bCtx.beginPath();
-      bCtx.arc(p.x, p.y, 4*p.life, 0, 2*Math.PI);
+      bCtx.arc(p.x, p.y, p.size*p.life, 0, 2*Math.PI);
       bCtx.fill();
-      return true;
-    });
-    requestAnimationFrame(animateParticles2D);
-  }
-  EventBus.on('butterfly.local', ({ payload }) => {
-    const pos = getMedalPos(payload.source);
-    if (pos) spawnParticles(pos.x, pos.y);
-  });
-  EventBus.on('butterfly.tsunami', () => {
-    for (let i=0; i<30; i++) {
-      setTimeout(() => spawnParticles(window.innerWidth/2, window.innerHeight/2), i*20);
     }
-  });
+    requestAnimationFrame(animateParticles);
+  }
 
-  // Resize
+  // Resize handler
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     composer.setSize(window.innerWidth, window.innerHeight);
@@ -856,18 +852,23 @@
     connCanvas.width = window.innerWidth; connCanvas.height = window.innerHeight;
     butterflyCanvas.width = window.innerWidth; butterflyCanvas.height = window.innerHeight;
     drawAllConnections();
+    // Cập nhật kích thước orbit (medal size đã dùng clamp nên tự động)
   });
 
-  // CSS ripple
+  // CSS ripple keyframe
   const style = document.createElement('style');
-  style.textContent = `@keyframes ripple-pulse { 0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.7); transform: scale(1); } 70% { box-shadow: 0 0 0 22px rgba(255,215,0,0); transform: scale(1.03); } 100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); transform: scale(1); } } @keyframes pulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.4; transform:scale(0.7); }}`;
+  style.textContent = `@keyframes ripple-pulse { 0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.7); transform: scale(1); } 70% { box-shadow: 0 0 0 22px rgba(255,215,0,0); transform: scale(1.03); } 100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); transform: scale(1); } } @keyframes pulse { 0%,100%{ opacity: 1; transform: scale(1); } 50%{ opacity: 0.4; transform: scale(0.7); }}`;
   document.head.appendChild(style);
 
-  // Start
+  // Init
   renderMedals();
+  updateStats();
   animate();
-  animateParticles2D();
-  console.log('✅ NATT-OS GALAXY ENGINE with EventBus active');
+  animateParticles();
+  setInterval(updateStats, 5000);
+  setInterval(() => { if (Math.random()<0.1) addEvent('📊 System heartbeat · all nodes healthy'); }, 8000);
+
+  console.log('✅ NATT-OS CONTROL TOWER · Responsive Grid Active');
 </script>
 </body>
 </html>

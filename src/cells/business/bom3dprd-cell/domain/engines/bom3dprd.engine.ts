@@ -48,6 +48,8 @@ function validateBom(bom: BomRecord): { valid: boolean; reason?: string } {
   if (!normalised && !isSpecial) {
     return { valid: false, reason: `TUỔI_VÀNG_KHÔNG_HỢP_LỆ: ${bom.tuoiVang}` };
   }
+  EventBus.emit('cell.metric', { cell: 'bom3dprd-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
   return { valid: true };
 }
 

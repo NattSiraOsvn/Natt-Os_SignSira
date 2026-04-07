@@ -166,6 +166,8 @@ export function extractOrderIds(text: unknown): ExtractedOrderId[] {
       }
     }
   }
+  EventBus.emit('cell.metric', { cell: 'order-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
   return out;
 }
 

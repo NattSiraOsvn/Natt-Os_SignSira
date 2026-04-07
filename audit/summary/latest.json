@@ -1,11 +1,9 @@
 {
-  "ts": "2026-04-07 21:00:31",
-  "state": "FRAGMENTED",
-  "risk": 43,
+  "ts": "2026-04-08 03:30:17",
+  "state": "HEALTHY",
+  "risk": 8,
   "issues": [
-    "MINOR_LEAK: 4 orphan events",
-    "DEAD_WEIGHT: 25 unused engines",
-    "SENSORY_DEFICIT: 19 blind cells"
+    "MINOR_LEAK: 4 orphan events"
   ],
   "hostname": "iMac.lan"
 }

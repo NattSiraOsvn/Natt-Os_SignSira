@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 // Điều 9 §2 — Capability
 import { taxIdentity } from './tax.identity';
 
@@ -34,6 +35,7 @@ export class TaxEngine {
       };
     }
   }
+  execute() { EventBus.emit('cell.metric', { cell: 'tax-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
 }
 
 export const taxEngine = new TaxEngine();

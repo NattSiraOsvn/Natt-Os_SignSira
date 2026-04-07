@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 // @ts-nocheck
 // Điều 9 §2 — Capability
 import { ConstantsSmartLinkPort } from '../../ports/constants-smartlink.port';
@@ -32,6 +33,7 @@ export class ConstantsEngine {
       return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
+  execute() { EventBus.emit('cell.metric', { cell: 'constants-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
 }
 
 export const constantsEngine = new ConstantsEngine();

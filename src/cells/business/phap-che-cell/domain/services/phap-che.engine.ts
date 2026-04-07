@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { PhapCheSmartLinkPort } from "../../ports/phapche-smartlink.port";
 import { Contract, ContractType, LegalAlert } from '../entities/contract.entity';
 
@@ -49,6 +50,7 @@ export class PhapCheEngine {
   }
 
   static approve(contract: Contract, approvedBy: string): Contract {
+    EventBus.emit('cell.metric', { cell: 'phap-che-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return { ...contract, status: 'ACTIVE', approvedBy, approvedAt: new Date(), updatedAt: new Date() };
   }
 }

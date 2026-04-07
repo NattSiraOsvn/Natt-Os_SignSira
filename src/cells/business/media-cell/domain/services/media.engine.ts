@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { MediaSmartLinkPort } from "../../ports/media-smartlink.port";
 import { MediaAsset, MediaType, MediaPlatform } from '../entities/media-asset.entity';
 
@@ -39,6 +40,7 @@ export class MediaEngine {
   }
 
   static totalCostByPeriod(assets: MediaAsset[], tk: '641' | '642'): number {
+    EventBus.emit('cell.metric', { cell: 'media-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return assets.filter(a => a.tkCost === tk).reduce((s, a) => s + a.cost, 0);
   }
 }

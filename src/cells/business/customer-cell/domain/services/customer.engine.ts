@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { CustomerSmartLinkPort } from "../../ports/customer-smartlink.port";
 /**
  * NATT-OS — Customer Cell
@@ -42,6 +43,7 @@ export class CustomerEngine {
   }
 
   static getHighValueCustomers(customers: Customer[], minSpendVND: number): Customer[] {
+    EventBus.emit('cell.metric', { cell: 'customer-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return customers.filter(c => c.totalSpendVND >= minSpendVND);
   }
 }

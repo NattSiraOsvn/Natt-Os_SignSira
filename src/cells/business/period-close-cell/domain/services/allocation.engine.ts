@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { ClosingSession } from '../entities/closing-session.entity';
 import { ClosingRule } from '../entities/closing-rule.entity';
 
@@ -30,6 +31,7 @@ export class AllocationEngine {
     return [{ id: 'RULE_001', name: 'Chi phi quang cao', expenseAccount: '642', allocationBasis: 'revenue', rate: 10, priority: 1, validFrom: new Date('2026-01-01'), isActive: true }];
   }
   private static async calculateAmount(rule: ClosingRule): Promise<number> {
+    EventBus.emit('cell.metric', { cell: 'period-close-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return rule.allocationBasis === 'revenue' ? 1_500_000_000 * rule.rate / 100 : 0;
   }
 }

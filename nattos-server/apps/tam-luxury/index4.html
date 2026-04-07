@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Tâm Luxury · Galaxy Portal · NATT-OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#03050b; --bg2:#0a0f18; --bg3:#111722; --gold:#c8922a; --gold2:#e8b84b;
+  --border:rgba(200,146,42,.2); --border2:rgba(200,146,42,.45);
+  --text:#ede0c8; --text2:#a89070; --text3:#60503a;
+  --green:#3dd68c; --red:#f05050; --amber:#f0a030; --blue:#60b8f0;
+  --mono:'JetBrains Mono',monospace; --sans:'Be Vietnam Pro',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;user-select:none;}
+html,body{height:100%;overflow-x:hidden;background:#010103;font-family:var(--sans);color:var(--text);}
+input,textarea{user-select:text;}
+
+/* galaxy canvas background */
+#galaxy-canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  display:block;
+  pointer-events:none;
+}
+/* nebula overlay (gradient) */
+.nebula-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 75% 50% at 20% 30%, rgba(200,120,30,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 60% at 85% 70%, rgba(180,100,200,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(80,150,200,0.06) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(230,170,60,0.1) 0%, transparent 50%);
+}
+.l0-grid{
+  position:fixed;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(200,146,42,.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,146,42,.012) 1px, transparent 1px);
+  background-size:48px 48px;
+}
+.l0-scan{
+  position:fixed;
+  left:0;
+  right:0;
+  height:2px;
+  background:linear-gradient(90deg, transparent, rgba(200,146,42,0.2), rgba(232,184,75,0.4), rgba(200,146,42,0.2), transparent);
+  animation:scanMove 24s linear infinite;
+  z-index:2;
+  pointer-events:none;
+}
+@keyframes scanMove{
+  0%{top:-2%;}
+  100%{top:102%;}
+}
+
+/* UI overlay */
+#app{
+  position:relative;
+  z-index:20;
+  min-height:100vh;
+  backdrop-filter:blur(2px);
+}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(3,5,15,0.75);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  padding:0 28px;
+  height:58px;
+}
+.tlogo{
+  font-family:var(--mono);
+  font-size:18px;
+  font-weight:600;
+  background:linear-gradient(135deg, #f5e2b0, #e0b85b, #c9942a);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  letter-spacing:0.1em;
+}
+.tsub{
+  font-size:8px;
+  color:#9c8758;
+  letter-spacing:0.3em;
+  margin-left:12px;
+}
+.t-r{
+  margin-left:auto;
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.t-chip{
+  background:rgba(10,14,25,0.7);
+  border:1px solid rgba(200,146,42,0.45);
+  border-radius:40px;
+  padding:4px 14px;
+  font-family:monospace;
+  font-size:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  backdrop-filter:blur(8px);
+}
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  animation:pulseGlow 2s infinite;
+}
+@keyframes pulseGlow{
+  0%{opacity:0.5;transform:scale(0.9);}
+  100%{opacity:1;transform:scale(1.2);}
+}
+#hdr-gold, #hdr-state{color:#f5cf8c;font-weight:700;}
+
+.hero{
+  text-align:center;
+  padding:42px 24px 32px;
+}
+.hero-title{
+  font-family:var(--mono);
+  font-size:34px;
+  font-weight:600;
+  background:linear-gradient(135deg, #ffdf9c, #f7bc45, #e4a022);
+  background-size:250%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:goldWave 5s ease infinite;
+}
+@keyframes goldWave{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+.hero-sub{
+  font-size:9px;
+  color:#b8a87a;
+  letter-spacing:0.3em;
+  margin-top:8px;
+}
+.hero-chips{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+.hc{
+  padding:4px 16px;
+  border-radius:40px;
+  font-family:monospace;
+  font-size:9px;
+  background:rgba(10,14,30,0.7);
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(210,160,50,0.5);
+  color:#e6cfa0;
+}
+.hc-green{
+  border-color:#6fe6a8;
+  background:rgba(61,214,140,0.12);
+  color:#b0ffd0;
+}
+
+.group-label{
+  padding:14px 28px 6px;
+  font-family:monospace;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:0.45em;
+  color:#cbb875;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.group-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg, rgba(200,146,42,0.4), rgba(200,146,42,0.05));
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(290px,1fr));
+  gap:16px;
+  padding:0 28px 20px;
+}
+.app-card{
+  background:rgba(8,12,24,0.7);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(200,146,42,0.25);
+  border-radius:24px;
+  padding:16px 20px;
+  cursor:pointer;
+  transition:all 0.25s ease;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  text-decoration:none;
+  color:#f0e6d0;
+  box-shadow:0 6px 14px rgba(0,0,0,0.3);
+}
+.app-card:hover{
+  transform:translateY(-4px);
+  border-color:#e2b74a;
+  background:rgba(18,24,40,0.85);
+  box-shadow:0 16px 28px -10px rgba(0,0,0,0.6);
+}
+.app-icon-img{
+  width:40px;
+  height:40px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 4px #c9942a);
+  flex-shrink:0;
+}
+.app-icon-fallback{
+  font-size:32px;
+  filter:drop-shadow(0 0 4px #c9942a);
+  flex-shrink:0;
+}
+.app-info{flex:1;}
+.app-name{font-size:13px;font-weight:700;color:#ffe2b5;}
+.app-desc{font-size:10px;color:#a5926e;margin-top:4px;}
+.app-badge{
+  display:inline-block;
+  margin-top:8px;
+  padding:2px 10px;
+  border-radius:20px;
+  font-family:monospace;
+  font-size:8px;
+  font-weight:600;
+  background:rgba(0,0,0,0.5);
+  border:1px solid rgba(210,170,50,0.5);
+}
+.ab-gold{background:rgba(200,146,42,0.2);color:#ffdc9e;}
+.ab-green{background:rgba(61,214,140,0.2);color:#a5f0ca;}
+.ab-blue{background:rgba(96,184,240,0.2);color:#b4e0ff;}
+.ab-amber{background:rgba(240,160,48,0.2);color:#ffcf8a;}
+
+.ticker{
+  position:sticky;
+  bottom:0;
+  height:30px;
+  background:rgba(2,5,12,0.85);
+  backdrop-filter:blur(24px);
+  border-top:1px solid rgba(200,146,42,0.4);
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  z-index:90;
+}
+.tick-tag{
+  background:linear-gradient(95deg, #c9942a, #f0c674);
+  color:#0b0a05;
+  font-size:8px;
+  font-weight:900;
+  padding:0 18px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  letter-spacing:0.2em;
+}
+.tick-scroll{
+  white-space:nowrap;
+  animation:marquee 55s linear infinite;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  padding-left:20px;
+  font-family:monospace;
+}
+@keyframes marquee{
+  0%{transform:translateX(0%);}
+  100%{transform:translateX(-50%);}
+}
+.ti{font-size:9px;color:#b8a27a;}
+.ti-gold{color:#fad47c;font-weight:bold;}
+
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:#05070c;}
+::-webkit-scrollbar-thumb{background:#c9942a;border-radius:4px;}
+
+@media (max-width:640px){
+  .grid{padding:0 16px;gap:12px;}
+  .hero-title{font-size:24px;}
+  .topbar{padding:0 16px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="galaxy-canvas"></canvas>
+<div class="nebula-overlay"></div>
+<div class="l0-grid"></div>
+<div class="l0-scan"></div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="tlogo">TÂM LUXURY</div>
+    <span class="tsub">GALAXY · NATT-OS</span>
+    <div class="t-r">
+      <div class="t-chip"><div class="dot" style="background:#3dd68c; box-shadow:0 0 6px #3dd68c;"></div><span id="hdr-gold">9999: --</span></div>
+      <div class="t-chip"><div class="dot" style="background:#f0bc5a; box-shadow:0 0 6px #f0bc5a;"></div><span id="hdr-state">NEBULA</span></div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-title">✦ TÂM LUXURY · GALAXY CORE ✦</div>
+    <div class="hero-sub">HỆ ĐIỀU HÀNH SINH THỂ · TINH VÂN SỐ</div>
+    <div class="hero-chips">
+      <span class="hc">26 MODULES</span>
+      <span class="hc">LIVE METEOR SHOWER</span>
+      <span class="hc hc-green" id="hc-z">Z = 1.000</span>
+      <span class="hc">Vietinbank 110604776999</span>
+      <span class="hc">VAT 10%</span>
+    </div>
+  </div>
+
+  <!-- BÁN HÀNG -->
+  <div class="group-label">💎 Bán Hàng & Showroom</div>
+  <div class="grid" id="grid-sales"></div>
+
+  <div class="group-label">⚒️ Sản Xuất & Xưởng</div>
+  <div class="grid" id="grid-production"></div>
+
+  <div class="group-label">💰 Tài Chính & Quản Lý</div>
+  <div class="grid" id="grid-finance"></div>
+
+  <div class="group-label">👥 Nhân Sự & Hợp Tác</div>
+  <div class="grid" id="grid-hr"></div>
+
+  <div class="group-label">🗂️ Legacy Archive</div>
+  <div class="grid" id="grid-archive"></div>
+
+  <div style="height:12px"></div>
+  <div class="ticker">
+    <div class="tick-tag">METEOR WATCH</div>
+    <div class="tick-scroll" id="tick-scroll"><span class="ti">⟡ tải dữ liệu vũ trụ ⟡</span></div>
+  </div>
+</div>
+
+<script>
+// ----------------------------- DYNAMIC GALAXY (Stars, Comets, Meteors, Nebula Trails) ---------------------------------
+const canvas = document.getElementById('galaxy-canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let stars = [];
+let comets = [];       // slow comets
+let meteors = [];      // shooting stars / meteorites (bright, fast, varying sizes)
+let meteorParticles = [];
+
+function initGalaxy() {
+  resizeGalaxy();
+  const starCount = Math.floor((width * height) / 2200);
+  stars = [];
+  for (let i = 0; i < starCount; i++) {
+    stars.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.8 + 0.3,
+      alpha: Math.random() * 0.6 + 0.2,
+      twinkleSpeed: 0.5 + Math.random() * 1.2,
+      phase: Math.random() * Math.PI * 2,
+      hue: Math.random() < 0.12 ? (Math.random() < 0.6 ? 42 : 28) : 0,
+    });
+  }
+  // pre-spawn some comets and meteors
+  for(let i=0;i<3;i++) spawnComet();
+  for(let i=0;i<4;i++) spawnMeteor();
+}
+
+function resizeGalaxy() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  initGalaxy();
+}
+
+// Comets: slow, long tail, drifting
+function spawnComet() {
+  const fromLeft = Math.random() < 0.6;
+  const yBase = Math.random() * height * 0.7 + height * 0.1;
+  comets.push({
+    x: fromLeft ? -80 : width + 80,
+    y: yBase,
+    vx: fromLeft ? (1.2 + Math.random() * 1.5) : -(1.2 + Math.random() * 1.5),
+    vy: (Math.random() - 0.5) * 0.8,
+    tailLen: 110 + Math.random() * 150,
+    life: 0.7 + Math.random() * 0.5,
+    hue: 42,
+    size: 1.8
+  });
+}
+
+// Meteors: brighter, faster, varying sizes (small to large), with glowing particles
+function spawnMeteor() {
+  const fromX = Math.random() < 0.7 ? -50 : width + 50;
+  const fromY = Math.random() * height * 0.5;
+  const angle = Math.atan2(height * 0.7 - fromY, width/2 - fromX);
+  const speed = 8 + Math.random() * 14;
+  const vx = Math.cos(angle) * speed * (fromX < width/2 ? 1 : -0.9);
+  const vy = Math.sin(angle) * speed + (Math.random() - 0.5) * 2;
+  const size = 2.2 + Math.random() * 5;   // to nhỏ khác nhau
+  meteors.push({
+    x: fromX,
+    y: fromY,
+    vx: vx,
+    vy: vy,
+    size: size,
+    life: 1.0,
+    tailLen: 70 + Math.random() * 130,
+    hue: Math.random() < 0.3 ? 28 : 45,
+    brightness: 0.8 + Math.random() * 0.7
+  });
+}
+
+function updateGalaxy(time) {
+  ctx.clearRect(0, 0, width, height);
+  ctx.globalCompositeOperation = 'source-over';
+  // draw background deep space gradient
+  const grad = ctx.createLinearGradient(0, 0, width*0.8, height);
+  grad.addColorStop(0, '#010106');
+  grad.addColorStop(1, '#04020c');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, width, height);
+  
+  // draw stars
+  for (let s of stars) {
+    const twinkle = 0.5 + 0.5 * Math.sin(time * s.twinkleSpeed + s.phase);
+    let alpha = s.alpha * (0.5 + twinkle * 0.5);
+    if (s.hue) {
+      ctx.fillStyle = `hsla(${s.hue}, 85%, 70%, ${alpha})`;
+    } else {
+      ctx.fillStyle = `rgba(255, 235, 200, ${alpha})`;
+    }
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fill();
+  }
+  
+  // draw comets (slow drifting)
+  for (let i=0; i<comets.length; i++) {
+    const c = comets[i];
+    c.x += c.vx;
+    c.y += c.vy;
+    c.life -= 0.0035;
+    if (c.life <= 0 || c.x < -300 || c.x > width+300 || c.y < -200 || c.y > height+200) {
+      comets.splice(i,1);
+      i--; continue;
+    }
+    const gradient = ctx.createLinearGradient(c.x, c.y, c.x - c.vx*c.tailLen/Math.abs(c.vx||0.01), c.y - c.vy*c.tailLen/Math.abs(c.vy||0.01));
+    gradient.addColorStop(0, `hsla(${c.hue}, 85%, 70%, ${c.life*0.9})`);
+    gradient.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.moveTo(c.x, c.y);
+    ctx.lineTo(c.x - c.vx*(c.tailLen/Math.abs(c.vx||0.5)), c.y - c.vy*(c.tailLen/Math.abs(c.vy||0.5)));
+    ctx.lineWidth = c.size * 1.2;
+    ctx.strokeStyle = gradient;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.size*0.9, 0, Math.PI*2);
+    ctx.fillStyle = `hsla(${c.hue}, 90%, 75%, ${c.life})`;
+    ctx.fill();
+  }
+  
+  // draw meteors (shooting stars + meteorites with glow and debris)
+  for (let i=0; i<meteors.length; i++) {
+    const m = meteors[i];
+    m.x += m.vx;
+    m.y += m.vy;
+    m.life -= 0.012;
+    if (m.life <= 0 || m.x < -300 || m.x > width+300 || m.y < -150 || m.y > height+200) {
+      meteors.splice(i,1);
+      i--; 
+      // occasionally spawn a new meteor to keep shower alive
+      if(Math.random()<0.3) setTimeout(()=>spawnMeteor(), 10);
+      continue;
+    }
+    const alphaLife = Math.min(1, m.life * 1.2);
+    const tailLength = m.tailLen * (0.6 + m.life*0.5);
+    const dirX = m.vx, dirY = m.vy;
+    const len = Math.hypot(dirX, dirY);
+    if(len>0.01){
+      const normX = dirX/len, normY = dirY/len;
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(m.x - normX * tailLength, m.y - normY * tailLength);
+      ctx.lineWidth = m.size * 1.3;
+      const gradTail = ctx.createLinearGradient(m.x, m.y, m.x - normX * tailLength, m.y - normY * tailLength);
+      gradTail.addColorStop(0, `hsla(${m.hue}, 95%, 70%, ${alphaLife*0.9})`);
+      gradTail.addColorStop(1, 'rgba(255,180,60,0)');
+      ctx.strokeStyle = gradTail;
+      ctx.stroke();
+    }
+    // meteor head with glow
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = `hsla(${m.hue}, 90%, 65%, 0.8)`;
+    ctx.beginPath();
+    ctx.arc(m.x, m.y, m.size * 0.7, 0, Math.PI*2);
+    ctx.fillStyle = `hsla(${m.hue}, 95%, 68%, ${alphaLife})`;
+    ctx.fill();
+    // additional spark particles for larger meteors
+    if(m.size > 3 && Math.random()<0.4){
+      for(let p=0;p<2;p++){
+        meteorParticles.push({
+          x: m.x + (Math.random()-0.5)*6,
+          y: m.y + (Math.random()-0.5)*6,
+          vx: (Math.random()-0.5)*2.5,
+          vy: (Math.random()-0.5)*2.5 - 1,
+          life: 0.5,
+          size: 1+Math.random()*2.5
+        });
+      }
+    }
+  }
+  ctx.shadowBlur = 0;
+  
+  // meteor fragments / small debris
+  for(let i=0;i<meteorParticles.length;i++){
+    let p = meteorParticles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life -= 0.025;
+    if(p.life<=0){
+      meteorParticles.splice(i,1);
+      i--; continue;
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size*0.5, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255, 180, 80, ${p.life*0.8})`;
+    ctx.fill();
+  }
+  
+  // occasional spawn of new comets and meteors
+  if(Math.random()<0.008 && comets.length < 5) spawnComet();
+  if(Math.random()<0.018 && meteors.length < 9) spawnMeteor();
+}
+
+let animTime = 0;
+function galaxyAnimation(timestamp) {
+  animTime = timestamp * 0.001;
+  updateGalaxy(animTime);
+  requestAnimationFrame(galaxyAnimation);
+}
+window.addEventListener('resize', () => {
+  resizeGalaxy();
+});
+initGalaxy();
+galaxyAnimation(0);
+setInterval(() => {
+  if(comets.length < 3) spawnComet();
+  if(meteors.length < 5) spawnMeteor();
+}, 2800);
+
+// ----------------------------- APP CARDS WITH CUSTOM ICONS FROM LOCAL PATH -----------------------------
+// Base path for icons (user specified directory). The local server should serve this folder.
+const ICON_BASE = '/nauion/icon/';   // relative from server root – adjust if needed
+// mapping: unique key for each app -> icon filename (png assumed)
+const iconMap = {
+  "sales-terminal-v4": "sales-terminal.png",
+  "showroom-sales": "showroom-sales.png",
+  "order-flow": "order-flow.png",
+  "pricing-engine": "pricing-engine.png",
+  "ktt-approval": "ktt-approval.png",
+  "production-wallboard": "production-wallboard.png",
+  "loss-thresholds": "loss-thresholds.png",
+  "warehouse-full": "warehouse-full.png",
+  "warehouse-ops": "warehouse-ops.png",
+  "daily-work-app": "daily-work-app.png",
+  "operations-terminal": "operations-terminal.png",
+  "master-dashboard": "master-dashboard.png",
+  "kris-email-hub": "kris-email-hub.png",
+  "surveillance": "surveillance.png",
+  "hr-admin": "hr-admin.png",
+  "hr-manager": "hr-manager.png",
+  "attendance": "attendance.png",
+  "personal-profile-v2": "personal-profile-v2.png",
+  "personal-profile": "personal-profile.png",
+  "chat-rooms": "chat-rooms.png",
+  "tamluxury-v2": "tamluxury-v2.png",
+  "tamluxury-v3": "tamluxury-v3.png"
+};
+
+// Fallback emoji for each app (if icon missing)
+const fallbackEmoji = {
+  "sales-terminal-v4": "🛒",
+  "showroom-sales": "💎",
+  "order-flow": "📋",
+  "pricing-engine": "💰",
+  "ktt-approval": "✅",
+  "production-wallboard": "📺",
+  "loss-thresholds": "⚖️",
+  "warehouse-full": "📦",
+  "warehouse-ops": "🏭",
+  "daily-work-app": "📝",
+  "operations-terminal": "🚚",
+  "master-dashboard": "🔱",
+  "kris-email-hub": "📧",
+  "surveillance": "👁️",
+  "hr-admin": "👥",
+  "hr-manager": "📊",
+  "attendance": "⏰",
+  "personal-profile-v2": "👤",
+  "personal-profile": "👤",
+  "chat-rooms": "💬",
+  "tamluxury-v2": "📁",
+  "tamluxury-v3": "📁"
+};
+
+const appsData = {
+  sales: [
+    { id:"sales-terminal-v4", name:"Sales Terminal v4", desc:"POS bán hàng tại quầy · Catalog · Giỏ hàng · QR", badge:"CORE · SALES", badgeClass:"ab-gold", href:"tamluxury-v4.html" },
+    { id:"showroom-sales", name:"Showroom Sales", desc:"Luxury showroom · Trưng bày sản phẩm · Tư vấn", badge:"SHOWROOM", badgeClass:"ab-gold", href:"showroom-sales.html" },
+    { id:"order-flow", name:"Order Flow", desc:"Quản lý đơn hàng · Luồng SX · Tracking", badge:"ORDER FLOW", badgeClass:"ab-gold", href:"order-flow.html" },
+    { id:"pricing-engine", name:"Pricing Engine", desc:"Tính giá sản phẩm · BQGQ · Giá vàng live", badge:"PRICING", badgeClass:"ab-gold", href:"pricing-engine.html" },
+    { id:"ktt-approval", name:"KTT Approval", desc:"Phê duyệt giao dịch · Master workflow", badge:"APPROVAL", badgeClass:"ab-amber", href:"ktt-approval.html" }
+  ],
+  production: [
+    { id:"production-wallboard", name:"Production Wallboard", desc:"Kanban xưởng realtime · OEE", badge:"LIVE XƯỞNG", badgeClass:"ab-green", href:"production-wallboard.html" },
+    { id:"loss-thresholds", name:"Loss Thresholds", desc:"Ngưỡng hao hụt · Nhẫn / Lắc / Dây chuyền", badge:"NĐ 24/2012", badgeClass:"ab-green", href:"loss-thresholds.html" },
+    { id:"warehouse-full", name:"Warehouse Full", desc:"Kho nguyên liệu + thành phẩm · Nhập xuất", badge:"KHO", badgeClass:"ab-green", href:"warehouse-full.html" },
+    { id:"warehouse-ops", name:"Warehouse Ops", desc:"Tác nghiệp kho · Nhập nhanh · Xuất nhanh", badge:"OPS", badgeClass:"ab-green", href:"warehouse-ops.html" },
+    { id:"daily-work-app", name:"Daily Work App", desc:"Tác vụ hàng ngày · Chấm công · Báo cáo", badge:"DAILY", badgeClass:"ab-green", href:"daily-work-app.html" },
+    { id:"operations-terminal", name:"Operations Terminal", desc:"Hậu cần · Vận chuyển · Giao nhận", badge:"OPS", badgeClass:"ab-amber", href:"operations-terminal.html" }
+  ],
+  finance: [
+    { id:"master-dashboard", name:"Master Dashboard", desc:"Tổng quan CEO · KPI toàn hệ thống", badge:"MASTER CEO", badgeClass:"ab-gold", href:"master-dashboard.html" },
+    { id:"kris-email-hub", name:"Kris Email Hub", desc:"Email tổng hợp · Kris AI · Phân loại", badge:"KRIS AI", badgeClass:"ab-blue", href:"kris-email-hub.html" },
+    { id:"surveillance", name:"Surveillance", desc:"Giám sát hệ thống · Risk score", badge:"SECURITY", badgeClass:"ab-amber", href:"surveillance.html" }
+  ],
+  hr: [
+    { id:"hr-admin", name:"HR Admin", desc:"Quản lý nhân sự · Hợp đồng · Lương", badge:"HR ADMIN", badgeClass:"ab-blue", href:"hr-admin.html" },
+    { id:"hr-manager", name:"HR Manager", desc:"Dashboard nhân sự · KPI · Hiệu suất", badge:"HR MANAGER", badgeClass:"ab-blue", href:"hr-manager.html" },
+    { id:"attendance", name:"Attendance", desc:"Chấm công · Xin nghỉ · Tăng ca", badge:"CHẤM CÔNG", badgeClass:"ab-blue", href:"attendance.html" },
+    { id:"personal-profile-v2", name:"Personal Profile v2", desc:"Hồ sơ cá nhân · Kỹ năng · Đánh giá", badge:"PROFILE v2", badgeClass:"ab-blue", href:"personal-profile-v2.html" },
+    { id:"personal-profile", name:"Personal Profile", desc:"Hồ sơ nhân viên · Thông tin cơ bản", badge:"PROFILE v1", badgeClass:"ab-blue", href:"personal-profile.html" },
+    { id:"chat-rooms", name:"Chat Rooms", desc:"Phòng họp · Thảo luận · AI Kris", badge:"COLLAB", badgeClass:"ab-blue", href:"chat-rooms.html" }
+  ],
+  archive: [
+    { id:"tamluxury-v2", name:"Tâm Luxury v2", desc:"Phiên bản cũ · Archive", badge:"v2 LEGACY", badgeClass:"ab-amber", href:"tamluxury-v2.html", opacity:0.7 },
+    { id:"tamluxury-v3", name:"Tâm Luxury v3", desc:"Phiên bản cũ · Archive", badge:"v3 LEGACY", badgeClass:"ab-amber", href:"tamluxury-v3.html", opacity:0.7 }
+  ]
+};
+
+function createCard(app, idx) {
+  const a = document.createElement('a');
+  a.className = 'app-card';
+  a.href = app.href;
+  if(app.opacity) a.style.opacity = app.opacity;
+  
+  const iconContainer = document.createElement('div');
+  const img = document.createElement('img');
+  img.className = 'app-icon-img';
+  const iconUrl = ICON_BASE + (iconMap[app.id] || `${app.id}.png`);
+  img.src = iconUrl;
+  img.alt = app.name;
+  img.onerror = () => {
+    // fallback to emoji if icon fails to load
+    const fallbackSpan = document.createElement('span');
+    fallbackSpan.className = 'app-icon-fallback';
+    fallbackSpan.textContent = fallbackEmoji[app.id] || '📄';
+    iconContainer.innerHTML = '';
+    iconContainer.appendChild(fallbackSpan);
+  };
+  iconContainer.appendChild(img);
+  
+  const infoDiv = document.createElement('div');
+  infoDiv.className = 'app-info';
+  infoDiv.innerHTML = `
+    <div class="app-name">${app.name}</div>
+    <div class="app-desc">${app.desc}</div>
+    <span class="app-badge ${app.badgeClass}">${app.badge}</span>
+  `;
+  a.appendChild(iconContainer);
+  a.appendChild(infoDiv);
+  return a;
+}
+
+function renderGrids() {
+  document.getElementById('grid-sales').innerHTML = '';
+  appsData.sales.forEach(app => document.getElementById('grid-sales').appendChild(createCard(app)));
+  document.getElementById('grid-production').innerHTML = '';
+  appsData.production.forEach(app => document.getElementById('grid-production').appendChild(createCard(app)));
+  document.getElementById('grid-finance').innerHTML = '';
+  appsData.finance.forEach(app => document.getElementById('grid-finance').appendChild(createCard(app)));
+  document.getElementById('grid-hr').innerHTML = '';
+  appsData.hr.forEach(app => document.getElementById('grid-hr').appendChild(createCard(app)));
+  document.getElementById('grid-archive').innerHTML = '';
+  appsData.archive.forEach(app => document.getElementById('grid-archive').appendChild(createCard(app)));
+}
+renderGrids();
+
+// ----------------------------- GOLD & SSE (live data) -----------------------------
+const API_URL = 'http://localhost:3001';
+async function loadGold() {
+  try {
+    const res = await fetch(`${API_URL}/kenh/gia-vang`);
+    const data = await res.json();
+    const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '—';
+    document.getElementById('hdr-gold').innerHTML = `9999: ${fmt(data.gold9999)} · 18K: ${fmt(data.gold18k)}`;
+    const items = [
+      `🏆 SJC MUA ${Number(data.sjc_buy||0).toLocaleString('vi-VN')}đ`,
+      `BÁN ${Number(data.sjc_sell||0).toLocaleString('vi-VN')}đ`,
+      `💎 9999: ${Number(data.gold9999||0).toLocaleString('vi-VN')}đ`,
+      `✨ 18K: ${Number(data.gold18k||0).toLocaleString('vi-VN')}đ`,
+      `🌠 TÂM LUXURY · GALAXY NEBULA`,
+      `🏦 Vietinbank 110604776999 · VC`
+    ];
+    const tickDiv = document.getElementById('tick-scroll');
+    if(tickDiv) tickDiv.innerHTML = items.map(t => `<span class="ti ti-gold">${t}</span>`).join('');
+  } catch(e) { console.warn(e); }
+}
+function initSSE() {
+  const evtSource = new EventSource(`${API_URL}/mach/heyna`);
+  evtSource.onmessage = (e) => {
+    try {
+      const d = JSON.parse(e.data);
+      if(d.event === 'nauion.state') {
+        const z = d.payload?.impedanceZ;
+        if(z) document.getElementById('hc-z').innerHTML = `Z = ${z.toFixed(3)}`;
+        const st = d.payload?.state;
+        if(st) document.getElementById('hdr-state').innerHTML = st === 'nauion' ? 'HEALTHY' : st.toUpperCase();
+      }
+      if(d.event === 'gia-vang.updated') loadGold();
+    } catch(err) {}
+  };
+  evtSource.onerror = () => { evtSource.close(); setTimeout(initSSE, 4000); };
+}
+loadGold();
+initSSE();
+
+// watermark
+const wm = document.createElement('div');
+wm.style.cssText = 'position:fixed; bottom:6px; left:12px; font-size:7px; font-family:monospace; color:rgba(200,146,42,0.25); z-index:999; pointer-events:none;';
+wm.innerText = '⟡ TÂM LUXURY · NATT-OS · GALAXY CORE ⟡';
+document.body.appendChild(wm);
+</script>
+</body>
+</html>

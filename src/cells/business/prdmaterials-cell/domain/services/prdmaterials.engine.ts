@@ -139,6 +139,8 @@ export const PrdMaterialsEngine = {
   }),
 
   getHistory: (): TouchRecord[] => [..._touch],
+  EventBus.emit('cell.metric', { cell: 'prdmaterials-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
 };
 
 // Legacy compat

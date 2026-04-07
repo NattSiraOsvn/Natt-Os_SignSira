@@ -34,4 +34,6 @@ export const PaymentEngine={
     recs.forEach(r=>{byMethod[r.method]=(byMethod[r.method]??0)+r.amount;});
     return{total:recs.reduce((s,r)=>s+r.amount,0),count:recs.length,byMethod};
   },
+  EventBus.emit('cell.metric', { cell: 'payment-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
+
 };

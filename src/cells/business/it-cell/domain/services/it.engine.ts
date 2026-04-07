@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import { ItSmartLinkPort } from "../../ports/it-smartlink.port";
 import { ITAsset, ITAssetType, ITRequest } from '../entities/it-asset.entity';
 
@@ -51,6 +52,7 @@ export class ITEngine {
 
   static getExpiringLicenses(assets: ITAsset[], daysAhead: number = 30): ITAsset[] {
     const cutoff = new Date(Date.now() + daysAhead * 86400000);
+    EventBus.emit('cell.metric', { cell: 'it-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
     return assets.filter(a => a.renewalDate && a.renewalDate <= cutoff && a.status === 'ACTIVE');
   }
 }
