@@ -47,9 +47,10 @@ export class EnterpriseLinkerEngine {
         // Conflict: variance > 10% of mean
         const variance = values.reduce((s, v) => s + (v - avg) ** 2, 0) / values.length;
         if (avg > 0 && Math.sqrt(variance) / avg > 0.1) conflicts.push(metric);
-}
-}
-
+      }
+      summaries.push({ entityId, metrics: avgMetrics, sources: [...sources], conflicts });
+    }
+    return summaries;
   }
   execute() { EventBus.emit('cell.metric', { cell: 'analytics-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
 }

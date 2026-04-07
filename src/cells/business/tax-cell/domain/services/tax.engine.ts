@@ -35,7 +35,6 @@ export class TaxEngine {
       };
     }
   }
-  execute() { EventBus.emit('cell.metric', { cell: 'tax-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
 }
 
 export const taxEngine = new TaxEngine();

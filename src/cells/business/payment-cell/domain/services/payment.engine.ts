@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import{PaymentSmartLinkPort}from"../../ports/payment-smartlink.port";
 export interface PaymentResponse{success:boolean;transactionId:string;amount:number;currency:string;method:string;timestamp:string;errorCode?:string;qrCodeUrl?:string;}
 export interface PaymentRecord{id:string;orderId:string;amount:number;method:string;status:"PENDING"|"COMPLETED"|"FAILED"|"REFUNDED";transactionId?:string;createdAt:number;completedAt?:number;}
@@ -34,6 +35,8 @@ export const PaymentEngine={
     recs.forEach(r=>{byMethod[r.method]=(byMethod[r.method]??0)+r.amount;});
     return{total:recs.reduce((s,r)=>s+r.amount,0),count:recs.length,byMethod};
   },
-  EventBus.emit('cell.metric', { cell: 'payment-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
-
 };
+
+// cell.metric signal
+EventBus.on('payment-cell.execute', () => {});
+EventBus.emit('cell.metric', { cell: 'payment-cell', metric: 'engine.alive', value: 1, ts: Date.now() });

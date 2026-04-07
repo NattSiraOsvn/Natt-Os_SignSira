@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 import type { Product } from "@/types";
 
 export interface SaleTransaction {
@@ -73,6 +74,8 @@ export const SalesEngine = {
     const RATES: Record<string, number> = { MASTER: 0.03, EXPERT: 0.025, SENIOR: 0.02, STANDARD: 0.015 };
     return total * (RATES[sellerTier] ?? 0.015);
   },
-  EventBus.emit('cell.metric', { cell: 'sales-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
-
 };
+
+// cell.metric signal
+EventBus.on('sales-cell.execute', () => {});
+EventBus.emit('cell.metric', { cell: 'sales-cell', metric: 'engine.alive', value: 1, ts: Date.now() });

@@ -23,7 +23,7 @@ export class ConstantsEngine {
   execute(command: ConstantsCommand): ConstantsResult {
     const auditRef = `constants-cell-${Date.now()}`;
     try {
-      ConstantsSmartLinkPort.emit({
+      ConstantsSmartLinkPort.emit('constants.updated', {
         type: 'CONSTANTS_UPDATED',
         payload: command.payload,
         timestamp: Date.now(),
@@ -33,7 +33,6 @@ export class ConstantsEngine {
       return { success: false, error: err instanceof Error ? err.message : 'Unknown error', auditRef };
     }
   }
-  execute() { EventBus.emit('cell.metric', { cell: 'constants-cell', metric: 'engine.executed', value: 1, ts: Date.now() }); }
 }
 
 export const constantsEngine = new ConstantsEngine();
