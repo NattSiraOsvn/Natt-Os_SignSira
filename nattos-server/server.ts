@@ -8,6 +8,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createHash } from 'crypto';
 import { EventBus } from '../src/core/events/event-bus';
 import { bootKernel } from '../src/core/kernel-boot';
 import { AuditApplicationService } from '../src/cells/kernel/audit-cell/application/services/AuditApplicationService';
