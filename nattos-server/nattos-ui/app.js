@@ -188,12 +188,13 @@ function machHeyNa() {
     if(sb) sb.textContent = 'Nahere — Mạch đứt, Whao đang hồi';
     pushChain('lệch', 'lech');
     es.close();
+    // Whao fallback khi mạch đứt — poll đến khi reconnect
+    const _whaoTimer = setInterval(whaoFallback, 3000);
     // Thử lại sau 5s
-    setTimeout(machHeyNa, 5000);
+    setTimeout(() => { clearInterval(_whaoTimer); machHeyNa(); }, 5000);
   };
 
-  // Whao fallback song song — đồng bộ intelligence + audit đầy đủ
-  setInterval(whaoFallback, 3000);
+  // Whao fallback chỉ khi SSE đứt — không poll song song
 }
 
 // ── HEYNA — KHỞI ĐỘNG ────────────────────────────────────
