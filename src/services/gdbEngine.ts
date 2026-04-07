@@ -267,3 +267,36 @@ export class GDBRecognitionEngine {
     return 'Unknown Template';
   }
 }
+
+import { EventBus } from '@/core/events/event-bus';
+
+// ── HeyNa — lắng nghe yêu cầu phân tích GDB ──
+EventBus.on('gdb.analyze.request', (payload: any) => {
+  const { requestId, ocrText, causationId } = payload ?? {};
+  if (!ocrText) return;
+
+  const engine = new GDBRecognitionEngine(ocrText);
+  const result = engine.analyze();
+
+  // Nauion — phát kết quả về
+  EventBus.emit('gdb.analyze.result', {
+    requestId,
+    result,
+    causationId,
+    ts: Date.now(),
+  });
+
+  // Audit trail
+  EventBus.emit('audit.record', {
+    type: 'gdb.analyzed',
+    payload: { requestId, type: result.type, confidence: result.confidence },
+    causationId,
+    actor: 'gdb-engine',
+  });
+});
+
+// Nauion heartbeat
+EventBus.publish(
+  { type: 'cell.metric' as any, payload: { cell: 'gdb-engine', metric: 'alive', value: 1, ts: Date.now() } },
+  'gdb-engine', undefined
+);
