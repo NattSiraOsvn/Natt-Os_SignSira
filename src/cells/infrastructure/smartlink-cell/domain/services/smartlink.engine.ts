@@ -30,6 +30,7 @@ export interface TouchRecord {
   impedanceZ?: number;
   isIseu?: boolean;
   lastFeedbackIntensity?: number;
+  strength?: number; // Phase 2 — outcome-based reinforcement
 }
 
 export interface FiberSummary {
@@ -206,6 +207,30 @@ export const SmartLinkEngine = {
     record.isIseu = record.impedanceZ !== (record.impedanceZ ?? 1.0) || (record.sensitivity ?? 0) >= 0.75 || intensity >= 1.0;
     record.lastFeedbackIntensity = intensity;
     record.domainId = domainId;
+  },
+
+  // ── ISEU Phase 2 — apply reinforcement từ outcome_weight ──
+  applyReinforcement: (domainId: string, reinforcement: number): void => {
+    const key = _domainIndex.get(domainId);
+    if (!key) return;
+    const record = _fiberMap.get(key);
+    if (!record) return;
+
+    const k = 0.5;
+
+    // Update strength
+    record.strength = Math.min(1, Math.max(0, (record.strength ?? record.sensitivity ?? 0) + reinforcement));
+
+    // Update touchCount
+    if (reinforcement > 0) {
+      record.touchCount = (record.touchCount ?? 0) + 1;
+    } else if (reinforcement < 0) {
+      record.touchCount = Math.max(0, (record.touchCount ?? 0) - 1);
+    }
+
+    // Update impedanceZ: ΔZ = -reinforcement * k
+    const deltaZ = -reinforcement * k;
+    record.impedanceZ = Math.min(5.0, Math.max(0.1, (record.impedanceZ ?? 1.0) + deltaZ));
   },
 
   getTouchLog: (): TouchRecord[] => [..._touchLog],
