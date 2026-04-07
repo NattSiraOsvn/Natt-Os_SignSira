@@ -1,0 +1,80 @@
+/**
+ * nattos-galaxy.css — NaUion v10 Visual Layer
+ * Inject vào tất cả app Tâm Luxury
+ * Không override layout — chỉ visual: galaxy + glass upgrade
+ */
+
+/* ── Galaxy canvas + Nebula ── */
+#gx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 85% 55% at 10% 20%, rgba(200,120,30,.13) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 78%, rgba(200,146,42,.09) 0%,transparent 50%),
+    radial-gradient(ellipse 55% 45% at 50% 50%, rgba(80,50,160,.07) 0%,transparent 55%),
+    radial-gradient(ellipse 75% 30% at 25% 90%, rgba(180,100,30,.10) 0%,transparent 50%),
+    radial-gradient(ellipse 50% 55% at 78% 15%, rgba(50,140,200,.06) 0%,transparent 50%)}
+.l0-grid{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(200,146,42,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,146,42,.012) 1px,transparent 1px);
+  background-size:44px 44px}
+.l0-scan{position:fixed;left:0;right:0;height:2px;pointer-events:none;z-index:2;
+  background:linear-gradient(to bottom,transparent,rgba(200,146,42,.07),transparent);
+  animation:nattos-scan 22s linear infinite}
+@keyframes nattos-scan{0%{top:-1%}100%{top:101%}}
+
+/* ── Nâng app z-index lên trên galaxy ── */
+.login,.login-screen{position:relative;z-index:10}
+.app,.app-root,#app-root,#app{position:relative;z-index:10}
+
+/* ── Liquid Glass upgrade — panels + cards ── */
+/* Topbar glass */
+.topbar,.tb{
+  background:radial-gradient(ellipse 100% 100% at 50% 0%,rgba(200,146,42,.07) 0%,transparent 55%),
+    rgba(8,10,16,.88) !important;
+  backdrop-filter:blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter:blur(28px) saturate(200%) !important;
+  box-shadow:0 4px 20px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,220,140,.12) !important}
+
+/* Panel glass */
+.panel,.phdr{
+  backdrop-filter:blur(16px) !important;
+  -webkit-backdrop-filter:blur(16px) !important}
+
+/* KPI glass */
+.kpi{
+  background:radial-gradient(ellipse 80% 60% at 30% 20%,rgba(200,146,42,.07) 0%,transparent 55%),
+    var(--bg3) !important;
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.15) !important}
+
+/* Login box glass */
+.lbox,.login-box{
+  backdrop-filter:blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(180%) !important;
+  box-shadow:0 32px 80px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,220,140,.12) !important}
+
+/* Cards glass */
+.card,.prod-card{
+  backdrop-filter:blur(8px) !important;
+  -webkit-backdrop-filter:blur(8px) !important;
+  transition:all .18s !important}
+.card:hover,.prod-card:hover{
+  box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 8px rgba(200,146,42,.08) !important;
+  transform:translateY(-1px)}
+
+/* Modal glass */
+.modal,.modal-bg.open .modal{
+  backdrop-filter:blur(20px) !important;
+  -webkit-backdrop-filter:blur(20px) !important}
+.modal-bg{backdrop-filter:blur(8px) !important;-webkit-backdrop-filter:blur(8px) !important}
+
+/* Sidebar glass (nếu có) */
+.sidebar,.sc,.ff{
+  backdrop-filter:blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(180%) !important}
+
+/* Scan bar animation for login */
+.login-screen::after,.login::after{
+  content:'';position:fixed;left:0;right:0;height:2px;pointer-events:none;z-index:1;
+  background:linear-gradient(to bottom,transparent,rgba(200,146,42,.06),transparent);
+  animation:nattos-scan 22s linear infinite}
