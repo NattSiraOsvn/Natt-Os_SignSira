@@ -337,5 +337,8 @@ EventBus.on('system.audit', (env) => {
 });
 
 console.log('[EventBus] Engine chains wired: ORDER→CASH + PRODUCTION flow');
+try { require('tsx/cjs'); } catch {}
+try { require('./engine-registry').init(EventBus); } catch (e) { console.warn('[EngineRegistry] Skip:', e.message); }
+
 
 app.use("/apps/tam-luxury", express.static(path.join(__dirname, "apps/tam-luxury")));
