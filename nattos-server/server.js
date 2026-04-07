@@ -12,6 +12,7 @@ const PORT = 3001;
 app.use(cors());
 // ── Vision serve ──
 app.use('/vision', require('express').static(require('path').join(__dirname, 'nattos-ui/vision')));
+app.use('/ui', require('express').static(require('path').join(__dirname, 'nattos-ui')));
 
 
 app.use(express.json());
