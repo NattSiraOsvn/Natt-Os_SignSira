@@ -37,3 +37,41 @@ export const store = {
     return false;
   }
 };
+
+// ── Mạch HeyNa — subscribe SSE ──
+import { machHeyna } from './adapter.js';
+
+store.machOn = false;
+store.impedanceZ = 1.0;
+store._closeMach = null;
+
+store.startMach = function() {
+  if (store.machOn) return;
+  store.machOn = true;
+  store._closeMach = machHeyna(
+    (data) => {
+      // Nhận event từ Mạch HeyNa
+      if (data.event === 'cell.metric' && data.payload?.cell) {
+        if (!store.flows[data.payload.cell]) store.flows[data.payload.cell] = {};
+        store.flows[data.payload.cell][data.payload.metric] = { value: data.payload.value, ts: data.ts };
+      }
+      if (data.event === 'Nahere' && data.payload?.impedanceZ !== undefined) {
+        store.impedanceZ = data.payload.impedanceZ;
+      }
+      if (data.event === 'audit.record') {
+        store.audit.push(data.payload);
+        if (store.audit.length > 1000) store.audit.shift();
+      }
+    },
+    () => {
+      // Whao fallback — mạch đứt
+      store.machOn = false;
+      setTimeout(() => store.startMach(), 3000);
+    }
+  );
+};
+
+store.stopMach = function() {
+  if (store._closeMach) store._closeMach();
+  store.machOn = false;
+};
