@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v5.1
+# NATT-OS SmartAudit v5.3
 # Author: Băng — Ground Truth Validator
 # Usage:  bash smartAudit.sh [--json] [--full]
 #         Chạy từ root natt-os ver2goldmaster
@@ -54,7 +54,7 @@ echo -e "  ${C}━━━━━━━━━━━━━━━━━━━━━�
 echo -e "  ${W}NattCell Kernel${N} ${C}·${N} Distributed Living Organism ${C}·${N} ${W}38 Cells${N}"
 echo -e "  ${C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
 echo ""
-echo -e "  ${W}SmartAudit v5.1 — $TS${N}"
+echo -e "  ${W}SmartAudit v5.3 — $TS${N}"
 echo -e "  Root: $ROOT"
 
 # ═══════════════════════════════════════════════════════════════
@@ -1914,6 +1914,7 @@ violations = list(set(violations))
 
 if violations:
     print(f"  \033[0;31m❌\033[0m  LỆNH #001 vi phạm: {len(violations)} chỗ")
+    print("INC_WARN_LENH001")
     for v in violations[:10]:
         print(f"     🚨 {v[:120]}")
     if len(violations) > 10:
