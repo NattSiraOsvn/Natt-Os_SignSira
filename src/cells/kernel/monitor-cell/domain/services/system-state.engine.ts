@@ -25,6 +25,31 @@ export interface StateSnapshot {
   strengths: string[];
 }
 
+
+// ── computeSystemImpedance — Z từ runtime signals ──
+// IMPEDANCE_Z: derived từ event_rate + error_ratio + latency + anomaly
+export function computeSystemImpedance(signals: {
+  errorRatio?: number;   // 0..1
+  latencyNorm?: number;  // 0..1 (latency_avg_ms / 1000)
+  anomalyScore?: number; // 0..1
+  eventRate?: number;    // events/min, 0 = silent
+}): number {
+  const Z0 = 1.0;
+  const errorRatio   = signals.errorRatio   ?? 0;
+  const latencyNorm  = signals.latencyNorm  ?? 0;
+  const anomalyScore = signals.anomalyScore ?? 0;
+  const eventRate    = signals.eventRate    ?? 0;
+
+  // Drift từ baseline: mỗi factor đẩy Z lên khi xấu
+  const drift =
+    (errorRatio   * 1.5) +
+    (latencyNorm  * 0.8) +
+    (anomalyScore * 2.0) +
+    (eventRate === 0 ? 0.5 : 0); // silent system = drift nhẹ
+
+  return Math.min(5.0, Math.max(0.1, Z0 + drift));
+}
+
 export function inferSystemState(signals: StateSnapshot["signals"]): {
   state: SystemState; riskScore: number; issues: string[]; strengths: string[];
 } {
