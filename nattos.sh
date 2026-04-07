@@ -1667,3 +1667,185 @@ echo ""
 echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
 echo -e "  END SmartAudit — $TS"
 echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
+
+# ═══════════════════════════════════════════════════════════════
+# S39 — ARCHITECTURE MAP
+# ═══════════════════════════════════════════════════════════════
+hdr "39" "ARCHITECTURE MAP"
+
+python3 << 'PY39'
+import os, json
+from pathlib import Path
+
+root = Path("src")
+issues = []
+
+# ── Wave sequence check ──
+wave_dirs = ["core", "governance", "cells"]
+wave_ok = all((root / d).exists() for d in wave_dirs)
+if wave_ok:
+    print(f"  \033[0;32m✅\033[0m Wave structure: core → governance → cells")
+else:
+    missing = [d for d in wave_dirs if not (root / d).exists()]
+    print(f"  \033[0;33m⚠️\033[0m  Wave structure incomplete: missing {missing}")
+    issues.append(f"WAVE_INCOMPLETE: {missing}")
+
+# ── Dual-tier cell detection ──
+tiers = ["business", "kernel", "infrastructure"]
+cell_map = {}
+for tier in tiers:
+    tp = root / "cells" / tier
+    if not tp.is_dir(): continue
+    for cell in tp.iterdir():
+        if cell.is_dir():
+            name = cell.name
+            if name not in cell_map:
+                cell_map[name] = []
+            cell_map[name].append(tier)
+
+# Known intentional dual-tier cells
+INTENTIONAL_DUAL_TIER = {
+    "shared-contracts-cell", "ai-connector-cell", "notification-cell"
+}
+dual = {k: v for k, v in cell_map.items() if len(v) > 1 and k not in INTENTIONAL_DUAL_TIER}
+dual_intentional = {k: v for k, v in cell_map.items() if len(v) > 1 and k in INTENTIONAL_DUAL_TIER}
+if dual_intentional:
+    for cell, tiers_found in dual_intentional.items():
+        print(f"  \033[0;36mℹ\033[0m  DUAL_TIER (intentional): {cell} in {tiers_found}")
+
+if dual:
+    for cell, tiers_found in dual.items():
+        print(f"  \033[0;33m⚠️\033[0m  DUAL_TIER: {cell} exists in {tiers_found}")
+        issues.append(f"DUAL_TIER: {cell}")
+else:
+    print(f"  \033[0;32m✅\033[0m No dual-tier cells detected")
+
+# ── Stale baseline check ──
+import time
+latest = Path("audit/summary/latest.json")
+if latest.exists():
+    age_days = (time.time() - latest.stat().st_mtime) / 86400
+    if age_days > 7:
+        print(f"  \033[0;33m⚠️\033[0m  Stale baseline: latest.json is {age_days:.1f} days old")
+        issues.append(f"STALE_BASELINE: {age_days:.1f}d")
+    else:
+        print(f"  \033[0;32m✅\033[0m Baseline fresh: {age_days:.1f} days old")
+else:
+    print(f"  \033[0;33m⚠️\033[0m  latest.json not found")
+    issues.append("MISSING_BASELINE")
+
+# ── Machine fingerprint ──
+import socket
+hostname = socket.gethostname()
+print(f"  \033[0;36mℹ\033[0m  Machine: {hostname}")
+
+# ── Shared DNA check ──
+hp_files = list(Path("src/governance").glob("HIEN-PHAP*.md"))
+active = [f for f in hp_files if "archive" not in str(f)]
+archived = [f for f in hp_files if "archive" in str(f)]
+print(f"  \033[0;32m✅\033[0m Constitution active: {len(active)} | archived: {len(archived)}")
+if len(active) == 0:
+    issues.append("NO_ACTIVE_CONSTITUTION")
+elif len(active) > 1:
+    issues.append(f"MULTIPLE_ACTIVE_CONSTITUTION: {[f.name for f in active]}")
+
+os.makedirs(".nattos-twin", exist_ok=True)
+with open(".nattos-twin/arch-map.json", "w") as f:
+    json.dump({"dual_tier": dual, "issues": issues, "hostname": hostname}, f, indent=2)
+
+if issues:
+    print(f"  \033[0;33m⚠️\033[0m  Architecture issues: {len(issues)}")
+else:
+    print(f"  \033[0;32m✅\033[0m Architecture map clean")
+PY39
+
+# ═══════════════════════════════════════════════════════════════
+# S40 — REPORT GENERATOR
+# ═══════════════════════════════════════════════════════════════
+hdr "40" "REPORT GENERATOR"
+
+python3 << 'PY40'
+import os, json
+from datetime import datetime
+from pathlib import Path
+
+os.makedirs("audit/summary", exist_ok=True)
+os.makedirs("audit/reports", exist_ok=True)
+os.makedirs("audit/log", exist_ok=True)
+
+ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+date_str = datetime.now().strftime("%Y-%m-%d")
+ts_file = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+# ── Load twin data ──
+twin_path = Path(".nattos-twin/inference.json")
+twin = {}
+if twin_path.exists():
+    try:
+        twin = json.loads(twin_path.read_text())
+    except:
+        pass
+
+arch_path = Path(".nattos-twin/arch-map.json")
+arch = {}
+if arch_path.exists():
+    try:
+        arch = json.loads(arch_path.read_text())
+    except:
+        pass
+
+# ── Update latest.json ──
+latest = {
+    "ts": ts,
+    "state": twin.get("state", "UNKNOWN"),
+    "risk": twin.get("risk", -1),
+    "issues": twin.get("issues", []) + arch.get("issues", []),
+    "hostname": arch.get("hostname", "unknown")
+}
+with open("audit/summary/latest.json", "w") as f:
+    json.dump(latest, f, indent=2)
+print(f"  \033[0;32m✅\033[0m latest.json updated: {ts}")
+
+# ── Generate report if issues exist ──
+all_issues = latest["issues"]
+if all_issues:
+    report_path = f"audit/reports/{ts_file}_auto.md"
+    lines = [
+        f"# NATT-OS Audit Report — {date_str}",
+        f"",
+        f"**Generated:** {ts}  ",
+        f"**System State:** {latest['state']}  ",
+        f"**Risk:** {latest['risk']}/100  ",
+        f"**Machine:** {latest['hostname']}  ",
+        f"",
+        f"## Issues Detected ({len(all_issues)})",
+        f"",
+    ]
+    for issue in all_issues:
+        lines.append(f"- {issue}")
+    lines += [
+        f"",
+        f"## Gatekeeper Sign-off",
+        f"",
+        f"- [ ] Reviewed by Gatekeeper: _______________",
+        f"- [ ] Date: _______________",
+        f"- [ ] Signature: NattSira Governance Seal",
+        f"",
+        f"---",
+        f"*Auto-generated by SmartAudit v5.3 — NOT official until signed*"
+    ]
+    with open(report_path, "w") as f:
+        f.write("\n".join(lines))
+    print(f"  \033[0;33m⚠️\033[0m  Report generated: {report_path}")
+    print(f"  \033[0;36mℹ\033[0m  Sign and commit to make official")
+else:
+    print(f"  \033[0;32m✅\033[0m No issues — report not needed")
+
+# ── Keep audit/log clean (max 90 files) ──
+log_files = sorted(Path("audit/log").glob("*.log"))
+if len(log_files) > 90:
+    for old in log_files[:-90]:
+        old.unlink()
+    print(f"  \033[0;36mℹ\033[0m  Cleaned old logs, kept 90")
+PY40
+
