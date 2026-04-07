@@ -5,7 +5,6 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, BarChart, Bar, ComposedChart, Line
 } from 'recharts';
-import { GoogleGenAI } from "@google/genai";
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 
@@ -50,7 +49,7 @@ const AdvancedAnalytics: React.FC = () => {
     const runAISummary = async () => {
       setIsThinking(true);
       try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        // STUBBED — LỆNH #001
         const response = await ai.models.generateContent({
           model: 'gemini-3-flash-preview',
           contents: `Phân tích dữ liệu: Lệch sổ sách 2024 (Kim cương tấm -227), Kịch bản 2026 (${scenario}). THIÊN tư vấn chiến lược.`
