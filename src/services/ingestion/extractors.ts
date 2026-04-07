@@ -1,7 +1,6 @@
 
 // src/services/ingestion/extractors.ts
 import * as XLSX from 'xlsx';
-import { GoogleGenAI } from "@google/genai";
 import { CustomsUtils } from '../customsUtils';
 
 // --- INTERFACES ---
@@ -44,47 +43,9 @@ export const ExcelExtractor = {
 };
 
 export const OCRExtractor = {
-  async extract(file: File): Promise<ExtractedData> {
-    console.log(`[OCRExtractor] Sending to Vision API: ${file.name}`);
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
-    // Convert File to Base64
-    const base64Data = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve((reader.result as string).split(',')[1]);
-    });
-
-    const model = 'gemini-3-flash-preview'; // Faster for OCR
-    const prompt = `Trích xuất dữ liệu từ hình ảnh này. Trả về JSON với các trường: SKU, amount, weight, description. Nếu là bảng, hãy trả về mảng 'items'.`;
-
-    try {
-      const response = await ai.models.generateContent({
-        model,
-        contents: {
-          role: 'user',
-          parts: [{ inlineData: { data: base64Data, mimeType: file.type } }, { text: prompt }]
-        }
-      });
-      
-      const text = response.text || "";
-      let fields = {};
-      try {
-        const jsonBlock = text.match(/```json\n([\s\S]*?)\n```/)?.[1] || text;
-        fields = JSON.parse(jsonBlock);
-      } catch (e) {
-        console.warn("AI Raw JSON parse failed, using raw text");
-      }
-
-      return {
-        text: text,
-        tables: [],
-        extractedFields: fields
-      };
-    } catch (e) {
-      console.error("OCR Failed", e);
-      return { text: "", tables: [], extractedFields: {} };
-    }
+  // STUBBED — LỆNH #001: Cấm gọi Gemini trực tiếp
+  async extract(_file: File): Promise<ExtractedData> {
+    return { text: '', tables: [], extractedFields: {}, raw: null };
   }
 };
 
