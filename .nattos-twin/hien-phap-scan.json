@@ -1,5 +1,17 @@
 {
-  "total": 0,
-  "by_dieu": {},
-  "violations": []
+  "total": 1,
+  "by_dieu": {
+    "Điều 9": 1
+  },
+  "violations": [
+    {
+      "dieu": "Điều 9",
+      "severity": "🟡 WARN",
+      "cell": "core",
+      "file": "ui-vision/lib/event-bus.ts",
+      "line": 24,
+      "detail": "Direct external API call (bypass EventBus?)",
+      "code": "fetch('http://localhost:3001/phat/nauion', {"
+    }
+  ]
 }
