@@ -1,8 +1,11 @@
 // app.js — NATT-OS · Nauion Bootstrap
 // Mạch HeyNa = SSE chính, Whao fallback = poll mỗi 3s
-import { store }              from './core/store.js';
-import { fetchAudit, fetchIntelligence } from './core/adapter.js';
+import { store }              from './store.js';
+import { fetchAudit, fetchIntelligence } from './adapter.js';
 import { toNauion, patternMemory, NAUION } from './nauion-engine.js';
+
+// HeyNa — khởi động Mạch
+store.startMach();
 
 const MAX_TS = 60, MAX_DC = 14;
 let totalTs = 0, totalDc = 0;
