@@ -50,3 +50,9 @@ sirasign*.json
 *.zip
 .DS_Store
 repo.json
+
+# NATT-OS runtime
+.nattos-twin/
+audit/summary/
+audit/log/
+natt-os-twin.json
