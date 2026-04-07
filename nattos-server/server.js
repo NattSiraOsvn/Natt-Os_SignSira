@@ -132,6 +132,117 @@ yeh('/phat/approval/reject', (req, res) => {
   res.json({ ok: true, ticket });
 });
 
+// ── Giá Vàng Store ───────────────────────────────────────────
+const _giaVang = {
+  sjc_buy:  78500000,
+  sjc_sell: 80500000,
+  gold9999: 64200000,
+  avgPuritySX: 75.4417,
+  get gold18k() { return Math.round(this.gold9999 * (this.avgPuritySX / 100)); },
+  updatedAt: Date.now()
+};
+
+hey('/kenh/gia-vang', (req, res) => {
+  res.json({ sjc_buy: _giaVang.sjc_buy, sjc_sell: _giaVang.sjc_sell,
+    gold9999: _giaVang.gold9999, gold18k: _giaVang.gold18k,
+    avgPuritySX: _giaVang.avgPuritySX, updatedAt: _giaVang.updatedAt, ts: Date.now() });
+});
+
+yeh('/phat/gia-vang', (req, res) => {
+  const { sjc_buy, sjc_sell, gold9999 } = req.body;
+  if (sjc_buy)  _giaVang.sjc_buy  = sjc_buy;
+  if (sjc_sell) _giaVang.sjc_sell = sjc_sell;
+  if (gold9999) _giaVang.gold9999 = gold9999;
+  _giaVang.updatedAt = Date.now();
+  EventBus.emit('gia-vang.updated', { sjc_buy: _giaVang.sjc_buy, sjc_sell: _giaVang.sjc_sell,
+    gold9999: _giaVang.gold9999, gold18k: _giaVang.gold18k, ts: Date.now() });
+  res.json({ ok: true, gold18k: _giaVang.gold18k });
+});
+
+// ── Approval Store ──────────────────────────────────────────
+const _approvalTickets = [
+  { id: 'TICKET-001', request: { recordType: 'TRANSACTION', changeType: 'UPDATE',
+    proposedData: { amount: 150000000, note: 'Điều chỉnh giá vốn lô kim cương' },
+    priority: 'HIGH', reason: 'Sai lệch tỷ giá nhập khẩu', requestedBy: 'USR-ACC-01' },
+    status: 'PENDING', requestedAt: Date.now() - 3600000, workflowStep: 1, totalSteps: 2 },
+  { id: 'TICKET-002', request: { recordType: 'DICTIONARY', changeType: 'CREATE',
+    proposedData: { term: 'SKU_JADE_2026', desc: 'Mã Ngọc Bích Mới' },
+    priority: 'LOW', reason: 'Thêm mã mới cho BST Mùa Xuân', requestedBy: 'USR-PROD-05' },
+    status: 'APPROVED', requestedAt: Date.now() - 86400000,
+    approvedBy: 'MASTER_NATT', approvedAt: Date.now() - 43200000,
+    workflowStep: 1, totalSteps: 1 }
+];
+
+function getApprovalStats() {
+  const todayStart = new Date().setHours(0,0,0,0);
+  return {
+    pending: _approvalTickets.filter(t => t.status === 'PENDING').length,
+    approvedToday: _approvalTickets.filter(t => t.status === 'APPROVED' && (t.approvedAt||0) > todayStart).length,
+    rejectedToday: _approvalTickets.filter(t => t.status === 'REJECTED' && (t.approvedAt||0) > todayStart).length,
+    avgResponseTime: '1.5 giờ'
+  };
+}
+
+hey('/kenh/approval', (req, res) => {
+  const { status } = req.query;
+  const tickets = status && status !== 'ALL'
+    ? _approvalTickets.filter(t => t.status === status) : _approvalTickets;
+  res.json({ tickets, stats: getApprovalStats(), ts: Date.now() });
+});
+
+yeh('/phat/approval/approve', (req, res) => {
+  const { ticketId, approverId } = req.body;
+  const ticket = _approvalTickets.find(t => t.id === ticketId);
+  if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
+  ticket.status = 'APPROVED'; ticket.approvedBy = approverId || 'MASTER_NATT'; ticket.approvedAt = Date.now();
+  EventBus.emit('approval.updated', { ticketId, status: 'APPROVED', ts: Date.now() });
+  EventBus.emit('audit.record', { type: 'approval.approved', payload: { ticketId, approverId } });
+  res.json({ ok: true, ticket });
+});
+
+yeh('/phat/approval/reject', (req, res) => {
+  const { ticketId, approverId, reason } = req.body;
+  const ticket = _approvalTickets.find(t => t.id === ticketId);
+  if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
+  ticket.status = 'REJECTED'; ticket.rejectionReason = reason || '';
+  ticket.approvedBy = approverId || 'MASTER_NATT'; ticket.approvedAt = Date.now();
+  EventBus.emit('approval.updated', { ticketId, status: 'REJECTED', reason, ts: Date.now() });
+  EventBus.emit('audit.record', { type: 'approval.rejected', payload: { ticketId, approverId, reason } });
+  res.json({ ok: true, ticket });
+});
+
+// ── Production Store ─────────────────────────────────────────
+const _productionStages = [
+  { stage: 'DESIGNING',     count: 8,  color: 'blue' },
+  { stage: 'CASTING',       count: 12, color: 'orange' },
+  { stage: 'COLD_WORK',     count: 10, color: 'yellow' },
+  { stage: 'STONE_SETTING', count: 6,  color: 'purple' },
+  { stage: 'FINISHING',     count: 5,  color: 'pink' },
+  { stage: 'QC_PENDING',    count: 3,  color: 'teal' },
+  { stage: 'COMPLETED',     count: 15, color: 'green' },
+];
+
+const _productionMetrics = {
+  oee: 86.5, onTime: 94.2,
+  avgLoss: 24.5583,
+  avgPuritySX: 75.4417,
+  avgPuritySC: 66.96,
+  avgPurityAll: 72.9471,
+  dailyOutput: 12,
+  repairCount: 5,
+  workers: 12,
+  labelDist: {"18k": 15, "10k": 1, "14k": 1},
+  dataSource: 'april-2025.json'
+};
+
+EventBus.on('casting.complete',   () => { _productionStages[1].count++; _productionStages[2].count++; });
+EventBus.on('finishing.complete', () => { _productionStages[4].count = Math.max(0,_productionStages[4].count-1); _productionStages[5].count++; });
+EventBus.on('polishing.complete', () => { _productionStages[5].count = Math.max(0,_productionStages[5].count-1); _productionStages[6].count++; _productionMetrics.dailyOutput++; });
+
+hey('/kenh/production', (req, res) => {
+  res.json({ stages: _productionStages, metrics: _productionMetrics, ts: Date.now() });
+});
+
 // ── Mạch HeyNa — SSE stream ──
 const _machClients = new Set();
 

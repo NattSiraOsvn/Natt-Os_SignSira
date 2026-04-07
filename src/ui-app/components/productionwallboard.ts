@@ -1,35 +1,65 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { OrderStatus } from '../types';
+
+const SERVER = 'http://localhost:3001';
+
+const STAGE_COLORS: Record<string, string> = {
+  blue: 'bg-blue-500', orange: 'bg-orange-500', yellow: 'bg-yellow-500',
+  purple: 'bg-purple-500', pink: 'bg-pink-500', teal: 'bg-teal-500', green: 'bg-green-500'
+};
+
+const DEFAULT_STAGES = [
+  { stage: OrderStatus.DESIGNING,     count: 8,  color: 'bg-blue-500' },
+  { stage: OrderStatus.CASTING,       count: 12, color: 'bg-orange-500' },
+  { stage: OrderStatus.COLD_WORK,     count: 10, color: 'bg-yellow-500' },
+  { stage: OrderStatus.STONE_SETTING, count: 6,  color: 'bg-purple-500' },
+  { stage: OrderStatus.FINISHING,     count: 5,  color: 'bg-pink-500' },
+  { stage: OrderStatus.QC_PENDING,    count: 3,  color: 'bg-teal-500' },
+  { stage: OrderStatus.COMPLETED,     count: 15, color: 'bg-green-500' },
+];
 
 const ProductionWallboard: React.FC = () => {
   const [metrics, setMetrics] = useState({
-    oee: 86.5,
-    onTime: 94.2,
-    avgLoss: 1.3,
-    dailyOutput: 42
+    oee: 86.5, onTime: 94.2, avgLoss: 0, dailyOutput: 0,
+    avgPuritySX: 0, repairCount: 0, workers: 0
   });
+  const [stages, setStages] = useState(DEFAULT_STAGES);
 
-  const stages = [
-    { stage: OrderStatus.DESIGNING, count: 8, color: 'bg-blue-500' },
-    { stage: OrderStatus.CASTING, count: 12, color: 'bg-orange-500' },
-    { stage: OrderStatus.COLD_WORK, count: 10, color: 'bg-yellow-500' },
-    { stage: OrderStatus.STONE_SETTING, count: 6, color: 'bg-purple-500' },
-    { stage: OrderStatus.FINISHING, count: 5, color: 'bg-pink-500' },
-    { stage: OrderStatus.QC_PENDING, count: 3, color: 'bg-teal-500' },
-    { stage: OrderStatus.COMPLETED, count: 15, color: 'bg-green-500' }
-  ];
+  const fetchProduction = useCallback(async () => {
+    try {
+      const r = await fetch(`${SERVER}/kenh/production`);
+      const d = await r.json();
+      if (d.metrics) setMetrics(d.metrics);
+      if (d.stages) {
+        setStages(d.stages.map((s: any, i: number) => ({
+          stage: DEFAULT_STAGES[i]?.stage ?? s.stage,
+          count: s.count,
+          color: STAGE_COLORS[s.color] ?? 'bg-green-500'
+        })));
+      }
+    } catch (e) {
+      console.warn('[ProductionWallboard] fetch lệch:', e);
+    }
+  }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setMetrics(prev => ({
-        ...prev,
-        oee: prev.oee + (Math.random() - 0.5) * 0.1,
-        dailyOutput: prev.dailyOutput + (Math.random() > 0.9 ? 1 : 0)
-      }));
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
+    fetchProduction();
+  }, [fetchProduction]);
+
+  // Subscribe Mạch HeyNa — update khi production events
+  useEffect(() => {
+    const mach = new EventSource(`${SERVER}/mach/heyna`);
+    mach.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        if (['casting.complete','finishing.complete','polishing.complete'].includes(data.event)) {
+          fetchProduction();
+        }
+      } catch {}
+    };
+    return () => mach.close();
+  }, [fetchProduction]);
 
   return (
     <div className="h-full bg-black flex flex-col p-10 space-y-12 animate-in fade-in duration-1000 overflow-hidden">

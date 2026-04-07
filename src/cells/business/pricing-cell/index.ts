@@ -23,6 +23,19 @@ let cachedGoldPrice: number | null = null;
 let cacheTime = 0;
 const CACHE_TTL = 15 * 60 * 1000; // 15 phút
 
+// Wire: gia-vang.updated (từ server manual update) → update cache
+EventBus.on('gia-vang.updated', (payload: any) => {
+  if (!payload?.gold9999) return;
+  // Dùng gold9999 per chỉ từ server — đây là giá mua vào (baseline)
+  cachedGoldPrice = payload.gold9999;
+  cacheTime = Date.now();
+  EventBus.publish({
+    type: 'PRICING_GOLD_PRICE_READY',
+    source: 'pricing-cell',
+    payload: { sellPrice: cachedGoldPrice, cached: false, source: 'manual_update', fetchedAt: new Date().toISOString() },
+  }, 'pricing-cell', undefined);
+});
+
 EventBus.subscribe('PRICING_GOLD_PRICE_REQUEST', async (event: unknown) => {
   const ev = event as { payload?: { visionApiKey?: string; forceRefresh?: boolean } };
   const apiKey = ev?.payload?.visionApiKey ?? '';
