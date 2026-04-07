@@ -62,76 +62,6 @@ EventBus.on('audit.record', (env) => {
   _Z = Math.min(5.0, Math.max(0.1, 1.0 + (_eventCount > 0 ? _errorCount/_eventCount : 0) * 2));
 });
 
-// ── Approval Store ──────────────────────────────────────────
-const _approvalTickets = [
-  {
-    id: 'TICKET-001',
-    request: {
-      recordType: 'TRANSACTION', changeType: 'UPDATE',
-      proposedData: { amount: 150000000, note: 'Điều chỉnh giá vốn lô kim cương' },
-      priority: 'HIGH', reason: 'Sai lệch tỷ giá nhập khẩu', requestedBy: 'USR-ACC-01'
-    },
-    status: 'PENDING', requestedAt: Date.now() - 3600000, workflowStep: 1, totalSteps: 2
-  },
-  {
-    id: 'TICKET-002',
-    request: {
-      recordType: 'DICTIONARY', changeType: 'CREATE',
-      proposedData: { term: 'SKU_JADE_2026', desc: 'Mã Ngọc Bích Mới' },
-      priority: 'LOW', reason: 'Thêm mã mới cho BST Mùa Xuân', requestedBy: 'USR-PROD-05'
-    },
-    status: 'APPROVED', requestedAt: Date.now() - 86400000,
-    approvedBy: 'MASTER_NATT', approvedAt: Date.now() - 43200000,
-    workflowStep: 1, totalSteps: 1
-  }
-];
-
-function getApprovalStats() {
-  const todayStart = new Date().setHours(0,0,0,0);
-  return {
-    pending: _approvalTickets.filter(t => t.status === 'PENDING').length,
-    approvedToday: _approvalTickets.filter(t => t.status === 'APPROVED' && (t.approvedAt||0) > todayStart).length,
-    rejectedToday: _approvalTickets.filter(t => t.status === 'REJECTED' && (t.approvedAt||0) > todayStart).length,
-    avgResponseTime: '1.5 giờ'
-  };
-}
-
-// Kênh Approval
-hey('/kenh/approval', (req, res) => {
-  const { status } = req.query;
-  const tickets = status && status !== 'ALL'
-    ? _approvalTickets.filter(t => t.status === status)
-    : _approvalTickets;
-  res.json({ tickets, stats: getApprovalStats(), ts: Date.now() });
-});
-
-// Phát Approval — approve
-yeh('/phat/approval/approve', (req, res) => {
-  const { ticketId, approverId } = req.body;
-  const ticket = _approvalTickets.find(t => t.id === ticketId);
-  if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
-  ticket.status = 'APPROVED';
-  ticket.approvedBy = approverId || 'MASTER_NATT';
-  ticket.approvedAt = Date.now();
-  EventBus.emit('approval.updated', { ticketId, status: 'APPROVED', approverId, ts: Date.now() });
-  EventBus.emit('audit.record', { type: 'approval.approved', payload: { ticketId, approverId } });
-  res.json({ ok: true, ticket });
-});
-
-// Phát Approval — reject
-yeh('/phat/approval/reject', (req, res) => {
-  const { ticketId, approverId, reason } = req.body;
-  const ticket = _approvalTickets.find(t => t.id === ticketId);
-  if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
-  ticket.status = 'REJECTED';
-  ticket.rejectionReason = reason || '';
-  ticket.approvedBy = approverId || 'MASTER_NATT';
-  ticket.approvedAt = Date.now();
-  EventBus.emit('approval.updated', { ticketId, status: 'REJECTED', reason, ts: Date.now() });
-  EventBus.emit('audit.record', { type: 'approval.rejected', payload: { ticketId, approverId, reason } });
-  res.json({ ok: true, ticket });
-});
-
 // ── Giá Vàng Store ───────────────────────────────────────────
 const _giaVang = {
   sjc_buy:  78500000,
@@ -241,6 +171,22 @@ EventBus.on('polishing.complete', () => { _productionStages[5].count = Math.max(
 
 hey('/kenh/production', (req, res) => {
   res.json({ stages: _productionStages, metrics: _productionMetrics, ts: Date.now() });
+});
+
+// ── SiraSign Verify — /kenh/sirasign/verify ─────────────────
+yeh('/kenh/sirasign/verify', (req, res) => {
+  const { fsp_hash, lsp_hash, nonce, timestamp } = req.body ?? {};
+  if (!fsp_hash || !lsp_hash || !nonce || !timestamp)
+    return res.status(400).json({ valid: false, reason: 'missing_fields' });
+  const age = Math.abs(Date.now() - Number(timestamp));
+  if (age > 5 * 60 * 1000)
+    return res.status(401).json({ valid: false, reason: 'timestamp_expired' });
+  EventBus.emit('audit.record', {
+    type: 'sirasign.verify',
+    payload: { nonce, timestamp, result: 'verified' },
+    causationId: nonce, actor: 'sirasign-endpoint',
+  });
+  res.json({ valid: true, level: 'VERIFIED', ts: Date.now() });
 });
 
 // ── Mạch HeyNa — SSE stream ──
