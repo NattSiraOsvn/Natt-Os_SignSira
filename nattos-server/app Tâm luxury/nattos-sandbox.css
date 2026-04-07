@@ -1,0 +1,28 @@
+/* nattos-sandbox.css — Phase 2.5 */
+/* KHÔNG đụng class gốc — chỉ bind qua data attribute */
+
+[data-ui-layer="2"] {
+  background: rgba(6,6,18,0.72);
+  backdrop-filter: var(--lg-blur-medium);
+  -webkit-backdrop-filter: var(--lg-blur-medium);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-ui-layer="3"] {
+  background: rgba(6,6,18,0.72);
+  backdrop-filter: var(--lg-blur-strong);
+  -webkit-backdrop-filter: var(--lg-blur-strong);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+[data-ui-layer="1"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-ui]:hover   { backdrop-filter: var(--lg-blur-light);  -webkit-backdrop-filter: var(--lg-blur-light); }
+[data-ui]:focus   { backdrop-filter: var(--lg-blur-medium); -webkit-backdrop-filter: var(--lg-blur-medium); }
+[data-ui]:active  { backdrop-filter: var(--lg-blur-strong); -webkit-backdrop-filter: var(--lg-blur-strong); }
+[data-ui][disabled],
+[data-ui]:disabled { backdrop-filter: none; opacity: 0.38; }

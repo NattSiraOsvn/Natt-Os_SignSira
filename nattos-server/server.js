@@ -337,3 +337,5 @@ EventBus.on('system.audit', (env) => {
 });
 
 console.log('[EventBus] Engine chains wired: ORDER→CASH + PRODUCTION flow');
+
+app.use("/apps/tam-luxury", express.static(path.join(__dirname, "apps/tam-luxury")));

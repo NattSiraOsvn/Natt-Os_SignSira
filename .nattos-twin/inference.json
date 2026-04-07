@@ -1,11 +1,12 @@
 {
-  "state": "HEALTHY",
-  "risk": 0,
+  "state": "FRAGMENTED",
+  "risk": 43,
   "strengths": [
-    "Event coverage clean (0 orphans)",
-    "Engine wiring healthy (0 unused)",
-    "Signal coverage: 51 cells wired",
-    "Event flows: 51 healthy chains"
+    "Event flows: 38 healthy chains"
   ],
-  "issues": []
+  "issues": [
+    "MINOR_LEAK: 4 orphan events",
+    "DEAD_WEIGHT: 25 unused engines",
+    "SENSORY_DEFICIT: 19 blind cells"
+  ]
 }

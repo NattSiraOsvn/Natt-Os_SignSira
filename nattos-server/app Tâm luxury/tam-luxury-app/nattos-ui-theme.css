@@ -1,0 +1,493 @@
+/**
+ * NATT-OS UI Theme v1.0
+ * Extracted từ NaUion v9 — Tâm Luxury Design Language
+ *
+ * Inject vào mọi app: <link rel="stylesheet" href="nattos-ui-theme.css">
+ * Đi kèm: nattos-fx.js (canvas + particle + scan + ticker)
+ */
+
+/* ── FONT IMPORT ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+
+/* ── @property cho gradient animation ───────────────────────────────────── */
+@property --ha { syntax:'<angle>'; initial-value:0deg; inherits:false }
+@property --gp { syntax:'<percentage>'; initial-value:0%; inherits:false }
+
+/* ── CSS VARIABLES — hòa hợp với theme hiện có ──────────────────────────── */
+:root {
+  /* NaUion palette */
+  --n-bg:    #020208;
+  --n-g1:    #F5E2C0;
+  --n-g2:    #EDB88A;
+  --n-g3:    #c8922a;
+  --n-mint:  #8FFFD4;
+  --n-ice:   #B8E8FF;
+  --n-lav:   #C8C0FF;
+  --n-rose:  #FFB8D4;
+  --n-peach: #FFD4A8;
+  --n-red:   #FF5050;
+  --n-amber: #FFBE50;
+  --n-green: #50E0A0;
+  /* Border & text tones */
+  --n-b:  rgba(245,226,192,.07);
+  --n-b2: rgba(245,226,192,.16);
+  --n-b3: rgba(245,226,192,.30);
+  --n-t:  rgba(238,225,200,.88);
+  --n-t2: rgba(238,225,200,.48);
+  --n-t3: rgba(238,225,200,.22);
+  /* Fonts */
+  --n-serif: 'Cormorant Garamond', serif;
+  --n-sans:  'Space Grotesk', sans-serif;
+  --n-mono:  'JetBrains Mono', monospace;
+}
+
+/* ── CANVAS + BACKGROUND LAYERS ─────────────────────────────────────────── */
+#nfx-canvas {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+.nfx-nebula {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 130% 70% at 5% 10%,  rgba(20,10,50,.55)  0%, transparent 50%),
+    radial-gradient(ellipse 80%  100% at 95% 90%, rgba(5,20,45,.45)   0%, transparent 45%),
+    radial-gradient(ellipse 50%  50%  at 50% -10%,rgba(10,5,30,.40)   0%, transparent 45%),
+    radial-gradient(ellipse 60%  40%  at 80% 20%,rgba(200,146,42,.04) 0%, transparent 40%);
+}
+.nfx-grid {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(245,226,192,.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,226,192,.012) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.nfx-scan {
+  position: fixed; left: 0; width: 100%; height: 1px;
+  z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, transparent 5%, rgba(245,226,192,.05) 50%, transparent 95%);
+  animation: nfx-scan 22s linear infinite;
+}
+@keyframes nfx-scan { 0%{top:-1%} 100%{top:102%} }
+
+/* ── GLASS MORPHISM ──────────────────────────────────────────────────────── */
+.nfx-glass {
+  background: rgba(2,2,8,.72);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid var(--n-b2);
+  border-radius: 6px;
+}
+.nfx-glass-sm {
+  background: rgba(2,2,8,.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--n-b);
+  border-radius: 4px;
+}
+.nfx-glass-dark {
+  background: rgba(2,2,8,.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--n-b);
+}
+
+/* ── GOLD GRADIENT TEXT ──────────────────────────────────────────────────── */
+.nfx-gold {
+  background: linear-gradient(135deg, var(--n-g1) 0%, var(--n-g2) 50%, rgba(245,226,192,.55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nfx-gold-italic {
+  font-family: var(--n-serif);
+  font-style: italic;
+  font-weight: 300;
+  background: linear-gradient(135deg, var(--n-g1), var(--n-g2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: .06em;
+}
+.nfx-gold-animated {
+  background: linear-gradient(135deg,
+    var(--n-g1) 0%, var(--n-g2) 30%,
+    rgba(245,226,192,.4) 50%,
+    var(--n-g2) 70%, var(--n-g1) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: nfx-gold-shimmer 4s ease infinite;
+}
+@keyframes nfx-gold-shimmer {
+  0%   { background-position: 0% 50% }
+  50%  { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* ── BORDER ANIMATIONS ───────────────────────────────────────────────────── */
+.nfx-border-glow {
+  border: 1px solid var(--n-b2);
+  box-shadow: 0 0 0 0 rgba(245,226,192,0);
+  animation: nfx-border-pulse 3s ease infinite;
+}
+@keyframes nfx-border-pulse {
+  0%,100% { border-color: var(--n-b2); box-shadow: 0 0 0 0 rgba(245,226,192,0) }
+  50%     { border-color: var(--n-b3); box-shadow: 0 0 16px -4px rgba(245,226,192,.12) }
+}
+
+/* ── HOVER EFFECTS ───────────────────────────────────────────────────────── */
+.nfx-hover-lift {
+  transition: transform .2s cubic-bezier(.23,1,.32,1), box-shadow .2s;
+}
+.nfx-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.5);
+}
+.nfx-hover-glow:hover {
+  box-shadow: 0 0 20px -4px rgba(245,226,192,.15);
+  border-color: var(--n-b3) !important;
+}
+
+/* ── CARD COMPONENTS ─────────────────────────────────────────────────────── */
+.nfx-card {
+  background: rgba(8,8,20,.65);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--n-b);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: all .18s cubic-bezier(.23,1,.32,1);
+}
+.nfx-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245,226,192,.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+.nfx-card:hover {
+  border-color: var(--n-b2);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(245,226,192,.05);
+}
+/* Card với accent line trên đầu */
+.nfx-card-accent::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--n-g2), transparent);
+  opacity: .5;
+}
+
+/* ── STAT NUMBERS ────────────────────────────────────────────────────────── */
+.nfx-stat-v {
+  font-family: var(--n-mono);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -.02em;
+  background: linear-gradient(135deg, var(--n-g1), var(--n-g2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: nfx-count-in .6s ease;
+}
+@keyframes nfx-count-in {
+  from { opacity: 0; transform: translateY(8px) }
+  to   { opacity: 1; transform: none }
+}
+
+/* ── BADGE COMPONENTS ────────────────────────────────────────────────────── */
+.nfx-badge {
+  font-family: var(--n-mono);
+  font-size: 8px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.nfx-badge-gold  { background: rgba(245,226,192,.08); color: var(--n-g1);  border: 1px solid rgba(245,226,192,.18) }
+.nfx-badge-green { background: rgba(80,224,160,.08);  color: var(--n-green);border: 1px solid rgba(80,224,160,.18) }
+.nfx-badge-red   { background: rgba(255,80,80,.08);   color: var(--n-red);  border: 1px solid rgba(255,80,80,.18) }
+.nfx-badge-ice   { background: rgba(184,232,255,.08); color: var(--n-ice);  border: 1px solid rgba(184,232,255,.18) }
+.nfx-badge-lav   { background: rgba(200,192,255,.08); color: var(--n-lav);  border: 1px solid rgba(200,192,255,.18) }
+
+/* ── LIVE PULSE DOT ──────────────────────────────────────────────────────── */
+.nfx-pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  display: inline-block; flex-shrink: 0;
+  animation: nfx-pulse-anim 2s ease infinite;
+}
+.nfx-pulse-green { background: var(--n-green); box-shadow: 0 0 0 0 rgba(80,224,160,.4) }
+.nfx-pulse-gold  { background: var(--n-g2);    box-shadow: 0 0 0 0 rgba(237,184,138,.4) }
+.nfx-pulse-red   { background: var(--n-red);   box-shadow: 0 0 0 0 rgba(255,80,80,.4) }
+@keyframes nfx-pulse-anim {
+  0%,100% { opacity:1; box-shadow: 0 0 0 0 currentColor }
+  50%     { opacity:.6; box-shadow: 0 0 0 5px transparent }
+}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────────────────────── */
+.nfx-headline {
+  font-family: var(--n-serif);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -.01em;
+  background: linear-gradient(135deg, var(--n-g1), var(--n-g2), rgba(245,226,192,.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nfx-label {
+  font-family: var(--n-mono);
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--n-t3);
+}
+.nfx-value {
+  font-family: var(--n-mono);
+  font-weight: 500;
+  color: var(--n-g1);
+}
+
+/* ── BUTTON ──────────────────────────────────────────────────────────────── */
+.nfx-btn {
+  padding: 8px 18px;
+  background: rgba(245,226,192,.06);
+  border: 1px solid var(--n-b2);
+  color: var(--n-g1);
+  font-family: var(--n-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .18s cubic-bezier(.23,1,.32,1);
+  position: relative; overflow: hidden;
+}
+.nfx-btn:hover {
+  background: rgba(245,226,192,.12);
+  border-color: var(--n-b3);
+  box-shadow: 0 0 16px -4px rgba(245,226,192,.2);
+}
+.nfx-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(245,226,192,.06) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform .4s;
+}
+.nfx-btn:hover::after { transform: translateX(100%) }
+.nfx-btn-primary {
+  background: linear-gradient(135deg, rgba(200,146,42,.3), rgba(237,184,138,.15));
+  border-color: rgba(200,146,42,.5);
+  color: var(--n-g1);
+}
+.nfx-btn-primary:hover {
+  background: linear-gradient(135deg, rgba(200,146,42,.45), rgba(237,184,138,.25));
+  box-shadow: 0 0 20px -4px rgba(200,146,42,.4);
+}
+
+/* ── TOPBAR UPGRADE ──────────────────────────────────────────────────────── */
+.nfx-topbar {
+  background: rgba(2,2,8,.88) !important;
+  backdrop-filter: blur(28px) !important;
+  border-bottom: 1px solid var(--n-b) !important;
+  box-shadow: 0 1px 0 rgba(245,226,192,.03), 0 4px 20px rgba(0,0,0,.4);
+}
+
+/* ── TABLE UPGRADE ───────────────────────────────────────────────────────── */
+.nfx-table th {
+  font-family: var(--n-mono);
+  font-size: 9px;
+  letter-spacing: .16em;
+  color: var(--n-t3);
+  text-transform: uppercase;
+  background: rgba(2,2,8,.5);
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--n-b);
+  font-weight: 400;
+}
+.nfx-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid rgba(245,226,192,.04);
+  font-size: 11px;
+  color: var(--n-t2);
+  transition: background .1s;
+}
+.nfx-table tr:hover td { background: rgba(245,226,192,.025) }
+
+/* ── SCROLLBAR ───────────────────────────────────────────────────────────── */
+.nfx-scroll::-webkit-scrollbar { width: 2px; height: 2px }
+.nfx-scroll::-webkit-scrollbar-thumb {
+  background: rgba(245,226,192,.08);
+  border-radius: 1px;
+}
+.nfx-scroll::-webkit-scrollbar-thumb:hover { background: rgba(245,226,192,.18) }
+
+/* ── TICKER BAR ──────────────────────────────────────────────────────────── */
+.nfx-ticker-wrap {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 28px;
+  z-index: 50;
+  background: rgba(2,2,8,.92);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--n-b);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.nfx-ticker-inner {
+  display: flex;
+  gap: 0;
+  animation: nfx-ticker 40s linear infinite;
+  white-space: nowrap;
+}
+.nfx-ticker-item {
+  font-family: var(--n-mono);
+  font-size: 10px;
+  color: var(--n-t3);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-right: 1px solid var(--n-b);
+}
+.nfx-ticker-item .val { color: var(--n-g2) }
+.nfx-ticker-item .up  { color: var(--n-green) }
+.nfx-ticker-item .dn  { color: var(--n-red) }
+@keyframes nfx-ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── PAGE TRANSITION ─────────────────────────────────────────────────────── */
+.nfx-page-enter {
+  animation: nfx-page-in .45s cubic-bezier(.23,1,.32,1);
+}
+@keyframes nfx-page-in {
+  from { opacity:0; transform:translateY(12px) }
+  to   { opacity:1; transform:none }
+}
+
+/* ── SECTION HEADER ──────────────────────────────────────────────────────── */
+.nfx-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--n-b);
+}
+.nfx-section-header::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: var(--n-g2);
+  opacity: .6;
+  flex-shrink: 0;
+}
+.nfx-section-title {
+  font-family: var(--n-mono);
+  font-size: 9px;
+  letter-spacing: .22em;
+  color: var(--n-t3);
+  text-transform: uppercase;
+}
+
+/* ── INPUT UPGRADE ───────────────────────────────────────────────────────── */
+.nfx-input {
+  background: rgba(2,2,8,.6);
+  border: 1px solid var(--n-b);
+  color: var(--n-t);
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 3px;
+  outline: none;
+  font-family: var(--n-sans);
+  transition: border-color .15s, box-shadow .15s;
+}
+.nfx-input:focus {
+  border-color: rgba(237,184,138,.4);
+  box-shadow: 0 0 0 3px rgba(200,146,42,.08);
+}
+.nfx-input::placeholder { color: var(--n-t3) }
+
+/* ── NOTIFICATION / TOAST UPGRADE ───────────────────────────────────────── */
+.nfx-toast {
+  background: rgba(2,2,8,.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--n-b2);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-family: var(--n-sans);
+  font-size: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.7), 0 1px 0 rgba(245,226,192,.05);
+  animation: nfx-toast-in .25s cubic-bezier(.23,1,.32,1);
+}
+@keyframes nfx-toast-in {
+  from { transform: translateX(110%); opacity: 0 }
+  to   { transform: none; opacity: 1 }
+}
+.nfx-toast-success { border-left: 3px solid var(--n-green) }
+.nfx-toast-error   { border-left: 3px solid var(--n-red) }
+.nfx-toast-info    { border-left: 3px solid var(--n-g2) }
+
+/* ── MODAL UPGRADE ───────────────────────────────────────────────────────── */
+.nfx-modal-bg {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+.nfx-modal {
+  background: rgba(2,2,8,.92);
+  backdrop-filter: blur(28px);
+  border: 1px solid var(--n-b2);
+  border-radius: 8px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.9), 0 1px 0 rgba(245,226,192,.07);
+  animation: nfx-modal-in .3s cubic-bezier(.23,1,.32,1);
+}
+@keyframes nfx-modal-in {
+  from { transform: scale(.95) translateY(16px); opacity: 0 }
+  to   { transform: none; opacity: 1 }
+}
+
+/* ── WATERMARK ───────────────────────────────────────────────────────────── */
+.nfx-watermark {
+  position: fixed; inset: 0;
+  z-index: 9999; pointer-events: none; overflow: hidden;
+  display: flex; flex-wrap: wrap; gap: 60px; padding: 40px;
+  transform: rotate(-22deg) scale(1.6);
+}
+.nfx-watermark span {
+  font-size: 9px;
+  color: rgba(245,226,192,.04);
+  font-family: var(--n-mono);
+  white-space: nowrap;
+}
+
+/* ── KEYFRAMES LIBRARY ───────────────────────────────────────────────────── */
+@keyframes nfx-fade-in    { from{opacity:0} to{opacity:1} }
+@keyframes nfx-slide-up   { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+@keyframes nfx-slide-down { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:none} }
+@keyframes nfx-scale-in   { from{opacity:0;transform:scale(.95)} to{opacity:1;transform:scale(1)} }
+@keyframes nfx-heartbeat  {
+  0%,100%{transform:scale(1)} 14%{transform:scale(1.08)}
+  28%{transform:scale(1)} 42%{transform:scale(1.04)} 70%{transform:scale(1)}
+}
+@keyframes nfx-float {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)}
+}
+@keyframes nfx-spin { to{transform:rotate(360deg)} }
+
+/* ── UTILITY CLASSES ─────────────────────────────────────────────────────── */
+.nfx-animate-fade   { animation: nfx-fade-in .4s ease }
+.nfx-animate-up     { animation: nfx-slide-up .45s cubic-bezier(.23,1,.32,1) }
+.nfx-animate-scale  { animation: nfx-scale-in .3s cubic-bezier(.23,1,.32,1) }
+.nfx-heartbeat      { animation: nfx-heartbeat 1.8s ease infinite }
+.nfx-float          { animation: nfx-float 3s ease infinite }
+.nfx-spin           { animation: nfx-spin .8s linear infinite }
+.nfx-z-bg  { z-index: 0  }
+.nfx-z-fx  { z-index: 1  }
+.nfx-z-app { z-index: 10 }
+.nfx-z-top { z-index: 50 }

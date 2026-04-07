@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tâm Luxury · Kris Email Hub</title>
+<link rel="stylesheet" href="nattos-ui-theme.css">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080a0d;--bg2:#0d1017;--bg3:#121820;--bg4:#181f2a;--gold:#c8922a;--gold2:#e8b84b;--border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.3);--text:#ede0c8;--text2:#a89070;--text3:#60503a;--green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;--purple:#a78bfa;--teal:#2dd4bf;--mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;overflow:hidden}
+::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:rgba(200,146,42,.2);border-radius:2px}
+*{-webkit-user-select:none;user-select:none}input,textarea,select{-webkit-user-select:text!important;user-select:text!important}
+#wm{position:fixed;inset:0;z-index:9990;pointer-events:none;overflow:hidden;display:flex;flex-wrap:wrap;gap:60px;padding:40px;transform:rotate(-22deg) scale(1.6)}
+#wm span{font-size:9px;color:rgba(200,146,42,.04);font-family:var(--mono);white-space:nowrap}
+.login{display:flex;align-items:center;justify-content:center;height:100vh;background:radial-gradient(ellipse at 30% 40%,rgba(200,146,42,.07),transparent 60%)}
+.lbox{width:380px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:36px}
+.lname{text-align:center;font-family:var(--mono);font-size:18px;font-weight:500;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px}
+.lsub{text-align:center;font-size:9px;color:var(--text3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:22px}
+.lf{margin-bottom:11px}.lf label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text3);text-transform:uppercase;display:block;margin-bottom:3px}
+.lf input,.lf select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 11px;font-size:12px;border-radius:3px;outline:none;font-family:var(--sans)}
+.lf input:focus,.lf select:focus{border-color:var(--gold)}.lf select option{background:var(--bg2)}
+.lbtn{width:100%;padding:11px;background:var(--gold);color:#000;border:none;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;margin-top:6px;font-family:var(--sans)}
+.app{display:none;grid-template-rows:52px 1fr;height:100vh}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;height:52px}
+.tl{font-family:var(--mono);font-size:13px;font-weight:500;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.08em;padding-right:16px;border-right:1px solid var(--border)}
+.tr2{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tu2{display:flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(200,146,42,.08);border:1px solid var(--border);border-radius:2px}
+.tdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(61,214,140,.5)}
+.tuname{font-family:var(--mono);font-size:10px;color:var(--gold2)}
+.ttime{font-family:var(--mono);font-size:11px;color:var(--text2);padding-left:12px;border-left:1px solid var(--border)}
+.tout{background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.2);color:var(--red);padding:4px 9px;border-radius:2px;font-size:10px;cursor:pointer;font-family:var(--mono)}
+/* LAYOUT 3 cột */
+.hub-layout{display:grid;grid-template-columns:300px 1fr 380px;height:calc(100vh - 52px);overflow:hidden}
+/* INBOX */
+.inbox{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--bg2)}
+.inbox-hdr{padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
+.inbox-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.inbox-search{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-size:11px;border-radius:3px;outline:none;font-family:var(--sans);margin-bottom:8px}
+.inbox-search:focus{border-color:var(--border2)}
+.cat-filters{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px}
+.cat-btn{padding:3px 8px;border-radius:10px;font-family:var(--mono);font-size:8px;font-weight:600;cursor:pointer;border:none;white-space:nowrap;transition:all .15s}
+.inbox-list{flex:1;overflow-y:auto}
+.email-item{padding:10px 14px;border-bottom:1px solid rgba(200,146,42,.05);cursor:pointer;transition:all .15s}
+.email-item:hover{background:rgba(200,146,42,.04)}
+.email-item.selected{background:rgba(200,146,42,.08);border-right:2px solid var(--gold)}
+.email-item.unread{border-left:2px solid var(--blue)}
+.ei-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
+.ei-from{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.ei-date{font-family:var(--mono);font-size:9px;color:var(--text3);flex-shrink:0}
+.ei-subject{font-size:11px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.ei-snippet{font-size:10px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ei-tags{display:flex;gap:3px;margin-top:4px}
+/* EMAIL DETAIL */
+.email-detail{display:flex;flex-direction:column;overflow:hidden}
+.ed-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text3)}
+.ed-hdr{padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--bg2)}
+.ed-subject{font-size:15px;font-weight:700;margin-bottom:6px}
+.ed-meta{font-size:11px;color:var(--text3);display:flex;gap:12px;flex-wrap:wrap}
+.ed-body{flex:1;overflow-y:auto;padding:16px 18px}
+.ed-content{font-size:12px;line-height:1.8;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px;white-space:pre-wrap;font-family:var(--mono)}
+.ed-attach{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.ed-attach-item{display:flex;align-items:center;gap:6px;padding:5px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;font-size:11px;cursor:pointer}
+.ed-attach-item:hover{border-color:var(--border2)}
+.ed-actions{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0}
+/* KRIS ANALYSIS PANEL */
+.kris-panel{border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--bg2)}
+.kp-hdr{padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
+.kp-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--teal);text-transform:uppercase;margin-bottom:4px}
+.kp-sub{font-size:10px;color:var(--text3)}
+.kp-body{flex:1;overflow-y:auto;padding:12px 14px}
+/* ANALYSIS RESULT */
+.analysis-section{margin-bottom:14px}
+.as-title{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text2);text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.doc-type-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:600;margin-bottom:8px}
+.extracted-row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(200,146,42,.05);font-size:11px}
+.er-lbl{color:var(--text3);min-width:100px;flex-shrink:0}
+.er-val{font-weight:500;color:var(--text)}
+.action-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);color:var(--text2);margin-bottom:6px;transition:all .15s;text-align:left;display:flex;align-items:center;gap:8px}
+.action-btn:hover{border-color:var(--border2);color:var(--text);background:rgba(200,146,42,.04)}
+.action-btn.primary{background:rgba(200,146,42,.1);border-color:var(--border2);color:var(--gold2)}
+/* SHARED */
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px;font-weight:500;white-space:nowrap}
+.bg{background:rgba(61,214,140,.1);color:var(--green);border:1px solid rgba(61,214,140,.2)}
+.br{background:rgba(240,80,80,.1);color:var(--red);border:1px solid rgba(240,80,80,.2)}
+.ba{background:rgba(240,160,48,.1);color:var(--amber);border:1px solid rgba(240,160,48,.2)}
+.bb{background:rgba(96,184,240,.1);color:var(--blue);border:1px solid rgba(96,184,240,.2)}
+.bv{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.btn{padding:7px 14px;border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);border:none}
+.btn-primary{background:var(--gold);color:#000}.btn-primary:hover{background:var(--gold2)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}.btn-ghost:hover{border-color:var(--border2);color:var(--text)}
+.btn-teal{background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.2);color:var(--teal)}
+/* UPLOAD ZONE */
+.upload-zone{border:1px dashed var(--border);border-radius:4px;padding:16px;text-align:center;cursor:pointer;transition:all .15s;margin-top:8px}
+.upload-zone:hover{border-color:var(--border2);background:rgba(200,146,42,.04)}
+/* PROCESSING ANIMATION */
+.processing{display:flex;align-items:center;gap:8px;padding:10px;font-size:11px;color:var(--teal)}
+.spin{width:14px;height:14px;border:2px solid rgba(45,212,191,.2);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tw{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:7px;z-index:200}
+.toast{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:9px;animation:si .25s ease;max-width:320px}
+.toast.success{border-left:3px solid var(--green)}.toast.info{border-left:3px solid var(--gold)}.toast.error{border-left:3px solid var(--red)}
+@keyframes si{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+</style>
+  <link rel="stylesheet" href="nattos-galaxy.css">
+</head>
+<body>
+<div id="wm"></div>
+
+<div class="login" id="ls">
+  <div class="lbox">
+    <div class="lname">TÂM LUXURY</div><div class="lsub">Kris Email Hub · Finance Mail</div>
+    <div class="lf"><label>Mã NV</label><input id="lc" value="TLXR005"></div>
+    <div class="lf"><label>Họ Tên</label><input id="ln" value="Nguyễn KTT"></div>
+    <div class="lf"><label>Email Cty</label><input id="le" value="kt@tamluxury.vn" placeholder="email@tamluxury.vn"></div>
+    <button class="lbtn" onclick="doLogin()">KẾT NỐI EMAIL HUB</button>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <header class="topbar">
+    <div style="padding-right:14px;border-right:1px solid var(--border)">
+      <div class="tl">KRIS EMAIL HUB · TÂM LUXURY</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding-left:14px">
+      <div style="width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px rgba(45,212,191,.5)"></div>
+      <span style="font-family:var(--mono);font-size:10px;color:var(--teal)" id="connEmail">—</span>
+      <span style="font-size:10px;color:var(--text3)" id="connStatus">Kết nối...</span>
+    </div>
+    <div class="tr2">
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-ghost" style="padding:5px 10px;font-size:10px" onclick="syncEmails()">🔄 Đồng Bộ</button>
+        <button class="btn btn-teal" style="padding:5px 10px;font-size:10px" onclick="document.getElementById('bulkUpload').click()">📤 Upload File Mail</button>
+        <input type="file" id="bulkUpload" multiple accept=".pdf,.jpg,.png,.xlsx,.eml,.msg" style="display:none" onchange="handleBulkUpload(this)">
+      </div>
+      <div class="tu2"><div class="tdot"></div><div><div class="tuname" id="tu">—</div><div style="font-size:9px;color:var(--text3)" id="tu2">KTT</div></div></div>
+      <div class="ttime" id="clk">00:00:00</div>
+      <button class="tout" onclick="doLogout()">THOÁT</button>
+    </div>
+  </header>
+
+  <div class="hub-layout">
+    <!-- INBOX LIST -->
+    <div class="inbox">
+      <div class="inbox-hdr">
+        <div class="inbox-title">
+          <span>HỘP THƯ <span id="unreadCount" style="background:var(--red);color:#fff;padding:1px 5px;border-radius:8px;font-size:8px">0</span></span>
+          <span style="font-size:10px;color:var(--text3)" id="emailTotal">0 email</span>
+        </div>
+        <input class="inbox-search" id="emailSearch" placeholder="🔍 Tìm người gửi, tiêu đề..." oninput="filterEmails()">
+        <div class="cat-filters" id="catFilters"></div>
+      </div>
+      <div class="inbox-list" id="inboxList"></div>
+    </div>
+
+    <!-- EMAIL DETAIL -->
+    <div class="email-detail" id="emailDetail">
+      <div class="ed-empty">
+        <div style="font-size:36px">📧</div>
+        <div style="font-family:var(--mono);font-size:11px;letter-spacing:.2em">CHỌN EMAIL ĐỂ XEM</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">Kris sẽ tự động phân tích và đề xuất hành động</div>
+      </div>
+    </div>
+
+    <!-- KRIS ANALYSIS -->
+    <div class="kris-panel">
+      <div class="kp-hdr">
+        <div class="kp-title">🤖 KRIS · Finance Intelligence</div>
+        <div class="kp-sub">Phân tích tự động · Zero AI External · Pattern Matching</div>
+      </div>
+      <div class="kp-body" id="krisPanel">
+        <div style="color:var(--text3);font-size:11px;padding:10px 0">
+          Chọn email để Kris phân tích và bóc tách dữ liệu.<br><br>
+          Kris có thể nhận dạng:<br>
+          • Sao kê ngân hàng → Xác nhận thanh toán<br>
+          • Hóa đơn VAT → Ghi sổ tự động<br>
+          • Tờ khai HQ → Update logistics<br>
+          • Hợp đồng → Trích xuất điều khoản<br>
+          • Email NCC → Theo dõi đơn hàng
+        </div>
+
+        <!-- UPLOAD ZONE trong Kris panel -->
+        <div class="upload-zone" onclick="document.getElementById('krisFileInput').click()">
+          <div style="font-size:20px;margin-bottom:4px">📎</div>
+          <div style="font-size:10px;color:var(--text3)">Upload file đính kèm từ email<br>PDF sao kê, hóa đơn, tờ khai HQ...</div>
+          <input type="file" id="krisFileInput" multiple accept=".pdf,.jpg,.png,.xlsx" style="display:none" onchange="handleKrisFile(this)">
+        </div>
+        <div id="krisFileList" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tw" id="tw"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// KRIS DOCUMENT CLASSIFIER (local pattern matching)
+// LỆNH GATEKEEPER #001 — zero external API
+// ══════════════════════════════════════════════════════
+const KrisEngine = {
+  // Classify email subject + body
+  classify(subject='', body='') {
+    const s = (subject+' '+body).toUpperCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/Đ/g,'D').replace(/đ/g,'d');
+    if (s.match(/SAO KE|BANK STATEMENT|SO PHU|GIAO DICH|TRANSACTION|CREDIT|DEBIT|SO DU/))
+      return {type:'BANK_STATEMENT',label:'Sao Kê Ngân Hàng',icon:'🏦',color:'var(--green)',priority:'CAO'};
+    if (s.match(/HOA DON|INVOICE|VAT|GTGT|01GTKT|E-INVOICE|PHIEU THU/))
+      return {type:'INVOICE',label:'Hóa Đơn VAT',icon:'🧾',color:'var(--amber)',priority:'CAO'};
+    if (s.match(/TO KHAI|CUSTOMS|HAI QUAN|HS CODE|BILL OF LADING|AWB|PACKING LIST|C\/O|FORM/))
+      return {type:'CUSTOMS',label:'Tờ Khai Hải Quan',icon:'🚢',color:'var(--blue)',priority:'CAO'};
+    if (s.match(/HOP DONG|CONTRACT|AGREEMENT|KY KET|THOA THUAN|NDA/))
+      return {type:'CONTRACT',label:'Hợp Đồng',icon:'📋',color:'var(--purple)',priority:'TRUNG BÌNH'};
+    if (s.match(/GIA REPORT|GIA CERT|GEMOLOGICAL|DIAMOND CERT|IGI|HRD|KIMBERLEY/))
+      return {type:'GEM_CERT',label:'Chứng Chỉ Đá Quý',icon:'💎',color:'var(--gold2)',priority:'CAO'};
+    if (s.match(/BAO GIA|QUOTATION|PRICE LIST|BANG GIA|OFFER/))
+      return {type:'QUOTATION',label:'Báo Giá NCC',icon:'💰',color:'var(--amber)',priority:'TRUNG BÌNH'};
+    if (s.match(/THUE|TAX|TNCN|GTGT|TNDN|BHXH|BHYT|DECLARE|QUYET TOAN/))
+      return {type:'TAX',label:'Thuế / BHXH',icon:'🏛',color:'var(--red)',priority:'CAO'};
+    if (s.match(/THANH TOAN|PAYMENT|TRANSFER|CHUYEN KHOAN|CK|WIRE|REMITTANCE/))
+      return {type:'PAYMENT',label:'Xác Nhận Thanh Toán',icon:'💳',color:'var(--green)',priority:'CAO'};
+    if (s.match(/SHIPMENT|DELIVERY|ORDER|DON HANG|LOGISTICS|TRACKING|GIAO HANG/))
+      return {type:'LOGISTICS',label:'Đơn / Vận Chuyển',icon:'📦',color:'var(--blue)',priority:'TRUNG BÌNH'};
+    return {type:'OTHER',label:'Email Khác',icon:'📧',color:'var(--text3)',priority:'THẤP'};
+  },
+
+  // Extract key data từ email text
+  extract(type, subject='', body='') {
+    const text = subject+'\n'+body;
+    const m = (pat,g=1) => { try{const r=pat.exec(text);return r?r[g]?.trim():null;}catch{return null;} };
+
+    switch(type) {
+      case 'BANK_STATEMENT': return {
+        'Số TK':          m(/(?:TK|Account)[:\s]*(\d{6,20})/i),
+        'Ngân Hàng':      m(/(?:Vietinbank|Vietcombank|MB|ACB|BIDV|TPBank|VPBank)/i,0),
+        'Giao Dịch':      m(/(?:GD|Trans|Transaction)[:\s]*(\d+)/i),
+        'Số Tiền Vào':    m(/(?:\+|Credit|CR|Có)[:\s]*([\d,]+)/i),
+        'Số Dư':          m(/(?:Balance|Số dư|Saldo)[:\s]*([\d,]+)/i),
+        'Người CK':       m(/(?:From|Từ|Người gửi)[:\s]+([^\n]{3,40})/i),
+        'Nội Dung':       m(/(?:Content|Nội dung|Remark)[:\s]+([^\n]{3,80})/i),
+      };
+      case 'INVOICE': return {
+        'Số HĐ':          m(/(?:Invoice|Số HĐ|No)[:\s.]*([A-Z0-9\-\/]{3,20})/i),
+        'Ngày':           m(/(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/),
+        'Người Bán':      m(/(?:Seller|Vendor|Công ty bán|Từ)[:\s]+([^\n]{3,50})/i),
+        'Trị Giá':        m(/(?:Total|Tổng|Amount)[:\s]*([\d,]+)/i),
+        'VAT':            m(/(?:VAT|Thuế GTGT)[:\s]*([\d,]+)/i),
+        'Mã Số Thuế':     m(/(?:MST|Tax ID)[:\s]*(\d{10,13})/i),
+      };
+      case 'CUSTOMS': return {
+        'Số Tờ Khai':     m(/(?:TK|Declaration)[:\s]*(\d{10,15})/i),
+        'Hàng Hóa':       m(/(?:Goods|Hàng hóa|Description)[:\s]+([^\n]{3,60})/i),
+        'HS Code':        m(/(?:HS|Tariff)[:\s]*(\d{6,10})/i),
+        'Trị Giá (USD)':  m(/(?:Value|CIF)[:\s]*\$?([\d,]+)/i),
+        'Cảng Đến':       m(/(?:Port|Cảng|Destination)[:\s]+([^\n]{3,30})/i),
+        'Luồng':          m(/(?:Lane|Stream|Luồng)[:\s]*(RED|YELLOW|GREEN|ĐỎ|VÀNG|XANH)/i),
+      };
+      case 'CONTRACT': return {
+        'Số HĐ':          m(/(?:Contract|Hợp đồng)[:\s#.]*([A-Z0-9\-\/]{3,20})/i),
+        'Bên A':          m(/(?:Party A|Bên A|Bên Mua)[:\s]+([^\n]{3,50})/i),
+        'Bên B':          m(/(?:Party B|Bên B|Bên Bán)[:\s]+([^\n]{3,50})/i),
+        'Giá Trị':        m(/(?:Value|Giá trị|Amount)[:\s]*([\d,]+)/i),
+        'Ngày Ký':        m(/(?:Sign|Ký ngày|Date)[:\s]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i),
+        'Hạn HĐ':         m(/(?:Expire|Hết hạn|Duration)[:\s]+([^\n]{3,30})/i),
+      };
+      case 'PAYMENT': return {
+        'Số Tiền':        m(/([\d,]+)\s*(?:VND|đ|USD)/i),
+        'Người Trả':      m(/(?:From|Từ|Sender)[:\s]+([^\n]{3,50})/i),
+        'Tham Chiếu':     m(/(?:Ref|Reference|Mã GD)[:\s]+([A-Z0-9\-]{3,20})/i),
+        'Ngân Hàng':      m(/(?:Bank|NH)[:\s]+([^\n]{3,30})/i),
+        'Nội Dung':       m(/(?:Content|Memo|Nội dung)[:\s]+([^\n]{3,80})/i),
+      };
+      default: return {
+        'Chủ Đề': subject.slice(0,60)||'—',
+        'Từ': m(/(?:From|Từ)[:\s]+([^\n]{3,40})/i)||'—',
+      };
+    }
+  },
+
+  // Suggest actions based on doc type
+  actions(type, extracted={}) {
+    const actions = {
+      BANK_STATEMENT: [
+        {icon:'✅',label:'Xác Nhận Thanh Toán → Cập Nhật Đơn Hàng',primary:true},
+        {icon:'📊',label:'Ghi Sổ TK Vietinbank (Nợ TK112)'},
+        {icon:'🔍',label:'Đối Chiếu Với Sao Kê Tháng'},
+      ],
+      INVOICE: [
+        {icon:'📥',label:'Nhập Hóa Đơn Vào Kế Toán',primary:true},
+        {icon:'✅',label:'Duyệt Chi → Tạo Lệnh CK'},
+        {icon:'🗂',label:'Lưu Vào Kho Chứng Từ'},
+      ],
+      CUSTOMS: [
+        {icon:'📋',label:'Tạo Tờ Khai Trong Kho HQ',primary:true},
+        {icon:'💰',label:'Tính Landed Cost Tự Động'},
+        {icon:'🔔',label:'Báo Vận Hành Theo Dõi Lô'},
+      ],
+      CONTRACT: [
+        {icon:'📋',label:'Lưu Hợp Đồng Vào Hệ Thống',primary:true},
+        {icon:'⏰',label:'Đặt Nhắc Nhở Hết Hạn'},
+        {icon:'✍️',label:'Yêu Cầu Ký Số ECDSA'},
+      ],
+      PAYMENT: [
+        {icon:'✅',label:'Xác Nhận Tiền Đã Về',primary:true},
+        {icon:'📊',label:'Update Trạng Thái Đơn Hàng → ĐÃ THANH TOÁN'},
+        {icon:'🧾',label:'Xuất Hóa Đơn VAT Cho KH'},
+      ],
+      GEM_CERT: [
+        {icon:'💎',label:'Gắn Cert Vào SKU / Đơn Hàng',primary:true},
+        {icon:'📦',label:'Update Kho — Mã Chứng Chỉ'},
+      ],
+      DEFAULT: [
+        {icon:'🗂',label:'Phân Loại & Lưu Trữ'},
+        {icon:'↗️',label:'Chuyển Đến Phòng Liên Quan'},
+      ],
+    };
+    return actions[type] || actions.DEFAULT;
+  },
+};
+
+// ══════════════════════════════════════════════════════
+// MOCK EMAIL DATA — Tâm Luxury realistic
+// ══════════════════════════════════════════════════════
+const MOCK_EMAILS = [
+  {id:'e001',from:'statement@vietinbank.com.vn',fromName:'Vietinbank',subject:'Sao Kê Tài Khoản 108002580xxx — 23/03/2026',date:'23/03 09:15',unread:true,priority:'CAO',
+   body:`TK: 108002580xxx\nNgân Hàng: Vietinbank - Chi Nhánh HCM\n\nGIAO DỊCH MỚI NHẤT:\n+ Credit: 34,650,000 VND\n  Từ: NGUYEN THI MAI\n  Nội dung: CHUYEN KHOAN MANG NHA HANG TU TAM LUXURY\n  Ref: TL-CT26-889\n  Thời gian: 23/03/2026 08:47:22\n\nSố dư hiện tại: 16,052,400,000 VND`,
+   attach:['sao-ke-23032026.pdf'],category:'BANK_STATEMENT'},
+
+  {id:'e002',from:'customs@logistics.vn',fromName:'Cục HQ TP.HCM',subject:'Tờ Khai HQ — Lô Kim Cương — Luồng Vàng',date:'23/03 08:30',unread:true,priority:'CAO',
+   body:`Số TK: 24032345678\nHàng hóa: Kim Cương Đã Gia Công (GIA Certified)\nHS Code: 7102.31\nXuất xứ: Bỉ (BEL)\nGiá trị CIF: $245,000\nLuồng: VÀNG\nYêu cầu bổ sung: C/O Form E\nHạn nộp bổ sung: 25/03/2026`,
+   attach:['tk-240323.pdf','packing-list.pdf'],category:'CUSTOMS'},
+
+  {id:'e003',from:'invoice@worldgems.hk',fromName:'World Gems HK',subject:'Invoice #WG-2026-0451 — Diamond Lot TL-032',date:'22/03 16:45',unread:false,priority:'CAO',
+   body:`Invoice No: WG-2026-0451\nDate: 22/03/2026\nSeller: World Gems International HK Ltd\nBuyer: Tam Luxury Co., Ltd — MST: 0315xxxxxx\n\nDescription: Round Diamond GIA VVS2 x12 viên\nUnit Price: $3,700\nTotal Amount: $44,400\nVAT (10%): $4,440\nGrand Total: $48,840\n\nBank: HSBC Hong Kong`,
+   attach:['invoice-WG-2026-0451.pdf','GIA-certs.zip'],category:'INVOICE'},
+
+  {id:'e004',from:'payment@zalopay.vn',fromName:'ZaloPay',subject:'Xác Nhận Thanh Toán — TL-CT26-891 — 28,500,000₫',date:'22/03 14:22',unread:false,priority:'CAO',
+   body:`Xác nhận thanh toán thành công:\n\nSố tiền: 28,500,000 VND\nNgười thanh toán: TRAN VAN BINH\nMã đơn hàng: TL-CT26-891\nMã giao dịch: ZLP240322891234\nNgân hàng: VPBank\nThời gian: 22/03/2026 14:22:18\nTrạng thái: THÀNH CÔNG`,
+   attach:[],category:'PAYMENT'},
+
+  {id:'e005',from:'sales@zenintl.com',fromName:'ZEN International',subject:'Quotation — Diamond Parcel #Z240323',date:'22/03 11:00',unread:false,priority:'TRUNG BÌNH',
+   body:`Dear Tam Luxury Team,\n\nQuotation for Diamond Parcel Z240323:\n- Round 5-6mm VVS1-VS1: $850/pc (50 pcs)\n- Round 6-7mm VVS2: $2,200/pc (20 pcs)\n- Total: $86,500\n\nValidity: 7 days\nDelivery: 10-14 working days`,
+   attach:['quotation-Z240323.xlsx'],category:'QUOTATION'},
+
+  {id:'e006',from:'contract@phanlocdiamond.com',fromName:'Phan Lộc Diamond',subject:'Hợp Đồng Cung Ứng Kim Cương 2026 — Ký Lại',date:'21/03 10:30',unread:false,priority:'TRUNG BÌNH',
+   body:`Kính gửi: Tâm Luxury\n\nHợp đồng số: HD-PLD-2026-001\nBên A: CTCP Tâm Luxury — MST: 0315xxxxxx\nBên B: CTCP Phan Lộc Diamond — MST: 0301234567\n\nGiá trị hợp đồng: 5,000,000,000 VND/năm\nThời hạn: 01/04/2026 — 31/03/2027\nKý ngày: 01/04/2026`,
+   attach:['HD-PLD-2026-001-draft.pdf'],category:'CONTRACT'},
+
+  {id:'e007',from:'tax@gdt.gov.vn',fromName:'Cục Thuế TP.HCM',subject:'Thông Báo Nộp Thuế GTGT Tháng 2/2026',date:'20/03 08:00',unread:true,priority:'CAO',
+   body:`Thông báo nộp thuế:\nNgười nộp thuế: Công ty TNHH Vàng Bạc Đá Quý Tâm Luxury\nMST: 0315xxxxxx\n\nSố thuế GTGT phải nộp T2/2026: 142,500,000 VND\nHạn nộp: 20/03/2026\n\nNộp qua: eTax — https://thuedientu.gdt.gov.vn`,
+   attach:['thong-bao-thue-T2.pdf'],category:'TAX'},
+
+  {id:'e008',from:'gia@gia.edu',fromName:'GIA Laboratory',subject:'GIA Report Ready — Diamond 1.02ct VVS2 — #2479834521',date:'19/03 15:00',unread:false,priority:'CAO',
+   body:`Your GIA Report is ready:\nReport No: 2479834521\nShape: Round Brilliant\nWeight: 1.02 ct\nColor: G\nClarity: VVS2\nCut: Excellent\nPolish: Excellent\nSymmetry: Excellent\nFluorescence: None`,
+   attach:['GIA-2479834521.pdf'],category:'GEM_CERT'},
+];
+
+const CAT_CONFIG = {
+  ALL:{label:'Tất Cả',color:'rgba(200,146,42,.2)',textColor:'var(--gold2)'},
+  BANK_STATEMENT:{label:'Sao Kê',color:'rgba(61,214,140,.2)',textColor:'var(--green)'},
+  INVOICE:{label:'Hóa Đơn',color:'rgba(240,160,48,.2)',textColor:'var(--amber)'},
+  CUSTOMS:{label:'Hải Quan',color:'rgba(96,184,240,.2)',textColor:'var(--blue)'},
+  CONTRACT:{label:'Hợp Đồng',color:'rgba(167,139,250,.2)',textColor:'var(--purple)'},
+  PAYMENT:{label:'Thanh Toán',color:'rgba(61,214,140,.2)',textColor:'var(--green)'},
+  QUOTATION:{label:'Báo Giá',color:'rgba(240,160,48,.2)',textColor:'var(--amber)'},
+  TAX:{label:'Thuế',color:'rgba(240,80,80,.2)',textColor:'var(--red)'},
+  GEM_CERT:{label:'GIA/Cert',color:'rgba(200,146,42,.2)',textColor:'var(--gold2)'},
+};
+
+let emails=[...MOCK_EMAILS], filteredEmails=[...MOCK_EMAILS], selectedEmail=null, user=null;
+
+// ── LOGIN ────────────────────────────────────────────────────────────────────
+function doLogin(){
+  const code=document.getElementById('lc').value.trim()||'TLXR005';
+  const name=document.getElementById('ln').value.trim()||'KTT';
+  const email=document.getElementById('le').value.trim()||'kt@tamluxury.vn';
+  user={code,name,email};
+  window.addEventListener('keydown',e=>{if(e.key==='PrintScreen'||e.key==='F12')e.preventDefault();},true);
+  window.addEventListener('contextmenu',e=>e.preventDefault(),true);
+  const wm=document.getElementById('wm');const ts=new Date().toLocaleString('vi-VN');
+  for(let i=0;i<40;i++){const s=document.createElement('span');s.textContent=`${name} · ${code} · ${ts}`;wm.appendChild(s);}
+  document.getElementById('ls').style.display='none';
+  document.getElementById('app').style.display='grid';
+  document.getElementById('tu').textContent=name;
+  document.getElementById('connEmail').textContent=email;
+  document.getElementById('connStatus').textContent='· '+emails.length+' email đã đồng bộ';
+  renderCatFilters();
+  renderInbox();
+  setTimeout(()=>toast(`✅ Kris Email Hub kết nối: ${email}`,'success'),600);
+}
+function doLogout(){user=null;document.getElementById('app').style.display='none';document.getElementById('ls').style.display='flex';document.getElementById('wm').innerHTML='';}
+
+// ── INBOX ────────────────────────────────────────────────────────────────────
+let activeCategory='ALL';
+
+function renderCatFilters(){
+  document.getElementById('catFilters').innerHTML=Object.entries(CAT_CONFIG).map(([k,v])=>`
+    <button class="cat-btn" style="background:${activeCategory===k?v.color:'rgba(255,255,255,.04)'};color:${activeCategory===k?v.textColor:'var(--text3)'};"
+      onclick="setCat('${k}')">${v.label}</button>`).join('');
+}
+
+function setCat(cat){activeCategory=cat;renderCatFilters();filterEmails();}
+
+function filterEmails(){
+  const q=(document.getElementById('emailSearch')?.value||'').toLowerCase();
+  filteredEmails=emails.filter(e=>{
+    const mq=!q||e.from.toLowerCase().includes(q)||e.subject.toLowerCase().includes(q)||e.fromName.toLowerCase().includes(q);
+    const mc=activeCategory==='ALL'||e.category===activeCategory;
+    return mq&&mc;
+  });
+  renderInbox();
+}
+
+function renderInbox(){
+  const unread=emails.filter(e=>e.unread).length;
+  document.getElementById('unreadCount').textContent=unread;
+  document.getElementById('emailTotal').textContent=emails.length+' email';
+  const catConf=CAT_CONFIG;
+  document.getElementById('inboxList').innerHTML=filteredEmails.map(e=>{
+    const cat=catConf[e.category]||catConf.ALL;
+    return`<div class="email-item ${selectedEmail?.id===e.id?'selected':''} ${e.unread?'unread':''}" onclick="selectEmail('${e.id}')">
+      <div class="ei-header">
+        <span class="ei-from">${e.fromName}</span>
+        <span class="ei-date">${e.date}</span>
+      </div>
+      <div class="ei-subject" style="${e.unread?'font-weight:600;color:var(--text)':''}">${e.subject}</div>
+      <div class="ei-snippet">${e.body.split('\n')[0]}</div>
+      <div class="ei-tags">
+        <span style="font-family:var(--mono);font-size:8px;padding:1px 6px;border-radius:10px;background:${cat.color};color:${cat.textColor}">${cat.label}</span>
+        <span style="font-family:var(--mono);font-size:8px;padding:1px 6px;border-radius:10px;background:${e.priority==='CAO'?'rgba(240,80,80,.15)':'rgba(240,160,48,.1)'};color:${e.priority==='CAO'?'var(--red)':'var(--amber)'}">${e.priority}</span>
+        ${e.attach?.length?`<span style="font-size:9px;color:var(--text3)">📎${e.attach.length}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── EMAIL DETAIL + KRIS ANALYSIS ────────────────────────────────────────────
+function selectEmail(id){
+  selectedEmail=emails.find(e=>e.id===id);
+  if(!selectedEmail)return;
+  selectedEmail.unread=false;
+  renderInbox();
+  renderEmailDetail(selectedEmail);
+  krisAnalyze(selectedEmail);
+}
+
+function renderEmailDetail(e){
+  document.getElementById('emailDetail').innerHTML=`
+    <div class="ed-hdr">
+      <div class="ed-subject">${e.subject}</div>
+      <div class="ed-meta">
+        <span>📧 ${e.from}</span>
+        <span>📅 ${e.date}</span>
+        ${e.attach?.length?`<span>📎 ${e.attach.length} file đính kèm</span>`:''}
+      </div>
+    </div>
+    <div class="ed-body">
+      <div class="ed-content">${e.body}</div>
+      ${e.attach?.length?`<div class="ed-attach">
+        ${e.attach.map(a=>`<div class="ed-attach-item" onclick="krisParseAttach('${a}')">
+          <span>${a.endsWith('.pdf')?'📋':a.endsWith('.xlsx')?'📊':a.endsWith('.zip')?'🗜':'🖼'}</span>
+          <span>${a}</span>
+          <span style="font-family:var(--mono);font-size:9px;color:var(--teal)">Parse</span>
+        </div>`).join('')}
+      </div>`:''}
+    </div>
+    <div class="ed-actions">
+      <button class="btn btn-ghost" onclick="replyEmail()">↩ Trả Lời</button>
+      <button class="btn btn-ghost" onclick="forwardEmail()">↗ Chuyển Tiếp</button>
+      <button class="btn btn-primary" onclick="krisAction()">🤖 Kris Xử Lý</button>
+    </div>`;
+}
+
+function krisAnalyze(e){
+  const kp=document.getElementById('krisPanel');
+  // Show processing
+  kp.innerHTML=`<div class="processing"><div class="spin"></div><span>Kris đang phân tích...</span></div>`;
+  setTimeout(()=>{
+    const cls=KrisEngine.classify(e.subject, e.body);
+    const extracted=KrisEngine.extract(cls.type, e.subject, e.body);
+    const actions=KrisEngine.actions(cls.type, extracted);
+    const extractedEntries=Object.entries(extracted).filter(([k,v])=>v&&v!=='null'&&v!=='—');
+
+    kp.innerHTML=`
+      <div class="analysis-section">
+        <div class="as-title">🔍 Phân Loại Tài Liệu</div>
+        <div class="doc-type-badge" style="background:${cls.color}18;color:${cls.color};border:1px solid ${cls.color}44">
+          ${cls.icon} ${cls.label}
+        </div>
+        <div style="font-size:10px;color:var(--text3)">Độ ưu tiên: <span style="color:${cls.priority==='CAO'?'var(--red)':'var(--amber)'}">${cls.priority}</span></div>
+      </div>
+
+      ${extractedEntries.length>0?`
+      <div class="analysis-section">
+        <div class="as-title">📊 Dữ Liệu Bóc Tách</div>
+        ${extractedEntries.map(([k,v])=>`<div class="extracted-row"><span class="er-lbl">${k}</span><span class="er-val">${v}</span></div>`).join('')}
+      </div>`:''}
+
+      <div class="analysis-section">
+        <div class="as-title">⚡ Hành Động Đề Xuất</div>
+        ${actions.map(a=>`<button class="action-btn ${a.primary?'primary':''}" onclick="executeAction('${cls.type}','${a.label}')">
+          <span>${a.icon}</span><span>${a.label}</span>
+        </button>`).join('')}
+      </div>
+
+      <div class="analysis-section">
+        <div class="as-title">📎 Upload File Đính Kèm</div>
+        <div class="upload-zone" onclick="document.getElementById('krisFileInput').click()">
+          <div style="font-size:14px;margin-bottom:3px">📁</div>
+          <div style="font-size:10px;color:var(--text3)">Upload file từ email này để Kris parse</div>
+          <input type="file" id="krisFileInput" multiple accept=".pdf,.jpg,.png,.xlsx" style="display:none" onchange="handleKrisFile(this)">
+        </div>
+        <div id="krisFileList" style="margin-top:6px"></div>
+      </div>`;
+  },800);
+}
+
+function executeAction(type, label){
+  const actions = {
+    'BANK_STATEMENT': {
+      'Xác Nhận Thanh Toán': ()=>toast('✅ Đã xác nhận thanh toán — Cập nhật trạng thái đơn hàng','success'),
+      'Ghi Sổ TK Vietinbank': ()=>toast('📊 Ghi nợ TK 112 Vietinbank — Đang xử lý','info'),
+    },
+    'PAYMENT': {
+      'Xác Nhận Tiền Đã Về': ()=>toast('✅ Tiền đã về — Cập nhật đơn hàng → ĐÃ THANH TOÁN','success'),
+      'Xuất Hóa Đơn VAT': ()=>toast('🧾 Chuyển sang tạo hóa đơn VAT cho khách','info'),
+    },
+  };
+  const shortLabel=Object.keys(actions[type]||{}).find(k=>label.includes(k));
+  if(shortLabel&&actions[type][shortLabel]){ actions[type][shortLabel](); }
+  else { toast(`✓ ${label}`);}
+}
+
+function krisParseAttach(filename){
+  toast(`⏳ Kris đang parse: ${filename}...`,'info');
+  setTimeout(()=>toast(`✓ Đã parse ${filename} — Dữ liệu cập nhật`,'success'),1500);
+}
+
+function krisAction(){
+  if(!selectedEmail)return;
+  const cls=KrisEngine.classify(selectedEmail.subject,selectedEmail.body);
+  toast(`🤖 Kris đang xử lý ${cls.label}...`,'info');
+  setTimeout(()=>toast(`✓ ${cls.label} đã được xử lý và ghi vào hệ thống`,'success'),2000);
+}
+
+function syncEmails(){
+  toast('🔄 Đang đồng bộ hộp thư...','info');
+  setTimeout(()=>{
+    document.getElementById('connStatus').textContent='· '+emails.length+' email · Vừa đồng bộ';
+    toast('✓ Đồng bộ hoàn tất — '+emails.filter(e=>e.unread).length+' email chưa đọc','success');
+  },1500);
+}
+
+function handleBulkUpload(input){
+  const files=Array.from(input.files);
+  files.forEach(f=>{
+    const cls=KrisEngine.classify(f.name,'');
+    toast(`📎 ${f.name} → ${cls.label} (${cls.priority})`,'info');
+  });
+  input.value='';
+}
+
+function handleKrisFile(input){
+  const files=Array.from(input.files);
+  const list=document.getElementById('krisFileList');
+  if(!list)return;
+  files.forEach(f=>{
+    const cls=KrisEngine.classify(f.name,'');
+    const div=document.createElement('div');
+    div.style.cssText='display:flex;align-items:center;gap:6px;padding:5px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;margin-bottom:4px;font-size:10px';
+    div.innerHTML=`<span>${cls.icon}</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.name}</span><span style="color:${cls.color};font-family:var(--mono);font-size:8px">${cls.label}</span>`;
+    list.appendChild(div);
+    setTimeout(()=>{div.querySelector('span:last-child').textContent='✓ PARSED';div.querySelector('span:last-child').style.color='var(--green)';},1200);
+  });
+  input.value='';
+  toast(`⏳ Kris đang parse ${files.length} file...`,'info');
+}
+
+function replyEmail(){toast('Tính năng Reply — tích hợp Gmail API khi deploy','info');}
+function forwardEmail(){toast('Tính năng Forward — tích hợp Gmail API khi deploy','info');}
+
+// ── UTILS ────────────────────────────────────────────────────────────────────
+function p2(n){return String(n).padStart(2,'0');}
+function toast(msg,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.innerHTML=`<span style="color:${type==='success'?'var(--green)':type==='error'?'var(--red)':'var(--gold)'};font-weight:700">${type==='success'?'✓':type==='error'?'✕':'ℹ'}</span><span>${msg}</span>`;document.getElementById('tw').appendChild(el);setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),300)},3500);}
+setInterval(()=>{const n=new Date;document.getElementById('clk').textContent=`${p2(n.getHours())}:${p2(n.getMinutes())}:${p2(n.getSeconds())}`;},1000);
+</script>
+
+<script src="nattos-eod-engine.js"></script>
+<script src="nattos-data.js"></script>
+<script src="nattos-fx.js"></script>
+<script src="nattos-galaxy.js"></script>
+</body>
+</html>
