@@ -52,7 +52,7 @@ EventBus.on('audit.record', (record: any) => {
   if (record.type === 'anomaly.detected') _serverErrorCount++;
 });
 
-hey('/api/nauion', (_req: any, res: any) => {
+hey('/kenh/nauion', (_req: any, res: any) => {
   const error_ratio = _serverEventCount > 0 ? _serverErrorCount / _serverEventCount : 0;
   _serverZ = Math.min(5.0, Math.max(0.1, 1.0 + error_ratio * 2));
   res.json({
@@ -63,7 +63,7 @@ hey('/api/nauion', (_req: any, res: any) => {
   });
 });
 
-hey('/api/health', (_req, res) => {
+hey('/kenh/suc', (_req, res) => {
   res.json({ status: 'ok', server: 'NATT-OS Server v2.0', ts: new Date().toISOString() });
 });
 
@@ -88,22 +88,22 @@ yeh('/api/sirasign/verify', (req: any, res: any) => {
   res.json({ valid: true, level: 'VERIFIED', ts: Date.now() });
 });
 
-yeh('/api/events/emit', (req, res) => {
+yeh('/phat/nauion', (req, res) => {
   const { type, payload, cell } = req.body ?? {};
   if (!type) return res.status(400).json({ error: 'type required' });
   EventBus.emit(type, { ...payload, originCell: cell ?? 'ui' });
   res.json({ ok: true, type, ts: Date.now() });
 });
 
-hey('/api/state/:cell', (req, res) => {
+hey('/kenh/state/:cell', (req, res) => {
   res.json({ cell: req.params.cell, state: STATE[req.params.cell] ?? {}, ts: Date.now() });
 });
 
-hey('/api/state', (_req, res) => {
+hey('/kenh/state', (_req, res) => {
   res.json({ state: STATE, cells: Object.keys(STATE).length, ts: Date.now() });
 });
 
-hey('/api/audit', async (_req, res) => {
+hey('/kenh/vet', async (_req, res) => {
   const all = await AuditApplicationService.getAll();
   const arr = Array.isArray(all) ? all : [];
   const events = arr.slice(-50).map((e: any) => ({
@@ -176,7 +176,7 @@ hey('/api/cells', (_req: any, res: any) => {
 });
 
 
-hey('/api/intelligence', (_req: any, res: any) => {
+hey('/kenh/intel', (_req: any, res: any) => {
   const intel = getFlowIntelligence();
   const flows = Object.entries(intel).map(([flow, h]: [string, any]) => ({
     flow,

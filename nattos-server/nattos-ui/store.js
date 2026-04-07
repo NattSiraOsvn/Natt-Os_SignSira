@@ -1,5 +1,5 @@
 // core/store.js — NATT-OS State Store
-// Source of truth: /api/audit + /api/intelligence
+// Source of truth: /kenh/vet + /kenh/intel
 
 export const store = {
   audit: [],

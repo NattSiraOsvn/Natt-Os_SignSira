@@ -12,7 +12,7 @@ export async function getRBAC(): Promise<RBACPermissions> {
   if (_rbacCache) return _rbacCache
 
   try {
-    const res = await fetch('/api/state/rbac-cell')
+    const res = await fetch('/kenh/state/rbac-cell')
     if (!res.ok) throw new Error('rbac fetch failed')
     _rbacCache = await res.json()
     return _rbacCache!

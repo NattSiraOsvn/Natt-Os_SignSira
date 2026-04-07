@@ -21,7 +21,7 @@ let pollTimers = {};
 // ── HEALTH CHECK ──────────────────────────────────────────────────────────
 async function checkServer() {
   try {
-    const r = await fetch(`${SERVER}/api/health`, { signal: AbortSignal.timeout(3000) });
+    const r = await fetch(`${SERVER}/kenh/suc`, { signal: AbortSignal.timeout(3000) });
     isOnline = r.ok;
   } catch {
     isOnline = false;
@@ -232,7 +232,7 @@ function injectStatusBar() {
     font-size:9px;letter-spacing:.1em;cursor:pointer;
   `;
   bar.innerHTML = `<span id="ndata-status" style="color:#f0a030">🟡 Đang kết nối...</span>`;
-  bar.onclick = () => window.open('http://localhost:3001/api/health', '_blank');
+  bar.onclick = () => window.open('http://localhost:3001/kenh/suc', '_blank');
   document.body.appendChild(bar);
 }
 
