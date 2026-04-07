@@ -1,7 +1,6 @@
 thien@iMac natt-os_ver2goldmaster % tree
 .
 ├── Dockerfile
-├── HIEN-PHAP-NATT-OS-v4.0.md
 ├── NATT-OS-PLATFORM-SPEC.md
 ├── README.md
 ├── archive
@@ -197,9 +196,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   └── Luat.to.chuc.hoi.dong.cp.1960.doc
 │   └── vision
 │       └── phase5-resonance-protocol.md
-├── index.html
 ├── jest.config.cjs
-├── main
 ├── natt-os-twin.json
 ├── nattos-server
 │   ├── nattos-ui
@@ -215,7 +212,8 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   ├── nauion-engine.js
 │   │   ├── security-overlay.js
 │   │   ├── store.js
-│   │   └── styles.css
+│   │   ├── styles.css
+│   │   └── vision.html
 │   ├── node_modules
 │   │   ├── accepts
 │   │   │   ├── HISTORY.md
@@ -21266,6 +21264,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │       └── warranty
 │           ├── WarrantyClaimCreated.v1.ts
 │           └── WarrantyRegistered.v1.ts
+├── repo.json
 ├── scripts
 │   ├── NeuralMAINCell.sh
 │   ├── anattos.sh
@@ -22518,8 +22517,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   │       ├── audit-writer.service.ts
 │   │   │   │   │       ├── auditchainservice.ts
 │   │   │   │   │       ├── index.ts
-│   │   │   │   │       ├── iseu-boundary.surface.ts
-│   │   │   │   │       └── iseu-feedback.listener.ts
+│   │   │   │   │       └── iseu-boundary.surface.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── infrastructure
 │   │   │   │   │   ├── adapters
@@ -23700,21 +23698,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   └── utils
 │   │       ├── supplierclassifier.ts
 │   │       └── supplierimporthelper.ts
-│   └── utils
-│       ├── supplierClassifier.ts
-│       ├── supplierImportHelper.ts
-│       ├── validateproductmedia.ts
-│       └── xmlcanonicalizer.ts
-├── test_iseu_flow.js
-├── ts-debt.log
-├── tsconfig.json
-├── tsconfig.server.json
-├── vision-engine-final
-│   ├── VISION_ENGINE_SPEC_FINAL.md
-│   ├── index.html
-│   ├── package.json
-│   ├── postcss.config.js
-│   ├── src
+│   ├── ui-vision
 │   │   ├── App.jsx
 │   │   ├── components
 │   │   │   ├── AuditVisualizer.tsx
@@ -23746,9 +23730,16 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │       └── sirasign-engine.ts
 │   │   └── {vision-engine
 │   │       └── {core,hooks,components,transitions,adaptive,audit,security},scenes,components,lib,registry}
-│   ├── tailwind.config.js
-│   └── vite.config.js
-├── vision-engine-final.zip
+│   └── utils
+│       ├── supplierClassifier.ts
+│       ├── supplierImportHelper.ts
+│       ├── validateproductmedia.ts
+│       └── xmlcanonicalizer.ts
+├── test_iseu_flow.js
+├── ts-debt.log
+├── tsconfig.json
+├── tsconfig.server.json
 └── vite.config.ts
 
-2714 directories, 21037 files
+2713 directories, 21028 files
+thien@iMac natt-os_ver2goldmaster %
