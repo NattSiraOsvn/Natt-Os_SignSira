@@ -136,7 +136,7 @@ info "Inherited V2: $V2_FILES files | V1: $V1_FILES files"
 hdr "4" "GOVERNANCE / ADN"
 # ═══════════════════════════════════════════════════════════════
 GOV_FILES=(
-  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v4.0.md"
+  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v5.0.md"
   "QNEU system-state:src/governance/qneu/data/system-state.json"
   "QNEU first-seed:src/governance/qneu/first-seed.ts"
   "Gatekeeper core:src/governance/gatekeeper/gatekeeper-core.ts"
