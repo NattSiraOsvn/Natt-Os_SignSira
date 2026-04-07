@@ -1,23 +1,5 @@
 [
   {
-    "timestamp": 1774816340403,
-    "eventType": "cell.metric",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "timestamp": 1774816340405,
-    "eventType": "nauion.state",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
-    "timestamp": 1774816340406,
-    "eventType": "nauion.state",
-    "cell": "engine-emitter",
-    "action": "emit"
-  },
-  {
     "timestamp": 1775031618692,
     "eventType": "cell.metric",
     "cell": "engine-emitter",
@@ -278,5 +260,38 @@
     "engines": 129,
     "dirty": 7,
     "root_files": 21
+  },
+  {
+    "ts": "2026-04-07 08:54:11",
+    "commits": 489,
+    "ts_files": 1242,
+    "ts_lines": 81636,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 2,
+    "root_files": 21
+  },
+  {
+    "ts": "2026-04-07 08:55:50",
+    "commits": 489,
+    "ts_files": 1242,
+    "ts_lines": 81636,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 5,
+    "root_files": 22
+  },
+  {
+    "ts": "2026-04-07 09:09:27",
+    "commits": 492,
+    "ts_files": 1242,
+    "ts_lines": 81636,
+    "biz_cells": 37,
+    "kernel_cells": 9,
+    "engines": 129,
+    "dirty": 4,
+    "root_files": 22
   }
 ]
