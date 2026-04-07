@@ -160,6 +160,26 @@ export const SUPER_DICTIONARY: Record<string, string> = {
   "PII":                   "PII — Personally Identifiable Information: SĐT, CCCD, số TK NH cần bảo mật",
   "SECURITY_AUDIT":        "Security Audit — rà soát quyền file, phát hiện file public/share ngoài ý muốn",
 
+
+  // ── Nauion Language ───────────────────────────────────────────
+  "HEYNA":              "HeyNa — xung đi ra, SSE stream phát tín hiệu khởi động",
+  "NAHERE":             "Nahere — bề mặt gương sẵn sàng, listener ready",
+  "WHAO":               "Whao — xung lệch nghiêm trọng, error signal",
+  "WHAU":               "Whau — xung lệch nhẹ, warning signal",
+  "NAUION":             "Nauion — phản xạ hoàn thành, hệ đúng nhịp",
+  "LECH":               "Lệch — drift state, hệ mất cân bằng",
+  "GAY":                "Gãy — broken state, xung không phản xạ được",
+  "RESONANCE":          "Cộng hưởng — perceptual compression của trạng thái hệ, không phải sound design",
+  "IMPEDANCE_Z":        "Impedance Z — trạng thái nén của hệ, derived từ event_rate + error_ratio + latency + anomaly",
+  "BASE_FREQ":          "Base Frequency — 432 Hz, tần số chuẩn khi Z = 1.0 (hệ cân bằng)",
+  "TICK_LOOP":          "Tick Loop — vòng lặp 200ms cập nhật Z và phát resonance liên tục",
+  "ISEU":               "ISEU — điều kiện biên, gương tự sinh khi fiberFormed >= 0.75",
+  "FIBER":              "Fiber — domain entity trong SmartLink (order-123), không phải cell pair",
+  "SUBCONSCIOUS_FIELD": "Subconscious Field — người dùng không nghe nhưng cảm nhận được trạng thái hệ",
+  "CLAIRVOYANCE":       "Clairvoyance — khả năng cảm nhận trạng thái hệ qua Resonance Protocol",
+  "REFLECTION_R":       "Reflection R = (Z-Z0)/(Z+Z0) — công thức phản xạ tự nhiên, không có ý chí",
+  "FIBER_FORMED":       "Fiber Formed — ngưỡng 0.75: sensitivity >= 0.75 thì gương tự sinh (isIseu=true)",
+
   // ── SmartLink ─────────────────────────────────────────────────
   "SIGNAL":           "Tín hiệu — event signal trong SmartLink",
   "IMPULSE":          "Xung — SmartLink impulse (signal + context + state + data)",
