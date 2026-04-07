@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NATT-OS · NaUion v10</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Tâm Luxury tokens */
+  --bg:#080a0d;--bg2:#0d1017;--bg3:#121820;--bg4:#181f2a;
+  --gold:#c8922a;--gold2:#e8b84b;--gold3:#f5d080;
+  --border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.3);
+  --text:rgba(255,255,255,.90);--text2:rgba(255,255,255,.55);--text3:rgba(255,255,255,.28);
+  --green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;
+  --purple:#a78bfa;
+
+  /* Glass layer — giữ liquid glass SPEC v2.1 */
+  --glass-border: 1px solid rgba(140,120,200,.28);
+  /* shadow */
+  --glass-shadow:
+    0 24px 48px -12px rgba(0,0,0,.7),
+    0 0 0 1px rgba(200,146,42,.08),
+    inset 0 1px 0 rgba(255,220,140,.55),
+    inset 0 -1px 0 rgba(0,0,0,.4),
+    inset 1px 0 0 rgba(255,220,140,.12),
+    0 0 40px rgba(200,146,42,.05);
+  --glass-blur: blur(24px) saturate(200%);
+
+  --glow-ch: 0 0 20px rgba(196,188,255,.55);
+  --glow-ch-sm: 0 0 12px rgba(196,188,255,.4);
+  --glow-mint: 0 0 14px rgba(61,214,140,.45);
+
+  /* Aliases */
+  --champagne:var(--gold3);--mint:var(--green);
+  --peach:var(--amber);--lav:var(--purple);
+
+  --z-truth:2;--z-worker:10;--z-exp:10;--z-modal:100;
+  --sidebar-w:230px;--header-h:52px;
+  --tx0:rgba(255,255,255,.92);--tx1:rgba(255,255,255,.65);--tx2:rgba(255,255,255,.42);--tx3:rgba(255,255,255,.22);
+  --bdr:var(--border);
+
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Be Vietnam Pro',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-size:13px}
+body{
+  font-family:var(--sans);color:var(--tx0);
+  background:#04030E;
+}
+
+/* ── Truth Layer ── */
+.l0-grid{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.013) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.013) 1px,transparent 1px);
+  background-size:44px 44px}
+/* ── Galaxy canvas ── */
+#gx{position:fixed;inset:0;z-index:2;pointer-events:none}
+
+/* ── Nebula — 6 lớp tinh vân ── */
+.nebula{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 60% at 12% 18%,  rgba(100,60,200,.22) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 65% at 88% 75%,  rgba(30,120,200,.18) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 50% 50%,  rgba(70,50,180,.13) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 35% at 30% 88%,  rgba(150,50,180,.16) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 60% at 75% 18%,  rgba(50,170,200,.12) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 35% at 62% 45%,  rgba(180,120,255,.08) 0%, transparent 45%)}
+
+.l0-scan{position:fixed;left:0;right:0;height:2px;pointer-events:none;z-index:var(--z-truth);
+  background:linear-gradient(to bottom,transparent,rgba(196,188,255,.09),transparent);
+  animation:scan 18s linear infinite}
+@keyframes scan{0%{top:-1%}100%{top:101%}}
+.l0-grain{position:fixed;inset:0;z-index:var(--z-truth);pointer-events:none;
+  opacity:.038;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Cymatic canvas */
+#cymatic-bg{position:fixed;bottom:0;right:0;width:320px;height:320px;
+  opacity:.09;pointer-events:none;z-index:3;image-rendering:pixelated}
+
+/* ── Layout ── */
+#app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:10}
+
+/* ══ HEADER — Apple wet glass ══ */
+#header{
+  height:var(--header-h);flex-shrink:0;
+  background:
+    radial-gradient(ellipse 80% 100% at 50% 0%, rgba(196,188,255,.10) 0%,transparent 55%),
+    rgba(8,6,20,.88);
+  backdrop-filter:blur(32px) saturate(250%);-webkit-backdrop-filter:blur(32px) saturate(250%);
+  border-bottom:1px solid rgba(140,120,200,.32);
+  box-shadow:
+    0 4px 24px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(196,188,255,.28),
+    inset 0 -1px 0 rgba(0,0,0,.25);
+  display:flex;align-items:center;padding:0 28px;gap:24px;position:relative;z-index:20}
+
+.logo{font-size:13px;font-weight:800;letter-spacing:-.3px;
+  background:linear-gradient(135deg,rgba(255,255,255,1),rgba(255,255,255,.82),rgba(220,215,255,.9));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.nav-pill{display:flex;gap:4px;
+  background:var(--bg3);
+  backdrop-filter:blur(12px);border-radius:4px;padding:4px;
+  border:1px solid var(--border)}
+.nav-item{padding:6px 20px;font-size:11px;font-weight:600;border-radius:40px;
+  cursor:pointer;transition:all .22s;color:rgba(255,255,255,.45);letter-spacing:.02em}
+.nav-item.active{
+  color:rgba(255,255,255,.95);background:rgba(255,255,255,.12);
+  border-bottom:2px solid rgba(255,255,255,.6)}
+.nav-item:hover:not(.active){background:rgba(255,255,255,.06);color:rgba(255,255,255,.75)}
+
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.stats-pill{
+  background:rgba(10,13,20,.82);backdrop-filter:blur(20px) saturate(200%);
+  border-radius:40px;padding:5px 16px;
+  border:1px solid rgba(140,120,200,.28);
+  box-shadow:inset 0 1px 0 rgba(196,188,255,.16);
+  display:flex;align-items:center;gap:8px;font-size:10px;color:var(--tx2)}
+.dot{width:6px;height:6px;border-radius:50%}
+.dot-ok{background:var(--mint);box-shadow:0 0 6px var(--mint)}
+.dot-warn{background:var(--peach);box-shadow:0 0 6px var(--peach)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+.pls{animation:pulse 2.2s ease-in-out infinite}
+.badge-glass{
+  background:rgba(255,255,255,.1);
+  color:rgba(255,255,255,.92);padding:4px 12px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;
+  border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+#hdr-git{font-size:8px;color:var(--tx3);letter-spacing:.08em}
+
+/* ── Body ── */
+#body{flex:1;display:flex;overflow:hidden}
+
+/* ══ SIDEBAR — Apple glass panel ══ */
+#sidebar{
+  width:var(--sidebar-w);flex-shrink:0;
+  background:
+    radial-gradient(ellipse 100% 40% at 50% 0%, rgba(120,100,200,.10) 0%,transparent 50%),
+    rgba(8,6,20,.82);
+  backdrop-filter:blur(24px) saturate(220%);-webkit-backdrop-filter:blur(24px) saturate(220%);
+  border-right:1px solid rgba(140,120,200,.22);
+  box-shadow:inset -1px 0 0 rgba(196,188,255,.06),4px 0 20px rgba(0,0,0,.4);
+  overflow-y:auto;padding:12px 0;z-index:20}
+#sidebar::-webkit-scrollbar{width:3px}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,245,.15);border-radius:4px}
+
+/* ── Sidebar toggle ── */
+#sb-toggle{
+  position:absolute;top:14px;right:-14px;
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(12,10,28,.88);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(140,120,200,.35);
+  box-shadow:0 4px 12px rgba(0,0,0,.4),inset 0 1px 0 rgba(196,188,255,.2);
+  cursor:pointer;z-index:30;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:rgba(255,255,255,.6);
+  transition:all .22s}
+#sb-toggle:hover{border-color:rgba(196,188,255,.6);color:rgba(196,188,255,1);
+  box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 10px rgba(196,188,255,.2)}
+
+/* Sidebar collapsed */
+#sidebar{position:relative;transition:width .28s cubic-bezier(.4,0,.2,1)}
+#sidebar.collapsed{width:64px!important}
+#sidebar.collapsed .sb-lbl{display:none}
+#sidebar.collapsed .sb-item span:last-child{display:none}
+#sidebar.collapsed .sb-item{justify-content:center;padding:8px 0;border-left:none;border-radius:50%!important;margin:3px 8px;width:48px;height:48px}
+#sidebar.collapsed .sb-div{display:none}
+#sidebar.collapsed #sb-toggle{right:-14px}
+
+/* Group label */
+.sb-lbl{font-size:7px;font-weight:800;letter-spacing:.45em;color:var(--tx3);
+  text-transform:uppercase;padding:12px 14px 4px;display:block;color:rgba(255,255,255,.25)}
+
+/* ── Sidebar items — liquid glass bo tròn ── */
+.sb-item{
+  padding:8px 14px;font-size:10px;font-weight:500;color:var(--tx2);
+  cursor:pointer;transition:all .18s;color:rgba(255,255,255,.55);
+  display:flex;align-items:center;gap:9px;letter-spacing:.03em;
+  margin:2px 8px;
+  border-radius:999px;
+  position:relative;overflow:hidden;
+  border:1px solid transparent;
+  background:transparent}
+.sb-item::before{content:'';position:absolute;top:0;left:-100%;width:40%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(196,188,255,.08),transparent);
+  transform:skewX(-12deg);transition:left .8s ease;pointer-events:none}
+.sb-item:hover::before{left:120%}
+.sb-item:hover{
+  color:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.06);
+  border-color:rgba(140,120,200,.25);
+  box-shadow:inset 0 1px 0 rgba(196,188,255,.18),0 2px 8px rgba(0,0,0,.2)}
+.sb-item.active{
+  color:rgba(255,255,255,1);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,.14) 0%,rgba(255,255,255,.04) 60%,transparent 100%),
+    rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.35),
+    inset 0 -1px 0 rgba(0,0,0,.2),
+    0 0 14px rgba(255,255,255,.08),
+    0 4px 12px rgba(0,0,0,.25);
+  text-shadow:0 0 10px rgba(255,255,255,.3)}
+.sb-icon{font-size:14px;flex-shrink:0}
+.sb-div{border:none;border-top:1px solid rgba(140,120,200,.1);margin:6px 16px}
+
+/* ══ CONTENT ══ */
+#content{flex:1;overflow-y:auto;padding:24px;position:relative;z-index:15}
+#content::-webkit-scrollbar{width:4px}
+#content::-webkit-scrollbar-thumb{background:rgba(255,255,245,.12);border-radius:6px}
+
+/* ══ GLASS CARD — Apple depth ══ */
+.card{
+  background:
+    radial-gradient(circle at var(--mx,35%) var(--my,25%), rgba(196,188,255,.14) 0%,rgba(140,120,200,.04) 55%,transparent 85%),
+    radial-gradient(ellipse 70% 55% at 25% 18%, rgba(120,100,200,.12) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 82%, rgba(50,170,200,.08) 0%,transparent 50%),
+    rgba(12,10,28,.75);
+  backdrop-filter:blur(28px) saturate(240%);-webkit-backdrop-filter:blur(28px) saturate(240%);
+  border:1px solid rgba(140,120,200,.32);
+  border-radius:12px;
+  padding:24px 28px;
+  box-shadow:
+    0 24px 48px -12px rgba(0,0,0,.6),
+    0 0 0 1px rgba(255,255,245,.05),
+    inset 0 1px 0 rgba(255,255,245,.42),
+    inset 0 -1px 0 rgba(0,0,0,.2),
+    inset 1px 0 0 rgba(255,255,245,.06);
+  position:relative;overflow:hidden;margin-bottom:18px}
+/* Specular sweep */
+.card::before{content:'';position:absolute;top:0;left:-180%;width:50%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(255,255,245,.07),transparent);
+  transform:skewX(-12deg);transition:left 1.1s ease;pointer-events:none}
+.card:hover::before{left:180%}
+
+/* Card header */
+.ch{display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  padding-bottom:16px;border-bottom:1px solid rgba(255,255,245,.08)}
+.ch-icon{font-size:20px;filter:drop-shadow(0 0 8px rgba(196,188,255,.4))}
+.ch-title{font-size:11px;font-weight:800;letter-spacing:.18em;
+  background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.72));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-transform:uppercase}
+.ch-sub{font-size:8px;color:var(--tx2);margin-top:2px;letter-spacing:.07em}
+.ch-r{margin-left:auto}
+.badge-ok{color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.25);padding:3px 10px;border-radius:20px;
+  font-size:7px;font-weight:800;letter-spacing:.12em;
+  box-shadow:0 0 8px rgba(196,188,255,.15)}
+.badge-warn{color:var(--peach);background:rgba(255,218,185,.1);
+  border:1px solid rgba(255,218,185,.3);padding:3px 10px;border-radius:20px;
+  font-size:7px;font-weight:800;letter-spacing:.12em}
+
+/* ── KPI grid ── */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpi{
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, rgba(196,188,255,.09) 0%,transparent 60%),
+    rgba(14,12,30,.82);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(140,120,200,.24);border-radius:8px;
+  box-shadow:inset 0 1px 0 rgba(196,188,255,.28),inset 0 -1px 0 rgba(0,0,0,.2);
+  padding:16px 14px;text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,245,.2)}
+.kv{font-size:24px;font-weight:800;font-style:italic;
+  background:linear-gradient(135deg,var(--gold3),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:-.02em;line-height:1}
+.kl{font-size:7px;font-weight:800;letter-spacing:.22em;color:var(--tx2);
+  text-transform:uppercase;margin-top:5px}
+.kt{font-size:8px;margin-top:4px}
+.up{color:var(--mint)}.dn{color:#FF9090}.ok{color:var(--tx3)}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:collapse;font-size:9px}
+.tbl th{padding:8px 14px;text-align:left;font-size:7px;font-weight:800;
+  letter-spacing:.2em;color:var(--tx3);text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,245,.08)}
+.tbl td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.6)}
+.tbl tr:hover td{background:rgba(255,255,245,.025)}
+.tv{color:rgba(255,255,255,.92);font-weight:700}
+.st-ok{color:rgba(255,255,255,.88);background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);padding:2px 8px;border-radius:8px;
+  font-size:7px;font-weight:800}
+.st-w{color:var(--peach);background:rgba(255,218,185,.08);
+  border:1px solid rgba(255,218,185,.22);padding:2px 8px;border-radius:8px;
+  font-size:7px;font-weight:800}
+
+/* ── Ticker ── */
+#ticker{height:28px;background:rgba(6,8,14,.92);
+  backdrop-filter:blur(24px) saturate(200%);border-top:1px solid rgba(255,220,140,.18);
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.08);
+  display:flex;align-items:center;overflow:hidden;flex-shrink:0;z-index:20;position:relative}
+.tick-tag{background:linear-gradient(135deg,rgba(247,231,206,.9),rgba(255,218,185,.8));
+  color:#0a0810;font-size:8px;font-weight:800;letter-spacing:.18em;
+  padding:0 14px;height:100%;display:flex;align-items:center;
+  text-transform:uppercase;flex-shrink:0}
+.tick-scroll{white-space:nowrap;animation:marquee 55s linear infinite;
+  display:flex;align-items:center;gap:24px;padding-left:18px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{font-size:9px;font-weight:600;color:var(--tx1)}
+.ti-gold{color:rgba(255,255,255,.88);font-weight:700}
+
+/* ── Placeholder ── */
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:360px;opacity:.35;text-align:center;gap:12px}
+.ph-icon{font-size:44px;filter:drop-shadow(0 0 12px var(--ng))}
+.ph-title{font-size:11px;font-weight:800;letter-spacing:.2em;color:rgba(255,255,255,.85);text-transform:uppercase}
+.ph-sub{font-size:8px;color:var(--tx2)}
+
+/* ── Notif ── */
+#notifs{position:fixed;top:64px;right:16px;z-index:150;
+  display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.notif{
+  background:rgba(10,13,20,.90);
+  backdrop-filter:blur(28px) saturate(220%);
+  border:1px solid rgba(255,220,140,.28);border-radius:12px;
+  box-shadow:0 16px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,220,140,.35);
+  padding:12px 16px;min-width:270px;
+  box-shadow:0 12px 28px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,245,.3);
+  pointer-events:all;animation:nif .25s ease;font-size:9px}
+@keyframes nif{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+.nt{font-size:9px;font-weight:800;letter-spacing:.08em;margin-bottom:3px}
+.nb{color:var(--tx2);line-height:1.6}
+.notif.ok .nt{color:var(--mint)}.notif.w .nt{color:var(--peach)}.notif.e .nt{color:#FF9090}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── Liquid Glass Buttons ── */
+.btn-lg{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 20px;border-radius:8px;cursor:pointer;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;border:none;position:relative;overflow:hidden;
+  transition:all .22s;
+  background:
+    radial-gradient(circle at 40% 30%, rgba(200,146,42,.22) 0%,rgba(200,146,42,.05) 60%,transparent 100%),
+    rgba(16,12,8,.6);
+  backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(200,146,42,.35);
+  color:var(--gold2);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,220,120,.3),
+    inset 0 -1px 0 rgba(0,0,0,.2)}
+.btn-lg::before{content:'';position:absolute;top:0;left:-180%;width:50%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(255,220,120,.12),transparent);
+  transform:skewX(-12deg);transition:left .9s ease}
+.btn-lg:hover{
+  border-color:rgba(200,146,42,.65);
+  box-shadow:0 12px 28px rgba(0,0,0,.5),0 0 20px rgba(200,146,42,.25),
+    inset 0 1px 0 rgba(255,220,120,.45);
+  transform:translateY(-1px)}
+.btn-lg:hover::before{left:180%}
+.btn-lg:active{transform:translateY(0)}
+
+.btn-lg-ok{
+  background:radial-gradient(circle at 40% 30%, rgba(61,214,140,.18) 0%,rgba(61,214,140,.04) 60%,transparent 100%),rgba(4,20,12,.6);
+  border-color:rgba(61,214,140,.35);color:var(--green);
+  box-shadow:0 8px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(61,214,140,.25)}
+.btn-lg-ok:hover{border-color:rgba(61,214,140,.6);box-shadow:0 12px 28px rgba(0,0,0,.5),0 0 16px rgba(61,214,140,.2),inset 0 1px 0 rgba(61,214,140,.4)}
+
+.btn-lg-red{
+  background:radial-gradient(circle at 40% 30%, rgba(240,80,80,.18) 0%,rgba(240,80,80,.04) 60%,transparent 100%),rgba(20,4,4,.6);
+  border-color:rgba(240,80,80,.35);color:var(--red);
+  box-shadow:0 8px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(240,80,80,.2)}
+.btn-lg-red:hover{border-color:rgba(240,80,80,.6);box-shadow:0 0 16px rgba(240,80,80,.2)}
+
+</style>
+</head>
+<body>
+
+<!-- Galaxy + Nebula — phải là phần tử đầu tiên -->
+<div class="nebula"></div>
+<canvas id="gx"></canvas>
+<div class="l0-grid"></div>
+<div class="l0-scan"></div>
+<div class="l0-grain"></div>
+<canvas id="cymatic-bg"></canvas>
+
+<div id="app">
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="logo">NATT · OS</div>
+    <nav class="nav-pill" id="nav-pill">
+      <div class="nav-item active" onclick="setGroup('CORE')">CORE</div>
+      <div class="nav-item" onclick="setGroup('PRODUCTION')">PROD</div>
+      <div class="nav-item" onclick="setGroup('FINANCE')">FINANCE</div>
+      <div class="nav-item" onclick="setGroup('STRATEGIC')">STRAT</div>
+      <div class="nav-item" onclick="setGroup('SYSTEM')">SYSTEM</div>
+    </nav>
+    <div class="hdr-r">
+      <div class="stats-pill">
+        <div class="dot dot-ok pls"></div>
+        <span id="hdr-cells">38/38</span>
+      </div>
+      <div class="stats-pill">
+        <div class="dot pls" style="background:var(--lav);box-shadow:0 0 6px var(--lav);animation-delay:.8s"></div>
+        <span id="hdr-z">Z 1.000</span>
+      </div>
+      <span id="hdr-git" class="stats-pill" style="font-size:8px">— · —</span>
+      <span class="badge-glass" id="hdr-state">HEALTHY</span>
+    </div>
+  </header>
+
+  <div id="body">
+    <aside id="sidebar">
+  <div id="sb-toggle" onclick="toggleSidebar()" title="Thu/Mở sidebar">◀</div>
+</aside>
+    <main id="content"></main>
+  </div>
+
+  <div id="ticker">
+    <div class="tick-tag">LIVE</div>
+    <div class="tick-scroll" id="tick-scroll">
+      <span class="ti ti-gold" id="t1">SJC: đang tải...</span>
+      <span class="ti">·</span><span class="ti ti-gold" id="t2">9999: —</span>
+      <span class="ti">·</span><span class="ti ti-gold" id="t3">18K: —</span>
+      <span class="ti">·</span><span class="ti" id="t4">NATT-OS · HEALTHY</span>
+      <span class="ti">·</span><span class="ti ti-gold" id="t5">SJC: đang tải...</span>
+      <span class="ti">·</span><span class="ti ti-gold" id="t6">9999: —</span>
+      <span class="ti">·</span><span class="ti ti-gold" id="t7">18K: —</span>
+      <span class="ti">·</span><span class="ti" id="t8">NATT-OS · HEALTHY</span>
+    </div>
+  </div>
+</div>
+
+<div id="notifs"></div>
+
+<script>
+'use strict';
+const S = 'http://localhost:3001';
+
+const MODS = [
+  {id:'dashboard',         t:'TỔNG QUAN MASTER',     i:'🏠',img:'13',g:'CORE'},
+  {id:'sales_terminal',    t:'TERMINAL BÁN HÀNG',    i:'🛒',img:'11',g:'CORE'},
+  {id:'showroom',          t:'LUXURY SHOWROOM',       i:'💎',img:'7',g:'CORE'},
+  {id:'seller_terminal',   t:'CỔNG SELLER 24H',       i:'💼',img:'14',g:'CORE'},
+  {id:'ops_terminal',      t:'HẬU CẦN NỘI VỤ',       i:'🚚',img:'8',g:'CORE'},
+  {id:'sales_core',        t:'KIẾN TRÚC BÁN HÀNG',   i:'🏢',img:'12',g:'CORE'},
+  {id:'production_flow',   t:'QUY TRÌNH SX-BH',       i:'🔄',img:'4',g:'PRODUCTION'},
+  {id:'production_manager',t:'QUẢN ĐỐC SẢN XUẤT',    i:'🏗️',img:'2',g:'PRODUCTION'},
+  {id:'production_wallboard',t:'WALLBOARD XƯỞNG',     i:'📺',img:'9',g:'PRODUCTION'},
+  {id:'daily_report',      t:'TÁC VỤ THỰC THI',       i:'📝',img:'15',g:'PRODUCTION'},
+  {id:'warehouse',         t:'KHO & THÀNH PHẨM',      i:'📦',img:'9',g:'PRODUCTION'},
+  {id:'suppliers',         t:'NHÀ CUNG CẤP',          i:'🤝',img:'10',g:'PRODUCTION'},
+  {id:'sales_tax',         t:'KẾ TOÁN THUẾ',          i:'🧾',img:'1',g:'FINANCE'},
+  {id:'tax_reporting',     t:'BÁO CÁO TÀI KHÓA',     i:'⚖️',img:'15',g:'FINANCE'},
+  {id:'banking_processor', t:'GIAO DỊCH NGÂN HÀNG',   i:'🏦',img:'6',g:'FINANCE'},
+  {id:'payment_hub',       t:'THANH TOÁN QR',          i:'📱',img:'13',g:'FINANCE'},
+  {id:'smart_link',        t:'SMART MAPPING',          i:'🔗',img:'4',g:'FINANCE'},
+  {id:'command',           t:'CHỈ HUY CHIẾN LƯỢC',    i:'🔱',img:'1',g:'STRATEGIC'},
+  {id:'unified_report',    t:'BÁO CÁO LIÊN KẾT',      i:'🧬',img:'11',g:'STRATEGIC'},
+  {id:'analytics',         t:'OMEGA ANALYTICS',        i:'📈',img:'11',g:'STRATEGIC'},
+  {id:'rfm_analysis',      t:'PHÂN TÍCH RFM',          i:'🎯',img:'11',g:'STRATEGIC'},
+  {id:'governance',        t:'QUẢN TRỊ DN',             i:'🏛️',img:'3',g:'STRATEGIC'},
+  {id:'compliance',        t:'BAN KIỂM SOÁT',          i:'🛡️',img:'5',g:'STRATEGIC'},
+  {id:'audit_trail',       t:'SỔ CÁI TRUY VẾT',       i:'📜',img:'15',g:'STRATEGIC'},
+  {id:'customs_intelligence',t:'HẢI QUAN & TỜ KHAI',  i:'🚢',img:'8',g:'STRATEGIC'},
+  {id:'chat',              t:'CỐ VẤN AI',              i:'💬',img:'10',g:'STRATEGIC'},
+  {id:'rooms',             t:'PHÒNG CHIẾN LƯỢC',       i:'🕍',img:'7',g:'STRATEGIC'},
+  {id:'kris_email',        t:'KRIS EMAIL HUB',          i:'📥',img:'10',g:'STRATEGIC'},
+  {id:'admin_hub',         t:'HỆ THỐNG LÕI',           i:'🧠',img:'3',g:'SYSTEM'},
+  {id:'quantum_brain',     t:'QUANTUM ORCHESTRATOR',   i:'⚛️',img:'3',g:'SYSTEM'},
+  {id:'system_navigator',  t:'BẢN ĐỒ LONG MẠCH',      i:'🗺️',img:'4',g:'SYSTEM'},
+  {id:'hr',                t:'NHÂN SỰ & TỔ CHỨC',      i:'👥',img:'10',g:'SYSTEM'},
+  {id:'monitoring',        t:'SYSTEM PULSE',            i:'📡',img:'11',g:'SYSTEM'},
+  {id:'dev',               t:'LÕI HỆ THỐNG',           i:'⚙️',img:'2',g:'SYSTEM'},
+  {id:'rbac_manager',      t:'PHÂN QUYỀN',              i:'🔐',img:'5',g:'SYSTEM'},
+  {id:'calibration_lab',   t:'PHÒNG HIỆU CHUẨN',       i:'🎯',img:'5',g:'SYSTEM'},
+  {id:'data_archive',      t:'KHO NIÊN ĐỘ',            i:'🗄️',img:'2',g:'SYSTEM'},
+  {id:'personal_sphere',   t:'PERSONAL SPHERE',         i:'👤',img:'13',g:'SYSTEM'},
+];
+
+const ST = {
+  Z:1.0, metrics:{}, auditLog:[], production:null,
+  giaVang:{sjc_buy:0,sjc_sell:0,gold9999:0,gold18k:0},
+  currentView:'dashboard', currentGroup:'CORE',
+  systemState:'HEALTHY', risk:0, commits:'—', hash:'—',
+};
+
+// ── Sidebar ──
+function renderSidebar() {
+  const sb = document.getElementById('sidebar');
+  const collapsed = sb.classList.contains('collapsed');
+  const mods = MODS.filter(m => m.g === ST.currentGroup);
+  const toggleBtn = `<div id="sb-toggle" onclick="toggleSidebar()" title="Thu/Mở">${collapsed?'▶':'◀'}</div>`;
+  sb.innerHTML = toggleBtn +
+    `<span class="sb-lbl">${ST.currentGroup}</span>` +
+    mods.map(m => `<div class="sb-item${ST.currentView===m.id?' active':''}"
+        onclick="switchView('${m.id}')"
+        title="${m.t}">
+      ${m.img
+        ? `<img src="/nauion/icon/${m.img}.png" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 5px rgba(180,140,255,.55))" onerror="this.style.display='none'">`
+        : `<span class="sb-icon">${m.i}</span>`}
+      <span>${m.t}</span></div>`).join('') +
+    '<hr class="sb-div">';
+}
+
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  sb.classList.toggle('collapsed');
+  renderSidebar();
+}
+
+function setGroup(g) {
+  ST.currentGroup = g;
+  document.querySelectorAll('.nav-item').forEach((el,i) => {
+    const gs = ['CORE','PRODUCTION','FINANCE','STRATEGIC','SYSTEM'];
+    el.classList.toggle('active', gs[i]===g);
+  });
+  renderSidebar();
+}
+
+function switchView(id) {
+  ST.currentView = id;
+  renderSidebar();
+  renderContent();
+}
+
+// ── Renderers ──
+function renderContent() {
+  const el = document.getElementById('content');
+  const mod = MODS.find(m=>m.id===ST.currentView);
+  const r = RENDERERS[ST.currentView];
+  if (r) r(el, mod); else renderPH(el, mod);
+}
+
+const RENDERERS = {
+  dashboard: (el) => {
+    const kpis = [
+      {v:'38/38', l:'CELLS WIRED',     t:'up'},
+      {v:'0',     l:'TSC ERRORS',      t:'up'},
+      {v:ST.Z.toFixed(3), l:'IMPEDANCE Z', t:ST.Z<2?'up':'dn'},
+      {v:ST.systemState,  l:'STATE',       t:'up'},
+      {v:ST.commits,      l:'COMMITS',     t:'ok'},
+      {v:ST.risk+'/100',  l:'RISK',        t:ST.risk<30?'up':'dn'},
+      {v:Object.keys(ST.metrics).length||'—', l:'CELLS LIVE', t:'up'},
+      {v:ST.giaVang.gold18k?ST.giaVang.gold18k.toLocaleString('vi-VN')+'đ':'—', l:'GOLD 18K', t:'ok'},
+    ];
+    el.innerHTML = `<div class="card">
+      <div class="ch"><span class="ch-icon">🏠</span>
+        <div><div class="ch-title">TỔNG QUAN MASTER</div>
+        <div class="ch-sub">NATT-OS · Real-time UIState Mirror</div></div>
+        <div class="ch-r"><span class="badge-ok">LIVE</span></div>
+      </div>
+      <div class="g4">${kpis.map(k=>`<div class="kpi">
+        <div class="kv">${k.v}</div>
+        <div class="kl">${k.l}</div>
+        <div class="kt ${k.t}">${k.t==='up'?'↑ UP':k.t==='dn'?'↓ WARN':'→'}</div>
+      </div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ch-icon">📊</span>
+        <div class="ch-title">CELL METRICS</div></div>
+      <table class="tbl">
+        <tr><th>CELL</th><th>METRIC</th><th>VALUE</th><th>STATUS</th></tr>
+        ${Object.entries(ST.metrics).slice(0,14).map(([k,v])=>`
+        <tr><td class="tv">${k}</td><td>${v.metric||'alive'}</td>
+        <td class="tv">${v.value??1}</td><td><span class="st-ok">LIVE</span></td></tr>`).join('')
+        || '<tr><td colspan="4" style="color:var(--tx3);padding:24px;text-align:center;font-size:9px">Đang chờ cell.metric từ Mạch HeyNa...</td></tr>'}
+      </table>
+    </div>`;
+  },
+
+  production_wallboard: (el) => {
+    const p = ST.production||{};
+    const stages = p.stages||[];
+    const m = p.metrics||{};
+    el.innerHTML = `<div class="card">
+      <div class="ch"><span class="ch-icon">📺</span>
+        <div><div class="ch-title">WALLBOARD XƯỞNG</div>
+        <div class="ch-sub">Tâm Luxury · Production Pulse · april-2025.json</div></div>
+        <div class="ch-r"><span class="badge-ok">LIVE</span></div>
+      </div>
+      <div class="g4" style="margin-bottom:18px">
+        <div class="kpi"><div class="kv">${m.dailyOutput??'—'}</div><div class="kl">SẢN LƯỢNG/NGÀY</div></div>
+        <div class="kpi"><div class="kv">${m.oee??'—'}%</div><div class="kl">OEE</div></div>
+        <div class="kpi"><div class="kv">${m.avgPuritySX??'—'}%</div><div class="kl">PHỔ SX THỰC TẾ</div></div>
+        <div class="kpi"><div class="kv">${m.repairCount??'—'}</div><div class="kl">SỬA CHỮA (SC)</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px">
+        ${stages.map(s=>`<div class="kpi">
+          <div class="kv" style="font-size:22px">${s.count}</div>
+          <div class="kl" style="font-size:6px">${s.stage.replace('_',' ')}</div>
+        </div>`).join('') || '<div style="grid-column:span 7;text-align:center;color:var(--tx3);padding:20px;font-size:9px">Đang tải production data...</div>'}
+      </div>
+    </div>`;
+  },
+
+  audit_trail: (el) => {
+    el.innerHTML = `<div class="card">
+      <div class="ch"><span class="ch-icon">📜</span>
+        <div><div class="ch-title">SỔ CÁI TRUY VẾT</div>
+        <div class="ch-sub">Audit Trail · Real-time · Immutable</div></div>
+      </div>
+      <table class="tbl">
+        <tr><th>TYPE</th><th>ACTOR</th><th>TIME</th><th>STATUS</th></tr>
+        ${(ST.auditLog||[]).slice(0,20).map(a=>`
+        <tr><td class="tv">${a.type||'—'}</td>
+        <td>${a.actor||'system'}</td>
+        <td style="color:var(--tx3)">${a.ts?new Date(a.ts).toLocaleTimeString('vi-VN'):'—'}</td>
+        <td><span class="st-ok">OK</span></td></tr>`).join('')
+        || '<tr><td colspan="4" style="color:var(--tx3);padding:24px;text-align:center;font-size:9px">Đang chờ audit events...</td></tr>'}
+      </table>
+    </div>`;
+  },
+
+  monitoring: (el) => {
+    el.innerHTML = `<div class="card">
+      <div class="ch"><span class="ch-icon">📡</span>
+        <div><div class="ch-title">SYSTEM PULSE</div>
+        <div class="ch-sub">Z = ${ST.Z.toFixed(3)} · ${ST.systemState}</div></div>
+        <div class="ch-r"><span class="${ST.risk<30?'badge-ok':'badge-warn'}">risk ${ST.risk}/100</span></div>
+      </div>
+      <div class="g4" style="margin-bottom:18px">
+        <div class="kpi"><div class="kv">${ST.Z.toFixed(3)}</div><div class="kl">IMPEDANCE Z</div></div>
+        <div class="kpi"><div class="kv">${ST.systemState}</div><div class="kl">STATE</div></div>
+        <div class="kpi"><div class="kv">${ST.risk}</div><div class="kl">RISK SCORE</div></div>
+        <div class="kpi"><div class="kv">${Object.keys(ST.metrics).length}</div><div class="kl">CELLS EMITTING</div></div>
+      </div>
+      <table class="tbl">
+        <tr><th>CELL</th><th>SIGNAL</th><th>VALUE</th><th>STATUS</th></tr>
+        ${Object.entries(ST.metrics).slice(0,15).map(([k,v])=>`
+        <tr><td class="tv">${k}</td><td>${v.metric||'alive'}</td>
+        <td>${v.value??1}</td><td><span class="st-ok">LIVE</span></td></tr>`).join('')
+        || '<tr><td colspan="4" style="color:var(--tx3);padding:24px;text-align:center;font-size:9px">Waiting for signals...</td></tr>'}
+      </table>
+    </div>`;
+  },
+};
+
+function renderPH(el, mod) {
+  el.innerHTML = `<div class="card"><div class="ph">
+    <div class="ph-icon">${mod?.i||'⬡'}</div>
+    <div class="ph-title">${mod?.t||'MODULE'}</div>
+    <div class="ph-sub">React component · render qua DynamicModuleRenderer</div>
+  </div></div>`;
+}
+
+// ── SSE ──
+function startMach() {
+  const es = new EventSource(`${S}/mach/heyna`);
+  es.onmessage = e => {
+    try { onMach(JSON.parse(e.data)); } catch {}
+  };
+  es.onerror = () => { es.close(); setTimeout(startMach, 3000); };
+}
+
+function onMach(d) {
+  if (!d?.event) return;
+  const {event:ev, payload:p} = d;
+  if (ev==='nauion.state') {
+    if (p?.impedanceZ!==undefined) { ST.Z=p.impedanceZ; document.getElementById('hdr-z').textContent='Z '+ST.Z.toFixed(3); }
+    if (p?.state) ST.systemState = p.state==='nauion'?'HEALTHY':p.state.toUpperCase();
+    document.getElementById('hdr-state').textContent = ST.systemState;
+  } else if (ev==='cell.metric' && p?.cell) {
+    ST.metrics[p.cell] = p;
+  } else if (ev==='audit.record') {
+    ST.auditLog.unshift({...p, ts:d.ts||Date.now()});
+    ST.auditLog = ST.auditLog.slice(0,50);
+  } else if (ev==='gia-vang.updated' && p) {
+    ST.giaVang = {...ST.giaVang,...p}; updateTicker();
+  }
+  const live = ['dashboard','monitoring','audit_trail','production_wallboard'];
+  if (live.includes(ST.currentView)) renderContent();
+}
+
+// ── ui.action ──
+function uiAction(type, payload) {
+  fetch(`${S}/phat/nauion`,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({type:'ui.action',payload:{actionType:type,...payload},ts:Date.now()})
+  }).catch(()=>{});
+}
+
+// ── Load server data ──
+async function loadData() {
+  try {
+    const [suc,gia,prod] = await Promise.all([
+      fetch(`${S}/kenh/suc`).then(r=>r.json()),
+      fetch(`${S}/kenh/gia-vang`).then(r=>r.json()),
+      fetch(`${S}/kenh/production`).then(r=>r.json()),
+    ]);
+    if (suc.commits) { ST.commits=suc.commits; ST.hash=suc.hash||'—'; }
+    document.getElementById('hdr-git').textContent = `${ST.commits} · ${ST.hash}`;
+    if (gia) ST.giaVang=gia;
+    if (prod) ST.production=prod;
+    updateTicker(); renderContent();
+  } catch {}
+}
+
+function fmt(v){ return v?Number(v).toLocaleString('vi-VN')+'đ':'—'; }
+function updateTicker() {
+  const g = ST.giaVang;
+  const items = [`🏆 SJC MUA ${fmt(g.sjc_buy)}`,`BÁN ${fmt(g.sjc_sell)}`,
+    `💎 9999 ${fmt(g.gold9999)}`,`✨ 18K ${fmt(g.gold18k)}`,
+    `📡 NATT-OS ${ST.systemState} Z=${ST.Z.toFixed(2)}`];
+  for (let i=1;i<=8;i++) {
+    const el = document.getElementById('t'+i);
+    if (el) el.textContent = items[(i-1)%items.length];
+  }
+}
+
+// ── Cymatic ──
+const MEM = navigator.deviceMemory||4;
+const GRID = MEM<4?30:MEM<8?50:70;
+let src2={x:.5,y:.5};
+function cymLoop() {
+  const c = document.getElementById('cymatic-bg');
+  if (!c) return;
+  c.width=c.height=GRID;
+  const cx = c.getContext('2d');
+  let t=0;
+  (function r(){
+    t=performance.now()/1000;
+    const Z=ST.Z, Zn=Math.min(1,Math.max(0,(Z-.1)/4.9));
+    const f=432*Math.pow(Zn,.5),A=.5;
+    const lam=1/(f/1000),k=(2*Math.PI)/lam,w=2*Math.PI*f;
+    const img=cx.createImageData(GRID,GRID); const d=img.data;
+    for(let py=0;py<GRID;py++) for(let px=0;px<GRID;px++){
+      const nx=px/GRID,ny=py/GRID;
+      const d1=Math.sqrt((nx-.5)**2+(ny-.5)**2);
+      const d2=Math.sqrt((nx-src2.x)**2+(ny-src2.y)**2);
+      const wave=A*Math.sin(k*d1-w*t)+A*Math.sin(k*d2-w*t);
+      const iv=(wave+2*A)/(4*A);
+      const i=(py*GRID+px)*4;
+      if(Zn<.3){d[i]=247;d[i+1]=Math.round(231*iv);d[i+2]=Math.round(206*iv);}
+      else if(Zn<.7){d[i]=Math.round(100*iv);d[i+1]=Math.round(150*iv);d[i+2]=255;}
+      else{d[i]=255;d[i+1]=0;d[i+2]=Math.round(80*iv);}
+      d[i+3]=Math.round(iv*150);
+    }
+    cx.putImageData(img,0,0);
+    setTimeout(r, MEM<4?80:40);
+  })();
+}
+
+// ── Mouse ──
+document.addEventListener('mousemove', e=>{
+  document.documentElement.style.setProperty('--mx',(e.clientX/window.innerWidth*100)+'%');
+  document.documentElement.style.setProperty('--my',(e.clientY/window.innerHeight*100)+'%');
+  src2.x=e.clientX/window.innerWidth;
+  src2.y=e.clientY/window.innerHeight;
+});
+
+// ── Notify ──
+function notify(title,body,type='ok'){
+  const p=document.getElementById('notifs');
+  const n=document.createElement('div');
+  n.className=`notif ${type}`;
+  n.innerHTML=`<div class="nt">${title}</div><div class="nb">${body}</div>`;
+  p.appendChild(n); setTimeout(()=>n.remove(),4000);
+}
+
+// ── BOOT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  renderSidebar(); renderContent();
+  startMach(); loadData(); cymLoop();
+});
+
+// ══ GALAXY CANVAS — stars + nebula + comets ══
+(function(){
+  const cv = document.getElementById('gx');
+  const gx = cv.getContext('2d');
+  let W, H, stars=[], comets=[], shooters=[];
+
+  function resize(){
+    W = cv.width = innerWidth;
+    H = cv.height = innerHeight;
+    // Stars — nhiều loại
+    const n = Math.floor(W*H/1800);
+    stars = Array.from({length:n}, ()=>({
+      x: Math.random()*W, y: Math.random()*H,
+      r: Math.random()*1.6+.1,
+      a: Math.random()*.8+.1,
+      hue: Math.random()<.20 ? (Math.random()<.6?260:220) : Math.random()<.08?42:0,
+      sat: Math.random()<.25?85:0,
+      ph: Math.random()*Math.PI*2,
+      sp: .3+Math.random()*.8
+    }));
+  }
+
+  function spawnComet(){
+    // Sao chổi — bay chậm với đuôi dài
+    const side = Math.random()<.5;
+    comets.push({
+      x: side?-80:W+80, y: Math.random()*H*.6,
+      vx: side?1.2:-1.2, vy: .3+Math.random()*.5,
+      len: 120+Math.random()*180,
+      a: .9, life:1,
+      hue: Math.random()<.5?42:200,
+    });
+  }
+
+  function spawnShooter(){
+    // Sao băng — bay nhanh
+    shooters.push({
+      x: Math.random()*W*.7, y: Math.random()*H*.4,
+      vx: 8+Math.random()*14, vy: 3+Math.random()*8,
+      len: 60+Math.random()*120,
+      a: 1, life:1,
+    });
+  }
+
+  function draw(ts){
+    gx.clearRect(0,0,W,H);
+    const t = ts*.001;
+
+    // Stars
+    for(const s of stars){
+      const alpha = s.a*(.55+.45*Math.sin(t*s.sp+s.ph));
+      gx.beginPath();
+      gx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      gx.fillStyle = s.sat
+        ? `hsla(${s.hue},${s.sat}%,90%,${alpha.toFixed(2)})`
+        : `rgba(255,255,255,${alpha.toFixed(2)})`;
+      gx.fill();
+    }
+
+    // Comets
+    for(let i=comets.length-1;i>=0;i--){
+      const c = comets[i];
+      c.x += c.vx; c.y += c.vy; c.life -= .003;
+      if(c.life<=0||c.x<-200||c.x>W+200){ comets.splice(i,1); continue; }
+      const grad = gx.createLinearGradient(c.x,c.y, c.x-c.vx*c.len/c.vx, c.y-c.vy*c.len/c.vx);
+      grad.addColorStop(0, `hsla(${c.hue},80%,90%,${(c.a*c.life).toFixed(2)})`);
+      grad.addColorStop(.4, `hsla(${c.hue},60%,70%,${(c.a*c.life*.4).toFixed(2)})`);
+      grad.addColorStop(1, 'transparent');
+      gx.beginPath();
+      gx.moveTo(c.x, c.y);
+      gx.lineTo(c.x-c.vx*(c.len/Math.abs(c.vx)), c.y-c.vy*(c.len/Math.abs(c.vx)));
+      gx.strokeStyle = grad;
+      gx.lineWidth = 1.5*c.life;
+      gx.stroke();
+      // Nucleus glow
+      const rg = gx.createRadialGradient(c.x,c.y,0,c.x,c.y,4);
+      rg.addColorStop(0,`hsla(${c.hue},80%,98%,${c.life.toFixed(2)})`);
+      rg.addColorStop(1,'transparent');
+      gx.beginPath(); gx.arc(c.x,c.y,4,0,Math.PI*2);
+      gx.fillStyle=rg; gx.fill();
+    }
+
+    // Shooting stars
+    for(let i=shooters.length-1;i>=0;i--){
+      const s = shooters[i];
+      s.x+=s.vx; s.y+=s.vy; s.life-=.04;
+      if(s.life<=0){ shooters.splice(i,1); continue; }
+      const ang = Math.atan2(s.vy,s.vx);
+      const grad = gx.createLinearGradient(s.x,s.y,s.x-Math.cos(ang)*s.len,s.y-Math.sin(ang)*s.len);
+      grad.addColorStop(0,`rgba(255,255,255,${s.life.toFixed(2)})`);
+      grad.addColorStop(.3,`rgba(200,220,255,${(s.life*.5).toFixed(2)})`);
+      grad.addColorStop(1,'transparent');
+      gx.beginPath();
+      gx.moveTo(s.x,s.y);
+      gx.lineTo(s.x-Math.cos(ang)*s.len,s.y-Math.sin(ang)*s.len);
+      gx.strokeStyle=grad; gx.lineWidth=1.2*s.life; gx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  // Spawn timers
+  setInterval(spawnComet, 4000+Math.random()*6000);
+  setInterval(spawnShooter, 1800+Math.random()*2400);
+  setInterval(()=>{ if(Math.random()<.4) spawnShooter(); }, 1200);
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
