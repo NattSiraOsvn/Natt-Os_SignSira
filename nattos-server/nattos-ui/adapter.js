@@ -50,3 +50,25 @@ export async function phatNauion(type, payload, cell) {
   if (!r.ok) throw new Error(`emit ${r.status}`);
   return await r.json();
 }
+
+// ── Mạch HeyNa — SSE stream (thay poll) ──────────────────
+export function machHeyna(onEvent, onError) {
+  const mach = new EventSource(`${BASE}/mach/heyna`);
+  
+  mach.onopen = () => console.log('[Mạch HeyNa] Nahere — mạch sống');
+  
+  mach.onmessage = (e) => {
+    try {
+      const data = JSON.parse(e.data);
+      onEvent(data);
+    } catch {}
+  };
+  
+  mach.onerror = () => {
+    if (onError) onError();
+    console.warn('[Mạch HeyNa] Mạch đứt — Whao fallback');
+  };
+  
+  // Trả về hàm đóng mạch
+  return () => mach.close();
+}
