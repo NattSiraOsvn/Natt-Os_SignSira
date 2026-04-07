@@ -25,14 +25,6 @@ export async function fetchHealth() {
   return await r.json();
 }
 
-// ── Kênh Trạng Thái Cell ─────────────────────────────────
-export async function fetchState(cell) {
-  const url = cell ? `${BASE}/kenh/state/${cell}` : `${BASE}/kenh/state`;
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`state ${r.status}`);
-  return await r.json();
-}
-
 // ── Kênh Nauion ───────────────────────────────────────────
 export async function fetchNauion() {
   const r = await fetch(`${BASE}/kenh/nauion`);
