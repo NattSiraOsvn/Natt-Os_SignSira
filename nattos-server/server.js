@@ -91,7 +91,13 @@ hey('/kenh/nauion', (req, res) => {
 });
 
 hey('/kenh/suc', (req, res) => {
-  res.json({ status: 'ok', server: 'NATT-OS Server v1.0', ts: new Date().toISOString() });
+  const { execSync } = require('child_process');
+  let commits = '—', hash = '—';
+  try {
+    commits = execSync('git log --oneline | wc -l', { cwd: __dirname + '/..' }).toString().trim().replace(/\s/g,'');
+    hash = execSync('git log --oneline -1', { cwd: __dirname + '/..' }).toString().trim().split(' ')[0];
+  } catch {}
+  res.json({ status: 'ok', server: 'NATT-OS Server v1.0', commits, hash, ts: new Date().toISOString() });
 });
 
 yeh('/phat/nauion', (req, res) => {

@@ -307,7 +307,7 @@ body{background:var(--bg);color:var(--tx0);font-family:'JetBrains Mono',monospac
   <div class="hdr-chip"><div class="hdr-dot pls" style="background:var(--lav);box-shadow:0 0 6px var(--lav);animation-delay:.7s"></div>TSC 0</div>
   <div class="hdr-chip"><div class="hdr-dot pls" style="background:var(--ice);box-shadow:0 0 6px var(--ice);animation-delay:1.4s"></div>L4 LIVE</div>
   <div class="hdr-r">
-    <span style="font-size:8px;color:var(--tx3);letter-spacing:.1em">390+ commits · 64cb88e</span>
+    <span id="hdr-git" style="font-size:8px;color:var(--tx3);letter-spacing:.1em">— · —</span>
     <div class="badge">SYSTEM · HEALTHY</div>
     <div class="badge healthy">● risk 0/100</div>
   </div>
@@ -725,6 +725,15 @@ setInterval(() => {
     console.warn('[Mapping] Mạch đứt — retry 3s');
   };
 })();
+
+// ── Header stats từ server ──
+fetch('http://localhost:3001/kenh/suc')
+  .then(r => r.json())
+  .then(d => {
+    const el = document.getElementById('hdr-git');
+    if (el && d.commits) el.textContent = d.commits + ' commits · ' + (d.hash || '—');
+  })
+  .catch(() => {});
 </script>
 </body>
 </html>
