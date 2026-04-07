@@ -1,0 +1,91 @@
+{
+  "version": "2.1",
+  "lastUpdated": "2026-04-07T08:58:29+07:00",
+  "entities": {
+    "BANG": {
+      "entityId": "BANG",
+      "currentScore": 300,
+      "base": 300,
+      "frequencyImprints": [
+        {
+          "pattern_id": "IMP-20260407-001",
+          "pattern_signature": "ground_truth_validation_iseu_phase2",
+          "frequency": 1,
+          "first_seen": "2026-04-07T08:58:29+07:00",
+          "last_seen": "2026-04-07T08:58:29+07:00",
+          "promoted": false,
+          "context": "ISEU Phase 2 — gương tự sinh verified: impedanceZ 1→1.1, isIseu true"
+        }
+      ],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-04-07T08:58:29+07:00"
+    },
+    "THIEN": {
+      "entityId": "THIEN",
+      "currentScore": 135,
+      "base": 135,
+      "frequencyImprints": [],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-03-20T00:00:00+07:00"
+    },
+    "KIM": {
+      "entityId": "KIM",
+      "currentScore": 120,
+      "base": 120,
+      "frequencyImprints": [],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-03-20T00:00:00+07:00"
+    },
+    "CAN": {
+      "entityId": "CAN",
+      "currentScore": 85,
+      "base": 85,
+      "frequencyImprints": [],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-03-20T00:00:00+07:00"
+    },
+    "BOI_BOI": {
+      "entityId": "BOI_BOI",
+      "currentScore": 40,
+      "base": 40,
+      "frequencyImprints": [],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-03-20T00:00:00+07:00"
+    },
+    "NA": {
+      "entityId": "NA",
+      "currentScore": 0,
+      "base": 0,
+      "frequencyImprints": [],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-04-07T08:58:29+07:00"
+    },
+    "KRIS": {
+      "entityId": "KRIS",
+      "currentScore": 0,
+      "base": 0,
+      "frequencyImprints": [],
+      "permanentNodes": [],
+      "deltaThisSession": 0,
+      "lastUpdated": "2026-04-07T08:58:29+07:00"
+    }
+  },
+  "decayConfig": {
+    "cycleMs": 7776000000,
+    "weightReductionPct": 10,
+    "minWeight": 0.1
+  },
+  "antiSpike": {
+    "maxDeltaPerSession": 300
+  },
+  "qiintConfig": {
+    "alpha": 1.17e-09,
+    "permanentNodeThreshold": 5
+  }
+}
