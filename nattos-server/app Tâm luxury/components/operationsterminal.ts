@@ -28,7 +28,7 @@ const OperationsTerminal: React.FC<OperationsTerminalProps> = ({ currentRole, cu
     { id: 'ORD-SHIP-03', dest: 'Hải Châu, Đà Nẵng', weight: 300, value: 25000000, urgency: false }
   ];
 
-  const handleAnalyzeLogistics = async (order: any) => {
+  const handleAnalyzeLogistics = async (order: unknown) => {
     setSelectedOrder(order.id);
     setIsCalculating(true);
     setSolutions([]);

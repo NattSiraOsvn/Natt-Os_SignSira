@@ -10,7 +10,7 @@ import { EventBus } from "../core/events/event-bus";
 // ── HELPER ────────────────────────────────────────────────────────────────
 function wire(event: string, cell: string, fn: () => void) {
   try {
-    EventBus.on(event, (env: any) => {
+    EventBus.on(event, (env: Record<string, unknown>) => {
       try {
         fn();
         EventBus.emit("cell.metric", { cell, metric: event, value: 1, ts: Date.now() }, event);
@@ -19,7 +19,7 @@ function wire(event: string, cell: string, fn: () => void) {
   } catch { /* silent */ }
 }
 
-function tryImport(path: string, callback: (mod: any) => void) {
+function tryImport(path: string, callback: (mod: unknown) => void) {
   try { callback(require(path)); } catch { /* silent */ }
 }
 
@@ -251,7 +251,7 @@ tryImport("../cells/kernel/rbac-cell/domain/services/rbac.engine", m => {
 
 tryImport("../cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine", m => {
   const eng = new (m.ChromaticStateEngine || m.default)();
-  EventBus.on("chromatic.state.changed", (env: any) => {
+  EventBus.on("chromatic.state.changed", (env: Record<string, unknown>) => {
     try { eng.execute?.(env?.payload); } catch { /* silent */ }
     EventBus.emit("cell.metric", { cell: "quantum-defense-cell", metric: "chromatic.updated", value: 1, ts: Date.now() });
   });
@@ -341,7 +341,7 @@ tryImport("../cells/business/warehouse-cell/domain/services/warehouse-intelligen
 
 // ── CustomsRobotEngine — const object, không phải class ──────────────────
 // Wire customs.declaration emit khi order có hàng nhập khẩu
-EventBus.on("order.created", (payload: any) => {
+EventBus.on("order.created", (payload: Record<string, unknown>) => {
   if (payload && payload.hasImport) {
     EventBus.emit("customs.declaration", {
       orderId:  payload.orderId,
@@ -354,7 +354,7 @@ EventBus.on("order.created", (payload: any) => {
 tryImport("../cells/business/customs-cell/domain/services/customs.engine", m => {
   const eng = m.CustomsRobotEngine;
   if (!eng) return;
-  EventBus.on("customs.declaration", (env: any) => {
+  EventBus.on("customs.declaration", (env: Record<string, unknown>) => {
     try {
       eng.batchProcess?.(env?.payload?.goods ?? []);
       EventBus.emit("cell.metric", { cell: "customs-cell", metric: "customs.executed", value: 1, ts: Date.now() });
@@ -362,7 +362,7 @@ tryImport("../cells/business/customs-cell/domain/services/customs.engine", m => 
   });
 });
 
-export function triggerOrderFlow(orderId: string, payload?: any) {
+export function triggerOrderFlow(orderId: string, payload?: unknown) {
   EventBus.emit("order.created", { orderId, payload: payload ?? {}, ts: Date.now() });
 }
 
@@ -385,7 +385,7 @@ tryImport("../metabolism/healing/anomaly-detector", m => {
   const _metricBuffer: Record<string, number[]> = {};
 
   // Listen cell.metric → feed AnomalyDetector
-  EventBus.on('cell.metric', (payload: any) => {
+  EventBus.on('cell.metric', (payload: Record<string, unknown>) => {
     if (!payload || typeof payload.value !== 'number') return;
     const key = `${payload.cell}.${payload.metric}`;
     if (!_metricBuffer[key]) _metricBuffer[key] = [];
@@ -402,7 +402,7 @@ tryImport("../metabolism/healing/anomaly-detector", m => {
 });
 
 // Wire: sales.confirm → payment.received (chain causality)
-EventBus.on("sales.confirm", (payload: any) => {
+EventBus.on("sales.confirm", (payload: Record<string, unknown>) => {
   EventBus.emit("payment.received", {
     orderId: payload?.orderId ?? payload?.originCell,
     amount:  payload?.amount ?? 0,
@@ -412,7 +412,7 @@ EventBus.on("sales.confirm", (payload: any) => {
 });
 
 // Wire: inventory.in → sales.confirm (chain chính ORDER→CASH)
-EventBus.on("inventory.in", (payload: any) => {
+EventBus.on("inventory.in", (payload: Record<string, unknown>) => {
   EventBus.emit("sales.confirm", {
     orderId: payload?.orderId ?? payload?.originCell,
     source:  "inventory-cell",

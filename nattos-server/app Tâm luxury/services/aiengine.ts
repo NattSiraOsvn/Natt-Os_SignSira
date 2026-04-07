@@ -15,7 +15,7 @@ export class AdvancedAIEngine {
   /**
    * Train custom models với dữ liệu thực tế (Simulated for UI/UX & Fine-tuning logic)
    */
-  async trainProductRecognition(trainingData: any) {
+  async trainProductRecognition(trainingData: unknown) {
     const ai = null /* LỆNH #001 */;
     console.log("Thiên đang huấn luyện Model nhận diện sản phẩm với bộ dữ liệu mới...", trainingData);
     
@@ -32,7 +32,7 @@ export class AdvancedAIEngine {
     };
   }
 
-  async trainPricePrediction(salesData: any) {
+  async trainPricePrediction(salesData: unknown) {
     const ai = null /* LỆNH #001 */;
     console.log("Thiên đang huấn luyện Model dự báo giá với dữ liệu thương mại...", salesData);
     const response = await ai.models.generateContent({
@@ -81,7 +81,7 @@ export class AdvancedAIEngine {
   /**
    * Phân tích rủi ro & Đưa ra hành động gợi ý
    */
-  async getNextActions(context: any) {
+  async getNextActions(context: unknown) {
     const ai = null /* LỆNH #001 */;
     const response = await ai.models.generateContent({
       model: 'DISABLED_LỆNH_001',

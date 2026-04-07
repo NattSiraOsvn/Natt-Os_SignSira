@@ -109,7 +109,7 @@ export class ConflictResolver {
   }
 
   private loadConflictRule(businessType: string): ConflictResolutionRule {
-    const rulesDict = (SUPER_DICTIONARY as any).conflict_resolution_rules;
+    const rulesDict = (SUPER_DICTIONARY as Record<string, unknown>).conflict_resolution_rules;
     const rule = rulesDict[businessType];
 
     if (!rule) {

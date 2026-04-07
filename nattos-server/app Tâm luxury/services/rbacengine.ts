@@ -8,7 +8,7 @@ import { UserRole, UserPosition, PositionType, ViewType, ModuleID, ComplianceVio
 export class RBACEngine {
   private static currentUser: { role: UserRole; position: UserPosition } | null = null;
 
-  static registerUser(profile: { roleId: UserRole; position: PositionType | any; [key: string]: any }) {
+  static registerUser(profile: { roleId: UserRole; position: PositionType | any; [key: string]: unknown }) {
     // Lưu vết Identity hiện tại vào Core
     this.currentUser = { 
       role: profile.roleId, 

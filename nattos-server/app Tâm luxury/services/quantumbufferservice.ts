@@ -16,7 +16,7 @@ class QuantumBufferService {
     return QuantumBufferService.instance;
   }
 
-  public enqueue(type: string, payload: any, priority: number = 1) {
+  public enqueue(type: string, payload: unknown, priority: number = 1) {
     const task: QuantumTask = {
       id: `TASK-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
       type,

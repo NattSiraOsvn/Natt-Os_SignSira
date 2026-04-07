@@ -8,18 +8,18 @@ export interface ValidationSchema {
     minLength?: number;
     maxLength?: number;
     pattern?: RegExp;
-    enum?: any[];
-    validator?: (val: any) => boolean;
+    enum?: unknown[];
+    validator?: (val: unknown) => boolean;
   };
 }
 
 export interface TransformationRule {
-  [field: string]: string | ((val: any, row: any) => any);
+  [field: string]: string | ((val: unknown, row: unknown) => unknown);
 }
 
 export class ModuleHelpers {
   private static instance: ModuleHelpers;
-  private cache = new Map<string, { value: any; expiry: number }>();
+  private cache = new Map<string, { value: unknown; expiry: number }>();
 
   static getInstance() {
     if (!ModuleHelpers.instance) ModuleHelpers.instance = new ModuleHelpers();
@@ -27,7 +27,7 @@ export class ModuleHelpers {
   }
 
   // ✅ HELPER 1: Data Validation
-  validateData(data: any, schema: ValidationSchema) {
+  validateData(data: unknown, schema: ValidationSchema) {
     const errors: string[] = [];
     
     for (const [field, rules] of Object.entries(schema)) {
@@ -66,8 +66,8 @@ export class ModuleHelpers {
   }
 
   // ✅ HELPER 2: Data Transformation
-  transformData(data: any, rules: TransformationRule) {
-    const transformed: any = { ...data };
+  transformData(data: unknown, rules: TransformationRule) {
+    const transformed: unknown = { ...data };
     
     for (const [field, transform] of Object.entries(rules)) {
       if (typeof transform === 'function') {
@@ -90,12 +90,12 @@ export class ModuleHelpers {
   // ✅ HELPER 5: Batch Processing (Async)
   async processBatch<T>(
     items: T[], 
-    processor: (item: T) => Promise<any>, 
+    processor: (item: T) => Promise<unknown>, 
     batchSize = 10,
     delayMs = 100
   ) {
-    const results: any[] = [];
-    const errors: any[] = [];
+    const results: unknown[] = [];
+    const errors: unknown[] = [];
 
     for (let i = 0; i < items.length; i += batchSize) {
       const batch = items.slice(i, i + batchSize);
@@ -112,7 +112,7 @@ export class ModuleHelpers {
 
       const batchResults = await Promise.all(batchPromises);
       
-      batchResults.forEach((res: any, idx) => {
+      batchResults.forEach((res: unknown, idx) => {
          if (res.status === 'fulfilled') results.push(res.value);
          else errors.push({ item: batch[idx], error: res.reason });
       });

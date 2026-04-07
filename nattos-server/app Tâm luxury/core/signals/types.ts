@@ -7,7 +7,7 @@ export interface QuantumSignal {
   source: string; // 'FINANCE', 'SALES', etc.
   type: 'INTENT' | 'ALERT' | 'OPPORTUNITY';
   intensity: number; // 0.0 - 1.0
-  content: any; // Flexible payload
+  content: unknown; // Flexible payload
   timestamp: number;
 }
 
@@ -15,5 +15,5 @@ export interface ManifestationConfig {
   mode: OverlayType;
   title?: string;
   component?: React.ReactNode;
-  contextData?: any;
+  contextData?: unknown;
 }

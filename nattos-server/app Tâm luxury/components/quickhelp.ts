@@ -86,7 +86,7 @@ const QuickHelp: React.FC<QuickHelpProps> = ({ onClose }) => {
               ].map(tab => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as string)}
                   className={`w-full text-left p-4 rounded-xl flex items-center gap-3 transition-all ${activeTab === tab.id ? 'bg-amber-500 text-black font-bold shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                 >
                    <span>{tab.icon}</span>

@@ -5,10 +5,10 @@ export interface StagedEvent {
   id: string;
   eventId: string; // Unique ID for business logic
   idempotencyKey: string; // Hash(Content + Context)
-  payload: any;
+  payload: unknown;
   status: 'STAGED' | 'COMMITTED' | 'FAILED' | 'DUPLICATE_IGNORED';
   timestamp: number;
-  metadata?: any;
+  metadata?: unknown;
 }
 
 /**
@@ -63,7 +63,7 @@ class EventStagingLayerService {
    * Tạo Idempotency Key duy nhất
    * Key = Hash(JSON(payload) + Source + Context)
    */
-  public generateIdempotencyKey(data: any, context: string): string {
+  public generateIdempotencyKey(data: unknown, context: string): string {
     // 1. Flatten & Sort keys to ensure deterministic string
     // Loại bỏ các trường biến động như timestamp, id ngẫu nhiên nếu có trong data
     const cleanData = { ...data };
@@ -85,7 +85,7 @@ class EventStagingLayerService {
   /**
    * STAGE EVENT (Giai đoạn 1: Tiếp nhận)
    */
-  public stageEvent(payload: any, metadata?: any): StagedEvent {
+  public stageEvent(payload: unknown, metadata?: unknown): StagedEvent {
     // Tạo Idempotency Key dựa trên nội dung file hoặc dòng dữ liệu
     const context = metadata?.source || 'UNKNOWN_SOURCE';
     const idempotencyKey = this.generateIdempotencyKey(payload, context);

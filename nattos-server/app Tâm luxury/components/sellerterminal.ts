@@ -40,9 +40,9 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
     sku: '',
     shellVal: 0,
     stoneVal: 0,
-    stoneType: 'NONE' as any
+    stoneType: 'NONE'
   });
-  const [simulatedComm, setSimulatedComm] = useState<any>(null);
+  const [simulatedComm, setSimulatedComm] = useState<Record<string, unknown> | null>(null);
 
   const [hideBoxMsg, setHideBoxMsg] = useState('');
   const isManager = currentRole === UserRole.LEVEL_2 || currentRole === UserRole.LEVEL_3;

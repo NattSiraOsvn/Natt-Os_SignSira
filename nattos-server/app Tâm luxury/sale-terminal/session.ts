@@ -25,7 +25,7 @@ export class SaleTerminalSession{
     if(fraud.recommendation==="BLOCK")return{success:false,totalAmount,errors:["Giao dịch bị chặn: "+fraud.flags.join(", ")]};
     const orderResult=await createSalesOrder({productId:this.cart[0].productId,productName:this.cart.map(c=>c.productName).join(", "),quantity:this.cart.reduce((s,c)=>s+c.quantity,0),unitPrice:totalAmount/Math.max(1,this.cart.reduce((s,c)=>s+c.quantity,0)),sellerId:this.config.sellerId,customerId:this.customerId,channel:"SHOWROOM"});
     if(!orderResult.success||!orderResult.transaction)return{success:false,totalAmount,errors:[orderResult.error??"Lỗi tạo đơn"]};
-    const payResult=await processPayment({orderId:orderResult.transaction.id,amount:totalAmount,method:paymentMethod as any,customerId:this.customerId});
+    const payResult=await processPayment({orderId:orderResult.transaction.id,amount:totalAmount,method:paymentMethod as string,customerId:this.customerId});
     if(!payResult.success)return{success:false,totalAmount,errors:[payResult.error??"Lỗi thanh toán"]};
     const invoiceResult=createInvoice({buyerName:this.customerId??"Khách lẻ",items:this.cart.map(c=>({itemCode:c.sku,description:c.productName,quantity:c.quantity,unitPrice:c.unitPrice,vatRate:this.config.vatRate})),createdBy:this.config.sellerId});
     let warrantyId:string|undefined;

@@ -10,7 +10,7 @@ export class AICoreProcessor {
     this.ai = null /* LỆNH #001 */;
   }
 
-  async process(metadata: FileMetadata, fileContent: string): Promise<any> {
+  async process(metadata: FileMetadata, fileContent: string): Promise<Record<string, unknown>> {
     Ingestion.updateStatus(metadata.id, IngestStatus.EXTRACTING);
 
     const model = 'DISABLED_LỆNH_001';

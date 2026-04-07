@@ -37,7 +37,7 @@ function calculateConfidence(data: ExtractedData): number {
 /**
  * MAIN PROCESSING FUNCTION - NATT-OS ADAPTIVE ENGINE
  */
-export async function processAsset(file: File, metadata = {}): Promise<any> {
+export async function processAsset(file: File, metadata = {}): Promise<unknown> {
   // 1. Idempotency Guard
   const isDup = await idempotencyManager.isDuplicate(file);
   if (isDup) {
@@ -63,7 +63,7 @@ export async function processAsset(file: File, metadata = {}): Promise<any> {
       case 'Image': extractedData = await OCRExtractor.extract(file); break;
       default: throw new Error("Unsupported file type");
     }
-  } catch (err: any) {
+  } catch (err: Error) {
     console.error("Extraction Error", err);
     await idempotencyManager.recordEvent(file, 'processing_failed');
     return null;

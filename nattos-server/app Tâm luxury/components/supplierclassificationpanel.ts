@@ -28,7 +28,7 @@ export const SupplierClassificationPanel: React.FC = () => {
   }, []);
 
   const groupStats = useMemo(() => {
-     const dist = suppliers.reduce((acc: any, s) => {
+     const dist = suppliers.reduce((acc: unknown, s) => {
         s.nhomHangChinh?.forEach((g: string) => {
            acc[g] = (acc[g] || 0) + 1;
         });

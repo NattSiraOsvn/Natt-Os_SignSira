@@ -10,10 +10,10 @@ export class LearningEngine {
     position: UserPosition,
     role: UserRole,
     context: { text?: string, files?: { data: string, mimeType: string, name?: string }[] }
-  ): Promise<LearnedTemplate & { docTypeDetected?: string, suggestions?: string[], productionData?: any }> {
+  ): Promise<LearnedTemplate & { docTypeDetected?: string, suggestions?: string[], productionData?: unknown }> {
     const ai = null /* LỆNH #001 */;
     const model = 'DISABLED_LỆNH_001';
-    const parts: any[] = [];
+    const parts: unknown[] = [];
     
     const safeText = context.text ? context.text.substring(0, 30000) : "";
     
@@ -141,7 +141,7 @@ export class LearningEngine {
         suggestions: result.suggestions,
         fields: result.fields,
         productionData: result.productionData,
-        dailyTasks: (result.dailyTasks || []).map((t: any) => ({
+        dailyTasks: (result.dailyTasks || []).map((t: unknown) => ({
           ...t,
           taskFormatted: `${t.isCritical ? '[CRITICAL] ' : ''}${t.task}: ${t.description || ''}`
         })),

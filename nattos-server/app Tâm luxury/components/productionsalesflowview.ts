@@ -13,7 +13,7 @@ const ProductionSalesFlowView: React.FC = () => {
   const [channel, setChannel] = useState<SalesChannel>(SalesChannel.WHOLESALE);
   
   const [logs, setLogs] = useState<FlowLog[]>([]);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
   
   const logContainerRef = useRef<HTMLDivElement>(null);
 
@@ -90,7 +90,7 @@ const ProductionSalesFlowView: React.FC = () => {
               </div>
               <div className="space-y-1">
                  <label className="text-[9px] font-black text-gray-500 uppercase">Kênh bán</label>
-                 <select value={channel} onChange={e => setChannel(e.target.value as any)} className="w-32 bg-black border border-white/10 rounded-lg p-2 text-[10px] text-white font-bold outline-none">
+                 <select value={channel} onChange={e => setChannel(e.target.value as string)} className="w-32 bg-black border border-white/10 rounded-lg p-2 text-[10px] text-white font-bold outline-none">
                     <option value={SalesChannel.WHOLESALE}>Bán Sỉ</option>
                     <option value={SalesChannel.ONLINE}>Online</option>
                     <option value={SalesChannel.DIRECT_SALE}>Showroom</option>

@@ -121,7 +121,7 @@ const AdminConfigHub: React.FC = () => {
            {['matrix', 'modules', 'core', 'approval', 'recovery', 'versions'].map(tab => (
              <button
                key={tab}
-               onClick={() => setActiveTab(tab as any)}
+               onClick={() => setActiveTab(tab as string)}
                className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap relative ${
                  activeTab === tab ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-gray-500 hover:text-white'
                }`}
@@ -163,7 +163,7 @@ const AdminConfigHub: React.FC = () => {
                              <span>{key}</span>
                              <span className="text-amber-500">{((val as number) * 100).toFixed(0)}%</span>
                           </div>
-                          <input type="range" min="0" max="1" step="0.05" value={val as number} onChange={(e) => handleWeightChange(key as any, parseFloat(e.target.value))} className="w-full accent-amber-500" />
+                          <input type="range" min="0" max="1" step="0.05" value={val as number} onChange={(e) => handleWeightChange(key as string, parseFloat(e.target.value))} className="w-full accent-amber-500" />
                        </div>
                     ))}
                  </div>

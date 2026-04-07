@@ -108,7 +108,7 @@ const SystemNavigator: React.FC<SystemNavigatorProps> = ({ setActiveView }) => {
                key={node.id}
                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10 flex flex-col items-center group"
                style={{ left: `${node.x}%`, top: `${node.y}%` }}
-               onClick={() => setActiveView(node.view as any)}
+               onClick={() => setActiveView(node.view as string)}
                onMouseEnter={() => setHoveredNode(node.id)}
                onMouseLeave={() => setHoveredNode(null)}
             >

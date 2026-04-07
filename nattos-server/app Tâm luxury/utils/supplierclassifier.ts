@@ -217,7 +217,7 @@ export class SupplierClassifier {
   }
 
   // Phân loại toàn diện
-  static classifySupplier(supplier: Supplier, transactionHistory?: any[]): Supplier {
+  static classifySupplier(supplier: Supplier, transactionHistory?: unknown[]): Supplier {
     const transactionCount = transactionHistory?.length || 0;
     
     return {

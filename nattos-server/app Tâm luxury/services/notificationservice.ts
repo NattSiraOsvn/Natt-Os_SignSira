@@ -8,7 +8,7 @@ export interface GlobalAlert {
   type: AlertType;
   title: string;
   content: string;
-  metadata?: any;
+  metadata?: unknown;
   persona?: PersonaID;
   timestamp: number;
   priority?: 'HIGH' | 'MEDIUM' | 'LOW';

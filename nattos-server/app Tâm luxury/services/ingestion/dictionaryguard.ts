@@ -20,7 +20,7 @@ export const DictionaryGuard = {
   _dictionary: null as BusinessDictionary | null,
   _version: 1,
 
-  loadDictionary(rawDict?: any) {
+  loadDictionary(rawDict?: unknown) {
     if (!rawDict) {
       // Default Omega Dictionary
       rawDict = {
@@ -44,7 +44,7 @@ export const DictionaryGuard = {
  * ⚛️ MAPPING & DECISION ENGINE
  * Đã bẻ lái logic: Không báo đỏ, chuyển sang trạng thái ngủ đông (HOLD).
  */
-export function matchWithDictionary(data: any, dictionary: any): BufferDecision {
+export function matchWithDictionary(data: unknown, dictionary: unknown): BufferDecision {
   if (!dictionary || !data) return BufferDecision.PROCEED;
 
   let decision = BufferDecision.PROCEED;

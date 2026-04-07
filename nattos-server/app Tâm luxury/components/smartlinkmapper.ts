@@ -26,10 +26,10 @@ const SmartLinkMapper: React.FC<SmartLinkMapperProps> = ({ currentRole, logActio
     
     // 1. Simulate Sales Order
     const mockOrder = SalesCore.createSalesOrder(
-      'DIRECT_SALE' as any,
+      'DIRECT_SALE' as string,
       { id: 'C1', name: 'NGUYỄN VĂN A', phone: '0909...', tier: 'VIP_GOLD', loyaltyPoints: 100 },
-      { id: 'S1', name: 'Sale 1', position: 'CONSULTANT' as any, kpiScore: 100 },
-      [{ productId: 'P1', productCode: 'SP001', productName: 'Nhẫn Kim Cương', productType: 'FINISHED_GOOD' as any, quantity: 1, unitPrice: 50000000, costPrice: 38000000, discount: 0, taxRate: 10, warehouseLocation: 'HCM_HEADQUARTER' as any }]
+      { id: 'S1', name: 'Sale 1', position: 'CONSULTANT' as string, kpiScore: 100 },
+      [{ productId: 'P1', productCode: 'SP001', productName: 'Nhẫn Kim Cương', productType: 'FINISHED_GOOD' as string, quantity: 1, unitPrice: 50000000, costPrice: 38000000, discount: 0, taxRate: 10, warehouseLocation: 'HCM_HEADQUARTER' as string }]
     );
     
     // 2. Simulate Bank Tx
@@ -46,7 +46,7 @@ const SmartLinkMapper: React.FC<SmartLinkMapperProps> = ({ currentRole, logActio
       type: 'INCOME',
       taxRate: 0,
       exchangeRate: 1,
-      status: 'SYNCED' as any,
+      status: 'SYNCED' as string,
       processDate: ''
     };
 
@@ -54,7 +54,7 @@ const SmartLinkMapper: React.FC<SmartLinkMapperProps> = ({ currentRole, logActio
     
     // 3. New Engine Logic: Multi-Entry Generation
     const salesEntries = SmartLinkEngine.generateFromSales(mockOrder); // Returns Array
-    const entryFromBank = SmartLinkEngine.generateFromBank(mockTx as any);
+    const entryFromBank = SmartLinkEngine.generateFromBank(mockTx as unknown);
 
     setEntries([...salesEntries, entryFromBank]);
     setIsProcessing(false);

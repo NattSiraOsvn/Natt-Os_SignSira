@@ -80,7 +80,7 @@ export class QuantumFlowEngine {
   /**
    * Phân tích sự kiện đầu vào và tính toán Vector Độ Nhạy
    */
-  public analyzeSensitivity(eventType: string, data: any): QuantumEvent {
+  public analyzeSensitivity(eventType: string, data: unknown): QuantumEvent {
     // Heuristic Logic: Định nghĩa độ nhạy dựa trên quy tắc nghiệp vụ
     let temporal = 0.2;
     let financial = 0.1;
@@ -122,7 +122,7 @@ export class QuantumFlowEngine {
   /**
    * Tiếp nhận sự kiện từ thế giới bên ngoài (EventBridge)
    */
-  public processEvent(eventType: string, data: any) {
+  public processEvent(eventType: string, data: unknown) {
     // 1. Analyze
     const qEvent = this.analyzeSensitivity(eventType, data);
     this.events.push(qEvent);

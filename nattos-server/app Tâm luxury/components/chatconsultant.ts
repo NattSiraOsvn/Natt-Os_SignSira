@@ -21,7 +21,7 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
   
   // Voice Input State
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<unknown>(null);
   
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -82,7 +82,7 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
       return;
     }
 
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition = (window as unknown).SpeechRecognition || (window as unknown).webkitSpeechRecognition;
     if (!SpeechRecognition) {
       alert("Trình duyệt của bạn không hỗ trợ chức năng nhận dạng giọng nói. Vui lòng sử dụng Chrome hoặc Edge.");
       return;
@@ -101,12 +101,12 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
       setIsListening(false);
     };
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: Record<string, unknown>) => {
       const transcript = event.results[0][0].transcript;
       setInput((prev) => (prev ? prev + ' ' + transcript : transcript));
     };
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event: Record<string, unknown>) => {
       console.error("Speech recognition error", event.error);
       setIsListening(false);
     };
@@ -128,7 +128,7 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
       content: currentInput || `Đã gửi tệp: ${selectedFile?.name}`,
       personaId: PersonaID.THIEN,
       timestamp: Date.now(),
-      type: (selectedFile?.type as any) || 'text',
+      type: (selectedFile?.type as unknown) || 'text',
       fileData: selectedFile?.data
     };
 
@@ -165,7 +165,7 @@ const ChatConsultant: React.FC<ChatConsultantProps> = ({ initialDomain }) => {
         suggestedActions: result.suggestedActions
       };
       setMessages(prev => [...prev, modelMsg]);
-    } catch (error: any) {
+    } catch (error: Error) {
       console.error(error);
       const isQuota = error?.message?.includes('429') || error?.status === 429;
       if (isQuota) {

@@ -6,7 +6,7 @@ export class PersonnelEngine {
     [PositionType.CFO]: {
       fullName: 'Master NATT',
       employeeCode: 'TL-M001',
-      position: PositionType.CFO as any,
+      position: PositionType.CFO,
       role: UserRole.LEVEL_1,
       startDate: '2020-01-01',
       kpiPoints: 9999,
@@ -17,7 +17,7 @@ export class PersonnelEngine {
     [PositionType.GENERAL_MANAGER]: {
       fullName: 'Nguyễn Minh Hiếu',
       employeeCode: 'TL-M002',
-      position: PositionType.GENERAL_MANAGER as any,
+      position: PositionType.GENERAL_MANAGER,
       role: UserRole.LEVEL_1,
       startDate: '2020-05-12',
       kpiPoints: 850,
@@ -28,7 +28,7 @@ export class PersonnelEngine {
     [PositionType.PROD_DIRECTOR]: {
       fullName: 'Trần Văn Hòa',
       employeeCode: 'TL-M003',
-      position: PositionType.PROD_DIRECTOR as any,
+      position: PositionType.PROD_DIRECTOR,
       role: UserRole.LEVEL_1,
       startDate: '2021-02-10',
       kpiPoints: 920,
@@ -39,7 +39,7 @@ export class PersonnelEngine {
     [PositionType.ACCOUNTING_MANAGER]: {
       fullName: 'Nguyễn Thị Mi',
       employeeCode: 'TL-H001',
-      position: PositionType.ACCOUNTING_MANAGER as any,
+      position: PositionType.ACCOUNTING_MANAGER,
       role: UserRole.LEVEL_2,
       startDate: '2021-06-20',
       kpiPoints: 780,
@@ -50,7 +50,7 @@ export class PersonnelEngine {
     [PositionType.CASTING_MANAGER]: {
       fullName: 'Trần Anh Tuấn',
       employeeCode: 'TL-H002',
-      position: PositionType.CASTING_MANAGER as any,
+      position: PositionType.CASTING_MANAGER,
       role: UserRole.LEVEL_2,
       startDate: '2022-01-15',
       kpiPoints: 650,
@@ -61,7 +61,7 @@ export class PersonnelEngine {
     [PositionType.ROUGH_FINISHER]: {
       fullName: 'Nguyễn Văn Vẹn',
       employeeCode: 'TL-W045',
-      position: PositionType.ROUGH_FINISHER as any,
+      position: PositionType.ROUGH_FINISHER,
       role: UserRole.LEVEL_6,
       startDate: '2023-04-10',
       kpiPoints: 420,
@@ -75,7 +75,7 @@ export class PersonnelEngine {
     return this.profiles[role] || {
       fullName: 'Nhân viên Tâm Luxury',
       employeeCode: 'TL-X999',
-      position: role as any,
+      position: role as string,
       role: UserRole.LEVEL_5,
       startDate: '2024-01-01',
       kpiPoints: 0,

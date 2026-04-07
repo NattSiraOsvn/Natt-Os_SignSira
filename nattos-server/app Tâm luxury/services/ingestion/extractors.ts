@@ -7,9 +7,9 @@ import { CustomsUtils } from '../customsUtils';
 // --- INTERFACES ---
 export interface ExtractedData {
   text: string;
-  tables: any[];
-  extractedFields: Record<string, any>;
-  raw?: any;
+  tables: unknown[];
+  extractedFields: Record<string, unknown>;
+  raw?: unknown;
 }
 
 // --- STRATEGIES ---
@@ -25,7 +25,7 @@ export const ExcelExtractor = {
           const workbook = XLSX.read(data, { type: 'array' });
           const firstSheetName = workbook.SheetNames[0];
           const worksheet = workbook.Sheets[firstSheetName];
-          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as unknown[][];
           
           // Convert to standardized format
           resolve({

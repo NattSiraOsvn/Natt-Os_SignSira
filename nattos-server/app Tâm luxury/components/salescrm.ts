@@ -5,7 +5,7 @@ import { SAMPLE_PRODUCTS } from '../constants';
 import { PaymentEngine, PaymentResponse } from '../services/paymentService';
 
 interface SalesCRMProps {
-  logAction: (action: string, details: string, undoData?: any) => void;
+  logAction: (action: string, details: string, undoData?: unknown) => void;
   onBack?: () => void;
   metrics: BusinessMetrics;
   updateFinance: (data: Partial<BusinessMetrics>) => void;
@@ -15,7 +15,7 @@ const SalesCRM: React.FC<SalesCRMProps> = ({ logAction, updateFinance, metrics }
   const [cart, setCart] = useState<{product: Product, quantity: number}[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [checkoutStep, setCheckoutStep] = useState<'browsing' | 'checkout' | 'processing' | 'success'>('browsing');
-  const [customerInfo, setCustomerInfo] = useState({ name: '', phone: '', payment: 'CARD' as any });
+  const [customerInfo, setCustomerInfo] = useState({ name: '', phone: '', payment: 'CARD' as unknown });
   const [activePayment, setActivePayment] = useState<PaymentResponse | null>(null);
   
   // Promotion State

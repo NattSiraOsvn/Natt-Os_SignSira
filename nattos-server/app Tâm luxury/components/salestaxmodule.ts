@@ -17,7 +17,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
   const [omegaTasks, setOmegaTasks] = useState<DistributedTask[]>([]);
   
   // CIT State
-  const [citResult, setCitResult] = useState<any>(null);
+  const [citResult, setCitResult] = useState<Record<string, unknown> | null>(null);
   
   useEffect(() => {
      const unsubscribe = TaskRouter.subscribe((allTasks) => {
@@ -63,7 +63,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
            ].map(tab => (
              <button
                key={tab.id}
-               onClick={() => setActiveTab(tab.id as any)}
+               onClick={() => setActiveTab(tab.id as string)}
                className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase transition-all relative ${activeTab === tab.id ? 'bg-indigo-500/20 text-cyan-300 border border-indigo-500/20 shadow-xl shadow-indigo-500/5' : 'text-gray-500 hover:text-white'}`}
              >
                {tab.label}

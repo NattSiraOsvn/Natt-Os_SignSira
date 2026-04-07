@@ -65,7 +65,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
                       <div key={k} className="flex flex-col gap-1">
                          <span className="text-[10px] text-gray-600 uppercase font-black">{k}</span>
                          {/* Fix: Casting v to any to avoid unknown type error in JSX */}
-                         <span className="text-sm text-gray-200 italic">{(v as any)}</span>
+                         <span className="text-sm text-gray-200 italic">{String(v)}</span>
                       </div>
                     ))}
                   </div>

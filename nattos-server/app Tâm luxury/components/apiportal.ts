@@ -93,7 +93,7 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as string)}
               className={`w-full text-left px-5 py-3 rounded-2xl text-[11px] font-bold transition-all border border-transparent ${
                 activeTab === tab.id 
                   ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20 border-amber-400' 

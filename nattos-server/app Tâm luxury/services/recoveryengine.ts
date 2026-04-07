@@ -21,7 +21,7 @@ class RecoveryEngine {
   /**
    * ✅ Record Operation
    */
-  recordOperation(type: string, module: string, params: any): string {
+  recordOperation(type: string, module: string, params: unknown): string {
     const id = `OP-${Date.now()}-${Math.random().toString(36).substring(2,7).toUpperCase()}`;
     const newOp: OperationRecord = {
       id,
@@ -50,7 +50,7 @@ class RecoveryEngine {
     if (op) op.status = 'SUCCESS';
   }
 
-  async reportFailure(id: string, error: any, strategy: 'RETRY' | 'MANUAL' = 'RETRY') {
+  async reportFailure(id: string, error: unknown, strategy: 'RETRY' | 'MANUAL' = 'RETRY') {
     const op = this.opLog.find(o => o.id === id);
     if (!op) return;
 
@@ -85,7 +85,7 @@ class RecoveryEngine {
     }
   }
 
-  createCheckpoint(module: string, state: any): string {
+  createCheckpoint(module: string, state: unknown): string {
     const id = `CHK-${Date.now()}`;
     this.checkpoints.set(id, { id, moduleState: state, timestamp: Date.now() });
     return id;

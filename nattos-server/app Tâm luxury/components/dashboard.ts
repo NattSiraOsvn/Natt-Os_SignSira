@@ -5,7 +5,7 @@ import AIAvatar from './AIAvatar';
 
 interface DashboardProps {
   metrics: BusinessMetrics;
-  onSelectDomain: (domain: any) => void;
+  onSelectDomain: (domain: unknown) => void;
   actionLogs: ActionLog[];
   currentRole: UserRole;
   currentPosition: UserPosition;

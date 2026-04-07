@@ -11,7 +11,7 @@ export const useSupplierClassification = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Phân loại danh sách NCC
-  const classifySuppliers = useCallback(async (suppliers: Supplier[], transactionData?: any[]) => {
+  const classifySuppliers = useCallback(async (suppliers: Supplier[], transactionData?: unknown[]) => {
     setLoading(true);
     setError(null);
     
@@ -19,7 +19,7 @@ export const useSupplierClassification = () => {
       const classified = suppliers.map(supplier => {
         // Tìm lịch sử giao dịch cho NCC này
         const supplierTransactions = transactionData?.filter(
-          (t: any) => t.maNhaCungCap === supplier.maNhaCungCap
+          (t: unknown) => t.maNhaCungCap === supplier.maNhaCungCap
         );
         
         return SupplierClassifier.classifySupplier(supplier, supplierTransactions);
@@ -50,7 +50,7 @@ export const useSupplierClassification = () => {
             const sheetName = workbook.SheetNames[0];
             const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
             
-            const suppliers = rows.map((row: any) => 
+            const suppliers = rows.map((row: unknown) => 
               SupplierImportHelper.processImportedData(row)
             );
             

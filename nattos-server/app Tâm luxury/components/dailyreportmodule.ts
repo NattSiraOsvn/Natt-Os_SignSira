@@ -16,7 +16,7 @@ interface DailyReportModuleProps {
 const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, currentPosition, logAction }) => {
   const [learnedTpl, setLearnedTpl] = useState<any | null>(null);
   const [completedTasks, setCompletedTasks] = useState<string[]>([]);
-  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Guard Rail: Kiểm tra quyền phê duyệt thực tế tại Client
@@ -40,7 +40,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
     );
   };
 
-  const handleInputChange = (fieldId: string, value: any) => {
+  const handleInputChange = (fieldId: string, value: unknown) => {
     setFormData(prev => ({ ...prev, [fieldId]: value }));
   };
 
@@ -106,7 +106,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
                </h3>
 
                <div className="space-y-6">
-                  {learnedTpl.dailyTasks.map((t: any, i: number) => {
+                  {learnedTpl.dailyTasks.map((t: unknown, i: number) => {
                     const isCritical = t.isCritical;
                     const isApproval = t.canApprove;
                     const isCompleted = completedTasks.includes(`task-${i}`);
@@ -161,7 +161,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
                <h3 className="text-sm font-black text-indigo-400 uppercase tracking-[0.3em] mb-10 border-b border-white/5 pb-4 italic">Bóc tách dữ liệu Node</h3>
                
                <div className="space-y-8">
-                  {learnedTpl.fields.map((f: any) => (
+                  {learnedTpl.fields.map((f: unknown) => (
                     <div key={f.id} className="space-y-3">
                        <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest ml-1 flex justify-between">
                           <span>{f.label} {f.required && '*'}</span>

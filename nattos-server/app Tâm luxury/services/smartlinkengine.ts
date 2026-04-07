@@ -7,11 +7,11 @@ import { SmartLinkCore } from '../core/SmartLinkEngine';
  */
 export const SmartLinkEngine = {
   COA: SmartLinkCore.constructor['COA'], // Hack to access static COA
-  generateFromSales: (order: any) => SmartLinkCore.generateFromSales(order),
-  generateFromBank: (tx: any) => SmartLinkCore.generateFromBank(tx),
-  generateCostAllocation: (total: number, type: any, drivers: any) => {
+  generateFromSales: (order: unknown) => SmartLinkCore.generateFromSales(order),
+  generateFromBank: (tx: unknown) => SmartLinkCore.generateFromBank(tx),
+  generateCostAllocation: (total: number, type: unknown, drivers: unknown) => {
     // Basic implementation for wrapper
     return { costId: 'DEPRECATED', allocations: [] };
   },
-  generateAllocationEntries: (alloc: any) => []
+  generateAllocationEntries: (alloc: unknown) => []
 };

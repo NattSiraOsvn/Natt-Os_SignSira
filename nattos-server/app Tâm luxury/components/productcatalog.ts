@@ -155,7 +155,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ logAction, updateFinanc
         const res = await PaymentEngine.createPayment({
           orderId: newOrderId,
           amount: totalAmount,
-          provider: paymentMethod as any,
+          provider: paymentMethod as string,
           customerName: customerInfo.name
         });
         setPaymentData(res);
@@ -391,7 +391,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ logAction, updateFinanc
                       {['VNPAY', 'MOMO', 'ZALOPAY', 'COD'].map(m => (
                          <button 
                            key={m}
-                           onClick={() => setPaymentMethod(m as any)}
+                           onClick={() => setPaymentMethod(m as string)}
                            className={`py-4 rounded-xl border text-[10px] font-black tracking-widest uppercase transition-all ${
                               paymentMethod === m ? 'bg-amber-500 text-black border-amber-500 shadow-lg' : 'bg-white/5 border-white/5 text-gray-500 hover:text-white'
                            }`}

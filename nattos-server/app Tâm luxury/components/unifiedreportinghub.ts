@@ -75,7 +75,7 @@ const UnifiedReportingHub: React.FC = () => {
                      <CartesianGrid stroke="#333" strokeDasharray="3 3" vertical={false} />
                      <XAxis dataKey="name" stroke="#666" fontSize={10} />
                      <YAxis stroke="#666" fontSize={10} tickFormatter={(val) => `${val/1000000}M`} />
-                     <Tooltip contentStyle={{ backgroundColor: '#000', border: '1px solid #333' }} formatter={(v: any) => v.toLocaleString()} />
+                     <Tooltip contentStyle={{ backgroundColor: '#000', border: '1px solid #333' }} formatter={(v: unknown) => v.toLocaleString()} />
                      <Bar dataKey="DoanhThu" barSize={20} fill="#3b82f6" radius={[4, 4, 0, 0]} />
                      <Line type="monotone" dataKey="LoiNhuan" stroke="#10b981" strokeWidth={3} />
                   </ComposedChart>

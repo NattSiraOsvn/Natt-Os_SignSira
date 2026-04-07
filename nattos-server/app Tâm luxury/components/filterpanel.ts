@@ -2,8 +2,8 @@
 import React from 'react';
 
 interface FilterPanelProps {
-  filters: any;
-  onFilterChange: (filters: any) => void;
+  filters: unknown;
+  onFilterChange: (filters: unknown) => void;
   suppliers?: string[];
 }
 

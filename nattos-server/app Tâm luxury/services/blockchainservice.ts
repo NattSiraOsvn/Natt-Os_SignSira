@@ -20,7 +20,7 @@ export class BlockchainShardingService {
    * Đảm bảo tính toàn vẹn của bằng chứng kiểm toán.
    * FIX: Loại bỏ Date.now() nội tại để đảm bảo tính Deterministic (cùng input -> cùng hash).
    */
-  public generateShardHash(data: any): string {
+  public generateShardHash(data: Record<string, unknown>): string {
     // Chỉ hash dữ liệu đầu vào. Timestamp phải nằm trong `data` nếu muốn unique.
     const str = JSON.stringify(data); 
     let hash = 0;

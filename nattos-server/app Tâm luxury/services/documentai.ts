@@ -28,7 +28,7 @@ export interface ProcessingResult {
   context: DetectedContext;
   tier: DataTier;
   modules: string[];
-  data: any;
+  data: unknown;
   confidence: number;
   trace: string[];
   violations: string[];
@@ -72,7 +72,7 @@ export class AIFileProcessor {
     // ... (Keep existing implementation of AIFileProcessor unchanged for brevity, focusing on DocumentIntelligence below) ...
     // Placeholder to keep file structure valid if user copies full file. 
     // In real partial update, we would skip this if not modifying.
-    private extractedData: any = {};
+    private extractedData: unknown = {};
     private confidenceScore: number = 0;
     private dictionaryMatchScore: number = 0;
     private validationErrors: string[] = [];
@@ -120,7 +120,7 @@ export class DocumentIntelligence {
    * PROCESSOR: OMEGA COGNITIVE MATRIX v8.1 (Standardized Signature)
    * Signature: (content, metadata)
    */
-  async processWideSpectrumIngest(rows: any[][], metadata: IngestMetadata): Promise<ProcessingResult[]> {
+  async processWideSpectrumIngest(rows: unknown[][], metadata: IngestMetadata): Promise<ProcessingResult[]> {
     const { fileName } = metadata;
     console.log(`[OMEGA-MATRIX] Initializing Neural Analysis for: ${fileName}`);
     
@@ -185,7 +185,7 @@ export class DocumentIntelligence {
     return results;
   }
 
-  private analyzeRowWithMatrix(row: any[], headers: string[], rowIndex: number, fileName: string): ProcessingResult {
+  private analyzeRowWithMatrix(row: unknown[], headers: string[], rowIndex: number, fileName: string): ProcessingResult {
     const id = `ROW-${Date.now()}-${rowIndex}`;
     const trace: string[] = [];
     const violations: string[] = [];

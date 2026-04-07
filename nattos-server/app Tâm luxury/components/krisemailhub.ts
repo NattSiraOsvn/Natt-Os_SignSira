@@ -4,7 +4,7 @@ import { GmailIntelligence } from '../services/gmailService';
 import { EmailMessage, PersonaID, BusinessMetrics } from '../types';
 
 interface KrisEmailHubProps {
-  logAction?: (action: string, details: string, undoData?: any) => void;
+  logAction?: (action: string, details: string, undoData?: unknown) => void;
   onBack?: () => void;
   metrics?: BusinessMetrics;
   updateFinance?: (data: Partial<BusinessMetrics>) => void;

@@ -7,7 +7,7 @@ export class ExportEngine {
   /**
    * Xuất báo cáo NCC đa tầng (Workbook 4 Sheet)
    */
-  static async toExcel(data: any[], fileName: string) {
+  static async toExcel(data: unknown[], fileName: string) {
     const workbook = XLSX.utils.book_new();
     
     // Sheet 1: TỔNG QUAN (Overview Metrics)
@@ -35,7 +35,7 @@ export class ExportEngine {
     XLSX.utils.book_append_sheet(workbook, wsDetails, '2. CHI TIẾT NODE');
 
     // Sheet 3: PHÂN TÍCH NHÓM (Group Analysis)
-    const groupDist = data.reduce((acc: any, s) => {
+    const groupDist = data.reduce((acc: unknown, s) => {
        s.nhomHangChinh?.forEach((g: string) => {
           acc[g] = (acc[g] || 0) + 1;
        });
@@ -63,7 +63,7 @@ export class ExportEngine {
     window.print();
   }
 
-  static async toXml(data: any, fileName: string, rootElement: string = 'NattOS_Shard') {
+  static async toXml(data: unknown, fileName: string, rootElement: string = 'NattOS_Shard') {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<${rootElement} version="2.0">\n`;
     xml += JSON.stringify(data); 
     xml += `</${rootElement}>`;

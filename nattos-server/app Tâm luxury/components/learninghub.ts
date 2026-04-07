@@ -89,7 +89,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
       });
       setLearnedResult(template);
       // Wait for manual verification before saving
-    } catch (e: any) {
+    } catch (e: Record<string, unknown>) {
       alert(`Neural Link Error: ${e.message}`);
     } finally {
       setIsLearning(false);
@@ -166,7 +166,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
                        <section>
                           <p className="text-[10px] text-amber-500 font-black uppercase tracking-widest mb-4 border-b border-white/5 pb-2">Tác vụ đặc thù:</p>
                           <div className="space-y-3">
-                             {learnedResult.dailyTasks.map((t: any, i: number) => (
+                             {learnedResult.dailyTasks.map((t: unknown, i: number) => (
                                <div key={i} className={`p-4 rounded-2xl border flex items-center gap-4 ${t.canApprove ? 'bg-amber-500/5 border-amber-500/20' : 'bg-black/40 border-white/5'}`}>
                                   <span className={`w-2 h-2 rounded-full ${t.canApprove ? 'bg-amber-500 animate-pulse' : 'bg-blue-500'}`}></span>
                                   <span className="text-xs text-gray-300 font-bold uppercase italic">{t.task}</span>

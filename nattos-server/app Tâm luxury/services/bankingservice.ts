@@ -46,7 +46,7 @@ export class BankingEngine {
   /**
    * ROBOT LOGIC: Clean Money (Chuyển "1,500,000" -> 1500000)
    */
-  static cleanMoney(val: any): number {
+  static cleanMoney(val: unknown): number {
     if (!val) return 0;
     const str = String(val).replace(/,/g, "").trim(); 
     const num = parseFloat(str);
@@ -120,7 +120,7 @@ export class BankingEngine {
    * ROBOT MAPPING 12 CỘT (VIETINBANK EFAST) -> MAPPING SANG CẤU TRÚC MỚI
    * Updated Signature: (rows, metadata)
    */
-  static processRobotData(rows: any[][], metadata: { fileName: string }): BankTransaction[] {
+  static processRobotData(rows: unknown[][], metadata: { fileName: string }): BankTransaction[] {
     console.log(`[BANKING-ENGINE] Processing ${metadata.fileName} with 12-column mapping rule.`);
     
     // Robot Map Structure: 

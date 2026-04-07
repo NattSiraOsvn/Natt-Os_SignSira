@@ -75,7 +75,7 @@ export const ITEM_DICTIONARY: Record<string, string> = {
 
 export class CustomsUtils {
   
-  static readExcelFile(file: File): Promise<any[][]> {
+  static readExcelFile(file: File): Promise<(string | number | boolean | null)[][]> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -84,7 +84,7 @@ export class CustomsUtils {
           const workbook = XLSX.read(data, { type: 'array' });
           const firstSheetName = workbook.SheetNames[0];
           const worksheet = workbook.Sheets[firstSheetName];
-          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as unknown[][];
           resolve(jsonData);
         } catch (error) {
           reject(error);
@@ -116,7 +116,7 @@ export class CustomsUtils {
     return null;
   }
 
-  static parseNumber(value: any): number {
+  static parseNumber(value: unknown): number {
     if (!value) return 0;
     if (typeof value === 'number') return value;
     
@@ -269,7 +269,7 @@ export class CustomsUtils {
     return specs;
   }
 
-  static validateItem(item: any): string[] {
+  static validateItem(item: unknown): string[] {
     const errors: string[] = [];
     if (!item.hsCode) errors.push('Thiếu mã HS');
     if (!item.description || item.description.length < 5) errors.push('Mô tả quá ngắn');

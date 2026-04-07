@@ -177,7 +177,7 @@ export class CustomsRobotEngine {
   /**
    * PROCESSOR: Standardized Signature (rows, metadata)
    */
-  static processNewDeclaration(rows: any[][], metadata: { fileName: string }): CustomsDeclaration & { actionPlans: ActionPlan[] } {
+  static processNewDeclaration(rows: unknown[][], metadata: { fileName: string }): CustomsDeclaration & { actionPlans: ActionPlan[] } {
     console.log(`[CUSTOMS-ROBOT] Kích hoạt chế độ bóc tách 52 cột cho file: ${metadata.fileName} (Updated Logic)...`);
 
     let headerRowIndex = -1;
@@ -278,7 +278,7 @@ export class CustomsRobotEngine {
       registrationDate: new Date().toLocaleDateString('vi-VN'),
       customsOffice: "02DS - CCHQ KV IV",
       deptCode: "01",
-      streamCode: streamCode as any,
+      streamCode: streamCode as unknown,
       declarationType: "A11",
       mainHsCode: items[0]?.hsCode || ""
     };

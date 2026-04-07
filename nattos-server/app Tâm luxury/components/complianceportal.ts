@@ -114,7 +114,7 @@ const CompliancePortal: React.FC = () => {
               {['DASHBOARD', 'REGULATIONS', 'REPORTS'].map(tab => (
                  <button 
                    key={tab}
-                   onClick={() => setActiveTab(tab as any)}
+                   onClick={() => setActiveTab(tab as string)}
                    className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${
                       activeTab === tab ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-500 hover:text-white'
                    }`}

@@ -41,7 +41,7 @@ const ProductionManager: React.FC<ProductionManagerProps> = ({ currentRole, logA
           ].map(tab => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as string)}
               className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase transition-all relative ${activeTab === tab.id ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20 border-amber-400' : 'text-gray-500 hover:text-white'}`}
             >
               {tab.label}

@@ -8,7 +8,7 @@ interface AccountingContextType {
   rules: AccountingMappingRule[];
   isLoading: boolean;
   error: string | null;
-  syncStatus: Record<string, any>;
+  syncStatus: Record<string, unknown>;
   mapSalesEvent: (event: SalesEvent) => Promise<AccountingEntry[]>;
   addMappingRule: (rule: AccountingMappingRule) => void;
   updateMappingRule: (id: string, updates: Partial<AccountingMappingRule>) => void;
@@ -33,7 +33,7 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
   const [rules, setRules] = useState<AccountingMappingRule[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [syncStatus, setSyncStatus] = useState<Record<string, any>>({});
+  const [syncStatus, setSyncStatus] = useState<Record<string, unknown>>({});
   
   // Singleton instance
   const mappingEngine = SmartLinkMappingEngine.getInstance();
@@ -42,7 +42,7 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
     initializeSystem();
     
     // Subscribe to engine events
-    const handleEntriesMapped = (data: any) => {
+    const handleEntriesMapped = (data: Record<string, unknown>) => {
         setEntries(prev => [...data.entries, ...prev]);
     };
     
@@ -65,7 +65,7 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
       setRules(loadedRules);
       // Simulate initial entries loading
       await new Promise(r => setTimeout(r, 500));
-    } catch (err: any) {
+    } catch (err: Error) {
       setError(err.message);
     } finally {
       setIsLoading(false);
@@ -78,7 +78,7 @@ export const AccountingProvider: React.FC<{ children: ReactNode }> = ({ children
       // Note: mappingEngine emits 'entriesMapped' which updates state, 
       // but we return it here for immediate use if needed.
       return mappedEntries;
-    } catch (err: any) {
+    } catch (err: Error) {
       setError(err.message);
       throw err;
     }

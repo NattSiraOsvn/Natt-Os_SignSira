@@ -30,7 +30,7 @@ const OmegaProcessor: React.FC = () => {
     };
   }, [isWorkerActive]);
 
-  const processBackgroundMedia = async (task: any) => {
+  const processBackgroundMedia = async (task: unknown) => {
     setIsWorkerActive(true);
     setCurrentTask(task.payload.fileName);
     

@@ -44,7 +44,7 @@ export class DocumentParserLayer {
   }
 
   // Phương thức thực thi thực tế (Sẽ được gọi bởi Worker/OmegaProcessor)
-  static async executeHeavyParse(file: File): Promise<any[][]> {
+  static async executeHeavyParse(file: File): Promise<(string | number | boolean | null)[][]> {
       // Giả lập logic parse nặng (OCR/Excel) đã có từ trước
       // ... (Logic bóc tách thực tế nằm ở đây)
       await new Promise(r => setTimeout(r, 2000)); 

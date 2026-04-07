@@ -92,7 +92,7 @@ export class ProductionSalesFlow {
 
   // --- CORE FLOW: FULL LIFECYCLE ---
   
-  async fullFlow(rawMaterialId: string, quantity: number, targetChannel: SalesChannel): Promise<any> {
+  async fullFlow(rawMaterialId: string, quantity: number, targetChannel: SalesChannel): Promise<unknown> {
     this.clearLogs();
     this.log('INIT', `Khởi động quy trình End-to-End cho ${quantity}kg ${rawMaterialId}`);
 
@@ -116,7 +116,7 @@ export class ProductionSalesFlow {
       
       return { importOrder, finishedProducts, salesResult, financialReport };
 
-    } catch (error: any) {
+    } catch (error: Error) {
       this.log('ERROR', `Quy trình thất bại: ${error.message}`);
       throw error;
     }
@@ -205,7 +205,7 @@ export class ProductionSalesFlow {
 
   // --- STEP 4: SALES ---
 
-  async sellThroughChannels(products: FinishedProduct[], channel: SalesChannel): Promise<any> {
+  async sellThroughChannels(products: FinishedProduct[], channel: SalesChannel): Promise<unknown> {
     this.log('SALES', `Kích hoạt chiến dịch bán hàng trên kênh ${channel}...`);
     await new Promise(r => setTimeout(r, 1200));
 
@@ -241,13 +241,13 @@ export class ProductionSalesFlow {
 
   // --- STEP 5: FINANCIALS ---
 
-  async calculateProfitAndCommission(importOrder: ImportOrder, salesResult: any): Promise<any> {
+  async calculateProfitAndCommission(importOrder: ImportOrder, salesResult: unknown): Promise<unknown> {
     this.log('FINANCE', `Tổng hợp báo cáo P&L (Profit & Loss)...`);
     
     const { soldCount, totalRevenue, salesOrders } = salesResult;
     
     // Chi phí hàng bán (COGS)
-    const cogs = salesOrders.reduce((sum: number, item: any) => sum + item.pricing.costOfGoods, 0);
+    const cogs = salesOrders.reduce((sum: number, item: unknown) => sum + item.pricing.costOfGoods, 0);
     
     // Chi phí vận hành (Giả định 10% doanh thu)
     const opex = totalRevenue * 0.1;

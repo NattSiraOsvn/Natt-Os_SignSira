@@ -8,8 +8,8 @@ import { ConflictEngine } from '../services/conflict/ConflictResolver';
 const DataSyncEngine: React.FC = () => {
   const [isConnected, setIsConnected] = useState(true);
   const [syncMode, setSyncMode] = useState<'REALTIME' | 'MANUAL'>('REALTIME');
-  const [offlineQueue, setOfflineQueue] = useState<any[]>([]);
-  const [conflicts, setConflicts] = useState<any[]>([]);
+  const [offlineQueue, setOfflineQueue] = useState<unknown[]>([]);
+  const [conflicts, setConflicts] = useState<unknown[]>([]);
   
   const [job, setJob] = useState<SyncJob>({
     id: 'job-omega-005',
@@ -35,7 +35,7 @@ const DataSyncEngine: React.FC = () => {
   };
 
   useEffect(() => {
-    let wsInterval: any;
+    let wsInterval: unknown;
     if (isConnected && syncMode === 'REALTIME') {
       addLog('🔌 WebSocket Connection Established (wss://omega-sync.tamluxury.com)', 'SECURE');
       wsInterval = setInterval(async () => {

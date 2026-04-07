@@ -23,7 +23,7 @@ const EnterpriseArchitecture: React.FC = () => {
           {['flow', 'tech', 'factory'].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab as string)}
               className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
                 activeTab === tab ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-gray-500 hover:text-white'
               }`}

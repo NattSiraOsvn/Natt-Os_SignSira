@@ -7,7 +7,7 @@ import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 
 interface WarehouseManagementProps {
-  logAction?: (action: string, details: string, undoData?: any) => void;
+  logAction?: (action: string, details: string, undoData?: unknown) => void;
   onBack?: () => void;
   metrics?: BusinessMetrics;
   updateFinance?: (data: Partial<BusinessMetrics>) => void;
@@ -41,7 +41,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
     setIsOptimizing(false);
   };
 
-  const handleExecuteTransfer = async (transfer: any) => {
+  const handleExecuteTransfer = async (transfer: unknown) => {
     logAction('WH_TRANSFER_EXEC', `Thực thi điều chuyển: ${transfer.quantity} ${transfer.productName} từ ${transfer.from} -> ${transfer.to}`);
     
     // Call Logistics Core
@@ -94,7 +94,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
              ].map((tab) => (
                <button
                  key={tab.id}
-                 onClick={() => setActiveTab(tab.id as any)}
+                 onClick={() => setActiveTab(tab.id as unknown)}
                  className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase transition-all tracking-widest ${
                    activeTab === tab.id 
                    ? 'bg-indigo-500/20 text-cyan-300 border border-indigo-500/40' 

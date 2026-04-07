@@ -24,7 +24,7 @@ interface LogisticsAdapter {
   getLiveQuote(req: APIQuoteRequest): Promise<LogisticsSolution>;
   
   // Hàm giả lập tạo đơn hàng (đẩy qua API)
-  createOrder(orderData: any): Promise<string>; // Trả về Tracking Code
+  createOrder(orderData: unknown): Promise<string>; // Trả về Tracking Code
 }
 
 // ============================================================================
@@ -68,7 +68,7 @@ class GHNAdapter implements LogisticsAdapter {
     };
   }
 
-  async createOrder(order: any): Promise<string> {
+  async createOrder(order: unknown): Promise<string> {
     await new Promise(r => setTimeout(r, 800));
     return `GHN${Date.now().toString().slice(-8)}`; // Mock Tracking Code
   }
@@ -113,7 +113,7 @@ class ViettelPostAdapter implements LogisticsAdapter {
     };
   }
 
-  async createOrder(order: any): Promise<string> {
+  async createOrder(order: unknown): Promise<string> {
     return `VTP${Date.now().toString().slice(-9)}`;
   }
 }
@@ -154,7 +154,7 @@ class FedExAdapter implements LogisticsAdapter {
     };
   }
 
-  async createOrder(order: any): Promise<string> {
+  async createOrder(order: unknown): Promise<string> {
     return `FDX${Date.now().toString().slice(-10)}`;
   }
 }

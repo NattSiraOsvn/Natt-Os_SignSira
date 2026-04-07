@@ -81,7 +81,7 @@ export class ProductionService {
   /**
    * AI AUTOMATION: Biến đổi dữ liệu thô từ AI thành Quy trình Sản xuất chuẩn
    */
-  static generateWorkflowFromAI(aiData: any): ProductionOrder {
+  static generateWorkflowFromAI(aiData: unknown): ProductionOrder {
     console.log("[PROD-ENGINE] AI Auto-generating workflow for:", aiData);
     
     // 1. Phân tích Deadline (Nếu AI trả về string "7 ngày" hoặc date)

@@ -53,7 +53,7 @@ class SmartLinkEngine {
     this.listeners[event].push(listener);
   }
 
-  private emit(event: string, ...args: any[]) {
+  private emit(event: string, ...args: unknown[]) {
     if (this.listeners[event]) {
       this.listeners[event].forEach(l => l(...args));
     }
@@ -155,7 +155,7 @@ class SmartLinkEngine {
     ], tx.id);
   }
 
-  private createEntry(id: string, type: any, desc: string, lines: any[], refId: string): AccountingEntry {
+  private createEntry(id: string, type: unknown, desc: string, lines: unknown[], refId: string): AccountingEntry {
     return {
       journalId: id,
       transactionDate: new Date(),

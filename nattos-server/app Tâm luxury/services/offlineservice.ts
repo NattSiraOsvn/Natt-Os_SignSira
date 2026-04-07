@@ -40,7 +40,7 @@ export class OfflineService {
           // Sử dụng đường dẫn tương đối ./sw.js để an toàn hơn với base path
           const registration = await navigator.serviceWorker.register('./sw.js');
           console.log('[OfflineService] Service Worker active:', registration.scope);
-        } catch (swError: any) {
+        } catch (swError: unknown) {
           // Bắt lỗi Origin Mismatch cụ thể để không gây hoang mang
           if (swError.message && (swError.message.includes('origin') || swError.message.includes('scriptURL'))) {
              console.warn('[OfflineService] SW registration skipped: Cross-Origin Sandbox detected.');
@@ -87,7 +87,7 @@ export class OfflineService {
     });
   }
 
-  async saveData(key: string, data: any, storeName: string = 'appCache'): Promise<void> {
+  async saveData(key: string, data: unknown, storeName: string = 'appCache'): Promise<void> {
     if (!this.db) return;
     return new Promise((resolve) => {
       try {
@@ -102,7 +102,7 @@ export class OfflineService {
     });
   }
 
-  async loadData(key: string, storeName: string = 'appCache'): Promise<any> {
+  async loadData(key: string, storeName: string = 'appCache'): Promise<unknown> {
     if (!this.db) return null;
     return new Promise((resolve) => {
       try {

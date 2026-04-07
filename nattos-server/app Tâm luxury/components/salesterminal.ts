@@ -14,7 +14,7 @@ interface SalesTerminalProps {
   updateFinance: (data: Partial<BusinessMetrics>) => void;
   logAction: (action: string, details: string) => void;
   currentRole: UserRole;
-  currentPosition: any; 
+  currentPosition: unknown; 
 }
 
 const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, logAction, currentRole, currentPosition }) => {

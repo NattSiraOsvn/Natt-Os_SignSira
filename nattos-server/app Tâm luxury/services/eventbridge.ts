@@ -18,7 +18,7 @@ export type SystemEvent =
   | 'FINANCE_PAID' 
   | 'ARCHIVE_SEALED';
 
-type EventHandler = (data: any) => void;
+type EventHandler = (data: Record<string, unknown>) => void;
 
 class SystemEventBridgeService {
   private static instance: SystemEventBridgeService;
@@ -48,7 +48,7 @@ class SystemEventBridgeService {
   }
 
   // Phát sự kiện (Publish)
-  public async publish(eventType: SystemEvent | string, data: any) {
+  public async publish(eventType: SystemEvent | string, data: unknown) {
     console.log(`[EVENT-BRIDGE] 📡 Broadcasting: ${eventType}`, data);
     
     // 1. Log to Blockchain Audit (Giả lập băm hash sự kiện quan trọng)

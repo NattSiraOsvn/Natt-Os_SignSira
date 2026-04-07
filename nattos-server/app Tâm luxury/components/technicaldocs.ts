@@ -42,7 +42,7 @@ const TechnicalDocs: React.FC = () => {
           ].map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveDoc(item.id as any)}
+              onClick={() => setActiveDoc(item.id as string)}
               className={`w-full text-left px-5 py-3 rounded-2xl text-[11px] transition-all flex items-center gap-3 ${
                 activeDoc === item.id 
                   ? 'bg-white/10 text-white font-bold border border-white/10 shadow-lg' 

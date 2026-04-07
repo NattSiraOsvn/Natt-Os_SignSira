@@ -100,7 +100,7 @@ export class ContextScoringEngine {
     return Math.exp(-ageInHours / 168);
   }
 
-  private calculateCompletenessScore(data: any, industry: string): number {
+  private calculateCompletenessScore(data: unknown, industry: string): number {
     if (!data || typeof data !== 'object') return 0;
     
     const keys = Object.keys(data);
@@ -117,7 +117,7 @@ export class ContextScoringEngine {
     return score;
   }
 
-  private validateBusinessRules(data: any, context: BusinessContext): number {
+  private validateBusinessRules(data: unknown, context: BusinessContext): number {
     // 1. Kiểm tra số âm với trường tiền tệ
     if (data.amount !== undefined && typeof data.amount === 'number' && data.amount < 0) return 0;
     if (data.price !== undefined && typeof data.price === 'number' && data.price < 0) return 0;

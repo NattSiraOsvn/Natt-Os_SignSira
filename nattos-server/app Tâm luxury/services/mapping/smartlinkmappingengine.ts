@@ -16,7 +16,7 @@ class SimpleEventEmitter {
     this.listeners[event].push(listener);
   }
 
-  emit(event: string, ...args: any[]) {
+  emit(event: string, ...args: unknown[]) {
     if (this.listeners[event]) {
       this.listeners[event].forEach(listener => listener(...args));
     }
@@ -155,7 +155,7 @@ export class SmartLinkMappingEngine extends SimpleEventEmitter {
   }
   
   private createAccountingEntry(
-    data: any,
+    data: unknown,
     rule: AccountingMappingRule,
     event: SalesEvent,
     index: number = 0
@@ -187,7 +187,7 @@ export class SmartLinkMappingEngine extends SimpleEventEmitter {
       },
       status: rule.autoPost ? 'POSTED' : 'DRAFT',
       createdAt: new Date(),
-      journalType: rule.destination.accountType as any
+      journalType: rule.destination.accountType as unknown
     };
   }
   
@@ -214,7 +214,7 @@ export class SmartLinkMappingEngine extends SimpleEventEmitter {
     return this.mappingRules.get(id);
   }
   
-  public async testMappingRule(ruleId: string, testData: any): Promise<any> {
+  public async testMappingRule(ruleId: string, testData: unknown): Promise<unknown> {
     const rule = this.getRuleById(ruleId);
     if (!rule) throw new Error(`Rule ${ruleId} not found`);
     return rule.transformation(testData.value, testData.context);

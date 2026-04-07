@@ -167,7 +167,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                               <div className="grid grid-cols-2 gap-2">
                                 <select 
                                   value={material.goldColor} 
-                                  onChange={(e) => setMaterial({...material, goldColor: e.target.value as any})}
+                                  onChange={(e) => setMaterial({...material, goldColor: e.target.value as string})}
                                   className="bg-black/60 border border-white/10 rounded-xl p-3 text-xs text-white outline-none"
                                 >
                                   <option value="YELLOW">Vàng Vàng</option>
@@ -176,7 +176,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                                 </select>
                                 <select 
                                   value={material.goldPurity} 
-                                  onChange={(e) => setMaterial({...material, goldPurity: e.target.value as any})}
+                                  onChange={(e) => setMaterial({...material, goldPurity: e.target.value as string})}
                                   className="bg-black/60 border border-white/10 rounded-xl p-3 text-xs text-white outline-none"
                                 >
                                   <option value="18K">18K (AU750)</option>
@@ -189,7 +189,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                               <label className="text-[9px] font-black text-gray-600 uppercase tracking-widest ml-2">Phẩm cấp Đá chủ</label>
                               <select 
                                 value={material.stoneClass} 
-                                onChange={(e) => setMaterial({...material, stoneClass: e.target.value as any})}
+                                onChange={(e) => setMaterial({...material, stoneClass: e.target.value as string})}
                                 className="w-full bg-black/60 border border-white/10 rounded-xl p-3 text-xs text-white outline-none"
                               >
                                 <option value="VVS1">Kim cương GIA - VVS1 (D-F)</option>
@@ -224,7 +224,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                               <div className="grid grid-cols-2 gap-2">
                                  <select 
                                     value={engraving.font}
-                                    onChange={(e) => setEngraving({...engraving, font: e.target.value as any})}
+                                    onChange={(e) => setEngraving({...engraving, font: e.target.value as string})}
                                     className="bg-black/60 border border-white/10 rounded-xl p-2 text-[10px] text-gray-300 outline-none"
                                  >
                                     <option value="CLASSIC">Classic</option>
@@ -233,7 +233,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                                  </select>
                                  <select 
                                     value={engraving.location}
-                                    onChange={(e) => setEngraving({...engraving, location: e.target.value as any})}
+                                    onChange={(e) => setEngraving({...engraving, location: e.target.value as string})}
                                     className="bg-black/60 border border-white/10 rounded-xl p-2 text-[10px] text-gray-300 outline-none"
                                  >
                                     <option value="INSIDE">Lòng trong</option>
@@ -254,7 +254,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                            {packagingOptions.map(opt => (
                               <button
                                  key={opt.id}
-                                 onClick={() => setPackaging(opt.id as any)}
+                                 onClick={() => setPackaging(opt.id as string)}
                                  className={`p-3 rounded-2xl border flex flex-col items-center text-center transition-all ${
                                     packaging === opt.id 
                                     ? 'bg-amber-500/10 border-amber-500 text-amber-500 shadow-lg' 

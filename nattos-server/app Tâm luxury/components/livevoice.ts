@@ -5,7 +5,7 @@ import React, { useState, useRef, useEffect } from 'react';
 const LiveVoice: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
   const [status, setStatus] = useState('Chưa kết nối');
-  const sessionRef = useRef<any>(null);
+  const sessionRef = useRef<MediaRecorder | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
   const startLive = async () => {

@@ -17,7 +17,7 @@ export const useSmartMapping = () => {
         const loadedRules = mappingEngine.getMappingRules();
         setRules(loadedRules);
         setIsLoading(false);
-      } catch (err: any) {
+      } catch (err: Error) {
         setError(err.message);
         setIsLoading(false);
       }
@@ -37,7 +37,7 @@ export const useSmartMapping = () => {
     };
 
     // Subscribe to real-time events
-    const handleEntriesMapped = (data: any) => {
+    const handleEntriesMapped = (data: Record<string, unknown>) => {
       setRealTimeUpdates(prev => [{
         id: Date.now().toString(),
         type: 'ENTRIES_MAPPED',
@@ -61,7 +61,7 @@ export const useSmartMapping = () => {
   const mapSalesEvent = useCallback(async (event: SalesEvent): Promise<AccountingEntry[]> => {
     try {
       return await mappingEngine.autoMapSalesEvent(event);
-    } catch (err: any) {
+    } catch (err: Error) {
       setError(err.message);
       throw err;
     }

@@ -60,7 +60,7 @@ const DynamicModuleRenderer: React.FC<DynamicModuleRendererProps> = (props) => {
   const isMaster = currentRole === UserRole.MASTER;
   const commonProps = { logAction, metrics, updateFinance, currentRole, currentPosition, actionLogs };
 
-  const ComponentMap: Record<string, React.FC<any>> = {
+  const ComponentMap: Record<string, React.FC<Record<string, unknown>>> = {
     Dashboard, MasterDashboard, SalesTerminal, ProductCatalog, SellerTerminal,
     OperationsTerminal, ProductionManager, ProductionWallboard, DailyReportModule,
     WarehouseManagement, SupplierClassificationPanel, SalesTaxModule, TaxReportingHub, 

@@ -10,7 +10,7 @@ import AIAvatar from './AIAvatar';
 import SuperDictionary, { SUPER_DICTIONARY } from '../SuperDictionary';
 
 interface DevPortalProps {
-  logAction?: (action: string, details: string, undoData?: any) => void;
+  logAction?: (action: string, details: string, undoData?: unknown) => void;
   onBack?: () => void;
   metrics?: BusinessMetrics;
   updateFinance?: (data: Partial<BusinessMetrics>) => void;
@@ -73,7 +73,7 @@ const DevPortal: React.FC<DevPortalProps> = () => {
 
   // Dictionary Search State
   const [dictSearch, setDictSearch] = useState('');
-  const [dictResults, setDictResults] = useState<any[]>([]);
+  const [dictResults, setDictResults] = useState<unknown[]>([]);
 
   // UAT State
   const [uatCases, setUatCases] = useState<UATTestCase[]>([
@@ -170,7 +170,7 @@ const DevPortal: React.FC<DevPortalProps> = () => {
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as unknown)}
               className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all whitespace-nowrap flex items-center gap-2 ${
                 activeTab === tab.id ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20' : 'text-gray-500 hover:text-white'
               }`}

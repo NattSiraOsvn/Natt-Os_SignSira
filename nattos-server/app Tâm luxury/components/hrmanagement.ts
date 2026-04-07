@@ -14,7 +14,7 @@ import {
 interface HRManagementProps {
   currentRole: UserRole;
   currentPosition: UserPosition;
-  logAction: (action: string, details: string, undoData?: any) => void;
+  logAction: (action: string, details: string, undoData?: unknown) => void;
   metrics: BusinessMetrics;
 }
 
@@ -97,7 +97,7 @@ const HRManagement: React.FC<HRManagementProps> = ({ currentRole, currentPositio
            {[{ id: 'employee-list', label: 'Danh Sách Identity' }, { id: 'reports', label: 'Báo Cáo Nhân Sự' }].map(tab => (
              <button
                key={tab.id}
-               onClick={() => setActiveTab(tab.id as any)}
+               onClick={() => setActiveTab(tab.id as unknown)}
                className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${activeTab === tab.id ? 'bg-amber-500 text-black shadow-lg' : 'text-gray-500'}`}
              >
                {tab.label}

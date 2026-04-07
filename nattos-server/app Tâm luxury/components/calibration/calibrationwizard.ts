@@ -20,7 +20,7 @@ export const CalibrationWizard: React.FC = () => {
   };
 
   useEffect(() => {
-    let timer: any;
+    let timer: unknown;
     if (step === 'testing' && timeLeft > 0) {
       timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
     } else if (timeLeft === 0 && step === 'testing') {

@@ -5,7 +5,7 @@ import { PersonnelEngine } from '../services/personnelEngine';
 import { EmployeePayroll, SalaryRule, BusinessMetrics, UserPosition, PositionType } from '../types';
 
 interface HRComplianceProps {
-  logAction?: (action: string, details: string, undoData?: any) => void;
+  logAction?: (action: string, details: string, undoData?: unknown) => void;
   onBack?: () => void;
   metrics?: BusinessMetrics;
   updateFinance?: (data: Partial<BusinessMetrics>) => void;

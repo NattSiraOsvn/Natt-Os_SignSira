@@ -32,7 +32,7 @@ const ProductionWallboard: React.FC = () => {
       const d = await r.json();
       if (d.metrics) setMetrics(d.metrics);
       if (d.stages) {
-        setStages(d.stages.map((s: any, i: number) => ({
+        setStages(d.stages.map((s: unknown, i: number) => ({
           stage: DEFAULT_STAGES[i]?.stage ?? s.stage,
           count: s.count,
           color: STAGE_COLORS[s.color] ?? 'bg-green-500'

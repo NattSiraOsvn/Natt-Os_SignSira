@@ -9,8 +9,8 @@ export interface ChangeProposal {
   id: string;
   type: 'ADD_FIELD' | 'MODIFY_FIELD' | 'REMOVE_FIELD' | 'ADD_RULE';
   target: string; // Field name or Rule ID
-  newValue: any;
-  oldValue?: any;
+  newValue: unknown;
+  oldValue?: unknown;
   reason: string;
   submitter: string;
   status: ApprovalStatus;
@@ -34,7 +34,7 @@ class DictionaryApprovalService {
   async proposeChange(
     type: ChangeProposal['type'], 
     target: string, 
-    newValue: any, 
+    newValue: unknown, 
     reason: string,
     submitter: string
   ): Promise<ChangeProposal> {

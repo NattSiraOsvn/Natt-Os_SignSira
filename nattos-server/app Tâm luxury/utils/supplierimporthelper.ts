@@ -4,7 +4,7 @@ import { SupplierClassifier } from './supplierClassifier';
 
 export class SupplierImportHelper {
   // Xử lý import từ file Excel (dựa trên mẫu AMIS)
-  static processImportedData(row: any): Supplier {
+  static processImportedData(row: unknown): Supplier {
     // Map từ cột Excel sang object Supplier
     const supplier: Supplier = {
       id: row['Mã nhà cung cấp (*)'] || Math.random().toString(36).substring(7),

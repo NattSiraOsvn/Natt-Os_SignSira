@@ -31,10 +31,10 @@ const FinancialDashboard: React.FC = () => {
   // Simulate incoming data for demo
   const triggerSimulation = async () => {
     const mockOrder = SalesCore.createSalesOrder(
-      'DIRECT_SALE' as any, 
+      'DIRECT_SALE' as string, 
       { id: 'C1', name: 'DEMO CUSTOMER', phone: '0909', tier: 'VIP_GOLD', loyaltyPoints: 10 },
-      { id: 'S1', name: 'Sale 1', position: 'CONSULTANT' as any, kpiScore: 100 },
-      [{ productId: 'P1', productCode: 'SP001', productName: 'Nhẫn Kim Cương', productType: 'FINISHED_GOOD' as any, quantity: 1, unitPrice: 50000000, costPrice: 38000000, discount: 0, taxRate: 10, warehouseLocation: 'HCM_HEADQUARTER' as any }]
+      { id: 'S1', name: 'Sale 1', position: 'CONSULTANT' as string, kpiScore: 100 },
+      [{ productId: 'P1', productCode: 'SP001', productName: 'Nhẫn Kim Cương', productType: 'FINISHED_GOOD' as string, quantity: 1, unitPrice: 50000000, costPrice: 38000000, discount: 0, taxRate: 10, warehouseLocation: 'HCM_HEADQUARTER' as string }]
     );
     
     await mapSalesEvent({

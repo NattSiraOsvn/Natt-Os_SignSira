@@ -44,9 +44,9 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
     sku: '',
     shellVal: 0,
     stoneVal: 0,
-    stoneType: 'NONE' as any
+    stoneType: 'NONE'
   });
-  const [simulatedComm, setSimulatedComm] = useState<any>(null);
+  const [simulatedComm, setSimulatedComm] = useState<Record<string, unknown> | null>(null);
 
   const [hideBoxMsg, setHideBoxMsg] = useState('');
   const isManager = currentRole === UserRole.LEVEL_2 || currentRole === UserRole.LEVEL_3;
@@ -337,7 +337,7 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
                    </div>
                    <div className="space-y-2">
                       <p className="ai-sub-headline ml-1">Phân loại Đá (Quyết định % HH)</p>
-                      <select onChange={e => setFormData({...formData, stoneType: e.target.value as any})} className="w-full bg-black/60 border border-white/10 p-5 rounded-2xl text-white outline-none appearance-none cursor-pointer text-xs font-black">
+                      <select onChange={e => setFormData({...formData, stoneType: e.target.value as string})} className="w-full bg-black/60 border border-white/10 p-5 rounded-2xl text-white outline-none appearance-none cursor-pointer text-xs font-black">
                          <option value="NONE">Không có viên chủ</option>
                          <option value="UNDER_4LY">Viên dưới 4 ly (5% HH)</option>
                          <option value="ROUND_OVER_4LY">Tròn trên 4 ly (2% HH)</option>

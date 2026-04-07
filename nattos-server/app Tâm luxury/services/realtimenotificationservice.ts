@@ -5,7 +5,7 @@ import { PersonaID } from '../types';
 export class RealTimeNotificationService {
   private static instance: RealTimeNotificationService;
   private isConnected: boolean = false;
-  private intervalId: any;
+  private intervalId: unknown;
 
   static getInstance() {
     if (!RealTimeNotificationService.instance) {
