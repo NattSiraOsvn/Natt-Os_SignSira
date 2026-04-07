@@ -45,44 +45,13 @@ export interface GoldPriceResult {
  * Node environment: dùng node-fetch
  */
 export async function visionOcr(
-  imageUrl: string,
-  apiKey: string,
-  detectionType: 'TEXT_DETECTION' | 'DOCUMENT_TEXT_DETECTION' = 'DOCUMENT_TEXT_DETECTION',
+  _imageUrl: string,
+  _apiKey: string,
+  _detectionType: 'TEXT_DETECTION' | 'DOCUMENT_TEXT_DETECTION' = 'DOCUMENT_TEXT_DETECTION',
 ): Promise<{ text: string; confidence: number; error?: string }> {
-  if (!imageUrl || !apiKey) {
-    return { text: '', confidence: 0, error: 'MISSING_PARAMS' };
-  }
-
-  try {
-    const body = {
-      requests: [{
-        image:    { source: { imageUri: imageUrl } },
-        features: [{ type: detectionType, maxResults: 1 }],
-      }],
-    };
-
-    const resp = await fetch(
-      `${GOLD_PRICE_CONFIG.VISION_API_BASE}?key=${apiKey}`,
-      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    );
-
-    if (!resp.ok) {
-      return { text: '', confidence: 0, error: `HTTP_${resp.status}` };
-    }
-
-    const json = await resp.json();
-    const annotation = json?.responses?.[0]?.fullTextAnnotation;
-    if (!annotation) {
-      return { text: '', confidence: 0, error: 'NO_TEXT_ANNOTATION' };
-    }
-
-    // DOCUMENT_TEXT_DETECTION có pages[].blocks[].paragraphs[].words[] với confidence
-    const avgConf = json.responses[0]?.pages?.[0]?.confidence ?? 0.8;
-    return { text: annotation.text || '', confidence: avgConf };
-
-  } catch (e) {
-    return { text: '', confidence: 0, error: String(e) };
-  }
+  // STUBBED — LỆNH #001: Vision API không được gọi từ business cell
+  // Di chuyển về nattos-server khi cần
+  return { text: '', confidence: 0, error: 'STUBBED_LỆNH_001' };
 }
 
 // ── PARSE GOLD PRICE FROM OCR TEXT ────────────────────────────────────────
