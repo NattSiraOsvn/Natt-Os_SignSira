@@ -49,7 +49,8 @@ export interface NetworkHealth {
 
 const _touchLog: TouchRecord[] = [];
 const _connectionMap = new Map<string, Set<string>>();
-const _fiberMap = new Map<string, TouchRecord>(); // key = `${from}-${to}`
+const _fiberMap = new Map<string, TouchRecord>();
+const _domainIndex = new Map<string, string>(); // key = `${from}-${to}`
 
 function fiberKey(from: string, to: string): string {
   return `${from}::${to}`;
@@ -129,6 +130,7 @@ export const SmartLinkEngine = {
 
     if (allowed) {
       _fiberMap.set(key, record);
+    if (domainId) _domainIndex.set(domainId, key);
       const conns = _connectionMap.get(fromCellId) ?? new Set<string>();
       conns.add(toCellId);
       _connectionMap.set(fromCellId, conns);
@@ -150,9 +152,10 @@ export const SmartLinkEngine = {
     const zMin = 0.5;
     const zMax = 10.0;
 
-    const newZ = record.impedanceZ + alpha * (intensity - zTarget);
-    record.impedanceZ = Math.min(zMax, Math.max(zMin, newZ));
-    record.isIseu = true;
+    const Z0_pulse = 1.0;
+    const R = (intensity - Z0_pulse) / (intensity + Z0_pulse);
+    record.impedanceZ = Math.min(10.0, Math.max(0.1, record.impedanceZ + R * 0.1));
+    record.isIseu = (record.sensitivity ?? 0) >= 0.75;
     record.lastFeedbackIntensity = intensity;
     if (domainId) record.domainId = domainId;
 
@@ -184,6 +187,26 @@ export const SmartLinkEngine = {
 
   getFiber: (fromCellId: string, toCellId: string): TouchRecord | undefined =>
     _fiberMap.get(fiberKey(fromCellId, toCellId)),
+
+
+  getFiberByDomain: (domainId: string): TouchRecord | undefined => {
+    const key = _domainIndex.get(domainId);
+    return key ? _fiberMap.get(key) : undefined;
+  },
+
+  receiveFeedbackByDomain: (domainId: string, intensity: number): void => {
+    const key = _domainIndex.get(domainId);
+    if (!key) return;
+    const record = _fiberMap.get(key);
+    if (!record) return;
+    const Z = record.impedanceZ ?? 1.0;
+    const Z0 = 1.0;
+    const R = (Z - Z0) / (Z + Z0);
+    record.impedanceZ = Math.min(10.0, Math.max(0.1, Z + (intensity * 0.1)));
+    record.isIseu = record.impedanceZ !== (record.impedanceZ ?? 1.0) || (record.sensitivity ?? 0) >= 0.75 || intensity >= 1.0;
+    record.lastFeedbackIntensity = intensity;
+    record.domainId = domainId;
+  },
 
   getTouchLog: (): TouchRecord[] => [..._touchLog],
   clearLog: (): void => { _touchLog.length = 0; },
