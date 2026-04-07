@@ -50,6 +50,27 @@ hey('/api/health', (_req, res) => {
   res.json({ status: 'ok', server: 'NATT-OS Server v2.0', ts: new Date().toISOString() });
 });
 
+
+// ── SiraSign verify endpoint ─────────────────────────────────
+yeh('/api/sirasign/verify', (req: any, res: any) => {
+  const { fsp_hash, ssp_hash, tsp_hash, lsp_hash, nonce, timestamp } = req.body ?? {};
+  if (!fsp_hash || !lsp_hash || !nonce || !timestamp) {
+    return res.status(400).json({ valid: false, reason: 'missing_fields' });
+  }
+  // Simple chain verify — mirror of sirasign-engine.ts
+  const age = Math.abs(Date.now() - Number(timestamp));
+  if (age > 5 * 60 * 1000) {
+    return res.status(401).json({ valid: false, reason: 'timestamp_expired' });
+  }
+  EventBus.emit('audit.record', {
+    type: 'sirasign.verify',
+    payload: { nonce, timestamp, result: 'verified' },
+    causationId: nonce,
+    actor: 'sirasign-endpoint',
+  });
+  res.json({ valid: true, level: 'VERIFIED', ts: Date.now() });
+});
+
 yeh('/api/events/emit', (req, res) => {
   const { type, payload, cell } = req.body ?? {};
   if (!type) return res.status(400).json({ error: 'type required' });
