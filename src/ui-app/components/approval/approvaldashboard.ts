@@ -1,40 +1,69 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ApprovalTicket, ApprovalStatus } from '../../types';
-import { ApprovalEngine } from '../../services/approval/ApprovalWorkflowService';
 import AIAvatar from '../AIAvatar';
 import { PersonaID } from '../../types';
+
+const SERVER = 'http://localhost:3001';
 
 const ApprovalDashboard: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<ApprovalStatus | 'ALL'>('ALL');
   const [tickets, setTickets] = useState<ApprovalTicket[]>([]);
-  const [stats, setStats] = useState(ApprovalEngine.getStats());
+  const [stats, setStats] = useState({ pending: 0, approvedToday: 0, rejectedToday: 0, avgResponseTime: '—' });
   const [selectedTicket, setSelectedTicket] = useState<ApprovalTicket | null>(null);
 
-  // Auto-refresh simulation (WebSocket replacement)
-  useEffect(() => {
-    const refresh = () => {
-        setTickets(ApprovalEngine.getTickets(activeFilter));
-        setStats(ApprovalEngine.getStats());
-    };
-    refresh();
-    const interval = setInterval(refresh, 5000);
-    return () => clearInterval(interval);
+  const fetchApproval = useCallback(async () => {
+    try {
+      const url = activeFilter === 'ALL'
+        ? `${SERVER}/kenh/approval`
+        : `${SERVER}/kenh/approval?status=${activeFilter}`;
+      const r = await fetch(url);
+      const d = await r.json();
+      setTickets(d.tickets || []);
+      setStats(d.stats || { pending: 0, approvedToday: 0, rejectedToday: 0, avgResponseTime: '—' });
+    } catch (e) {
+      console.warn('[ApprovalDashboard] fetch lệch:', e);
+    }
   }, [activeFilter]);
 
+  // Fetch on mount + filter change
+  useEffect(() => {
+    fetchApproval();
+  }, [fetchApproval]);
+
+  // Subscribe Mạch HeyNa — refresh khi approval.updated
+  useEffect(() => {
+    const mach = new EventSource(`${SERVER}/mach/heyna`);
+    mach.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data.event === 'approval.updated') fetchApproval();
+      } catch {}
+    };
+    return () => mach.close();
+  }, [fetchApproval]);
+
   const handleApprove = async (id: string) => {
-      await ApprovalEngine.approveTicket(id, 'MASTER_NATT'); // Giả lập người duyệt là Master
-      setTickets(ApprovalEngine.getTickets(activeFilter));
-      setSelectedTicket(null);
+    await fetch(`${SERVER}/phat/approval/approve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ticketId: id, approverId: 'MASTER_NATT' }),
+    });
+    setSelectedTicket(null);
+    fetchApproval();
   };
 
   const handleReject = async (id: string) => {
-      const reason = prompt("Nhập lý do từ chối:");
-      if (reason) {
-          await ApprovalEngine.rejectTicket(id, 'MASTER_NATT', reason);
-          setTickets(ApprovalEngine.getTickets(activeFilter));
-          setSelectedTicket(null);
-      }
+    const reason = prompt('Nhập lý do từ chối:');
+    if (reason) {
+      await fetch(`${SERVER}/phat/approval/reject`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticketId: id, approverId: 'MASTER_NATT', reason }),
+      });
+      setSelectedTicket(null);
+      fetchApproval();
+    }
   };
 
   return (
