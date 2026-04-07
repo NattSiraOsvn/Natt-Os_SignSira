@@ -293,7 +293,7 @@ export interface DictionaryVersion {
   type?: string;
   dictionaryId?: string;
   previousVersionId?: string;
-  data?: any;
+  data?: Record<string, string | number | boolean | string[]>;
   changes?: {
     added: number;
     removed: number;
@@ -301,7 +301,7 @@ export interface DictionaryVersion {
     diffSummary: string[];
   };
   createdBy?: string;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
 }
 
 export interface ApprovalTicket {
@@ -320,14 +320,14 @@ export interface ApprovalTicket {
   approvedAt?: number;
   rejectionReason?: string;
   workflowStep?: number;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
 }
 
 export interface ApprovalRequest {
   recordType: 'DICTIONARY' | 'TRANSACTION' | 'CONFLICT' | 'HR_PROFILE';
   changeType: 'CREATE' | 'UPDATE' | 'DELETE' | 'CONFLICT_RESOLUTION';
-  currentData?: any;
-  proposedData: any;
+  currentData?: Record<string, unknown>;
+  proposedData: Record<string, unknown>;
   priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   reason: string;
   requestedBy: string;
@@ -366,7 +366,7 @@ export interface OperationRecord {
   id: string;
   type: string;
   module: string;
-  params: any;
+  params: Record<string, unknown>;
   timestamp: number;
   status: 'PENDING' | 'SUCCESS' | 'FAILED' | 'RECOVERED';
   error?: string;
@@ -374,7 +374,7 @@ export interface OperationRecord {
 
 export interface Checkpoint {
   id: string;
-  moduleState: any;
+  moduleState: Record<string, unknown>;
   timestamp: number;
 }
 
@@ -453,7 +453,7 @@ export interface IdentityData {
   timestamp: number;
   confidence: number;
   maskedId: string;
-  details?: any;
+  details?: Record<string, unknown>;
 }
 
 export interface GuarantyCertificate {
@@ -470,8 +470,8 @@ export interface GuarantyCertificate {
     exchangeDeduction: number;
   };
   confidence: number;
-  metadata?: any;
-  diamondDetails?: any;
+  metadata?: Record<string, unknown>;
+  diamondDetails?: Record<string, unknown>;
 }
 
 export interface ChatMessage {
@@ -483,7 +483,7 @@ export interface ChatMessage {
   type: 'text' | 'image' | 'video' | 'audio' | 'file';
   fileData?: string;
   isThinking?: boolean;
-  citations?: any[];
+  citations?: Array<{ source: string; excerpt: string; url?: string }>;
   suggestedActions?: string[];
   isEdited?: boolean;
   history?: { content: string; timestamp: number }[];
@@ -515,12 +515,12 @@ export interface SyncLog {
 export interface DataPoint {
   id: string;
   source: 'MASTER_MANUAL' | 'DIRECT_API' | 'OMEGA_OCR' | 'LEGACY_SYNC' | 'UNKNOWN';
-  payload: any;
+  payload: Record<string, unknown>;
   confidence: number;
   timestamp: number;
   authorId?: string;
   calculatedConfidence?: number;
-  scoreDetails?: any;
+  scoreDetails?: Record<string, number>;
 }
 
 export interface BlockShard {
@@ -545,7 +545,7 @@ export interface CustomsDeclaration {
   header: {
     declarationNumber: string;
     streamCode: 'RED' | 'YELLOW' | 'GREEN';
-    [key: string]: any;
+    [key: string]: unknown;
   };
   items: CustomsDeclarationItem[];
   summary: {
@@ -728,7 +728,7 @@ export interface Warehouse {
   totalValue: number;
   itemCount: number;
   securityLevel: string;
-  layout?: any[];
+  layout?: unknown[];
 }
 
 export interface Movement {
@@ -757,7 +757,7 @@ export interface DistributedTask {
   id: string;
   origin: string;
   targetModule: ViewType;
-  payload: any;
+  payload: Record<string, unknown>;
   status: 'PENDING' | 'COMPLETED' | 'FAILED';
   timestamp: number;
   priority?: 'URGENT' | 'NORMAL';
@@ -835,7 +835,7 @@ export interface GovernanceRecord {
   timestamp: number;
   type: string;
   status: 'BẢN NHÁP' | 'ĐÃ DUYỆT' | 'BỊ TỪ CHỐI' | 'ĐÃ KÝ SỐ';
-  data: any;
+  data: Record<string, unknown>;
   operatorId: string;
   auditTrail: AuditTrailEntry[];
 }
@@ -901,10 +901,29 @@ export interface ProductionOrder {
   deadline: number;
   gold_type: string;
   target_weight: number;
-  stone_specs: any[];
-  weight_history: any[];
+  stone_specs: Array<{
+    stone_type: string;
+    weight_carat: number;
+    quantity: number;
+    clarity?: string;
+    color?: string;
+  }>;
+  weight_history: Array<{
+    stage: OrderStatus;
+    before_g: number;
+    after_g: number;
+    recovery_g: number;
+    loss_pct: number;
+    recorded_at: number;
+    worker_id: string;
+  }>;
   transactions: MaterialTransaction[];
-  qc_reports: any[];
+  qc_reports: Array<{
+    passed: boolean;
+    inspector_id: string;
+    notes: string;
+    inspected_at: number;
+  }>;
   created_at: number;
   updated_at: number;
 }
@@ -913,9 +932,9 @@ export interface LearnedTemplate {
   position: UserPosition;
   docTypeDetected: string;
   suggestions: string[];
-  fields: any[];
-  dailyTasks: any[];
-  productionData?: any;
+  fields: Array<{ id: string; label: string; value?: unknown }>;
+  dailyTasks: Array<{ task: string; status: string; worker_id: string }>;
+  productionData?: Record<string, unknown>;
   lastUpdated: number;
 }
 
@@ -951,7 +970,7 @@ export interface SellerReport {
   depositAmount: number;
   isReportedWithin24h: boolean;
   status: 'PENDING' | 'APPROVED' | 'REJECTED';
-  documents: any;
+  documents: Record<string, unknown>;
   commission: {
     shell: number;
     stone: number;
@@ -1064,8 +1083,8 @@ export interface DetailedPersonnel extends PersonnelProfile {
   bankAccountNo: string;
   bankName: string;
   bankBranch?: string;
-  familyMembers: any[];
-  auditTrail: any[];
+  familyMembers: Array<{ name: string; relationship: string; phone?: string }>;
+  auditTrail: Array<{ action: string; actor: string; ts: number; note?: string }>;
 }
 
 export interface MaterialTransaction {
@@ -1366,7 +1385,7 @@ export interface GDBDocument {
   type: 'GDB' | 'OTHER';
   confidence: number;
   extractedData: GDBData;
-  metadata: any;
+  metadata: Record<string, string | number>;
 }
 
 export interface DiamondSpecs {
@@ -1427,7 +1446,7 @@ export interface FraudCheckResult {
   level: AlertLevel;
   message: string;
   action: 'PROCEED' | 'BLOCK' | 'WARN' | 'LOCK_ACCOUNT';
-  historyRecord?: any;
+  historyRecord?: Record<string, unknown>;
 }
 
 export interface TaxCalculationResult {
@@ -1442,9 +1461,9 @@ export interface TaxCalculationResult {
 export interface SalesEvent {
   type: string;
   order?: SalesOrder;
-  commission?: any;
-  movement?: any;
-  invoice?: any;
+  commission?: { rate: number; amount: number; paid: boolean };
+  movement?: { type: string; quantity: number; warehouse: string };
+  invoice?: { id: string; issued_at: number; vat: number; total: number };
   timestamp: Date;
 }
 
@@ -1452,7 +1471,7 @@ export interface RealTimeUpdate {
   id: string;
   type: string;
   timestamp: Date;
-  data: any;
+  data: Record<string, unknown>;
   source: string;
   priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   processed: boolean;
@@ -1468,8 +1487,8 @@ export interface AccountingMappingRule {
   destinationField: string;
   mappingType: 'DIRECT' | 'AGGREGATE' | 'SPLIT' | 'REALTIME' | 'CONDITIONAL';
   alwaysActive?: boolean;
-  conditions?: { field: string; operator: string; value: any }[];
-  transformation: (value: any, context?: any) => any;
+  conditions?: { field: string; operator: string; value: string | number | boolean }[];
+  transformation: (value: unknown, context?: Record<string, unknown>) => unknown;
   autoPost: boolean;
   enabled: boolean;
   priority: number;
@@ -1478,14 +1497,14 @@ export interface AccountingMappingRule {
 }
 
 export interface Chat {
-  sendMessage: (params: { message: string }) => Promise<any>;
-  sendMessageStream: (params: { message: string }) => Promise<any>;
+  sendMessage: (params: { message: string }) => Promise<{ reply: string; ts: number }>;
+  sendMessageStream: (params: { message: string }) => Promise<ReadableStream>;
 }
 
 export interface QuantumTask {
   id: string;
   type: string;
-  payload: any;
+  payload: Record<string, unknown>;
   priority: number;
   timestamp: number;
 }

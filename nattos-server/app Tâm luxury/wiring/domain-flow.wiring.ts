@@ -5,45 +5,53 @@
 
 import { EventBus } from '@/core/events/event-bus';
 
-EventBus.on('ProductionCompleted' as any, (env: any) => {
+/** Generic event envelope từ EventBus */
+type EventEnv = {
+  payload?: Record<string, unknown>;
+  type?: string;
+  ts?: number;
+  [key: string]: unknown;
+};
+
+EventBus.on('ProductionCompleted' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('GoodsReceived', { sku: p?.sku ?? 'UNKNOWN', qty: p?.qty ?? 1, source: 'production-cell', ts: Date.now() }, 'ProductionCompleted');
 });
 
-EventBus.on('wip:stone' as any, (env: any) => {
+EventBus.on('wip:stone' as string, (env: EventEnv) => {
   EventBus.emit('cell.metric', { cell: 'stone-cell', metric: 'wip.stone', value: 1, ts: Date.now() });
 });
 
-EventBus.on('StockReserved' as any, (env: any) => {
+EventBus.on('StockReserved' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('cell.metric', { cell: 'inventory-cell', metric: 'stock.reserved', value: p?.qty ?? 1, ts: Date.now() });
 });
 
-EventBus.on('StockReplenished' as any, (env: any) => {
+EventBus.on('StockReplenished' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('inventory.in', { sku: p?.sku, qty: p?.qty, ts: Date.now() }, 'StockReplenished');
 });
 
-EventBus.on('GoodsReceived' as any, (env: any) => {
+EventBus.on('GoodsReceived' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('inventory.in', { sku: p?.sku, qty: p?.qty, ts: Date.now() }, 'GoodsReceived');
 });
 
-EventBus.on('MaterialLossReported' as any, (env: any) => {
+EventBus.on('MaterialLossReported' as string, (env: EventEnv) => {
   EventBus.emit('cell.metric', { cell: 'compliance-cell', metric: 'material.loss', value: 1, ts: Date.now() });
 });
 
-EventBus.on('SkuModelCreated' as any, (env: any) => {
+EventBus.on('SkuModelCreated' as string, (env: EventEnv) => {
   EventBus.emit('cell.metric', { cell: 'design-3d-cell', metric: 'sku.created', value: 1, ts: Date.now() });
 });
 
 ['BomCreated', 'BomValidated', 'BomRejected'].forEach((ev) => {
-  EventBus.on(ev as any, () => {
+  EventBus.on(ev as string, () => {
     EventBus.emit('cell.metric', { cell: 'bom3dprd-cell', metric: ev, value: 1, ts: Date.now() });
   });
 });
 
-EventBus.on('constitutional.violation' as any, (env: any) => {
+EventBus.on('constitutional.violation' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('audit.record', {
     action: 'constitutional.violation', actor: { id: 'system', type: 'system' },
@@ -52,12 +60,12 @@ EventBus.on('constitutional.violation' as any, (env: any) => {
   }, 'constitutional.violation');
 });
 
-EventBus.on('FINANCE_DEPRECIATION_REQUEST' as any, (env: any) => {
+EventBus.on('FINANCE_DEPRECIATION_REQUEST' as string, (env: EventEnv) => {
   EventBus.emit('cell.metric', { cell: 'finance-cell', metric: 'depreciation.requested', value: 1, ts: Date.now() });
 });
 
 // ── SALES → PRODUCTION BRIDGE ─────────────────────────────────────────────
-EventBus.on('sales.confirm' as any, (env: any) => {
+EventBus.on('sales.confirm' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('ProductionSpecReady', {
     orderId: p?.orderId, items: p?.items ?? [], source: 'sales-cell', ts: Date.now(),
@@ -65,7 +73,7 @@ EventBus.on('sales.confirm' as any, (env: any) => {
 });
 
 // ── wip:phoi → finishing-cell trigger ────────────────────────────────────
-EventBus.on('wip:phoi' as any, (env: any) => {
+EventBus.on('wip:phoi' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('cell.metric', {
     cell: 'finishing-cell', metric: 'wip.phoi.received', value: 1,
@@ -74,7 +82,7 @@ EventBus.on('wip:phoi' as any, (env: any) => {
 });
 
 // ── ViolationDetected → audit + quantum ──────────────────────────────────
-EventBus.on('ViolationDetected' as any, (env: any) => {
+EventBus.on('ViolationDetected' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('constitutional.violation', {
     trigger: p?.rule ?? 'UNKNOWN', level: 'WARNING',
@@ -84,7 +92,7 @@ EventBus.on('ViolationDetected' as any, (env: any) => {
 });
 
 // ── AuditLogged → audit trail ─────────────────────────────────────────────
-EventBus.on('AuditLogged' as any, (env: any) => {
+EventBus.on('AuditLogged' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('audit.record', {
     action: p?.event ?? 'audit.logged',
@@ -96,7 +104,7 @@ EventBus.on('AuditLogged' as any, (env: any) => {
 });
 
 // ── ViolationDetected → audit + quantum ──────────────────────────────────
-EventBus.on('ViolationDetected' as any, (env: any) => {
+EventBus.on('ViolationDetected' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('constitutional.violation', {
     trigger: p?.rule ?? 'UNKNOWN', level: 'WARNING',
@@ -106,7 +114,7 @@ EventBus.on('ViolationDetected' as any, (env: any) => {
 });
 
 // ── AuditLogged → audit trail ─────────────────────────────────────────────
-EventBus.on('AuditLogged' as any, (env: any) => {
+EventBus.on('AuditLogged' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('audit.record', {
     action: p?.event ?? 'audit.logged',
@@ -118,7 +126,7 @@ EventBus.on('AuditLogged' as any, (env: any) => {
 });
 
 // ── anomaly.detected → audit trail ───────────────────────────────────────
-EventBus.on('anomaly.detected' as any, (env: any) => {
+EventBus.on('anomaly.detected' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('audit.record', {
     action:   'anomaly.detected',
