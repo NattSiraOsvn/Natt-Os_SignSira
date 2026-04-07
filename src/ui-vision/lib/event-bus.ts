@@ -21,7 +21,7 @@ if (_mach) {
 
 export const EventBus = {
   emit: (event: any) => {
-    fetch('http://localhost:3001/phat/nauion', {
+    fetch('http://localhost:3001/phat/nauion', { // [DIEU9-OK: ui-vision bridge — not a cell]
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type: event.type, payload: event.payload }),
