@@ -44,6 +44,20 @@ EventBus.on('cell.metric', (env) => {
 });
 
 // ── ROUTES ────────────────────────────────────────────────────────────────
+
+let _Z = 1.0;
+let _eventCount = 0;
+let _errorCount = 0;
+EventBus.on('audit.record', (env) => {
+  _eventCount++;
+  if (env.payload?.type === 'anomaly.detected') _errorCount++;
+  const error_ratio = _eventCount > 0 ? _errorCount / _eventCount : 0;
+  _Z = Math.min(5.0, Math.max(0.1, 1.0 + error_ratio * 2));
+});
+app.get('/api/nauion', (req, res) => {
+  res.json({ state: 'Nahere', impedanceZ: _Z, event_count: _eventCount, ts: Date.now() });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', server: 'NATT-OS Server v1.0', ts: new Date().toISOString() });
 });

@@ -14,7 +14,6 @@ import { bootKernel } from '../src/core/kernel-boot';
 import { AuditApplicationService } from '../src/cells/kernel/audit-cell/application/services/AuditApplicationService';
 import '../src/apps/engine-registry';
 import { NauionVoice } from '../src/core/nauion/nauion.voice';
-import { computeSystemImpedance } from '../src/cells/kernel/neural-main-cell/domain/services/impedance.engine';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -44,14 +43,22 @@ EventBus.on('cell.metric', (payload: any) => {
   STATE[cell][metric] = { value, ts: Date.now() };
 });
 
+// ── Nahere — Z state inline (không import engine tránh circular) ──
+let _serverZ = 1.0;
+let _serverEventCount = 0;
+let _serverErrorCount = 0;
+EventBus.on('audit.record', (record: any) => {
+  _serverEventCount++;
+  if (record.type === 'anomaly.detected') _serverErrorCount++;
+});
+
 hey('/api/nauion', (_req: any, res: any) => {
-  const snapshot = computeSystemImpedance();
+  const error_ratio = _serverEventCount > 0 ? _serverErrorCount / _serverEventCount : 0;
+  _serverZ = Math.min(5.0, Math.max(0.1, 1.0 + error_ratio * 2));
   res.json({
     state: NauionVoice.currentState(),
-    impedanceZ: snapshot.Z,
-    event_rate: snapshot.event_rate,
-    error_ratio: snapshot.error_ratio,
-    anomaly_score: snapshot.anomaly_score,
+    impedanceZ: _serverZ,
+    error_ratio,
     ts: Date.now(),
   });
 });

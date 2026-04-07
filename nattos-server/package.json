@@ -1,13 +1,13 @@
 {
   "name": "nattos-server",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "server.js",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1"
   },
   "scripts": {
-    "start": "npx tsx server.ts",
-    "dev": "npx tsx watch server.ts"
+    "start": "node server.js",
+    "dev": "node server.js"
   }
 }
