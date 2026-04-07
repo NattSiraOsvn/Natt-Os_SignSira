@@ -4,5 +4,11 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   resolve: { alias: { '@': path.resolve(__dirname, '.') } },
-  build: { outDir: '../../apps/tam-luxury', emptyOutDir: false }
+  build: {
+    outDir: '../../apps/tam-luxury',
+    emptyOutDir: false,
+    rollupOptions: {
+      external: ['superdictionary.ts']
+    }
+  }
 })

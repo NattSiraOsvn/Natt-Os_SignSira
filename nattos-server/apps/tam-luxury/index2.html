@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tâm Luxury · NATT-OS Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080a0d;--bg2:#0d1017;--bg3:#121820;--bg4:#181f2a;
+  --gold:#c8922a;--gold2:#e8b84b;--gold3:#f5d080;
+  --border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.3);
+  --text:#ede0c8;--text2:#a89070;--text3:#60503a;
+  --green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;
+  --mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-size:13px;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--text);background:var(--bg)}
+*{-webkit-user-select:none;user-select:none}
+input{-webkit-user-select:text!important;user-select:text!important}
+@media print{body *{visibility:hidden!important}body::after{content:"TÀI LIỆU MẬT — TÂM LUXURY";visibility:visible!important;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;color:red;font-weight:900}}
+
+/* Galaxy */
+#gx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 85% 55% at 10% 20%,rgba(200,120,30,.12) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 78%,rgba(200,146,42,.08) 0%,transparent 50%),
+    radial-gradient(ellipse 55% 45% at 50% 50%,rgba(80,50,180,.07) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 35% at 25% 90%,rgba(180,100,30,.09) 0%,transparent 50%)}
+.l0-grid{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background-image:linear-gradient(rgba(200,146,42,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,146,42,.012) 1px,transparent 1px);
+  background-size:44px 44px}
+.l0-scan{position:fixed;left:0;right:0;height:2px;pointer-events:none;z-index:2;
+  background:linear-gradient(to bottom,transparent,rgba(200,146,42,.07),transparent);
+  animation:scan 22s linear infinite}
+@keyframes scan{0%{top:-1%}100%{top:101%}}
+
+/* Watermark */
+#wm{position:fixed;inset:0;z-index:9990;pointer-events:none;overflow:hidden;
+  display:flex;flex-wrap:wrap;gap:60px;padding:40px;transform:rotate(-22deg) scale(1.6)}
+#wm span{font-size:9px;color:rgba(200,146,42,.04);font-family:var(--mono);white-space:nowrap}
+
+/* Layout */
+#app{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column}
+
+/* Header */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,10,16,.92);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 24px;height:56px;
+  box-shadow:0 2px 20px rgba(0,0,0,.5),inset 0 -1px 0 rgba(200,146,42,.08)}
+.tlogo{font-family:var(--mono);font-size:17px;font-weight:500;letter-spacing:.08em;
+  background:linear-gradient(135deg,var(--gold3),var(--gold2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  padding-right:20px;border-right:1px solid var(--border)}
+.tsub{font-size:8px;color:var(--text3);letter-spacing:.22em;text-transform:uppercase;margin-left:6px}
+.t-r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.t-chip{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:40px;
+  background:rgba(200,146,42,.08);border:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--gold2)}
+.dot{width:6px;height:6px;border-radius:50%}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+.pls{animation:pulse 2.2s ease-in-out infinite}
+
+/* Hero */
+.hero{text-align:center;padding:48px 24px 32px;position:relative}
+.hero-title{font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:.06em;
+  background:linear-gradient(135deg,var(--gold3) 0%,var(--gold2) 40%,var(--gold) 70%,var(--gold3) 100%);
+  background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:gold-sweep 4s linear infinite}
+@keyframes gold-sweep{0%{background-position:0%}100%{background-position:200%}}
+.hero-sub{font-size:10px;color:var(--text3);letter-spacing:.3em;text-transform:uppercase;margin-top:8px}
+.hero-chips{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.hc{padding:4px 14px;border-radius:40px;font-family:var(--mono);font-size:9px;font-weight:500;
+  background:rgba(200,146,42,.1);border:1px solid var(--border2);color:var(--gold2)}
+.hc-green{background:rgba(61,214,140,.1);border-color:rgba(61,214,140,.22);color:var(--green)}
+#hdr-gold{color:var(--gold2);font-weight:700}
+
+/* Group labels */
+.group-label{
+  padding:6px 24px 10px;font-family:var(--mono);font-size:8px;font-weight:800;
+  letter-spacing:.4em;color:var(--text3);text-transform:uppercase;
+  display:flex;align-items:center;gap:12px}
+.group-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* App grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;padding:0 24px 16px}
+
+/* App card */
+.app-card{
+  background:rgba(13,16,23,.8);
+  border:1px solid var(--border);border-radius:6px;
+  padding:18px 20px;cursor:pointer;transition:all .18s;
+  position:relative;overflow:hidden;
+  display:flex;align-items:flex-start;gap:14px;
+  text-decoration:none;color:inherit}
+.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  border-radius:6px 6px 0 0;opacity:0;transition:opacity .18s}
+.app-card:hover{border-color:var(--border2);transform:translateY(-2px);
+  background:rgba(18,22,30,.9);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.app-card:hover::before{opacity:1}
+.app-card.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+.app-card.green::before{background:var(--green)}
+.app-card.blue::before{background:var(--blue)}
+.app-card.amber::before{background:var(--amber)}
+.app-card.purple::before{background:#a78bfa}
+.app-card.red::before{background:var(--red)}
+.app-icon{font-size:28px;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(200,146,42,.35))}
+.app-info{flex:1;min-width:0}
+.app-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;letter-spacing:.02em}
+.app-desc{font-size:10px;color:var(--text3);line-height:1.5}
+.app-badge{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:2px;
+  font-family:var(--mono);font-size:8px;font-weight:500}
+.ab-gold{background:rgba(200,146,42,.1);color:var(--gold2);border:1px solid var(--border)}
+.ab-green{background:rgba(61,214,140,.1);color:var(--green);border:1px solid rgba(61,214,140,.2)}
+.ab-blue{background:rgba(96,184,240,.1);color:var(--blue);border:1px solid rgba(96,184,240,.2)}
+.ab-amber{background:rgba(240,160,48,.1);color:var(--amber);border:1px solid rgba(240,160,48,.2)}
+.ab-red{background:rgba(240,80,80,.1);color:var(--red);border:1px solid rgba(240,80,80,.2)}
+
+/* Ticker */
+.ticker{position:sticky;bottom:0;height:26px;background:rgba(6,8,14,.95);
+  backdrop-filter:blur(20px);border-top:1px solid var(--border);
+  display:flex;align-items:center;overflow:hidden;z-index:50}
+.tick-tag{background:linear-gradient(135deg,rgba(200,146,42,.85),rgba(232,184,75,.75));
+  color:#040204;font-size:8px;font-weight:800;letter-spacing:.15em;
+  padding:0 12px;height:100%;display:flex;align-items:center;flex-shrink:0;text-transform:uppercase}
+.tick-scroll{white-space:nowrap;animation:marquee 55s linear infinite;
+  display:flex;align-items:center;gap:20px;padding-left:16px;font-family:var(--mono)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{font-size:9px;color:var(--text2)}.ti-gold{font-size:9px;font-weight:700;color:var(--gold2)}
+
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:rgba(200,146,42,.2);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div class="nebula"></div>
+<canvas id="gx"></canvas>
+<div class="l0-grid"></div>
+<div class="l0-scan"></div>
+<div id="wm"></div>
+
+<div id="app">
+  <!-- Header -->
+  <header class="topbar">
+    <div class="tlogo">TÂM LUXURY</div>
+    <span class="tsub">NATT-OS · HCM-01</span>
+    <div class="t-r">
+      <div class="t-chip">
+        <div class="dot pls" style="background:var(--green);box-shadow:0 0 6px var(--green)"></div>
+        <span id="hdr-gold">9999: đang tải...</span>
+      </div>
+      <div class="t-chip">
+        <div class="dot pls" style="background:var(--gold2);box-shadow:0 0 6px var(--gold2);animation-delay:.8s"></div>
+        <span id="hdr-state">HEALTHY</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-title">TÂM LUXURY · PORTAL</div>
+    <div class="hero-sub">Hệ Điều Hành Doanh Nghiệp · NATT-OS v2.1</div>
+    <div class="hero-chips">
+      <span class="hc">26 MODULES</span>
+      <span class="hc">LIVE SERVER :3001</span>
+      <span class="hc hc-green" id="hc-z">Z = 1.000</span>
+      <span class="hc">Vietinbank 110604776999</span>
+      <span class="hc">VAT 10%</span>
+    </div>
+  </div>
+
+  <!-- BÁN HÀNG -->
+  <div class="group-label">💎 Bán Hàng & Showroom</div>
+  <div class="grid">
+    <a class="app-card gold" href="tamluxury-v4.html">
+      <span class="app-icon">🛒</span>
+      <div class="app-info">
+        <div class="app-name">Sales Terminal v4</div>
+        <div class="app-desc">POS bán hàng tại quầy · Catalog · Giỏ hàng · Thanh toán QR</div>
+        <span class="app-badge ab-gold">CORE · SALES</span>
+      </div>
+    </a>
+    <a class="app-card gold" href="showroom-sales.html">
+      <span class="app-icon">💎</span>
+      <div class="app-info">
+        <div class="app-name">Showroom Sales</div>
+        <div class="app-desc">Luxury showroom · Trưng bày sản phẩm · Tư vấn khách hàng</div>
+        <span class="app-badge ab-gold">SHOWROOM</span>
+      </div>
+    </a>
+    <a class="app-card gold" href="order-flow.html">
+      <span class="app-icon">📋</span>
+      <div class="app-info">
+        <div class="app-name">Order Flow</div>
+        <div class="app-desc">Quản lý đơn hàng · Luồng SX · Tracking từng công đoạn</div>
+        <span class="app-badge ab-gold">ORDER · FLOW</span>
+      </div>
+    </a>
+    <a class="app-card gold" href="pricing-engine.html">
+      <span class="app-icon">💰</span>
+      <div class="app-info">
+        <div class="app-name">Pricing Engine</div>
+        <div class="app-desc">Tính giá sản phẩm · BQGQ · Phổ SX · Giá vàng live</div>
+        <span class="app-badge ab-gold">PRICING · LIVE</span>
+      </div>
+    </a>
+    <a class="app-card amber" href="ktt-approval.html">
+      <span class="app-icon">✅</span>
+      <div class="app-info">
+        <div class="app-name">KTT Approval</div>
+        <div class="app-desc">Phê duyệt giao dịch · KTT + Master workflow</div>
+        <span class="app-badge ab-amber">KTT · APPROVAL</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- SẢN XUẤT -->
+  <div class="group-label">⚒️ Sản Xuất & Xưởng</div>
+  <div class="grid">
+    <a class="app-card green" href="production-wallboard.html">
+      <span class="app-icon">📺</span>
+      <div class="app-info">
+        <div class="app-name">Production Wallboard</div>
+        <div class="app-desc">Kanban xưởng realtime · Công đoạn · Hao hụt · OEE</div>
+        <span class="app-badge ab-green">LIVE · XƯỞNG</span>
+      </div>
+    </a>
+    <a class="app-card green" href="loss-thresholds.html">
+      <span class="app-icon">⚖️</span>
+      <div class="app-info">
+        <div class="app-name">Loss Thresholds</div>
+        <div class="app-desc">Ngưỡng hao hụt · Nhẫn / Lắc / Dây chuyền · Cảnh báo</div>
+        <span class="app-badge ab-green">NĐ 24/2012</span>
+      </div>
+    </a>
+    <a class="app-card green" href="warehouse-full.html">
+      <span class="app-icon">📦</span>
+      <div class="app-info">
+        <div class="app-name">Warehouse Full</div>
+        <div class="app-desc">Kho nguyên liệu + thành phẩm · Nhập xuất · Tồn kho</div>
+        <span class="app-badge ab-green">KHO</span>
+      </div>
+    </a>
+    <a class="app-card green" href="warehouse-ops.html">
+      <span class="app-icon">🏭</span>
+      <div class="app-info">
+        <div class="app-name">Warehouse Ops</div>
+        <div class="app-desc">Tác nghiệp kho · Nhập nhanh · Xuất nhanh</div>
+        <span class="app-badge ab-green">OPS</span>
+      </div>
+    </a>
+    <a class="app-card green" href="daily-work-app.html">
+      <span class="app-icon">📝</span>
+      <div class="app-info">
+        <div class="app-name">Daily Work App</div>
+        <div class="app-desc">Tác vụ hàng ngày · Chấm công · Báo cáo cuối ca</div>
+        <span class="app-badge ab-green">DAILY</span>
+      </div>
+    </a>
+    <a class="app-card amber" href="operations-terminal.html">
+      <span class="app-icon">🚚</span>
+      <div class="app-info">
+        <div class="app-name">Operations Terminal</div>
+        <div class="app-desc">Hậu cần · Vận chuyển · Giao nhận đơn hàng</div>
+        <span class="app-badge ab-amber">OPS</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- TÀI CHÍNH & QUẢN LÝ -->
+  <div class="group-label">💰 Tài Chính & Quản Lý</div>
+  <div class="grid">
+    <a class="app-card gold" href="master-dashboard.html">
+      <span class="app-icon">🔱</span>
+      <div class="app-info">
+        <div class="app-name">Master Dashboard</div>
+        <div class="app-desc">Tổng quan CEO · KPI toàn hệ thống · Phê duyệt master</div>
+        <span class="app-badge ab-gold">MASTER · CEO</span>
+      </div>
+    </a>
+    <a class="app-card blue" href="kris-email-hub.html">
+      <span class="app-icon">📧</span>
+      <div class="app-info">
+        <div class="app-name">Kris Email Hub</div>
+        <div class="app-desc">Email tổng hợp · Kris AI · Phân loại tự động</div>
+        <span class="app-badge ab-blue">KRIS · AI</span>
+      </div>
+    </a>
+    <a class="app-card amber" href="surveillance.html">
+      <span class="app-icon">👁️</span>
+      <div class="app-info">
+        <div class="app-name">Surveillance</div>
+        <div class="app-desc">Giám sát hệ thống · Risk score · Loss chain analysis</div>
+        <span class="app-badge ab-amber">SECURITY</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- NHÂN SỰ -->
+  <div class="group-label">👥 Nhân Sự & Chấm Công</div>
+  <div class="grid">
+    <a class="app-card blue" href="hr-admin.html">
+      <span class="app-icon">👥</span>
+      <div class="app-info">
+        <div class="app-name">HR Admin</div>
+        <div class="app-desc">Quản lý nhân sự · Hợp đồng · Lương · BHXH</div>
+        <span class="app-badge ab-blue">HR · ADMIN</span>
+      </div>
+    </a>
+    <a class="app-card blue" href="hr-manager.html">
+      <span class="app-icon">📊</span>
+      <div class="app-info">
+        <div class="app-name">HR Manager</div>
+        <div class="app-desc">Dashboard nhân sự · KPI nhân viên · Hiệu suất</div>
+        <span class="app-badge ab-blue">HR · MANAGER</span>
+      </div>
+    </a>
+    <a class="app-card blue" href="attendance.html">
+      <span class="app-icon">⏰</span>
+      <div class="app-info">
+        <div class="app-name">Attendance</div>
+        <div class="app-desc">Chấm công · Xin nghỉ · Tăng ca · Bảng công tháng</div>
+        <span class="app-badge ab-blue">CHẤM CÔNG</span>
+      </div>
+    </a>
+    <a class="app-card blue" href="personal-profile-v2.html">
+      <span class="app-icon">👤</span>
+      <div class="app-info">
+        <div class="app-name">Personal Profile v2</div>
+        <div class="app-desc">Hồ sơ cá nhân · Lịch sử · Kỹ năng · Đánh giá</div>
+        <span class="app-badge ab-blue">PROFILE</span>
+      </div>
+    </a>
+    <a class="app-card blue" href="personal-profile.html">
+      <span class="app-icon">👤</span>
+      <div class="app-info">
+        <div class="app-name">Personal Profile</div>
+        <div class="app-desc">Hồ sơ nhân viên · Thông tin cơ bản</div>
+        <span class="app-badge ab-blue">PROFILE v1</span>
+      </div>
+    </a>
+    <a class="app-card blue" href="chat-rooms.html">
+      <span class="app-icon">💬</span>
+      <div class="app-info">
+        <div class="app-name">Chat Rooms</div>
+        <div class="app-desc">Phòng họp · Thảo luận nhóm · Cố vấn AI Kris</div>
+        <span class="app-badge ab-blue">COLLABORATION</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- LEGACY / ARCHIVE -->
+  <div class="group-label">🗂️ Phiên Bản Cũ · Archive</div>
+  <div class="grid">
+    <a class="app-card" href="tamluxury-v2.html" style="opacity:.6">
+      <span class="app-icon">📁</span>
+      <div class="app-info">
+        <div class="app-name">Tâm Luxury v2</div>
+        <div class="app-desc">Phiên bản cũ · Archive</div>
+        <span class="app-badge ab-amber">v2 · LEGACY</span>
+      </div>
+    </a>
+    <a class="app-card" href="tamluxury-v3.html" style="opacity:.6">
+      <span class="app-icon">📁</span>
+      <div class="app-info">
+        <div class="app-name">Tâm Luxury v3</div>
+        <div class="app-desc">Phiên bản cũ · Archive</div>
+        <span class="app-badge ab-amber">v3 · LEGACY</span>
+      </div>
+    </a>
+  </div>
+
+  <div style="height:8px"></div>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="tick-tag">LIVE</div>
+    <div class="tick-scroll" id="tick-scroll">
+      <span class="ti ti-gold">đang tải giá vàng...</span>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const S = 'http://localhost:3001';
+
+// Watermark
+const wm = document.getElementById('wm');
+for(let i=0;i<30;i++){const s=document.createElement('span');s.textContent='TÂM LUXURY · NATT-OS · BẢO MẬT · ';wm.appendChild(s);}
+
+// Load giá vàng
+async function loadGold() {
+  try {
+    const d = await fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
+    const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '—';
+    document.getElementById('hdr-gold').textContent = `9999: ${fmt(d.gold9999)} · 18K: ${fmt(d.gold18k)}`;
+    const items = [
+      `🏆 SJC MUA ${Number(d.sjc_buy||0).toLocaleString('vi-VN')}đ`,
+      `BÁN ${Number(d.sjc_sell||0).toLocaleString('vi-VN')}đ`,
+      `💎 9999: ${Number(d.gold9999||0).toLocaleString('vi-VN')}đ`,
+      `✨ 18K: ${Number(d.gold18k||0).toLocaleString('vi-VN')}đ`,
+      `🏢 TÂM LUXURY · HCM-01 · VAT 10%`,
+      `🏦 Vietinbank 110604776999 · Vietcombank 1770129999`,
+      `🏆 SJC MUA ${Number(d.sjc_buy||0).toLocaleString('vi-VN')}đ`,
+      `BÁN ${Number(d.sjc_sell||0).toLocaleString('vi-VN')}đ`,
+      `💎 9999: ${Number(d.gold9999||0).toLocaleString('vi-VN')}đ`,
+      `✨ 18K: ${Number(d.gold18k||0).toLocaleString('vi-VN')}đ`,
+    ];
+    document.getElementById('tick-scroll').innerHTML =
+      items.map((t,i)=>`<span class="${i%2===0?'ti-gold':'ti'}">${t}</span>`).join('');
+  } catch{}
+}
+
+// SSE
+(function(){
+  const es = new EventSource(`${S}/mach/heyna`);
+  es.onmessage = e => {
+    try {
+      const d = JSON.parse(e.data);
+      if(d.event==='nauion.state'){
+        const z = d.payload?.impedanceZ;
+        if(z) document.getElementById('hc-z').textContent = `Z = ${z.toFixed(3)}`;
+        const st = d.payload?.state;
+        if(st) document.getElementById('hdr-state').textContent = st==='nauion'?'HEALTHY':st.toUpperCase();
+      }
+      if(d.event==='gia-vang.updated') loadGold();
+    } catch{}
+  };
+  es.onerror = () => {es.close(); setTimeout(arguments.callee,3000)};
+})();
+
+// Galaxy
+(function(){
+  const cv=document.getElementById('gx'),gx=cv.getContext('2d');
+  let W,H,stars=[],comets=[],shooters=[];
+  function resize(){
+    W=cv.width=innerWidth;H=cv.height=innerHeight;
+    const n=Math.floor(W*H/2200);
+    stars=Array.from({length:n},()=>({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*1.5+.1,a:Math.random()*.75+.1,
+      hue:Math.random()<.15?(Math.random()<.5?42:30):0,
+      sat:Math.random()<.15?75:0,
+      ph:Math.random()*Math.PI*2,sp:.3+Math.random()*.8}));
+  }
+  function spawnC(){
+    const s=Math.random()<.5;
+    comets.push({x:s?-80:W+80,y:Math.random()*H*.7,vx:s?1.2:-1.2,vy:.3+Math.random()*.4,len:100+Math.random()*160,life:1,hue:42});
+  }
+  function spawnS(){
+    shooters.push({x:Math.random()*W*.8,y:Math.random()*H*.4,vx:9+Math.random()*12,vy:4+Math.random()*7,len:60+Math.random()*100,life:1});
+  }
+  function draw(ts){
+    gx.clearRect(0,0,W,H);const t=ts*.001;
+    for(const s of stars){
+      const a=s.a*(.55+.45*Math.sin(t*s.sp+s.ph));
+      gx.beginPath();gx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      gx.fillStyle=s.sat?`hsla(${s.hue},${s.sat}%,85%,${a.toFixed(2)})`:`rgba(255,255,255,${a.toFixed(2)})`;
+      gx.fill();
+    }
+    for(let i=comets.length-1;i>=0;i--){
+      const c=comets[i];c.x+=c.vx;c.y+=c.vy;c.life-=.003;
+      if(c.life<=0||c.x<-200||c.x>W+200){comets.splice(i,1);continue}
+      const gr=gx.createLinearGradient(c.x,c.y,c.x-c.vx*c.len/Math.abs(c.vx),c.y-c.vy*c.len/Math.abs(c.vx));
+      gr.addColorStop(0,`hsla(${c.hue},80%,80%,${c.life.toFixed(2)})`);gr.addColorStop(1,'transparent');
+      gx.beginPath();gx.moveTo(c.x,c.y);gx.lineTo(c.x-c.vx*(c.len/Math.abs(c.vx)),c.y-c.vy*(c.len/Math.abs(c.vx)));
+      gx.strokeStyle=gr;gx.lineWidth=1.5*c.life;gx.stroke();
+    }
+    for(let i=shooters.length-1;i>=0;i--){
+      const s=shooters[i];s.x+=s.vx;s.y+=s.vy;s.life-=.045;
+      if(s.life<=0){shooters.splice(i,1);continue}
+      const ang=Math.atan2(s.vy,s.vx);
+      const gr=gx.createLinearGradient(s.x,s.y,s.x-Math.cos(ang)*s.len,s.y-Math.sin(ang)*s.len);
+      gr.addColorStop(0,`rgba(255,230,180,${s.life.toFixed(2)})`);gr.addColorStop(1,'transparent');
+      gx.beginPath();gx.moveTo(s.x,s.y);gx.lineTo(s.x-Math.cos(ang)*s.len,s.y-Math.sin(ang)*s.len);
+      gx.strokeStyle=gr;gx.lineWidth=1.2*s.life;gx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  setInterval(spawnC,4500+Math.random()*5000);
+  setInterval(spawnS,1600+Math.random()*2000);
+  window.addEventListener('resize',resize);resize();requestAnimationFrame(draw);
+})();
+
+loadGold();
+</script>
+</body>
+</html>

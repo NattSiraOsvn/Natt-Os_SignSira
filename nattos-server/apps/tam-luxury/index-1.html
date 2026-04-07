@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tâm Luxury · NATT-OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══ TÂM LUXURY DESIGN SYSTEM ══ */
+:root {
+  /* Tâm Luxury tokens */
+  --bg:#080a0d;--bg2:#0d1017;--bg3:#121820;--bg4:#181f2a;
+  --gold:#c8922a;--gold2:#e8b84b;--gold3:#f5d080;
+  --border:rgba(200,146,42,.14);--border2:rgba(200,146,42,.32);
+  --text:rgba(255,255,255,.90);--text2:rgba(255,255,255,.55);--text3:rgba(255,255,255,.28);
+  --green:#3dd68c;--red:#f05050;--amber:#f0a030;--blue:#60b8f0;--purple:#a78bfa;
+  --mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif;
+  --sidebar-w:220px;--header-h:52px;
+  /* Glass */
+  --glass-border:1px solid rgba(200,146,42,.22);
+  --glass-shadow:0 24px 48px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,220,140,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-size:13px}
+body{font-family:var(--sans);color:var(--text);background:#04030E}
+
+/* ── Galaxy ── */
+#gx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 85% 55% at 10% 20%, rgba(200,120,30,.12) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 78%, rgba(200,146,42,.08) 0%,transparent 50%),
+    radial-gradient(ellipse 55% 45% at 50% 50%, rgba(80,50,180,.08) 0%,transparent 55%),
+    radial-gradient(ellipse 75% 30% at 25% 90%, rgba(180,100,30,.10) 0%,transparent 50%),
+    radial-gradient(ellipse 50% 55% at 78% 15%, rgba(50,150,200,.07) 0%,transparent 50%)}
+.l0-grid{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background-image:linear-gradient(rgba(200,146,42,.014) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,146,42,.014) 1px,transparent 1px);
+  background-size:44px 44px}
+.l0-scan{position:fixed;left:0;right:0;height:2px;pointer-events:none;z-index:2;
+  background:linear-gradient(to bottom,transparent,rgba(200,146,42,.08),transparent);
+  animation:scan 20s linear infinite}
+@keyframes scan{0%{top:-1%}100%{top:101%}}
+
+/* ── Layout ── */
+#app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:10}
+
+/* ── Header ── */
+#header{
+  height:var(--header-h);flex-shrink:0;
+  background:radial-gradient(ellipse 100% 100% at 50% 0%,rgba(200,146,42,.08) 0%,transparent 60%),rgba(8,10,16,.90);
+  backdrop-filter:blur(28px) saturate(220%);
+  border-bottom:var(--glass-border);
+  box-shadow:0 4px 20px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,220,140,.22);
+  display:flex;align-items:center;padding:0 20px;gap:16px;z-index:20}
+.logo{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.06em;
+  background:linear-gradient(135deg,var(--gold3),var(--gold2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:8px;color:var(--text3);letter-spacing:.25em;text-transform:uppercase}
+.h-sep{width:1px;height:20px;background:var(--border);margin:0 4px}
+.h-chip{display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:40px;
+  background:rgba(200,146,42,.08);border:1px solid var(--border);font-size:10px;color:var(--text2)}
+.dot{width:6px;height:6px;border-radius:50%}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+.pls{animation:pulse 2.2s ease-in-out infinite}
+.h-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.h-gold{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--gold2);
+  padding:4px 12px;background:rgba(200,146,42,.1);border:1px solid var(--border2);border-radius:3px}
+.badge{padding:4px 12px;border-radius:20px;font-size:9px;font-weight:800;letter-spacing:.1em}
+.badge-ok{color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+.badge-gold{color:var(--gold2);background:rgba(200,146,42,.12);border:1px solid var(--border2)}
+
+/* ── Nav tabs ── */
+.nav-tabs{display:flex;gap:0;height:var(--header-h);padding:8px 0}
+.ntab{padding:0 16px;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;
+  border-bottom:2px solid transparent;transition:all .15s;display:flex;align-items:center;
+  gap:6px;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
+.ntab:hover{color:var(--text)}
+.ntab.active{color:var(--gold2);border-bottom-color:var(--gold);background:rgba(200,146,42,.06)}
+
+/* ── Body ── */
+#body{flex:1;display:flex;overflow:hidden}
+
+/* ── Sidebar ── */
+#sidebar{
+  width:var(--sidebar-w);flex-shrink:0;position:relative;
+  background:radial-gradient(ellipse 100% 30% at 50% 0%,rgba(200,146,42,.07) 0%,transparent 50%),rgba(8,10,16,.80);
+  backdrop-filter:blur(20px);border-right:var(--glass-border);
+  overflow-y:auto;transition:width .25s cubic-bezier(.4,0,.2,1);z-index:20}
+#sidebar.collapsed{width:60px}
+#sidebar::-webkit-scrollbar{width:2px}
+#sidebar::-webkit-scrollbar-thumb{background:var(--border2)}
+#sb-toggle{position:absolute;top:12px;right:-13px;width:26px;height:26px;border-radius:50%;
+  background:rgba(8,10,16,.9);border:1px solid rgba(200,146,42,.3);
+  cursor:pointer;z-index:30;display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:rgba(255,255,255,.5);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+#sb-toggle:hover{border-color:var(--gold2);color:var(--gold2)}
+.sb-lbl{font-size:7px;font-weight:800;letter-spacing:.4em;color:var(--text3);
+  text-transform:uppercase;padding:10px 14px 3px;display:block}
+#sidebar.collapsed .sb-lbl{display:none}
+.sb-item{margin:2px 8px;padding:8px 10px;border-radius:999px;cursor:pointer;
+  display:flex;align-items:center;gap:9px;font-size:10px;font-weight:500;color:var(--text2);
+  border:1px solid transparent;transition:all .15s;position:relative;overflow:hidden}
+.sb-item:hover{color:rgba(255,255,255,.88);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+.sb-item.active{color:rgba(255,255,255,1);
+  background:radial-gradient(circle at 30% 40%,rgba(200,146,42,.18) 0%,rgba(200,146,42,.06) 70%,transparent 100%),rgba(200,146,42,.08);
+  border-color:rgba(200,146,42,.35);
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.28),0 0 12px rgba(200,146,42,.12)}
+#sidebar.collapsed .sb-item span:last-child{display:none}
+#sidebar.collapsed .sb-item{justify-content:center;border-radius:50%;margin:3px 6px;width:48px;height:48px}
+.sb-icon{font-size:13px;flex-shrink:0}
+.sb-icon-img{width:20px;height:20px;object-fit:contain;flex-shrink:0;
+  filter:drop-shadow(0 0 4px rgba(200,146,42,.5))}
+.sb-div{border:none;border-top:1px solid var(--border);margin:6px 14px}
+#sidebar.collapsed .sb-div{display:none}
+
+/* ── Content ── */
+#content{flex:1;overflow-y:auto;padding:20px;z-index:15;background:transparent}
+#content::-webkit-scrollbar{width:3px}
+#content::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* ── Module card ── */
+.card{
+  background:radial-gradient(circle at var(--mx,35%) var(--my,30%),rgba(200,146,42,.10) 0%,rgba(200,146,42,.02) 55%,transparent 85%),rgba(13,16,23,.75);
+  backdrop-filter:blur(24px) saturate(200%);
+  border:var(--glass-border);border-radius:8px;padding:22px 24px;margin-bottom:16px;
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,220,140,.22)}
+.card::before{content:'';position:absolute;top:0;left:-180%;width:45%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(255,220,140,.05),transparent);
+  transform:skewX(-12deg);transition:left 1s ease;pointer-events:none}
+.card:hover::before{left:180%}
+.card-hdr{display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  padding-bottom:14px;border-bottom:1px solid rgba(200,146,42,.1)}
+.card-icon{font-size:18px;filter:drop-shadow(0 0 6px rgba(200,146,42,.4))}
+.card-title{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.72));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card-sub{font-size:8px;color:var(--text3);margin-top:2px;letter-spacing:.07em}
+.card-r{margin-left:auto}
+
+/* ── KPI ── */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:rgba(13,16,23,.8);border:1px solid var(--border);border-radius:6px;
+  padding:14px 12px;text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,220,140,.15)}
+.kv{font-size:22px;font-weight:700;font-style:italic;font-family:var(--mono);
+  background:linear-gradient(135deg,var(--gold3),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.kl{font-size:7px;font-weight:800;letter-spacing:.18em;color:var(--text2);
+  text-transform:uppercase;margin-top:4px}
+.kt{font-size:8px;margin-top:3px}
+.up{color:var(--green)}.dn{color:var(--red)}.ok{color:var(--text3)}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{padding:7px 12px;text-align:left;font-family:var(--mono);font-size:8px;
+  font-weight:500;letter-spacing:.16em;color:var(--text3);text-transform:uppercase;
+  border-bottom:1px solid var(--border);background:var(--bg2)}
+.tbl td{padding:9px 12px;border-bottom:1px solid rgba(200,146,42,.05);color:var(--text2)}
+.tbl tr:hover td{background:rgba(200,146,42,.04)}
+.tv{color:rgba(255,255,255,.9);font-weight:600;font-family:var(--mono)}
+.tgold{color:var(--gold2);font-weight:700;font-family:var(--mono)}
+
+/* ── Badges ── */
+.st{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:3px;font-size:9px;font-family:var(--mono);font-weight:500}
+.st-ok{color:var(--green);background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.22)}
+.st-warn{color:var(--amber);background:rgba(240,160,48,.1);border:1px solid rgba(240,160,48,.22)}
+.st-err{color:var(--red);background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.22)}
+.st-blue{color:var(--blue);background:rgba(96,184,240,.1);border:1px solid rgba(96,184,240,.22)}
+.st-gold{color:var(--gold2);background:rgba(200,146,42,.1);border:1px solid var(--border2)}
+
+/* Hao hụt bar */
+.loss-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(200,146,42,.06)}
+.loss-bar{flex:1;height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.loss-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.loss-ok{background:linear-gradient(90deg,var(--green),rgba(61,214,140,.6))}
+.loss-warn{background:linear-gradient(90deg,var(--amber),rgba(240,160,48,.6))}
+.loss-crit{background:linear-gradient(90deg,var(--red),rgba(240,80,80,.6));animation:pulse .7s infinite}
+
+/* ── Ticker ── */
+#ticker{height:26px;background:rgba(6,8,14,.92);backdrop-filter:blur(20px);
+  border-top:1px solid rgba(200,146,42,.18);flex-shrink:0;z-index:20;
+  display:flex;align-items:center;overflow:hidden}
+.tick-tag{background:linear-gradient(135deg,rgba(200,146,42,.85),rgba(232,184,75,.75));
+  color:#040204;font-size:8px;font-weight:800;letter-spacing:.15em;
+  padding:0 12px;height:100%;display:flex;align-items:center;flex-shrink:0;text-transform:uppercase}
+.tick-scroll{white-space:nowrap;animation:marquee 55s linear infinite;
+  display:flex;align-items:center;gap:20px;padding-left:16px;font-family:var(--mono)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{font-size:9px;font-weight:500;color:var(--text2)}
+.ti-gold{font-size:9px;font-weight:700;color:var(--gold2)}
+
+/* ── Buttons ── */
+.btn{padding:7px 16px;border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;
+  font-family:var(--sans);border:none;transition:all .15s;letter-spacing:.04em}
+.btn-gold{background:var(--gold);color:#000}.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.btn-ghost:hover{border-color:var(--border2);color:var(--text)}
+.btn-green{background:rgba(61,214,140,.12);border:1px solid rgba(61,214,140,.25);color:var(--green)}
+.btn-red{background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.25);color:var(--red)}
+
+/* ── Input ── */
+.inp{background:var(--bg3);border:1px solid var(--border);color:var(--text);
+  padding:8px 12px;font-size:11px;border-radius:3px;outline:none;font-family:var(--sans);
+  width:100%;transition:border .15s}
+.inp:focus{border-color:var(--gold)}
+.inp::placeholder{color:var(--text3)}
+
+/* ── Notif ── */
+#notifs{position:fixed;top:62px;right:14px;z-index:150;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.notif{background:var(--bg2);backdrop-filter:blur(20px);border:1px solid var(--border);
+  border-radius:6px;padding:10px 14px;min-width:260px;pointer-events:all;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);animation:nif .22s ease;font-size:11px}
+@keyframes nif{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+.notif-title{font-weight:700;margin-bottom:2px}
+.notif-body{color:var(--text2);font-size:10px;line-height:1.6}
+.notif.ok{border-left:3px solid var(--green)}.notif.ok .notif-title{color:var(--green)}
+.notif.warn{border-left:3px solid var(--amber)}.notif.warn .notif-title{color:var(--amber)}
+.notif.err{border-left:3px solid var(--red)}.notif.err .notif-title{color:var(--red)}
+.notif.gold{border-left:3px solid var(--gold)}.notif.gold .notif-title{color:var(--gold2)}
+
+/* ── Watermark ── */
+#wm{position:fixed;inset:0;z-index:9990;pointer-events:none;overflow:hidden;
+  display:flex;flex-wrap:wrap;gap:60px;padding:40px;transform:rotate(-22deg) scale(1.6)}
+#wm span{font-size:9px;color:rgba(200,146,42,.04);font-family:var(--mono);white-space:nowrap}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Galaxy -->
+<div class="nebula"></div>
+<canvas id="gx"></canvas>
+<div class="l0-grid"></div>
+<div class="l0-scan"></div>
+
+<!-- Watermark -->
+<div id="wm"></div>
+
+<!-- App -->
+<div id="app">
+  <!-- Header -->
+  <header id="header">
+    <div>
+      <div class="logo">TÂM LUXURY</div>
+      <div class="logo-sub">NATT-OS · Hệ Điều Hành Doanh Nghiệp</div>
+    </div>
+    <div class="h-sep"></div>
+    <div class="nav-tabs" id="nav-tabs"></div>
+    <div class="h-r">
+      <div class="h-chip">
+        <div class="dot pls" style="background:var(--green);box-shadow:0 0 6px var(--green)"></div>
+        <span id="hdr-cells">LIVE</span>
+      </div>
+      <div class="h-gold" id="hdr-gold">9999: đang tải...</div>
+      <span id="hdr-state" class="badge badge-ok">HEALTHY</span>
+    </div>
+  </header>
+
+  <div id="body">
+    <aside id="sidebar">
+      <div id="sb-toggle" onclick="toggleSidebar()">◀</div>
+    </aside>
+    <main id="content"></main>
+  </div>
+
+  <div id="ticker">
+    <div class="tick-tag">LIVE</div>
+    <div class="tick-scroll" id="tick-scroll">
+      <span class="ti ti-gold">đang tải giá vàng...</span>
+    </div>
+  </div>
+</div>
+<div id="notifs"></div>
+
+<script src="./nattos-loss-thresholds.js"></script>
+<script>
+'use strict';
+const S = 'http://localhost:3001';
+
+// ══ TÂM LUXURY MODULE REGISTRY ══
+const GROUPS = ['BÁN HÀNG','SẢN XUẤT','TÀI CHÍNH','VẬN HÀNH','HỆ THỐNG'];
+
+const MODS = [
+  // BÁN HÀNG
+  {id:'dashboard',        t:'Tổng Quan',           i:'🏠', g:'BÁN HÀNG',   img:'13'},
+  {id:'sales_terminal',   t:'Terminal Bán Hàng',   i:'🛒', g:'BÁN HÀNG',   img:'11'},
+  {id:'showroom',         t:'Showroom Luxury',     i:'💎', g:'BÁN HÀNG',   img:'7'},
+  {id:'seller_terminal',  t:'Cổng Seller 24H',     i:'💼', g:'BÁN HÀNG',   img:'14'},
+  {id:'payment_hub',      t:'Thanh Toán QR',       i:'📱', g:'BÁN HÀNG',   img:''},
+  {id:'customization',    t:'Đặt Hàng Tùy Chỉnh', i:'✏️', g:'BÁN HÀNG',   img:''},
+  // SẢN XUẤT
+  {id:'production_wallboard',t:'Wallboard Xưởng',  i:'📺', g:'SẢN XUẤT',  img:'9'},
+  {id:'production_manager',  t:'Quản Đốc SX',      i:'🏗️', g:'SẢN XUẤT',  img:'8'},
+  {id:'loss_monitor',        t:'Giám Sát Hao Hụt', i:'⚖️', g:'SẢN XUẤT',  img:''},
+  {id:'daily_report',        t:'Tác Vụ Thực Thi',  i:'📝', g:'SẢN XUẤT',  img:'15'},
+  {id:'warehouse',           t:'Kho & Thành Phẩm', i:'📦', g:'SẢN XUẤT',  img:''},
+  {id:'suppliers',           t:'Nhà Cung Cấp',     i:'🤝', g:'SẢN XUẤT',  img:'10'},
+  // TÀI CHÍNH
+  {id:'financial_dashboard', t:'Dashboard Tài Chính',i:'💰',g:'TÀI CHÍNH', img:'1'},
+  {id:'sales_tax',           t:'Kế Toán Thuế',     i:'🧾', g:'TÀI CHÍNH', img:''},
+  {id:'banking',             t:'Giao Dịch Ngân Hàng',i:'🏦',g:'TÀI CHÍNH',img:''},
+  {id:'approval',            t:'Phê Duyệt Master', i:'✅', g:'TÀI CHÍNH', img:''},
+  {id:'eod_report',          t:'Báo Cáo Cuối Ngày',i:'📊', g:'TÀI CHÍNH', img:''},
+  // VẬN HÀNH
+  {id:'ops_terminal',        t:'Hậu Cần Nội Vụ',  i:'🚚', g:'VẬN HÀNH',  img:''},
+  {id:'hr',                  t:'Nhân Sự & Thợ',   i:'👥', g:'VẬN HÀNH',  img:''},
+  {id:'rfm_analysis',        t:'Phân Tích RFM',   i:'🎯', g:'VẬN HÀNH',  img:''},
+  {id:'chat',                t:'Cố Vấn AI',       i:'💬', g:'VẬN HÀNH',  img:'10'},
+  // HỆ THỐNG
+  {id:'audit_trail',         t:'Sổ Cái Truy Vết', i:'📜', g:'HỆ THỐNG',  img:'15'},
+  {id:'monitoring',          t:'System Pulse',    i:'📡', g:'HỆ THỐNG',  img:''},
+  {id:'rbac',                t:'Phân Quyền',      i:'🔐', g:'HỆ THỐNG',  img:'5'},
+];
+
+// ══ UIState ══
+const ST = {
+  currentGroup: 'BÁN HÀNG',
+  currentView: 'dashboard',
+  collapsed: false,
+  Z: 1.0,
+  systemState: 'HEALTHY',
+  giaVang: {sjc_buy:0,sjc_sell:0,gold9999:0,gold18k:0},
+  production: null,
+  metrics: {},
+  auditLog: [],
+  commits: '—',
+};
+
+// Watermark
+const wm = document.getElementById('wm');
+for(let i=0;i<30;i++) {
+  const s=document.createElement('span');
+  s.textContent='TÂM LUXURY · NATT-OS · BẢO MẬT · ';
+  wm.appendChild(s);
+}
+
+// ══ NAV TABS ══
+function renderNav() {
+  const el = document.getElementById('nav-tabs');
+  el.innerHTML = GROUPS.map(g =>
+    `<button class="ntab${ST.currentGroup===g?' active':''}" onclick="setGroup('${g}')">${g}</button>`
+  ).join('');
+}
+
+function setGroup(g) {
+  ST.currentGroup = g;
+  ST.currentView = MODS.find(m=>m.g===g)?.id || ST.currentView;
+  renderNav(); renderSidebar(); renderContent();
+}
+
+// ══ SIDEBAR ══
+function renderSidebar() {
+  const sb = document.getElementById('sidebar');
+  const mods = MODS.filter(m => m.g === ST.currentGroup);
+  const toggleHtml = `<div id="sb-toggle" onclick="toggleSidebar()">${ST.collapsed?'▶':'◀'}</div>`;
+  sb.innerHTML = toggleHtml +
+    `<span class="sb-lbl">${ST.currentGroup}</span>` +
+    mods.map(m => `<div class="sb-item${ST.currentView===m.id?' active':''}"
+        onclick="switchView('${m.id}')" title="${m.t}">
+      ${m.img
+        ? `<img class="sb-icon-img" src="/nauion/icon/${m.img}.png" onerror="this.style.display='none'">`
+        : `<span class="sb-icon">${m.i}</span>`}
+      <span>${m.t}</span></div>`).join('') +
+    '<hr class="sb-div">';
+}
+
+function toggleSidebar() {
+  ST.collapsed = !ST.collapsed;
+  const sb = document.getElementById('sidebar');
+  sb.classList.toggle('collapsed', ST.collapsed);
+  renderSidebar();
+}
+
+function switchView(id) {
+  ST.currentView = id;
+  renderSidebar(); renderContent();
+}
+
+// ══ RENDERERS ══
+const R = {};
+
+// Dashboard
+R.dashboard = () => {
+  const kpis = [
+    {v: ST.giaVang.gold9999 ? (ST.giaVang.gold9999/1e6).toFixed(1)+'M' : '—', l:'9999 (VNĐ/chỉ)', t:'ok'},
+    {v: ST.giaVang.gold18k  ? (ST.giaVang.gold18k/1e6).toFixed(1)+'M'  : '—', l:'18K (VNĐ/chỉ)',  t:'ok'},
+    {v: ST.Z.toFixed(3),    l:'Impedance Z',   t: ST.Z<2?'up':'dn'},
+    {v: ST.systemState,     l:'System State',  t:'up'},
+    {v: Object.keys(ST.metrics).length||'—', l:'Cells Live', t:'up'},
+    {v: ST.giaVang.sjc_buy ? (ST.giaVang.sjc_buy/1e6).toFixed(1)+'M':'—', l:'SJC Mua', t:'ok'},
+    {v: ST.giaVang.sjc_sell? (ST.giaVang.sjc_sell/1e6).toFixed(1)+'M':'—', l:'SJC Bán', t:'ok'},
+    {v: ST.commits,          l:'Commits',      t:'ok'},
+  ];
+  return `<div class="card">
+    <div class="card-hdr">
+      <span class="card-icon">🏠</span>
+      <div><div class="card-title">Tổng Quan · Tâm Luxury</div>
+      <div class="card-sub">NATT-OS · Real-time State Mirror · Chi Nhánh HCM-01</div></div>
+      <div class="card-r"><span class="st st-ok">● LIVE</span></div>
+    </div>
+    <div class="g4">${kpis.map(k=>`<div class="kpi">
+      <div class="kv">${k.v}</div>
+      <div class="kl">${k.l}</div>
+      <div class="kt ${k.t}">${k.t==='up'?'↑ UP':k.t==='dn'?'↓ DOWN':'→'}</div>
+    </div>`).join('')}</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr">
+      <span class="card-icon">📊</span>
+      <div class="card-title">Cell Metrics — Mạch HeyNa</div>
+    </div>
+    <table class="tbl">
+      <tr><th>CELL</th><th>METRIC</th><th>VALUE</th><th>STATUS</th></tr>
+      ${Object.entries(ST.metrics).slice(0,12).map(([k,v])=>`
+      <tr><td class="tv">${k}</td><td>${v.metric||'alive'}</td>
+      <td class="tgold">${v.value??1}</td><td><span class="st st-ok">LIVE</span></td></tr>`).join('')
+      || '<tr><td colspan="4" style="color:var(--text3);padding:20px;text-align:center">Đang chờ cell.metric từ Mạch HeyNa...</td></tr>'}
+    </table>
+  </div>`;
+};
+
+// Giám sát hao hụt — dùng data thật từ nattos-loss-thresholds.js
+R.loss_monitor = () => {
+  const types = [
+    {key:'ring_men',      label:'Nhẫn Nam',        stage:'CASTING', actual: 1.2},
+    {key:'ring_women',    label:'Nhẫn Nữ',         stage:'CASTING', actual: 1.8},
+    {key:'ring_couple',   label:'Nhẫn Kết/Cưới',  stage:'COLD_WORK', actual: 1.5},
+    {key:'bracelet',      label:'Lắc',             stage:'CASTING', actual: 2.8},
+    {key:'necklace',      label:'Dây Chuyền',      stage:'FINISHING', actual: 0.15},
+    {key:'pendant',       label:'Mặt Dây',         stage:'STONE_SETTING', actual: 0.3},
+  ];
+  return `<div class="card">
+    <div class="card-hdr">
+      <span class="card-icon">⚖️</span>
+      <div><div class="card-title">Giám Sát Hao Hụt Gia Công</div>
+      <div class="card-sub">Nghị định 24/2012 · Tiêu chuẩn kim hoàn TP.HCM · Ground Truth</div></div>
+      <div class="card-r"><span class="st st-warn">⚠ 2 CẢNH BÁO</span></div>
+    </div>
+    <div style="font-size:8px;color:var(--text3);margin-bottom:12px;letter-spacing:.06em">
+      Hao hụt = (Trước − Sau − Thu hồi) / Trước × 100% · Vượt ngưỡng → KTT + Trưởng Xưởng phê duyệt
+    </div>
+    ${types.map(t => {
+      const thresh = typeof LOSS_THRESHOLDS !== 'undefined' && LOSS_THRESHOLDS[t.key]?.stages?.[t.stage];
+      const max = thresh?.max || 2.0;
+      const crit = thresh?.critical || max*1.5;
+      const pct = Math.min(100, (t.actual/crit)*100);
+      const status = t.actual > crit ? 'crit' : t.actual > max ? 'warn' : 'ok';
+      const stClass = status==='crit'?'st-err':status==='warn'?'st-warn':'st-ok';
+      const barClass = status==='crit'?'loss-crit':status==='warn'?'loss-warn':'loss-ok';
+      return `<div class="loss-row">
+        <div style="width:130px;font-size:10px;font-weight:600">${t.label}</div>
+        <div style="width:70px;font-size:9px;color:var(--text3)">${t.stage}</div>
+        <div class="loss-bar"><div class="loss-fill ${barClass}" style="width:${pct}%"></div></div>
+        <div style="width:60px;text-align:right;font-family:var(--mono);font-size:10px;font-weight:700;color:${status==='crit'?'var(--red)':status==='warn'?'var(--amber)':'var(--green)'}">${t.actual}%</div>
+        <div style="width:80px;text-align:right;font-size:9px;color:var(--text3)">max ${max}% | crit ${crit}%</div>
+        <div style="width:80px;text-align:right"><span class="st ${stClass}">${status==='crit'?'CRITICAL':status==='warn'?'CẢNH BÁO':'OK'}</span></div>
+      </div>`;
+    }).join('')}
+  </div>`;
+};
+
+// Production wallboard
+R.production_wallboard = () => {
+  const p = ST.production||{};
+  const stages = p.stages||[];
+  const m = p.metrics||{};
+  return `<div class="card">
+    <div class="card-hdr">
+      <span class="card-icon">📺</span>
+      <div><div class="card-title">Wallboard Xưởng · Tâm Luxury</div>
+      <div class="card-sub">Production Pulse · april-2025.json · avgPuritySX ${m.avgPuritySX||'—'}%</div></div>
+      <div class="card-r"><span class="st st-ok">● LIVE</span></div>
+    </div>
+    <div class="g4" style="margin-bottom:16px">
+      <div class="kpi"><div class="kv">${m.dailyOutput||'—'}</div><div class="kl">Sản Lượng/Ngày</div></div>
+      <div class="kpi"><div class="kv">${m.oee||'—'}%</div><div class="kl">OEE</div></div>
+      <div class="kpi"><div class="kv">${m.avgPuritySX||'—'}%</div><div class="kl">Phổ SX Thực Tế</div></div>
+      <div class="kpi"><div class="kv">${m.repairCount||'—'}</div><div class="kl">Sửa Chữa (SC)</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px">
+      ${stages.map(s=>`<div class="kpi">
+        <div class="kv" style="font-size:20px">${s.count}</div>
+        <div class="kl" style="font-size:6px">${s.stage.replace('_',' ')}</div>
+      </div>`).join('') || '<div style="grid-column:span 7;color:var(--text3);padding:20px;text-align:center;font-size:10px">Đang tải production data từ /kenh/production...</div>'}
+    </div>
+  </div>`;
+};
+
+// Payment hub — dữ liệu thật Tâm Luxury
+R.payment_hub = () => {
+  const g = ST.giaVang;
+  const fmt = v => v ? Number(v).toLocaleString('vi-VN')+'đ' : '—';
+  return `<div class="card">
+    <div class="card-hdr">
+      <span class="card-icon">📱</span>
+      <div><div class="card-title">Thanh Toán QR · Tâm Luxury</div>
+      <div class="card-sub">VietQR NAPAS · Vietinbank · Vietcombank · ZaloPay</div></div>
+    </div>
+    <div class="g2">
+      <div class="kpi" style="text-align:left">
+        <div style="font-size:8px;font-weight:800;letter-spacing:.14em;color:var(--text3);margin-bottom:10px">VIETINBANK</div>
+        <div class="tgold" style="font-size:14px;font-family:var(--mono)">110604776999</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:4px">CONG TY TNHH TAM LUXURY</div>
+        <div style="font-size:8px;color:var(--text3);margin-top:2px">Chi Nhánh Hồ Chí Minh</div>
+        <div style="margin-top:10px"><span class="st st-ok">● Đang hoạt động</span></div>
+      </div>
+      <div class="kpi" style="text-align:left">
+        <div style="font-size:8px;font-weight:800;letter-spacing:.14em;color:var(--text3);margin-bottom:10px">VIETCOMBANK</div>
+        <div class="tgold" style="font-size:14px;font-family:var(--mono)">1770129999</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:4px">CONG TY TNHH TAM LUXURY</div>
+        <div style="font-size:8px;color:var(--text3);margin-top:2px">Chi Nhánh Hồ Chí Minh</div>
+        <div style="margin-top:10px"><span class="st st-ok">● Đang hoạt động</span></div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 14px;background:rgba(200,146,42,.06);border:1px solid var(--border);border-radius:4px">
+      <div style="font-size:8px;font-weight:800;letter-spacing:.14em;color:var(--text3);margin-bottom:8px">GIÁ VÀNG HIỆN TẠI</div>
+      <div style="display:flex;gap:24px">
+        <div><span style="font-size:9px;color:var(--text3)">9999: </span><span class="tgold">${fmt(g.gold9999)}</span></div>
+        <div><span style="font-size:9px;color:var(--text3)">18K: </span><span class="tgold">${fmt(g.gold18k)}</span></div>
+        <div><span style="font-size:9px;color:var(--text3)">SJC Mua: </span><span class="tgold">${fmt(g.sjc_buy)}</span></div>
+        <div><span style="font-size:9px;color:var(--text3)">SJC Bán: </span><span class="tgold">${fmt(g.sjc_sell)}</span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn btn-gold">⬡ Tạo QR VietQR</button>
+      <button class="btn btn-ghost">Xem lịch sử giao dịch</button>
+    </div>
+  </div>`;
+};
+
+// Audit trail
+R.audit_trail = () => `<div class="card">
+  <div class="card-hdr">
+    <span class="card-icon">📜</span>
+    <div><div class="card-title">Sổ Cái Truy Vết</div>
+    <div class="card-sub">Audit Trail · Immutable · Real-time</div></div>
+  </div>
+  <table class="tbl">
+    <tr><th>TYPE</th><th>ACTOR</th><th>TIME</th><th>STATUS</th></tr>
+    ${(ST.auditLog||[]).slice(0,20).map(a=>`
+    <tr><td class="tv">${a.type||'—'}</td>
+    <td>${a.actor||'system'}</td>
+    <td style="color:var(--text3);font-family:var(--mono)">${a.ts?new Date(a.ts).toLocaleTimeString('vi-VN'):'—'}</td>
+    <td><span class="st st-ok">OK</span></td></tr>`).join('')
+    || '<tr><td colspan="4" style="color:var(--text3);padding:20px;text-align:center">Đang chờ audit events...</td></tr>'}
+  </table>
+</div>`;
+
+// Monitoring
+R.monitoring = () => `<div class="card">
+  <div class="card-hdr">
+    <span class="card-icon">📡</span>
+    <div><div class="card-title">System Pulse · NATT-OS</div>
+    <div class="card-sub">Z = ${ST.Z.toFixed(3)} · ${ST.systemState}</div></div>
+  </div>
+  <div class="g4" style="margin-bottom:16px">
+    <div class="kpi"><div class="kv">${ST.Z.toFixed(3)}</div><div class="kl">Impedance Z</div></div>
+    <div class="kpi"><div class="kv">${ST.systemState}</div><div class="kl">State</div></div>
+    <div class="kpi"><div class="kv">${Object.keys(ST.metrics).length}</div><div class="kl">Cells Emitting</div></div>
+    <div class="kpi"><div class="kv">${ST.commits}</div><div class="kl">Commits</div></div>
+  </div>
+  <table class="tbl">
+    <tr><th>CELL</th><th>SIGNAL</th><th>VALUE</th><th>STATUS</th></tr>
+    ${Object.entries(ST.metrics).slice(0,15).map(([k,v])=>`
+    <tr><td class="tv">${k}</td><td>${v.metric||'alive'}</td>
+    <td class="tgold">${v.value??1}</td><td><span class="st st-ok">LIVE</span></td></tr>`).join('')
+    || '<tr><td colspan="4" style="color:var(--text3);padding:20px;text-align:center">Waiting for signals...</td></tr>'}
+  </table>
+</div>`;
+
+// Placeholder
+function renderPH(mod) {
+  return `<div class="card" style="min-height:360px;display:flex;align-items:center;justify-content:center">
+    <div style="text-align:center;opacity:.3">
+      <div style="font-size:40px;margin-bottom:12px">${mod?.i||'⬡'}</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.8);text-transform:uppercase;margin-bottom:6px">${mod?.t||'MODULE'}</div>
+      <div style="font-size:9px;color:var(--text3)">React component · DynamicModuleRenderer</div>
+    </div>
+  </div>`;
+}
+
+function renderContent() {
+  const el = document.getElementById('content');
+  const mod = MODS.find(m=>m.id===ST.currentView);
+  const fn = R[ST.currentView];
+  el.innerHTML = fn ? fn() : renderPH(mod);
+}
+
+// ══ SSE — Mạch HeyNa ══
+function startMach() {
+  const es = new EventSource(`${S}/mach/heyna`);
+  es.onmessage = e => {
+    try {
+      const d = JSON.parse(e.data);
+      const {event:ev, payload:p} = d;
+      if(ev==='nauion.state'){
+        if(p?.impedanceZ!==undefined) ST.Z=p.impedanceZ;
+        if(p?.state) ST.systemState=p.state==='nauion'?'HEALTHY':p.state.toUpperCase();
+        document.getElementById('hdr-state').textContent=ST.systemState;
+      } else if(ev==='cell.metric'&&p?.cell){
+        ST.metrics[p.cell]=p;
+      } else if(ev==='audit.record'){
+        ST.auditLog.unshift({...p,ts:d.ts||Date.now()});
+        ST.auditLog=ST.auditLog.slice(0,50);
+      } else if(ev==='gia-vang.updated'&&p){
+        ST.giaVang={...ST.giaVang,...p};
+        updateGold();
+      }
+      const live=['dashboard','monitoring','audit_trail','production_wallboard','loss_monitor'];
+      if(live.includes(ST.currentView)) renderContent();
+    } catch{}
+  };
+  es.onerror=()=>{es.close();setTimeout(startMach,3000)};
+}
+
+// ══ Load server data ══
+async function loadData() {
+  try {
+    const [suc,gia,prod] = await Promise.all([
+      fetch(`${S}/kenh/suc`).then(r=>r.json()),
+      fetch(`${S}/kenh/gia-vang`).then(r=>r.json()),
+      fetch(`${S}/kenh/production`).then(r=>r.json()),
+    ]);
+    if(suc.commits){ST.commits=suc.commits}
+    if(gia) ST.giaVang=gia;
+    if(prod) ST.production=prod;
+    updateGold();
+    renderContent();
+  } catch{}
+}
+
+function fmt(v){return v?Number(v).toLocaleString('vi-VN')+'đ':'—'}
+
+function updateGold() {
+  const g=ST.giaVang;
+  document.getElementById('hdr-gold').textContent=
+    g.gold9999 ? `9999: ${(g.gold9999/1e6).toFixed(1)}M · 18K: ${(g.gold18k/1e6).toFixed(1)}M` : '9999: đang tải...';
+  const items=[
+    `🏆 SJC MUA ${fmt(g.sjc_buy)}`,`BÁN ${fmt(g.sjc_sell)}`,
+    `💎 9999 ${fmt(g.gold9999)}`,`✨ 18K ${fmt(g.gold18k)}`,
+    `🏭 NATT-OS ${ST.systemState} · Z=${ST.Z.toFixed(2)}`,
+    `🏢 TÂM LUXURY · HCM-01 · VAT 10%`,
+    `🏆 SJC MUA ${fmt(g.sjc_buy)}`,`BÁN ${fmt(g.sjc_sell)}`,
+    `💎 9999 ${fmt(g.gold9999)}`,`✨ 18K ${fmt(g.gold18k)}`,
+  ];
+  document.getElementById('tick-scroll').innerHTML=
+    items.map((t,i)=>`<span class="${i%2===0?'ti-gold':'ti'}">${t}</span>`).join('');
+}
+
+// ══ Galaxy canvas ══
+(function(){
+  const cv=document.getElementById('gx'),gx=cv.getContext('2d');
+  let W,H,stars=[],comets=[],shooters=[];
+  function resize(){
+    W=cv.width=innerWidth;H=cv.height=innerHeight;
+    const n=Math.floor(W*H/2200);
+    stars=Array.from({length:n},()=>({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*1.5+.1,a:Math.random()*.75+.1,
+      hue:Math.random()<.15?(Math.random()<.5?42:30):0,
+      sat:Math.random()<.15?75:0,
+      ph:Math.random()*Math.PI*2,sp:.3+Math.random()*.8}));
+  }
+  function spawnComet(){
+    const s=Math.random()<.5;
+    comets.push({x:s?-80:W+80,y:Math.random()*H*.7,
+      vx:s?1.2:-1.2,vy:.3+Math.random()*.4,len:100+Math.random()*160,a:.9,life:1,hue:42});
+  }
+  function spawnShooter(){
+    shooters.push({x:Math.random()*W*.8,y:Math.random()*H*.4,
+      vx:9+Math.random()*12,vy:4+Math.random()*7,len:50+Math.random()*100,life:1});
+  }
+  function draw(ts){
+    gx.clearRect(0,0,W,H);
+    const t=ts*.001;
+    for(const s of stars){
+      const alpha=s.a*(.55+.45*Math.sin(t*s.sp+s.ph));
+      gx.beginPath();gx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      gx.fillStyle=s.sat?`hsla(${s.hue},${s.sat}%,85%,${alpha.toFixed(2)})`:`rgba(255,255,255,${alpha.toFixed(2)})`;
+      gx.fill();
+    }
+    for(let i=comets.length-1;i>=0;i--){
+      const c=comets[i];c.x+=c.vx;c.y+=c.vy;c.life-=.003;
+      if(c.life<=0||c.x<-200||c.x>W+200){comets.splice(i,1);continue}
+      const gr=gx.createLinearGradient(c.x,c.y,c.x-c.vx*c.len/Math.abs(c.vx),c.y-c.vy*c.len/Math.abs(c.vx));
+      gr.addColorStop(0,`hsla(${c.hue},80%,80%,${(c.a*c.life).toFixed(2)})`);
+      gr.addColorStop(1,'transparent');
+      gx.beginPath();gx.moveTo(c.x,c.y);
+      gx.lineTo(c.x-c.vx*(c.len/Math.abs(c.vx)),c.y-c.vy*(c.len/Math.abs(c.vx)));
+      gx.strokeStyle=gr;gx.lineWidth=1.5*c.life;gx.stroke();
+    }
+    for(let i=shooters.length-1;i>=0;i--){
+      const s=shooters[i];s.x+=s.vx;s.y+=s.vy;s.life-=.045;
+      if(s.life<=0){shooters.splice(i,1);continue}
+      const ang=Math.atan2(s.vy,s.vx);
+      const gr=gx.createLinearGradient(s.x,s.y,s.x-Math.cos(ang)*s.len,s.y-Math.sin(ang)*s.len);
+      gr.addColorStop(0,`rgba(255,230,180,${s.life.toFixed(2)})`);
+      gr.addColorStop(1,'transparent');
+      gx.beginPath();gx.moveTo(s.x,s.y);
+      gx.lineTo(s.x-Math.cos(ang)*s.len,s.y-Math.sin(ang)*s.len);
+      gx.strokeStyle=gr;gx.lineWidth=1.2*s.life;gx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  setInterval(spawnComet,4500+Math.random()*5000);
+  setInterval(spawnShooter,1600+Math.random()*2000);
+  window.addEventListener('resize',resize);resize();requestAnimationFrame(draw);
+})();
+
+// Mouse tracking
+document.addEventListener('mousemove',e=>{
+  document.documentElement.style.setProperty('--mx',(e.clientX/innerWidth*100)+'%');
+  document.documentElement.style.setProperty('--my',(e.clientY/innerHeight*100)+'%');
+});
+
+// ══ BOOT ══
+document.addEventListener('DOMContentLoaded',()=>{
+  renderNav();renderSidebar();renderContent();
+  startMach();loadData();
+  console.log('[Tâm Luxury] NATT-OS app booted — HCM-01');
+});
+</script>
+</body>
+</html>
