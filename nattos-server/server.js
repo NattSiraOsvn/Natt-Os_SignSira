@@ -189,6 +189,32 @@ yeh('/kenh/sirasign/verify', (req, res) => {
   res.json({ valid: true, level: 'VERIFIED', ts: Date.now() });
 });
 
+// ── Sensor Pulse Bridge — iseu.sensor.pulse → SmartLink ──────
+// SPEC Phase 5 Step 4: physical sensor → SmartLink feedback
+EventBus.on('iseu.sensor.pulse', (payload) => {
+  const { deviceId, intensity, sensorType, source, ts } = payload ?? {};
+  if (!deviceId || intensity === undefined) return;
+
+  // Emit audit trail
+  EventBus.emit('audit.record', {
+    type: 'sensor.pulse.received',
+    payload: { deviceId, intensity, sensorType, source },
+    actor: 'resonance-protocol',
+    ts: ts ?? Date.now(),
+  });
+
+  // Update impedanceZ qua nauion.state
+  // ΔZ = -intensity * 0.1 (pulse tích cực → giảm Z về baseline)
+  EventBus.emit('nauion.state', {
+    state: intensity > 0.6 ? 'lệch' : 'nauion',
+    from: 'sensor-bridge',
+    deviceId,
+    sensorType,
+    intensity,
+    ts: ts ?? Date.now(),
+  });
+});
+
 // ── Mạch HeyNa — SSE stream ──
 const _machClients = new Set();
 
