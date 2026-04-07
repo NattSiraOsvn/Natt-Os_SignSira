@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 /**
  * NATT-OS Gold Price Engine v1.0
  * Port từ GoldPrice block + Doc 17 visionOcr_() DOCUMENT_TEXT_DETECTION

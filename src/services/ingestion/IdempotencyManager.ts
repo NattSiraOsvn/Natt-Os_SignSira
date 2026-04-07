@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 
 // src/services/ingestion/IdempotencyManager.ts
 import { contentHash } from './utils';

@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 
 import { ShardingService } from '../blockchainService';
 

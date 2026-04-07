@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 // ── FILE 7 ──────────────────────────────────────────────────
 // ai-firewall.engine.ts
 // Phát hiện bot / AI agent — KHÔNG gọi AI API (LỆNH #001)

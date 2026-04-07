@@ -1,3 +1,4 @@
+import { EventBus } from '@/core/events/event-bus';
 
 import { GoogleGenAI, Type } from "@google/genai";
 import { UserPosition, UserRole, LearnedTemplate, DynamicField } from "../types";
