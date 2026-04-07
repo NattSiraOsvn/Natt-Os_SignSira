@@ -189,6 +189,12 @@ export const SUPER_DICTIONARY: Record<string, string> = {
   "SYNAPSE":          "Synapse — kết nối giữa 2 SmartLink nodes",
 };
 
+export const SUPER_DICTIONARY_CONTROL = {
+  ai_permission: "READ_ONLY",
+  sync_interval: 5000,
+  max_retry: 3,
+};
+
 export type DictionaryKey = keyof typeof SUPER_DICTIONARY;
 
 export const SuperDictionary = {
