@@ -74,6 +74,13 @@ function mapEventToNauion(eventType: string): NauionState | null {
     eventType === 'system.healed'
   ) return 'Nauion';
 
+  // SCAR FS_035 fix — emit nauion khi stable/healthy
+  if (
+    eventType === 'cell.metric' ||
+    eventType === 'payment.received' ||
+    eventType === 'flow.completed'
+  ) return 'Nauion';
+
   return null;
 }
 
