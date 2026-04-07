@@ -2141,7 +2141,7 @@ const NattOS = {
   SERVER: 'http://localhost:3001',
   async emit(type, payload, cell) {
     try {
-      const r = await fetch(this.SERVER+'/api/events/emit', {
+      const r = await fetch(this.SERVER+'/phat/nauion', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({type, payload, cell: cell||'ui'})
@@ -2151,20 +2151,20 @@ const NattOS = {
   },
   async state(cell) {
     try {
-      const r = await fetch(this.SERVER+'/api/state/'+cell);
+      const r = await fetch(this.SERVER+'/kenh/state/'+cell);
       return await r.json();
     } catch(e) { return {}; }
   },
   async audit(limit) {
     limit = limit||50;
     try {
-      const r = await fetch(this.SERVER+'/api/audit?limit='+limit);
+      const r = await fetch(this.SERVER+'/kenh/vet?limit='+limit);
       return await r.json();
     } catch(e) { return {events:[],total:0}; }
   },
   async health() {
     try {
-      const r = await fetch(this.SERVER+'/api/health');
+      const r = await fetch(this.SERVER+'/kenh/suc');
       return await r.json();
     } catch(e) { return {status:'offline'}; }
   }
@@ -2175,7 +2175,7 @@ window.addEventListener('load', function() {
   // L4 Intelligence API
   NattOS.intelligence = async function() {
     try {
-      const r = await fetch(this.SERVER+'/api/intelligence');
+      const r = await fetch(this.SERVER+'/kenh/intel');
       return await r.json();
     } catch(e) { return {flows:[], total:0}; }
   };
@@ -2183,7 +2183,7 @@ window.addEventListener('load', function() {
   // All cells state
   NattOS.allState = async function() {
     try {
-      const r = await fetch(this.SERVER+'/api/state');
+      const r = await fetch(this.SERVER+'/kenh/state');
       return await r.json();
     } catch(e) { return {state:{}, cells:0}; }
   };

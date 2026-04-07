@@ -10,6 +10,10 @@ const app = express();
 const PORT = 3001;
 
 app.use(cors());
+// ── Vision serve ──
+app.use('/vision', require('express').static(require('path').join(__dirname, 'nattos-ui/vision')));
+
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../src/ui-app')));
 
@@ -81,30 +85,30 @@ EventBus.on('*', (env) => {
 });
 
 // ── Kênh (Routes) ──
-hey('/api/nauion', (req, res) => {
+hey('/kenh/nauion', (req, res) => {
   res.json({ state: 'Nahere', impedanceZ: _Z, event_count: _eventCount, ts: Date.now() });
 });
 
-hey('/api/health', (req, res) => {
+hey('/kenh/suc', (req, res) => {
   res.json({ status: 'ok', server: 'NATT-OS Server v1.0', ts: new Date().toISOString() });
 });
 
-yeh('/api/events/emit', (req, res) => {
+yeh('/phat/nauion', (req, res) => {
   const { type, payload, cell } = req.body;
   if (!type) return res.status(400).json({ error: 'type required' });
   EventBus.emit(type, { ...payload, originCell: cell || 'ui' });
   res.json({ ok: true, type, ts: Date.now() });
 });
 
-hey('/api/state/:cell', (req, res) => {
+hey('/kenh/state/:cell', (req, res) => {
   res.json({ cell: req.params.cell, state: STATE[req.params.cell] || {}, ts: Date.now() });
 });
 
-hey('/api/state', (req, res) => {
+hey('/kenh/state', (req, res) => {
   res.json({ state: STATE, cells: Object.keys(STATE).length, ts: Date.now() });
 });
 
-hey('/api/audit', (req, res) => {
+hey('/kenh/vet', (req, res) => {
   const limit = parseInt(req.query.limit || '50');
   res.json({ events: AUDIT.slice(-limit), total: AUDIT.length });
 });
@@ -113,8 +117,8 @@ hey('/api/audit', (req, res) => {
 app.listen(PORT, () => {
   console.log(`\n[NATT-OS Server v1.0] http://localhost:${PORT}`);
   console.log(`  Mạch HeyNa: /mach/heyna (SSE)`);
-  console.log(`  Kênh: /api/nauion | /api/health | /api/audit`);
-  console.log(`  Phát: /api/events/emit\n`);
+  console.log(`  Kênh: /kenh/nauion | /kenh/suc | /kenh/vet`);
+  console.log(`  Phát: /phat/nauion\n`);
 });
 
 module.exports = { EventBus };

@@ -107,10 +107,10 @@ const ResonanceProtocol = (() => {
       if (state === 'whao') pulse();
     });
 
-    // Polling Z từ /api/health mỗi TICK_MS * 5
+    // Polling Z từ /kenh/suc mỗi TICK_MS * 5
     setInterval(async () => {
       try {
-        const r = await fetch('/api/nauion');
+        const r = await fetch('/kenh/nauion');
         const d = await r.json();
         if (d.impedanceZ !== undefined) targetZ = d.impedanceZ;
       } catch (_) {}

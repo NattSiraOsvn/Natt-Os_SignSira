@@ -6,28 +6,28 @@ const BASE = 'http://localhost:3001';
 
 // ── Kênh Audit ───────────────────────────────────────────
 export async function fetchAudit() {
-  const r = await fetch(`${BASE}/api/audit`);
+  const r = await fetch(`${BASE}/kenh/vet`);
   if (!r.ok) throw new Error(`audit ${r.status}`);
   return await r.json();
 }
 
 // ── Kênh Intelligence (L4 pattern) ───────────────────────
 export async function fetchIntelligence() {
-  const r = await fetch(`${BASE}/api/intelligence`);
+  const r = await fetch(`${BASE}/kenh/intel`);
   if (!r.ok) throw new Error(`intel ${r.status}`);
   return await r.json();
 }
 
 // ── Kênh Sức Khoẻ ────────────────────────────────────────
 export async function fetchHealth() {
-  const r = await fetch(`${BASE}/api/health`);
+  const r = await fetch(`${BASE}/kenh/suc`);
   if (!r.ok) throw new Error(`health ${r.status}`);
   return await r.json();
 }
 
 // ── Kênh Trạng Thái Cell ─────────────────────────────────
 export async function fetchState(cell) {
-  const url = cell ? `${BASE}/api/state/${cell}` : `${BASE}/api/state`;
+  const url = cell ? `${BASE}/kenh/state/${cell}` : `${BASE}/kenh/state`;
   const r = await fetch(url);
   if (!r.ok) throw new Error(`state ${r.status}`);
   return await r.json();
@@ -35,14 +35,14 @@ export async function fetchState(cell) {
 
 // ── Kênh Nauion ───────────────────────────────────────────
 export async function fetchNauion() {
-  const r = await fetch(`${BASE}/api/nauion`);
+  const r = await fetch(`${BASE}/kenh/nauion`);
   if (!r.ok) throw new Error(`nauion ${r.status}`);
   return await r.json();
 }
 
 // ── Phát Nauion vào hệ ───────────────────────────────────
 export async function phatNauion(type, payload, cell) {
-  const r = await fetch(`${BASE}/api/events/emit`, {
+  const r = await fetch(`${BASE}/phat/nauion`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ type, payload, cell: cell || 'ui' }),
