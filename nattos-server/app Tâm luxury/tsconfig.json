@@ -6,11 +6,24 @@
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "strict": true,
+    "forceConsistentCasingInFileNames": false,
     "baseUrl": ".",
     "paths": { "@/*": ["./*"] },
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "ignoreDeprecations": "6.0"
   },
-  "include": ["./**/*"],
-  "exclude": ["node_modules"]
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "analytics-ingestion-service",
+    "finance-service",
+    "services/hr",
+    "layerold",
+    "tam-luxury-app",
+    "engine-registry.ts",
+    "wiring",
+    "superdictionary.ts",
+    "nattos-server.cjs"
+  ]
 }

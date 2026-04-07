@@ -66,7 +66,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
       });
       
       const data: GuarantyCertificate = // [LỆNH #001] AI API bị chặn
-    await Promise.resolve({base64, file.type);
+    await Promise.resolve({base64, fileType: file.type});
       
       // FRAUD GUARD: Initial check (chưa có identity) để xem SP có trong blacklist không
       const extractedSKU = data.productName.split(' ')[0] || 'UNKNOWN'; 
@@ -161,7 +161,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
           if (kycType === 'CCCD') {
                // Dùng AI bóc tách CCCD (High Confidence)
                identity = // [LỆNH #001] AI API bị chặn
-    await Promise.resolve({base64, file.type);
+    await Promise.resolve({base64, fileType: file.type});
           } else {
                // Dùng Hash ảnh mặt (Face Hash - Light Auth)
                // Trong thực tế sẽ gọi FaceAPI, ở đây ta dùng hàm hash ảnh giả lập

@@ -183,7 +183,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
             {/* TERMINAL LOG */}
             <div className="ai-panel p-0 bg-black border-white/10 relative overflow-hidden flex flex-col h-[500px]">
                 <div className="p-4 bg-white/5 border-b border-white/5 flex justify-between items-center">
-                <span className="text-[10px] font-mono text-gray-400">> root@natt-os:~# deep_scan_v9.sh</span>
+                <span className="text-[10px] font-mono text-gray-400">{'>'} root@natt-os:~# deep_scan_v9.sh</span>
                 <div className="flex gap-2">
                     <div className="w-2 h-2 rounded-full bg-red-500"></div>
                     <div className="w-2 h-2 rounded-full bg-amber-500"></div>
@@ -241,7 +241,6 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
                 </div>
             </div>
         </div>
-      )}
 
       {/* AI ANALYSIS FOOTER */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 animate-in slide-in-from-bottom-10">

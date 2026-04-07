@@ -22,7 +22,7 @@ const BlueprintWizard: React.FC = () => {
     setIsGenerating(true);
     try {
       const res = // [LỆNH #001] AI API bị chặn
-    await Promise.resolve({desc);
+    await Promise.resolve(desc);
       setBlueprint(res);
     } catch (e) {
       console.error(e);
