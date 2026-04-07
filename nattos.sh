@@ -1171,7 +1171,8 @@ def get_cell(p):
     for i,x in enumerate(parts):
         if x in("business","kernel","infrastructure") and i+1<len(parts): return parts[i+1]
     return "core"
-for root,dirs,files in os.walk(src):
+for src in scan_dirs:
+  for root,dirs,files in os.walk(src):
     dirs[:]=[d for d in dirs if d not in("node_modules","baithicuakim")]
     for f in files:
         if not f.endswith(".ts"): continue
@@ -1198,13 +1199,15 @@ if os.environ.get('AUDIT_MODE') == 'quick':
     exit(0)
 import os,re,json
 src="src"
+scan_dirs=["src","nattos-server"]
 declared={}; instantiated={}
 cls_pat=re.compile(r"export\s+class\s+(\w+Engine)\b")
 new_pat=re.compile(r"new\s+(\w+Engine)\s*\(")
 new_pat2=re.compile(r"new\s+\(m\.(\w+Engine)")
 static_pat=re.compile(r"(\w+Engine)\.[a-zA-Z]")
 obj_pat=re.compile(r"m\.(\w+Engine)\b")
-for root,dirs,files in os.walk(src):
+for src in scan_dirs:
+  for root,dirs,files in os.walk(src):
     dirs[:]=[d for d in dirs if d not in("node_modules","baithicuakim")]
     for f in files:
         if not f.endswith(".ts"): continue
