@@ -43,6 +43,8 @@ import AdminConfigHub from './AdminConfigHub';
 import FinancialDashboard from './financial/FinancialDashboard'; 
 import PersonalSphere from './PersonalSphere'; 
 import CalibrationWizard from './calibration/CalibrationWizard';
+import CustomsIntelligence from './CustomsIntelligence';
+import HRManagement from './HRManagement';
 
 interface DynamicModuleRendererProps {
   view: ViewType;
@@ -69,7 +71,8 @@ const DynamicModuleRenderer: React.FC<DynamicModuleRendererProps> = (props) => {
     ThienCommandCenter, ChatConsultant, CollaborationRooms, KrisEmailHub,
     AuditTrailModule, PaymentHub, UnifiedReportingHub, SalesArchitectureView,
     ProductionSalesFlowView, SystemNavigator, DataArchiveVault, QuantumFlowOrchestrator,
-    AdminConfigHub, FinancialDashboard, PersonalSphere, CalibrationWizard
+    AdminConfigHub, FinancialDashboard, PersonalSphere, CalibrationWizard,
+    CustomsIntelligence, HRManagement
   };
 
   if (view === 'dashboard' && isMaster) return <MasterDashboard {...commonProps} />;
