@@ -765,10 +765,11 @@ html,body{height:100%;overflow:hidden;background:#030210;
 
     start() {
       if (this.rafId !== null) return; // đã chạy
-      const loop = () => {
-        if (this.mode === 'IDLE') { this.rafId = null; return; } // dừng hẳn
-        renderFrame();
-        this.lastRenderTs = Date.now();
+      let _last = 0;
+      const loop = (ts) => {
+        if (this.mode === 'IDLE') { this.rafId = null; return; }
+        const fps = this.mode === 'BURST' ? 16 : this.mode === 'ACTIVE' ? 33 : 66;
+        if (ts - _last >= fps) { _last = ts; renderFrame(); }
         this.rafId = requestAnimationFrame(loop);
       };
       loop();
@@ -1458,12 +1459,6 @@ html,body{height:100%;overflow:hidden;background:#030210;
   updateStats();
   initSSE();            // SSE HeyNa — nguồn duy nhất, không fetch riêng
   RenderCtrl.start();
-  // Watchdog 500ms: restart nếu mode != IDLE nhưng loop đang dừng
-  setInterval(() => {
-    if (RenderCtrl.mode !== 'IDLE' && RenderCtrl.rafId === null) {
-      RenderCtrl.start();
-    }
-  }, 500);
   console.log('✅ NATT-OS v3.1 | HeyNa SSE | OPT-01R | Protocol HEYNA/NAHERE/Z/Resonance');
 </script>
 </body>
