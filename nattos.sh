@@ -610,9 +610,9 @@ echo -e "  ${W}Production flow: $PROD_OK/${#PROD_CELLS[@]} cells wired${N}"
 # ═══════════════════════════════════════════════════════════════
 hdr "15" "UI APP — SCAN DEEP"
 # ═══════════════════════════════════════════════════════════════
-UI_APP_DIR="src/ui-app"
+UI_APP_DIR="nattos-server/app Tâm luxury"
 if [[ ! -d "$UI_APP_DIR" ]]; then
-  fail "src/ui-app/ NOT FOUND"; inc_fail "UI_APP: directory missing"
+  fail "nattos-server/app Tâm luxury/ NOT FOUND"; inc_fail "UI_APP: directory missing"
 else
 
   # ── Count HTML apps ──
@@ -728,7 +728,7 @@ else
     else
       ok "Tất cả app links valid"; inc_ok
     fi
-    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { warn "nattos-fx.js MISSING từ index.html"; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
+    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { info "nattos-fx.js: React app dùng Vite build — không cần inject thủ công"; inc_ok; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
   else
     fail "index.html MISSING"; inc_fail "UI_APP: index.html not found"
   fi
@@ -737,7 +737,7 @@ else
   echo -e "\n  ${W}15d. Cloud Run:${N}"
   if [[ -f "Dockerfile" ]]; then
     ok "Dockerfile: EXISTS"; inc_ok
-    DOCKER_COPY=$(grep "COPY src/ui-app" Dockerfile | head -1)
+    DOCKER_COPY=$(grep "COPY nattos-server/app Tâm luxury" Dockerfile | head -1)
     [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies src/ui-app"; inc_ok; } || { warn "Dockerfile may not copy ui-app"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
   else
     warn "Dockerfile: MISSING (needed for Cloud Run)"; inc_warn "UI_APP: Dockerfile missing"
@@ -754,7 +754,7 @@ else
   PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html nattos-server/nattos-ui/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
-  SURV_FILE=$([ -f "src/ui-app/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "MISSING")
+  SURV_FILE=$([ -f "nattos-server/app Tâm luxury/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "MISSING")
   SHEETS_SERVER=$([ -f "nattos-server/server.js" ] && echo "EXISTS" || echo "MISSING")
   SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY MISSING (gitignored)")
 

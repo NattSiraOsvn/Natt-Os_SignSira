@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 # Copy toàn bộ src/ui-app vào nginx
-COPY src/ui-app/ /usr/share/nginx/html/
+COPY nattos-server/apps/tam-luxury/ /usr/share/nginx/html/
 
 # nginx config — serve static files, SPA routing
 COPY nginx.conf /etc/nginx/conf.d/default.conf
