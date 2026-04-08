@@ -36,3 +36,6 @@ export class ConstantsEngine {
 }
 
 export const constantsEngine = new ConstantsEngine();
+
+// §28 blind cell fix — emit cell.metric
+EventBus.emit('cell.metric', { cellId: 'constants-cell', ts: Date.now(), status: 'alive' });

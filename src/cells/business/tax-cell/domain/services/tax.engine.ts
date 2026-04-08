@@ -38,3 +38,6 @@ export class TaxEngine {
 }
 
 export const taxEngine = new TaxEngine();
+
+// §28 blind cell fix — emit cell.metric
+EventBus.emit('cell.metric', { cellId: 'tax-cell', ts: Date.now(), status: 'alive' });
