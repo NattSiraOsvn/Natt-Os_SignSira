@@ -759,23 +759,28 @@ html,body{height:100%;overflow:hidden;background:#030210;
         if (el) el.textContent = this.mode;
       }
 
-      // IDLE → cancelAnimationFrame (SPEC §12.2: stop loop hoàn toàn)
+      // IDLE → stop flag only, loop() sẽ tự dừng
       if (this.mode === 'IDLE') {
         this.stop();
-      } else {
-        this.start();
       }
+      // Không gọi start() từ updateMode — tránh infinite loop
     },
 
     start() {
       if (this.rafId !== null) return; // đã chạy
+      let _lastModeCheck = 0;
       const loop = () => {
-        this.updateMode();
-        if (this.mode !== 'IDLE') {
-          renderFrame(); // gọi composer.render()
-          this.lastRenderTs = Date.now();
+        const _now = Date.now();
+        if (_now - _lastModeCheck > 200) { // check mode 5Hz, không mỗi frame
+          _lastModeCheck = _now;
+          this.updateMode();
         }
-        this.rafId = requestAnimationFrame(loop);
+        if (this.mode !== 'IDLE') {
+          renderFrame();
+          this.lastRenderTs = _now;
+          this.rafId = requestAnimationFrame(loop);
+        }
+        // IDLE: rafId = null, loop dừng tự nhiên
       };
       loop();
     },
