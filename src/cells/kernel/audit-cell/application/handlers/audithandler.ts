@@ -41,3 +41,16 @@ export function registerAuditHandlers(): void {
     }
   });
 }
+
+// Wire orphan events → audit-cell (nattos.sh §30 fix)
+EventBus.on('AuditLogged', async (payload: any) => {
+  await EventBus.emit('audit.record', { type: 'AuditLogged', ...payload });
+});
+
+EventBus.on('ViolationDetected', async (payload: any) => {
+  await EventBus.emit('audit.record', { type: 'ViolationDetected', severity: payload.severity ?? 'MEDIUM', ...payload });
+});
+
+EventBus.on('chromatic.state.changed', (payload: any) => {
+  EventBus.emit('audit.record', { type: 'chromatic.state.changed', ...payload });
+});
