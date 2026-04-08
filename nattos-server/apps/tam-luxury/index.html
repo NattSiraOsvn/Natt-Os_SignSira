@@ -761,7 +761,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
     },
 
     start() {
-      if (this.rafId !== null) return; // đã chạy
+      if (this.rafId !== null) return; // guard: chỉ 1 loop duy nhất
       let _last = 0;
       const loop = (ts) => {
         const fps = 16;
@@ -802,7 +802,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
   EventBus.on('HEYNA', () => {
    
     RenderCtrl.mode = 'BURST';
-    RenderCtrl.start();
+    // no start() — loop already running
     CONFIG.nebulaIntensity = 1.35;
     nebulaUniforms.intensity.value = 1.35;
     CONFIG.particleSpeedMult = 1.5;
