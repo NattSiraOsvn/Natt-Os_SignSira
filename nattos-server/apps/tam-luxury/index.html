@@ -1156,13 +1156,13 @@ html,body{height:100%;overflow:hidden;background:#030210;
   // ── CELLS DATA ────────────────────────────────────────────
   const colorMap = { mint:'#3dd68c', champagne:'#c8922a', ice:'#60b8f0', lavender:'#9060d0', rose:'#f05080' };
   const cells = [
-    { id:'sales',    title:'SALES',     icon:'💎', qneu:.87, confidence:.92, scars:[], colorTheme:'champagne', connections:['showroom','prod'] },
-    { id:'showroom', title:'SHOWROOM',  icon:'✨', qneu:.76, confidence:.68, scars:[], colorTheme:'champagne', connections:['sales','master'] },
-    { id:'prod',     title:'PROD',      icon:'⚙️', qneu:.64, confidence:.81, scars:[{id:'SCAR01'}], colorTheme:'ice', connections:['sales','warehouse'] },
-    { id:'warehouse',title:'WAREHOUSE', icon:'📦', qneu:.72, confidence:.55, scars:[], colorTheme:'mint',      connections:['prod','master'] },
-    { id:'master',   title:'MASTER',    icon:'🔱', qneu:.91, confidence:.94, scars:[], colorTheme:'champagne', connections:['sales','showroom','prod','warehouse','ai','hr'] },
-    { id:'ai',       title:'AI',        icon:'🧠', qneu:.83, confidence:.88, scars:[], colorTheme:'lavender',  connections:['master'] },
-    { id:'hr',       title:'HR',        icon:'👥', qneu:.78, confidence:.85, scars:[], colorTheme:'ice',       connections:['master'] },
+    { id:'sales',    title:'SALES',     icon:'<img src="icon-sales.png" style="width:40px;height:40px;object-fit:contain">', qneu:.87, confidence:.92, scars:[], colorTheme:'champagne', connections:['showroom','prod'] },
+    { id:'showroom', title:'SHOWROOM',  icon:'<img src="icon-showroom.png" style="width:40px;height:40px;object-fit:contain">', qneu:.76, confidence:.68, scars:[], colorTheme:'champagne', connections:['sales','master'] },
+    { id:'prod',     title:'PROD',      icon:'<img src="icon-prod.png" style="width:40px;height:40px;object-fit:contain">', qneu:.64, confidence:.81, scars:[{id:'SCAR01'}], colorTheme:'ice', connections:['sales','warehouse'] },
+    { id:'warehouse',title:'WAREHOUSE', icon:'<img src="icon-warehouse.png" style="width:40px;height:40px;object-fit:contain">', qneu:.72, confidence:.55, scars:[], colorTheme:'mint',      connections:['prod','master'] },
+    { id:'master',   title:'MASTER',    icon:'<img src="icon-master.png" style="width:40px;height:40px;object-fit:contain">', qneu:.91, confidence:.94, scars:[], colorTheme:'champagne', connections:['sales','showroom','prod','warehouse','ai','hr'] },
+    { id:'ai',       title:'AI',        icon:'<img src="icon-ai.png" style="width:40px;height:40px;object-fit:contain">', qneu:.83, confidence:.88, scars:[], colorTheme:'lavender',  connections:['master'] },
+    { id:'hr',       title:'HR',        icon:'<img src="icon-hr.png" style="width:40px;height:40px;object-fit:contain">', qneu:.78, confidence:.85, scars:[], colorTheme:'ice',       connections:['master'] },
   ];
 
   // ── RENDER MEDALS (immediate, no async gating) ────────────
