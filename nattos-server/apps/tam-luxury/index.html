@@ -759,28 +759,17 @@ html,body{height:100%;overflow:hidden;background:#030210;
         if (el) el.textContent = this.mode;
       }
 
-      // IDLE → stop flag only, loop() sẽ tự dừng
-      if (this.mode === 'IDLE') {
-        this.stop();
-      }
-      // Không gọi start() từ updateMode — tránh infinite loop
+      // stop nếu IDLE, start nếu cần — nhưng KHÔNG từ trong loop
+      if (this.mode === 'IDLE') this.stop();
     },
 
     start() {
       if (this.rafId !== null) return; // đã chạy
-      let _lastModeCheck = 0;
       const loop = () => {
-        const _now = Date.now();
-        if (_now - _lastModeCheck > 200) { // check mode 5Hz, không mỗi frame
-          _lastModeCheck = _now;
-          this.updateMode();
-        }
-        if (this.mode !== 'IDLE') {
-          renderFrame();
-          this.lastRenderTs = _now;
-          this.rafId = requestAnimationFrame(loop);
-        }
-        // IDLE: rafId = null, loop dừng tự nhiên
+        if (this.mode === 'IDLE') { this.rafId = null; return; } // dừng hẳn
+        renderFrame();
+        this.lastRenderTs = Date.now();
+        this.rafId = requestAnimationFrame(loop);
       };
       loop();
     },
@@ -1468,7 +1457,13 @@ html,body{height:100%;overflow:hidden;background:#030210;
   animateParticles2D(); // 2D overlay loop riêng
   updateStats();
   initSSE();            // SSE HeyNa — nguồn duy nhất, không fetch riêng
-  RenderCtrl.start();   // RenderCtrl điều khiển render loop (SPEC v2.0 §12)
+  RenderCtrl.start();
+  // Watchdog 500ms: restart nếu mode != IDLE nhưng loop đang dừng
+  setInterval(() => {
+    if (RenderCtrl.mode !== 'IDLE' && RenderCtrl.rafId === null) {
+      RenderCtrl.start();
+    }
+  }, 500);
   console.log('✅ NATT-OS v3.1 | HeyNa SSE | OPT-01R | Protocol HEYNA/NAHERE/Z/Resonance');
 </script>
 </body>
