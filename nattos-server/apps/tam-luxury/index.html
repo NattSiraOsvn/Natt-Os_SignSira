@@ -1115,7 +1115,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
       return true;
     });
     bCtx.globalAlpha = 1;
-    requestAnimationFrame(animateParticles2D);
+    // 2D loop được gọi từ renderFrame() — không tự RAF
   }
 
   // ── CONNECTIONS CANVAS ─────────────────────────────────────
@@ -1382,6 +1382,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
       galaxyMat.opacity  = 0.78;
     }
 
+    animateParticles2D();
     drawAllConnections();
     composer.render();
   }
@@ -1457,7 +1458,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
 
   // ── START ─────────────────────────────────────────────────
   renderMedals();       // immediate, no async gating (index5 pattern)
-  animateParticles2D(); // 2D overlay loop riêng
+  // animateParticles2D() được gọi trong renderFrame
   updateStats();
   initSSE();            // SSE HeyNa — nguồn duy nhất, không fetch riêng
   RenderCtrl.start();
