@@ -867,7 +867,6 @@ html,body{height:100%;overflow:hidden;background:#030210;
   let _ht = 0;
   document.addEventListener('mousemove', () => {
     Attention.lastMouseMove = Date.now(); RenderCtrl.lastHeynaTs = Date.now();
-    const _n = Date.now(); if (_n - _ht > 100) { _ht = _n; EventBus.emit('HEYNA', { source:'mousemove' }); }
   });
   document.addEventListener('click',     () => { Attention.lastClick = Date.now(); });
   document.addEventListener('scroll',    () => { Attention.lastScroll = Date.now(); }, { passive:true });
