@@ -984,7 +984,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
   np2.position.set(8,3,-10); np2.rotation.z=.5; np2.rotation.x=.2; layerMid.add(np2);
 
   // ── 2. GALAXY (stellar population colors) ─────────────────
-  const galaxyCount = 10000;
+  const galaxyCount = 3000;
   const galaxyGeo = new THREE.BufferGeometry();
   const positions = [], colors = [];
   for (let i = 0; i < galaxyCount; i++) {
@@ -1111,12 +1111,17 @@ html,body{height:100%;overflow:hidden;background:#030210;
   connCanvas.width = window.innerWidth; connCanvas.height = window.innerHeight;
   const medalElements = new Map();
 
+  const _medalPosCache = new Map();
   function getMedalPos(id) {
+    if (_medalPosCache.has(id)) return _medalPosCache.get(id);
     const el = medalElements.get(id);
     if (!el) return null;
     const rect = el.getBoundingClientRect();
-    return { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
+    const pos = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
+    _medalPosCache.set(id, pos);
+    return pos;
   }
+  function invalidateMedalCache() { _medalPosCache.clear(); }
 
   function drawAllConnections() {
     connCtx.clearRect(0, 0, connCanvas.width, connCanvas.height);
@@ -1270,7 +1275,8 @@ html,body{height:100%;overflow:hidden;background:#030210;
           EventBus.emit('system.impedance', { value: z });
         }
         // Gold từ HeyNa event
-        if (d.event === 'gia-vang.updated' && d.payload) {
+        if (d.event === 'gia-vang.updated' && d.payload && (!window._lastGold || Date.now()-window._lastGold>1000)) {
+          window._lastGold = Date.now();
           const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '--';
           const g = fmt(d.payload.gold9999), e18 = fmt(d.payload.gold18k);
           document.getElementById('goldPriceHeader').textContent = `9999: ${g}`;
@@ -1307,11 +1313,10 @@ html,body{height:100%;overflow:hidden;background:#030210;
   function addEventToStream(msg) {
     const t = new Date().toTimeString().slice(0,8);
     const es = document.getElementById('eventStreamContainer');
-    const mk = () => {
-      const s = document.createElement('span'); s.className = 'event-item hi';
-      s.innerHTML = `<span class="event-time">${t}</span> ${msg}`; return s; };
-    es.appendChild(mk()); es.appendChild(mk());
-    if (es.children.length > 20) { es.removeChild(es.firstChild); es.removeChild(es.firstChild); }
+    const s = document.createElement('span'); s.className = 'event-item hi';
+    s.innerHTML = `<span class="event-time">${t}</span> ${msg}`;
+    es.appendChild(s);
+    while (es.children.length > 15) es.removeChild(es.firstChild);
   }
 
   // ── CLOCK + renderFrame() — dipendency của RenderCtrl.start() ─
@@ -1438,6 +1443,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
     camera.updateProjectionMatrix();
     connCanvas.width = window.innerWidth; connCanvas.height = window.innerHeight;
     butterflyCanvas.width = window.innerWidth; butterflyCanvas.height = window.innerHeight;
+    invalidateMedalCache();
     drawAllConnections();
   });
 
