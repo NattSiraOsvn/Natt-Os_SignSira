@@ -696,6 +696,11 @@ html,body{height:100%;overflow:hidden;background:#030210;
     on(event, callback) {
       if (!this.events[event]) this.events[event] = [];
       this.events[event].push(callback);
+      return () => this.off(event, callback);
+    },
+    off(event, callback) {
+      if (!this.events[event]) return;
+      this.events[event] = this.events[event].filter(cb => cb !== callback);
     },
     emit(event, data) {
       const envelope = {
@@ -762,10 +767,8 @@ html,body{height:100%;overflow:hidden;background:#030210;
 
     start() {
       if (this.rafId !== null) return; // guard: chỉ 1 loop duy nhất
-      let _last = 0;
-      const loop = (ts) => {
-        const fps = 16;
-        if (!_last || ts - _last >= fps) { _last = ts; renderFrame(); }
+      const loop = () => {
+        renderFrame(); // unified: 3D + 2D cùng 1 nhịp RAF
         this.rafId = requestAnimationFrame(loop);
       };
       this.rafId = requestAnimationFrame(loop);
@@ -1112,16 +1115,15 @@ html,body{height:100%;overflow:hidden;background:#030210;
   const medalElements = new Map();
 
   const _medalPosCache = new Map();
-  function getMedalPos(id) {
-    if (_medalPosCache.has(id)) return _medalPosCache.get(id);
-    const el = medalElements.get(id);
-    if (!el) return null;
-    const rect = el.getBoundingClientRect();
-    const pos = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
-    _medalPosCache.set(id, pos);
-    return pos;
+  function updateMedalCache() {
+    _medalPosCache.clear();
+    medalElements.forEach((el, id) => {
+      const r = el.getBoundingClientRect();
+      _medalPosCache.set(id, { x: r.left + r.width/2, y: r.top + r.height/2 });
+    });
   }
-  function invalidateMedalCache() { _medalPosCache.clear(); }
+  function getMedalPos(id) { return _medalPosCache.get(id) || null; }
+  function invalidateMedalCache() { updateMedalCache(); }
 
   function drawAllConnections() {
     connCtx.clearRect(0, 0, connCanvas.width, connCanvas.height);
@@ -1315,8 +1317,8 @@ html,body{height:100%;overflow:hidden;background:#030210;
     const es = document.getElementById('eventStreamContainer');
     const s = document.createElement('span'); s.className = 'event-item hi';
     s.innerHTML = `<span class="event-time">${t}</span> ${msg}`;
-    es.appendChild(s);
-    while (es.children.length > 15) es.removeChild(es.firstChild);
+    es.prepend(s);
+    while (es.children.length > 15) es.removeChild(es.lastChild);
   }
 
   // ── CLOCK + renderFrame() — dipendency của RenderCtrl.start() ─
@@ -1448,7 +1450,8 @@ html,body{height:100%;overflow:hidden;background:#030210;
   });
 
   // ── START ─────────────────────────────────────────────────
-  renderMedals();       // immediate, no async gating (index5 pattern)
+  renderMedals();
+  setTimeout(updateMedalCache, 150); // precompute sau khi DOM settled
   // animateParticles2D() được gọi trong renderFrame
   updateStats();
   initSSE();            // SSE HeyNa — nguồn duy nhất, không fetch riêng
