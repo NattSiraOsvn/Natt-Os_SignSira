@@ -341,4 +341,6 @@ try { require('tsx/cjs'); } catch {}
 try { require('./engine-registry').init(EventBus); } catch (e) { console.warn('[EngineRegistry] Skip:', e.message); }
 
 
+
+app.use('/nauion/icon', require('express').static(require('path').join(__dirname, 'nauion/icon')));
 app.use("/apps/tam-luxury", express.static(path.join(__dirname, "apps/tam-luxury")));
