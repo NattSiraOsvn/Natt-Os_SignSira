@@ -868,8 +868,8 @@ html,body{height:100%;overflow:hidden;background:#030210;
   document.addEventListener('mousemove', () => {
     Attention.lastMouseMove = Date.now(); RenderCtrl.lastHeynaTs = Date.now();
   });
-  document.addEventListener('click',     () => { Attention.lastClick = Date.now(); });
-  document.addEventListener('scroll',    () => { Attention.lastScroll = Date.now(); }, { passive:true });
+  document.addEventListener('click',     () => { Attention.lastClick = Date.now(); }); // no HEYNA
+  document.addEventListener('scroll',    () => { Attention.lastScroll = Date.now(); }, { passive:true }); // no HEYNA
   document.addEventListener('visibilitychange', () => Attention.update());
   setInterval(() => Attention.update(), 200); // 5Hz
 
@@ -1212,7 +1212,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
     addEventToStream(`Butterfly from ${cell.title}`);
     EventBus.emit('butterfly.local', { source: cell.id });
     if (cell.qneu < 0.55) EventBus.emit('butterfly.tsunami', {});
-    EventBus.emit('HEYNA', {}); // HEYNA → BURST render
+    // no HEYNA on medal click
   });
 
   EventBus.on('butterfly.local', ({ payload }) => {
@@ -1410,7 +1410,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       EventBus.emit('ui.nav.change', { view: btn.dataset.view });
-      EventBus.emit('HEYNA', {});
+      // no HEYNA on nav
     });
   });
 
