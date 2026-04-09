@@ -2,7 +2,15 @@ thien@iMac natt-os_ver2goldmaster % tree
 .
 ├── Dockerfile
 ├── NATT-OS-PLATFORM-SPEC.md
+├── PYEOF
 ├── README.md
+├── apps
+│   └── tam-luxury
+│       ├── assets
+│       │   ├── index-CYkn00u4.js
+│       │   ├── index-DQQV8Nl7.css
+│       │   └── index-DXymm8SL.js
+│       └── index.html
 ├── archive
 │   ├── memory_20260313_131217
 │   │   └── thresholds.json
@@ -55,6 +63,25 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   └── restructure.log
 │   ├── reports
 │   │   ├── 2026-04-07_08-45-40_auto.md
+│   │   ├── 2026-04-07_21-00-31_auto.md
+│   │   ├── 2026-04-08_02-20-33_auto.md
+│   │   ├── 2026-04-08_03-04-29_auto.md
+│   │   ├── 2026-04-08_03-12-56_auto.md
+│   │   ├── 2026-04-08_03-16-03_auto.md
+│   │   ├── 2026-04-08_03-17-09_auto.md
+│   │   ├── 2026-04-08_03-18-34_auto.md
+│   │   ├── 2026-04-08_03-21-54_auto.md
+│   │   ├── 2026-04-08_03-22-14_auto.md
+│   │   ├── 2026-04-08_03-29-10_auto.md
+│   │   ├── 2026-04-08_03-30-03_auto.md
+│   │   ├── 2026-04-08_03-30-17_auto.md
+│   │   ├── 2026-04-08_05-13-11_auto.md
+│   │   ├── 2026-04-08_14-46-03_auto.md
+│   │   ├── 2026-04-08_14-56-07_auto.md
+│   │   ├── 2026-04-08_17-32-36_auto.md
+│   │   ├── 2026-04-08_17-33-34_auto.md
+│   │   ├── 2026-04-08_17-34-26_auto.md
+│   │   ├── 2026-04-08_17-36-15_auto.md
 │   │   ├── NATT-OS FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
 │   │   ├── NATT-OS FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
 │   │   ├── NATT-OS_Audit_2026-03-07.docx
@@ -62,22 +89,26 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   ├── metadata.json
 │   │   └── natt_os_scan_20260209_200106.json
 │   └── summary
+│       ├── api-violations.json
 │       ├── audit_2026-02-23.json
 │       ├── latest.json
 │       └── natt_os_audit_20260309_200645.json
+├── config
+│   └── resonance.policy.json
 ├── database
-│   ├── bank
-│   │   └── Cty Tâm
-│   │       └── saoketk1112.xlsx
-│   ├── data cty tam
-│   │   └── april-2025.json
-│   ├── dieutra
-│   │   └── Cty Tâm
+│   ├── data Cty Tâmluxury
+│   │   ├── BCTC mẫu
+│   │   │   └── BCTCTH_C03_TCT.XSD
+│   │   ├── bank
+│   │   │   └── saoketk1112.xlsx
+│   │   ├── data kinh doanh
+│   │   ├── data sản xuất
+│   │   │   └── nấu-bụi-vàng.json
+│   │   ├── data vận hành
+│   │   └── dieutra
 │   │       ├── BAO_CAO_DIEU_TRA_SX_TAM_LUXURY (1).pdf
 │   │       └── BAO_CAO_DIEU_TRA_SX_TAM_LUXURY.docx
 │   ├── maubtc
-│   │   └── Cty Tâm
-│   │       └── BCTCTH_C03_TCT.XSD
 │   ├── nabie
 │   ├── schema
 │   │   ├── 002_fiscal_workbench.sql
@@ -166,6 +197,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │       └── inventory-cell-tests.spec.md
 │   │   ├── nauion
 │   │   │   ├── NaUion.md
+│   │   │   ├── SPEC-Nauion.main.md
 │   │   │   ├── natt - kỹ thuật ui.sh
 │   │   │   ├── natt-v8.md
 │   │   │   ├── natt-v9.md
@@ -199,22 +231,1115 @@ thien@iMac natt-os_ver2goldmaster % tree
 ├── jest.config.cjs
 ├── natt-os-twin.json
 ├── nattos-server
+│   ├── app Tâm luxury
+│   │   ├── analytics-ingestion-service
+│   │   │   ├── application
+│   │   │   │   └── ingest-sales-event.ts
+│   │   │   └── domain
+│   │   │       └── projections
+│   │   │           └── daily-revenue.projection.ts
+│   │   ├── app.tsx
+│   │   ├── component-contracts.json
+│   │   ├── components
+│   │   │   ├── adminconfighub.tsx
+│   │   │   ├── advancedanalytics.tsx
+│   │   │   ├── aiavatar.tsx
+│   │   │   ├── apiportal.tsx
+│   │   │   ├── app.tsx
+│   │   │   ├── approval
+│   │   │   │   └── approvaldashboard.tsx
+│   │   │   ├── appshell.tsx
+│   │   │   ├── audittrailmodule.tsx
+│   │   │   ├── bankingprocessor.tsx
+│   │   │   ├── blueprintwizard.tsx
+│   │   │   ├── calibration
+│   │   │   │   └── calibrationwizard.tsx
+│   │   │   ├── chatconsultant.tsx
+│   │   │   ├── collaborationrooms.tsx
+│   │   │   ├── common
+│   │   │   │   ├── errorboundary.tsx
+│   │   │   │   └── loadingspinner.tsx
+│   │   │   ├── complianceportal.tsx
+│   │   │   ├── customizationrequest.tsx
+│   │   │   ├── customsintelligence.tsx
+│   │   │   ├── dailyreportmodule.tsx
+│   │   │   ├── dashboard.tsx
+│   │   │   ├── dataanalytics.tsx
+│   │   │   ├── dataarchivevault.tsx
+│   │   │   ├── datasyncengine.tsx
+│   │   │   ├── devportal.tsx
+│   │   │   ├── dynamicmodulerenderer.tsx
+│   │   │   ├── enterprisearchitecture.tsx
+│   │   │   ├── errorboundary.tsx
+│   │   │   ├── filterpanel.tsx
+│   │   │   ├── financeaudit.tsx
+│   │   │   ├── financial
+│   │   │   │   └── financialdashboard.tsx
+│   │   │   ├── governancemodule.tsx
+│   │   │   ├── governanceworkspace.tsx
+│   │   │   ├── hrcompliance.tsx
+│   │   │   ├── hrmanagement.tsx
+│   │   │   ├── krisemailhub.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── learninghub.tsx
+│   │   │   ├── livevoice.tsx
+│   │   │   ├── masterdashboard.tsx
+│   │   │   ├── notificationhub.tsx
+│   │   │   ├── notificationportal.tsx
+│   │   │   ├── omegaprocessor.tsx
+│   │   │   ├── operationsterminal.tsx
+│   │   │   ├── paymenthub.tsx
+│   │   │   ├── personalsphere.tsx
+│   │   │   ├── productcard.tsx
+│   │   │   ├── productcatalog.tsx
+│   │   │   ├── productdetailmodal.tsx
+│   │   │   ├── productionmanager.tsx
+│   │   │   ├── productionsalesflowview.tsx
+│   │   │   ├── productionwallboard.tsx
+│   │   │   ├── quantumfloworchestrator.tsx
+│   │   │   ├── quantumpulse.tsx
+│   │   │   ├── quickhelp.tsx
+│   │   │   ├── rbacmanager.tsx
+│   │   │   ├── rfmanalysis.tsx
+│   │   │   ├── salesarchitectureview.tsx
+│   │   │   ├── salescrm.tsx
+│   │   │   ├── salestaxmodule.tsx
+│   │   │   ├── salesterminal.tsx
+│   │   │   ├── securityoverlay.tsx
+│   │   │   ├── sellerterminal.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   ├── smartlinkmapper.tsx
+│   │   │   ├── supplierclassificationpanel.tsx
+│   │   │   ├── systemmonitor.tsx
+│   │   │   ├── systemnavigator.tsx
+│   │   │   ├── systemticker.tsx
+│   │   │   ├── taxreportinghub.tsx
+│   │   │   ├── technicaldocs.tsx
+│   │   │   ├── thiencommandcenter.tsx
+│   │   │   ├── unifiedreportinghub.tsx
+│   │   │   └── warehousemanagement.tsx
+│   │   ├── constants.ts
+│   │   ├── contexts
+│   │   │   ├── accountingcontext.tsx
+│   │   │   └── mappingcontext.tsx
+│   │   ├── core
+│   │   │   ├── dictionary
+│   │   │   │   └── services
+│   │   │   │       └── dictionaryservice.ts
+│   │   │   ├── ingestion
+│   │   │   │   └── ingestionservice.ts
+│   │   │   ├── processing
+│   │   │   │   └── ai
+│   │   │   │       └── aicoreprocessor.ts
+│   │   │   ├── signals
+│   │   │   │   └── types.ts
+│   │   │   └── smartlinkengine.ts
+│   │   ├── css
+│   │   │   ├── nattos-fx-advanced.css
+│   │   │   └── nattos-glass.css
+│   │   ├── finance-service
+│   │   │   ├── application
+│   │   │   │   └── handlers
+│   │   │   │       └── invoice-handler.ts
+│   │   │   └── infrastructure
+│   │   │       └── messaging
+│   │   │           ├── dead-letter.handler.ts
+│   │   │           └── retry.policy.ts
+│   │   ├── hooks
+│   │   │   ├── useauthority.ts
+│   │   │   ├── userealtimesync.ts
+│   │   │   ├── usesmartmapping.ts
+│   │   │   └── usesupplierclassification.ts
+│   │   ├── index.css
+│   │   ├── index.html
+│   │   ├── index.tsx
+│   │   ├── layerold
+│   │   │   ├── attendance.html
+│   │   │   ├── chat-rooms.html
+│   │   │   ├── daily-work-app.html
+│   │   │   ├── hr-admin.html
+│   │   │   ├── hr-manager.html
+│   │   │   ├── kris-email-hub.html
+│   │   │   ├── ktt-approval.html
+│   │   │   ├── loss-thresholds.html
+│   │   │   ├── master-dashboard.html
+│   │   │   ├── operations-terminal.html
+│   │   │   ├── order-flow.html
+│   │   │   ├── personal-profile-v2.html
+│   │   │   ├── personal-profile.html
+│   │   │   ├── pricing-engine.html
+│   │   │   ├── production-wallboard.html
+│   │   │   ├── showroom-sales.html
+│   │   │   ├── surveillance.html
+│   │   │   ├── tamluxury-v2.html
+│   │   │   ├── tamluxury-v3.html
+│   │   │   ├── tamluxury-v4.html
+│   │   │   ├── warehouse-full.html
+│   │   │   └── warehouse-ops.html
+│   │   ├── manifestations
+│   │   │   └── overlays
+│   │   │       └── quantumcontainer.tsx
+│   │   ├── nattos-chromatic.js
+│   │   ├── nattos-contract.json
+│   │   ├── nattos-data.js
+│   │   ├── nattos-doc-engine.js
+│   │   ├── nattos-eod-engine.js
+│   │   ├── nattos-fx-advanced.css
+│   │   ├── nattos-fx.js
+│   │   ├── nattos-glass.css
+│   │   ├── nattos-loss-thresholds.js
+│   │   ├── nattos-payment.js
+│   │   ├── nattos-responsive.css
+│   │   ├── nattos-sandbox.css
+│   │   ├── nattos-sandbox.js
+│   │   ├── nattos-server.cjs
+│   │   ├── nattos-smart-get-data.js
+│   │   ├── nattos-tokens.css
+│   │   ├── nattos-ui-theme.css
+│   │   ├── nauion
+│   │   │   └── ui-runtime.tsx
+│   │   ├── neuro-link
+│   │   │   └── context
+│   │   │       └── quantumuicontext.tsx
+│   │   ├── node_modules
+│   │   │   ├── @oxc-project
+│   │   │   │   └── types
+│   │   │   │       ├── LICENSE
+│   │   │   │       ├── README.md
+│   │   │   │       ├── package.json
+│   │   │   │       └── types.d.ts
+│   │   │   ├── @rolldown
+│   │   │   │   ├── binding-darwin-x64
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── package.json
+│   │   │   │   │   └── rolldown-binding.darwin-x64.node
+│   │   │   │   └── pluginutils
+│   │   │   │       ├── LICENSE
+│   │   │   │       ├── README.md
+│   │   │   │       ├── dist
+│   │   │   │       │   ├── filter
+│   │   │   │       │   │   ├── composable-filters.d.ts
+│   │   │   │       │   │   ├── composable-filters.js
+│   │   │   │       │   │   ├── filter-vite-plugins.d.ts
+│   │   │   │       │   │   ├── filter-vite-plugins.js
+│   │   │   │       │   │   ├── index.d.ts
+│   │   │   │       │   │   ├── index.js
+│   │   │   │       │   │   ├── simple-filters.d.ts
+│   │   │   │       │   │   └── simple-filters.js
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   ├── utils.d.ts
+│   │   │   │       │   └── utils.js
+│   │   │   │       └── package.json
+│   │   │   ├── @types
+│   │   │   │   ├── react
+│   │   │   │   │   ├── LICENSE
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── canary.d.ts
+│   │   │   │   │   ├── compiler-runtime.d.ts
+│   │   │   │   │   ├── experimental.d.ts
+│   │   │   │   │   ├── global.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── jsx-dev-runtime.d.ts
+│   │   │   │   │   ├── jsx-runtime.d.ts
+│   │   │   │   │   ├── package.json
+│   │   │   │   │   └── ts5.0
+│   │   │   │   │       ├── canary.d.ts
+│   │   │   │   │       ├── experimental.d.ts
+│   │   │   │   │       ├── global.d.ts
+│   │   │   │   │       ├── index.d.ts
+│   │   │   │   │       ├── jsx-dev-runtime.d.ts
+│   │   │   │   │       └── jsx-runtime.d.ts
+│   │   │   │   └── react-dom
+│   │   │   │       ├── LICENSE
+│   │   │   │       ├── README.md
+│   │   │   │       ├── canary.d.ts
+│   │   │   │       ├── client.d.ts
+│   │   │   │       ├── experimental.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── package.json
+│   │   │   │       ├── server.browser.d.ts
+│   │   │   │       ├── server.bun.d.ts
+│   │   │   │       ├── server.d.ts
+│   │   │   │       ├── server.edge.d.ts
+│   │   │   │       ├── server.node.d.ts
+│   │   │   │       ├── static.browser.d.ts
+│   │   │   │       ├── static.d.ts
+│   │   │   │       ├── static.edge.d.ts
+│   │   │   │       ├── static.node.d.ts
+│   │   │   │       └── test-utils
+│   │   │   │           └── index.d.ts
+│   │   │   ├── @vitejs
+│   │   │   │   └── plugin-react
+│   │   │   │       ├── LICENSE
+│   │   │   │       ├── README.md
+│   │   │   │       ├── dist
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   └── refresh-runtime.js
+│   │   │   │       ├── package.json
+│   │   │   │       └── types
+│   │   │   │           ├── optionalTypes.d.ts
+│   │   │   │           └── preamble.d.ts
+│   │   │   ├── csstype
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js.flow
+│   │   │   │   └── package.json
+│   │   │   ├── detect-libc
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── detect-libc.js
+│   │   │   │   │   ├── elf.js
+│   │   │   │   │   ├── filesystem.js
+│   │   │   │   │   └── process.js
+│   │   │   │   └── package.json
+│   │   │   ├── fdir
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── dist
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   ├── index.d.cts
+│   │   │   │   │   ├── index.d.mts
+│   │   │   │   │   └── index.mjs
+│   │   │   │   └── package.json
+│   │   │   ├── fsevents
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── fsevents.d.ts
+│   │   │   │   ├── fsevents.js
+│   │   │   │   ├── fsevents.node
+│   │   │   │   └── package.json
+│   │   │   ├── lightningcss
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── node
+│   │   │   │   │   ├── ast.d.ts
+│   │   │   │   │   ├── ast.js.flow
+│   │   │   │   │   ├── browserslistToTargets.js
+│   │   │   │   │   ├── composeVisitors.js
+│   │   │   │   │   ├── flags.js
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.js.flow
+│   │   │   │   │   ├── index.mjs
+│   │   │   │   │   ├── targets.d.ts
+│   │   │   │   │   └── targets.js.flow
+│   │   │   │   └── package.json
+│   │   │   ├── lightningcss-darwin-x64
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── lightningcss.darwin-x64.node
+│   │   │   │   └── package.json
+│   │   │   ├── nanoid
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── async
+│   │   │   │   │   ├── index.browser.cjs
+│   │   │   │   │   ├── index.browser.js
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.native.js
+│   │   │   │   │   └── package.json
+│   │   │   │   ├── bin
+│   │   │   │   │   └── nanoid.cjs
+│   │   │   │   ├── index.browser.cjs
+│   │   │   │   ├── index.browser.js
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.cts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   ├── nanoid.js
+│   │   │   │   ├── non-secure
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── package.json
+│   │   │   │   ├── package.json
+│   │   │   │   └── url-alphabet
+│   │   │   │       ├── index.cjs
+│   │   │   │       ├── index.js
+│   │   │   │       └── package.json
+│   │   │   ├── picocolors
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── package.json
+│   │   │   │   ├── picocolors.browser.js
+│   │   │   │   ├── picocolors.d.ts
+│   │   │   │   ├── picocolors.js
+│   │   │   │   └── types.d.ts
+│   │   │   ├── picomatch
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── index.js
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── constants.js
+│   │   │   │   │   ├── parse.js
+│   │   │   │   │   ├── picomatch.js
+│   │   │   │   │   ├── scan.js
+│   │   │   │   │   └── utils.js
+│   │   │   │   ├── package.json
+│   │   │   │   └── posix.js
+│   │   │   ├── postcss
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── at-rule.d.ts
+│   │   │   │   │   ├── at-rule.js
+│   │   │   │   │   ├── comment.d.ts
+│   │   │   │   │   ├── comment.js
+│   │   │   │   │   ├── container.d.ts
+│   │   │   │   │   ├── container.js
+│   │   │   │   │   ├── css-syntax-error.d.ts
+│   │   │   │   │   ├── css-syntax-error.js
+│   │   │   │   │   ├── declaration.d.ts
+│   │   │   │   │   ├── declaration.js
+│   │   │   │   │   ├── document.d.ts
+│   │   │   │   │   ├── document.js
+│   │   │   │   │   ├── fromJSON.d.ts
+│   │   │   │   │   ├── fromJSON.js
+│   │   │   │   │   ├── input.d.ts
+│   │   │   │   │   ├── input.js
+│   │   │   │   │   ├── lazy-result.d.ts
+│   │   │   │   │   ├── lazy-result.js
+│   │   │   │   │   ├── list.d.ts
+│   │   │   │   │   ├── list.js
+│   │   │   │   │   ├── map-generator.js
+│   │   │   │   │   ├── no-work-result.d.ts
+│   │   │   │   │   ├── no-work-result.js
+│   │   │   │   │   ├── node.d.ts
+│   │   │   │   │   ├── node.js
+│   │   │   │   │   ├── parse.d.ts
+│   │   │   │   │   ├── parse.js
+│   │   │   │   │   ├── parser.js
+│   │   │   │   │   ├── postcss.d.mts
+│   │   │   │   │   ├── postcss.d.ts
+│   │   │   │   │   ├── postcss.js
+│   │   │   │   │   ├── postcss.mjs
+│   │   │   │   │   ├── previous-map.d.ts
+│   │   │   │   │   ├── previous-map.js
+│   │   │   │   │   ├── processor.d.ts
+│   │   │   │   │   ├── processor.js
+│   │   │   │   │   ├── result.d.ts
+│   │   │   │   │   ├── result.js
+│   │   │   │   │   ├── root.d.ts
+│   │   │   │   │   ├── root.js
+│   │   │   │   │   ├── rule.d.ts
+│   │   │   │   │   ├── rule.js
+│   │   │   │   │   ├── stringifier.d.ts
+│   │   │   │   │   ├── stringifier.js
+│   │   │   │   │   ├── stringify.d.ts
+│   │   │   │   │   ├── stringify.js
+│   │   │   │   │   ├── symbols.js
+│   │   │   │   │   ├── terminal-highlight.js
+│   │   │   │   │   ├── tokenize.js
+│   │   │   │   │   ├── warn-once.js
+│   │   │   │   │   ├── warning.d.ts
+│   │   │   │   │   └── warning.js
+│   │   │   │   └── package.json
+│   │   │   ├── react
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── cjs
+│   │   │   │   │   ├── react-compiler-runtime.development.js
+│   │   │   │   │   ├── react-compiler-runtime.production.js
+│   │   │   │   │   ├── react-compiler-runtime.profiling.js
+│   │   │   │   │   ├── react-jsx-dev-runtime.development.js
+│   │   │   │   │   ├── react-jsx-dev-runtime.production.js
+│   │   │   │   │   ├── react-jsx-dev-runtime.profiling.js
+│   │   │   │   │   ├── react-jsx-dev-runtime.react-server.development.js
+│   │   │   │   │   ├── react-jsx-dev-runtime.react-server.production.js
+│   │   │   │   │   ├── react-jsx-runtime.development.js
+│   │   │   │   │   ├── react-jsx-runtime.production.js
+│   │   │   │   │   ├── react-jsx-runtime.profiling.js
+│   │   │   │   │   ├── react-jsx-runtime.react-server.development.js
+│   │   │   │   │   ├── react-jsx-runtime.react-server.production.js
+│   │   │   │   │   ├── react.development.js
+│   │   │   │   │   ├── react.production.js
+│   │   │   │   │   ├── react.react-server.development.js
+│   │   │   │   │   └── react.react-server.production.js
+│   │   │   │   ├── compiler-runtime.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── jsx-dev-runtime.js
+│   │   │   │   ├── jsx-dev-runtime.react-server.js
+│   │   │   │   ├── jsx-runtime.js
+│   │   │   │   ├── jsx-runtime.react-server.js
+│   │   │   │   ├── package.json
+│   │   │   │   └── react.react-server.js
+│   │   │   ├── react-dom
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── cjs
+│   │   │   │   │   ├── react-dom-client.development.js
+│   │   │   │   │   ├── react-dom-client.production.js
+│   │   │   │   │   ├── react-dom-profiling.development.js
+│   │   │   │   │   ├── react-dom-profiling.profiling.js
+│   │   │   │   │   ├── react-dom-server-legacy.browser.development.js
+│   │   │   │   │   ├── react-dom-server-legacy.browser.production.js
+│   │   │   │   │   ├── react-dom-server-legacy.node.development.js
+│   │   │   │   │   ├── react-dom-server-legacy.node.production.js
+│   │   │   │   │   ├── react-dom-server.browser.development.js
+│   │   │   │   │   ├── react-dom-server.browser.production.js
+│   │   │   │   │   ├── react-dom-server.bun.development.js
+│   │   │   │   │   ├── react-dom-server.bun.production.js
+│   │   │   │   │   ├── react-dom-server.edge.development.js
+│   │   │   │   │   ├── react-dom-server.edge.production.js
+│   │   │   │   │   ├── react-dom-server.node.development.js
+│   │   │   │   │   ├── react-dom-server.node.production.js
+│   │   │   │   │   ├── react-dom-test-utils.development.js
+│   │   │   │   │   ├── react-dom-test-utils.production.js
+│   │   │   │   │   ├── react-dom.development.js
+│   │   │   │   │   ├── react-dom.production.js
+│   │   │   │   │   ├── react-dom.react-server.development.js
+│   │   │   │   │   └── react-dom.react-server.production.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── client.react-server.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── package.json
+│   │   │   │   ├── profiling.js
+│   │   │   │   ├── profiling.react-server.js
+│   │   │   │   ├── react-dom.react-server.js
+│   │   │   │   ├── server.browser.js
+│   │   │   │   ├── server.bun.js
+│   │   │   │   ├── server.edge.js
+│   │   │   │   ├── server.js
+│   │   │   │   ├── server.node.js
+│   │   │   │   ├── server.react-server.js
+│   │   │   │   ├── static.browser.js
+│   │   │   │   ├── static.edge.js
+│   │   │   │   ├── static.js
+│   │   │   │   ├── static.node.js
+│   │   │   │   ├── static.react-server.js
+│   │   │   │   └── test-utils.js
+│   │   │   ├── rolldown
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── bin
+│   │   │   │   │   └── cli.mjs
+│   │   │   │   ├── dist
+│   │   │   │   │   ├── cli.d.mts
+│   │   │   │   │   ├── cli.mjs
+│   │   │   │   │   ├── config.d.mts
+│   │   │   │   │   ├── config.mjs
+│   │   │   │   │   ├── experimental-index.d.mts
+│   │   │   │   │   ├── experimental-index.mjs
+│   │   │   │   │   ├── experimental-runtime-types.d.ts
+│   │   │   │   │   ├── filter-index.d.mts
+│   │   │   │   │   ├── filter-index.mjs
+│   │   │   │   │   ├── get-log-filter.d.mts
+│   │   │   │   │   ├── get-log-filter.mjs
+│   │   │   │   │   ├── index.d.mts
+│   │   │   │   │   ├── index.mjs
+│   │   │   │   │   ├── parallel-plugin-worker.d.mts
+│   │   │   │   │   ├── parallel-plugin-worker.mjs
+│   │   │   │   │   ├── parallel-plugin.d.mts
+│   │   │   │   │   ├── parallel-plugin.mjs
+│   │   │   │   │   ├── parse-ast-index.d.mts
+│   │   │   │   │   ├── parse-ast-index.mjs
+│   │   │   │   │   ├── plugins-index.d.mts
+│   │   │   │   │   ├── plugins-index.mjs
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   ├── binding-DUEnSb0A.d.mts
+│   │   │   │   │   │   ├── binding-Rc5vBspi.mjs
+│   │   │   │   │   │   ├── bindingify-input-options-4E8MEYg4.mjs
+│   │   │   │   │   │   ├── constructors-ChVDbP6o.mjs
+│   │   │   │   │   │   ├── constructors-DYemMpPL.d.mts
+│   │   │   │   │   │   ├── define-config-DJOr6Iwt.mjs
+│   │   │   │   │   │   ├── define-config-DhJZwTRw.d.mts
+│   │   │   │   │   │   ├── error-DBGOT6sf.mjs
+│   │   │   │   │   │   ├── get-log-filter-semyr3Lj.d.mts
+│   │   │   │   │   │   ├── load-config-C9BtnuRk.mjs
+│   │   │   │   │   │   ├── logging-C6h4g8dA.d.mts
+│   │   │   │   │   │   ├── logs-D80CXhvg.mjs
+│   │   │   │   │   │   ├── misc-DJYbNKZX.mjs
+│   │   │   │   │   │   ├── normalize-string-or-regex-BzTP-qJS.mjs
+│   │   │   │   │   │   ├── parse-B30xMDQc.mjs
+│   │   │   │   │   │   ├── prompt-BYQIwEjg.mjs
+│   │   │   │   │   │   ├── resolve-tsconfig-BD5XUCWz.mjs
+│   │   │   │   │   │   ├── rolldown-CIfBsrjA.mjs
+│   │   │   │   │   │   ├── rolldown-build-hRnqgxyz.mjs
+│   │   │   │   │   │   ├── transform-Kz3D2LbX.d.mts
+│   │   │   │   │   │   └── watch-BDnUMWmc.mjs
+│   │   │   │   │   ├── utils-index.d.mts
+│   │   │   │   │   └── utils-index.mjs
+│   │   │   │   ├── node_modules
+│   │   │   │   │   └── @rolldown
+│   │   │   │   │       └── pluginutils
+│   │   │   │   │           ├── LICENSE
+│   │   │   │   │           ├── README.md
+│   │   │   │   │           ├── dist
+│   │   │   │   │           │   ├── filter
+│   │   │   │   │           │   │   ├── composable-filters.d.ts
+│   │   │   │   │           │   │   ├── composable-filters.js
+│   │   │   │   │           │   │   ├── filter-vite-plugins.d.ts
+│   │   │   │   │           │   │   ├── filter-vite-plugins.js
+│   │   │   │   │           │   │   ├── index.d.ts
+│   │   │   │   │           │   │   ├── index.js
+│   │   │   │   │           │   │   ├── simple-filters.d.ts
+│   │   │   │   │           │   │   └── simple-filters.js
+│   │   │   │   │           │   ├── index.d.ts
+│   │   │   │   │           │   ├── index.js
+│   │   │   │   │           │   ├── utils.d.ts
+│   │   │   │   │           │   └── utils.js
+│   │   │   │   │           └── package.json
+│   │   │   │   └── package.json
+│   │   │   ├── scheduler
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── cjs
+│   │   │   │   │   ├── scheduler-unstable_mock.development.js
+│   │   │   │   │   ├── scheduler-unstable_mock.production.js
+│   │   │   │   │   ├── scheduler-unstable_post_task.development.js
+│   │   │   │   │   ├── scheduler-unstable_post_task.production.js
+│   │   │   │   │   ├── scheduler.development.js
+│   │   │   │   │   ├── scheduler.native.development.js
+│   │   │   │   │   ├── scheduler.native.production.js
+│   │   │   │   │   └── scheduler.production.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.native.js
+│   │   │   │   ├── package.json
+│   │   │   │   ├── unstable_mock.js
+│   │   │   │   └── unstable_post_task.js
+│   │   │   ├── source-map-js
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── array-set.js
+│   │   │   │   │   ├── base64-vlq.js
+│   │   │   │   │   ├── base64.js
+│   │   │   │   │   ├── binary-search.js
+│   │   │   │   │   ├── mapping-list.js
+│   │   │   │   │   ├── quick-sort.js
+│   │   │   │   │   ├── source-map-consumer.d.ts
+│   │   │   │   │   ├── source-map-consumer.js
+│   │   │   │   │   ├── source-map-generator.d.ts
+│   │   │   │   │   ├── source-map-generator.js
+│   │   │   │   │   ├── source-node.d.ts
+│   │   │   │   │   ├── source-node.js
+│   │   │   │   │   └── util.js
+│   │   │   │   ├── package.json
+│   │   │   │   ├── source-map.d.ts
+│   │   │   │   └── source-map.js
+│   │   │   ├── tinyglobby
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── dist
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   ├── index.d.cts
+│   │   │   │   │   ├── index.d.mts
+│   │   │   │   │   └── index.mjs
+│   │   │   │   └── package.json
+│   │   │   ├── typescript
+│   │   │   │   ├── LICENSE.txt
+│   │   │   │   ├── README.md
+│   │   │   │   ├── SECURITY.md
+│   │   │   │   ├── ThirdPartyNoticeText.txt
+│   │   │   │   ├── bin
+│   │   │   │   │   ├── tsc
+│   │   │   │   │   └── tsserver
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── _tsc.js
+│   │   │   │   │   ├── _tsserver.js
+│   │   │   │   │   ├── _typingsInstaller.js
+│   │   │   │   │   ├── cs
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── de
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── es
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── fr
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── it
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── ja
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── ko
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── lib.d.ts
+│   │   │   │   │   ├── lib.decorators.d.ts
+│   │   │   │   │   ├── lib.decorators.legacy.d.ts
+│   │   │   │   │   ├── lib.dom.asynciterable.d.ts
+│   │   │   │   │   ├── lib.dom.d.ts
+│   │   │   │   │   ├── lib.dom.iterable.d.ts
+│   │   │   │   │   ├── lib.es2015.collection.d.ts
+│   │   │   │   │   ├── lib.es2015.core.d.ts
+│   │   │   │   │   ├── lib.es2015.d.ts
+│   │   │   │   │   ├── lib.es2015.generator.d.ts
+│   │   │   │   │   ├── lib.es2015.iterable.d.ts
+│   │   │   │   │   ├── lib.es2015.promise.d.ts
+│   │   │   │   │   ├── lib.es2015.proxy.d.ts
+│   │   │   │   │   ├── lib.es2015.reflect.d.ts
+│   │   │   │   │   ├── lib.es2015.symbol.d.ts
+│   │   │   │   │   ├── lib.es2015.symbol.wellknown.d.ts
+│   │   │   │   │   ├── lib.es2016.array.include.d.ts
+│   │   │   │   │   ├── lib.es2016.d.ts
+│   │   │   │   │   ├── lib.es2016.full.d.ts
+│   │   │   │   │   ├── lib.es2016.intl.d.ts
+│   │   │   │   │   ├── lib.es2017.arraybuffer.d.ts
+│   │   │   │   │   ├── lib.es2017.d.ts
+│   │   │   │   │   ├── lib.es2017.date.d.ts
+│   │   │   │   │   ├── lib.es2017.full.d.ts
+│   │   │   │   │   ├── lib.es2017.intl.d.ts
+│   │   │   │   │   ├── lib.es2017.object.d.ts
+│   │   │   │   │   ├── lib.es2017.sharedmemory.d.ts
+│   │   │   │   │   ├── lib.es2017.string.d.ts
+│   │   │   │   │   ├── lib.es2017.typedarrays.d.ts
+│   │   │   │   │   ├── lib.es2018.asyncgenerator.d.ts
+│   │   │   │   │   ├── lib.es2018.asynciterable.d.ts
+│   │   │   │   │   ├── lib.es2018.d.ts
+│   │   │   │   │   ├── lib.es2018.full.d.ts
+│   │   │   │   │   ├── lib.es2018.intl.d.ts
+│   │   │   │   │   ├── lib.es2018.promise.d.ts
+│   │   │   │   │   ├── lib.es2018.regexp.d.ts
+│   │   │   │   │   ├── lib.es2019.array.d.ts
+│   │   │   │   │   ├── lib.es2019.d.ts
+│   │   │   │   │   ├── lib.es2019.full.d.ts
+│   │   │   │   │   ├── lib.es2019.intl.d.ts
+│   │   │   │   │   ├── lib.es2019.object.d.ts
+│   │   │   │   │   ├── lib.es2019.string.d.ts
+│   │   │   │   │   ├── lib.es2019.symbol.d.ts
+│   │   │   │   │   ├── lib.es2020.bigint.d.ts
+│   │   │   │   │   ├── lib.es2020.d.ts
+│   │   │   │   │   ├── lib.es2020.date.d.ts
+│   │   │   │   │   ├── lib.es2020.full.d.ts
+│   │   │   │   │   ├── lib.es2020.intl.d.ts
+│   │   │   │   │   ├── lib.es2020.number.d.ts
+│   │   │   │   │   ├── lib.es2020.promise.d.ts
+│   │   │   │   │   ├── lib.es2020.sharedmemory.d.ts
+│   │   │   │   │   ├── lib.es2020.string.d.ts
+│   │   │   │   │   ├── lib.es2020.symbol.wellknown.d.ts
+│   │   │   │   │   ├── lib.es2021.d.ts
+│   │   │   │   │   ├── lib.es2021.full.d.ts
+│   │   │   │   │   ├── lib.es2021.intl.d.ts
+│   │   │   │   │   ├── lib.es2021.promise.d.ts
+│   │   │   │   │   ├── lib.es2021.string.d.ts
+│   │   │   │   │   ├── lib.es2021.weakref.d.ts
+│   │   │   │   │   ├── lib.es2022.array.d.ts
+│   │   │   │   │   ├── lib.es2022.d.ts
+│   │   │   │   │   ├── lib.es2022.error.d.ts
+│   │   │   │   │   ├── lib.es2022.full.d.ts
+│   │   │   │   │   ├── lib.es2022.intl.d.ts
+│   │   │   │   │   ├── lib.es2022.object.d.ts
+│   │   │   │   │   ├── lib.es2022.regexp.d.ts
+│   │   │   │   │   ├── lib.es2022.string.d.ts
+│   │   │   │   │   ├── lib.es2023.array.d.ts
+│   │   │   │   │   ├── lib.es2023.collection.d.ts
+│   │   │   │   │   ├── lib.es2023.d.ts
+│   │   │   │   │   ├── lib.es2023.full.d.ts
+│   │   │   │   │   ├── lib.es2023.intl.d.ts
+│   │   │   │   │   ├── lib.es2024.arraybuffer.d.ts
+│   │   │   │   │   ├── lib.es2024.collection.d.ts
+│   │   │   │   │   ├── lib.es2024.d.ts
+│   │   │   │   │   ├── lib.es2024.full.d.ts
+│   │   │   │   │   ├── lib.es2024.object.d.ts
+│   │   │   │   │   ├── lib.es2024.promise.d.ts
+│   │   │   │   │   ├── lib.es2024.regexp.d.ts
+│   │   │   │   │   ├── lib.es2024.sharedmemory.d.ts
+│   │   │   │   │   ├── lib.es2024.string.d.ts
+│   │   │   │   │   ├── lib.es2025.collection.d.ts
+│   │   │   │   │   ├── lib.es2025.d.ts
+│   │   │   │   │   ├── lib.es2025.float16.d.ts
+│   │   │   │   │   ├── lib.es2025.full.d.ts
+│   │   │   │   │   ├── lib.es2025.intl.d.ts
+│   │   │   │   │   ├── lib.es2025.iterator.d.ts
+│   │   │   │   │   ├── lib.es2025.promise.d.ts
+│   │   │   │   │   ├── lib.es2025.regexp.d.ts
+│   │   │   │   │   ├── lib.es5.d.ts
+│   │   │   │   │   ├── lib.es6.d.ts
+│   │   │   │   │   ├── lib.esnext.array.d.ts
+│   │   │   │   │   ├── lib.esnext.collection.d.ts
+│   │   │   │   │   ├── lib.esnext.d.ts
+│   │   │   │   │   ├── lib.esnext.date.d.ts
+│   │   │   │   │   ├── lib.esnext.decorators.d.ts
+│   │   │   │   │   ├── lib.esnext.disposable.d.ts
+│   │   │   │   │   ├── lib.esnext.error.d.ts
+│   │   │   │   │   ├── lib.esnext.full.d.ts
+│   │   │   │   │   ├── lib.esnext.intl.d.ts
+│   │   │   │   │   ├── lib.esnext.sharedmemory.d.ts
+│   │   │   │   │   ├── lib.esnext.temporal.d.ts
+│   │   │   │   │   ├── lib.esnext.typedarrays.d.ts
+│   │   │   │   │   ├── lib.scripthost.d.ts
+│   │   │   │   │   ├── lib.webworker.asynciterable.d.ts
+│   │   │   │   │   ├── lib.webworker.d.ts
+│   │   │   │   │   ├── lib.webworker.importscripts.d.ts
+│   │   │   │   │   ├── lib.webworker.iterable.d.ts
+│   │   │   │   │   ├── pl
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── pt-br
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── ru
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── tr
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   ├── tsc.js
+│   │   │   │   │   ├── tsserver.js
+│   │   │   │   │   ├── tsserverlibrary.d.ts
+│   │   │   │   │   ├── tsserverlibrary.js
+│   │   │   │   │   ├── typesMap.json
+│   │   │   │   │   ├── typescript.d.ts
+│   │   │   │   │   ├── typescript.js
+│   │   │   │   │   ├── typingsInstaller.js
+│   │   │   │   │   ├── watchGuard.js
+│   │   │   │   │   ├── zh-cn
+│   │   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   │   └── zh-tw
+│   │   │   │   │       └── diagnosticMessages.generated.json
+│   │   │   │   └── package.json
+│   │   │   └── vite
+│   │   │       ├── LICENSE.md
+│   │   │       ├── README.md
+│   │   │       ├── bin
+│   │   │       │   ├── openChrome.js
+│   │   │       │   └── vite.js
+│   │   │       ├── client.d.ts
+│   │   │       ├── dist
+│   │   │       │   ├── client
+│   │   │       │   │   ├── client.mjs
+│   │   │       │   │   └── env.mjs
+│   │   │       │   └── node
+│   │   │       │       ├── chunks
+│   │   │       │       │   ├── build.js
+│   │   │       │       │   ├── build2.js
+│   │   │       │       │   ├── chunk.js
+│   │   │       │       │   ├── config.js
+│   │   │       │       │   ├── dist.js
+│   │   │       │       │   ├── lib.js
+│   │   │       │       │   ├── logger.js
+│   │   │       │       │   ├── moduleRunnerTransport.d.ts
+│   │   │       │       │   ├── node.js
+│   │   │       │       │   ├── optimizer.js
+│   │   │       │       │   ├── postcss-import.js
+│   │   │       │       │   ├── preview.js
+│   │   │       │       │   └── server.js
+│   │   │       │       ├── cli.js
+│   │   │       │       ├── index.d.ts
+│   │   │       │       ├── index.js
+│   │   │       │       ├── internal.d.ts
+│   │   │       │       ├── internal.js
+│   │   │       │       ├── module-runner.d.ts
+│   │   │       │       └── module-runner.js
+│   │   │       ├── misc
+│   │   │       │   ├── false.js
+│   │   │       │   └── true.js
+│   │   │       ├── package.json
+│   │   │       └── types
+│   │   │           ├── customEvent.d.ts
+│   │   │           ├── hmrPayload.d.ts
+│   │   │           ├── hot.d.ts
+│   │   │           ├── import-meta.d.ts
+│   │   │           ├── importGlob.d.ts
+│   │   │           ├── importMeta.d.ts
+│   │   │           ├── internal
+│   │   │           │   ├── cssPreprocessorOptions.d.ts
+│   │   │           │   ├── esbuildOptions.d.ts
+│   │   │           │   ├── lightningcssOptions.d.ts
+│   │   │           │   ├── rollupTypeCompat.d.ts
+│   │   │           │   └── terserOptions.d.ts
+│   │   │           └── metadata.d.ts
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── sale-terminal
+│   │   │   ├── config.ts
+│   │   │   ├── main.ts
+│   │   │   └── session.ts
+│   │   ├── services
+│   │   │   ├── aiengine.ts
+│   │   │   ├── approval
+│   │   │   │   └── approvalworkflowservice.ts
+│   │   │   ├── authservice.ts
+│   │   │   ├── bankingservice.ts
+│   │   │   ├── blockchainservice.ts
+│   │   │   ├── calibration
+│   │   │   │   └── calibrationengine.ts
+│   │   │   ├── conflict
+│   │   │   │   └── conflictresolver.ts
+│   │   │   ├── cost
+│   │   │   │   └── costallocationsystem.ts
+│   │   │   ├── customsservice.ts
+│   │   │   ├── customsutils.ts
+│   │   │   ├── dictionaryapprovalservice.ts
+│   │   │   ├── dictionaryservice.ts
+│   │   │   ├── documentai.ts
+│   │   │   ├── einvoiceengine.ts
+│   │   │   ├── enterpriselinker.ts
+│   │   │   ├── eventbridge.ts
+│   │   │   ├── exportservice.ts
+│   │   │   ├── fraudguard.ts
+│   │   │   ├── gmailservice.ts
+│   │   │   ├── hr
+│   │   │   │   └── application
+│   │   │   │       └── handlers
+│   │   │   │           ├── leave-handler.ts
+│   │   │   │           └── payroll-handler.ts
+│   │   │   ├── hrengine.ts
+│   │   │   ├── ingestion
+│   │   │   │   ├── aiprocessor.ts
+│   │   │   │   ├── dictionaryguard.ts
+│   │   │   │   ├── extractors.ts
+│   │   │   │   ├── idempotencymanager.ts
+│   │   │   │   ├── ingestionservice.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── learningengine.ts
+│   │   │   ├── logisticsservice.ts
+│   │   │   ├── mapping
+│   │   │   │   └── smartlinkmappingengine.ts
+│   │   │   ├── modulehelpers.ts
+│   │   │   ├── moduleregistry.ts
+│   │   │   ├── notificationservice.ts
+│   │   │   ├── offlineservice.ts
+│   │   │   ├── parser
+│   │   │   │   └── documentparserlayer.ts
+│   │   │   ├── paymentservice.ts
+│   │   │   ├── personnelengine.ts
+│   │   │   ├── productionengine.ts
+│   │   │   ├── productionsalesflow.ts
+│   │   │   ├── productionservice.ts
+│   │   │   ├── quantumbufferservice.ts
+│   │   │   ├── quantumengine.ts
+│   │   │   ├── rbacengine.ts
+│   │   │   ├── realtimenotificationservice.ts
+│   │   │   ├── recoveryengine.ts
+│   │   │   ├── salescore.ts
+│   │   │   ├── scoring
+│   │   │   │   └── contextscoringengine.ts
+│   │   │   ├── security.service.ts
+│   │   │   ├── sellerengine.ts
+│   │   │   ├── smartlinkengine.ts
+│   │   │   ├── staging
+│   │   │   │   └── eventstaginglayer.ts
+│   │   │   ├── supplier
+│   │   │   │   └── supplierengine.ts
+│   │   │   ├── taskrouter.ts
+│   │   │   ├── taxreportservice.ts
+│   │   │   ├── threatdetectionservice.ts
+│   │   │   └── warehouseservice.ts
+│   │   ├── superdictionary.ts
+│   │   ├── sw.js
+│   │   ├── tsconfig.json
+│   │   ├── types.ts
+│   │   ├── utils
+│   │   │   ├── supplierclassifier.ts
+│   │   │   └── supplierimporthelper.ts
+│   │   ├── vite.config.ts
+│   │   └── wiring
+│   │       └── domain-flow.wiring.ts
+│   ├── apps
+│   │   └── tam-luxury
+│   │       ├── attendance.html
+│   │       ├── cfo-dashboard.html
+│   │       ├── chat-rooms.html
+│   │       ├── daily-work-app.html
+│   │       ├── favicon.ico
+│   │       ├── fix.txt
+│   │       ├── hr-admin.html
+│   │       ├── hr-manager.html
+│   │       ├── icon-ai.png
+│   │       ├── icon-hr.png
+│   │       ├── icon-master.png
+│   │       ├── icon-prod.png
+│   │       ├── icon-sales.png
+│   │       ├── icon-showroom.png
+│   │       ├── icon-warehouse.png
+│   │       ├── index-1.html
+│   │       ├── index.html
+│   │       ├── index2.html
+│   │       ├── index3.html
+│   │       ├── index4.html
+│   │       ├── indexa.html
+│   │       ├── indexb.html
+│   │       ├── indexc.html
+│   │       ├── kris-email-hub.html
+│   │       ├── ktt-approval.html
+│   │       ├── loss-thresholds.html
+│   │       ├── master-dashboard.html
+│   │       ├── nattos-data.js
+│   │       ├── nattos-eod-engine.js
+│   │       ├── nattos-fx.js
+│   │       ├── nattos-galaxy.css
+│   │       ├── nattos-galaxy.js
+│   │       ├── nattos-glass.css
+│   │       ├── nattos-loss-thresholds.js
+│   │       ├── nattos-payment.js
+│   │       ├── nattos-tokens.css
+│   │       ├── nattos-ui-theme.css
+│   │       ├── operations-terminal.html
+│   │       ├── order-flow.html
+│   │       ├── personal-profile-v2.html
+│   │       ├── personal-profile.html
+│   │       ├── pricing-engine.html
+│   │       ├── production-wallboard.html
+│   │       ├── showroom-sales.html
+│   │       ├── surveillance.html
+│   │       ├── tamluxury-v2.html
+│   │       ├── tamluxury-v3.html
+│   │       ├── tamluxury-v4.html
+│   │       ├── warehouse-full.html
+│   │       └── warehouse-ops.html
+│   ├── engine-registry.ts
 │   ├── nattos-ui
 │   │   ├── AuditList.js
+│   │   ├── Bản sao nauion-v10.html
 │   │   ├── FlowView.js
 │   │   ├── IntelligencePanel.js
+│   │   ├── NaUion-v10a .html
+│   │   ├── NaUion-v10b.html
 │   │   ├── adapter.js
 │   │   ├── app.js
 │   │   ├── butterfly.js
+│   │   ├── gia-vang-admin.html
 │   │   ├── index.html
 │   │   ├── nasira-7states.html
 │   │   ├── nattos-mapping.html
 │   │   ├── nauion-engine.js
+│   │   ├── nauion-v10.html
+│   │   ├── resonance.protocol.js
 │   │   ├── security-overlay.js
 │   │   ├── store.js
 │   │   ├── styles.css
+│   │   ├── vision
+│   │   │   ├── assets
+│   │   │   │   ├── index-Bbc_Trdy.css
+│   │   │   │   └── index-DQO7vMIv.js
+│   │   │   └── index.html
 │   │   └── vision.html
+│   ├── nauion
+│   │   ├── icon
+│   │   │   ├── 1.png
+│   │   │   ├── 10.png
+│   │   │   ├── 11.png
+│   │   │   ├── 12.png
+│   │   │   ├── 13.png
+│   │   │   ├── 14.png
+│   │   │   ├── 15.png
+│   │   │   ├── 16.png
+│   │   │   ├── 17.png
+│   │   │   ├── 18.png
+│   │   │   ├── 19.png
+│   │   │   ├── 20.png
+│   │   │   ├── 3.png
+│   │   │   ├── 6.png
+│   │   │   ├── 7.png
+│   │   │   ├── 8.png
+│   │   │   ├── 9.png
+│   │   │   ├── Natt Os Logo Flower O.png
+│   │   │   ├── logo.png
+│   │   │   └── logo2.png
+│   │   ├── nauion-deploy.sh
+│   │   ├── nauion-library
+│   │   │   ├── natt-full.sh
+│   │   │   ├── natt-ultra.sh
+│   │   │   ├── natt-v1.sh
+│   │   │   ├── natt-v10.sh
+│   │   │   ├── natt-v2.sh
+│   │   │   ├── natt-v3.sh
+│   │   │   ├── natt-v4.sh
+│   │   │   ├── natt-v5.sh
+│   │   │   ├── natt-v6.sh
+│   │   │   ├── natt-v7.sh
+│   │   │   └── natt-visual.sh
+│   │   ├── nauion-v4.html
+│   │   ├── nauion-v6.html
+│   │   ├── nauion-v7.html
+│   │   ├── nauion-v8.html
+│   │   ├── nauion-v9.html
+│   │   ├── spec-nauion
+│   │   │   ├── NaUion.md
+│   │   │   ├── natt - kỹ thuật ui.sh
+│   │   │   ├── natt-v8.md
+│   │   │   ├── natt-v9.md
+│   │   │   ├── specnauiontmp.md
+│   │   │   └── use-contextual-ui.ts
+│   │   └── ui-runtime.tsx
 │   ├── node_modules
+│   │   ├── @esbuild
+│   │   │   └── darwin-x64
+│   │   │       ├── README.md
+│   │   │       ├── bin
+│   │   │       │   └── esbuild
+│   │   │       └── package.json
+│   │   ├── @oxc-project
+│   │   │   └── types
+│   │   │       ├── LICENSE
+│   │   │       ├── README.md
+│   │   │       ├── package.json
+│   │   │       └── types.d.ts
+│   │   ├── @rolldown
+│   │   │   ├── binding-darwin-x64
+│   │   │   │   ├── README.md
+│   │   │   │   ├── package.json
+│   │   │   │   └── rolldown-binding.darwin-x64.node
+│   │   │   └── pluginutils
+│   │   │       ├── LICENSE
+│   │   │       ├── README.md
+│   │   │       ├── dist
+│   │   │       │   ├── filter
+│   │   │       │   │   ├── composable-filters.d.ts
+│   │   │       │   │   ├── composable-filters.js
+│   │   │       │   │   ├── filter-vite-plugins.d.ts
+│   │   │       │   │   ├── filter-vite-plugins.js
+│   │   │       │   │   ├── index.d.ts
+│   │   │       │   │   ├── index.js
+│   │   │       │   │   ├── simple-filters.d.ts
+│   │   │       │   │   └── simple-filters.js
+│   │   │       │   ├── index.d.ts
+│   │   │       │   ├── index.js
+│   │   │       │   ├── utils.d.ts
+│   │   │       │   └── utils.js
+│   │   │       └── package.json
+│   │   ├── @types
+│   │   │   ├── react
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── canary.d.ts
+│   │   │   │   ├── compiler-runtime.d.ts
+│   │   │   │   ├── experimental.d.ts
+│   │   │   │   ├── global.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── jsx-dev-runtime.d.ts
+│   │   │   │   ├── jsx-runtime.d.ts
+│   │   │   │   ├── package.json
+│   │   │   │   └── ts5.0
+│   │   │   │       ├── canary.d.ts
+│   │   │   │       ├── experimental.d.ts
+│   │   │   │       ├── global.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── jsx-dev-runtime.d.ts
+│   │   │   │       └── jsx-runtime.d.ts
+│   │   │   └── react-dom
+│   │   │       ├── LICENSE
+│   │   │       ├── README.md
+│   │   │       ├── canary.d.ts
+│   │   │       ├── client.d.ts
+│   │   │       ├── experimental.d.ts
+│   │   │       ├── index.d.ts
+│   │   │       ├── package.json
+│   │   │       ├── server.browser.d.ts
+│   │   │       ├── server.bun.d.ts
+│   │   │       ├── server.d.ts
+│   │   │       ├── server.edge.d.ts
+│   │   │       ├── server.node.d.ts
+│   │   │       ├── static.browser.d.ts
+│   │   │       ├── static.d.ts
+│   │   │       ├── static.edge.d.ts
+│   │   │       ├── static.node.d.ts
+│   │   │       └── test-utils
+│   │   │           └── index.d.ts
+│   │   ├── @vitejs
+│   │   │   └── plugin-react
+│   │   │       ├── LICENSE
+│   │   │       ├── README.md
+│   │   │       ├── dist
+│   │   │       │   ├── index.d.ts
+│   │   │       │   ├── index.js
+│   │   │       │   └── refresh-runtime.js
+│   │   │       ├── package.json
+│   │   │       └── types
+│   │   │           ├── optionalTypes.d.ts
+│   │   │           └── preamble.d.ts
 │   │   ├── accepts
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
@@ -300,6 +1425,12 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── lib
 │   │   │   │   └── index.js
 │   │   │   └── package.json
+│   │   ├── csstype
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js.flow
+│   │   │   └── package.json
 │   │   ├── debug
 │   │   │   ├── LICENSE
 │   │   │   ├── README.md
@@ -317,6 +1448,16 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── lib
 │   │   │   │   └── browser
 │   │   │   │       └── index.js
+│   │   │   └── package.json
+│   │   ├── detect-libc
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── index.d.ts
+│   │   │   ├── lib
+│   │   │   │   ├── detect-libc.js
+│   │   │   │   ├── elf.js
+│   │   │   │   ├── filesystem.js
+│   │   │   │   └── process.js
 │   │   │   └── package.json
 │   │   ├── dunder-proto
 │   │   │   ├── CHANGELOG.md
@@ -390,6 +1531,16 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── test
 │   │   │   │   └── index.js
 │   │   │   └── tsconfig.json
+│   │   ├── esbuild
+│   │   │   ├── LICENSE.md
+│   │   │   ├── README.md
+│   │   │   ├── bin
+│   │   │   │   └── esbuild
+│   │   │   ├── install.js
+│   │   │   ├── lib
+│   │   │   │   ├── main.d.ts
+│   │   │   │   └── main.js
+│   │   │   └── package.json
 │   │   ├── escape-html
 │   │   │   ├── LICENSE
 │   │   │   ├── Readme.md
@@ -413,6 +1564,15 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   ├── utils.js
 │   │   │   │   └── view.js
 │   │   │   └── package.json
+│   │   ├── fdir
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.cts
+│   │   │   │   ├── index.d.mts
+│   │   │   │   └── index.mjs
+│   │   │   └── package.json
 │   │   ├── finalhandler
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
@@ -430,6 +1590,13 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── LICENSE
 │   │   │   ├── README.md
 │   │   │   ├── index.js
+│   │   │   └── package.json
+│   │   ├── fsevents
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── fsevents.d.ts
+│   │   │   ├── fsevents.js
+│   │   │   ├── fsevents.node
 │   │   │   └── package.json
 │   │   ├── function-bind
 │   │   │   ├── CHANGELOG.md
@@ -462,6 +1629,15 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── test
 │   │   │   │   └── index.js
 │   │   │   └── tsconfig.json
+│   │   ├── get-tsconfig
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.cts
+│   │   │   │   ├── index.d.mts
+│   │   │   │   └── index.mjs
+│   │   │   └── package.json
 │   │   ├── gopd
 │   │   │   ├── CHANGELOG.md
 │   │   │   ├── LICENSE
@@ -558,6 +1734,27 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── index.mjs
 │   │   │   ├── package.json
 │   │   │   └── readme.md
+│   │   ├── lightningcss
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── node
+│   │   │   │   ├── ast.d.ts
+│   │   │   │   ├── ast.js.flow
+│   │   │   │   ├── browserslistToTargets.js
+│   │   │   │   ├── composeVisitors.js
+│   │   │   │   ├── flags.js
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.js.flow
+│   │   │   │   ├── index.mjs
+│   │   │   │   ├── targets.d.ts
+│   │   │   │   └── targets.js.flow
+│   │   │   └── package.json
+│   │   ├── lightningcss-darwin-x64
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── lightningcss.darwin-x64.node
+│   │   │   └── package.json
 │   │   ├── math-intrinsics
 │   │   │   ├── CHANGELOG.md
 │   │   │   ├── LICENSE
@@ -628,6 +1825,36 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── license.md
 │   │   │   ├── package.json
 │   │   │   └── readme.md
+│   │   ├── nanoid
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── async
+│   │   │   │   ├── index.browser.cjs
+│   │   │   │   ├── index.browser.js
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.native.js
+│   │   │   │   └── package.json
+│   │   │   ├── bin
+│   │   │   │   └── nanoid.cjs
+│   │   │   ├── index.browser.cjs
+│   │   │   ├── index.browser.js
+│   │   │   ├── index.cjs
+│   │   │   ├── index.d.cts
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   ├── nanoid.js
+│   │   │   ├── non-secure
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   └── package.json
+│   │   │   ├── package.json
+│   │   │   └── url-alphabet
+│   │   │       ├── index.cjs
+│   │   │       ├── index.js
+│   │   │       └── package.json
 │   │   ├── negotiator
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
@@ -704,6 +1931,83 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   ├── index.js
 │   │   │   │   └── index.js.map
 │   │   │   └── package.json
+│   │   ├── picocolors
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   ├── picocolors.browser.js
+│   │   │   ├── picocolors.d.ts
+│   │   │   ├── picocolors.js
+│   │   │   └── types.d.ts
+│   │   ├── picomatch
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── index.js
+│   │   │   ├── lib
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── parse.js
+│   │   │   │   ├── picomatch.js
+│   │   │   │   ├── scan.js
+│   │   │   │   └── utils.js
+│   │   │   ├── package.json
+│   │   │   └── posix.js
+│   │   ├── postcss
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── lib
+│   │   │   │   ├── at-rule.d.ts
+│   │   │   │   ├── at-rule.js
+│   │   │   │   ├── comment.d.ts
+│   │   │   │   ├── comment.js
+│   │   │   │   ├── container.d.ts
+│   │   │   │   ├── container.js
+│   │   │   │   ├── css-syntax-error.d.ts
+│   │   │   │   ├── css-syntax-error.js
+│   │   │   │   ├── declaration.d.ts
+│   │   │   │   ├── declaration.js
+│   │   │   │   ├── document.d.ts
+│   │   │   │   ├── document.js
+│   │   │   │   ├── fromJSON.d.ts
+│   │   │   │   ├── fromJSON.js
+│   │   │   │   ├── input.d.ts
+│   │   │   │   ├── input.js
+│   │   │   │   ├── lazy-result.d.ts
+│   │   │   │   ├── lazy-result.js
+│   │   │   │   ├── list.d.ts
+│   │   │   │   ├── list.js
+│   │   │   │   ├── map-generator.js
+│   │   │   │   ├── no-work-result.d.ts
+│   │   │   │   ├── no-work-result.js
+│   │   │   │   ├── node.d.ts
+│   │   │   │   ├── node.js
+│   │   │   │   ├── parse.d.ts
+│   │   │   │   ├── parse.js
+│   │   │   │   ├── parser.js
+│   │   │   │   ├── postcss.d.mts
+│   │   │   │   ├── postcss.d.ts
+│   │   │   │   ├── postcss.js
+│   │   │   │   ├── postcss.mjs
+│   │   │   │   ├── previous-map.d.ts
+│   │   │   │   ├── previous-map.js
+│   │   │   │   ├── processor.d.ts
+│   │   │   │   ├── processor.js
+│   │   │   │   ├── result.d.ts
+│   │   │   │   ├── result.js
+│   │   │   │   ├── root.d.ts
+│   │   │   │   ├── root.js
+│   │   │   │   ├── rule.d.ts
+│   │   │   │   ├── rule.js
+│   │   │   │   ├── stringifier.d.ts
+│   │   │   │   ├── stringifier.js
+│   │   │   │   ├── stringify.d.ts
+│   │   │   │   ├── stringify.js
+│   │   │   │   ├── symbols.js
+│   │   │   │   ├── terminal-highlight.js
+│   │   │   │   ├── tokenize.js
+│   │   │   │   ├── warn-once.js
+│   │   │   │   ├── warning.d.ts
+│   │   │   │   └── warning.js
+│   │   │   └── package.json
 │   │   ├── proxy-addr
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
@@ -741,6 +2045,161 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── index.d.ts
 │   │   │   ├── index.js
 │   │   │   └── package.json
+│   │   ├── react
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── cjs
+│   │   │   │   ├── react-compiler-runtime.development.js
+│   │   │   │   ├── react-compiler-runtime.production.js
+│   │   │   │   ├── react-compiler-runtime.profiling.js
+│   │   │   │   ├── react-jsx-dev-runtime.development.js
+│   │   │   │   ├── react-jsx-dev-runtime.production.js
+│   │   │   │   ├── react-jsx-dev-runtime.profiling.js
+│   │   │   │   ├── react-jsx-dev-runtime.react-server.development.js
+│   │   │   │   ├── react-jsx-dev-runtime.react-server.production.js
+│   │   │   │   ├── react-jsx-runtime.development.js
+│   │   │   │   ├── react-jsx-runtime.production.js
+│   │   │   │   ├── react-jsx-runtime.profiling.js
+│   │   │   │   ├── react-jsx-runtime.react-server.development.js
+│   │   │   │   ├── react-jsx-runtime.react-server.production.js
+│   │   │   │   ├── react.development.js
+│   │   │   │   ├── react.production.js
+│   │   │   │   ├── react.react-server.development.js
+│   │   │   │   └── react.react-server.production.js
+│   │   │   ├── compiler-runtime.js
+│   │   │   ├── index.js
+│   │   │   ├── jsx-dev-runtime.js
+│   │   │   ├── jsx-dev-runtime.react-server.js
+│   │   │   ├── jsx-runtime.js
+│   │   │   ├── jsx-runtime.react-server.js
+│   │   │   ├── package.json
+│   │   │   └── react.react-server.js
+│   │   ├── react-dom
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── cjs
+│   │   │   │   ├── react-dom-client.development.js
+│   │   │   │   ├── react-dom-client.production.js
+│   │   │   │   ├── react-dom-profiling.development.js
+│   │   │   │   ├── react-dom-profiling.profiling.js
+│   │   │   │   ├── react-dom-server-legacy.browser.development.js
+│   │   │   │   ├── react-dom-server-legacy.browser.production.js
+│   │   │   │   ├── react-dom-server-legacy.node.development.js
+│   │   │   │   ├── react-dom-server-legacy.node.production.js
+│   │   │   │   ├── react-dom-server.browser.development.js
+│   │   │   │   ├── react-dom-server.browser.production.js
+│   │   │   │   ├── react-dom-server.bun.development.js
+│   │   │   │   ├── react-dom-server.bun.production.js
+│   │   │   │   ├── react-dom-server.edge.development.js
+│   │   │   │   ├── react-dom-server.edge.production.js
+│   │   │   │   ├── react-dom-server.node.development.js
+│   │   │   │   ├── react-dom-server.node.production.js
+│   │   │   │   ├── react-dom-test-utils.development.js
+│   │   │   │   ├── react-dom-test-utils.production.js
+│   │   │   │   ├── react-dom.development.js
+│   │   │   │   ├── react-dom.production.js
+│   │   │   │   ├── react-dom.react-server.development.js
+│   │   │   │   └── react-dom.react-server.production.js
+│   │   │   ├── client.js
+│   │   │   ├── client.react-server.js
+│   │   │   ├── index.js
+│   │   │   ├── package.json
+│   │   │   ├── profiling.js
+│   │   │   ├── profiling.react-server.js
+│   │   │   ├── react-dom.react-server.js
+│   │   │   ├── server.browser.js
+│   │   │   ├── server.bun.js
+│   │   │   ├── server.edge.js
+│   │   │   ├── server.js
+│   │   │   ├── server.node.js
+│   │   │   ├── server.react-server.js
+│   │   │   ├── static.browser.js
+│   │   │   ├── static.edge.js
+│   │   │   ├── static.js
+│   │   │   ├── static.node.js
+│   │   │   ├── static.react-server.js
+│   │   │   └── test-utils.js
+│   │   ├── resolve-pkg-maps
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.cts
+│   │   │   │   ├── index.d.mts
+│   │   │   │   └── index.mjs
+│   │   │   └── package.json
+│   │   ├── rolldown
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── bin
+│   │   │   │   └── cli.mjs
+│   │   │   ├── dist
+│   │   │   │   ├── cli.d.mts
+│   │   │   │   ├── cli.mjs
+│   │   │   │   ├── config.d.mts
+│   │   │   │   ├── config.mjs
+│   │   │   │   ├── experimental-index.d.mts
+│   │   │   │   ├── experimental-index.mjs
+│   │   │   │   ├── experimental-runtime-types.d.ts
+│   │   │   │   ├── filter-index.d.mts
+│   │   │   │   ├── filter-index.mjs
+│   │   │   │   ├── get-log-filter.d.mts
+│   │   │   │   ├── get-log-filter.mjs
+│   │   │   │   ├── index.d.mts
+│   │   │   │   ├── index.mjs
+│   │   │   │   ├── parallel-plugin-worker.d.mts
+│   │   │   │   ├── parallel-plugin-worker.mjs
+│   │   │   │   ├── parallel-plugin.d.mts
+│   │   │   │   ├── parallel-plugin.mjs
+│   │   │   │   ├── parse-ast-index.d.mts
+│   │   │   │   ├── parse-ast-index.mjs
+│   │   │   │   ├── plugins-index.d.mts
+│   │   │   │   ├── plugins-index.mjs
+│   │   │   │   ├── shared
+│   │   │   │   │   ├── binding-DUEnSb0A.d.mts
+│   │   │   │   │   ├── binding-Rc5vBspi.mjs
+│   │   │   │   │   ├── bindingify-input-options-4E8MEYg4.mjs
+│   │   │   │   │   ├── constructors-ChVDbP6o.mjs
+│   │   │   │   │   ├── constructors-DYemMpPL.d.mts
+│   │   │   │   │   ├── define-config-DJOr6Iwt.mjs
+│   │   │   │   │   ├── define-config-DhJZwTRw.d.mts
+│   │   │   │   │   ├── error-DBGOT6sf.mjs
+│   │   │   │   │   ├── get-log-filter-semyr3Lj.d.mts
+│   │   │   │   │   ├── load-config-C9BtnuRk.mjs
+│   │   │   │   │   ├── logging-C6h4g8dA.d.mts
+│   │   │   │   │   ├── logs-D80CXhvg.mjs
+│   │   │   │   │   ├── misc-DJYbNKZX.mjs
+│   │   │   │   │   ├── normalize-string-or-regex-BzTP-qJS.mjs
+│   │   │   │   │   ├── parse-B30xMDQc.mjs
+│   │   │   │   │   ├── prompt-BYQIwEjg.mjs
+│   │   │   │   │   ├── resolve-tsconfig-BD5XUCWz.mjs
+│   │   │   │   │   ├── rolldown-CIfBsrjA.mjs
+│   │   │   │   │   ├── rolldown-build-hRnqgxyz.mjs
+│   │   │   │   │   ├── transform-Kz3D2LbX.d.mts
+│   │   │   │   │   └── watch-BDnUMWmc.mjs
+│   │   │   │   ├── utils-index.d.mts
+│   │   │   │   └── utils-index.mjs
+│   │   │   ├── node_modules
+│   │   │   │   └── @rolldown
+│   │   │   │       └── pluginutils
+│   │   │   │           ├── LICENSE
+│   │   │   │           ├── README.md
+│   │   │   │           ├── dist
+│   │   │   │           │   ├── filter
+│   │   │   │           │   │   ├── composable-filters.d.ts
+│   │   │   │           │   │   ├── composable-filters.js
+│   │   │   │           │   │   ├── filter-vite-plugins.d.ts
+│   │   │   │           │   │   ├── filter-vite-plugins.js
+│   │   │   │           │   │   ├── index.d.ts
+│   │   │   │           │   │   ├── index.js
+│   │   │   │           │   │   ├── simple-filters.d.ts
+│   │   │   │           │   │   └── simple-filters.js
+│   │   │   │           │   ├── index.d.ts
+│   │   │   │           │   ├── index.js
+│   │   │   │           │   ├── utils.d.ts
+│   │   │   │           │   └── utils.js
+│   │   │   │           └── package.json
+│   │   │   └── package.json
 │   │   ├── router
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
@@ -758,6 +2217,23 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── package.json
 │   │   │   ├── safer.js
 │   │   │   └── tests.js
+│   │   ├── scheduler
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── cjs
+│   │   │   │   ├── scheduler-unstable_mock.development.js
+│   │   │   │   ├── scheduler-unstable_mock.production.js
+│   │   │   │   ├── scheduler-unstable_post_task.development.js
+│   │   │   │   ├── scheduler-unstable_post_task.production.js
+│   │   │   │   ├── scheduler.development.js
+│   │   │   │   ├── scheduler.native.development.js
+│   │   │   │   ├── scheduler.native.production.js
+│   │   │   │   └── scheduler.production.js
+│   │   │   ├── index.js
+│   │   │   ├── index.native.js
+│   │   │   ├── package.json
+│   │   │   ├── unstable_mock.js
+│   │   │   └── unstable_post_task.js
 │   │   ├── send
 │   │   │   ├── LICENSE
 │   │   │   ├── README.md
@@ -817,6 +2293,26 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── test
 │   │   │   │   └── index.js
 │   │   │   └── tsconfig.json
+│   │   ├── source-map-js
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── lib
+│   │   │   │   ├── array-set.js
+│   │   │   │   ├── base64-vlq.js
+│   │   │   │   ├── base64.js
+│   │   │   │   ├── binary-search.js
+│   │   │   │   ├── mapping-list.js
+│   │   │   │   ├── quick-sort.js
+│   │   │   │   ├── source-map-consumer.d.ts
+│   │   │   │   ├── source-map-consumer.js
+│   │   │   │   ├── source-map-generator.d.ts
+│   │   │   │   ├── source-map-generator.js
+│   │   │   │   ├── source-node.d.ts
+│   │   │   │   ├── source-node.js
+│   │   │   │   └── util.js
+│   │   │   ├── package.json
+│   │   │   ├── source-map.d.ts
+│   │   │   └── source-map.js
 │   │   ├── statuses
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
@@ -824,17 +2320,238 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── codes.json
 │   │   │   ├── index.js
 │   │   │   └── package.json
+│   │   ├── tinyglobby
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── index.d.cts
+│   │   │   │   ├── index.d.mts
+│   │   │   │   └── index.mjs
+│   │   │   └── package.json
 │   │   ├── toidentifier
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
 │   │   │   ├── README.md
 │   │   │   ├── index.js
 │   │   │   └── package.json
+│   │   ├── tsx
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── cjs
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── index.cjs
+│   │   │   │   │   │   ├── index.d.cts
+│   │   │   │   │   │   ├── index.d.mts
+│   │   │   │   │   │   └── index.mjs
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   └── index.mjs
+│   │   │   │   ├── cli.cjs
+│   │   │   │   ├── cli.mjs
+│   │   │   │   ├── client-BQVF1NaW.mjs
+│   │   │   │   ├── client-D6NvIMSC.cjs
+│   │   │   │   ├── esm
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── index.cjs
+│   │   │   │   │   │   ├── index.d.cts
+│   │   │   │   │   │   ├── index.d.mts
+│   │   │   │   │   │   └── index.mjs
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   └── index.mjs
+│   │   │   │   ├── get-pipe-path-BHW2eJdv.mjs
+│   │   │   │   ├── get-pipe-path-BoR10qr8.cjs
+│   │   │   │   ├── index-7AaEi15b.mjs
+│   │   │   │   ├── index-BWFBUo6r.cjs
+│   │   │   │   ├── index-gbaejti9.mjs
+│   │   │   │   ├── index-gckBtVBf.cjs
+│   │   │   │   ├── lexer-DQCqS3nf.mjs
+│   │   │   │   ├── lexer-DgIbo0BU.cjs
+│   │   │   │   ├── loader.cjs
+│   │   │   │   ├── loader.mjs
+│   │   │   │   ├── node-features-_8ZFwP_x.mjs
+│   │   │   │   ├── node-features-roYmp9jK.cjs
+│   │   │   │   ├── package-CeBgXWuR.mjs
+│   │   │   │   ├── package-Dxt5kIHw.cjs
+│   │   │   │   ├── patch-repl.cjs
+│   │   │   │   ├── patch-repl.mjs
+│   │   │   │   ├── preflight.cjs
+│   │   │   │   ├── preflight.mjs
+│   │   │   │   ├── register-2sWVXuRQ.cjs
+│   │   │   │   ├── register-B7jrtLTO.mjs
+│   │   │   │   ├── register-CFH5oNdT.mjs
+│   │   │   │   ├── register-D46fvsV_.cjs
+│   │   │   │   ├── repl.cjs
+│   │   │   │   ├── repl.mjs
+│   │   │   │   ├── require-D4F1Lv60.cjs
+│   │   │   │   ├── require-DQxpCAr4.mjs
+│   │   │   │   ├── suppress-warnings.cjs
+│   │   │   │   ├── suppress-warnings.mjs
+│   │   │   │   ├── temporary-directory-B83uKxJF.cjs
+│   │   │   │   ├── temporary-directory-CwHp0_NW.mjs
+│   │   │   │   └── types-Cxp8y2TL.d.ts
+│   │   │   └── package.json
 │   │   ├── type-is
 │   │   │   ├── HISTORY.md
 │   │   │   ├── LICENSE
 │   │   │   ├── README.md
 │   │   │   ├── index.js
+│   │   │   └── package.json
+│   │   ├── typescript
+│   │   │   ├── LICENSE.txt
+│   │   │   ├── README.md
+│   │   │   ├── SECURITY.md
+│   │   │   ├── ThirdPartyNoticeText.txt
+│   │   │   ├── bin
+│   │   │   │   ├── tsc
+│   │   │   │   └── tsserver
+│   │   │   ├── lib
+│   │   │   │   ├── _tsc.js
+│   │   │   │   ├── _tsserver.js
+│   │   │   │   ├── _typingsInstaller.js
+│   │   │   │   ├── cs
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── de
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── es
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── fr
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── it
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── ja
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── ko
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── lib.d.ts
+│   │   │   │   ├── lib.decorators.d.ts
+│   │   │   │   ├── lib.decorators.legacy.d.ts
+│   │   │   │   ├── lib.dom.asynciterable.d.ts
+│   │   │   │   ├── lib.dom.d.ts
+│   │   │   │   ├── lib.dom.iterable.d.ts
+│   │   │   │   ├── lib.es2015.collection.d.ts
+│   │   │   │   ├── lib.es2015.core.d.ts
+│   │   │   │   ├── lib.es2015.d.ts
+│   │   │   │   ├── lib.es2015.generator.d.ts
+│   │   │   │   ├── lib.es2015.iterable.d.ts
+│   │   │   │   ├── lib.es2015.promise.d.ts
+│   │   │   │   ├── lib.es2015.proxy.d.ts
+│   │   │   │   ├── lib.es2015.reflect.d.ts
+│   │   │   │   ├── lib.es2015.symbol.d.ts
+│   │   │   │   ├── lib.es2015.symbol.wellknown.d.ts
+│   │   │   │   ├── lib.es2016.array.include.d.ts
+│   │   │   │   ├── lib.es2016.d.ts
+│   │   │   │   ├── lib.es2016.full.d.ts
+│   │   │   │   ├── lib.es2016.intl.d.ts
+│   │   │   │   ├── lib.es2017.arraybuffer.d.ts
+│   │   │   │   ├── lib.es2017.d.ts
+│   │   │   │   ├── lib.es2017.date.d.ts
+│   │   │   │   ├── lib.es2017.full.d.ts
+│   │   │   │   ├── lib.es2017.intl.d.ts
+│   │   │   │   ├── lib.es2017.object.d.ts
+│   │   │   │   ├── lib.es2017.sharedmemory.d.ts
+│   │   │   │   ├── lib.es2017.string.d.ts
+│   │   │   │   ├── lib.es2017.typedarrays.d.ts
+│   │   │   │   ├── lib.es2018.asyncgenerator.d.ts
+│   │   │   │   ├── lib.es2018.asynciterable.d.ts
+│   │   │   │   ├── lib.es2018.d.ts
+│   │   │   │   ├── lib.es2018.full.d.ts
+│   │   │   │   ├── lib.es2018.intl.d.ts
+│   │   │   │   ├── lib.es2018.promise.d.ts
+│   │   │   │   ├── lib.es2018.regexp.d.ts
+│   │   │   │   ├── lib.es2019.array.d.ts
+│   │   │   │   ├── lib.es2019.d.ts
+│   │   │   │   ├── lib.es2019.full.d.ts
+│   │   │   │   ├── lib.es2019.intl.d.ts
+│   │   │   │   ├── lib.es2019.object.d.ts
+│   │   │   │   ├── lib.es2019.string.d.ts
+│   │   │   │   ├── lib.es2019.symbol.d.ts
+│   │   │   │   ├── lib.es2020.bigint.d.ts
+│   │   │   │   ├── lib.es2020.d.ts
+│   │   │   │   ├── lib.es2020.date.d.ts
+│   │   │   │   ├── lib.es2020.full.d.ts
+│   │   │   │   ├── lib.es2020.intl.d.ts
+│   │   │   │   ├── lib.es2020.number.d.ts
+│   │   │   │   ├── lib.es2020.promise.d.ts
+│   │   │   │   ├── lib.es2020.sharedmemory.d.ts
+│   │   │   │   ├── lib.es2020.string.d.ts
+│   │   │   │   ├── lib.es2020.symbol.wellknown.d.ts
+│   │   │   │   ├── lib.es2021.d.ts
+│   │   │   │   ├── lib.es2021.full.d.ts
+│   │   │   │   ├── lib.es2021.intl.d.ts
+│   │   │   │   ├── lib.es2021.promise.d.ts
+│   │   │   │   ├── lib.es2021.string.d.ts
+│   │   │   │   ├── lib.es2021.weakref.d.ts
+│   │   │   │   ├── lib.es2022.array.d.ts
+│   │   │   │   ├── lib.es2022.d.ts
+│   │   │   │   ├── lib.es2022.error.d.ts
+│   │   │   │   ├── lib.es2022.full.d.ts
+│   │   │   │   ├── lib.es2022.intl.d.ts
+│   │   │   │   ├── lib.es2022.object.d.ts
+│   │   │   │   ├── lib.es2022.regexp.d.ts
+│   │   │   │   ├── lib.es2022.string.d.ts
+│   │   │   │   ├── lib.es2023.array.d.ts
+│   │   │   │   ├── lib.es2023.collection.d.ts
+│   │   │   │   ├── lib.es2023.d.ts
+│   │   │   │   ├── lib.es2023.full.d.ts
+│   │   │   │   ├── lib.es2023.intl.d.ts
+│   │   │   │   ├── lib.es2024.arraybuffer.d.ts
+│   │   │   │   ├── lib.es2024.collection.d.ts
+│   │   │   │   ├── lib.es2024.d.ts
+│   │   │   │   ├── lib.es2024.full.d.ts
+│   │   │   │   ├── lib.es2024.object.d.ts
+│   │   │   │   ├── lib.es2024.promise.d.ts
+│   │   │   │   ├── lib.es2024.regexp.d.ts
+│   │   │   │   ├── lib.es2024.sharedmemory.d.ts
+│   │   │   │   ├── lib.es2024.string.d.ts
+│   │   │   │   ├── lib.es2025.collection.d.ts
+│   │   │   │   ├── lib.es2025.d.ts
+│   │   │   │   ├── lib.es2025.float16.d.ts
+│   │   │   │   ├── lib.es2025.full.d.ts
+│   │   │   │   ├── lib.es2025.intl.d.ts
+│   │   │   │   ├── lib.es2025.iterator.d.ts
+│   │   │   │   ├── lib.es2025.promise.d.ts
+│   │   │   │   ├── lib.es2025.regexp.d.ts
+│   │   │   │   ├── lib.es5.d.ts
+│   │   │   │   ├── lib.es6.d.ts
+│   │   │   │   ├── lib.esnext.array.d.ts
+│   │   │   │   ├── lib.esnext.collection.d.ts
+│   │   │   │   ├── lib.esnext.d.ts
+│   │   │   │   ├── lib.esnext.date.d.ts
+│   │   │   │   ├── lib.esnext.decorators.d.ts
+│   │   │   │   ├── lib.esnext.disposable.d.ts
+│   │   │   │   ├── lib.esnext.error.d.ts
+│   │   │   │   ├── lib.esnext.full.d.ts
+│   │   │   │   ├── lib.esnext.intl.d.ts
+│   │   │   │   ├── lib.esnext.sharedmemory.d.ts
+│   │   │   │   ├── lib.esnext.temporal.d.ts
+│   │   │   │   ├── lib.esnext.typedarrays.d.ts
+│   │   │   │   ├── lib.scripthost.d.ts
+│   │   │   │   ├── lib.webworker.asynciterable.d.ts
+│   │   │   │   ├── lib.webworker.d.ts
+│   │   │   │   ├── lib.webworker.importscripts.d.ts
+│   │   │   │   ├── lib.webworker.iterable.d.ts
+│   │   │   │   ├── pl
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── pt-br
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── ru
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── tr
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   ├── tsc.js
+│   │   │   │   ├── tsserver.js
+│   │   │   │   ├── tsserverlibrary.d.ts
+│   │   │   │   ├── tsserverlibrary.js
+│   │   │   │   ├── typesMap.json
+│   │   │   │   ├── typescript.d.ts
+│   │   │   │   ├── typescript.js
+│   │   │   │   ├── typingsInstaller.js
+│   │   │   │   ├── watchGuard.js
+│   │   │   │   ├── zh-cn
+│   │   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   │   └── zh-tw
+│   │   │   │       └── diagnosticMessages.generated.json
 │   │   │   └── package.json
 │   │   ├── unpipe
 │   │   │   ├── HISTORY.md
@@ -848,6 +2565,57 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   ├── README.md
 │   │   │   ├── index.js
 │   │   │   └── package.json
+│   │   ├── vite
+│   │   │   ├── LICENSE.md
+│   │   │   ├── README.md
+│   │   │   ├── bin
+│   │   │   │   ├── openChrome.js
+│   │   │   │   └── vite.js
+│   │   │   ├── client.d.ts
+│   │   │   ├── dist
+│   │   │   │   ├── client
+│   │   │   │   │   ├── client.mjs
+│   │   │   │   │   └── env.mjs
+│   │   │   │   └── node
+│   │   │   │       ├── chunks
+│   │   │   │       │   ├── build.js
+│   │   │   │       │   ├── build2.js
+│   │   │   │       │   ├── chunk.js
+│   │   │   │       │   ├── config.js
+│   │   │   │       │   ├── dist.js
+│   │   │   │       │   ├── lib.js
+│   │   │   │       │   ├── logger.js
+│   │   │   │       │   ├── moduleRunnerTransport.d.ts
+│   │   │   │       │   ├── node.js
+│   │   │   │       │   ├── optimizer.js
+│   │   │   │       │   ├── postcss-import.js
+│   │   │   │       │   ├── preview.js
+│   │   │   │       │   └── server.js
+│   │   │   │       ├── cli.js
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── index.js
+│   │   │   │       ├── internal.d.ts
+│   │   │   │       ├── internal.js
+│   │   │   │       ├── module-runner.d.ts
+│   │   │   │       └── module-runner.js
+│   │   │   ├── misc
+│   │   │   │   ├── false.js
+│   │   │   │   └── true.js
+│   │   │   ├── package.json
+│   │   │   └── types
+│   │   │       ├── customEvent.d.ts
+│   │   │       ├── hmrPayload.d.ts
+│   │   │       ├── hot.d.ts
+│   │   │       ├── import-meta.d.ts
+│   │   │       ├── importGlob.d.ts
+│   │   │       ├── importMeta.d.ts
+│   │   │       ├── internal
+│   │   │       │   ├── cssPreprocessorOptions.d.ts
+│   │   │       │   ├── esbuildOptions.d.ts
+│   │   │       │   ├── lightningcssOptions.d.ts
+│   │   │       │   ├── rollupTypeCompat.d.ts
+│   │   │       │   └── terserOptions.d.ts
+│   │   │       └── metadata.d.ts
 │   │   └── wrappy
 │   │       ├── LICENSE
 │   │       ├── README.md
@@ -857,7 +2625,39 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   ├── package.json
 │   ├── server.js
 │   ├── server.log
-│   └── server.ts
+│   └── ui-vision
+│       ├── App.jsx
+│       ├── components
+│       │   ├── AuditVisualizer.tsx
+│       │   └── Medal.tsx
+│       ├── index.css
+│       ├── index.html
+│       ├── lib
+│       │   └── event-bus.ts
+│       ├── main.jsx
+│       ├── registry
+│       │   └── cells.ts
+│       ├── scenes
+│       │   ├── ControlTower.tsx
+│       │   ├── Dashboard.tsx
+│       │   └── Showroom.tsx
+│       ├── vision-engine
+│       │   ├── adaptive
+│       │   │   ├── density.ts
+│       │   │   └── performance.ts
+│       │   ├── components
+│       │   │   ├── Layer.tsx
+│       │   │   └── SceneContainer.tsx
+│       │   ├── core
+│       │   │   ├── layer-controller.ts
+│       │   │   ├── scene-manager.ts
+│       │   │   └── vision-engine.core.ts
+│       │   └── security
+│       │       ├── SecurityOverlay.tsx
+│       │       ├── rbac.ts
+│       │       └── sirasign-engine.ts
+│       └── {vision-engine
+│           └── {core,hooks,components,transitions,adaptive,audit,security},scenes,components,lib,registry}
 ├── nattos-visionos.css
 ├── nattos.sh
 ├── nginx.conf
@@ -1967,6 +3767,60 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │       ├── register.js
 │   │       ├── source-map-support.d.ts
 │   │       └── source-map-support.js
+│   ├── @emnapi
+│   │   ├── core
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── emnapi-core.cjs.js
+│   │   │   │   ├── emnapi-core.cjs.min.d.ts
+│   │   │   │   ├── emnapi-core.cjs.min.js
+│   │   │   │   ├── emnapi-core.d.mts
+│   │   │   │   ├── emnapi-core.d.ts
+│   │   │   │   ├── emnapi-core.esm-bundler.js
+│   │   │   │   ├── emnapi-core.js
+│   │   │   │   ├── emnapi-core.min.d.mts
+│   │   │   │   ├── emnapi-core.min.js
+│   │   │   │   ├── emnapi-core.min.mjs
+│   │   │   │   └── emnapi-core.mjs
+│   │   │   ├── index.js
+│   │   │   └── package.json
+│   │   ├── runtime
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist
+│   │   │   │   ├── emnapi.cjs.js
+│   │   │   │   ├── emnapi.cjs.min.d.ts
+│   │   │   │   ├── emnapi.cjs.min.js
+│   │   │   │   ├── emnapi.d.mts
+│   │   │   │   ├── emnapi.d.ts
+│   │   │   │   ├── emnapi.esm-bundler.js
+│   │   │   │   ├── emnapi.iife.d.ts
+│   │   │   │   ├── emnapi.iife.js
+│   │   │   │   ├── emnapi.js
+│   │   │   │   ├── emnapi.min.d.mts
+│   │   │   │   ├── emnapi.min.js
+│   │   │   │   ├── emnapi.min.mjs
+│   │   │   │   └── emnapi.mjs
+│   │   │   ├── index.js
+│   │   │   └── package.json
+│   │   └── wasi-threads
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── dist
+│   │       │   ├── wasi-threads.cjs.js
+│   │       │   ├── wasi-threads.cjs.min.d.ts
+│   │       │   ├── wasi-threads.cjs.min.js
+│   │       │   ├── wasi-threads.d.mts
+│   │       │   ├── wasi-threads.d.ts
+│   │       │   ├── wasi-threads.esm-bundler.js
+│   │       │   ├── wasi-threads.js
+│   │       │   ├── wasi-threads.min.d.mts
+│   │       │   ├── wasi-threads.min.js
+│   │       │   ├── wasi-threads.min.mjs
+│   │       │   └── wasi-threads.mjs
+│   │       ├── index.js
+│   │       └── package.json
 │   ├── @google
 │   │   └── genai
 │   │       ├── LICENSE
@@ -2605,6 +4459,12 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │       │       ├── trace-mapping.d.ts
 │   │       │       └── types.d.ts
 │   │       └── package.json
+│   ├── @oxc-project
+│   │   └── types
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── package.json
+│   │       └── types.d.ts
 │   ├── @pkgjs
 │   │   └── parseargs
 │   │       ├── CHANGELOG.md
@@ -3058,6 +4918,29 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │           ├── tsHelpers.ts
 │   │           ├── uncheckedindexed.ts
 │   │           └── utils.ts
+│   ├── @rolldown
+│   │   ├── binding-darwin-x64
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   └── rolldown-binding.darwin-x64.node
+│   │   └── pluginutils
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── dist
+│   │       │   ├── filter
+│   │       │   │   ├── composable-filters.d.ts
+│   │       │   │   ├── composable-filters.js
+│   │       │   │   ├── filter-vite-plugins.d.ts
+│   │       │   │   ├── filter-vite-plugins.js
+│   │       │   │   ├── index.d.ts
+│   │       │   │   ├── index.js
+│   │       │   │   ├── simple-filters.d.ts
+│   │       │   │   └── simple-filters.js
+│   │       │   ├── index.d.ts
+│   │       │   ├── index.js
+│   │       │   ├── utils.d.ts
+│   │       │   └── utils.js
+│   │       └── package.json
 │   ├── @sinclair
 │   │   └── typebox
 │   │       ├── build
@@ -4450,6 +6333,53 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │       ├── README.md
 │   │       ├── package.json
 │   │       └── tsconfig.json
+│   ├── @tybys
+│   │   └── wasm-util
+│   │       ├── README.md
+│   │       ├── dist
+│   │       │   ├── tsdoc-metadata.json
+│   │       │   ├── wasm-util.d.ts
+│   │       │   ├── wasm-util.esm-bundler.js
+│   │       │   ├── wasm-util.esm.js
+│   │       │   ├── wasm-util.esm.min.js
+│   │       │   ├── wasm-util.js
+│   │       │   └── wasm-util.min.js
+│   │       ├── lib
+│   │       │   ├── cjs
+│   │       │   │   ├── asyncify.js
+│   │       │   │   ├── index.js
+│   │       │   │   ├── jspi.js
+│   │       │   │   ├── load.js
+│   │       │   │   ├── memory.js
+│   │       │   │   ├── wasi
+│   │       │   │   │   ├── error.js
+│   │       │   │   │   ├── fd.js
+│   │       │   │   │   ├── fs.js
+│   │       │   │   │   ├── index.js
+│   │       │   │   │   ├── path.js
+│   │       │   │   │   ├── preview1.js
+│   │       │   │   │   ├── rights.js
+│   │       │   │   │   ├── types.js
+│   │       │   │   │   └── util.js
+│   │       │   │   └── webassembly.js
+│   │       │   └── mjs
+│   │       │       ├── asyncify.mjs
+│   │       │       ├── index.mjs
+│   │       │       ├── jspi.mjs
+│   │       │       ├── load.mjs
+│   │       │       ├── memory.mjs
+│   │       │       ├── wasi
+│   │       │       │   ├── error.mjs
+│   │       │       │   ├── fd.mjs
+│   │       │       │   ├── fs.mjs
+│   │       │       │   ├── index.mjs
+│   │       │       │   ├── path.mjs
+│   │       │       │   ├── preview1.mjs
+│   │       │       │   ├── rights.mjs
+│   │       │       │   ├── types.mjs
+│   │       │       │   └── util.mjs
+│   │       │       └── webassembly.mjs
+│   │       └── package.json
 │   ├── @types
 │   │   ├── babel__core
 │   │   │   ├── LICENSE
@@ -4793,6 +6723,18 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │       ├── README.md
 │   │       ├── package.json
 │   │       └── resolver.darwin-x64.node
+│   ├── @vitejs
+│   │   └── plugin-react
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── dist
+│   │       │   ├── index.d.ts
+│   │       │   ├── index.js
+│   │       │   └── refresh-runtime.js
+│   │       ├── package.json
+│   │       └── types
+│   │           ├── optionalTypes.d.ts
+│   │           └── preamble.d.ts
 │   ├── accepts
 │   │   ├── HISTORY.md
 │   │   ├── LICENSE
@@ -6892,6 +8834,16 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   ├── lib
 │   │   │   └── browser
 │   │   │       └── index.js
+│   │   └── package.json
+│   ├── detect-libc
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── index.d.ts
+│   │   ├── lib
+│   │   │   ├── detect-libc.js
+│   │   │   ├── elf.js
+│   │   │   ├── filesystem.js
+│   │   │   └── process.js
 │   │   └── package.json
 │   ├── detect-newline
 │   │   ├── index.d.ts
@@ -9978,6 +11930,15 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   ├── README.md
 │   │   ├── index.js
 │   │   └── package.json
+│   ├── fdir
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   │   ├── index.cjs
+│   │   │   ├── index.d.cts
+│   │   │   ├── index.d.mts
+│   │   │   └── index.mjs
+│   │   └── package.json
 │   ├── fetch-blob
 │   │   ├── LICENSE
 │   │   ├── README.md
@@ -11952,6 +13913,27 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   ├── license
 │   │   ├── package.json
 │   │   └── readme.md
+│   ├── lightningcss
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── node
+│   │   │   ├── ast.d.ts
+│   │   │   ├── ast.js.flow
+│   │   │   ├── browserslistToTargets.js
+│   │   │   ├── composeVisitors.js
+│   │   │   ├── flags.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   ├── index.js.flow
+│   │   │   ├── index.mjs
+│   │   │   ├── targets.d.ts
+│   │   │   └── targets.js.flow
+│   │   └── package.json
+│   ├── lightningcss-darwin-x64
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── lightningcss.darwin-x64.node
+│   │   └── package.json
 │   ├── lines-and-columns
 │   │   ├── LICENSE
 │   │   ├── README.md
@@ -18814,6 +20796,78 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │       ├── use-native.js
 │   │   │       └── use-native.js.map
 │   │   └── package.json
+│   ├── rolldown
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bin
+│   │   │   └── cli.mjs
+│   │   ├── dist
+│   │   │   ├── cli.d.mts
+│   │   │   ├── cli.mjs
+│   │   │   ├── config.d.mts
+│   │   │   ├── config.mjs
+│   │   │   ├── experimental-index.d.mts
+│   │   │   ├── experimental-index.mjs
+│   │   │   ├── experimental-runtime-types.d.ts
+│   │   │   ├── filter-index.d.mts
+│   │   │   ├── filter-index.mjs
+│   │   │   ├── get-log-filter.d.mts
+│   │   │   ├── get-log-filter.mjs
+│   │   │   ├── index.d.mts
+│   │   │   ├── index.mjs
+│   │   │   ├── parallel-plugin-worker.d.mts
+│   │   │   ├── parallel-plugin-worker.mjs
+│   │   │   ├── parallel-plugin.d.mts
+│   │   │   ├── parallel-plugin.mjs
+│   │   │   ├── parse-ast-index.d.mts
+│   │   │   ├── parse-ast-index.mjs
+│   │   │   ├── plugins-index.d.mts
+│   │   │   ├── plugins-index.mjs
+│   │   │   ├── shared
+│   │   │   │   ├── binding-CYVfiOV3.d.mts
+│   │   │   │   ├── binding-CkWPGrSM.mjs
+│   │   │   │   ├── bindingify-input-options-e7ze4hPR.mjs
+│   │   │   │   ├── constructors-D3ZqEbT5.mjs
+│   │   │   │   ├── constructors-DRe7RuMC.d.mts
+│   │   │   │   ├── define-config-BkRKRADp.d.mts
+│   │   │   │   ├── define-config-DJOr6Iwt.mjs
+│   │   │   │   ├── error-BLhcSyeg.mjs
+│   │   │   │   ├── get-log-filter-semyr3Lj.d.mts
+│   │   │   │   ├── load-config-CzS8HOQ2.mjs
+│   │   │   │   ├── logging-C6h4g8dA.d.mts
+│   │   │   │   ├── logs-D80CXhvg.mjs
+│   │   │   │   ├── misc-DJYbNKZX.mjs
+│   │   │   │   ├── normalize-string-or-regex-CCT059Zu.mjs
+│   │   │   │   ├── parse-BGipdujE.mjs
+│   │   │   │   ├── prompt-BYQIwEjg.mjs
+│   │   │   │   ├── resolve-tsconfig-DJjTYbYr.mjs
+│   │   │   │   ├── rolldown-AJ-jnEZ_.mjs
+│   │   │   │   ├── rolldown-build-CPrIX9V6.mjs
+│   │   │   │   ├── transform-C_gBfjMR.d.mts
+│   │   │   │   └── watch-CsdkXVu3.mjs
+│   │   │   ├── utils-index.d.mts
+│   │   │   └── utils-index.mjs
+│   │   ├── node_modules
+│   │   │   └── @rolldown
+│   │   │       └── pluginutils
+│   │   │           ├── LICENSE
+│   │   │           ├── README.md
+│   │   │           ├── dist
+│   │   │           │   ├── filter
+│   │   │           │   │   ├── composable-filters.d.ts
+│   │   │           │   │   ├── composable-filters.js
+│   │   │           │   │   ├── filter-vite-plugins.d.ts
+│   │   │           │   │   ├── filter-vite-plugins.js
+│   │   │           │   │   ├── index.d.ts
+│   │   │           │   │   ├── index.js
+│   │   │           │   │   ├── simple-filters.d.ts
+│   │   │           │   │   └── simple-filters.js
+│   │   │           │   ├── index.d.ts
+│   │   │           │   ├── index.js
+│   │   │           │   ├── utils.d.ts
+│   │   │           │   └── utils.js
+│   │   │           └── package.json
+│   │   └── package.json
 │   ├── router
 │   │   ├── HISTORY.md
 │   │   ├── LICENSE
@@ -19259,6 +21313,15 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   └── src
 │   │       ├── tiny-invariant.flow.js
 │   │       └── tiny-invariant.ts
+│   ├── tinyglobby
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   │   ├── index.cjs
+│   │   │   ├── index.d.cts
+│   │   │   ├── index.d.mts
+│   │   │   └── index.mjs
+│   │   └── package.json
 │   ├── tmpl
 │   │   ├── lib
 │   │   │   └── tmpl.js
@@ -20673,6 +22736,57 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │       └── src
 │   │   │           └── index.js
 │   │   └── package.json
+│   ├── vite
+│   │   ├── LICENSE.md
+│   │   ├── README.md
+│   │   ├── bin
+│   │   │   ├── openChrome.js
+│   │   │   └── vite.js
+│   │   ├── client.d.ts
+│   │   ├── dist
+│   │   │   ├── client
+│   │   │   │   ├── client.mjs
+│   │   │   │   └── env.mjs
+│   │   │   └── node
+│   │   │       ├── chunks
+│   │   │       │   ├── build.js
+│   │   │       │   ├── build2.js
+│   │   │       │   ├── chunk.js
+│   │   │       │   ├── config.js
+│   │   │       │   ├── dist.js
+│   │   │       │   ├── lib.js
+│   │   │       │   ├── logger.js
+│   │   │       │   ├── moduleRunnerTransport.d.ts
+│   │   │       │   ├── node.js
+│   │   │       │   ├── optimizer.js
+│   │   │       │   ├── postcss-import.js
+│   │   │       │   ├── preview.js
+│   │   │       │   └── server.js
+│   │   │       ├── cli.js
+│   │   │       ├── index.d.ts
+│   │   │       ├── index.js
+│   │   │       ├── internal.d.ts
+│   │   │       ├── internal.js
+│   │   │       ├── module-runner.d.ts
+│   │   │       └── module-runner.js
+│   │   ├── misc
+│   │   │   ├── false.js
+│   │   │   └── true.js
+│   │   ├── package.json
+│   │   └── types
+│   │       ├── customEvent.d.ts
+│   │       ├── hmrPayload.d.ts
+│   │       ├── hot.d.ts
+│   │       ├── import-meta.d.ts
+│   │       ├── importGlob.d.ts
+│   │       ├── importMeta.d.ts
+│   │       ├── internal
+│   │       │   ├── cssPreprocessorOptions.d.ts
+│   │       │   ├── esbuildOptions.d.ts
+│   │       │   ├── lightningcssOptions.d.ts
+│   │       │   ├── rollupTypeCompat.d.ts
+│   │       │   └── terserOptions.d.ts
+│   │       └── metadata.d.ts
 │   ├── walker
 │   │   ├── LICENSE
 │   │   ├── lib
@@ -21265,6 +23379,8 @@ thien@iMac natt-os_ver2goldmaster % tree
 │           ├── WarrantyClaimCreated.v1.ts
 │           └── WarrantyRegistered.v1.ts
 ├── repo.json
+├── roadloading
+│   └── roadmap_nauion_tamlxr.md
 ├── scripts
 │   ├── NeuralMAINCell.sh
 │   ├── anattos.sh
@@ -21317,39 +23433,6 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   ├── __tests__
 │   │   ├── pho-guard.real-data.test.ts
 │   │   └── pho-guard.test.ts
-│   ├── apps
-│   │   ├── analytics-ingestion-service
-│   │   │   └── src
-│   │   │       ├── application
-│   │   │       │   └── ingest-sales-event.ts
-│   │   │       └── domain
-│   │   │           └── projections
-│   │   │               └── daily-revenue.projection.ts
-│   │   ├── engine-registry.ts
-│   │   ├── finance-service
-│   │   │   └── src
-│   │   │       ├── application
-│   │   │       │   └── handlers
-│   │   │       │       └── invoice-handler.ts
-│   │   │       ├── infrastructure
-│   │   │       │   └── messaging
-│   │   │       │       ├── dead-letter.handler.ts
-│   │   │       │       └── retry.policy.ts
-│   │   │       └── readme.md
-│   │   ├── hr-service
-│   │   │   └── src
-│   │   │       └── application
-│   │   │           └── handlers
-│   │   │               ├── leave-handler.ts
-│   │   │               └── payroll-handler.ts
-│   │   ├── nattos-server.cjs
-│   │   ├── nattos-server.ts
-│   │   ├── sale-terminal
-│   │   │   ├── config.ts
-│   │   │   ├── main.ts
-│   │   │   └── session.ts
-│   │   └── wiring
-│   │       └── domain-flow.wiring.ts
 │   ├── cells
 │   │   ├── business
 │   │   │   ├── analytics-cell
@@ -22516,6 +24599,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   │       ├── audit-legacy.service.ts
 │   │   │   │   │       ├── audit-writer.service.ts
 │   │   │   │   │       ├── auditchainservice.ts
+│   │   │   │   │       ├── gdb-result.subscriber.ts
 │   │   │   │   │       ├── index.ts
 │   │   │   │   │       └── iseu-boundary.surface.ts
 │   │   │   │   ├── index.ts
@@ -22608,6 +24692,7 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   │       ├── confidence-calculator.service.ts
 │   │   │   │   │       ├── flow-chain.engine.ts
 │   │   │   │   │       ├── index.ts
+│   │   │   │   │       ├── iseu-reinforcement.subscriber.ts
 │   │   │   │   │       └── system-state.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── infrastructure
@@ -22643,7 +24728,9 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   │   ├── graph.consistency.check.ts
 │   │   │   │   │   └── validator.engine.ts
 │   │   │   │   ├── domain
-│   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       └── impedance.engine.ts
 │   │   │   │   ├── identity.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── interfaces
@@ -23145,6 +25232,8 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   ├── bangfs_v5.5.json
 │   │   │   │   ├── bangfs_v5.5_update.json
 │   │   │   │   ├── bangfs_v5.5_update2.json
+│   │   │   │   ├── bangfs_v5.6-update.json
+│   │   │   │   ├── bangfs_v5.6.json
 │   │   │   │   ├── bangmf-expansion-audit-20260228.md
 │   │   │   │   ├── bangmf_V0.json
 │   │   │   │   ├── bangmf_v3.0.0.json
@@ -23176,6 +25265,8 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   ├── bangmf_v6.2.0.json
 │   │   │   │   ├── bangmf_v6.3.0.json
 │   │   │   │   ├── bangmf_v6.4.0.json
+│   │   │   │   ├── bangmf_v6.5.0.json
+│   │   │   │   ├── bangmf_v6.6.0..json
 │   │   │   │   ├── cayht200325.txt
 │   │   │   │   └── kmfqune.py
 │   │   │   ├── boiboi
@@ -23259,6 +25350,10 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   ├── kmf9.9.1.json
 │   │   │   │   ├── kmf9.9.2.json
 │   │   │   │   ├── kmf9.9.3.json
+│   │   │   │   ├── kmf9.9.4.json
+│   │   │   │   ├── kmf9.9.5.json
+│   │   │   │   ├── kmf9.9.6.json
+│   │   │   │   ├── kmf9.9.7.json
 │   │   │   │   └── self_scan.sh
 │   │   │   ├── phieu
 │   │   │   │   ├── phieumf.json
@@ -23275,6 +25370,8 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │   │   ├── SESSION_2026-04-07_update_SUMMARY.md
 │   │   │   │   ├── TamLuxury_CellRegistry_2026-03-09.md
 │   │   │   │   ├── bangmf-session-20260325.md
+│   │   │   │   ├── bangmf-session-20260407.md
+│   │   │   │   ├── session-2026-04-08-bang.md
 │   │   │   │   ├── session_uei_narrative_20260309.md
 │   │   │   │   ├── session_uei_summary_20260309.md
 │   │   │   │   ├── uei_architecture_spec_20260309.md
@@ -23285,7 +25382,6 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   │       ├── thiennhomf_v4.0.json
 │   │   │       ├── thiennhomfv1.0.json
 │   │   │       └── thiennhomfv2.0.json
-│   │   ├── memory.zip
 │   │   ├── natt-master-registry-v2.json
 │   │   ├── persistence.ts
 │   │   ├── policy
@@ -23461,275 +25557,6 @@ thien@iMac natt-os_ver2goldmaster % tree
 │   │   ├── interfaces.ts
 │   │   └── showroom.ts
 │   ├── types.ts
-│   ├── ui-app
-│   │   ├── app.tsx
-│   │   ├── component-contracts.json
-│   │   ├── components
-│   │   │   ├── adminconfighub.ts
-│   │   │   ├── advancedanalytics.ts
-│   │   │   ├── aiavatar.ts
-│   │   │   ├── apiportal.ts
-│   │   │   ├── app.ts
-│   │   │   ├── approval
-│   │   │   │   └── approvaldashboard.ts
-│   │   │   ├── appshell.ts
-│   │   │   ├── audittrailmodule.ts
-│   │   │   ├── bankingprocessor.ts
-│   │   │   ├── blueprintwizard.ts
-│   │   │   ├── calibration
-│   │   │   │   └── calibrationwizard.ts
-│   │   │   ├── chatconsultant.ts
-│   │   │   ├── collaborationrooms.ts
-│   │   │   ├── common
-│   │   │   │   ├── errorboundary.ts
-│   │   │   │   └── loadingspinner.ts
-│   │   │   ├── complianceportal.ts
-│   │   │   ├── customizationrequest.ts
-│   │   │   ├── customsintelligence.ts
-│   │   │   ├── dailyreportmodule.ts
-│   │   │   ├── dashboard.ts
-│   │   │   ├── dataanalytics.ts
-│   │   │   ├── dataarchivevault.ts
-│   │   │   ├── datasyncengine.ts
-│   │   │   ├── devportal.ts
-│   │   │   ├── dynamicmodulerenderer.ts
-│   │   │   ├── enterprisearchitecture.ts
-│   │   │   ├── errorboundary.ts
-│   │   │   ├── filterpanel.ts
-│   │   │   ├── financeaudit.ts
-│   │   │   ├── financial
-│   │   │   │   └── financialdashboard.ts
-│   │   │   ├── governancemodule.ts
-│   │   │   ├── governanceworkspace.ts
-│   │   │   ├── hrcompliance.ts
-│   │   │   ├── hrmanagement.ts
-│   │   │   ├── krisemailhub.ts
-│   │   │   ├── layout.ts
-│   │   │   ├── learninghub.ts
-│   │   │   ├── livevoice.ts
-│   │   │   ├── masterdashboard.ts
-│   │   │   ├── notificationhub.ts
-│   │   │   ├── notificationportal.ts
-│   │   │   ├── omegaprocessor.ts
-│   │   │   ├── operationsterminal.ts
-│   │   │   ├── paymenthub.ts
-│   │   │   ├── personalsphere.ts
-│   │   │   ├── productcard.ts
-│   │   │   ├── productcatalog.ts
-│   │   │   ├── productdetailmodal.ts
-│   │   │   ├── productionmanager.ts
-│   │   │   ├── productionsalesflowview.ts
-│   │   │   ├── productionwallboard.ts
-│   │   │   ├── quantumfloworchestrator.ts
-│   │   │   ├── quantumpulse.ts
-│   │   │   ├── quickhelp.ts
-│   │   │   ├── rbacmanager.ts
-│   │   │   ├── rfmanalysis.ts
-│   │   │   ├── salesarchitectureview.ts
-│   │   │   ├── salescrm.ts
-│   │   │   ├── salestaxmodule.ts
-│   │   │   ├── salesterminal.ts
-│   │   │   ├── securityoverlay.ts
-│   │   │   ├── sellerterminal.ts
-│   │   │   ├── sellerterminal.tsx
-│   │   │   ├── sidebar.ts
-│   │   │   ├── smartlinkmapper.ts
-│   │   │   ├── supplierclassificationpanel.ts
-│   │   │   ├── systemmonitor.ts
-│   │   │   ├── systemnavigator.ts
-│   │   │   ├── systemticker.ts
-│   │   │   ├── taxreportinghub.ts
-│   │   │   ├── technicaldocs.ts
-│   │   │   ├── thiencommandcenter.ts
-│   │   │   ├── unifiedreportinghub.ts
-│   │   │   └── warehousemanagement.ts
-│   │   ├── constants.ts
-│   │   ├── contexts
-│   │   │   ├── accountingcontext.ts
-│   │   │   └── mappingcontext.ts
-│   │   ├── core
-│   │   │   ├── dictionary
-│   │   │   │   └── services
-│   │   │   │       └── dictionaryservice.ts
-│   │   │   ├── ingestion
-│   │   │   │   └── ingestionservice.ts
-│   │   │   ├── processing
-│   │   │   │   └── ai
-│   │   │   │       └── aicoreprocessor.ts
-│   │   │   ├── signals
-│   │   │   │   └── types.ts
-│   │   │   └── smartlinkengine.ts
-│   │   ├── css
-│   │   │   ├── nattos-fx-advanced.css
-│   │   │   └── nattos-glass.css
-│   │   ├── hooks
-│   │   │   ├── useauthority.ts
-│   │   │   ├── userealtimesync.ts
-│   │   │   ├── usesmartmapping.ts
-│   │   │   └── usesupplierclassification.ts
-│   │   ├── index.css
-│   │   ├── index.html
-│   │   ├── index.tsx
-│   │   ├── manifestations
-│   │   │   └── overlays
-│   │   │       └── quantumcontainer.ts
-│   │   ├── nattos-contract.json
-│   │   ├── nattos-data.js
-│   │   ├── nattos-doc-engine.js
-│   │   ├── nattos-eod-engine.js
-│   │   ├── nattos-fx-advanced.css
-│   │   ├── nattos-fx.js
-│   │   ├── nattos-glass.css
-│   │   ├── nattos-loss-thresholds.js
-│   │   ├── nattos-payment.js
-│   │   ├── nattos-responsive.css
-│   │   ├── nattos-tokens.css
-│   │   ├── nattos-ui-theme.css
-│   │   ├── nauion
-│   │   │   ├── icon
-│   │   │   │   ├── 10.png
-│   │   │   │   ├── 11.png
-│   │   │   │   ├── 12.png
-│   │   │   │   ├── 13.png
-│   │   │   │   ├── 14.png
-│   │   │   │   ├── 15.png
-│   │   │   │   ├── 16.png
-│   │   │   │   ├── 17.png
-│   │   │   │   ├── 18.png
-│   │   │   │   ├── 19.png
-│   │   │   │   ├── 20.png
-│   │   │   │   ├── 6.png
-│   │   │   │   ├── 7.png
-│   │   │   │   ├── 8.png
-│   │   │   │   └── 9.png
-│   │   │   ├── nauion-deploy.sh
-│   │   │   ├── nauion-library
-│   │   │   │   ├── natt-full.sh
-│   │   │   │   ├── natt-ultra.sh
-│   │   │   │   ├── natt-v1.sh
-│   │   │   │   ├── natt-v10.sh
-│   │   │   │   ├── natt-v2.sh
-│   │   │   │   ├── natt-v3.sh
-│   │   │   │   ├── natt-v4.sh
-│   │   │   │   ├── natt-v5.sh
-│   │   │   │   ├── natt-v6.sh
-│   │   │   │   ├── natt-v7.sh
-│   │   │   │   └── natt-visual.sh
-│   │   │   ├── nauion-v4.html
-│   │   │   ├── nauion-v6.html
-│   │   │   ├── nauion-v7.html
-│   │   │   ├── nauion-v8.html
-│   │   │   ├── nauion-v9.html
-│   │   │   └── ui-runtime.tsx
-│   │   ├── neuro-link
-│   │   │   └── context
-│   │   │       └── quantumuicontext.ts
-│   │   ├── services
-│   │   │   ├── aiengine.ts
-│   │   │   ├── approval
-│   │   │   │   └── approvalworkflowservice.ts
-│   │   │   ├── authservice.ts
-│   │   │   ├── bankingservice.ts
-│   │   │   ├── blockchainservice.ts
-│   │   │   ├── calibration
-│   │   │   │   └── calibrationengine.ts
-│   │   │   ├── conflict
-│   │   │   │   └── conflictresolver.ts
-│   │   │   ├── cost
-│   │   │   │   └── costallocationsystem.ts
-│   │   │   ├── customsservice.ts
-│   │   │   ├── customsutils.ts
-│   │   │   ├── dictionaryapprovalservice.ts
-│   │   │   ├── dictionaryservice.ts
-│   │   │   ├── documentai.ts
-│   │   │   ├── einvoiceengine.ts
-│   │   │   ├── enterpriselinker.ts
-│   │   │   ├── eventbridge.ts
-│   │   │   ├── exportservice.ts
-│   │   │   ├── fraudguard.ts
-│   │   │   ├── gdbengine.ts
-│   │   │   ├── gmailservice.ts
-│   │   │   ├── hrengine.ts
-│   │   │   ├── ingestion
-│   │   │   │   ├── aiprocessor.ts
-│   │   │   │   ├── dictionaryguard.ts
-│   │   │   │   ├── extractors.ts
-│   │   │   │   ├── idempotencymanager.ts
-│   │   │   │   ├── ingestionservice.ts
-│   │   │   │   └── utils.ts
-│   │   │   ├── learningengine.ts
-│   │   │   ├── logisticsservice.ts
-│   │   │   ├── mapping
-│   │   │   │   └── smartlinkmappingengine.ts
-│   │   │   ├── modulehelpers.ts
-│   │   │   ├── moduleregistry.ts
-│   │   │   ├── notificationservice.ts
-│   │   │   ├── offlineservice.ts
-│   │   │   ├── parser
-│   │   │   │   └── documentparserlayer.ts
-│   │   │   ├── paymentservice.ts
-│   │   │   ├── personnelengine.ts
-│   │   │   ├── productionengine.ts
-│   │   │   ├── productionsalesflow.ts
-│   │   │   ├── productionservice.ts
-│   │   │   ├── quantumbufferservice.ts
-│   │   │   ├── quantumengine.ts
-│   │   │   ├── rbacengine.ts
-│   │   │   ├── realtimenotificationservice.ts
-│   │   │   ├── recoveryengine.ts
-│   │   │   ├── salescore.ts
-│   │   │   ├── scoring
-│   │   │   │   └── contextscoringengine.ts
-│   │   │   ├── security.service.ts
-│   │   │   ├── sellerengine.ts
-│   │   │   ├── smartlinkengine.ts
-│   │   │   ├── staging
-│   │   │   │   └── eventstaginglayer.ts
-│   │   │   ├── supplier
-│   │   │   │   └── supplierengine.ts
-│   │   │   ├── taskrouter.ts
-│   │   │   ├── taxreportservice.ts
-│   │   │   ├── threatdetectionservice.ts
-│   │   │   └── warehouseservice.ts
-│   │   ├── superdictionary.ts
-│   │   ├── sw.js
-│   │   ├── tsconfig.json
-│   │   ├── types.ts
-│   │   └── utils
-│   │       ├── supplierclassifier.ts
-│   │       └── supplierimporthelper.ts
-│   ├── ui-vision
-│   │   ├── App.jsx
-│   │   ├── components
-│   │   │   ├── AuditVisualizer.tsx
-│   │   │   └── Medal.tsx
-│   │   ├── index.css
-│   │   ├── lib
-│   │   │   └── event-bus.ts
-│   │   ├── main.jsx
-│   │   ├── registry
-│   │   │   └── cells.ts
-│   │   ├── scenes
-│   │   │   ├── ControlTower.tsx
-│   │   │   ├── Dashboard.tsx
-│   │   │   └── Showroom.tsx
-│   │   ├── vision-engine
-│   │   │   ├── adaptive
-│   │   │   │   ├── density.ts
-│   │   │   │   └── performance.ts
-│   │   │   ├── components
-│   │   │   │   ├── Layer.tsx
-│   │   │   │   └── SceneContainer.tsx
-│   │   │   ├── core
-│   │   │   │   ├── layer-controller.ts
-│   │   │   │   ├── scene-manager.ts
-│   │   │   │   └── vision-engine.core.ts
-│   │   │   └── security
-│   │   │       ├── SecurityOverlay.tsx
-│   │   │       ├── rbac.ts
-│   │   │       └── sirasign-engine.ts
-│   │   └── {vision-engine
-│   │       └── {core,hooks,components,transitions,adaptive,audit,security},scenes,components,lib,registry}
 │   └── utils
 │       ├── supplierClassifier.ts
 │       ├── supplierImportHelper.ts
@@ -23739,7 +25566,9 @@ thien@iMac natt-os_ver2goldmaster % tree
 ├── ts-debt.log
 ├── tsconfig.json
 ├── tsconfig.server.json
-└── vite.config.ts
+├── vite.config.ts
+└── vite.config.vision.ts
 
-2713 directories, 21028 files
-thien@iMac natt-os_ver2goldmaster %
+2951 directories, 22618 files
+
+

@@ -6,6 +6,7 @@
     "casting-cell",
     "comms-cell",
     "compliance-cell",
+    "constants-cell",
     "customer-cell",
     "customs-cell",
     "design-3d-cell",
@@ -33,6 +34,7 @@
     "showroom-cell",
     "stone-cell",
     "supplier-cell",
+    "tax-cell",
     "warehouse-cell",
     "warranty-cell",
     "ai-connector-cell",
@@ -50,8 +52,5 @@
     "smartlink-cell",
     "sync-cell"
   ],
-  "blind": [
-    "constants-cell",
-    "tax-cell"
-  ]
+  "blind": []
 }

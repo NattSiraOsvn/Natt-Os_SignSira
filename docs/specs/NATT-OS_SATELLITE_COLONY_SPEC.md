@@ -1,0 +1,115 @@
+# NATT-OS — SATELLITE COLONY SPEC (v1.0)
+
+---
+
+## I. PURPOSE
+
+Satellite Colony là một node mở rộng độc lập của NATT-OS, có khả năng:
+- Vận hành riêng
+- Đồng bộ với Core qua EventBus
+- Duy trì audit + causality đầy đủ
+
+→ Không phải module → là sub-system có lifecycle riêng
+
+---
+
+## II. SYSTEM BOUNDARY
+
+### Core
+- Global EventBus
+- Policy Engine
+- Audit Ledger
+- Identity / RBAC
+
+### Satellite Colony
+- Local EventBus
+- Domain Engine riêng
+- Local State
+- Sync Layer
+
+---
+
+## III. ARCHITECTURE OVERVIEW
+
+[UI]
+ ↓
+[Satellite API]
+ ↓
+[Local EventBus] ↔ [Sync Engine] ↔ [Core EventBus]
+ ↓
+[Domain Engines]
+ ↓
+[State Store]
+ ↓
+[Audit Layer]
+
+---
+
+## IV. EVENT STRUCTURE
+
+EventEnvelope:
+- event_id
+- tenant_id
+- type
+- payload
+- timestamp
+- causation_id
+- correlation_id
+- span_id
+- source
+
+---
+
+## V. CAUSALITY FLOW
+
+order.created
+→ sales.confirm
+→ production.started
+→ production.completed
+→ inventory.updated
+→ audit.record
+
+---
+
+## VI. MODULES
+
+- sales.engine
+- production.engine
+- inventory.engine
+- sync.engine
+- audit.engine
+
+---
+
+## VII. RULES
+
+- Bắt buộc có causality (causation_id, correlation_id, span_id)
+- Audit full coverage
+- Idempotency = event_id + tenant_id
+- Không localStorage
+- Không bypass EventBus
+
+---
+
+## VIII. POLICY
+
+Example:
+- inventory_threshold = 0.87
+- sync_timeout = 5000
+
+---
+
+## IX. FAILURE HANDLING
+
+- Retry sync
+- Ignore duplicate
+- Reject thiếu causality
+- Block nếu audit fail
+
+---
+
+## X. FINAL
+
+Satellite Colony = hệ con độc lập, event-driven, audit đầy đủ, sync được với core.
+
+END SPEC

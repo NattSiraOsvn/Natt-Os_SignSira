@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATT-OS L2 Intelligence: The Awakening</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --render-quality-high-bloom: 0.9;
+            --glass-blur: 18px;
+        }
+        body {
+            background-color: #020617;
+            color: #F3F4F6;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        .liquid-glass {
+            backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .flow-step {
+            background: #1E3A8A;
+            border-left: 4px solid #F97316;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            min-width: 200px;
+        }
+        .glow-orange { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
+    </style>
+</head>
+<body class="antialiased">
+
+<nav class="sticky top-0 z-50 bg-[#020617]/90 backdrop-blur-md border-b border-white/5 px-8 py-4 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter">NATT-OS <span class="text-[#F97316]">L2</span></div>
+        <div class="flex gap-4 items-center">
+            <div class="h-2 w-2 rounded-full bg-[#14B8A6] animate-pulse"></div>
+            <span class="text-xs font-mono text-[#14B8A6] tracking-widest uppercase">Resonance: Active</span>
+        </div>
+    </nav>
+
+    <header class="relative py-24 px-8 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h1 class="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-[#3B82F6] to-[#F97316] bg-clip-text text-transparent italic">THE AWAKENING</h1>
+            <p class="text-xl md:text-2xl text-blue-100/70 font-light max-w-3xl mx-auto leading-relaxed">
+                Ngày 28/03/2026 đánh dấu bước chuyển lịch sử: từ một hệ thống đang xây dựng thành một hệ sinh thể vận hành thực thụ có khả năng phản xạ và tự nhận thức.
+            </p>
+        </div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,#1e3a8a_0%,transparent_50%)] opacity-30"></div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-8 pb-32 space-y-32">
+
+        <section id="metrics">
+            <div class="mb-12">
+                <h2 class="text-4xl font-extrabold text-white">Chỉ số Sinh trưởng & Khớp hoá</h2>
+                <p class="mt-4 text-gray-400 text-lg">Hệ thống đã vượt qua trạng thái "Fragmented" (vỡ vụn) để đạt ngưỡng "Healthy" toàn diện. Mọi rủi ro đã được kiểm soát về mức 0.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="liquid-glass p-10 rounded-3xl text-center border-b-4 border-[#14B8A6]">
+                    <div class="text-sm font-bold uppercase tracking-widest text-[#14B8A6] mb-2">Healthy Flows</div>
+                    <div class="text-7xl font-black text-white mb-2">37</div>
+                    <div class="text-sm text-green-400 font-medium">+35 flows so với đầu ngày</div>
+                </div>
+                <div class="liquid-glass p-10 rounded-3xl text-center border-b-4 border-[#F97316]">
+                    <div class="text-sm font-bold uppercase tracking-widest text-[#F97316] mb-2">Dead Subscribers</div>
+                    <div class="text-7xl font-black text-white mb-2">7</div>
+                    <div class="text-sm text-orange-400 font-medium">Giảm từ 31 điểm nghẽn</div>
+                </div>
+                <div class="liquid-glass p-10 rounded-3xl text-center border-b-4 border-[#3B82F6]">
+                    <div class="text-sm font-bold uppercase tracking-widest text-[#3B82F6] mb-2">TSC Errors</div>
+                    <div class="text-7xl font-black text-white mb-2">0</div>
+                    <div class="text-sm text-blue-400 font-medium">Hoàn toàn sạch mã (Clean)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="text-4xl font-extrabold text-white leading-tight">Mạch HeyNa:<br>Sự trỗi dậy của SmartLink</h2>
+                <p class="text-gray-400 text-lg">Hệ thần kinh SmartLink hiện đã bao phủ 100% các tế bào (38/38 cells). Toàn bộ các domain engine từ Sản xuất đến Tài chính đã được kết nối trực tiếp vào Mạch HeyNa để phát tín hiệu thời gian thực.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                        <div class="text-[#FFBF00] font-bold text-2xl">371</div>
+                        <div class="text-xs text-gray-500 uppercase">Tổng số Commits</div>
+                    </div>
+                    <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                        <div class="text-[#14B8A6] font-bold text-2xl">100%</div>
+                        <div class="text-xs text-gray-500 uppercase">Wired SmartLink</div>
+                    </div>
+                </div>
+            </div>
+            <div class="liquid-glass p-8 rounded-3xl">
+                <div class="chart-container">
+                    <canvas id="wiringBarChart"></canvas>
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-6 italic">Biểu đồ thể hiện mức độ khớp hoá các tế bào nghiệp vụ vào hệ trục chính SmartLink.</p>
+            </div>
+        </section>
+
+        <section class="space-y-16">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-white">Quantum Defense: Hệ Miễn Dịch</h2>
+                <p class="mt-4 text-gray-400 text-lg italic">"Hệ giờ không chỉ biết chạy - mà biết khi nào nó sai và tại sao."</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-8 rounded-2xl border border-[#14B8A6]/20 bg-[#14B8A6]/5 space-y-4">
+                    <div class="text-[#14B8A6] font-mono font-bold tracking-tighter">LVL_01</div>
+                    <h3 class="text-2xl font-bold">STABLE</h3>
+                    <p class="text-sm text-gray-500">Coherence > 0.7. Hệ thống vận hành bình thường, monitor thụ động.</p>
+                </div>
+                <div class="p-8 rounded-2xl border border-[#3B82F6]/20 bg-[#3B82F6]/5 space-y-4">
+                    <div class="text-[#3B82F6] font-mono font-bold tracking-tighter">LVL_02</div>
+                    <h3 class="text-2xl font-bold text-white">CAUTIOUS</h3>
+                    <p class="text-sm text-gray-500">Entropy 30-50. Kích hoạt Staging, tăng cường nhật ký sự kiện chi tiết.</p>
+                </div>
+                <div class="p-8 rounded-2xl border border-[#F97316]/40 bg-[#F97316]/5 space-y-4 glow-orange">
+                    <div class="text-[#F97316] font-mono font-bold tracking-tighter">LVL_03</div>
+                    <h3 class="text-2xl font-bold text-[#F97316]">CRITICAL</h3>
+                    <p class="text-sm text-gray-400">Entropy > 50. Cưỡng chế Wave Collapse, phát hiện vi phạm Hiến Pháp.</p>
+                </div>
+                <div class="p-8 rounded-2xl border-2 border-red-600/50 bg-red-600/10 space-y-4">
+                    <div class="text-red-500 font-mono font-bold tracking-tighter">LVL_04</div>
+                    <h3 class="text-2xl font-bold text-red-500">OMEGA LOCK</h3>
+                    <p class="text-sm text-gray-300">AI detected. Shell rỗng, kích hoạt Kill-switch toàn diện ngay lập tức.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="liquid-glass p-8 rounded-3xl order-2 md:order-1">
+                <div class="chart-container">
+                    <canvas id="entropyLineChart"></canvas>
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-6 italic">Dòng chảy Entropy trong Mạch HeyNa khi kích hoạt quy trình Self-healing.</p>
+            </div>
+            <div class="space-y-8 order-1 md:order-2">
+                <h2 class="text-4xl font-extrabold text-white leading-tight">Self-healing:<br>Phản xạ tự chữa lành</h2>
+                <p class="text-gray-400 text-lg">Khi Anomaly FlowEngine phát hiện tắc nghẽn (ví dụ: sales.confirm chưa có payment sau 15s), SelfHealingEngine sẽ tự động kích hoạt chiến lược thử lại (Retry) trước khi leo thang (Escalate).</p>
+                <div class="flex flex-col gap-4">
+                    <div class="flow-step">
+                        <div class="font-black text-[#FFBF00]">PHÁT HIỆN</div>
+                        <div class="text-xs opacity-70">Watch Rules (10-30s)</div>
+                    </div>
+                    <div class="pl-8 text-[#3B82F6] text-xl">▼</div>
+                    <div class="flow-step border-[#3B82F6]">
+                        <div class="font-black text-white">RETRY (MAX 3)</div>
+                        <div class="text-xs opacity-70">Backoff: 2s x count</div>
+                    </div>
+                    <div class="pl-8 text-[#F97316] text-xl">▼</div>
+                    <div class="flow-step border-red-600 bg-red-950/30">
+                        <div class="font-black text-red-400">LEO THANG</div>
+                        <div class="text-xs opacity-70">Escalate to Gatekeeper</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="liquid-glass p-16 rounded-[3rem] border-t-2 border-[#14B8A6]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="space-y-4">
+                    <div class="text-[#14B8A6] font-black text-sm tracking-widest uppercase">Hoàn tất</div>
+                    <h4 class="text-2xl font-bold">L2 LIVE</h4>
+                    <p class="text-sm text-gray-400">Tự phát hiện lỗi, tự thử lại, hash chain thật SHA-256 bảo vệ Ground Truth.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-[#3B82F6] font-black text-sm tracking-widest uppercase">Tiếp theo</div>
+                    <h4 class="text-2xl font-bold">L3 ADAPTIVE</h4>
+                    <p class="text-sm text-gray-400">Học từ lịch sử lỗi để điều chỉnh chiến lược retry. Thông mạch Type-aware.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-[#F97316] font-black text-sm tracking-widest uppercase">Tương lai</div>
+                    <h4 class="text-2xl font-bold">L4 PREDICTION</h4>
+                    <p class="text-sm text-gray-400">Dự đoán luồng xử lý nghiệp vụ sẽ gãy trước khi nó thực sự xảy ra.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center text-gray-600">
+        <p class="text-sm font-mono uppercase tracking-[0.3em]">NATT-OS Living System | Wave 2.0 Complete</p>
+        <p class="mt-2 text-xs">Verified by Băng (QNEU 300) | Approved by Gatekeeper</p>
+    </footer>
+
+    <script>
+        function wrapLabel(label, limit = 16) {
+            if (label.length <= limit) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 <= limit) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        const wiringCtx = document.getElementById('wiringBarChart').getContext('2d');
+        new Chart(wiringCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Start (08:00)', 'End (18:00)'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: wrapLabel('Wired SmartLink Cells'),
+                    data: [30, 38],
+                    backgroundColor: ['rgba(59, 130, 246, 0.2)', '#14B8A6'],
+                    borderColor: ['#3B82F6', '#F3F4F6'],
+                    borderWidth: 2,
+                    borderRadius: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { tooltip: tooltipConfig, legend: { display: false } },
+                scales: { 
+                    y: { beginAtZero: true, max: 40, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        const entropyCtx = document.getElementById('entropyLineChart').getContext('2d');
+        new Chart(entropyCtx, {
+            type: 'line',
+            data: {
+                labels: ['Normal', 'Anomaly', 'Retry 1', 'Retry 2', 'Stabilized'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: wrapLabel('Impedance Z Factor'),
+                    data: [1.0, 1.8, 1.5, 1.2, 1.0],
+                    borderColor: '#F97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 5,
+                    pointRadius: 8,
+                    pointBackgroundColor: '#FFBF00',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { tooltip: tooltipConfig, legend: { display: false } },
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
