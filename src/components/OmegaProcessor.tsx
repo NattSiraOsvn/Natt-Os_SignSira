@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 import React, { useState, useEffect } from 'react';
 import { IngestStatus, FileMetadata, PersonaID } from '../types';

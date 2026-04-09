@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 import React, { useState } from 'react';
 import AIAvatar from './AIAvatar';

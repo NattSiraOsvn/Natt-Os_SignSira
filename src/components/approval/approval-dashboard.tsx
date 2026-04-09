@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React from "react";
 
 interface ApprovalItem { id: string; title: string; status: string; requestedBy: string; timestamp: number; }

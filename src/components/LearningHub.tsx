@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 import React, { useState, useRef } from 'react';
 import { UserPosition, UserRole, LearnedTemplate, PersonaID } from '../types';

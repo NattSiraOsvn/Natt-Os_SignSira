@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 import React from 'react';
 import { ViewType, UserRole, UserPosition, BusinessMetrics, ActionLog } from '../types';

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 import React, { useState } from 'react';
 import { BusinessMetrics, UserRole, UserPosition, ActionLog, PersonaID } from '../types';

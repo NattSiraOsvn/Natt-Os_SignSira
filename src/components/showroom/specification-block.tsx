@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 import React from 'react';
 import { ShowroomSpec } from '@/types/showroom';

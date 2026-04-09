@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { WarehouseEngine, AllocationPlan, WarehouseIntelligence } from '@/cells/business/warehouse-cell/domain/services/warehouse-intelligence.engine';

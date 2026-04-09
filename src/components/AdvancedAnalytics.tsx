@@ -1,4 +1,4 @@
-// @ts-nocheck — pending proper fix
+// @ts-nocheck — TODO: fix type errors, remove this pragma
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { 

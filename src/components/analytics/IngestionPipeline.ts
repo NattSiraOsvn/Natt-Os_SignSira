@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 import { EventEnvelope, PersonaID } from '../../../../types.ts';
 import { ShardingService } from '../../../../services/blockchainService.ts';

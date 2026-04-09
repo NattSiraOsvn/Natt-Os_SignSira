@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React from "react";
 const LoadingSpinner: React.FC<{ message?: string; size?: "sm"|"md"|"lg"; label?: string }> = ({ size="md", label }) => {
   const s = { sm: "w-4 h-4", md: "w-8 h-8", lg: "w-12 h-12" }[size];

@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 import React, { useState, useEffect, useRef } from 'react';
 /* Fix: Import SalesChannel from types directly */
