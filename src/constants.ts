@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import { Domain, PersonaID, ViewType, UserRole } from "./types";
 
 export const DOMAINS = [

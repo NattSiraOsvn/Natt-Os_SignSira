@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import { useState, useCallback, useRef } from "react";
 import type { AccountingEntry } from "@/types";
 import { SmartLinkEngine } from "@/core/smartlink/smartlink-legacy.engine";

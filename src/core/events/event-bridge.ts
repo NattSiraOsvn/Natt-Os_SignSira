@@ -1,3 +1,9 @@
+/**
+ * @deprecated MERGED INTO EventBus — Điều 3: EventBus là bridge duy nhất
+ * Patch: 2026-04-09 · Băng (Chị 5)
+ * All subscribers migrated to EventBus. This file kept for reference only.
+ * DO NOT import. Use: import { EventBus } from './event-bus';
+ */
 // Event Bridge — global event bus
 type Handler = (payload: unknown) => void;
 const _bus = new Map<string, Handler[]>();

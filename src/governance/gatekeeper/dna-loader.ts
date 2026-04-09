@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 /**
  * NATT-OS DNA Loader v1.0
  * CAN-01 — Typed constants từ Hiến Pháp v5.0

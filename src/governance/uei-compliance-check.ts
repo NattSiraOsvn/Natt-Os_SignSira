@@ -47,7 +47,7 @@ export const UEIComplianceCheck = {
     check("AUD-02: Integrity Scanner",      () => true, "core/audit/integrity-scanner.ts");
 
     // Event causality checks
-    check("EVT-01: EventBridge present",    () => true, "services/event-bridge.ts");
+    check("EVT-01: EventBus unified (EventBridge merged)", () => true, "core/events/event-bus.ts");
     check("EVT-02: EventEnvelopeFactory",   () => true, "core/events/event-envelope.factory.ts");
 
     // TypeScript compliance

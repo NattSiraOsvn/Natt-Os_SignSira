@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import { ViewType, UserRole } from "@/types";
 export const MODULE_REGISTRY: Record<string, any> = {
   DASHBOARD:        { id:"DASHBOARD",       label:"Dashboard",         icon:"📊", view:ViewType.DASHBOARD,       group:"CORE",     allowedRoles:Object.values(UserRole), active:true, componentName:"Dashboard" },
