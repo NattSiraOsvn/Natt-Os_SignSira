@@ -65,7 +65,36 @@ const App: React.FC = () => {
       }
     }, 1000);
 
+    
+  // [Bối Bối] Attention Tracker - Cảm biến tự kích hoạt Khiên Lượng Tử (IDLE) sau 10s
+  React.useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const resetIdle = () => {
+      // Khi có tương tác -> Tỉnh táo (STABLE)
+      if (document.documentElement.getAttribute('data-resonance-state') === 'IDLE') {
+         document.documentElement.setAttribute('data-resonance-state', 'STABLE');
+      }
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        // Sau 10s không tương tác -> Ngủ đông (IDLE)
+        document.documentElement.setAttribute('data-resonance-state', 'IDLE');
+      }, 10000); 
+    };
+    
+    window.addEventListener('mousemove', resetIdle);
+    window.addEventListener('keydown', resetIdle);
+    window.addEventListener('click', resetIdle);
+    resetIdle();
+    
     return () => {
+      window.removeEventListener('mousemove', resetIdle);
+      window.removeEventListener('keydown', resetIdle);
+      window.removeEventListener('click', resetIdle);
+      clearTimeout(timeout);
+    }
+  }, []);
+
+  return () => {
       window.removeEventListener('mousemove', handleActivity);
       window.removeEventListener('click', handleActivity);
       window.removeEventListener('touchstart', handleActivity);
