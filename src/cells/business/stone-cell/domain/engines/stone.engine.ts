@@ -1,10 +1,11 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 /**
  * stone.engine.ts — Kim cương: định danh tuyệt đối, KHÔNG BQGQ
  * SPEC: Can P5 | 1 stone = 1 identity — không merge, không average
  */
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '../../../../core/events/typed-eventbus';
 
 export type StoneStatus = 'raw' | 'assigned' | 'mounted' | 'sold';

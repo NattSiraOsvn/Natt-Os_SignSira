@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 // ── Subscriber: iseu.reinforcement → monitor state update ──
 EventBus.on('iseu.reinforcement', (payload: any) => {

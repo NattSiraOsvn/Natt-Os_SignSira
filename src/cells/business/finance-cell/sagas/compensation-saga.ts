@@ -1,8 +1,9 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports pending migration
 
-import { EventEnvelope } from '../../../../../types';
-import { EventBridge } from '../../../../../services/eventBridge';
+import { EventEnvelope } from '../../../../types';
+import { EventBus } from '../../../../core/events/event-bus';
 import { Logger } from '../../../../shared/logger';
 
 const logger = new Logger('finance-compensation-saga');
@@ -53,7 +54,7 @@ export class CompensationSaga {
     this.compensations.delete(correlationId);
 
     // Phát event thông báo bù trừ hoàn tất
-    await EventBridge.publish('finance.saga.compensated.v1', {
+    await EventBus.emit('finance.saga.compensated.v1', {
       event_name: 'finance.saga.compensated.v1',
       event_version: 'v1',
       event_id: crypto.randomUUID(),

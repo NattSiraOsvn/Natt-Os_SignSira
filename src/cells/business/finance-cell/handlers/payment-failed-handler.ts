@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — pending proper fix
 
 import { ProductionBase } from '../../ProductionBase.ts';
-import { EventEnvelope, OrderStatus } from '../../../../../types.ts';
-import { EventBridge } from '../../../../../services/eventBridge.ts';
+import { EventEnvelope, OrderStatus } from '../../../../types';
+import { EventBus } from '../../../../core/events/event-bus';
 
 export class PaymentFailedHandler extends ProductionBase {
   readonly serviceName = 'finance-service';
@@ -18,7 +19,7 @@ export class PaymentFailedHandler extends ProductionBase {
     }, event.event_id);
 
     // 🔄 COMPENSATION: Put Order on Hold
-    await EventBridge.publish('sales.order.on_hold.v1', {
+    await EventBus.emit('sales.order.on_hold.v1', {
       ...event,
       event_name: 'sales.order.on_hold.v1',
       payload: { order_id, reason: 'PAYMENT_FAILED', detail: reason }

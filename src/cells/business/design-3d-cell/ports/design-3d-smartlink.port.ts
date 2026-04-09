@@ -1,5 +1,5 @@
 import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 
 export interface Design3dSignal {
   type: "SKU_MODEL_CREATED" | "SKU_MODEL_UPDATED" | "PRODUCTION_SPEC_READY" | "NASI_LINKED";

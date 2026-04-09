@@ -1,7 +1,7 @@
 // polishing-cell/domain/services/polishing.engine.ts
 // Wave 5c — nhận wip:stone + wip:in-progress (chờ CẢ HAI xong)
 //   → khi đủ 2 → emit ProductionCompleted → inventory-cell + warehouse-cell
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 // Tracker: chờ stone + finishing cùng lúc

@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 // hr-legacy.engine.ts — deprecated wrapper, giữ để không break imports
 // Path: src/cells/business/hr-cell/domain/services/
 

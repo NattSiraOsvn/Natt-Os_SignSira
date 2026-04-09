@@ -2,7 +2,7 @@
 // Wave 4 — nhận ProductionStageAdvanced (stage=CASTING)
 //   → sau đúc xong emit WIP_PHOI → finishing-cell
 //   → sau đúc xong emit WIP_STONE → stone-cell (nếu có đá chủ)
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _touch: TouchRecord[] = [];

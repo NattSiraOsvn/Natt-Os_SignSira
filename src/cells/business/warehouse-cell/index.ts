@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // warehouse-cell/index.ts
 // Wave 1 — Ingest pipeline hoàn tất
 //
@@ -18,7 +19,7 @@
 export * from './domain/entities';
 export * from './domain/services';
 
-import { EventBus }                      from '@/core/events/event-bus';
+import { EventBus }                      from '../../../core/events/event-bus';
 import { createWarehouseIngestHandler }  from './domain/services/warehouse-ingest.handler';
 import { WarehouseSmartLinkPort }        from './ports/warehouse-smartlink.port';
 import { WAREHOUSE_EVENTS }              from './domain/services/warehouse.events';

@@ -1,7 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports, pending migration
 
-import { EventEnvelope, PersonaID } from '../../../../types.ts';
+import { EventEnvelope, PersonaID } from '../../../types';
 import { ShardingService } from '../../../../services/blockchainService.ts';
 import { AuditProvider } from '../../../../services/admin/AuditService.ts';
 import { NotifyBus } from '../../../../services/notificationService.ts';

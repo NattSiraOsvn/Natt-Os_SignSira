@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports pending migration
 
-import { EventEnvelope } from '../../../../../types';
+import { EventEnvelope } from '../../../../types';
 import { InvoiceAggregate, InvoiceState } from '../../domain/Invoice.aggregate';
-import { EventBridge } from '../../../../../services/eventBridge';
+import { EventBus } from '../../../../core/events/event-bus';
 import { AuditProvider } from '../../../../../services/admin/AuditService';
 
 export class CreateInvoice {
@@ -31,7 +32,7 @@ export class CreateInvoice {
       );
 
       // 3. Phát hành sự kiện bóc tách cho các team khác (Team 4 Analytics)
-      await EventBridge.publish('finance.invoice.created.v1', {
+      await EventBus.emit('finance.invoice.created.v1', {
         event_name: 'finance.invoice.created.v1',
         event_version: 'v1',
         event_id: crypto.randomUUID(),

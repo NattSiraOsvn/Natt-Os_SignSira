@@ -1,6 +1,6 @@
 // sales-cell/domain/services/sales-core.engine.ts
 // Wave 2 — nhận SalesOrderCreated (SX-KD), forward → production-cell
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _touchHistory: TouchRecord[] = [];

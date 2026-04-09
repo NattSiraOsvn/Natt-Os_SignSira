@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // design-3d-cell/domain/services/design-3d.seed.ts
 // Wave A — Load 3d_queue_raw.json → pre-populate SkuModel registry
 // 289 unique SKU models từ tổ 3D đang chờ RESIN / đang chạy máy

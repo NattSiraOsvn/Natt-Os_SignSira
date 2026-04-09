@@ -9,7 +9,7 @@
  * - Guard: retry key theo orderId + from
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '@/core/events/typed-eventbus';
 import * as fs from 'fs';
 import * as path from 'path';

@@ -6,7 +6,7 @@
 
 import type { EntityId } from '@/governance/qneu/types';
 import type { AuditRecord } from '@/governance/qneu/audit-extractor';
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../core/events/event-bus';
 
 export interface FetchOptions {
   entityId?: EntityId;

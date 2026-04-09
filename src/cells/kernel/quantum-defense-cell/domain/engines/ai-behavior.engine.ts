@@ -4,7 +4,7 @@
  * Điều 16-20: QNEU behavioral enforcement
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export interface AIAction {
   aiId: string;

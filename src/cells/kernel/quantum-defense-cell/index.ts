@@ -15,7 +15,7 @@ export * from './domain/entities';
 export * from './contracts/events';
 export * from './ports';
 
-import { EventBus }                  from '@/core/events/event-bus';
+import { EventBus }                  from '../../../core/events/event-bus';
 import { ThresholdEngine }           from './domain/engines/threshold.engine';
 import { ConstitutionalMappingEngine } from '@/governance/gatekeeper/constitutional-mapping.engine';
 import { ChromaticStateEngine }      from './domain/engines/chromatic-state.engine';

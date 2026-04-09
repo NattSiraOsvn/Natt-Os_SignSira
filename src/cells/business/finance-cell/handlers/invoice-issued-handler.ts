@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — pending proper fix
 
 import { ProductionBase } from '../../ProductionBase.ts';
-import { EventEnvelope, FinanceStatus } from '../../../../../types.ts';
-import { EventBridge } from '../../../../../services/eventBridge.ts';
+import { EventEnvelope, FinanceStatus } from '../../../../types';
+import { EventBus } from '../../../../core/events/event-bus';
 
 export class InvoiceIssuedHandler extends ProductionBase {
   readonly serviceName = 'finance-service';
@@ -22,7 +23,7 @@ export class InvoiceIssuedHandler extends ProductionBase {
     }, event.event_id);
 
     // Emit Confirmation to Analytics
-    await EventBridge.publish('finance.invoice.issued.confirmed.v1', {
+    await EventBus.emit('finance.invoice.issued.confirmed.v1', {
       ...event,
       event_name: 'finance.invoice.issued.confirmed.v1',
       occurred_at: new Date().toISOString(),

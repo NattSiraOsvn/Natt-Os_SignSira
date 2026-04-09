@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 // ── comms-smartlink.port.ts ──────────────────────────────────
 export interface CommsSignal {
   type: "MESSAGE_SENT" | "ALERT_RAISED" | "SYSTEM_NOTIFICATION";

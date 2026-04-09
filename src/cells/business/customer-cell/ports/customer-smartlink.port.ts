@@ -1,5 +1,5 @@
 import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 
 export interface CustomerSignal {
   type: "CUSTOMER_REGISTERED" | "CUSTOMER_VERIFIED" | "LOYALTY_UPDATED" | "CUSTOMER_CHURNED";

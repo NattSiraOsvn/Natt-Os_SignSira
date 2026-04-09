@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — pending proper fix
 
 // 🏪 customer-cell - Business Domain Cell

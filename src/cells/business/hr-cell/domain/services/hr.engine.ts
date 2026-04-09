@@ -10,7 +10,7 @@
 //   LeaveApproved       → audit-cell
 //   ProductionCrewReady → production-cell (danh sách thợ SX)
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { HRSmartLinkPort } from '../../ports/hr-smartlink.port';
 import type { Employee, ProductionGroup } from '../entities/employee.entity';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';

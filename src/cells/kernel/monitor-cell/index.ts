@@ -1,10 +1,10 @@
-// @ts-nocheck
+
 export * from "./domain/entities";
 export * from "./domain/services";
 export * from "./ports";
 
 // Wire: monitor-cell subscribes audit.recorded + system.audit
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../core/events/event-bus';
 
 // audit.recorded → monitor ghi nhận audit chain còn sống
 EventBus.on('audit.recorded', (payload: any) => {

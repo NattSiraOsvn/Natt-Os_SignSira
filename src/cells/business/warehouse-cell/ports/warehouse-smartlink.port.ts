@@ -2,7 +2,7 @@
 // Wave 1 — Thêm INGEST signals routing theo SCAR FS-018
 
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../core/events/event-bus';
 
 // ── Outbound signals (giao tiếp ra ngoài) ──
 export type WarehouseOutboundSignal =

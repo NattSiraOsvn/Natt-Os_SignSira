@@ -1,7 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports pending migration
 
-import { EventEnvelope } from '../../../../../types';
+import { EventEnvelope } from '../../../../types';
 import { CreateInvoice } from '../usecases/CreateInvoice';
 import { RiskProjection } from '../projections/RiskProjection';
 import { AuditProvider } from '../../../../../services/admin/AuditService';

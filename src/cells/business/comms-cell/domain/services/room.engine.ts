@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 // ── room.engine.ts ────────────────────────────────────────────
 // Communication nội bộ — dòng thông tin hệ
 // Path: src/cells/business/comms-cell/domain/services/

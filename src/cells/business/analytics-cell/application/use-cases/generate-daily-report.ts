@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import{AnalyticsEngine}from"../../domain/services/analytics.engine";
 export interface GenerateDailyReportInput{date:string;branchCode?:string;metrics:{totalRevenue:number;totalOrders:number;totalCost:number;newCustomers:number;returnCustomers:number;averageOrderValue:number;topProducts:Array<{sku:string;name:string;qty:number;revenue:number}>};}
 export interface GenerateDailyReportResult{success:boolean;report?:any;grossMargin:number;grossMarginRate:number;conversionInsight:string;}

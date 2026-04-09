@@ -1,5 +1,5 @@
 import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 
 export interface FinanceSignal {
   type: "INVOICE_CREATED" | "PAYMENT_RECEIVED" | "REPORT_GENERATED" | "TAX_FILED";

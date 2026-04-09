@@ -2,7 +2,7 @@
 // Wave A update — thêm _injectOrder() để seed loader inject trạng thái
 // (tất cả subscribe handlers giữ nguyên từ Wave C)
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '@/core/events/typed-eventbus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 

@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../core/events/event-bus';
 // ============================================================
 // VALIDATOR ENGINE — QNEU Consistency Checker
 // Điều 22: Neural MAIN validate AI Entity evolution

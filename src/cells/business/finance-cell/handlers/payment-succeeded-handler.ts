@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — pending proper fix
 
 import { ProductionBase } from '../../ProductionBase.ts';
-import { EventEnvelope, FinanceStatus, OrderStatus } from '../../../../../types.ts';
-import { EventBridge } from '../../../../../services/eventBridge.ts';
+import { EventEnvelope, FinanceStatus, OrderStatus } from '../../../../types';
+import { EventBus } from '../../../../core/events/event-bus';
 
 export class PaymentSucceededHandler extends ProductionBase {
   readonly serviceName = 'finance-service';
@@ -19,7 +20,7 @@ export class PaymentSucceededHandler extends ProductionBase {
     }, event.event_id);
 
     // Trigger Order Completion in Sales
-    await EventBridge.publish('sales.order.completed.v1', {
+    await EventBus.emit('sales.order.completed.v1', {
       ...event,
       event_name: 'sales.order.completed.v1',
       payload: { order_id, status: OrderStatus.COMPLETED }

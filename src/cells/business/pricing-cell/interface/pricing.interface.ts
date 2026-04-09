@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 /**
  * Pricing Cell — Public Interface
  * Exported API cho các cells khác consume qua shared-contracts-cell.

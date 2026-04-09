@@ -1,10 +1,11 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports pending migration
 
 import { InvoiceState } from '../../domain/Invoice.aggregate';
-import { EventBridge } from '../../../../../services/eventBridge';
+import { EventBus } from '../../../../core/events/event-bus';
 import { NotifyBus } from '../../../../../services/notificationService';
-import { PersonaID, AlertLevel } from '../../../../../types';
+import { PersonaID, AlertLevel } from '../../../../types';
 
 /**
  * 🚨 RISK PROJECTION (FINANCIAL SHIELD)
@@ -38,7 +39,7 @@ export class RiskProjection {
     });
 
     // Phát sự kiện rủi ro toàn hệ thống
-    EventBridge.publish('finance.financial.anomaly.detected.v1', {
+    EventBus.emit('finance.financial.anomaly.detected.v1', {
       event_name: 'finance.financial.anomaly.detected.v1',
       event_version: 'v1',
       event_id: crypto.randomUUID(),

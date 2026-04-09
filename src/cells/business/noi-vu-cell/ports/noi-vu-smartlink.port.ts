@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 // ── noi-vu-smartlink.port.ts ─────────────────────────────────
 export interface NoiVuSignal {
   type: "ASSET_REGISTERED" | "ASSET_MAINTENANCE" | "ASSET_DISPOSED";

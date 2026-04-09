@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 // ── FILE 6 ──────────────────────────────────────────────────
 // threat-detection.engine.ts
 // Phát hiện mối đe dọa: brute force, session hijack, anomaly login

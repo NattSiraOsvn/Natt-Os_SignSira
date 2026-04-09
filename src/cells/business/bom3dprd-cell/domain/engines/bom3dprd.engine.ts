@@ -8,7 +8,7 @@
 //   BomValidated  → production-cell (gate mở casting)
 //   BomRejected   → production-cell + design-3d-cell (BOM sai spec)
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 // ── BOM record ──

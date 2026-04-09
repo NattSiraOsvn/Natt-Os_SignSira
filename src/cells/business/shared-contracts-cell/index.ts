@@ -1,2 +1,2 @@
-// @ts-nocheck
-export * from './shared.types';
+
+export * from '../../shared-kernel/shared.types';

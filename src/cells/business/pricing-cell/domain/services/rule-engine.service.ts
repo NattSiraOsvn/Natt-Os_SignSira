@@ -1,7 +1,7 @@
 // pricing-cell/domain/services/rule-engine.service.ts
 // Wave 6b — nhận StockReplenished (action=PRICE_NEW_STOCK)
 //   → tính giá → emit OrderConfirmed → payment, customer, warranty
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _touch: TouchRecord[] = [];

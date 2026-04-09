@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 export * from "./smartlink-cell";
 export * from "./warehouse-cell";
 export * from "./sync-cell";

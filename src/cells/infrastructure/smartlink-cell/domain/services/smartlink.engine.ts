@@ -1,7 +1,7 @@
 // SmartLink Engine v2.0 — Phase 0 ISEU
 // Extend từ v1.0: thêm fiber metadata + impedance theo spec 2026-03-09 + ISEU v3.0
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 // ── Constants (không hardcode logic — policy ở IMMUNE_POLICY.json) ──
 const FIBER_DECAY_RATE_BASE    = 0.10;

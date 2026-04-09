@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import{FraudGuard}from"../../domain/services/fraud-guard.engine";
 export interface RunFraudCheckInput{transactionId:string;customerId:string;amount:number;method:string;previousTransactions?:Array<{amount:number;timestamp:number;method:string}>;}
 export interface RunFraudCheckResult{safe:boolean;riskScore:number;flags:string[];recommendation:"APPROVE"|"REVIEW"|"BLOCK";requiresManualReview:boolean;}

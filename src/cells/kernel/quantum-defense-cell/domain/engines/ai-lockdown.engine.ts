@@ -8,7 +8,7 @@
  * Điều 16-20 Hiến Pháp: AI không được vượt scope
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { AuditApplicationService } from '@/cells/kernel/audit-cell/application/services/AuditApplicationService';
 
 export type LockdownState = 'ACTIVE' | 'QUARANTINED' | 'READ_ONLY' | 'RELEASED';

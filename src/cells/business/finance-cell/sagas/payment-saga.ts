@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports pending migration
 
-import { EventBridge } from '../../../../../services/eventBridge';
+import { EventBus } from '../../../../core/events/event-bus';
 import { PaymentAggregate } from '../../domain/Payment.aggregate';
-import { EventEnvelope } from '../../../../../types';
+import { EventEnvelope } from '../../../../types';
 import { RetryPolicy } from '../../infrastructure/messaging/RetryPolicy';
 import { DeadLetterHandler } from '../../infrastructure/messaging/DeadLetterHandler';
 import { FinanceAuditLogger } from '../../infrastructure/audit/AuditLogger';
@@ -16,7 +17,7 @@ export class PaymentSaga {
   
   public static init() {
     // Lắng nghe yêu cầu thanh toán từ Gateway/UI
-    EventBridge.subscribe('finance.invoice.created.v1', async (event: EventEnvelope) => {
+    EventBus.on('finance.invoice.created.v1', async (event: EventEnvelope) => {
       await this.handleInvoiceIssued(event);
     });
   }

@@ -11,7 +11,7 @@
 //   ProductionSpecReady (confirmed) → inventory-cell
 //   NaSiLinked        → warranty-cell
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { SkuModel, ModelFormat } from '../entities/sku-model.entity';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
@@ -175,3 +175,12 @@ export const design3dEngine = new Design3dEngine();
 
 // ── cell.metric heartbeat (SCAR S28 compliance) ──
 EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'design-3d-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'design-3d-cell', undefined);
+
+
+// ── Stub — pending full implementation ──
+export interface Design3dEvent {
+  type: string;
+  designId: string;
+  payload: Record<string, unknown>;
+  timestamp: number;
+}

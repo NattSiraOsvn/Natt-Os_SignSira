@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 
 /**
  * 🛡️ NATT-OS IMMUNE GUARD
@@ -7,7 +8,7 @@
  * "Hệ miễn dịch của NATT-OS không có khái niệm thỏa hiệp. 
  * Mọi thực thể không mang dấu ấn ADN của Anh Nat sẽ bị từ chối bóc tách."
  */
-import { SmartLinkEnvelope } from './shared.types';
+import { SmartLinkEnvelope } from '../../shared-kernel/shared.types';
 
 /**
  * 🔱 validateBoundary: Hàng rào xác thực ADN tại cổng vào mỗi Cell.

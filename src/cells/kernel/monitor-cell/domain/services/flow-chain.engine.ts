@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 /**
  * NATT-OS Flow Chain Engine v1.0 — V5 Condition 1 + 3
  */

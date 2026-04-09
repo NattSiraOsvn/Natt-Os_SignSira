@@ -1,6 +1,7 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
 
-import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, WarehouseLocation } from '@/shared-kernel/shared.types';
+
+import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, WarehouseLocation } from '../../shared-kernel/shared.types';
 
 // ⚠️ DATA ISOLATION: Seed data defined locally to prevent cross-boundary imports
 const PRODUCT_SEED_DATA = [

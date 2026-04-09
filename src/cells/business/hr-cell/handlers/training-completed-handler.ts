@@ -1,8 +1,9 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — pending proper fix
 
 import { ProductionBase } from '../../ProductionBase.ts';
-import { EventEnvelope, TrainingStatus } from '../../../../../types.ts';
+import { EventEnvelope, TrainingStatus } from '../../../../types';
 
 /**
  * 🎓 TRAINING COMPLETED HANDLER

@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import { traceLogger } from "@/satellites/trace-logger/trace.logger";
 import { InventorySmartLinkPort } from "../../ports/inventory-smartlink.port";
 

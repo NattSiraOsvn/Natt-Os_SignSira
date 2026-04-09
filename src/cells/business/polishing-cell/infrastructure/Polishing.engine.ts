@@ -1,10 +1,10 @@
-// @ts-nocheck
+
 /**
  * Polishing.engine.ts — infrastructure wrapper
  * Path: src/cells/business/polishing-cell/infrastructure/
  */
 
-import { EventBus } from '../../../../../core/events/event-bus';
+import { EventBus } from '../../../../core/events/event-bus';
 
 export interface PolishingInput {
   productId:   string;

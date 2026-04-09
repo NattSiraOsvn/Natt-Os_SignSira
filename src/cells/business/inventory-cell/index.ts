@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // inventory-cell/index.ts — Wave 4 wire: diamond-normalize + EventBus
 export { InventoryEngine } from './infrastructure/Inventory.engine';
 export { ProcessWipCompletedUseCase } from './application/inventory.usecase';
@@ -22,7 +23,7 @@ export type {
 } from './domain/engines/diamond-normalize.engine';
 
 // Wire: diamond normalize → EventBus
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../core/events/event-bus';
 import { diamondNormalizeV2 } from './domain/engines/diamond-normalize.engine';
 import { tachMaVien } from './domain/engines/diamond-normalize.engine';
 

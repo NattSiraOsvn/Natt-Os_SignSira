@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 /**
  * stone-cell — infrastructure/stone.engine.ts
  * Sprint 2 | Tâm Luxury NATT-OS

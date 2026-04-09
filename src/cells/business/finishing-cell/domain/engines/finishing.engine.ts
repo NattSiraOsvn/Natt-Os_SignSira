@@ -1,10 +1,10 @@
-// @ts-nocheck
+
 /**
  * finishing.engine.ts — Chất lượng cuối cùng của sản phẩm
  * SPEC: Can P5 | Inspection = gate cuối — fail → không xuất kho
  */
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export type FinishingStage = 'rough' | 'polish' | 'plating' | 'inspection';
 

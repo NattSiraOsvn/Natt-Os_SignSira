@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports pending migration
 
-import { EventBridge } from '../../../../../services/eventBridge';
+import { EventBus } from '../../../../core/events/event-bus';
 import { InvoiceAggregate } from '../../domain/Invoice.aggregate';
-import { EventEnvelope, PersonaID } from '../../../../../types';
+import { EventEnvelope, PersonaID } from '../../../../types';
 import { AuditProvider } from '../../../../../services/admin/AuditService';
 import { NotifyBus } from '../../../../../services/notificationService';
 
@@ -11,11 +12,11 @@ export class FinanceSaga {
   private static processedEvents: Set<string> = new Set();
 
   public static init() {
-    EventBridge.subscribe('sales.order.created.v1', async (event: EventEnvelope) => {
+    EventBus.on('sales.order.created.v1', async (event: EventEnvelope) => {
       await this.handleOrderCreated(event);
     });
 
-    EventBridge.subscribe('warehouse.inventory.insufficient.v1', async (event: EventEnvelope) => {
+    EventBus.on('warehouse.inventory.insufficient.v1', async (event: EventEnvelope) => {
       await this.handleInventoryInsufficient(event);
     });
   }
@@ -53,7 +54,7 @@ export class FinanceSaga {
       payload: invoice.getState()
     };
 
-    await EventBridge.publish(outEvent.event_name, outEvent);
+    await EventBus.emit(outEvent.event_name, outEvent);
     this.processedEvents.add(event.event_id);
   }
 

@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
 import { publishWarrantySignal } from '../../ports/prdwarranty-smartlink.port';

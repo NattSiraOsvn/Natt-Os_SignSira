@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // prdmaterials-cell/domain/services/prdmaterials.engine.ts
 // Wave C-1 — Quản lý láp đúc + phân bổ vàng 24K theo TL sáp
 //
@@ -10,7 +11,7 @@
 //   MaterialLossReported → audit-cell / compliance-cell  (khi hao hụt vượt ngưỡng)
 //   GoldIssued           → casting-cell                  (xác nhận vàng đã xuất)
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '@/core/events/typed-eventbus';
 import { createLap, markDefect, Lap, LapItem } from '../prdmaterials.entity';
 import { assessPrdMaterialsConfidence } from './prdmaterials.confidence';

@@ -24,7 +24,7 @@ export * from './ports/period-close-smartlink.port';
 
 // ── BCTC Wire: REPORT_GENERATED → trigger period closing ──
 // SPEC §3: period-close-cell lắng REPORT_GENERATED → đóng sổ
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../core/events/event-bus';
 import { ClosingSession } from './domain/entities/closing-session.entity';
 
 EventBus.on('REPORT_GENERATED', async (event: unknown) => {

@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import{WarehouseSmartLinkPort}from"../../ports/warehouse-smartlink.port";
 import{EventBus}from"../../../../core/events/event-bus";
 export type TransferStatus="PENDING"|"IN_TRANSIT"|"DELIVERED"|"CANCELLED";

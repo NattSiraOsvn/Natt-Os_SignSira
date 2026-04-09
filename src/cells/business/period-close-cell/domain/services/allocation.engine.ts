@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { ClosingSession } from '../entities/closing-session.entity';
 import { ClosingRule } from '../entities/closing-rule.entity';
 

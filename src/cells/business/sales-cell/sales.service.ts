@@ -1,7 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
 
-import { EventBridgeProvider } from '@/event-cell/event-bridge.service';
-import { SmartLinkEnvelope } from '@/shared-kernel/shared.types';
+
+import { EventBus } from '../../../core/events/event-bus';
+import { SmartLinkEnvelope } from '../../shared-kernel/shared.types';
 
 class SalesService {
   private static instance: SalesService;
@@ -17,7 +18,7 @@ class SalesService {
     this.orders.unshift(newOrder);
     
     // Emit event to Bridge via SmartLink logic
-    await EventBridgeProvider.publish('sales.order.created.v1', {
+    await EventBus.emit('sales.order.created.v1', {
       event_name: 'sales.order.created.v1',
       event_version: '1.0',
       event_id: crypto.randomUUID(),

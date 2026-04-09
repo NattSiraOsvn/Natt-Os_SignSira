@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 export * from './order.identity';
 export * from './order.engine';
 export * from './order.confidence';

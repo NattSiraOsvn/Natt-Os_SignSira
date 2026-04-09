@@ -1,6 +1,6 @@
 export const finishingWiring = { cellId: "finishing-cell", status: "WIRED" } as const;
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../core/events/event-bus';
 
 // Wire wip:phoi → finishing-cell handler (orphan fix §30)
 EventBus.on('wip:phoi', (payload: any) => {

@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../../core/events/event-bus";
 
 export class PeriodCloseGuard {
     async canClose(period: string): Promise<{ allowed: boolean; reasons: string[] }> {

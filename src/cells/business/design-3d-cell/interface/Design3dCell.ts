@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { Design3dApplicationService } from "../application/services"
 import { IDesign3dCell } from "../ports"
 import { SkuModel } from "../domain/entities"

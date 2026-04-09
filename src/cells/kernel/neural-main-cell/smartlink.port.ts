@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // ============================================================
 // SMARTLINK PORT (Điều 5, thành phần 6)
 // Pattern: forgeSmartLinkPort({ cellId, signals{} })
@@ -6,7 +7,7 @@
 // ============================================================
 
 import { forgeSmartLinkPort } from '@/satellites/port-forge';
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../core/events/event-bus';
 
 export const NEURAL_MAIN_EVENTS = {
   CONTEXT_EXPORTED:     'neural-main.context.exported',

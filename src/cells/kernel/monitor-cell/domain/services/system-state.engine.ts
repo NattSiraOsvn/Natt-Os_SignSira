@@ -101,5 +101,5 @@ export function getLastState(): StateSnapshot | null {
 }
 
 // ── cell.metric heartbeat ──
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 EventBus.publish({ type: 'cell.metric' as any, payload: { cell: 'monitor-cell', metric: 'alive', value: 1, ts: Date.now() } }, 'monitor-cell', undefined);

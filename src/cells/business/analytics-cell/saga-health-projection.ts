@@ -1,7 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy V1 imports, pending migration
 
-import { EventEnvelope, SagaLog } from '../../../../../types.ts';
+import { EventEnvelope, SagaLog } from '../../../types';
 
 export interface SagaState {
   correlation_id: string;

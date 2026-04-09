@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // pricing-cell/index.ts — Wave 4 wire: gold-price + EventBus
 export * from "./application/services";
 export * from "./ports";
@@ -15,7 +16,7 @@ export {
 export type { GoldPriceResult } from './domain/engines/gold-price.engine';
 
 // Wire: gold-price → EventBus
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../core/events/event-bus';
 import { getGoldPriceSBJ, calcProductPrice } from './domain/engines/gold-price.engine';
 
 // Cache giá vàng — tránh gọi OCR liên tục

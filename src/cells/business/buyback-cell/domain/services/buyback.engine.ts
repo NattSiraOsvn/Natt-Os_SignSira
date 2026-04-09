@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { BuybackSmartLinkPort } from "../../ports/buyback-smartlink.port";
 /**
  * NATT-OS — Buyback Cell

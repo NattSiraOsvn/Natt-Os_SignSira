@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 // ── Subscriber: gdb.analyze.result → audit trail ──
 EventBus.on('gdb.analyze.result', (payload: any) => {

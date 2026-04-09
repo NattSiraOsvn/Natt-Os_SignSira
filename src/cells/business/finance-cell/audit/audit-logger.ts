@@ -1,9 +1,10 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // — legacy service imports, pending cell migration
 
 import { ShardingService } from '../../../../../services/blockchainService';
 import { NotifyBus } from '../../../../../services/notificationService';
-import { PersonaID } from '../../../../../types';
+import { PersonaID } from '../../../../types';
 
 export interface AuditEntry {
   action: string;

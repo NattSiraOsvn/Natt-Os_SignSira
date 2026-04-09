@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { CustomerSmartLinkPort } from "../../ports/customer-smartlink.port";
 /**
  * NATT-OS — Customer Cell

@@ -1,7 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
 import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
-import type { CellID } from "@/cells/shared-kernel/shared.types";
+import type { CellID } from "../../../../shared-kernel/shared.types";
 
 export class ResolveLinkUseCase {
   async execute(fromCellId: CellID, signalType: string, payload: unknown) {

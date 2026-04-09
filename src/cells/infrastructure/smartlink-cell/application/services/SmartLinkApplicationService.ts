@@ -1,10 +1,11 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 import { ResolveLinkUseCase } from "../use-cases/ResolveLinkUseCase";
 import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
 import { SmartLinkEngine } from "../../domain/services/smartlink.engine";
 import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
 import { SmartLinkStabilizer } from "../../domain/services/smartlink.stabilizer";
-import type { CellID } from "@/cells/shared-kernel/shared.types";
+import type { CellID } from "../../../../shared-kernel/shared.types";
 import type { FiberSummary } from "@/core/smartlink/smartlink.point";
 
 // ── Gossip state (module-level — giống SmartLinkEngine) ──────────

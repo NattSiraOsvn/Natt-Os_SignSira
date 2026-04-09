@@ -1,8 +1,9 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // order-cell/domain/services/order.engine.ts
 // Wave 1 — emit đúng event theo luồng SX-CT vs SX-KD
 // Wave 4 — thêm detectStage, ORDER_PATTERNS, extractOrderIds
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 export type LuongSP = 'SX-CT' | 'SX-KD';
@@ -173,7 +174,7 @@ export function extractOrderIds(text: unknown): ExtractedOrderId[] {
 
 
 // Wire: order.created → PRICING requests
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 EventBus.on('order.created', (payload: any) => {
   if (!payload || !payload.orderId) return;

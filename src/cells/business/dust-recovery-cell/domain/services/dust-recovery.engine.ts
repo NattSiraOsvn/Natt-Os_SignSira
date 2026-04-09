@@ -1,10 +1,11 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 /**
  * dust-recovery.engine.ts — Hao hụt vật lý trong SX nữ trang
  * SPEC: Can P5 | Ground truth: Tâm Luxury production data
  */
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '../../../../core/events/typed-eventbus';
 
 export type GoldMaterial = 'gold18k' | 'gold14k';

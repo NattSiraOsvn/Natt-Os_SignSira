@@ -2,7 +2,7 @@
 // Z = derived metric từ event rate, error ratio, latency, anomaly score
 // Audit-able, reproducible — theo resonance.policy.json
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export interface ImpedanceSnapshot {
   Z: number;

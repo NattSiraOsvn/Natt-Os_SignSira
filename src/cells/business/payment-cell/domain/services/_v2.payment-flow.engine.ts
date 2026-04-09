@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 // ═══════════════════════════════════════════════════════════
 // INHERITED FROM V2 — 2026-03-11
 // Source: versions/v2svc/services/paymentService.ts
@@ -21,7 +21,7 @@ export interface PaymentResponse {
   transactionId: string;
 }
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 // Wire: payment.received → FINANCE_CLASSIFY_ACCOUNT
 EventBus.on('payment.received', (payload: any) => {

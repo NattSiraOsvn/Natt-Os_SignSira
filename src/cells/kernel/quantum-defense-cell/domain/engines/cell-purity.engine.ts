@@ -7,7 +7,7 @@
  * Điều 9: 6 component bắt buộc
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export interface PurityViolation {
   type: string;

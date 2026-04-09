@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 /**
  * NATT-OS Sync Engine v1.1
  * Port từ JustU v9.0 — toàn bộ pipeline đồng bộ 19TB

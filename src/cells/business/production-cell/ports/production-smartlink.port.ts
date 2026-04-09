@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 // ── production-smartlink.port.ts ────────────────────────────
 export interface ProductionSignal {
   type: "PRODUCTION_STARTED" | "PRODUCTION_COMPLETED" | "WEIGHT_ANOMALY" | "MATERIAL_LOSS";

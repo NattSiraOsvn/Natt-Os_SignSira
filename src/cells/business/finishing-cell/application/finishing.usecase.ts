@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 /**
  * finishing-cell — application/finishing.usecase.ts
  * Sprint 2 | Tâm Luxury NATT-OS

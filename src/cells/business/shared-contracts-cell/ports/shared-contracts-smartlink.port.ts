@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 // ── shared-contracts-smartlink.port.ts ──────────────────────
 export interface ContractSignal {
   type: "CONTRACT_CREATED" | "CONTRACT_BREACHED" | "CONTRACT_COMPLETED" | "PAYMENT_DUE";

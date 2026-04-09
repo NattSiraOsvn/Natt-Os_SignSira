@@ -1,11 +1,12 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // ============================================================
 // REPORTER — Xuất báo cáo Neural MAIN
 // Điều 22.2: exportForLLMContext
 // ============================================================
 
 import type { EntityId, EntityScore } from '@/governance/qneu/types';
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../core/events/event-bus';
 
 export interface LLMContextExport {
   entityId: EntityId;

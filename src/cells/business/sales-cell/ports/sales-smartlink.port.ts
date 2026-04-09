@@ -1,5 +1,5 @@
 import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 
 export interface SalesSignal {
   type: "SALES_ORDER_CREATED" | "SALES_ORDER_CONFIRMED" | "SALES_ORDER_CANCELLED" | "QUOTE_ISSUED";

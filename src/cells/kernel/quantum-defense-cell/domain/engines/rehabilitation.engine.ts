@@ -4,7 +4,7 @@
  * 3 phases: Constitutional re-education → Safety test → Restore
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { AuditApplicationService } from '@/cells/kernel/audit-cell/application/services/AuditApplicationService';
 
 export type RehabStatus = 'PENDING' | 'PHASE_1' | 'PHASE_2' | 'PHASE_3' | 'RESTORED' | 'FAILED';

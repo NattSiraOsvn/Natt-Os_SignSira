@@ -1,5 +1,5 @@
-import { EventBus } from '@/core/events/event-bus';
-// @ts-nocheck
+import { EventBus } from '../../../../../core/events/event-bus';
+
 // Điều 9 §2 — Capability
 import { ConstantsSmartLinkPort } from '../../ports/constants-smartlink.port';
 

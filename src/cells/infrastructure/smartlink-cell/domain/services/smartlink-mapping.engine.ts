@@ -1,6 +1,7 @@
-// @ts-nocheck
+// @ts-nocheck — TODO: fix type errors, remove this pragma
+
 // SmartLink Mapping — ánh xạ signal giữa các cell (Điều 22)
-import type { CellID } from "@/cells/shared-kernel/shared.types";
+import type { CellID } from "../../../../shared-kernel/shared.types";
 
 export interface SignalMap {
   fromCellId: CellID;

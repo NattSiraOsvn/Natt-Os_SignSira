@@ -8,7 +8,7 @@
  * Điều 9: 6 component bắt buộc
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { AuditApplicationService } from '@/cells/kernel/audit-cell/application/services/AuditApplicationService';
 
 export interface AICommand {

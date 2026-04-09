@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { WarrantySmartLinkPort } from "../../ports/warranty-smartlink.port";
 /**
  * NATT-OS — Warranty Cell

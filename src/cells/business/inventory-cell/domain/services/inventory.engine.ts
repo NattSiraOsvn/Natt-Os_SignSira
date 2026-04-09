@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * inventory.engine.ts — Tồn kho theo TT200 chuẩn
  * SPEC: Can P5
@@ -10,7 +10,7 @@
  * Sync với: TK154 → TK155 → TK632
  */
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export type InventoryType = 'gold' | 'melee' | 'diamond_center' | 'material';
 

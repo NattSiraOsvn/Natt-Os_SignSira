@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { PhapCheSmartLinkPort } from "../../ports/phapche-smartlink.port";
 import { Contract, ContractType, LegalAlert } from '../entities/contract.entity';
 

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 // ═══════════════════════════════════════════════════════════
 // INHERITED FROM V2 — 2026-03-11
 // Source: versions/v2svc/types/accounting.types.ts
@@ -6,7 +6,7 @@
 // ═══════════════════════════════════════════════════════════
 
 
-import { SalesChannel, OrderStatus, WarehouseLocation, Customer, OrderItem, LogisticsInfo, PaymentInfo, CommissionInfo } from '../types';
+import { SalesChannel, OrderStatus, WarehouseLocation, Customer, OrderItem, LogisticsInfo, PaymentInfo, CommissionInfo } from '../../../../../types';
 
 // Core accounting types
 export interface AccountingEntry {

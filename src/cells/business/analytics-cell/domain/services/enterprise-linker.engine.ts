@@ -1,5 +1,5 @@
-import { EventBus } from '@/core/events/event-bus';
-// @ts-nocheck
+import { EventBus } from '../../../../../core/events/event-bus';
+
 // ── enterprise-linker.engine.ts ─────────────────────────────
 // Analytics: liên kết dữ liệu đa nguồn → KPI tổng hợp
 // Path: src/cells/business/analytics-cell/domain/services/

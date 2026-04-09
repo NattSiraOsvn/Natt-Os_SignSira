@@ -1,5 +1,5 @@
 // ── promotion-smartlink.port.ts ──────────────────────────────
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 
 export interface PromotionSignal {
   type: "PROMOTION_APPLIED" | "PROMOTION_REJECTED" | "MARGIN_WARNING";

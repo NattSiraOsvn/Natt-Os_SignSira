@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 // ── compliance-smartlink.port.ts ────────────────────────────
 export interface ComplianceSignal {
   type: "FRAUD_DETECTED" | "COMPLIANCE_OK" | "AUDIT_REQUIRED" | "ROUND_NUMBER_ANOMALY";

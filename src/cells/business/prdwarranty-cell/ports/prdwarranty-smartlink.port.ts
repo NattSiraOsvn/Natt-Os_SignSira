@@ -1,4 +1,4 @@
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 // ── prdwarranty-smartlink.port.ts ───────────────────────────
 export interface WarrantySignal {
   type: "WARRANTY_CLAIMED" | "WARRANTY_APPROVED" | "WARRANTY_CRITICAL" | "WARRANTY_EXPIRED";

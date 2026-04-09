@@ -1,5 +1,5 @@
 // supplier-smartlink.port.ts
-import { EventBus } from "@/core/events/event-bus";
+import { EventBus } from "../../../../core/events/event-bus";
 
 export interface SupplierSignal {
   type: "SUPPLIER_APPROVED" | "SUPPLIER_REJECTED" | "SUPPLIER_RISK_FLAGGED" | "PURCHASE_ORDERED";

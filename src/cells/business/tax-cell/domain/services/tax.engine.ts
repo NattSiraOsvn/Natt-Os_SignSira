@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 // Điều 9 §2 — Capability
 import { taxIdentity } from './tax.identity';
 

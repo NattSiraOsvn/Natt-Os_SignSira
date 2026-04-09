@@ -8,7 +8,7 @@
  * - Emit anomaly.detected → ThresholdEngine xử lý
  */
 
-import { EventBus } from '@/core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '@/core/events/typed-eventbus';
 
 interface WatchRule {
