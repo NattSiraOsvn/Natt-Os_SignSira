@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { BusinessMetrics, UserRole, UserPosition, ActionLog, PersonaID } from '../types';
 import AIAvatar from './AIAvatar';
+import { NattMedal } from './common/NattMedal';
 
 interface MasterDashboardProps {
   metrics: BusinessMetrics;
@@ -16,24 +17,24 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
   return (
     <div className="h-full flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar gap-8 bg-[#020202] pb-40 animate-in fade-in duration-700">
       
-      {/* 1. SUPREME HUD - CHỈ SỐ SỐNG CÒN (5 CHỈ SỐ) */}
+      {/* 1. SUPREME HUD - NATT-CELL MEDALS (Bắt Xung HEYNA OPT-01R) */}
       <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 shrink-0">
-         {[
-           { label: 'Doanh thu Thuần (NET)', value: metrics.revenue.toLocaleString() + ' đ', color: 'text-cyan-400', icon: '💰' },
-           { label: 'Thuế phải nộp (VAT/TNDN)', value: metrics.totalTaxDue.toLocaleString() + ' đ', color: 'text-red-400', icon: '⚖️' },
-           { label: 'Quỹ Lương Hệ Thống', value: metrics.totalPayroll.toLocaleString() + ' đ', color: 'text-indigo-400', icon: '👥' },
-           { label: 'Chi phí vận hành', value: metrics.currentOperatingCost.toLocaleString() + ' đ', color: 'text-pink-400', icon: '📉' },
-           { label: 'Nhập khẩu (GEMS/GOLD)', value: metrics.importVolume.toLocaleString() + ' lô', color: 'text-amber-500', icon: '🚢' },
-         ].map((stat, i) => (
-           <div key={i} className="natt-cell-medal p-6 bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all duration-500 hover:bg-white/10 flex flex-col justify-between hover:border-white/20 transition-all group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-              <div className="flex justify-between items-start mb-4">
-                 <span className="text-[9px] text-gray-500 font-black uppercase tracking-[0.2em] leading-tight">{stat.label}</span>
-                 <span className="text-lg opacity-40 group-hover:opacity-100 transition-opacity">{stat.icon}</span>
-              </div>
-              <p className={`text-xl font-mono font-black italic tracking-tighter ${stat.color}`}>{stat.value}</p>
-           </div>
-         ))}
+          {[
+            { label: 'Doanh thu Thuần (NET)', value: metrics.revenue.toLocaleString() + ' đ', color: 'text-cyan-400', icon: '💰', domain: 'finance' },
+            { label: 'Thuế phải nộp (VAT/TNDN)', value: metrics.totalTaxDue.toLocaleString() + ' đ', color: 'text-red-400', icon: '⚖️', domain: 'tax' },
+            { label: 'Quỹ Lương Hệ Thống', value: metrics.totalPayroll.toLocaleString() + ' đ', color: 'text-indigo-400', icon: '👥', domain: 'hr' },
+            { label: 'Chi phí vận hành', value: metrics.currentOperatingCost.toLocaleString() + ' đ', color: 'text-pink-400', icon: '📉', domain: 'finance' },
+            { label: 'Nhập khẩu (GEMS/GOLD)', value: metrics.importVolume.toLocaleString() + ' lô', color: 'text-amber-500', icon: '🚢', domain: 'customs' },
+          ].map((stat, i) => (
+            <NattMedal 
+              key={i} 
+              label={stat.label} 
+              value={stat.value} 
+              icon={stat.icon} 
+              colorClass={stat.color} 
+              domain={stat.domain} 
+            />
+          ))}
       </section>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 flex-1">
