@@ -108,7 +108,7 @@ const ProductionWallboard: React.FC = () => {
            { label: 'Hao hụt bình quân', value: metrics.avgLoss.toFixed(2) + '%', trend: 'DOWN', color: 'text-amber-500' },
            { label: 'Sản lượng ngày', value: metrics.dailyOutput + ' SP', trend: 'UP', color: 'text-white' }
          ].map((m, i) => (
-           <div key={i} className="ai-panel p-10 flex flex-col items-center text-center bg-white/[0.02] border-white/10">
+           <div key={i} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 flex flex-col items-center text-center bg-white/[0.02] border-white/10">
               <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest mb-4">{m.label}</p>
               <p className={`text-6xl font-mono font-black italic tracking-tighter ${m.color}`}>{m.value}</p>
               <div className="mt-4 flex items-center gap-2">

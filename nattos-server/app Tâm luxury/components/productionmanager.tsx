@@ -20,6 +20,7 @@ const ProductionManager: React.FC<ProductionManagerProps> = ({ currentRole, logA
   }, []);
 
   const handleStartOrder = (task: DistributedTask) => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'production.started', source: 'ProductionManager', taskId: task.id } }));
     logAction('PROD_ORDER_INIT', `Phát lệnh sản xuất Master từ OMEGA ID: ${task.id}`);
     alert(`💎 ĐÃ KHỞI TẠO ĐƠN HÀNG MASTER: Dữ liệu Shard ${task.id} đã được đẩy vào Pipeline Sản Xuất.`);
     TaskRouter.completeTask(task.id);
