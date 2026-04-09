@@ -60,7 +60,7 @@ const HRCompliance: React.FC<HRComplianceProps> = () => {
         </div>
       </header>
 
-      <div className="ai-panel p-10 bg-black/20 overflow-hidden">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/20 overflow-hidden">
          {activeTab === 'payroll' && (
            <div className="overflow-x-auto no-scrollbar">
               <table className="w-full text-left text-[11px]">

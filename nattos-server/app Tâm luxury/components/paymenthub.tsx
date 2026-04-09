@@ -46,7 +46,7 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
       
       <header className="border-b border-white/5 pb-10 flex flex-col lg:flex-row justify-between items-end gap-8 print:hidden">
         <div>
@@ -65,7 +65,7 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
          
          {/* FORM CONFIGURATION */}
          <div className="space-y-8 animate-in slide-in-from-left-6 duration-700 print:hidden">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 shadow-2xl relative overflow-hidden">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 shadow-2xl relative overflow-hidden">
                <h3 className="text-xl font-bold italic text-amber-500 uppercase tracking-widest mb-10 flex items-center gap-3">
                   <span className="text-2xl">⚙️</span> Cấu hình giao dịch
                </h3>
@@ -131,7 +131,7 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
                </div>
             </div>
 
-            <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={isGenerating} />
                   <h4 className="ai-sub-headline text-blue-400 italic">Thiên - Cố vấn Tài chính</h4>
@@ -143,7 +143,7 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
          {/* QR DISPLAY AREA */}
          <div className="h-full flex flex-col gap-8 print:p-0">
             {paymentData ? (
-              <div className="ai-panel p-10 bg-white border-white/10 flex flex-col items-center text-center animate-in zoom-in-95 duration-500 shadow-[0_0_100px_rgba(245,158,11,0.1)] print:border-none print:shadow-none print:bg-white">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-white border-white/10 flex flex-col items-center text-center animate-in zoom-in-95 duration-500 shadow-[0_0_100px_rgba(245,158,11,0.1)] print:border-none print:shadow-none print:bg-white">
                  <div className="mb-8 print:hidden">
                     <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Master QR Node</h4>
                     <p className="text-xs text-amber-600 font-mono mt-1 italic">Authorized for: {customerName || 'VALUED CUSTOMER'}</p>
@@ -169,14 +169,14 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
                  </div>
               </div>
             ) : (
-              <div className="ai-panel p-20 flex flex-col items-center justify-center text-center opacity-20 border-dashed border-white/10 h-full">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-20 flex flex-col items-center justify-center text-center opacity-20 border-dashed border-white/10 h-full">
                  <div className="text-[120px] mb-10 grayscale">📳</div>
                  <p className="text-2xl font-serif uppercase tracking-[0.4em]">Payment Node Ready</p>
                  <p className="text-xs mt-4 uppercase font-black text-gray-500 tracking-[0.2em]">Cấu hình giao dịch để Thiên băm mã QR Omega.</p>
               </div>
             )}
 
-            <div className="ai-panel p-8 bg-black/60 border-white/5 print:hidden">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/60 border-white/5 print:hidden">
                <h4 className="ai-sub-headline text-gray-500 mb-6 uppercase italic">Giao thức bảo mật (Security)</h4>
                <div className="space-y-4">
                   <div className="flex justify-between items-center text-[10px]">

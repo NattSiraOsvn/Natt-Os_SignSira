@@ -28,7 +28,7 @@ const SalesArchitectureView: React.FC = () => {
   ];
 
   return (
-    <div className="p-8 md:p-12 h-full overflow-y-auto no-scrollbar bg-[#020202] animate-in fade-in duration-700 pb-32">
+    <div className="p-8 md:p-12 h-full overflow-y-auto no-scrollbar bg-transparent animate-in fade-in duration-700 pb-32">
       <header className="mb-12 border-b border-white/5 pb-8">
         <div className="flex items-center gap-4 mb-2">
            <span className="text-4xl">🏢</span>
@@ -62,7 +62,7 @@ const SalesArchitectureView: React.FC = () => {
       </div>
 
       {/* LOGIC ENGINE LAYER */}
-      <div className="ai-panel p-10 bg-gradient-to-r from-indigo-900/10 to-purple-900/10 border-indigo-500/20 mb-16 relative">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-gradient-to-r from-indigo-900/10 to-purple-900/10 border-indigo-500/20 mb-16 relative">
          <h3 className="text-center text-indigo-400 font-black uppercase tracking-[0.5em] mb-10 text-xs">Sales Core Engine Processing</h3>
          
          <div className="flex flex-wrap justify-center gap-4 md:gap-10 relative z-10">
@@ -87,7 +87,7 @@ const SalesArchitectureView: React.FC = () => {
       {/* WAREHOUSE DISTRIBUTION LAYER */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
          {warehouses.map(wh => (
-            <div key={wh.id} className="ai-panel p-8 bg-black/40 border-white/5 flex items-center justify-between group hover:border-amber-500/30 transition-all">
+            <div key={wh.id} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5 flex items-center justify-between group hover:border-amber-500/30 transition-all">
                <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🏭</div>
                   <div>

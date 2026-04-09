@@ -188,7 +188,7 @@ const DevPortal: React.FC<DevPortalProps> = () => {
            <div className="h-full grid grid-cols-1 xl:grid-cols-2 gap-10 overflow-y-auto no-scrollbar pb-20 animate-in fade-in">
               {/* LEFT: CONTROL & LOGS */}
               <div className="space-y-8">
-                 <div className="ai-panel p-10 bg-black/40 border-amber-500/30 shadow-2xl relative overflow-hidden">
+                 <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-amber-500/30 shadow-2xl relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-10 text-8xl grayscale">🧠</div>
                     <h3 className="text-2xl font-bold text-amber-500 uppercase italic tracking-widest mb-6">Neural Training Core</h3>
                     <p className="text-xs text-gray-400 mb-8 leading-relaxed">
@@ -204,7 +204,7 @@ const DevPortal: React.FC<DevPortalProps> = () => {
                     </div>
                  </div>
 
-                 <div className="ai-panel p-8 bg-black/60 border-white/5 h-[400px] flex flex-col">
+                 <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/60 border-white/5 h-[400px] flex flex-col">
                     <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Training Log Stream</h4>
                     <div className="flex-1 overflow-y-auto no-scrollbar font-mono text-[10px] space-y-2">
                        {trainingLog.map((log, i) => (
@@ -218,7 +218,7 @@ const DevPortal: React.FC<DevPortalProps> = () => {
               </div>
 
               {/* RIGHT: RLHF CONSOLE */}
-              <div className="ai-panel p-10 bg-gradient-to-br from-indigo-900/20 to-black border-indigo-500/30 flex flex-col">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-gradient-to-br from-indigo-900/20 to-black border-indigo-500/30 flex flex-col">
                  <h3 className="text-xl font-bold text-indigo-400 uppercase italic tracking-widest mb-8 flex items-center gap-3">
                     <span className="text-2xl">⚖️</span> RLHF Feedback Loop
                  </h3>

@@ -63,7 +63,7 @@ const AppShell: React.FC<AppShellProps> = ({
   }, [currentRole]);
 
   return (
-    <div className="flex h-screen w-screen bg-[#020202] overflow-hidden relative text-white">
+    <div className="flex h-screen w-screen bg-transparent overflow-hidden relative text-white">
       {/* DESKTOP SIDEBAR */}
       <aside className={`hidden md:flex flex-col transition-all duration-500 ease-in-out bg-black/95 backdrop-blur-3xl border-r border-white/5 z-50 ${isSidebarOpen ? 'w-80' : 'w-20'}`}>
         <div className="h-20 flex items-center justify-between px-6 shrink-0 border-b border-white/5 bg-gradient-to-r from-amber-500/5 to-transparent">

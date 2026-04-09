@@ -119,7 +119,7 @@ const DataArchiveVault: React.FC<DataArchiveVaultProps> = ({ currentRole, logAct
   const selectedArchive = archives.find(a => a.year === activeYear);
 
   return (
-    <div className="h-full bg-[#020202] p-8 md:p-12 overflow-hidden flex flex-col animate-in fade-in duration-700">
+    <div className="h-full bg-transparent p-8 md:p-12 overflow-hidden flex flex-col animate-in fade-in duration-700">
       
       <header className="flex flex-col md:flex-row justify-between items-end border-b border-white/5 pb-10 mb-8 gap-6">
          <div>
@@ -184,7 +184,7 @@ const DataArchiveVault: React.FC<DataArchiveVaultProps> = ({ currentRole, logAct
             {selectedArchive ? (
                <div className="animate-in slide-in-from-bottom-10 duration-500 space-y-8">
                   {/* HERO CARD */}
-                  <div className="ai-panel p-10 bg-black/60 border-white/10 relative overflow-hidden">
+                  <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/60 border-white/10 relative overflow-hidden">
                      <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-[120px] font-serif italic select-none pointer-events-none">
                         {selectedArchive.year}
                      </div>
@@ -254,7 +254,7 @@ const DataArchiveVault: React.FC<DataArchiveVaultProps> = ({ currentRole, logAct
 
          {/* RIGHT: ACTIONS & STATUS */}
          <div className="xl:col-span-3 flex flex-col gap-8">
-            <div className="ai-panel p-8 bg-amber-500/5 border-amber-500/20 shadow-2xl">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-amber-500/5 border-amber-500/20 shadow-2xl">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" />
                   <h4 className="text-sm font-black text-amber-500 uppercase tracking-widest">Thiên Advisor</h4>
@@ -275,7 +275,7 @@ const DataArchiveVault: React.FC<DataArchiveVaultProps> = ({ currentRole, logAct
             </div>
 
             {selectedArchive && (
-               <div className="ai-panel p-8 bg-black/40 border-white/5">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5">
                   <h4 className="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-4">Retention Lifecycle</h4>
                   <div className="relative pl-4 border-l border-white/10 space-y-6">
                      <div className="relative">

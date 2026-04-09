@@ -29,7 +29,7 @@ const UnifiedReportingHub: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="h-full flex flex-col items-center justify-center bg-[#020202]">
+      <div className="h-full flex flex-col items-center justify-center bg-transparent">
         <div className="text-9xl mb-8 animate-pulse grayscale">🧬</div>
         <h2 className="text-3xl font-serif gold-gradient italic tracking-widest">Đang liên kết Shard Đa Chiều...</h2>
       </div>
@@ -47,7 +47,7 @@ const UnifiedReportingHub: React.FC = () => {
   }));
 
   return (
-    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto no-scrollbar space-y-12 animate-in fade-in duration-700 pb-40 bg-[#020202]">
+    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto no-scrollbar space-y-12 animate-in fade-in duration-700 pb-40 bg-transparent">
       
       <header className="flex flex-col md:flex-row justify-between items-end gap-8 border-b border-white/5 pb-10">
         <div>
@@ -66,7 +66,7 @@ const UnifiedReportingHub: React.FC = () => {
 
       {/* OVERVIEW GRAPHS */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
-         <div className="ai-panel p-10 bg-black/40 border-white/10 h-[500px] flex flex-col">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 h-[500px] flex flex-col">
             <h3 className="ai-sub-headline text-indigo-400 mb-8 uppercase italic">Phân tích Hiệu quả từng SKU</h3>
             <div className="flex-1 w-full min-h-[350px]">
                {isMounted && (
@@ -84,7 +84,7 @@ const UnifiedReportingHub: React.FC = () => {
             </div>
          </div>
 
-         <div className="ai-panel p-10 bg-black/40 border-white/10 h-[500px] flex flex-col">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 h-[500px] flex flex-col">
             <h3 className="ai-sub-headline text-amber-500 mb-8 uppercase italic">Đối soát Dòng tiền (Reconciliation Flow)</h3>
             <div className="flex-1 w-full min-h-[350px]">
                {isMounted && (
@@ -104,7 +104,7 @@ const UnifiedReportingHub: React.FC = () => {
       </div>
 
       {/* DETAILED TABLE */}
-      <div className="ai-panel overflow-hidden border-white/10 bg-black/40 shadow-2xl">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all overflow-hidden border-white/10 bg-black/40 shadow-2xl">
          <div className="p-8 border-b border-white/10 bg-white/[0.02] flex justify-between items-center">
             <h3 className="text-xl font-bold italic text-white uppercase tracking-tighter">Bảng Kê Chi Tiết Liên Kết</h3>
          </div>

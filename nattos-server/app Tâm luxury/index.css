@@ -193,3 +193,24 @@
     display: none !important;
   }
 }
+
+
+/* --- NATT-OS OPT-01R (SINH THỂ SỐ CSS) --- */
+@keyframes butterfly-ripple {
+  0% { width: 0px; height: 0px; opacity: 0.8; border-width: 8px; }
+  100% { width: 1500px; height: 1500px; opacity: 0; border-width: 1px; }
+}
+.animate-butterfly-ripple {
+  animation: butterfly-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+/* Security Overlay (Khiên Lượng Tử) - Tự mờ khi IDLE */
+html[data-resonance-state="IDLE"] #root {
+  filter: blur(12px) grayscale(70%) brightness(0.5);
+  transition: filter 4s ease-in-out;
+  pointer-events: none; /* Khóa tương tác khi ngủ */
+}
+html:not([data-resonance-state="IDLE"]) #root {
+  filter: blur(0px) grayscale(0%) brightness(1);
+  transition: filter 0.5s ease-out;
+}

@@ -43,7 +43,7 @@ const RBACManager: React.FC = () => {
       <div className="grid grid-cols-1 xl:grid-cols-4 gap-12">
          
          <div className="xl:col-span-3 space-y-10">
-            <div className="ai-panel overflow-hidden border-white/5 bg-black/40 shadow-2xl relative">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all overflow-hidden border-white/5 bg-black/40 shadow-2xl relative">
                <div className="absolute top-0 right-0 p-10 opacity-[0.03] text-[120px] font-serif italic select-none">MATRIX</div>
                
                <div className="overflow-x-auto no-scrollbar">
@@ -101,7 +101,7 @@ const RBACManager: React.FC = () => {
          </div>
 
          <div className="space-y-10">
-            <div className="ai-panel p-8 border-indigo-500/30 bg-indigo-500/5 shadow-xl flex flex-col items-center text-center">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-indigo-500/30 bg-indigo-500/5 shadow-xl flex flex-col items-center text-center">
                <AIAvatar personaId={PersonaID.KRIS} size="lg" isThinking={false} />
                <h4 className="ai-sub-headline text-indigo-400 mt-8 mb-4">Identity Guard (Kris)</h4>
                <p className="text-[12px] text-indigo-100/70 italic leading-relaxed font-light mb-8">
@@ -110,7 +110,7 @@ const RBACManager: React.FC = () => {
                <button className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[9px] font-black uppercase text-gray-500 hover:text-white hover:border-indigo-500/50 transition-all">Xuất Identity Audit Log</button>
             </div>
 
-            <div className="ai-panel p-8 bg-black/60 border-white/5">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/60 border-white/5">
                <h4 className="ai-sub-headline text-gray-500 mb-6 uppercase italic">Quick Statistics</h4>
                <div className="space-y-6">
                   <div className="flex justify-between items-center text-[10px]">

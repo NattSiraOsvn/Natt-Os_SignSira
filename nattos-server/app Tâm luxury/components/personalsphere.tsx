@@ -13,7 +13,7 @@ const PersonalSphere: React.FC<PersonalSphereProps> = ({ currentPosition, curren
   const [activeTab, setActiveTab] = useState('DASHBOARD');
   
   return (
-    <div className="h-full bg-[#020202] text-white p-8 overflow-y-auto no-scrollbar pb-32">
+    <div className="h-full bg-transparent text-white p-8 overflow-y-auto no-scrollbar pb-32">
       <header className="flex justify-between items-end mb-12">
         <div className="flex items-center gap-6">
            <div className="relative w-24 h-24">
@@ -54,7 +54,7 @@ const PersonalSphere: React.FC<PersonalSphereProps> = ({ currentPosition, curren
          </div>
 
          <div className="space-y-8">
-            <div className="ai-panel p-8 bg-black/40 border-white/5">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" />
                   <h4 className="text-[10px] text-indigo-400 font-black uppercase">Thiên Identity Guard</h4>

@@ -78,7 +78,7 @@ const SmartLinkMapper: React.FC<SmartLinkMapperProps> = ({ currentRole, logActio
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
       
       <header className="flex flex-col lg:flex-row justify-between items-end gap-8 border-b border-white/5 pb-10">
         <div>
@@ -136,7 +136,7 @@ const SmartLinkMapper: React.FC<SmartLinkMapperProps> = ({ currentRole, logActio
             </div>
          </div>
 
-         <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col justify-center items-center text-center">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 flex flex-col justify-center items-center text-center">
             <button 
                onClick={simulateDataLoading}
                disabled={isProcessing}

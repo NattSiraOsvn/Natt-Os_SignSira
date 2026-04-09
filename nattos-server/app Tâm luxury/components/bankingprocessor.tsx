@@ -118,7 +118,7 @@ const BankingProcessor: React.FC = () => {
             { label: 'Thuế & Lệ Phí', value: summary.totalTax, color: 'text-amber-500' },
             { label: 'Dòng Tiền Net', value: summary.netFlow, color: 'text-white' },
           ].map((item, i) => (
-            <div key={i} className="ai-panel p-6 bg-white/[0.02] border-white/5">
+            <div key={i} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-white/[0.02] border-white/5">
               <p className="text-[9px] text-gray-500 uppercase font-black mb-2 tracking-widest">{item.label}</p>
               <p className={`text-xl font-mono font-bold ${item.color}`}>{item.value.toLocaleString()} đ</p>
             </div>
@@ -126,7 +126,7 @@ const BankingProcessor: React.FC = () => {
         </div>
       )}
 
-      <div className="ai-panel p-10 bg-black/40 border-white/5 shadow-2xl overflow-hidden relative">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/5 shadow-2xl overflow-hidden relative">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-xl font-bold italic flex items-center">
             <span className="mr-3">📊</span> Giao Dịch Ngân Hàng Chi Tiết (13 Cột)

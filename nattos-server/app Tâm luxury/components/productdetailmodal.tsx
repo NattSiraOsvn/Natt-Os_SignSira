@@ -16,7 +16,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300 overflow-hidden">
-      <div className="ai-panel w-full max-w-7xl max-h-[90vh] flex flex-col bg-black border-indigo-500/20 relative">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all w-full max-w-7xl max-h-[90vh] flex flex-col bg-black border-indigo-500/20 relative">
         <button onClick={onClose} className="absolute top-8 right-8 text-4xl text-gray-500 hover:text-white transition-colors z-[110]">✕</button>
         
         <div className="flex-1 overflow-y-auto no-scrollbar p-10 md:p-16">

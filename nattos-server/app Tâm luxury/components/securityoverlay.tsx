@@ -166,7 +166,7 @@ const SecurityOverlay: React.FC<SecurityOverlayProps> = ({
       {/* QUANTUM PULSE OVERLAY (SOFT STAGING) */}
       {isStaging && !isLocked && (
         <div className="fixed inset-0 z-[9998] flex flex-col items-center justify-center bg-black/40 backdrop-blur-3xl animate-in fade-in duration-700">
-           <div className="ai-panel p-16 border-cyan-500/20 bg-black/80 shadow-[0_0_100px_rgba(6,182,212,0.15)] relative overflow-hidden text-center max-w-lg rounded-[4rem]">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-16 border-cyan-500/20 bg-black/80 shadow-[0_0_100px_rgba(6,182,212,0.15)] relative overflow-hidden text-center max-w-lg rounded-[4rem]">
               <QuantumPulse message={threatDetails?.details} />
               <div className="mt-8 px-6 py-3 bg-cyan-950/40 border border-cyan-500/20 rounded-2xl inline-block">
                  <p className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-black">

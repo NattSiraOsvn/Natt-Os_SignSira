@@ -93,7 +93,7 @@ const AdvancedAnalytics: React.FC = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
          {/* CHART 1: BAR CHART */}
-         <div className="ai-panel p-10 bg-black/40 border-red-500/10 flex flex-col group overflow-hidden">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-red-500/10 flex flex-col group overflow-hidden">
             <h3 className="ai-sub-headline text-red-500 italic mb-10">CHÊNH LỆCH HDĐT vs THỰC XUẤT 2024</h3>
             <div className="w-full h-[400px] min-h-[400px]">
                {isMounted && (
@@ -112,7 +112,7 @@ const AdvancedAnalytics: React.FC = () => {
          </div>
 
          {/* CHART 2: COMPOSED CHART */}
-         <div className="ai-panel p-10 bg-black/40 border-indigo-500/10 flex flex-col overflow-hidden">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-indigo-500/10 flex flex-col overflow-hidden">
             <h3 className="ai-sub-headline text-indigo-400 italic mb-10">DỰ BÁO DOANH THU (PREDICTIVE NODE)</h3>
             <div className="w-full h-[400px] min-h-[400px]">
                {isMounted && (

@@ -16,7 +16,7 @@ const Dashboard: React.FC<DashboardProps> = ({ metrics, actionLogs, currentRole,
   const canSeeFinance = isMaster || currentRole === UserRole.LEVEL_1 || currentRole === UserRole.LEVEL_8;
 
   return (
-    <div className="h-full flex flex-col p-6 lg:p-12 overflow-y-auto no-scrollbar gap-8 lg:gap-12 bg-[#020202] pb-32">
+    <div className="h-full flex flex-col p-6 lg:p-12 overflow-y-auto no-scrollbar gap-8 lg:gap-12 bg-transparent pb-32">
       
       {/* SUPREME HEADER: ADAPTIVE */}
       <section className="shrink-0 flex flex-col lg:flex-row justify-between items-center ai-panel p-8 lg:p-12 border-white/5 bg-white/[0.01] shadow-2xl relative overflow-hidden heat-1">
@@ -59,7 +59,7 @@ const Dashboard: React.FC<DashboardProps> = ({ metrics, actionLogs, currentRole,
          {/* MAIN STATS & LOGS (8 COLS ON DESKTOP) */}
          <section className="lg:col-span-8 flex flex-col gap-8 lg:gap-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="ai-panel p-10 heat-2 group cursor-pointer hover:scale-[1.02] transition-transform">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 heat-2 group cursor-pointer hover:scale-[1.02] transition-transform">
                     <div className="flex justify-between items-start mb-6">
                         <span className="text-[10px] font-black text-amber-500 uppercase tracking-[0.4em]">FINANCE PULSE</span>
                         <span className="text-xl">💰</span>
@@ -70,7 +70,7 @@ const Dashboard: React.FC<DashboardProps> = ({ metrics, actionLogs, currentRole,
                     <p className="text-[9px] text-gray-600 uppercase mt-5 font-bold tracking-widest">Doanh thu chốt Shard (NET)</p>
                 </div>
 
-                <div className="ai-panel p-10 heat-1 group cursor-pointer hover:scale-[1.02] transition-transform">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 heat-1 group cursor-pointer hover:scale-[1.02] transition-transform">
                     <div className="flex justify-between items-start mb-6">
                         <span className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.4em]">FACTORY FLOW</span>
                         <span className="text-xl">🏭</span>
@@ -83,7 +83,7 @@ const Dashboard: React.FC<DashboardProps> = ({ metrics, actionLogs, currentRole,
             </div>
 
             {/* AUDIT TRAIL: RESPONSIVE TABLE */}
-            <div className="ai-panel flex flex-col min-h-[500px] bg-black/40 shadow-inner border-white/5 heat-0">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all flex flex-col min-h-[500px] bg-black/40 shadow-inner border-white/5 heat-0">
                <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.01]">
                   <h3 className="text-[11px] font-black text-amber-500 uppercase tracking-[0.5em] italic">
                         NHẬT KÝ SHARD (IMMUTABLE LOGS)

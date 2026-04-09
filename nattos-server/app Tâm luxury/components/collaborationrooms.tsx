@@ -162,7 +162,7 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
   };
 
   return (
-    <div className="flex h-full bg-[#020202] relative overflow-hidden">
+    <div className="flex h-full bg-transparent relative overflow-hidden">
       
       {/* SIDEBAR: DANH SÁCH PHÒNG */}
       <div className="w-80 border-r border-white/5 flex flex-col bg-black/40 backdrop-blur-3xl shrink-0">
@@ -417,7 +417,7 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
       {/* CONFIRM ACTION MODAL (Re-usable for sensitive actions) */}
       {confirmModal && confirmModal.show && (
          <div className="fixed inset-0 z-[500] flex items-center justify-center p-6 bg-black/95 backdrop-blur-3xl animate-in zoom-in-95 duration-300">
-            <div className="ai-panel w-full max-w-lg p-12 bg-black border-red-500/20 rounded-[3.5rem] shadow-2xl text-center space-y-10 relative overflow-hidden">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all w-full max-w-lg p-12 bg-black border-red-500/20 rounded-[3.5rem] shadow-2xl text-center space-y-10 relative overflow-hidden">
                <div className="absolute top-0 left-0 w-full h-1 bg-red-600"></div>
                <div className="text-6xl mb-6">🛡️</div>
                <h3 className="text-3xl font-serif gold-gradient italic uppercase tracking-tighter">Xác nhận hành động</h3>
@@ -436,7 +436,7 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
       {/* JOIN CODE MODAL */}
       {showJoinModal && (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-black/95 backdrop-blur-3xl animate-in zoom-in-95 duration-500">
-           <div className="ai-panel w-full max-md p-12 bg-black border-amber-500/30 rounded-[3.5rem] shadow-2xl text-center space-y-10">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all w-full max-md p-12 bg-black border-amber-500/30 rounded-[3.5rem] shadow-2xl text-center space-y-10">
               <div className="text-6xl mb-6">🔐</div>
               <h3 className="text-3xl font-serif gold-gradient italic uppercase tracking-tighter">Xác thực Gia nhập Shard</h3>
               <p className="text-xs text-gray-500 italic leading-relaxed">Vui lòng nhập mã Code do Anh Natt hoặc Giám đốc cung cấp để đồng bộ tri thức phòng.</p>

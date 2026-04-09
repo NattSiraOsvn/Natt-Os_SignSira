@@ -73,7 +73,7 @@ const SystemNavigator: React.FC<SystemNavigatorProps> = ({ setActiveView }) => {
   };
 
   return (
-    <div className="h-full bg-[#020202] p-8 overflow-hidden flex flex-col animate-in fade-in duration-700 relative">
+    <div className="h-full bg-transparent p-8 overflow-hidden flex flex-col animate-in fade-in duration-700 relative">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
 
       <header className="mb-8 relative z-10 flex justify-between items-end">

@@ -133,14 +133,14 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
         </div>
         
         <div className="flex gap-4">
-           <div className="ai-panel px-6 py-3 border-amber-500/20 bg-amber-500/5 text-center">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all px-6 py-3 border-amber-500/20 bg-amber-500/5 text-center">
               <p className="text-[8px] text-amber-500 font-black uppercase mb-1">Xếp hạng Node</p>
               <div className="flex gap-1 justify-center">
                  {Array.from({ length: me.stars }).map((_, i) => <span key={i} className="text-xs">⭐</span>)}
               </div>
               <p className="text-[9px] text-gray-500 mt-1 font-mono">{me.kpiPoints} KPI pts</p>
            </div>
-           <div className="ai-panel px-6 py-3 border-green-500/20 bg-green-500/5 text-center">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all px-6 py-3 border-green-500/20 bg-green-500/5 text-center">
               <p className="text-[8px] text-green-400 font-black uppercase mb-1">Thu nhập (Commission)</p>
               <p className="text-xl font-mono font-black text-white">{totalCommission.toLocaleString()} <span className="text-xs">đ</span></p>
            </div>
@@ -159,15 +159,15 @@ const SellerTerminal: React.FC<SellerTerminalProps> = ({ currentRole, currentPos
         {activeTab === 'dashboard' && (
           <div className="space-y-8 animate-in fade-in">
              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div className="ai-panel p-8 bg-green-500/5 border-green-500/20">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-green-500/5 border-green-500/20">
                    <p className="ai-sub-headline text-green-400">HH Vỏ (5%)</p>
                    <p className="text-3xl font-mono font-black text-white mt-2">{(reports.reduce((s, r) => s + r.commission.shell, 0)).toLocaleString()} <span className="text-xs">đ</span></p>
                 </div>
-                <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20">
                    <p className="ai-sub-headline text-blue-400">HH Viên (2-5%)</p>
                    <p className="text-3xl font-mono font-black text-white mt-2">{(reports.reduce((s, r) => s + r.commission.stone, 0)).toLocaleString()} <span className="text-xs">đ</span></p>
                 </div>
-                <div className="ai-panel p-8 bg-amber-500/10 border-amber-500/20 md:col-span-2 relative overflow-hidden">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-amber-500/10 border-amber-500/20 md:col-span-2 relative overflow-hidden">
                    <div className="relative z-10">
                       <p className="ai-sub-headline text-amber-500">Tổng thực lãnh (Sau Gatekeeper)</p>
                       <p className="text-4xl font-mono font-black text-white mt-2">{totalCommission.toLocaleString()} <span className="text-xs">VND</span></p>

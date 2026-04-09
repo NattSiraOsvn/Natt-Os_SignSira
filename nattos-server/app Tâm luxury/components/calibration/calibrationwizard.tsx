@@ -55,7 +55,7 @@ export const CalibrationWizard: React.FC = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-10 overflow-y-auto no-scrollbar items-center justify-center relative">
+    <div className="h-full flex flex-col bg-transparent p-10 overflow-y-auto no-scrollbar items-center justify-center relative">
        
        {/* Background Decoration */}
        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.03)_0%,_transparent_70%)] pointer-events-none"></div>
@@ -107,7 +107,7 @@ export const CalibrationWizard: React.FC = () => {
 
        {step === 'result' && detectedPersona && (
           <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 animate-in slide-in-from-bottom-10 duration-1000">
-             <div className="ai-panel p-10 bg-amber-500/5 border-amber-500/20 shadow-2xl flex flex-col items-center text-center">
+             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-amber-500/5 border-amber-500/20 shadow-2xl flex flex-col items-center text-center">
                 <h3 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.4em] mb-8">Kết quả phân tích Identity</h3>
                 <div className="w-24 h-24 rounded-[2rem] bg-black/40 border border-white/10 flex items-center justify-center text-4xl mb-6">⚡</div>
                 <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest mb-1">Tốc độ ghi nhận</p>
@@ -121,7 +121,7 @@ export const CalibrationWizard: React.FC = () => {
              </div>
 
              <div className="space-y-8">
-                <div className="ai-panel p-10 bg-black border-white/5">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black border-white/5">
                    <div className="flex items-center gap-4 mb-6">
                       <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
                       <h4 className="text-sm font-black text-white uppercase tracking-widest">Thiên Advisor</h4>

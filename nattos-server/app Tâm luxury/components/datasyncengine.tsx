@@ -112,7 +112,7 @@ const DataSyncEngine: React.FC = () => {
   };
 
   return (
-    <div className="p-8 max-w-[1800px] mx-auto h-full overflow-y-auto space-y-8 animate-in fade-in duration-500 pb-32 bg-[#020202]">
+    <div className="p-8 max-w-[1800px] mx-auto h-full overflow-y-auto space-y-8 animate-in fade-in duration-500 pb-32 bg-transparent">
       <header className="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/5 pb-8">
         <div>
           <h2 className="text-4xl font-serif gold-gradient italic tracking-tighter">CRP Sync Engine v5.0</h2>
@@ -129,7 +129,7 @@ const DataSyncEngine: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="space-y-8">
-           <div className="ai-panel p-8 bg-black/40 border-white/10">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/10">
               <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">CRP Sync Configuration</h3>
               <div className="space-y-6">
                  <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl">
@@ -144,7 +144,7 @@ const DataSyncEngine: React.FC = () => {
            </div>
 
            {conflicts.length > 0 && (
-             <div className="ai-panel p-8 bg-red-500/10 border-red-500/30 animate-pulse">
+             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-red-500/10 border-red-500/30 animate-pulse">
                 <h3 className="text-sm font-bold text-red-500 uppercase tracking-widest mb-4 flex items-center gap-2"><span>⚡</span> Unresolved CRP Conflicts ({conflicts.length})</h3>
                 <div className="space-y-4 max-h-64 overflow-y-auto no-scrollbar">
                    {conflicts.map(c => (
@@ -163,7 +163,7 @@ const DataSyncEngine: React.FC = () => {
         </div>
 
         <div className="lg:col-span-2 space-y-8">
-           <div className="ai-panel p-10 bg-black/40 border-white/10 relative overflow-hidden">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 relative overflow-hidden">
               <div className="flex justify-between items-end mb-6">
                  <div>
                     <p className="text-[9px] text-gray-500 font-black uppercase tracking-widest mb-1">Active CRP Job</p>
@@ -192,7 +192,7 @@ const DataSyncEngine: React.FC = () => {
               </div>
            </div>
 
-           <div className="ai-panel p-0 bg-black border-white/10 flex flex-col h-[400px] overflow-hidden shadow-2xl font-mono">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-0 bg-black border-white/10 flex flex-col h-[400px] overflow-hidden shadow-2xl font-mono">
               <div className="p-4 border-b border-white/10 bg-white/[0.02] flex justify-between items-center">
                  <span className="text-[10px] text-gray-400 uppercase tracking-widest">CRP Synchronization Console</span>
               </div>

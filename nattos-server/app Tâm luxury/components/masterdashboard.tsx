@@ -15,7 +15,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
   const [activeApprovalTab, setActiveApprovalTab] = useState<'PROD' | 'FINANCE' | 'HR'>('PROD');
 
   return (
-    <div className="h-full flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar gap-8 bg-[#020202] pb-40 animate-in fade-in duration-700">
+    <div className="h-full flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar gap-8 bg-transparent pb-40 animate-in fade-in duration-700">
       
       {/* 1. SUPREME HUD - NATT-CELL MEDALS (Bắt Xung HEYNA OPT-01R) */}
       <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 shrink-0">
@@ -42,7 +42,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
          {/* 2. CỘT TRÁI: PHÊ DUYỆT & CAD */}
          <div className="space-y-8">
             {/* LỆNH CẦN DUYỆT - URGENT HUB */}
-            <div className="ai-panel p-8 bg-amber-500/[0.03] border-amber-500/20 shadow-2xl relative overflow-hidden h-[450px] flex flex-col">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-amber-500/[0.03] border-amber-500/20 shadow-2xl relative overflow-hidden h-[450px] flex flex-col">
                <div className="absolute top-0 right-0 p-6 opacity-[0.03] text-[100px]">🔔</div>
                <div className="flex justify-between items-center mb-8 shrink-0">
                   <h3 className="ai-sub-headline text-amber-500 italic">PHÊ DUYỆT MASTER ({metrics.pendingApprovals})</h3>
@@ -68,7 +68,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
             </div>
 
             {/* CAD & BẢN VẼ 3D - DESIGN SHARD */}
-            <div className="ai-panel p-8 bg-blue-500/[0.03] border-blue-500/20">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/[0.03] border-blue-500/20">
                <h3 className="ai-sub-headline text-blue-400 mb-8 italic">THEO DÕI CAD & IN SÁP (4K)</h3>
                <div className="grid grid-cols-2 gap-4">
                   {[
@@ -92,7 +92,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
          {/* 3. CỘT GIỮA: VẬN HÀNH XƯỞNG & NHẬP KHẨU */}
          <div className="space-y-8">
             {/* TIẾN ĐỘ XƯỞNG - PRODUCTION LEDGER */}
-            <div className="ai-panel p-8 border-indigo-500/20 bg-indigo-900/10 h-[450px] flex flex-col">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-indigo-500/20 bg-indigo-900/10 h-[450px] flex flex-col">
                <h3 className="ai-sub-headline text-indigo-400 mb-8 flex items-center gap-3 italic">
                   <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(99,102,241,1)]"></span>
                   XƯỞNG SẢN XUẤT (SNT TRACKING)
@@ -121,7 +121,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
             </div>
 
             {/* NHẬP KHẨU & TỜ KHAI - CUSTOMS SHARD */}
-            <div className="ai-panel p-8 border-green-500/20 bg-green-500/[0.02]">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-green-500/20 bg-green-500/[0.02]">
                <div className="flex justify-between items-center mb-8">
                   <h3 className="ai-sub-headline text-green-500 italic">LOGISTICS & TỜ KHAI (52 CỘT)</h3>
                   <button className="text-[8px] font-black text-green-400 uppercase tracking-widest hover:underline">Xem Robot</button>
@@ -149,7 +149,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
          {/* 4. CỘT PHẢI: KINH DOANH & THUẾ */}
          <div className="space-y-8">
             {/* KINH DOANH & HÓA ĐƠN ĐT - FISCAL SHARD */}
-            <div className="ai-panel p-8 border-cyan-500/20 bg-cyan-500/[0.02] h-[450px] flex flex-col">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-cyan-500/20 bg-cyan-500/[0.02] h-[450px] flex flex-col">
                <h3 className="ai-sub-headline text-cyan-400 mb-8 italic">POS MERCHANT & HÓA ĐƠN (TCT)</h3>
                <div className="flex-1 space-y-6 overflow-y-auto no-scrollbar">
                   <div className="grid grid-cols-2 gap-4">
@@ -202,7 +202,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
       </div>
 
       {/* 5. BOTTOM LEDGER - NHẬT KÝ THỰC THI (BLOCKCHAIN LOG) */}
-      <section className="ai-panel p-8 bg-black/40 border-white/10 h-64 flex flex-col shrink-0 relative overflow-hidden">
+      <section className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/10 h-64 flex flex-col shrink-0 relative overflow-hidden">
          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
          <h3 className="ai-sub-headline text-gray-500 mb-6 italic tracking-[0.5em] uppercase">IMMUTABLE AUDIT TRAIL (SHARD LOGS)</h3>
          <div className="flex-1 overflow-y-auto no-scrollbar font-mono text-[10px] space-y-3">

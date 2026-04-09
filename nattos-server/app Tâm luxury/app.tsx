@@ -1,3 +1,4 @@
+import { ButterflyProtocol } from './components/common/ButterflyProtocol';
 import { NauionEngine } from './core/nauion/nauion-engine';
 
 import React, { useState, useEffect, useCallback } from 'react';
@@ -176,6 +177,7 @@ const App: React.FC = () => {
   return (
     <>
       <SecurityOverlay autoLockDelay={600000} blurSensitiveData={true}>
+        <ButterflyProtocol />
         <AppShell 
           activeView={activeView} 
           setActiveView={(v) => { setActiveView(v); console.log('[ProtocolLayer] HEYNA: Chuyen tab -> ' + v); document.documentElement.setAttribute('data-render-mode', 'BURST'); }} 

@@ -72,7 +72,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8 bg-black/95 backdrop-blur-3xl animate-in fade-in duration-500">
-      <div className="ai-panel w-full max-w-6xl bg-[#050505] border-amber-500/30 overflow-hidden flex flex-col shadow-[0_0_150px_rgba(245,158,11,0.1)] rounded-[4rem] max-h-[95vh]">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all w-full max-w-6xl bg-[#050505] border-amber-500/30 overflow-hidden flex flex-col shadow-[0_0_150px_rgba(245,158,11,0.1)] rounded-[4rem] max-h-[95vh]">
         
         {/* HEADER */}
         <header className="p-8 border-b border-white/10 bg-gradient-to-r from-amber-500/5 to-transparent flex justify-between items-center shrink-0">

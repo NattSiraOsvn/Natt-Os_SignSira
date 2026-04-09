@@ -98,7 +98,7 @@ const CompliancePortal: React.FC = () => {
   };
 
   return (
-    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto space-y-12 animate-in fade-in duration-700 pb-32 no-scrollbar bg-[#020202]">
+    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto space-y-12 animate-in fade-in duration-700 pb-32 no-scrollbar bg-transparent">
       
       <header className="flex flex-col lg:flex-row justify-between items-end border-b border-white/5 pb-10 gap-6">
         <div>
@@ -139,7 +139,7 @@ const CompliancePortal: React.FC = () => {
          <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
             {/* LEFT: SCORECARD & ADVISOR */}
             <div className="space-y-8">
-               <div className="ai-panel p-10 bg-gradient-to-br from-indigo-900/10 to-transparent border-indigo-500/20 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-gradient-to-br from-indigo-900/10 to-transparent border-indigo-500/20 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
                   <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.4em] mb-6">Điểm tín nhiệm tuân thủ</h3>
                   
                   <div className="relative w-48 h-48 flex items-center justify-center mb-6">
@@ -166,7 +166,7 @@ const CompliancePortal: React.FC = () => {
                   </div>
                </div>
 
-               <div className="ai-panel p-8 border-amber-500/30 bg-amber-500/5 shadow-xl">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-amber-500/30 bg-amber-500/5 shadow-xl">
                   <div className="flex items-center gap-4 mb-4">
                      <AIAvatar personaId={PersonaID.KRIS} size="sm" isThinking={isScanning} />
                      <h4 className="text-sm font-black text-amber-500 uppercase tracking-widest">Cố vấn Pháp chế (Kris)</h4>
@@ -240,7 +240,7 @@ const CompliancePortal: React.FC = () => {
       {/* --- REGULATIONS TAB --- */}
       {activeTab === 'REGULATIONS' && (
          <div className="animate-in slide-in-from-right-10">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 h-[700px] flex flex-col">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 h-[700px] flex flex-col">
                <div className="flex justify-between items-center mb-8 shrink-0">
                   <h3 className="text-2xl font-serif gold-gradient italic uppercase tracking-tighter">Cơ sở dữ liệu Luật (Law Library)</h3>
                   <div className="relative">
@@ -278,7 +278,7 @@ const CompliancePortal: React.FC = () => {
       {/* --- REPORTS TAB --- */}
       {activeTab === 'REPORTS' && (
          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 animate-in slide-in-from-bottom-4">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
                <span className="text-6xl mb-6 grayscale opacity-50">📑</span>
                <h4 className="text-lg font-bold text-white uppercase mb-2">Báo cáo Kiểm soát Rủi ro</h4>
                <p className="text-[10px] text-gray-500 mb-8 italic">Tổng hợp vi phạm, mức độ rủi ro và khuyến nghị khắc phục.</p>
@@ -287,7 +287,7 @@ const CompliancePortal: React.FC = () => {
                </button>
             </div>
             
-            <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
                <span className="text-6xl mb-6 grayscale opacity-50">📜</span>
                <h4 className="text-lg font-bold text-white uppercase mb-2">Báo cáo Tuân thủ AML</h4>
                <p className="text-[10px] text-gray-500 mb-8 italic">Danh sách giao dịch trên 400M và hồ sơ KYC khách hàng.</p>
@@ -296,7 +296,7 @@ const CompliancePortal: React.FC = () => {
                </button>
             </div>
 
-            <div className="ai-panel p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 flex flex-col items-center text-center">
                <span className="text-6xl mb-6 grayscale opacity-50">🔐</span>
                <h4 className="text-lg font-bold text-white uppercase mb-2">Nhật ký Phân quyền (RBAC)</h4>
                <p className="text-[10px] text-gray-500 mb-8 italic">Lịch sử thay đổi quyền hạn và truy cập hệ thống.</p>

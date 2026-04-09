@@ -59,7 +59,7 @@ const OperationsTerminal: React.FC<OperationsTerminalProps> = ({ currentRole, cu
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32 relative">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32 relative">
       <header className="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/5 pb-10">
         <div>
           <h2 className="ai-headline text-5xl italic uppercase tracking-tighter">OPS TERMINAL</h2>
@@ -180,7 +180,7 @@ const OperationsTerminal: React.FC<OperationsTerminalProps> = ({ currentRole, cu
         {/* INTERNAL TRANSFER TAB */}
         {activeTab === 'internal_transfer' && (
            <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 animate-in slide-in-from-right-10">
-              <div className="ai-panel p-10 bg-amber-500/5 border-amber-500/20 shadow-2xl">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-amber-500/5 border-amber-500/20 shadow-2xl">
                  <h3 className="text-2xl font-bold italic text-amber-500 uppercase tracking-tighter mb-8">Điều chuyển kho nội bộ</h3>
                  <div className="space-y-6">
                     <div className="flex items-center justify-between p-6 bg-black/40 rounded-[2rem] border border-white/5">
@@ -234,7 +234,7 @@ const OperationsTerminal: React.FC<OperationsTerminalProps> = ({ currentRole, cu
 
         {/* PENDING TAB (OLD CONTENT) */}
         {activeTab === 'pending' && (
-          <div className="ai-panel p-16 flex flex-col items-center justify-center text-center bg-black/60 border-indigo-500/20 opacity-40">
+          <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-16 flex flex-col items-center justify-center text-center bg-black/60 border-indigo-500/20 opacity-40">
              <div className="text-[100px] mb-10 grayscale">📝</div>
              <h3 className="ai-headline text-4xl mb-6 italic uppercase tracking-tighter">Document Verification</h3>
              <p className="ai-sub-headline max-w-sm mx-auto leading-relaxed">Chức năng xác thực chứng từ đang chờ đồng bộ...</p>

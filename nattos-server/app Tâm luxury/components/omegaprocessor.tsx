@@ -57,7 +57,7 @@ const OmegaProcessor: React.FC = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
       <header className="flex justify-between items-end border-b border-white/5 pb-10">
         <div>
           <div className="flex items-center gap-4 mb-3">
@@ -112,7 +112,7 @@ const OmegaProcessor: React.FC = () => {
          </div>
 
          <div className="space-y-8">
-            <div className="ai-panel p-8 border-indigo-500/30 bg-indigo-500/5 flex flex-col items-center text-center">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-indigo-500/30 bg-indigo-500/5 flex flex-col items-center text-center">
                <AIAvatar personaId={PersonaID.PHIEU} size="lg" isThinking={isWorkerActive} />
                <h4 className="ai-sub-headline text-indigo-400 mt-6 mb-4">Phiêu: Background Work</h4>
                <p className="text-[12px] text-gray-400 italic leading-relaxed">

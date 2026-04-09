@@ -72,19 +72,19 @@ const ApprovalDashboard: React.FC = () => {
       
       {/* STATS HEADER */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="ai-panel p-6 bg-amber-500/10 border-amber-500/30">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-amber-500/10 border-amber-500/30">
             <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest">Đang chờ duyệt</p>
             <p className="text-4xl font-mono font-black text-white mt-2">{stats.pending}</p>
         </div>
-        <div className="ai-panel p-6 bg-green-500/10 border-green-500/30">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-green-500/10 border-green-500/30">
             <p className="text-[9px] font-black text-green-400 uppercase tracking-widest">Đã duyệt hôm nay</p>
             <p className="text-4xl font-mono font-black text-white mt-2">{stats.approvedToday}</p>
         </div>
-        <div className="ai-panel p-6 bg-red-500/10 border-red-500/30">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-red-500/10 border-red-500/30">
             <p className="text-[9px] font-black text-red-400 uppercase tracking-widest">Bị từ chối</p>
             <p className="text-4xl font-mono font-black text-white mt-2">{stats.rejectedToday}</p>
         </div>
-        <div className="ai-panel p-6 bg-blue-500/10 border-blue-500/30">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-blue-500/10 border-blue-500/30">
             <p className="text-[9px] font-black text-blue-400 uppercase tracking-widest">Thời gian phản hồi</p>
             <p className="text-4xl font-mono font-black text-white mt-2">{stats.avgResponseTime}</p>
         </div>
@@ -176,7 +176,7 @@ const ApprovalDashboard: React.FC = () => {
           </div>
 
           {/* RIGHT: DETAIL & ACTIONS */}
-          <div className="ai-panel p-8 bg-white/[0.02] border-white/5 flex flex-col relative overflow-hidden">
+          <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-white/[0.02] border-white/5 flex flex-col relative overflow-hidden">
               {selectedTicket ? (
                   <>
                       <div className="mb-8 pb-8 border-b border-white/5">

@@ -98,7 +98,7 @@ const QuantumFlowOrchestrator: React.FC = () => {
   if (!state || !consciousness) return <div className="p-20 text-center text-amber-500 font-mono animate-pulse">BOOTING QUANTUM CORE...</div>;
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 overflow-hidden gap-8 animate-in fade-in duration-1000 relative">
+    <div className="h-full flex flex-col bg-transparent p-8 overflow-hidden gap-8 animate-in fade-in duration-1000 relative">
        
        {/* QUANTUM BACKGROUND OVERLAY */}
        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.05)_0%,_transparent_70%)] pointer-events-none"></div>

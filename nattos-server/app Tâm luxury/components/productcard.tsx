@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, onCustomize
   const [quantity, setQuantity] = useState(product.minOrder);
 
   return (
-    <div className="ai-panel overflow-hidden border-white/5 hover:border-cyan-500/30 group cursor-pointer flex flex-col h-full bg-black/40">
+    <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all overflow-hidden border-white/5 hover:border-cyan-500/30 group cursor-pointer flex flex-col h-full bg-black/40">
       <div className="relative h-72 overflow-hidden bg-black" onClick={onClick}>
         <img 
           src={product.image} 

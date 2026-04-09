@@ -64,7 +64,7 @@ const ProductionSalesFlowView: React.FC = () => {
   const currentStepIdx = getCurrentStepIndex();
 
   return (
-    <div className="p-8 md:p-12 h-full overflow-y-auto no-scrollbar bg-[#020202] animate-in fade-in duration-700 pb-32">
+    <div className="p-8 md:p-12 h-full overflow-y-auto no-scrollbar bg-transparent animate-in fade-in duration-700 pb-32">
       <header className="mb-12 border-b border-white/5 pb-8 flex justify-between items-end">
         <div>
            <div className="flex items-center gap-4 mb-2">
@@ -107,7 +107,7 @@ const ProductionSalesFlowView: React.FC = () => {
       </header>
 
       {/* PIPELINE VISUALIZATION */}
-      <div className="ai-panel p-12 bg-gradient-to-r from-white/[0.02] to-transparent border-white/10 mb-12 relative overflow-hidden">
+      <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-12 bg-gradient-to-r from-white/[0.02] to-transparent border-white/10 mb-12 relative overflow-hidden">
          {isRunning && <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent animate-[shimmer_2s_infinite]"></div>}
          
          <div className="flex justify-between items-center relative z-10">
@@ -144,7 +144,7 @@ const ProductionSalesFlowView: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 h-[500px]">
          {/* LIVE LOGS */}
-         <div className="ai-panel p-8 bg-black/40 border-white/10 flex flex-col overflow-hidden">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/10 flex flex-col overflow-hidden">
             <div className="flex justify-between items-center mb-6 shrink-0">
                <h3 className="text-sm font-bold text-white uppercase tracking-widest">Nhật Ký Vận Hành (Live Ledger)</h3>
                <div className="flex gap-2">
@@ -171,7 +171,7 @@ const ProductionSalesFlowView: React.FC = () => {
          {/* RESULT CARD */}
          <div className="space-y-8">
             {result ? (
-               <div className="ai-panel p-10 bg-amber-500/[0.03] border-amber-500/20 h-full flex flex-col justify-center animate-in zoom-in-95">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-amber-500/[0.03] border-amber-500/20 h-full flex flex-col justify-center animate-in zoom-in-95">
                   <div className="flex items-center gap-6 mb-8">
                      <AIAvatar personaId={PersonaID.CAN} size="md" />
                      <div>
@@ -203,7 +203,7 @@ const ProductionSalesFlowView: React.FC = () => {
                   </div>
                </div>
             ) : (
-               <div className="ai-panel p-10 bg-black/20 border-white/5 h-full flex flex-col items-center justify-center text-center opacity-40">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/20 border-white/5 h-full flex flex-col items-center justify-center text-center opacity-40">
                   <p className="text-8xl mb-6 grayscale">📊</p>
                   <p className="text-xl font-serif uppercase tracking-widest">Financial Node Standby</p>
                   <p className="text-xs mt-4 uppercase font-black text-gray-500 tracking-[0.2em]">Kết quả tài chính sẽ hiển thị sau khi quy trình hoàn tất.</p>

@@ -58,7 +58,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
 
   if (!learnedTpl) {
     return (
-      <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 items-center justify-center text-center opacity-40">
+      <div className="h-full flex flex-col bg-transparent p-8 md:p-12 items-center justify-center text-center opacity-40">
          <div className="text-8xl mb-10 grayscale">🏢</div>
          <h2 className="text-3xl font-serif uppercase tracking-widest italic">Terminal đang chờ Shard cấu hình</h2>
          <p className="max-w-md mt-6 text-xs text-gray-500 leading-relaxed font-light">
@@ -72,7 +72,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
   const progress = Math.round((completedTasks.length / learnedTpl.dailyTasks.length) * 100);
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
       <header className="border-b border-white/5 pb-10 flex flex-col lg:flex-row justify-between items-end gap-8">
         <div>
           <h2 className="ai-headline text-5xl italic uppercase tracking-tighter">DAILY ACTIVE PROTOCOL</h2>
@@ -97,7 +97,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
          {/* TASK LIST SECTION */}
          <div className="xl:col-span-2 space-y-8">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 shadow-2xl relative overflow-hidden">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 shadow-2xl relative overflow-hidden">
                <div className="absolute top-0 left-0 w-full h-1 bg-white/5">
                   <div className="h-full bg-amber-500 transition-all duration-1000" style={{ width: `${progress}%` }}></div>
                </div>
@@ -157,7 +157,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
 
          {/* DATA INPUT SECTION */}
          <div className="space-y-8">
-            <div className="ai-panel p-10 bg-gradient-to-br from-indigo-900/10 to-transparent border-indigo-500/20 shadow-2xl">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-gradient-to-br from-indigo-900/10 to-transparent border-indigo-500/20 shadow-2xl">
                <h3 className="text-sm font-black text-indigo-400 uppercase tracking-[0.3em] mb-10 border-b border-white/5 pb-4 italic">Bóc tách dữ liệu Node</h3>
                
                <div className="space-y-8">
@@ -194,7 +194,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
                </button>
             </div>
 
-            <div className="ai-panel p-8 bg-black/40 border-white/5">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5">
                <h4 className="ai-sub-headline text-amber-500 mb-6 flex items-center gap-3">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
                   Tham mưu Bảo mật (Thiên)

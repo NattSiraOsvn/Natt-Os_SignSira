@@ -29,7 +29,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#020202] text-white p-8 overflow-y-auto">
+        <div className="h-screen w-screen flex flex-col items-center justify-center bg-transparent text-white p-8 overflow-y-auto">
           <div className="text-6xl mb-6">⚠️</div>
           <h1 className="text-2xl font-bold mb-4 text-red-500">System Critical Error</h1>
           <p className="text-gray-400 mb-8 max-w-lg text-center font-mono text-sm">

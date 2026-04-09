@@ -106,7 +106,7 @@ const AdminConfigHub: React.FC = () => {
   }));
 
   return (
-    <div className="h-full bg-[#020202] flex flex-col overflow-hidden animate-in fade-in duration-700">
+    <div className="h-full bg-transparent flex flex-col overflow-hidden animate-in fade-in duration-700">
       
       {/* HEADER */}
       <header className="p-8 border-b border-white/5 flex flex-col lg:flex-row justify-between items-end bg-black/40 backdrop-blur-xl shrink-0 gap-4">
@@ -141,7 +141,7 @@ const AdminConfigHub: React.FC = () => {
         
         {activeTab === 'matrix' && (
            <div className="h-full grid grid-cols-1 xl:grid-cols-3 gap-10 overflow-y-auto no-scrollbar pb-20">
-              <div className="ai-panel p-10 bg-black/40 border-amber-500/20 shadow-2xl flex flex-col">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-amber-500/20 shadow-2xl flex flex-col">
                  <h3 className="text-xl font-bold text-amber-500 uppercase tracking-widest mb-8 flex items-center gap-3">⚖️ Weights</h3>
                  <div className="flex-1 flex flex-col justify-center items-center relative mb-8">
                     <div className="w-full h-64">
@@ -204,7 +204,7 @@ const AdminConfigHub: React.FC = () => {
                 ) : (
                     <div className="grid grid-cols-1 gap-6">
                         {deadLetter.map(op => (
-                            <div key={op.id} className="ai-panel p-8 bg-red-900/10 border-red-500/30 group hover:bg-red-900/20 transition-all relative overflow-hidden">
+                            <div key={op.id} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-red-900/10 border-red-500/30 group hover:bg-red-900/20 transition-all relative overflow-hidden">
                                 <div className="absolute top-0 right-0 p-6 opacity-5 text-8xl">⚠️</div>
                                 <div className="flex flex-col lg:flex-row justify-between items-start gap-10 relative z-10">
                                     <div className="flex-1">

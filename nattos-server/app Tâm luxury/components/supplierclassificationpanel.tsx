@@ -52,7 +52,7 @@ export const SupplierClassificationPanel: React.FC = () => {
   const recommendations = selectedSupplier ? SupplierEngine.getActionRecommendations(selectedSupplier) : [];
 
   return (
-    <div className="h-full flex flex-col p-8 bg-[#020202] overflow-y-auto no-scrollbar animate-in fade-in duration-700 pb-40">
+    <div className="h-full flex flex-col p-8 bg-transparent overflow-y-auto no-scrollbar animate-in fade-in duration-700 pb-40">
       <header className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/5 pb-8 gap-6">
         <div>
           <h2 className="ai-headline text-5xl italic uppercase tracking-tighter">Supplier Node Hub</h2>
@@ -66,19 +66,19 @@ export const SupplierClassificationPanel: React.FC = () => {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
-        <div className="ai-panel p-8 bg-black/40 border-white/5 flex flex-col justify-between hover:border-indigo-500/30 transition-all">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5 flex flex-col justify-between hover:border-indigo-500/30 transition-all">
            <p className="text-[9px] text-gray-500 font-black uppercase mb-4">Tổng số Shard Đối tác</p>
            <p className="text-5xl font-mono font-black text-white">{suppliers.length}</p>
         </div>
-        <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20">
            <p className="text-[9px] text-blue-400 font-black uppercase mb-4">Node Tiềm Năng (Whales)</p>
            <p className="text-5xl font-mono font-black text-white">{suppliers.filter(s => s.coTienNang).length}</p>
         </div>
-        <div className="ai-panel p-8 bg-green-500/5 border-green-500/20">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-green-500/5 border-green-500/20">
            <p className="text-[9px] text-green-400 font-black uppercase mb-4">Tỷ lệ Tin cậy (AVG)</p>
            <p className="text-5xl font-mono font-black text-white">{(suppliers.reduce((a,b) => a + (b.sentimentScore || 0), 0) / suppliers.length * 100).toFixed(0)}%</p>
         </div>
-        <div className="ai-panel p-8 bg-red-500/5 border-red-500/20">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-red-500/5 border-red-500/20">
            <p className="text-[9px] text-red-400 font-black uppercase mb-4">Cảnh báo rủi ro</p>
            <p className="text-5xl font-mono font-black text-red-500">{suppliers.filter(s => (s.sentimentScore || 0) < 0.5).length}</p>
         </div>
@@ -152,7 +152,7 @@ export const SupplierClassificationPanel: React.FC = () => {
 
          {/* AI ADVISOR & RECOMMENDATIONS */}
          <div className="space-y-8">
-            <div className="ai-panel p-8 bg-black/40 border-white/5">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5">
                 <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Phân bổ ngành hàng (Global)</h3>
                 <div className="h-64">
                    <ResponsiveContainer width="100%" height="100%">
@@ -169,7 +169,7 @@ export const SupplierClassificationPanel: React.FC = () => {
             </div>
 
             {selectedSupplier ? (
-               <div className="ai-panel p-8 bg-amber-500/[0.03] border-amber-500/20 animate-in zoom-in-95">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-amber-500/[0.03] border-amber-500/20 animate-in zoom-in-95">
                   <div className="flex items-center gap-4 mb-6">
                      <AIAvatar personaId={PersonaID.KRIS} size="sm" isThinking={false} />
                      <h4 className="text-sm font-black text-amber-500 uppercase tracking-widest">Kris Smart Recommendations</h4>
@@ -190,13 +190,13 @@ export const SupplierClassificationPanel: React.FC = () => {
                   </div>
                </div>
             ) : (
-               <div className="ai-panel p-12 border-dashed border-white/10 opacity-20 flex flex-col items-center justify-center text-center h-64">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-12 border-dashed border-white/10 opacity-20 flex flex-col items-center justify-center text-center h-64">
                   <p className="text-5xl mb-6">🔬</p>
                   <p className="text-xs uppercase font-black tracking-widest">Chọn một Node để bóc tách khuyến nghị</p>
                </div>
             )}
 
-            <div className="ai-panel p-8 bg-indigo-500/5 border-indigo-500/20">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-indigo-500/5 border-indigo-500/20">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
                   <h4 className="text-sm font-black text-indigo-400 uppercase tracking-widest">Tham mưu Thiên</h4>

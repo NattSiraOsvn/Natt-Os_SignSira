@@ -106,7 +106,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
       <header className="border-b border-white/5 pb-10 flex justify-between items-end">
         <div>
           <h2 className="ai-headline text-5xl italic uppercase tracking-tighter">Cognitive Neural Learning</h2>
@@ -122,7 +122,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
          <div className="space-y-8">
-            <div className="ai-panel p-10 bg-black/40 border-white/10 relative overflow-hidden group">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 relative overflow-hidden group">
                <h3 className="text-xl font-bold mb-6 italic text-amber-500 uppercase tracking-widest">Cổng nạp tri thức Shard</h3>
                <textarea 
                  value={rawInput}
@@ -146,7 +146,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
                </button>
             </div>
 
-            <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={isLearning} />
                   <h4 className="ai-sub-headline text-blue-400 italic">Thiên - Tham mưu Shard</h4>
@@ -200,7 +200,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
                  </div>
               </div>
             ) : (
-              <div className="ai-panel p-20 flex flex-col items-center justify-center text-center opacity-20 italic h-full">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-20 flex flex-col items-center justify-center text-center opacity-20 italic h-full">
                  <div className="text-[120px] mb-10 grayscale">🧬</div>
                  <p className="text-2xl font-serif">Nạp tri thức để Thiên bóc tách...</p>
               </div>

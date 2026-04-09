@@ -75,7 +75,7 @@ const GovernanceWorkspace: React.FC<GovernanceWorkspaceProps> = ({ currentRole, 
             <p className="ai-sub-headline text-indigo-300 mt-2">Xác thực giao dịch đa tầng • Immutable Audit Trail v5.0</p>
          </div>
          <div className="flex gap-4">
-            <div className="ai-panel px-6 py-3 border-cyan-500/20 bg-cyan-500/5">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all px-6 py-3 border-cyan-500/20 bg-cyan-500/5">
                <p className="ai-sub-headline text-cyan-400">Node Cluster</p>
                <p className="text-xl font-black text-white uppercase tracking-widest">{currentRole.split('(')[0]}</p>
             </div>
@@ -148,7 +148,7 @@ const GovernanceWorkspace: React.FC<GovernanceWorkspaceProps> = ({ currentRole, 
          {/* DETAIL PANEL WITH WORKFLOW CONTROLS */}
          <div className="space-y-8">
             {selectedTx ? (
-              <div className="ai-panel p-8 space-y-8 animate-in slide-in-from-right-10 duration-500 border-cyan-500/30 bg-black/40 shadow-[0_0_50px_rgba(34,211,238,0.05)]">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 space-y-8 animate-in slide-in-from-right-10 duration-500 border-cyan-500/30 bg-black/40 shadow-[0_0_50px_rgba(34,211,238,0.05)]">
                  <div className="flex justify-between items-center">
                     <h4 className="ai-sub-headline text-cyan-400 italic tracking-[0.2em]">Node Verification</h4>
                     <button onClick={() => setSelectedTx(null)} className="text-white/20 hover:text-white transition-colors text-xl">✕</button>
@@ -213,7 +213,7 @@ const GovernanceWorkspace: React.FC<GovernanceWorkspaceProps> = ({ currentRole, 
                  </div>
               </div>
             ) : (
-              <div className="ai-panel p-12 border-dashed border-indigo-500/20 opacity-30 h-[600px] flex flex-col items-center justify-center text-center">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-12 border-dashed border-indigo-500/20 opacity-30 h-[600px] flex flex-col items-center justify-center text-center">
                  <span className="text-7xl mb-8 grayscale animate-pulse">🏛️</span>
                  <p className="ai-sub-headline">Audit Node Empty</p>
                  <p className="text-[9px] text-white/40 mt-4 uppercase tracking-[0.2em] max-w-[200px] mx-auto leading-relaxed">Vui lòng chọn giao dịch từ sổ cái để thực thi giao thức phê duyệt.</p>

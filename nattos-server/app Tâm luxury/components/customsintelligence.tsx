@@ -169,7 +169,7 @@ const CustomsIntelligence: React.FC = () => {
               ))}
            </div>
 
-           <div className="ai-panel p-10 bg-black/40 border-white/5 shadow-2xl relative overflow-hidden">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/5 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-10 opacity-[0.02] text-[150px] font-serif italic select-none">SHARD</div>
               <div className="overflow-x-auto no-scrollbar">
                  <table className="w-full text-left text-[11px] border-collapse min-w-[1200px]">

@@ -329,7 +329,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ logAction, updateFinanc
              </div>
              
              {cart.length > 0 && (
-                <div className="ai-panel p-8 bg-black/40 border-white/10 space-y-3">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/10 space-y-3">
                    <div className="flex justify-between text-xs text-gray-400">
                       <span>Tạm tính</span>
                       <span className="font-mono">{subTotal.toLocaleString()} đ</span>
@@ -460,7 +460,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ logAction, updateFinanc
   );
 
   const renderReceipt = () => (
-    <div className="h-full flex flex-col items-center justify-center p-10 bg-[#020202] animate-in fade-in duration-1000">
+    <div className="h-full flex flex-col items-center justify-center p-10 bg-transparent animate-in fade-in duration-1000">
        <ProgressStepper current="RECEIPT" />
        
        <div className="w-full max-w-3xl text-center space-y-12 ai-panel p-16 border-white/10 bg-black/60 shadow-2xl relative overflow-hidden">
