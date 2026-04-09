@@ -19,6 +19,60 @@ const App: React.FC = () => {
   
   // State Management
   const [activeView, setActiveView] = useState<ViewType>(ViewType.dashboard);
+
+  // --- NATT-OS PROTOCOL LAYER (OPT-01R) ---
+  useEffect(() => {
+    let lastActivity = Date.now();
+    let attention = 0;
+    
+    const updateFocus = () => {
+      const now = Date.now();
+      const currentAttention = (now - lastActivity < 2000 && document.visibilityState === 'visible') ? 1.0 : 0.0;
+      if (currentAttention !== attention) {
+        attention = currentAttention;
+        console.log('[ProtocolLayer] phat Nauion ui.focus: ' + attention);
+        // FIXME: Thay bang EventBus.emit khi co the
+      }
+    };
+
+    const handleActivity = () => {
+      lastActivity = Date.now();
+      updateFocus();
+      if (document.documentElement.getAttribute('data-render-mode') !== 'BURST') {
+        document.documentElement.setAttribute('data-render-mode', 'BURST');
+      }
+    };
+
+    window.addEventListener('mousemove', handleActivity, { passive: true });
+    window.addEventListener('click', handleActivity, { passive: true });
+    window.addEventListener('touchstart', handleActivity, { passive: true });
+    window.addEventListener('scroll', handleActivity, { passive: true });
+    document.addEventListener('visibilitychange', updateFocus);
+
+    const loop = setInterval(() => {
+      const delta = Date.now() - lastActivity;
+      if (delta > 5000) {
+        if (document.documentElement.getAttribute('data-render-mode') !== 'IDLE') {
+          document.documentElement.setAttribute('data-render-mode', 'IDLE');
+          console.log('[ProtocolLayer] NAHERE: He thong chuyen sang IDLE');
+        }
+      } else if (delta > 500) {
+        if (document.documentElement.getAttribute('data-render-mode') !== 'ACTIVE') {
+          document.documentElement.setAttribute('data-render-mode', 'ACTIVE');
+        }
+      }
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('click', handleActivity);
+      window.removeEventListener('touchstart', handleActivity);
+      window.removeEventListener('scroll', handleActivity);
+      document.removeEventListener('visibilitychange', updateFocus);
+      clearInterval(loop);
+    };
+  }, []);
+
   const [currentRole, setCurrentRole] = useState<UserRole>(UserRole.MASTER);
   /* Fix: Initialize currentPosition as an object matching UserPosition interface, not enum value */
   const [currentPosition, setCurrentPosition] = useState<UserPosition>({
@@ -118,7 +172,7 @@ const App: React.FC = () => {
       <SecurityOverlay autoLockDelay={600000} blurSensitiveData={true}>
         <AppShell 
           activeView={activeView} 
-          setActiveView={setActiveView} 
+          setActiveView={(v) => { setActiveView(v); console.log('[ProtocolLayer] HEYNA: Chuyen tab -> ' + v); document.documentElement.setAttribute('data-render-mode', 'BURST'); }} 
           currentRole={currentRole} 
           setCurrentRole={setCurrentRole}
           currentPosition={currentPosition}
@@ -139,7 +193,7 @@ const App: React.FC = () => {
           <div className="h-full relative overflow-hidden">
             <DynamicModuleRenderer 
                view={activeView}
-               setActiveView={setActiveView}
+               setActiveView={(v) => { setActiveView(v); console.log('[ProtocolLayer] HEYNA: Chuyen tab -> ' + v); document.documentElement.setAttribute('data-render-mode', 'BURST'); }}
                currentRole={currentRole}
                currentPosition={currentPosition}
                metrics={metrics}
