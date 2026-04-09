@@ -157,6 +157,8 @@ const App: React.FC = () => {
       hash: hash
     };
     setActionLogs(prev => [newLog, ...prev].slice(0, 500));
+    // [Bối Bối] Tự động phát Xung HeyNa cho MỌI hành động hệ thống
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: action, source: 'AuditTrail' } }));
   };
 
   const updateFinance = (data: Partial<BusinessMetrics>) => {

@@ -246,6 +246,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
   };
 
   const handleCheckout = async () => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'sales.intent', source: 'SalesTerminal' } }));
     if (cart.length === 0 && exchangeItems.length === 0) return alert("Giỏ hàng trống.");
     
     // Validate KYC for Exchange Items
@@ -267,7 +268,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
   };
 
   return (
-    <div className="flex h-full bg-[#020202] overflow-hidden animate-in fade-in duration-700 relative">
+    <div className="flex h-full bg-transparent overflow-hidden animate-in fade-in duration-700 relative">
       
       {/* LEFT SIDEBAR: MASTER COMMAND BOX */}
       <aside className="w-80 border-r border-white/5 bg-black/40 p-8 flex flex-col gap-8 hidden xl:flex">
@@ -321,7 +322,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
          <div className="flex-1 overflow-y-auto p-10 no-scrollbar pb-32">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                {filteredProducts.map(product => (
-                 <div key={product.id} className="ai-panel overflow-hidden border-white/5 hover:border-amber-500/30 group transition-all flex flex-col bg-black/40">
+                 <div key={product.id} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl overflow-hidden border-white/5 hover:border-amber-500/30 group transition-all flex flex-col bg-black/40">
                     <div className="relative aspect-[4/3] overflow-hidden bg-black">
                        <img src={product.image} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000" alt="p" />
                     </div>
@@ -481,7 +482,9 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
                        <p className="text-4xl font-mono font-black text-white italic">{finalTotal.toLocaleString()} đ</p>
                        <p className="text-[9px] text-gray-500 font-black uppercase tracking-[0.4em]">Thiên: Chờ Shard ngân hàng xác thực...</p>
                     </div>
-                    <button onClick={() => setPaymentStep('success')} className="w-full py-5 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-2xl hover:bg-green-400">XÁC THỰC XONG</button>
+                    <button onClick={() => setPaymentStep('success')
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'sales.confirm', source: 'SalesTerminal' } }));
+    NotifyBus.push({ type: 'ORDER', title: 'Chốt Đơn Thành Công', content: 'Phân hệ Sales vừa ghi nhận doanh thu mới.', priority: 'HIGH' } as any);} className="w-full py-5 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-2xl hover:bg-green-400">XÁC THỰC XONG</button>
                  </div>
                )}
                {paymentStep === 'success' && (

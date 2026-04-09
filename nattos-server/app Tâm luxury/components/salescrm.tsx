@@ -89,6 +89,7 @@ const SalesCRM: React.FC<SalesCRMProps> = ({ logAction, updateFinance, metrics }
     logAction('CHECKOUT_COMPLETE', `Đơn hàng ${totalAmount.toLocaleString()}đ đã đẩy về module Sales & Tax.`);
     updateFinance({ revenue_pending: (metrics.revenue_pending || 0) + totalAmount });
     setCheckoutStep('success');
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'sales.confirm', source: 'SalesCRM' } }));
     setCart([]);
     setDiscountPercent(0);
     setPromoCode('');
@@ -105,7 +106,7 @@ const SalesCRM: React.FC<SalesCRMProps> = ({ logAction, updateFinance, metrics }
         </div>
         <button 
           onClick={() => setShowCart(true)} 
-          className="ai-panel px-10 py-5 bg-indigo-500/10 border-indigo-500/30 text-white font-black text-[10px] uppercase tracking-widest relative group hover:border-cyan-500/50"
+          className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl px-10 py-5 bg-indigo-500/10 border-indigo-500/30 text-white font-black text-[10px] uppercase tracking-widest relative group hover:border-cyan-500/50"
         >
           Intelligence Cart {cart.length > 0 && <span className="ml-3 px-2 py-0.5 bg-cyan-400 text-black rounded font-black">{cart.length}</span>}
         </button>
@@ -115,7 +116,7 @@ const SalesCRM: React.FC<SalesCRMProps> = ({ logAction, updateFinance, metrics }
         {checkoutStep === 'browsing' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-[1600px] mx-auto">
             {SAMPLE_PRODUCTS.map(p => (
-              <div key={p.id} className="ai-panel overflow-hidden flex flex-col group border-indigo-500/10">
+              <div key={p.id} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl overflow-hidden flex flex-col group border-indigo-500/10">
                 <div className="relative h-72 overflow-hidden">
                    <img src={p.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" alt={p.name} />
                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
@@ -165,7 +166,7 @@ const SalesCRM: React.FC<SalesCRMProps> = ({ logAction, updateFinance, metrics }
                       </div>
                    </div>
                 </div>
-                <div className="ai-panel p-8 bg-indigo-500/10 flex flex-col justify-between border-indigo-500/30">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-8 bg-indigo-500/10 flex flex-col justify-between border-indigo-500/30">
                    <div>
                       <p className="ai-sub-headline mb-6 border-b border-white/10 pb-4">Master Ledger Breakdown</p>
                       <div className="space-y-3 text-[11px]">
