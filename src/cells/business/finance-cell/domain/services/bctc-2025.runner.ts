@@ -22,6 +22,7 @@ import {
 } from './tam-luxury-2025.cdps';
 
 import type { BctcLine } from '../entities/bctc-forms.template';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 // ══════════════════════════════════════════
 // CONSTANTS từ 4 sổ thực tế
@@ -131,7 +132,19 @@ export function runBctc2025(): Bctc2025Output {
     );
   }
 
-  return {
+  
+  // ── BCTC Wire: emit REPORT_GENERATED khi BCTC hoàn thành ──
+  // SPEC §3: period-close-cell lắng event này → trigger đóng sổ
+  const reportId = `BCTC_${TAM_LUXURY_HEADER.periodTo ?? 'unknown'}_${Date.now()}`;
+  EventBus.emit('REPORT_GENERATED', {
+    reportId,
+    period: TAM_LUXURY_HEADER.periodTo ?? 'FY2025',
+    source: 'finance-cell/bctc-runner',
+    forms: ['CDKT', 'KQKD', 'TNDN'],
+    ts: Date.now(),
+  });
+
+return {
     header:     TAM_LUXURY_HEADER,
     cdkt,
     kqkd,
