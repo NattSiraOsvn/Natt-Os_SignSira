@@ -35,6 +35,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
   }, []);
 
   const handleRunOptimization = async () => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'inventory.optimized', source: 'Warehouse' } }));
     setIsOptimizing(true);
     const plan = await WarehouseEngine.optimizeInventoryAllocation();
     setAllocationPlan(plan);
@@ -42,6 +43,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
   };
 
   const handleExecuteTransfer = async (transfer: unknown) => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'inventory.transfer', source: 'Warehouse' } }));
     logAction('WH_TRANSFER_EXEC', `Thực thi điều chuyển: ${transfer.quantity} ${transfer.productName} từ ${transfer.from} -> ${transfer.to}`);
     
     // Call Logistics Core
@@ -112,7 +114,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
       {activeTab === 'inventory' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
            {items.map(item => (
-             <div key={item.id} className="ai-panel overflow-hidden flex flex-col group border-white/5 hover:border-cyan-500/30 transition-all bg-black/20 shadow-2xl">
+             <div key={item.id} className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl overflow-hidden flex flex-col group border-white/5 hover:border-cyan-500/30 transition-all bg-black/20 shadow-2xl">
                 <div className="relative h-64 overflow-hidden bg-black/40 border-b border-white/5">
                    <img src={`https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80`} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000" alt={item.name} />
                    <div className="absolute top-4 right-4 flex gap-2">
@@ -158,7 +160,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
            {/* 1. Comparison Dashboard */}
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* HCM CARD */}
-              <div className="ai-panel p-10 bg-blue-900/10 border-blue-500/30 relative overflow-hidden">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-10 bg-blue-900/10 border-blue-500/30 relative overflow-hidden">
                  <div className="absolute top-0 right-0 p-6 text-9xl opacity-5 grayscale">🏙️</div>
                  <h3 className="text-3xl font-serif text-blue-400 uppercase tracking-tighter mb-8">KHO TỔNG TP.HCM</h3>
                  <div className="grid grid-cols-2 gap-8">
@@ -185,7 +187,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
               </div>
 
               {/* HANOI CARD */}
-              <div className="ai-panel p-10 bg-red-900/10 border-red-500/30 relative overflow-hidden">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-10 bg-red-900/10 border-red-500/30 relative overflow-hidden">
                  <div className="absolute top-0 right-0 p-6 text-9xl opacity-5 grayscale">⛩️</div>
                  <h3 className="text-3xl font-serif text-red-400 uppercase tracking-tighter mb-8">CHI NHÁNH HÀ NỘI</h3>
                  <div className="grid grid-cols-2 gap-8">
@@ -213,7 +215,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
            </div>
 
            {/* 2. AI Optimization Engine */}
-           <div className="ai-panel p-10 border-amber-500/30 bg-amber-500/5 shadow-2xl relative overflow-hidden">
+           <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-10 border-amber-500/30 bg-amber-500/5 shadow-2xl relative overflow-hidden">
               <div className="flex justify-between items-start mb-8 relative z-10">
                  <div className="flex items-center gap-6">
                     <AIAvatar personaId={PersonaID.THIEN} size="md" isThinking={isOptimizing} />
@@ -309,7 +311,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
            </div>
            
            <div className="space-y-8">
-              <div className="ai-panel p-8 border-amber-500/30 bg-amber-500/5 shadow-2xl">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-8 border-amber-500/30 bg-amber-500/5 shadow-2xl">
                  <h4 className="ai-sub-headline text-amber-500 mb-6 flex items-center gap-2">
                     <div className="w-2 h-2 bg-amber-500 rounded-full animate-ping"></div>
                     Cố vấn Định mức (Thiên)
@@ -327,7 +329,7 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
 
       {/* --- TAB: VAULT (Existing) --- */}
       {activeTab === 'vault' && (
-        <div className="ai-panel p-16 min-h-[700px] flex flex-col items-center justify-center text-center relative overflow-hidden bg-black/60 border-indigo-500/20">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-16 min-h-[700px] flex flex-col items-center justify-center text-center relative overflow-hidden bg-black/60 border-indigo-500/20">
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] opacity-10 pointer-events-none"></div>
            <div className="text-[120px] mb-12 grayscale opacity-50">🛡️</div>
            <h3 className="ai-headline text-6xl mb-8 uppercase italic tracking-tighter">Omega Design Vault</h3>
