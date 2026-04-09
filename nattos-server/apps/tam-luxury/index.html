@@ -14,9 +14,6 @@
   --medal-size:clamp(110px,14vw,170px);
   --glow-pastel:0 0 20px rgba(255,235,200,.5);
   --z-truth:2; --z-worker:10; --z-experience:50; --z-modal:100; --z-security:999;
-  --rq-lo-p:500; --rq-lo-b:.2; --rq-lo-s:.3;
-  --rq-md-p:1500; --rq-md-b:.5; --rq-md-s:.7;
-  --rq-hi-p:4000; --rq-hi-b:.9; --rq-hi-s:1.0;
   /* sidebar fluid */
   --sb:clamp(52px,14vw,210px);
   --panel-w:clamp(0px,15vw,210px);
@@ -29,7 +26,7 @@ input{user-select:text}
 html,body{height:100%;overflow:hidden;background:#030210;
   font-family:'Be Vietnam Pro',sans-serif;color:#ede0c8}
 
-/* ─── CANVAS LAYERS (from index5 proven) ───────────────── */
+/* ─── CANVAS LAYERS ────────────────────────────────────── */
 #bgCanvas,#connectionCanvas,#butterflyCanvas{
   position:fixed;top:0;left:0;width:100%;height:100%;
   display:block;pointer-events:none;
@@ -38,7 +35,7 @@ html,body{height:100%;overflow:hidden;background:#030210;
 #connectionCanvas{z-index:1}
 #butterflyCanvas{z-index:2}
 
-/* SPEC §1.2 Truth Layer */
+/* SPEC §1.2 Truth Layer Grid */
 .l0-grid{position:fixed;inset:0;z-index:var(--z-truth);pointer-events:none;
   background-image:
     linear-gradient(rgba(200,146,42,.012) 1px,transparent 1px),
@@ -55,27 +52,27 @@ html,body{height:100%;overflow:hidden;background:#030210;
   display:flex;height:100vh;overflow:hidden;
 }
 
-/* ─── SIDEBAR §11.6 III ─────────────────────────────────── */
+/* ─── SIDEBAR ──────────────────────────────────────────── */
 .sidebar{
   width:var(--sb);flex-shrink:0;
   display:flex;flex-direction:column;
   background:rgba(4,4,20,.85);
   backdrop-filter:blur(20px);
-  border-right:1px solid rgba(200,146,42,.13);
+  border-right:1px solid rgba(200,146,42,0.13);
   height:100vh;overflow:hidden;z-index:2;
   transition:width .25s ease;
 }
 .sb-head{padding:clamp(12px,1.5vh,18px) clamp(8px,.8vw,14px) clamp(8px,1vh,12px);
-  border-bottom:1px solid rgba(200,146,42,.1)}
+  border-bottom:1px solid rgba(200,146,42,0.1)}
 .sb-logo{font-family:'JetBrains Mono',monospace;font-weight:700;
   font-size:clamp(9px,.85vw,13px);letter-spacing:.1em;
   background:linear-gradient(135deg,#f5e2b0,#e0b85b,#c9942a);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   white-space:nowrap;overflow:hidden}
-.sb-sub{font-size:clamp(6px,.55vw,8px);color:rgba(200,146,42,.3);
+.sb-sub{font-size:clamp(6px,.55vw,8px);color:rgba(200,146,42,0.3);
   letter-spacing:.2em;margin-top:2px;white-space:nowrap;overflow:hidden}
-.sb-nav{flex:1;overflow:hidden;padding:clamp(4px,.5vh,8px) 0}
-.nav-lbl{font-size:clamp(7px,.6vw,9px);color:rgba(200,146,42,.28);
+.sb-nav{flex:1;overflow-y:auto;padding:clamp(4px,0.5vh,8px) 0}
+.nav-lbl{font-size:clamp(7px,.6vw,9px);color:rgba(200,146,42,0.28);
   letter-spacing:.25em;text-transform:uppercase;
   padding:clamp(6px,.7vh,10px) clamp(8px,.8vw,14px) 2px;
   white-space:nowrap;overflow:hidden}
@@ -83,117 +80,112 @@ html,body{height:100%;overflow:hidden;background:#030210;
   display:flex;align-items:center;gap:clamp(6px,.6vw,10px);
   padding:clamp(7px,.75vh,10px) clamp(8px,.8vw,14px);
   margin:1px clamp(3px,.3vw,7px);
-  border-radius:clamp(7px,.7vw,10px);cursor:pointer;
+  border-radius:clamp(7px,0.7vw,10px);cursor:pointer;
   font-size:clamp(10px,.95vw,13px);font-weight:500;
-  color:rgba(237,224,200,.5);transition:all .15s;
+  color:rgba(237,224,200,0.5);transition:all .15s;
   white-space:nowrap;overflow:hidden;
 }
-.nav-it:hover{background:rgba(200,146,42,.1);color:rgba(237,224,200,.88)}
-.nav-it.active{background:rgba(200,146,42,.18);color:#e8b84b;
+.nav-it:hover{background:rgba(200,146,42,0.1);color:rgba(237,224,200,0.88)}
+.nav-it.active{background:rgba(200,146,42,0.18);color:#e8b84b;
   box-shadow:inset 2px 0 0 #c8922a}
 .nav-it svg{width:clamp(13px,1.3vw,16px);height:clamp(13px,1.3vw,16px);
-  flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;opacity:.65}
+  flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;opacity:0.65}
 .nav-it.active svg{opacity:1}
+
 @media(max-width:900px){
   .nav-lbl,.sb-logo,.sb-sub,.nav-label{display:none}
-  .nav-it{justify-content:center;padding:clamp(9px,.9vh,12px) 0}
+  .nav-it{justify-content:center;padding:clamp(9px,0.9vh,12px) 0}
   .sb-head{text-align:center}
   .sb-foot{justify-content:center}
 }
-.sb-foot{padding:clamp(8px,.8vh,12px) clamp(8px,.8vw,12px);
-  border-top:1px solid rgba(200,146,42,.1);
+
+.sb-foot{padding:clamp(8px,0.8vh,12px) clamp(8px,.8vw,12px);
+  border-top:1px solid rgba(200,146,42,0.1);
   display:flex;align-items:center;gap:clamp(6px,.6vw,10px)}
 .sb-av{width:clamp(26px,2.2vw,32px);height:clamp(26px,2.2vw,32px);border-radius:50%;
-  flex-shrink:0;background:linear-gradient(135deg,#c8922a,rgba(200,146,42,.4));
+  flex-shrink:0;background:linear-gradient(135deg,#c8922a,rgba(200,146,42,0.4));
   display:flex;align-items:center;justify-content:center;
   font-size:clamp(10px,.95vw,12px);font-weight:700;color:#0b0a05}
 .sb-un{font-size:clamp(10px,.95vw,12px);font-weight:600;white-space:nowrap;overflow:hidden}
-.sb-ur{font-size:clamp(7px,.6vw,9px);color:rgba(200,146,42,.4);
+.sb-ur{font-size:clamp(7px,0.6vw,9px);color:rgba(200,146,42,0.4);
   font-family:'JetBrains Mono',monospace}
 .sb-dot{width:6px;height:6px;border-radius:50%;background:#3dd68c;
   box-shadow:0 0 5px #3dd68c;margin-left:auto;flex-shrink:0;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:.6;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes pulse{0%,100%{opacity:0.6;transform:scale(0.9)}50%{opacity:1;transform:scale(1.15)}}
 
 /* ─── MAIN SHELL ─────────────────────────────────────────── */
 .main-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 
-/* ─── TOPBAR (from index5 .header) ─────────────────────── */
+/* ─── TOPBAR ───────────────────────────────────────────── */
 .header{
   flex-shrink:0;height:clamp(40px,5vh,52px);
   display:flex;align-items:center;padding:0 clamp(12px,1.2vw,20px);gap:clamp(6px,.6vw,10px);
   background:rgba(3,3,15,.82);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(200,146,42,.12);z-index:2;
+  border-bottom:1px solid rgba(200,146,42,0.12);z-index:2;
 }
 .nav-left{font-family:'JetBrains Mono',monospace;font-size:clamp(10px,.95vw,13px);
   color:#e8b84b;font-weight:700;letter-spacing:.08em;white-space:nowrap}
-.nav-center{display:flex;gap:clamp(3px,.3vw,5px);margin-left:clamp(6px,.6vw,10px)}
+.nav-center{display:flex;gap:clamp(3px,0.3vw,5px);margin-left:clamp(6px,.6vw,10px)}
 .nav-btn{
-  padding:clamp(3px,.35vh,5px) clamp(8px,.85vw,14px);border-radius:20px;border:none;
+  padding:clamp(3px,0.35vh,5px) clamp(8px,0.85vw,14px);border-radius:20px;border:none;
   cursor:pointer;font-size:clamp(9px,.85vw,11px);font-weight:600;letter-spacing:.04em;
   font-family:'Be Vietnam Pro',sans-serif;
-  background:rgba(255,255,255,.06);color:rgba(237,224,200,.5);transition:all .15s;
+  background:rgba(255,255,255,.06);color:rgba(237,224,200,0.5);transition:all .15s;
 }
-.nav-btn:hover{background:rgba(200,146,42,.15);color:#e8b84b}
-.nav-btn.active{background:rgba(200,146,42,.28);color:#e8b84b}
+.nav-btn:hover{background:rgba(200,146,42,0.15);color:#e8b84b}
+.nav-btn.active{background:rgba(200,146,42,0.28);color:#e8b84b}
 .nav-right{display:flex;align-items:center;gap:clamp(6px,.6vw,8px);margin-left:auto}
-.t-chip{display:flex;align-items:center;gap:5px;background:rgba(200,146,42,.08);
-  border:1px solid rgba(200,146,42,.25);border-radius:30px;
-  padding:clamp(3px,.3vh,4px) clamp(7px,.7vw,10px);
+.t-chip{display:flex;align-items:center;gap:5px;background:rgba(200,146,42,0.08);
+  border:1px solid rgba(200,146,42,0.25);border-radius:30px;
+  padding:clamp(3px,0.3vh,4px) clamp(7px,.7vw,10px);
   font-size:clamp(8px,.75vw,10px);font-family:'JetBrains Mono',monospace;color:#e8b84b}
-.dot{width:5px;height:5px;border-radius:50%;animation:pulse 2s infinite}
 
-/* ─── MAIN CONTENT (scrollable feed below hero) ──────────── */
+/* ─── MAIN CONTENT ─────────────────────────────────────── */
 .main-content{flex:1;display:flex;flex-direction:column;overflow:hidden}
 
-/* ─── HERO: CONTROL TOWER (from index5 proven layout) ────── */
+/* ─── HERO ZONE ────────────────────────────────────────── */
 .hero-zone{
   position:relative;
-  /* fluid height = screen minus header minus ticker */
   height:calc(100vh - clamp(40px,5vh,52px) - clamp(22px,3vh,28px));
   display:grid;
-  /* fluid 3-col panels */
   grid-template-columns:var(--panel-w) minmax(0,1fr) var(--panel-w);
   min-height:0;
 }
 @media(max-width:900px){.hero-zone{grid-template-columns:0 1fr 0}}
 
-/* panels from index5 .left-panel / .right-panel */
 .left-panel,.right-panel{
-  padding:clamp(10px,1.2vh,16px) clamp(8px,.85vw,14px);
-  display:flex;flex-direction:column;gap:clamp(4px,.5vh,8px);
+  padding:clamp(10px,1.2vh,16px) clamp(8px,0.85vw,14px);
+  display:flex;flex-direction:column;gap:clamp(4px,0.5vh,8px);
   background:rgba(4,5,18,.72);
-  border-right:1px solid rgba(200,146,42,.08);overflow:hidden;
+  border-right:1px solid rgba(200,146,42,0.08);overflow:hidden;
 }
-.right-panel{border-right:none;border-left:1px solid rgba(200,146,42,.08)}
+.right-panel{border-right:none;border-left:1px solid rgba(200,146,42,0.08)}
 @media(max-width:900px){.left-panel,.right-panel{display:none}}
+
 .panel-title{font-family:'JetBrains Mono',monospace;
-  font-size:clamp(7px,.65vw,9px);font-weight:700;color:#c8922a;
+  font-size:clamp(7px,0.65vw,9px);font-weight:700;color:#c8922a;
   letter-spacing:.22em;margin-bottom:4px;display:flex;align-items:center;gap:5px}
 .panel-title svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+
 .stat-item{display:flex;justify-content:space-between;align-items:center;
-  font-size:clamp(8px,.75vw,10px);color:rgba(237,224,200,.45);
-  padding:clamp(2px,.25vh,3px) 0;border-bottom:1px solid rgba(200,146,42,.04)}
+  font-size:clamp(8px,.75vw,10px);color:rgba(237,224,200,0.45);
+  padding:clamp(2px,0.25vh,3px) 0;border-bottom:1px solid rgba(200,146,42,0.04)}
 .stat-value{font-family:'JetBrains Mono',monospace;
   font-size:clamp(9px,.85vw,11px);color:#e8b84b;font-weight:700}
 .stat-value.g{color:#3dd68c}.stat-value.r{color:#f05050}.stat-value.a{color:#f0a030}
-.alert-item{padding:clamp(5px,.55vh,7px) clamp(8px,.85vw,10px);border-radius:7px;
-  font-size:clamp(8px,.75vw,10px);font-weight:600;
-  border:1px solid rgba(240,160,48,.25);color:#f0a030;
-  background:rgba(240,160,48,.08);margin-top:4px}
+
 .task-btn{
-  display:flex;align-items:center;gap:clamp(6px,.6vw,8px);
-  padding:clamp(7px,.75vh,10px) clamp(8px,.85vw,12px);
-  border-radius:clamp(7px,.7vw,10px);
-  border:1px solid rgba(200,146,42,.18);background:rgba(200,146,42,.07);
-  color:rgba(237,224,200,.65);font-family:'Be Vietnam Pro',sans-serif;
+  display:flex;align-items:center;gap:clamp(6px,0.6vw,8px);
+  padding:clamp(7px,0.75vh,10px) clamp(8px,0.85vw,12px);
+  border-radius:clamp(7px,0.7vw,10px);
+  border:1px solid rgba(200,146,42,0.18);background:rgba(200,146,42,0.07);
+  color:rgba(237,224,200,0.65);font-family:'Be Vietnam Pro',sans-serif;
   font-size:clamp(9px,.85vw,11px);font-weight:600;cursor:pointer;
   transition:all .15s;text-align:left;width:100%;
 }
-.task-btn:hover{background:rgba(200,146,42,.2);color:#e8b84b;border-color:rgba(200,146,42,.38)}
-.task-btn svg{width:clamp(12px,1.1vw,14px);height:clamp(12px,1.1vw,14px);
-  flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2}
+.task-btn:hover{background:rgba(200,146,42,0.2);color:#e8b84b;border-color:rgba(200,146,42,0.38)}
 
-/* ─── MEDALS CENTER (from index5) ──────────────────────── */
+/* ─── MEDALS CENTER ────────────────────────────────────── */
 #ui-overlay{
   position:relative;pointer-events:auto;
   display:flex;align-items:center;justify-content:center;overflow:hidden;
@@ -205,257 +197,125 @@ html,body{height:100%;overflow:hidden;background:#030210;
   max-width:min(680px,100%);max-height:100%;
 }
 
-/* ─── SPEC §4 MEDAL 9 LAYERS ────────────────────────────── */
+/* ─── MEDAL LAYERS ─────────────────────────────────────── */
 .medal{
   width:var(--medal-size);height:var(--medal-size);
   position:relative;cursor:pointer;flex-shrink:0;
   transition:transform .28s cubic-bezier(.34,1.56,.64,1);
 }
 .medal:hover{transform:scale(1.07) translateY(-3px)}
-/* L0 orbital rings */
+
 .orbital-rings{position:absolute;inset:-14%;pointer-events:none}
 .orbital-rings svg{position:absolute;inset:0;width:100%;height:100%}
-/* L1 PBR shell */
+
 .medal-inner{
   position:absolute;inset:0;border-radius:50%;overflow:hidden;
   transition:box-shadow .3s;
 }
-.medal:hover .medal-inner{box-shadow:0 0 clamp(16px,2vw,28px) rgba(200,146,42,.45),0 0 clamp(32px,4vw,60px) rgba(200,146,42,.18)}
-/* L2 specular sweep */
+.medal:hover .medal-inner{box-shadow:0 0 clamp(16px,2vw,28px) rgba(200,146,42,0.45),0 0 clamp(32px,4vw,60px) rgba(200,146,42,0.18)}
+
 .specular-sweep{
   position:absolute;inset:0;
-  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.1) 50%,transparent 70%);
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,0.1) 50%,transparent 70%);
   transform:translateX(-110%);transition:transform 1.2s ease;
 }
 .medal:hover .specular-sweep{transform:translateX(110%)}
-/* L3 fresnel */
+
 .fresnel-rim{position:absolute;inset:0;border-radius:50%;
-  box-shadow:inset 0 0 10px rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.1);pointer-events:none}
-/* L4 holo */
-.holo-prismatic{position:absolute;inset:0;border-radius:50%;opacity:0;
-  background:conic-gradient(from 0deg,#FFB6C1,#E0FFFF,#E6E6FA,#FFB6C1);
-  mix-blend-mode:color-dodge;transition:opacity .3s;pointer-events:none}
-.medal:hover .holo-prismatic{opacity:.15}
-/* L5 Liquid Glass §2 */
+  box-shadow:inset 0 0 10px rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);pointer-events:none}
+
 .liquid-glass-overlay{
   position:absolute;inset:0;border-radius:50%;pointer-events:none;
   backdrop-filter:blur(var(--liquid-glass-blur)) saturate(180%);
-  background:radial-gradient(circle at 50% 28%,rgba(255,255,255,.1) 0%,rgba(255,255,255,.015) 55%,transparent 100%);
-  border:1px solid rgba(255,255,255,.12);
+  background:radial-gradient(circle at 50% 28%,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0.015) 55%,transparent 100%);
+  border:1px solid rgba(255,255,255,0.12);
 }
-/* L6+L7 glass core + caustics */
+
 .medal-glass-core{
   position:absolute;inset:12%;border-radius:50%;overflow:hidden;
   backdrop-filter:blur(8px);
   display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;
   background:rgba(3,3,18,.22);
 }
-.medal-glass-core::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 38% 32%,rgba(255,235,200,.07) 0%,transparent 55%);
-  animation:caust 8s ease-in-out infinite;
-}
-@keyframes caust{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.04) translate(2px,-2px)}}
-/* L8 emissive icon §XIV */
+
 .medal-icon{position:relative;z-index:1;font-size:clamp(20px,2.4vw,30px);
-  filter:drop-shadow(0 0 6px rgba(255,255,255,.55)) drop-shadow(0 0 14px rgba(200,146,42,.55))}
+  filter:drop-shadow(0 0 6px rgba(255,255,255,0.55)) drop-shadow(0 0 14px rgba(200,146,42,0.55))}
 .medal-title{position:relative;z-index:1;
   font-family:'JetBrains Mono',monospace;
-  font-size:clamp(5px,.65vw,8px);font-weight:700;
-  letter-spacing:.15em;color:rgba(237,224,200,.78);text-transform:uppercase}
-.confidence-badge{position:relative;z-index:1;
-  font-family:'JetBrains Mono',monospace;
-  font-size:clamp(5px,.55vw,7px);color:rgba(200,146,42,.6)}
-/* QNEU ring */
+  font-size:clamp(5px,0.65vw,8px);font-weight:700;
+  letter-spacing:.15em;color:rgba(237,224,200,0.78);text-transform:uppercase}
+
 .qneu-ring{position:absolute;inset:-8%;width:116%;height:116%;pointer-events:none}
 .qneu-ring svg{transform:rotate(-90deg)}
-/* §3.3 SCAR ring */
-.scar-ring{position:absolute;inset:-8%;border-radius:50%;pointer-events:none;
-  border:2px solid var(--color-burgundy);
-  box-shadow:0 0 10px rgba(128,0,32,.75);
-  animation:scar 2s ease-in-out infinite}
-@keyframes scar{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.02)}}
-/* color themes */
-.medal[data-theme="mint"] .medal-inner{background:conic-gradient(from 0deg,#0a1f12 0%,#1a3525 20%,#3dd68c 35%,#88f0b8 42%,#3dd68c 49%,#1a3525 65%,#0a1f12 100%)}
-.medal[data-theme="champagne"] .medal-inner{background:conic-gradient(from 0deg,#1e1a12 0%,#362e1e 20%,#c8922a 35%,#f5cf8c 42%,#c8922a 49%,#362e1e 65%,#1e1a12 100%)}
-.medal[data-theme="ice"] .medal-inner{background:conic-gradient(from 0deg,#0a1520 0%,#152535 20%,#60b8f0 35%,#b0e0ff 42%,#60b8f0 49%,#152535 65%,#0a1520 100%)}
-.medal[data-theme="lavender"] .medal-inner{background:conic-gradient(from 0deg,#140f20 0%,#241a38 20%,#9060d0 35%,#d0a0ff 42%,#9060d0 49%,#241a38 65%,#140f20 100%)}
-.medal[data-theme="rose"] .medal-inner{background:conic-gradient(from 0deg,#1f0a12 0%,#351525 20%,#f05080 35%,#ffb0c8 42%,#f05080 49%,#351525 65%,#1f0a12 100%)}
 
-/* ─── FEED (App Store style scroll) ─────────────────────── */
+/* ─── FEED ─────────────────────────────────────────────── */
 .feed{
-  flex:1;overflow-y:auto;overflow-x:hidden;
-  scroll-behavior:smooth;scrollbar-width:thin;
-  scrollbar-color:rgba(200,146,42,.2) transparent;
+  flex:1;overflow-y:auto;scroll-behavior:smooth;
+  scrollbar-width:thin;scrollbar-color:rgba(200,146,42,0.2) transparent;
 }
-.feed::-webkit-scrollbar{width:3px}
-.feed::-webkit-scrollbar-thumb{background:rgba(200,146,42,.2);border-radius:3px}
 .fsec{padding:clamp(14px,1.6vh,22px) clamp(16px,1.6vw,28px) clamp(8px,1vh,12px)}
-.fhdr{display:flex;align-items:baseline;gap:10px;margin-bottom:clamp(10px,1.2vh,16px)}
-.fttl{font-size:clamp(14px,1.5vw,20px);font-weight:700;color:#ede0c8;letter-spacing:-.01em}
-.fall{font-size:clamp(10px,.95vw,13px);color:#e8b84b;font-weight:600;cursor:pointer;margin-left:auto}
-.fdiv{height:1px;background:linear-gradient(90deg,rgba(200,146,42,.2),rgba(200,146,42,.03));
-  margin:0 clamp(16px,1.6vw,28px)}
+.fttl{font-size:clamp(14px,1.5vw,20px);font-weight:700;color:#ede0c8;margin-bottom:12px}
 
-/* banner grid */
-.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.1vw,16px)}
-@media(max-width:900px){.bgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.bgrid{grid-template-columns:1fr}}
-.bcard{border-radius:clamp(10px,1.2vw,16px);overflow:hidden;cursor:pointer;
-  border:1px solid rgba(200,146,42,.14);background:rgba(8,9,22,.75);
-  transition:transform .2s,border-color .2s}
-.bcard:hover{transform:translateY(-2px);border-color:rgba(200,146,42,.32)}
-.bthumb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
-.bico{width:clamp(36px,3.5vw,50px);height:clamp(36px,3.5vw,50px);border-radius:clamp(10px,1vw,14px);
-  background:rgba(200,146,42,.1);border:1px solid rgba(200,146,42,.28);
-  display:flex;align-items:center;justify-content:center;font-size:clamp(18px,2vw,26px)}
-.bbody{padding:clamp(8px,.85vw,12px) clamp(10px,1vw,14px) clamp(10px,1vw,14px)}
-.bcat{font-size:clamp(7px,.65vw,9px);font-weight:700;letter-spacing:.22em;
-  color:#c8922a;text-transform:uppercase;margin-bottom:3px}
-.bnm{font-size:clamp(11px,1.1vw,15px);font-weight:700;color:#ede0c8;line-height:1.3}
-.bds{font-size:clamp(9px,.85vw,11px);color:rgba(200,146,42,.55);margin-top:2px}
-
-/* app rows */
-.agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 @media(max-width:900px){.agrid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.agrid{grid-template-columns:1fr}}
-.arow{display:flex;align-items:center;gap:clamp(8px,.85vw,12px);
-  padding:clamp(7px,.75vh,10px) clamp(4px,.4vw,6px);
-  border-bottom:1px solid rgba(200,146,42,.05);
-  cursor:pointer;border-radius:clamp(7px,.7vw,10px);transition:background .15s}
-.arow:hover{background:rgba(200,146,42,.07)}
-.anum{font-family:'JetBrains Mono',monospace;font-size:clamp(8px,.75vw,10px);
-  color:rgba(200,146,42,.28);width:14px;text-align:right;flex-shrink:0}
-.aico{width:clamp(34px,3.2vw,44px);height:clamp(34px,3.2vw,44px);
-  border-radius:clamp(9px,.9vw,12px);flex-shrink:0;
-  background:rgba(200,146,42,.1);border:1px solid rgba(200,146,42,.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:clamp(14px,1.5vw,20px)}
-.ain{flex:1;min-width:0}
-.anm{font-size:clamp(10px,.95vw,13px);font-weight:600;color:#ede0c8;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ads{font-size:clamp(8px,.75vw,10px);color:rgba(200,146,42,.48);margin-top:1px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.obtn{padding:clamp(3px,.35vh,5px) clamp(9px,.9vw,13px);border-radius:20px;
-  border:1px solid rgba(200,146,42,.32);background:rgba(200,146,42,.12);
-  color:#e8b84b;font-size:clamp(9px,.85vw,11px);font-weight:700;
-  font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap}
-.obtn:hover{background:rgba(200,146,42,.28)}
-.obtn.g{background:rgba(61,214,140,.1);border-color:rgba(61,214,140,.32);color:#3dd68c}
-.obtn.b{background:rgba(96,184,240,.1);border-color:rgba(96,184,240,.32);color:#60b8f0}
 
-/* KPI row */
-.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,.85vw,12px)}
-@media(max-width:900px){.krow{grid-template-columns:1fr 1fr}}
-.kcard{background:rgba(6,7,20,.75);border:1px solid rgba(200,146,42,.1);
-  border-radius:clamp(10px,1.1vw,14px);padding:clamp(10px,1.1vh,14px) clamp(10px,1.1vw,14px)}
-.klbl{font-size:clamp(7px,.65vw,9px);font-weight:700;letter-spacing:.22em;
-  color:rgba(200,146,42,.38);text-transform:uppercase;margin-bottom:5px}
-.kval{font-family:'JetBrains Mono',monospace;
-  font-size:clamp(14px,1.6vw,20px);font-weight:700;color:#f5cf8c}
-.ksub{font-size:clamp(7px,.65vw,9px);color:rgba(200,146,42,.3);margin-top:2px;
-  font-family:'JetBrains Mono',monospace}
+.arow{display:flex;align-items:center;gap:12px;padding:8px;
+  background:rgba(200,146,42,0.03);border-radius:10px;cursor:pointer;transition:background 0.2s}
+.arow:hover{background:rgba(200,146,42,0.08)}
+.aico{width:40px;height:40px;border-radius:8px;background:rgba(200,146,42,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:18px}
+.anm{font-size:13px;font-weight:600}
+.ads{font-size:10px;color:rgba(200,146,42,0.5)}
 
-/* status grid */
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,.85vw,12px)}
-@media(max-width:900px){.sgrid{grid-template-columns:1fr 1fr}}
-.scell{background:rgba(6,7,20,.7);border:1px solid rgba(200,146,42,.08);
-  border-radius:clamp(9px,1vw,13px);padding:clamp(8px,.9vh,12px) clamp(10px,1.1vw,14px);
-  display:flex;align-items:center;gap:clamp(8px,.85vw,10px)}
-.sico{width:clamp(28px,2.8vw,36px);height:clamp(28px,2.8vw,36px);
-  border-radius:clamp(7px,.7vw,10px);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:16px}
-.snm{font-size:clamp(9px,.9vw,12px);font-weight:600;color:#ede0c8}
-.svl{font-size:clamp(8px,.75vw,10px);font-family:'JetBrains Mono',monospace;
-  color:rgba(200,146,42,.5);margin-top:1px}
-
-/* ─── BOTTOM STREAM ──────────────────────────────────────── */
+/* ─── BOTTOM STREAM ────────────────────────────────────── */
 .bottom-stream{
   flex-shrink:0;height:clamp(22px,3vh,28px);
   display:flex;align-items:center;overflow:hidden;
   background:rgba(3,3,14,.92);backdrop-filter:blur(16px);
-  border-top:1px solid rgba(200,146,42,.18);z-index:2;
+  border-top:1px solid rgba(200,146,42,0.18);z-index:2;
 }
 .stream-label{background:linear-gradient(95deg,#c8922a,#e8b84b);color:#0a0800;
   font-size:clamp(7px,.65vw,8px);font-weight:900;
   padding:0 clamp(10px,1vw,14px);height:100%;
   display:flex;align-items:center;letter-spacing:.18em;flex-shrink:0}
-.event-stream{white-space:nowrap;animation:ticker 55s linear infinite;
-  display:flex;align-items:center;gap:clamp(16px,1.8vw,24px);
-  padding-left:clamp(10px,1.1vw,16px);font-family:'JetBrains Mono',monospace}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.event-item{font-size:clamp(8px,.75vw,9px);color:rgba(200,146,42,.55)}
-.event-time{color:rgba(200,146,42,.3);margin-right:5px}
-.event-item.hi .event-time{color:rgba(200,146,42,.5)}
-.event-item.hi{color:#f5cf8c}
+.event-stream{white-space:nowrap;display:flex;align-items:center;gap:24px;
+  padding-left:16px;font-family:'JetBrains Mono',monospace}
+.event-item{font-size:clamp(8px,.75vw,9px);color:rgba(200,146,42,0.55)}
+.event-time{color:rgba(200,146,42,0.3);margin-right:5px}
 
 /* ─── ANIMATIONS ─────────────────────────────────────────── */
 @keyframes ripple-pulse{
-  0%{box-shadow:0 0 0 0 rgba(255,215,0,.7);transform:scale(1)}
+  0%{box-shadow:0 0 0 0 rgba(255,215,0,0.7);transform:scale(1)}
   70%{box-shadow:0 0 0 22px rgba(255,215,0,0);transform:scale(1.04)}
   100%{box-shadow:0 0 0 0 rgba(255,215,0,0);transform:scale(1)}
-}
-/* §5.2 butterfly L1 local ripple */
-.butterfly-ripple{animation:ripple-pulse .6s ease-out}
-/* §5.1 L3 tsunami bg */
-.butterfly-tsunami-active{animation:tsunami-bg 1.8s ease-out forwards}
-@keyframes tsunami-bg{
-  0%{background-color:rgba(128,0,32,0)}
-  30%{background-color:rgba(128,0,32,.18)}
-  100%{background-color:rgba(128,0,32,0)}
 }
 </style>
 </head>
 <body>
 
-<!-- CANVAS LAYERS (index5 proven) -->
 <canvas id="bgCanvas"></canvas>
 <canvas id="connectionCanvas"></canvas>
 <canvas id="butterflyCanvas"></canvas>
 <div class="l0-grid"></div>
 <div class="l0-scan"></div>
 
-<!-- APP SHELL §11.6 II -->
 <div id="app-shell">
-
-  <!-- SIDEBAR §11.6 III -->
   <aside class="sidebar">
     <div class="sb-head">
       <div class="sb-logo">TÂM LUXURY</div>
       <div class="sb-sub">NATT-OS · GALAXY</div>
     </div>
     <nav class="sb-nav">
-      <div class="nav-lbl">Tổng Quan</div>
-      <div class="nav-it active" onclick="navTo('sec-overview',this)">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        <span class="nav-label">Tổng Quan</span>
-      </div>
       <div class="nav-lbl">Vận Hành</div>
-      <div class="nav-it" onclick="navTo('sec-sales',this)">
-        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <div class="nav-it active" onclick="navTo('sec-sales',this)">
+        <svg viewBox="0 0 24 24" width="16"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" fill="none" stroke-width="2"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/><path d="M16 10a4 4 0 01-8 0" stroke="currentColor" fill="none" stroke-width="2"/></svg>
         <span class="nav-label">Bán Hàng</span>
       </div>
-      <div class="nav-it" onclick="navTo('sec-prod',this)">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M12 2v2M20 12h2M12 20v2M4 12H2"/></svg>
-        <span class="nav-label">Sản Xuất</span>
-      </div>
-      <div class="nav-it" onclick="navTo('sec-wh',this)">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span class="nav-label">Kho</span>
-      </div>
-      <div class="nav-it" onclick="navTo('sec-fin',this)">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        <span class="nav-label">Tài Chính</span>
-      </div>
-      <div class="nav-it" onclick="navTo('sec-hr',this)">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        <span class="nav-label">Nhân Sự</span>
-      </div>
-      <div class="nav-lbl">Hệ Thống</div>
       <div class="nav-it" onclick="navTo('sec-sys',this)">
-        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <span class="nav-label">Giám Sát</span>
+        <svg viewBox="0 0 24 24" width="16"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+        <span class="nav-label">Hệ Thống</span>
       </div>
     </nav>
     <div class="sb-foot">
@@ -465,979 +325,276 @@ html,body{height:100%;overflow:hidden;background:#030210;
     </div>
   </aside>
 
-  <!-- MAIN SHELL -->
   <div class="main-shell">
-
-    <!-- TOPBAR -->
     <header class="header">
       <div class="nav-left">⚡ NATT-OS</div>
-      <div class="nav-center">
-        <button class="nav-btn active" data-view="system">SYSTEM</button>
-        <button class="nav-btn" data-view="sales">SALES</button>
-        <button class="nav-btn" data-view="production">PROD</button>
-        <button class="nav-btn" data-view="ai">AI</button>
-      </div>
       <div class="nav-right">
-        <div class="t-chip">
-          <div class="dot" style="background:#3dd68c;box-shadow:0 0 5px #3dd68c"></div>
-          <span id="goldPriceHeader">9999: --M</span>
-        </div>
-        <div class="t-chip">
-          <div class="dot" style="background:#e8b84b;box-shadow:0 0 5px #e8b84b"></div>
-          <span id="stateBadge">HEALTHY</span>
-        </div>
+        <div class="t-chip"><span id="goldPriceHeader">9999: --M</span></div>
+        <div class="t-chip"><span id="stateBadge">HEALTHY</span></div>
       </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <div class="main-content">
-
-      <!-- HERO ZONE: Control Tower medals -->
-      <div class="hero-zone" id="sec-overview">
-
-        <!-- LEFT PANEL -->
+      <div class="hero-zone">
         <div class="left-panel">
-          <div class="panel-title">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M20 12h2M12 20v2M4 12H2"/></svg>
-            SYSTEM STATE
-          </div>
-          <div class="stat-item"><span>QNEU AVG</span><span class="stat-value" id="qneuAvg">--%</span></div>
-          <div class="stat-item"><span>ACTIVE FLOWS</span><span class="stat-value" id="activeFlows">0</span></div>
-          <div class="stat-item"><span>GOLD 9999</span><span class="stat-value" id="goldPriceSmall">--M</span></div>
-          <div class="stat-item"><span>IMPEDANCE Z</span><span class="stat-value g" id="impedanceZ">1.000</span></div>
-          <div class="stat-item"><span>CELLS</span><span class="stat-value g">37/37</span></div>
-          <div class="stat-item"><span>TSC</span><span class="stat-value g">0 errors</span></div>
-          <div class="alert-item" id="alertMessage">⚠ PROD unstable · QNEU 64%</div>
-          <div class="stat-item" style="margin-top:6px"><span>THROUGHPUT</span><span class="stat-value">1.4k/h</span></div>
-          <div class="stat-item"><span>AI LOAD</span><span class="stat-value">23%</span></div>
-          <div class="stat-item"><span>RENDER MODE</span><span class="stat-value" id="renderMode">ACTIVE</span></div>
+          <div class="panel-title">SYSTEM STATE</div>
+          <div class="stat-item"><span>IMPEDANCE Z</span><span class="stat-value" id="impedanceZ">1.000</span></div>
+          <div class="stat-item"><span>RENDER MODE</span><span class="stat-value" id="renderMode">IDLE</span></div>
         </div>
-
-        <!-- CENTER MEDALS -->
         <div id="ui-overlay">
           <div class="medals-container" id="medalsGrid"></div>
         </div>
-
-        <!-- RIGHT PANEL -->
         <div class="right-panel">
-          <div class="panel-title">
-            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            COMMAND
-          </div>
-          <button class="task-btn" id="triggerButterflyBtn">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            TRIGGER BUTTERFLY
-          </button>
-          <button class="task-btn" id="simulateFlowBtn">
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            SIMULATE FLOW
-          </button>
-          <button class="task-btn" id="aiAnalyzeBtn">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            AI ANALYZE
-          </button>
-          <button class="task-btn" id="resetStateBtn">
-            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9m0 0v6h6"/></svg>
-            RESET STATE
-          </button>
-          <div style="flex:1"></div>
-          <div style="font-size:clamp(7px,.6vw,8px);color:rgba(200,146,42,.22);text-align:center;font-family:'JetBrains Mono',monospace">NATT-OS · v3.1 · RESONANCE</div>
+          <div class="panel-title">COMMAND</div>
+          <button class="task-btn" id="triggerButterflyBtn">TRIGGER BUTTERFLY</button>
         </div>
       </div>
 
-      <!-- FEED (App Store sections) -->
-      <div class="feed" id="main-feed">
-
-        <!-- KPI -->
-        <div class="fsec">
-          <div class="krow">
-            <div class="kcard"><div class="klbl">Gold 9999</div><div class="kval" id="kpi-gold">--M</div><div class="ksub">VNĐ / chỉ</div></div>
-            <div class="kcard"><div class="klbl">Gold 18K</div><div class="kval" id="kpi-18k">--M</div><div class="ksub">purity 75.44%</div></div>
-            <div class="kcard"><div class="klbl">System</div><div class="kval" id="kpi-state" style="color:#3dd68c">HEALTHY</div><div class="ksub" id="kpi-z">Z = 1.000</div></div>
-            <div class="kcard"><div class="klbl">Modules</div><div class="kval">26</div><div class="ksub">37 cells wired</div></div>
-          </div>
-        </div>
-        <div class="fdiv"></div>
-
-        <!-- SALES -->
-        <section id="sec-sales">
-          <div class="fsec">
-            <div class="fhdr"><div class="fttl">Bán Hàng & Showroom</div><span class="fall" onclick="openApp('tamluxury-v4.html')">Xem Tất Cả</span></div>
-            <div class="bgrid">
-              <div class="bcard" onclick="openApp('tamluxury-v4.html')">
-                <div class="bthumb" style="background:linear-gradient(135deg,rgba(200,80,30,.18),rgba(200,146,42,.08))"><div class="bico">💎</div></div>
-                <div class="bbody"><div class="bcat">sales-cell</div><div class="bnm">Sales Terminal v4</div><div class="bds">POS · Catalog · QR</div></div>
-              </div>
-              <div class="bcard" onclick="openApp('showroom-sales.html')">
-                <div class="bthumb" style="background:linear-gradient(135deg,rgba(96,60,200,.15),rgba(200,146,42,.07))"><div class="bico">✨</div></div>
-                <div class="bbody"><div class="bcat">showroom-cell</div><div class="bnm">Showroom Sales</div><div class="bds">Luxury · Tư vấn · Display</div></div>
-              </div>
-              <div class="bcard" onclick="openApp('ktt-approval.html')">
-                <div class="bthumb" style="background:linear-gradient(135deg,rgba(240,160,48,.15),rgba(200,146,42,.07))"><div class="bico">✅</div></div>
-                <div class="bbody"><div class="bcat">rbac-cell</div><div class="bnm">KTT Approval</div><div class="bds">Phê duyệt · Workflow</div></div>
-              </div>
-            </div>
-            <div style="height:10px"></div>
-            <div class="agrid">
-              <div class="arow" onclick="openApp('order-flow.html')"><div class="anum">1</div><div class="aico">📋</div><div class="ain"><div class="anm">Order Flow</div><div class="ads">order-cell · Đơn hàng</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('pricing-engine.html')"><div class="anum">2</div><div class="aico">💰</div><div class="ain"><div class="anm">Pricing Engine</div><div class="ads">pricing-cell · BQGQ</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('cfo-dashboard.html')"><div class="anum">3</div><div class="aico">📊</div><div class="ain"><div class="anm">CFO Dashboard</div><div class="ads">finance-cell · BCTC</div></div><button class="obtn b">Mở</button></div>
-            </div>
+      <div class="feed">
+        <section id="sec-sales" class="fsec">
+          <div class="fttl">Dòng Chảy Nghiệp Vụ</div>
+          <div class="agrid" id="appGrid">
+            <!-- App rows will be here -->
           </div>
         </section>
-        <div class="fdiv"></div>
-
-        <!-- PRODUCTION -->
-        <section id="sec-prod">
-          <div class="fsec">
-            <div class="fhdr"><div class="fttl">Sản Xuất & Xưởng</div><span class="fall" onclick="openApp('production-wallboard.html')">Xem Tất Cả</span></div>
-            <div class="agrid">
-              <div class="arow" onclick="openApp('production-wallboard.html')"><div class="anum">1</div><div class="aico">⚙️</div><div class="ain"><div class="anm">Production Wallboard</div><div class="ads">production-cell · Kanban</div></div><button class="obtn g">Live</button></div>
-              <div class="arow" onclick="openApp('loss-thresholds.html')"><div class="anum">2</div><div class="aico">📉</div><div class="ain"><div class="anm">Loss Thresholds</div><div class="ads">casting-cell · Hao hụt</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('operations-terminal.html')"><div class="anum">3</div><div class="aico">🚛</div><div class="ain"><div class="anm">Operations Terminal</div><div class="ads">logistics-cell</div></div><button class="obtn g">Mở</button></div>
-              <div class="arow" onclick="openApp('daily-work-app.html')"><div class="anum">4</div><div class="aico">📅</div><div class="ain"><div class="anm">Daily Work App</div><div class="ads">production-cell · Tác vụ</div></div><button class="obtn g">Mở</button></div>
-              <div class="arow" onclick="openApp('warehouse-full.html')"><div class="anum">5</div><div class="aico">🏭</div><div class="ain"><div class="anm">Warehouse Full</div><div class="ads">warehouse-cell</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('warehouse-ops.html')"><div class="anum">6</div><div class="aico">📦</div><div class="ain"><div class="anm">Warehouse Ops</div><div class="ads">inventory-cell</div></div><button class="obtn">Mở</button></div>
-            </div>
-          </div>
-        </section>
-        <div class="fdiv"></div>
-
-        <!-- KHO -->
-        <section id="sec-wh">
-          <div class="fsec">
-            <div class="fhdr"><div class="fttl">Kho</div></div>
-            <div class="agrid">
-              <div class="arow" onclick="openApp('warehouse-full.html')"><div class="anum">1</div><div class="aico">🏭</div><div class="ain"><div class="anm">Warehouse Full</div><div class="ads">warehouse-cell</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('warehouse-ops.html')"><div class="anum">2</div><div class="aico">📦</div><div class="ain"><div class="anm">Warehouse Ops</div><div class="ads">inventory-cell</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('loss-thresholds.html')"><div class="anum">3</div><div class="aico">📉</div><div class="ain"><div class="anm">Loss Thresholds</div><div class="ads">dust-recovery-cell</div></div><button class="obtn">Mở</button></div>
-            </div>
-          </div>
-        </section>
-        <div class="fdiv"></div>
-
-        <!-- TÀI CHÍNH -->
-        <section id="sec-fin">
-          <div class="fsec">
-            <div class="fhdr"><div class="fttl">Tài Chính & Quản Lý</div><span class="fall" onclick="openApp('master-dashboard.html')">Xem Tất Cả</span></div>
-            <div class="agrid">
-              <div class="arow" onclick="openApp('master-dashboard.html')"><div class="anum">1</div><div class="aico">🌐</div><div class="ain"><div class="anm">Master Dashboard</div><div class="ads">analytics-cell · CEO</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('cfo-dashboard.html')"><div class="anum">2</div><div class="aico">📊</div><div class="ain"><div class="anm">CFO Dashboard</div><div class="ads">finance-cell</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('kris-email-hub.html')"><div class="anum">3</div><div class="aico">📧</div><div class="ain"><div class="anm">Kris Email Hub</div><div class="ads">comms-cell</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('surveillance.html')"><div class="anum">4</div><div class="aico">👁️</div><div class="ain"><div class="anm">Surveillance</div><div class="ads">monitor-cell · Risk</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('pricing-engine.html')"><div class="anum">5</div><div class="aico">💰</div><div class="ain"><div class="anm">Pricing Engine</div><div class="ads">pricing-cell</div></div><button class="obtn">Mở</button></div>
-              <div class="arow" onclick="openApp('ktt-approval.html')"><div class="anum">6</div><div class="aico">✅</div><div class="ain"><div class="anm">KTT Approval</div><div class="ads">rbac-cell</div></div><button class="obtn">Mở</button></div>
-            </div>
-          </div>
-        </section>
-        <div class="fdiv"></div>
-
-        <!-- NHÂN SỰ -->
-        <section id="sec-hr">
-          <div class="fsec">
-            <div class="fhdr"><div class="fttl">Nhân Sự & Hợp Tác</div><span class="fall" onclick="openApp('hr-admin.html')">Xem Tất Cả</span></div>
-            <div class="agrid">
-              <div class="arow" onclick="openApp('hr-admin.html')"><div class="anum">1</div><div class="aico">👥</div><div class="ain"><div class="anm">HR Admin</div><div class="ads">hr-cell · Lương</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('hr-manager.html')"><div class="anum">2</div><div class="aico">📈</div><div class="ain"><div class="anm">HR Manager</div><div class="ads">hr-cell · KPI</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('attendance.html')"><div class="anum">3</div><div class="aico">🕐</div><div class="ain"><div class="anm">Attendance</div><div class="ads">hr-cell · Chấm công</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('personal-profile-v2.html')"><div class="anum">4</div><div class="aico">👤</div><div class="ain"><div class="anm">Profile v2</div><div class="ads">hr-cell</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('chat-rooms.html')"><div class="anum">5</div><div class="aico">💬</div><div class="ain"><div class="anm">Chat Rooms</div><div class="ads">comms-cell · AI Kris</div></div><button class="obtn b">Mở</button></div>
-              <div class="arow" onclick="openApp('personal-profile.html')"><div class="anum">6</div><div class="aico">👤</div><div class="ain"><div class="anm">Profile</div><div class="ads">hr-cell</div></div><button class="obtn b">Mở</button></div>
-            </div>
-          </div>
-        </section>
-        <div class="fdiv"></div>
-
-        <!-- HỆ THỐNG -->
-        <section id="sec-sys">
-          <div class="fsec">
-            <div class="fhdr"><div class="fttl">Trạng Thái Hệ Thống</div></div>
-            <div class="sgrid">
-              <div class="scell"><div class="sico" style="background:rgba(61,214,140,.1)">⚡</div><div><div class="snm">EventBus</div><div class="svl" id="st-eb">182 emit</div></div></div>
-              <div class="scell"><div class="sico" style="background:rgba(200,146,42,.1)">🌐</div><div><div class="snm">SmartLink</div><div class="svl">37/37 wired</div></div></div>
-              <div class="scell"><div class="sico" style="background:rgba(96,184,240,.1)">📡</div><div><div class="snm">HeyNa SSE</div><div class="svl" id="st-sse">Connecting...</div></div></div>
-              <div class="scell"><div class="sico" style="background:rgba(240,80,80,.08)">🔒</div><div><div class="snm">Security</div><div class="svl">SiraSign READY</div></div></div>
-              <div class="scell"><div class="sico" style="background:rgba(200,146,42,.1)">💻</div><div><div class="snm">TSC</div><div class="svl" style="color:#3dd68c">0 errors</div></div></div>
-              <div class="scell"><div class="sico" style="background:rgba(61,214,140,.1)">🔧</div><div><div class="snm">Engine Registry</div><div class="svl" style="color:#3dd68c">Dead: 0</div></div></div>
-            </div>
-          </div>
-        </section>
-        <div style="height:20px"></div>
-      </div><!-- end feed -->
-
-    </div><!-- end main-content -->
-
-    <!-- BOTTOM STREAM (Truth Layer) -->
-    <div class="bottom-stream">
-      <span class="stream-label">LIVE</span>
-      <div class="event-stream" id="eventStreamContainer">
-        <span class="event-item"><span class="event-time">--:--:--</span> NATT-OS HeyNa · Mạch đang kết nối</span>
-        <span class="event-item"><span class="event-time">--:--:--</span> Tâm Luxury · 37 cells wired · HEALTHY</span>
-        <span class="event-item"><span class="event-time">--:--:--</span> NATT-OS HeyNa · Mạch đang kết nối</span>
-        <span class="event-item"><span class="event-time">--:--:--</span> Tâm Luxury · 37 cells wired · HEALTHY</span>
       </div>
     </div>
 
-  </div><!-- end main-shell -->
-</div><!-- end app-shell -->
+    <div class="bottom-stream">
+      <span class="stream-label">LIVE</span>
+      <div class="event-stream" id="eventStreamContainer"></div>
+    </div>
+  </div>
+</div>
 
 <script type="importmap">
   { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
 </script>
 <script type="module">
-  import * as THREE from 'three';
-  import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-  import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-  import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
-  // ── §7.1 EVENTBUS (from index5 proven) ────────────────────
-  const EventBus = {
-    events: {},
-    on(event, callback) {
-      if (!this.events[event]) this.events[event] = [];
-      this.events[event].push(callback);
-      return () => this.off(event, callback);
-    },
-    off(event, callback) {
-      if (!this.events[event]) return;
-      this.events[event] = this.events[event].filter(cb => cb !== callback);
-    },
-    emit(event, data) {
-      const envelope = {
-        event_id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36),
-        tenant_id: 'tam-luxury',
-        causation_id: data?.causation_id || 'ui',
-        timestamp: Date.now(),
-        type: event,
-        payload: data
-      };
-      (this.events[event] || []).forEach(cb => cb(envelope));
-      if (event !== 'audit.record') {
-        (this.events['audit.record'] || []).forEach(cb => cb({ original: envelope }));
-      }
+/* ─── §7.1 EVENTBUS (SURGICAL FIX: ADD OFF) ──────────────── */
+const EventBus = {
+  events: {},
+  on(event, callback) {
+    if (!this.events[event]) this.events[event] = [];
+    this.events[event].push(callback);
+    return () => this.off(event, callback); // Trả về hàm hủy lắng nghe
+  },
+  off(event, callback) {
+    if (!this.events[event]) return;
+    this.events[event] = this.events[event].filter(cb => cb !== callback);
+  },
+  emit(event, data) {
+    const envelope = {
+      event_id: crypto.randomUUID(),
+      timestamp: Date.now(),
+      type: event,
+      payload: data
+    };
+    (this.events[event] || []).forEach(cb => cb(envelope));
+    if (event !== 'audit.record') this.emit('audit.record', { original: envelope });
+  }
+};
+
+/* ─── OPT-01R: UNIFIED RENDER CONTROL ────────────────────── */
+const RenderCtrl = {
+  mode: 'IDLE',
+  Z: 1.0,
+  attention: 0.0,
+  lastHeynaTs: 0,
+  rafId: null,
+  
+  updateMode() {
+    const now = Date.now();
+    const oldMode = this.mode;
+
+    if (this.Z > 1.3) this.mode = 'DEGRADED';
+    else if (now - this.lastHeynaTs < 1000) this.mode = 'BURST';
+    else if (this.attention > 0.2) this.mode = 'ACTIVE';
+    else this.mode = 'IDLE';
+
+    if (oldMode !== this.mode) {
+      document.getElementById('renderMode').textContent = this.mode;
+      EventBus.emit('render.mode.changed', { newMode: this.mode });
     }
-  };
+  },
 
-  // ── OPT-01R: RESONANCE-AWARE RENDERING (SPEC v2.0 §12) ────
-  // Render = phản xạ theo tín hiệu, KHÔNG phải loop vô hạn
-  const RenderCtrl = {
-    mode: 'ACTIVE',         // IDLE|ACTIVE|BURST|DEGRADED
-    Z: 1.0,                 // impedance
-    resonance: 0.5,
-    attention: 0.8,
-    lastHeynaTs: Date.now(),
-    lastRenderTs: 0,
-    rafId: null,
-    // frame time đo thực tế cho Z
-    _frameTimes: [],
-    _avgFrameTime: 16.6,
-
-    updateMode() {
-      const now = Date.now();
-      const oldMode = this.mode;
-
-      // Ưu tiên: impedance cao → DEGRADED
-      if (this.Z > 1.3) {
-        this.mode = 'DEGRADED';
-      } else if (this.mode === 'DEGRADED' && this.Z <= 1.0) {
-        this.mode = 'ACTIVE';
+  start() {
+    if (this.rafId) return;
+    const loop = () => {
+      this.updateMode();
+      if (this.mode !== 'IDLE') {
+        renderFrame();
       }
-
-      // BURST timeout → ACTIVE
-      if (this.mode === 'BURST' && now - this.lastHeynaTs > 500) {
-        this.mode = 'ACTIVE';
-      }
-
-      // Không degraded: kiểm tra attention + heyna
-      if (this.mode !== 'DEGRADED') {
-        // IDLE disabled — minimum là ACTIVE
-        if (this.mode === 'IDLE') this.mode = 'ACTIVE';
-      }
-
-      // Emit mode changed (audit §12.2)
-      if (oldMode !== this.mode) {
-        EventBus.emit('render.mode.changed', { oldMode, newMode: this.mode });
-        // UI indicator
-        const el = document.getElementById('renderMode');
-        if (el) el.textContent = this.mode;
-      }
-
-      // không stop từ updateMode
-    },
-
-    start() {
-      if (this.rafId !== null) return; // guard: chỉ 1 loop duy nhất
-      const loop = () => {
-        renderFrame(); // unified: 3D + 2D cùng 1 nhịp RAF
-        this.rafId = requestAnimationFrame(loop);
-      };
       this.rafId = requestAnimationFrame(loop);
-    },
-
-    stop() {
-      // Loop không dừng — protocol chỉ đổi quality
-    },
-
-    getQuality() {
-      if (this.mode === 'BURST')    return 'high';
-      if (this.mode === 'ACTIVE')   return 'medium';
-      if (this.mode === 'DEGRADED') return 'low';
-      return 'idle';
-    },
-
-    // Đo Z từ frame time thực (SPEC §8.3)
-    measureFrameTime(dt) {
-      const ms = dt * 1000;
-      this._frameTimes.push(ms);
-      if (this._frameTimes.length > 30) this._frameTimes.shift();
-      this._avgFrameTime = this._frameTimes.reduce((a,b)=>a+b,0) / this._frameTimes.length;
-    },
-
-    computeZ(particleCount, maxParticle, shaderComplexity) {
-      const frameNorm   = Math.min(1, this._avgFrameTime / 16.6);
-      const particleNrm = particleCount / maxParticle;
-      const shaderNrm   = Math.min(1, shaderComplexity);
-      return Math.min(2.0, Math.max(0, frameNorm*.5 + particleNrm*.3 + shaderNrm*.2));
-    }
-  };
-
-  // ── HEYNA/NAHERE/Z/resonance EventBus wiring ─────────────
-  EventBus.on('HEYNA', () => {
-   
-    RenderCtrl.mode = 'BURST';
-    // no start() — loop already running
-    CONFIG.nebulaIntensity = 1.35;
-    nebulaUniforms.intensity.value = 1.35;
-    CONFIG.particleSpeedMult = 1.5;
-  });
-  EventBus.on('NAHERE', () => {
-    if (RenderCtrl.mode !== 'DEGRADED') RenderCtrl.mode = 'ACTIVE'; // no IDLE
-    CONFIG.nebulaIntensity = 0.6;
-    if (nebulaUniforms) nebulaUniforms.intensity.value = 0.6;
-    CONFIG.particleSpeedMult = 0.5;
-  });
-  EventBus.on('system.impedance', ({ payload }) => {
-    if (payload?.value !== undefined) {
-      RenderCtrl.Z = payload.value;
-      const el2 = document.getElementById('impedanceZ');
-      if (el2) el2.textContent = RenderCtrl.Z.toFixed(3);
-    }
-  });
-  EventBus.on('system.resonance', ({ payload }) => {
-    if (payload?.value !== undefined) RenderCtrl.resonance = payload.value;
-  });
-
-  // ── ATTENTION ENGINE (SPEC v2.0 §8.4) ────────────────────
-  // Tổng hợp: mouse + click + scroll + visibility + intersection
-  const Attention = {
-    lastMouseMove: 0, lastClick: 0, lastScroll: 0,
-    current: 0.8,
-    anySectionVisible: false,
-
-    compute() {
-      const now = Date.now();
-      let a = 0;
-      if (now - this.lastMouseMove < 500)  a += 0.4;
-      if (now - this.lastClick    < 1000)  a += 0.3;
-      if (now - this.lastScroll   < 300)   a += 0.3;
-      if (document.visibilityState === 'visible') a = Math.min(1, a + 0.3);
-      else a = 0;
-      if (this.anySectionVisible) a = Math.min(1, a + 0.3);
-      return Math.min(1, a);
-    },
-
-    update() {
-      const a = this.compute();
-      // emit chỉ khi thay đổi > 0.05 (SPEC §8.4)
-      if (Math.abs(a - this.current) > 0.05) {
-        this.current = a;
-        RenderCtrl.attention = a;
-        EventBus.emit('ui.focus', { attention: a, causation_id: 'attention-engine' });
-      }
-    }
-  };
-
-  let _ht = 0;
-  document.addEventListener('mousemove', () => {
-    Attention.lastMouseMove = Date.now();
-  });
-  document.addEventListener('click',     () => { Attention.lastClick = Date.now(); }); // no HEYNA
-  document.addEventListener('scroll',    () => { Attention.lastScroll = Date.now(); }, { passive:true }); // no HEYNA
-  document.addEventListener('visibilitychange', () => Attention.update());
-  setInterval(() => Attention.update(), 200); // 5Hz
-
-  // ── CONFIG ─────────────────────────────────────────────────
-  const CONFIG = {
-    bloom: { threshold: 0.12, strength: 0.9, radius: 0.9 },
-    nebulaIntensity: 1.0,
-    particleSpeedMult: 1.0,
-  };
-
-  // ── SCENE (from index5 proven) ────────────────────────────
-  const scene = new THREE.Scene();
-  const canvas = document.createElement('canvas');
-  canvas.width = 64; canvas.height = 64;
-  const ctx = canvas.getContext('2d');
-  // Purple-deep-space background
-  const grad = ctx.createLinearGradient(0,0,0,canvas.height);
-  grad.addColorStop(0,'#050218'); grad.addColorStop(0.5,'#180830'); grad.addColorStop(1,'#090214');
-  ctx.fillStyle = grad; ctx.fillRect(0,0,canvas.width,canvas.height);
-  scene.background = new THREE.CanvasTexture(canvas);
-  scene.fog = new THREE.FogExp2(0x06021a, 0.0007);
-
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
-  camera.position.z = 12;
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById('bgCanvas'), antialias: true
-  });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloomPass = new UnrealBloomPass(
-    new THREE.Vector2(window.innerWidth, window.innerHeight),
-    CONFIG.bloom.strength, CONFIG.bloom.radius, CONFIG.bloom.threshold
-  );
-  composer.addPass(bloomPass);
-
-  // ── DEPTH LAYERS ──────────────────────────────────────────
-  const layerFar = new THREE.Object3D();
-  const layerMid = new THREE.Object3D();
-  const layerNear = new THREE.Object3D();
-  scene.add(layerFar, layerMid, layerNear);
-  layerFar.position.z = -2; layerMid.position.z = -1;
-
-  // ── 1. NEBULA SHADER (H-alpha + OIII + deep space) ────────
-  const nebulaPlaneGeo = new THREE.PlaneGeometry(30, 30);
-  const nebulaUniforms = {
-    time: { value: 0 },
-    intensity: { value: CONFIG.nebulaIntensity },
-    cameraPos: { value: camera.position }
-  };
-  const nebulaMaterial = new THREE.ShaderMaterial({
-    uniforms: nebulaUniforms,
-    vertexShader: `
-      varying vec2 vUv; varying vec3 vPosition;
-      void main() { vUv = uv; vPosition = position;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-    fragmentShader: `
-      precision highp float;
-      varying vec2 vUv; uniform float time, intensity; uniform vec3 cameraPos;
-      vec3 m289(vec3 x){return x-floor(x*(1./289.))*289.;}
-      vec4 m289(vec4 x){return x-floor(x*(1./289.))*289.;}
-      vec4 pm(vec4 x){return m289(((x*34.)+1.)*x);}
-      vec4 ti(vec4 r){return 1.79284291-.85373472*r;}
-      float snoise(vec3 v){
-        const vec2 C=vec2(1./6.,1./3.); const vec4 D=vec4(0.,.5,1.,2.);
-        vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
-        vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.-g;
-        vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
-        vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy;
-        i=m289(i);
-        vec4 p=pm(pm(pm(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
-        vec3 ns=0.142857*D.wyz-D.xzx;
-        vec4 j=p-49.*floor(p*ns.z*ns.z);
-        vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.*x_);
-        vec4 xx=x_*ns.x+ns.yyyy; vec4 yy=y_*ns.x+ns.yyyy; vec4 h=1.-abs(xx)-abs(yy);
-        vec4 b0=vec4(xx.xy,yy.xy); vec4 b1=vec4(xx.zw,yy.zw);
-        vec4 s0=floor(b0)*2.+1.; vec4 s1=floor(b1)*2.+1.; vec4 sh=-step(h,vec4(0.));
-        vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
-        vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y);
-        vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
-        vec4 nm=ti(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
-        p0*=nm.x; p1*=nm.y; p2*=nm.z; p3*=nm.w;
-        vec4 mm=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);
-        mm=mm*mm; return 42.*dot(mm*mm,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}
-      float fbm(vec3 p){
-        float s=snoise(p); s+=snoise(p*2.)*.5; s+=snoise(p*4.)*.25; s+=snoise(p*8.)*.125;
-        return s*.5+.5;}
-      void main(){
-        vec3 rd=normalize(vec3(vUv*2.-1.,1.));
-        // Astronomical palette
-        vec3 ha=vec3(.88,.10,.20);  // H-alpha red
-        vec3 oi=vec3(.00,.78,.68);  // OIII teal
-        vec3 si=vec3(.80,.22,.05);  // SII orange
-        vec3 rf=vec3(.10,.30,.92);  // reflection blue
-        vec3 vi=vec3(.38,.05,.55);  // deep violet
-        vec3 wc=vec3(.98,.88,.42);  // galaxy core gold
-        float t=0.; float d1=0.,d2=0.,d3=0.,d4=0.;
-        vec3 drift=vec3(time*.012,time*.007,time*.018);
-        for(int i=0;i<32;i++){
-          vec3 p=cameraPos+rd*t+drift;
-          d1+=fbm(p*.45+vec3(1.7,2.3,.5))*.11;
-          d2+=fbm(p*1.05+vec3(3.1,.7,2.1))*.08;
-          d3+=fbm(p*.28+vec3(.5,1.8,3.2))*.13;
-          d4+=fbm(p*.75+vec3(2.5,4.1,.8))*.07;
-          t+=.15;}
-        d1=clamp(d1*intensity,0.,1.); d2=clamp(d2*intensity,0.,1.);
-        d3=clamp(d3*intensity*.65,0.,.75); d4=clamp(d4*intensity*.8,0.,.9);
-        vec3 em=mix(ha,si,smoothstep(.35,.75,d1))*smoothstep(.25,.55,d1);
-        float dc=length(vUv-.5)*2.2; float cr=exp(-dc*dc*2.8)*.32*intensity;
-        vec3 col=em+oi*d2*.85+vi*d3*.55+rf*d4*.45+wc*cr;
-        float al=max(max(d1*.72,d2*.55),max(d3*.42,d4*.38))+cr*.45;
-        gl_FragColor=vec4(col,clamp(al,0.,.85));}`,
-    transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide
-  });
-  const nebulaPlane = new THREE.Mesh(nebulaPlaneGeo, nebulaMaterial);
-  nebulaPlane.position.z = -8; layerMid.add(nebulaPlane);
-  // Extra nebula planes for depth
-  const np2 = new THREE.Mesh(new THREE.PlaneGeometry(26,26), nebulaMaterial.clone());
-  np2.position.set(8,3,-10); np2.rotation.z=.5; np2.rotation.x=.2; layerMid.add(np2);
-
-  // ── 2. GALAXY (stellar population colors) ─────────────────
-  const galaxyCount = 3000;
-  const galaxyGeo = new THREE.BufferGeometry();
-  const positions = [], colors = [];
-  for (let i = 0; i < galaxyCount; i++) {
-    const r = Math.pow(Math.random(), 1.5) * 6;
-    const angle = Math.random() * Math.PI * 2;
-    const spiralOffset = Math.sin(angle * 5) * 0.8;
-    const x = Math.cos(angle) * (r + spiralOffset);
-    const z = Math.sin(angle) * (r + spiralOffset);
-    const y = (Math.random() - 0.5) * 0.6;
-    positions.push(x, y, z);
-    // Core warm, outer blue (SPEC §11.4)
-    let gh, gs, gl;
-    if (r < 1.2)     { gh=.09+Math.random()*.06; gs=.95; gl=.78; }
-    else if (r < 2.5){ gh=.11+Math.random()*.08; gs=.8;  gl=.60; }
-    else if (r < 4)  { gh=.52+Math.random()*.08; gs=.6;  gl=.52; }
-    else             { gh=.60+Math.random()*.12; gs=.85; gl=.44; }
-    const col = new THREE.Color().setHSL(gh, gs, gl);
-    colors.push(col.r, col.g, col.b);
+    };
+    this.rafId = requestAnimationFrame(loop);
   }
-  galaxyGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
-  galaxyGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
-  const galaxyMat = new THREE.PointsMaterial({ size: 0.07, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.75 });
-  const galaxyPoints = new THREE.Points(galaxyGeo, galaxyMat);
-  galaxyPoints.position.y = -0.5; layerFar.add(galaxyPoints);
-  // Galaxy core glow
-  const coreGlow = new THREE.Mesh(new THREE.SphereGeometry(0.7,12,12),
-    new THREE.MeshBasicMaterial({ color: new THREE.Color(.98,.88,.42), transparent:true, opacity:.17,
-      blending:THREE.AdditiveBlending, depthWrite:false }));
-  coreGlow.position.set(0,-.5,0); layerFar.add(coreGlow);
+};
 
-  // ── 3. GPU PARTICLES (Stars + Dust + Energy) ──────────────
-  function createParticles(count, sizeRange, colorHint, layer, driftSpeed) {
-    const geo = new THREE.BufferGeometry();
-    const pos = [], col = [], spd = [];
-    for (let i = 0; i < count; i++) {
-      const r = 5 + Math.random() * 15;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      pos.push(r*Math.sin(phi)*Math.cos(theta), r*Math.sin(phi)*Math.sin(theta)*.5, r*Math.cos(phi));
-      const c = new THREE.Color(colorHint).multiplyScalar(0.8 + Math.random()*.5);
-      col.push(c.r, c.g, c.b);
-      spd.push((Math.random()-.5)*driftSpeed,(Math.random()-.5)*driftSpeed,(Math.random()-.5)*driftSpeed);
-    }
-    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(pos), 3));
-    geo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(col), 3));
-    geo.userData.speed = spd; geo.userData.initialPos = new Float32Array(pos);
-    const pts = new THREE.Points(geo, new THREE.PointsMaterial({
-      size: sizeRange, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.65
-    }));
-    layer.add(pts); return pts;
-  }
-  const starsFar  = createParticles(1500, 0.06, '#ffd4a8', layerFar, 0.008);
-  const dustMid   = createParticles(1000, 0.09, '#b8e8ff', layerMid, 0.006);
-  const energyNear= createParticles(400,  0.12, '#c8c0ff', layerNear, 0.005);
-  // Milky Way band
-  const bandGeo = new THREE.BufferGeometry();
-  const bp=[], bc=[];
-  for(let i=0;i<3000;i++){
-    bp.push((Math.random()-.5)*24,(Math.random()-.5)*.8,(Math.random()-.5)*18);
-    const c=new THREE.Color().setHSL(.12+Math.random()*.06,.7,.55+Math.random()*.28);bc.push(c.r,c.g,c.b);}
-  bandGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(bp),3));
-  bandGeo.setAttribute('color',new THREE.BufferAttribute(new Float32Array(bc),3));
-  layerMid.add(new THREE.Points(bandGeo,new THREE.PointsMaterial({size:.065,vertexColors:true,blending:THREE.AdditiveBlending,transparent:true,opacity:.5})));
+/* ─── GALAXY & SCENE SETUP ──────────────────────────────── */
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.z = 12;
 
-  // ── 4+6. NOISE ANIMATION (Simplex drift per particle) ─────
-  function animateParticles(time) {
-    [starsFar, dustMid, energyNear].forEach(pts => {
-      const posAttr = pts.geometry.attributes.position;
-      const pos = posAttr.array;
-      const spd = pts.geometry.userData.speed;
-      for (let i = 0; i < pos.length; i+=3) {
-        const idx = i/3;
-        pos[i]   += spd[idx*3]   * 0.016 * 30;
-        pos[i+1] += spd[idx*3+1] * 0.016 * 30;
-        pos[i+2] += spd[idx*3+2] * 0.016 * 30;
-      }
-      posAttr.needsUpdate = true;
-    });
-  }
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
 
-  // ── MOUSE PARALLAX ────────────────────────────────────────
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', e => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.9, 0.9, 0.12);
+composer.addPass(bloomPass);
 
-  // ── BUTTERFLY 2D CANVAS ───────────────────────────────────
-  const butterflyCanvas = document.getElementById('butterflyCanvas');
-  const bCtx = butterflyCanvas.getContext('2d');
-  butterflyCanvas.width = window.innerWidth; butterflyCanvas.height = window.innerHeight;
-  let particles = [];
+// Galaxy Particles (Reduced to 3000 for stability)
+const galaxyGeo = new THREE.BufferGeometry();
+const posArray = new Float32Array(3000 * 3);
+for(let i=0; i<9000; i++) posArray[i] = (Math.random()-0.5) * 20;
+galaxyGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+const galaxyMat = new THREE.PointsMaterial({ size: 0.05, color: 0x60b8f0, transparent: true, opacity: 0.6 });
+const galaxyPoints = new THREE.Points(galaxyGeo, galaxyMat);
+scene.add(galaxyPoints);
 
-  // §5.1 L1: max 5 particles từ medal position (không phải center screen)
-  function spawnParticles(x, y, count=5) {
-    for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 1.5 + Math.random() * 2.5;
-      particles.push({
-        x, y, vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed-1,
-        life: 1.0, size: 3+Math.random()*4,
-        color: `hsl(${40+Math.random()*30}, 90%, 65%)`
-      });
-    }
-  }
+/* ─── 2D CANVASES & CACHE ────────────────────────────────── */
+const connCanvas = document.getElementById('connectionCanvas');
+const connCtx = connCanvas.getContext('2d');
+const butterflyCanvas = document.getElementById('butterflyCanvas');
+const bCtx = butterflyCanvas.getContext('2d');
 
-  function animateParticles2D() {
-    bCtx.clearRect(0, 0, butterflyCanvas.width, butterflyCanvas.height);
-    particles = particles.filter(p => {
-      p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.life -= 0.022;
-      if (p.life <= 0) return false;
-      bCtx.globalAlpha = p.life;
-      bCtx.fillStyle = p.color;
-      bCtx.beginPath(); bCtx.arc(p.x, p.y, p.size * p.life, 0, 2*Math.PI); bCtx.fill();
-      return true;
-    });
-    bCtx.globalAlpha = 1;
-    // 2D loop được gọi từ renderFrame() — không tự RAF
-  }
+let medalPosCache = new Map();
+let butterflyParticles = [];
 
-  // ── CONNECTIONS CANVAS ─────────────────────────────────────
-  const connCanvas = document.getElementById('connectionCanvas');
-  const connCtx = connCanvas.getContext('2d');
-  connCanvas.width = window.innerWidth; connCanvas.height = window.innerHeight;
-  const medalElements = new Map();
-
-  const _medalPosCache = new Map();
-  function updateMedalCache() {
-    _medalPosCache.clear();
-    medalElements.forEach((el, id) => {
+function updateMedalCache() {
+  medalPosCache.clear();
+  cells.forEach(c => {
+    const el = document.querySelector(`[data-cell-id="${c.id}"]`);
+    if (el) {
       const r = el.getBoundingClientRect();
-      _medalPosCache.set(id, { x: r.left + r.width/2, y: r.top + r.height/2 });
+      medalPosCache.set(c.id, { x: r.left + r.width/2, y: r.top + r.height/2 });
+    }
+  });
+}
+
+function draw2DLayers() {
+  // Clear once per frame
+  connCtx.clearRect(0, 0, connCanvas.width, connCanvas.height);
+  bCtx.clearRect(0, 0, butterflyCanvas.width, butterflyCanvas.height);
+
+  // Connections
+  cells.forEach(cell => {
+    const from = medalPosCache.get(cell.id);
+    if (!from) return;
+    (cell.connections || []).forEach(toId => {
+      const to = medalPosCache.get(toId);
+      if (!to) return;
+      connCtx.beginPath();
+      connCtx.moveTo(from.x, from.y);
+      connCtx.lineTo(to.x, to.y);
+      connCtx.strokeStyle = 'rgba(200,146,42,0.1)';
+      connCtx.stroke();
     });
-  }
-  function getMedalPos(id) { return _medalPosCache.get(id) || null; }
-  function invalidateMedalCache() { updateMedalCache(); }
+  });
 
-  function drawAllConnections() {
-    connCtx.clearRect(0, 0, connCanvas.width, connCanvas.height);
-    cells.forEach(cell => {
-      const from = getMedalPos(cell.id); if (!from) return;
-      (cell.connections || []).forEach(tid => {
-        const to = getMedalPos(tid); if (!to) return;
-        const g = connCtx.createLinearGradient(from.x,from.y,to.x,to.y);
-        g.addColorStop(0,'rgba(200,146,42,.18)'); g.addColorStop(.5,'rgba(200,146,42,.06)'); g.addColorStop(1,'rgba(200,146,42,.18)');
-        connCtx.beginPath(); connCtx.moveTo(from.x,from.y); connCtx.lineTo(to.x,to.y);
-        connCtx.strokeStyle=g; connCtx.lineWidth=1; connCtx.stroke();
-      });
-    });
-  }
+  // Butterfly
+  butterflyParticles = butterflyParticles.filter(p => {
+    p.x += p.vx; p.y += p.vy; p.life -= 0.02;
+    if (p.life <= 0) return false;
+    bCtx.globalAlpha = p.life;
+    bCtx.fillStyle = '#e8b84b';
+    bCtx.beginPath(); bCtx.arc(p.x, p.y, 3 * p.life, 0, Math.PI*2); bCtx.fill();
+    return true;
+  });
+}
 
-  // ── CELLS DATA ────────────────────────────────────────────
-  const colorMap = { mint:'#3dd68c', champagne:'#c8922a', ice:'#60b8f0', lavender:'#9060d0', rose:'#f05080' };
-  const cells = [
-    { id:'sales',    title:'SALES',     icon:'<img src="icon-sales.png" style="width:40px;height:40px;object-fit:contain">', qneu:.87, confidence:.92, scars:[], colorTheme:'champagne', connections:['showroom','prod'] },
-    { id:'showroom', title:'SHOWROOM',  icon:'<img src="icon-showroom.png" style="width:40px;height:40px;object-fit:contain">', qneu:.76, confidence:.68, scars:[], colorTheme:'champagne', connections:['sales','master'] },
-    { id:'prod',     title:'PROD',      icon:'<img src="icon-prod.png" style="width:40px;height:40px;object-fit:contain">', qneu:.64, confidence:.81, scars:[{id:'SCAR01'}], colorTheme:'ice', connections:['sales','warehouse'] },
-    { id:'warehouse',title:'WAREHOUSE', icon:'<img src="icon-warehouse.png" style="width:40px;height:40px;object-fit:contain">', qneu:.72, confidence:.55, scars:[], colorTheme:'mint',      connections:['prod','master'] },
-    { id:'master',   title:'MASTER',    icon:'<img src="icon-master.png" style="width:40px;height:40px;object-fit:contain">', qneu:.91, confidence:.94, scars:[], colorTheme:'champagne', connections:['sales','showroom','prod','warehouse','ai','hr'] },
-    { id:'ai',       title:'AI',        icon:'<img src="icon-ai.png" style="width:40px;height:40px;object-fit:contain">', qneu:.83, confidence:.88, scars:[], colorTheme:'lavender',  connections:['master'] },
-    { id:'hr',       title:'HR',        icon:'<img src="icon-hr.png" style="width:40px;height:40px;object-fit:contain">', qneu:.78, confidence:.85, scars:[], colorTheme:'ice',       connections:['master'] },
-  ];
+/* ─── MAIN RENDER FRAME ─────────────────────────────────── */
+const clock = new THREE.Clock();
+function renderFrame() {
+  const delta = clock.getDelta();
+  const elapsed = performance.now() * 0.001;
 
-  // ── RENDER MEDALS (immediate, no async gating) ────────────
-  function renderMedals() {
-    const container = document.getElementById('medalsGrid');
-    container.innerHTML = '';
-    cells.forEach(cell => {
-      const medal = document.createElement('div');
-      medal.className = 'medal';
-      medal.dataset.theme = cell.colorTheme;
-      const scar = cell.scars?.length ? '<div class="scar-ring"></div>' : '';
-      medal.innerHTML = `
-        <div class="orbital-rings">
-          <svg viewBox="0 0 100 100" style="animation:orbit1 24s linear infinite">
-            <circle cx="50" cy="50" r="48" fill="none" stroke="${colorMap[cell.colorTheme]}" stroke-width=".6" stroke-dasharray="4 12" opacity=".35"/>
-          </svg>
-          <svg viewBox="0 0 100 100" style="animation:orbit1 18s linear infinite reverse;position:absolute;inset:6%;width:88%;height:88%">
-            <circle cx="50" cy="50" r="48" fill="none" stroke="${colorMap[cell.colorTheme]}" stroke-width=".5" stroke-dasharray="2 8" opacity=".18"/>
-          </svg>
+  // 3D Animations
+  galaxyPoints.rotation.y += 0.02 * delta;
+  
+  // 2D Unified Draw
+  draw2DLayers();
+
+  composer.render();
+}
+
+/* ─── CELLS DATA ────────────────────────────────────────── */
+const cells = [
+  { id:'sales', title:'SALES', icon:'💎', qneu:0.87, color:'#c8922a', connections:['prod'] },
+  { id:'prod', title:'PROD', icon:'⚙️', qneu:0.64, color:'#60b8f0', connections:['warehouse'] },
+  { id:'warehouse', title:'WH', icon:'🏭', qneu:0.72, color:'#3dd68c', connections:['sales'] }
+];
+
+function renderUI() {
+  const grid = document.getElementById('medalsGrid');
+  grid.innerHTML = cells.map(c => `
+    <div class="medal" data-cell-id="${c.id}" onclick="triggerHeyNa('${c.id}')">
+      <div class="medal-inner" style="border: 2px solid ${c.color}">
+        <div class="liquid-glass-overlay"></div>
+        <div class="medal-glass-core">
+          <div class="medal-icon">${c.icon}</div>
+          <div class="medal-title">${c.title}</div>
         </div>
-        <div class="medal-inner">
-          <div class="specular-sweep"></div>
-          <div class="fresnel-rim"></div>
-          <div class="holo-prismatic"></div>
-          <div class="liquid-glass-overlay"></div>
-          <div class="medal-glass-core">
-            <div class="medal-icon">${cell.icon}</div>
-            <div class="medal-title">${cell.title}</div>
-            <div class="confidence-badge">Q:${(cell.qneu*100).toFixed(0)}% C:${(cell.confidence*100).toFixed(0)}%</div>
-          </div>
-        </div>
-        <div class="qneu-ring">
-          <svg viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,200,.12)" stroke-width="2.5"/>
-            <circle cx="50" cy="50" r="46" fill="none" stroke="${colorMap[cell.colorTheme]}" stroke-width="2.5"
-              stroke-dasharray="${cell.qneu*289} 289" stroke-linecap="round"/>
-          </svg>
-        </div>${scar}`;
-      medal.addEventListener('click', () => {
-        EventBus.emit('ui.medal.click', { cellId: cell.id, causation_id: 'user-click' });
-        // §5.1 L1 ripple
-        medal.style.animation = 'none'; medal.offsetHeight;
-        medal.style.animation = 'ripple-pulse .6s ease-out';
+      </div>
+    </div>
+  `).join('');
+
+  const appGrid = document.getElementById('appGrid');
+  appGrid.innerHTML = cells.map(c => `
+    <div class="arow">
+      <div class="aico">${c.icon}</div>
+      <div class="ain"><div class="anm">${c.title} Terminal</div><div class="ads">QNEU ${(c.qneu*100).toFixed(0)}%</div></div>
+    </div>
+  `).join('');
+  
+  setTimeout(updateMedalCache, 100);
+}
+
+/* ─── UTILS & EVENT HANDLERS ────────────────────────────── */
+window.triggerHeyNa = (id) => {
+  RenderCtrl.lastHeynaTs = Date.now();
+  EventBus.emit('HEYNA', { source: id });
+  // Spawn particles
+  const pos = medalPosCache.get(id);
+  if(pos) {
+    for(let i=0; i<5; i++) {
+      butterflyParticles.push({
+        x: pos.x, y: pos.y,
+        vx: (Math.random()-0.5)*4, vy: (Math.random()-0.5)*4,
+        life: 1.0
       });
-      container.appendChild(medal);
-      medalElements.set(cell.id, medal);
-    });
-    setTimeout(drawAllConnections, 50);
-  }
-
-  // ── §5 BUTTERFLY EVENTS ───────────────────────────────────
-  EventBus.on('ui.medal.click', ({ payload }) => {
-    const cell = cells.find(c => c.id === payload.cellId);
-    if (!cell) return;
-    addEventToStream(`Butterfly from ${cell.title}`);
-    EventBus.emit('butterfly.local', { source: cell.id });
-    if (cell.qneu < 0.55) EventBus.emit('butterfly.tsunami', {});
-    // no HEYNA on medal click
-  });
-
-  EventBus.on('butterfly.local', ({ payload }) => {
-    // §5.1 L1: 5 particles từ medal position
-    const pos = getMedalPos(payload.source);
-    if (pos) spawnParticles(pos.x, pos.y, 5);
-  });
-
-  EventBus.on('butterfly.tsunami', () => {
-    if (RenderCtrl.mode === 'DEGRADED' || RenderCtrl.mode === 'IDLE') return;
-    // §5.1 L3: nền shift + bloom — KHÔNG particle storm
-    CONFIG.nebulaIntensity = Math.min(1.9, CONFIG.nebulaIntensity + 0.5);
-    nebulaUniforms.intensity.value = CONFIG.nebulaIntensity;
-    bloomPass.strength = CONFIG.bloom.strength + 0.8;
-    scene.fog = new THREE.FogExp2(0x1a0010, 0.0007);
-    // tsunami bg §5.2
-    document.getElementById('ui-overlay').classList.add('butterfly-tsunami-active');
-    setTimeout(() => {
-      CONFIG.nebulaIntensity = 1.0;
-      nebulaUniforms.intensity.value = 1.0;
-      bloomPass.strength = CONFIG.bloom.strength;
-      scene.fog = new THREE.FogExp2(0x06021a, 0.0007);
-      document.getElementById('ui-overlay').classList.remove('butterfly-tsunami-active');
-    }, 1800);
-    // 2 small bursts (không ào ào)
-    const pos = getMedalPos('master') || { x: window.innerWidth/2, y: window.innerHeight*.4 };
-    spawnParticles(pos.x, pos.y, 4);
-    setTimeout(() => spawnParticles(pos.x, pos.y, 3), 400);
-    addEventToStream('🌊 GALAXY: TSUNAMI WAVE');
-  });
-
-  // §8 Dynamic Response: galaxy phản ứng theo EventBus
-  EventBus.on('butterfly.tsunami', () => {
-    // nebula intensity đã handle ở trên
-  });
-  EventBus.on('butterfly.local', () => {
-    CONFIG.nebulaIntensity = 1.2;
-    nebulaUniforms.intensity.value = 1.2;
-    bloomPass.strength = CONFIG.bloom.strength + 0.2;
-    setTimeout(() => {
-      CONFIG.nebulaIntensity = 1.0; nebulaUniforms.intensity.value = 1.0;
-      bloomPass.strength = CONFIG.bloom.strength;
-    }, 800);
-  });
-
-  // ── SSE MẠCH HEYNA — nguồn duy nhất ──────────────────────
-  const API = 'http://localhost:3001';
-  function initSSE() {
-    const es = new EventSource(`${API}/mach/heyna`);
-    const stSSE = document.getElementById('st-sse');
-    stSSE.textContent = 'CONNECTED'; stSSE.style.color = '#3dd68c';
-
-    es.onmessage = e => {
-      try {
-        const d = JSON.parse(e.data);
-
-        // Nhận state + Z từ HeyNa
-        if (d.payload?.state) {
-          const s = d.payload.state, h = s === 'nauion' || s === 'HEALTHY';
-          document.getElementById('stateBadge').textContent = h ? 'HEALTHY' : s.toUpperCase();
-          document.getElementById('kpi-state').textContent = h ? 'HEALTHY' : s.toUpperCase();
-          document.getElementById('kpi-state').style.color = h ? '#3dd68c' : '#f0a030';
-        }
-        if (d.payload?.impedanceZ) {
-          const z = d.payload.impedanceZ;
-          RenderCtrl.Z = z; // §OPT-01R: Z → render quality
-          document.getElementById('kpi-z').textContent = `Z = ${z.toFixed(3)}`;
-          EventBus.emit('system.impedance', { value: z });
-        }
-        // Gold từ HeyNa event
-        if (d.event === 'gia-vang.updated' && d.payload && (!window._lastGold || Date.now()-window._lastGold>1000)) {
-          window._lastGold = Date.now();
-          const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '--';
-          const g = fmt(d.payload.gold9999), e18 = fmt(d.payload.gold18k);
-          document.getElementById('goldPriceHeader').textContent = `9999: ${g}`;
-          document.getElementById('goldPriceSmall').textContent = g;
-          document.getElementById('kpi-gold').textContent = g;
-          document.getElementById('kpi-18k').textContent = e18;
-          addEventToStream(`Giá vàng 9999: ${g}`);
-        }
-      } catch {}
-    };
-    es.onerror = () => {
-      stSSE.textContent = 'RECONNECTING...'; stSSE.style.color = '#f0a030';
-      es.close(); setTimeout(initSSE, 4000);
-    };
-  }
-
-  // ── STATS (local simulation như index5) ───────────────────
-  function updateStats() {
-    const avg = cells.reduce((s, c) => s + c.qneu, 0) / cells.length;
-    document.getElementById('qneuAvg').textContent = `${Math.round(avg*100)}%`;
-    document.getElementById('activeFlows').textContent = cells.filter(c => c.connections?.length).length;
-    // gold simulation như index5 (fallback khi SSE chưa có data)
-    const goldEl = document.getElementById('goldPriceSmall');
-    if (goldEl.textContent === '--M') {
-      const gold = (87650000 + Math.random()*200000)/1e6;
-      goldEl.textContent = `${gold.toFixed(2)}M`;
-      document.getElementById('goldPriceHeader').textContent = `9999: ${gold.toFixed(2)}M`;
-      document.getElementById('kpi-gold').textContent = `${gold.toFixed(2)}M`;
     }
   }
-  setInterval(updateStats, 5000);
+  addEventToStream(`Xung HeyNa từ ${id}`);
+};
 
-  // ── LIVE STREAM ───────────────────────────────────────────
-  function addEventToStream(msg) {
-    const t = new Date().toTimeString().slice(0,8);
-    const es = document.getElementById('eventStreamContainer');
-    const s = document.createElement('span'); s.className = 'event-item hi';
-    s.innerHTML = `<span class="event-time">${t}</span> ${msg}`;
-    es.prepend(s);
-    while (es.children.length > 15) es.removeChild(es.lastChild);
-  }
+function addEventToStream(msg) {
+  const es = document.getElementById('eventStreamContainer');
+  const span = document.createElement('span');
+  span.className = 'event-item';
+  span.innerHTML = `<span class="event-time">${new Date().toTimeString().slice(0,8)}</span> ${msg}`;
+  es.appendChild(span);
+  while (es.children.length > 10) es.removeChild(es.firstChild);
+}
 
-  // ── CLOCK + renderFrame() — dipendency của RenderCtrl.start() ─
-  const clock = new THREE.Clock();
-  // emit Z từ frame time thực mỗi giây (SPEC §8.3, §R03)
-  let _zEmitLast = 0;
-  const PARTICLE_MAX = 10000 + 3000 + 1500 + 400; // galaxy+band+starsFar+dustMid+energyNear
+/* ─── INITIALIZATION ───────────────────────────────────── */
+window.onload = () => {
+  renderUI();
+  RenderCtrl.start();
 
-  function renderFrame() {
-    const delta = clock.getDelta();
-    const elapsed = performance.now() * 0.001;
-    const quality = RenderCtrl.getQuality();
-
-    // Đo impedance từ frame time thực (SPEC §8.3)
-    RenderCtrl.measureFrameTime(delta);
-    const now2 = Date.now();
-    if (now2 - _zEmitLast > 1000) {
-      _zEmitLast = now2;
-      const particleCount = PARTICLE_MAX; // đơn giản hóa
-      const Z = RenderCtrl.computeZ(particleCount, PARTICLE_MAX * 1.5, quality === 'high' ? 0.9 : 0.4);
-      RenderCtrl.Z = Z;
-      EventBus.emit('system.impedance', { value: Z, causation_id: 'render-engine' });
-      const el = document.getElementById('impedanceZ');
-      if (el) el.textContent = Z.toFixed(3);
-      document.getElementById('kpi-z').textContent = `Z = ${Z.toFixed(3)}`;
-    }
-
-    // Shader time
-    nebulaUniforms.time.value = elapsed * 0.5;
-
-    // Particle drift (adaptive speed theo quality)
-    if (quality !== 'low') animateParticles(elapsed);
-
-    // Galaxy rotation
-    galaxyPoints.rotation.y += 0.001 * delta * 60;
-
-    // Parallax
-    camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.03;
-    camera.position.y += (-mouseY * 0.8 - camera.position.y) * 0.03;
-    camera.lookAt(0, 0, 0);
-    layerFar.rotation.y += 0.0005 * delta * 60;
-    layerMid.rotation.y += 0.0003 * delta * 60;
-
-    // Bloom theo quality + resonance (§10.3)
-    if (quality === 'low') {
-      bloomPass.strength = 0.3;
-      galaxyMat.opacity  = 0.35;
-    } else if (quality === 'medium') {
-      bloomPass.strength = CONFIG.bloom.strength;
-      galaxyMat.opacity  = 0.65;
-    } else {
-      // high: RESONANCE → effect boost (SPEC §10.3 R05)
-      bloomPass.strength = CONFIG.bloom.strength + RenderCtrl.resonance * 0.35;
-      galaxyMat.opacity  = 0.78;
-    }
-
-    animateParticles2D();
-    drawAllConnections();
-    composer.render();
-  }
-
-  // ── UI EVENTS ─────────────────────────────────────────────
-  document.getElementById('triggerButterflyBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.trigger', { action: 'butterfly', causation_id:'user-cmd' });
-    EventBus.emit('butterfly.tsunami', {});
-    EventBus.emit('HEYNA', {});
-  });
-  document.getElementById('simulateFlowBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.simulate', {}); addEventToStream('⚡ Flow simulated');
-    EventBus.emit('HEYNA', {});
-  });
-  document.getElementById('aiAnalyzeBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.analyze', {}); addEventToStream('🧠 AI analysis running');
-  });
-  document.getElementById('resetStateBtn').addEventListener('click', () => {
-    EventBus.emit('ui.command.reset', {}); addEventToStream('🔄 System reset');
-    CONFIG.nebulaIntensity = 1.0; RenderCtrl.Z = 1.0; RenderCtrl.mode = 'ACTIVE';
+  // Attention Engine
+  window.addEventListener('mousemove', () => {
+    RenderCtrl.attention = 1.0;
+    setTimeout(() => { RenderCtrl.attention = 0.0; }, 2000);
   });
 
-  // Top nav
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      EventBus.emit('ui.nav.change', { view: btn.dataset.view });
-      // no HEYNA on nav
-    });
-  });
-
-  // ── NAVIGATION ─────────────────────────────────────────────
-  window.navTo = function(secId, el) {
-    document.querySelectorAll('.nav-it').forEach(n => n.classList.remove('active'));
-    if (el) el.classList.add('active');
-    const sec = document.getElementById(secId);
-    if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
-    // HEYNA khi navigate
-    EventBus.emit('HEYNA', { source: secId });
-
-  };
-
-  // IntersectionObserver → Attention.anySectionVisible + HEYNA (SPEC §8.4)
-  const observer = new IntersectionObserver(entries => {
-    let anyVisible = false;
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        anyVisible = true;
-        EventBus.emit('HEYNA', { source: e.target.id, causation_id: 'intersection' });
-      }
-    });
-    Attention.anySectionVisible = anyVisible;
-    Attention.update();
-  }, { threshold: 0.1 });
-  ['sec-sales','sec-prod','sec-wh','sec-fin','sec-hr','sec-sys'].forEach(id => {
-    const el = document.getElementById(id); if (el) observer.observe(el);
-  });
-
-  window.openApp = function(href) { window.location.href = href; };
-
-  // ── RESIZE ─────────────────────────────────────────────────
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     composer.setSize(window.innerWidth, window.innerHeight);
@@ -1445,18 +602,46 @@ html,body{height:100%;overflow:hidden;background:#030210;
     camera.updateProjectionMatrix();
     connCanvas.width = window.innerWidth; connCanvas.height = window.innerHeight;
     butterflyCanvas.width = window.innerWidth; butterflyCanvas.height = window.innerHeight;
-    invalidateMedalCache();
-    drawAllConnections();
+    updateMedalCache();
   });
 
-  // ── START ─────────────────────────────────────────────────
-  renderMedals();
-  setTimeout(updateMedalCache, 150); // precompute sau khi DOM settled
-  // animateParticles2D() được gọi trong renderFrame
-  updateStats();
-  initSSE();            // SSE HeyNa — nguồn duy nhất, không fetch riêng
-  RenderCtrl.start();
-  console.log('✅ NATT-OS v3.1 | HeyNa SSE | OPT-01R | Protocol HEYNA/NAHERE/Z/Resonance');
+
+  // ── MẠCH HEYNA — SSE TRUNG ƯƠNG (SPEC v2.4 OPT-01R) ──────────
+  function initMachHeyna() {
+    const mach = new EventSource('http://localhost:3001/mach/heyna');
+    mach.onopen = () => {
+      console.log('[NauionEngine] Whau — Mạch HeyNa sống');
+      RenderCtrl.attention = 1.0;
+      document.getElementById('stateBadge').textContent = 'HEALTHY';
+    };
+    mach.onmessage = (e) => {
+      try {
+        const d = JSON.parse(e.data);
+        addEventToStream(`${d.event || d.type || 'Nahere'}`);
+        EventBus.emit('heyna.pulse', d);
+        RenderCtrl.lastHeynaTs = Date.now();
+        RenderCtrl.attention = 1.0;
+        setTimeout(() => { RenderCtrl.attention = 0.0; }, 2000);
+      } catch {}
+    };
+    mach.onerror = () => {
+      console.warn('[NauionEngine] lech — Mạch HeyNa đứt, Whao fallback 5s');
+      document.getElementById('stateBadge').textContent = 'RECONNECTING';
+      setTimeout(initMachHeyna, 5000);
+      mach.close();
+    };
+  }
+
+  initMachHeyna();
+  console.log('✅ NATT-OS v3.2 | Unified Heartbeat | Memory Leak Fixed');
+};
+
+window.navTo = (id, el) => {
+  document.querySelectorAll('.nav-it').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  triggerHeyNa('nav');
+};
 </script>
 </body>
+</html>
 </html>
