@@ -38,6 +38,7 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
   }, [actionLogs]);
 
   const handleVerifyHash = (log: ActionLog) => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'audit.verify', source: 'AuditTrail', logId: log.id } }));
     const computedHash = ShardingService.generateShardHash({ 
       action: log.action, 
       details: log.details, 
@@ -51,7 +52,7 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-hidden gap-10 animate-in fade-in duration-700 pb-32">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-hidden gap-10 animate-in fade-in duration-700 pb-32">
       
       <header className="border-b border-white/5 pb-10 flex flex-col lg:flex-row justify-between items-end gap-8">
         <div>
@@ -164,7 +165,7 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
          </div>
 
          <aside className="w-full lg:w-[400px] flex flex-col gap-8 shrink-0">
-            <div className="ai-panel p-10 bg-amber-500/[0.03] border-amber-500/20 shadow-2xl relative overflow-hidden">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-amber-500/[0.03] border-amber-500/20 shadow-2xl relative overflow-hidden">
                <div className="absolute top-0 right-0 p-6 opacity-5 text-8xl">🛡️</div>
                <div className="flex items-center gap-4 mb-8">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
@@ -178,7 +179,7 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
                <button className="mt-8 w-full py-4 bg-amber-500 text-black font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-amber-400 shadow-xl transition-all">Xuất Báo Cáo Tuân Thủ</button>
             </div>
 
-            <div className="ai-panel p-10 bg-black/60 border-white/5">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/60 border-white/5">
                <h4 className="ai-sub-headline text-gray-500 mb-8 uppercase italic tracking-widest">Shard Integrity Check</h4>
                <div className="space-y-6">
                   <div className="flex justify-between items-center text-[11px]">

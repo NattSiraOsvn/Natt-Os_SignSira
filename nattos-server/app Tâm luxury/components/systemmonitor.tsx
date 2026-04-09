@@ -135,6 +135,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
   };
 
   const handleFixAll = async () => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'system.heal', source: 'SystemMonitor' } }));
     addLog("KÍCH HOẠT GIAO THỨC AUTO-FIX TOÀN HỆ THỐNG...", "WARN");
     setIsScanning(true);
     
@@ -154,7 +155,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
   const crashedCount = modules.filter(m => m.status === 'CRITICAL').length;
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-40">
       <header className="flex justify-between items-end border-b border-white/5 pb-10">
         <div>
           <div className="flex items-center space-x-3 mb-2">
@@ -181,7 +182,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
             {/* TERMINAL LOG */}
-            <div className="ai-panel p-0 bg-black border-white/10 relative overflow-hidden flex flex-col h-[500px]">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-0 bg-black border-white/10 relative overflow-hidden flex flex-col h-[500px]">
                 <div className="p-4 bg-white/5 border-b border-white/5 flex justify-between items-center">
                 <span className="text-[10px] font-mono text-gray-400">{'>'} root@natt-os:~# deep_scan_v9.sh</span>
                 <div className="flex gap-2">
@@ -271,7 +272,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
            </div>
         </div>
 
-        <div className="ai-panel p-8 bg-black/40 border-amber-500/20 flex flex-col justify-center items-center text-center">
+        <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-amber-500/20 flex flex-col justify-center items-center text-center">
            <AIAvatar personaId={PersonaID.PHIEU} size="lg" isThinking={isScanning} />
            <h4 className="ai-sub-headline text-amber-500 mt-6 mb-4">Phiêu: Chẩn đoán & Khôi phục</h4>
            <p className="text-[12px] text-gray-400 italic leading-relaxed">

@@ -83,7 +83,7 @@ const HRManagement: React.FC<HRManagementProps> = ({ currentRole, currentPositio
   ];
 
   return (
-    <div className="h-full flex flex-col p-8 md:p-12 overflow-hidden gap-10 animate-in fade-in duration-700 bg-[#020202]">
+    <div className="h-full flex flex-col p-8 md:p-12 overflow-hidden gap-10 animate-in fade-in duration-700 bg-transparent">
       <header className="flex justify-between items-end border-b border-white/5 pb-10 shrink-0">
         <div>
            <div className="flex items-center gap-4 mb-3">
@@ -134,7 +134,7 @@ const HRManagement: React.FC<HRManagementProps> = ({ currentRole, currentPositio
             </div>
          ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
-               <div className="ai-panel p-8 bg-black/40 border-white/10 flex flex-col min-h-[450px]">
+               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/10 flex flex-col min-h-[450px]">
                   <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">Cơ cấu nhân sự theo khối</h3>
                   <div className="flex-1 w-full min-h-[300px]">
                   {isMounted && (
