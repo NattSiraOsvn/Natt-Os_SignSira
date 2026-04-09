@@ -482,9 +482,9 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
                        <p className="text-4xl font-mono font-black text-white italic">{finalTotal.toLocaleString()} đ</p>
                        <p className="text-[9px] text-gray-500 font-black uppercase tracking-[0.4em]">Thiên: Chờ Shard ngân hàng xác thực...</p>
                     </div>
-                    <button onClick={() => setPaymentStep('success')
+                    <button onClick={() => {  setPaymentStep('success')
     window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'sales.confirm', source: 'SalesTerminal' } }));
-    NotifyBus.push({ type: 'ORDER', title: 'Chốt Đơn Thành Công', content: 'Phân hệ Sales vừa ghi nhận doanh thu mới.', priority: 'HIGH' } as any);} className="w-full py-5 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-2xl hover:bg-green-400">XÁC THỰC XONG</button>
+    NotifyBus.push({ type: 'ORDER', title: 'Chốt Đơn Thành Công', content: 'Phân hệ Sales vừa ghi nhận doanh thu mới.', priority: 'HIGH' } as any); }} className="w-full py-5 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-2xl hover:bg-green-400">XÁC THỰC XONG</button>
                  </div>
                )}
                {paymentStep === 'success' && (
