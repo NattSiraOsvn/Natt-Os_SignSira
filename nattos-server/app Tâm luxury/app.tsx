@@ -1,3 +1,4 @@
+import { initMachHeyna } from './services/heynaConnector';
 import React, { useState, useEffect } from 'react';
 import MasterDashboard from './components/masterdashboard';
 import SalesTerminal from './components/salesterminal';
@@ -20,6 +21,9 @@ export default function App() {
 
   // ATTENTION TRACKER - KHIÊN LƯỢNG TỬ (Tự mờ sau 10s IDLE)
   useEffect(() => {
+    // [SPEC P0] KHỞI ĐỘNG MẠCH HEYNA (SSE) ĐỂ MỞ KHÓA DỮ LIỆU REAL-TIME
+    const sseConnection = initMachHeyna();
+
     let timeout: NodeJS.Timeout;
     const resetIdle = () => {
       if (document.documentElement.getAttribute('data-resonance-state') === 'IDLE') {
@@ -41,6 +45,7 @@ export default function App() {
       window.removeEventListener('keydown', resetIdle);
       window.removeEventListener('click', resetIdle);
       clearTimeout(timeout);
+      if (sseConnection) sseConnection.close();
     }
   }, []);
 
