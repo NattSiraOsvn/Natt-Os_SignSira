@@ -49,16 +49,15 @@ const ProductionWallboard: React.FC = () => {
 
   // Subscribe Mạch HeyNa — update khi production events
   useEffect(() => {
-    const mach = new EventSource(`${SERVER}/mach/heyna`);
-    mach.onmessage = (e) => {
+    // [Bối Bối] Đã cắt bỏ EventSource tĩnh. Nghe Mạch Trung Ương (OPT-01R)
+    const handlePulse = (e: any) => {
       try {
-        const data = JSON.parse(e.data);
-        if (['casting.complete','finishing.complete','polishing.complete'].includes(data.event)) {
-          fetchProduction();
-        }
+        const data = e.detail;
+        if (data && ['casting.complete','finishing.complete','polishing.complete'].includes(data.event)) fetchProduction();
       } catch {}
     };
-    return () => mach.close();
+    window.addEventListener('NAUION_PULSE', handlePulse);
+    return () => window.removeEventListener('NAUION_PULSE', handlePulse);
   }, [fetchProduction]);
 
   return (

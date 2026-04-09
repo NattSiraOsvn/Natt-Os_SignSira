@@ -25,7 +25,7 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
            { label: 'Chi phí vận hành', value: metrics.currentOperatingCost.toLocaleString() + ' đ', color: 'text-pink-400', icon: '📉' },
            { label: 'Nhập khẩu (GEMS/GOLD)', value: metrics.importVolume.toLocaleString() + ' lô', color: 'text-amber-500', icon: '🚢' },
          ].map((stat, i) => (
-           <div key={i} className="ai-panel p-6 bg-white/[0.02] border-white/5 shadow-xl flex flex-col justify-between hover:border-white/20 transition-all group relative overflow-hidden">
+           <div key={i} className="natt-cell-medal p-6 bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all duration-500 hover:bg-white/10 flex flex-col justify-between hover:border-white/20 transition-all group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
               <div className="flex justify-between items-start mb-4">
                  <span className="text-[9px] text-gray-500 font-black uppercase tracking-[0.2em] leading-tight">{stat.label}</span>

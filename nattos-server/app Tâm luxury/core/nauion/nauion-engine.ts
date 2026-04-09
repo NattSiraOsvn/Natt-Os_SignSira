@@ -47,6 +47,7 @@ export class NauionEngine {
                     console.log('[NauionEngine] Nahere! Nhận Xung HEYNA:', payload.type);
                     
                     // Phát xung vào nội bộ UI thông qua NotifyBus cục bộ
+                    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: payload }));
                     NotifyBus.push({
                         type: 'NEWS',
                         title: 'Mạch Sống HEYNA',

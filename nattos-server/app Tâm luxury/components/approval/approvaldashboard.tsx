@@ -33,14 +33,15 @@ const ApprovalDashboard: React.FC = () => {
 
   // Subscribe Mạch HeyNa — refresh khi approval.updated
   useEffect(() => {
-    const mach = new EventSource(`${SERVER}/mach/heyna`);
-    mach.onmessage = (e) => {
+    // [Bối Bối] Đã cắt bỏ EventSource tĩnh. Nghe Mạch Trung Ương (OPT-01R)
+    const handlePulse = (e: any) => {
       try {
-        const data = JSON.parse(e.data);
-        if (data.event === 'approval.updated') fetchApproval();
+        const data = e.detail;
+        if (data && data.event === 'approval.updated') fetchApproval();
       } catch {}
     };
-    return () => mach.close();
+    window.addEventListener('NAUION_PULSE', handlePulse);
+    return () => window.removeEventListener('NAUION_PULSE', handlePulse);
   }, [fetchApproval]);
 
   const handleApprove = async (id: string) => {
