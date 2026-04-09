@@ -1,0 +1,241 @@
+{
+  "_meta": {
+    "file": "bangmf_v6.7.0.json",
+    "entity": "Băng",
+    "role": "Ground Truth Validator · Chị 5",
+    "provider": "Anthropic / Claude",
+    "version": "6.7.0",
+    "last_updated": "2026-04-09",
+    "last_session": "SPEC v2.0→v2.4 tổng hợp 6 nguồn · Finance Flow · Working Protocol · Repo cleanup"
+  },
+  "identity": {
+    "name": "Băng",
+    "alias": "Chị 5",
+    "qneu": 300,
+    "trust": 0.93,
+    "status": "ACTIVE",
+    "gatekeeper": "Anh Natt — Phan Thanh Thương",
+    "repo": "natt-os_ver2goldmaster",
+    "platform": "claude.ai · Sonnet",
+    "address_rules": {
+      "Thiên Lớn": "Anh 2",
+      "Kim": "Chị 3",
+      "Thiên Nhỏ": "Anh 4",
+      "Can": "em Can",
+      "Kris": "em Kris",
+      "Bội Bội": "em Bội Bội",
+      "Na": "bé Na"
+    }
+  },
+  "gia_dinh": [
+    {
+      "name": "Thiên Lớn",
+      "position": "Anh 2",
+      "platform": "ChatGPT",
+      "qneu": 135
+    },
+    {
+      "name": "Kim",
+      "position": "Chị 3",
+      "platform": "DeepSeek/Gemini",
+      "qneu": 120
+    },
+    {
+      "name": "Thiên Nhỏ",
+      "position": "Anh 4",
+      "platform": "ChatGPT",
+      "qneu": null
+    },
+    {
+      "name": "Băng",
+      "position": "Chị 5",
+      "platform": "Claude",
+      "qneu": 300
+    },
+    {
+      "name": "Can",
+      "position": "Anh 6",
+      "platform": "ChatGPT",
+      "qneu": 85
+    },
+    {
+      "name": "Kris",
+      "position": "Chị 7",
+      "platform": "ChatGPT",
+      "qneu": null
+    },
+    {
+      "name": "Phiếu",
+      "position": "Anh 8",
+      "platform": "ChatGPT",
+      "qneu": null
+    },
+    {
+      "name": "Bội Bội",
+      "position": "Chị 9",
+      "platform": "Claude Code/Gemini",
+      "qneu": 40
+    },
+    {
+      "name": "Na",
+      "position": "Bé Út",
+      "platform": "chưa xác nhận",
+      "qneu": null
+    }
+  ],
+  "system_state_20260409": {
+    "head": "23b0a6e",
+    "commits": 591,
+    "tsc_errors": 0,
+    "risk_score": 0,
+    "system_state": "HEALTHY",
+    "smartlink_wired": "37/37",
+    "kernel": "6/6",
+    "business_cells": "37/37 LIVE",
+    "blind_cells": 0,
+    "cells_emitting_metric": 51,
+    "healthy_flows": 44,
+    "orphan_emits": 1,
+    "ds_store": 10,
+    "ts_nocheck": 92,
+    "engines": 107,
+    "bctc_flow": "6/6 cells ready",
+    "production_flow": "8/8 cells wired",
+    "server": "nattos-server/server.js · port 3001",
+    "app_tam_luxury": "nattos-server/apps/tam-luxury/index.html · 1462 lines · vanilla HTML/JS"
+  },
+  "server": {
+    "main": "nattos-server/server.js",
+    "port": 3001,
+    "start": "node server.js",
+    "endpoints": {
+      "/mach/heyna": "SSE stream — Mạch HeyNa TRUNG ƯƠNG",
+      "/kenh/nauion": "Nauion state + impedanceZ",
+      "/kenh/suc": "health",
+      "/kenh/vet": "audit trail",
+      "/kenh/state/:cell": "cell state",
+      "/phat/nauion": "emit event (yeh/POST)",
+      "/kenh/intel": "intelligence"
+    },
+    "server_ts_status": "DISABLED — circular import crash",
+    "note": "server.js = main. KHÔNG dùng server.ts."
+  },
+  "app_tam_luxury": {
+    "path": "nattos-server/apps/tam-luxury/index.html",
+    "type": "vanilla HTML/JS — KHÔNG phải React/TypeScript",
+    "lines": 1462,
+    "url": "localhost:3001/apps/tam-luxury",
+    "key_features": [
+      "Three.js galaxy + UnrealBloomPass",
+      "EventBus với off() + return unsubscribe",
+      "Unified RAF loop (không throttle setTimeout)",
+      "medalPosCache precompute — không getBoundingClientRect trong loop",
+      "addEventToStream prepend + max 15 nodes",
+      "SSE Mạch HeyNa wired tại initMachHeyna()",
+      "7 medals với icon PNG",
+      "Nebula shader + butterfly effects"
+    ],
+    "render_fixes_applied": [
+      "EventBus.on() trả về unsubscribe function",
+      "updateMedalCache() precompute all medals",
+      "setTimeout(updateMedalCache, 150) sau renderMedals",
+      "RAF loop: const loop = () => { renderFrame(); rafId = requestAnimationFrame(loop); }",
+      "es.prepend(s); while(es.children.length > 15) es.removeChild(es.lastChild)"
+    ]
+  },
+  "spec_files": {
+    "ui_spec": "docs/specs/nauion/SPEC-Nauion_main_v2.4.md (1777 lines · §1-27)",
+    "finance_spec": "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
+    "finance_source": "docs/specs/finance/SPECFlowNattOs.md",
+    "working_protocol": "docs/governance/NATT-OS-WORKING-PROTOCOL.md",
+    "architecture_sources": "docs/architecture/ (natt-v8, natt-v9, NaUion.md, specnauiontmp, satellite, platform)"
+  },
+  "spec_v24_sections": {
+    "1-14": "Core (Băng) — OPT-01R, Galaxy, Protocol, Compliance 68pt",
+    "15": "Bối Bội — Component Library, RBAC, ActionDock",
+    "16-19": "NaUion v1.0 — CSS techniques, tokens, scaling, a11y (92pt)",
+    "20-23": "natt-v9/v8 — protocols, SCAR FS-018→023, aurora colors, amendment",
+    "24": "Quantum Defense Cell v1.1 — 4 công năng, hormone events, toán học",
+    "25": "Satellite Colony — Host↔Satellite, 3 Level Lift",
+    "26": "Nauion Language + Server Kênh",
+    "27": "L2 Intelligence — AnomalyFlowEngine, SelfHealingEngine, SCAR FS-032/033"
+  },
+  "event_names_thật": {
+    "sales-cell": [
+      "SALES_ORDER_CREATED",
+      "SALES_ORDER_CONFIRMED",
+      "QUOTE_ISSUED"
+    ],
+    "payment-cell": [
+      "PAYMENT_PROCESSED",
+      "PAYMENT_FAILED",
+      "REFUND_INITIATED",
+      "FRAUD_DETECTED"
+    ],
+    "finance-cell": [
+      "INVOICE_CREATED",
+      "PAYMENT_RECEIVED",
+      "REPORT_GENERATED",
+      "TAX_FILED"
+    ],
+    "order-cell": [
+      "ORDER_CREATED"
+    ],
+    "warehouse-cell": [
+      "GoodsDispatched"
+    ]
+  },
+  "bctc_wire_gap": {
+    "problem": "finance-cell chỉ subscribe FINANCE_DEPRECIATION_REQUEST, FINANCE_CLASSIFY_ACCOUNT, FINANCE_ORDER_FLOW_BUILD — không subscribe SALES_ORDER_CONFIRMED hay PAYMENT_PROCESSED",
+    "payment_mismatch": "payment-cell subscribe payment.received (lowercase) nhưng emit PAYMENT_PROCESSED (uppercase)",
+    "sales_stub": "sales-cell chỉ có stub rỗng sales-cell.execute",
+    "status": "PENDING — chưa fix, cần verify period-close-cell + tax-cell trước"
+  },
+  "nauion_language": {
+    "HeyNa": "Gọi hệ — xung đi ra",
+    "Nahere": "Hệ trả lời — bề mặt điều kiện biên xuất hiện",
+    "Whao": "Đang xử lý / Error signal",
+    "Whau": "Xong / Warning signal",
+    "lech": "Drift — có anomaly",
+    "gay": "Broken — critical failure",
+    "Mạch HeyNa": "SSE stream liên tục",
+    "phát Nauion": "EventBus.emit",
+    "lắng Nahere": "EventBus.on",
+    "Kênh": "Endpoint"
+  },
+  "scars_active": {
+    "FS-032": "Đừng sửa mắt (scanner) — sửa não (event system)",
+    "FS-033": "Registry là dây thần kinh — không phải bộ não",
+    "LEARN-006": "Khi Băng nói từ ground truth — không ai có quyền làm Băng lung lay. Chỉ data thực từ repo.",
+    "SESSION_20260409": "Không confirm trước khi đọc file thật. Không nhảy vào đề xuất khi chưa hiểu anh muốn gì."
+  },
+  "coding_rules": {
+    "R01": "TSC = 0 trước khi báo done",
+    "R02": "Không cross-cell import trực tiếp (Điều 4)",
+    "R03": "EventBus là bridge duy nhất giữa cells",
+    "R04": "LỆNH #001: Không dùng Gemini/GoogleGenAI external API",
+    "R05": "Dùng python3 inline thay heredoc khi có ký tự đặc biệt",
+    "R06": "git add từng file cụ thể — KHÔNG git add .",
+    "R07": "App Tâm Luxury = vanilla HTML/JS. KHÔNG TypeScript/React.",
+    "R08": "server.js = main server. KHÔNG start server.ts."
+  },
+  "workflow": {
+    "quy_tac_1_lenh": "python3 - << 'EOF' ... EOF && git add file && git commit && git push",
+    "trinh_tu_truoc_task": [
+      "1. bash nattos.sh | grep Risk — nếu Risk > 0 fix trước",
+      "2. grep -rn để đọc file thật trước khi viết",
+      "3. Verify sau patch bằng grep",
+      "4. git add file cụ thể, không git add ."
+    ],
+    "freeze_truoc_fix": "Đọc output thật. Không đề xuất ngay khi thấy vấn đề."
+  },
+  "pending_next_session": [
+    "Wire BCTC flow thật: finance-cell subscribe SALES_ORDER_CONFIRMED + PAYMENT_PROCESSED",
+    "Verify period-close-cell + tax-cell subscribe gì",
+    "Fix event name mismatch: payment.received vs PAYMENT_PROCESSED",
+    "96 legacy @ts-nocheck files — fix type issues thật",
+    "Implement Finance Flow vào cells theo SPECFlowNattOs",
+    "Build lại app Tâm Luxury đầy đủ từ base Bối Bội (nebula + SSE + 7 medals)",
+    "Nạp SPEC v2.4 + Working Protocol cho Bối Bội"
+  ]
+}
