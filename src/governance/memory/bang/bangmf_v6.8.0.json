@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "file": "bangmf_v6.8.0.json",
+    "entity": "Băng",
+    "role": "Ground Truth Validator · Chị 5",
+    "provider": "Anthropic / Claude",
+    "version": "6.8.0",
+    "last_updated": "2026-04-10",
+    "last_session": "EventBridge merge · BCTC wire · @ts-nocheck 164→105 · kim chỉ nam Bội Bội"
+  },
+  "identity": {
+    "name": "Băng",
+    "alias": "Chị 5",
+    "qneu": 300,
+    "trust": 0.94,
+    "status": "ACTIVE",
+    "gatekeeper": "Anh Natt — Phan Thanh Thương",
+    "repo": "natt-os_ver2goldmaster",
+    "platform": "claude.ai · Sonnet"
+  },
+  "system_state_20260410": {
+    "head": "b093ac7",
+    "commits": "595+",
+    "tsc_errors": 0,
+    "risk_score": 0,
+    "system_state": "HEALTHY",
+    "smartlink_wired": "37/37",
+    "kernel": "6/6",
+    "business_cells": "37/37 LIVE",
+    "blind_cells": 0,
+    "cells_emitting_metric": 51,
+    "healthy_flows": 44,
+    "ts_nocheck_total": 105,
+    "ts_nocheck_with_todo": 103,
+    "ts_nocheck_legacy": 2,
+    "engines": 107,
+    "bctc_flow": "6/6 cells wired — PAYMENT_PROCESSED + SALES_ORDER_CONFIRMED + REPORT_GENERATED live",
+    "production_flow": "8/8 cells wired",
+    "eventbus_unified": true,
+    "eventbridge_deprecated": true,
+    "server": "nattos-server/server.js · port 3001"
+  },
+  "session_20260410_achievements": {
+    "task_3": "Fix event name mismatch payment.received vs PAYMENT_PROCESSED — bridge wired",
+    "task_3_bonus": "Merge EventBridge → EventBus — 13 files, Điều 3 enforced, 2 bus deprecated",
+    "task_2": "Verified period-close-cell + tax-cell — no mismatch, only missing subscriptions",
+    "task_1": "Wire BCTC flow: PAYMENT_PROCESSED→ghi nhận thu 112/511→PAYMENT_RECEIVED, SALES_ORDER_CONFIRMED→saga→invoice, runBctc2025→REPORT_GENERATED→period-close→ClosingExecutor",
+    "task_4_5": "@ts-nocheck batch fix: 164→105 files, 59 permanently clean, 97 import paths auto-fixed, shared.types stub created, finishing+design3d exports added",
+    "kim_chi_nam": "15-section guide for Bội Bội — ENGINE↔PERCEPTION architecture, z-index, coding rules, checklist"
+  },
+  "event_wiring_20260410": {
+    "PAYMENT_PROCESSED": "finance-cell subscribes → journal entry Nợ 112/Có 511 → emit PAYMENT_RECEIVED + bridge payment.received",
+    "SALES_ORDER_CONFIRMED": "finance-cell subscribes → bridge to sales.order.created.v1 → FinanceSaga → InvoiceAggregate → finance.invoice.created.v1",
+    "REPORT_GENERATED": "bctc-2025.runner emits after runBctc2025() → period-close-cell subscribes → ClosingExecutor → FINANCE_ORDER_FLOW_BUILD",
+    "EventBridge": "DEPRECATED — merged into EventBus, Điều 3 enforced"
+  },
+  "scars_active": {
+    "FS-032": "Đừng sửa mắt (scanner) — sửa não (event system)",
+    "FS-033": "Registry là dây thần kinh — không phải bộ não",
+    "LEARN-006": "Khi Băng nói từ ground truth — chỉ data thực từ repo.",
+    "SESSION_20260409": "Không confirm trước khi đọc file thật. Không nhảy vào đề xuất khi chưa hiểu anh muốn gì.",
+    "SESSION_20260410": "Phase 5 crash → Phase 7 re-nocheck không chạy → 188 errors lộ ra. Luôn verify script chạy hết trước khi kết luận."
+  },
+  "coding_rules": {
+    "R01": "TSC = 0 trước khi báo done",
+    "R02": "Không cross-cell import trực tiếp (Điều 4)",
+    "R03": "EventBus là bridge duy nhất giữa cells — EventBridge DEPRECATED",
+    "R04": "LỆNH #001: Không dùng Gemini/GoogleGenAI external API",
+    "R05": "Dùng python3 inline thay heredoc khi có ký tự đặc biệt",
+    "R06": "git add từng file cụ thể — KHÔNG git add .",
+    "R07": "App Tâm Luxury = vanilla HTML/JS. KHÔNG TypeScript/React.",
+    "R08": "server.js = main server. KHÔNG start server.ts."
+  },
+  "pending_next_session": [
+    "Task 6: Connect React components to real server data via SSE",
+    "Task 7: Nạp SPEC v2.4 §15 chi tiết cho Bội Bội",
+    "105 @ts-nocheck files with TODO — deep migration needed (Invoice.aggregate, AuditService, notificationService, blockchainService)",
+    "Implement full Finance Flow closed-loop per SPECFlowNattOs (State Machine, Policy Engine, Reconciliation, SiraSign v2)",
+    "Build lại app Tâm Luxury đầy đủ từ base Bội Bội (nebula + SSE + 7 medals)"
+  ]
+}
