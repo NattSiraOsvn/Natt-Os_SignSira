@@ -1,3 +1,4 @@
+import { NauionEngine } from './core/nauion/nauion-engine';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import AppShell from './components/AppShell';
@@ -104,6 +105,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     OfflineService.init().catch(err => console.error("OfflineService init failed:", err));
+
+    // ĐÁNH THỨC SINH THỂ SỐ THEO SPEC v2.4 (OPT-01R)
+    NauionEngine.getInstance().awaken();
 
     RBACEngine.registerUser({
       fullName: 'Master Natt',
