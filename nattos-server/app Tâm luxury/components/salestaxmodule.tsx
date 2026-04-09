@@ -31,12 +31,14 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
   }, [metrics]);
 
   const handleQuickSign = (task: DistributedTask) => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'tax.signed', source: 'SalesTax' } }));
     logAction('E_INVOICE_SIGN', `Ký số hóa đơn từ dữ liệu truyền tin Omega: ${task.id}`);
     TaskRouter.completeTask(task.id);
     alert(`🔐 ĐÃ KÝ SỐ THÀNH CÔNG: Giao dịch ${task.id} đã được truyền lên Tổng Cục Thuế.`);
   };
 
   const handleAutoFile = () => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'tax.filed', source: 'SalesTax' } }));
     if (currentRole !== UserRole.MASTER && currentRole !== UserRole.LEVEL_1) return alert("Chỉ Master mới có quyền Auto-File.");
     if (!window.confirm("Xác nhận nộp tờ khai thuế tự động lên TCT?")) return;
     logAction('TAX_AUTO_FILE', 'Đã thực hiện Auto-Filing CIT & VAT.');
@@ -44,7 +46,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
+    <div className="h-full flex flex-col bg-transparent p-8 md:p-12 overflow-y-auto no-scrollbar gap-10 animate-in fade-in duration-700 pb-32">
       
       <header className="border-b border-white/5 pb-10 flex flex-col lg:flex-row justify-between items-end gap-8">
         <div>
@@ -81,7 +83,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
         {/* TAB: CIT CALCULATION */}
         {activeTab === 'cit_calc' && citResult && (
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 animate-in slide-in-from-right-10">
-              <div className="ai-panel p-10 bg-black/40 border-white/10 space-y-8">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black/40 border-white/10 space-y-8">
                  <h3 className="text-xl font-bold text-white uppercase tracking-widest border-b border-white/5 pb-4">Dự Tính Thuế TNDN (Corporate Tax)</h3>
                  
                  <div className="space-y-4">
@@ -109,7 +111,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
                  </button>
               </div>
 
-              <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
+              <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20">
                  <div className="flex items-center gap-4 mb-6">
                     <AIAvatar personaId={PersonaID.THIEN} size="md" />
                     <h4 className="ai-sub-headline text-blue-400 italic">Thiên Advisor</h4>
@@ -164,7 +166,7 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
         )}
 
         {activeTab === 'foundation' && (
-          <div className="ai-panel p-20 flex flex-col items-center justify-center text-center border-dashed border-white/10 opacity-30">
+          <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-20 flex flex-col items-center justify-center text-center border-dashed border-white/10 opacity-30">
              <span className="text-[100px] mb-12">🔐</span>
              <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter">New Protocol Initiation</h3>
              <p className="max-w-md mt-6 text-sm text-gray-500 leading-relaxed font-light italic">

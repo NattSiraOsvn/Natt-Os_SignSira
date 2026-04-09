@@ -8,7 +8,7 @@ import { SalesCore } from '../../services/salesCore';
 
 // Mock Component for Overview Cards
 const FinancialOverviewCard = ({ title, value, sub, color }: { title: string, value: string, sub: string, color: string }) => (
-  <div className={`ai-panel p-6 border-white/5 bg-white/[0.02] flex flex-col justify-between hover:border-white/20 transition-all group relative overflow-hidden`}>
+  <div className={`natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 border-white/5 bg-transparent flex flex-col justify-between hover:border-white/20 transition-all group relative overflow-hidden`}>
     <div className={`absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-${color}-500 to-transparent`}></div>
     <div className="flex justify-between items-start mb-4">
         <span className="text-[9px] text-gray-500 font-black uppercase tracking-[0.2em] leading-tight">{title}</span>
@@ -47,7 +47,7 @@ const FinancialDashboard: React.FC = () => {
   if (isLoading) return <LoadingSpinner message="Loading Financial Core..." />;
 
   return (
-    <div className="h-full flex flex-col bg-[#020202] p-8 overflow-y-auto no-scrollbar gap-8 animate-in fade-in duration-700">
+    <div className="h-full flex flex-col bg-transparent p-8 overflow-y-auto no-scrollbar gap-8 animate-in fade-in duration-700">
       
       {/* HEADER */}
       <div className="flex justify-between items-end border-b border-white/5 pb-8">
@@ -74,7 +74,7 @@ const FinancialDashboard: React.FC = () => {
          <FinancialOverviewCard title="Doanh thu (Revenue)" value={summary.totalRevenue.toLocaleString()} sub="Total Credit 511" color="green" />
          <FinancialOverviewCard title="Chi phí (Expense)" value={summary.totalExpenses.toLocaleString()} sub="Total Debit 6/8" color="amber" />
          <FinancialOverviewCard title="Lợi nhuận (Profit)" value={(summary.totalRevenue - summary.totalExpenses).toLocaleString()} sub="Net Income" color="blue" />
-         <div className="ai-panel p-6 bg-red-500/10 border-red-500/20 flex flex-col justify-between">
+         <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-red-500/10 border-red-500/20 flex flex-col justify-between">
             <p className="text-[9px] text-red-400 font-black uppercase tracking-widest">Pending Journals</p>
             <p className="text-3xl font-mono text-white">{summary.pendingCount}</p>
          </div>
@@ -85,7 +85,7 @@ const FinancialDashboard: React.FC = () => {
          
          {/* LEFT: ENTRIES TABLE */}
          <div className="col-span-12 lg:col-span-8 ai-panel overflow-hidden border-white/10 bg-black/40 flex flex-col">
-            <div className="p-4 border-b border-white/10 bg-white/[0.02] flex justify-between items-center">
+            <div className="p-4 border-b border-white/10 bg-transparent flex justify-between items-center">
                <h3 className="text-sm font-bold text-white uppercase tracking-widest">Sổ Nhật Ký Chung (General Ledger)</h3>
                <div className="flex gap-2">
                   <span className="text-[10px] text-gray-500 font-mono">{entries.length} entries</span>
@@ -106,7 +106,7 @@ const FinancialDashboard: React.FC = () => {
                   <tbody className="text-gray-300">
                      {entries.map(entry => (
                         <React.Fragment key={entry.journalId}>
-                           <tr className="bg-white/[0.02] border-t border-white/5">
+                           <tr className="bg-transparent border-t border-white/5">
                               <td colSpan={6} className="p-2 px-4 text-[10px] font-mono text-amber-500 bg-amber-500/5">
                                  {entry.journalId} <span className="text-gray-500 ml-2 italic">// {entry.description}</span>
                               </td>
@@ -153,11 +153,11 @@ const FinancialDashboard: React.FC = () => {
 
          {/* RIGHT: REALTIME UPDATES */}
          <div className="col-span-12 lg:col-span-4 space-y-6">
-            <div className="ai-panel p-6 bg-black/40 border-white/10 h-full flex flex-col">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-6 bg-black/40 border-white/10 h-full flex flex-col">
                <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">Real-time Stream</h3>
                <div className="flex-1 overflow-y-auto no-scrollbar space-y-3">
                   {realTimeUpdates.map(update => (
-                     <div key={update.id} className="p-3 border-l-2 border-cyan-500 bg-white/[0.02] animate-in slide-in-from-right-4">
+                     <div key={update.id} className="p-3 border-l-2 border-cyan-500 bg-transparent animate-in slide-in-from-right-4">
                         <div className="flex justify-between items-center mb-1">
                            <span className="text-[9px] font-black text-cyan-400 uppercase">{update.type}</span>
                            <span className="text-[8px] text-gray-600">{update.timestamp.toLocaleTimeString()}</span>

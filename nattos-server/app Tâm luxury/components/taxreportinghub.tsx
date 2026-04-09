@@ -25,6 +25,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
   const isMaster = currentRole === UserRole.MASTER;
 
   const handleExport = async (format: 'PDF' | 'XML' | 'EXCEL') => {
+    window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'tax.exported', source: 'TaxReporting', format } }));
     if (!isMaster) {
       alert("⚠️ TRUY CẬP BỊ TỪ CHỐI: Chỉ có Master Natt mới có thẩm quyền xuất dữ liệu tài khóa.");
       return;
@@ -51,7 +52,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
   };
 
   return (
-    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto no-scrollbar space-y-10 animate-in fade-in duration-700 pb-40 bg-[#020202] print:p-0 print:bg-white print:text-black">
+    <div className="p-8 md:p-12 max-w-[1800px] mx-auto h-full overflow-y-auto no-scrollbar space-y-10 animate-in fade-in duration-700 pb-40 bg-transparent print:p-0 print:bg-white print:text-black">
       
       <header className="flex flex-col lg:flex-row justify-between items-end gap-8 border-b border-white/5 pb-10 print:hidden">
         <div>
@@ -85,17 +86,17 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
             {reportType === 'VAT' ? (
               <div className="space-y-10 animate-in slide-in-from-bottom-4 duration-500">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                   <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20 print:border-black print:bg-white">
+                   <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20 print:border-black print:bg-white">
                       <p className="text-[9px] text-blue-400 font-black uppercase tracking-widest mb-3 print:text-black">Giá trị bán ra</p>
                       <p className="text-4xl font-mono font-black text-white print:text-black">
                          {vatReport.entries.reduce((s, e) => s + e.salesValue, 0).toLocaleString()} <span className="text-xs">đ</span>
                       </p>
                    </div>
-                   <div className="ai-panel p-8 bg-indigo-500/5 border-indigo-500/20 print:border-black print:bg-white">
+                   <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-indigo-500/5 border-indigo-500/20 print:border-black print:bg-white">
                       <p className="text-[9px] text-indigo-400 font-black uppercase tracking-widest mb-3 print:text-black">Giá trị gia tăng</p>
                       <p className="text-4xl font-mono font-black text-white print:text-black">{vatReport.totalAddedValue.toLocaleString()} <span className="text-xs">đ</span></p>
                    </div>
-                   <div className="ai-panel p-8 bg-amber-500/10 border-amber-500/30 shadow-xl print:border-black print:bg-white">
+                   <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-amber-500/10 border-amber-500/30 shadow-xl print:border-black print:bg-white">
                       <p className="text-[9px] text-amber-500 font-black uppercase tracking-widest mb-3 print:text-black">Thuế phải nộp</p>
                       <p className="text-4xl font-mono font-black text-amber-500 print:text-black">
                         {vatReport.totalVATPayable.toLocaleString()} <span className="text-xs">đ</span>
@@ -103,7 +104,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
                    </div>
                 </div>
 
-                <div className="ai-panel overflow-hidden border-white/5 bg-black/40 print:bg-white print:border-black">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all overflow-hidden border-white/5 bg-black/40 print:bg-white print:border-black">
                    <div className="p-6 border-b border-white/5 bg-white/5 flex justify-between items-center print:bg-white print:border-black">
                       <h3 className="text-sm font-bold text-white uppercase italic tracking-widest print:text-black">Bảng Kê Chi Tiết Thuế GTGT {period}</h3>
                       <span className="text-[8px] px-2 py-1 bg-white/5 text-gray-500 rounded font-black print:hidden">DỰA TRÊN SỔ CÁI TT200</span>
@@ -134,7 +135,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
               </div>
             ) : (
               <div className="space-y-10 animate-in slide-in-from-bottom-4 duration-500">
-                <div className="ai-panel overflow-hidden border-white/5 bg-black/40 print:bg-white print:border-black">
+                <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all overflow-hidden border-white/5 bg-black/40 print:bg-white print:border-black">
                    <table className="w-full text-left text-[11px]">
                       <thead>
                          <tr className="text-gray-500 uppercase font-black tracking-widest border-b border-white/10 bg-white/5 print:text-black print:border-black">
@@ -161,7 +162,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
          </div>
 
          <div className="space-y-10 print:hidden">
-            <div className="ai-panel p-8 border-indigo-500/30 bg-indigo-500/5 shadow-2xl">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-indigo-500/30 bg-indigo-500/5 shadow-2xl">
                <h4 className="ai-sub-headline text-indigo-400 mb-6 flex items-center gap-2">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={isExporting} />
                   Cổng xuất tri thức
@@ -204,7 +205,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
                </p>
             </div>
 
-            <div className="ai-panel p-8 border-white/5 bg-black/40">
+            <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 border-white/5 bg-black/40">
                <p className="text-[9px] text-gray-600 uppercase font-black mb-6 tracking-widest">Compliance Status</p>
                <div className="space-y-6">
                   <div className="flex justify-between items-center text-[10px]">
