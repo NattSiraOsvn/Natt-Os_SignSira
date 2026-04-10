@@ -343,4 +343,29 @@ try { require('./engine-registry').init(EventBus); } catch (e) { console.warn('[
 
 
 app.use('/nauion/icon', require('express').static(require('path').join(__dirname, 'nauion/icon')));
+
+// ── BCTC Run Endpoint ──────────────────────────────────
+// POST /api/bctc/run → trigger runBctc2025() → chain REPORT_GENERATED → period-close → tax
+yeh('/api/bctc/run', async (req, res) => {
+  try {
+    const { register } = require('ts-node');
+    register({ project: require('path').join(__dirname, '../tsconfig.json'), transpileOnly: true });
+    const { runBctc2025 } = require('../src/cells/business/finance-cell/domain/services/bctc-2025.runner');
+    const output = runBctc2025();
+    res.json({
+      ok: true,
+      period: output.header.periodTo,
+      balanced: output.summary.balanced,
+      lnst: output.summary.lnst,
+      tong_ts: output.summary.tong_ts,
+      errors: output.validation.errors.length,
+      warnings: output.validation.warnings.length,
+      message: 'REPORT_GENERATED emitted — chain: period-close → tax đang xử lý',
+    });
+  } catch (err) {
+    console.error('[/api/bctc/run]', err.message);
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 app.use("/apps/tam-luxury", express.static(path.join(__dirname, "apps/tam-luxury")));
