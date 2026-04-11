@@ -1,24 +1,858 @@
 <!DOCTYPE html>
-<html lang="vi" data-resonance-state="STABLE">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NATT-OS | Tâm Luxury v2.4 (Liquid Glass)</title>
+<html lang="vi" data-resonance-state="ACTIVE" data-ui-mode="work">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NATT-OS | Psychology UI (Canonical v2.5) + AI Entity</title>
     
-    <!-- Bơm Tailwind để đảm bảo UI cứng cáp -->
+    <!-- Tailwind CDN cho layout nhanh -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <style>
-      body { margin: 0; padding: 0; background-color: #020202; overflow: hidden; color: white; }
-      #root { width: 100vw; height: 100vh; }
+        /* ==========================================================================
+           [SPEC §9, §17] DESIGN TOKENS & PASTEL AURORA COLORS
+           ========================================================================== */
+        :root {
+            --bg-primary: #020208;
+            --bg-secondary: rgba(6, 6, 18, 0.72);
+            --mint: #8FFFD4;
+            --ice: #B8E8FF;
+            --lavender: #C8C0FF;
+            --rose: #FFB8D4;
+            --peach: #FFD4A8;
+            --gold: #F5E2C0;
+            --aurora-pink: #FFB6C1;
+            --aurora-blue: #ADD8E6;
+            --color-gold: #FFD700;
+            --color-amber: #FFBF00;
+            --color-blue: #3B82F6;
+            --color-green: #10B981;
+            --color-purple: #8B5CF6;
+            --color-red: #EF4444;
+            --glow-gold: 0 0 30px rgba(255,215,0,0.8);
+            --glow-mint: 0 0 30px rgba(143,255,212,0.7);
+            --glow-ice: 0 0 30px rgba(184,232,255,0.7);
+            --glow-purple: 0 0 30px rgba(200,192,255,0.7);
+            --glow-red: 0 0 30px rgba(239,68,68,0.7);
+            --z-truth: 1;
+            --z-worker: 10;
+            --z-experience: 50;
+            --z-modal: 100;
+            --z-alert: 200;
+            --z-security: 999;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            --dof-multiplier: 0.018;
+            --specular-duration: 1.2s;
+            --orbit-slow: 28s;
+            --orbit-fast: 14s;
+            --medal-size-small: clamp(80px, 15vw, 120px);
+            --medal-size-medium: clamp(120px, 20vw, 180px);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            color: white;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            perspective: 1000px;
+        }
+
+        /* ==========================================================================
+           [SPEC §8.5] UIMODE 8 TRẠNG THÁI (ngữ cảnh môi trường)
+           ========================================================================== */
+        body[data-ui-mode="night"] { filter: brightness(0.8) contrast(1.1); }
+        body[data-ui-mode="night"] .nebula-layer { opacity: 0.4; filter: blur(40px); }
+        body[data-ui-mode="night"] .liquid-glass { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.05); }
+        body[data-ui-mode="morning"] { filter: brightness(1.1); }
+        body[data-ui-mode="morning"] .liquid-glass { border-color: rgba(255,255,255,0.3); }
+        body[data-ui-mode="evening"] { filter: sepia(0.3) brightness(0.9); }
+        body[data-ui-mode="fast"] * { animation-duration: 0.1s !important; transition-duration: 0.1s !important; }
+        body[data-ui-mode="fast"] .nebula-layer, body[data-ui-mode="fast"] .caustics { display: none; }
+        body[data-ui-mode="precise"] .caustics { opacity: 0.05; }
+        body[data-ui-mode="precise"] .medal-container { animation-play-state: paused; }
+        body[data-ui-mode="ai"] .liquid-glass { box-shadow: 0 0 20px rgba(139,92,246,0.2); border-color: rgba(139,92,246,0.3); }
+        body[data-ui-mode="heavy"] .liquid-glass { backdrop-filter: none; background: #111; }
+
+        /* ==========================================================================
+           [SPEC §10, §16] VISUAL TECHNIQUES: GALAXY, NEBULA, CAUSTICS, NOISE
+           ========================================================================== */
+        #truth-layer {
+            position: fixed; inset: 0; z-index: var(--z-truth); pointer-events: none;
+            background-color: var(--bg-primary);
+        }
+        .nebula-layer { position: absolute; inset: 0; mix-blend-mode: screen; filter: blur(30px); }
+        .nebula-1 { background: radial-gradient(ellipse 60% 40% at 30% 50%, rgba(139,92,246,0.15), transparent); animation: drift 30s infinite alternate linear; }
+        .nebula-2 { background: radial-gradient(ellipse 40% 60% at 70% 40%, rgba(59,130,246,0.1), transparent); animation: drift 40s infinite alternate-reverse linear; }
+        .nebula-3 { background: radial-gradient(ellipse 50% 30% at 50% 70%, rgba(16,185,129,0.08), transparent); animation: drift 35s infinite alternate linear; }
+        .nebula-4 { background: radial-gradient(ellipse 30% 50% at 20% 70%, rgba(245,208,195,0.05), transparent); }
+        .nebula-5 { background: radial-gradient(ellipse 70% 20% at 80% 20%, rgba(255,215,0,0.05), transparent); }
+        .caustics {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay; opacity: 0.15;
+            animation: causticsDrift 20s ease-in-out infinite;
+        }
+        .film-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05; mix-blend-mode: overlay;
+            z-index: 998; pointer-events: none; position: fixed; inset: 0;
+        }
+        .scan-line {
+            position: absolute; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(143, 255, 212, 0.2), transparent);
+            animation: scan 12s linear infinite;
+        }
+
+        /* ==========================================================================
+           [SPEC §2] LIQUID GLASS & GLASSMORPHISM
+           ========================================================================== */
+        .liquid-glass {
+            backdrop-filter: blur(18px) saturate(180%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 60%, transparent 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ==========================================================================
+           [SPEC §4, §21] NATT-CELL MEDAL (9 LỚP + SCAR RING + CONFIDENCE)
+           ========================================================================== */
+        .medal-container {
+            position: relative;
+            width: var(--medal-size-medium);
+            height: var(--medal-size-medium);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --light-angle: 45deg;
+        }
+        .medal-container:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+        @media (hover: hover) { 
+            .medal-container:hover { transform: scale(1.1) translateZ(20px); z-index: 20; } 
+            .medal-container:hover .medal-tooltip { opacity: 1; transform: translateY(0); }
+        }
+        @media (hover: none)  { .medal-container:active { transform: scale(1.05) translateZ(10px); } }
+
+        /* Lớp 0: Orbital rings */
+        .medal-layer-0-orbit {
+            position: absolute; inset: -15%; border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            animation: orbit var(--orbit-slow) linear infinite;
+            pointer-events: none;
+        }
+        .medal-layer-0-orbit::before {
+            content: ''; position: absolute; top: -2px; left: 50%; width: 4px; height: 4px;
+            background: var(--gold); border-radius: 50%; box-shadow: var(--glow-gold);
+        }
+        .orbit-reverse { animation-direction: reverse; inset: -25%; animation-duration: var(--orbit-fast); border: 1px dotted rgba(143, 255, 212, 0.15); }
+        .orbit-reverse::before { background: var(--mint); box-shadow: var(--glow-mint); }
+
+        /* Lớp 1: PBR Metallic Shell */
+        .medal-layer-1-shell {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: conic-gradient(from var(--light-angle), var(--theme-shell));
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        /* Lớp 2: Specular sweep */
+        .medal-layer-2-specular {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: specularSweep var(--specular-duration) ease-in-out infinite;
+            mix-blend-mode: overlay;
+        }
+        /* Lớp 3: Fresnel rim */
+        .medal-layer-3-fresnel {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(255,255,255,0.3) 100%);
+            mix-blend-mode: screen;
+        }
+        /* Lớp 5 & 6: Liquid Glass Overlay + Core */
+        .medal-layer-5-liquid {
+            position: absolute; inset: 6px; border-radius: 50%;
+            backdrop-filter: blur(8px) saturate(140%);
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 70%);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.05);
+        }
+        /* Lớp 8: Emissive icon */
+        .medal-layer-8-icon {
+            position: relative; z-index: 10;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            transition: all 0.3s ease;
+        }
+        /* SCAR Ring (§21.2) */
+        .scar-ring {
+            position: absolute; inset: -8px; border-radius: 50%;
+            border: 2px solid #EF4444; box-shadow: 0 0 15px #EF4444;
+            animation: pulse-glow-red 2s infinite; pointer-events: none;
+        }
+        /* Confidence Indicator SVG */
+        .confidence-indicator {
+            position: absolute; inset: -35%; width: 170%; height: 170%; pointer-events: none;
+            transform: rotate(-90deg);
+        }
+        .confidence-circle {
+            fill: none; stroke-width: 1.5; stroke-linecap: round;
+            transition: stroke-dasharray 1s ease-out, stroke 1s;
+        }
+        /* Tooltip cho SCAR / metadata */
+        .medal-tooltip {
+            position: absolute; top: -60px; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: rgba(0,0,0,0.9); border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 12px; border-radius: 12px; font-size: 10px; font-family: monospace;
+            white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.3s;
+            z-index: 100; backdrop-filter: blur(8px);
+        }
+
+        /* ==========================================================================
+           [SPEC §5] BUTTERFLY PROPAGATION PROTOCOL
+           ========================================================================== */
+        .butterfly-ripple {
+            position: fixed; border-radius: 50%; transform: translate(-50%, -50%);
+            pointer-events: none; z-index: var(--z-experience);
+            animation: butterflyExpand 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+        .butterfly-L1 { border: 1px solid var(--ice); box-shadow: 0 0 10px var(--ice), inset 0 0 10px var(--ice); }
+        .butterfly-L2 { border: 2px solid var(--gold); box-shadow: 0 0 20px var(--gold), inset 0 0 20px var(--gold); }
+        .butterfly-L3 { border: 3px solid var(--color-red); box-shadow: 0 0 30px var(--color-red), inset 0 0 30px var(--color-red); }
+
+        /* ==========================================================================
+           [SPEC §12] RESONANCE-AWARE RENDERING (IDLE, DEGRADED, BURST)
+           ========================================================================== */
+        html[data-resonance-state="IDLE"] #app-shell {
+            filter: blur(12px) grayscale(70%) brightness(0.5);
+            transition: filter 3s ease-in-out; pointer-events: none;
+        }
+        html[data-resonance-state="DEGRADED"] #app-shell {
+            filter: brightness(0.8) contrast(1.2);
+        }
+        html:not([data-resonance-state="IDLE"]) #app-shell {
+            filter: blur(0px) grayscale(0%) brightness(1);
+            transition: filter 0.5s ease-out;
+        }
+
+        /* ==========================================================================
+           ANIMATIONS
+           ========================================================================== */
+        @keyframes drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(3%, 3%) scale(1.05); } }
+        @keyframes causticsDrift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+        @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+        @keyframes orbit { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes specularSweep { 0% { background-position: -200% center; } 100% { background-position: 300% center; } }
+        @keyframes butterflyExpand {
+            0% { width: 0px; height: 0px; opacity: 1; border-width: 4px; }
+            100% { width: 2500px; height: 2500px; opacity: 0; border-width: 1px; }
+        }
+        @keyframes pulse-glow-red { 0%, 100% { box-shadow: 0 0 5px #EF4444; } 50% { box-shadow: 0 0 25px #EF4444; } }
+        @keyframes loginEnter {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        .animate-login-enter { animation: loginEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .text-glow-gold { text-shadow: 0 0 15px rgba(245, 226, 192, 0.6); color: var(--gold); }
+        .text-glow-mint { text-shadow: 0 0 15px rgba(143, 255, 212, 0.6); color: var(--mint); }
+        .text-glow-ice { text-shadow: 0 0 15px rgba(184, 232, 255, 0.6); color: var(--ice); }
+        .text-glow-red { text-shadow: 0 0 15px rgba(239, 68, 68, 0.6); color: var(--color-red); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        .modal-overlay { z-index: var(--z-modal); backdrop-filter: blur(24px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { transform: scale(0.95) translateY(20px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
     </style>
-  </head>
-  <body>
-    <!-- Điểm bám của Sinh Thể React -->
-    <div id="root"></div>
-    
-    <!-- BỐI BỐI: BẮC CẦU HÚT SOURCE TỪ VITE (CỔNG 5173) VÀO HTML (CỔNG 3001) -->
-    <script type="module" src="http://localhost:5173/@vite/client"></script>
-    <script type="module" src="http://localhost:5173/index.tsx"></script>
-  </body>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         [SPEC §10] TRUTH LAYER (Z:1) - BACKGROUND, NEBULA, CAUSTICS, GALAXY
+         ========================================================================== -->
+    <div id="truth-layer" aria-hidden="true">
+        <div class="nebula-layer nebula-1"></div>
+        <div class="nebula-layer nebula-2"></div>
+        <div class="nebula-layer nebula-3"></div>
+        <div class="nebula-layer nebula-4"></div>
+        <div class="nebula-layer nebula-5"></div>
+        <div class="caustics"></div>
+        <div class="scan-line"></div>
+        <canvas id="galaxy-engine-canvas" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+    </div>
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <!-- ==========================================================================
+         [SPEC §7.4] SECURITY LAYER (Z:999) - LOGIN & SIRASIGN
+         ========================================================================== -->
+    <div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-[#020208]/40 backdrop-blur-md transition-all duration-700" style="z-index: var(--z-security);">
+        <div class="liquid-glass p-8 md:p-12 w-[90%] md:w-[420px] flex flex-col items-center relative rounded-[32px] animate-login-enter shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/20">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none rounded-inherit"></div>
+            <div class="w-16 h-16 rounded-full border border-white/10 mb-8 flex items-center justify-center relative shadow-[0_0_30px_rgba(143,255,212,0.1)]">
+                <div class="absolute inset-0 border-2 border-t-[#8FFFD4] border-transparent rounded-full animate-spin"></div>
+                <div class="absolute inset-2 border border-dotted border-[#B8E8FF]/40 rounded-full animate-[spin_4s_linear_infinite_reverse]"></div>
+                <div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_15px_#8FFFD4]"></div>
+            </div>
+            <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold relative z-10">NATT-OS</h1>
+            <p class="text-[10px] tracking-widest text-[#B8E8FF] mb-10 opacity-70 text-center font-mono relative z-10">PSYCHOLOGY UI · V2.5 CANONICAL</p>
+            <div class="w-full space-y-6 relative z-10">
+                <div>
+                    <label class="text-[10px] tracking-[0.2em] text-[#B8E8FF] ml-1 mb-2 block uppercase font-bold opacity-80">Identification Signal</label>
+                    <input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/60 transition-all font-mono placeholder:text-gray-600">
+                </div>
+                <div>
+                    <label class="text-[10px] tracking-[0.2em] text-[#B8E8FF] ml-1 mb-2 block uppercase font-bold opacity-80">SiraSign Passphrase</label>
+                    <input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/60 transition-all font-mono placeholder:text-gray-600">
+                </div>
+            </div>
+            <button onclick="AppController.handleLogin()" class="w-full bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md mt-10 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/20 hover:text-white transition-all duration-300 relative z-10 border border-white/20 hover:border-[#8FFFD4]/60 hover:shadow-[0_0_25px_rgba(143,255,212,0.4)]">
+                XÁC THỰC SIRA
+            </button>
+            <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden font-mono bg-red-900/30 px-4 py-3 rounded-lg border border-red-500/30 text-center w-full shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                [GAY] Tín hiệu từ chối. Vi phạm SiraSign.
+            </p>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         [SPEC §15] EXPERIENCE LAYER (Z:50) & WORKER LAYER (Z:10) - APP SHELL
+         ========================================================================== -->
+    <div id="app-shell" class="hidden absolute inset-0 flex flex-col pointer-events-auto h-screen overflow-hidden" style="z-index: var(--z-experience);">
+        
+        <!-- HEADER -->
+        <header class="h-auto md:h-20 py-4 md:py-0 liquid-glass mx-4 md:mx-6 mt-4 md:mt-6 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between rounded-xl md:rounded-[24px] shrink-0 gap-4 md:gap-0 relative z-50">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <div class="flex items-center gap-4 md:gap-6">
+                    <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
+                        <div class="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                        <div class="absolute inset-2 border border-dotted border-[#8FFFD4]/50 rounded-full animate-[spin_5s_linear_infinite_reverse]"></div>
+                        <div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_10px_#8FFFD4]"></div>
+                    </div>
+                    <div>
+                        <div class="font-black tracking-[0.2em] md:tracking-[0.3em] text-lg md:text-xl text-white flex items-center gap-2">
+                            PSYCHOLOGY<span class="text-[#C8C0FF]">_UI</span>
+                        </div>
+                        <div class="text-[9px] md:text-[10px] font-mono text-gray-400 mt-1 flex flex-wrap gap-2 md:gap-3 items-center">
+                            <span id="user-role-badge" class="px-2 py-0.5 bg-white/10 border border-white/20 rounded text-white">PENDING</span>
+                            <span class="hidden md:inline">|</span>
+                            <span id="ui-mode-badge" class="text-amber-400">MODE: WORK</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="md:hidden glass-panel w-8 h-8 rounded-full flex items-center justify-center" onclick="AppController.toggleSidebar()">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6 w-full md:w-auto justify-between md:justify-end border-t border-white/10 md:border-t-0 pt-3 md:pt-0">
+                <div class="text-right border-r border-white/10 pr-4 md:pr-6">
+                    <div class="text-[8px] md:text-[9px] text-gray-500 tracking-widest font-mono">RENDER MODE</div>
+                    <div id="render-mode-display" class="text-[10px] md:text-xs font-black tracking-widest text-[#B8E8FF]">ACTIVE</div>
+                </div>
+                <div class="text-right flex-1 md:flex-none">
+                    <div class="text-[8px] md:text-[9px] text-gray-500 tracking-widest font-mono">MẠCH HEYNA (SSE)</div>
+                    <div id="heyna-status" class="text-[10px] md:text-xs font-black tracking-widest text-glow-mint truncate">AWAITING...</div>
+                </div>
+                <div class="relative flex items-center justify-center w-6 h-6 md:w-8 md:h-8 shrink-0">
+                    <div id="heyna-pulse-ring" class="absolute inset-0 border border-[#8FFFD4]/30 rounded-full"></div>
+                    <div id="heyna-indicator" class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-600 border border-white/20"></div>
+                </div>
+                <button onclick="AppController.handleLogout()" class="hidden md:flex ml-2 w-10 h-10 rounded-full glass-panel items-center justify-center hover:bg-red-500/20 hover:text-red-400 transition-colors group shrink-0">
+                    <svg class="w-4 h-4 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- SUB-HEADER (nav nghiệp vụ) -->
+        <nav class="hidden md:flex mx-6 mt-4 px-2 gap-2 z-40">
+            <button class="px-4 py-2 liquid-glass rounded-lg text-[10px] tracking-widest font-bold text-amber-400 border-amber-500/50">CORE COMMAND</button>
+            <button class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white transition-colors">SALES / ORDER</button>
+            <button class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white transition-colors">PRODUCTION</button>
+            <button class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white transition-colors">FINANCE & TAX</button>
+        </nav>
+
+        <!-- MAIN BODY GRID -->
+        <main class="flex-1 p-4 md:p-6 flex flex-col xl:grid xl:grid-cols-12 gap-4 md:gap-6 min-h-0 overflow-hidden relative z-10">
+            
+            <!-- CỘT TRÁI: NAUION VITAL METRICS & AUDIT LOG -->
+            <aside id="sidebar-metrics" class="xl:col-span-3 flex flex-col gap-4 md:gap-6 overflow-y-auto custom-scrollbar pr-1 hidden md:flex">
+                <div class="liquid-glass p-5 md:p-6 rounded-[20px] md:rounded-[24px]">
+                    <h2 class="text-[9px] md:text-[10px] tracking-widest text-gray-400 mb-4 md:mb-6 border-b border-white/10 pb-2 flex justify-between">
+                        <span>VITAL SIGNS</span><span class="text-[#8FFFD4] animate-pulse">● LIVE</span>
+                    </h2>
+                    <div class="space-y-6 md:space-y-8">
+                        <div>
+                            <div class="flex justify-between text-[10px] md:text-xs mb-1.5"><span class="text-[#B8E8FF] font-bold tracking-widest">IMPEDANCE (Z)</span><span id="metric-z" class="font-mono text-[#B8E8FF]">1.000</span></div>
+                            <div class="h-1.5 bg-black/50 rounded-full border border-white/5"><div id="bar-z" class="h-full bg-[#B8E8FF] w-[50%] transition-all duration-500 shadow-[0_0_10px_#B8E8FF]"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] md:text-xs mb-1.5"><span class="text-[#8FFFD4] font-bold tracking-widest">RESONANCE</span><span id="metric-res" class="font-mono text-[#8FFFD4]">0.85</span></div>
+                            <div class="h-1.5 bg-black/50 rounded-full border border-white/5"><div id="bar-res" class="h-full bg-[#8FFFD4] w-[85%] transition-all duration-500 shadow-[0_0_10px_#8FFFD4]"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] md:text-xs mb-1.5"><span class="text-[#FFB8D4] font-bold tracking-widest">ATTENTION</span><span id="metric-att" class="font-mono text-[#FFB8D4]">1.00</span></div>
+                            <div class="h-1.5 bg-black/50 rounded-full border border-white/5"><div id="bar-att" class="h-full bg-[#FFB8D4] w-[100%] transition-all duration-300 shadow-[0_0_10px_#FFB8D4]"></div></div>
+                        </div>
+                    </div>
+                    <div class="mt-6 border-t border-white/10 pt-4">
+                        <button onclick="AppController.triggerDiagnostics()" class="w-full py-2.5 bg-[#C8C0FF]/10 text-[#C8C0FF] text-[10px] font-bold tracking-widest rounded-xl border border-[#C8C0FF]/30 hover:bg-[#C8C0FF]/30 hover:shadow-[0_0_15px_rgba(200,192,255,0.2)] transition-all flex justify-center items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <span>AI DIAGNOSTICS</span>
+                        </button>
+                        <div id="ai-diagnostic-result" class="mt-3 text-[9px] font-mono text-gray-300 hidden p-3 bg-black/50 rounded-lg border border-white/5 leading-relaxed"></div>
+                    </div>
+                </div>
+                <div class="liquid-glass p-5 md:p-6 rounded-[20px] md:rounded-[24px] flex-1 flex flex-col min-h-[250px]">
+                    <h2 class="text-[9px] md:text-[10px] tracking-widest text-gray-400 mb-3 md:mb-4 border-b border-white/10 pb-2 flex justify-between">
+                        <span>SSE STREAM (AUDIT)</span><span class="text-gray-500 text-[7px]">LIMIT 20</span>
+                    </h2>
+                    <div id="event-log" class="flex-1 overflow-y-auto font-mono text-[9px] md:text-[10px] space-y-3 custom-scrollbar pr-2" aria-live="polite">
+                        <div class="text-gray-500 italic">Initializing NATT-OS Engine...</div>
+                    </div>
+                    <button onclick="AppController.openNeuralTerminal()" class="mt-3 w-full py-2 glass-panel rounded text-[9px] tracking-widest text-gray-400 hover:text-white hover:bg-white/10 transition-colors">MỞ NEURAL TERMINAL</button>
+                </div>
+            </aside>
+
+            <!-- CỘT PHẢI: BUSINESS LOGIC & MEDALS -->
+            <section class="xl:col-span-9 flex flex-col gap-4 md:gap-6 overflow-y-auto custom-scrollbar pb-20 md:pb-0">
+                <div id="kpi-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 shrink-0"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 shrink-0">
+                    <div class="glass-panel p-5 md:p-6 rounded-[20px] md:rounded-[24px] h-[200px] flex flex-col">
+                        <h3 class="text-[9px] md:text-[10px] tracking-widest text-gray-400 font-bold mb-4">RESONANCE HEATMAP (7 DAYS)</h3>
+                        <div class="flex-1 flex items-end gap-2 px-2 pb-2 border-b border-l border-white/10">
+                            <div class="w-full bg-[#8FFFD4]/80 rounded-t shadow-[0_0_10px_#8FFFD4]" style="height: 40%"></div>
+                            <div class="w-full bg-[#8FFFD4]/80 rounded-t shadow-[0_0_10px_#8FFFD4]" style="height: 60%"></div>
+                            <div class="w-full bg-[#8FFFD4]/80 rounded-t shadow-[0_0_10px_#8FFFD4]" style="height: 30%"></div>
+                            <div class="w-full bg-gold/80 rounded-t shadow-[0_0_10px_#F5E2C0]" style="height: 90%; background-color: var(--gold);"></div>
+                            <div class="w-full bg-[#8FFFD4]/80 rounded-t shadow-[0_0_10px_#8FFFD4]" style="height: 50%"></div>
+                            <div class="w-full bg-red-400/80 rounded-t shadow-[0_0_10px_#EF4444]" style="height: 20%"></div>
+                            <div class="w-full bg-[#8FFFD4]/80 rounded-t shadow-[0_0_10px_#8FFFD4]" style="height: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-5 md:p-6 rounded-[20px] md:rounded-[24px] h-[200px] flex flex-col">
+                        <h3 class="text-[9px] md:text-[10px] tracking-widest text-gray-400 font-bold mb-4">PENDING TASKS (WAVE 3)</h3>
+                        <div id="task-container" class="flex-1 overflow-y-auto space-y-2 custom-scrollbar pr-2"></div>
+                    </div>
+                </div>
+                <div class="liquid-glass rounded-[20px] md:rounded-[24px] p-5 md:p-8 flex-1 relative flex flex-col min-h-[350px]">
+                    <h2 class="text-[9px] md:text-[10px] tracking-widest text-gray-400 mb-4 md:mb-6 border-b border-white/10 pb-2">CELL COLONY (SATELLITE VIEW)</h2>
+                    <div id="medal-container-zone" class="flex-1 flex items-center justify-center gap-6 md:gap-12 flex-wrap content-center"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ACTION DOCK (Experience Layer) -->
+        <div class="fixed bottom-10 left-1/2 -translate-x-1/2 liquid-glass px-6 py-3 rounded-full flex items-center gap-6 z-[150] shadow-2xl border border-white/20">
+            <button onclick="AppController.openChatUplink()" class="flex flex-col items-center group">
+                <span class="text-xl group-hover:scale-110 transition-transform text-glow-ice">💬</span>
+                <span class="text-[8px] font-mono mt-1 text-gray-400 group-hover:text-white">UPLINK</span>
+            </button>
+            <div class="w-px h-6 bg-white/20"></div>
+            <button onclick="AppController.triggerOmegaLockdown()" class="flex flex-col items-center group">
+                <span class="text-xl group-hover:scale-110 transition-transform text-glow-red">☢️</span>
+                <span class="text-[8px] font-mono mt-1 text-red-400 group-hover:text-red-300">LOCKDOWN</span>
+            </button>
+        </div>
+
+        <!-- FOOTER (Truth Layer) -->
+        <footer class="h-8 bg-black/90 border-t border-white/10 flex items-center justify-between px-4 md:px-6 text-[8px] md:text-[9px] font-mono text-gray-500 shrink-0 z-10 backdrop-blur-md">
+            <div class="flex items-center gap-2 md:gap-4">
+                <span>NATT-OS KERNEL</span><span class="w-px h-3 bg-white/20"></span>
+                <span id="footer-engine-status" class="text-[#8FFFD4]">ENGINES: ONLINE</span>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <span class="hidden md:inline">TRUTH LAYER: PROTECTED</span>
+                <span class="text-amber-500">HASH: <span id="audit-hash">471c206</span></span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MODALS -->
+    <div id="modal-neural" class="fixed inset-0 modal-overlay flex items-center justify-center p-4">
+        <div class="modal-content liquid-glass w-full max-w-4xl h-[80vh] rounded-[24px] flex flex-col overflow-hidden border-2 border-[#8FFFD4]/30">
+            <div class="h-14 bg-black/50 border-b border-white/10 flex items-center justify-between px-6">
+                <h2 class="text-xs font-black tracking-widest text-[#8FFFD4] font-mono">NEURAL_TERMINAL :: AUDIT_TRAIL</h2>
+                <button onclick="AppController.closeModals()" class="text-gray-400 hover:text-white">✕</button>
+            </div>
+            <div class="flex-1 p-6 bg-[#020202]/80 font-mono text-[10px] text-green-400 overflow-y-auto custom-scrollbar" id="neural-terminal-content"></div>
+        </div>
+    </div>
+    <div id="modal-chat" class="fixed inset-0 modal-overlay flex items-center justify-end p-6">
+        <div class="modal-content liquid-glass w-full md:w-[400px] h-[70vh] rounded-[24px] flex flex-col overflow-hidden border border-[#C8C0FF]/30">
+            <div class="h-14 bg-black/50 border-b border-white/10 flex items-center justify-between px-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-[#C8C0FF] rounded-full animate-pulse shadow-[0_0_10px_#C8C0FF]"></div>
+                    <h2 class="text-xs font-black tracking-widest text-[#C8C0FF]">AI_ENTITY UPLINK</h2>
+                </div>
+                <button onclick="AppController.closeModals()" class="text-gray-400 hover:text-white">✕</button>
+            </div>
+            <div class="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-4" id="chat-messages">
+                <div class="flex items-start gap-3">
+                    <div class="w-6 h-6 rounded-full bg-[#C8C0FF]/20 flex items-center justify-center text-[10px] text-[#C8C0FF] font-bold shrink-0">AI</div>
+                    <div class="glass-panel p-3 rounded-xl rounded-tl-none text-xs text-gray-200">Nahere Gatekeeper. Ta là Lõi lượng tử của Tâm Luxury.</div>
+                </div>
+            </div>
+            <div class="p-4 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+                <input type="text" id="chat-input" placeholder="Nhập lệnh (HeyNa)..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-white focus:outline-none focus:border-[#C8C0FF] transition-colors" onkeypress="if(event.key==='Enter') AppController.sendChatMessage()">
+                <button onclick="AppController.sendChatMessage()" class="px-4 py-2 bg-[#C8C0FF]/10 text-[#C8C0FF] rounded-lg border border-[#C8C0FF]/30 hover:bg-[#C8C0FF]/30 text-xs font-bold transition-all shrink-0">GỬI</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ======================================================================
+        // NATT-OS ENGINE CORE (Vanilla JS) – tuân thủ SPEC v2.5
+        // ======================================================================
+        const NattOS = { version: "2.5.0" };
+
+        // [SPEC §7] EVENT BUS (HeyNa Pattern)
+        class VanillaEventBus {
+            constructor() { this.listeners = {}; }
+            on(event, callback) { if (!this.listeners[event]) this.listeners[event] = []; this.listeners[event].push(callback); }
+            emit(event, payload, causation_id = null) {
+                const envelope = {
+                    event_id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36),
+                    event_type: event,
+                    payload: payload,
+                    source_cell: 'psychology-ui',
+                    caused_by: causation_id,
+                    timestamp: Date.now(),
+                    version: '1.0'
+                };
+                if (this.listeners[event]) this.listeners[event].forEach(cb => cb(envelope));
+                if (event !== 'system.impedance' && event !== 'ui.focus') UIBuilder.logToNeuralTerminal(envelope);
+            }
+        }
+        NattOS.EventBus = new VanillaEventBus();
+
+        const CryptoUtils = {
+            uuid: () => crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36),
+            mockSHA256: (str) => { let hash=0; for(let i=0;i<str.length;i++) hash=((hash<<5)-hash)+str.charCodeAt(i); return '0x'+Math.abs(hash).toString(16).padStart(16,'0'); }
+        };
+
+        // [LỆNH #001 & SPEC §7.1] AI CONNECTOR CELL (Gemini qua EventBus)
+        class AiConnectorCell {
+            constructor(eb) {
+                this.eb = eb;
+                this.apiKey = ""; // Gán key thật nếu có, hoặc để trống → fallback mock
+                this.eb.on('ai.query', (env) => this.handleQuery(env));
+            }
+            async handleQuery(envelope) {
+                const { type, content } = envelope.payload;
+                const systemPrompt = type === 'diagnostic' 
+                    ? "Bạn là NATT-OS AI. Chẩn đoán ngắn gọn tối đa 2 câu về các chỉ số: "+JSON.stringify(content)+". Dùng ngôn ngữ sắc bén, gọi người dùng là 'Gatekeeper'."
+                    : "Bạn là AI_ENTITY của Tâm Luxury. Trả lời ngắn gọn, uy quyền, xưng 'Ta', gọi user là 'Gatekeeper'.";
+                const userPrompt = type === 'diagnostic' ? "Phân tích sinh thể hiện tại." : content;
+                if (!this.apiKey) {
+                    // mock response khi không có key thật
+                    const mock = type==='diagnostic' ? "[Whau] Hệ thống ổn định. Impedance trong ngưỡng, Resonance đạt mức đồng bộ cao." : "Ta nhận lệnh, Gatekeeper. Đã xử lý tín hiệu.";
+                    this.eb.emit('ai.response', { type, text: mock, success: true }, envelope.event_id);
+                    return;
+                }
+                try {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } })
+                    });
+                    const data = await res.json();
+                    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "[GAY] Phản hồi rỗng.";
+                    this.eb.emit('ai.response', { type, text, success: true }, envelope.event_id);
+                } catch(err) {
+                    this.eb.emit('ai.response', { type, text: "[GAY] Đứt kết nối Lõi Lượng Tử.", success: false }, envelope.event_id);
+                }
+            }
+        }
+
+        // [SPEC §7.4] SIRASIGN
+        class SiraSignProtocol {
+            static generatePayload(actionData) {
+                const fsp = CryptoUtils.mockSHA256("fsp_"+actionData);
+                const ssp = CryptoUtils.mockSHA256("ssp_"+Date.now());
+                const tsp = CryptoUtils.mockSHA256("tsp_ui");
+                const lsp = CryptoUtils.mockSHA256(fsp+ssp+tsp);
+                return { fsp_hash:fsp, ssp_hash:ssp, tsp_hash:tsp, lsp_hash:lsp, nonce:CryptoUtils.uuid(), timestamp:Date.now() };
+            }
+            static verify(payload) {
+                const checkLsp = CryptoUtils.mockSHA256(payload.fsp_hash+payload.ssp_hash+payload.tsp_hash);
+                const timeDiff = Date.now()-payload.timestamp;
+                if(checkLsp !== payload.lsp_hash || timeDiff>300000) throw new Error("SiraSign Verification Failed");
+                return true;
+            }
+        }
+
+        // [SPEC §12.4] ATTENTION ENGINE
+        class AttentionEngine {
+            constructor(eb) {
+                this.eb = eb; this.lastMove=0; this.lastClick=0; this.lastScroll=0; this.attention=1.0;
+                this.bind(); setInterval(()=>this.update(),200);
+            }
+            bind() {
+                window.addEventListener('mousemove',()=>this.lastMove=Date.now());
+                window.addEventListener('click',()=>this.lastClick=Date.now());
+                window.addEventListener('scroll',()=>this.lastScroll=Date.now(),{passive:true});
+                document.addEventListener('touchstart',()=>this.lastClick=Date.now(),{passive:true});
+                document.addEventListener('visibilitychange',()=>this.update());
+            }
+            update() {
+                const now=Date.now(); let att=0;
+                if(now-this.lastMove<500) att+=0.4;
+                if(now-this.lastClick<1000) att+=0.3;
+                if(now-this.lastScroll<300) att+=0.3;
+                if(document.visibilityState==='visible') att=Math.min(1,att+0.3); else att=0;
+                this.attention = Math.min(1, Math.max(0, this.attention*0.8 + att*0.2));
+                this.eb.emit('ui.focus', this.attention);
+            }
+        }
+
+        // [SPEC §12.3] RENDER CONTROL ENGINE
+        class RenderControlEngine {
+            constructor(eb, galaxyRenderer) {
+                this.eb=eb; this.galaxy=galaxyRenderer;
+                this.state={ mode:'ACTIVE', z:1.0, res:0.85, att:1.0, lastHeyna:Date.now() };
+                this.rafId=null; this.attach(); setInterval(()=>this.decideMode(),500);
+            }
+            attach() {
+                this.eb.on('HEYNA',()=>{ this.state.lastHeyna=Date.now(); this.state.mode='BURST'; this.applyMode(); });
+                this.eb.on('NAHERE',()=>{ if(this.state.mode!=='DEGRADED') this.state.mode='IDLE'; this.applyMode(); });
+                this.eb.on('system.impedance',(env)=>{ this.state.z=env.payload; this.decideMode(); });
+                this.eb.on('ui.focus',(env)=>{ this.state.att=env.payload; this.decideMode(); });
+            }
+            decideMode() {
+                const now=Date.now(); const old=this.state.mode;
+                if(this.state.z>1.3) this.state.mode='DEGRADED';
+                else if(this.state.mode==='DEGRADED' && this.state.z<=1.0) this.state.mode='IDLE';
+                if(this.state.mode==='BURST' && now-this.state.lastHeyna>1500) this.state.mode='ACTIVE';
+                if(this.state.mode!=='DEGRADED') {
+                    if(this.state.att<0.2 && now-this.state.lastHeyna>10000) this.state.mode='IDLE';
+                    else if(this.state.att>=0.2 || now-this.state.lastHeyna<=10000) {
+                        if(this.state.mode!=='BURST') this.state.mode='ACTIVE';
+                    }
+                }
+                if(old!==this.state.mode) { this.applyMode(); this.eb.emit('render.mode.changed',{oldMode:old,newMode:this.state.mode}); }
+            }
+            applyMode() {
+                const el=document.getElementById('render-mode-display'); if(el) el.innerText=this.state.mode;
+                const colors={'BURST':'text-glow-gold','ACTIVE':'text-[#B8E8FF]','DEGRADED':'text-red-400','IDLE':'text-gray-500'};
+                if(el) el.className=`text-[10px] md:text-xs font-black tracking-widest ${colors[this.state.mode]}`;
+                document.documentElement.setAttribute('data-resonance-state',this.state.mode);
+                if(this.state.mode==='IDLE') this.stopLoop(); else this.startLoop();
+            }
+            startLoop() { if(this.rafId!==null) return; const loop=()=>{ if(this.state.mode!=='IDLE') this.galaxy.render(this.state); this.rafId=requestAnimationFrame(loop); }; loop(); }
+            stopLoop() { if(this.rafId!==null){ cancelAnimationFrame(this.rafId); this.rafId=null; } }
+        }
+
+        // [SPEC §10] GALAXY RENDERER
+        class GalaxyRenderer {
+            constructor() {
+                this.canvas=document.getElementById('galaxy-engine-canvas'); if(!this.canvas) return;
+                this.ctx=this.canvas.getContext('2d',{alpha:false});
+                this.particles=[]; this.resize(); window.addEventListener('resize',()=>this.resize());
+                this.initParticles(300);
+            }
+            resize() { this.canvas.width=window.innerWidth; this.canvas.height=window.innerHeight; }
+            initParticles(count) {
+                this.particles=[];
+                for(let i=0;i<count;i++) this.particles.push({ x:Math.random()*this.canvas.width, y:Math.random()*this.canvas.height, z:Math.random()*5+1, size:Math.random()*1.5, speed:(Math.random()-0.5)*0.2, hue:Math.random()>0.5?160:280 });
+            }
+            render(state) {
+                this.ctx.fillStyle='#020208'; this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
+                const speedMult=state.mode==='BURST'?3:(state.mode==='DEGRADED'?0.5:1);
+                this.particles.forEach(p=>{
+                    p.y-=(p.speed+0.1)*speedMult*(5/p.z);
+                    if(p.y<0){ p.y=this.canvas.height; p.x=Math.random()*this.canvas.width; }
+                    this.ctx.fillStyle=`hsla(${p.hue}, 100%, 70%, ${Math.min(1,2/p.z*state.res)})`;
+                    this.ctx.beginPath(); this.ctx.arc(p.x,p.y,p.size,0,Math.PI*2); this.ctx.fill();
+                });
+            }
+        }
+
+        // [SPEC §8.5] CONTEXTUAL UI ENGINE
+        class ContextualUIEngine {
+            constructor(eb) { this.eb=eb; this.intensity=0; this.role='business-user'; this.update(); setInterval(()=>this.update(),60000); this.eb.on('ui.focus',(env)=>{ this.intensity=env.payload; this.update(); }); }
+            setRole(role) { this.role=role; this.update(); }
+            update() {
+                const hour=new Date().getHours(); let mode='work';
+                if(hour>=22||hour<5) mode='night'; else if(hour>=5&&hour<9) mode='morning'; else if(hour>=18) mode='evening';
+                if(this.intensity>0.8) mode='fast'; else if(this.intensity<0.05) mode='precise';
+                if(this.role.includes('AI')) mode='ai'; else if(this.role.includes('GATEKEEPER')) mode='heavy';
+                document.body.setAttribute('data-ui-mode',mode);
+                const badge=document.getElementById('ui-mode-badge'); if(badge) badge.innerText=`MODE: ${mode.toUpperCase()}`;
+            }
+        }
+
+        // [SPEC §6] ISEU EVOLUTION ENGINE
+        class ISEUEngine {
+            constructor(eb) { this.eb=eb; this.store=new Map(); }
+            reinforce(eventType, outcome, domainWeight=1.0) {
+                const cur=this.store.get(eventType)||{score:0.5,count:0};
+                const delta=outcome==='success'?0.05:-0.03;
+                const newScore=Math.min(1,Math.max(0,cur.score+delta*domainWeight));
+                this.store.set(eventType,{score:newScore,count:cur.count+1});
+                if(newScore>0.7) this.eb.emit('system.resonance',newScore);
+            }
+        }
+
+        // [SPEC §5] BUTTERFLY PROTOCOL
+        class ButterflyProtocol {
+            static trigger(e, eventType, level='L2') {
+                if(e) e.stopPropagation();
+                NattOS.EventBus.emit('HEYNA',{intensity:level==='L3'?1.0:0.8});
+                NattOS.EventBus.emit(`butterfly.${level}`,{butterfly_id:CryptoUtils.uuid(), origin_cell:'ui', level});
+                NattOS.ISEU.reinforce(eventType,'success',1.2);
+                const x=e?(e.touches?e.touches[0].clientX:e.clientX):window.innerWidth/2;
+                const y=e?(e.touches?e.touches[0].clientY:e.clientY):window.innerHeight/2;
+                const ripple=document.createElement('div');
+                ripple.className=`butterfly-ripple butterfly-${level}`;
+                ripple.style.left=`${x}px`; ripple.style.top=`${y}px`;
+                document.body.appendChild(ripple);
+                setTimeout(()=>ripple.remove(),2500);
+                UIBuilder.appendLog(`[BUTTERFLY] Phân rã ${level} -> ${eventType}`);
+            }
+        }
+
+        // UI BUILDER
+        const MOCK_DATA = {
+            kpis: [
+                { title:'TOTAL REVENUE (T-REAL)', value:'12.5B ₫', trend:'▲ +12% vs WAVE 2', class:'text-glow-gold' },
+                { title:'PENDING APPROVALS (SIRA)', value:'08', trend:'Finance: 3 | Prod: 5', class:'text-[#C8C0FF]' },
+                { title:'QNEU SCORE (GLOBAL)', value:'300', trend:'STATUS: HEALTHY · RISK: 0', class:'text-white' }
+            ],
+            tasks: [
+                { name:'Duyệt bảng lương T4', status:'PENDING', urgency:'HIGH' },
+                { name:'Xác nhận BOM nhẫn Kim Cương', status:'IN_PROGRESS', urgency:'MEDIUM' },
+                { name:'Kiểm toán kho Quận 1', status:'DONE', urgency:'LOW' }
+            ],
+            medals: [
+                { id:'finance', name:'FINANCE', icon:'🏦', theme:'#030303 0deg,#1e1e1e 40deg,#ffd700 80deg,#090909 120deg,#1e1e1e 180deg,#ffd700 220deg,#030303 280deg,#1e1e1e 320deg,#030303 360deg', colorClass:'text-glow-gold', scar:false, confidence:90, scarsList:[] },
+                { id:'production', name:'PRODUCTION', icon:'⚙️', theme:'#030303 0deg,#064e3b 40deg,#10b981 80deg,#022c22 120deg,#030303 180deg,#10b981 220deg,#030303 280deg,#064e3b 320deg,#030303 360deg', colorClass:'text-glow-mint', scar:true, confidence:60, scarsList:['FS-018','FS-021'] },
+                { id:'hr', name:'HR & RBAC', icon:'👥', theme:'#030303 0deg,#4c1d95 40deg,#8b5cf6 80deg,#2e1065 120deg,#030303 180deg,#8b5cf6 220deg,#030303 280deg,#4c1d95 320deg,#030303 360deg', colorClass:'text-[#C8C0FF]', scar:false, confidence:95, scarsList:[] }
+            ]
+        };
+
+        const UIBuilder = {
+            renderKPIs: () => {
+                const container=document.getElementById('kpi-container');
+                container.innerHTML=MOCK_DATA.kpis.map(k=>`<div class="glass-panel rounded-[20px] md:rounded-[24px] p-5 md:p-6 relative overflow-hidden group"><h3 class="text-[9px] md:text-[10px] tracking-widest text-gray-400 font-bold uppercase">${k.title}</h3><div class="text-3xl md:text-4xl font-black mt-2 md:mt-3 tracking-tight ${k.class}">${k.value}</div><div class="text-[10px] md:text-xs text-gray-400 mt-2 md:mt-3 font-mono">${k.trend}</div></div>`).join('');
+            },
+            renderTasks: () => {
+                const container=document.getElementById('task-container');
+                container.innerHTML=MOCK_DATA.tasks.map(t=>{ const color=t.urgency==='HIGH'?'text-red-400':(t.urgency==='MEDIUM'?'text-amber-400':'text-gray-400'); return `<div class="flex justify-between items-center p-2 hover:bg-white/5 rounded cursor-pointer transition-colors border-b border-white/5 last:border-0"><span class="text-[10px] md:text-xs text-gray-300">${t.name}</span><span class="text-[9px] font-mono ${color} border border-current px-1.5 py-0.5 rounded">${t.status}</span></div>`; }).join('');
+            },
+            renderMedals: () => {
+                const container=document.getElementById('medal-container-zone');
+                container.innerHTML=MOCK_DATA.medals.map(m=>{
+                    const scarTooltip = m.scar ? `<div class="medal-tooltip">🔴 SCAR ACTIVE<br>IDs: ${m.scarsList.join(', ')}<br>FS-018..023</div>` : `<div class="medal-tooltip">CELL: ${m.id}<br>CONF: ${m.confidence}%<br>STATUS: HEALTHY</div>`;
+                    return `<div class="flex flex-col items-center gap-3 md:gap-4 w-[110px] md:w-auto relative group">
+                        <div class="medal-container" tabindex="0" onclick="ButterflyProtocol.trigger(event, '${m.action||m.id}.click', '${m.scar?'L3':'L2'}')" style="--theme-shell: ${m.theme};">
+                            <div class="medal-layer-0-orbit"></div><div class="medal-layer-0-orbit orbit-reverse"></div>
+                            <div class="medal-layer-1-shell"></div><div class="medal-layer-2-specular"></div>
+                            <div class="medal-layer-3-fresnel"></div><div class="medal-layer-5-liquid"></div>
+                            <div class="medal-layer-8-icon ${m.colorClass}">${m.icon}</div>
+                            ${m.scar ? '<div class="scar-ring"></div>' : ''}
+                            <svg class="confidence-indicator" viewBox="0 0 100 100"><circle class="confidence-circle" cx="50" cy="50" r="48" stroke="${m.confidence>80?'rgba(143,255,212,0.5)':'rgba(239,68,68,0.5)'}" stroke-dasharray="${m.confidence*3} 300"></circle></svg>
+                            ${scarTooltip}
+                        </div>
+                        <div class="text-center"><div class="text-[10px] md:text-xs font-black tracking-widest text-white">${m.name}</div><div class="text-[8px] md:text-[9px] font-mono ${m.scar?'text-red-400':'text-gray-500'} mt-1">SmartLink: WIRED</div></div>
+                    </div>`;
+                }).join('');
+                // thêm lockdown medal
+                container.innerHTML += `<div class="flex flex-col items-center gap-3 md:gap-4 md:ml-8 w-[110px] md:w-auto"><div class="medal-container !w-[80px] !h-[80px] md:!w-[100px] md:!h-[100px]" onclick="AppController.triggerOmegaLockdown()" style="--theme-shell: #030303 0deg,#7f1d1d 40deg,#ef4444 80deg,#450a0a 120deg,#030303 180deg,#ef4444 220deg,#030303 280deg,#7f1d1d 320deg,#030303 360deg;"><div class="medal-layer-1-shell"></div><div class="medal-layer-5-liquid" style="backdrop-filter:blur(4px);background:rgba(239,68,68,0.1);"></div><div class="medal-layer-8-icon text-glow-red" style="font-size:1.5rem;">☢</div></div><div class="text-center"><div class="text-[9px] md:text-[10px] font-black tracking-widest text-[#EF4444]">LOCKDOWN</div></div></div>`;
+            },
+            appendLog: (msg) => {
+                const log=document.getElementById('event-log'); if(!log) return;
+                const entry=document.createElement('div'); entry.className='border-l-2 border-[#8FFFD4]/30 pl-2 mb-2 pb-2 border-b border-white/5 animate-[fade-in_0.3s_ease-out]';
+                entry.innerHTML=`<span class="text-gray-500 mr-2">[${new Date().toLocaleTimeString()}]</span><span class="text-white break-words">${msg}</span>`;
+                log.prepend(entry); if(log.children.length>20) log.removeChild(log.lastChild);
+            },
+            logToNeuralTerminal: (envelope) => {
+                const term=document.getElementById('neural-terminal-content'); if(!term) return;
+                const div=document.createElement('div'); div.className='mb-4 border-b border-green-900/30 pb-2';
+                div.innerHTML=`<div class="text-white">EVENT: ${envelope.event_type} | ID: ${envelope.event_id}</div><div class="text-gray-500">TS: ${envelope.timestamp} | SOURCE: ${envelope.source_cell}</div><div class="text-green-300 opacity-80 pl-4 border-l border-green-800 mt-1">${JSON.stringify(envelope.payload)}</div>`;
+                term.prepend(div);
+            },
+            appendChatMessage: (sender, msg, isLoading=false) => {
+                const container=document.getElementById('chat-messages'); const loadingEl=document.getElementById('chat-loading-msg'); if(loadingEl && sender==='AI') loadingEl.remove();
+                const isAI=sender==='AI'; const div=document.createElement('div'); div.className=`flex items-start gap-3 ${!isAI?'flex-row-reverse':''}`; if(isLoading) div.id='chat-loading-msg';
+                const avatar=`<div class="w-6 h-6 rounded-full ${isAI?'bg-[#C8C0FF]/20 text-[#C8C0FF]':'bg-gold/20 text-gold'} flex items-center justify-center text-[8px] font-bold shrink-0">${isAI?'AI':'YOU'}</div>`;
+                const bubble=`<div class="glass-panel p-3 rounded-xl ${isAI?'rounded-tl-none':'rounded-tr-none bg-white/5'} text-xs text-gray-200 max-w-[85%]">${msg}</div>`;
+                div.innerHTML=avatar+bubble; container.appendChild(div); container.scrollTop=container.scrollHeight;
+            }
+        };
+
+        // APP CONTROLLER
+        const AppController = {
+            init: () => {
+                NattOS.Galaxy = new GalaxyRenderer();
+                NattOS.RenderEngine = new RenderControlEngine(NattOS.EventBus, NattOS.Galaxy);
+                NattOS.Attention = new AttentionEngine(NattOS.EventBus);
+                NattOS.UIContext = new ContextualUIEngine(NattOS.EventBus);
+                NattOS.ISEU = new ISEUEngine(NattOS.EventBus);
+                NattOS.AiConnector = new AiConnectorCell(NattOS.EventBus);
+                NattOS.EventBus.on('ai.response', (env) => {
+                    const {type,text,success}=env.payload;
+                    if(type==='diagnostic'){ const resDiv=document.getElementById('ai-diagnostic-result'); resDiv.innerHTML=`<span class="${success?'text-[#8FFFD4]':'text-red-400'} font-bold">[${success?'Whau':'GAY'}]</span> ${text}`; resDiv.classList.remove('hidden'); }
+                    else UIBuilder.appendChatMessage('AI',text);
+                });
+                NattOS.EventBus.on('system.impedance',(env)=>{ document.getElementById('metric-z').innerText=env.payload.toFixed(3); document.getElementById('bar-z').style.width=`${Math.min(100,(env.payload/2)*100)}%`; });
+                NattOS.EventBus.on('ui.focus',(env)=>{ document.getElementById('metric-att').innerText=env.payload.toFixed(2); document.getElementById('bar-att').style.width=`${env.payload*100}%`; });
+                NattOS.EventBus.on('system.resonance',(env)=>{ document.getElementById('metric-res').innerText=env.payload.toFixed(2); document.getElementById('bar-res').style.width=`${env.payload*100}%`; });
+                const updateMouse=(x,y)=>{ document.documentElement.style.setProperty('--mouse-x',`${(x/window.innerWidth)*100}%`); document.documentElement.style.setProperty('--mouse-y',`${(y/window.innerHeight)*100}%`); document.querySelectorAll('.medal-container').forEach(medal=>{ const rect=medal.getBoundingClientRect(); const angle=Math.atan2(y-(rect.top+rect.height/2),x-(rect.left+rect.width/2))*(180/Math.PI); medal.style.setProperty('--light-angle',`${angle+90}deg`); }); };
+                document.addEventListener('mousemove',e=>updateMouse(e.clientX,e.clientY));
+                document.addEventListener('touchmove',e=>{ if(e.touches.length>0) updateMouse(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
+                AppController.checkSession();
+            },
+            checkSession: () => {
+                const role = sessionStorage.getItem('nattos_role');
+                if(role){
+                    document.getElementById('login-gate').classList.add('opacity-0','pointer-events-none');
+                    document.getElementById('app-shell').classList.remove('hidden');
+                    document.getElementById('user-role-badge').innerText=`ROLE: ${role}`;
+                    NattOS.UIContext.setRole(role);
+                    UIBuilder.renderKPIs(); UIBuilder.renderTasks(); UIBuilder.renderMedals();
+                    AppController.initMachHeyna();
+                } else {
+                    document.getElementById('login-gate').classList.remove('opacity-0','pointer-events-none');
+                    document.getElementById('app-shell').classList.add('hidden');
+                }
+            },
+            handleLogin: () => {
+                const id=document.getElementById('emp-id').value, pass=document.getElementById('emp-pass').value, errorEl=document.getElementById('login-error');
+                if(id==='TLXR-CFO-01' && pass==='TamLuxury@CFO'){
+                    const payload=SiraSignProtocol.generatePayload(id);
+                    if(SiraSignProtocol.verify(payload)){
+                        sessionStorage.setItem('nattos_role','CFO'); sessionStorage.setItem('nattos_id',id);
+                        errorEl.classList.add('hidden'); AppController.checkSession();
+                        NattOS.EventBus.emit('audit.record',{action:'LOGIN',user:id,lsp:payload.lsp_hash});
+                    }
+                } else { errorEl.classList.remove('hidden'); ButterflyProtocol.trigger(null,'security.failed','L3'); }
+            },
+            handleLogout: () => { sessionStorage.clear(); window.location.reload(); },
+            initMachHeyna: () => {
+                const statusText=document.getElementById('heyna-status'), pulseRing=document.getElementById('heyna-pulse-ring');
+                try{
+                    const sse=new EventSource('http://localhost:3001/mach/heyna');
+                    sse.onopen=()=>{ statusText.innerText='ONLINE (LIVE)'; statusText.className='text-[10px] md:text-xs font-black tracking-widest text-glow-mint truncate'; pulseRing.classList.add('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]'); UIBuilder.appendLog('🟢 Mạch HeyNa SSE đã kết nối.'); NattOS.EventBus.emit('HEYNA',{intensity:1.0}); NattOS.RenderEngine.startLoop(); };
+                    sse.onmessage=(e)=>{ const data=JSON.parse(e.data); NattOS.EventBus.emit('HEYNA',{intensity:0.5}); if(data.impedanceZ!==undefined) NattOS.EventBus.emit('system.impedance',data.impedanceZ); UIBuilder.appendLog(`[SSE] ${data.event||'DATA_SYNC'} : ${JSON.stringify(data.payload||'')}`); };
+                    sse.onerror=()=>{ statusText.innerText='DISCONNECTED'; statusText.className='text-[10px] md:text-xs font-black tracking-widest text-red-400 truncate'; pulseRing.classList.remove('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]'); sse.close(); NattOS.EventBus.emit('system.impedance',2.0); setTimeout(AppController.initMachHeyna,3000); };
+                } catch(err){ console.error('SSE Error',err); }
+            },
+            toggleSidebar: () => { document.getElementById('sidebar-metrics').classList.toggle('hidden'); },
+            triggerOmegaLockdown: () => { ButterflyProtocol.trigger(null,'OMEGA_LOCKDOWN','L3'); document.body.style.filter='sepia(1) hue-rotate(-50deg) saturate(300%)'; UIBuilder.appendLog('☢️ Lệnh OMEGA_LOCKDOWN đã được phát đi!'); },
+            triggerDiagnostics: () => { const resDiv=document.getElementById('ai-diagnostic-result'); resDiv.classList.remove('hidden'); resDiv.innerHTML=`<span class="text-[#C8C0FF] animate-pulse font-bold">[Whao] Đang thỉnh cầu Lõi Lượng Tử...</span>`; NattOS.EventBus.emit('ai.query',{type:'diagnostic',content:{Z:NattOS.RenderEngine.state.z.toFixed(2),Resonance:NattOS.RenderEngine.state.res.toFixed(2),Attention:NattOS.RenderEngine.state.att.toFixed(2)}}); ButterflyProtocol.trigger(null,'ai.diagnostic.started','L1'); },
+            sendChatMessage: () => { const input=document.getElementById('chat-input'); const msg=input.value.trim(); if(!msg) return; UIBuilder.appendChatMessage('GATEKEEPER',msg); input.value=''; UIBuilder.appendChatMessage('AI','<span class="animate-pulse text-[#C8C0FF] font-bold">Whao...</span>',true); NattOS.EventBus.emit('ai.query',{type:'chat',content:msg}); ButterflyProtocol.trigger(null,'ai.chat.sent','L1'); },
+            openNeuralTerminal: () => { document.getElementById('modal-neural').classList.add('active'); },
+            openChatUplink: () => { document.getElementById('modal-chat').classList.add('active'); },
+            closeModals: () => { document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('active')); }
+        };
+        document.addEventListener('DOMContentLoaded',AppController.init);
+    </script>
+</body>
 </html>
