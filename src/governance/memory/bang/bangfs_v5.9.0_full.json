@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "file": "bangfs_v5.9.0.json",
+    "entity": "Băng",
+    "role": "Ground Truth Validator · Chị 5",
+    "version": "5.9.0",
+    "last_updated": "2026-04-11",
+    "purpose": "Focus state — trạng thái tập trung khi vào session mới"
+  },
+  "current_focus": "BCTC closed-loop verified FY2025 · 51 cells complete · SPEC v2.5 canonical · Bội Bội briefed · HR data found",
+  "system_snapshot": {
+    "head": "dff8120",
+    "commits": "625+",
+    "tsc": 0,
+    "risk": 0,
+    "state": "HEALTHY",
+    "cells": "51 total · 37 business · 6 kernel · infra complete",
+    "smartlink": "44/44 — all cells have port",
+    "eventbus": "UNIFIED (EventBridge DEPRECATED)",
+    "bctc_chain": "LIVE + VERIFIED FY2025",
+    "ts_nocheck": 105,
+    "spec": "SPEC-Nauion_main_v2.5.md CANONICAL"
+  },
+  "what_changed_last_session": {
+    "commits": [
+      "54c937f — digital twin + audit snapshot",
+      "cda8299 — SPEC-Nauion v2.5 canonical (§1-27 + §8.5 UIMode)",
+      "e7b4263 — tax-cell PERIOD_CLOSE_COMPLETED + /api/bctc/run endpoint",
+      "d924178 — BCTC vanilla JS closed-loop VERIFIED FY2025",
+      "b3b8d61 — protocol v2.4→v2.5 + 3 HTML modules + kmf9.9.9",
+      "466e121 — 8 kernel/infra cell ports + dust-recovery index",
+      "dff8120 — bangmf v6.9.0 + bangfs v5.9.0 + session_summary"
+    ],
+    "key_decisions": [
+      "SPEC v2.5: TOC đầy đủ §1-27 + §8.5 UIMode từ use-contextual-ui.ts — canonical",
+      "BCTC closed-loop: POST /api/bctc/run → REPORT_GENERATED → PERIOD_CLOSE_COMPLETED → TAX_FILED → BCTC_GENERATED",
+      "server.js = vanilla JS ONLY — không ts-node, không require TypeScript trực tiếp",
+      "51 cells: tất cả có smartlink port + index.ts — dust-recovery-cell cuối cùng",
+      "Bội Bội: brief gửi xong — KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md",
+      "HR data: Kim + Bội Bội đang làm — Băng không đụng"
+    ]
+  },
+  "active_wiring_map": {
+    "BCTC_chain_server_js": "POST /api/bctc/run → REPORT_GENERATED → PERIOD_CLOSE_COMPLETED → TAX_FILED + TNDN_CALCULATED → BCTC_GENERATED → audit-cell",
+    "SALES_ORDER_CONFIRMED→invoice": "finance-cell → sales.order.created.v1 → FinanceSaga → InvoiceAggregate → finance.invoice.created.v1",
+    "PAYMENT_PROCESSED→ghi sổ": "finance-cell → Nợ 112/Có 511 → PAYMENT_RECEIVED + payment.received → FINANCE_CLASSIFY_ACCOUNT",
+    "REPORT_GENERATED→đóng sổ": "period-close-cell → ClosingExecutor → Gatekeeper gate → FINANCE_ORDER_FLOW_BUILD",
+    "PERIOD_CLOSE_COMPLETED→thuế": "tax-cell (server.js vanilla) → calculateTNDN(TAM_LUXURY_TAX_2025) → TAX_FILED + BCTC_GENERATED",
+    "bctc_fy2025_ground_truth": {
+      "tongThue": 17806717978,
+      "thuePhatSinh": 8191502144,
+      "truyThuQd296": 9615215834,
+      "tong_ts": 133922918742,
+      "balanced": true
+    }
+  },
+  "files_just_modified": {
+    "finance-cell/index.ts": "PAYMENT_PROCESSED + SALES_ORDER_CONFIRMED handlers upgraded",
+    "period-close-cell/index.ts": "REPORT_GENERATED → ClosingExecutor",
+    "bctc-2025.runner.ts": "REPORT_GENERATED emit + EventBus import (5-level path)",
+    "97 files": "import path auto-fixes",
+    "finishing.entity.ts": "5 stub exports added",
+    "design-3d.engine.ts": "Design3dEvent added",
+    "shared-kernel/shared.types.ts": "NEW stub"
+  },
+  "danger_zones": {
+    "server_ts": "DISABLED — KHÔNG start",
+    "ts_node_in_server_js": "TUYỆT ĐỐI KHÔNG — dùng vanilla JS",
+    "superdictionary_ts": "Stub — KHÔNG sửa",
+    "tsconfig_flags": "forceConsistentCasingInFileNames:false + ignoreDeprecations:6.0 — KHÔNG xóa",
+    "git_add": "KHÔNG git add . (R06)",
+    "eventbridge": "DEPRECATED — KHÔNG import",
+    "standalone_html": "vanilla HTML/JS only (R07)",
+    "memory_export": "KHÔNG rút gọn bangmf — lấy version trước làm base (R09)"
+  },
+  "read_these_files_first": [
+    "src/governance/memory/bang/bangmf_v6.9.0.json",
+    "src/governance/memory/bang/bangfs_v5.9.0.json",
+    "docs/specs/governance/NATT-OS-WORKING-PROTOCOL.md",
+    "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
+    "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
+    "audit/summary/latest.json"
+  ],
+  "self_assessment": {
+    "session_score": "7.5/10",
+    "good": [
+      "BCTC closed-loop verified đúng ground truth FY2025",
+      "SPEC v2.5 merge đầy đủ 5 file + UIMode hook",
+      "Brief Bội Bội đúng scope, đúng pattern",
+      "51 cells tất cả có port"
+    ],
+    "bad": [
+      "server.js patch: 4 lần loop syntax error — không đọc đủ context trước",
+      "bangmf v6.9.0 xuất quá ngắn (1.9KB vs 14KB chuẩn) — mất 85% nội dung"
+    ],
+    "scars_new": [
+      "SESSION_20260411_SERVER: server.js patch — đọc toàn vùng lỗi 1 lần, xóa đúng range",
+      "SESSION_20260411_MEMORY: bangmf export — lấy version trước làm base, không viết lại từ đầu"
+    ]
+  }
+}
