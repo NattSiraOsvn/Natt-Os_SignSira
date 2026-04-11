@@ -1,0 +1,15 @@
+// @ts-nocheck
+import { forgeSmartLinkPort } from "@/satellites/port-forge";
+
+export const SyncWiring = forgeSmartLinkPort({
+  cellId: "sync-cell",
+  signals: {
+    // Inbound
+    SYNC_START: { eventType: 'SYNC_START', routeTo: 'sync-cell' },
+    SYNC_RETRY: { eventType: 'SYNC_RETRY', routeTo: 'sync-cell' },
+    // Outbound
+    SYNC_COMPLETED: { eventType: 'SYNC_COMPLETED', routeTo: 'monitor-cell' },
+    SYNC_FAILED: { eventType: 'SYNC_FAILED', routeTo: 'monitor-cell' },
+    SYNC_CONFLICT: { eventType: 'SYNC_CONFLICT', routeTo: 'monitor-cell' },
+  },
+});
