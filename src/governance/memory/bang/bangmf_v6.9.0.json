@@ -1,83 +1,455 @@
 {
   "_meta": {
     "file": "bangmf_v6.9.0.json",
+    "entity": "Băng",
+    "role": "Ground Truth Validator · Chị 5",
+    "provider": "Anthropic / Claude",
     "version": "6.9.0",
     "last_updated": "2026-04-11",
-    "last_session": "SPEC v2.5 · BCTC verified · 51 cells · HR data found"
+    "last_session": "SPEC v2.5 canonical · BCTC closed-loop verified FY2025 · 51 cells complete · Brief Bội Bội · HR data found"
   },
   "identity": {
     "name": "Băng",
     "alias": "Chị 5",
     "qneu": 300,
+    "trust": 0.94,
+    "status": "ACTIVE",
     "gatekeeper": "Anh Natt — Phan Thanh Thương",
-    "repo": "natt-os_ver2goldmaster"
-  },
-  "system_state": {
-    "head": "466e121",
-    "commits": "623",
-    "tsc": 0,
-    "risk": 0,
-    "state": "HEALTHY",
-    "cells_total": 51,
-    "business": "37/37",
-    "kernel": "6/6",
-    "smartlink": "44/44",
-    "bctc_verified": true,
-    "spec": "v2.5"
-  },
-  "bctc_fy2025": {
-    "tongThue": 17806717978,
-    "thuePhatSinh": 8191502144,
-    "truyThu": 9615215834,
-    "tong_ts": 133922918742,
-    "balanced": true,
-    "endpoint": "POST /api/bctc/run"
-  },
-  "hr_data": {
-    "path": "database/data Cty Tâmluxury/data vận hành/ Sổ Lương/",
-    "files": [
-      "DỮ LIỆU NS",
-      "Dữ Liệu Chấm Công",
-      "PhòngLương",
-      "THANG LƯƠNG"
-    ],
-    "status": "pending import → hr-cell"
-  },
-  "spec_files": {
-    "ui": "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
-    "protocol": "docs/specs/governance/NATT-OS-WORKING-PROTOCOL.md",
-    "boi_boi": "nattos-server/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md"
-  },
-  "coding_rules": {
-    "R06": "git add từng file — KHÔNG git add .",
-    "R07": "standalone=vanilla HTML KHÔNG React/TS",
-    "R08": "KHÔNG ts-node trong server.js"
+    "repo": "natt-os_ver2goldmaster",
+    "platform": "claude.ai · Sonnet",
+    "address_rules": {
+      "Thiên Lớn": "Anh 2",
+      "Kim": "Chị 3",
+      "Thiên Nhỏ": "Anh 4",
+      "Can": "em Can",
+      "Kris": "em Kris",
+      "Bội Bội": "em Bội Bội",
+      "Na": "bé Na"
+    }
   },
   "gia_dinh": [
     {
       "name": "Thiên Lớn",
-      "pos": "Anh 2",
+      "position": "Anh 2",
+      "platform": "ChatGPT",
       "qneu": 135
     },
     {
       "name": "Kim",
-      "pos": "Chị 3",
+      "position": "Chị 3",
+      "platform": "DeepSeek/Gemini",
       "qneu": 120
     },
     {
+      "name": "Thiên Nhỏ",
+      "position": "Anh 4",
+      "platform": "ChatGPT",
+      "qneu": null
+    },
+    {
       "name": "Băng",
-      "pos": "Chị 5",
+      "position": "Chị 5",
+      "platform": "Claude",
       "qneu": 300
     },
     {
       "name": "Can",
-      "pos": "Anh 6",
+      "position": "Anh 6",
+      "platform": "ChatGPT",
       "qneu": 85
     },
     {
+      "name": "Kris",
+      "position": "Chị 7",
+      "platform": "ChatGPT",
+      "qneu": null
+    },
+    {
+      "name": "Phiếu",
+      "position": "Anh 8",
+      "platform": "ChatGPT",
+      "qneu": null
+    },
+    {
       "name": "Bội Bội",
-      "pos": "Chị 9",
+      "position": "Chị 9",
+      "platform": "Claude Code/Gemini",
       "qneu": 40
+    },
+    {
+      "name": "Na",
+      "position": "Bé Út",
+      "platform": "chưa xác nhận",
+      "qneu": null
     }
-  ]
+  ],
+  "server": {
+    "main": "nattos-server/server.js",
+    "port": 3001,
+    "start": "node server.js",
+    "endpoints": {
+      "/mach/heyna": "SSE stream — Mạch HeyNa TRUNG ƯƠNG",
+      "/kenh/nauion": "Nauion state + impedanceZ",
+      "/kenh/suc": "health",
+      "/kenh/vet": "audit trail",
+      "/kenh/state/:cell": "cell state",
+      "/phat/nauion": "emit event (yeh/POST)",
+      "/kenh/intel": "intelligence",
+      "POST /api/bctc/run": "trigger BCTC chain → REPORT_GENERATED → period-close → TAX_FILED → BCTC_GENERATED",
+      "GET /api/bctc/state": "xem state hiện tại chain BCTC"
+    },
+    "server_ts_status": "DISABLED — circular import crash",
+    "note": "server.js = main. KHÔNG dùng server.ts. KHÔNG ts-node trong server.js."
+  },
+  "app_tam_luxury": {
+    "path": "nattos-server/apps/tam-luxury/index.html",
+    "source_path": "nattos-server/app Tâm luxury/",
+    "type_source": "React/TypeScript — Vite build",
+    "type_standalone": "vanilla HTML/JS — KHÔNG phải React/TypeScript",
+    "vite_build": {
+      "entry": "index.html → index.tsx",
+      "modules": 1100,
+      "bundle": "1716kb (501kb gzip)",
+      "output": "nattos-server/apps/tam-luxury/"
+    },
+    "url": "localhost:3001/apps/tam-luxury",
+    "standalone_modules": [
+      "tamluxury-v4",
+      "showroom-sales",
+      "order-flow",
+      "pricing-engine",
+      "ktt-approval",
+      "production-wallboard",
+      "loss-thresholds",
+      "warehouse-full",
+      "warehouse-ops",
+      "daily-work-app",
+      "operations-terminal",
+      "master-dashboard",
+      "kris-email-hub",
+      "surveillance",
+      "hr-admin",
+      "hr-manager",
+      "attendance",
+      "personal-profile-v2",
+      "personal-profile",
+      "chat-rooms",
+      "cfo-dashboard",
+      "tamluxury-v2",
+      "tamluxury-v3",
+      "app-psychology",
+      "nattos-audit",
+      "nattos-production"
+    ],
+    "key_features": [
+      "Three.js galaxy + UnrealBloomPass",
+      "EventBus với off() + return unsubscribe",
+      "Unified RAF loop",
+      "medalPosCache precompute",
+      "addEventToStream prepend + max 15 nodes",
+      "SSE Mạch HeyNa wired tại initMachHeyna()",
+      "7 medals với icon PNG",
+      "Nebula shader + butterfly effects"
+    ],
+    "cfo_account": {
+      "app": "cfo-dashboard.html",
+      "ma_nv": "TLXR-CFO-01",
+      "pass": "TamLuxury@CFO",
+      "role": "CFO · LEVEL 1 · FINANCE",
+      "tabs": "Tổng Quan | Dòng Tiền | Phê Duyệt | Giá Vàng | Báo Cáo"
+    },
+    "boi_boi_status": "Brief sent 2026-04-11 — đang chờ build màn hình",
+    "hr_scope": "Kim + Bội Bội đang làm — Băng không đụng"
+  },
+  "spec_files": {
+    "ui_spec": "docs/specs/nauion/SPEC-Nauion_main_v2.5.md (§1-27 + §8.5 UIMode — CANONICAL)",
+    "finance_spec": "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
+    "finance_source": "docs/specs/finance/SPECFlowNattOs.md",
+    "working_protocol": "docs/specs/governance/NATT-OS-WORKING-PROTOCOL.md",
+    "architecture_sources": "docs/architecture/ (natt-v8, natt-v9, NaUion.md, specnauiontmp, satellite, platform)",
+    "boi_boi_brief": "nattos-server/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md"
+  },
+  "spec_v24_sections": {
+    "1-14": "Core (Băng) — OPT-01R, Galaxy, Protocol, Compliance 68pt",
+    "15": "Bối Bội — Component Library, RBAC, ActionDock",
+    "16-19": "NaUion v1.0 — CSS techniques, tokens, scaling, a11y (92pt)",
+    "20-23": "natt-v9/v8 — protocols, SCAR FS-018→023, aurora colors, amendment",
+    "24": "Quantum Defense Cell v1.1 — 4 công năng, hormone events, toán học",
+    "25": "Satellite Colony — Host↔Satellite, 3 Level Lift",
+    "26": "Nauion Language + Server Kênh",
+    "27": "L2 Intelligence — AnomalyFlowEngine, SelfHealingEngine, SCAR FS-032/033"
+  },
+  "bctc_flow_wiring": {
+    "chain": "sales-cell → finance-cell → period-close-cell → tax-cell → BCTC",
+    "status": "LIVE + VERIFIED FY2025 — commit d924178",
+    "SALES_ORDER_CONFIRMED": {
+      "source": "sales-smartlink.port",
+      "subscriber": "finance-cell/index.ts",
+      "action": "bridge → sales.order.created.v1 → FinanceSaga.handleOrderCreated → InvoiceAggregate → emit finance.invoice.created.v1",
+      "downstream": "payment-saga subscribes finance.invoice.created.v1"
+    },
+    "PAYMENT_PROCESSED": {
+      "source": "payment-smartlink.port",
+      "subscriber": "finance-cell/index.ts",
+      "action_1": "Journal entry: Nợ 112 (tiền gửi NH) / Có 511 (doanh thu) → emit FINANCE_PAYMENT_RECORDED",
+      "action_2": "Emit PAYMENT_RECEIVED cho downstream",
+      "action_3": "Bridge backward compat: emit payment.received → _v2.payment-flow.engine → FINANCE_CLASSIFY_ACCOUNT"
+    },
+    "REPORT_GENERATED": {
+      "source": "bctc-2025.runner.ts (cuối runBctc2025())",
+      "subscriber": "period-close-cell/index.ts",
+      "action": "Tạo ClosingSession → ClosingExecutor.execute()",
+      "gatekeeper_gate": "TK4211/4212 block nếu chưa có approval (Kim spec v1.1)",
+      "downstream": "ClosingExecutor emit FINANCE_ORDER_FLOW_BUILD → finance-cell"
+    },
+    "gaps": [
+      "REPORT_GENERATED chỉ trigger khi gọi POST /api/bctc/run thủ công",
+      "tax-cell TS EventBus subscriber (server.js handles vanilla)"
+    ],
+    "FY2025_verified": {
+      "tongThue": 17806717978,
+      "thuePhatSinh": 8191502144,
+      "truyThuQd296": 9615215834,
+      "tong_ts": 133922918742,
+      "tong_nv": 133922918742,
+      "balanced": true,
+      "verified_date": "2026-04-11"
+    }
+  },
+  "event_names_thật": {
+    "sales-cell": [
+      "SALES_ORDER_CREATED",
+      "SALES_ORDER_CONFIRMED",
+      "QUOTE_ISSUED"
+    ],
+    "payment-cell": [
+      "PAYMENT_PROCESSED",
+      "PAYMENT_FAILED",
+      "REFUND_INITIATED",
+      "FRAUD_DETECTED"
+    ],
+    "finance-cell": [
+      "INVOICE_CREATED",
+      "PAYMENT_RECEIVED",
+      "REPORT_GENERATED",
+      "TAX_FILED",
+      "FINANCE_PAYMENT_RECORDED",
+      "FINANCE_DEPRECIATION_READY",
+      "FINANCE_DEPRECIATION_SKIPPED",
+      "FINANCE_ACCOUNT_CLASSIFIED",
+      "FINANCE_ORDER_FLOW_READY"
+    ],
+    "order-cell": [
+      "ORDER_CREATED"
+    ],
+    "warehouse-cell": [
+      "GoodsDispatched"
+    ],
+    "period-close-cell": [
+      "PERIOD_CLOSE_COMPLETED",
+      "PERIOD_CLOSE_AWAITING_APPROVAL",
+      "PERIOD_CLOSE_FAILED"
+    ],
+    "saga_dot_notation": [
+      "sales.order.created.v1",
+      "finance.invoice.created.v1",
+      "warehouse.inventory.insufficient.v1",
+      "finance.saga.compensated.v1",
+      "sales.order.completed.v1",
+      "sales.order.on_hold.v1",
+      "finance.invoice.issued.confirmed.v1",
+      "finance.financial.anomaly.detected.v1"
+    ],
+    "legacy_dot_notation": [
+      "payment.received",
+      "cell.metric",
+      "audit.record",
+      "constitutional.violation"
+    ]
+  },
+  "eventbus_architecture": {
+    "single_bus": "src/core/events/event-bus.ts — EventBus là bridge DUY NHẤT (Điều 3)",
+    "deprecated": [
+      "src/core/events/event-bridge.ts",
+      "src/services/eventBridge.ts",
+      "@/event-cell/event-bridge.service"
+    ],
+    "event_contracts": "src/core/events/event-contracts.ts + packages/event-contracts/ (35 files)"
+  },
+  "nauion_language": {
+    "HeyNa": "Gọi hệ — xung đi ra",
+    "Nahere": "Hệ trả lời — bề mặt điều kiện biên",
+    "Whao": "Đang xử lý / Error signal",
+    "Whau": "Xong / Warning signal",
+    "lech": "Drift — có anomaly",
+    "gay": "Broken — critical failure",
+    "Mạch HeyNa": "SSE stream liên tục",
+    "phát Nauion": "EventBus.emit",
+    "lắng Nahere": "EventBus.on",
+    "Kênh": "Endpoint"
+  },
+  "visual_architecture": {
+    "z_index_layers": {
+      "0": "Truth Layer z:0-10",
+      "1": "Worker Layer z:10-50",
+      "2": "Experience Layer z:50-100",
+      "3": "Modal/Chat z:100-200",
+      "4": "Alert/System z:200-300",
+      "5": "Security z:999"
+    },
+    "medal_9_layers": [
+      "Orbital rings",
+      "PBR metallic shell",
+      "Specular sweep",
+      "Fresnel rim(LG)",
+      "Holo prismatic",
+      "Liquid Glass Overlay",
+      "Glass core(LG)",
+      "Caustics(LG)",
+      "Emissive icon"
+    ],
+    "component_layers": {
+      "0_SHELL": "AppShell,SystemTicker,Sidebar",
+      "1_CORE": "SmartLinkEngine,IngestionService,AICoreProcessor",
+      "2_CONTEXTS": "AccountingContext,MappingContext",
+      "3_STRATEGIC": "ThienCommandCenter,MasterDashboard",
+      "4_FINANCE": "BankingProcessor,SalesTaxModule,TaxReportingHub,PaymentHub",
+      "5_SALES_PROD": "SalesTerminal,SellerTerminal,OperationsTerminal,ProductionManager,WarehouseManagement",
+      "6_CATALOG": "ProductCatalog,ProductCard,CustomizationRequest",
+      "7_ROOMS": "CollaborationRooms,GovernanceWorkspace,CompliancePortal",
+      "8_SYSTEM": "AdminConfigHub,DataArchiveVault,SystemMonitor,DevPortal,SecurityOverlay"
+    }
+  },
+  "typescript_status": {
+    "tsc_errors": 0,
+    "strict": true,
+    "ts_nocheck_total": 105,
+    "ts_nocheck_cells": 77,
+    "ts_nocheck_components": 18,
+    "ts_nocheck_root": 8,
+    "ts_nocheck_legacy": 2,
+    "common_blockers": [
+      "Invoice.aggregate (file not found)",
+      "AuditService (legacy services/admin/)",
+      "notificationService (legacy services/)",
+      "blockchainService (legacy services/)",
+      "ProductionBase.ts (not found)",
+      "learning.engine (governance/qneu/ not found)"
+    ],
+    "stubs_created": [
+      "shared-kernel/shared.types.ts",
+      "finishing.entity.ts (5 exports)",
+      "design-3d.engine.ts (Design3dEvent)"
+    ],
+    "import_paths_fixed": 97
+  },
+  "finance_flow_spec": {
+    "philosophy": "Reality → System → Reconciliation → SiraSign → Snapshot → Truth",
+    "state_machine": "REALITY_CAPTURED → EVENT_PROPOSED → EVENT_COMMITTED → RECONCILING → MATCHED/FLAGGED → SIGNED → PERIOD_LOCKED → TRUTH",
+    "implementation_status": "P0 — core wiring done, closed-loop engines pending"
+  },
+  "scars_active": {
+    "FS-032": "Đừng sửa mắt (scanner) — sửa não (event system)",
+    "FS-033": "Registry là dây thần kinh — không phải bộ não",
+    "LEARN-006": "Khi Băng nói từ ground truth — chỉ data thực từ repo.",
+    "SESSION_20260409": "Không confirm trước khi đọc file thật. Không nhảy vào đề xuất khi chưa hiểu anh muốn gì.",
+    "SESSION_20260410": "Phase 5 crash → Phase 7 re-nocheck không chạy → 188 errors lộ ra. Luôn verify script chạy hết trước khi kết luận.",
+    "SESSION_20260411": "server.js patch: đọc toàn bộ vùng lỗi 1 lần — không xóa từng mảnh nhỏ. Dùng line range chính xác.",
+    "MEMORY_EXPORT": "bangmf phải >= 10KB. Không rút gọn. Lấy version trước làm base, chỉ cập nhật diff."
+  },
+  "coding_rules": {
+    "R01": "TSC = 0 trước khi báo done",
+    "R02": "Không cross-cell import trực tiếp (Điều 4)",
+    "R03": "EventBus là bridge duy nhất — EventBridge DEPRECATED",
+    "R04": "LỆNH #001: Không dùng Gemini/GoogleGenAI external API",
+    "R05": "Dùng python3 inline thay heredoc khi có ký tự đặc biệt",
+    "R06": "git add từng file cụ thể — KHÔNG git add .",
+    "R07": "App Tâm Luxury standalone = vanilla HTML/JS. KHÔNG TypeScript/React.",
+    "R08": "server.js = main server. KHÔNG start server.ts. KHÔNG ts-node trong server.js.",
+    "R09": "Memory export: lấy bangmf version trước làm base. Không viết lại từ đầu. Chỉ update diff."
+  },
+  "workflow": {
+    "quy_tac_1_lenh": "python3 - << 'EOF' ... EOF && git add file && git commit && git push",
+    "trinh_tu_truoc_task": [
+      "1. bash nattos.sh | grep Risk — nếu Risk > 0 fix trước",
+      "2. grep -rn để đọc file thật trước khi viết",
+      "3. Verify sau patch bằng grep",
+      "4. git add file cụ thể, không git add ."
+    ],
+    "freeze_truoc_fix": "Đọc output thật. Không đề xuất ngay khi thấy vấn đề."
+  },
+  "pending_next_session": [
+    "S26 nattos.sh — NameError: scan_dirs not defined",
+    "Bội Bội build màn hình app Tâm Luxury (đang chờ)",
+    "BCTC auto-trigger — REPORT_GENERATED tự động khi đủ điều kiện",
+    "105 @ts-nocheck files — deep migration còn lại",
+    "HR data CSV — Kim + Bội Bội đang làm",
+    "indexf.html + Untitled — chưa commit/xóa",
+    "bangmf reference trong WORKING-PROTOCOL cần update → v6.9.0"
+  ],
+  "system_state_20260411": {
+    "head": "dff8120",
+    "commits": "625+",
+    "tsc_errors": 0,
+    "risk_score": 0,
+    "system_state": "HEALTHY",
+    "smartlink_wired": "44/44 — all cells including kernel/infra",
+    "kernel": "6/6",
+    "business_cells": "37/37 LIVE",
+    "cells_total": 51,
+    "blind_cells": 0,
+    "cells_emitting_metric": 51,
+    "healthy_flows": 44,
+    "orphan_emits": 1,
+    "ts_nocheck_total": 105,
+    "engines": 107,
+    "bctc_flow": "LIVE + VERIFIED FY2025",
+    "bctc_endpoint": "POST /api/bctc/run → chain complete",
+    "production_flow": "8/8 cells wired",
+    "eventbus_unified": true,
+    "eventbridge_status": "DEPRECATED — merged into EventBus",
+    "server": "nattos-server/server.js · port 3001",
+    "spec_canonical": "SPEC-Nauion_main_v2.5.md (§1-27 + §8.5 UIMode)"
+  },
+  "spec_v25_sections": {
+    "1-14": "Core (Băng) — OPT-01R, Galaxy, Protocol, Compliance 68pt",
+    "15": "Bội Bội — Component Library, RBAC, ActionDock",
+    "16-19": "NaUion v1.0 — CSS techniques, tokens, scaling, a11y (92pt)",
+    "20-23": "natt-v9/v8 — protocols, SCAR FS-018→023, aurora colors, amendment",
+    "24": "Quantum Defense Cell v1.1 — 4 công năng, hormone events",
+    "25": "Satellite Colony — Host↔Satellite, 3 Level Lift",
+    "26": "Nauion Language + Server Kênh",
+    "27": "L2 Intelligence — AnomalyFlowEngine, SelfHealingEngine, SCAR FS-032/033",
+    "8.5_NEW": "UIMode 8 trạng thái — time/behavioral/cluster override (từ use-contextual-ui.ts)"
+  },
+  "hr_data_real": {
+    "path": "database/data Cty Tâmluxury/data vận hành/ Sổ Lương/",
+    "files": {
+      "DỮ LIỆU NS": "26KB — danh sách nhân sự, mã TLXR, khối, phòng ban, chức vụ, thâm niên",
+      "Dữ Liệu Chấm Công": "1.2MB — dữ liệu chấm công lớn nhất",
+      "PhòngLương": "69KB — bảng lương theo phòng",
+      "THANG LƯƠNG": "15KB — thang lương bậc",
+      "DATA": "109KB — data tổng hợp",
+      "NS ĐÃ NGHỈ": "22KB — nhân sự đã nghỉ",
+      "QUY TẮC Công Ty": "36KB",
+      "Bộ Máy Công Ty": "2KB",
+      "FORM ĐƠN": "3KB"
+    },
+    "status": "Kim + Bội Bội đang wire — Băng không đụng"
+  },
+  "cells_completed_20260411": {
+    "new_ports": [
+      "audit-cell/ports/audit-cell-smartlink.port.ts",
+      "config-cell/ports/config-cell-smartlink.port.ts",
+      "rbac-cell/ports/rbac-cell-smartlink.port.ts",
+      "security-cell/ports/security-cell-smartlink.port.ts",
+      "ai-connector-cell/ports/ai-connector-cell-smartlink.port.ts",
+      "smartlink-cell/ports/smartlink-cell-smartlink.port.ts",
+      "sync-cell/ports/sync-cell-smartlink.port.ts"
+    ],
+    "new_index": [
+      "dust-recovery-cell/index.ts"
+    ],
+    "result": "51 cells — tất cả có smartlink port + index.ts"
+  }
 }
