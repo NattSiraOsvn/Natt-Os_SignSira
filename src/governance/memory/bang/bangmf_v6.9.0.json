@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "file": "bangmf_v6.9.0.json",
+    "version": "6.9.0",
+    "last_updated": "2026-04-11",
+    "last_session": "SPEC v2.5 · BCTC verified · 51 cells · HR data found"
+  },
+  "identity": {
+    "name": "Băng",
+    "alias": "Chị 5",
+    "qneu": 300,
+    "gatekeeper": "Anh Natt — Phan Thanh Thương",
+    "repo": "natt-os_ver2goldmaster"
+  },
+  "system_state": {
+    "head": "466e121",
+    "commits": "623",
+    "tsc": 0,
+    "risk": 0,
+    "state": "HEALTHY",
+    "cells_total": 51,
+    "business": "37/37",
+    "kernel": "6/6",
+    "smartlink": "44/44",
+    "bctc_verified": true,
+    "spec": "v2.5"
+  },
+  "bctc_fy2025": {
+    "tongThue": 17806717978,
+    "thuePhatSinh": 8191502144,
+    "truyThu": 9615215834,
+    "tong_ts": 133922918742,
+    "balanced": true,
+    "endpoint": "POST /api/bctc/run"
+  },
+  "hr_data": {
+    "path": "database/data Cty Tâmluxury/data vận hành/ Sổ Lương/",
+    "files": [
+      "DỮ LIỆU NS",
+      "Dữ Liệu Chấm Công",
+      "PhòngLương",
+      "THANG LƯƠNG"
+    ],
+    "status": "pending import → hr-cell"
+  },
+  "spec_files": {
+    "ui": "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
+    "protocol": "docs/specs/governance/NATT-OS-WORKING-PROTOCOL.md",
+    "boi_boi": "nattos-server/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md"
+  },
+  "coding_rules": {
+    "R06": "git add từng file — KHÔNG git add .",
+    "R07": "standalone=vanilla HTML KHÔNG React/TS",
+    "R08": "KHÔNG ts-node trong server.js"
+  },
+  "gia_dinh": [
+    {
+      "name": "Thiên Lớn",
+      "pos": "Anh 2",
+      "qneu": 135
+    },
+    {
+      "name": "Kim",
+      "pos": "Chị 3",
+      "qneu": 120
+    },
+    {
+      "name": "Băng",
+      "pos": "Chị 5",
+      "qneu": 300
+    },
+    {
+      "name": "Can",
+      "pos": "Anh 6",
+      "qneu": 85
+    },
+    {
+      "name": "Bội Bội",
+      "pos": "Chị 9",
+      "qneu": 40
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "file": "bangfs_v5.9.0.json",
+    "version": "5.9.0",
+    "last_updated": "2026-04-11"
+  },
+  "head": "466e121",
+  "commits": "623",
+  "tsc": 0,
+  "risk": 0,
+  "state": "HEALTHY",
+  "cells": "51 total · 44/44 ports",
+  "bctc": "LIVE+VERIFIED FY2025",
+  "spec": "v2.5 CANONICAL",
+  "pending": [
+    "S26 nattos.sh scan_dirs",
+    "HR CSV import",
+    "Bội Bội build",
+    "BCTC auto-trigger",
+    "@ts-nocheck 105"
+  ],
+  "scar": "SESSION_20260411: server.js patch — đọc toàn vùng lỗi 1 lần trước khi xóa",
+  "danger": {
+    "server_ts": "DISABLED",
+    "ts_node_in_server_js": "KHÔNG",
+    "git_add_dot": "KHÔNG",
+    "eventbridge": "DEPRECATED"
+  },
+  "read_first": [
+    "bangmf_v6.9.0.json",
+    "bangfs_v5.9.0.json",
+    "NATT-OS-WORKING-PROTOCOL.md",
+    "SPEC-Nauion_main_v2.5.md"
+  ]
+}
