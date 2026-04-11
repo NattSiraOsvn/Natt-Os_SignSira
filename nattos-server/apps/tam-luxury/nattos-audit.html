@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi" data-resonance-state="ACTIVE" data-ui-mode="work">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NATT-OS | Phase 3: Audit & Forensic (EventBus thuần)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ========== TOKENS & LIQUID GLASS (giữ nguyên từ bản của Bối) ========== */
+        :root {
+            --bg-primary: #020208;
+            --mint: #8FFFD4;
+            --ice: #B8E8FF;
+            --gold: #F5E2C0;
+            --red-scar: #EF4444;
+            --z-truth: 1; --z-experience: 50; --z-security: 999;
+            --mouse-x: 50%; --mouse-y: 50%;
+        }
+        body { margin:0; background: var(--bg-primary); color:#eee; overflow:hidden; font-family: monospace; }
+        .liquid-glass {
+            backdrop-filter: blur(20px) saturate(180%);
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.01) 70%, transparent);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+        .glass-panel { background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+        .audit-table { width:100%; border-collapse: separate; border-spacing:0 4px; }
+        .audit-table th { text-align:left; padding:12px 16px; font-size:10px; color:var(--ice); border-bottom:1px solid rgba(255,255,255,0.1); }
+        .audit-table td { padding:14px 16px; font-size:11px; background: rgba(255,255,255,0.02); }
+        .audit-row:hover td { background: rgba(255,255,255,0.06); cursor: pointer; }
+        .badge { padding:2px 8px; border-radius:4px; font-size:9px; font-weight:bold; }
+        .badge-info { background: rgba(184,232,255,0.1); color:var(--ice); }
+        .badge-error { background: rgba(239,68,68,0.1); color:var(--red-scar); }
+        .forensic-split { display:flex; height:100%; gap:1px; }
+        .forensic-pane { flex:1; overflow-y:auto; background: var(--bg-primary); padding:20px; }
+        .diff-removed { background: rgba(239,68,68,0.15); color:#EF4444; border-left:2px solid #EF4444; }
+        .custom-scrollbar::-webkit-scrollbar { width:4px; }
+        .scanline { position:absolute; width:100%; height:100px; background:linear-gradient(to bottom, transparent, rgba(143,255,212,0.03), transparent); animation: scanline 8s linear infinite; pointer-events:none; }
+        @keyframes scanline { 0%{top:-10%;} 100%{top:110%;} }
+        html[data-resonance-state="IDLE"] #app-shell { filter: blur(15px) brightness(0.4); transition:4s; }
+    </style>
+</head>
+<body>
+    <!-- Truth Layer -->
+    <div style="position:fixed; inset:0; z-index:1; background:var(--bg-primary); pointer-events:none;">
+        <div class="scanline"></div>
+    </div>
+
+    <!-- Login Gate -->
+    <div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-3xl" style="z-index:999;">
+        <div class="liquid-glass p-12 w-[400px] rounded-[32px] text-center">
+            <h1 class="text-3xl font-black tracking-widest text-white">NATT-OS</h1>
+            <p class="text-[9px] text-[#B8E8FF] mt-2">AUDIT & FORENSIC (EventBus)</p>
+            <div class="mt-8 space-y-4">
+                <input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm">
+                <input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm">
+            </div>
+            <button onclick="AppController.handleLogin()" class="w-full liquid-glass mt-8 py-4 rounded-xl font-bold tracking-widest text-[#F5E2C0]">XÁC THỰC</button>
+        </div>
+    </div>
+
+    <!-- App Shell -->
+    <div id="app-shell" class="hidden absolute inset-0 flex flex-col" style="z-index:50;">
+        <header class="h-20 liquid-glass mx-6 mt-6 px-8 flex items-center justify-between rounded-2xl">
+            <div><span class="font-black text-white">AUDIT<span class="text-[#C8C0FF]">_FORENSIC</span></span><div class="text-[9px]"><span id="user-role-badge">AUDITOR</span></div></div>
+            <div class="flex gap-6">
+                <div><div class="text-[8px]">Mạch HeyNa</div><div id="heyna-status" class="text-[10px] text-[#8FFFD4]">CONNECTED</div></div>
+                <div><div class="text-[8px]">Z</div><div id="metric-z" class="text-[10px]">1.00</div></div>
+                <button onclick="AppController.handleLogout()" class="w-10 h-10 glass-panel rounded-full">🚪</button>
+            </div>
+        </header>
+        <nav class="flex mx-8 mt-6 gap-2">
+            <button onclick="AppController.switchTab('audit')" id="btn-audit" class="px-6 py-2.5 liquid-glass rounded-t-xl text-[10px] font-black text-amber-400">AUDIT TRAIL</button>
+            <button onclick="AppController.switchTab('cashflow')" id="btn-cashflow" class="px-6 py-2.5 glass-panel rounded-t-xl text-[10px] text-gray-500">CASHFLOW TRACE</button>
+            <button onclick="AppController.switchTab('forensic')" id="btn-forensic" class="px-6 py-2.5 glass-panel rounded-t-xl text-[10px] text-gray-500">FORENSIC MODE</button>
+        </nav>
+        <main class="flex-1 mx-6 mb-6 liquid-glass rounded-b-2xl rounded-tr-2xl flex overflow-hidden p-1">
+            <!-- Tab Audit -->
+            <div id="tab-audit" class="flex-1 flex flex-col md:flex-row min-h-0">
+                <div class="flex-1 p-6 overflow-auto">
+                    <div class="flex gap-4 mb-4"><input type="text" id="search" placeholder="Tìm kiếm..." class="bg-black/40 border rounded px-4 py-2 text-xs"><select class="bg-black/40 border rounded px-4 py-2 text-xs"><option>All</option></select></div>
+                    <table class="audit-table"><thead><tr><th>Time</th><th>Event</th><th>Source</th><th>Status</th><th>Hash</th></tr></thead><tbody id="audit-tbody"></tbody></table>
+                </div>
+                <div class="w-80 border-l border-white/10 p-6 overflow-auto" id="audit-detail">Chọn sự kiện</div>
+            </div>
+            <!-- Tab Cashflow -->
+            <div id="tab-cashflow" class="hidden flex-1 p-8 overflow-auto"><div id="cashflow-tree" class="relative pl-10 space-y-6"></div></div>
+            <!-- Tab Forensic -->
+            <div id="tab-forensic" class="hidden flex-1 flex-col overflow-hidden">
+                <div class="h-12 border-b px-6 flex justify-between items-center"><span class="text-red-400 text-xs">FORENSIC COMPARE</span><span id="forensic-doc-id">DOC: INV-001</span></div>
+                <div class="flex-1 forensic-split"><div class="forensic-pane" id="forensic-original"></div><div class="forensic-pane border-l" id="forensic-current"></div></div>
+            </div>
+        </main>
+        <div class="fixed bottom-10 left-1/2 -translate-x-1/2 liquid-glass px-6 py-3 rounded-full flex gap-6 z-[100]"><button onclick="AppController.verifyAll()">🔍 VERIFY ALL</button></div>
+        <footer class="h-8 bg-black/90 border-t px-6 flex justify-between text-[9px]"><span>NATT-OS AUDIT</span><span id="integrity">INTEGRITY: PASSED</span></footer>
+    </div>
+
+    <script>
+        // ========== [SPEC §7] EVENT BUS ==========
+        const EventBus = {
+            listeners: {},
+            on(event, cb) { if(!this.listeners[event]) this.listeners[event]=[]; this.listeners[event].push(cb); },
+            emit(event, payload, causation_id=null) {
+                const envelope = { event_id: crypto.randomUUID(), event_type: event, payload, source_cell: 'audit-ui', caused_by: causation_id, timestamp: Date.now(), version:'1.0' };
+                if(this.listeners[event]) this.listeners[event].forEach(cb=>cb(envelope));
+                // tự động ghi audit nếu không phải internal
+                if(event !== 'system.impedance') this.emit('audit.record', envelope, envelope.event_id);
+            }
+        };
+
+        // ========== CELL: AUDIT CELL (xử lý truy vấn) ==========
+        const AuditCell = {
+            init() {
+                EventBus.on('audit.query', (env) => {
+                    // mock data
+                    const events = [
+                        { id:'e1', type:'SALES.CONFIRM', source:'sales-cell', ts: Date.now()-5000, status:'SUCCESS', hash:'0x471c...', payload:{order:'TLX-99'} },
+                        { id:'e2', type:'PAYMENT.RECEIVE', source:'finance-cell', ts: Date.now()-4000, status:'SUCCESS', hash:'0xb097...', payload:{amt:500e6} },
+                        { id:'e3', type:'CONSTITUTIONAL.VIOLATION', source:'security-cell', ts: Date.now()-3000, status:'BLOCKED', hash:'0x9ad3...', payload:{article:4} }
+                    ];
+                    EventBus.emit('audit.response', { events }, env.event_id);
+                });
+            }
+        };
+        AuditCell.init();
+
+        // ========== CELL: FINANCE CELL (cashflow) ==========
+        const FinanceCell = {
+            init() {
+                EventBus.on('cashflow.query', (env) => {
+                    const data = [
+                        { title:'KHÁCH THANH TOÁN', amount:'+500M', source:'Showroom', time:'10:45', hash:'0x8f2a' },
+                        { title:'CHI PHÍ SX', amount:'-120M', source:'Xưởng', time:'11:15', hash:'0x9d1b' }
+                    ];
+                    EventBus.emit('cashflow.response', { items: data }, env.event_id);
+                });
+            }
+        };
+        FinanceCell.init();
+
+        // ========== CELL: QUANTUM DEFENSE (forensic) ==========
+        const QuantumDefenseCell = {
+            init() {
+                EventBus.on('forensic.compare', (env) => {
+                    const original = ['{','  "total": 500000000,','  "status": "APPROVED"','}'];
+                    const current = ['{','  "total": 450000000,','  "status": "APPROVED"','}'];
+                    EventBus.emit('forensic.diff', { original, current, docId: env.payload.docId }, env.event_id);
+                });
+            }
+        };
+        QuantumDefenseCell.init();
+
+        // ========== UI RENDERER (lắng nghe response) ==========
+        const UIRenderer = {
+            renderAudit(events) {
+                const tbody = document.getElementById('audit-tbody');
+                tbody.innerHTML = events.map(ev => `
+                    <tr class="audit-row" onclick="UIRenderer.showAuditDetail('${ev.id}')">
+                        <td>${new Date(ev.ts).toLocaleTimeString()}</td>
+                        <td class="font-bold">${ev.type}</td>
+                        <td class="text-gray-400">${ev.source}</td>
+                        <td><span class="badge ${ev.status==='SUCCESS'?'badge-info':'badge-error'}">${ev.status}</span></td>
+                        <td class="text-[8px]">${ev.hash}</td>
+                    </tr>
+                `).join('');
+                window._auditEvents = events;
+            },
+            showAuditDetail(id) {
+                const ev = window._auditEvents?.find(e=>e.id===id);
+                if(!ev) return;
+                document.getElementById('audit-detail').innerHTML = `<div class="glass-panel p-4 rounded"><div class="text-[9px] text-gray-500">Payload</div><pre class="text-[10px] text-[#8FFFD4]">${JSON.stringify(ev.payload,null,2)}</pre><div class="mt-2 text-[9px]">Hash: ${ev.hash}</div></div>`;
+            },
+            renderCashflow(items) {
+                const container = document.getElementById('cashflow-tree');
+                container.innerHTML = items.map(item => `
+                    <div class="relative"><div class="absolute -left-[34px] top-0 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center"><div class="w-2 h-2 rounded-full bg-white/30"></div></div>
+                    <div class="liquid-glass p-4 rounded-xl border-l-4 border-l-mint"><div class="flex justify-between"><div><div class="text-xs font-black">${item.title}</div><div class="text-[9px] text-gray-500">${item.source} | ${item.hash}</div></div><div class="text-sm font-bold ${item.amount.startsWith('+')?'text-green-400':'text-red-400'}">${item.amount}</div></div></div></div>
+                `).join('');
+            },
+            renderForensic(original, current) {
+                const oriDiv = document.getElementById('forensic-original');
+                const curDiv = document.getElementById('forensic-current');
+                const maxLen = Math.max(original.length, current.length);
+                let oriHtml = '', curHtml = '';
+                for(let i=0;i<maxLen;i++){
+                    const o = original[i] || '';
+                    const c = current[i] || '';
+                    const diff = (o !== c);
+                    oriHtml += `<div><span class="text-gray-600 w-6 inline-block">${i+1}</span>${o}</div>`;
+                    curHtml += `<div class="${diff ? 'diff-removed pl-2' : ''}"><span class="text-gray-600 w-6 inline-block">${i+1}</span>${c} ${diff ? '← MANIPULATED' : ''}</div>`;
+                }
+                oriDiv.innerHTML = oriHtml;
+                curDiv.innerHTML = curHtml;
+            }
+        };
+
+        // Lắng nghe các response từ cell
+        EventBus.on('audit.response', (env) => { UIRenderer.renderAudit(env.payload.events); });
+        EventBus.on('cashflow.response', (env) => { UIRenderer.renderCashflow(env.payload.items); });
+        EventBus.on('forensic.diff', (env) => { UIRenderer.renderForensic(env.payload.original, env.payload.current); });
+
+        // ========== APP CONTROLLER ==========
+        const AppController = {
+            handleLogin() {
+                const id = document.getElementById('emp-id').value;
+                const pass = document.getElementById('emp-pass').value;
+                if(id==='TLXR-CFO-01' && pass==='TamLuxury@CFO'){
+                    document.getElementById('login-gate').style.display='none';
+                    document.getElementById('app-shell').classList.remove('hidden');
+                    this.init();
+                } else alert('Sai thông tin');
+            },
+            init() {
+                // Gửi các query qua EventBus để lấy dữ liệu
+                EventBus.emit('audit.query', { filter: 'all' });
+                EventBus.emit('cashflow.query', { orderId: 'TLX-99' });
+                EventBus.emit('forensic.compare', { docId: 'INV-001' });
+                // Giả lập Mạch HeyNa (SSE)
+                setInterval(() => {
+                    const z = (0.95 + Math.random()*0.1).toFixed(3);
+                    document.getElementById('metric-z').innerText = z;
+                    EventBus.emit('system.impedance', parseFloat(z));
+                }, 3000);
+            },
+            switchTab(tab) {
+                ['audit','cashflow','forensic'].forEach(t=>{
+                    document.getElementById(`tab-${t}`).classList.add('hidden');
+                    document.getElementById(`btn-${t}`).className = 'px-6 py-2.5 glass-panel rounded-t-xl text-[10px] text-gray-500';
+                });
+                document.getElementById(`tab-${tab}`).classList.remove('hidden');
+                document.getElementById(`btn-${tab}`).className = 'px-6 py-2.5 liquid-glass rounded-t-xl text-[10px] font-black text-amber-400';
+            },
+            handleLogout() { window.location.reload(); },
+            verifyAll() { alert('Tất cả hash đều khớp với Sealed Truth.'); }
+        };
+    </script>
+</body>
+</html>

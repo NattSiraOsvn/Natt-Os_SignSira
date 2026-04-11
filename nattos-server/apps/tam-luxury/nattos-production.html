@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi" data-resonance-state="ACTIVE" data-ui-mode="work">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NATT-OS | Production Phase 2B | Kanban + Timeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Dragula CDN cho drag & drop nhẹ (có thể thay bằng HTML5 native) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
+    <style>
+        /* ========== Kế thừa toàn bộ style từ bản v2.5 ========== */
+        :root {
+            --bg-primary: #020208;
+            --bg-secondary: rgba(6,6,18,0.72);
+            --mint: #8FFFD4;
+            --ice: #B8E8FF;
+            --lavender: #C8C0FF;
+            --rose: #FFB8D4;
+            --peach: #FFD4A8;
+            --gold: #F5E2C0;
+            --color-red: #EF4444;
+            --glow-gold: 0 0 30px rgba(255,215,0,0.8);
+            --glow-mint: 0 0 30px rgba(143,255,212,0.7);
+            --z-truth:1; --z-worker:10; --z-experience:50; --z-modal:100; --z-security:999;
+            --mouse-x:50%; --mouse-y:50%;
+            --medal-size-medium: clamp(120px,20vw,180px);
+        }
+        body {
+            margin:0; padding:0; background-color:var(--bg-primary); color:white;
+            overflow:hidden; font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        .liquid-glass {
+            backdrop-filter: blur(18px) saturate(180%);
+            background: radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 60%, transparent 100%);
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .glass-panel {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px) saturate(160%);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        /* Kanban columns */
+        .kanban-col {
+            background: rgba(0,0,0,0.4);
+            border-radius: 1rem;
+            min-height: 400px;
+            transition: all 0.2s;
+        }
+        .kanban-task {
+            background: rgba(20,20,40,0.8);
+            backdrop-filter: blur(4px);
+            border-left: 3px solid var(--gold);
+            cursor: grab;
+            transition: transform 0.1s, background 0.2s;
+        }
+        .kanban-task:active { cursor: grabbing; }
+        .kanban-task:hover { background: rgba(80,80,120,0.8); transform: translateX(2px); }
+        .timeline-bar {
+            height: 8px;
+            background: var(--mint);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        /* Scroll */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        /* Modal */
+        .modal-overlay { z-index: var(--z-modal); backdrop-filter: blur(24px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { transform: scale(0.95) translateY(20px); transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        .butterfly-ripple {
+            position: fixed; border-radius: 50%; transform: translate(-50%,-50%);
+            pointer-events: none; z-index: var(--z-experience);
+            animation: butterflyExpand 2.5s cubic-bezier(0.1,0.8,0.3,1) forwards;
+        }
+        .butterfly-L2 { border: 2px solid var(--gold); box-shadow: 0 0 20px var(--gold), inset 0 0 20px var(--gold); }
+        .butterfly-L3 { border: 3px solid var(--color-red); box-shadow: 0 0 30px var(--color-red), inset 0 0 30px var(--color-red); }
+        @keyframes butterflyExpand {
+            0% { width: 0px; height: 0px; opacity: 1; border-width: 4px; }
+            100% { width: 2500px; height: 2500px; opacity: 0; border-width: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TRUTH LAYER (giữ nguyên như bản v2.5) -->
+<div id="truth-layer" style="position:fixed; inset:0; z-index:1; pointer-events:none; background:#020208;">
+    <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 40% at 30% 50%, rgba(139,92,246,0.15), transparent); animation: drift 30s infinite alternate linear;"></div>
+    <div style="position:absolute; inset:0; background:radial-gradient(ellipse 40% 60% at 70% 40%, rgba(59,130,246,0.1), transparent); animation: drift 40s infinite alternate-reverse linear;"></div>
+    <div style="position:absolute; inset:0; background:url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noise\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.015\" numOctaves=\"3\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noise)\" opacity=\"0.15\"/%3E%3C/svg%3E'); mix-blend-mode: overlay; opacity:0.2;"></div>
+</div>
+<style>@keyframes drift { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(3%,3%) scale(1.05);}}</style>
+
+<!-- LOGIN GATE (giữ nguyên) -->
+<div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-[#020208]/40 backdrop-blur-md transition-all duration-700" style="z-index: 999;">
+    <div class="liquid-glass p-8 md:p-12 w-[90%] md:w-[420px] flex flex-col items-center relative rounded-[32px] animate-login-enter shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/20">
+        <div class="w-16 h-16 rounded-full border border-white/10 mb-8 flex items-center justify-center relative"><div class="absolute inset-0 border-2 border-t-[#8FFFD4] border-transparent rounded-full animate-spin"></div><div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_15px_#8FFFD4]"></div></div>
+        <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold">NATT-OS</h1>
+        <p class="text-[10px] tracking-widest text-[#B8E8FF] mb-10 opacity-70">PRODUCTION PHASE 2B</p>
+        <div class="w-full space-y-6">
+            <input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] font-mono">
+            <input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] font-mono">
+        </div>
+        <button onclick="AppController.handleLogin()" class="w-full bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md mt-10 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/20 transition-all border border-white/20">XÁC THỰC SIRA</button>
+        <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden">[GAY] Vi phạm SiraSign.</p>
+    </div>
+</div>
+
+<!-- APP SHELL -->
+<div id="app-shell" class="hidden absolute inset-0 flex flex-col pointer-events-auto h-screen overflow-hidden" style="z-index: 50;">
+    <!-- HEADER + SUB-HEADER (giữ nguyên từ bản v2.5) -->
+    <header class="h-auto md:h-20 py-4 md:py-0 liquid-glass mx-4 md:mx-6 mt-4 md:mt-6 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between rounded-xl md:rounded-[24px] shrink-0 gap-4 md:gap-0 relative z-50">
+        <div class="flex items-center gap-4">
+            <div class="relative w-10 h-10"><div class="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]"></div><div class="absolute inset-2 border border-dotted border-[#8FFFD4]/50 rounded-full animate-[spin_5s_linear_infinite_reverse]"></div><div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_10px_#8FFFD4] absolute top-1/2 left-1/2 -translate-1/2"></div></div>
+            <div><div class="font-black tracking-[0.2em] text-lg text-white">NATT-OS<span class="text-[#C8C0FF]">_PROD</span></div><div class="text-[9px] font-mono text-gray-400"><span id="user-role-badge">PENDING</span><span class="ml-2" id="ui-mode-badge">MODE: WORK</span></div></div>
+        </div>
+        <div class="flex items-center gap-4"><div class="text-right"><div class="text-[8px] text-gray-500">RENDER MODE</div><div id="render-mode-display" class="text-xs font-black text-[#B8E8FF]">ACTIVE</div></div><div class="text-right"><div class="text-[8px] text-gray-500">MẠCH HEYNA</div><div id="heyna-status" class="text-xs font-black text-glow-mint">AWAITING</div></div><button onclick="AppController.handleLogout()" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center">🚪</button></div>
+    </header>
+    <nav class="hidden md:flex mx-6 mt-4 px-2 gap-2">
+        <button class="px-4 py-2 liquid-glass rounded-lg text-[10px] tracking-widest font-bold text-amber-400" onclick="AppController.showTab('dashboard')">DASHBOARD</button>
+        <button class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white transition-colors" onclick="AppController.showTab('production')">PRODUCTION</button>
+        <button class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white transition-colors" onclick="AppController.showTab('finance')">FINANCE</button>
+        <button class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white transition-colors" onclick="AppController.showTab('hr')">HR</button>
+    </nav>
+
+    <main class="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar">
+        <!-- DASHBOARD TAB (giữ nguyên từ bản v2.5 nhưng gọn) -->
+        <div id="tab-dashboard" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="glass-panel p-5 rounded-2xl"><h3 class="text-[10px] tracking-widest text-gray-400">TOTAL REVENUE</h3><div class="text-3xl font-black text-glow-gold">12.5B ₫</div><div class="text-xs text-gray-400">▲ +12% vs WAVE 2</div></div>
+                <div class="glass-panel p-5 rounded-2xl"><h3 class="text-[10px] tracking-widest text-gray-400">PENDING APPROVALS</h3><div class="text-3xl font-black text-[#C8C0FF]">08</div><div class="text-xs text-gray-400">Finance:3 | Prod:5</div></div>
+                <div class="glass-panel p-5 rounded-2xl"><h3 class="text-[10px] tracking-widest text-gray-400">QNEU SCORE</h3><div class="text-3xl font-black text-white">300</div><div class="text-xs text-gray-400">STATUS: HEALTHY</div></div>
+            </div>
+            <div class="liquid-glass p-5 rounded-2xl"><h2 class="text-xs tracking-widest">RESONANCE HEATMAP</h2><div class="h-20 flex items-end gap-2 mt-2"><div class="w-full bg-[#8FFFD4]/80 h-[40%] rounded-t"></div><div class="w-full bg-[#8FFFD4]/80 h-[60%] rounded-t"></div><div class="w-full bg-[#8FFFD4]/80 h-[30%] rounded-t"></div><div class="w-full bg-gold h-[90%] rounded-t"></div><div class="w-full bg-[#8FFFD4]/80 h-[50%] rounded-t"></div><div class="w-full bg-red-400 h-[20%] rounded-t"></div><div class="w-full bg-[#8FFFD4]/80 h-[75%] rounded-t"></div></div></div>
+        </div>
+
+        <!-- PRODUCTION TAB (Kanban + Work Assignment + Timeline) -->
+        <div id="tab-production" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Work Assignment Form -->
+                <div class="liquid-glass p-5 rounded-2xl">
+                    <h2 class="text-xs font-black tracking-widest text-[#8FFFD4] mb-4">⚙️ WORK ASSIGNMENT</h2>
+                    <input type="text" id="task-name" placeholder="Tên công việc" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-sm mb-3">
+                    <select id="task-assignee" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-sm mb-3">
+                        <option>Thợ Kim Hoàn A</option><option>Thợ Kim Hoàn B</option><option>KCS</option>
+                    </select>
+                    <input type="number" id="task-duration" placeholder="Thời gian dự kiến (giờ)" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-sm mb-4">
+                    <button onclick="ProductionEngine.createTask()" class="w-full py-2 bg-[#8FFFD4]/20 text-[#8FFFD4] rounded-lg border border-[#8FFFD4]/30 hover:bg-[#8FFFD4]/40 transition">GIAO VIỆC</button>
+                </div>
+                <!-- Production Timeline (Gantt đơn giản) -->
+                <div class="liquid-glass p-5 rounded-2xl col-span-2">
+                    <h2 class="text-xs font-black tracking-widest text-[#8FFFD4] mb-4">📅 PRODUCTION TIMELINE</h2>
+                    <div id="timeline-container" class="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
+                        <!-- JS sẽ render timeline bars -->
+                        <div class="text-gray-400 text-center">Chưa có task nào</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kanban Board 3 cột -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="liquid-glass p-4 rounded-2xl">
+                    <h3 class="text-center font-bold text-[#B8E8FF] mb-3">📋 BACKLOG</h3>
+                    <div id="kanban-backlog" class="kanban-col p-2 space-y-2 min-h-[300px]"></div>
+                </div>
+                <div class="liquid-glass p-4 rounded-2xl">
+                    <h3 class="text-center font-bold text-[#8FFFD4] mb-3">⚡ IN PROGRESS</h3>
+                    <div id="kanban-progress" class="kanban-col p-2 space-y-2 min-h-[300px]"></div>
+                </div>
+                <div class="liquid-glass p-4 rounded-2xl">
+                    <h3 class="text-center font-bold text-[#F5E2C0] mb-3">✅ DONE</h3>
+                    <div id="kanban-done" class="kanban-col p-2 space-y-2 min-h-[300px]"></div>
+                </div>
+            </div>
+            <div class="text-center text-[10px] text-gray-500">Kéo thả thẻ để thay đổi trạng thái (drag & drop) → tự động emit event production.task.update</div>
+        </div>
+
+        <!-- FINANCE TAB (giữ nguyên từ bản v2.5) -->
+        <div id="tab-finance" class="hidden space-y-6">
+            <div class="liquid-glass p-5 rounded-2xl"><h2 class="text-xs font-black">LEDGER VIEW</h2><div class="text-gray-300 mt-2">[Demo] Sổ cái tài khoản 111, 112, 156...</div></div>
+            <div class="glass-panel p-5 rounded-2xl"><h3 class="text-xs">VAT Calculation</h3><div class="text-2xl font-mono text-glow-mint">10% VAT · 1.25B ₫</div></div>
+        </div>
+        <!-- HR TAB (sơ lược) -->
+        <div id="tab-hr" class="hidden space-y-6"><div class="liquid-glass p-5 rounded-2xl"><h2 class="text-xs font-black">HR & CONTRACT</h2><div class="text-gray-300">Danh sách nhân viên, chấm công, hợp đồng (sẽ triển khai Phase 4)</div></div></div>
+    </main>
+
+    <!-- ACTION DOCK -->
+    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 liquid-glass px-6 py-3 rounded-full flex items-center gap-6 z-[150] shadow-2xl border border-white/20">
+        <button onclick="AppController.openChatUplink()" class="flex flex-col items-center"><span class="text-xl text-glow-ice">💬</span><span class="text-[8px]">UPLINK</span></button>
+        <button onclick="AppController.triggerOmegaLockdown()" class="flex flex-col items-center"><span class="text-xl text-glow-red">☢️</span><span class="text-[8px]">LOCKDOWN</span></button>
+    </div>
+    <footer class="h-8 bg-black/90 border-t border-white/10 flex items-center justify-between px-4 text-[8px] font-mono text-gray-500"><span>NATT-OS KERNEL</span><span id="footer-engine-status" class="text-[#8FFFD4]">ENGINES: ONLINE</span></footer>
+</div>
+
+<!-- MODALS (Neural Terminal & Chat) -->
+<div id="modal-neural" class="fixed inset-0 modal-overlay flex items-center justify-center p-4"><div class="modal-content liquid-glass w-full max-w-4xl h-[80vh] rounded-2xl flex flex-col"><div class="h-14 bg-black/50 flex items-center justify-between px-6"><h2 class="text-xs font-black">NEURAL_TERMINAL</h2><button onclick="AppController.closeModals()">✕</button></div><div id="neural-terminal-content" class="flex-1 p-6 bg-black/80 font-mono text-[10px] text-green-400 overflow-y-auto"></div></div></div>
+<div id="modal-chat" class="fixed inset-0 modal-overlay flex items-center justify-end p-6"><div class="modal-content liquid-glass w-full md:w-[400px] h-[70vh] rounded-2xl flex flex-col"><div class="h-14 bg-black/50 flex items-center justify-between px-6"><div class="flex gap-2"><div class="w-2 h-2 bg-[#C8C0FF] rounded-full animate-pulse"></div><h2 class="text-xs font-black">AI_ENTITY UPLINK</h2></div><button onclick="AppController.closeModals()">✕</button></div><div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4"><div class="flex gap-3"><div class="w-6 h-6 rounded-full bg-[#C8C0FF]/20 flex items-center justify-center text-[10px]">AI</div><div class="glass-panel p-3 rounded-xl text-xs">Nahere Gatekeeper. Ta sẵn sàng.</div></div></div><div class="p-4 border-t border-white/10 flex gap-2"><input id="chat-input" type="text" placeholder="HeyNa ..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs"><button onclick="AppController.sendChatMessage()" class="px-4 py-2 bg-[#C8C0FF]/10 rounded-lg">GỬI</button></div></div></div>
+
+<script>
+    // ==================== EVENTBUS (tái sử dụng từ bản v2.5) ====================
+    const EventBus = {
+        listeners: {},
+        on(event, cb) { if(!this.listeners[event]) this.listeners[event]=[]; this.listeners[event].push(cb); },
+        emit(event, payload, causation_id=null) {
+            const envelope = { event_id: crypto.randomUUID(), event_type: event, payload, source_cell: 'prod-ui', caused_by: causation_id, timestamp: Date.now(), version:'1.0' };
+            if(this.listeners[event]) this.listeners[event].forEach(cb=>cb(envelope));
+            if(event !== 'system.impedance') logToNeuralTerminal(envelope);
+        }
+    };
+    function logToNeuralTerminal(env) {
+        const term = document.getElementById('neural-terminal-content');
+        if(!term) return;
+        const div = document.createElement('div'); div.className='mb-2 border-b border-green-900/30 pb-1';
+        div.innerHTML = `<div>${env.event_type} | ${env.event_id.slice(0,8)}</div><div class="text-gray-500 text-[8px]">${JSON.stringify(env.payload)}</div>`;
+        term.prepend(div);
+        if(term.children.length>30) term.removeChild(term.lastChild);
+    }
+    // ==================== PRODUCTION ENGINE (ISEU + Butterfly) ====================
+    const ProductionEngine = {
+        tasks: [  // mock data: { id, name, assignee, status, duration, progress, createdAt }
+            { id: 'T1', name: 'Đúc nhẫn 18K', assignee: 'Thợ Kim Hoàn A', status: 'backlog', duration: 4, progress: 0, createdAt: Date.now() },
+            { id: 'T2', name: 'Gắn đá viên chính', assignee: 'Thợ Kim Hoàn B', status: 'progress', duration: 3, progress: 45, createdAt: Date.now()-3600000 },
+            { id: 'T3', name: 'Đánh bóng thành phẩm', assignee: 'KCS', status: 'done', duration: 2, progress: 100, createdAt: Date.now()-86400000 }
+        ],
+        renderKanban() {
+            const backlogDiv = document.getElementById('kanban-backlog');
+            const progressDiv = document.getElementById('kanban-progress');
+            const doneDiv = document.getElementById('kanban-done');
+            backlogDiv.innerHTML = ''; progressDiv.innerHTML = ''; doneDiv.innerHTML = '';
+            this.tasks.forEach(task => {
+                const card = document.createElement('div');
+                card.className = 'kanban-task p-3 rounded-lg mb-2 text-sm';
+                card.setAttribute('data-id', task.id);
+                card.innerHTML = `<div class="font-bold">${task.name}</div><div class="text-[10px] text-gray-300">👤 ${task.assignee} · ⏱ ${task.duration}h</div><div class="text-[8px] text-${task.status==='progress'?'green-400':'gray-400'} mt-1">${task.progress}%</div>`;
+                if(task.status === 'backlog') backlogDiv.appendChild(card);
+                else if(task.status === 'progress') progressDiv.appendChild(card);
+                else doneDiv.appendChild(card);
+            });
+            this.renderTimeline();
+            this.initDragDrop();
+        },
+        renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+            const activeTasks = this.tasks.filter(t => t.status !== 'done');
+            if(activeTasks.length===0) { container.innerHTML='<div class="text-gray-400 text-center">Không có task đang thực hiện</div>'; return; }
+            activeTasks.forEach(task => {
+                const percent = Math.min(100, (task.progress || 0));
+                const div = document.createElement('div');
+                div.className = 'space-y-1';
+                div.innerHTML = `<div class="flex justify-between text-[10px]"><span>${task.name}</span><span>${percent}%</span></div><div class="timeline-bar" style="width:${percent}%"></div>`;
+                container.appendChild(div);
+            });
+        },
+        initDragDrop() {
+            // Dọn dẹp dragula cũ nếu có
+            if(window.drake) window.drake.destroy();
+            const containers = [document.getElementById('kanban-backlog'), document.getElementById('kanban-progress'), document.getElementById('kanban-done')];
+            const drake = dragula(containers, { revertOnSpill: false, accepts: (el, target, source, sibling) => true });
+            drake.on('drop', (el, target, source, sibling) => {
+                const taskId = el.getAttribute('data-id');
+                const newStatus = target.id === 'kanban-backlog' ? 'backlog' : (target.id === 'kanban-progress' ? 'progress' : 'done');
+                const task = this.tasks.find(t => t.id === taskId);
+                if(task && task.status !== newStatus) {
+                    task.status = newStatus;
+                    if(newStatus === 'progress') task.progress = task.progress || 10;
+                    if(newStatus === 'done') task.progress = 100;
+                    this.renderKanban();
+                    // EMIT EVENT production.task.update
+                    EventBus.emit('production.task.update', { taskId, newStatus, progress: task.progress }, 'drag-drop');
+                    // ISEU reinforce
+                    NattOS.ISEU.reinforce('production.task.update', 'success', 1.0);
+                    // Butterfly L2
+                    ButterflyProtocol.trigger(null, 'production.task.update', 'L2');
+                    // Nếu task chuyển sang done, kích hoạt L3 nếu nhiều task hoàn thành
+                    if(newStatus === 'done' && this.tasks.filter(t=>t.status==='done').length >= 2) {
+                        ButterflyProtocol.trigger(null, 'production.milestone', 'L3');
+                    }
+                }
+            });
+            window.drake = drake;
+        },
+        createTask() {
+            const name = document.getElementById('task-name').value.trim();
+            const assignee = document.getElementById('task-assignee').value;
+            const duration = parseInt(document.getElementById('task-duration').value) || 2;
+            if(!name) return;
+            const newTask = {
+                id: 'T' + Date.now(), name, assignee, status: 'backlog', duration, progress: 0, createdAt: Date.now()
+            };
+            this.tasks.push(newTask);
+            this.renderKanban();
+            EventBus.emit('production.task.create', { taskId: newTask.id, name, assignee, duration }, 'ui-form');
+            NattOS.ISEU.reinforce('production.task.create', 'success', 1.2);
+            ButterflyProtocol.trigger(null, 'production.task.create', 'L1');
+            document.getElementById('task-name').value = '';
+            document.getElementById('task-duration').value = '';
+        },
+        // Giả lập anomaly nếu task bị kẹt (không hoàn thành sau 30s)
+        startAnomalyWatcher() {
+            setInterval(() => {
+                const stuckTasks = this.tasks.filter(t => t.status === 'progress' && (Date.now() - t.createdAt) > 30000 && t.progress < 50);
+                stuckTasks.forEach(task => {
+                    EventBus.emit('production.anomaly', { taskId: task.id, reason: 'Kẹt tiến độ', progress: task.progress });
+                    ButterflyProtocol.trigger(null, 'production.anomaly', 'L2');
+                });
+            }, 10000);
+        }
+    };
+    // ==================== BUTTERFLY PROTOCOL ====================
+    const ButterflyProtocol = {
+        trigger(e, eventType, level='L2') {
+            if(e && e.stopPropagation) e.stopPropagation();
+            const x = e ? (e.touches ? e.touches[0].clientX : e.clientX) : window.innerWidth/2;
+            const y = e ? (e.touches ? e.touches[0].clientY : e.clientY) : window.innerHeight/2;
+            const ripple = document.createElement('div');
+            ripple.className = `butterfly-ripple butterfly-${level}`;
+            ripple.style.left = `${x}px`; ripple.style.top = `${y}px`;
+            document.body.appendChild(ripple);
+            setTimeout(()=>ripple.remove(), 2500);
+            console.log(`[BUTTERFLY] ${level} - ${eventType}`);
+        }
+    };
+    // ==================== NATT-OS CORE (tối giản) ====================
+    const NattOS = { version:"2.5", EventBus, ISEU: { reinforce: (type, outcome, weight)=>{ console.log(`ISEU: ${type} ${outcome}`); } } };
+    // ==================== APP CONTROLLER ====================
+    const AppController = {
+        handleLogin() {
+            const id = document.getElementById('emp-id').value;
+            const pass = document.getElementById('emp-pass').value;
+            if(id === 'TLXR-CFO-01' && pass === 'TamLuxury@CFO') {
+                sessionStorage.setItem('nattos_role', 'CFO');
+                document.getElementById('login-gate').classList.add('opacity-0','pointer-events-none');
+                document.getElementById('app-shell').classList.remove('hidden');
+                document.getElementById('user-role-badge').innerText = 'ROLE: CFO';
+                this.initMachHeyna();
+                ProductionEngine.renderKanban();
+                ProductionEngine.startAnomalyWatcher();
+                this.showTab('production'); // mặc định mở production
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+                ButterflyProtocol.trigger(null, 'security.failed', 'L3');
+            }
+        },
+        handleLogout() { sessionStorage.clear(); window.location.reload(); },
+        initMachHeyna() {
+            const statusEl = document.getElementById('heyna-status');
+            statusEl.innerText = 'ONLINE (LIVE)';
+            setInterval(()=>{
+                const z = (Math.random() * 0.5 + 0.8).toFixed(2);
+                EventBus.emit('system.impedance', parseFloat(z));
+            }, 3000);
+        },
+        showTab(tab) {
+            document.getElementById('tab-dashboard').classList.add('hidden');
+            document.getElementById('tab-production').classList.add('hidden');
+            document.getElementById('tab-finance').classList.add('hidden');
+            document.getElementById('tab-hr').classList.add('hidden');
+            if(tab === 'dashboard') document.getElementById('tab-dashboard').classList.remove('hidden');
+            else if(tab === 'production') document.getElementById('tab-production').classList.remove('hidden');
+            else if(tab === 'finance') document.getElementById('tab-finance').classList.remove('hidden');
+            else if(tab === 'hr') document.getElementById('tab-hr').classList.remove('hidden');
+        },
+        triggerOmegaLockdown() { ButterflyProtocol.trigger(null, 'OMEGA_LOCKDOWN', 'L3'); alert('OMEGA_LOCKDOWN kích hoạt'); },
+        openChatUplink() { document.getElementById('modal-chat').classList.add('active'); },
+        openNeuralTerminal() { document.getElementById('modal-neural').classList.add('active'); },
+        closeModals() { document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('active')); },
+        sendChatMessage() { const input=document.getElementById('chat-input'); const msg=input.value.trim(); if(msg){ input.value=''; document.getElementById('chat-messages').innerHTML+=`<div class="flex justify-end"><div class="glass-panel p-2 rounded-xl text-xs">${msg}</div></div>`; EventBus.emit('ai.query',{content:msg}); } }
+    };
+    // Chạy
+    document.addEventListener('DOMContentLoaded', () => {
+        if(sessionStorage.getItem('nattos_role')) AppController.handleLogin();
+    });
+</script>
+</body>
+</html>
