@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { EInvoice, BusinessMetrics, UserRole, DistributedTask } from '../types';
-import { TaskRouter } from '../services/taskRouter';
+import { TaskRouter } from '@/core/routing/task-router';
 import { TaxReportService } from '../services/taxReportService';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
