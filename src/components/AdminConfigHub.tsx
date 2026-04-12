@@ -8,7 +8,7 @@ import {
   ResponsiveContainer, Tooltip
 } from 'recharts';
 import AIAvatar from './AIAvatar';
-import { RecoverySystem } from '../services/recoveryEngine';
+import { RecoverySystem } from '@/cells/kernel/monitor-cell/domain/engines/recovery.engine';
 import ApprovalDashboard from './approval/ApprovalDashboard';
 import { DictApproval, ChangeProposal } from '../services/dictionaryApprovalService';
 import { DictService } from '../services/dictionaryService';

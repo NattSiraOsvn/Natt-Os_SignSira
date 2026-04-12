@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BusinessMetrics, PersonaID, OperationRecord } from '../types';
 import AIAvatar from './AIAvatar';
 import ThreatDetectionService, { SecurityThreat, SystemHealth } from '../services/threatDetectionService';
-import { RecoverySystem } from '../services/recoveryEngine';
+import { RecoverySystem } from '@/cells/kernel/monitor-cell/domain/engines/recovery.engine';
 import { NotifyBus } from '../services/notificationService';
 
 interface SystemMonitorProps {
