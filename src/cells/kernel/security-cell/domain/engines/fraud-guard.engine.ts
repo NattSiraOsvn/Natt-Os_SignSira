@@ -1,7 +1,7 @@
 
-import { AlertLevel, FraudCheckResult } from '../types';
-import { NotifyBus } from './notificationService';
-import { PersonaID } from '../types';
+import { AlertLevel, FraudCheckResult } from '@/types';
+import { NotifyBus } from '@/services/notificationService';
+import { PersonaID } from '@/types';
 
 // DỮ LIỆU LỊCH SỬ THU ĐỔI (Mock Database)
 // identityHash giả lập là hash của CCCD hoặc Khuôn mặt khách hàng cũ
@@ -133,7 +133,7 @@ export class FraudGuardService {
     });
     
     // Trigger Security Overlay Lockdown
-    import('../components/SecurityOverlay').then(() => {
+    import('@/components/SecurityOverlay').then(() => {
         // Logic kích hoạt màn hình khóa đỏ (Red Screen of Death)
         // Trong kiến trúc React, việc này thường qua Context hoặc Event Bus
         // Ở đây ta giả lập qua EventBus mà SecurityOverlay đang lắng nghe

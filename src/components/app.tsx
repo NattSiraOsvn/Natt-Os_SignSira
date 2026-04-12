@@ -9,7 +9,7 @@ import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionT
 import { RBACEngine } from '../services/rbacEngine';
 import { NotifyBus } from '../services/notificationService';
 import { ShardingService } from '../services/blockchainService';
-import OfflineService from '../services/offlineService';
+import OfflineService from '@/cells/infrastructure/sync-cell/domain/engines/offline.engine';
 import { RealTimeService } from '../services/realTimeNotificationService';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---

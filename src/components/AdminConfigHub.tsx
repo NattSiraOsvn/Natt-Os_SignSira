@@ -11,7 +11,7 @@ import AIAvatar from './AIAvatar';
 import { RecoverySystem } from '@/cells/kernel/monitor-cell/domain/engines/recovery.engine';
 import ApprovalDashboard from './approval/ApprovalDashboard';
 import { DictApproval, ChangeProposal } from '../services/dictionaryApprovalService';
-import { DictService } from '../services/dictionaryService';
+import { DictService } from '@/core/dictionary/dictionary.service';
 
 const AdminConfigHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'matrix' | 'modules' | 'core' | 'approval' | 'recovery' | 'versions'>('matrix');

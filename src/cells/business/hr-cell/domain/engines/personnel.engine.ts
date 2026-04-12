@@ -1,5 +1,5 @@
 
-import { PositionType, UserRole, PersonnelProfile } from '../types';
+import { PositionType, UserRole, PersonnelProfile } from '@/types';
 
 export class PersonnelEngine {
   private static profiles: Record<string, PersonnelProfile> = {

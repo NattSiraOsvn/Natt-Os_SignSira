@@ -5,7 +5,7 @@ import { SAMPLE_PRODUCTS } from '../constants';
 import { NotifyBus } from '../services/notificationService';
 import { PaymentEngine, PaymentResponse } from '../services/paymentService';
 import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
-import { FraudGuard } from '../services/fraudGuard'; 
+import { FraudGuard } from '@/cells/kernel/security-cell/domain/engines/fraud-guard.engine'; 
 import AIAvatar from './AIAvatar';
 import { generatePersonaResponse } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { SellerEngine } from '../services/sellerEngine';

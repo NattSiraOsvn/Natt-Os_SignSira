@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { EInvoice, BusinessMetrics, UserRole, DistributedTask } from '../types';
 import { TaskRouter } from '@/core/routing/task-router';
-import { TaxReportService } from '../services/taxReportService';
+import { TaxReportService } from '@/cells/business/tax-cell/domain/engines/tax-report.engine';
 import AIAvatar from './AIAvatar';
 import { PersonaID } from '../types';
 
