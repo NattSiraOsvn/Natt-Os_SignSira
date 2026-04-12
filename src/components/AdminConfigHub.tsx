@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Utilities, AIScoringConfig, DetectedContext } from '../services/documentAI';
-import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleRegistry';
+import ModuleRegistry, { MODULE_REGISTRY } from '@/core/registry/moduleRegistry';
 import { UserRole, ModuleConfig, PersonaID, OperationRecord, DictionaryVersion } from '../types';
 import { 
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, 
