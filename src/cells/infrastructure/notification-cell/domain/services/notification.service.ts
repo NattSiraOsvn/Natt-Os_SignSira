@@ -1,5 +1,5 @@
 
-import { PersonaID } from '../types';
+import { PersonaID } from '@/types';
 
 export type AlertType = 'ORDER' | 'NEWS' | 'RISK' | 'SUCCESS';
 

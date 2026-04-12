@@ -3,7 +3,7 @@ import { IdempotencyManager } from './IdempotencyManager';
 import { DictionaryGuard, matchWithDictionary, BufferDecision } from './DictionaryGuard'; // Added BufferDecision
 import { ExcelExtractor, OCRExtractor, PDFExtractor, ExtractedData } from './extractors';
 import { TaskRouter } from '@/core/routing/task-router';
-import { NotifyBus } from '../notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID, ViewType } from '../../types';
 
 // --- INIT COMPONENTS ---

@@ -3,9 +3,9 @@ import {
   DataPoint, ResolutionContext, ResolvedData, 
   ConflictResolutionMethod, ConflictResolutionRule, BusinessContext
 } from '../../types';
-import { ShardingService } from '../blockchainService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 import { SUPER_DICTIONARY } from '../../SuperDictionary';
-import { NotifyBus } from '../notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '../../types';
 import { ContextScoring } from '../scoring/ContextScoringEngine';
 

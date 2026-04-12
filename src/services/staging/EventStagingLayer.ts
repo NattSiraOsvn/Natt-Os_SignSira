@@ -1,6 +1,6 @@
 import { EventBus } from '@/core/events/event-bus';
 
-import { ShardingService } from '../blockchainService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 
 export interface StagedEvent {
   id: string;

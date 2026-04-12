@@ -1,6 +1,6 @@
 
 import { ApprovalRequest, ApprovalTicket, ApprovalStatus, UserRole } from '../../types';
-import { NotifyBus } from '../notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '../../types';
 
 export interface ApprovalStats {

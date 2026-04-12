@@ -1,5 +1,5 @@
 
-import { BlockShard, AuditTrailEntry, UserRole } from '../types';
+import { BlockShard, AuditTrailEntry, UserRole } from '@/types';
 
 /**
  * NATT-OS BLOCKCHAIN ISOLATION SERVICE
