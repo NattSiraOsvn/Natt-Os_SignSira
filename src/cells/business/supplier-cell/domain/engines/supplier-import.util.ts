@@ -1,6 +1,6 @@
 
-import { Supplier } from '../types';
-import { SupplierClassifier } from './supplierClassifier';
+import { Supplier } from '@/types';
+import { SupplierClassifier } from './supplier-classifier.util';
 
 export class SupplierImportHelper {
   // Xử lý import từ file Excel (dựa trên mẫu AMIS)

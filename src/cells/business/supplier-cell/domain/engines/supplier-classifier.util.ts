@@ -1,5 +1,5 @@
 
-import { Supplier } from '../types';
+import { Supplier } from '@/types';
 
 export class SupplierClassifier {
   // Phân loại theo loại NCC

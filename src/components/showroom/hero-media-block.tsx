@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ShowroomProduct } from '@/types/showroom';
-import { getPrimaryMedia } from '@/utils/validateproductmedia';
+import { getPrimaryMedia } from '@/cells/business/showroom-cell/domain/engines/validate-media.util';
 
 export const HeroMediaBlock: React.FC<{ product: ShowroomProduct }> = ({ product }) => {
   const primary = getPrimaryMedia(product.media);

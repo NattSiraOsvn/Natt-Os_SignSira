@@ -4,7 +4,7 @@
 
 import { EventEnvelope } from '../../../../types';
 import { EventBus } from '../../../../core/events/event-bus';
-import { Logger } from '../../../../shared/logger';
+import { Logger } from '@/core/logger';
 
 const logger = new Logger('finance-compensation-saga');
 
