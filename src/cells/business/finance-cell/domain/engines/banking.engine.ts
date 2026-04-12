@@ -1,5 +1,5 @@
 
-import { BankTransaction, ValueGroup } from '../types';
+import { BankTransaction, ValueGroup } from '@/types';
 
 interface ClassificationResult {
   category: string;

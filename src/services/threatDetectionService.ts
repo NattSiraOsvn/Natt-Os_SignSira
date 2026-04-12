@@ -2,7 +2,7 @@
 import { NotifyBus } from './notificationService';
 import { PersonaID, AlertLevel, InputMetrics, InputPersona } from '../types';
 import { ShardingService } from './blockchainService';
-import { QuantumBuffer } from './quantumBufferService';
+import { QuantumBuffer } from '@/core/quantum/quantum-buffer.engine';
 import { Calibration } from './calibration/CalibrationEngine';
 
 // --- TYPES ---

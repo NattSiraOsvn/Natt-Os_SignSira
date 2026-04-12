@@ -1,5 +1,5 @@
 
-import { GDBData, GDBDocument, DiamondSpecs } from '../types';
+import { GDBData, GDBDocument, DiamondSpecs } from '@/types';
 
 class GDBPatternDatabase {
   static readonly GDB_KEYWORDS = {

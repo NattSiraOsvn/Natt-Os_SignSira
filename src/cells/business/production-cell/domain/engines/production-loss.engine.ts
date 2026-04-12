@@ -1,5 +1,5 @@
 
-import { OrderStatus, WeightTracking, ProductionOrder } from '../types';
+import { OrderStatus, WeightTracking, ProductionOrder } from '@/types';
 
 export class ProductionEngine {
   // Module 1 & 6: Định mức hao hụt chuẩn Luxury Tam

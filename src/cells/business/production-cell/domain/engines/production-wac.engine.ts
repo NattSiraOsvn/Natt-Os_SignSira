@@ -2,7 +2,7 @@
 import { 
   ProductionOrder, MaterialTransaction, WeightTracking, 
   OrderStatus, UserPosition, WorkerPerformance 
-} from '../types';
+} from '@/types';
 
 /**
  * NATT-OS PRODUCTION ENGINE

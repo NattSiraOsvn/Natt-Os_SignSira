@@ -1,6 +1,6 @@
 
-import { LogisticsPartner, LogisticsSolution, TransferOrder, SalesOrder, WarehouseLocation } from '../types';
-import { ShardingService } from './blockchainService';
+import { LogisticsPartner, LogisticsSolution, TransferOrder, SalesOrder, WarehouseLocation } from '@/types';
+import { ShardingService } from '@/services/blockchainService';
 
 // ============================================================================
 // 🔌 LOGISTICS ADAPTER INTERFACES

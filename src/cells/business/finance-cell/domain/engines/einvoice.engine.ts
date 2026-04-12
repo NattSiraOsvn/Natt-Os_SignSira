@@ -1,5 +1,5 @@
 
-import { EInvoice, EInvoiceItem, VaultStatus } from '../types';
+import { EInvoice, EInvoiceItem, VaultStatus } from '@/types';
 
 export interface TCTResponse {
   code: '00' | '10' | '99' | '401';

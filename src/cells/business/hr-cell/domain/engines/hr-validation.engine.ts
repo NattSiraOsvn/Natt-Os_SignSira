@@ -1,5 +1,5 @@
 
-import { EmployeePayroll, SalaryRule, UserRole } from '../types';
+import { EmployeePayroll, SalaryRule, UserRole } from '@/types';
 
 export const HR_FIELDS_LEVELS = {
   BASIC: ['fullName', 'dob', 'gender', 'nationality', 'ethnic', 'idCard', 'originAddress', 'permanentAddress', 'temporaryAddress', 'contactAddress', 'email', 'phone'],

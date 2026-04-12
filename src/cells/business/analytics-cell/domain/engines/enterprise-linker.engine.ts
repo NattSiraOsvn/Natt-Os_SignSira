@@ -1,5 +1,5 @@
 
-import { AggregatedReport, LinkedRecord } from '../types';
+import { AggregatedReport, LinkedRecord } from '@/types';
 
 export class EnterpriseLinker {
   

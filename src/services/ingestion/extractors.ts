@@ -1,7 +1,7 @@
 
 // src/services/ingestion/extractors.ts
 import * as XLSX from 'xlsx';
-import { CustomsUtils } from '../customsUtils';
+import { CustomsUtils } from '@/cells/business/customs-cell/domain/engines/customs-utils.engine';
 
 // --- INTERFACES ---
 export interface ExtractedData {

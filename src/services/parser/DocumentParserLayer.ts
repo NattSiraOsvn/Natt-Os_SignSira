@@ -1,5 +1,5 @@
 
-import { QuantumBuffer } from '../quantumBufferService';
+import { QuantumBuffer } from '@/core/quantum/quantum-buffer.engine';
 import { NotifyBus } from '../notificationService';
 import { PersonaID } from '../../types';
 

@@ -1,7 +1,7 @@
 
-import { QuantumTask } from '../types';
-import { NotifyBus } from './notificationService';
-import { PersonaID } from '../types';
+import { QuantumTask } from '@/types';
+import { NotifyBus } from '@/services/notificationService';
+import { PersonaID } from '@/types';
 
 class QuantumBufferService {
   private static instance: QuantumBufferService;

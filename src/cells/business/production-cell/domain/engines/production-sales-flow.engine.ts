@@ -4,9 +4,9 @@ import {
   SalesChannel, 
   WarehouseLocation, 
   ProductType 
-} from '../types';
-import { SalesCore } from './salesCore';
-import { ShardingService } from './blockchainService';
+} from '@/types';
+import { SalesCore } from '@/services/salesCore';
+import { ShardingService } from '@/services/blockchainService';
 
 // ============================================================================
 // 🏭 PRODUCTION & SALES FLOW DEFINITIONS

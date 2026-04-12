@@ -1,5 +1,5 @@
 
-import { InventoryItem, Warehouse, Movement, CertType, WarehouseLocation } from '../types';
+import { InventoryItem, Warehouse, Movement, CertType, WarehouseLocation } from '@/types';
 
 export interface WarehouseQAAudit {
   healthScore: number;
