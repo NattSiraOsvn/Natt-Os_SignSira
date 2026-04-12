@@ -13,8 +13,8 @@ import OfflineService from '@/cells/infrastructure/sync-cell/domain/engines/offl
 import { RealTimeService } from '@/cells/infrastructure/notification-cell/domain/engines/realtime-notify.engine';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---
-import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/QuantumUIContext';
-import QuantumContainer from '../manifestations/overlays/QuantumContainer';
+import { QuantumUIProvider, useQuantumUI } from '../contexts/QuantumUIContext';
+import QuantumContainer from './QuantumContainer';
 
 // Wrapper component to access Context
 const QuantumAppWrapper: React.FC = () => {

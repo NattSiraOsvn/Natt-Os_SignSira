@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { OverlayType } from '../../core/signals/types';
+import { OverlayType } from '@/core/signals/types';
 
 interface Props {
   mode: OverlayType;

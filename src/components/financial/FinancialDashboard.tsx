@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSmartMapping } from '../../hooks/useSmartMapping';
-import { useAccounting } from '../../contexts/AccountingContext';
+import { useAccounting } from '../../contexts/accounting-context';
 import { AccountingEntry } from '../../types';
 import LoadingSpinner from '../common/LoadingSpinner';
 import { SalesCore } from '@/cells/business/sales-cell/domain/engines/sales-core-full.engine';
