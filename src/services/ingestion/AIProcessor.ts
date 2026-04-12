@@ -2,7 +2,7 @@
 import { IdempotencyManager } from './IdempotencyManager';
 import { DictionaryGuard, matchWithDictionary, BufferDecision } from './DictionaryGuard'; // Added BufferDecision
 import { ExcelExtractor, OCRExtractor, PDFExtractor, ExtractedData } from './extractors';
-import { TaskRouter } from '../taskRouter';
+import { TaskRouter } from '@/core/routing/task-router';
 import { NotifyBus } from '../notificationService';
 import { PersonaID, ViewType } from '../../types';
 
