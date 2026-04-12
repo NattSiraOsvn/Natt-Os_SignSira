@@ -4,10 +4,10 @@ import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCe
 import { SAMPLE_PRODUCTS } from '../constants';
 import { NotifyBus } from '../services/notificationService';
 import { PaymentEngine, PaymentResponse } from '../services/paymentService';
-import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '../services/geminiService';
+import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { FraudGuard } from '../services/fraudGuard'; 
 import AIAvatar from './AIAvatar';
-import { generatePersonaResponse } from '../services/geminiService';
+import { generatePersonaResponse } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { SellerEngine } from '../services/sellerEngine';
 import { UserPosition, SellerReport, SellerIdentity, CustomerLead } from '../types';
 
