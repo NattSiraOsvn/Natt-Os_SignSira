@@ -1,6 +1,6 @@
 
-import { NotifyBus, AlertType } from './notificationService';
-import { PersonaID } from '../types';
+import { NotifyBus, AlertType } from '@/services/notificationService';
+import { PersonaID } from '@/types';
 
 export class RealTimeNotificationService {
   private static instance: RealTimeNotificationService;

@@ -1,5 +1,5 @@
 
-import { UserRole, UserPosition, PositionType, ViewType, ModuleID, ComplianceViolation, Permission } from '../types';
+import { UserRole, UserPosition, PositionType, ViewType, ModuleID, ComplianceViolation, Permission } from '@/types';
 
 /**
  * 🔐 RBAC ENGINE - AUTHORITY SOURCE OF TRUTH

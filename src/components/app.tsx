@@ -6,11 +6,11 @@ import SecurityOverlay from './SecurityOverlay';
 import NotificationHub, { AppNotification } from './NotificationHub';
 import NotificationPortal from './NotificationPortal';
 import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionType, PersonaID } from '../types';
-import { RBACEngine } from '../services/rbacEngine';
+import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine';
 import { NotifyBus } from '../services/notificationService';
 import { ShardingService } from '../services/blockchainService';
 import OfflineService from '@/cells/infrastructure/sync-cell/domain/engines/offline.engine';
-import { RealTimeService } from '../services/realTimeNotificationService';
+import { RealTimeService } from '@/cells/infrastructure/notification-cell/domain/engines/realtime-notify.engine';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---
 import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/QuantumUIContext';

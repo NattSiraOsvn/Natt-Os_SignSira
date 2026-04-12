@@ -1,7 +1,7 @@
 
 import { useMemo } from 'react';
 import { UserRole, UserPosition } from '../types';
-import { RBACEngine } from '../services/rbacEngine';
+import { RBACEngine } from '@/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine';
 
 /**
  * 🔱 USE AUTHORITY HOOK

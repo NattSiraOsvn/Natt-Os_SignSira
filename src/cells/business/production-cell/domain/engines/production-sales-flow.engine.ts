@@ -5,7 +5,7 @@ import {
   WarehouseLocation, 
   ProductType 
 } from '@/types';
-import { SalesCore } from '@/services/salesCore';
+import { SalesCore } from '@/cells/business/sales-cell/domain/engines/sales-core-full.engine';
 import { ShardingService } from '@/services/blockchainService';
 
 // ============================================================================

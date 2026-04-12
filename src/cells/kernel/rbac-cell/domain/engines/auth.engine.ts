@@ -1,5 +1,5 @@
 
-import { UserRole, Permission, ModuleID, RolePermissions } from '../types';
+import { UserRole, Permission, ModuleID, RolePermissions } from '@/types';
 
 /**
  * NATT-OS AUTHENTICATION & RBAC ENGINE

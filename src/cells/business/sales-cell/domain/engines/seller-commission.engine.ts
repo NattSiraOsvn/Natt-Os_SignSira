@@ -1,5 +1,5 @@
 
-import { SellerReport, UserPosition, SellerIdentity } from '../types';
+import { SellerReport, UserPosition, SellerIdentity } from '@/types';
 
 export class SellerEngine {
   /**

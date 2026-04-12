@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Utilities, AIScoringConfig, DetectedContext } from '../services/documentAI';
+import { Utilities, AIScoringConfig, DetectedContext } from '@/core/ingestion/document-ai.engine';
 import ModuleRegistry, { MODULE_REGISTRY } from '@/core/registry/moduleRegistry';
 import { UserRole, ModuleConfig, PersonaID, OperationRecord, DictionaryVersion } from '../types';
 import { 
@@ -10,7 +10,7 @@ import {
 import AIAvatar from './AIAvatar';
 import { RecoverySystem } from '@/cells/kernel/monitor-cell/domain/engines/recovery.engine';
 import ApprovalDashboard from './approval/ApprovalDashboard';
-import { DictApproval, ChangeProposal } from '../services/dictionaryApprovalService';
+import { DictApproval, ChangeProposal } from '@/core/dictionary/dictionary-approval.service';
 import { DictService } from '@/core/dictionary/dictionary.service';
 
 const AdminConfigHub: React.FC = () => {

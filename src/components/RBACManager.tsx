@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { UserRole, Permission, ModuleID, PersonaID } from '../types';
-import { RBACGuard } from '../services/authService';
+import { RBACGuard } from '@/cells/kernel/rbac-cell/domain/engines/auth.engine';
 import AIAvatar from './AIAvatar';
 
 const RBACManager: React.FC = () => {

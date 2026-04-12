@@ -1,9 +1,9 @@
 
 // src/services/dictionaryApprovalService.ts
 import { v4 as uuidv4 } from 'uuid';
-import SuperDictionary from '../SuperDictionary'; 
-import { NotifyBus } from './notificationService';
-import { PersonaID } from '../types';
+import SuperDictionary from '@/SuperDictionary'; 
+import { NotifyBus } from '@/services/notificationService';
+import { PersonaID } from '@/types';
 
 export interface ChangeProposal {
   id: string;

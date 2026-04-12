@@ -3,12 +3,12 @@ import React, { useState, useMemo, useRef } from 'react';
 import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCertificate, AlertLevel, IdentityData } from '../types';
 import { SAMPLE_PRODUCTS } from '../constants';
 import { NotifyBus } from '../services/notificationService';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
+import { PaymentEngine, PaymentResponse } from '@/cells/business/payment-cell/domain/engines/payment-gateway.engine';
 import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { FraudGuard } from '@/cells/kernel/security-cell/domain/engines/fraud-guard.engine'; 
 import AIAvatar from './AIAvatar';
 import { generatePersonaResponse } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
-import { SellerEngine } from '../services/sellerEngine';
+import { SellerEngine } from '@/cells/business/sales-cell/domain/engines/seller-commission.engine';
 import { UserPosition, SellerReport, SellerIdentity, CustomerLead } from '../types';
 
 interface SalesTerminalProps {

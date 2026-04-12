@@ -4,7 +4,7 @@ import { useSmartMapping } from '../../hooks/useSmartMapping';
 import { useAccounting } from '../../contexts/AccountingContext';
 import { AccountingEntry } from '../../types';
 import LoadingSpinner from '../common/LoadingSpinner';
-import { SalesCore } from '../../services/salesCore';
+import { SalesCore } from '@/cells/business/sales-cell/domain/engines/sales-core-full.engine';
 
 // Mock Component for Overview Cards
 const FinancialOverviewCard = ({ title, value, sub, color }: { title: string, value: string, sub: string, color: string }) => (

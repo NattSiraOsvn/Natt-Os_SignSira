@@ -1,6 +1,6 @@
 
-import { UserPosition, PositionType, SalesChannel, WarehouseLocation, ProductType, OrderStatus, Customer, LogisticsInfo, PaymentInfo, SalesPerson, CommissionInfo, OrderItem, OrderPricing, SalesOrder } from '../types';
-import { SellerEngine } from './sellerEngine';
+import { UserPosition, PositionType, SalesChannel, WarehouseLocation, ProductType, OrderStatus, Customer, LogisticsInfo, PaymentInfo, SalesPerson, CommissionInfo, OrderItem, OrderPricing, SalesOrder } from '@/types';
+import { SellerEngine } from './seller-commission.engine';
 
 // ============================================================================
 // 🧠 SALES CORE ENGINE (LOGIC LAYER)

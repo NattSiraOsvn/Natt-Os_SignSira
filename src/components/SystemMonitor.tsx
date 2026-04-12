@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BusinessMetrics, PersonaID, OperationRecord } from '../types';
 import AIAvatar from './AIAvatar';
-import ThreatDetectionService, { SecurityThreat, SystemHealth } from '../services/threatDetectionService';
+import ThreatDetectionService, { SecurityThreat, SystemHealth } from '@/cells/kernel/security-cell/domain/engines/threat-detection.engine';
 import { RecoverySystem } from '@/cells/kernel/monitor-cell/domain/engines/recovery.engine';
 import { NotifyBus } from '../services/notificationService';
 

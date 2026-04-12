@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { UserRole, UserPosition, SellerReport, SellerIdentity, CustomerLead, PersonaID, PositionType } from '../types';
-import { SellerEngine } from '../services/sellerEngine';
+import { SellerEngine } from '@/cells/business/sales-cell/domain/engines/seller-commission.engine';
 import { NotifyBus } from '../services/notificationService';
 import AIAvatar from './AIAvatar';
 
