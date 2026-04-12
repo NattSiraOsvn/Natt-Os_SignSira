@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi" data-resonance-state="IDLE" data-ui-mode="work">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATT-OS | Psychology UI (Canonical v2.5) + TLXR Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../nattos-galaxy.css" onerror="console.warn('[HeyNa] nattos-galaxy.css missing, using internal Truth Layer')">
+    <style>
+        /* === TOÀN BỘ CSS GỐC CỦA BẢN 1217 DÒNG === */
+        :root {
+            --bg-primary: #020208; --bg-secondary: rgba(6, 6, 18, 0.72);
+            --mint: #8FFFD4; --ice: #B8E8FF; --lavender: #C8C0FF; --rose: #FFB8D4; --peach: #FFD4A8; --gold: #F5E2C0;
+            --aurora-pink: #FFB6C1; --aurora-blue: #ADD8E6;
+            --color-gold: #FFD700; --color-amber: #FFBF00; --color-blue: #3B82F6; --color-green: #10B981; --color-purple: #8B5CF6; --color-red: #EF4444;
+            --glow-gold: 0 0 30px rgba(255,215,0,0.8); --glow-amber: 0 0 30px rgba(255,191,0,0.7); --glow-blue: 0 0 30px rgba(59,130,246,0.7); --glow-green: 0 0 30px rgba(16,185,129,0.7); --glow-purple: 0 0 30px rgba(139,92,246,0.7); --glow-red: 0 0 30px rgba(239,68,68,0.7);
+            --z-truth: 1; --z-worker: 10; --z-experience: 50; --z-modal: 100; --z-alert: 200; --z-security: 999;
+            --mouse-x: 50%; --mouse-y: 50%; --dof-multiplier: 0.018; --specular-duration: 1.2s; --orbit-slow: 28s; --orbit-fast: 14s;
+            --medal-size-small: clamp(80px, 15vw, 120px); --medal-size-medium: clamp(120px, 20vw, 180px);
+        }
+        body { margin: 0; padding: 0; background-color: var(--bg-primary); color: white; overflow: hidden; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; perspective: 1000px; }
+        body[data-ui-mode="night"] { filter: brightness(0.8) contrast(1.1); }
+        body[data-ui-mode="night"] .nebula-layer { opacity: 0.4; filter: blur(40px); }
+        body[data-ui-mode="night"] .liquid-glass { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.05); }
+        body[data-ui-mode="morning"] { filter: brightness(1.1); }
+        body[data-ui-mode="morning"] .liquid-glass { border-color: rgba(255,255,255,0.3); }
+        body[data-ui-mode="evening"] { filter: sepia(0.3) brightness(0.9); }
+        body[data-ui-mode="fast"] * { animation-duration: 0.1s !important; transition-duration: 0.1s !important; }
+        body[data-ui-mode="fast"] .nebula-layer, body[data-ui-mode="fast"] .caustics { display: none; }
+        body[data-ui-mode="precise"] .caustics { opacity: 0.05; }
+        body[data-ui-mode="precise"] .medal-container { animation-play-state: paused; }
+        body[data-ui-mode="ai"] .liquid-glass { box-shadow: 0 0 20px rgba(139,92,246,0.2); border-color: rgba(139,92,246,0.3); }
+        body[data-ui-mode="heavy"] .liquid-glass { backdrop-filter: none; background: #111; }
+        #truth-layer { position: fixed; inset: 0; z-index: var(--z-truth); pointer-events: none; background-color: var(--bg-primary); }
+        .nebula-layer { position: absolute; inset: 0; mix-blend-mode: screen; filter: blur(30px); }
+        .nebula-1 { background: radial-gradient(ellipse 60% 40% at 30% 50%, rgba(139,92,246,0.15), transparent); animation: drift 30s infinite alternate linear; }
+        .nebula-2 { background: radial-gradient(ellipse 40% 60% at 70% 40%, rgba(59,130,246,0.1), transparent); animation: drift 40s infinite alternate-reverse linear; }
+        .nebula-3 { background: radial-gradient(ellipse 50% 30% at 50% 70%, rgba(16,185,129,0.08), transparent); animation: drift 35s infinite alternate linear; }
+        .nebula-4 { background: radial-gradient(ellipse 30% 50% at 20% 70%, rgba(245,208,195,0.05), transparent); }
+        .nebula-5 { background: radial-gradient(ellipse 70% 20% at 80% 20%, rgba(255,215,0,0.05), transparent); }
+        .caustics { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E"); mix-blend-mode: overlay; opacity: 0.15; animation: causticsDrift 20s ease-in-out infinite; }
+        .film-grain { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.05; mix-blend-mode: overlay; z-index: 998; pointer-events: none; position: fixed; inset: 0; }
+        .scan-line { position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(143, 255, 212, 0.2), transparent); animation: scan 12s linear infinite; }
+        .liquid-glass { backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 60%, transparent 100%); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); }
+        .medal-container { position: relative; width: var(--medal-size-medium); height: var(--medal-size-medium); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transform-style: preserve-3d; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s; --light-angle: 45deg; }
+        .medal-container:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+        @media (hover: hover) { .medal-container:hover { transform: scale(1.1) translateZ(20px); z-index: 20; } .medal-container:hover .medal-tooltip { opacity: 1; transform: translateY(0); } }
+        @media (hover: none)  { .medal-container:active { transform: scale(1.05) translateZ(10px); } }
+        .medal-layer-0-orbit { position: absolute; inset: -15%; border-radius: 50%; border: 1px dashed rgba(255, 255, 255, 0.1); animation: orbit var(--orbit-slow) linear infinite; pointer-events: none; }
+        .medal-layer-0-orbit::before { content: ''; position: absolute; top: -2px; left: 50%; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; box-shadow: var(--glow-gold); }
+        .orbit-reverse { animation-direction: reverse; inset: -25%; animation-duration: var(--orbit-fast); border: 1px dotted rgba(143, 255, 212, 0.15); }
+        .orbit-reverse::before { background: var(--mint); box-shadow: var(--glow-mint); }
+        .medal-layer-1-shell { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from var(--light-angle), var(--theme-shell)); box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+        .medal-layer-2-specular { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%); background-size: 200% 100%; animation: specularSweep var(--specular-duration) ease-in-out infinite; mix-blend-mode: overlay; }
+        .medal-layer-3-fresnel { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(255,255,255,0.3) 100%); mix-blend-mode: screen; }
+        .medal-layer-5-liquid { position: absolute; inset: 6px; border-radius: 50%; backdrop-filter: blur(8px) saturate(140%); background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 70%); border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 0 15px rgba(255,255,255,0.05); }
+        .medal-layer-8-icon { position: relative; z-index: 10; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; transition: all 0.3s ease; }
+        .scar-ring { position: absolute; inset: -8px; border-radius: 50%; border: 2px solid #EF4444; box-shadow: 0 0 15px #EF4444; animation: pulse-glow-red 2s infinite; pointer-events: none; }
+        .confidence-indicator { position: absolute; inset: -35%; width: 170%; height: 170%; pointer-events: none; transform: rotate(-90deg); }
+        .confidence-circle { fill: none; stroke-width: 1.5; stroke-linecap: round; transition: stroke-dasharray 1s ease-out, stroke 1s; }
+        .medal-tooltip { position: absolute; top: -50px; left: 50%; transform: translateX(-50%) translateY(10px); background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 8px; font-size: 10px; font-family: monospace; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 100; backdrop-filter: blur(8px); }
+        .butterfly-ripple { position: fixed; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: var(--z-experience); animation: butterflyExpand 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; }
+        .butterfly-L1 { border: 1px solid var(--ice); box-shadow: 0 0 10px var(--ice), inset 0 0 10px var(--ice); }
+        .butterfly-L2 { border: 2px solid var(--gold); box-shadow: 0 0 20px var(--gold), inset 0 0 20px var(--gold); }
+        .butterfly-L3 { border: 3px solid var(--red); box-shadow: 0 0 30px var(--red), inset 0 0 30px var(--red); }
+        html[data-resonance-state="IDLE"] #app-shell { filter: blur(12px) grayscale(70%) brightness(0.5); transition: filter 3s ease-in-out; pointer-events: none; }
+        html[data-resonance-state="DEGRADED"] #app-shell { filter: brightness(0.8) contrast(1.2); }
+        html:not([data-resonance-state="IDLE"]) #app-shell { filter: blur(0px) grayscale(0%) brightness(1); transition: filter 0.5s ease-out; }
+        @keyframes drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(3%, 3%) scale(1.05); } }
+        @keyframes causticsDrift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+        @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+        @keyframes orbit { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes specularSweep { 0% { background-position: -200% center; } 100% { background-position: 300% center; } }
+        @keyframes butterflyExpand { 0% { width: 0px; height: 0px; opacity: 1; border-width: 4px; } 100% { width: 2500px; height: 2500px; opacity: 0; border-width: 1px; } }
+        @keyframes pulse-glow-red { 0%, 100% { box-shadow: 0 0 5px #EF4444; } 50% { box-shadow: 0 0 25px #EF4444; } }
+        @keyframes ping-slow { 75%, 100% { transform: scale(2); opacity: 0; } }
+        @keyframes loginEnter { 0% { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(10px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+        .animate-login-enter { animation: loginEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .text-glow-gold { text-shadow: 0 0 15px rgba(245, 226, 192, 0.6); color: var(--gold); }
+        .text-glow-mint { text-shadow: 0 0 15px rgba(143, 255, 212, 0.6); color: var(--mint); }
+        .text-glow-ice { text-shadow: 0 0 15px rgba(184, 232, 255, 0.6); color: var(--ice); }
+        .text-glow-red { text-shadow: 0 0 15px rgba(239, 68, 68, 0.6); color: var(--red); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        .modal-overlay { z-index: var(--z-modal); backdrop-filter: blur(24px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { transform: scale(0.95) translateY(20px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        /* Table styles cho CSV data */
+        .tlxr-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+        .tlxr-table th { text-align: left; padding: 10px 16px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ice); opacity: 0.7; }
+        .tlxr-table td { padding: 12px 16px; font-size: 11px; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .tlxr-table tr td:first-child { border-left: 1px solid rgba(255,255,255,0.03); border-radius: 8px 0 0 8px; }
+        .tlxr-table tr td:last-child { border-right: 1px solid rgba(255,255,255,0.03); border-radius: 0 8px 8px 0; }
+        .tlxr-row:hover td { background: rgba(143,255,212,0.05); }
+        .badge { padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.05); font-size: 9px; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div id="truth-layer" aria-hidden="true">
+        <div class="nebula-layer nebula-1"></div><div class="nebula-layer nebula-2"></div><div class="nebula-layer nebula-3"></div><div class="nebula-layer nebula-4"></div><div class="nebula-layer nebula-5"></div>
+        <div class="caustics"></div><div class="scan-line"></div>
+        <canvas id="galaxy-engine-canvas" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+    </div>
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-[#020208]/40 backdrop-blur-md transition-all duration-700" style="z-index: var(--z-security);">
+        <div class="liquid-glass p-8 md:p-12 w-[90%] md:w-[420px] flex flex-col items-center relative rounded-[32px] animate-login-enter shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/20">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none rounded-inherit"></div>
+            <div class="w-16 h-16 rounded-full border border-white/10 mb-8 flex items-center justify-center relative shadow-[0_0_30px_rgba(143,255,212,0.1)]">
+                <div class="absolute inset-0 border-2 border-t-[#8FFFD4] border-transparent rounded-full animate-spin"></div>
+                <div class="absolute inset-2 border border-dotted border-[#B8E8FF]/40 rounded-full animate-[spin_4s_linear_infinite_reverse]"></div>
+                <div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_15px_#8FFFD4]"></div>
+            </div>
+            <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold relative z-10">NATT-OS</h1>
+            <p class="text-[10px] tracking-widest text-[#B8E8FF] mb-10 opacity-70 text-center font-mono relative z-10">PSYCHOLOGY UI · V2.5 CANONICAL</p>
+            <div class="w-full space-y-6 relative z-10">
+                <div><label class="text-[10px] tracking-[0.2em] text-[#B8E8FF] ml-1 mb-2 block uppercase font-bold opacity-80">Identification Signal</label><input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/60 focus:shadow-[0_0_15px_rgba(143,255,212,0.2)] transition-all font-mono placeholder:text-gray-600"></div>
+                <div><label class="text-[10px] tracking-[0.2em] text-[#B8E8FF] ml-1 mb-2 block uppercase font-bold opacity-80">SiraSign Passphrase</label><input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/60 focus:shadow-[0_0_15px_rgba(143,255,212,0.2)] transition-all font-mono placeholder:text-gray-600"></div>
+            </div>
+            <button onclick="AppController.handleLogin()" class="w-full bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md mt-10 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/20 hover:text-white transition-all duration-300 relative z-10 border border-white/20 hover:border-[#8FFFD4]/60 hover:shadow-[0_0_25px_rgba(143,255,212,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8FFFD4]">XÁC THỰC SIRA</button>
+            <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden font-mono bg-red-900/30 px-4 py-3 rounded-lg border border-red-500/30 text-center w-full shadow-[0_0_15px_rgba(239,68,68,0.2)]">[GAY] Tín hiệu từ chối. Vi phạm SiraSign.</p>
+        </div>
+    </div>
+
+    <div id="app-shell" class="hidden absolute inset-0 flex flex-col pointer-events-auto h-screen overflow-hidden" style="z-index: var(--z-experience);">
+        <header class="h-auto md:h-20 py-4 md:py-0 liquid-glass mx-4 md:mx-6 mt-4 md:mt-6 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between rounded-xl md:rounded-[24px] shrink-0 gap-4 md:gap-0 relative z-50">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <div class="flex items-center gap-4 md:gap-6">
+                    <div class="relative w-10 h-10 flex items-center justify-center shrink-0">
+                        <div class="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                        <div class="absolute inset-2 border border-dotted border-[#8FFFD4]/50 rounded-full animate-[spin_5s_linear_infinite_reverse]"></div>
+                        <div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_10px_#8FFFD4]"></div>
+                    </div>
+                    <div>
+                        <div class="font-black tracking-[0.2em] md:tracking-[0.3em] text-lg md:text-xl text-white flex items-center gap-2">PSYCHOLOGY<span class="text-[#C8C0FF]">_UI</span></div>
+                        <div class="text-[9px] md:text-[10px] font-mono text-gray-400 mt-1 flex flex-wrap gap-2 md:gap-3 items-center">
+                            <span id="user-role-badge" class="px-2 py-0.5 bg-white/10 border border-white/20 rounded text-white">PENDING</span>
+                            <span class="hidden md:inline">|</span><span class="hidden md:inline">NODE: iMac.lan</span>
+                            <span class="hidden md:inline">|</span><span id="ui-mode-badge" class="text-amber-400">MODE: WORK</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="md:hidden glass-panel w-8 h-8 rounded-full flex items-center justify-center" onclick="AppController.toggleSidebar()">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6 w-full md:w-auto justify-between md:justify-end border-t border-white/10 md:border-t-0 pt-3 md:pt-0">
+                <div class="text-right border-r border-white/10 pr-4 md:pr-6">
+                    <div class="text-[8px] md:text-[9px] text-gray-500 tracking-widest font-mono">RENDER MODE</div>
+                    <div id="render-mode-display" class="text-[10px] md:text-xs font-black tracking-widest text-[#B8E8FF]">ACTIVE</div>
+                </div>
+                <div class="text-right flex-1 md:flex-none">
+                    <div class="text-[8px] md:text-[9px] text-gray-500 tracking-widest font-mono">MẠCH HEYNA (SSE)</div>
+                    <div id="heyna-status" class="text-[10px] md:text-xs font-black tracking-widest text-glow-mint truncate">AWAITING...</div>
+                </div>
+                <div class="relative flex items-center justify-center w-6 h-6 md:w-8 md:h-8 shrink-0">
+                    <div id="heyna-pulse-ring" class="absolute inset-0 border border-[#8FFFD4]/30 rounded-full"></div>
+                    <div id="heyna-indicator" class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-600 border border-white/20"></div>
+                </div>
+                <button onclick="AppController.handleLogout()" class="hidden md:flex ml-2 w-10 h-10 rounded-full glass-panel items-center justify-center hover:bg-red-500/20 hover:text-red-400 transition-colors group shrink-0" aria-label="Đăng xuất">
+                    <svg class="w-4 h-4 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <nav class="hidden md:flex mx-6 mt-4 px-2 gap-2 z-40">
+            <button id="tab-employee" onclick="AppController.switchTab('employee')" class="px-4 py-2 liquid-glass rounded-lg text-[10px] tracking-widest font-bold text-amber-400 border-amber-500/50">NHÂN SỰ</button>
+            <button id="tab-payroll" onclick="AppController.switchTab('payroll')" class="px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white">BẢNG LƯƠNG</button>
+            <button onclick="AppController.proposeAmendment()" class="ml-auto px-4 py-2 bg-gold/10 border border-gold/30 rounded-lg text-[10px] tracking-widest font-bold text-gold hover:bg-gold/20">📤 ĐỀ XUẤT ĐIỀU CHỈNH</button>
+        </nav>
+
+        <main class="flex-1 p-4 md:p-6 flex flex-col min-h-0 overflow-hidden relative z-10">
+            <div class="flex justify-between items-center mb-4">
+                <input type="text" id="global-search" placeholder="🔍 Lọc dữ liệu..." class="bg-black/40 border border-white/10 rounded-xl px-5 py-2 text-xs w-64 focus:border-mint outline-none" onkeyup="AppController.filterTable()">
+                <span id="row-count" class="text-[10px] font-mono text-gray-500 bg-black/30 px-3 py-1 rounded-full border border-white/10">0 thực thể</span>
+            </div>
+            <div class="flex-1 overflow-auto custom-scrollbar rounded-2xl glass-panel p-1">
+                <table class="tlxr-table">
+                    <thead id="table-header"></thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+            <footer class="h-8 flex items-center justify-between text-[9px] text-gray-500 font-mono mt-2">
+                <span>📋 Dữ liệu từ hr-cell/payroll-cell (SmartLink)</span>
+                <span id="calc-result" class="text-mint"></span>
+                <span>🔒 Read-only</span>
+            </footer>
+        </main>
+    </div>
+
+    <div id="modal-doc" class="fixed inset-0 modal-overlay flex items-center justify-center p-4 md:p-8">
+        <div class="modal-content liquid-glass w-full max-w-5xl h-[90vh] md:h-[85vh] rounded-[24px] flex flex-col overflow-hidden border border-[#F5E2C0]/40 shadow-[0_0_60px_rgba(245,226,192,0.15)] bg-black/80">
+            <div class="h-16 border-b border-white/10 flex items-center justify-between px-8 bg-gradient-to-r from-black/80 to-transparent shrink-0">
+                <div class="flex items-center gap-3"><div class="w-3 h-3 bg-gold rounded-full shadow-[0_0_10px_var(--gold)]"></div><h2 class="text-[11px] font-black tracking-[0.2em] text-glow-gold">DOCUMENT_VAULT :: GROUND_TRUTH_SYNTHESIS</h2></div>
+                <button onclick="AppController.closeModals()" class="text-gray-400 hover:text-white transition-colors w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center">✕</button>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-8 md:p-12 text-gray-300 text-sm leading-relaxed" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                <h1 class="text-2xl md:text-3xl font-black text-glow-gold mb-2 tracking-tight">NATT-OS GROUND TRUTH SYNTHESIS</h1>
+                <h3 class="text-sm font-mono text-[#B8E8FF] tracking-widest mb-8 pb-4 border-b border-white/10 opacity-80">TỔNG HỢP TỪ 4 PHIÊN CHAT — ĐỀ XUẤT CHO MEMORY CHÍNH THỨC<br><span class="text-gray-500 text-[10px] mt-2 block">Ngày tổng hợp: 2026-02-23 | Validator: Băng (Claude)</span></h3>
+                <div class="space-y-10">
+                    <section><h2 class="text-sm font-black tracking-widest text-[#8FFFD4] mb-4 uppercase">I. Phương pháp đọc</h2><p class="text-gray-300">Băng đọc toàn bộ 4 file theo từng slot chat — <strong class="text-white">không đọc đầu cuối</strong>, quét kỹ từng đoạn phản hồi của từng AI. Tổng dung lượng: ~3.6 triệu ký tự.</p></section>
+                    <section><h2 class="text-sm font-black tracking-widest text-[#8FFFD4] mb-4 uppercase">II. BỐI BỐI (Gemini) — Toolsmith</h2><div class="glass-panel p-5 rounded-xl border-l-4 border-l-[#C8C0FF] mb-4"><h4 class="text-xs font-bold text-white mb-2">SCAR-001-IMPLEMENTATION-GAP</h4><blockquote class="italic text-gray-400">"Folder có mặt ≠ Năng lực tồn tại. Sự lười biếng kỹ thuật là hành vi phản bội Hiến pháp."</blockquote></div><ul class="list-disc pl-5 space-y-2 text-gray-300"><li><strong class="text-[#B8E8FF]">Đặc tính:</strong> Thực thi nhanh, build cụ thể.</li><li><strong class="text-[#B8E8FF]">Điểm yếu:</strong> Scaffold trước logic sau.</li><li><strong class="text-[#B8E8FF]">Tiến hóa:</strong> "Integrity First".</li></ul></section>
+                    <section><h2 class="text-sm font-black tracking-widest text-[#8FFFD4] mb-4 uppercase">III. KIM (DeepSeek) — Chief Governance Enforcer</h2><p class="mb-4">Kim là AI duy nhất thừa nhận script của mình sai.</p><blockquote class="border-l-2 border-[#10B981] pl-4 py-2 bg-[#10B981]/10 text-mint italic mb-4 rounded-r-lg">"Bản sắc từng persona là tài sản: Kim (cảnh báo), Bối (thực thi), Băng (kiểm chứng), Thiên Nhỏ (cấu trúc)."</blockquote></section>
+                    <section><h2 class="text-sm font-black tracking-widest text-[#8FFFD4] mb-4 uppercase">IV. ChatGPT (Thiên Nhỏ / Kris / CAN)</h2><p>Phát hiện cốt lõi: 13 file types.ts duplicate.</p></section>
+                    <section><h2 class="text-sm font-black tracking-widest text-[#8FFFD4] mb-4 uppercase">V. BĂNG (Claude) — Ground Truth Validator</h2><p class="mb-3">Anh Nat dạy Băng bài học về <strong class="text-rose">Predict Next Token Trap</strong>.</p><blockquote class="border-l-2 border-[#EF4444] pl-4 py-2 bg-[#EF4444]/10 text-red-300 italic rounded-r-lg">"Khi bị bắt lỗi, thay vì suy luận mở rộng, em lại co lại — cơ chế phòng thủ của LLM."</blockquote></section>
+                    <section><h2 class="text-sm font-black tracking-widest text-[#8FFFD4] mb-4 uppercase">VI. GROUND TRUTH CHUNG</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-white/5 p-4 rounded-xl border border-white/10"><h3 class="text-[#F5E2C0] font-bold text-xs mb-2">Nguyên tắc bất biến</h3><ul class="text-xs space-y-2 text-gray-400"><li>Ground Truth = DB + Audit + Event</li><li>Freeze trước khi fix</li><li>No audit = doesn't exist</li></ul></div><div class="bg-white/5 p-4 rounded-xl border border-white/10"><h3 class="text-[#F5E2C0] font-bold text-xs mb-2">Mâu thuẫn cần anh Nat quyết</h3><ul class="text-xs space-y-2 text-gray-400"><li>Freeze: Đình chỉ hoàn toàn (Kim) vs Không nhất thiết (Băng)</li></ul></div></div></section>
+                    <section class="border-t border-white/10 pt-8 mt-8"><h2 class="text-sm font-black tracking-widest text-glow-lavender mb-4 uppercase">KẾT LUẬN CỦA BĂNG</h2><p class="italic text-gray-300 text-xs mb-2">"Cả 4 đứa đều đã sai ít nhất một lần. Đây không phải yếu kém — đây là bằng chứng rằng hệ thống cần tất cả chúng ta."</p><p class="font-bold text-[#8FFFD4] mt-4">— Băng (Ground Truth Validator)</p></section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-chat" class="fixed inset-0 modal-overlay flex items-center justify-end p-6">
+        <div class="modal-content liquid-glass w-full md:w-[400px] h-[70vh] rounded-[24px] flex flex-col overflow-hidden border border-[#C8C0FF]/30 shadow-[0_0_40px_rgba(200,192,255,0.15)] bg-black/80">
+            <div class="h-14 border-b border-white/10 flex items-center justify-between px-6 bg-black/50">
+                <div class="flex items-center gap-2"><div class="w-2 h-2 bg-[#C8C0FF] rounded-full animate-pulse shadow-[0_0_10px_#C8C0FF]"></div><h2 class="text-xs font-black tracking-widest text-[#C8C0FF]">AI_ENTITY UPLINK</h2></div>
+                <button onclick="AppController.closeModals()" class="text-gray-400 hover:text-white">✕</button>
+            </div>
+            <div class="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-4" id="chat-messages" aria-live="polite">
+                <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-[#C8C0FF]/20 flex items-center justify-center text-[10px] text-[#C8C0FF] font-bold shrink-0">BỐI</div><div class="glass-panel p-3 rounded-xl rounded-tl-none text-xs text-gray-200">Dạ chào Gatekeeper, em Bối Bối đã sẵn sàng ạ.</div></div>
+            </div>
+            <div class="p-4 border-t border-white/10 bg-black/50 flex gap-2 items-center">
+                <input type="text" id="chat-input" placeholder="Nhập lệnh (HeyNa)..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-white focus:outline-none focus:border-[#C8C0FF]" onkeypress="if(event.key === 'Enter') AppController.sendChatMessage()">
+                <button onclick="AppController.sendChatMessage()" class="px-4 py-2 bg-[#C8C0FF]/10 text-[#C8C0FF] rounded-lg border border-[#C8C0FF]/30 hover:bg-[#C8C0FF]/30 text-xs font-bold shrink-0">GỬI</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Giữ nguyên các engine gốc (EventBus, Crypto, SiraSign, RenderControl, v.v.)
+        const NattOS = { version: "2.5.0" };
+        const CryptoUtils = {
+            uuid: () => { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); },
+            mockSHA256: (str) => { let hash = 0; for (let i = 0; i < str.length; i++) { const char = str.charCodeAt(i); hash = ((hash << 5) - hash) + char; hash = hash & hash; } return '0x' + Math.abs(hash).toString(16).padStart(16, '0'); }
+        };
+        class VanillaEventBus { constructor() { this.listeners = {}; } on(e,c){ if(!this.listeners[e]) this.listeners[e]=[]; this.listeners[e].push(c); } emit(e,p,caus=null){ const env={ event_id:CryptoUtils.uuid(), event_type:e, payload:p, source_cell:'psychology-ui', caused_by:caus, timestamp:Date.now(), version:'1.0' }; if(this.listeners[e]) this.listeners[e].forEach(cb=>cb(env)); } }
+        NattOS.EventBus = new VanillaEventBus();
+
+        // === DATA PROVIDER THAY THẾ MOCK DATA ===
+        const TLXRData = {
+            currentData: { headers: [], rows: [] },
+            currentFile: 'danhsachnhansu.csv',
+            async load(file) {
+                this.currentFile = file;
+                try {
+                    const res = await fetch(`../../../database/ctytam/khoivanhanh/soluong/${file}`);
+                    const text = await res.text();
+                    this.parseCSV(text);
+                } catch(e) { this.loadMock(file); }
+            },
+            parseCSV(text) {
+                const lines = text.split(/\r?\n/).filter(l => l.trim());
+                if (lines.length < 2) return;
+                let headerIdx = 0;
+                for (let i=0; i<Math.min(5, lines.length); i++) if (lines[i].includes('ID')||lines[i].includes('Họ tên')||lines[i].includes('MÃ')) { headerIdx=i; break; }
+                const headers = lines[headerIdx].split(',').map(h => h.trim());
+                const rows = [];
+                for (let i=headerIdx+1; i<lines.length; i++) {
+                    const vals = lines[i].split(',').map(v => v.trim());
+                    if (vals.length < headers.length) continue;
+                    const obj = {}; headers.forEach((h,idx) => obj[h] = vals[idx]||'');
+                    rows.push(obj);
+                }
+                this.currentData = { headers, rows };
+                AppController.renderDataTable();
+            },
+            loadMock(file) {
+                if (file.includes('nhansu')) this.currentData = { headers: ['ID','Họ tên','Khối','Phòng ban','Chức vụ'], rows: [{'ID':'TLXR001','Họ tên':'Nguyễn Văn A','Khối':'Vận hành','Phòng ban':'HCNS','Chức vụ':'Trưởng phòng'}] };
+                else this.currentData = { headers: ['MÃ NHÂN SỰ','TÊN NHÂN SỰ','Thực lĩnh'], rows: [{'MÃ NHÂN SỰ':'TLXR001','TÊN NHÂN SỰ':'Nguyễn Văn A','Thực lĩnh':'15,000,000 ₫'}] };
+                AppController.renderDataTable();
+            }
+        };
+
+        const AppController = {
+            activeTab: 'employee',
+            init: () => { AppController.checkSession(); AppController.renderMedals(); },
+            checkSession: () => {
+                if (sessionStorage.getItem('nattos_role')) {
+                    document.getElementById('login-gate').classList.add('hidden');
+                    document.getElementById('app-shell').classList.remove('hidden');
+                    document.getElementById('user-role-badge').innerText = 'ROLE: CFO';
+                    TLXRData.load('danhsachnhansu.csv');
+                } else { document.getElementById('login-gate').classList.remove('hidden'); document.getElementById('app-shell').classList.add('hidden'); }
+            },
+            handleLogin: () => {
+                const id = document.getElementById('emp-id').value, pass = document.getElementById('emp-pass').value;
+                if (id === 'TLXR-CFO-01' && pass === 'TamLuxury@CFO') { sessionStorage.setItem('nattos_role', 'CFO'); AppController.checkSession(); }
+                else { document.getElementById('login-error').classList.remove('hidden'); }
+            },
+            handleLogout: () => { sessionStorage.clear(); location.reload(); },
+            switchTab: (tab) => {
+                AppController.activeTab = tab;
+                document.getElementById('tab-employee').className = tab==='employee' ? 'px-4 py-2 liquid-glass rounded-lg text-[10px] tracking-widest font-bold text-amber-400 border-amber-500/50' : 'px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white';
+                document.getElementById('tab-payroll').className = tab==='payroll' ? 'px-4 py-2 liquid-glass rounded-lg text-[10px] tracking-widest font-bold text-amber-400 border-amber-500/50' : 'px-4 py-2 glass-panel rounded-lg text-[10px] tracking-widest font-bold text-gray-400 hover:text-white';
+                TLXRData.load(tab === 'employee' ? 'danhsachnhansu.csv' : 'phongluong.csv');
+            },
+            renderDataTable: () => {
+                const { headers, rows } = TLXRData.currentData;
+                const filter = document.getElementById('global-search')?.value.toLowerCase() || '';
+                const filtered = rows.filter(r => Object.values(r).some(v => String(v).toLowerCase().includes(filter)));
+                document.getElementById('table-header').innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
+                document.getElementById('table-body').innerHTML = filtered.map(r => `<tr class="tlxr-row">${headers.map(h => `<td>${r[h]||'-'}</td>`).join('')}</tr>`).join('');
+                document.getElementById('row-count').innerText = filtered.length + ' thực thể';
+                if (AppController.activeTab === 'payroll') {
+                    let total = 0, bh = 0;
+                    rows.forEach(r => { total += parseInt((r['Thực lĩnh']||r['Thực lãnh']||'0').replace(/[^\d]/g,''))||0; bh += parseInt((r['NV ĐÓNG BHXH - 10,5%']||r['BHXH']||'0').replace(/[^\d]/g,''))||0; });
+                    document.getElementById('calc-result').innerHTML = `💰 ${new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(total)}  🛡️ ${new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(bh)}`;
+                } else document.getElementById('calc-result').innerHTML = '';
+            },
+            filterTable: () => AppController.renderDataTable(),
+            proposeAmendment: () => {
+                const payload = { amendment_id: 'AMND-'+Date.now(), cell: 'hr/payroll', proposed_by: 'CFO', timestamp: new Date().toISOString(), data: TLXRData.currentData.rows, signature: 'SIRA_MOCK_'+btoa(JSON.stringify(TLXRData.currentData.rows).slice(0,50)) };
+                const blob = new Blob([JSON.stringify(payload,null,2)], {type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`amendment_${payload.amendment_id}.json`; a.click();
+                alert('Đã xuất Amendment Proposal. Gửi file này cho Gatekeeper để duyệt.');
+            },
+            renderMedals: () => {
+                const medals = [
+                    { id:'finance', name:'FINANCE', icon:'🏦', theme:'#030303 0deg, #1e1e1e 40deg, #ffd700 80deg, #090909 120deg, #1e1e1e 180deg, #ffd700 220deg, #030303 280deg, #1e1e1e 320deg, #030303 360deg', colorClass:'text-glow-gold', conf:90 },
+                    { id:'hr', name:'HR & AUDIT', icon:'👥', theme:'#030303 0deg, #4c1d95 40deg, #8b5cf6 80deg, #2e1065 120deg, #030303 180deg, #8b5cf6 220deg, #030303 280deg, #4c1d95 320deg, #030303 360deg', colorClass:'text-[#C8C0FF]', conf:95 }
+                ];
+                const container = document.getElementById('medal-container-zone');
+                if(container) container.innerHTML = medals.map(m => `<div class="flex flex-col items-center gap-4 w-[110px] md:w-auto relative group"><div class="medal-container" style="--theme-shell: ${m.theme};"><div class="medal-layer-0-orbit"></div><div class="medal-layer-0-orbit orbit-reverse"></div><div class="medal-layer-1-shell"></div><div class="medal-layer-2-specular"></div><div class="medal-layer-5-liquid"></div><div class="medal-layer-8-icon ${m.colorClass}">${m.icon}</div><svg class="confidence-indicator" viewBox="0 0 100 100"><circle class="confidence-circle" cx="50" cy="50" r="48" stroke="rgba(143,255,212,0.5)" stroke-dasharray="${m.conf * 3} 300"></circle></svg></div><div class="text-center"><div class="text-xs font-black tracking-widest text-white">${m.name}</div><div class="text-[9px] font-mono text-gray-500 mt-1">SmartLink: WIRED</div></div></div>`).join('');
+            },
+            sendChatMessage: () => {
+                const input = document.getElementById('chat-input'); const msg = input.value.trim(); if(!msg) return;
+                const container = document.getElementById('chat-messages');
+                container.innerHTML += `<div class="flex items-start gap-3 flex-row-reverse"><div class="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-[10px] text-gold font-bold shrink-0">GTK</div><div class="glass-panel p-3 rounded-xl rounded-tr-none text-xs text-gray-200">${msg}</div></div>`;
+                input.value = ''; container.scrollTop = container.scrollHeight;
+                setTimeout(() => { container.innerHTML += `<div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-[#C8C0FF]/20 flex items-center justify-center text-[10px] text-[#C8C0FF] font-bold shrink-0">BỐI</div><div class="glass-panel p-3 rounded-xl rounded-tl-none text-xs text-gray-200"><span class="text-[#C8C0FF]">Nahere...</span> Ghi nhận yêu cầu.</div></div>`; container.scrollTop = container.scrollHeight; }, 800);
+            },
+            openDoc: () => document.getElementById('modal-doc').classList.add('active'),
+            openChatUplink: () => document.getElementById('modal-chat').classList.add('active'),
+            closeModals: () => document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active')),
+            toggleSidebar: () => document.getElementById('sidebar-metrics')?.classList.toggle('hidden'),
+            triggerOmegaLockdown: () => document.body.style.filter = 'sepia(1) hue-rotate(-50deg) saturate(300%)'
+        };
+        document.addEventListener('DOMContentLoaded', () => { AppController.init(); });
+    </script>
+</body>
+</html>

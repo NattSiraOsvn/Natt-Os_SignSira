@@ -1,5 +1,62 @@
 {
-  "total": 0,
-  "by_dieu": {},
-  "violations": []
+  "total": 6,
+  "by_dieu": {
+    "Điều 7": 6
+  },
+  "violations": [
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "core/ingestion/idempotency-manager.engine.ts",
+      "line": 23,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const data = localStorage.getItem(this.STORAGE_KEY);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "core/ingestion/idempotency-manager.engine.ts",
+      "line": 37,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify({"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "core/staging/event-staging.engine.ts",
+      "line": 39,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const raw = localStorage.getItem(this.STORAGE_KEY);"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "core/staging/event-staging.engine.ts",
+      "line": 57,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "core/calibration/calibration.engine.ts",
+      "line": 30,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile))"
+    },
+    {
+      "dieu": "Điều 7",
+      "severity": "🔴 CRITICAL",
+      "cell": "core",
+      "file": "core/calibration/calibration.engine.ts",
+      "line": 38,
+      "detail": "Self-state storage (localStorage/fs.write)",
+      "code": "const stored = localStorage.getItem(`CALIB_PROFILE_${userId}`);"
+    }
+  ]
 }
