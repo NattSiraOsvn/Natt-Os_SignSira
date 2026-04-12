@@ -1,5 +1,5 @@
 
-import { CostAllocation, AccountingEntry } from '../../types';
+import { CostAllocation, AccountingEntry } from '@/types';
 
 /**
  * ⚖️ COST ALLOCATION SYSTEM

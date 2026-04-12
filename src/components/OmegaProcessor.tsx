@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { IngestStatus, FileMetadata, PersonaID } from '../types';
 import { Ingestion } from '../core/ingestion/IngestionService';
 import { QuantumBuffer } from '@/core/smartlink/quantum-buffer.engine';
-import { DocumentParserLayer } from '@/services/parser/DocumentParserLayer';
+import { DocumentParserLayer } from '@/core/ingestion/document-parser.engine';
 import AIAvatar from './AIAvatar';
 
 const OmegaProcessor: React.FC = () => {

@@ -6,7 +6,7 @@ import {
   ProductType 
 } from '@/types';
 import { SalesCore } from '@/cells/business/sales-cell/domain/engines/sales-core-full.engine';
-import { ShardingService } from '@/services/blockchainService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 
 // ============================================================================
 // 🏭 PRODUCTION & SALES FLOW DEFINITIONS

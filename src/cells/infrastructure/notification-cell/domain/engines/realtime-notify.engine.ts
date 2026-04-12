@@ -1,5 +1,5 @@
 
-import { NotifyBus, AlertType } from '@/services/notificationService';
+import { NotifyBus, AlertType } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '@/types';
 
 export class RealTimeNotificationService {

@@ -4,7 +4,7 @@
 
 import { InvoiceState } from '../../domain/Invoice.aggregate';
 import { EventBus } from '../../../../core/events/event-bus';
-import { NotifyBus } from '../../../../../services/notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID, AlertLevel } from '../../../../types';
 
 /**

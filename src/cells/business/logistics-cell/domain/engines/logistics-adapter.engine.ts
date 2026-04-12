@@ -1,6 +1,6 @@
 
 import { LogisticsPartner, LogisticsSolution, TransferOrder, SalesOrder, WarehouseLocation } from '@/types';
-import { ShardingService } from '@/services/blockchainService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 
 // ============================================================================
 // 🔌 LOGISTICS ADAPTER INTERFACES

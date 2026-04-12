@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ApprovalTicket, ApprovalStatus } from '../../types';
-import { ApprovalEngine } from '../../services/approval/ApprovalWorkflowService';
+import { ApprovalEngine } from '@/core/approval/approval-workflow.service';
 import AIAvatar from '../AIAvatar';
 import { PersonaID } from '../../types';
 

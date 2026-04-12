@@ -2,7 +2,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCertificate, AlertLevel, IdentityData } from '../types';
 import { SAMPLE_PRODUCTS } from '../constants';
-import { NotifyBus } from '../services/notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PaymentEngine, PaymentResponse } from '@/cells/business/payment-cell/domain/engines/payment-gateway.engine';
 import { extractGuarantyData, extractCCCDData, generateIdentityHash } from '@/cells/infrastructure/ai-connector-cell/domain/services/gemini.engine';
 import { FraudGuard } from '@/cells/kernel/security-cell/domain/engines/fraud-guard.engine'; 

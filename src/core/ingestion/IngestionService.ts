@@ -1,6 +1,6 @@
 
 import { FileMetadata, IngestStatus } from '../../types';
-import { ShardingService } from '../../services/blockchainService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 
 export class IngestionService {
   private static instance: IngestionService;

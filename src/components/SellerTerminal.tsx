@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { UserRole, UserPosition, SellerReport, SellerIdentity, CustomerLead, PersonaID, PositionType } from '../types';
 import { SellerEngine } from '@/cells/business/sales-cell/domain/engines/seller-commission.engine';
-import { NotifyBus } from '../services/notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import AIAvatar from './AIAvatar';
 
 interface SellerTerminalProps {

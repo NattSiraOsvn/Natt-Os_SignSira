@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import { ActionLog, UserRole, PersonaID } from '../types';
 import AIAvatar from './AIAvatar';
-import { ShardingService } from '../services/blockchainService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 
 interface AuditTrailModuleProps {
   actionLogs: ActionLog[];

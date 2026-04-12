@@ -6,7 +6,7 @@ import { EventBus } from '../../../../core/events/event-bus';
 import { InvoiceAggregate } from '../../domain/Invoice.aggregate';
 import { EventEnvelope, PersonaID } from '../../../../types';
 import { AuditProvider } from '../../../../../services/admin/AuditService';
-import { NotifyBus } from '../../../../../services/notificationService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 
 export class FinanceSaga {
   private static processedEvents: Set<string> = new Set();

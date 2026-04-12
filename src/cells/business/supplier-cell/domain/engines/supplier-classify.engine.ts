@@ -1,5 +1,5 @@
 
-import { Supplier } from '../../types';
+import { Supplier } from '@/types';
 
 export class SupplierEngine {
   // === 1. RULES PHÂN LOẠI MỞ RỘNG (DNA NHÀ CUNG CẤP) ===

@@ -3,8 +3,8 @@ import {
   QuantumState, QuantumEvent, ConsciousnessField, 
   EntanglementPair, NeuralPulse, PersonaID 
 } from '@/types';
-import { ShardingService } from '@/services/blockchainService';
-import { NotifyBus } from '@/services/notificationService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 
 // --- CONSTANTS ---
 const COHERENCE_DECAY = 0.05; // Mất tính kết hợp theo thời gian

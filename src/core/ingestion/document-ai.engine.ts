@@ -1,7 +1,7 @@
 
 import { SUPER_DICTIONARY } from "@/SuperDictionary";
 
-import { StagingStore } from '@/services/staging/EventStagingLayer'; // Import ESL
+import { StagingStore } from '@/core/staging/event-staging.engine'; // Import ESL
 
 // --- TYPES DEFINITIONS ---
 export type IngestStatus = 'AUTO_COMMITTED' | 'PENDING_APPROVAL' | 'CONFLICT_HALTED' | 'DATA_ERROR' | 'DUPLICATE_IGNORED';

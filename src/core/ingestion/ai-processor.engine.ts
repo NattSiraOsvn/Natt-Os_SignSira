@@ -1,7 +1,7 @@
 // src/services/ingestion/AIProcessor.ts
-import { IdempotencyManager } from './IdempotencyManager';
-import { DictionaryGuard, matchWithDictionary, BufferDecision } from './DictionaryGuard'; // Added BufferDecision
-import { ExcelExtractor, OCRExtractor, PDFExtractor, ExtractedData } from './extractors';
+import { IdempotencyManager } from './idempotency-manager.engine';
+import { DictionaryGuard, matchWithDictionary, BufferDecision } from './dictionary-guard.engine'; // Added BufferDecision
+import { ExcelExtractor, OCRExtractor, PDFExtractor, ExtractedData } from './extractors.engine';
 import { TaskRouter } from '@/core/routing/task-router';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID, ViewType } from '../../types';

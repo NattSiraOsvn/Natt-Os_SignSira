@@ -7,7 +7,7 @@ import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockc
 import { SUPER_DICTIONARY } from '../../SuperDictionary';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '../../types';
-import { ContextScoring } from '../scoring/ContextScoringEngine';
+import { ContextScoring } from '../scoring/context-scoring.engine';
 
 export class ConflictResolver {
   private static instance: ConflictResolver;

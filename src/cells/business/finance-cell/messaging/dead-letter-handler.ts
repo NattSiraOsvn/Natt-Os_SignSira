@@ -3,8 +3,8 @@
 // — legacy V1 imports pending migration
 
 import { EventEnvelope, PersonaID } from '../../../../types';
-import { NotifyBus } from '../../../../../services/notificationService';
-import { ShardingService } from '../../../../../services/blockchainService';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
 
 /**
  * ☠️ DEAD LETTER HANDLER

@@ -2,8 +2,8 @@
 
 // — legacy service imports, pending cell migration
 
-import { ShardingService } from '../../../../../services/blockchainService';
-import { NotifyBus } from '../../../../../services/notificationService';
+import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
+import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '../../../../types';
 
 export interface AuditEntry {
