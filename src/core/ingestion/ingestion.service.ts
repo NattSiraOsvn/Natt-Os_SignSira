@@ -68,6 +68,8 @@ class IngestionService {
     }
   }
 
+  getHistory() { return this.getAllRecords(); }
+  async validateAndRegister(_file: any) { return { id: `ING-${Date.now()}`, status: "PENDING", timestamp: Date.now() }; }
   getAllRecords() {
     return Array.from(this.fileRegistry.values()).sort((a, b) => b.timestamp - a.timestamp);
   }
