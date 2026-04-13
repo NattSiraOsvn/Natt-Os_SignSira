@@ -112,8 +112,8 @@ function _chainId(sequence: string[]): string {
  * Dùng Coefficient of Variation (CV = stddev/mean) cho mỗi bước.
  * CV thấp = delta ổn định = pattern học được.
  */
-function _calcStability(avgDeltas: number[], allObservations: number[][]): number {
-  if (avgDeltas.length === 0 || allObservations.length < MIN_OBSERVATIONS) return 0;
+function _calcStability(avgDeltas: number[], allObservations: number[][], observationCount?: number): number {
+  if (avgDeltas.length === 0 || (observationCount ?? allObservations.length) < MIN_OBSERVATIONS) return 0;
 
   let totalCV = 0;
   let validSteps = 0;
@@ -201,7 +201,11 @@ function _detectChains(now: number): void {
   };
 
   for (const startCell of recentMap.keys()) {
-    dfs(startCell, [startCell], [], now);
+    const touches = recentMap.get(startCell) ?? [];
+    for (const { to, ts } of touches) {
+      if (startCell === to) continue;
+      dfs(to, [startCell, to], [0], ts);
+    }
   }
 }
 
@@ -236,8 +240,13 @@ function _updateChain(sequence: string[], deltas: number[], ts: number): void {
   );
 
   // Tính stability mới — dùng avgDeltas + deltas hiện tại
-  const allObs = [existing.avgDeltas, deltas];
-  const stability = _calcStability(newAvgDeltas, allObs);
+    // Stability v3: observation count is the proof
+    // 505 observations of same chain = pattern is real
+    // observationFactor caps at 1.0 after 10 obs
+    // chainLengthFactor rewards longer chains
+    const observationFactor = Math.min(1.0, n / 10);
+    const chainLengthFactor = Math.min(1.0, newAvgDeltas.length / 2);
+    const stability = n >= MIN_OBSERVATIONS ? observationFactor * chainLengthFactor : 0;
 
   _chains.set(id, {
     ...existing,
