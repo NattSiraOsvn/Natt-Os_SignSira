@@ -2,7 +2,7 @@
  * SmartLink Impulse Runtime Check — Điều 8
  * Kiểm tra sức khỏe của sợi dẫn truyền thần kinh
  */
-import { SmartLinkEngine } from "@/core/smartlink/smartlink-legacy.engine";
+import { SmartLinkEngine } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
 
 export interface ImpulseCheckResult {
   timestamp: number;
