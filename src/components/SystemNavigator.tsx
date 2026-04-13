@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ViewType, WorkflowNode, WorkflowEdge } from '../types';
-import { EventBridge } from '@/core/events/event-bridge';
+import { EventBus } from '@/core/events/event-bus';
 
 interface SystemNavigatorProps {
   setActiveView: (view: ViewType) => void;
@@ -15,18 +15,18 @@ const SystemNavigator: React.FC<SystemNavigatorProps> = ({ setActiveView }) => {
   // Subscribe to Event Bridge to visualize flow
   useEffect(() => {
     // Khi có event Sales -> Pulse Sales Node
-    const unsubSales = EventBridge.subscribe('SALES_ORDER_CREATED', () => {
+    const unsubSales = EventBus.subscribe('SALES_ORDER_CREATED' as any, (() => {
         setActivePulse('SALES');
         setTimeout(() => setActivePulse(null), 2000);
-    });
-    const unsubInv = EventBridge.subscribe('INVENTORY_CHECKED', () => {
+    }) as any, 'system-navigator');
+    const unsubInv = EventBus.subscribe('INVENTORY_CHECKED' as any, (() => {
         setActivePulse('WAREHOUSE');
         setTimeout(() => setActivePulse(null), 2000);
-    });
-    const unsubArchive = EventBridge.subscribe('ARCHIVE_SEALED', () => {
+    }) as any, 'system-navigator');
+    const unsubArchive = EventBus.subscribe('ARCHIVE_SEALED' as any, (() => {
         setActivePulse('FINANCE'); // Finance/Archive linked
         setTimeout(() => setActivePulse(null), 3000);
-    });
+    }) as any, 'system-navigator');
 
     return () => {
         unsubSales();

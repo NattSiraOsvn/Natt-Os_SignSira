@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShardingService } from '@/core/audit/sharding-engine';
-import { EventBridge } from '@/core/events/event-bridge';
+import { EventBus } from '@/core/events/event-bus';
 import AIAvatar from './AIAvatar';
 import { PersonaID, UserRole, BusinessMetrics, UserPosition } from '../types';
 
@@ -110,7 +110,7 @@ const DataArchiveVault: React.FC<DataArchiveVaultProps> = ({ currentRole, logAct
       } : a));
       
       // Phát sự kiện toàn hệ thống
-      EventBridge.publish('ARCHIVE_SEALED', { year, merkleRoot: newHash });
+      EventBus.publish({ type: 'ARCHIVE_SEALED' as any, payload: { year, merkleRoot: newHash }, timestamp: Date.now() } as any, 'data-archive-vault', 'archive-seal');
       logAction('FISCAL_YEAR_SEAL', `Đã niêm phong số liệu năm ${year}. Merkle Root: ${newHash}`);
       
       setIsSealing(false);
