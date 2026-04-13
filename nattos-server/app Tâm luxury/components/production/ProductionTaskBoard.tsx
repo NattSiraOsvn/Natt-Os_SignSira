@@ -1,0 +1,132 @@
+import React, { useState, useCallback } from 'react';
+import { phatNauion } from '../../services/nauionClient';
+import { useSSE } from '../../hooks/useSSE';
+import { useContextualUI } from '../../hooks/use-contextual-ui'; // Hook có sẵn từ SPEC
+import '../../styles/nattos-glass.css';
+
+interface ProductionTask {
+  id: string;
+  orderId: string;
+  productName: string;
+  currentStep: string;
+  assignedTo?: string;
+  status: 'pending' | 'in_progress' | 'completed';
+  dueDate: string;
+}
+
+const ProductionTaskBoard: React.FC = () => {
+  const [tasks, setTasks] = useState<ProductionTask[]>([]);
+  const [attention] = useState(0.5);
+  const uiMode = useContextualUI(new Date(), attention, undefined);
+
+  // 1. Lắng nghe SSE để nhận danh sách task
+  useSSE<{ tasks: ProductionTask[] }>('production:tasks:updated', (payload) => {
+    setTasks(payload.tasks);
+  });
+
+  // 2. Khi người dùng nhấn "Nhận việc" -> gửi 1 event duy nhất lên server
+  const handleTakeTask = useCallback((taskId: string) => {
+    const eventId = crypto.randomUUID();
+    phatNauion({
+      event_type: 'production:task:started',
+      payload: { taskId },
+      event_id: eventId,
+      causation_id: null, // không có event cha
+    }).catch(err => console.error('Failed to send event', err));
+
+    // Optimistic update: tạm thời cập nhật UI (sẽ được ghi đè khi SSE gửi về)
+    setTasks(prev =>
+      prev.map(t => (t.id === taskId ? { ...t, status: 'in_progress' } : t))
+    );
+  }, []);
+
+  // Phân cột
+  const columns = {
+    pending: tasks.filter(t => t.status === 'pending'),
+    in_progress: tasks.filter(t => t.status === 'in_progress'),
+    completed: tasks.filter(t => t.status === 'completed'),
+  };
+
+  return (
+    <div className={`production-task-board mode-${uiMode} p-6 h-full`}>
+      <h2 className="text-2xl font-bold text-gold mb-6">📋 Bảng giao việc sản xuất</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Cột Chờ xử lý */}
+        <div className="bg-black/20 rounded-xl p-4 liquid-glass">
+          <h3 className="text-lg font-semibold text-amber-400 mb-4">⏳ Chờ xử lý</h3>
+          <div className="space-y-3">
+            {columns.pending.map(task => (
+              <TaskCard key={task.id} task={task} onTakeTask={handleTakeTask} />
+            ))}
+          </div>
+        </div>
+
+        {/* Cột Đang làm */}
+        <div className="bg-black/20 rounded-xl p-4 liquid-glass">
+          <h3 className="text-lg font-semibold text-cyan-400 mb-4">⚙️ Đang thực hiện</h3>
+          <div className="space-y-3">
+            {columns.in_progress.map(task => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+          </div>
+        </div>
+
+        {/* Cột Hoàn thành */}
+        <div className="bg-black/20 rounded-xl p-4 liquid-glass">
+          <h3 className="text-lg font-semibold text-emerald-400 mb-4">✅ Hoàn thành</h3>
+          <div className="space-y-3">
+            {columns.completed.map(task => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// TaskCard component (giữ nguyên style Liquid Glass, Medal)
+const TaskCard: React.FC<{ task: ProductionTask; onTakeTask?: (id: string) => void }> = ({ task, onTakeTask }) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+  };
+
+  return (
+    <div
+      className="medal-task liquid-glass relative overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onClick={() => task.status === 'pending' && onTakeTask?.(task.id)}
+    >
+      <div className="flex justify-between items-start mb-2">
+        <span className="text-sm font-mono text-slate-300">#{task.orderId}</span>
+        <span className={`text-xs px-2 py-1 rounded-full ${
+          task.status === 'pending' ? 'bg-amber-500/20 text-amber-400' :
+          task.status === 'in_progress' ? 'bg-cyan-500/20 text-cyan-400' :
+          'bg-emerald-500/20 text-emerald-400'
+        }`}>
+          {task.status === 'pending' ? 'Chờ' : task.status === 'in_progress' ? 'Đang làm' : 'Xong'}
+        </span>
+      </div>
+      <h4 className="font-bold text-white mb-1">{task.productName}</h4>
+      <div className="text-xs text-slate-400 space-y-1">
+        <div>Công đoạn: <span className="text-slate-300">{task.currentStep}</span></div>
+        {task.assignedTo && <div>Thợ: <span className="text-slate-300">{task.assignedTo}</span></div>}
+        <div>Hạn: <span className="text-slate-300">{task.dueDate}</span></div>
+      </div>
+      {task.status === 'pending' && (
+        <div className="mt-3 text-right">
+          <span className="text-xs bg-gold/20 text-gold px-3 py-1 rounded-full border border-gold/30">
+            Nhận việc
+          </span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductionTaskBoard;

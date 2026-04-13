@@ -6,6 +6,7 @@ import ProductionManager from './components/productionmanager';
 import WarehouseManagement from './components/warehousemanagement';
 import FinancialDashboard from './components/financial/financialdashboard';
 import HRManagement from './components/hrmanagement';
+import ProductionTaskBoard from './components/production/ProductionTaskBoard';
 import { ButterflyProtocol } from './components/common/ButterflyProtocol';
 
 // TÚI MÁU DỰ PHÒNG (Mock Data để UI sống mượt mà không bao giờ trắng màn hình)
@@ -58,6 +59,7 @@ export default function App() {
       case 'WH': return <WarehouseManagement currentRole={'MASTER' as any} logAction={() => {}} />;
       case 'FINANCE': return <FinancialDashboard />;
       case 'HR': return <HRManagement currentRole={'MASTER' as any} currentPosition={'CEO' as any} metrics={mockMetrics as any} logAction={() => {}} />;
+      case 'TASKS': return <ProductionTaskBoard />;
       default: return <MasterDashboard metrics={mockMetrics as any} actionLogs={mockActionLogs as any} currentRole={'MASTER' as any} currentPosition={'CEO' as any} />;
     }
   };
