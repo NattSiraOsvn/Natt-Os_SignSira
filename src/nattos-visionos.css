@@ -1,0 +1,197 @@
+/**
+ * nattos-visionos.css — NATT-OS VisionOS Floating Glass
+ * Spec: Kim (Chị Hai) — 2026-03-29
+ * Import SAU styles.css, KHÔNG sửa styles.css cũ
+ * Nguyên tắc: Layer 2 glass + elevation, Layer 1 chỉ thêm shadow/transform
+ */
+
+/* ── DEPTH VARIABLES ─────────────────────────────────── */
+:root {
+  --glass-elevation-1:
+    0 20px 35px -12px rgba(0,0,0,.45),
+    0 0 0 1px rgba(255,255,255,.05) inset,
+    0 0 15px rgba(196,188,255,.18);
+  --glass-elevation-2:
+    0 30px 45px -15px rgba(0,0,0,.52),
+    0 0 0 1px rgba(255,255,255,.08) inset,
+    0 0 22px rgba(196,188,255,.28);
+  --glass-elevation-hover:
+    0 36px 52px -18px rgba(0,0,0,.62),
+    0 0 0 1px rgba(255,255,255,.10) inset,
+    0 0 30px rgba(196,188,255,.40);
+  --glass-transition: all .35s cubic-bezier(.2,.9,.4,1.1);
+}
+
+/* ── L2 PANELS — floating elevation ─────────────────── */
+/* left + right đã có glass backdrop — chỉ thêm shadow + lift */
+.left, .right {
+  transition: var(--glass-transition);
+  box-shadow: var(--glass-elevation-1);
+  position: relative;
+}
+.left:hover, .right:hover {
+  box-shadow: var(--glass-elevation-hover);
+  transform: translateY(-3px);
+}
+
+/* center không có glass (Layer 1 rule) — chỉ thêm shadow nhẹ */
+.center {
+  transition: var(--glass-transition);
+  box-shadow:
+    0 8px 28px -10px rgba(0,0,0,.38),
+    0 0 0 1px rgba(255,255,255,.03) inset;
+  position: relative;
+}
+.center:hover {
+  box-shadow:
+    0 18px 38px -12px rgba(0,0,0,.48),
+    0 0 0 1px rgba(255,255,255,.05) inset;
+  transform: translateY(-2px);
+}
+
+/* Specular highlight — top-left sweep trên panel */
+.left::after, .right::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.09) 0%,
+    rgba(255,255,255,.03) 35%,
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: .6;
+  z-index: 0;
+}
+
+/* ── HEADER — thêm depth ─────────────────────────────── */
+#hdr {
+  box-shadow:
+    0 8px 24px -8px rgba(0,0,0,.55),
+    inset 0 -1px 0 rgba(255,255,255,.05);
+}
+
+/* ── TÍN HIỆU ENTRIES — card float ──────────────────── */
+.ts-entry {
+  transition: var(--glass-transition);
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+.ts-entry:hover {
+  transform: translateY(-2px) translateX(2px);
+  box-shadow: 0 10px 20px -8px rgba(0,0,0,.40),
+    inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+/* ── DÒNG CHẢY NODES — bloom float ──────────────────── */
+.dc-node {
+  transition: var(--glass-transition);
+  box-shadow:
+    0 6px 16px -6px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+.dc-node:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 28px -10px rgba(0,0,0,.45),
+    0 0 16px rgba(127,255,204,.18),
+    inset 0 1px 0 rgba(255,255,255,.09);
+}
+.dc-node.dc-nauion:hover {
+  box-shadow:
+    0 16px 28px -10px rgba(0,0,0,.45),
+    0 0 22px rgba(196,188,255,.32),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+.dc-node.dc-whao-r:hover {
+  box-shadow:
+    0 16px 28px -10px rgba(0,0,0,.45),
+    0 0 18px rgba(255,112,112,.25),
+    inset 0 1px 0 rgba(255,255,255,.09);
+}
+
+/* ── TRẠNG THÁI (pattern cards) — float ─────────────── */
+.pt-card {
+  transition: var(--glass-transition);
+  box-shadow:
+    0 5px 14px -5px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+.pt-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 24px -8px rgba(0,0,0,.40),
+    0 0 14px rgba(196,188,255,.20),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* ── NAUION STATUS BAR — lift từ bottom ─────────────── */
+.nauion-bar {
+  box-shadow:
+    0 -8px 24px -8px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* ── NASIRA LOGO HOVER — extra glow ─────────────────── */
+#hdr-icon:hover .nasira-petals {
+  filter: drop-shadow(0 0 8px rgba(196,188,255,.75)) !important;
+}
+
+/* ── PANEL HEADERS — subtle float line ──────────────── */
+.ph {
+  box-shadow: 0 2px 8px -4px rgba(0,0,0,.40);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── INTEL SUMMARY CHIPS — micro float ──────────────── */
+.isumm-chip {
+  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 2px 6px -2px rgba(0,0,0,.25);
+}
+.isumm-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px -3px rgba(0,0,0,.30);
+}
+
+/* ── NaSira mini icons trong panel headers ───────────── */
+.ph .nasira-wrap {
+  transition: transform .25s ease;
+}
+.ph .nasira-wrap:hover {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* ── SCROLLBAR nâng cấp ──────────────────────────────── */
+#audit-list::-webkit-scrollbar,
+#flow-view::-webkit-scrollbar,
+#intelligence::-webkit-scrollbar { width: 3px; }
+#audit-list::-webkit-scrollbar-track,
+#flow-view::-webkit-scrollbar-track,
+#intelligence::-webkit-scrollbar-track {
+  background: rgba(255,255,255,.02);
+}
+#audit-list::-webkit-scrollbar-thumb,
+#flow-view::-webkit-scrollbar-thumb,
+#intelligence::-webkit-scrollbar-thumb {
+  background: rgba(196,188,255,.22);
+  border-radius: 2px;
+}
+#audit-list::-webkit-scrollbar-thumb:hover,
+#flow-view::-webkit-scrollbar-thumb:hover,
+#intelligence::-webkit-scrollbar-thumb:hover {
+  background: rgba(196,188,255,.42);
+}
+
+/* ── REDUCED MOTION SAFETY ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .left, .right, .center,
+  .ts-entry, .dc-node, .pt-card,
+  .isumm-chip, .ph .nasira-wrap {
+    transition: none !important;
+    transform: none !important;
+  }
+}
