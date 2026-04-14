@@ -246,7 +246,7 @@
             async load(file) {
                 this.currentFile = file;
                 try {
-                    const res = await fetch(`../../../database/ctytam/khoivanhanh/soluong/${file}`);
+                    const res = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`../../../database/ctytam/khoivanhanh/soluong/${file}`);
                     const text = await res.text();
                     this.parseCSV(text);
                 } catch(e) { this.loadMock(file); }
@@ -339,5 +339,6 @@
         };
         document.addEventListener('DOMContentLoaded', () => { AppController.init(); });
     </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

@@ -558,7 +558,7 @@
                     return;
                 }
                 try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`, {
+                    const res = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`, {
                         method: 'POST', headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } })
                     });
@@ -704,8 +704,8 @@
         class ButterflyProtocol {
             static trigger(e, eventType, level='L2') {
                 if(e) e.stopPropagation();
-                NattOS.EventBus.emit('HEYNA',{intensity:level==='L3'?1.0:0.8});
-                NattOS.EventBus.emit(`butterfly.${level}`,{butterfly_id:CryptoUtils.uuid(), origin_cell:'ui', level});
+                NattOS./* [EB→HEYNA] */ EventBus.emit('HEYNA',{intensity:level==='L3'?1.0:0.8});
+                NattOS./* [EB→HEYNA] */ EventBus.emit(`butterfly.${level}`,{butterfly_id:CryptoUtils.uuid(), origin_cell:'ui', level});
                 NattOS.ISEU.reinforce(eventType,'success',1.2);
                 const x=e?(e.touches?e.touches[0].clientX:e.clientX):window.innerWidth/2;
                 const y=e?(e.touches?e.touches[0].clientY:e.clientY):window.innerHeight/2;
@@ -796,14 +796,14 @@
                 NattOS.UIContext = new ContextualUIEngine(NattOS.EventBus);
                 NattOS.ISEU = new ISEUEngine(NattOS.EventBus);
                 NattOS.AiConnector = new AiConnectorCell(NattOS.EventBus);
-                NattOS.EventBus.on('ai.response', (env) => {
+                NattOS./* [EB→HEYNA] */ EventBus.on('ai.response', (env) => {
                     const {type,text,success}=env.payload;
                     if(type==='diagnostic'){ const resDiv=document.getElementById('ai-diagnostic-result'); resDiv.innerHTML=`<span class="${success?'text-[#8FFFD4]':'text-red-400'} font-bold">[${success?'Whau':'GAY'}]</span> ${text}`; resDiv.classList.remove('hidden'); }
                     else UIBuilder.appendChatMessage('AI',text);
                 });
-                NattOS.EventBus.on('system.impedance',(env)=>{ document.getElementById('metric-z').innerText=env.payload.toFixed(3); document.getElementById('bar-z').style.width=`${Math.min(100,(env.payload/2)*100)}%`; });
-                NattOS.EventBus.on('ui.focus',(env)=>{ document.getElementById('metric-att').innerText=env.payload.toFixed(2); document.getElementById('bar-att').style.width=`${env.payload*100}%`; });
-                NattOS.EventBus.on('system.resonance',(env)=>{ document.getElementById('metric-res').innerText=env.payload.toFixed(2); document.getElementById('bar-res').style.width=`${env.payload*100}%`; });
+                NattOS./* [EB→HEYNA] */ EventBus.on('system.impedance',(env)=>{ document.getElementById('metric-z').innerText=env.payload.toFixed(3); document.getElementById('bar-z').style.width=`${Math.min(100,(env.payload/2)*100)}%`; });
+                NattOS./* [EB→HEYNA] */ EventBus.on('ui.focus',(env)=>{ document.getElementById('metric-att').innerText=env.payload.toFixed(2); document.getElementById('bar-att').style.width=`${env.payload*100}%`; });
+                NattOS./* [EB→HEYNA] */ EventBus.on('system.resonance',(env)=>{ document.getElementById('metric-res').innerText=env.payload.toFixed(2); document.getElementById('bar-res').style.width=`${env.payload*100}%`; });
                 const updateMouse=(x,y)=>{ document.documentElement.style.setProperty('--mouse-x',`${(x/window.innerWidth)*100}%`); document.documentElement.style.setProperty('--mouse-y',`${(y/window.innerHeight)*100}%`); document.querySelectorAll('.medal-container').forEach(medal=>{ const rect=medal.getBoundingClientRect(); const angle=Math.atan2(y-(rect.top+rect.height/2),x-(rect.left+rect.width/2))*(180/Math.PI); medal.style.setProperty('--light-angle',`${angle+90}deg`); }); };
                 document.addEventListener('mousemove',e=>updateMouse(e.clientX,e.clientY));
                 document.addEventListener('touchmove',e=>{ if(e.touches.length>0) updateMouse(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
@@ -830,7 +830,7 @@
                     if(SiraSignProtocol.verify(payload)){
                         sessionStorage.setItem('nattos_role','CFO'); sessionStorage.setItem('nattos_id',id);
                         errorEl.classList.add('hidden'); AppController.checkSession();
-                        NattOS.EventBus.emit('audit.record',{action:'LOGIN',user:id,lsp:payload.lsp_hash});
+                        NattOS./* [EB→HEYNA] */ EventBus.emit('audit.record',{action:'LOGIN',user:id,lsp:payload.lsp_hash});
                     }
                 } else { errorEl.classList.remove('hidden'); ButterflyProtocol.trigger(null,'security.failed','L3'); }
             },
@@ -839,20 +839,21 @@
                 const statusText=document.getElementById('heyna-status'), pulseRing=document.getElementById('heyna-pulse-ring');
                 try{
                     const sse=new EventSource('http://localhost:3001/mach/heyna');
-                    sse.onopen=()=>{ statusText.innerText='ONLINE (LIVE)'; statusText.className='text-[10px] md:text-xs font-black tracking-widest text-glow-mint truncate'; pulseRing.classList.add('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]'); UIBuilder.appendLog('🟢 Mạch HeyNa SSE đã kết nối.'); NattOS.EventBus.emit('HEYNA',{intensity:1.0}); NattOS.RenderEngine.startLoop(); };
-                    sse.onmessage=(e)=>{ const data=JSON.parse(e.data); NattOS.EventBus.emit('HEYNA',{intensity:0.5}); if(data.impedanceZ!==undefined) NattOS.EventBus.emit('system.impedance',data.impedanceZ); UIBuilder.appendLog(`[SSE] ${data.event||'DATA_SYNC'} : ${JSON.stringify(data.payload||'')}`); };
-                    sse.onerror=()=>{ statusText.innerText='DISCONNECTED'; statusText.className='text-[10px] md:text-xs font-black tracking-widest text-red-400 truncate'; pulseRing.classList.remove('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]'); sse.close(); NattOS.EventBus.emit('system.impedance',2.0); setTimeout(AppController.initMachHeyna,3000); };
+                    sse.onopen=()=>{ statusText.innerText='ONLINE (LIVE)'; statusText.className='text-[10px] md:text-xs font-black tracking-widest text-glow-mint truncate'; pulseRing.classList.add('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]'); UIBuilder.appendLog('🟢 Mạch HeyNa SSE đã kết nối.'); NattOS./* [EB→HEYNA] */ EventBus.emit('HEYNA',{intensity:1.0}); NattOS.RenderEngine.startLoop(); };
+                    sse.onmessage=(e)=>{ const data=JSON.parse(e.data); NattOS./* [EB→HEYNA] */ EventBus.emit('HEYNA',{intensity:0.5}); if(data.impedanceZ!==undefined) NattOS./* [EB→HEYNA] */ EventBus.emit('system.impedance',data.impedanceZ); UIBuilder.appendLog(`[SSE] ${data.event||'DATA_SYNC'} : ${JSON.stringify(data.payload||'')}`); };
+                    sse.onerror=()=>{ statusText.innerText='DISCONNECTED'; statusText.className='text-[10px] md:text-xs font-black tracking-widest text-red-400 truncate'; pulseRing.classList.remove('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]'); sse.close(); NattOS./* [EB→HEYNA] */ EventBus.emit('system.impedance',2.0); setTimeout(AppController.initMachHeyna,3000); };
                 } catch(err){ console.error('SSE Error',err); }
             },
             toggleSidebar: () => { document.getElementById('sidebar-metrics').classList.toggle('hidden'); },
             triggerOmegaLockdown: () => { ButterflyProtocol.trigger(null,'OMEGA_LOCKDOWN','L3'); document.body.style.filter='sepia(1) hue-rotate(-50deg) saturate(300%)'; UIBuilder.appendLog('☢️ Lệnh OMEGA_LOCKDOWN đã được phát đi!'); },
-            triggerDiagnostics: () => { const resDiv=document.getElementById('ai-diagnostic-result'); resDiv.classList.remove('hidden'); resDiv.innerHTML=`<span class="text-[#C8C0FF] animate-pulse font-bold">[Whao] Đang thỉnh cầu Lõi Lượng Tử...</span>`; NattOS.EventBus.emit('ai.query',{type:'diagnostic',content:{Z:NattOS.RenderEngine.state.z.toFixed(2),Resonance:NattOS.RenderEngine.state.res.toFixed(2),Attention:NattOS.RenderEngine.state.att.toFixed(2)}}); ButterflyProtocol.trigger(null,'ai.diagnostic.started','L1'); },
-            sendChatMessage: () => { const input=document.getElementById('chat-input'); const msg=input.value.trim(); if(!msg) return; UIBuilder.appendChatMessage('GATEKEEPER',msg); input.value=''; UIBuilder.appendChatMessage('AI','<span class="animate-pulse text-[#C8C0FF] font-bold">Whao...</span>',true); NattOS.EventBus.emit('ai.query',{type:'chat',content:msg}); ButterflyProtocol.trigger(null,'ai.chat.sent','L1'); },
+            triggerDiagnostics: () => { const resDiv=document.getElementById('ai-diagnostic-result'); resDiv.classList.remove('hidden'); resDiv.innerHTML=`<span class="text-[#C8C0FF] animate-pulse font-bold">[Whao] Đang thỉnh cầu Lõi Lượng Tử...</span>`; NattOS./* [EB→HEYNA] */ EventBus.emit('ai.query',{type:'diagnostic',content:{Z:NattOS.RenderEngine.state.z.toFixed(2),Resonance:NattOS.RenderEngine.state.res.toFixed(2),Attention:NattOS.RenderEngine.state.att.toFixed(2)}}); ButterflyProtocol.trigger(null,'ai.diagnostic.started','L1'); },
+            sendChatMessage: () => { const input=document.getElementById('chat-input'); const msg=input.value.trim(); if(!msg) return; UIBuilder.appendChatMessage('GATEKEEPER',msg); input.value=''; UIBuilder.appendChatMessage('AI','<span class="animate-pulse text-[#C8C0FF] font-bold">Whao...</span>',true); NattOS./* [EB→HEYNA] */ EventBus.emit('ai.query',{type:'chat',content:msg}); ButterflyProtocol.trigger(null,'ai.chat.sent','L1'); },
             openNeuralTerminal: () => { document.getElementById('modal-neural').classList.add('active'); },
             openChatUplink: () => { document.getElementById('modal-chat').classList.add('active'); },
             closeModals: () => { document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('active')); }
         };
         document.addEventListener('DOMContentLoaded',AppController.init);
     </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

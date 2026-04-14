@@ -398,7 +398,7 @@ for(let i=0;i<30;i++){const s=document.createElement('span');s.textContent='TÂM
 // Load giá vàng
 async function loadGold() {
   try {
-    const d = await fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
+    const d = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
     const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '—';
     document.getElementById('hdr-gold').textContent = `9999: ${fmt(d.gold9999)} · 18K: ${fmt(d.gold18k)}`;
     const items = [
@@ -491,5 +491,6 @@ async function loadGold() {
 
 loadGold();
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

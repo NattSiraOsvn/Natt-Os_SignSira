@@ -270,7 +270,7 @@
                     if(newStatus === 'done') task.progress = 100;
                     this.renderKanban();
                     // EMIT EVENT production.task.update
-                    EventBus.emit('production.task.update', { taskId, newStatus, progress: task.progress }, 'drag-drop');
+                    /* [EB→HEYNA] */ EventBus.emit('production.task.update', { taskId, newStatus, progress: task.progress }, 'drag-drop');
                     // ISEU reinforce
                     NattOS.ISEU.reinforce('production.task.update', 'success', 1.0);
                     // Butterfly L2
@@ -293,7 +293,7 @@
             };
             this.tasks.push(newTask);
             this.renderKanban();
-            EventBus.emit('production.task.create', { taskId: newTask.id, name, assignee, duration }, 'ui-form');
+            /* [EB→HEYNA] */ EventBus.emit('production.task.create', { taskId: newTask.id, name, assignee, duration }, 'ui-form');
             NattOS.ISEU.reinforce('production.task.create', 'success', 1.2);
             ButterflyProtocol.trigger(null, 'production.task.create', 'L1');
             document.getElementById('task-name').value = '';
@@ -304,7 +304,7 @@
             setInterval(() => {
                 const stuckTasks = this.tasks.filter(t => t.status === 'progress' && (Date.now() - t.createdAt) > 30000 && t.progress < 50);
                 stuckTasks.forEach(task => {
-                    EventBus.emit('production.anomaly', { taskId: task.id, reason: 'Kẹt tiến độ', progress: task.progress });
+                    /* [EB→HEYNA] */ EventBus.emit('production.anomaly', { taskId: task.id, reason: 'Kẹt tiến độ', progress: task.progress });
                     ButterflyProtocol.trigger(null, 'production.anomaly', 'L2');
                 });
             }, 10000);
@@ -351,7 +351,7 @@
             statusEl.innerText = 'ONLINE (LIVE)';
             setInterval(()=>{
                 const z = (Math.random() * 0.5 + 0.8).toFixed(2);
-                EventBus.emit('system.impedance', parseFloat(z));
+                /* [EB→HEYNA] */ EventBus.emit('system.impedance', parseFloat(z));
             }, 3000);
         },
         showTab(tab) {
@@ -368,12 +368,13 @@
         openChatUplink() { document.getElementById('modal-chat').classList.add('active'); },
         openNeuralTerminal() { document.getElementById('modal-neural').classList.add('active'); },
         closeModals() { document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('active')); },
-        sendChatMessage() { const input=document.getElementById('chat-input'); const msg=input.value.trim(); if(msg){ input.value=''; document.getElementById('chat-messages').innerHTML+=`<div class="flex justify-end"><div class="glass-panel p-2 rounded-xl text-xs">${msg}</div></div>`; EventBus.emit('ai.query',{content:msg}); } }
+        sendChatMessage() { const input=document.getElementById('chat-input'); const msg=input.value.trim(); if(msg){ input.value=''; document.getElementById('chat-messages').innerHTML+=`<div class="flex justify-end"><div class="glass-panel p-2 rounded-xl text-xs">${msg}</div></div>`; /* [EB→HEYNA] */ EventBus.emit('ai.query',{content:msg}); } }
     };
     // Chạy
     document.addEventListener('DOMContentLoaded', () => {
         if(sessionStorage.getItem('nattos_role')) AppController.handleLogin();
     });
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

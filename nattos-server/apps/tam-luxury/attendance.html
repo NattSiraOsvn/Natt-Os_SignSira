@@ -153,7 +153,7 @@
   // --- Đường dẫn tới CSV (tương đối từ file HTML) ---
   const CSV_BASE = '/database/ctytam/khoivanhanh/soluong/';
   async function fetchCSV(filename) {
-    const res = await fetch(CSV_BASE + filename);
+    const res = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(CSV_BASE + filename);
     const text = await res.text();
     const lines = text.trim().split('\n').filter(l=>l.trim());
     const headers = lines[0].split(',').map(h=>h.trim());
@@ -416,5 +416,6 @@
   // Khởi động network
   detectNetwork();
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

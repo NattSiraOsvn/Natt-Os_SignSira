@@ -522,7 +522,7 @@ let filtered = [];
 async function loadEmployees() {
   try {
     // Try local server first
-    const resp = await fetch('http://localhost:3001/api/health', { signal: AbortSignal.timeout(1000) });
+    const resp = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch('http://localhost:3001/api/health', { signal: AbortSignal.timeout(1000) });
     if (resp.ok) {
       document.getElementById('ticker-text').innerHTML = 'Server <span>LIVE</span> — 3001';
     }
@@ -659,7 +659,7 @@ function renderApp(emp) {
 
 async function updateTicker(group) {
   try {
-    const resp = await fetch('http://localhost:3001/api/health', { signal: AbortSignal.timeout(2000) });
+    const resp = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch('http://localhost:3001/api/health', { signal: AbortSignal.timeout(2000) });
     if (resp.ok) {
       const d = await resp.json();
       document.getElementById('ticker-text').innerHTML =
@@ -696,5 +696,6 @@ loadEmployees();
 </script>
   <script src="nattos-sandbox.js"></script>
 <script src="nattos-galaxy.js"></script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

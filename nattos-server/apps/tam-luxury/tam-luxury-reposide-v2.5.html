@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tâm Luxury · SPEC v2.5 Audit Monitor</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#06070a;--s1:rgba(14,16,22,.75);--s2:rgba(20,24,32,.6);--s3:rgba(28,32,42,.45);
+  --gold:#c8922a;--gold2:#e8b84b;--gg:rgba(200,146,42,.06);--gb:rgba(200,146,42,.10);--gb2:rgba(200,146,42,.22);
+  --wg:rgba(255,255,255,.06);--wg2:rgba(255,255,255,.03);
+  --tx:#ede0c8;--tx2:#a89070;--tx3:#60503a;
+  --grn:#3dd68c;--red:#f05050;--amb:#f0a030;--blu:#7db8e0;
+  --mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif;
+  --r:10px;--rl:14px;
+  --blur:saturate(1.2) blur(20px);--blur-s:saturate(1.1) blur(12px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:13px;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 18% 12%,rgba(200,146,42,.04),transparent 55%),radial-gradient(ellipse at 85% 85%,rgba(200,146,42,.02),transparent 50%);pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(200,146,42,.15);border-radius:2px}
+.gl{background:var(--s1);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--wg);box-shadow:0 1px 0 0 var(--wg2) inset,0 8px 32px rgba(0,0,0,.3)}
+.gs{background:var(--s2);backdrop-filter:var(--blur-s);-webkit-backdrop-filter:var(--blur-s);border:1px solid var(--wg);box-shadow:0 1px 0 0 var(--wg2) inset}
+header{padding:14px 24px;border-bottom:1px solid var(--wg);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;z-index:10}
+.logo{font-family:var(--mono);font-size:13px;font-weight:700;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.1em}
+.sub{font-size:9px;color:var(--tx3);letter-spacing:.2em;text-transform:uppercase;margin-top:1px}
+.hstats{display:flex;gap:16px;align-items:center}
+.hs{text-align:center;padding:0 10px}
+.hs-v{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1}
+.hs-l{font-size:7px;color:var(--tx3);letter-spacing:.15em;text-transform:uppercase;margin-top:2px}
+.sep{width:1px;height:28px;background:var(--gb)}
+.ring-wrap{position:relative;width:38px;height:38px}
+.ring{transform:rotate(-90deg)}.ring circle{transition:stroke-dashoffset .6s ease}
+.ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;font-weight:700;color:var(--gold2)}
+.abtn{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:6px;border:1px solid var(--gb);background:transparent;color:var(--tx3);cursor:pointer;transition:all .2s}
+.abtn:hover{border-color:var(--gb2);color:var(--gold2)}
+.tabbar{padding:8px 24px;border-bottom:1px solid var(--wg);display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap}
+.tab{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--tx3);cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--tx2)}.tab.on{background:var(--gg);border-color:rgba(200,146,42,.18);color:var(--gold2)}
+.search{margin-left:auto;font-family:var(--mono);font-size:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--wg);background:rgba(0,0,0,.3);color:var(--tx);outline:none;width:200px}
+.search:focus{border-color:var(--gold)}
+.grid{flex:1;overflow-y:auto;padding:16px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;align-content:start}
+.fc{border-radius:var(--rl);padding:16px;position:relative;overflow:hidden;transition:all .25s}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.fc:hover::before{opacity:1}.fc:hover{border-color:rgba(200,146,42,.2)}
+.fc.done{border-color:rgba(61,214,140,.25)!important}.fc.done::before{background:linear-gradient(90deg,transparent,var(--grn),transparent);opacity:1}
+.fc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.fc-name{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--gold2);word-break:break-all}
+.fc-grp{font-size:8px;color:var(--tx3);letter-spacing:.15em;text-transform:uppercase;margin-top:2px}
+.fc-score{font-family:var(--mono);font-size:16px;font-weight:700;text-align:right}
+.fc-cell{font-size:9px;color:var(--tx3);margin-bottom:8px;padding:3px 8px;border-radius:4px;display:inline-block;border:1px solid var(--wg)}
+.spec-row{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:10px;color:var(--tx2)}
+.spec-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--gb);background:transparent;cursor:pointer;transition:all .15s;flex-shrink:0}
+.spec-dot.on{background:var(--gold);border-color:var(--gold);box-shadow:0 0 6px rgba(200,146,42,.4)}
+.spec-dot:hover{transform:scale(1.3)}
+.spec-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.06em}
+.hy-row{display:flex;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--wg)}
+.hy-tag{font-family:var(--mono);font-size:8px;padding:2px 6px;border-radius:3px}
+.hy-bad{background:rgba(240,80,80,.08);color:var(--red);border:1px solid rgba(240,80,80,.12)}
+.hy-warn{background:rgba(240,160,48,.08);color:var(--amb);border:1px solid rgba(240,160,48,.12)}
+.hy-ok{background:rgba(61,214,140,.08);color:var(--grn);border:1px solid rgba(61,214,140,.12)}
+.hy-none{background:rgba(100,100,100,.06);color:#555;border:1px solid rgba(100,100,100,.1)}
+.act{font-family:var(--mono);font-size:8px;font-weight:700;padding:2px 7px;border-radius:3px;position:absolute;top:12px;right:12px}
+.act-fix{background:rgba(240,160,48,.1);color:var(--amb);border:1px solid rgba(240,160,48,.15)}
+.act-del{background:rgba(240,80,80,.1);color:var(--red);border:1px solid rgba(240,80,80,.15)}
+.act-keep{background:rgba(61,214,140,.1);color:var(--grn);border:1px solid rgba(61,214,140,.15)}
+.act-merge{background:var(--gg);color:var(--gold2);border:1px solid var(--gb)}
+.aw{display:flex;align-items:center;gap:6px}
+.aw-lbl{font-size:9px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em}
+.aw-tog{position:relative;width:34px;height:17px;border-radius:17px;background:#1e2430;cursor:pointer;transition:all .3s}
+.aw-tog.on{background:var(--grn);box-shadow:0 0 8px rgba(61,214,140,.4)}
+.aw-knob{position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:transform .3s}
+.aw-tog.on .aw-knob{transform:translateX(17px)}
+</style>
+</head>
+<body>
+<header class="gl">
+  <div><div class="logo">SPEC v2.5 AUDIT MONITOR</div><div class="sub">43 files · 71 screens · 8 SPEC checks · Mạch HeyNa · Cell mapping</div></div>
+  <div class="hstats">
+    <div class="hs"><div class="hs-v" style="color:var(--grn)" id="s-done">0</div><div class="hs-l">Đạt SPEC</div></div>
+    <div class="hs"><div class="hs-v" style="color:var(--amb)" id="s-part">0</div><div class="hs-l">Đang Fix</div></div>
+    <div class="hs"><div class="hs-v" style="color:var(--red)" id="s-vio">0</div><div class="hs-l">Vi Phạm</div></div>
+    <div class="hs"><div class="hs-v" style="color:#666" id="s-del">0</div><div class="hs-l">Xóa/Gộp</div></div>
+    <div class="sep"></div>
+    <div class="ring-wrap"><svg class="ring" width="38" height="38" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#1e2430" stroke-width="2.5"/><circle id="ring-c" cx="18" cy="18" r="15" fill="none" stroke="#c8922a" stroke-width="2.5" stroke-dasharray="94.25" stroke-dashoffset="94.25" stroke-linecap="round"/></svg><div class="ring-pct" id="ring-p">0%</div></div>
+    <div class="aw"><span class="aw-lbl">Auto</span><div id="aw" class="aw-tog" onclick="togAuto()"><div class="aw-knob"></div></div></div>
+    <button class="abtn" onclick="doExport()">Export</button>
+  </div>
+</header>
+<div class="tabbar gs"><div id="tabs"></div><input class="search" placeholder="Search..." oninput="SQ=this.value;draw()"></div>
+<div class="grid" id="grid"></div>
+<script>
+(function(){
+var SPECS=[
+  {id:'heyna',label:'Mạch HeyNa (no fetch/EB)'},{id:'render',label:'RenderControlEngine'},
+  {id:'uimode',label:'UIMode Hook (8 states)'},{id:'butter',label:'Butterfly Propagation'},
+  {id:'audit',label:'Audit Trail (event_id)'},{id:'medal',label:'Medal 9 Lớp'},
+  {id:'glass',label:'Liquid Glass'},{id:'nodup',label:'Core ref (no duplicate)'}
+];
+var CELL_MAP={'Sản xuất & Kho':'warehouse-cell','Nhân sự & HC':'hr-cell','Tài chính – KT':'finance-cell','Kinh doanh':'sales-cell','Kiểm soát':'audit-cell','Tiện ích':'platform','Shell':'—','Legacy':'—','Asset':'—'};
+var FILES=[
+  {f:'production-wallboard.html',grp:'Sản xuất & Kho',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[4]},
+  {f:'production-wallboard-.html',grp:'Sản xuất & Kho',fe:0,eb:2,ss:5,ls:0,act:'FIX',sc:[4]},
+  {f:'production-task-board.html',grp:'Sản xuất & Kho',fe:1,eb:6,ss:10,ls:0,act:'FIX',sc:[1]},
+  {f:'wip-tracker.html',grp:'Sản xuất & Kho',fe:0,eb:2,ss:7,ls:0,act:'FIX',sc:[2]},
+  {f:'warehouse-ops.html',grp:'Sản xuất & Kho',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[3]},
+  {f:'warehouse-full.html',grp:'Sản xuất & Kho',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[11]},
+  {f:'loss-thresholds.html',grp:'Sản xuất & Kho',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[12]},
+  {f:'pricing-engine.html',grp:'Sản xuất & Kho',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[14]},
+  {f:'nattos-production.html',grp:'Sản xuất & Kho',fe:0,eb:8,ss:5,ls:0,act:'FIX',sc:[1,2,4]},
+  {f:'hr-admin.html',grp:'Nhân sự & HC',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[16]},
+  {f:'hr-manager.html',grp:'Nhân sự & HC',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[17]},
+  {f:'hr-dashboard.html',grp:'Nhân sự & HC',fe:1,eb:3,ss:6,ls:0,act:'FIX',sc:[27]},
+  {f:'attendance.html',grp:'Nhân sự & HC',fe:1,eb:3,ss:3,ls:0,act:'FIX',sc:[19,21]},
+  {f:'personal-profile-v2.html',grp:'Nhân sự & HC',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[23]},
+  {f:'personal-profile.html',grp:'Nhân sự & HC',fe:0,eb:0,ss:0,ls:0,act:'MERGE',sc:[23]},
+  {f:'cfo-dashboard.html',grp:'Tài chính – KT',fe:2,eb:0,ss:3,ls:0,act:'FIX',sc:[35]},
+  {f:'ktt-approval.html',grp:'Tài chính – KT',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[31]},
+  {f:'showroom-sales.html',grp:'Kinh doanh',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[41,42]},
+  {f:'order-flow.html',grp:'Kinh doanh',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[41]},
+  {f:'nattos-audit.html',grp:'Kiểm soát',fe:0,eb:18,ss:2,ls:0,act:'FIX',sc:[49,51]},
+  {f:'surveillance.html',grp:'Kiểm soát',fe:1,eb:0,ss:0,ls:0,act:'FIX',sc:[54]},
+  {f:'app-psychology.html',grp:'Tiện ích',fe:0,eb:17,ss:22,ls:0,act:'FIX',sc:[64]},
+  {f:'daily-work-app.html',grp:'Tiện ích',fe:2,eb:0,ss:0,ls:0,act:'FIX',sc:[64,65]},
+  {f:'chat-rooms.html',grp:'Tiện ích',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[66]},
+  {f:'master-dashboard.html',grp:'Tiện ích',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[64]},
+  {f:'operations-terminal.html',grp:'Tiện ích',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[70]},
+  {f:'kris-email-hub.html',grp:'Tiện ích',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[66]},
+  {f:'index.html',grp:'Shell',fe:1,eb:21,ss:19,ls:0,act:'FIX',sc:[]},
+  {f:'index-1.html',grp:'Shell',fe:3,eb:0,ss:4,ls:0,act:'FIX',sc:[]},
+  {f:'tamluxury-v4.html',grp:'Shell',fe:0,eb:0,ss:0,ls:0,act:'KEEP',sc:[]},
+  {f:'index2.html',grp:'Legacy',fe:1,eb:0,ss:1,ls:0,act:'MERGE',sc:[]},
+  {f:'index3.html',grp:'Legacy',fe:1,eb:0,ss:1,ls:0,act:'MERGE',sc:[]},
+  {f:'index4.html',grp:'Legacy',fe:1,eb:0,ss:1,ls:0,act:'MERGE',sc:[]},
+  {f:'indexa.html',grp:'Legacy',fe:0,eb:0,ss:0,ls:0,act:'DEL',sc:[]},
+  {f:'indexb.html',grp:'Legacy',fe:0,eb:0,ss:0,ls:0,act:'DEL',sc:[]},
+  {f:'indexc.html',grp:'Legacy',fe:0,eb:0,ss:0,ls:0,act:'DEL',sc:[]},
+  {f:'indexf.html',grp:'Legacy',fe:0,eb:0,ss:0,ls:0,act:'DEL',sc:[]},
+  {f:'tamluxury-v2.html',grp:'Legacy',fe:0,eb:0,ss:0,ls:0,act:'DEL',sc:[]},
+  {f:'tamluxury-v3.html',grp:'Legacy',fe:0,eb:0,ss:0,ls:0,act:'DEL',sc:[]},
+  {f:'nattos-data.js',grp:'Asset',fe:1,eb:0,ss:0,ls:1,act:'FIX',sc:[]},
+  {f:'nattos-eod-engine.js',grp:'Asset',fe:0,eb:0,ss:1,ls:1,act:'FIX',sc:[]},
+  {f:'nattos-galaxy.css',grp:'Asset',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[]},
+  {f:'nattos-ui-theme.css',grp:'Asset',fe:0,eb:0,ss:0,ls:0,act:'FIX',sc:[]},
+];
+var SK='nattos_spec_v25_v3_1',st=JSON.parse(localStorage.getItem(SK)||'{}');
+var AT='all';window.SQ='';var awI=null,awOn=false;
+function sv(){localStorage.setItem(SK,JSON.stringify(st));}
+function gs(f){if(!st[f])st[f]={};return st[f];}
+function gsc(f){var s=gs(f),n=0;SPECS.forEach(function(sp){if(s[sp.id])n++;});return n;}
+function isFull(f){return gsc(f)===SPECS.length;}
+window.togSpec=function(f,id){var s=gs(f);s[id]=!s[id];sv();draw();};
+function stats(){var d=0,p=0,v=0,x=0;FILES.forEach(function(file){if(file.act==='DEL'||file.act==='MERGE'){x++;return;}var sc=gsc(file.f),hv=file.fe>0||file.eb>0;if(sc===SPECS.length)d++;else if(hv)v++;else p++;});return{done:d,part:p,vio:v,del:x,total:FILES.length};}
+function updH(){var s=stats();document.getElementById('s-done').textContent=s.done;document.getElementById('s-part').textContent=s.part;document.getElementById('s-vio').textContent=s.vio;document.getElementById('s-del').textContent=s.del;var act=FILES.filter(function(f){return f.act!=='DEL'&&f.act!=='MERGE';}).length;var pct=act>0?Math.round((s.done/act)*100):0;document.getElementById('ring-p').textContent=pct+'%';document.getElementById('ring-c').setAttribute('stroke-dashoffset',94.25-(94.25*pct/100));}
+window.draw=function(){
+  var tb=document.getElementById('tabs'),grps=['all'];FILES.forEach(function(f){if(grps.indexOf(f.grp)<0)grps.push(f.grp);});
+  tb.innerHTML=grps.map(function(g){return'<button class="tab '+(AT===g?'on':'')+'" onclick="AT=\''+g+'\';draw()">'+(g==='all'?'All':g)+'</button>';}).join('');
+  var grid=document.getElementById('grid'),q=(window.SQ||'').toLowerCase();
+  var filt=FILES.filter(function(f){if(AT!=='all'&&f.grp!==AT)return false;if(q)return f.f.toLowerCase().indexOf(q)>=0||f.grp.toLowerCase().indexOf(q)>=0;return true;});
+  grid.innerHTML=filt.map(function(file){
+    var sc=gsc(file.f),full=sc===SPECS.length,hv=file.fe>0||file.eb>0;
+    var cell=CELL_MAP[file.grp]||'—';
+    var ac=file.act==='FIX'?'act-fix':file.act==='DEL'?'act-del':file.act==='KEEP'?'act-keep':'act-merge';
+    var scol=full?'var(--grn)':sc>0?'var(--gold2)':hv?'var(--red)':'var(--tx3)';
+    var h='<div class="fc gs '+(full?'done':'')+'"><span class="act '+ac+'">'+file.act+'</span>';
+    h+='<div class="fc-hdr"><div><div class="fc-name">'+file.f+'</div><div class="fc-grp">'+file.grp+'</div></div><div class="fc-score" style="color:'+scol+'">'+sc+'/'+SPECS.length+'</div></div>';
+    if(cell!=='—')h+='<div class="fc-cell">Cell: '+cell+'</div>';
+    if(file.sc.length)h+='<div style="font-size:8px;color:var(--tx3);margin-bottom:6px">Screens: '+file.sc.map(function(s){return'#'+s;}).join(' ')+'</div>';
+    SPECS.forEach(function(sp){var on=gs(file.f)[sp.id];h+='<div class="spec-row"><div class="spec-dot '+(on?'on':'')+'" onclick="togSpec(\''+file.f+'\',\''+sp.id+'\')"></div><span class="spec-lbl">'+sp.label+'</span></div>';});
+    h+='<div class="hy-row">';
+    h+='<span class="hy-tag '+(file.fe>0?'hy-bad':'hy-none')+'">fetch:'+file.fe+'</span>';
+    h+='<span class="hy-tag '+(file.eb>0?'hy-warn':'hy-none')+'">EB:'+file.eb+'</span>';
+    h+='<span class="hy-tag '+(file.ss>0?'hy-ok':'hy-none')+'">SSE:'+file.ss+'</span>';
+    if(file.ls>0)h+='<span class="hy-tag hy-bad">lStore:'+file.ls+'</span>';
+    h+='</div></div>';return h;
+  }).join('');
+  updH();
+};
+window.togAuto=function(){var el=document.getElementById('aw');if(awOn){clearInterval(awI);awI=null;el.classList.remove('on');}else{el.classList.add('on');startA();}awOn=!awOn;};
+function startA(){if(awI)clearInterval(awI);awI=setInterval(function(){var pend=[];FILES.forEach(function(file){if(file.act==='DEL'||file.act==='MERGE')return;var s=gs(file.f);SPECS.forEach(function(sp){if(!s[sp.id])pend.push({f:file.f,sp:sp.id});});});if(!pend.length){togAuto();return;}var pick=pend[Math.floor(Math.random()*pend.length)];gs(pick.f)[pick.sp]=true;sv();draw();},1800);}
+window.doExport=function(){var s=stats();var r={date:new Date().toISOString(),version:'SPEC v2.5 Audit v3.1',stats:s,files:FILES.map(function(f){return{file:f.f,group:f.grp,action:f.act,cell:CELL_MAP[f.grp]||'—',screens:f.sc,heyna:{fetch:f.fe,eventbus:f.eb,sse:f.ss,localStorage:f.ls},spec:SPECS.reduce(function(o,sp){o[sp.id]=gs(f.f)[sp.id]||false;return o;},{}),score:gsc(f.f),done:isFull(f.f)};})};var b=new Blob([JSON.stringify(r,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='spec-v25-audit-'+Date.now()+'.json';a.click();};
+draw();
+})();
+</script>
+</body>
+</html>

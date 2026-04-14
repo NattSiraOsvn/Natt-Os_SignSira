@@ -528,7 +528,7 @@ function toast(msg, type='info') {
 
 // ui.action
 function uiAction(type, payload) {
-  fetch(`${S}/phat/nauion`,{method:'POST',headers:{'Content-Type':'application/json'},
+  /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/phat/nauion`,{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({type:'ui.action',payload:{actionType:type,...payload},ts:Date.now()})
   }).catch(()=>{});
 }
@@ -536,7 +536,7 @@ function uiAction(type, payload) {
 // Load gold
 async function loadGold() {
   try {
-    const d = await fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
+    const d = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
     document.getElementById('tgold').textContent = `9999: ${fmtM(d.gold9999)}`;
     document.getElementById('kpi-gold').textContent = fmtM(d.gold9999);
     document.getElementById('kpi-18k').textContent  = fmtM(d.gold18k);
@@ -586,5 +586,6 @@ function startCFO() {
   document.getElementById('pending-count').textContent = APPROVALS.length + ' CHỜ DUYỆT';
 }
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

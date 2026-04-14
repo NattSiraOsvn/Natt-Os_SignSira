@@ -268,7 +268,7 @@ async function fetchFromServer() {
   toast('🔄 Đang kết nối GSheets server...','info');
   try {
     // Fetch sx1 (đầu tiên)
-    const r = await fetch(`${url}/api/sheets/sx1`);
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${url}/api/sheets/sx1`);
     if (!r.ok) throw new Error('HTTP '+r.status);
     const data = await r.json();
     if (!data.data || data.data.length < 2) throw new Error('Sheet trống hoặc chưa có dữ liệu');
@@ -468,5 +468,6 @@ setInterval(()=>{const n=new Date;document.getElementById('clock').textContent=`
 </script>
 <script src="nattos-data.js"></script>
 <script src="nattos-galaxy.js"></script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

@@ -851,8 +851,8 @@
                 if(e) e.stopPropagation();
                 
                 const envelope = { butterfly_id: CryptoUtils.uuid(), origin_cell: 'ui', level };
-                NattOS.EventBus.emit('HEYNA', { intensity: level==='L3'?1.0:0.8 });
-                NattOS.EventBus.emit(`butterfly.${level}`, envelope);
+                NattOS./* [EB→HEYNA] */ EventBus.emit('HEYNA', { intensity: level==='L3'?1.0:0.8 });
+                NattOS./* [EB→HEYNA] */ EventBus.emit(`butterfly.${level}`, envelope);
                 
                 // ISEU Learning
                 NattOS.ISEU.reinforce(eventType, 'success', 1.2);
@@ -990,15 +990,15 @@
                 NattOS.ISEU = new ISEUEngine(NattOS.EventBus);
 
                 // Global Event Listeners
-                NattOS.EventBus.on('system.impedance', (e) => {
+                NattOS./* [EB→HEYNA] */ EventBus.on('system.impedance', (e) => {
                     document.getElementById('metric-z').innerText = e.payload.toFixed(3);
                     document.getElementById('bar-z').style.width = `${Math.min(100, (e.payload / 2) * 100)}%`;
                 });
-                NattOS.EventBus.on('ui.focus', (e) => {
+                NattOS./* [EB→HEYNA] */ EventBus.on('ui.focus', (e) => {
                     document.getElementById('metric-att').innerText = e.payload.toFixed(2);
                     document.getElementById('bar-att').style.width = `${e.payload * 100}%`;
                 });
-                NattOS.EventBus.on('system.resonance', (e) => {
+                NattOS./* [EB→HEYNA] */ EventBus.on('system.resonance', (e) => {
                     document.getElementById('metric-res').innerText = e.payload.toFixed(2);
                     document.getElementById('bar-res').style.width = `${e.payload * 100}%`;
                 });
@@ -1051,7 +1051,7 @@
                         sessionStorage.setItem('nattos_id', id);
                         errorEl.classList.add('hidden');
                         AppController.checkSession();
-                        NattOS.EventBus.emit('audit.record', { action: 'LOGIN', user: id, lsp: payload.lsp_hash });
+                        NattOS./* [EB→HEYNA] */ EventBus.emit('audit.record', { action: 'LOGIN', user: id, lsp: payload.lsp_hash });
                     }
                 } else {
                     errorEl.classList.remove('hidden');
@@ -1072,13 +1072,13 @@
                         statusText.className = 'text-[10px] md:text-xs font-black tracking-widest text-glow-mint truncate';
                         pulseRing.classList.add('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]');
                         UIBuilder.appendLog('🟢 Mạch HeyNa SSE đã kết nối (Cổng 3001).');
-                        NattOS.EventBus.emit('HEYNA', { intensity: 1.0 });
+                        NattOS./* [EB→HEYNA] */ EventBus.emit('HEYNA', { intensity: 1.0 });
                         NattOS.RenderEngine.startLoop();
                     };
                     sse.onmessage = (e) => {
                         const data = JSON.parse(e.data);
-                        NattOS.EventBus.emit('HEYNA', { intensity: 0.5 });
-                        if (data.impedanceZ !== undefined) NattOS.EventBus.emit('system.impedance', data.impedanceZ);
+                        NattOS./* [EB→HEYNA] */ EventBus.emit('HEYNA', { intensity: 0.5 });
+                        if (data.impedanceZ !== undefined) NattOS./* [EB→HEYNA] */ EventBus.emit('system.impedance', data.impedanceZ);
                         UIBuilder.appendLog(`[SSE] ${data.event || 'DATA_SYNC'} : ${JSON.stringify(data.payload || '')}`);
                     };
                     sse.onerror = () => {
@@ -1086,7 +1086,7 @@
                         statusText.className = 'text-[10px] md:text-xs font-black tracking-widest text-red-400 truncate';
                         pulseRing.classList.remove('animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]');
                         sse.close();
-                        NattOS.EventBus.emit('system.impedance', 2.0); // Force Degraded
+                        NattOS./* [EB→HEYNA] */ EventBus.emit('system.impedance', 2.0); // Force Degraded
                         setTimeout(AppController.initMachHeyna, 3000);
                     };
                 } catch (err) { console.error('SSE Error', err); }
@@ -1112,5 +1112,6 @@
         document.addEventListener('DOMContentLoaded', AppController.init);
 
     </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

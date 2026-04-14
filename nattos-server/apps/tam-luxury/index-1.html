@@ -622,9 +622,9 @@ function startMach() {
 async function loadData() {
   try {
     const [suc,gia,prod] = await Promise.all([
-      fetch(`${S}/kenh/suc`).then(r=>r.json()),
-      fetch(`${S}/kenh/gia-vang`).then(r=>r.json()),
-      fetch(`${S}/kenh/production`).then(r=>r.json()),
+      /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/kenh/suc`).then(r=>r.json()),
+      /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/kenh/gia-vang`).then(r=>r.json()),
+      /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/kenh/production`).then(r=>r.json()),
     ]);
     if(suc.commits){ST.commits=suc.commits}
     if(gia) ST.giaVang=gia;
@@ -725,5 +725,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   console.log('[Tâm Luxury] NATT-OS app booted — HCM-01');
 });
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

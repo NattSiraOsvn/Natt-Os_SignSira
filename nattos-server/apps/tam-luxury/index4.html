@@ -713,7 +713,7 @@ renderGrids();
 const API_URL = 'http://localhost:3001';
 async function loadGold() {
   try {
-    const res = await fetch(`${API_URL}/kenh/gia-vang`);
+    const res = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${API_URL}/kenh/gia-vang`);
     const data = await res.json();
     const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '—';
     document.getElementById('hdr-gold').innerHTML = `9999: ${fmt(data.gold9999)} · 18K: ${fmt(data.gold18k)}`;
@@ -754,5 +754,6 @@ wm.style.cssText = 'position:fixed; bottom:6px; left:12px; font-size:7px; font-f
 wm.innerText = '⟡ TÂM LUXURY · NATT-OS · GALAXY CORE ⟡';
 document.body.appendChild(wm);
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

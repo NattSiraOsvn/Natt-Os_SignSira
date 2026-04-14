@@ -21,7 +21,7 @@ let pollTimers = {};
 // ── HEALTH CHECK ──────────────────────────────────────────────────────────
 async function checkServer() {
   try {
-    const r = await fetch(`${SERVER}/kenh/suc`, { signal: AbortSignal.timeout(3000) });
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/kenh/suc`, { signal: AbortSignal.timeout(3000) });
     isOnline = r.ok;
   } catch {
     isOnline = false;
@@ -46,7 +46,7 @@ async function read(sheetKey, range = 'A1:Z500') {
   if (!isOnline) return _localRead(sheetKey);
 
   try {
-    const r = await fetch(`${SERVER}/api/sheets/${sheetKey}?range=${range}`);
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/sheets/${sheetKey}?range=${range}`);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const data = await r.json();
     // Cache locally
@@ -62,7 +62,7 @@ async function read(sheetKey, range = 'A1:Z500') {
 async function readById(sheetId, range = 'A1:Z500') {
   if (!isOnline) return null;
   try {
-    const r = await fetch(`${SERVER}/api/read/${sheetId}?range=${range}`);
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/read/${sheetId}?range=${range}`);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return await r.json();
   } catch (e) {
@@ -78,7 +78,7 @@ async function write(sheetKey, range, values) {
     return { ok: false, offline: true };
   }
   try {
-    const r = await fetch(`${SERVER}/api/sheets/${sheetKey}/write`, {
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/sheets/${sheetKey}/write`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ range, values }),
@@ -97,7 +97,7 @@ async function append(sheetKey, range, values) {
     return { ok: false, queued: true };
   }
   try {
-    const r = await fetch(`${SERVER}/api/sheets/${sheetKey}/append`, {
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/sheets/${sheetKey}/append`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ range, values }),
@@ -118,7 +118,7 @@ async function readTab(tabName, range = 'A1:Z500') {
   const fullRange = `${tabName}!${range}`;
   if (!isOnline) return _localRead(`tab_${tabName}`);
   try {
-    const r = await fetch(`${SERVER}/api/read/${MASTER}?range=${encodeURIComponent(fullRange)}`);
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/read/${MASTER}?range=${encodeURIComponent(fullRange)}`);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const data = await r.json();
     _localSave(`tab_${tabName}`, data);
@@ -133,7 +133,7 @@ async function appendTab(tabName, values) {
   const MASTER = '1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg';
   if (!isOnline) { _queueAppend(`tab_${tabName}`, `${tabName}!A:Z`, values); return { ok: false, queued: true }; }
   try {
-    const r = await fetch(`${SERVER}/api/read/${MASTER}/append`, {
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/read/${MASTER}/append`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ range: `${tabName}!A:Z`, values }),
@@ -214,7 +214,7 @@ async function _flushQueue(sheetKey) {
 async function summary() {
   if (!isOnline) return null;
   try {
-    const r = await fetch(`${SERVER}/api/summary`);
+    const r = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${SERVER}/api/summary`);
     return await r.json();
   } catch { return null; }
 }

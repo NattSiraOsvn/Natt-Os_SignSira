@@ -111,14 +111,14 @@
         // ========== CELL: AUDIT CELL (xử lý truy vấn) ==========
         const AuditCell = {
             init() {
-                EventBus.on('audit.query', (env) => {
+                /* [EB→HEYNA] */ EventBus.on('audit.query', (env) => {
                     // mock data
                     const events = [
                         { id:'e1', type:'SALES.CONFIRM', source:'sales-cell', ts: Date.now()-5000, status:'SUCCESS', hash:'0x471c...', payload:{order:'TLX-99'} },
                         { id:'e2', type:'PAYMENT.RECEIVE', source:'finance-cell', ts: Date.now()-4000, status:'SUCCESS', hash:'0xb097...', payload:{amt:500e6} },
                         { id:'e3', type:'CONSTITUTIONAL.VIOLATION', source:'security-cell', ts: Date.now()-3000, status:'BLOCKED', hash:'0x9ad3...', payload:{article:4} }
                     ];
-                    EventBus.emit('audit.response', { events }, env.event_id);
+                    /* [EB→HEYNA] */ EventBus.emit('audit.response', { events }, env.event_id);
                 });
             }
         };
@@ -127,12 +127,12 @@
         // ========== CELL: FINANCE CELL (cashflow) ==========
         const FinanceCell = {
             init() {
-                EventBus.on('cashflow.query', (env) => {
+                /* [EB→HEYNA] */ EventBus.on('cashflow.query', (env) => {
                     const data = [
                         { title:'KHÁCH THANH TOÁN', amount:'+500M', source:'Showroom', time:'10:45', hash:'0x8f2a' },
                         { title:'CHI PHÍ SX', amount:'-120M', source:'Xưởng', time:'11:15', hash:'0x9d1b' }
                     ];
-                    EventBus.emit('cashflow.response', { items: data }, env.event_id);
+                    /* [EB→HEYNA] */ EventBus.emit('cashflow.response', { items: data }, env.event_id);
                 });
             }
         };
@@ -141,10 +141,10 @@
         // ========== CELL: QUANTUM DEFENSE (forensic) ==========
         const QuantumDefenseCell = {
             init() {
-                EventBus.on('forensic.compare', (env) => {
+                /* [EB→HEYNA] */ EventBus.on('forensic.compare', (env) => {
                     const original = ['{','  "total": 500000000,','  "status": "APPROVED"','}'];
                     const current = ['{','  "total": 450000000,','  "status": "APPROVED"','}'];
-                    EventBus.emit('forensic.diff', { original, current, docId: env.payload.docId }, env.event_id);
+                    /* [EB→HEYNA] */ EventBus.emit('forensic.diff', { original, current, docId: env.payload.docId }, env.event_id);
                 });
             }
         };
@@ -195,9 +195,9 @@
         };
 
         // Lắng nghe các response từ cell
-        EventBus.on('audit.response', (env) => { UIRenderer.renderAudit(env.payload.events); });
-        EventBus.on('cashflow.response', (env) => { UIRenderer.renderCashflow(env.payload.items); });
-        EventBus.on('forensic.diff', (env) => { UIRenderer.renderForensic(env.payload.original, env.payload.current); });
+        /* [EB→HEYNA] */ EventBus.on('audit.response', (env) => { UIRenderer.renderAudit(env.payload.events); });
+        /* [EB→HEYNA] */ EventBus.on('cashflow.response', (env) => { UIRenderer.renderCashflow(env.payload.items); });
+        /* [EB→HEYNA] */ EventBus.on('forensic.diff', (env) => { UIRenderer.renderForensic(env.payload.original, env.payload.current); });
 
         // ========== APP CONTROLLER ==========
         const AppController = {
@@ -212,14 +212,14 @@
             },
             init() {
                 // Gửi các query qua EventBus để lấy dữ liệu
-                EventBus.emit('audit.query', { filter: 'all' });
-                EventBus.emit('cashflow.query', { orderId: 'TLX-99' });
-                EventBus.emit('forensic.compare', { docId: 'INV-001' });
+                /* [EB→HEYNA] */ EventBus.emit('audit.query', { filter: 'all' });
+                /* [EB→HEYNA] */ EventBus.emit('cashflow.query', { orderId: 'TLX-99' });
+                /* [EB→HEYNA] */ EventBus.emit('forensic.compare', { docId: 'INV-001' });
                 // Giả lập Mạch HeyNa (SSE)
                 setInterval(() => {
                     const z = (0.95 + Math.random()*0.1).toFixed(3);
                     document.getElementById('metric-z').innerText = z;
-                    EventBus.emit('system.impedance', parseFloat(z));
+                    /* [EB→HEYNA] */ EventBus.emit('system.impedance', parseFloat(z));
                 }, 3000);
             },
             switchTab(tab) {
@@ -234,5 +234,6 @@
             verifyAll() { alert('Tất cả hash đều khớp với Sealed Truth.'); }
         };
     </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>

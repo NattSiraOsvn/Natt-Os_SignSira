@@ -676,7 +676,7 @@ function onWindowResize() {
 const API_URL = 'http://localhost:3001';
 async function loadGold() {
   try {
-    const res = await fetch(`${API_URL}/kenh/gia-vang`);
+    const res = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${API_URL}/kenh/gia-vang`);
     const data = await res.json();
     const fmt = v => v ? (v/1e6).toFixed(2)+'M' : '—';
     document.getElementById('hdr-gold').innerHTML = `9999: ${fmt(data.gold9999)} · 18K: ${fmt(data.gold18k)}`;
@@ -719,5 +719,6 @@ wmDiv.style.pointerEvents = 'none';
 wmDiv.innerText = '⟡ TÂM LUXURY · 4D SINH THỂ · CÁNH BƯỚM ⟡';
 document.body.appendChild(wmDiv);
 </script>
+<script src="heyna-client.js"></script>
 </body>
 </html>
