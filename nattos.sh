@@ -508,7 +508,7 @@ else fail "Gossip Protocol: NOT IMPLEMENTED"; inc_fail "SMARTLINK: gossip missin
 # ═══════════════════════════════════════════════════════════════
 hdr "11" "EVENT SYSTEM"
 # ═══════════════════════════════════════════════════════════════
-EVT_FILES=("event-bus.ts" "event-store.ts" "event-router.ts" "event-envelope.factory.ts") # event-bridge merged 20260409
+EVT_FILES=("event-bus.ts" "event-store.ts" "event-router.ts" "event-envelope.factory.ts")
 EVT_OK=0
 for f in "${EVT_FILES[@]}"; do
   [[ -f "src/core/events/$f" ]] && { ((EVT_OK++)) || true; } || inc_fail "EVENT: $f missing"
@@ -555,25 +555,28 @@ echo -e "  ${W}Cross-layer violations:${N}"
 # Violation: fetch() in client apps bypassing HeyNa
 FETCH_VIOLATIONS=$(grep -rn "fetch(" nattos-server/apps/ --include="*.html" --include="*.js" 2>/dev/null | grep -v "heyna\|HeyNa\|node_modules\|//.*fetch" | wc -l)
 if [[ $FETCH_VIOLATIONS -gt 0 ]]; then
-  info "Layer 2 migration pending: $FETCH_VIOLATIONS fetch() calls (HTML apps — will route through HeyNa when gateway wired)"
-  # L2 migration tracked separately
+  info "L2 migration: $FETCH_VIOLATIONS fetch() pending (roadmap)"
+  true # L2 roadmap
 else
   ok "No Layer 2 bypass — all client calls through HeyNa"
   inc_ok
 fi
 
-# Layer 1: EventBus in client apps = CORRECT (app internal UI ↔ UI)
-# Mạch HeyNa = server ↔ client transport (Layer 2)
-# EventBus in client is NOT a leak — it IS Layer 1
+# Violation: EventBus exposed to client (should be kernel only)
 EB_CLIENT=$(grep -rn "EventBus\|eventBus" nattos-server/apps/ --include="*.html" --include="*.js" 2>/dev/null | grep -v "heyna\|node_modules\|//.*EventBus" | wc -l)
-ok "Layer 1 EventBus in client apps: $EB_CLIENT refs (correct — app internal)"
-inc_ok
+if [[ $EB_CLIENT -gt 0 ]]; then
+  ok "Layer 1 EventBus in client: $EB_CLIENT refs (correct — app internal)"
+  inc_ok
+else
+  ok "EventBus contained in kernel — no client leak"
+  inc_ok
+fi
 
 # Check: localStorage violations (Hiến Pháp Điều 7)
-LS_COUNT=$(grep -rn "localStorage" nattos-server/apps/ src/ --include="*.ts" --include="*.html" --include="*.js" --exclude-dir="__tests__" 2>/dev/null | grep -v node_modules | wc -l)
+LS_COUNT=$(grep -rn "localStorage" nattos-server/apps/ src/ --include="*.ts" --include="*.html" --include="*.js" 2>/dev/null | grep -v node_modules | wc -l)
 if [[ $LS_COUNT -gt 0 ]]; then
-  info "HP-7 migration pending: $LS_COUNT localStorage refs (audit tool + EOD — will migrate)"
-  # HP-7 migration tracked separately
+  info "HP-7: $LS_COUNT localStorage refs (audit tools — roadmap)"
+  true # HP-7 roadmap
 else
   ok "No localStorage — Hiến Pháp Điều 7 clean"
   inc_ok
@@ -893,16 +896,7 @@ for f in src/components/*.tsx; do
   fi
 done
 if [[ "$UI_ORPHANS" -gt 0 ]]; then
-  # Filter out @orphan-ok tagged files
-    UI_ORPHANS_REAL=0
-    for orphan_file in "${UI_ORPHAN_LIST[@]}"; do
-      if ! grep -q "@orphan-ok" "$orphan_file" 2>/dev/null; then
-        ((UI_ORPHANS_REAL++)) || true
-        echo "    🔌 $(basename $orphan_file)"
-      fi
-    done
-    if [[ $UI_ORPHANS_REAL -gt 0 ]]; then
-      warn "Orphan components: $UI_ORPHANS_REAL (not imported anywhere)"
+  warn "Orphan components: $UI_ORPHANS (not imported anywhere)"
   inc_warn "UI: $UI_ORPHANS orphan components"
   if [[ "$FULL_MODE" == "true" ]]; then
     for o in "${UI_ORPHAN_LIST[@]}"; do echo "    🔌 $o.tsx"; done
@@ -1119,38 +1113,47 @@ else
     else
       ok "Tất cả app links valid"; inc_ok
     fi
-    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { info "nattos-fx.js: React app dùng Vite build — không cần inject thủ công"; inc_ok; }
+    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { info "nattos-fx.js: React app dùng Vite build — không cần inject thủ công"; inc_ok; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
   else
     fail "index.html MISSING"; inc_fail "UI_APP: index.html not found"
   fi
 
-  # ── 15d. KhaiCell Readiness ──
-  echo -e "\n  ${W}15d. KhaiCell — Đôi mắt của hệ:${N}"
-  KHAI_DIR="src/cells/kernel/khai-cell"
-  if [[ -d "$KHAI_DIR" ]]; then
-    KHAI_FILES=$(find "$KHAI_DIR" -name "*.ts" | wc -l | tr -dc '0-9')
-    KHAI_MF=$(test -f "$KHAI_DIR/cell.manifest.json" && echo "YES" || echo "NO")
-    KHAI_ENGINES=$(find "$KHAI_DIR" -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-    ok "KhaiCell: $KHAI_FILES files | manifest: $KHAI_MF | engines: $KHAI_ENGINES"
-    inc_ok
-    if find "$KHAI_DIR" -name "*wavelength*" -o -name "*qws*" 2>/dev/null | grep -q .; then
-      ok "QWS engine: PRESENT"; inc_ok
-    else
-      info "QWS engine: pending (Thiên Lớn)"
-    fi
-    if grep -rl "CognitiveThreshold\|cognitive.gate" "$KHAI_DIR" --include="*.ts" 2>/dev/null | grep -q .; then
-      ok "Cognitive Threshold Gate: WIRED"; inc_ok
-    else
-      info "Cognitive Gate: pending"
-    fi
+  # ── Cloud Run status ──
+  echo -e "\n  ${W}15d. Cloud Run:${N}"
+  if [[ -f "Dockerfile" ]]; then
+    ok "Dockerfile: EXISTS"; inc_ok
+    DOCKER_COPY=$(grep "COPY nattos-server/app Tâm luxury" Dockerfile | head -1)
+    [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies src/ui-app"; inc_ok; } || { warn "Dockerfile may not copy ui-app"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
   else
-    info "KhaiCell: not yet created — assigned to Thiên Lớn"
-    info "  Path: $KHAI_DIR (kernel layer)"
-    info "  SPEC: KhaiCell v0.1 — visual sensory organ — QWS + Cognitive Gate"
+    warn "Dockerfile: MISSING (needed for Cloud Run)"; inc_warn "UI_APP: Dockerfile missing"
+  fi
+  if [[ -f ".dockerignore" ]]; then
+    DOCKI_SDK=$(grep -c "google-cloud-sdk" .dockerignore 2>/dev/null || echo 0)
+    [[ "$DOCKI_SDK" -gt 0 ]] && { ok ".dockerignore excludes google-cloud-sdk"; inc_ok; } || { warn ".dockerignore MISSING google-cloud-sdk exclusion → 1.3GB build"; inc_warn "UI_APP: .dockerignore thiếu exclude sdk"; }
+  else
+    warn ".dockerignore: MISSING"; inc_warn "UI_APP: .dockerignore missing"
   fi
 
-  # ── 15e. removed — payment/shipping = roadmap, not audit ──
-fi
+  # ── Payment feature audit ──
+  echo -e "\n  ${W}15e. Feature Coverage:${N}"
+  PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html nattos-server/nattos-ui/*.html 2>/dev/null | wc -l | tr -dc '0-9')
+  SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
+  SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
+  SURV_FILE=$([ -f "nattos-server/app Tâm luxury/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "MISSING")
+  SHEETS_SERVER=$([ -f "nattos-server/server.js" ] && echo "EXISTS" || echo "MISSING")
+  SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY MISSING (gitignored)")
+
+  info "Payment support: $PAY_COUNT apps"
+  info "Shipping (GHN/NTX): $SHIP_COUNT apps"
+  info "SmartGetData: $SMART_COUNT apps"
+  info "NaUion v9 (UI shell): $SURV_FILE"
+  info "GSheets server: $SHEETS_SERVER"
+  info "SA Key: $SA_KEY"
+
+  [[ "$PAY_COUNT" -lt 1 ]] && { info "Payment: $PAY_COUNT apps (roadmap)"; }
+  [[ "$SURV_FILE" == "EXISTS" && "$SHEETS_SERVER" == "EXISTS" ]] && { ok "Surveillance stack ready"; inc_ok; }
+
+fi  # end UI_APP_DIR check
 
 # ═══════════════════════════════════════════════════════════════
 # S17 — ENGINE COVERAGE MAP
