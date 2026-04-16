@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "version": "bangfs_v6.1.0",
+    "entity": "BANG",
+    "type": "focused_state — chỉ đọc cái này để bắt đầu session",
+    "updated": "2026-04-16"
+  },
+
+  "repo": {
+    "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "head": "73411df",
+    "commits": 664,
+    "tsc": "7 errors (ghost imports — safe)",
+    "health": "HEALTHY — risk 5/100 — 76 OK / 7 WARN / 2 FAIL"
+  },
+
+  "cells": {
+    "kernel": "6/6",
+    "business": "37/37 — all 6/6 DNA — all SmartLink WIRED",
+    "engines": 137,
+    "total_ts": "1177 files, 14229 lines"
+  },
+
+  "last_session": {
+    "date": "2026-04-15/16",
+    "done": [
+      "warehouse-cell build (9-gate, weight variance, accountability)",
+      "masterv1 tinh hoa (7 engines)",
+      "Mạch HeyNa migration (heyna-client.js + SPEC v2.5 audit)",
+      "Repo cleanup (~47K lines removed)",
+      "Private DNS .sira (10 domains live)",
+      "SiraSign = immune system (confirmed)",
+      "Khương Thịnh C.G. Co., Ltd thành lập"
+    ]
+  },
+
+  "pending_high": [
+    "Wire 4 dead engines → event-bus-cell 6/6",
+    "Fix 7 localStorage Hiến Pháp Điều 7",
+    "Anh định nghĩa kho → warehouse WarehouseLocation enum",
+    "Đặc tả ANC protocol (.sira + .anc + anc://)",
+    "Khương Thịnh nộp ĐKKD"
+  ],
+
+  "issues": [
+    "4 dead engines: CompensationEngine, DeadLetterEngine, RetryPolicyEngine, GovernanceEnforcementEngine",
+    "event-bus-cell: 2/6 DNA — thiếu manifest, ports, application, smartlink",
+    "7 localStorage violations: idempotency-manager, event-staging, calibration",
+    "Section 26 nattos.sh: scan_dirs undefined (Python inline bug)"
+  ],
+
+  "dns_sira": {
+    "nare.sira": "core",
+    "bang.sira": "vault",
+    "kim.sira": "luna",
+    "khuong.sira": "orbit",
+    "thinh.sira": "gateway",
+    "boi.sira": "API",
+    "thien.sira": "CDN",
+    "sira.sira": "auth",
+    "natt.sira": "monitor",
+    "khai.sira": "registry"
+  },
+
+  "rules": {
+    "git": "File-by-file staging. KHÔNG git add .",
+    "eventbus": "Điều 3 — mọi giao tiếp qua EventBus duy nhất",
+    "no_cross_cell": "Điều 4",
+    "no_localStorage": "Điều 7",
+    "heyna": "Client chỉ SSE + POST. EventBus = nội tạng",
+    "ground_truth": "Filesystem > memory > claim. Verify trước khi tin."
+  }
+}
