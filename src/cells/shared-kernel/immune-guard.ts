@@ -32,5 +32,9 @@ export const validateBoundary = (envelope: SmartLinkEnvelope) => {
     throw new Error(`❌ PROTOCOL ERROR: Incompatible Envelope Version [Expected: 1.1, Got: ${envelope.envelope_version}].`);
   }
 
-  return true; // Giao dịch hợp hiến
+  // ReNa patch 2026-04-17: actual validation, not always-true
+  if (!transaction || !transaction.type) return false;
+  if (!transaction.amount && transaction.amount !== 0) return false;
+  // TODO: wire to SiraSign verify chain when ready
+  return true; // Hợp hiến sau khi qua validation
 };
