@@ -1,0 +1,30 @@
+{
+  "cellId": "event-bus-cell",
+  "version": "1.0.0",
+  "layer": "infrastructure",
+  "description": "Central event routing — Điều 3 sole messaging layer",
+  "engines": [
+    "compensation.engine",
+    "dead-letter.engine",
+    "retry-policy.engine"
+  ],
+  "events": {
+    "publish": [
+      "eventbus.routed",
+      "eventbus.dead-letter.captured",
+      "eventbus.retry.exhausted",
+      "eventbus.compensation.triggered"
+    ],
+    "subscribe": [
+      "*"
+    ]
+  },
+  "dependencies": [],
+  "boundary": {
+    "cannotDo": [
+      "store business state",
+      "call cells directly",
+      "bypass constitutional guards"
+    ]
+  }
+}
