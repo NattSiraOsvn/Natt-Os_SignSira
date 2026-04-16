@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>NATT-OS · NaUion v10 — Liquid Glass + Butterfly Colony</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   NAUION UI SPEC v2.1 — DESIGN TOKENS (Liquid Glass + Butterfly)
+═══════════════════════════════════════════════════════════════════ */
+:root {
+  --champagne: #F7E7CE;  --peach: #FFDAB9;  --ice-blue: #E0FFFF;
+  --mint: #E0FFE0;       --lavender: #E6E6FA; --rose: #FFE4E1;
+  --burgundy: #800020;   --silver-sparkle: #E8E8E8;
+  --deep-space: #0A0A14;
+  
+  --glow-champagne: 0 0 30px rgba(247,231,206,0.7);
+  --glow-peach:     0 0 25px rgba(255,218,185,0.6);
+  --glow-mint:      0 0 20px rgba(224,255,224,0.6);
+  --glow-ice:       0 0 20px rgba(224,255,255,0.5);
+  --glow-lavender:  0 0 20px rgba(230,230,250,0.5);
+  
+  --glass-blur: 18px;
+  --glass-sat: 180%;
+  --border-glow: 1px solid rgba(247,231,206,0.18);
+  
+  --z-truth: 1;      --z-worker: 10;    --z-experience: 50;
+  --z-modal: 100;    --z-alert: 200;    --z-security: 999;
+  
+  --sidebar-w: 240px;
+  --header-h: 56px;
+  --medal-size: clamp(100px, 18vw, 140px);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--deep-space);
+  color: #EEE8D8;
+  font-family: 'JetBrains Mono', monospace;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ══ L0 — Truth Layer (grid, glow, scan, grain) ══ */
+.l0-grid {
+  position: fixed; inset:0; z-index: var(--z-truth); pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(247,231,206,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247,231,206,0.012) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.l0-glow {
+  position: fixed; inset:0; z-index: var(--z-truth); pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 20% 30%, rgba(247,231,206,0.05) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 60% at 85% 70%, rgba(224,255,255,0.03) 0%, transparent 60%);
+}
+.l0-scan {
+  position: fixed; left:0; right:0; height: 2px; pointer-events: none; z-index: var(--z-truth);
+  background: linear-gradient(to bottom, transparent, rgba(247,231,206,0.12), transparent);
+  animation: scanMove 18s linear infinite;
+}
+@keyframes scanMove { 0%{ top:-1%; } 100%{ top:101%; } }
+.l0-grain {
+  position: fixed; inset:0; z-index: var(--z-truth); pointer-events: none; opacity: 0.04; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ══ Cymatic reactive canvas (butterfly–frequency) ══ */
+#cymatic-canvas {
+  position: fixed; bottom: 0; right: 0; width: 320px; height: 320px;
+  opacity: 0.18; pointer-events: none; z-index: var(--z-truth);
+  image-rendering: crisp-edges;
+}
+
+/* ══ Layout master ══ */
+#app { position: fixed; inset:0; display: flex; flex-direction: column; z-index: var(--z-experience); }
+
+/* ══ Header — Liquid Glass core ══ */
+#nauion-header {
+  height: var(--header-h); flex-shrink:0;
+  background: rgba(10,10,20,0.75);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border-bottom: var(--border-glow);
+  display: flex; align-items: center; padding: 0 24px; gap: 20px;
+  position: relative; z-index: 20;
+}
+.logo { font-size: 12px; font-weight: 800; letter-spacing: 0.5em; color: var(--champagne); text-shadow: var(--glow-champagne); text-transform: uppercase; }
+.sep { width: 1px; height: 24px; background: rgba(247,231,206,0.25); }
+.chip { display: flex; align-items: center; gap: 6px; font-size: 9px; color: rgba(232,220,196,0.7); letter-spacing: 0.1em; }
+.dot-pulse { width: 7px; height: 7px; border-radius: 50%; animation: pulseVar 2.2s infinite; }
+@keyframes pulseVar { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.4; transform:scale(0.7); } }
+.header-right { margin-left: auto; display: flex; gap: 14px; align-items: center; }
+.badge {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.2em; padding: 4px 14px;
+  border-radius: 40px; background: rgba(224,255,224,0.08); border: 1px solid rgba(224,255,224,0.3);
+  color: var(--mint);
+}
+.badge-warn { background: rgba(255,218,185,0.08); border-color: rgba(255,218,185,0.4); color: var(--peach); }
+.badge-risk { background: rgba(247,231,206,0.06); border-color: rgba(247,231,206,0.3); color: var(--champagne); }
+
+/* ══ Body + Sidebar + Content ══ */
+#body-flex { flex:1; display: flex; overflow: hidden; }
+#sidebar {
+  width: var(--sidebar-w); flex-shrink:0;
+  background: rgba(10,10,20,0.7);
+  backdrop-filter: blur(14px) saturate(160%);
+  border-right: var(--border-glow);
+  overflow-y: auto; padding: 12px 0;
+}
+.sb-group { font-size: 7px; font-weight: 800; letter-spacing: 0.4em; color: rgba(200,185,150,0.5); padding: 14px 18px 4px; text-transform: uppercase; }
+.sb-item {
+  padding: 7px 18px; font-size: 10px; font-weight: 500; color: rgba(232,220,196,0.7);
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  border-left: 2px solid transparent; transition: all 0.15s;
+}
+.sb-item:hover { background: rgba(247,231,206,0.05); color: var(--champagne); }
+.sb-item.active { border-left-color: var(--champagne); background: rgba(247,231,206,0.08); color: var(--champagne); text-shadow: var(--glow-champagne); }
+.sb-div { margin: 8px 0; border-top: 1px solid rgba(247,231,206,0.1); }
+
+/* ══ Content — Liquid Glass frame + medal grid ══ */
+#content-view {
+  flex:1; overflow-y: auto; padding: 24px;
+  position: relative; z-index: 15;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(247,231,206,0.2); border-radius: 4px; }
+
+/* Universal glass module */
+.glass-module {
+  background: radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),
+    rgba(247,231,206,0.08) 0%, rgba(247,231,206,0.01) 60%, transparent 100%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border: var(--border-glow); border-radius: 24px; padding: 22px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(247,231,206,0.06);
+  transition: all 0.2s;
+}
+.glass-module:hover { border-color: rgba(247,231,206,0.35); }
+
+/* Medal Grid (NATT-CELL style, 8‑layer essence) */
+.medal-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 28px;
+  margin-top: 20px;
+}
+.medal {
+  position: relative; width: var(--medal-size); height: var(--medal-size); margin: 0 auto;
+  cursor: pointer; transition: transform 0.25s cubic-bezier(0.2,0.9,0.4,1.1);
+}
+.medal:hover { transform: scale(1.05); z-index: var(--z-worker); }
+/* Orbital rings (simplified) */
+.ring-orbit { position: absolute; inset: -12%; border-radius: 50%; pointer-events: none; }
+.ring1 { border: 1px dashed rgba(247,231,206,0.2); animation: spinSlow 22s linear infinite; }
+.ring2 { border: 1px dotted rgba(224,255,255,0.2); animation: spinMedReverse 14s linear infinite; transform: scale(1.12); }
+.ring3 { border: 0.5px solid rgba(247,231,206,0.15); animation: spinFast 9s linear infinite; transform: scale(1.22); }
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes spinMedReverse { to { transform: rotate(-360deg); } }
+@keyframes spinFast { to { transform: rotate(360deg); } }
+/* PBR shell + sweep */
+.medal-shell {
+  position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+  background: conic-gradient(from var(--medal-angle,0deg), #030303, #1e1e1e, var(--cat-color), #090909);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.medal-sweep { position: absolute; inset: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent); transform: translateX(-100%); transition: transform 0.8s; }
+.medal:hover .medal-sweep { transform: translateX(100%); }
+/* glass core + caustics */
+.medal-core {
+  position: absolute; inset: 10%; border-radius: 50%; backdrop-filter: blur(12px);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 80%);
+  display: flex; align-items: center; justify-content: center;
+}
+.caustic-layer { position: absolute; inset: 0; border-radius: 50%; filter: url(#caustic-f); opacity: 0.3; pointer-events: none; }
+.medal-icon { font-size: 32px; filter: drop-shadow(0 0 8px rgba(255,215,0,0.6)); z-index: 2; }
+/* QNEU ring (confidence) */
+.qneu-ring { position: absolute; inset: -6%; transform: rotate(-90deg); }
+.qneu-ring circle { fill: none; stroke-width: 2.5; stroke: var(--cat-color); filter: drop-shadow(0 0 4px var(--cat-color)); }
+/* SCAR ring (optional) */
+.scar-ring { position: absolute; inset: -8%; border-radius: 50%; border: 2px solid var(--burgundy); box-shadow: 0 0 12px #800020; animation: scarPulse 1.6s infinite; }
+@keyframes scarPulse { 0%{ opacity:0.5; transform:scale(1); } 50%{ opacity:1; transform:scale(1.02); } 100%{ opacity:0.5; transform:scale(1); } }
+.medal-label { text-align: center; margin-top: 12px; font-size: 8px; letter-spacing: 0.2em; color: var(--champagne); }
+
+/* KPI & tables */
+.kpi-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 14px; margin-bottom: 28px; }
+.kpi-card {
+  background: rgba(247,231,206,0.03); border: 1px solid rgba(247,231,206,0.1); border-radius: 20px;
+  padding: 14px; text-align: center; backdrop-filter: blur(4px);
+}
+.kpi-value { font-size: 28px; font-weight: 800; color: var(--champagne); text-shadow: var(--glow-champagne); letter-spacing: -0.02em; }
+.kpi-label { font-size: 7px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,220,196,0.6); }
+.trend-up { color: var(--mint); } .trend-down { color: #FF9090; }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 9px; }
+.data-table th { text-align: left; padding: 10px 8px; color: rgba(232,220,196,0.4); font-weight: 800; letter-spacing: 0.2em; border-bottom: 1px solid rgba(247,231,206,0.1); }
+.data-table td { padding: 8px; border-bottom: 1px solid rgba(247,231,206,0.05); color: rgba(247,231,206,0.85); }
+
+/* Ticker */
+#system-ticker {
+  height: 32px; background: rgba(10,10,20,0.85); backdrop-filter: blur(12px);
+  border-top: var(--border-glow); display: flex; align-items: center; overflow: hidden; flex-shrink: 0;
+}
+.ticker-tag {
+  background: var(--champagne); color: #000; font-size: 8px; font-weight: 800; letter-spacing: 0.2em;
+  padding: 0 20px; height: 100%; display: flex; align-items: center; text-transform: uppercase;
+}
+.ticker-scroll { white-space: nowrap; animation: tickerMarquee 60s linear infinite; display: flex; gap: 32px; padding-left: 20px; }
+@keyframes tickerMarquee { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+.ticker-item { font-size: 9px; font-weight: 700; color: var(--champagne); letter-spacing: 0.05em; }
+
+/* Butterfly ripple (global + local) */
+.butterfly-ripple-global {
+  position: fixed; inset:0; pointer-events: none; z-index: 200;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(247,231,206,0.2) 0%, transparent 70%);
+  animation: fadeRipple 0.7s ease-out forwards;
+}
+@keyframes fadeRipple { 0%{ opacity:1; transform:scale(0.8); } 100%{ opacity:0; transform:scale(3); } }
+
+/* notifications */
+#notify-stack { position: fixed; top: 70px; right: 20px; z-index: 300; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.notify {
+  background: rgba(10,10,20,0.9); backdrop-filter: blur(12px); border-left: 3px solid var(--champagne);
+  border-radius: 14px; padding: 12px 16px; width: 280px; pointer-events: auto;
+  animation: slideIn 0.25s ease; font-size: 9px;
+}
+@keyframes slideIn { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+.notify-title { font-weight: 800; letter-spacing: 0.1em; margin-bottom: 4px; }
+.notify-butterfly { border-left-color: var(--peach); box-shadow: 0 0 12px rgba(255,218,185,0.3); }
+
+/* misc */
+.mouse-glow { position: fixed; width: 240px; height: 240px; background: radial-gradient(circle, rgba(247,231,206,0.08), transparent); pointer-events: none; z-index: 9999; mix-blend-mode: overlay; transform: translate(-50%,-50%); }
+</style>
+<svg style="position:absolute;width:0;height:0"><filter id="caustic-f"><feTurbulence type="turbulence" baseFrequency="0.02 0.025" numOctaves="2"><animate attributeName="baseFrequency" values="0.02 0.025;0.025 0.02;0.02 0.025" dur="8s" repeatCount="indefinite"/></feTurbulence><feDisplacementMap scale="12"/></filter></svg>
+</head>
+<body>
+<div class="l0-grid"></div><div class="l0-glow"></div><div class="l0-scan"></div><div class="l0-grain"></div>
+<canvas id="cymatic-canvas"></canvas>
+<div id="app">
+  <header id="nauion-header">
+    <div class="logo">NATT · OS</div><div class="sep"></div>
+    <div class="chip"><div class="dot-pulse" style="background:var(--mint); box-shadow:0 0 6px var(--mint);"></div><span id="cell-count">38/38 WIRED</span></div>
+    <div class="chip"><div class="dot-pulse" style="background:var(--champagne); animation-delay:0.7s"></div><span id="tsc-count">TSC 0</span></div>
+    <div class="header-right"><span id="git-info" style="font-size:7px;color:rgba(200,185,150,0.5)">—</span><span id="state-badge" class="badge">SYSTEM · HEALTHY</span><span id="risk-badge" class="badge-risk">risk 0/100</span></div>
+  </header>
+  <div id="body-flex">
+    <aside id="sidebar"></aside>
+    <main id="content-view"></main>
+  </div>
+  <div id="system-ticker"><div class="ticker-tag">LIVE COLONY</div><div class="ticker-scroll" id="ticker-scroll"></div></div>
+</div>
+<div id="notify-stack"></div>
+<div class="mouse-glow" id="mouse-glow"></div>
+
+<script>
+// ======================== NAUION UI v2.1 — LIQUID GLASS + BUTTERFLY COLONY ========================
+const SERVER = 'http://localhost:3001';
+// UI state mirror (no localStorage, no setInterval sync)
+const UI = {
+  Z: 1.0, systemState: 'HEALTHY', risk: 20, commits: '—', hash: '—',
+  metrics: {}, auditLog: [], production: { stages: [], metrics: {} }, gold: {}
+};
+let activeView = 'dashboard';
+
+// Modules definition
+const MODULES = [
+  { id:'dashboard', title:'TỔNG QUAN MASTER', icon:'🏛️', group:'CORE', role:0 },
+  { id:'production_wallboard', title:'WALLBOARD XƯỞNG', icon:'📺', group:'PRODUCTION', role:1 },
+  { id:'audit_trail', title:'SỔ CÁI TRUY VẾT', icon:'📜', group:'STRATEGIC', role:1 },
+  { id:'monitoring', title:'SYSTEM PULSE', icon:'📡', group:'SYSTEM', role:0 },
+  { id:'showroom', title:'LUXURY SHOWROOM', icon:'💎', group:'CORE', role:1 }
+];
+const groups = ['CORE','PRODUCTION','STRATEGIC','SYSTEM'];
+
+function renderSidebar() {
+  const sb = document.getElementById('sidebar');
+  let html = '';
+  for (const g of groups) {
+    html += `<div class="sb-group">${g}</div>`;
+    MODULES.filter(m => m.group === g).forEach(m => {
+      html += `<div class="sb-item ${activeView === m.id ? 'active' : ''}" data-view="${m.id}">
+        <span>${m.icon}</span><span>${m.title}</span>
+      </div>`;
+    });
+    html += '<div class="sb-div"></div>';
+  }
+  sb.innerHTML = html;
+  document.querySelectorAll('.sb-item').forEach(el => {
+    el.addEventListener('click', () => switchView(el.dataset.view));
+  });
+}
+function switchView(viewId) { activeView = viewId; renderSidebar(); renderContent(); }
+
+// Render engine
+function renderContent() {
+  const container = document.getElementById('content-view');
+  if (activeView === 'dashboard') renderDashboard(container);
+  else if (activeView === 'production_wallboard') renderProduction(container);
+  else if (activeView === 'audit_trail') renderAudit(container);
+  else if (activeView === 'monitoring') renderMonitoring(container);
+  else renderPlaceholder(container);
+}
+
+// ---------- DASHBOARD with Medal Grid (NATT-CELL style) ----------
+function renderDashboard(container) {
+  const medalCells = [
+    { id:'gatekeeper', name:'GATEKEEPER', cat:'KERNEL', qneu:0.99, color:'#F7E7CE', scar:false, icon:'👑' },
+    { id:'quantum', name:'QUANTUM CORE', cat:'INFRA', qneu:0.92, color:'#E0FFFF', scar:false, icon:'⚛️' },
+    { id:'sira-sign', name:'SIRASIGN', cat:'SECURITY', qneu:0.88, color:'#FFDAB9', scar:true, icon:'🔒' },
+    { id:'iseu', name:'ISEU ENGINE', cat:'EVOLUTION', qneu:0.76, color:'#E0FFE0', scar:false, icon:'🧬' },
+    { id:'butterfly', name:'BUTTERFLY', cat:'PROPAGATION', qneu:0.81, color:'#E6E6FA', scar:false, icon:'🦋' }
+  ];
+  const kpis = [
+    { label:'IMPEDANCE Z', value: UI.Z.toFixed(3), trend: UI.Z < 1.8 ? 'up' : 'down' },
+    { label:'CELLS ACTIVE', value: Object.keys(UI.metrics).length || 38, trend:'up' },
+    { label:'RISK INDEX', value: UI.risk + '/100', trend: UI.risk < 30 ? 'down' : 'up' },
+    { label:'COLONY HEALTH', value: UI.systemState, trend:'up' }
+  ];
+  container.innerHTML = `<div class="glass-module">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+      <div><div style="font-size:11px; font-weight:800; letter-spacing:0.2em;">🏛️ TỔNG QUAN MASTER</div><div style="font-size:7px; color:var(--champagne);">Liquid Glass · Butterfly active</div></div>
+      <span class="badge">LIVE COLONY</span>
+    </div>
+    <div class="kpi-group">
+      ${kpis.map(k => `<div class="kpi-card"><div class="kpi-value">${k.value}</div><div class="kpi-label">${k.label}</div><div class="${k.trend === 'up' ? 'trend-up' : 'trend-down'}" style="font-size:7px;">${k.trend === 'up' ? '↑ STABLE' : '↓ WARNING'}</div></div>`).join('')}
+    </div>
+    <div style="font-size:9px; font-weight:800; letter-spacing:0.2em; margin-bottom:14px;">⚡ NATT-CELL MEDAL (Top 5 Evolution)</div>
+    <div class="medal-grid">
+      ${medalCells.map(cell => `
+        <div class="medal" data-cell="${cell.id}" style="--cat-color: ${cell.color}; --medal-angle:0deg;" onmouseenter="updateMedalAngle(this, event)">
+          <div class="ring-orbit ring1"></div><div class="ring-orbit ring2"></div><div class="ring-orbit ring3"></div>
+          <div class="medal-shell"></div><div class="medal-sweep"></div>
+          <div class="medal-core"><div class="caustic-layer"></div><div class="medal-icon">${cell.icon}</div></div>
+          <svg class="qneu-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" stroke-dasharray="${cell.qneu * 289} 289" stroke="${cell.color}"/></svg>
+          ${cell.scar ? '<div class="scar-ring"></div>' : ''}
+          <div class="medal-label">${cell.name}<br><span style="font-size:6px;">QNEU ${cell.qneu}</span></div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="margin-top:24px;"><div style="font-size:9px; font-weight:800; letter-spacing:0.2em;">📊 REAL-TIME METRICS</div>
+    <table class="data-table"><thead><tr><th>CELL</th><th>METRIC</th><th>VALUE</th></tr></thead><tbody>
+      ${Object.entries(UI.metrics).slice(0,8).map(([k,v]) => `<tr><td>${k}</td><td>${v.metric || 'pulse'}</td><td>${v.value ?? '1.0'}</td></tr>`).join('') || '<tr><td colspan="3" style="text-align:center;">⏳ waiting for signals...</td></tr>'}
+    </tbody></table></div>
+  </div>`;
+}
+
+function renderProduction(container) {
+  const p = UI.production || {};
+  container.innerHTML = `<div class="glass-module"><div style="display:flex; gap:12px; align-items:center; margin-bottom:20px;"><span style="font-size:22px;">📺</span><div><div class="mod-title" style="font-size:12px;">WALLBOARD XƯỞNG</div><div class="mod-sub">Tâm Luxury · OEE realtime</div></div></div>
+  <div class="kpi-group"><div class="kpi-card"><div class="kpi-value">${p.metrics?.dailyOutput || '—'}</div><div class="kpi-label">SẢN LƯỢNG</div></div>
+  <div class="kpi-card"><div class="kpi-value">${p.metrics?.oee || '—'}%</div><div class="kpi-label">OEE</div></div>
+  <div class="kpi-card"><div class="kpi-value">${p.metrics?.avgPuritySX || '—'}%</div><div class="kpi-label">PHỔ THỰC TẾ</div></div></div>
+  <div class="medal-grid" style="grid-template-columns:repeat(7,1fr); gap:8px;">${(p.stages || []).map(s => `<div class="kpi-card"><div class="kpi-value" style="font-size:20px;">${s.count}</div><div class="kpi-label">${s.stage?.replace('_',' ')}</div></div>`).join('') || '<div style="color:var(--champagne);">Đang đồng bộ...</div>'}</div></div>`;
+}
+
+function renderAudit(container) {
+  container.innerHTML = `<div class="glass-module"><div class="mod-hdr" style="margin-bottom:18px;"><span>📜 SỔ CÁI TRUY VẾT</span></div>
+  <table class="data-table"><thead><tr><th>TYPE</th><th>ACTOR</th><th>TIME</th></tr></thead><tbody>
+    ${(UI.auditLog || []).slice(0,20).map(a => `<tr><td>${a.type || 'event'}</td><td>${a.actor || 'system'}</td><td>${new Date(a.ts).toLocaleTimeString()}</td></tr>`).join('') || '<tr><td colspan="3">Đang chờ audit stream...</td></tr>'}
+  </tbody></table></div>`;
+}
+
+function renderMonitoring(container) {
+  container.innerHTML = `<div class="glass-module"><div class="kpi-group"><div class="kpi-card"><div class="kpi-value">${UI.Z.toFixed(4)}</div><div class="kpi-label">IMPEDANCE Z (ISEU)</div></div>
+  <div class="kpi-card"><div class="kpi-value">${UI.systemState}</div><div class="kpi-label">SYSTEM STATE</div></div></div>
+  <div class="data-table"><div style="font-size:9px; margin-bottom:10px;">🔁 MẠCH HEYNA (last signals)</div>
+  ${Object.entries(UI.metrics).slice(0,12).map(([k,v]) => `<div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(247,231,206,0.1); padding:6px 0;"><span>${k}</span><span>${v.value ?? 1}</span></div>`).join('')}</div></div>`;
+}
+function renderPlaceholder(container) { container.innerHTML = `<div class="glass-module" style="text-align:center; opacity:0.6;"><div style="font-size:44px;">⬡</div><div>MODULE · ĐANG PHÁT TRIỂN</div></div>`; }
+
+// ======================== EVENT BUS (SSE) — NaUion Pattern ========================
+let sse = null;
+function startMachHeyna() {
+  if (sse) sse.close();
+  sse = new EventSource(`${SERVER}/mach/heyna`);
+  sse.onmessage = (e) => {
+    try {
+      const data = JSON.parse(e.data);
+      if (data.event === 'nauion.state') {
+        if (data.payload?.impedanceZ !== undefined) UI.Z = data.payload.impedanceZ;
+        if (data.payload?.state) UI.systemState = data.payload.state === 'nauion' ? 'HEALTHY' : data.payload.state.toUpperCase();
+        updateHeaderUI();
+      }
+      if (data.event === 'cell.metric') {
+        const id = data.payload?.cell || 'unknown';
+        UI.metrics[id] = data.payload;
+        if (activeView === 'dashboard') renderContent();
+        // butterfly local ripple simulation
+        triggerButterflyRipple(id, 'local');
+      }
+      if (data.event === 'audit.record') {
+        if (!UI.auditLog) UI.auditLog = [];
+        UI.auditLog.unshift({ ...data.payload, ts: data.ts || Date.now() });
+        UI.auditLog = UI.auditLog.slice(0, 60);
+        if (activeView === 'audit_trail') renderContent();
+        addNotification('📋 Audit', `${data.payload.type || 'event'} from ${data.payload.actor || 'cell'}`, 'butterfly');
+        triggerButterflyRipple('audit', 'neighbor');
+      }
+      if (data.event === 'gia-vang.updated') { UI.gold = data.payload; updateTicker(); }
+      if (data.event === 'production.update') { UI.production = data.payload; if (activeView === 'production_wallboard') renderContent(); }
+    } catch(e) {}
+  };
+  sse.onerror = () => { setTimeout(startMachHeyna, 4000); };
+}
+
+// Butterfly visual effects
+function triggerButterflyRipple(source, level = 'local') {
+  const glowDiv = document.createElement('div');
+  glowDiv.className = 'butterfly-ripple-global';
+  document.body.appendChild(glowDiv);
+  setTimeout(() => glowDiv.remove(), 700);
+  addNotification(`🦋 Butterfly ${level}`, `source: ${source} · propagation ripple`, 'butterfly');
+  // update Z slightly for ISEU demonstration
+  if (level === 'local') UI.Z = Math.min(3.0, UI.Z + 0.008);
+  if (level === 'neighbor') UI.Z = Math.min(3.0, UI.Z + 0.02);
+  updateHeaderUI();
+  if (activeView === 'monitoring' || activeView === 'dashboard') renderContent();
+}
+
+function addNotification(title, body, type='info') {
+  const stack = document.getElementById('notify-stack');
+  const notif = document.createElement('div');
+  notif.className = `notify ${type === 'butterfly' ? 'notify-butterfly' : ''}`;
+  notif.innerHTML = `<div class="notify-title">${title}</div><div>${body}</div>`;
+  stack.appendChild(notif);
+  setTimeout(() => notif.remove(), 4200);
+}
+
+async function loadExternalData() {
+  try {
+    const [suc, gold, prod] = await Promise.all([
+      fetch(`${SERVER}/kenh/suc`).then(r=>r.json()).catch(()=>({commits:'—',hash:'—'})),
+      fetch(`${SERVER}/kenh/gia-vang`).then(r=>r.json()).catch(()=>({})),
+      fetch(`${SERVER}/kenh/production`).then(r=>r.json()).catch(()=>({}))
+    ]);
+    UI.commits = suc.commits || '—'; UI.hash = suc.hash || '—';
+    UI.gold = gold; UI.production = prod;
+    updateHeaderUI(); updateTicker();
+    if (activeView === 'production_wallboard') renderContent();
+  } catch(e) {}
+}
+
+function updateHeaderUI() {
+  document.getElementById('git-info').innerText = `${UI.commits} commits · ${UI.hash}`;
+  document.getElementById('state-badge').innerText = `SYSTEM · ${UI.systemState}`;
+  document.getElementById('risk-badge').innerHTML = `risk ${UI.risk}/100`;
+  document.getElementById('cell-count').innerHTML = `${Object.keys(UI.metrics).length || 38}/38 WIRED`;
+  document.getElementById('tsc-count').innerHTML = `TSC ${UI.risk < 30 ? 0 : Math.floor(UI.risk/10)}`;
+}
+function updateTicker() {
+  const g = UI.gold || {};
+  const fmt = v => v ? Number(v).toLocaleString('vi-VN') + 'đ' : '—';
+  const items = [`SJC: ${fmt(g.sjc_buy)} / ${fmt(g.sjc_sell)}`, `9999: ${fmt(g.gold9999)}`, `18K: ${fmt(g.gold18k)}`, `Z=${UI.Z.toFixed(2)}`];
+  const tickerDiv = document.getElementById('ticker-scroll');
+  if(tickerDiv) tickerDiv.innerHTML = [...items,...items].map(t => `<span class="ticker-item">${t}</span>`).join('');
+}
+
+// Mouse tracking (liquid glass + medal angle)
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth) * 100;
+  const y = (e.clientY / window.innerHeight) * 100;
+  document.documentElement.style.setProperty('--mouse-x', x + '%');
+  document.documentElement.style.setProperty('--mouse-y', y + '%');
+  const glow = document.getElementById('mouse-glow');
+  if(glow) { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; }
+});
+window.updateMedalAngle = (el, event) => {
+  const rect = el.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  let angle = Math.atan2(event.clientY - cy, event.clientX - cx) * 180 / Math.PI;
+  el.style.setProperty('--medal-angle', angle + 'deg');
+};
+
+// Cymatic canvas (Z-frequency)
+function initCymatic() {
+  const canvas = document.getElementById('cymatic-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let size = 70;
+  canvas.width = canvas.height = size;
+  function drawCym() {
+    const Z = UI.Z;
+    const freq = 180 + Math.min(700, Z * 90);
+    const t = performance.now() / 1000;
+    const img = ctx.createImageData(size, size);
+    const data = img.data;
+    for (let y=0; y<size; y++) {
+      for (let x=0; x<size; x++) {
+        const nx = x/size, ny = y/size;
+        const d1 = Math.hypot(nx-0.5, ny-0.5);
+        const wave = Math.sin(2 * Math.PI * freq * d1 - t * 4) * 0.5 + 0.5;
+        const idx = (y*size + x) * 4;
+        data[idx] = 247 * wave; data[idx+1] = 231 * wave; data[idx+2] = 206 * wave; data[idx+3] = 100 + 100 * wave;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(drawCym);
+  }
+  drawCym();
+}
+
+// Boot
+function boot() {
+  renderSidebar(); renderContent();
+  startMachHeyna();
+  loadExternalData();
+  initCymatic();
+  setInterval(() => { if(activeView === 'dashboard' || activeView === 'monitoring') renderContent(); }, 1800);
+}
+boot();
+</script>
+</body>
+</html>
