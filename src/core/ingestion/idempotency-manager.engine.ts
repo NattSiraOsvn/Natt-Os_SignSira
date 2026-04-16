@@ -12,32 +12,20 @@ interface EventLog {
 export class IdempotencyManager {
   private processedHashes: Set<string> = new Set();
   private eventStore: EventLog[] = [];
-  private readonly STORAGE_KEY = 'OMEGA_IDEMPOTENCY_STORE';
+  // HP Điều 7: no localStorage — in-memory only (2026-04-17)
 
   constructor() {
-    this.loadFromStorage();
+    // State lives in-memory — no localStorage (HP Điều 7)
   }
 
-  private loadFromStorage() {
-    try {
-      const data = localStorage.getItem(this.STORAGE_KEY);
-      if (data) {
-        const parsed = JSON.parse(data);
-        this.processedHashes = new Set(parsed.hashes);
-        this.eventStore = parsed.events;
-      }
-    } catch (e) {
-      console.warn("Idempotency load failed", e);
-    }
-  }
-
-  private saveToStorage() {
-    /* audit */
-    EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify({
-      hashes: Array.from(this.processedHashes),
-      events: this.eventStore.slice(-100)
-    }));
+  private persistViaEvent() {
+    // Emit audit trail instead of localStorage write
+    EventBus.emit('audit.record', {
+      type: 'idempotency.snapshot',
+      hashCount: this.processedHashes.size,
+      eventCount: this.eventStore.length,
+      timestamp: Date.now(),
+    });
   }
 
   async generateHash(file: File): Promise<string> {
@@ -68,7 +56,7 @@ export class IdempotencyManager {
       timestamp: Date.now() 
     });
     
-    this.saveToStorage();
+    this.persistViaEvent();
     console.log(`[Idempotency] Ledger Commit: ${status} for ${hash.substring(0, 8)}`);
   }
 }

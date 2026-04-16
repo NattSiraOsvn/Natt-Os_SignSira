@@ -19,6 +19,7 @@ export interface StagedEvent {
  */
 class EventStagingLayerService {
   private static instance: EventStagingLayerService;
+  private readonly _memoryStore: string | null = null;
   private readonly STORAGE_KEY = 'OMEGA_ESL_LEDGER';
   private processedKeys: Set<string> = new Set(); // Stores Idempotency Keys
   private stagingQueue: StagedEvent[] = [];
@@ -36,7 +37,7 @@ class EventStagingLayerService {
 
   private hydrate() {
     try {
-      const raw = localStorage.getItem(this.STORAGE_KEY);
+      const raw = this._memoryStore; // HP Điều 7: in-memory only
       if (raw) {
         const data = JSON.parse(raw);
         this.processedKeys = new Set(data.keys);
@@ -54,7 +55,7 @@ class EventStagingLayerService {
       };
       /* audit */
     EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+    this._memoryStore = JSON.stringify(data); // HP Điều 7: in-memory only
     } catch (e) {
       console.error("[ESL] Persist failed", e);
     }

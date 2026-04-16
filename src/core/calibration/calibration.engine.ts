@@ -2,6 +2,8 @@ import { EventBus } from '@/core/events/event-bus';
 
 import { InputPersona, CalibrationData, InputMetrics } from '../../types';
 
+const _profileStore = new Map<string, string>();
+
 export class CalibrationEngine {
   private static instance: CalibrationEngine;
   private userProfiles: Map<string, CalibrationData> = new Map();
@@ -27,7 +29,7 @@ export class CalibrationEngine {
     this.userProfiles.set(profile.userId, profile);
     /* audit */
     EventBus.emit('audit.record', { type: 'storage.write', file: __filename });
-    localStorage.setItem(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile));
+    _profileStore.set(`CALIB_PROFILE_${profile.userId}`, JSON.stringify(profile)) // HP Điều 7;
     console.log(`[CALIBRATION] Profile locked for ${profile.userId}: ${profile.persona} @ ${profile.avgCPM} CPM`);
   }
 
@@ -35,7 +37,7 @@ export class CalibrationEngine {
     const cached = this.userProfiles.get(userId);
     if (cached) return cached;
     
-    const stored = localStorage.getItem(`CALIB_PROFILE_${userId}`);
+    const stored = _profileStore.get(`CALIB_PROFILE_${userId}`);
     if (stored) {
       const parsed = JSON.parse(stored);
       this.userProfiles.set(userId, parsed);
