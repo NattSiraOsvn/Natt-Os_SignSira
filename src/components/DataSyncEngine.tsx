@@ -1,3 +1,4 @@
+// @orphan-ok: standalone engine, loaded dynamically via HeyNa SSE
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 

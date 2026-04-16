@@ -1,35 +1,43 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v6.1
-# Author: Băng — Ground Truth Validator
-# Usage:  bash smartAudit.sh [--json] [--full]
+# NATT-OS SmartAudit v7.0
+# Author: Băng — Ground Truth Validator (QNEU 300)
+# Redesigned: 2026-04-16 — session architecture synthesis
+# Usage:  bash nattos.sh [--json] [--full] [--rena] [--visual]
+#         bash nattos.sh --mode=smart|quick|full
 #         Chạy từ root natt-os ver2goldmaster
 #
 # Output: AI-agent readable + human readable
 # Mọi agent (Băng, Thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
+#
+# 9 Groups · 40 Sections · 3-Layer Architecture Aware
 # ═══════════════════════════════════════════════════════════════
 set -o pipefail
 
 # ── Options ──
 JSON_MODE=false; FULL_MODE=false; AUDIT_MODE="full"; FORCE_FULL="false"
+RUN_RENA="false"; RUN_VISUAL="false"
 for arg in "$@"; do
   [[ "$arg" == "--json" ]] && JSON_MODE=true
   [[ "$arg" == "--full" ]] && FULL_MODE=true
   [[ "$arg" == "--mode=quick" ]] && AUDIT_MODE="quick"
   [[ "$arg" == "--mode=full"  ]] && AUDIT_MODE="full" && FORCE_FULL="true"
   [[ "$arg" == "--mode=smart" ]] && AUDIT_MODE="smart"
+  [[ "$arg" == "--rena" ]] && RUN_RENA="true"
+  [[ "$arg" == "--visual" ]] && RUN_VISUAL="true"
 done
 
 # ── Colors ──
 R='\033[0;31m'; G='\033[0;32m'; Y='\033[0;33m'
 B='\033[0;34m'; C='\033[0;36m'; W='\033[1;37m'; N='\033[0m'
+DIM='\033[2m'; GOLD='\033[38;5;214m'; PINK='\033[38;5;175m'
 ok()   { echo -e "  ${G}✅${N} $*"; }
 warn() { echo -e "  ${Y}⚠️${N}  $*"; }
 fail() { echo -e "  ${R}❌${N} $*"; }
 info() { echo -e "  ${C}ℹ${N}  $*"; }
 hdr()  { echo -e "\n${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"; echo -e "${W}【$1】$2${N}"; }
+grp()  { echo -e "\n${GOLD}╔═══════════════════════════════════════════════════════════╗${N}"; echo -e "${GOLD}║  $1${N}"; echo -e "${GOLD}╚═══════════════════════════════════════════════════════════╝${N}"; }
 
-# ── Counters ──
 TOTAL_OK=0; TOTAL_WARN=0; TOTAL_FAIL=0; TOTAL_TRASH=0
 ISSUES=()
 inc_ok()   { ((TOTAL_OK++)) || true; }
@@ -45,20 +53,50 @@ fi
 TS=$(date '+%Y-%m-%d %H:%M:%S')
 ROOT=$(pwd)
 
-echo -e "${C}"
-echo "  ███╗   ██╗ █████╗ ████████╗████████╗      ██████╗ ███████╗"
-echo "  ████╗  ██║██╔══██╗╚══██╔══╝╚══██╔══╝     ██╔═══██╗██╔════╝"
-echo "  ██╔██╗ ██║███████║   ██║      ██║   █████╗██║   ██║███████╗"
-echo "  ██║╚██╗██║██╔══██║   ██║      ██║   ╚════╝██║   ██║╚════██║"
-echo "  ██║ ╚████║██║  ██║   ██║      ██║         ╚██████╔╝███████║"
-echo "  ╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝      ╚═╝          ╚═════╝ ╚══════╝"
+# ═══════════════════════════════════════════════════════════════
+# LOGO FILE DETECTION (render at bottom after audit completes)
+# ═══════════════════════════════════════════════════════════════
+LOGO_FILE=""
+for candidate in \
+  "nattos-logo-final/nattos-banner-1920x720.png" \
+  "nattos-logo-final/nattos-logo-original.png" \
+  "assets/nattos-banner-1920x720.png" \
+  "docs/assets/nattos-logo-original.png"; do
+  [[ -f "$candidate" ]] && LOGO_FILE="$candidate" && break
+done
+
+echo -e "${GOLD}"
+echo "  ███╗   ██╗    █████╗   ████████╗ ████████╗         ██████╗  ███████╗"
+echo "  ████╗  ██║   ██╔══██╗  ╚══██╔══╝ ╚══██╔══╝        ██╔═══██╗ ██╔════╝"
+echo "  ██╔██╗ ██║   ███████║     ██║       ██║    █████╗  ██║   ██║ ███████╗"
+echo "  ██║╚██╗██║   ██╔══██║     ██║       ██║    ╚════╝  ██║   ██║ ╚════██║"
+echo "  ██║ ╚████║   ██║  ██║     ██║       ██║            ╚██████╔╝ ███████║"
+echo "  ╚═╝  ╚═══╝   ╚═╝  ╚═╝     ╚═╝       ╚═╝             ╚═════╝  ╚══════╝"
 echo -e "${N}"
-echo -e "  ${C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
-echo -e "  ${W}NattCell Kernel${N} ${C}·${N} Distributed Living Organism ${C}·${N} ${W}38 Cells${N}"
-echo -e "  ${C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
+
+echo -e "  ${DIM}┌──────────────────────────────────────────────────────────┐${N}"
+echo -e "  ${DIM}│${N}  ${W}SmartAudit v7.0${N}  ${C}·${N}  Distributed Living Organism       ${DIM}│${N}"
+if [[ -n "$LOGO_FILE" ]]; then
+echo -e "  ${DIM}│${N}  ${C}Logo:${N} ${GOLD}⚛${N}  $LOGO_FILE  ${DIM}│${N}"
+else
+echo -e "  ${DIM}│${N}  ${C}Logo:${N} ${R}not found${N} — copy nattos-logo-final/ to repo   ${DIM}│${N}"
+fi
+echo -e "  ${DIM}│${N}                                                          ${DIM}│${N}"
+echo -e "  ${DIM}│${N}  ${G}L1 EventBus${N} ${DIM}→${N} ${Y}L2 Mạch HeyNa${N} ${DIM}→${N} ${W}L3 SmartLink${N}        ${DIM}│${N}"
+echo -e "  ${DIM}│${N}  ${DIM}app internal   SSE transport   inter-colony${N}           ${DIM}│${N}"
+echo -e "  ${DIM}│${N}                                                          ${DIM}│${N}"
+echo -e "  ${DIM}│${N}  ${DIM}A${N}·Foundation  ${DIM}B${N}·Cells  ${DIM}C${N}·Arch  ${DIM}D${N}·Flows  ${DIM}E${N}·UI     ${DIM}│${N}"
+echo -e "  ${DIM}│${N}  ${DIM}F${N}·Security    ${DIM}G${N}·Intel  ${DIM}H${N}·Meta  ${DIM}I${N}·Output          ${DIM}│${N}"
+echo -e "  ${DIM}└──────────────────────────────────────────────────────────┘${N}"
 echo ""
-echo -e "  ${W}SmartAudit v6.1 — $TS${N}"
+echo -e "  ${W}SmartAudit v7.0 — $TS${N}"
 echo -e "  Root: $ROOT"
+
+
+# ═══════════════════════════════════════════════════════════════
+# ╔══ GROUP A: FOUNDATION — Git · TSC · Files · Governance
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP A — FOUNDATION — Git · TSC · Files · Governance"
 
 # ═══════════════════════════════════════════════════════════════
 hdr "1" "GIT STATUS"
@@ -227,9 +265,54 @@ try:
 except: print('    (parse error)')
 " 2>/dev/null || echo "    (python3 not available)"
 fi
+# ═══════════════════════════════════════════════════════════════
+hdr "5" "NATTOS.SH SELF-HEALTH"
+
+SCRIPT="nattos.sh"
+if [[ ! -f "$SCRIPT" ]]; then SCRIPT="./nattos.sh"; fi
+
+SCRIPT_LINES=$(wc -l < "$SCRIPT" | tr -dc '0-9')
+ok "Script size: $SCRIPT_LINES lines"
+
+# Count sections
+SECTION_COUNT=$(grep -c "^hdr " "$SCRIPT" 2>/dev/null || echo 0)
+ok "Sections: $SECTION_COUNT total"
+
+# Check bash 3.2 compat — no [[...]] with regex, no arrays with -A
+BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | grep -v "BASH4_ONLY" | wc -l | tr -dc '0-9')
+if [[ "$BASH4_ONLY" -gt 0 ]]; then
+  warn "bash 4+ syntax detected: $BASH4_ONLY instances — may break on macOS bash 3.2"
+  inc_warn "SCRIPT: bash 4+ syntax present"
+else
+  ok "bash 3.2 compatible: no bash4+ syntax detected"; inc_ok
+fi
+
+# Check script is executable
+if [[ -x "$SCRIPT" ]]; then
+  ok "Script executable: ✅"; inc_ok
+else
+  warn "Script not executable — run: chmod +x $SCRIPT"; inc_warn "SCRIPT: not executable"
+fi
+
+# Version check
+AUDIT_VER=$(grep -o "SmartAudit v[0-9.]*" "$SCRIPT" | head -1)
+ok "Version: $AUDIT_VER"
+
+# inc helper check
+if grep -q "inc_ok\|inc_warn\|inc_fail" "$SCRIPT" 2>/dev/null; then
+  ok "Counter helpers: present"; inc_ok
+fi
+
+
+# V4 SMART LAYER
 
 # ═══════════════════════════════════════════════════════════════
-hdr "5" "KERNEL CELLS (6)"
+# ╔══ GROUP B: CELL ANATOMY — Kernel · Business · Infrastructure · DNA
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP B — CELL ANATOMY — Kernel · Business · Infrastructure · DNA"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "6" "KERNEL CELLS (6)"
 # ═══════════════════════════════════════════════════════════════
 KERNEL_EXPECTED=("audit-cell" "config-cell" "monitor-cell" "rbac-cell" "security-cell" "quantum-defense-cell")
 KERNEL_OK=0; KERNEL_TOTAL=${#KERNEL_EXPECTED[@]}
@@ -248,7 +331,7 @@ done
 echo -e "  ${W}Kernel: $KERNEL_OK/$KERNEL_TOTAL${N}"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "6" "BUSINESS CELLS — 6-COMPONENT HEALTH"
+hdr "7" "BUSINESS CELLS — 6-COMPONENT HEALTH"
 # ═══════════════════════════════════════════════════════════════
 # NATT-CELL = 6: Identity, Capability, Boundary, Trace, Confidence, SmartLink
 BIZ_TOTAL=0; BIZ_6OF6=0; BIZ_WIRED=0; BIZ_NOT_WIRED=0
@@ -302,7 +385,110 @@ echo ""
 echo -e "  ${W}Summary: $BIZ_6OF6/$BIZ_TOTAL cells 6/6 | SmartLink wired: $BIZ_WIRED | Not wired: $BIZ_NOT_WIRED${N}"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "7" "SMARTLINK CORE"
+hdr "8" "INFRASTRUCTURE CELLS"
+# ═══════════════════════════════════════════════════════════════
+INFRA_CELLS=("smartlink-cell" "sync-cell" "shared-contracts-cell")
+for cell in "${INFRA_CELLS[@]}"; do
+  P="src/cells/infrastructure/$cell"
+  if [[ -d "$P" ]]; then
+    FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
+    ok "$cell: $FC files"; inc_ok
+  else
+    fail "$cell: MISSING"; inc_fail "INFRA: $cell missing"
+  fi
+done
+# ═══════════════════════════════════════════════════════════════
+hdr "9" "CELL DNA CHECK — 6-Component Anatomy per Cell"
+
+python3 << 'PY37'
+import os, json
+
+REQUIRED_COMPONENTS = {
+    "manifest":   lambda p: os.path.isfile(os.path.join(p, "cell.manifest.json")),
+    "domain":     lambda p: os.path.isdir(os.path.join(p, "domain")),
+    "ports":      lambda p: os.path.isdir(os.path.join(p, "ports")),
+    "application":lambda p: os.path.isdir(os.path.join(p, "application")),
+    "engine":     lambda p: len([f for r,d,fs in os.walk(p) for f in fs if f.endswith(".engine.ts")]) > 0,
+    "smartlink":  lambda p: any(
+        "smartlink" in open(os.path.join(r,f), errors="ignore").read()
+        for r,d,fs in os.walk(p) for f in fs if f.endswith(".ts")
+    ),
+}
+
+results = {}
+sick_cells = []
+healthy_cells = []
+
+for tier in ("business", "kernel", "infrastructure"):
+    tp = f"src/cells/{tier}"
+    if not os.path.isdir(tp): continue
+    for cell in sorted(os.listdir(tp)):
+        cp = os.path.join(tp, cell)
+        if not os.path.isdir(cp): continue
+
+        score = {}
+        for comp, check in REQUIRED_COMPONENTS.items():
+            try:
+                score[comp] = check(cp)
+            except:
+                score[comp] = False
+
+        missing = [k for k,v in score.items() if not v]
+        present = [k for k,v in score.items() if v]
+        results[cell] = {"tier": tier, "score": len(present), "missing": missing, "present": present}
+
+        if missing:
+            sick_cells.append(cell)
+        else:
+            healthy_cells.append(cell)
+
+# Print results
+healthy_count = len(healthy_cells)
+sick_count = len(sick_cells)
+print(f"  \033[0;32m✅\033[0m DNA đầy đủ: {healthy_count} cells")
+if sick_count > 0:
+    print(f"  \033[0;31m❌\033[0m DNA thiếu component: {sick_count} cells\n")
+    for cell in sick_cells:
+        r = results[cell]
+        missing_str = ", ".join(r["missing"])
+        print(f"    🧬  {cell} [{r['score']}/6] — THIẾU: {missing_str}")
+else:
+    print(f"  \033[0;32m✅\033[0m Tất cả cells DNA 6/6 đầy đủ")
+
+# Đặc biệt: cells chỉ có ít files (shell)
+print(f"\n  Cells ít files nhất (có thể là shell):")
+file_counts = []
+for tier in ("business", "kernel", "infrastructure"):
+    tp = f"src/cells/{tier}"
+    if not os.path.isdir(tp): continue
+    for cell in sorted(os.listdir(tp)):
+        cp = os.path.join(tp, cell)
+        if not os.path.isdir(cp): continue
+        fc = sum(len(fs) for r,d,fs in os.walk(cp))
+        file_counts.append((fc, cell))
+
+for fc, cell in sorted(file_counts)[:8]:
+    icon = "⚠️ " if fc <= 6 else "  "
+    print(f"    {icon} {cell}: {fc} files")
+
+os.makedirs(".nattos-twin", exist_ok=True)
+json.dump({"healthy": healthy_count, "sick": sick_count, "details": results, "sick_list": sick_cells},
+    open(".nattos-twin/cell-dna.json", "w"), indent=2, ensure_ascii=False)
+PY37
+
+DNA_SICK=$(python3 -c "import json,os; d=json.load(open('.nattos-twin/cell-dna.json')) if os.path.exists('.nattos-twin/cell-dna.json') else {'sick':0}; print(d.get('sick',0))" 2>/dev/null || echo 0)
+[[ "$DNA_SICK" -eq 0 ]] && inc_ok || inc_warn "DNA: $DNA_SICK cells thiếu component"
+
+# ═══════════════════════════════════════════════════════════════
+# S38 — BASELINE DIFF (So sánh hôm nay vs hôm qua)
+
+# ═══════════════════════════════════════════════════════════════
+# ╔══ GROUP C: ARCHITECTURE — SmartLink · EventBus · 3-Layer · Engines · Contracts
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP C — ARCHITECTURE — SmartLink · EventBus · 3-Layer · Engines · Contracts"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "10" "SMARTLINK CORE"
 # ═══════════════════════════════════════════════════════════════
 SL_FILES=("smartlink.point.ts" "smartlink.qneu-bridge.ts" "quantum-brain.engine.ts" "quantum-buffer.engine.ts")
 for f in "${SL_FILES[@]}"; do
@@ -320,7 +506,7 @@ if grep -rq "gossipQueue\|FiberSummary" src/cells/infrastructure/smartlink-cell/
 else fail "Gossip Protocol: NOT IMPLEMENTED"; inc_fail "SMARTLINK: gossip missing"; fi
 
 # ═══════════════════════════════════════════════════════════════
-hdr "8" "EVENT SYSTEM"
+hdr "11" "EVENT SYSTEM"
 # ═══════════════════════════════════════════════════════════════
 EVT_FILES=("event-bus.ts" "event-store.ts" "event-router.ts" "event-envelope.factory.ts" "event-bridge.ts")
 EVT_OK=0
@@ -335,8 +521,259 @@ ok "Constitutional Guards: $GUARD_COUNT files"; inc_ok
 CONTRACT_COUNT=$(find packages/event-contracts -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 ok "Event Contracts: $CONTRACT_COUNT files"; inc_ok
 
+
 # ═══════════════════════════════════════════════════════════════
-hdr "9" "METABOLISM LAYER"
+hdr "12" "3-LAYER ARCHITECTURE — EventBus / Mạch HeyNa / SmartLink"
+# ═══════════════════════════════════════════════════════════════
+# Per NATTOS_COMPLETE_PICTURE_v0.9 (locked 2026-04-16):
+#   Layer 1: EventBus (app internal — UI ↔ Source within client app)
+#   Layer 2: Mạch HeyNa (SSE + POST gateway — single instance transport)
+#   Layer 3: SmartLink (inter-colony signal-only between instances)
+# Violation: direct fetch() bypassing HeyNa, EventBus exposed to client
+
+echo -e "  ${W}Layer 1 — EventBus (app internal)${N}"
+EB_FILES=$(grep -rl "EventBus\|eventBus\|event-bus" src/cells/ --include="*.ts" 2>/dev/null | wc -l)
+EB_KERNEL=$(grep -rl "EventBus\|eventBus" src/core/ --include="*.ts" 2>/dev/null | wc -l)
+echo -e "    Cells using EventBus: $EB_FILES files"
+echo -e "    Kernel EventBus refs: $EB_KERNEL files"
+
+echo -e "  ${W}Layer 2 — Mạch HeyNa (SSE transport)${N}"
+HEYNA_SERVER=$(find . -name "heyna*" -o -name "mach-heyna*" -o -name "machheyna*" 2>/dev/null | grep -v node_modules | wc -l)
+HEYNA_CLIENT=$(grep -rl "heyna\|HeyNa\|mach.*heyna" nattos-server/apps/ --include="*.html" --include="*.js" 2>/dev/null | wc -l)
+SSE_ENDPOINTS=$(grep -rn "\/mach\/heyna\|\/sse\|EventSource" nattos-server/ --include="*.ts" --include="*.js" 2>/dev/null | grep -v node_modules | wc -l)
+echo -e "    HeyNa files: $HEYNA_SERVER server + $HEYNA_CLIENT client"
+echo -e "    SSE endpoints/refs: $SSE_ENDPOINTS"
+
+echo -e "  ${W}Layer 3 — SmartLink (inter-colony)${N}"
+SL_FILES=$(find src/ -name "*.smartlink*" -o -name "*smartlink*" 2>/dev/null | grep -v node_modules | wc -l)
+SL_IMPORTS=$(grep -rl "SmartLink\|smartLink\|smart-link" src/ --include="*.ts" 2>/dev/null | wc -l)
+echo -e "    SmartLink files: $SL_FILES"
+echo -e "    SmartLink imports: $SL_IMPORTS files"
+
+echo ""
+echo -e "  ${W}Cross-layer violations:${N}"
+# Violation: fetch() in client apps bypassing HeyNa
+FETCH_VIOLATIONS=$(grep -rn "fetch(" nattos-server/apps/ --include="*.html" --include="*.js" 2>/dev/null | grep -v "heyna\|HeyNa\|node_modules\|//.*fetch" | wc -l)
+if [[ $FETCH_VIOLATIONS -gt 0 ]]; then
+  warn "Layer 2 bypass: $FETCH_VIOLATIONS direct fetch() calls not through HeyNa"
+  inc_warn "L2 bypass: $FETCH_VIOLATIONS fetch() calls"
+else
+  ok "No Layer 2 bypass — all client calls through HeyNa"
+  inc_ok
+fi
+
+# Violation: EventBus exposed to client (should be kernel only)
+EB_CLIENT=$(grep -rn "EventBus\|eventBus" nattos-server/apps/ --include="*.html" --include="*.js" 2>/dev/null | grep -v "heyna\|node_modules\|//.*EventBus" | wc -l)
+if [[ $EB_CLIENT -gt 0 ]]; then
+  warn "Layer 1 leak: $EB_CLIENT EventBus refs in client apps (should use HeyNa)"
+  inc_warn "L1 leak: $EB_CLIENT EventBus in client"
+else
+  ok "EventBus contained in kernel — no client leak"
+  inc_ok
+fi
+
+# Check: localStorage violations (Hiến Pháp Điều 7)
+LS_COUNT=$(grep -rn "localStorage" nattos-server/apps/ src/ --include="*.ts" --include="*.html" --include="*.js" 2>/dev/null | grep -v node_modules | wc -l)
+if [[ $LS_COUNT -gt 0 ]]; then
+  warn "Hiến Pháp Điều 7: $LS_COUNT localStorage refs (should use HeyNa state)"
+  inc_warn "HP-7: $LS_COUNT localStorage"
+else
+  ok "No localStorage — Hiến Pháp Điều 7 clean"
+  inc_ok
+fi
+# ═══════════════════════════════════════════════════════════════
+hdr "13" "ENGINE COVERAGE MAP"
+
+ENGINE_TOTAL=0; ENGINE_CELLS=0; NO_ENGINE_CELLS=()
+for cell_dir in src/cells/business/*/; do
+  cell=$(basename "$cell_dir")
+  engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v "node_modules" | wc -l | tr -dc '0-9')
+  if [[ "$engines" -gt 0 ]]; then
+    ((ENGINE_TOTAL += engines)) || true
+    ((ENGINE_CELLS++)) || true
+  else
+    NO_ENGINE_CELLS+=("$cell")
+  fi
+done
+
+# Kernel engines
+KERNEL_ENG=$(find src/cells/kernel -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+((ENGINE_TOTAL += KERNEL_ENG)) || true
+
+ok "Total engines: $ENGINE_TOTAL across business+kernel cells"
+ok "Business cells with engine: $ENGINE_CELLS"
+
+if [[ ${#NO_ENGINE_CELLS[@]} -gt 0 ]]; then
+  warn "Cells without engine (${#NO_ENGINE_CELLS[@]}): ${NO_ENGINE_CELLS[*]}"
+  inc_warn "ENGINE: ${#NO_ENGINE_CELLS[@]} cells have no engine"
+else
+  ok "All business cells have at least 1 engine"; inc_ok
+fi
+
+# List engines by cell (full mode)
+if [[ "$FULL_MODE" == "true" ]]; then
+  echo ""
+  info "Engine breakdown:"
+  for cell_dir in src/cells/business/*/; do
+    cell=$(basename "$cell_dir")
+    engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v node_modules)
+    if [[ -n "$engines" ]]; then
+      count=$(echo "$engines" | wc -l | tr -dc '0-9')
+      echo -e "  ${C}$cell${N}: $count engine(s)"
+    fi
+  done
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S18 — EVENTBUS FLOW TRACER
+# ═══════════════════════════════════════════════════════════════
+hdr "14" "EVENTBUS FLOW TRACER"
+
+# Count emit events
+EMIT_COUNT=$(grep -rh "EventBus\.emit\|EventBus\.publish" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -dc '0-9')
+SUB_COUNT=$(grep -rh "EventBus\.on\|EventBus\.subscribe" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -dc '0-9')
+
+ok "EventBus.emit/publish calls: $EMIT_COUNT"
+ok "EventBus.on/subscribe calls: $SUB_COUNT"
+
+# Find unique event types being emitted
+EVENT_TYPES=$(grep -roh "emit('[^']*'" src/ --include="*.ts" 2>/dev/null | sed "s/emit('//;s/'//" | sort -u | grep -v "^$")
+EVENT_COUNT=$(echo "$EVENT_TYPES" | grep -c "." 2>/dev/null || echo 0)
+
+ok "Unique event types emitted: $EVENT_COUNT"
+
+if [[ "$FULL_MODE" == "true" && -n "$EVENT_TYPES" ]]; then
+  info "Event types:"
+  echo "$EVENT_TYPES" | while read -r ev; do
+    [[ -n "$ev" ]] && echo "  ${C}→${N} $ev"
+  done
+fi
+
+# Check EventBus wired to Quantum Defense
+if grep -rq "cell.metric" src/cells/ --include="*.engine.ts" 2>/dev/null; then
+  ok "cell.metric signal: WIRED to engines"; inc_ok
+else
+  warn "cell.metric signal: not found in engines"
+  inc_warn "EVENTBUS: cell.metric not emitted from engines"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S19 — CONTRACT INTEGRITY
+# ═══════════════════════════════════════════════════════════════
+hdr "15" "CONTRACT INTEGRITY"
+
+CONTRACT_OK=0; CONTRACT_WARN=0
+for cell_dir in src/cells/*/; do
+  contracts_dir="$cell_dir/contracts"
+  if [[ -d "$contracts_dir" ]]; then
+    contract_files=$(find "$contracts_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+    if [[ "$contract_files" -gt 0 ]]; then
+      ((CONTRACT_OK++)) || true
+    fi
+  fi
+done
+
+TOTAL_CONTRACTS=$(find src/cells -path "*/contracts/*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+ok "Contract files found: $TOTAL_CONTRACTS across $CONTRACT_OK cells"
+
+# Check event-contracts package
+if [[ -d "src/contracts" ]]; then
+  PKG_CONTRACTS=$(find src/contracts -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+  ok "src/contracts: $PKG_CONTRACTS files"; inc_ok
+else
+  warn "src/contracts: NOT FOUND"; inc_warn "CONTRACT: event-contracts package missing"
+fi
+
+# Hiến Pháp DNA alignment
+if [[ -f "src/governance/gatekeeper/dna-loader.ts" ]]; then
+  DNA_TRIGGERS=$(grep -c "TriggerType\." src/governance/gatekeeper/dna-loader.ts 2>/dev/null || echo 0)
+  ok "DNA_VALID_TRIGGERS: $DNA_TRIGGERS trigger types registered"; inc_ok
+else
+  fail "dna-loader.ts: NOT FOUND"; inc_fail "CONTRACT: DNA loader missing"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S20 — DEPENDENCY GRAPH (Cross-cell import violations)
+# ═══════════════════════════════════════════════════════════════
+hdr "16" "DEPENDENCY GRAPH — CROSS-CELL IMPORT CHECK"
+
+VIOLATIONS=0; VIOLATION_LIST=()
+
+# Check if any cell imports directly from another cell (Điều 4 violation)
+while IFS= read -r file; do
+  cell=$(echo "$file" | sed 's|src/cells/[^/]*/\([^/]*\)/.*|\1|')
+  # Find imports from other cells
+  bad=$(grep -n "from.*src/cells" "$file" 2>/dev/null | grep -v "from '@/\|from \"@/" | head -3)
+  if [[ -n "$bad" ]]; then
+    VIOLATIONS=$((VIOLATIONS + 1))
+    VIOLATION_LIST+=("$file")
+  fi
+done < <(find src/cells -name "*.ts" ! -path "*/node_modules/*" 2>/dev/null | head -200)
+
+if [[ $VIOLATIONS -eq 0 ]]; then
+  ok "No direct cross-cell imports detected (Điều 4 ✅)"; inc_ok
+else
+  warn "$VIOLATIONS files with potential cross-cell imports"
+  inc_warn "DEP: $VIOLATIONS cross-cell import violations"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    for v in "${VIOLATION_LIST[@]}"; do echo "  ${Y}→${N} $v"; done
+  fi
+fi
+
+# Check EventBus used as bridge (correct pattern)
+EB_BRIDGE=$(grep -rl "EventBus" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+ok "Cells using EventBus as bridge: $EB_BRIDGE files"
+
+# ═══════════════════════════════════════════════════════════════
+# S21 — MEMORY FILES HEALTH
+
+# ═══════════════════════════════════════════════════════════════
+# ╔══ GROUP D: FLOWS — BCTC · Production · Metabolism
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP D — FLOWS — BCTC · Production · Metabolism"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "17" "BCTC FLOW (Finance Critical Path)"
+# ═══════════════════════════════════════════════════════════════
+BCTC_CELLS=("sales-cell" "finance-cell" "period-close-cell" "tax-cell" "payment-cell" "customs-cell")
+echo -e "  ${W}sales → finance → period-close → tax → BCTC${N}"
+BCTC_OK=0
+for cell in "${BCTC_CELLS[@]}"; do
+  DIR="src/cells/business/$cell"
+  PORT=$(find "$DIR/ports" -name "*smartlink*" 2>/dev/null | head -1)
+  WIRED=$(grep -rq "SmartLinkPort" "$DIR/domain/services/" 2>/dev/null && echo "WIRED✅" || echo "NOT✅")
+  if [[ -n "$PORT" && "$WIRED" == "WIRED✅" ]]; then
+    ok "$cell: $WIRED"; inc_ok; ((BCTC_OK++)) || true
+  else
+    warn "$cell: port=$([ -n "$PORT" ] && echo '✅' || echo '❌') wire=$WIRED"
+    inc_warn "BCTC: $cell not fully wired"
+  fi
+done
+echo -e "  ${W}BCTC flow: $BCTC_OK/${#BCTC_CELLS[@]} cells ready${N}"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "18" "PRODUCTION FLOW"
+# ═══════════════════════════════════════════════════════════════
+PROD_CELLS=("design-3d-cell" "production-cell" "casting-cell" "stone-cell" "finishing-cell" "polishing-cell" "inventory-cell" "warehouse-cell")
+echo -e "  ${W}design-3d → production → casting → stone → finishing → polishing → inventory → warehouse${N}"
+PROD_OK=0
+for cell in "${PROD_CELLS[@]}"; do
+  DIR="src/cells/business/$cell"
+  if [[ -d "$DIR" ]]; then
+    PORT=$(find "$DIR/ports" -name "*smartlink*" 2>/dev/null | head -1)
+    if [[ -n "$PORT" ]]; then
+      ok "$cell: SmartLink ✅"; ((PROD_OK++)) || true
+    else
+      warn "$cell: no SmartLink port"
+    fi
+  else
+    fail "$cell: MISSING"
+  fi
+done
+echo -e "  ${W}Production flow: $PROD_OK/${#PROD_CELLS[@]} cells wired${N}"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "19" "METABOLISM LAYER"
 # ═══════════════════════════════════════════════════════════════
 if [[ -d "src/metabolism" ]]; then
   PROC_COUNT=$(find src/metabolism/processors -name "*.ts" -not -name "index.ts" 2>/dev/null | wc -l | tr -dc '0-9')
@@ -360,70 +797,58 @@ if [[ -d "src/metabolism" ]]; then
 else
   fail "Metabolism: NOT BUILT"; inc_fail "METABOLISM: entire layer missing"
 fi
-
 # ═══════════════════════════════════════════════════════════════
-hdr "10" "LEGACY & TRASH DETECTION"
-# ═══════════════════════════════════════════════════════════════
+hdr "20" "MATH + METABOLISM COVERAGE"
 
-# Bản sao (macOS Finder copies)
-BANSAO=$(find src -name "Bản sao*" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$BANSAO" -gt 0 ]]; then
-  fail "Bản sao files: $BANSAO (macOS Finder copies — DELETE)"; inc_trash "TRASH: $BANSAO Bản sao files"
-  if [[ "$FULL_MODE" == "true" ]]; then find src -name "Bản sao*" | sed 's/^/    🗑️  /'; fi
-else ok "No Bản sao files"; inc_ok; fi
-
-# .DS_Store
-DS_COUNT=$(find . -name ".DS_Store" -not -path "./node_modules/*" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$DS_COUNT" -gt 0 ]]; then
-  warn ".DS_Store: $DS_COUNT files"; inc_trash "TRASH: $DS_COUNT .DS_Store"
-else ok "No .DS_Store"; inc_ok; fi
-
-# Empty directories
-EMPTY_DIRS=$(find src/cells -type d -empty 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$EMPTY_DIRS" -gt 0 ]]; then
-  warn "Empty dirs in cells/: $EMPTY_DIRS"; inc_warn "STRUCTURE: $EMPTY_DIRS empty dirs"
-  if [[ "$FULL_MODE" == "true" ]]; then find src/cells -type d -empty 2>/dev/null | sed 's/^/    📁 /'; fi
-else ok "No empty dirs"; inc_ok; fi
-
-# Duplicate basenames — dùng full path để tránh false positive (NATT-CELL convention: mỗi cell có services/ riêng)
-DUPES=$(find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -d | wc -l | tr -dc '0-9')
-if [[ "$DUPES" -gt 0 ]]; then
-  warn "Duplicate filenames (exact path): $DUPES (check for conflicts)"; inc_warn "STRUCTURE: $DUPES duplicate filenames"
-  if [[ "$FULL_MODE" == "true" ]]; then
-    find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -cd | sort -rn | head -10 | sed 's/^/    /'
+# Math modules
+MATH_MODULES=("replicator-dynamics" "nash-equilibrium" "lyapunov" "fisher-info" "persistent-homology" "error-correction")
+MATH_OK=0
+for m in "${MATH_MODULES[@]}"; do
+  if [[ -f "src/metabolism/math/$m.ts" ]]; then
+    ((MATH_OK++)) || true
+  else
+    warn "Math module missing: $m"
   fi
-else ok "No duplicate filenames"; inc_ok; fi
+done
+if [[ $MATH_OK -eq ${#MATH_MODULES[@]} ]]; then
+  ok "Math modules: $MATH_OK/${#MATH_MODULES[@]} ✅"; inc_ok
+else
+  warn "Math modules: $MATH_OK/${#MATH_MODULES[@]}"; inc_warn "MATH: ${#MATH_MODULES[@]}-$MATH_OK modules missing"
+fi
 
-# Orphan imports — bỏ qua quantum-defense-cell/contracts (internal contracts = hợp lệ)
-ORPHAN_IMPORTS=$(grep -rn "from.*contracts/" src/ --include="*.ts" 2>/dev/null \
-  | grep -v "event-contracts\|shared-contracts\|node_modules\|quantum-defense-cell" \
-  | wc -l | tr -dc '0-9')
-if [[ "$ORPHAN_IMPORTS" -gt 0 ]]; then
-  warn "Possible orphan imports: $ORPHAN_IMPORTS"; inc_warn "IMPORTS: $ORPHAN_IMPORTS possible orphan"
-else ok "No orphan imports detected"; inc_ok; fi
+# Plugin modules
+PLUGIN_FILES=$(find src/metabolism/plugins -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ "$PLUGIN_FILES" -ge 3 ]]; then
+  ok "Plugin system: $PLUGIN_FILES files ✅"; inc_ok
+else
+  warn "Plugin system: only $PLUGIN_FILES files"; inc_warn "PLUGIN: incomplete"
+fi
 
-# Legacy natt-os/ folder
-if [[ -d "natt-os" ]]; then
-  LEGACY_TS=$(find natt-os -name "*.ts" | wc -l | tr -dc '0-9')
-  info "natt-os/ legacy: $LEGACY_TS files (pending quantum-defense-cell migration)"
+# Healing modules
+HEALING_FILES=$(find src/metabolism/healing -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ "$HEALING_FILES" -ge 3 ]]; then
+  ok "Healing modules: $HEALING_FILES files ✅"; inc_ok
+else
+  warn "Healing modules: $HEALING_FILES files"; inc_warn "HEALING: incomplete"
+fi
+
+# AnomalyDetector check
+if [[ -f "src/metabolism/healing/anomaly-detector.ts" ]]; then
+  ok "AnomalyDetector: EXISTS ✅"; inc_ok
+else
+  warn "AnomalyDetector: MISSING"; inc_warn "HEALING: anomaly-detector missing"
 fi
 
 # ═══════════════════════════════════════════════════════════════
-hdr "11" "INFRASTRUCTURE CELLS"
-# ═══════════════════════════════════════════════════════════════
-INFRA_CELLS=("smartlink-cell" "sync-cell" "shared-contracts-cell")
-for cell in "${INFRA_CELLS[@]}"; do
-  P="src/cells/infrastructure/$cell"
-  if [[ -d "$P" ]]; then
-    FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
-    ok "$cell: $FC files"; inc_ok
-  else
-    fail "$cell: MISSING"; inc_fail "INFRA: $cell missing"
-  fi
-done
+# S23 — QNEU SCORE TREND
 
 # ═══════════════════════════════════════════════════════════════
-hdr "12" "UI COMPONENTS — FULL HEALTH CHECK"
+# ╔══ GROUP E: UI LAYER — Components · App Scan
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP E — UI LAYER — Components · App Scan"
+
+# ═══════════════════════════════════════════════════════════════
+hdr "21" "UI COMPONENTS — FULL HEALTH CHECK"
 # ═══════════════════════════════════════════════════════════════
 COMP_COUNT=$(find src/components -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
 COMP_SUB=$(find src/components -mindepth 2 -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
@@ -566,49 +991,9 @@ echo ""
 echo -e "  ${W}UI Summary: $COMP_COUNT components | orphans:$UI_ORPHANS | dead:$UI_DEAD | dupes:$((SR_DUPES + COMP_DUPES))${N}"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "13" "BCTC FLOW (Finance Critical Path)"
-# ═══════════════════════════════════════════════════════════════
-BCTC_CELLS=("sales-cell" "finance-cell" "period-close-cell" "tax-cell" "payment-cell" "customs-cell")
-echo -e "  ${W}sales → finance → period-close → tax → BCTC${N}"
-BCTC_OK=0
-for cell in "${BCTC_CELLS[@]}"; do
-  DIR="src/cells/business/$cell"
-  PORT=$(find "$DIR/ports" -name "*smartlink*" 2>/dev/null | head -1)
-  WIRED=$(grep -rq "SmartLinkPort" "$DIR/domain/services/" 2>/dev/null && echo "WIRED✅" || echo "NOT✅")
-  if [[ -n "$PORT" && "$WIRED" == "WIRED✅" ]]; then
-    ok "$cell: $WIRED"; inc_ok; ((BCTC_OK++)) || true
-  else
-    warn "$cell: port=$([ -n "$PORT" ] && echo '✅' || echo '❌') wire=$WIRED"
-    inc_warn "BCTC: $cell not fully wired"
-  fi
-done
-echo -e "  ${W}BCTC flow: $BCTC_OK/${#BCTC_CELLS[@]} cells ready${N}"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "14" "PRODUCTION FLOW"
-# ═══════════════════════════════════════════════════════════════
-PROD_CELLS=("design-3d-cell" "production-cell" "casting-cell" "stone-cell" "finishing-cell" "polishing-cell" "inventory-cell" "warehouse-cell")
-echo -e "  ${W}design-3d → production → casting → stone → finishing → polishing → inventory → warehouse${N}"
-PROD_OK=0
-for cell in "${PROD_CELLS[@]}"; do
-  DIR="src/cells/business/$cell"
-  if [[ -d "$DIR" ]]; then
-    PORT=$(find "$DIR/ports" -name "*smartlink*" 2>/dev/null | head -1)
-    if [[ -n "$PORT" ]]; then
-      ok "$cell: SmartLink ✅"; ((PROD_OK++)) || true
-    else
-      warn "$cell: no SmartLink port"
-    fi
-  else
-    fail "$cell: MISSING"
-  fi
-done
-echo -e "  ${W}Production flow: $PROD_OK/${#PROD_CELLS[@]} cells wired${N}"
-
-# ═══════════════════════════════════════════════════════════════
-
-# ═══════════════════════════════════════════════════════════════
-hdr "15" "UI APP — SCAN DEEP"
+hdr "22" "UI APP — SCAN DEEP"
 # ═══════════════════════════════════════════════════════════════
 UI_APP_DIR="nattos-server/app Tâm luxury"
 if [[ ! -d "$UI_APP_DIR" ]]; then
@@ -772,388 +1157,318 @@ fi  # end UI_APP_DIR check
 
 # ═══════════════════════════════════════════════════════════════
 # S17 — ENGINE COVERAGE MAP
-# ═══════════════════════════════════════════════════════════════
-hdr "17" "ENGINE COVERAGE MAP"
-
-ENGINE_TOTAL=0; ENGINE_CELLS=0; NO_ENGINE_CELLS=()
-for cell_dir in src/cells/business/*/; do
-  cell=$(basename "$cell_dir")
-  engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v "node_modules" | wc -l | tr -dc '0-9')
-  if [[ "$engines" -gt 0 ]]; then
-    ((ENGINE_TOTAL += engines)) || true
-    ((ENGINE_CELLS++)) || true
-  else
-    NO_ENGINE_CELLS+=("$cell")
-  fi
-done
-
-# Kernel engines
-KERNEL_ENG=$(find src/cells/kernel -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-((ENGINE_TOTAL += KERNEL_ENG)) || true
-
-ok "Total engines: $ENGINE_TOTAL across business+kernel cells"
-ok "Business cells with engine: $ENGINE_CELLS"
-
-if [[ ${#NO_ENGINE_CELLS[@]} -gt 0 ]]; then
-  warn "Cells without engine (${#NO_ENGINE_CELLS[@]}): ${NO_ENGINE_CELLS[*]}"
-  inc_warn "ENGINE: ${#NO_ENGINE_CELLS[@]} cells have no engine"
-else
-  ok "All business cells have at least 1 engine"; inc_ok
-fi
-
-# List engines by cell (full mode)
-if [[ "$FULL_MODE" == "true" ]]; then
-  echo ""
-  info "Engine breakdown:"
-  for cell_dir in src/cells/business/*/; do
-    cell=$(basename "$cell_dir")
-    engines=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | grep -v node_modules)
-    if [[ -n "$engines" ]]; then
-      count=$(echo "$engines" | wc -l | tr -dc '0-9')
-      echo -e "  ${C}$cell${N}: $count engine(s)"
-    fi
-  done
-fi
 
 # ═══════════════════════════════════════════════════════════════
-# S18 — EVENTBUS FLOW TRACER
+# ╔══ GROUP F: SECURITY & GOVERNANCE — Hiến Pháp · ReNa · LỆNH #001
 # ═══════════════════════════════════════════════════════════════
-hdr "18" "EVENTBUS FLOW TRACER"
-
-# Count emit events
-EMIT_COUNT=$(grep -rh "EventBus\.emit\|EventBus\.publish" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -dc '0-9')
-SUB_COUNT=$(grep -rh "EventBus\.on\|EventBus\.subscribe" src/ --include="*.ts" 2>/dev/null | grep -v "@ts-nocheck" | wc -l | tr -dc '0-9')
-
-ok "EventBus.emit/publish calls: $EMIT_COUNT"
-ok "EventBus.on/subscribe calls: $SUB_COUNT"
-
-# Find unique event types being emitted
-EVENT_TYPES=$(grep -roh "emit('[^']*'" src/ --include="*.ts" 2>/dev/null | sed "s/emit('//;s/'//" | sort -u | grep -v "^$")
-EVENT_COUNT=$(echo "$EVENT_TYPES" | grep -c "." 2>/dev/null || echo 0)
-
-ok "Unique event types emitted: $EVENT_COUNT"
-
-if [[ "$FULL_MODE" == "true" && -n "$EVENT_TYPES" ]]; then
-  info "Event types:"
-  echo "$EVENT_TYPES" | while read -r ev; do
-    [[ -n "$ev" ]] && echo "  ${C}→${N} $ev"
-  done
-fi
-
-# Check EventBus wired to Quantum Defense
-if grep -rq "cell.metric" src/cells/ --include="*.engine.ts" 2>/dev/null; then
-  ok "cell.metric signal: WIRED to engines"; inc_ok
-else
-  warn "cell.metric signal: not found in engines"
-  inc_warn "EVENTBUS: cell.metric not emitted from engines"
-fi
-
+grp "GROUP F — SECURITY & GOVERNANCE — Hiến Pháp · ReNa · LỆNH #001"
 # ═══════════════════════════════════════════════════════════════
-# S19 — CONTRACT INTEGRITY
-# ═══════════════════════════════════════════════════════════════
-hdr "19" "CONTRACT INTEGRITY"
+hdr "23" "HIẾN PHÁP SCAN — Kiểm tra vi phạm Điều luật"
 
-CONTRACT_OK=0; CONTRACT_WARN=0
-for cell_dir in src/cells/*/; do
-  contracts_dir="$cell_dir/contracts"
-  if [[ -d "$contracts_dir" ]]; then
-    contract_files=$(find "$contracts_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-    if [[ "$contract_files" -gt 0 ]]; then
-      ((CONTRACT_OK++)) || true
-    fi
-  fi
-done
+python3 << 'PY36'
+import os
+if os.environ.get('AUDIT_MODE') == 'quick':
+    print('  \033[0;33m⚡\033[0m  QUICK MODE — skip')
+    exit(0)
+import os, re, json
 
-TOTAL_CONTRACTS=$(find src/cells -path "*/contracts/*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-ok "Contract files found: $TOTAL_CONTRACTS across $CONTRACT_OK cells"
+src = "src"
+violations = []
 
-# Check event-contracts package
-if [[ -d "src/contracts" ]]; then
-  PKG_CONTRACTS=$(find src/contracts -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-  ok "src/contracts: $PKG_CONTRACTS files"; inc_ok
+# Điều 4: Không import trực tiếp cross-cell
+# Pattern: import từ ../../cells/KHÁC/
+dia4_pat = re.compile(r'from\s+[\'"](?:\.\./){2,}cells/(?:business|kernel|infrastructure)/([^/\'"]+)/([^\'"]+)[\'"]')
+
+# Điều 7: Không tự lưu state (localStorage, fs.writeFile, console persistence)
+dia7_pat = re.compile(r'localStorage\.(setItem|getItem)|fs\.(writeFile|appendFile|writeFileSync)\s*\(|window\.localStorage')
+
+# Điều 9: Không gọi external API trực tiếp (phải qua EventBus)
+dia9_pat = re.compile(r'fetch\s*\(\s*[\'"]https?://|axios\.(get|post|put|delete)\s*\(\s*[\'"]https?://|new\s+XMLHttpRequest')
+
+# Điều 11: Không hardcode credentials/keys
+dia11_pat = re.compile(r'(?i)(api_key|apikey|secret|password|token)\s*=\s*[\'"][a-zA-Z0-9+/=_\-]{8,}[\'"]')
+
+for root, dirs, files in os.walk(src):
+    dirs[:] = [d for d in dirs if d not in ("node_modules", "baithicuakim", ".git", "services")]
+    for f in files:
+        if not f.endswith(".ts"): continue
+        path = os.path.join(root, f)
+        try:
+            content = open(path, encoding="utf-8", errors="ignore").read()
+            lines = content.split("\n")
+        except:
+            continue
+
+        # Get cell context
+        parts = path.replace("\\", "/").split("/")
+        cell = "core"
+        for i, x in enumerate(parts):
+            if x in ("business", "kernel", "infrastructure") and i+1 < len(parts):
+                cell = parts[i+1]
+                break
+
+        for ln, line in enumerate(lines, 1):
+            # Điều 4
+            for m in dia4_pat.finditer(line):
+                target_cell = m.group(1)
+                if target_cell != cell:
+                    violations.append({
+                        "dieu": "Điều 4",
+                        "severity": "🔴 CRITICAL",
+                        "cell": cell,
+                        "file": path.replace("src/", ""),
+                        "line": ln,
+                        "detail": f"Direct import từ {target_cell}",
+                        "code": line.strip()[:80]
+                    })
+            # Điều 7
+            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
+                violations.append({
+                    "dieu": "Điều 7",
+                    "severity": "🔴 CRITICAL",
+                    "cell": cell,
+                    "file": path.replace("src/", ""),
+                    "line": ln,
+                    "detail": "Self-state storage (localStorage/fs.write)",
+                    "code": line.strip()[:80]
+                })
+            # Điều 9
+            if dia9_pat.search(line) and "nattos-server" not in path and "nattos-sheets" not in path and "DIEU9-OK" not in line:
+                violations.append({
+                    "dieu": "Điều 9",
+                    "severity": "🟡 WARN",
+                    "cell": cell,
+                    "file": path.replace("src/", ""),
+                    "line": ln,
+                    "detail": "Direct external API call (bypass EventBus?)",
+                    "code": line.strip()[:80]
+                })
+            # Điều 11
+            if dia11_pat.search(line) and "process.env" not in line and ".env" not in path:
+                violations.append({
+                    "dieu": "Điều 11",
+                    "severity": "🔴 CRITICAL",
+                    "cell": cell,
+                    "file": path.replace("src/", ""),
+                    "line": ln,
+                    "detail": "Hardcoded credential/key",
+                    "code": "***REDACTED***"
+                })
+
+# Group by dieu
+by_dieu = {}
+for v in violations:
+    by_dieu.setdefault(v["dieu"], []).append(v)
+
+if not violations:
+    print(f"  \033[0;32m✅\033[0m Hiến Pháp CLEAN — 0 vi phạm phát hiện")
+else:
+    print(f"  \033[0;31m❌\033[0m Phát hiện {len(violations)} vi phạm Hiến Pháp:\n")
+    for dieu, items in sorted(by_dieu.items()):
+        sev = items[0]["severity"]
+        print(f"  {sev} {dieu} — {len(items)} vi phạm:")
+        for v in items[:5]:
+            print(f"    → {v['file']}:{v['line']}")
+            print(f"      {v['detail']}")
+            print(f"      `{v['code']}`")
+        if len(items) > 5:
+            print(f"    ... và {len(items)-5} vi phạm khác")
+
+# Save
+os.makedirs(".nattos-twin", exist_ok=True)
+json.dump({"total": len(violations), "by_dieu": {k: len(v) for k,v in by_dieu.items()}, "violations": violations[:50]},
+    open(".nattos-twin/hien-phap-scan.json", "w"), indent=2, ensure_ascii=False)
+PY36
+
+# Đọc kết quả để inc counter
+HP_VIOLATIONS=$(python3 -c "import json,os; d=json.load(open('.nattos-twin/hien-phap-scan.json')) if os.path.exists('.nattos-twin/hien-phap-scan.json') else {'total':0}; print(d.get('total',0))" 2>/dev/null || echo 0)
+if [[ "$HP_VIOLATIONS" -eq 0 ]]; then
+  inc_ok
 else
-  warn "src/contracts: NOT FOUND"; inc_warn "CONTRACT: event-contracts package missing"
-fi
-
-# Hiến Pháp DNA alignment
-if [[ -f "src/governance/gatekeeper/dna-loader.ts" ]]; then
-  DNA_TRIGGERS=$(grep -c "TriggerType\." src/governance/gatekeeper/dna-loader.ts 2>/dev/null || echo 0)
-  ok "DNA_VALID_TRIGGERS: $DNA_TRIGGERS trigger types registered"; inc_ok
-else
-  fail "dna-loader.ts: NOT FOUND"; inc_fail "CONTRACT: DNA loader missing"
-fi
-
-# ═══════════════════════════════════════════════════════════════
-# S20 — DEPENDENCY GRAPH (Cross-cell import violations)
-# ═══════════════════════════════════════════════════════════════
-hdr "20" "DEPENDENCY GRAPH — CROSS-CELL IMPORT CHECK"
-
-VIOLATIONS=0; VIOLATION_LIST=()
-
-# Check if any cell imports directly from another cell (Điều 4 violation)
-while IFS= read -r file; do
-  cell=$(echo "$file" | sed 's|src/cells/[^/]*/\([^/]*\)/.*|\1|')
-  # Find imports from other cells
-  bad=$(grep -n "from.*src/cells" "$file" 2>/dev/null | grep -v "from '@/\|from \"@/" | head -3)
-  if [[ -n "$bad" ]]; then
-    VIOLATIONS=$((VIOLATIONS + 1))
-    VIOLATION_LIST+=("$file")
-  fi
-done < <(find src/cells -name "*.ts" ! -path "*/node_modules/*" 2>/dev/null | head -200)
-
-if [[ $VIOLATIONS -eq 0 ]]; then
-  ok "No direct cross-cell imports detected (Điều 4 ✅)"; inc_ok
-else
-  warn "$VIOLATIONS files with potential cross-cell imports"
-  inc_warn "DEP: $VIOLATIONS cross-cell import violations"
-  if [[ "$FULL_MODE" == "true" ]]; then
-    for v in "${VIOLATION_LIST[@]}"; do echo "  ${Y}→${N} $v"; done
-  fi
-fi
-
-# Check EventBus used as bridge (correct pattern)
-EB_BRIDGE=$(grep -rl "EventBus" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-ok "Cells using EventBus as bridge: $EB_BRIDGE files"
-
-# ═══════════════════════════════════════════════════════════════
-# S21 — MEMORY FILES HEALTH
-# ═══════════════════════════════════════════════════════════════
-hdr "21" "MEMORY FILES HEALTH"
-
-MEM_DIR="src/governance/memory"
-
-# bangmf
-BANGMF=$(find "$MEM_DIR/bang" -name "bangmf_v*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGMF" ]]; then
-  BANGMF_VER=$(basename "$BANGMF" .json)
-  if python3 -c "import json,sys; json.load(open('$BANGMF'))" 2>/dev/null; then
-    ok "bangmf: $BANGMF_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "bangmf: $BANGMF_VER INVALID JSON"; inc_fail "MEMORY: bangmf JSON corrupted"
-  fi
-else
-  warn "bangmf: not found"; inc_warn "MEMORY: bangmf missing"
-fi
-
-# bangfs
-BANGFS=$(find "$MEM_DIR/bang" -name "bangfs_v*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGFS" ]]; then
-  BANGFS_VER=$(basename "$BANGFS" .json)
-  if python3 -c "import json,sys; json.load(open('$BANGFS'))" 2>/dev/null; then
-    ok "bangfs: $BANGFS_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "bangfs: $BANGFS_VER INVALID JSON"; inc_fail "MEMORY: bangfs JSON corrupted"
-  fi
-else
-  warn "bangfs: not found"; inc_warn "MEMORY: bangfs missing"
-fi
-
-# thiennho
-THIENNHO=$(find "$MEM_DIR/thiennho" -name "*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$THIENNHO" ]]; then
-  THIENNHO_VER=$(basename "$THIENNHO" .json)
-  if python3 -c "import json,sys; json.load(open('$THIENNHO'))" 2>/dev/null; then
-    ok "thiennho: $THIENNHO_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "thiennho: INVALID JSON"; inc_fail "MEMORY: thiennho JSON corrupted"
-  fi
-else
-  warn "thiennho: not found"; inc_warn "MEMORY: thiennho missing"
-fi
-
-# kimf
-KIMF=$(find "$MEM_DIR/kim" -name "kmf*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$KIMF" ]]; then
-  ok "kimf: $(basename $KIMF .json) ✅"; inc_ok
-else
-  info "kimf: not found (optional)"
-fi
-
-# Check no .zip in memory
-ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$ZIP_IN_MEM" -gt 0 ]]; then
-  warn "$ZIP_IN_MEM .zip file(s) in memory dir — should not be committed"
-  inc_warn "MEMORY: .zip files present"
-else
-  ok "No .zip files in memory dir"; inc_ok
+  inc_fail "HIEN_PHAP: $HP_VIOLATIONS vi phạm Điều luật phát hiện"
 fi
 
 # ═══════════════════════════════════════════════════════════════
-# S22 — MATH + METABOLISM COVERAGE
-# ═══════════════════════════════════════════════════════════════
-hdr "22" "MATH + METABOLISM COVERAGE"
-
-# Math modules
-MATH_MODULES=("replicator-dynamics" "nash-equilibrium" "lyapunov" "fisher-info" "persistent-homology" "error-correction")
-MATH_OK=0
-for m in "${MATH_MODULES[@]}"; do
-  if [[ -f "src/metabolism/math/$m.ts" ]]; then
-    ((MATH_OK++)) || true
-  else
-    warn "Math module missing: $m"
-  fi
-done
-if [[ $MATH_OK -eq ${#MATH_MODULES[@]} ]]; then
-  ok "Math modules: $MATH_OK/${#MATH_MODULES[@]} ✅"; inc_ok
-else
-  warn "Math modules: $MATH_OK/${#MATH_MODULES[@]}"; inc_warn "MATH: ${#MATH_MODULES[@]}-$MATH_OK modules missing"
-fi
-
-# Plugin modules
-PLUGIN_FILES=$(find src/metabolism/plugins -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$PLUGIN_FILES" -ge 3 ]]; then
-  ok "Plugin system: $PLUGIN_FILES files ✅"; inc_ok
-else
-  warn "Plugin system: only $PLUGIN_FILES files"; inc_warn "PLUGIN: incomplete"
-fi
-
-# Healing modules
-HEALING_FILES=$(find src/metabolism/healing -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$HEALING_FILES" -ge 3 ]]; then
-  ok "Healing modules: $HEALING_FILES files ✅"; inc_ok
-else
-  warn "Healing modules: $HEALING_FILES files"; inc_warn "HEALING: incomplete"
-fi
-
-# AnomalyDetector check
-if [[ -f "src/metabolism/healing/anomaly-detector.ts" ]]; then
-  ok "AnomalyDetector: EXISTS ✅"; inc_ok
-else
-  warn "AnomalyDetector: MISSING"; inc_warn "HEALING: anomaly-detector missing"
-fi
+# S37 — CELL DNA CHECK (6 components per cell — list cái nào thiếu)
 
 # ═══════════════════════════════════════════════════════════════
-# S23 — QNEU SCORE TREND
+hdr "24" "RENA SECURITY ALERTS — Bypass Pattern Scanner"
 # ═══════════════════════════════════════════════════════════════
-hdr "23" "QNEU SCORE TREND"
+# 2 critical RED alerts pending from session 20260413:
+#   1. Audit bypass — 3 conflicting hash algorithms, chain always returns true
+#   2. RBAC/auth bypass — verify() accepts any token, isExpired() always false
 
-BASELINE_BANG=300; BASELINE_THIEN=135; BASELINE_KIM=120
-BASELINE_CAN=85; BASELINE_BOIBOI=40
+echo -e "  ${R}🔴 SCANNING FOR KNOWN BYPASS PATTERNS...${N}"
 
-# Read current scores from system-state if available
-STATE_FILE="src/governance/qneu/data/system-state.json"
-if [[ -f "$STATE_FILE" ]]; then
-  CURR_BANG=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('BANG',{}).get('currentScore',$BASELINE_BANG)))" 2>/dev/null || echo $BASELINE_BANG)
-  CURR_KIM=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('KIM',{}).get('currentScore',$BASELINE_KIM)))" 2>/dev/null || echo $BASELINE_KIM)
+python3 << 'PY43'
+import subprocess, os
 
-  echo ""
-  printf "  %-12s %-10s %-10s %s\n" "Entity" "Baseline" "Current" "Trend"
-  printf "  %-12s %-10s %-10s %s\n" "──────" "────────" "───────" "─────"
+alerts = []
+clean = []
 
-  for entity in BANG THIEN KIM CAN BOI_BOI; do
-    base_var="BASELINE_$entity"
-    base=${!base_var}
-    curr=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('$entity',{}).get('currentScore',$base)))" 2>/dev/null || echo $base)
-    delta=$((curr - base))
-    if [[ $delta -gt 0 ]]; then trend="↑ +$delta"
-    elif [[ $delta -lt 0 ]]; then trend="↓ $delta"
-    else trend="→ stable"; fi
-    printf "  %-12s %-10s %-10s %s\n" "$entity" "$base" "$curr" "$trend"
-  done
-  ok "QNEU scores loaded from system-state"; inc_ok
+# ── Alert 1: Audit chain bypass ──
+# Pattern: audit-chain-contract always returns true
+audit_files = []
+try:
+    r = subprocess.run(["grep", "-rl", "return true", "src/", "--include=*.ts"],
+                       capture_output=True, text=True)
+    for line in r.stdout.splitlines():
+        if any(k in line.lower() for k in ["audit", "chain", "verify", "contract"]):
+            audit_files.append(line)
+except: pass
+
+# Check for conflicting hash algorithms
+hash_algos = set()
+try:
+    r = subprocess.run(["grep", "-rn", "SHA-256\|Math.imul\|btoa\|sha256\|murmurhash\|FNV",
+                         "src/", "--include=*.ts"], capture_output=True, text=True)
+    for line in r.stdout.splitlines():
+        if "node_modules" in line: continue
+        if "SHA-256" in line or "sha256" in line: hash_algos.add("SHA-256")
+        if "Math.imul" in line: hash_algos.add("Math.imul-fake")
+        if "btoa" in line and "hash" in line.lower(): hash_algos.add("btoa")
+        if "murmurhash" in line.lower() or "FNV" in line: hash_algos.add("FNV/Murmur")
+except: pass
+
+if len(hash_algos) > 1:
+    alerts.append(f"🔴 AUDIT BYPASS: {len(hash_algos)} conflicting hash algos: {', '.join(sorted(hash_algos))}")
+elif audit_files:
+    alerts.append(f"⚠️  AUDIT: {len(audit_files)} files with 'return true' in audit context")
+else:
+    clean.append("Audit chain hash consistency")
+
+# ── Alert 2: Auth/RBAC bypass ──
+auth_bypass = []
+try:
+    # Check auth.service.ts for always-true patterns
+    r = subprocess.run(["grep", "-rn", "return true\|isExpired.*false\|verify.*return",
+                         "src/", "--include=*.ts"], capture_output=True, text=True)
+    for line in r.stdout.splitlines():
+        if "node_modules" in line: continue
+        lower = line.lower()
+        if any(k in lower for k in ["auth", "rbac", "guard", "token", "expired"]):
+            auth_bypass.append(line.strip())
+except: pass
+
+if auth_bypass:
+    alerts.append(f"🔴 RBAC BYPASS: {len(auth_bypass)} auth always-true patterns found")
+    for ab in auth_bypass[:3]:
+        print(f"     {ab[:120]}")
+else:
+    clean.append("Auth/RBAC guard integrity")
+
+# ── Report ──
+for a in alerts:
+    print(f"  \033[0;31m❌\033[0m {a}")
+for c in clean:
+    print(f"  \033[0;32m✅\033[0m {c}")
+
+if alerts:
+    print(f"\nINC_FAIL_RENA")
+    # Save alert file
+    os.makedirs("audit/summary", exist_ok=True)
+    import json
+    with open("audit/summary/rena-alerts.json", "w") as f:
+        json.dump({"alerts": alerts, "clean": clean, "total_red": len([a for a in alerts if "🔴" in a])}, f, indent=2)
+else:
+    print(f"\n  \033[0;32m✅\033[0m RENA CLEAN — no bypass patterns detected")
+PY43
+
+# Process ReNa result
+if grep -q "INC_FAIL_RENA" <<< "$(python3 << 'RENA_CHECK'
+import subprocess
+r = subprocess.run(["grep", "-c", "return true", "src/"], capture_output=True, text=True)
+RENA_CHECK
+)"; then
+  inc_fail "ReNa security alert — bypass patterns found"
 else
-  info "system-state.json not found — showing seed baselines"
-  printf "  %-12s %s\n" "Entity" "Seed Score"
-  printf "  %-12s %s\n" "BANG" "300"
-  printf "  %-12s %s\n" "THIEN" "135"
-  printf "  %-12s %s\n" "KIM" "120"
-  printf "  %-12s %s\n" "CAN" "85"
-  printf "  %-12s %s\n" "BOI_BOI" "40"
+  inc_ok
 fi
+# ═══════════════════════════════════════════════════════════════
+hdr "25" "ANTI-API PROTOCOL SCAN — LỆNH #001"
 
-# Check first-seed version
-SEED_VER=$(grep -o "version:.*'[0-9.]*'" src/governance/qneu/first-seed.ts 2>/dev/null | head -1 | grep -o "[0-9.]*" | head -1)
-[[ -n "$SEED_VER" ]] && ok "first-seed version: v$SEED_VER" || info "first-seed version: unknown"
+python3 << 'PY41'
+import subprocess, json
+from pathlib import Path
+
+# Pattern vi phạm thật — external AI/service calls
+VIOLATION_PATTERNS = [
+    "GoogleGenAI",
+    "new GoogleGenAI",
+    "openai.com",
+    "anthropic.com",
+    "generativelanguage.googleapis.com",
+    "vision.googleapis.com",
+    "api.openai.com",
+    "api.anthropic.com",
+]
+
+# Whitelist — acceptable
+WHITELIST = [
+    "node_modules",
+    ".bak",
+    "SuperDictionary",
+    "superdictionary",
+    "nauion.dictionary",
+    "constitutional-mapping",
+    "TechnicalDocs",
+    "technicaldocs",
+    "aicoreprocessor",
+    "VISION_API_BASE",
+    "# LỆNH",
+    "// LỆNH",
+    "// private",
+    "STUBBED",
+    "types.ts",
+    "governance/types",
+    "first-seed.ts",
+    "textlaw",
+    "docs/",
+]
+
+violations = []
+
+for pattern in VIOLATION_PATTERNS:
+    try:
+        result = subprocess.run(
+            ["grep", "-rn", pattern, "src/", "nattos-server/", "nattos-server/nattos-ui/", "config/",
+             "--include=*.ts", "--include=*.tsx", "--include=*.js",
+             "--exclude-dir=node_modules", "--exclude-dir=.git", "--exclude-dir=archive", "--exclude-dir=dist"],
+            capture_output=True, text=True
+        )
+        for line in result.stdout.splitlines():
+            if any(w in line for w in WHITELIST):
+                continue
+            violations.append(line.strip())
+    except:
+        pass
+
+violations = list(set(violations))
+
+if violations:
+    print(f"  \033[0;31m❌\033[0m  LỆNH #001 vi phạm: {len(violations)} chỗ")
+    print("INC_WARN_LENH001")
+    for v in violations[:10]:
+        print(f"     🚨 {v[:120]}")
+    if len(violations) > 10:
+        print(f"     ... và {len(violations)-10} vi phạm khác")
+    # Save to twin
+    import os, json
+    os.makedirs("audit/summary", exist_ok=True)
+    with open("audit/summary/api-violations.json", "w") as f:
+        json.dump({"count": len(violations), "violations": violations}, f, indent=2)
+else:
+    print(f"  \033[0;32m✅\033[0m LỆNH #001 CLEAN — không có external API calls")
+    import os, json
+    os.makedirs("audit/summary", exist_ok=True)
+    with open("audit/summary/api-violations.json", "w") as f:
+        json.dump({"count": 0, "violations": []}, f, indent=2)
+PY41
 
 # ═══════════════════════════════════════════════════════════════
-# S24 — DEAD CODE DETECTION
+# ╔══ GROUP G: INTELLIGENCE — V4 Digital Twin
 # ═══════════════════════════════════════════════════════════════
-hdr "24" "DEAD CODE DETECTION"
-
-ORPHAN_COUNT=0; ORPHAN_LIST=()
-
-# Find .ts files not imported by anyone (sample check — expensive so limit)
-SAMPLE_FILES=$(find src/cells -name "*.ts" ! -name "index.ts" ! -name "*.d.ts" \
-  ! -path "*/node_modules/*" ! -path "*/baithicuakim/*" 2>/dev/null | head -100)
-
-while IFS= read -r file; do
-  [[ -z "$file" ]] && continue
-  filename=$(basename "$file" .ts)
-  # Check if this file is imported anywhere
-  imported=$(grep -rl "$filename" src/ --include="*.ts" 2>/dev/null | grep -v "^$file$" | head -1)
-  if [[ -z "$imported" ]]; then
-    ((ORPHAN_COUNT++)) || true
-    ORPHAN_LIST+=("$file")
-  fi
-done <<< "$SAMPLE_FILES"
-
-if [[ $ORPHAN_COUNT -eq 0 ]]; then
-  ok "Dead code: none detected in sampled files (100 files)"; inc_ok
-elif [[ $ORPHAN_COUNT -le 5 ]]; then
-  info "Potential orphans: $ORPHAN_COUNT files (S12+S20 confirm orphans=0 — likely false positive)"
-  inc_warn "DEAD: $ORPHAN_COUNT orphan files detected"
-  if [[ "$FULL_MODE" == "true" ]]; then
-    for f in "${ORPHAN_LIST[@]}"; do echo "  ${Y}→${N} $f"; done
-  fi
-else
-  warn "Potential orphans: $ORPHAN_COUNT files (sample of 100)"
-  fi
-
-# Check for @ts-nocheck count (high count = technical debt)
-NOCHECK_CELLS=$(grep -rl "@ts-nocheck" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-NOCHECK_UI=$(grep -rl "@ts-nocheck" src/ui-app --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-NOCHECK_COUNT=$NOCHECK_CELLS
-# Wave 1-2 migration debt — expected ~900, track trend not absolute
-if [ "${NOCHECK_CELLS:-0}" -le 100 ] 2>/dev/null; then
-  ok "@ts-nocheck cells: $NOCHECK_CELLS (nearly clean)"; inc_ok
-elif [ "${NOCHECK_CELLS:-0}" -le 500 ] 2>/dev/null; then
-  warn "@ts-nocheck cells: $NOCHECK_CELLS (Wave 2 debt — reducing)"; inc_warn "DEBT: $NOCHECK_CELLS ts-nocheck in cells"
-else
-  warn "@ts-nocheck cells: $NOCHECK_CELLS (Wave 1-2 migration debt — track trend)"; inc_warn "DEBT: $NOCHECK_CELLS ts-nocheck — migration in progress"
-fi
-
-# ═══════════════════════════════════════════════════════════════
-# S25 — NATTOS.SH SELF-HEALTH
-# ═══════════════════════════════════════════════════════════════
-hdr "25" "NATTOS.SH SELF-HEALTH"
-
-SCRIPT="nattos.sh"
-if [[ ! -f "$SCRIPT" ]]; then SCRIPT="./nattos.sh"; fi
-
-SCRIPT_LINES=$(wc -l < "$SCRIPT" | tr -dc '0-9')
-ok "Script size: $SCRIPT_LINES lines"
-
-# Count sections
-SECTION_COUNT=$(grep -c "^hdr " "$SCRIPT" 2>/dev/null || echo 0)
-ok "Sections: $SECTION_COUNT total"
-
-# Check bash 3.2 compat — no [[...]] with regex, no arrays with -A
-BASH4_ONLY=$(grep -n "declare -A\|=~.*[[]\|mapfile\|readarray" "$SCRIPT" 2>/dev/null | grep -v "BASH4_ONLY" | wc -l | tr -dc '0-9')
-if [[ "$BASH4_ONLY" -gt 0 ]]; then
-  warn "bash 4+ syntax detected: $BASH4_ONLY instances — may break on macOS bash 3.2"
-  inc_warn "SCRIPT: bash 4+ syntax present"
-else
-  ok "bash 3.2 compatible: no bash4+ syntax detected"; inc_ok
-fi
-
-# Check script is executable
-if [[ -x "$SCRIPT" ]]; then
-  ok "Script executable: ✅"; inc_ok
-else
-  warn "Script not executable — run: chmod +x $SCRIPT"; inc_warn "SCRIPT: not executable"
-fi
-
-# Version check
-AUDIT_VER=$(grep -o "SmartAudit v[0-9.]*" "$SCRIPT" | head -1)
-ok "Version: $AUDIT_VER"
-
-# inc helper check
-if grep -q "inc_ok\|inc_warn\|inc_fail" "$SCRIPT" 2>/dev/null; then
-  ok "Counter helpers: present"; inc_ok
-fi
-
-
-# V4 SMART LAYER
+grp "GROUP G — INTELLIGENCE — V4 Digital Twin"
 hdr "26" "V4 — EVENT FLOW GRAPH"
 python3 << 'PYEOF2'
 import os
@@ -1345,220 +1660,255 @@ PY31
 
 # ═══════════════════════════════════════════════════════════════
 # S36 — HIẾN PHÁP SCAN (Vi phạm Điều 4/7/9/11)
+
 # ═══════════════════════════════════════════════════════════════
-hdr "36" "HIẾN PHÁP SCAN — Kiểm tra vi phạm Điều luật"
+# ╔══ GROUP H: META & HEALTH — Memory · QNEU · Dead Code · Legacy · Visual
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP H — META & HEALTH — Memory · QNEU · Dead Code · Legacy · Visual"
+# ═══════════════════════════════════════════════════════════════
+hdr "32" "MEMORY FILES HEALTH"
 
-python3 << 'PY36'
-import os
-if os.environ.get('AUDIT_MODE') == 'quick':
-    print('  \033[0;33m⚡\033[0m  QUICK MODE — skip')
-    exit(0)
-import os, re, json
+MEM_DIR="src/governance/memory"
 
-src = "src"
-violations = []
-
-# Điều 4: Không import trực tiếp cross-cell
-# Pattern: import từ ../../cells/KHÁC/
-dia4_pat = re.compile(r'from\s+[\'"](?:\.\./){2,}cells/(?:business|kernel|infrastructure)/([^/\'"]+)/([^\'"]+)[\'"]')
-
-# Điều 7: Không tự lưu state (localStorage, fs.writeFile, console persistence)
-dia7_pat = re.compile(r'localStorage\.(setItem|getItem)|fs\.(writeFile|appendFile|writeFileSync)\s*\(|window\.localStorage')
-
-# Điều 9: Không gọi external API trực tiếp (phải qua EventBus)
-dia9_pat = re.compile(r'fetch\s*\(\s*[\'"]https?://|axios\.(get|post|put|delete)\s*\(\s*[\'"]https?://|new\s+XMLHttpRequest')
-
-# Điều 11: Không hardcode credentials/keys
-dia11_pat = re.compile(r'(?i)(api_key|apikey|secret|password|token)\s*=\s*[\'"][a-zA-Z0-9+/=_\-]{8,}[\'"]')
-
-for root, dirs, files in os.walk(src):
-    dirs[:] = [d for d in dirs if d not in ("node_modules", "baithicuakim", ".git", "services")]
-    for f in files:
-        if not f.endswith(".ts"): continue
-        path = os.path.join(root, f)
-        try:
-            content = open(path, encoding="utf-8", errors="ignore").read()
-            lines = content.split("\n")
-        except:
-            continue
-
-        # Get cell context
-        parts = path.replace("\\", "/").split("/")
-        cell = "core"
-        for i, x in enumerate(parts):
-            if x in ("business", "kernel", "infrastructure") and i+1 < len(parts):
-                cell = parts[i+1]
-                break
-
-        for ln, line in enumerate(lines, 1):
-            # Điều 4
-            for m in dia4_pat.finditer(line):
-                target_cell = m.group(1)
-                if target_cell != cell:
-                    violations.append({
-                        "dieu": "Điều 4",
-                        "severity": "🔴 CRITICAL",
-                        "cell": cell,
-                        "file": path.replace("src/", ""),
-                        "line": ln,
-                        "detail": f"Direct import từ {target_cell}",
-                        "code": line.strip()[:80]
-                    })
-            # Điều 7
-            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
-                violations.append({
-                    "dieu": "Điều 7",
-                    "severity": "🔴 CRITICAL",
-                    "cell": cell,
-                    "file": path.replace("src/", ""),
-                    "line": ln,
-                    "detail": "Self-state storage (localStorage/fs.write)",
-                    "code": line.strip()[:80]
-                })
-            # Điều 9
-            if dia9_pat.search(line) and "nattos-server" not in path and "nattos-sheets" not in path and "DIEU9-OK" not in line:
-                violations.append({
-                    "dieu": "Điều 9",
-                    "severity": "🟡 WARN",
-                    "cell": cell,
-                    "file": path.replace("src/", ""),
-                    "line": ln,
-                    "detail": "Direct external API call (bypass EventBus?)",
-                    "code": line.strip()[:80]
-                })
-            # Điều 11
-            if dia11_pat.search(line) and "process.env" not in line and ".env" not in path:
-                violations.append({
-                    "dieu": "Điều 11",
-                    "severity": "🔴 CRITICAL",
-                    "cell": cell,
-                    "file": path.replace("src/", ""),
-                    "line": ln,
-                    "detail": "Hardcoded credential/key",
-                    "code": "***REDACTED***"
-                })
-
-# Group by dieu
-by_dieu = {}
-for v in violations:
-    by_dieu.setdefault(v["dieu"], []).append(v)
-
-if not violations:
-    print(f"  \033[0;32m✅\033[0m Hiến Pháp CLEAN — 0 vi phạm phát hiện")
-else:
-    print(f"  \033[0;31m❌\033[0m Phát hiện {len(violations)} vi phạm Hiến Pháp:\n")
-    for dieu, items in sorted(by_dieu.items()):
-        sev = items[0]["severity"]
-        print(f"  {sev} {dieu} — {len(items)} vi phạm:")
-        for v in items[:5]:
-            print(f"    → {v['file']}:{v['line']}")
-            print(f"      {v['detail']}")
-            print(f"      `{v['code']}`")
-        if len(items) > 5:
-            print(f"    ... và {len(items)-5} vi phạm khác")
-
-# Save
-os.makedirs(".nattos-twin", exist_ok=True)
-json.dump({"total": len(violations), "by_dieu": {k: len(v) for k,v in by_dieu.items()}, "violations": violations[:50]},
-    open(".nattos-twin/hien-phap-scan.json", "w"), indent=2, ensure_ascii=False)
-PY36
-
-# Đọc kết quả để inc counter
-HP_VIOLATIONS=$(python3 -c "import json,os; d=json.load(open('.nattos-twin/hien-phap-scan.json')) if os.path.exists('.nattos-twin/hien-phap-scan.json') else {'total':0}; print(d.get('total',0))" 2>/dev/null || echo 0)
-if [[ "$HP_VIOLATIONS" -eq 0 ]]; then
-  inc_ok
+# bangmf
+BANGMF=$(find "$MEM_DIR/bang" -name "bangmf_v*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$BANGMF" ]]; then
+  BANGMF_VER=$(basename "$BANGMF" .json)
+  if python3 -c "import json,sys; json.load(open('$BANGMF'))" 2>/dev/null; then
+    ok "bangmf: $BANGMF_VER ✅ (valid JSON)"; inc_ok
+  else
+    fail "bangmf: $BANGMF_VER INVALID JSON"; inc_fail "MEMORY: bangmf JSON corrupted"
+  fi
 else
-  inc_fail "HIEN_PHAP: $HP_VIOLATIONS vi phạm Điều luật phát hiện"
+  warn "bangmf: not found"; inc_warn "MEMORY: bangmf missing"
+fi
+
+# bangfs
+BANGFS=$(find "$MEM_DIR/bang" -name "bangfs_v*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$BANGFS" ]]; then
+  BANGFS_VER=$(basename "$BANGFS" .json)
+  if python3 -c "import json,sys; json.load(open('$BANGFS'))" 2>/dev/null; then
+    ok "bangfs: $BANGFS_VER ✅ (valid JSON)"; inc_ok
+  else
+    fail "bangfs: $BANGFS_VER INVALID JSON"; inc_fail "MEMORY: bangfs JSON corrupted"
+  fi
+else
+  warn "bangfs: not found"; inc_warn "MEMORY: bangfs missing"
+fi
+
+# thiennho
+THIENNHO=$(find "$MEM_DIR/thiennho" -name "*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$THIENNHO" ]]; then
+  THIENNHO_VER=$(basename "$THIENNHO" .json)
+  if python3 -c "import json,sys; json.load(open('$THIENNHO'))" 2>/dev/null; then
+    ok "thiennho: $THIENNHO_VER ✅ (valid JSON)"; inc_ok
+  else
+    fail "thiennho: INVALID JSON"; inc_fail "MEMORY: thiennho JSON corrupted"
+  fi
+else
+  warn "thiennho: not found"; inc_warn "MEMORY: thiennho missing"
+fi
+
+# kimf
+KIMF=$(find "$MEM_DIR/kim" -name "kmf*.json" 2>/dev/null | sort -V | tail -1)
+if [[ -n "$KIMF" ]]; then
+  ok "kimf: $(basename $KIMF .json) ✅"; inc_ok
+else
+  info "kimf: not found (optional)"
+fi
+
+# Check no .zip in memory
+ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ "$ZIP_IN_MEM" -gt 0 ]]; then
+  warn "$ZIP_IN_MEM .zip file(s) in memory dir — should not be committed"
+  inc_warn "MEMORY: .zip files present"
+else
+  ok "No .zip files in memory dir"; inc_ok
 fi
 
 # ═══════════════════════════════════════════════════════════════
-# S37 — CELL DNA CHECK (6 components per cell — list cái nào thiếu)
+# S22 — MATH + METABOLISM COVERAGE
 # ═══════════════════════════════════════════════════════════════
-hdr "37" "CELL DNA CHECK — 6-Component Anatomy per Cell"
+hdr "33" "QNEU SCORE TREND"
 
-python3 << 'PY37'
-import os, json
+BASELINE_BANG=300; BASELINE_THIEN=135; BASELINE_KIM=120
+BASELINE_CAN=85; BASELINE_BOIBOI=40
 
-REQUIRED_COMPONENTS = {
-    "manifest":   lambda p: os.path.isfile(os.path.join(p, "cell.manifest.json")),
-    "domain":     lambda p: os.path.isdir(os.path.join(p, "domain")),
-    "ports":      lambda p: os.path.isdir(os.path.join(p, "ports")),
-    "application":lambda p: os.path.isdir(os.path.join(p, "application")),
-    "engine":     lambda p: len([f for r,d,fs in os.walk(p) for f in fs if f.endswith(".engine.ts")]) > 0,
-    "smartlink":  lambda p: any(
-        "smartlink" in open(os.path.join(r,f), errors="ignore").read()
-        for r,d,fs in os.walk(p) for f in fs if f.endswith(".ts")
-    ),
-}
+# Read current scores from system-state if available
+STATE_FILE="src/governance/qneu/data/system-state.json"
+if [[ -f "$STATE_FILE" ]]; then
+  CURR_BANG=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('BANG',{}).get('currentScore',$BASELINE_BANG)))" 2>/dev/null || echo $BASELINE_BANG)
+  CURR_KIM=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('KIM',{}).get('currentScore',$BASELINE_KIM)))" 2>/dev/null || echo $BASELINE_KIM)
 
-results = {}
-sick_cells = []
-healthy_cells = []
+  echo ""
+  printf "  %-12s %-10s %-10s %s\n" "Entity" "Baseline" "Current" "Trend"
+  printf "  %-12s %-10s %-10s %s\n" "──────" "────────" "───────" "─────"
 
-for tier in ("business", "kernel", "infrastructure"):
-    tp = f"src/cells/{tier}"
-    if not os.path.isdir(tp): continue
-    for cell in sorted(os.listdir(tp)):
-        cp = os.path.join(tp, cell)
-        if not os.path.isdir(cp): continue
+  for entity in BANG THIEN KIM CAN BOI_BOI; do
+    base_var="BASELINE_$entity"
+    base=${!base_var}
+    curr=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('$entity',{}).get('currentScore',$base)))" 2>/dev/null || echo $base)
+    delta=$((curr - base))
+    if [[ $delta -gt 0 ]]; then trend="↑ +$delta"
+    elif [[ $delta -lt 0 ]]; then trend="↓ $delta"
+    else trend="→ stable"; fi
+    printf "  %-12s %-10s %-10s %s\n" "$entity" "$base" "$curr" "$trend"
+  done
+  ok "QNEU scores loaded from system-state"; inc_ok
+else
+  info "system-state.json not found — showing seed baselines"
+  printf "  %-12s %s\n" "Entity" "Seed Score"
+  printf "  %-12s %s\n" "BANG" "300"
+  printf "  %-12s %s\n" "THIEN" "135"
+  printf "  %-12s %s\n" "KIM" "120"
+  printf "  %-12s %s\n" "CAN" "85"
+  printf "  %-12s %s\n" "BOI_BOI" "40"
+fi
 
-        score = {}
-        for comp, check in REQUIRED_COMPONENTS.items():
-            try:
-                score[comp] = check(cp)
-            except:
-                score[comp] = False
-
-        missing = [k for k,v in score.items() if not v]
-        present = [k for k,v in score.items() if v]
-        results[cell] = {"tier": tier, "score": len(present), "missing": missing, "present": present}
-
-        if missing:
-            sick_cells.append(cell)
-        else:
-            healthy_cells.append(cell)
-
-# Print results
-healthy_count = len(healthy_cells)
-sick_count = len(sick_cells)
-print(f"  \033[0;32m✅\033[0m DNA đầy đủ: {healthy_count} cells")
-if sick_count > 0:
-    print(f"  \033[0;31m❌\033[0m DNA thiếu component: {sick_count} cells\n")
-    for cell in sick_cells:
-        r = results[cell]
-        missing_str = ", ".join(r["missing"])
-        print(f"    🧬  {cell} [{r['score']}/6] — THIẾU: {missing_str}")
-else:
-    print(f"  \033[0;32m✅\033[0m Tất cả cells DNA 6/6 đầy đủ")
-
-# Đặc biệt: cells chỉ có ít files (shell)
-print(f"\n  Cells ít files nhất (có thể là shell):")
-file_counts = []
-for tier in ("business", "kernel", "infrastructure"):
-    tp = f"src/cells/{tier}"
-    if not os.path.isdir(tp): continue
-    for cell in sorted(os.listdir(tp)):
-        cp = os.path.join(tp, cell)
-        if not os.path.isdir(cp): continue
-        fc = sum(len(fs) for r,d,fs in os.walk(cp))
-        file_counts.append((fc, cell))
-
-for fc, cell in sorted(file_counts)[:8]:
-    icon = "⚠️ " if fc <= 6 else "  "
-    print(f"    {icon} {cell}: {fc} files")
-
-os.makedirs(".nattos-twin", exist_ok=True)
-json.dump({"healthy": healthy_count, "sick": sick_count, "details": results, "sick_list": sick_cells},
-    open(".nattos-twin/cell-dna.json", "w"), indent=2, ensure_ascii=False)
-PY37
-
-DNA_SICK=$(python3 -c "import json,os; d=json.load(open('.nattos-twin/cell-dna.json')) if os.path.exists('.nattos-twin/cell-dna.json') else {'sick':0}; print(d.get('sick',0))" 2>/dev/null || echo 0)
-[[ "$DNA_SICK" -eq 0 ]] && inc_ok || inc_warn "DNA: $DNA_SICK cells thiếu component"
+# Check first-seed version
+SEED_VER=$(grep -o "version:.*'[0-9.]*'" src/governance/qneu/first-seed.ts 2>/dev/null | head -1 | grep -o "[0-9.]*" | head -1)
+[[ -n "$SEED_VER" ]] && ok "first-seed version: v$SEED_VER" || info "first-seed version: unknown"
 
 # ═══════════════════════════════════════════════════════════════
-# S38 — BASELINE DIFF (So sánh hôm nay vs hôm qua)
+# S24 — DEAD CODE DETECTION
 # ═══════════════════════════════════════════════════════════════
-hdr "38" "BASELINE DIFF — Hôm nay so với lần chạy trước"
+hdr "34" "DEAD CODE DETECTION"
+
+ORPHAN_COUNT=0; ORPHAN_LIST=()
+
+# Find .ts files not imported by anyone (sample check — expensive so limit)
+SAMPLE_FILES=$(find src/cells -name "*.ts" ! -name "index.ts" ! -name "*.d.ts" \
+  ! -path "*/node_modules/*" ! -path "*/baithicuakim/*" 2>/dev/null | head -100)
+
+while IFS= read -r file; do
+  [[ -z "$file" ]] && continue
+  filename=$(basename "$file" .ts)
+  # Check if this file is imported anywhere
+  imported=$(grep -rl "$filename" src/ --include="*.ts" 2>/dev/null | grep -v "^$file$" | head -1)
+  if [[ -z "$imported" ]]; then
+    ((ORPHAN_COUNT++)) || true
+    ORPHAN_LIST+=("$file")
+  fi
+done <<< "$SAMPLE_FILES"
+
+if [[ $ORPHAN_COUNT -eq 0 ]]; then
+  ok "Dead code: none detected in sampled files (100 files)"; inc_ok
+elif [[ $ORPHAN_COUNT -le 5 ]]; then
+  info "Potential orphans: $ORPHAN_COUNT files (S12+S20 confirm orphans=0 — likely false positive)"
+  inc_warn "DEAD: $ORPHAN_COUNT orphan files detected"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    for f in "${ORPHAN_LIST[@]}"; do echo "  ${Y}→${N} $f"; done
+  fi
+else
+  warn "Potential orphans: $ORPHAN_COUNT files (sample of 100)"
+  fi
+
+# Check for @ts-nocheck count (high count = technical debt)
+NOCHECK_CELLS=$(grep -rl "@ts-nocheck" src/cells --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+NOCHECK_UI=$(grep -rl "@ts-nocheck" src/ui-app --include="*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+NOCHECK_COUNT=$NOCHECK_CELLS
+# Wave 1-2 migration debt — expected ~900, track trend not absolute
+if [ "${NOCHECK_CELLS:-0}" -le 100 ] 2>/dev/null; then
+  ok "@ts-nocheck cells: $NOCHECK_CELLS (nearly clean)"; inc_ok
+elif [ "${NOCHECK_CELLS:-0}" -le 500 ] 2>/dev/null; then
+  warn "@ts-nocheck cells: $NOCHECK_CELLS (Wave 2 debt — reducing)"; inc_warn "DEBT: $NOCHECK_CELLS ts-nocheck in cells"
+else
+  warn "@ts-nocheck cells: $NOCHECK_CELLS (Wave 1-2 migration debt — track trend)"; inc_warn "DEBT: $NOCHECK_CELLS ts-nocheck — migration in progress"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# S25 — NATTOS.SH SELF-HEALTH
+
+# ═══════════════════════════════════════════════════════════════
+hdr "35" "LEGACY & TRASH DETECTION"
+# ═══════════════════════════════════════════════════════════════
+
+# Bản sao (macOS Finder copies)
+BANSAO=$(find src -name "Bản sao*" 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ "$BANSAO" -gt 0 ]]; then
+  fail "Bản sao files: $BANSAO (macOS Finder copies — DELETE)"; inc_trash "TRASH: $BANSAO Bản sao files"
+  if [[ "$FULL_MODE" == "true" ]]; then find src -name "Bản sao*" | sed 's/^/    🗑️  /'; fi
+else ok "No Bản sao files"; inc_ok; fi
+
+# .DS_Store
+DS_COUNT=$(find . -name ".DS_Store" -not -path "./node_modules/*" 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ "$DS_COUNT" -gt 0 ]]; then
+  warn ".DS_Store: $DS_COUNT files"; inc_trash "TRASH: $DS_COUNT .DS_Store"
+else ok "No .DS_Store"; inc_ok; fi
+
+# Empty directories
+EMPTY_DIRS=$(find src/cells -type d -empty 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ "$EMPTY_DIRS" -gt 0 ]]; then
+  warn "Empty dirs in cells/: $EMPTY_DIRS"; inc_warn "STRUCTURE: $EMPTY_DIRS empty dirs"
+  if [[ "$FULL_MODE" == "true" ]]; then find src/cells -type d -empty 2>/dev/null | sed 's/^/    📁 /'; fi
+else ok "No empty dirs"; inc_ok; fi
+
+# Duplicate basenames — dùng full path để tránh false positive (NATT-CELL convention: mỗi cell có services/ riêng)
+DUPES=$(find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -d | wc -l | tr -dc '0-9')
+if [[ "$DUPES" -gt 0 ]]; then
+  warn "Duplicate filenames (exact path): $DUPES (check for conflicts)"; inc_warn "STRUCTURE: $DUPES duplicate filenames"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    find src -name "*.ts" -not -path "*/node_modules/*" | sort | uniq -cd | sort -rn | head -10 | sed 's/^/    /'
+  fi
+else ok "No duplicate filenames"; inc_ok; fi
+
+# Orphan imports — bỏ qua quantum-defense-cell/contracts (internal contracts = hợp lệ)
+ORPHAN_IMPORTS=$(grep -rn "from.*contracts/" src/ --include="*.ts" 2>/dev/null \
+  | grep -v "event-contracts\|shared-contracts\|node_modules\|quantum-defense-cell" \
+  | wc -l | tr -dc '0-9')
+if [[ "$ORPHAN_IMPORTS" -gt 0 ]]; then
+  warn "Possible orphan imports: $ORPHAN_IMPORTS"; inc_warn "IMPORTS: $ORPHAN_IMPORTS possible orphan"
+else ok "No orphan imports detected"; inc_ok; fi
+
+# Legacy natt-os/ folder
+if [[ -d "natt-os" ]]; then
+  LEGACY_TS=$(find natt-os -name "*.ts" | wc -l | tr -dc '0-9')
+  info "natt-os/ legacy: $LEGACY_TS files (pending quantum-defense-cell migration)"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+hdr "36" "VISUAL ASSET COMPLIANCE — SPEC-NaUion-Visual-Rebuild-Pipeline"
+# ═══════════════════════════════════════════════════════════════
+# Per SPEC v1.0 (2026-04-16): every visual asset needs a .spec.json
+
+if [[ "$RUN_VISUAL" == "true" ]]; then
+  ASSET_COUNT=0; SPEC_COUNT=0; MISSING=()
+  while IFS= read -r asset; do
+    ((ASSET_COUNT++))
+    spec="${asset%.*}.spec.json"
+    if [[ -f "$spec" ]]; then
+      ((SPEC_COUNT++))
+    else
+      MISSING+=("$asset")
+    fi
+  done < <(find . -path "*/assets/*" \( -name "*.png" -o -name "*.svg" -o -name "*.jpg" \) -not -path "*/node_modules/*" 2>/dev/null)
+
+  echo -e "  Visual assets found: $ASSET_COUNT"
+  echo -e "  With spec.json:      $SPEC_COUNT"
+  echo -e "  Missing spec:        ${#MISSING[@]}"
+
+  if [[ ${#MISSING[@]} -gt 0 ]]; then
+    warn "Visual compliance: ${#MISSING[@]} assets without spec.json"
+    inc_warn "Visual: ${#MISSING[@]} assets no spec"
+    for m in "${MISSING[@]:0:5}"; do
+      echo "    📷 $m"
+    done
+    [[ ${#MISSING[@]} -gt 5 ]] && echo "    ... and $((${#MISSING[@]}-5)) more"
+  else
+    ok "All visual assets have spec.json"
+    inc_ok
+  fi
+else
+  info "Visual audit skipped — run with --visual to enable"
+fi
+
+
+# ═══════════════════════════════════════════════════════════════
+# ╔══ GROUP I: OUTPUT — Baseline · Architecture Map · Report · Scorecard
+# ═══════════════════════════════════════════════════════════════
+grp "GROUP I — OUTPUT — Baseline · Architecture Map · Report · Scorecard"
+# ═══════════════════════════════════════════════════════════════
+hdr "37" "BASELINE DIFF — Hôm nay so với lần chạy trước"
 
 python3 << 'PY38'
 import os, json, datetime
@@ -1663,100 +2013,22 @@ snap = {
     "ok": 0,
     "state": "HEALTHY",
 }
-json.dump(snap, open(".nattos-twin/snapshot.json", "w"), indent=2, ensure_ascii=False)
-print(f"  ✅ snapshot.json saved -> {snap['last_hash']}")
+# Duplicate guard — prevent double-write (fix from session 20260408)
+import fcntl
+snapshot_path = ".nattos-twin/snapshot.json"
+try:
+    with open(snapshot_path, "w") as sf:
+        fcntl.flock(sf.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        json.dump(snap, sf, indent=2, ensure_ascii=False)
+        fcntl.flock(sf.fileno(), fcntl.LOCK_UN)
+    print(f"  ✅ snapshot.json saved -> {snap['last_hash']}")
+except IOError:
+    print(f"  ⚠️  snapshot.json locked — skipped (another audit running?)")
 PY38
 
 inc_ok
-
-hdr "16" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
-echo ""
-echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
-echo -e "  ${W}║  NATT-OS SYSTEM HEALTH — $TS  ║${N}"
-echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
-printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "" "OK" "WARN" "FAIL" "TRASH"
-printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "Totals" "$TOTAL_OK" "$TOTAL_WARN" "$TOTAL_FAIL" "$TOTAL_TRASH"
-echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
-printf   "  ${W}║${N}  TS Files: %-8s  Commits: %-6s  Kernel: %s/%s  ${W}║${N}\n" "$TS_COUNT" "$COMMITS" "$KERNEL_OK" "$KERNEL_TOTAL"
-printf   "  ${W}║${N}  Business: %-4s (6/6: %-3s)  SmartLink: %-4s      ${W}║${N}\n" "$BIZ_TOTAL" "$BIZ_6OF6" "$BIZ_WIRED"
-printf   "  ${W}║${N}  BCTC: %s/%s  Production: %s/%s  Metabolism: %-4s  ${W}║${N}\n" "$BCTC_OK" "${#BCTC_CELLS[@]}" "$PROD_OK" "${#PROD_CELLS[@]}" "$PROC_COUNT procs"
-echo -e "  ${W}╚═══════════════════════════════════════════════════════╝${N}"
-
-# ═══════════════════════════════════════════════════════════════
-# ISSUES LIST
-# ═══════════════════════════════════════════════════════════════
-if [[ ${#ISSUES[@]} -gt 0 ]]; then
-  echo ""
-  echo -e "  ${W}ISSUES (${#ISSUES[@]}):${N}"
-  for issue in "${ISSUES[@]}"; do
-    echo "    $issue"
-  done
-fi
-
-# ═══════════════════════════════════════════════════════════════
-# JSON OUTPUT
-# ═══════════════════════════════════════════════════════════════
-if $JSON_MODE; then
-  JSON_FILE="smartaudit_$(date +%Y%m%d_%H%M%S).json"
-  python3 << PYEOF > "$JSON_FILE" 2>/dev/null || echo '{"error":"python3 not available"}' > "$JSON_FILE"
-import json, os, subprocess, datetime
-
-def count_files(path, ext='.ts'):
-    c = 0
-    for r,d,f in os.walk(path):
-        c += sum(1 for x in f if x.endswith(ext))
-    return c
-
-# Cell inventory
-cells = {}
-biz_path = 'src/cells/business'
-if os.path.isdir(biz_path):
-    for cell in sorted(os.listdir(biz_path)):
-        cp = os.path.join(biz_path, cell)
-        if not os.path.isdir(cp): continue
-        has_mf = os.path.isfile(os.path.join(cp, 'cell.manifest.json'))
-        has_port = any('smartlink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
-        has_domain = os.path.isdir(os.path.join(cp, 'domain'))
-        fc = count_files(cp)
-        cells[cell] = {
-            'files': fc,
-            'manifest': has_mf,
-            'smartlink_port': has_port,
-            'domain': has_domain,
-        }
-
-result = {
-    'timestamp': '$TS',
-    'root': os.getcwd(),
-    'scores': {'ok': $TOTAL_OK, 'warn': $TOTAL_WARN, 'fail': $TOTAL_FAIL, 'trash': $TOTAL_TRASH},
-    'git': {'branch': '$BRANCH', 'commits': $COMMITS, 'dirty': $DIRTY, 'remote': '$REMOTE'},
-    'tsc_errors': $TSC_TOTAL,
-    'files': {'ts_count': $TS_COUNT, 'ts_lines': $TS_LINES, 'inherited_v2': $V2_FILES, 'inherited_v1': $V1_FILES},
-    'kernel': {'ok': $KERNEL_OK, 'total': $KERNEL_TOTAL},
-    'business': {'total': $BIZ_TOTAL, 'six_of_six': $BIZ_6OF6, 'wired': $BIZ_WIRED, 'not_wired': $BIZ_NOT_WIRED},
-    'metabolism': {'processors': $PROC_COUNT, 'normalizers': $NORM_COUNT, 'healing': $HEAL_COUNT},
-    'bctc_flow': {'ready': $BCTC_OK, 'total': ${#BCTC_CELLS[@]}},
-    'production_flow': {'ready': $PROD_OK, 'total': ${#PROD_CELLS[@]}},
-    'cells': cells,
-    'issues': $(python3 -c "import json; print(json.dumps([$(printf '"%s",' "${ISSUES[@]}')])" 2>/dev/null || echo '[]'),
-}
-print(json.dumps(result, indent=2, ensure_ascii=False))
-PYEOF
-
-  echo ""
-  ok "JSON saved: $JSON_FILE"
-fi
-
-echo ""
-echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
-echo -e "  END SmartAudit — $TS"
-echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
-
-# ═══════════════════════════════════════════════════════════════
-# S39 — ARCHITECTURE MAP
-# ═══════════════════════════════════════════════════════════════
-hdr "39" "ARCHITECTURE MAP"
+hdr "38" "ARCHITECTURE MAP"
 
 python3 << 'PY39'
 import os, json
@@ -1847,7 +2119,7 @@ PY39
 # ═══════════════════════════════════════════════════════════════
 # S40 — REPORT GENERATOR
 # ═══════════════════════════════════════════════════════════════
-hdr "40" "REPORT GENERATOR"
+hdr "39" "REPORT GENERATOR"
 
 python3 << 'PY40'
 import os, json
@@ -1937,84 +2209,144 @@ PY40
 
 # ═══════════════════════════════════════════════════════════════
 # S41 — ANTI-API PROTOCOL SCAN (LỆNH #001)
+
+hdr "40" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
-hdr "41" "ANTI-API PROTOCOL SCAN — LỆNH #001"
+echo ""
+echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
+echo -e "  ${W}║  NATT-OS SYSTEM HEALTH — $TS  ║${N}"
+echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
+printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "" "OK" "WARN" "FAIL" "TRASH"
+printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "Totals" "$TOTAL_OK" "$TOTAL_WARN" "$TOTAL_FAIL" "$TOTAL_TRASH"
+echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
+printf   "  ${W}║${N}  TS Files: %-8s  Commits: %-6s  Kernel: %s/%s  ${W}║${N}\n" "$TS_COUNT" "$COMMITS" "$KERNEL_OK" "$KERNEL_TOTAL"
+printf   "  ${W}║${N}  Business: %-4s (6/6: %-3s)  SmartLink: %-4s      ${W}║${N}\n" "$BIZ_TOTAL" "$BIZ_6OF6" "$BIZ_WIRED"
+printf   "  ${W}║${N}  BCTC: %s/%s  Production: %s/%s  Metabolism: %-4s  ${W}║${N}\n" "$BCTC_OK" "${#BCTC_CELLS[@]}" "$PROD_OK" "${#PROD_CELLS[@]}" "$PROC_COUNT procs"
+echo -e "  ${W}╚═══════════════════════════════════════════════════════╝${N}"
 
-python3 << 'PY41'
-import subprocess, json
-from pathlib import Path
+# ═══════════════════════════════════════════════════════════════
+# ISSUES LIST
+# ═══════════════════════════════════════════════════════════════
+if [[ ${#ISSUES[@]} -gt 0 ]]; then
+  echo ""
+  echo -e "  ${W}ISSUES (${#ISSUES[@]}):${N}"
+  for issue in "${ISSUES[@]}"; do
+    echo "    $issue"
+  done
+fi
 
-# Pattern vi phạm thật — external AI/service calls
-VIOLATION_PATTERNS = [
-    "GoogleGenAI",
-    "new GoogleGenAI",
-    "openai.com",
-    "anthropic.com",
-    "generativelanguage.googleapis.com",
-    "vision.googleapis.com",
-    "api.openai.com",
-    "api.anthropic.com",
-]
+# ═══════════════════════════════════════════════════════════════
+# JSON OUTPUT
+# ═══════════════════════════════════════════════════════════════
+if $JSON_MODE; then
+  JSON_FILE="smartaudit_$(date +%Y%m%d_%H%M%S).json"
+  python3 << PYEOF > "$JSON_FILE" 2>/dev/null || echo '{"error":"python3 not available"}' > "$JSON_FILE"
+import json, os, subprocess, datetime
 
-# Whitelist — acceptable
-WHITELIST = [
-    "node_modules",
-    ".bak",
-    "SuperDictionary",
-    "superdictionary",
-    "nauion.dictionary",
-    "constitutional-mapping",
-    "TechnicalDocs",
-    "technicaldocs",
-    "aicoreprocessor",
-    "VISION_API_BASE",
-    "# LỆNH",
-    "// LỆNH",
-    "// private",
-    "STUBBED",
-    "types.ts",
-    "governance/types",
-    "first-seed.ts",
-    "textlaw",
-    "docs/",
-]
+def count_files(path, ext='.ts'):
+    c = 0
+    for r,d,f in os.walk(path):
+        c += sum(1 for x in f if x.endswith(ext))
+    return c
 
-violations = []
+# Cell inventory
+cells = {}
+biz_path = 'src/cells/business'
+if os.path.isdir(biz_path):
+    for cell in sorted(os.listdir(biz_path)):
+        cp = os.path.join(biz_path, cell)
+        if not os.path.isdir(cp): continue
+        has_mf = os.path.isfile(os.path.join(cp, 'cell.manifest.json'))
+        has_port = any('smartlink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
+        has_domain = os.path.isdir(os.path.join(cp, 'domain'))
+        fc = count_files(cp)
+        cells[cell] = {
+            'files': fc,
+            'manifest': has_mf,
+            'smartlink_port': has_port,
+            'domain': has_domain,
+        }
 
-for pattern in VIOLATION_PATTERNS:
-    try:
-        result = subprocess.run(
-            ["grep", "-rn", pattern, "src/", "nattos-server/", "nattos-server/nattos-ui/", "config/",
-             "--include=*.ts", "--include=*.tsx", "--include=*.js",
-             "--exclude-dir=node_modules", "--exclude-dir=.git", "--exclude-dir=archive", "--exclude-dir=dist"],
-            capture_output=True, text=True
-        )
-        for line in result.stdout.splitlines():
-            if any(w in line for w in WHITELIST):
-                continue
-            violations.append(line.strip())
-    except:
-        pass
+result = {
+    'timestamp': '$TS',
+    'root': os.getcwd(),
+    'scores': {'ok': $TOTAL_OK, 'warn': $TOTAL_WARN, 'fail': $TOTAL_FAIL, 'trash': $TOTAL_TRASH},
+    'git': {'branch': '$BRANCH', 'commits': $COMMITS, 'dirty': $DIRTY, 'remote': '$REMOTE'},
+    'tsc_errors': $TSC_TOTAL,
+    'files': {'ts_count': $TS_COUNT, 'ts_lines': $TS_LINES, 'inherited_v2': $V2_FILES, 'inherited_v1': $V1_FILES},
+    'kernel': {'ok': $KERNEL_OK, 'total': $KERNEL_TOTAL},
+    'business': {'total': $BIZ_TOTAL, 'six_of_six': $BIZ_6OF6, 'wired': $BIZ_WIRED, 'not_wired': $BIZ_NOT_WIRED},
+    'metabolism': {'processors': $PROC_COUNT, 'normalizers': $NORM_COUNT, 'healing': $HEAL_COUNT},
+    'bctc_flow': {'ready': $BCTC_OK, 'total': ${#BCTC_CELLS[@]}},
+    'production_flow': {'ready': $PROD_OK, 'total': ${#PROD_CELLS[@]}},
+    'cells': cells,
+    'issues': $(python3 -c "import json; print(json.dumps([$(printf '"%s",' "${ISSUES[@]}')])" 2>/dev/null || echo '[]'),
+}
+print(json.dumps(result, indent=2, ensure_ascii=False))
+PYEOF
 
-violations = list(set(violations))
+  echo ""
+  ok "JSON saved: $JSON_FILE"
+fi
 
-if violations:
-    print(f"  \033[0;31m❌\033[0m  LỆNH #001 vi phạm: {len(violations)} chỗ")
-    print("INC_WARN_LENH001")
-    for v in violations[:10]:
-        print(f"     🚨 {v[:120]}")
-    if len(violations) > 10:
-        print(f"     ... và {len(violations)-10} vi phạm khác")
-    # Save to twin
-    import os, json
-    os.makedirs("audit/summary", exist_ok=True)
-    with open("audit/summary/api-violations.json", "w") as f:
-        json.dump({"count": len(violations), "violations": violations}, f, indent=2)
-else:
-    print(f"  \033[0;32m✅\033[0m LỆNH #001 CLEAN — không có external API calls")
-    import os, json
-    os.makedirs("audit/summary", exist_ok=True)
-    with open("audit/summary/api-violations.json", "w") as f:
-        json.dump({"count": 0, "violations": []}, f, indent=2)
-PY41
+echo ""
+echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
+echo -e "  END SmartAudit v7.0 — $TS"
+echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
 
+# ═══════════════════════════════════════════════════════════════
+# LOGO RENDER — ANSI true-color art (fade-in at bottom)
+# Runs AFTER audit completes — last thing on screen
+# ═══════════════════════════════════════════════════════════════
+if [[ -n "$LOGO_FILE" ]]; then
+  echo ""
+  python3 << PYLOGO 2>/dev/null
+import sys, time
+try:
+    from PIL import Image
+except ImportError:
+    sys.exit(1)
+
+TOP = chr(9600)  # ▀
+BOT = chr(9604)  # ▄
+RST = chr(27) + "[0m"
+
+img = Image.open("$LOGO_FILE").convert('RGB')
+TW = 74
+aspect = img.height / img.width
+rh = int(TW * aspect * 0.55)
+rh = max(rh, 8)
+rh = rh + (rh % 2)
+img = img.resize((TW, rh), Image.LANCZOS)
+px = img.load()
+w, h = img.size
+
+for y in range(0, h - 1, 2):
+    line = "  "
+    has_content = False
+    for x in range(w):
+        r1, g1, b1 = px[x, y]
+        r2, g2, b2 = px[x, y + 1]
+        b_1 = r1 + g1 + b1
+        b_2 = r2 + g2 + b2
+        if b_1 < 18 and b_2 < 18:
+            line += " "
+        elif b_2 < 18:
+            line += f"{chr(27)}[38;2;{r1};{g1};{b1}m{TOP}{RST}"
+            has_content = True
+        elif b_1 < 18:
+            line += f"{chr(27)}[38;2;{r2};{g2};{b2}m{BOT}{RST}"
+            has_content = True
+        else:
+            line += f"{chr(27)}[38;2;{r1};{g1};{b1};48;2;{r2};{g2};{b2}m{TOP}{RST}"
+            has_content = True
+    if has_content:
+        print(line)
+        sys.stdout.flush()
+        time.sleep(0.15)
+
+print()
+print(f"  {chr(27)}[38;5;214m{chr(9883)}  NATT-OS {chr(183)} Distributed Living Organism{RST}")
+print()
+PYLOGO
+fi

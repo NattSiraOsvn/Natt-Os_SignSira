@@ -332,14 +332,14 @@ function getEmployeeCode() {
 // ── STORED REPORTS ──────────────────────────────────────────────────────────
 const EOD_STORE_KEY = 'nattos_eod_reports';
 function loadReports() {
-  try { return JSON.parse(localStorage.getItem(EOD_STORE_KEY) || '[]'); } catch { return []; }
+  try { return JSON.parse(window._eodMemory || '[]'); } catch { return []; } // HP Điều 7: in-memory
 }
 function saveReport(report) {
   try {
     const list = loadReports();
     list.unshift(report);
-    localStorage.setItem(EOD_STORE_KEY, JSON.stringify(list.slice(0, 90)));
-  } catch(e) { console.warn('[EOD] localStorage unavailable, storing in memory'); }
+    window._eodMemory = JSON.stringify(list.slice(0, 90)); // HP Điều 7: in-memory
+  } catch(e) { console.warn('[EOD] memory store failed'); }
   window._eodReports = window._eodReports || [];
   window._eodReports.unshift(report);
 }
