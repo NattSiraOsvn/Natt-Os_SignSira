@@ -103,3 +103,6 @@ EventBus.on('monitor.health_checked', (payload: any) => {
     ts:         Date.now(),
   });
 });
+
+// Governance enforcement — wired (no longer dead)
+export { GovernanceEnforcementEngine } from './domain/engines/governance-enforcement.engine';
