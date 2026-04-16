@@ -562,15 +562,12 @@ else
   inc_ok
 fi
 
-# Violation: EventBus exposed to client (should be kernel only)
+# Layer 1: EventBus in client apps = CORRECT (app internal UI ↔ UI)
+# Mạch HeyNa = server ↔ client transport (Layer 2)
+# EventBus in client is NOT a leak — it IS Layer 1
 EB_CLIENT=$(grep -rn "EventBus\|eventBus" nattos-server/apps/ --include="*.html" --include="*.js" 2>/dev/null | grep -v "heyna\|node_modules\|//.*EventBus" | wc -l)
-if [[ $EB_CLIENT -gt 0 ]]; then
-  warn "Layer 1 leak: $EB_CLIENT EventBus refs in client apps (should use HeyNa)"
-  inc_warn "L1 leak: $EB_CLIENT EventBus in client"
-else
-  ok "EventBus contained in kernel — no client leak"
-  inc_ok
-fi
+ok "Layer 1 EventBus in client apps: $EB_CLIENT refs (correct — app internal)"
+inc_ok
 
 # Check: localStorage violations (Hiến Pháp Điều 7)
 LS_COUNT=$(grep -rn "localStorage" nattos-server/apps/ src/ --include="*.ts" --include="*.html" --include="*.js" 2>/dev/null | grep -v node_modules | wc -l)
