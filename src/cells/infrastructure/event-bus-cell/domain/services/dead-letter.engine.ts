@@ -7,7 +7,7 @@
  * Source: masterv1 DeadLetterHandler
  */
 
-import { EventEnvelope } from './event-envelope.types';
+import { EventEnvelope } from '../types/event-envelope.types';
 
 export interface DeadLetterRecord {
   dlqId:          string;

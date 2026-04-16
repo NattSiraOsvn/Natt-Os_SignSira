@@ -10,7 +10,7 @@
  * Source: masterv1 CompensationSaga, adapted for EventBus (Điều 3)
  */
 
-import { EventEnvelope, createEnvelope } from './event-envelope.types';
+import { EventEnvelope, createEnvelope } from '../types/event-envelope.types';
 
 export type CompensateAction = () => Promise<void>;
 

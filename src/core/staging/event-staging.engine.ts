@@ -19,7 +19,7 @@ export interface StagedEvent {
  */
 class EventStagingLayerService {
   private static instance: EventStagingLayerService;
-  private readonly _memoryStore: string | null = null;
+  private _memoryStore: string | null = null;
   private readonly STORAGE_KEY = 'OMEGA_ESL_LEDGER';
   private processedKeys: Set<string> = new Set(); // Stores Idempotency Keys
   private stagingQueue: StagedEvent[] = [];

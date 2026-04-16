@@ -11,10 +11,10 @@
  */
 
 import { EventBus } from '@/cells/infrastructure/event-bus/event-bus';
-import { WeightVarianceEngine } from './domain/services/weight-variance.engine';
-import { WarehouseGateEngine } from './domain/services/warehouse-gate.engine';
-import { AccountabilityEngine } from './domain/services/accountability.engine';
-import { WAREHOUSE_EVENTS } from './domain/types/warehouse.types';
+import { WeightVarianceEngine } from '../domain/services/weight-variance.engine';
+import { WarehouseGateEngine } from '../domain/services/warehouse-gate.engine';
+import { AccountabilityEngine } from '../domain/services/accountability.engine';
+import { WAREHOUSE_EVENTS } from '../domain/types/warehouse.types';
 
 export class WarehouseCell {
   readonly cellId = 'warehouse-cell';
