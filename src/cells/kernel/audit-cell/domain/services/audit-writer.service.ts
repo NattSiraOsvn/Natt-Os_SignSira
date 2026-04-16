@@ -11,14 +11,11 @@ async function sha256(data: string): Promise<string> {
     .join("");
 }
 
-// ── Sync fallback cho môi trường không có crypto.subtle ──────────────────
+// ── Sync SHA-256 thật dùng Node crypto (ReNa fix 2026-04-17) ─────────────
+import { createHash } from "crypto";
+
 function sha256Sync(data: string): string {
-  let h = 0;
-  for (let i = 0; i < data.length; i++) {
-    h = Math.imul(31, h) + data.charCodeAt(i) | 0;
-  }
-  const base = Math.abs(h).toString(16).padStart(8, "0");
-  return base.repeat(8); // 64 chars giống SHA-256 output length
+  return createHash("sha256").update(data).digest("hex");
 }
 
 export const AuditWriterService = {

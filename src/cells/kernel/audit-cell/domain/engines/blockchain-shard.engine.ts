@@ -21,16 +21,10 @@ export class BlockchainShardingService {
    * FIX: Loại bỏ Date.now() nội tại để đảm bảo tính Deterministic (cùng input -> cùng hash).
    */
   public generateShardHash(data: any): string {
-    // Chỉ hash dữ liệu đầu vào. Timestamp phải nằm trong `data` nếu muốn unique.
-    const str = JSON.stringify(data); 
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    const hex = Math.abs(hash).toString(16).padStart(16, '0');
-    return `0x${hex}${hex}${hex}${hex}`; // Giả lập 64 char hash
+    // ReNa fix 2026-04-17: real SHA-256 thay fake hash
+    const { createHash } = require("crypto");
+    const str = JSON.stringify(data);
+    return "0x" + createHash("sha256").update(str).digest("hex");
   }
 
   /**
