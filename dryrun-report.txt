@@ -1,0 +1,133 @@
+══════════════════════════════════════════════════════════════════════
+  NATT-OS MIGRATION — DRY-RUN (NO CHANGES)
+══════════════════════════════════════════════════════════════════════
+
+Total files to migrate: 338
+
+[R01-MEMORY] — 117 files
+  [NAM] src/governance/memory/Can/canmf_v4.0.json
+         → src/governance/memory/Can/cankhương4.0.kris
+  [NAM] src/governance/memory/Can/canmf_v3.json
+         → src/governance/memory/Can/cankhương3.kris
+  [NAM] src/governance/memory/Can/canmf_v2.json
+         → src/governance/memory/Can/cankhương2.kris
+  ... +114 more
+
+[R01-STATE] — 35 files
+  [BẮC] src/governance/memory/bang/bangfs_v5.9.0.json
+         → src/governance/memory/bang/bangthịnh5.9.0.phieu
+  [BẮC] src/governance/memory/bang/bangfs_v4.9.json
+         → src/governance/memory/bang/bangthịnh4.9.phieu
+  [BẮC] src/governance/memory/bang/bangfs_v5.1.json
+         → src/governance/memory/bang/bangthịnh5.1.phieu
+  ... +32 more
+
+[R02-BOUNDARY] — 33 files
+  [TÂY] src/cells/business/warehouse-cell/boundary.policy.json
+         → src/cells/business/warehouse-cell/warehouse-cell.boundary.si
+  [TÂY] src/cells/business/noi-vu-cell/boundary.policy.json
+         → src/cells/business/noi-vu-cell/noi-vu-cell.boundary.si
+  [TÂY] src/cells/business/analytics-cell/boundary.policy.json
+         → src/cells/business/analytics-cell/analytics-cell.boundary.si
+  ... +30 more
+
+[R02-ENTITY-ANC] — 4 files
+  [TÂY] src/governance/memory/Can/canANC.json
+         → src/governance/memory/Can/can.anc
+  [TÂY] src/governance/memory/Thienlon/thienlonANC.json
+         → src/governance/memory/Thienlon/thienlon.anc
+  [TÂY] src/governance/memory/phieu/phieuANC.json
+         → src/governance/memory/phieu/phieu.anc
+  ... +1 more
+
+[R02-MANIFEST] — 54 files
+  [TÂY] src/cells/cell.manifest.json
+         → src/cells/cells.cell.anc
+  [TÂY] src/cells/business/casting-cell/cell.manifest.json
+         → src/cells/business/casting-cell/casting-cell.cell.anc
+  [TÂY] src/cells/business/warehouse-cell/cell.manifest.json
+         → src/cells/business/warehouse-cell/warehouse-cell.cell.anc
+  ... +51 more
+
+[R03-SESSION] — 5 files
+  [NAM] src/governance/qneu/sessions/SES-mmcozlq7-15y8xc.json
+         → src/governance/qneu/sessions/SES-mmcozlq7-15y8xc.thuo
+  [NAM] src/governance/qneu/sessions/SES-mmcozlps-bhd2yd.json
+         → src/governance/qneu/sessions/SES-mmcozlps-bhd2yd.thuo
+  [NAM] src/governance/qneu/sessions/SES-mmcozlq3-7w1gv4.json
+         → src/governance/qneu/sessions/SES-mmcozlq3-7w1gv4.thuo
+  ... +2 more
+
+[R04-SELF] — 2 files
+  [NAM] src/governance/memory/thiennho/thiennhoself.md
+         → src/governance/memory/thiennho/thiennhoself1.0.0.kris
+  [NAM] src/governance/memory/Kris/KrisSelf.md
+         → src/governance/memory/Kris/krisself1.0.0.kris
+[R05-AMENDMENT] — 1 files
+  [ĐÔNG] src/governance/amendments/001-gatekeeper-ai-ban.md
+         → src/governance/amendments/001-gatekeeper-ai-ban.anc
+[R05-HIENPHAP] — 2 files
+  [ĐÔNG] src/governance/HIEN-PHAP-NATT-OS-v5.0.md
+         → src/governance/HIEN-PHAP-NATT-OS-v5.0.anc
+  [ĐÔNG] src/governance/archive/HIEN-PHAP-NATT-OS-v4.0.md
+         → src/governance/archive/HIEN-PHAP-NATT-OS-v4.0.anc
+[R06-CONTRACT] — 3 files
+  [ĐÔNG] src/governance/infrastructure.contracts.lock.json
+         → src/governance/infrastructure.contracts.lock.si
+  [ĐÔNG] src/governance/kernel.contracts.lock.json
+         → src/governance/kernel.contracts.lock.si
+  [ĐÔNG] src/governance/business.contracts.lock.json
+         → src/governance/business.contracts.lock.si
+[R07-AUDIT] — 1 files
+  [NAM] src/governance/audit-log.jsonl
+         → src/governance/audit-log.heyna
+[R08-REGISTRY] — 3 files
+  [TÂY] src/cells/natt-master-registry.json
+         → src/cells/natt-master-registry.sira
+  [TÂY] src/governance/natt-master-registry-v2.json
+         → src/governance/natt-master-registry-v2.sira
+  [TÂY] src/governance/registry-summary.json
+         → src/governance/registry-summary.sira
+[R10-GOV-AUDIT] — 1 files
+  [NAM] src/governance/builder-audit-trail.json
+         → src/governance/builder-audit-trail.heyna
+[R10-GOV-LOCK] — 1 files
+  [ĐÔNG] src/governance/builder-authority-lock.json
+         → src/governance/builder-authority-lock.si
+[R10-GOV-STATE] — 2 files
+  [BẮC] src/governance/system-state.json
+         → src/governance/system-state.phieu
+  [BẮC] src/governance/qneu/data/system-state.json
+         → src/governance/qneu/data/system-state.phieu
+[R11-AUDIT-REPORT] — 58 files
+  [NAM] audit/reports/2026-04-17_03-58-31_auto.md
+         → audit/reports/2026-04-17_03-58-31_auto.kris
+  [NAM] audit/reports/2026-04-14_02-44-20_auto.md
+         → audit/reports/2026-04-14_02-44-20_auto.kris
+  [NAM] audit/reports/2026-04-17_04-22-08_auto.md
+         → audit/reports/2026-04-17_04-22-08_auto.kris
+  ... +55 more
+
+[R11-REPORT] — 2 files
+  [NAM] NaUion-Server/khai-cell-spec/front-audit/audit-report.json
+         → NaUion-Server/khai-cell-spec/front-audit/audit-report.kris
+  [NAM] src/governance/memory/bang/session-20260413/emergent-behavior-report.json
+         → src/governance/memory/bang/session-20260413/emergent-behavior-report.kris
+[R11-SESSION-SUMMARY] — 11 files
+  [NAM] src/governance/memory/sessions/SESSION_2026-04-07_FULL_SUMMARY.md
+         → src/governance/memory/sessions/SESSION_2026-04-07_FULL_SUMMARY.kris
+  [NAM] src/governance/memory/sessions/bangmf-session-20260407.md
+         → src/governance/memory/sessions/bangmf-session-20260407.kris
+  [NAM] src/governance/memory/sessions/SESSION_2026-04-07_update_SUMMARY.md
+         → src/governance/memory/sessions/SESSION_2026-04-07_update_SUMMARY.kris
+  ... +8 more
+
+[R12-BOI-MEMORY] — 1 files
+  [NAM] src/governance/memory/boiboi/bmf.json
+         → src/governance/memory/boiboi/boikhương.kris
+[R12-BOI-PLAN] — 1 files
+  [BẮC] src/governance/memory/boiboi/boiboi_what_to_do.json
+         → src/governance/memory/boiboi/boithịnh-plan.phieu
+[R13-ENTITY-MEMORY-CAPS] — 1 files
+  [NAM] src/governance/memory/kim/KIM MEMORY.json
+         → src/governance/memory/kim/kimkhương.kris

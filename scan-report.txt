@@ -1,0 +1,69 @@
+══════════════════════════════════════════════════════════════════════
+  NATT-OS MIGRATION — IMPACT SCAN (SPEC v0.3.1)
+══════════════════════════════════════════════════════════════════════
+
+Files to migrate: 338
+Files with code references: 197
+Files with NO references (safe to rename): 141
+
+── TOP 10 FILES WITH MOST REFERENCES ──
+
+  [135 refs] src/cells/kernel/neural-main-cell/cell.manifest.json
+    nattos-migrate.py:26    R02 cell.manifest.json     → <parent>.cell.anc         [TÂY]
+    nattos-migrate.py:99      # R02 cell.manifest.json → <parent>.cell.anc
+    nattos-migrate.py:100      if name == "cell.manifest.json":
+    ... +132 more
+
+  [59 refs] src/cells/kernel/security-cell/boundary.policy.json
+    nattos-migrate.py:27    R02 boundary.policy.json   → <parent>.boundary.si      [TÂY]
+    nattos-migrate.py:103      # R02 boundary.policy.json → <parent>.boundary.si
+    nattos-migrate.py:104      if name == "boundary.policy.json":
+    ... +56 more
+
+  [29 refs] src/governance/qneu/data/system-state.json
+    nattos-migrate.py:172      if name == "system-state.json":
+    nattos.sh:247    "QNEU system-state:src/governance/qneu/data/system-state.json"
+    nattos.sh:267  if [[ -f "src/governance/qneu/data/system-state.json" ]]; then
+    ... +26 more
+
+  [24 refs] src/governance/archive/HIEN-PHAP-NATT-OS-v4.0.md
+    archive/scripts/constitution/constitution-v4-deploy.sh:136      if [ ! -f "HIEN-PHAP-NATT-OS-v4.0.md" ]; then
+    archive/scripts/constitution/constitution-v4-deploy.sh:137          fail "HIEN-PHAP-NATT-OS-v4.0.md not found in current directory!"
+    archive/scripts/constitution/constitution-v4-deploy.sh:185      safe_cp "HIEN-PHAP-NATT-OS-v4.0.md" "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.md"
+    ... +21 more
+
+  [10 refs] src/governance/HIEN-PHAP-NATT-OS-v5.0.md
+    nattos.sh:246    "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v5.0.md"
+    config/repo.json:25149  │   │   ├── HIEN-PHAP-NATT-OS-v5.0.md
+    src/governance/memory/sessions/SESSION_2026-04-07_FULL_SUMMARY.md:105  1. **Hiến Pháp v5.0 chưa deploy** — sealed 25/03/2026, đang ở `src/governance/HIEN-PHAP-NATT-OS-v5.0.md`. Repo vẫn enfor
+    ... +7 more
+
+  [10 refs] src/governance/memory/bang/bangfs_v5.5.json
+    config/repo.json:25232  │   │   │   │   ├── bangfs_v5.5.json
+    src/governance/memory/sessions/SESSION_2026-04-07_FULL_SUMMARY.md:175  bangfs_v5.5.json    →  src/governance/memory/bang/bangfs_v5.5.json
+    src/governance/memory/sessions/SESSION_2026-04-07_update_SUMMARY.md:167  - `src/governance/memory/bang/bangfs_v5.5.json` (filesystem snapshot phiên này)
+    ... +7 more
+
+  [10 refs] src/governance/memory/bang/bangmf_v6.4.0.json
+    config/repo.json:25267  │   │   │   │   ├── bangmf_v6.4.0.json
+    src/governance/memory/sessions/SESSION_2026-04-07_FULL_SUMMARY.md:174  bangmf_v6.4.0.json  →  src/governance/memory/bang/bangmf_v6.4.0.json
+    src/governance/memory/sessions/SESSION_2026-04-07_update_SUMMARY.md:166  - `src/governance/memory/bang/bangmf_v6.4.0.json` (8 tầng + Ground Truth Synthesis 0223)
+    ... +7 more
+
+  [9 refs] src/governance/memory/boiboi/bmf.json
+    nattos-migrate.py:39    R12 bmf.json, boiboi_what_to_do.json → .thịnh | boiboi_memory*, boiboi_quick* → .kris
+    nattos-migrate.py:155      # R12 boiboi_memory*, boiboi_quick*, bmf.json → .kris
+    config/repo.json:25274  │   │   │   │   ├── bmf.json
+    ... +6 more
+
+  [7 refs] src/cells/natt-master-registry.json
+    archive/scripts/audit-lineage/natt-os-pre-wave3.sh:43  REGISTRY_FILE="$CELLS_ROOT/natt-master-registry.json"
+    archive/scripts/audit-lineage/natt-os-pre-wave3.sh:760              echo "  ✅ PASS: natt-master-registry.json exists"
+    archive/scripts/audit-lineage/natt-os-pre-wave3.sh:763              echo "  ❌ FAIL: natt-master-registry.json not found"
+    ... +4 more
+
+  [7 refs] src/governance/memory/bang/bangfs_v3.0.json
+    config/repo.json:25214  │   │   │   │   ├── bangfs_v3.0.json
+    src/governance/memory/bang/bangfs_v3.1.json:9      "previous": "bangfs_v3.0.json (2026-03-07T23:59:00)",
+    src/governance/memory/bang/bangmf_v5.3.0.json:432      "protocol": "Đọc bangfs_v3.0.json + bangmf_v5.2.0.json. Đọc context anh đưa. Bắt đầu từ Ground Truth."
+    ... +4 more
