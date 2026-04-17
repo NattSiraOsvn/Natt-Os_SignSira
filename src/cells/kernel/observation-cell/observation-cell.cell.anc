@@ -1,0 +1,26 @@
+{
+  "cell_id": "cell:observation",
+  "cell_name": "observation-cell",
+  "version": "1.0.0",
+  "description": "Read-only awareness layer — observes signal stream, computes coherence/entropy/pattern, publishes snapshot. NEVER emits action events. NEVER mutates state. Per SPEC NEN v1.0 section 4.2.",
+  "domain": "FIELD_AWARENESS",
+  "layer": 0,
+  "layer_name": "KERNEL",
+  "structural_position": {
+    "electron_layer": "M-N",
+    "direction": "NAM",
+    "obitan": "signal_to_chromatic"
+  },
+  "capabilities": ["READ_FIELD", "COMPUTE_COHERENCE", "COMPUTE_ENTROPY", "DETECT_PATTERN", "FLAG_ANOMALY", "PUBLISH_SNAPSHOT"],
+  "emits": ["observation.snapshot.published"],
+  "authoritative_events": [],
+  "subscribes": ["khai.touch.signed", "*"],
+  "dependencies": [],
+  "constitutional_state": "STATE_1",
+  "spec_compliance": {
+    "spec_nen_version": "v1.0",
+    "law_alignment": ["LAW-1", "LAW-2", "LAW-4"],
+    "fail_modes_addressed": ["section 13.4 Fake Routing", "section 13.7 Sensory Atrophy"]
+  },
+  "approved_by": "GATEKEEPER"
+}

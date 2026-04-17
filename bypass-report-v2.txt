@@ -1,0 +1,58 @@
+
+======================================================================
+  NATT-OS KhaiCell Bypass Detector v2
+======================================================================
+
+Files: 1358 | Entries: 19
+  [OK]:        0
+  [ALLOWLIST]: 1
+  [VIOLATION]: 18
+
+======================================================================
+  VIOLATIONS — 18
+======================================================================
+
+[HTTP_ROUTE] — 5
+  nattos-server/app Tâm luxury/nattos-server.cjs:39
+    app.get('/api/health', (req, res) => {
+  nattos-server/app Tâm luxury/nattos-server.cjs:43
+    app.post('/api/events/emit', (req, res) => {
+  nattos-server/app Tâm luxury/nattos-server.cjs:54
+    app.get('/api/state/:cell', (req, res) => {
+  nattos-server/app Tâm luxury/nattos-server.cjs:58
+    app.get('/api/state', (req, res) => {
+  nattos-server/app Tâm luxury/nattos-server.cjs:62
+    app.get('/api/audit', (req, res) => {
+
+[POSTMESSAGE] — 1
+  nattos-server/app Tâm luxury/hooks/useSSE.ts:18
+    eventSource.addEventListener('message', listener);
+
+[REQ_DATA_ACCESS] — 12
+  nattos-server/server.js:82
+    const { sjc_buy, sjc_sell, gold9999 } = req.body;
+  nattos-server/server.js:117
+    const { status } = req.query;
+  nattos-server/server.js:124
+    const { ticketId, approverId } = req.body;
+  nattos-server/server.js:134
+    const { ticketId, approverId, reason } = req.body;
+  nattos-server/server.js:178
+    const { fsp_hash, lsp_hash, nonce, timestamp } = req.body ?? {};
+  nattos-server/server.js:257
+    const { type, payload, cell } = req.body;
+  nattos-server/server.js:264
+    res.json({ cell: req.params.cell, state: STATE[req.params.cell] || {}, ts: Date.now() });
+  nattos-server/server.js:272
+    const limit = parseInt(req.query.limit || '50');
+  nattos-server/server.js:411
+    const period = (req.body && req.body.period) ? req.body.period : 'FY2025';
+  nattos-server/app Tâm luxury/nattos-server.cjs:44
+    const { type, payload, cell } = req.body;
+  nattos-server/app Tâm luxury/nattos-server.cjs:55
+    res.json({ cell: req.params.cell, state: STATE[req.params.cell] || {}, ts: Date.now() });
+  nattos-server/app Tâm luxury/nattos-server.cjs:63
+    const limit = parseInt(req.query.limit || '50');
+
+RESULT: FAIL — 18 violations
+
