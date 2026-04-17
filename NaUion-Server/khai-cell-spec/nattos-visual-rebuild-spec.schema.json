@@ -1,0 +1,240 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://natt.sira/specs/visual-rebuild-v1.schema.json",
+  "title": "NaUion Visual Rebuild Spec",
+  "description": "Canonical schema for visual rebuild specifications in NATT-OS / NaUion system. See SPEC-NaUion-Visual-Rebuild-Pipeline v1.0.",
+  "type": "object",
+  "required": [
+    "spec_id",
+    "version",
+    "source_reference",
+    "measurement_timestamp",
+    "canvas",
+    "camera",
+    "composition",
+    "main_object",
+    "material_system",
+    "lighting",
+    "post_processing",
+    "rebuild_notes",
+    "prompt_render",
+    "negative_prompt"
+  ],
+  "properties": {
+    "spec_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Unique identifier. Snake-case."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "source_reference": {
+      "type": "string",
+      "description": "Path or URL to reference image/video/scene"
+    },
+    "measurement_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "canvas": {
+      "type": "object",
+      "required": ["aspect_ratio", "resolution_measured", "background"],
+      "properties": {
+        "aspect_ratio": { "type": "string", "pattern": "^\\d+:\\d+$" },
+        "aspect_ratio_decimal": { "type": "number" },
+        "resolution_measured": { "type": "string", "pattern": "^\\d+ ?× ?\\d+$" },
+        "resolution_target": { "type": "string" },
+        "background": {
+          "type": "object",
+          "required": ["type", "color"],
+          "properties": {
+            "type": { "enum": ["solid", "gradient", "scene_based", "transparent", "hdri"] },
+            "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "required": ["lens_mm", "angle"],
+      "properties": {
+        "shot_type": { "enum": ["close_up", "medium", "wide", "detail"] },
+        "angle": { "enum": ["eye_level", "low_angle", "high_angle", "top_down", "isometric"] },
+        "rotation_deg": { "type": "number" },
+        "lens_mm": { "type": "number", "minimum": 8, "maximum": 200 },
+        "fov_estimate": { "type": "string" },
+        "focus_subject": { "type": "string" },
+        "depth_of_field": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "blur_strength": { "enum": ["none", "low", "medium", "high"] }
+          }
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "required": ["subject_center_measured"],
+      "properties": {
+        "subject_position": { "enum": ["center", "left", "right", "top", "bottom", "rule_of_thirds"] },
+        "subject_center_measured": {
+          "type": "object",
+          "required": ["x", "y"],
+          "properties": {
+            "x": { "type": "integer" },
+            "y": { "type": "integer" }
+          }
+        },
+        "offset_from_canvas_center": {
+          "type": "object",
+          "properties": { "dx": { "type": "integer" }, "dy": { "type": "integer" } }
+        },
+        "cropping": { "enum": ["full", "half", "detail", "bleed"] },
+        "symmetry": { "enum": ["none", "soft", "strong", "strong_horizontal_asymmetric_accents", "radial"] },
+        "negative_space_ratio": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "main_object": {
+      "type": "object",
+      "required": ["name", "components"],
+      "properties": {
+        "name": { "type": "string" },
+        "components": {
+          "type": "object",
+          "description": "Per-component measurements. Each component is a named object.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "position": { "type": "object" },
+              "dimensions_measured": { "type": "object" },
+              "depth_position": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "material_system": {
+      "type": "object",
+      "description": "PBR material per component. Each property is a named component with PBR tuple.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": { "enum": ["metal", "glass", "ceramic", "wood", "fabric", "stone", "emissive_with_subsurface", "thin_glass_bubble", "neon_emissive_sign", "volumetric_light_trails", "additive_emissive_lines"] },
+          "base_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+          "metalness": { "type": "number", "minimum": 0, "maximum": 1 },
+          "roughness": { "type": "number", "minimum": 0, "maximum": 1 },
+          "specular": { "type": "number", "minimum": 0, "maximum": 1 },
+          "transmission": { "type": "number", "minimum": 0, "maximum": 1 },
+          "ior": { "type": "number", "minimum": 1.0, "maximum": 3.0 },
+          "subsurface": { "type": "number", "minimum": 0, "maximum": 1 },
+          "emissive": { "type": "boolean" },
+          "emissive_intensity": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "lighting": {
+      "type": "object",
+      "required": ["setup_type", "key_light"],
+      "properties": {
+        "setup_type": {
+          "enum": [
+            "studio", "natural", "mixed", "interior",
+            "self_illuminated_emissive_with_studio_fill",
+            "void_single_emissive", "three_point", "rembrandt"
+          ]
+        },
+        "key_light": {
+          "type": "object",
+          "required": ["direction", "intensity"],
+          "properties": {
+            "direction": { "type": "string" },
+            "intensity": { "type": "number", "minimum": 0 },
+            "temperature_k": { "type": "integer", "minimum": 1000, "maximum": 20000 },
+            "clock_position": { "type": "string" }
+          }
+        },
+        "fill_light": { "type": "object" },
+        "rim_light": { "type": "object" },
+        "ambient_level": { "type": "number", "minimum": 0, "maximum": 1 },
+        "shadow_softness": { "enum": ["none", "hard", "soft", "very_soft"] }
+      }
+    },
+    "color_palette": {
+      "type": "object",
+      "properties": {
+        "dominant": { "type": "array", "items": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" } },
+        "secondary": { "type": "array", "items": { "type": "string" } },
+        "accent_warm": { "type": "array", "items": { "type": "string" } },
+        "accent_cool": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "post_processing": {
+      "type": "object",
+      "properties": {
+        "exposure": { "type": "number", "minimum": -5, "maximum": 5 },
+        "contrast": { "type": "number", "minimum": -1, "maximum": 1 },
+        "highlights": { "type": "number", "minimum": -1, "maximum": 1 },
+        "shadows": { "type": "number", "minimum": -1, "maximum": 1 },
+        "clarity": { "type": "number", "minimum": -1, "maximum": 1 },
+        "sharpen": { "type": "number", "minimum": 0, "maximum": 1 },
+        "vignette": { "type": "number", "minimum": 0, "maximum": 1 },
+        "white_balance_k": { "type": "integer", "minimum": 1000, "maximum": 20000 },
+        "bloom_glow": { "type": "number", "minimum": 0, "maximum": 2 },
+        "chromatic_aberration": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "style_control": {
+      "type": "object",
+      "properties": {
+        "realism_priority": { "type": "number", "minimum": 0, "maximum": 1 },
+        "stylization": { "type": "number", "minimum": 0, "maximum": 1 },
+        "cleanliness": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "rebuild_notes": {
+      "type": "array",
+      "description": "Critical findings from measurement pass that must be preserved in rebuild.",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "order_of_operations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "prompt_render": {
+      "type": "string",
+      "description": "Natural language prompt for external AI image generators.",
+      "minLength": 50
+    },
+    "negative_prompt": {
+      "type": "string",
+      "description": "Anti-patterns to avoid.",
+      "minLength": 20
+    },
+    "rebuild_gap_report": {
+      "type": "object",
+      "description": "Measured gap between reference and output. Required for Điều 6 compliance.",
+      "properties": {
+        "dimension_ratio_deviation_pct": { "type": "number" },
+        "subject_center_offset_px": { "type": "number" },
+        "dominant_color_delta_e": { "type": "number" },
+        "silhouette_iou": { "type": "number", "minimum": 0, "maximum": 1 },
+        "component_count_match": { "type": "boolean" }
+      }
+    },
+    "nauion_integration": {
+      "type": "object",
+      "description": "Integration with NATT-OS entity system (Điều 8).",
+      "properties": {
+        "entity_id": { "type": "string" },
+        "anc_file_ref": { "type": "string" },
+        "visual_signature_field": { "type": "string" }
+      }
+    }
+  }
+}

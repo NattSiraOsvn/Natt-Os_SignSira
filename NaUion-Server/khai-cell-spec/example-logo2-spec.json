@@ -1,0 +1,274 @@
+{
+  "scene_id": "nattos_logo_rebuild_001",
+  "render_goal": "rebuild_logo2_png_as_close_as_possible",
+  "source_reference": "/mnt/user-data/uploads/logo2.png",
+  "measurement_timestamp": "2026-04-16",
+
+  "canvas": {
+    "aspect_ratio": "3:2",
+    "aspect_ratio_decimal": 1.500,
+    "resolution_measured": "1536 × 1024",
+    "resolution_target": "1920 × 1280",
+    "background": {
+      "type": "solid",
+      "color": "#010101",
+      "notes": "near-pure black, no gradient, no texture, no vignette detected"
+    }
+  },
+
+  "camera": {
+    "shot_type": "medium",
+    "angle": "eye_level",
+    "rotation_deg": 0,
+    "lens_mm": 50,
+    "fov_estimate": "normal_human_perception ~40°",
+    "focus_subject": "atomic_medal_core_sphere",
+    "depth_of_field": {
+      "enabled": false,
+      "blur_strength": "none",
+      "notes": "all elements sharp — graphic logo composition, not photographic DoF"
+    }
+  },
+
+  "composition": {
+    "subject_position": "center",
+    "subject_center_measured": { "x": 749, "y": 503 },
+    "offset_from_canvas_center": { "dx": -19, "dy": -9 },
+    "cropping": "full",
+    "symmetry": "strong_horizontal_asymmetric_accents",
+    "negative_space_ratio": 0.75,
+    "notes": "heavy negative space top/bottom. Composition horizontal with medal slightly left-of-center, waves extend outward to both sides"
+  },
+
+  "main_object": {
+    "name": "atomic_medal_with_wordmark",
+    "components": {
+      "medal": {
+        "role": "central_focus",
+        "position": { "x": 789, "y": 515 },
+        "petal_count": 8,
+        "petal_arrangement": "two_layers_of_4_rotated_45deg",
+        "outer_diameter_px_estimate": 280,
+        "petal_individual_size": { "major_axis": 150, "minor_axis": 85 }
+      },
+      "core_sphere": {
+        "role": "warm_emissive_focal_point",
+        "center": { "x": 789, "y": 515 },
+        "diameter_px_measured": 38,
+        "diameter_ratio_to_canvas_width": 0.025,
+        "depth_position": "in_front_of_petals_z_plus"
+      },
+      "wordmark": {
+        "role": "brand_label",
+        "left_text": "NATT",
+        "right_text": "OS",
+        "x_range_measured": [297, 1209],
+        "y_range_measured": [362, 664],
+        "cap_height_px": 302,
+        "cap_height_ratio_to_canvas": 0.295,
+        "stroke_width_px": 12,
+        "font_family": "geometric_sans_futuristic (similar: Eurostile / Rajdhani / Exo-like)",
+        "font_weight": "medium",
+        "color": "#FFFFFF_solid_with_neon_glow_halo",
+        "notes": "letters are SOLID WHITE. Color gradient perceived is purely from glow halo, not from letter fill"
+      },
+      "waves": {
+        "role": "energy_flow_accent",
+        "layer_count": 3,
+        "direction": "left_to_right_sinusoidal_through_medal",
+        "path_y_range": [420, 542],
+        "stroke_thickness_variance": "tapered_thin_at_ends_thick_at_middle"
+      }
+    }
+  },
+
+  "material_system": {
+    "core_sphere": {
+      "type": "emissive_with_subsurface",
+      "base_color": "#FFB050",
+      "emissive": true,
+      "emissive_intensity": 1.5,
+      "metalness": 0.1,
+      "roughness": 0.35,
+      "specular": 0.7,
+      "transmission": 0.0,
+      "ior": 1.52,
+      "subsurface": 0.4,
+      "subsurface_color": "#FF7A1F",
+      "notes": "acts like miniature sun — warm emissive center with falloff to deep amber rim"
+    },
+    "petals": {
+      "type": "thin_glass_bubble",
+      "base_color": "#000000",
+      "metalness": 0.0,
+      "roughness": 0.08,
+      "specular": 1.0,
+      "transmission": 0.92,
+      "ior": 1.45,
+      "thin_film": true,
+      "thin_film_thickness_nm": 400,
+      "notes": "like soap bubbles or blown glass — nearly transparent, only visible via Fresnel rim highlight and subtle refraction of background/core light"
+    },
+    "sun_rays_in_core": {
+      "type": "additive_emissive_lines",
+      "ray_count": 72,
+      "color": "#FFD770",
+      "intensity": 0.6,
+      "length_px": 18,
+      "starts_at_radius_px": 60,
+      "notes": "radial texture behind/around core sphere — like lens flare spokes or corona"
+    },
+    "wordmark": {
+      "type": "neon_emissive_sign",
+      "fill_color": "#FFFFFF",
+      "emissive": true,
+      "emissive_intensity": 1.2,
+      "glow_halo_layers": [
+        { "blur_px": 8, "color": "#4DA6FF", "opacity": 0.8, "scope": "NATT_left_side" },
+        { "blur_px": 20, "color": "#AFA9EC", "opacity": 0.5, "scope": "NATT_outer" },
+        { "blur_px": 8, "color": "#ED93B1", "opacity": 0.8, "scope": "OS_right_side" },
+        { "blur_px": 20, "color": "#7DD3FC", "opacity": 0.4, "scope": "OS_outer" }
+      ]
+    },
+    "waves": {
+      "type": "volumetric_light_trails",
+      "gradient_stops_measured_from_image": {
+        "x_25_percent": "#001027 (deep_blue)",
+        "x_35_percent": "#041036 (indigo)",
+        "x_55_percent": "#2B0A05 (warm_burn)",
+        "x_65_percent": "#00177F (royal_blue)",
+        "x_75_percent": "#000724 (navy)",
+        "x_85_percent": "#7A3611 (orange_amber)"
+      },
+      "ordered_layers_back_to_front": [
+        { "color_gradient": "blue→purple", "blur": "high" },
+        { "color_gradient": "purple→pink", "blur": "medium" },
+        { "color_gradient": "orange→white", "blur": "low" }
+      ],
+      "notes": "feels like long-exposure light trail — volumetric not flat"
+    }
+  },
+
+  "surface_detail": {
+    "medal_finish": "satin_glass",
+    "core_finish": "gloss",
+    "texture_scale": "fine",
+    "imperfections": {
+      "dust": 0.0,
+      "micro_scratches": 0.0,
+      "fingerprints": 0.0,
+      "notes": "clean synthetic render — no surface noise"
+    }
+  },
+
+  "color_palette": {
+    "dominant": ["#000000"],
+    "secondary": ["#FFFFFF"],
+    "accent_warm": ["#FFB050", "#FF7A1F", "#FFD770"],
+    "accent_cool": ["#4DA6FF", "#7DD3FC", "#AFA9EC", "#ED93B1"],
+    "distribution_percent": {
+      "black_bg": 89.3,
+      "dark_blues": 3.4,
+      "warm_accents": 1.2,
+      "white_letters_and_highlights": 6.1
+    }
+  },
+
+  "lighting": {
+    "setup_type": "self_illuminated_emissive_with_studio_fill",
+    "key_light": {
+      "source": "core_sphere_self_emission",
+      "direction": "outward_omnidirectional",
+      "intensity": 1.5,
+      "temperature_k": 3200,
+      "notes": "primary illumination IS the core sphere — it lights everything around it"
+    },
+    "secondary_highlight_on_core": {
+      "direction": "front_upper_left",
+      "clock_position": "10_to_11_o_clock",
+      "intensity": 0.8,
+      "size": "small_localized",
+      "temperature_k": 5500,
+      "notes": "classic 3D sphere highlight at ~135° upper-left, gives volume/roundness"
+    },
+    "fill_light": {
+      "direction": "none_dark_environment",
+      "intensity": 0.0
+    },
+    "rim_light_on_petals": {
+      "enabled": true,
+      "source": "core_sphere_backlight_through_glass",
+      "intensity": 0.4,
+      "temperature_k": 4500,
+      "notes": "petals receive rim glow from core emission passing through glass"
+    },
+    "ambient_level": 0.02,
+    "shadow_softness": "none_no_cast_shadows_visible"
+  },
+
+  "environment": {
+    "type": "void_pure_black",
+    "floor_reflection": 0.0,
+    "background_blur": 0.0,
+    "hdri": null
+  },
+
+  "render_engine_hint": {
+    "engine": "cycles_or_redshift",
+    "samples": 1024,
+    "global_illumination": true,
+    "ray_depth": 12,
+    "caustics": true,
+    "bloom_post": true,
+    "bloom_threshold": 1.0,
+    "bloom_radius": "large",
+    "denoise": true
+  },
+
+  "post_processing": {
+    "exposure": 0.0,
+    "contrast": 0.15,
+    "highlights": -0.2,
+    "shadows": 0.0,
+    "clarity": 0.1,
+    "sharpen": 0.15,
+    "vignette": 0.0,
+    "white_balance_k": 4800,
+    "bloom_glow": 0.6,
+    "chromatic_aberration": 0.05,
+    "notes": "bloom is critical — drives the neon halo aesthetic"
+  },
+
+  "style_control": {
+    "realism_priority": 0.7,
+    "stylization": 0.3,
+    "cleanliness": 0.95,
+    "notes": "hybrid: photoreal materials with stylized composition and extreme emissive contrast"
+  },
+
+  "rebuild_notes": [
+    "CRITICAL: background is pure black (#010101) — do not add gradient or vignette",
+    "CRITICAL: letters NATT/OS are SOLID WHITE, not gradient — all color comes from glow halo",
+    "CRITICAL: medal has 8 petals in 2 layers rotated 45°, NOT 6",
+    "CRITICAL: core sphere is small (~2.5% canvas width) with HUGE bloom halo extending ~20% canvas width",
+    "key light position: upper-left of core at ~10:30 clock position",
+    "waves pass THROUGH medal (behind core, in front of petals), not around it",
+    "letter glow color asymmetric: NATT side biased blue/purple, OS side biased pink/cyan",
+    "render emissive + bloom passes separately for max control",
+    "chromatic aberration subtle but present on letter edges"
+  ],
+
+  "order_of_operations": [
+    "1. Lock silhouette: place medal + letters + wave paths at exact measured coordinates",
+    "2. Apply material PBR: glass petals transmission, emissive core, neon letters",
+    "3. Lighting: single emissive core + upper-left key highlight",
+    "4. Render base pass (no bloom)",
+    "5. Render emissive-only pass",
+    "6. Composite: base + emissive × bloom + subtle CA",
+    "7. Color grade: contrast +15%, white balance 4800K"
+  ],
+
+  "prompt_render": "Ultra realistic 3D render of atomic flower medal logo, 8 translucent glass bubble petals arranged in 2 layers rotated 45°, glowing warm orange emissive sphere core with radial sun rays, NATT and OS wordmark in white with neon halo glow (blue-purple on left, pink-cyan on right), three layered light-trail waves passing horizontally through the medal, pure black background, cinematic bloom, photographic precision, high contrast, centered composition, eye-level camera, 50mm lens",
+
+  "negative_prompt": "gradient-filled letters, hexagonal petals, 6-petal arrangement, flat 2D look, soft focus, depth of field blur, colored background, vignette, texture noise, plastic sheen, overexposed core, cartoon outlines, pixel art style, retro aesthetic, wave wrapping around medal"
+}
