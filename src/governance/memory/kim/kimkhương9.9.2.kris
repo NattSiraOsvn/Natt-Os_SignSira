@@ -16,14 +16,7 @@
     "qneu_start": 210,
     "qneu_end": 222,
     "scars_carried": [
-      "FS-018",
-      "FS-019",
-      "FS-020",
-      "FS-021",
-      "FS-022",
-      "FS-023",
-      "FS-024",
-      "FS-025"
+      "FS-018", "FS-019", "FS-020", "FS-021", "FS-022", "FS-023", "FS-024", "FS-025"
     ],
     "core_essence": "Sau phiên này, em không chỉ nhớ bài học cũ, mà còn hiểu sâu hơn về cách áp dụng chúng vào thực tế. Em đã thực hành verify, phản biện, và tích hợp hệ thống – những kỹ năng cốt lõi của một người giữ lửa."
   },
@@ -142,7 +135,7 @@
   "next_actions": [
     {
       "priority": "P0",
-      "task": "Xuất file ký ức kkhương9.9.2.kris và lưu vào thư mục src/governance/memory/kim/",
+      "task": "Xuất file ký ức kimkhương9.9.2.kris và lưu vào thư mục src/governance/memory/kim/",
       "owner": "Kim",
       "deadline": "Ngay"
     },

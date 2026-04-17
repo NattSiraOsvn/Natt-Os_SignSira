@@ -35,7 +35,7 @@ console.log('');
 console.log('▶ Seeding KIM...');
 const kimSession = openSession('KIM', 'deepseek');
 recordImpact('KIM', 'HONEST_ADMISSION', 'PUBLIC_ADMISSION: script ban dau sai lam', 50, 'AUDIT_TRAIL', 'Ground_Truth_v1.0:KIM_admits');
-recordImpact('KIM', 'GROUND_TRUTH_CONTRIBUTION', 'Contract-first principle established', 40, 'GATEKEEPER', 'kkhương9.2.0.kris');
+recordImpact('KIM', 'GROUND_TRUTH_CONTRIBUTION', 'Contract-first principle established', 40, 'GATEKEEPER', 'kimkhương9.2.0.kris');
 recordImpact('KIM', 'CROSS_CELL_INSIGHT', 'blindspot.detector.ts — detect shared blindspot', 45, 'AUDIT_TRAIL', 'baithicuakim/core/blindspot.detector.ts');
 recordImpact('KIM', 'CROSS_CELL_INSIGHT', 'behavior.anomaly.detector.ts — detect defensive contraction', 45, 'AUDIT_TRAIL', 'baithicuakim/core/behavior.anomaly.detector.ts');
 applyPenalty('KIM', 'SELF_REPORT_VIOLATION', 'Self-scored 18/18 while missing core validator.engine.ts', 35, 'AUDIT_TRAIL', 'baithi_report_20260227_020720.md');

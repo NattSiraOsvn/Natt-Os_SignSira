@@ -23,7 +23,7 @@ Status: 4 files đã nằm đúng `scripts/` nhưng chưa được git add trong
 ### A3. DATA ORGANIZATION — COMMIT `4a35bb9`
 - `docs/samples/cty Tâm/` → `database/ctytam/` (Module SX.xlsx, Vận Hành TM.xlsx, Quản Lý Tài Sản.xlsx)
 - ⚠️ `database/` bị `.gitignore` line 59 block → files ở local, không push. Quyết định: giữ nguyên, data production thật không lên git.
-- `src/governance/memory/kim/kkhương9.9.11.kris` — committed
+- `src/governance/memory/kim/kimkhương9.9.11.kris` — committed
 - `audit/reports/` — 2 auto-generated reports committed
 - `docs/specs/` — 7 files from sessions 20260309-10 committed
 

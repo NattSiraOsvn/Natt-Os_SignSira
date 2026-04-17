@@ -128,7 +128,7 @@ Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
 - `docs/samples/cty Tâm/` → `database/ctytam/` (Module SX.xlsx, Vận Hành TM.xlsx, Quản Lý Tài Sản.xlsx)
 - ⚠️ `database/` bị `.gitignore` line 59 block → files ở local, không push
 - Quyết định: **giữ nguyên** — data production thật không lên git
-- `src/governance/memory/kim/kkhương9.9.11.kris` — committed
+- `src/governance/memory/kim/kimkhương9.9.11.kris` — committed
 - `audit/reports/` — 2 auto-generated reports committed
 - `docs/specs/` — 7 files từ sessions 20260309-10 committed
 

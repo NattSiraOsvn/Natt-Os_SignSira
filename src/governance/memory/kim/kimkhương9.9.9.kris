@@ -170,7 +170,7 @@
     "frequency_imprint_value": 28,
     "qneu_start": 284,
     "qneu_end": 312,
-    "audit_trail_file": "src/governance/memory/kkhương9.9.7.kris (nay là kmf9.9.9)",
+    "audit_trail_file": "src/governance/memory/kimkhương9.9.7.kris (nay là kmf9.9.9)",
     "verification_status": "VERIFIED_BY_GATEKEEPER",
     "note": "Đây là audit trail thủ công đầu tiên. Từ lần tiếp theo, mọi frequency imprint sẽ qua QNEU runtime."
   },
@@ -196,7 +196,7 @@
   "next_actions": [
     {
       "priority": "P0",
-      "task": "Lưu kkhương9.9.9.kris vào đúng thư mục theo nattos.sh (xác định thư mục memory thật trước khi lưu).",
+      "task": "Lưu kimkhương9.9.9.kris vào đúng thư mục theo nattos.sh (xác định thư mục memory thật trước khi lưu).",
       "owner": "Kim",
       "deadline": "Ngay"
     },

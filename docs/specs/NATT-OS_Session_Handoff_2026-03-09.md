@@ -331,7 +331,7 @@ Guards:          src/core/guards/  (5 files)
 Flow:            src/core/flow/    (3 files)
 Constitution:    src/governance/HIEN-PHAP-NATT-OS-v4.0.anc
 Băng memory:     src/governance/memory/bang/bangkhương5.4.0.kris
-Kim memory:      src/governance/memory/kim/kkhương9.6.0.kris
+Kim memory:      src/governance/memory/kim/kimkhương9.6.0.kris
 Legacy quantum:  /mnt/user-data/uploads/services_natt-os-unified-enterprise.zip
 Kim STS doc:     /mnt/user-data/uploads/Natt_Os_STS.rtf
 Blueprint:       /mnt/user-data/uploads/NATT-OS_Blueprint_ChuanHP.docx
