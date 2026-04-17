@@ -133,8 +133,8 @@ preflight() {
     success "Đang ở thư mục NATT-OS root"
     
     # Check constitution v4.0 exists
-    if [ ! -f "HIEN-PHAP-NATT-OS-v4.0.md" ]; then
-        fail "HIEN-PHAP-NATT-OS-v4.0.md not found in current directory!"
+    if [ ! -f "HIEN-PHAP-NATT-OS-v4.0.anc" ]; then
+        fail "HIEN-PHAP-NATT-OS-v4.0.anc not found in current directory!"
         echo -e "${YELLOW}Hãy copy file Hiến pháp v4.0 vào thư mục gốc trước khi chạy script${NC}"
         exit 1
     fi
@@ -182,11 +182,11 @@ phase2_deploy_constitution() {
     
     # --- ENFORCEMENT location (active, machine-readable) ---
     safe_mkdir "src/governance/constitution/v4.0"
-    safe_cp "HIEN-PHAP-NATT-OS-v4.0.md" "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.md"
+    safe_cp "HIEN-PHAP-NATT-OS-v4.0.anc" "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.anc"
     
     # --- ARCHIVE location (sealed, read-only reference) ---
     safe_mkdir "natt-os/constitution"
-    safe_cp "HIEN-PHAP-NATT-OS-v4.0.md" "natt-os/constitution/HIEN-PHAP-NATT-OS-v4.0.md"
+    safe_cp "HIEN-PHAP-NATT-OS-v4.0.anc" "natt-os/constitution/HIEN-PHAP-NATT-OS-v4.0.anc"
     
     # --- Create index.ts for programmatic access ---
     if [ "$DRY_RUN" = false ]; then
@@ -462,7 +462,7 @@ phase6_verify() {
     
     # Check enforcement location
     checks_total=$((checks_total+1))
-    if [ -f "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.md" ] || [ "$DRY_RUN" = true ]; then
+    if [ -f "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
         success "✓ Constitution v4.0 at ENFORCEMENT: src/governance/constitution/v4.0/"
         checks_passed=$((checks_passed+1))
     else
@@ -471,7 +471,7 @@ phase6_verify() {
     
     # Check archive location
     checks_total=$((checks_total+1))
-    if [ -f "natt-os/constitution/HIEN-PHAP-NATT-OS-v4.0.md" ] || [ "$DRY_RUN" = true ]; then
+    if [ -f "natt-os/constitution/HIEN-PHAP-NATT-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
         success "✓ Constitution v4.0 at ARCHIVE: natt-os/constitution/"
         checks_passed=$((checks_passed+1))
     else
@@ -526,12 +526,12 @@ summary() {
     echo -e "  ${CYAN}Cấu trúc Hiến pháp sau deploy:${NC}"
     echo ""
     echo "  natt-os/constitution/                  ← ARCHIVE (sealed, read-only)"
-    echo "  └── HIEN-PHAP-NATT-OS-v4.0.md"
+    echo "  └── HIEN-PHAP-NATT-OS-v4.0.anc"
     echo ""
     echo "  src/governance/constitution/            ← ENFORCEMENT (active)"
     echo "  ├── index.ts                            ← Programmatic constants"
     echo "  └── v4.0/"
-    echo "      └── HIEN-PHAP-NATT-OS-v4.0.md"
+    echo "      └── HIEN-PHAP-NATT-OS-v4.0.anc"
     echo ""
     echo -e "  ${CYAN}Cấu trúc hệ thống sau cleanup:${NC}"
     echo ""

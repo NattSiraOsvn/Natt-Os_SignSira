@@ -14,7 +14,7 @@
  *
  * OUTPUT:
  *   - Console log chi tiết
- *   - File: emergent-behavior-report.json
+ *   - File: emergent-behavior-report.kris
  *
  * Gatekeeper: Phan Thanh Thương
  * Ground Truth Validator: Băng (QNEU 300)
@@ -419,7 +419,7 @@ async function runProof(): Promise<void> {
   // ══════════════════════════════════════════════════════════════════════
   // WRITE REPORT
   // ══════════════════════════════════════════════════════════════════════
-  const reportPath = path.join(process.cwd(), 'emergent-behavior-report.json');
+  const reportPath = path.join(process.cwd(), 'emergent-behavior-report.kris');
   fs.writeFileSync(reportPath, JSON.stringify(REPORT, null, 2));
   console.log('');
   console.log(`  📄 Report written to: ${reportPath}`);

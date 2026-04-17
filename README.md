@@ -15,7 +15,7 @@
 Mỗi domain nghiệp vụ là một **cell** độc lập, có sáu thành phần (DNA):
 
 ```
-cell.manifest.json   — bản khai sinh
+neural-main-cell.cell.anc   — bản khai sinh
 ports/               — ngõ giao tiếp
 domain/              — logic nghiệp vụ
 infrastructure/      — thực thi

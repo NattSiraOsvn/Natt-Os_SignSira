@@ -93,7 +93,7 @@ generate_cell() {
     mkdir -p "$cell_dir"/{domain,application,infrastructure,interface,ports}
 
     # 1. Manifest
-    cat > "$cell_dir/cell.manifest.json" <<EOF
+    cat > "$cell_dir/neural-main-cell.cell.anc" <<EOF
 {
   "id": "${name}-cell",
   "name": "$name cell",

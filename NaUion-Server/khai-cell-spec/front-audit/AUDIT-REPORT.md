@@ -152,7 +152,7 @@ SPEC v1.0 vừa tự chứng minh:
 **— END AUDIT REPORT —**
 
 *Related files:*
-- `audit-report.json` — full structured data
+- `audit-report.kris` — full structured data
 - `audit-comparison.png` — 3-way visual comparison
 - `SPEC-NaUion-Visual-Rebuild-Pipeline-v1.0.md` — framework
 - `example-logo2-spec.json` — measurement spec used as ground truth

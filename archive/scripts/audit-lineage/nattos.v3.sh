@@ -132,8 +132,8 @@ info "Inherited V2: $V2_FILES files | V1: $V1_FILES files"
 hdr "4" "GOVERNANCE / ADN"
 # ═══════════════════════════════════════════════════════════════
 GOV_FILES=(
-  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v4.0.md"
-  "QNEU system-state:src/governance/qneu/data/system-state.json"
+  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v4.0.anc"
+  "QNEU system-state:src/governance/qneu/data/system-state.phieu"
   "QNEU first-seed:src/governance/qneu/first-seed.ts"
   "Gatekeeper core:src/governance/gatekeeper/gatekeeper-core.ts"
 )
@@ -153,12 +153,12 @@ if [[ -n "$KMF" ]]; then ok "kmf: $(basename "$KMF")"; inc_ok
 else warn "kmf: MISSING"; inc_warn "GOV: kmf missing"; fi
 
 # QNEU scores
-if [[ -f "src/governance/qneu/data/system-state.json" ]]; then
+if [[ -f "src/governance/qneu/data/system-state.phieu" ]]; then
   echo -e "  ${W}QNEU Scores:${N}"
   python3 -c "
 import json
 try:
-  d=json.load(open('src/governance/qneu/data/system-state.json'))
+  d=json.load(open('src/governance/qneu/data/system-state.phieu'))
   for e in ['BANG','THIEN','KIM','CAN','BOI_BOI']:
     ent=d.get('entities',{}).get(e,{});s=ent.get('currentScore',ent.get('current_score','?'))
     print(f'    {e:<10} {s}')
@@ -175,7 +175,7 @@ for cell in "${KERNEL_EXPECTED[@]}"; do
   P="src/cells/kernel/$cell"
   if [[ -d "$P" ]]; then
     FC=$(find "$P" -name "*.ts" | wc -l | tr -d ' ')
-    MF=$([[ -f "$P/cell.manifest.json" ]] && echo "MF✅" || echo "MF❌")
+    MF=$([[ -f "$P/neural-main-cell.cell.anc" ]] && echo "MF✅" || echo "MF❌")
     PT=$([[ -d "$P/ports" ]] && echo "PORT✅" || echo "PORT❌")
     ENG=$(find "$P" -name "*.engine.ts" 2>/dev/null | wc -l | tr -d ' ')
     ok "$cell | $FC files | $MF | $PT | engines:$ENG"; inc_ok; ((KERNEL_OK++)) || true
@@ -199,7 +199,7 @@ for cell_dir in src/cells/business/*/; do
   FC=$(find "$cell_dir" -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
 
   # 6 components check
-  HAS_IDENTITY=$([[ -f "$cell_dir/cell.manifest.json" ]] && echo 1 || echo 0)
+  HAS_IDENTITY=$([[ -f "$cell_dir/neural-main-cell.cell.anc" ]] && echo 1 || echo 0)
   HAS_CAPABILITY=$(find "$cell_dir" -name "*.engine.ts" -o -name "*.service.ts" 2>/dev/null | grep -v index | grep -q . && echo 1 || echo 0)
   HAS_BOUNDARY=$(find "$cell_dir" -name "*boundary*" -o -name "*policy*" 2>/dev/null | grep -q . && echo 1 || echo 0)
   HAS_TRACE=$(find "$cell_dir" -name "*.entity.ts" -o -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
@@ -967,7 +967,7 @@ BASELINE_BANG=300; BASELINE_THIEN=135; BASELINE_KIM=120
 BASELINE_CAN=85; BASELINE_BOIBOI=40
 
 # Read current scores from system-state if available
-STATE_FILE="src/governance/qneu/data/system-state.json"
+STATE_FILE="src/governance/qneu/data/system-state.phieu"
 if [[ -f "$STATE_FILE" ]]; then
   CURR_BANG=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('BANG',{}).get('currentScore',$BASELINE_BANG)))" 2>/dev/null || echo $BASELINE_BANG)
   CURR_KIM=$(python3 -c "import json; d=json.load(open('$STATE_FILE')); print(int(d.get('entities',{}).get('KIM',{}).get('currentScore',$BASELINE_KIM)))" 2>/dev/null || echo $BASELINE_KIM)
@@ -988,7 +988,7 @@ if [[ -f "$STATE_FILE" ]]; then
   done
   ok "QNEU scores loaded from system-state"; inc_ok
 else
-  info "system-state.json not found — showing seed baselines"
+  info "system-state.phieu not found — showing seed baselines"
   printf "  %-12s %s\n" "Entity" "Seed Score"
   printf "  %-12s %s\n" "BANG" "300"
   printf "  %-12s %s\n" "THIEN" "135"
@@ -1133,7 +1133,7 @@ if os.path.isdir(biz_path):
     for cell in sorted(os.listdir(biz_path)):
         cp = os.path.join(biz_path, cell)
         if not os.path.isdir(cp): continue
-        has_mf = os.path.isfile(os.path.join(cp, 'cell.manifest.json'))
+        has_mf = os.path.isfile(os.path.join(cp, 'neural-main-cell.cell.anc'))
         has_port = any('smartlink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
         has_domain = os.path.isdir(os.path.join(cp, 'domain'))
         fc = count_files(cp)

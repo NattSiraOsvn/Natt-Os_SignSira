@@ -950,7 +950,7 @@ HeaderTicker	market-cell, news-cell	Dữ liệu thời gian thực từ SmartLin
 KpiCard	sales-cell, production-cell, monitor-cell	Aggregate từ nhiều nguồn
 TaskItem	task-cell, period-close-cell	Công việc theo Wave
 PerformanceChart	hr-cell, monitor-cell	Dữ liệu hiệu suất
-MedalGridItem	cell.manifest.json của từng cell	Metadata được đăng ký trong registry
+MedalGridItem	neural-main-cell.cell.anc của từng cell	Metadata được đăng ký trong registry
 NeuralTerminal	audit-cell, EventBus → ai-connector-cell	Audit trail và phân tích AI
 Chat Uplink	EventBus → ai-connector-cell, memory files	Tích hợp AI Entity
 ### 15.7 Kết luận và đề xuất phát triển
@@ -1435,7 +1435,7 @@ export interface NetworkTopology {
 
 ### 24.6 Acceptance Criteria
 
-7 điều kiện Gatekeeper verify trước khi merge: TSC 0 new errors · cell.manifest.json đủ 6 components · xuất hiện trong audit script §5 · 7 hormone events có contract · EventBus subscribe+publish verify bởi audit-cell · legacy files KHÔNG bị xóa (chỉ wrap) · Gatekeeper approve.
+7 điều kiện Gatekeeper verify trước khi merge: TSC 0 new errors · neural-main-cell.cell.anc đủ 6 components · xuất hiện trong audit script §5 · 7 hormone events có contract · EventBus subscribe+publish verify bởi audit-cell · legacy files KHÔNG bị xóa (chỉ wrap) · Gatekeeper approve.
 
 ---
 

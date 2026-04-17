@@ -951,7 +951,7 @@ echo "All critical checks passed"
 | KpiCard | sales-cell, production-cell, monitor-cell | Aggregate nhiều nguồn |
 | TaskItem | task-cell, period-close-cell | Theo Wave |
 | PerformanceChart | hr-cell, monitor-cell | 7 ngày |
-| MedalGridItem | cell.manifest.json | Registry metadata |
+| MedalGridItem | neural-main-cell.cell.anc | Registry metadata |
 | NeuralTerminal | audit-cell, ai-connector-cell | Audit + AI |
 | ChatUplink | ai-connector-cell, memory files | AI Entity |
 
@@ -1362,7 +1362,7 @@ export interface NetworkTopology {
 
 ### 24.6 Acceptance Criteria (7 điều kiện)
 
-TSC 0 new errors · cell.manifest.json đủ 6 components · xuất hiện trong audit §5 · 7 hormone events có contract · EventBus subscribe+publish verify bởi audit-cell · legacy files không bị xóa (chỉ wrap) · Gatekeeper approve.
+TSC 0 new errors · neural-main-cell.cell.anc đủ 6 components · xuất hiện trong audit §5 · 7 hormone events có contract · EventBus subscribe+publish verify bởi audit-cell · legacy files không bị xóa (chỉ wrap) · Gatekeeper approve.
 
 ---
 

@@ -128,7 +128,7 @@ Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
 - `docs/samples/cty Tâm/` → `database/ctytam/` (Module SX.xlsx, Vận Hành TM.xlsx, Quản Lý Tài Sản.xlsx)
 - ⚠️ `database/` bị `.gitignore` line 59 block → files ở local, không push
 - Quyết định: **giữ nguyên** — data production thật không lên git
-- `src/governance/memory/kim/kmf9.9.11.json` — committed
+- `src/governance/memory/kim/kkhương9.9.11.kris` — committed
 - `audit/reports/` — 2 auto-generated reports committed
 - `docs/specs/` — 7 files từ sessions 20260309-10 committed
 
@@ -142,7 +142,7 @@ Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
 |--------|----------|
 | `kernel_phase1_scan.mjs` | Kernel boundary enforcer, SHA-256 lock file per public surface |
 | `capability_scanner.js` | Auto-scan `ports/` for cell capabilities |
-| `validate-manifests.js` | `cell.manifest.json` schema validation (AJV) |
+| `validate-manifests.js` | `neural-main-cell.cell.anc` schema validation (AJV) |
 | `test-anti-fraud-full.ts` | 6 test cases từ báo cáo điều tra Tâm Luxury (data thật: LĐ-1 → LĐ-7) |
 
 ---

@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 const ROOT = process.cwd();
 const KERNEL_DIR = path.join(ROOT, "src/cells/kernel");
-const LOCK_PATH = path.join(ROOT, "src/governance/kernel.contracts.lock.json");
+const LOCK_PATH = path.join(ROOT, "src/governance/kernel.contracts.lock.si");
 
 const FORBIDDEN_IMPORT_SNIPS = [
   "/src/cells/business/",
@@ -98,7 +98,7 @@ function collectPublicSurfaceFiles(cellDir) {
   const candidates = [];
   const portsDir = path.join(cellDir, "ports");
   const ifaceDir = path.join(cellDir, "interface");
-  const manifest = path.join(cellDir, "cell.manifest.json");
+  const manifest = path.join(cellDir, "neural-main-cell.cell.anc");
 
   if (fs.existsSync(manifest)) candidates.push(manifest);
 

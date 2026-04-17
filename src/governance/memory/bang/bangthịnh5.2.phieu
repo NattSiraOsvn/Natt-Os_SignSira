@@ -1,0 +1,185 @@
+{
+  "version": "5.2",
+  "generated_at": "2026-03-28T06:30:00.000Z",
+  "schema": "bangfs_v5.2",
+  "session_date": "2026-03-28",
+  "filesystem_snapshot": {
+    "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "head_commit": "bf26b24 — chore: remove @ts-nocheck from 809 files",
+    "commits": "357+",
+    "ts_files": "1307+",
+    "ts_lines": "15124+"
+  },
+  "key_files": {
+    "constitution": "src/governance/constitution/natt-os-constitution.ts",
+    "bangmf": "src/governance/memory/bang/bangkhương6.0.0.kris",
+    "bangfs": "src/governance/memory/bang/bangthịnh5.2.phieu",
+    "engine_registry": "src/apps/engine-registry.ts",
+    "domain_wiring": "src/apps/wiring/domain-flow.wiring.ts",
+    "smartaudit": "nattos.sh",
+    "runtime_server": "nattos-server/server.ts",
+    "tsconfig_server": "tsconfig.server.json",
+    "trigger_types": "src/governance/gatekeeper/trigger-types.ts",
+    "governance_contracts": "src/governance/event-contracts/production-events.ts",
+    "event_contracts_pkg": "packages/event-contracts/ (35 files)"
+  },
+  "intelligence_files": {
+    "anomaly_detector": "src/metabolism/healing/anomaly-detector.ts",
+    "anomaly_flow_engine": "src/cells/kernel/quantum-defense-cell/domain/engines/anomaly-flow.engine.ts",
+    "self_healing_engine": "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+    "kernel_boot": "src/core/kernel-boot.ts"
+  },
+  "cell_structure": {
+    "kernel_cells": 6,
+    "business_cells": 38,
+    "infrastructure_cells": 3,
+    "total": 47,
+    "all_6_6": true,
+    "smartlink_wired": 38,
+    "port_only": 0,
+    "note": "38/38 WIRED — không còn PORT_ONLY"
+  },
+  "engine_registry": {
+    "declared": 72,
+    "wired": 70,
+    "dead": 2,
+    "dead_list": ["CryptoEngine", "CustomsRobotEngine"],
+    "dead_acknowledged": true,
+    "total_tryImport": 56
+  },
+  "sensing": {
+    "cells_emitting_metric": 47,
+    "blind_cells": 0
+  },
+  "event_system": {
+    "emit_calls": 153,
+    "on_calls": 64,
+    "unique_events": 44,
+    "healthy_flows": 37,
+    "orphan_emits": 0,
+    "dead_subs": 7,
+    "dead_subs_type": "false positive — _emit() wrapper shadow system",
+    "causedBy": "wired — EventBus.emit(type, payload, causedBy?)"
+  },
+  "event_system_history": {
+    "start_of_session": {
+      "healthy_flows": 2,
+      "orphan_emits": 3,
+      "dead_subs": 31
+    },
+    "end_of_session": {
+      "healthy_flows": 37,
+      "orphan_emits": 0,
+      "dead_subs": 7
+    }
+  },
+  "runtime": {
+    "server": "nattos-server/server.ts",
+    "start_cmd": "npx tsx --tsconfig tsconfig.server.json nattos-server/server.ts",
+    "port": 3001,
+    "type": "TypeScript Runtime — Điều 7+8 enforced",
+    "routes": [
+      "GET /api/health",
+      "POST /api/events/emit",
+      "GET /api/state/:cell",
+      "GET /api/state",
+      "GET /api/audit"
+    ],
+    "kernel_boot_sequence": [
+      "import engine-registry (wire 56 engines)",
+      "bootKernel()",
+      "registerAuditHandlers() — Điều 7",
+      "bootstrapQuantumDefense() — Điều 5",
+      "bootstrapAnomalyFlowEngine() — 5 watch rules",
+      "bootstrapSelfHealingEngine() — max retry 3"
+    ]
+  },
+  "l2_intelligence": {
+    "status": "LIVE — verified",
+    "anomaly_flow_rules": [
+      { "from": "sales.confirm", "expect": "payment.received", "timeout": 15000, "severity": "HIGH" },
+      { "from": "sales.confirm", "expect": "ProductionStarted", "timeout": 10000, "severity": "HIGH" },
+      { "from": "ProductionStarted", "expect": "ProductionCompleted", "timeout": 30000, "severity": "MEDIUM" },
+      { "from": "casting.complete", "expect": "finishing.complete", "timeout": 20000, "severity": "MEDIUM" },
+      { "from": "audit.record", "expect": "audit.recorded", "timeout": 3000, "severity": "CRITICAL" }
+    ],
+    "self_healing": {
+      "max_retry": 3,
+      "retry_delay_ms": 2000,
+      "backoff": "exponential (delay * retryCount)",
+      "dup_guard": "_retryCount.has(key) → return",
+      "success_cleanup": "EventBus.on(expected) → _retryCount.delete(key)",
+      "critical_path": "severity=CRITICAL → escalate, không retry"
+    },
+    "verified_chain": "sales.confirm → (10s timeout) → anomaly.detected → self-healing.retry → anomaly.detected → self-healing.escalated",
+    "audit_naming": "anomaly.detected (event) + type: FLOW_BREAK (payload field)"
+  },
+  "tsc": {
+    "status": "CLEAN",
+    "errors": 0,
+    "ts_nocheck_removed": 809,
+    "ts_nocheck_restored": 96,
+    "restored_reason": "legacy files với type issues thật — core mới đã type-safe",
+    "honest_note": "96 files vẫn còn @ts-nocheck — debt thật, chưa fix"
+  },
+  "scars": {
+    "FS_024": "INTERFACE_HALLUCINATION — never assume event property shapes",
+    "FS_026": "GSheets tab-name bracket parsing error",
+    "FS_027": "Express routes must precede app.listen()",
+    "FS_028": "luôn grep -rn filename src/ trước khi rewrite engine",
+    "FS_029": "double $() bash bug",
+    "FS_030": "không commit trước khi verify output",
+    "FS_031": "phân biệt engine thật chưa wire vs engine không tồn tại",
+    "FS_032": "_emit() = shadow system — scanner miss, migrate dần về EventBus.emit()",
+    "FS_033": "registry chỉ kích hoạt — không định nghĩa business flow"
+  },
+  "qneu": {
+    "scores": {
+      "BANG": 300,
+      "THIEN": 135,
+      "KIM": 120,
+      "CAN": 85,
+      "BOI_BOI": 40
+    },
+    "first_seed": "v2.0"
+  },
+  "system_state": {
+    "label": "HEALTHY",
+    "risk": 0,
+    "previous": "FRAGMENTED (risk: 25)",
+    "journey": "FRAGMENTED → STABLE → HEALTHY → L2 INTELLIGENCE"
+  },
+  "bctc": {
+    "status": "HOLD",
+    "cells_ready": "6/6 (sales, finance, period-close, tax, payment, customs)"
+  },
+  "production_flow": {
+    "cells": ["design-3d", "production", "casting", "stone", "finishing", "polishing", "inventory", "warehouse"],
+    "status": "8/8 wired",
+    "anti_fraud_active": true,
+    "fraud_events": ["WeightAnomaly", "DiamondLossDetected", "DustShortfall", "LowPhoDetected", "MaterialRetained"]
+  },
+  "commits_this_session": [
+    "0f26e5f — fix(kernel): wire audit handlers + boot kernel — Điều 7+8",
+    "5270c85 — fix(registry): correct engine paths",
+    "72cbd32 — fix(eventbus): wire sales-core, wip:in-progress, GoodsDispatched",
+    "dda3139 — fix(eventbus): wire Nhóm 2C INVENTORY/PRICING/FINANCE",
+    "9c62697 — fix(monitor): wire audit.recorded + system.audit subscribers",
+    "9ee4711 — fix(registry): wire weight-guard + dedup PORT_ONLY",
+    "ae527b6 — fix(smartlink): wire SmartLinkPort vào 8 PORT_ONLY cells — 38/38 LIVE",
+    "6e27651 — feat(metabolism): wire AnomalyDetector vào cell.metric",
+    "29d6215 — feat(contracts): 35 event contracts vào packages/event-contracts",
+    "29881ba — feat(causality): add causedBy to EventBus.emit",
+    "39fdbc7 — fix(contracts): wire governance/event-contracts, fix TSC errors",
+    "28b571e — feat(server): NATT-OS Server v2.0 TypeScript runtime",
+    "ad7b331 — fix(monitor): wire monitor.health_checked → Quantum Defense",
+    "8579831 — chore: remove .DS_Store + add to .gitignore",
+    "9d761fc — feat(anti-fraud): emit WeightAnomaly, DiamondLossDetected, DustShortfall, LowPhoDetected, MaterialRetained",
+    "aab5c62 — chore: update digital twin",
+    "8471052 — fix(wiring): wire production chain + inventory flow",
+    "ec05db1 — refactor(wiring): domain-flow.wiring.ts tách khỏi registry",
+    "b4148bf — feat(emit): migrate _emit()→EventBus + wire ViolationDetected/AuditLogged",
+    "bf26b24 — chore: remove @ts-nocheck 809 files, restore 96 legacy — TSC 0"
+  ]
+}

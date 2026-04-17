@@ -329,8 +329,8 @@ export function checkCellHealth(cellPath: string): HealthStatus {
     } catch { return false; }
   };
 
-  const identity = fs.existsSync(path.join(cellPath, "cell.manifest.json"));
-  if (!identity) issues.push("MISSING: cell.manifest.json");
+  const identity = fs.existsSync(path.join(cellPath, "neural-main-cell.cell.anc"));
+  if (!identity) issues.push("MISSING: neural-main-cell.cell.anc");
 
   const capability = hasFile("*.engine.ts") || hasFile("*.service.ts");
   if (!capability) issues.push("MISSING: engine or service");

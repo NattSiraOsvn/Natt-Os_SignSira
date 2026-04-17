@@ -19,7 +19,7 @@ async function findManifests(dir) {
     
     if (entry.isDirectory()) {
       await findManifests(fullPath);
-    } else if (entry.name === 'cell.manifest.json') {
+    } else if (entry.name === 'neural-main-cell.cell.anc') {
       manifests.push(fullPath);
     }
   }

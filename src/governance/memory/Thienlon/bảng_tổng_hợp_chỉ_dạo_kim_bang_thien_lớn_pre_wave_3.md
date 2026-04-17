@@ -23,7 +23,7 @@
 | 5‑layer folder | domain / application / interface / infrastructure / ports | Băng |
 | 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | Thiên Lớn |
 | Quan hệ 5‑layer ↔ 7‑ADN | 5‑layer = implementation anatomy, 7‑ADN = metadata (manifest) | Thiên Lớn |
-| Vị trí 7‑ADN | **CHỈ** nằm trong `cell.manifest.json`, KHÔNG tạo folder | Kim |
+| Vị trí 7‑ADN | **CHỈ** nằm trong `neural-main-cell.cell.anc`, KHÔNG tạo folder | Kim |
 
 ---
 

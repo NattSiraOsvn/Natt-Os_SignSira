@@ -23,8 +23,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DATA_DIR = path.resolve(__dirname, 'data');
-const STATE_FILE = path.join(DATA_DIR, 'system-state.json');
-const AUDIT_LOG = path.join(DATA_DIR, 'audit-log.jsonl');
+const STATE_FILE = path.join(DATA_DIR, 'system-state.phieu');
+const AUDIT_LOG = path.join(DATA_DIR, 'audit-log.heyna');
 const SESSIONS_DIR = path.join(DATA_DIR, 'sessions');
 
 function ensureDataDir(): void {

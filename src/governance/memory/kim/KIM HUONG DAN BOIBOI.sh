@@ -174,7 +174,7 @@ phase_a() {
         mkdir -p "src/cells/infrastructure/shared-contracts-cell/ports"
         
         # Create manifest for shared-contracts-cell
-        cat > "src/cells/infrastructure/shared-contracts-cell/cell.manifest.json" << EOF
+        cat > "src/cells/infrastructure/shared-contracts-cell/neural-main-cell.cell.anc" << EOF
 {
   "cell": "shared-contracts-cell",
   "status": "ACTIVE",
@@ -219,7 +219,7 @@ EOF
             mv "src/cells/$cell" "src/cells/_legacy/"
             
             # Create manifest for legacy cells
-            cat > "src/cells/_legacy/$cell/cell.manifest.json" << EOF
+            cat > "src/cells/_legacy/$cell/neural-main-cell.cell.anc" << EOF
 {
   "cell": "$cell",
   "status": "LEGACY_PENDING_REVIEW",
@@ -334,7 +334,7 @@ EOF
     
     log_phase "B3" "CREATE QUARANTINED MANIFEST WITH 7-LAYER ADN"
     
-    cat > "$warehouse_path/cell.manifest.json" << EOF
+    cat > "$warehouse_path/neural-main-cell.cell.anc" << EOF
 {
   "cell": "warehouse-cell",
   "status": "QUARANTINED",
@@ -433,9 +433,9 @@ phase_c() {
   },
   
   "cellManifests": {
-    "totalCells": $(find src/cells -name "cell.manifest.json" -type f 2>/dev/null | wc -l || echo 0),
+    "totalCells": $(find src/cells -name "neural-main-cell.cell.anc" -type f 2>/dev/null | wc -l || echo 0),
     "cellsWithManifest": [
-      $(find src/cells -name "cell.manifest.json" -type f 2>/dev/null | xargs -I {} basename $(dirname {}) | jq -R . | jq -s . || echo "[]")
+      $(find src/cells -name "neural-main-cell.cell.anc" -type f 2>/dev/null | xargs -I {} basename $(dirname {}) | jq -R . | jq -s . || echo "[]")
     ]
   },
   
@@ -476,7 +476,7 @@ EOF
     echo '  "cells": {' >> "$hash_file"
     
     local first=true
-    find src/cells -name "cell.manifest.json" -type f | sort | while read manifest; do
+    find src/cells -name "neural-main-cell.cell.anc" -type f | sort | while read manifest; do
         local cell_name=$(basename $(dirname "$manifest"))
         local hash=$(sha256sum "$manifest" | cut -d' ' -f1)
         
@@ -511,7 +511,7 @@ EOF
     local errors=()
     
     # Validate each manifest
-    find src/cells -name "cell.manifest.json" -type f | sort | while read manifest; do
+    find src/cells -name "neural-main-cell.cell.anc" -type f | sort | while read manifest; do
         total_count=$((total_count + 1))
         local cell_name=$(basename $(dirname "$manifest"))
         

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "version": "KERNEL_PHASE1_LOCK_v1",
+    "generated_at": "2026-02-22T22:45:48.962Z",
+    "principle": "FILESYSTEM_GROUND_TRUTH",
+    "scope": "kernel_public_surface_only",
+    "regenerated_by": "bang-verify-scan",
+    "reason": "script-6-batch-fix applied"
+  },
+  "kernel_cells": {
+    "audit-cell": {
+      "cell": "audit-cell",
+      "files": [
+        {
+          "path": "src/cells/kernel/audit-cell/neural-main-cell.cell.anc",
+          "sha256": "44e74a3d29e355963659766b8a8e7de1973cdfd6066ac5bebfb9a1dc8e62c214"
+        },
+        {
+          "path": "src/cells/kernel/audit-cell/ports/AuditEventEmitter.ts",
+          "sha256": "61882e0d27ba5f04a95baf7165a5688f8d711f6279588f5e477ee5edd50db1a6"
+        },
+        {
+          "path": "src/cells/kernel/audit-cell/ports/AuditRepository.ts",
+          "sha256": "40636d12291e056b6d83c88c767df01f7c37131bde37feca0c275a9bf2e6433d"
+        },
+        {
+          "path": "src/cells/kernel/audit-cell/ports/index.ts",
+          "sha256": "27d081bf6e0650ce25c2af2b5ebd48d723b17e088b9b0b5e21c59349e5d13c47"
+        }
+      ]
+    },
+    "config-cell": {
+      "cell": "config-cell",
+      "files": [
+        {
+          "path": "src/cells/kernel/config-cell/neural-main-cell.cell.anc",
+          "sha256": "040395641fdd1a8afa70cfcfebfc2b57651ace550fb688a6a7f29f17758127b8"
+        },
+        {
+          "path": "src/cells/kernel/config-cell/ports/ConfigRepository.ts",
+          "sha256": "4c579ea1602a7587e86f4dbe6f738fce72df14e93a7f7c4456fa52370f530599"
+        },
+        {
+          "path": "src/cells/kernel/config-cell/ports/EventEmitter.ts",
+          "sha256": "d279cfbaa24bbc6b3aff10451618d36cb322bb173296bdd2cdb62256d5ce8ad0"
+        },
+        {
+          "path": "src/cells/kernel/config-cell/ports/index.ts",
+          "sha256": "0e21908cc9410f8729d035b1b29b6ad0ff8416f6d4f2b2a4b3c07ec42391148b"
+        }
+      ]
+    },
+    "monitor-cell": {
+      "cell": "monitor-cell",
+      "files": [
+        {
+          "path": "src/cells/kernel/monitor-cell/neural-main-cell.cell.anc",
+          "sha256": "aa779c987f19896eb5edc6d1f6fae3473351cc122788431ffe63c7ec4c54cfc2"
+        },
+        {
+          "path": "src/cells/kernel/monitor-cell/ports/MonitorEventEmitter.ts",
+          "sha256": "a433d8000cb68b36cc53cd65db45db217d96277eca3c0933e28fe25cbd5b4bca"
+        },
+        {
+          "path": "src/cells/kernel/monitor-cell/ports/MonitorRepository.ts",
+          "sha256": "293d7ac0fc1520fdacb3e4d86a5304d08bbe146afb6d7eced09877ef21d7b687"
+        },
+        {
+          "path": "src/cells/kernel/monitor-cell/ports/index.ts",
+          "sha256": "272d74fee4bb885a9cc1bd7bae17e68d9dc7ee05e6a2f0c04870be1ba92cbebc"
+        }
+      ]
+    },
+    "rbac-cell": {
+      "cell": "rbac-cell",
+      "files": [
+        {
+          "path": "src/cells/kernel/rbac-cell/neural-main-cell.cell.anc",
+          "sha256": "20823fb78619fbb99ad07f5a2ffb56872aa812667086c4826fd334b429743fc0"
+        },
+        {
+          "path": "src/cells/kernel/rbac-cell/ports/RBACEventEmitter.ts",
+          "sha256": "7b1a46a99d34708571454a207114b4b4d34b22f24dc70beb869ac179f1ce19ff"
+        },
+        {
+          "path": "src/cells/kernel/rbac-cell/ports/RBACRepository.ts",
+          "sha256": "cfb52c23276bd0c82e89afd11e4cd6507aabf02efbcd67e7be2e5696a373ffa3"
+        },
+        {
+          "path": "src/cells/kernel/rbac-cell/ports/index.ts",
+          "sha256": "469affc96c8b9c7aa80d87d95bd75da9e53748babce54170ec95914d38603d95"
+        }
+      ]
+    },
+    "security-cell": {
+      "cell": "security-cell",
+      "files": [
+        {
+          "path": "src/cells/kernel/security-cell/neural-main-cell.cell.anc",
+          "sha256": "a16438f3e44071f49b01482de2ccc05f6ea6bd614f0b190f8d37a072d4c58985"
+        },
+        {
+          "path": "src/cells/kernel/security-cell/ports/SecurityEventEmitter.ts",
+          "sha256": "c25ae1bac29500fd45a74699cf0764a37a8645b2a67691a35e5aee5da4a6f2db"
+        },
+        {
+          "path": "src/cells/kernel/security-cell/ports/SecurityRepository.ts",
+          "sha256": "dff6e17613d6d061470155015056d6adb5918a1b01a370039f42364644c2dbee"
+        },
+        {
+          "path": "src/cells/kernel/security-cell/ports/index.ts",
+          "sha256": "c6b574f48cdac083f4b47e57756371c18429ad5dac747764d83b595433a65199"
+        }
+      ]
+    }
+  },
+  "violations_summary": {
+    "count": 1,
+    "violations": [
+      {
+        "file": "src/cells/kernel/config-cell/config.service.ts",
+        "import": "../../infrastructure/audit-cell/audit.service",
+        "resolved": "/src/cells/infrastructure/audit-cell/audit.service"
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "version": "5.4",
+  "generated_at": "2026-03-30T21:45:00.000Z",
+  "schema": "bangfs_v5.4",
+  "session_date": "2026-03-30",
+  "previous_version": "5.1 (2026-03-28)",
+
+  "filesystem_snapshot": {
+    "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
+    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "head_commit": "chore(audit): SmartAudit v5.3 — Architecture Map, Report Generator",
+    "commits": 426,
+    "ts_files": 1309,
+    "ts_lines": 15124
+  },
+
+  "key_files": {
+    "constitution": "src/governance/HIEN-PHAP-NATT-OS-v4.0.anc",
+    "bangmf": "src/governance/memory/bang/bangkhương6.1.0.kris",
+    "bangfs": "src/governance/memory/bang/bangthịnh5.4.phieu",
+    "smartaudit": "nattos.sh (v5.3, 2074 lines)",
+    "immune_policy": "audit/policy/IMMUNE_POLICY.json",
+    "omega_bootstrap": "src/cells/kernel/quantum-defense-cell/domain/engines/omega-bootstrap.engine.ts",
+    "audit_trail": "src/cells/kernel/audit-cell/domain/services/audit-trail.manager.ts",
+    "runtime_server": "nattos-server/server.ts",
+    "ui_shell": "src/ui-app/nauion/nauion-v9.html"
+  },
+
+  "cell_structure": {
+    "kernel_cells": 6,
+    "business_cells": 38,
+    "infrastructure_cells": 3,
+    "total": 47,
+    "all_6_6": true,
+    "smartlink_wired": 38,
+    "port_only": 0,
+    "note": "38/38 wired — upgrade từ 30 wired ở v5.1"
+  },
+
+  "engine_registry": {
+    "declared": 72,
+    "wired": 70,
+    "dead": 2,
+    "dead_list": ["CryptoEngine", "CustomsRobotEngine"],
+    "dead_acknowledged": true,
+    "total_engines_business_kernel": 104
+  },
+
+  "sensing": {
+    "cells_emitting_metric": 47,
+    "blind_cells": 0
+  },
+
+  "event_system": {
+    "emit_calls": 178,
+    "on_calls": 78,
+    "unique_events": 60,
+    "healthy_flows": 40,
+    "orphan_emits": 7,
+    "dead_subs": 7,
+    "orphans": [
+      "nauion.state",
+      "quantum.behavior_alert",
+      "quantum.lockdown",
+      "quantum.purity_violation",
+      "quantum.rehab_failed",
+      "quantum.released",
+      "quantum.violation"
+    ],
+    "dead_subs_list": [
+      "*",
+      "BomRejected",
+      "BomValidated",
+      "FINANCE_DEPRECIATION_REQUEST",
+      "ProductionStarted"
+    ]
+  },
+
+  "audit_structure": {
+    "log": "audit/log/ — auto-created by nattos.sh, keep 90 files, NOT committed",
+    "reports": "audit/reports/ — Gatekeeper-signed, MUST commit",
+    "summary": "audit/summary/latest.json — updated by S40 every run",
+    "snapshots": "audit/snapshots/ — per-task/branch tracking",
+    "policy": "audit/policy/IMMUNE_POLICY.json — immune system law",
+    "stale_baseline_fixed": true
+  },
+
+  "nattos_sections": {
+    "v5.3_sections": [
+      "S1 Git Status", "S2 TSC Health", "S3 File Metrics",
+      "S4 Governance/ADN", "S5 Kernel Cells", "S6 Business Cells",
+      "S7 SmartLink Core", "S8 Event System", "S9 Metabolism",
+      "S10 Legacy/Trash", "S11 Infrastructure", "S12 UI Components",
+      "S13 BCTC Flow", "S14 Production Flow", "S15 UI App Deep",
+      "S16 Scorecard", "S17 Engine Coverage", "S18 EventBus Tracer",
+      "S19 Contract Integrity", "S20 Dependency Graph",
+      "S21 Memory Files", "S22 Math+Metabolism", "S23 QNEU Trend",
+      "S24 Dead Code", "S25 Self-Health", "S26 Event Flow Graph",
+      "S27 Engine Execution Map", "S28 Signal Analyzer",
+      "S29 Flow Simulator", "S30 State Inference", "S31 Digital Twin",
+      "S32 Root Scan", "S33 Clients/Extensions", "S34 Docs/Specs",
+      "S35 Sovereign/Sensitive",
+      "S36 Hiến Pháp Scan",
+      "S37 Cell DNA Check",
+      "S38 Baseline Diff",
+      "S39 Architecture Map",
+      "S40 Report Generator"
+    ],
+    "auto_log": "audit/log/YYYY-MM-DD_HH-MM-SS.log (keep 90)",
+    "danger_file": "audit/log/YYYY-MM-DD_HH-MM-SS.DANGER (keep 31)",
+    "danger_trigger": "FAIL or SECURITY/HIEN_PHAP in issues"
+  },
+
+  "immune_policy": {
+    "location": "audit/policy/IMMUNE_POLICY.json",
+    "version": "1.0.0",
+    "anchor": "OmegaBootstrap (quantum-defense-cell)",
+    "threat_signatures": 7,
+    "behavioral_patterns": 3,
+    "nasira_whitelist_kernel": ["audit-cell","config-cell","monitor-cell","rbac-cell","security-cell","quantum-defense-cell"],
+    "nasira_whitelist_infra": ["smartlink-cell","sync-cell"],
+    "base_random_scan_rate": 0.05
+  },
+
+  "system_state": {
+    "label": "HEALTHY",
+    "risk": 8,
+    "previous_risk": 25,
+    "improvement": "blind cells 0, orphan 7 (quantum events), HP violations 25 pending fix"
+  },
+
+  "pending_fixes": {
+    "critical": [
+      "sirasign_master.json + sirasign_v2.json lọt repo root — xóa ngay",
+      "apiportal.ts:41 hardcoded key (Điều 11)",
+      "24 localStorage violations trong sync-cell, monitor-cell, shared-kernel (Điều 7)"
+    ],
+    "architecture": [
+      "warehouse-cell dual-tier: infrastructure/ + business/ — quyết định canonical tier",
+      "notification-cell: 1 file only — shell cell cần build",
+      "ai-connector-cell: 3 files — shell cell cần build"
+    ],
+    "next_session": [
+      "Anh xuất TREE kiến trúc chuẩn → Băng ánh xạ",
+      "Anh giải thích 'fr match t2 Clairvoyance → iseu'"
+    ]
+  },
+
+  "scars": {
+    "FS_024": "INTERFACE_HALLUCINATION — never assume event property shapes without reading contract file",
+    "FS_026": "GSheets tab-name bracket parsing error",
+    "FS_027": "Express routes must precede app.listen()",
+    "FS_028": "Kim rewrote threshold.engine.ts without checking dependents — always grep before rewrite",
+    "FS_029": "double $() bash bug — HAS_X=$($(cmd)) executes result as command",
+    "FS_030": "không commit trước khi verify output",
+    "FS_031": "phân biệt engine thật chưa wire vs engine không tồn tại",
+    "FS_034": "NAUION.gay typo kills L4.5",
+    "FS_035": "toNauion() must emit nauion for stable/healthy states",
+    "FS_036": "Điều 7 localStorage violation — 24 instances in sync-cell/monitor-cell (PENDING FIX)",
+    "FS_037": "grep/find vào node_modules → noise — luôn exclude node_modules trong audit scan",
+    "FS_038": "audit/summary/latest.json không được update — stale baseline (FIXED by S40)",
+    "FS_039": "OMEGA_DEBUG_MODE = true trong production = bypass toàn bộ validation (FIXED in omega-bootstrap.engine.ts)"
+  },
+
+  "qneu": {
+    "scores": {
+      "BANG": 300,
+      "THIEN": 135,
+      "KIM": 120,
+      "CAN": 85,
+      "BOI_BOI": 40
+    },
+    "first_seed": "v2.0",
+    "system_state_file": "src/governance/qneu/system-state.phieu"
+  },
+
+  "workflow_rules": {
+    "R19": "1 task = 1 file hoàn chỉnh + 1 mv command",
+    "file_delivery": "files land ở repo root → mv vào đúng path",
+    "commit": "git commit --no-verify — no inline zsh # comments",
+    "grep_first": "grep trước khi patch — không patch mù",
+    "read_before_fix": "Freeze → Read → Fix clean (SCAR-FS-007)"
+  },
+
+  "iseu_placeholder": {
+    "status": "PENDING — anh sẽ giải ở session mới",
+    "formula": "fr match t2 Clairvoyance → iseu",
+    "author": "Anh Natt — tự đặt",
+    "note": "Liên quan đến logic chưa ai dùng với AI. Không đoán mò. Đợi anh giải."
+  }
+}

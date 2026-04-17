@@ -322,8 +322,8 @@ for cell in "${cells[@]}"; do
     cell_dir="src/cells/infrastructure/dust-recovery-cell"
   fi
 
-  # Tạo cell.manifest.json
-  cat > "$cell_dir/cell.manifest.json" << EOF
+  # Tạo neural-main-cell.cell.anc
+  cat > "$cell_dir/neural-main-cell.cell.anc" << EOF
 {
   "id": "${cell}-cell",
   "name": "${cell} cell",
@@ -557,7 +557,7 @@ for cell in "${cells[@]}"; do
   if [[ "$cell" == "dust-recovery" ]]; then
     dir="src/cells/infrastructure/dust-recovery-cell"
   fi
-  for file in "cell.manifest.json" "index.ts" "${cell}.engine.ts" "${cell}.entity.ts" "${cell}.events.ts" "ports/${cell}.smartlink.port.ts"; do
+  for file in "neural-main-cell.cell.anc" "index.ts" "${cell}.engine.ts" "${cell}.entity.ts" "${cell}.events.ts" "ports/${cell}.smartlink.port.ts"; do
     if [ ! -f "$dir/$file" ]; then
       echo "❌ Missing $dir/$file"
       ((errors++))

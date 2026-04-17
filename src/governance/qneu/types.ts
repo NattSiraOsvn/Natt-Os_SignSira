@@ -128,7 +128,7 @@ export interface QNEUResult {
   calculatedAt: string;
 }
 
-// --- System State (system-state.json schema mới) ---
+// --- System State (system-state.phieu schema mới) ---
 export interface QNEUSystemState {
   version: '2.0';
   lastUpdated: string;

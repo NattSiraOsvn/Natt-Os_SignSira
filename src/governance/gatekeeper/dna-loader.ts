@@ -7,7 +7,7 @@
  * KHÔNG parse markdown. KHÔNG đọc file runtime. KHÔNG dynamic.
  * DNA = compile-time constants — bất biến như Hiến Pháp.
  *
- * Nguồn: src/governance/HIEN-PHAP-NATT-OS-v5.0.md
+ * Nguồn: src/governance/HIEN-PHAP-NATT-OS-v5.0.anc
  */
 
 import { TriggerType, ResponseType } from './trigger-types';

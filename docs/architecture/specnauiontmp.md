@@ -137,7 +137,7 @@ HeaderTicker	market-cell, news-cell	Dữ liệu thời gian thực từ SmartLin
 KpiCard	sales-cell, production-cell, monitor-cell	Aggregate từ nhiều nguồn
 TaskItem	task-cell, period-close-cell	Công việc theo Wave
 PerformanceChart	hr-cell, monitor-cell	Dữ liệu hiệu suất
-MedalGridItem	cell.manifest.json của từng cell	Metadata được đăng ký trong registry
+MedalGridItem	neural-main-cell.cell.anc của từng cell	Metadata được đăng ký trong registry
 NeuralTerminal	audit-cell, Gemini API	Audit trail và phân tích AI
 Chat Uplink	Gemini API, memory files	Tích hợp AI Entity
 7. Kết luận và đề xuất phát triển

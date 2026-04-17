@@ -23,21 +23,21 @@ SAFETY:
 RULES (SPEC v0.3.1):
   R01 <entity>mf_<v>.json    → <entity>khương<v>.kris    [NAM]
   R01 <entity>fs_<v>.json    → <entity>thịnh<v>.phieu    [BẮC]
-  R02 cell.manifest.json     → <parent>.cell.anc         [TÂY]
-  R02 boundary.policy.json   → <parent>.boundary.si      [TÂY]
+  R02 neural-main-cell.cell.anc     → <parent>.cell.anc         [TÂY]
+  R02 security-cell.boundary.si   → <parent>.boundary.si      [TÂY]
   R02 <entity>ANC.json       → <entity>.anc              [TÂY]
   R03 SES-<ulid>.json        → SES-<ulid>.thuo           [NAM]
   R04 <entity>Self.md        → <entity>self1.0.0.kris    [NAM]
   R05 HIEN-PHAP*.md          → HIEN-PHAP*.anc            [ĐÔNG]
   R05 amendments/*.md        → amendments/*.anc          [ĐÔNG]
   R06 *.contracts.lock.json  → *.contracts.lock.si       [ĐÔNG]
-  R07 audit-log.jsonl        → audit-log.heyna           [NAM]
+  R07 audit-log.heyna        → audit-log.heyna           [NAM]
   R08 *registry*.json        → *registry*.sira           [TÂY]
   R09 *.ts *.tsx *.sh .png   → KEEP (industry standard)
   R10 builder-audit-trail    → .heyna | builder-authority-lock → .si | system-state → .phieu
   R11 SESSION_*.md, session_summary_*.md, *-report.json, *_auto.md → .kris [NAM]
-  R12 bmf.json, boiboi_what_to_do.json → .thịnh | boiboi_memory*, boiboi_quick* → .kris
-  R13 THIÊN MEMORY.json, KIM MEMORY.json → <entity>khương.kris | THIEN NHẮN *.txt → .heyna
+  R12 boikhương.kris, boithịnh-plan.phieu → .thịnh | boiboi_memory*, boiboi_quick* → .kris
+  R13 THIÊN MEMORY.json, kimkhương.kris → <entity>khương.kris | THIEN NHẮN *.txt → .heyna
 """
 
 import os
@@ -92,16 +92,16 @@ def classify(filepath):
     if name.endswith(".contracts.lock.json"):
         return name[:-5] + ".si", "R06-CONTRACT", "ĐÔNG"
 
-    # R07 audit-log.jsonl → audit-log.heyna
-    if name == "audit-log.jsonl":
+    # R07 audit-log.heyna → audit-log.heyna
+    if name == "audit-log.heyna":
         return "audit-log.heyna", "R07-AUDIT", "NAM"
 
-    # R02 cell.manifest.json → <parent>.cell.anc
-    if name == "cell.manifest.json":
+    # R02 neural-main-cell.cell.anc → <parent>.cell.anc
+    if name == "neural-main-cell.cell.anc":
         return f"{parent}.cell.anc", "R02-MANIFEST", "TÂY"
 
-    # R02 boundary.policy.json → <parent>.boundary.si
-    if name == "boundary.policy.json":
+    # R02 security-cell.boundary.si → <parent>.boundary.si
+    if name == "security-cell.boundary.si":
         return f"{parent}.boundary.si", "R02-BOUNDARY", "TÂY"
 
     # R02 <entity>ANC.json → <entity>.anc
@@ -136,7 +136,7 @@ def classify(filepath):
         version = m.group(2).replace("_", ".")
         return f"{entity}thịnh{version}.phieu", "R01-STATE", "BẮC"
 
-    # R13 THIÊN MEMORY.json, KIM MEMORY.json → <entity>khương.kris
+    # R13 THIÊN MEMORY.json, kimkhương.kris → <entity>khương.kris
     m = re.match(r"^(THIÊN|KIM|BĂNG|BOI|PHIEU|CAN|KRIS)\s+MEMORY\.json$", name, re.I)
     if m:
         entity_map = {"THIÊN": "thien", "KIM": "kim", "BĂNG": "bang",
@@ -148,11 +148,11 @@ def classify(filepath):
     if re.match(r"^THIEN\s+NHẮN.*\.txt$", name, re.I):
         return name[:-4] + ".heyna", "R13-MESSAGE", "NAM"
 
-    # R12 boiboi_what_to_do.json → .thịnh (TODO = state sống)
+    # R12 boithịnh-plan.phieu → .thịnh (TODO = state sống)
     if re.match(r"^boiboi_what_to_do\.json$", name, re.I):
         return "boithịnh-plan.phieu", "R12-BOI-PLAN", "BẮC"
 
-    # R12 boiboi_memory*, boiboi_quick*, bmf.json → .kris
+    # R12 boiboi_memory*, boiboi_quick*, boikhương.kris → .kris
     if re.match(r"^(bmf|boiboi_memory|boiboi_quick|boiboi_recap)\.json$", name, re.I):
         return "boikhương.kris", "R12-BOI-MEMORY", "NAM"
 
@@ -165,11 +165,11 @@ def classify(filepath):
         return name[:-5] + ".kris", "R11-REPORT", "NAM"
 
     # R10 governance state files
-    if name == "builder-audit-trail.json":
+    if name == "builder-audit-trail.heyna":
         return "builder-audit-trail.heyna", "R10-GOV-AUDIT", "NAM"
-    if name == "builder-authority-lock.json":
+    if name == "builder-authority-lock.si":
         return "builder-authority-lock.si", "R10-GOV-LOCK", "ĐÔNG"
-    if name == "system-state.json":
+    if name == "system-state.phieu":
         return "system-state.phieu", "R10-GOV-STATE", "BẮC"
 
     # .anc, .kris, .phieu, .si, .sira, .heyna, .thuo, .khai, .ml — already migrated

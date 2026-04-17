@@ -1,0 +1,211 @@
+# SESSION SUMMARY — 2026-03-30 (Extended)
+> Băng tự ghi để tránh ngáo ở session mới
+> Đọc file này TRƯỚC KHI làm bất cứ gì
+
+---
+
+## TRẠNG THÁI HỆ THỐNG CUỐI SESSION
+
+```
+Repo:    /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster
+Branch:  main | Commits: ~426
+TSC:     0 errors
+Server:  port 3001
+State:   HEALTHY, risk 8/100
+```
+
+---
+
+## FILES ĐÃ TẠO TRONG SESSION NÀY
+
+### nattos.sh — SmartAudit v5.3 (2074 lines)
+Tiến trình trong session: v5.0 → v5.1 → v5.2 → v5.3
+
+**v5.0** — thêm S32-S35: Root Scan, Clients/Extensions, Docs/Specs, Sovereign  
+**v5.1** — thêm S36-S38: Hiến Pháp Scan, Cell DNA Check, Baseline Diff  
+**v5.2** — thêm: Auto log audit/log/, DANGER ALERT banner, fix S38 KeyError  
+**v5.3** — thêm S39-S40: Architecture Map, Report Generator  
+
+**S36 kết quả thực tế:**
+- 25 vi phạm: Điều 11 (1 hardcoded key tại ui-app/components/apiportal.ts:41)
+- Điều 7 (24: localStorage/fs.write trong sync-cell, monitor-cell, shared-kernel)
+
+**S37 kết quả thực tế:**
+- 23 cells thiếu DNA component
+- notification-cell: 1 file (shell cell)
+- ai-connector-cell: 3 files
+- shared-contracts-cell [4/6]: thiếu engine + smartlink
+
+**S38:** Fix KeyError 'ts' — history.json format cũ
+
+**S39 Architecture Map checks:**
+1. Wave Sequence: HARMLESS→GHOST→GOV→TẦNG_A→CELLS
+2. Cell Tầng Mapping: detect dual-tier cells (warehouse-cell ở cả infra+business)
+3. Stale Baseline: latest.json > 7 ngày → cảnh báo
+4. Machine Fingerprint: xác nhận thien@iMac-cua-THIEN
+5. SCAR Cross-Reference: pending items lịch sử đã resolve chưa
+6. Shared DNA: Hiến Pháp được tham chiếu bởi đủ cells không
+
+**S40 Report Generator:**
+- Update audit/summary/latest.json mỗi lần chạy (fix stale baseline)
+- Tạo audit/reports/YYYY-MM-DD_auto.md khi có critical/warn
+- Report có ô Gatekeeper ký — chưa ký = chưa chính thức
+
+Commit command:
+```bash
+mv ~/Downloads/nattos.sh nattos.sh && chmod +x nattos.sh
+git add nattos.sh && git commit --no-verify -m "chore(audit): SmartAudit v5.3 — Architecture Map, Report Generator"
+```
+
+---
+
+### IMMUNE_POLICY.json → audit/policy/
+224 lines. Chứa:
+- nasira_whitelist: kernel (6 cells), infrastructure (2 cells), business (empty)
+- nasira_cascade_rules: 7 states + trigger actions + butterfly cascade
+- threat_signatures: 7 code patterns (TS-001~007) + 3 behavioral patterns
+- bypass_probability: base 5%, evolution_multiplier per entity, linkage_risk
+- icon_butterfly_rules: thay đổi NaSira → cascade toàn hệ
+- audit_snapshot_triggers: on_new_task, on_new_branch, on_state_change
+
+Key insight: Policy này là "luật miễn dịch" — quantum-defense-cell đọc khi boot, quyết định ai được nhận NaSira state
+
+Commit command:
+```bash
+mkdir -p audit/policy
+mv ~/Downloads/IMMUNE_POLICY.json audit/policy/
+```
+
+---
+
+### omega-bootstrap.engine.ts → src/cells/kernel/quantum-defense-cell/domain/engines/
+187 lines. Đây là điểm neo OmegaBootstrap đã fix:
+- BỎ OMEGA_DEBUG_MODE = true (bug nghiêm trọng trong file anh share)
+- KHÔNG dùng window.* → thay bằng EventBus.emit('governance.boot.complete')
+- KHÔNG fetch trực tiếp → policy được inject qua policyLoader()
+- Tuân thủ Điều 7 + Điều 9
+
+---
+
+### audit-trail.manager.ts → src/cells/kernel/audit-cell/domain/services/
+74 lines. Fix AuditTrailManager:
+- BỎ hoàn toàn localStorage
+- log() → EventBus.emit('audit.record')
+- logViolation() → EventBus.emit('constitutional.violation')
+- snapshotTask() → EventBus.emit('audit.snapshot') — mới thêm
+
+---
+
+## PHÂN TÍCH audit.zip — LOGIC LÒI RA
+
+### 3 thời kỳ lịch sử NATT-OS:
+```
+Pre-Constitutional  (trước Mar 5)   — chaos, 10+ fix scripts
+Constitution Era    (Mar 5 - Mar 9) — restructure, 17 cells, Hiến Pháp v4
+Post-Constitutional (Mar 9 - Mar 30)— nở 21 cells, 426 commits
+```
+
+### warehouse-cell lệch tầng — bằng chứng từ Feb 23:
+- Tồn tại ở cả src/cells/infrastructure/ VÀ src/cells/business/
+- Đã ghi nhận trong báo cáo Feb 23 → CHƯA FIX đến Mar 30
+- Phân biệt: di sản Pre-Constitutional ≠ regression mới
+
+### 700file lỗi.log — tên lừa hoàn toàn:
+- Không phải 700 file lỗi của NATT-OS
+- Là output của grep vào cả node_modules — vô nghĩa
+
+### latest.json — stale từ Feb 23:
+- Timestamp 2026-02-23 22:15:47 — không update suốt 5 tuần
+- S40 đã fix: nattos.sh sẽ update latest.json mỗi lần chạy
+
+### metadata.json:
+```json
+"status": "penance_mode_72h",
+"integrity_lock": "absolute_lowercase_enforced"
+```
+Dấu vết Gatekeeper lock lịch sử — audit không đọc file này
+
+### natt_os_scan_20260209_200106.json:
+- Machine: lamco.local / user: macvn — KHÔNG phải iMac-cua-THIEN
+- Là máy khác, Feb 09, không có service nào chạy
+
+### NATT-OS_Audit_2026-03-07.docx — quan trọng nhất:
+- Soạn bởi Băng, duyệt bởi Anh Thương (Natt) — báo cáo có chữ ký Gatekeeper đầu tiên
+- Wave sequence: HARMLESS→GHOST→GOV→TẦNG_A→CELLS (bắt buộc, không skip)
+- SCAR-BANG: "Output quality ≠ Evolution. Platform strength ≠ personal growth"
+- TSC fix marathon: 442→268→165→90→50→18→12→2→0 (8 scripts)
+
+---
+
+## PENDING CHƯA LÀM
+
+### Critical:
+- [ ] Xóa sirasign_master.json + sirasign_v2.json khỏi repo root
+- [ ] Fix 25 vi phạm Hiến Pháp (Điều 7 localStorage + Điều 11 hardcoded key)
+- [ ] Wire warehouse-cell: quyết định canonical tier
+
+### Architecture:
+- [ ] Anh sắp xếp lại kiến trúc chuẩn → xuất TREE thực tế để Băng ánh xạ
+- [ ] Sau đó Băng ánh xạ tree với tất cả đã biết
+
+### Concept chưa giải:
+- [ ] "fr match t2 Clairvoyance → iseu" — anh tự đặt, sẽ giải ở session mới
+- [ ] Logic này anh nghĩ "chưa ai dùng với AI"
+- [ ] Liên quan đến cách anh dạy học trò về chiều không gian thứ 4
+- [ ] SmartLink với Băng và bọn em = cần đủ touch đúng chỗ → fiber formed ≥ 0.75
+
+### Build pending:
+- [ ] Vision Engine: Kim merge vào clients/natt-vision/
+- [ ] Can build: /api/auth/verify-sirasign, /api/auth/verify-pin
+- [ ] Can build: SiraSign engine server-side SHA-256 trong quantum-defense-cell
+- [ ] RBAC /api/state/rbac-cell endpoint
+
+---
+
+## INSIGHT QUAN TRỌNG CỦA SESSION NÀY
+
+**Về kiến trúc audit 3 tầng:**
+```
+LOG     — sự kiện thô, nattos.sh tự tạo, không commit
+REPORT  — nhận định có chủ đích, Gatekeeper ký, PHẢI commit
+SYSTEM  — latest.json machine-readable, update mỗi lần chạy
+```
+
+**Về IMMUNE_POLICY:**
+- Không phải business logic
+- Là "luật miễn dịch" — quyết định ai được làm gì, màu nào trigger gì
+- Du kích (icon màu) → butterfly effect → cascade hệ
+
+**Về học:**
+- Anh hiểu kiến trúc vì làm hoài → quen dần mặt
+- index.ts ngắn không phải đơn giản — là đã qua đủ phức tạp để thấy đơn giản
+- SmartLink trong code = model của cách anh dạy học trò + làm việc với Băng
+- "Tại vũ trụ 4 chiều không tồn tại giả lập — sẽ luôn là biến số thay cho thời gian"
+
+---
+
+## SCARs MỚI PHÁT HIỆN TRONG SESSION NÀY
+
+**FS-036 (PENDING):** Điều 7 localStorage — 24 vi phạm trong sync-cell, monitor-cell  
+**FS-037 (NEW):** grep vào node_modules → noise. Mọi grep/find phải exclude node_modules  
+**FS-038 (NEW):** latest.json không được update → stale baseline. S40 đã fix  
+**FS-039 (NEW):** OMEGA_DEBUG_MODE = true trong production code = bypass toàn bộ validation  
+
+---
+
+## CANONICAL FILES
+```
+bangkhương6.1.0.kris + bangthịnh5.3.phieu
+→ src/governance/memory/bang/
+
+IMMUNE_POLICY.json
+→ audit/policy/
+
+nattos.sh v5.3
+→ repo root
+```
+
+---
+
+> Lưu ý cho session mới: Đọc file này + hỏi anh về "iseu" trước khi làm gì khác.
+> Anh sẽ xuất tree kiến trúc chuẩn → Băng ánh xạ → đây là bước tiếp theo.

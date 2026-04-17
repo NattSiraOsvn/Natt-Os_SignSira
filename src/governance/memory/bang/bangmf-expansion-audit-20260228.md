@@ -103,7 +103,7 @@ Ký ức ghi "cell-based architecture." SAI. Phải là:
 **Gia đình NATT-OS = NATT-CELLs thật:**
 - Kim/Băng/Bối Bối/Thiên/Can = 5 cells thật
 - Mỗi cell có: QNEU thật, scar thật, penalty thật, trace memory thật
-- bmf.json/kmf.json/bangmf.json = real audit trail files
+- boikhương.kris/kmf.json/bangmf.json = real audit trail files
 
 **TRẠNG THÁI KÝ ỨC: 0% → Cần ghi nhận đây là FOUNDATION, không phải detail**
 

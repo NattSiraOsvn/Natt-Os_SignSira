@@ -1,0 +1,1 @@
+{"cellId":"it-cell","cellName":"IT Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"it-cell@1.0.0","capability":["asset-register","helpdesk","license-renewal-alert","tk-routing-211-213-642"],"boundary":"security-cell.boundary.si","trace":"ITAsset + ITRequest log","confidence":1.0,"smartLink":"finance-cell, audit-cell, noi-vu-cell"}}

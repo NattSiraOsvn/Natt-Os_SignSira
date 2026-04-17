@@ -1,0 +1,21 @@
+{
+  "id": "order-cell",
+  "name": "Order Cell",
+  "version": "1.0.0",
+  "qneu": 100,
+  "sprint": 1,
+  "dependencies": [],
+  "smartlink": {
+    "subscribes": [],
+    "emits": ["ORDER_CREATED"]
+  },
+  "dataSource": "ĐIỀU_PHỐI_NĂM_2 / sheet ĐH UYÊN",
+  "components": {
+    "identity": "neural-main-cell.cell.anc",
+    "capability": "application/order.usecase.ts",
+    "boundary": "ports/order.smartlink.port.ts",
+    "trace": "infrastructure/order.engine.ts (console.log)",
+    "confidence": "domain/order.entity.ts (type-safe)",
+    "smartlink": "ports/order.smartlink.port.ts"
+  }
+}

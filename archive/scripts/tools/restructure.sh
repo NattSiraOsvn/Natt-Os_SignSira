@@ -178,7 +178,7 @@ for CELL in audit-cell config-cell monitor-cell rbac-cell security-cell; do
   D="$SRC/cells/kernel/$CELL"
   mkdir -p "$D/domain/services" "$D/application/use-cases" "$D/ports" "$D/infrastructure/repositories" "$D/interface"
 
-  stub "$D/cell.manifest.json" '{
+  stub "$D/neural-main-cell.cell.anc" '{
   "id": "'"$CELL"'",
   "type": "kernel",
   "version": "1.0.0",
@@ -188,7 +188,7 @@ for CELL in audit-cell config-cell monitor-cell rbac-cell security-cell; do
   "smartlink": true
 }'
 
-  stub "$D/boundary.policy.json" '{
+  stub "$D/security-cell.boundary.si" '{
   "cellId": "'"$CELL"'",
   "allowedCallers": ["*"],
   "allowedEvents": [],
@@ -214,7 +214,7 @@ for CELL in smartlink-cell sync-cell warehouse-cell shared-contracts-cell; do
   D="$SRC/cells/infrastructure/$CELL"
   mkdir -p "$D/domain/services" "$D/application/use-cases" "$D/ports" "$D/infrastructure/repositories" "$D/interface"
 
-  stub "$D/cell.manifest.json" '{
+  stub "$D/neural-main-cell.cell.anc" '{
   "id": "'"$CELL"'",
   "type": "infrastructure",
   "version": "1.0.0",
@@ -224,7 +224,7 @@ for CELL in smartlink-cell sync-cell warehouse-cell shared-contracts-cell; do
   "smartlink": true
 }'
 
-  stub "$D/boundary.policy.json" '{
+  stub "$D/security-cell.boundary.si" '{
   "cellId": "'"$CELL"'",
   "allowedCallers": ["*"],
   "allowedEvents": [],
@@ -258,7 +258,7 @@ for CELL in "${BUSINESS_CELLS[@]}"; do
            "$D/application/use-cases" "$D/application/services" \
            "$D/ports" "$D/infrastructure/repositories" "$D/interface"
 
-  stub "$D/cell.manifest.json" '{
+  stub "$D/neural-main-cell.cell.anc" '{
   "id": "'"$CELL"'",
   "type": "business",
   "version": "1.0.0",
@@ -268,7 +268,7 @@ for CELL in "${BUSINESS_CELLS[@]}"; do
   "smartlink": true
 }'
 
-  stub "$D/boundary.policy.json" '{
+  stub "$D/security-cell.boundary.si" '{
   "cellId": "'"$CELL"'",
   "allowedCallers": [],
   "allowedEvents": [],

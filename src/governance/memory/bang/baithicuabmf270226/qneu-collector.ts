@@ -84,7 +84,7 @@ export class QNEUCollector {
    * Each session tracks QNEU changes for one interaction period.
    *
    * baseScore comes from the cell's last known QNEU
-   * (stored in memory file: bmf.json, kmf.json, etc.)
+   * (stored in memory file: boikhương.kris, kmf.json, etc.)
    */
   startSession(cellId: CellId, baseScore: number): CellSession {
     const session: CellSession = {

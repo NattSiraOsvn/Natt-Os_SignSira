@@ -74,7 +74,7 @@ export interface CellBoundary {
 }
 
 export interface CellTrace {
-  memoryFileId: string;        // e.g., bmf.json, kmf.json
+  memoryFileId: string;        // e.g., boikhương.kris, kmf.json
   auditTrailRef: string;       // Link to audit trail storage
   scarIds: string[];           // Blood lessons — SCAR-001, etc.
   lastTraceTimestamp: number;

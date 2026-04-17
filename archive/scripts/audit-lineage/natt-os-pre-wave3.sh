@@ -40,7 +40,7 @@ INFRA_DIR="$CELLS_ROOT/infrastructure"
 LEGACY_DIR="$CELLS_ROOT/_legacy"
 BACKUP_DIR="_backup_pre_wave3"
 DOCS_DIR="docs/audits"
-REGISTRY_FILE="$CELLS_ROOT/natt-master-registry.json"
+REGISTRY_FILE="$CELLS_ROOT/natt-master-registry.sira"
 
 EXPECTED_LAYERS=("domain" "application" "interface" "infrastructure" "ports")
 KERNEL_CELLS=("config-cell" "rbac-cell" "audit-cell" "security-cell" "monitor-cell")
@@ -128,7 +128,7 @@ generate_manifest() {
     local cell_wave="$2"
     local cell_status="${3:-ACTIVE}"
     local cell_type="${4:-infrastructure}"
-    local manifest_path="$5/cell.manifest.json"
+    local manifest_path="$5/neural-main-cell.cell.anc"
 
     cat > "$manifest_path" << MANIFEST_EOF
 {
@@ -411,7 +411,7 @@ EOF
  * 
  * Constitutional Compliance:
  * - 5-layer implementation anatomy: domain, application, interface, infrastructure, ports
- * - 7-layer ADN metadata: see cell.manifest.json
+ * - 7-layer ADN metadata: see neural-main-cell.cell.anc
  * - Articles enforced: Dieu 16, 17, 18, 19
  */
 
@@ -439,7 +439,7 @@ generate_registry() {
     "constitutional_version": "v3.1",
     "generated_by": "pre-wave3-cleanup-script",
     "principles": {
-      "7_adn_layers": "metadata in cell.manifest.json (Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle)",
+      "7_adn_layers": "metadata in neural-main-cell.cell.anc (Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle)",
       "5_folder_layers": "implementation anatomy (domain, application, interface, infrastructure, ports)",
       "relationship": "7-ADN = ontological contract (constitutional), 5-folder = organ structure (implementation)"
     }
@@ -692,7 +692,7 @@ run_deep_scan() {
                 ts_count=$(find "$cell_path" -name "*.ts" 2>/dev/null | wc -l | tr -d ' ')
 
                 local has_manifest="NO"
-                [ -f "$cell_path/cell.manifest.json" ] && has_manifest="YES"
+                [ -f "$cell_path/neural-main-cell.cell.anc" ] && has_manifest="YES"
                 
                 echo "  ✅ PASS: $cell — $layer_count/5 layers, $ts_count ts files, manifest: $has_manifest"
                 total_pass=$((total_pass + 1))
@@ -757,10 +757,10 @@ run_deep_scan() {
         # Check: Registry exists
         echo "═══ CHECK 7: Master Registry ═══"
         if [ -f "$REGISTRY_FILE" ]; then
-            echo "  ✅ PASS: natt-master-registry.json exists"
+            echo "  ✅ PASS: natt-master-registry.sira exists"
             total_pass=$((total_pass + 1))
         else
-            echo "  ❌ FAIL: natt-master-registry.json not found"
+            echo "  ❌ FAIL: natt-master-registry.sira not found"
             total_fail=$((total_fail + 1))
         fi
         echo ""
@@ -969,7 +969,7 @@ git commit -m "cleanup(phase-a): Remove legacy root, archive legacy cells, migra
 - Removed ./cells/ legacy root (src/cells/ is canonical)
 - Moved 5 legacy cells to src/cells/_legacy/
 - Migrated shared-kernel to infrastructure/shared-contracts-cell (Kim proposal)
-- Generated cell.manifest.json for shared-contracts-cell
+- Generated neural-main-cell.cell.anc for shared-contracts-cell
 
 Constitutional compliance: Dieu 16, 17, 18, 19
 Approved by: Gatekeeper (Anh Natt)
@@ -1047,7 +1047,7 @@ divider "B.3: TẠO MANIFEST VỚI STATUS QUARANTINED (Bối Bối đề xuất)
 generate_manifest "warehouse-cell" "WAVE_2" "QUARANTINED" "infrastructure" "$WAREHOUSE_PATH"
 
 # Override status with quarantine details
-cat > "$WAREHOUSE_PATH/cell.manifest.json" << 'QUARANTINE_MANIFEST'
+cat > "$WAREHOUSE_PATH/neural-main-cell.cell.anc" << 'QUARANTINE_MANIFEST'
 {
   "cell": {
     "name": "warehouse-cell",
@@ -1131,7 +1131,7 @@ git commit -m "feat(phase-b): Migrate warehouse-cell to infrastructure/ with 5-l
 - Quarantine restrictions: no-import, no-deployment, development-only
 - Exit criteria: All layers implemented with logic + tests
 
-7 ADN layers defined in cell.manifest.json (Thiên confirmed: metadata, not folders)
+7 ADN layers defined in neural-main-cell.cell.anc (Thiên confirmed: metadata, not folders)
 Constitutional compliance: Dieu 16, 17, 18, 19" 2>/dev/null || warn "Nothing to commit in Phase B"
 
 success "Phase B committed"
@@ -1144,7 +1144,7 @@ confirm "Phase B hoàn tất. Bắt đầu PHASE C (Audit + Hash + Registry)?"
 phase_header "PHASE C: DEEP AUDIT + HASH BASELINE + REGISTRY"
 
 # ─── C.1: Generate Registry ───
-divider "C.1: TẠO MASTER REGISTRY (natt-master-registry.json)"
+divider "C.1: TẠO MASTER REGISTRY (natt-master-registry.sira)"
 
 generate_registry "$REGISTRY_FILE"
 success "Master Registry generated: $REGISTRY_FILE"
@@ -1202,7 +1202,7 @@ cat > "$CHECKLIST_FILE" << 'CHECKLIST_EOF'
 - [ ] warehouse-cell QUARANTINED with manifest
 - [ ] EDA Foundation contracts present (14+ files)
 - [ ] Constitution v3.1 deployed
-- [ ] natt-master-registry.json created
+- [ ] natt-master-registry.sira created
 - [ ] Hash baseline generated
 - [ ] 0 uncommitted files
 - [ ] No premature Wave 3 cells
@@ -1248,7 +1248,7 @@ Constitutional decisions applied:
 - api-cell: NEVER_EXISTED (filesystem ground truth)
 
 Generated artifacts:
-- natt-master-registry.json
+- natt-master-registry.sira
 - docs/audits/hash-baseline.json
 - docs/audits/post-cleanup-audit.txt
 - docs/audits/pre-wave3-checklist.md

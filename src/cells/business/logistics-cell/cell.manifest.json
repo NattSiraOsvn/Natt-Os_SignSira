@@ -1,1 +1,0 @@
-{"cellId":"logistics-cell","cellName":"Logistics Cell","version":"1.0.0","status":"ACTIVE","zone":"business","components":{"identity":"logistics-cell@1.0.0","capability":["shipment-create","tracking","fee-mapping","inbound-outbound"],"boundary":"boundary.policy.json","trace":"Shipment log","confidence":1.0,"smartLink":"order-cell, supplier-cell, warehouse-cell, finance-cell"}}
