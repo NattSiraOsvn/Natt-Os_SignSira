@@ -9,6 +9,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { EventBus } = require('../core/events/event-bus');
+const { createKhaiCell } = require('./core/khai/khaicell-bridge');
 
 const app = express();
 const PORT = 3001;
@@ -27,6 +28,9 @@ EventBus.on('*', (env) => {
   if (AUDIT.length > 1000) AUDIT.shift();
 });
 
+// ── KHAICELL TOUCH POINT (SPEC NEN v1.1 section 4.1) ─────────────────────
+const khai = createKhaiCell(EventBus);
+
 // ── STATE UPDATER ─────────────────────────────────────────────────────────
 EventBus.on('cell.metric', (env) => {
   const { cell, metric, value } = env?.payload || {};
@@ -41,11 +45,24 @@ app.get('/api/health', (req, res) => {
 });
 
 app.post('/api/events/emit', (req, res) => {
-  const { type, payload, cell } = req.body;
+  // Touch external signal through KhaiCell (SPEC NEN v1.1 section 4.1)
+  // KhaiCell = rao boundary marker, NOT validator
+  const touched = khai.touch({
+    raw: req.body,
+    source: 'khai.sira/api/events/emit',
+    ts: Date.now(),
+  });
+  const { type, payload, cell } = touched.normalized || {};
   if (!type) return res.status(400).json({ error: 'type required' });
   try {
-    EventBus.emit(type, { type, payload, originCell: cell || 'ui', ts: Date.now() });
-    res.json({ ok: true, type, ts: Date.now() });
+    EventBus.emit(type, {
+      type,
+      payload,
+      originCell: cell || 'ui',
+      ts: Date.now(),
+      signature: touched.signature,
+    });
+    res.json({ ok: true, type, trace_id: touched.signature.trace_id, ts: Date.now() });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

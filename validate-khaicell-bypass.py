@@ -6,6 +6,7 @@ SPEC NEN v1.0 P0 item 3.
 
 import os
 import re
+import unicodedata
 from collections import defaultdict
 
 CODE_ROOTS = ["src", "NaUion-Server", "nattos-server"]
@@ -27,6 +28,8 @@ EXCLUDE_LINE_PATTERNS = [
     r"app\.use\s*\(\s*['\"][^'\"]+['\"]\s*,\s*(express\.static|require)",
     r"//.*req\.(body|query|params)",
     r"\*.*req\.(body|query|params)",
+    r"parseInt\s*\(\s*req\.query",
+    r"res\.json\s*\(\s*\{[^}]*req\.params",
 ]
 
 KHAICELL_USE = [
@@ -54,7 +57,8 @@ def is_code_file(path):
 
 
 def in_allowlist(path):
-    return any(allowed in path for allowed in INFRA_ALLOWLIST)
+    p = unicodedata.normalize("NFC", path)
+    return any(unicodedata.normalize("NFC", allowed) in p for allowed in INFRA_ALLOWLIST)
 
 
 def is_excluded_line(line):

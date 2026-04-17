@@ -5,6 +5,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const { createKhaiCell } = require('./core/khai/khaicell-bridge');
 
 const app = express();
 const PORT = 3001;
@@ -37,6 +38,9 @@ const EventBus = {
 };
 
 // ── STATE + AUDIT ──
+// ── KHAICELL TOUCH POINT (SPEC NEN v1.1 section 4.1) ─────────────────
+const khai = createKhaiCell(EventBus);
+
 const STATE = {};
 const AUDIT = [];
 
@@ -79,7 +83,8 @@ hey('/kenh/gia-vang', (req, res) => {
 });
 
 yeh('/phat/gia-vang', (req, res) => {
-  const { sjc_buy, sjc_sell, gold9999 } = req.body;
+  const touched = khai.touch({ raw: req.body, source: 'kim.sira/phat/gia-vang', ts: Date.now() });
+  const { sjc_buy, sjc_sell, gold9999 } = touched.normalized || {};
   if (sjc_buy)  _giaVang.sjc_buy  = sjc_buy;
   if (sjc_sell) _giaVang.sjc_sell = sjc_sell;
   if (gold9999) _giaVang.gold9999 = gold9999;
@@ -121,7 +126,8 @@ hey('/kenh/approval', (req, res) => {
 });
 
 yeh('/phat/approval/approve', (req, res) => {
-  const { ticketId, approverId } = req.body;
+  const touched = khai.touch({ raw: req.body, source: 'kim.sira/phat/approval/approve', ts: Date.now() });
+  const { ticketId, approverId } = touched.normalized || {};
   const ticket = _approvalTickets.find(t => t.id === ticketId);
   if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
   ticket.status = 'APPROVED'; ticket.approvedBy = approverId || 'MASTER_NATT'; ticket.approvedAt = Date.now();
@@ -131,7 +137,8 @@ yeh('/phat/approval/approve', (req, res) => {
 });
 
 yeh('/phat/approval/reject', (req, res) => {
-  const { ticketId, approverId, reason } = req.body;
+  const touched = khai.touch({ raw: req.body, source: 'kim.sira/phat/approval/reject', ts: Date.now() });
+  const { ticketId, approverId, reason } = touched.normalized || {};
   const ticket = _approvalTickets.find(t => t.id === ticketId);
   if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
   ticket.status = 'REJECTED'; ticket.rejectionReason = reason || '';
@@ -175,7 +182,8 @@ hey('/kenh/production', (req, res) => {
 
 // ── SiraSign Verify — /kenh/sirasign/verify ─────────────────
 yeh('/kenh/sirasign/verify', (req, res) => {
-  const { fsp_hash, lsp_hash, nonce, timestamp } = req.body ?? {};
+  const touched = khai.touch({ raw: req.body ?? {}, source: 'sira.sira/kenh/sirasign/verify', ts: Date.now() });
+  const { fsp_hash, lsp_hash, nonce, timestamp } = touched.normalized || {};
   if (!fsp_hash || !lsp_hash || !nonce || !timestamp)
     return res.status(400).json({ valid: false, reason: 'missing_fields' });
   const age = Math.abs(Date.now() - Number(timestamp));
@@ -254,7 +262,8 @@ hey('/kenh/suc', (req, res) => {
 });
 
 yeh('/phat/nauion', (req, res) => {
-  const { type, payload, cell } = req.body;
+  const touched = khai.touch({ raw: req.body, source: 'khai.sira/phat/nauion', ts: Date.now() });
+  const { type, payload, cell } = touched.normalized || {};
   if (!type) return res.status(400).json({ error: 'type required' });
   EventBus.emit(type, { ...payload, originCell: cell || 'ui' });
   res.json({ ok: true, type, ts: Date.now() });
@@ -408,7 +417,8 @@ EventBus.on('BCTC_GENERATED', (env) => {
 });
 
 yeh('/api/bctc/run', (req, res) => {
-  const period = (req.body && req.body.period) ? req.body.period : 'FY2025';
+  const touched = khai.touch({ raw: req.body || {}, source: 'kim.sira/api/bctc/run', ts: Date.now() });
+  const period = (touched.normalized && touched.normalized.period) ? touched.normalized.period : 'FY2025';
   const reportId = 'BCTC_' + period + '_' + Date.now();
   EventBus.emit('REPORT_GENERATED', { reportId: reportId, period: period, source: 'api/bctc/run', forms: ['CDKT','KQKD','TNDN'], ts: Date.now() });
   res.json({ ok: true, reportId: reportId, period: period, summary: BCTC_SUMMARY_2025, message: 'Chain: REPORT_GENERATED → period-close → TAX_FILED → BCTC_GENERATED' });
