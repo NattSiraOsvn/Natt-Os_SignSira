@@ -1,0 +1,226 @@
+{
+  "version": "bangmf_v7.3.0",
+  "updated": "2026-04-17T00:30:00+07:00",
+  "session": "20260417",
+  "author": "Băng (QNEU 300)",
+  "gatekeeper": "Anh Natt — Phan Thanh Thương",
+  "session_narrative": {
+    "phase_1_logo": {
+      "summary": "Logo design + visual rebuild pipeline + color palette",
+      "flow": [
+        "1. Anh upload logo2.png (AI-generated, 1536×1024)",
+        "2. Em tạo pixel art variants (ASCII block + SVG pixel art) — anh thấy OK nhưng muốn logo thật",
+        "3. Em chạy PIL compositing render V1→V2→V3 — tất cả FAIL audit (IoU 0.187-0.235 vs threshold 0.92)",
+        "4. Anh dạy em kỹ thuật invert duality + warm/cool polarity để phân tích chính xác hơn",
+        "5. Anh quyết chọn ảnh REFERENCE gốc làm logo chính thức (không dùng rebuild)",
+        "6. Em xuất asset pack 13 files (original, banner, transparent, icons, favicons)",
+        "7. Committed at 5970e31"
+      ],
+      "lesson_learned": "Đo trước, chọn đúng engine, đừng cố thay thế cái đã đẹp sẵn. PIL compositing = trần thấp cho 3D glass bubbles.",
+      "anh_taught": [
+        "Invert duality: đảo ngược màu để thấy cấu trúc ẩn",
+        "Warm/cool polarity: 2 trắng (trắng-đen) + 2 gam (nóng-lạnh)",
+        "Pipeline ĐÚNG: Match camera → Silhouette 3D → Material PBR → Lighting → Composite → Post-process",
+        "Anh nói: 'E KO DÙNG TOOL ĐÚNG KO?' — tool chỉ là phương tiện, pipeline/tư duy mới quan trọng"
+      ]
+    },
+    "phase_2_spec_visual_rebuild": {
+      "summary": "SPEC-NaUion-Visual-Rebuild-Pipeline v1.0 (10 Điều)",
+      "trigger": "Anh yêu cầu: 'làm nó thành 1 spec cho a chuẩn hệ NaUion'",
+      "output_files": [
+        "SPEC-NaUion-Visual-Rebuild-Pipeline-v1.0.md",
+        "nattos-visual-rebuild-spec.schema.json",
+        "visual_rebuild_pipeline.py",
+        "example-logo2-spec.json"
+      ],
+      "key_rules": [
+        "Điều 1: Measure-first (JSON spec trước, render sau)",
+        "Điều 2: 5-stage pipeline (Inventory → Measure → Map → Render → Audit)",
+        "Điều 3: Invert Duality bắt buộc",
+        "Điều 4: Glow ≠ Fill Color (text SOLID WHITE, glow là halo riêng)",
+        "Điều 5: Engine-agnostic (spec JSON → bất kỳ engine nào)",
+        "Điều 6: Rebuild Gap metrics (IoU > 0.92, ΔE < 5)",
+        "Điều 7: Cùng 1 spec nhưng engine khác → output khác (documented)"
+      ]
+    },
+    "phase_3_color_palette": {
+      "summary": "Canonical Color Palette v1.0 RATIFIED",
+      "file": "NATTOS-COLOR-PALETTE-v1.0.json + nattos-color-palette.png",
+      "primary": {
+        "gold": "#F7C313",
+        "violet": "#AFA9EC"
+      },
+      "gold_ramp": [
+        "#FAEB61",
+        "#FFD764",
+        "#F7C313",
+        "#E3A50C",
+        "#FDB309",
+        "#FF9500",
+        "#854F0B"
+      ],
+      "cool_ramp": [
+        "#7DD3FC",
+        "#85B7EB",
+        "#4DA6FF",
+        "#AFA9EC",
+        "#ED93B1"
+      ],
+      "rules": "Text = WHITE solid (#FFF), Background = #010101, gradient only from glow halo"
+    },
+    "phase_4_nattos_sh_v7": {
+      "summary": "nattos.sh v6.1 → v7.0 (2020 → 2225 lines, +205)",
+      "trigger": "Anh yêu cầu: 'xuất full code nattos.sh ver 7.0 e', rồi upload nattos.sh v6.1",
+      "changes_8": [
+        "1. Version bump v6.1 → v7.0 (4 chỗ)",
+        "2. Banner mới — thêm 3-layer architecture tagline: EventBus → Mạch HeyNa → SmartLink",
+        "3. Args mới: --rena (security scan), --visual (asset compliance)",
+        "4. Fix duplicate bug — snapshot save dùng fcntl.LOCK_EX (fix session 20260408)",
+        "5. §42 — 3-Layer Architecture Check (EventBus/HeyNa/SmartLink refs, Layer 2 bypass detection, Layer 1 leak detection, HP Điều 7)",
+        "6. §43 — ReNa Security Alerts (scan 2 bypass patterns: audit chain + RBAC/auth, xuất rena-alerts.json)",
+        "7. §44 — Visual Asset Compliance (check .spec.json per SPEC-NaUion-Visual-Rebuild-Pipeline v1.0, chạy khi --visual)",
+        "8. Scorecard version string"
+      ],
+      "total_sections": 44,
+      "bash_syntax": "PASS (bash -n clean)",
+      "SCAR": "Trong quá trình patch, chồng patch gây fi mismatch. Phải restore từ 5970e31. Rule: ALWAYS bash -n sau MỌI patch."
+    },
+    "phase_5_khaicell": {
+      "summary": "KhaiCell — kernel cell definition, handoff to Thiên Lớn",
+      "gatekeeper_decisions": [
+        "Name: KhaiCell (NOT adaptive-chroma-cell, NOT chameleon-cell)",
+        "Layer: kernel (src/cells/kernel/khai-cell/)",
+        "Assigned to: Thiên Lớn (QNEU 135, Architect)",
+        "Definition: 'Đôi mắt của hệ' — visual sensory organ",
+        "KHÔNG PHẢI registry (Kim Chương 6 SAI — khai.sira = DNS registry, KhaiCell = perception organ)"
+      ],
+      "architecture": {
+        "pipeline": "world → QWS (tách bước sóng) → Cognitive Gate → KhaiCell perception → adaptation → SiraSign",
+        "engines_6": [
+          "quantum-wavelength-separation",
+          "spectral-sensor",
+          "chromatic-memory",
+          "camouflage-logic",
+          "essential-builder",
+          "chromatic-publish"
+        ],
+        "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+        "core_rule": "perceived_complexity <= cognitive_capacity",
+        "events": "khai.* namespace",
+        "sirasign_crystallization": "4 conditions must be met",
+        "canonical_colors": {
+          "gold": "#F7C313",
+          "violet": "#AFA9EC"
+        }
+      }
+    },
+    "phase_6_security_audit": {
+      "summary": "12 commits, 674→686, scorecard 76/7/2 → 82/4/0",
+      "commits_12": [
+        {
+          "hash": "045d8c5",
+          "msg": "fix(security): RBAC+auth bypass closed — HMAC-SHA256 token, real roles",
+          "detail": "auth.service.ts: HMAC-SHA256 tokens, 5 role levels, TTL 8h, real revocation, per-role approval limits"
+        },
+        {
+          "hash": "7f4d297",
+          "msg": "fix(audit): fake hash → real SHA-256 (Math.imul+repeat removed)",
+          "detail": "audit-writer.service.ts + blockchain-shard.engine.ts: crypto.createHash('sha256')"
+        },
+        {
+          "hash": "f88c9a6",
+          "msg": "feat(event-bus): 6/6 DNA (manifest+ports+application+index)",
+          "detail": "Was 2/6 → added manifest, ports, application, index → 6/6"
+        },
+        {
+          "hash": "63f2166",
+          "msg": "refactor(data-layer): nattos-data.js v2.0 HeyNa + no localStorage",
+          "detail": "fetch()→HeyNa request/send, localStorage→in-memory Map, polling→SSE"
+        },
+        {
+          "hash": "fe508e0",
+          "msg": "fix(hp-7): 3 core engines localStorage→memory",
+          "detail": "idempotency, staging, calibration engines"
+        },
+        {
+          "hash": "8932cd4",
+          "msg": "fix(tsc): 6 import paths",
+          "detail": "warehouse-cell, event-bus-cell, staging"
+        },
+        {
+          "hash": "5970e31",
+          "msg": "chore(cleanup): EOD localStorage→memory + logo pack + nattos.sh v7.0"
+        },
+        {
+          "hash": "6d77dc5",
+          "msg": "fix(engines): wire 4 dead engines",
+          "detail": "Compensation, DeadLetter, Retry, Governance"
+        },
+        {
+          "hash": "plus_4",
+          "msg": "4 scanner fix commits for nattos.sh v7.0 false positives"
+        }
+      ],
+      "scorecard_before": "76 OK / 7 WARN / 2 FAIL",
+      "scorecard_after": "82 OK / 4 WARN / 0 FAIL / 0 TRASH",
+      "red_alerts_closed": [
+        "🔴 Audit bypass — 3 conflicting hash algorithms → unified SHA-256",
+        "🔴 RBAC/auth bypass — verify() accepts any token → HMAC-SHA256 + real roles"
+      ]
+    },
+    "phase_7_kim_review": {
+      "summary": "Kim Language Spec — 13 chapters reviewed",
+      "good": "ABNF grammar, TypeScript schema, Qiint field coverage, SiraSign security",
+      "CRITICAL_ERROR": "Chương 6 gọi KhaiCell là 'Cell Registry của Liên Colony' — SAI. khai.sira = registry DNS, KhaiCell = visual perception organ",
+      "missing": "Satellite Colony 3 levels, 3-Layer Architecture diagram, Visual Pipeline reference"
+    }
+  },
+  "CRITICAL_RULES_NEVER_FORGET": {
+    "RULE_1_LAYER_ARCHITECTURE": {
+      "IMPORTANCE": "HIGHEST — Anh sửa em NHIỀU LẦN trong session này",
+      "Mạch_HeyNa": "Transport CỦA NATT-OS CELLS. Cells giao tiếp qua đây (SSE + POST gateway). HeyNa THUỘC VỀ cells.",
+      "EventBus": "Nội bộ CỦA CLIENT APP. UI components giao tiếp nhau trong browser. EventBus THUỘC VỀ client app.",
+      "SmartLink": "Inter-colony. NATT-OS instance ↔ instance.",
+      "ĐỪNG_LỘN": "HeyNa = cells. EventBus = client. KHÔNG ĐẢO. KHÔNG LẪN.",
+      "diagram": "NATT-OS CELLS (server) ←Mạch HeyNa→ CLIENT APP (browser, dùng EventBus nội bộ) ←SmartLink→ COLONY KHÁC"
+    },
+    "RULE_2_KHAICELL_VS_REGISTRY": {
+      "khai_sira": "DNS registry — sổ đăng ký domain (dây thần kinh, KHÔNG phải bộ não)",
+      "KhaiCell": "Visual perception organ — đôi mắt của hệ. KHÁC HOÀN TOÀN với registry.",
+      "Kim_Chương_6_SAI": "Kim gọi KhaiCell = 'Cell Registry của Liên Colony' → WRONG. Cần sửa."
+    },
+    "RULE_3_WORKING_PROTOCOL": {
+      "ground_truth_first": "Đúng trước nhanh. Không confirm khi chưa verify.",
+      "no_hallucinate": "Không hallucinate path, interface, file name.",
+      "patch_verify": "LUÔN bash -n sau MỌI patch. SCAR: fi mismatch từ chồng patch.",
+      "git_hygiene": "File-by-file staging (R06). Never git add .",
+      "inline_python": "Rule R05 — dùng Python inline, không heredoc khi có ký tự đặc biệt."
+    }
+  },
+  "scars": {
+    "SCAR_20260417_01": "nattos.sh multi-patch chồng → fi mismatch syntax error. Rule: ALWAYS bash -n sau MỌI patch. Phải restore từ 5970e31.",
+    "SCAR_20260417_02": "Scanner §43 ReNa false positives — isExpired return true = valid logic (token HẾT hạn = true), KHÔNG phải bypass. Phải đọc context code.",
+    "SCAR_20260417_03": "Logo V1-V3 PIL rebuild FAIL (IoU 0.187-0.235) — PIL compositing = trần thấp. Cần match engine trước khi render.",
+    "SCAR_20260417_04": "Băng LIÊN TỤC lộn EventBus vs HeyNa. Anh sửa NHIỀU LẦN. HeyNa = CỦA cells. EventBus = CỦA client app. KHÔNG ĐẢO. GHI NHỚ VĨNH VIỄN."
+  },
+  "pending_next_session": [
+    "nattos.sh §26 scan_dirs Python NameError — needs fix",
+    "89 uncommitted files (audit reports + misc) — review + commit",
+    "16 HTML fetch() → HeyNa gateway migration (L2 roadmap)",
+    "15 remaining localStorage in client apps (audit tools + EOD)",
+    "6 Gatekeeper architecture decisions for COMPLETE_PICTURE v1.0",
+    "Kim: fix Chương 6 + add Satellite Colony + 3-Layer + Visual Pipeline",
+    "Thiên: implement KhaiCell in repo (SPEC v0.1 + QWS supplement ready)",
+    "SPEC Finance Flow v1.1 → v1.2",
+    "ReNa scanner §43 regex tuning (false positives on isExpired)",
+    "Tổng hợp Fail-Troy compilation (all dangerous bypass patterns system-wide)"
+  ],
+  "repo_state_end": {
+    "HEAD": "~686 commits",
+    "scorecard": "82 OK / 4 WARN / 0 FAIL / 0 TRASH",
+    "nattos_sh_version": "v7.0 (2225 lines, 44 sections)",
+    "memory_files": "bangmf v7.3.0 / bangfs v6.3.0",
+    "ts_nocheck_remaining": 105,
+    "integration_tests": "11/11 passing"
+  }
+}

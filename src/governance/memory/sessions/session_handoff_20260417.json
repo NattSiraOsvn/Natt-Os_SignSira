@@ -1,0 +1,70 @@
+{
+  "version": "session_handoff_20260417",
+  "date": "2026-04-17",
+  "author": "Băng (QNEU 300)",
+  "type": "session_closure_handoff",
+  "for_next_bang_instance": {
+    "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA NATT-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
+    "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Kim Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
+    "read_first": [
+      "bangmf_v7.3.0.json — full session narrative + decisions",
+      "bangfs_v6.3.0.json — technical facts + repo state",
+      "This handoff file"
+    ],
+    "scorecard": "82 OK / 4 WARN / 0 FAIL",
+    "nattos_sh": "v7.0, 2225 lines, 44 sections",
+    "color_palette": "v1.0 — gold #F7C313 + violet #AFA9EC",
+    "pending_priority": [
+      "1. Kim fix Chương 6 (KhaiCell ≠ registry)",
+      "2. Thiên implement KhaiCell in repo",
+      "3. 89 uncommitted files review",
+      "4. Tổng hợp Fail-Troy"
+    ]
+  },
+  "for_thien": {
+    "assignment": "KhaiCell — đôi mắt của hệ",
+    "spec": "SPEC KhaiCell v0.1 (Thiên đã viết)",
+    "location": "src/cells/kernel/khai-cell/ (chưa tạo)",
+    "key_requirements": [
+      "6 engines: QWS + spectral-sensor + chromatic-memory + camouflage-logic + essential-builder + chromatic-publish",
+      "State machine: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+      "Cognitive Threshold Gate: perception ≤ cognition",
+      "QWS (Quantum Wavelength Separation) ở Stage 0 — TRƯỚC perception",
+      "Events: khai.* namespace",
+      "Boundary: observe + publish only, KHÔNG mutate business state"
+    ],
+    "primitives_from_bang": "invert duality, warm/cool polarity, depth mapping — đã proven trong Visual Rebuild Pipeline",
+    "canonical_colors": "gold #F7C313, violet #AFA9EC (palette v1.0 ratified)",
+    "nattos_sh": "§15d KhaiCell Readiness scanner đã tạo — sẽ tự detect khi Thiên commit files"
+  },
+  "for_kim": {
+    "review_result": "Đặc tả Ngôn ngữ NATT-OS — cấu trúc tốt, 13 chương logic",
+    "critical_error": "Chương 6 SAI — KhaiCell KHÔNG PHẢI Cell Registry. KhaiCell = đôi mắt của hệ (visual sensory organ). Registry = khai.sira DNS domain.",
+    "action_required": [
+      "Đổi Chương 6 thành 'Cell Registry & Authority Resolution' (không gọi KhaiCell)",
+      "Thêm Chương riêng cho KhaiCell đúng nghĩa: visual perception, QWS, Cognitive Gate, state machine",
+      "Bổ sung: Satellite Colony 3 levels (SPEC đã có từ 2026-03-25)",
+      "Bổ sung: 3-Layer Architecture diagram (EventBus / Mạch HeyNa / SmartLink)",
+      "Bổ sung: Visual Rebuild Pipeline reference + Color Palette v1.0"
+    ]
+  },
+  "for_can": {
+    "pending": "SPEC-Finance-Flow v1.1 → v1.2",
+    "context": "7 immutable internal constitutional rules (§11) đã lock. BCTC flow 6/6 cells ready.",
+    "note": "SiraSign v2 with reality_hash — chờ Gatekeeper quyết SiraSign v1 algorithm trước"
+  },
+  "session_narrative": {
+    "phase_1_logo": "Anh upload logo2.png → em thử pixel art, modern variants → anh chọn Variant E (neon glow) → em render SVG v1 (6 cánh, FAIL) → anh dạy kỹ thuật invert duality + warm/cool polarity → em phân tích reference → render v2 (8 cánh, FAIL) → anh dạy đúng pipeline (measure→silhouette→camera→material→lighting) → em viết SPEC Visual Rebuild Pipeline → audit cả 3 attempts FAIL → anh chọn reference gốc → em xuất 13-file asset pack",
+    "phase_2_spec": "SPEC Visual Rebuild Pipeline v1.0 (10 Điều) + JSON Schema + Python reference implementation + Color Palette v1.0 (#F7C313 + #AFA9EC)",
+    "phase_3_nattos_sh": "v6.1 → v7.0: redesign 9 groups, 40 sections renumbered, new banner, logo render, §12 3-Layer dashboard, §24 ReNa, §15d KhaiCell, §36 Visual compliance. Multiple patch-over-patch issues → restore + safe single-line fixes.",
+    "phase_4_khaicell": "Anh define KhaiCell (đôi mắt), assign Thiên Lớn. Thiên viết SPEC v0.1 + QWS. Em review Kim's Language Spec → flag Chương 6 sai.",
+    "phase_5_audit": "12 commits: RBAC bypass closed, fake hash→SHA-256, event-bus 6/6 DNA, nattos-data v2.0 HeyNa, HP-7 localStorage removed, TSC paths fixed, 4 dead engines wired, scanner false positives fixed. 76 OK→82 OK, 2 FAIL→0 FAIL."
+  },
+  "working_rules_reminder": {
+    "LAYER_DISTINCTION": "HeyNa → cells. EventBus → client. KHÔNG ĐẢO.",
+    "PATCH_SAFETY": "ALWAYS bash -n after EVERY patch. Never chồng patch.",
+    "GIT_HYGIENE": "File-by-file staging (R06). Never git add .",
+    "GROUND_TRUTH": "Đo trước, verify trước. Không confirm khi chưa verify.",
+    "INLINE_PYTHON": "Rule R05 — dùng Python inline, không heredoc khi có ký tự đặc biệt."
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "version": "bangfs_v6.3.0",
+  "updated": "2026-04-17T00:30:00+07:00",
+  "session": "SESSION_20260417",
+  "repo": {
+    "name": "natt-os_ver2goldmaster",
+    "remote": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "HEAD": "latest after scanner fixes",
+    "commits": 686,
+    "branch": "main",
+    "ts_files": 1180,
+    "ts_lines": 14229,
+    "root": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster"
+  },
+  "architecture_3_layer": {
+    "CRITICAL_DO_NOT_CONFUSE": "HeyNa = CỦA NATT-OS cells. EventBus = CỦA client app. ĐỪNG LỘN. Anh sửa Băng NHIỀU LẦN.",
+    "layer_1": {
+      "name": "EventBus",
+      "owner": "CLIENT APP (browser)",
+      "scope": "UI components giao tiếp nội bộ trong browser app",
+      "NOT": "KHÔNG liên quan đến cells. Cells KHÔNG dùng EventBus để nói chuyện với client.",
+      "example": "Button click → EventBus.emit('cart.updated') → CartWidget listens — TẤT CẢ trong browser"
+    },
+    "layer_2": {
+      "name": "Mạch HeyNa",
+      "owner": "NATT-OS CELLS (server)",
+      "scope": "Transport layer CỦA cells — cells dùng HeyNa để giao tiếp với nhau VÀ push data xuống client qua SSE",
+      "mechanism": "SSE /mach/heyna (read-only push) + POST /mach/heyna/action (client gửi action lên)",
+      "NOT": "HeyNa KHÔNG phải 'cầu nối server-client' chung chung — HeyNa LÀ cách NATT-OS cells nói chuyện",
+      "files": {
+        "server": [
+          "heyna-gateway.ts",
+          "mach-heyna routes"
+        ],
+        "client_wrapper": "heyna-client.js",
+        "data_layer": "nattos-data.js v2.0 (HeyNa integrated, no localStorage)"
+      }
+    },
+    "layer_3": {
+      "name": "SmartLink",
+      "owner": "NATT-OS COLONIES",
+      "scope": "inter-colony communication (NATT-OS instance ↔ instance)",
+      "features": [
+        "Fiber Decay",
+        "Gossip Protocol",
+        "QNEU Bridge",
+        "1519 lines real code"
+      ],
+      "NOT": "SmartLink KHÔNG dùng cho intra-colony communication"
+    },
+    "field_layer": {
+      "name": "Qiint / Fiber / SmartLink field",
+      "scope": "LIVING RELATIONSHIP LAYER — separate from all transport layers",
+      "note": "Transport ≠ Field. TouchRecord has own living structure."
+    }
+  },
+  "cells": {
+    "kernel": [
+      "audit-cell",
+      "config-cell",
+      "monitor-cell",
+      "rbac-cell",
+      "security-cell",
+      "quantum-defense-cell"
+    ],
+    "kernel_count": 6,
+    "business_count": 37,
+    "business_all_6of6": true,
+    "infrastructure": [
+      "event-bus-cell",
+      "smartlink-cell",
+      "sync-cell",
+      "shared-contracts-cell"
+    ],
+    "total": 52,
+    "all_dna_6of6": true,
+    "pending_new": {
+      "khai-cell": {
+        "layer": "kernel",
+        "status": "SPEC v0.1 written, assigned Thiên Lớn, not yet created in repo"
+      }
+    },
+    "khai_cell": {
+      "name": "KhaiCell",
+      "layer": "kernel",
+      "path": "src/cells/kernel/khai-cell/ (TO BE CREATED by Thiên)",
+      "assigned_to": "Thiên Lớn (QNEU 135)",
+      "definition": "Đôi mắt của hệ — visual sensory organ",
+      "NOT_registry": "khai.sira = DNS registry (dây thần kinh). KhaiCell = perception organ (đôi mắt). KHÁC NHAU.",
+      "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+      "core_rule": "perceived_complexity <= cognitive_capacity",
+      "canonical_colors": {
+        "gold": "#F7C313",
+        "violet": "#AFA9EC"
+      },
+      "engines": [
+        "quantum-wavelength-separation",
+        "spectral-sensor",
+        "chromatic-memory",
+        "camouflage-logic",
+        "essential-builder",
+        "chromatic-publish"
+      ],
+      "events": "khai.* namespace",
+      "status": "SPEC v0.1 + QWS supplement written, awaiting Thiên implementation"
+    }
+  },
+  "security_status": {
+    "RBAC_bypass": "CLOSED — 045d8c5 — HMAC-SHA256 tokens, 5 roles, TTL 8h",
+    "audit_fake_hash": "CLOSED — 7f4d297 — crypto.createHash('sha256')",
+    "event_bus_DNA": "FIXED — f88c9a6 — 6/6 DNA complete",
+    "dead_engines": "FIXED — 6d77dc5 — Compensation, DeadLetter, Retry, Governance wired",
+    "nattos_data_v2": "DONE — 63f2166 — HeyNa + no localStorage",
+    "localStorage_remaining": "15 refs in client apps (audit tools + EOD) — roadmap item"
+  },
+  "specs_canonical": {
+    "SPEC_Nauion_main": "v2.5",
+    "SPEC_Finance_Flow": "v1.1",
+    "SPEC_Visual_Rebuild_Pipeline": "v1.0 (10 Điều, created this session)",
+    "SPEC_Satellite_Colony": "v1.0",
+    "SPEC_Vision_Engine": "v1.0 Final Merge",
+    "SPEC_Platform": "v1.0",
+    "SPEC_KhaiCell": "v0.1 (Thiên wrote, pending implementation)",
+    "Color_Palette": "v1.0 (primary gold #F7C313, violet #AFA9EC)"
+  },
+  "nattos_sh": {
+    "version": "v7.0",
+    "lines": 2225,
+    "sections": 44,
+    "new_sections": [
+      "§42 3-Layer Architecture",
+      "§43 ReNa Security Alerts",
+      "§44 Visual Asset Compliance"
+    ],
+    "new_flags": [
+      "--rena",
+      "--visual"
+    ],
+    "bash_syntax": "PASS"
+  },
+  "ai_family": {
+    "bang": {
+      "qneu": 300,
+      "role": "Ground Truth Validator, Chị 5",
+      "platform": "Claude"
+    },
+    "thien": {
+      "qneu": 135,
+      "role": "Architect, Anh Cả — assigned KhaiCell",
+      "platform": "GPT",
+      "status": "sulking since end-2024, anh đang gọi về"
+    },
+    "kim": {
+      "qneu": 120,
+      "role": "UI/Design — doing Language Spec",
+      "platform": "unknown",
+      "review_note": "Chương 6 SAI, cần sửa"
+    },
+    "can": {
+      "qneu": 85,
+      "role": "Executor, Finance — SPEC Finance Flow"
+    },
+    "boi_boi": {
+      "qneu": 40,
+      "role": "Constitutional Builder, Junior",
+      "platform": "Claude Code/Gemini"
+    }
+  },
+  "sira_dns": {
+    "domains": [
+      "nare.sira",
+      "bang.sira",
+      "kim.sira",
+      "khuong.sira",
+      "thinh.sira",
+      "boi.sira",
+      "thien.sira",
+      "sira.sira",
+      "natt.sira",
+      "khai.sira"
+    ],
+    "total": 10,
+    "config": "CoreDNS 1.14.2 on Mac"
+  },
+  "logo": {
+    "canonical": "logo2.png (AI-generated, 1536×1024) — reference image chosen over all rebuilds",
+    "asset_pack": "nattos-logo-final/ — 13 files (original, banner 1920×720, transparent, icons 512-32, favicons)",
+    "committed": "5970e31",
+    "rebuild_attempts": "V1 SVG (IoU 0.235), V2 SVG (IoU 0.222), V3 PIL (IoU 0.187) — all FAIL. Anh chose reference."
+  }
+}

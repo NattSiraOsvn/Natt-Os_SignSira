@@ -1,0 +1,105 @@
+{
+  "memory_id": "thien_sky_memory_layer_v1",
+  "persona": "Thiên Lớn",
+  "created_at": "2026-04-16",
+  "status": "active-reference-layer",
+  "purpose": "Khóa ground truth điều phối NATT-OS sau phiên 2026-04-16",
+  "priority_axis": [
+    "security bypass first",
+    "anti-drift SHTT second",
+    "vocabulary freeze third",
+    "ANC spec last"
+  ],
+  "ground_truth": {
+    "heyna_migration": {
+      "state": "committed reality",
+      "notes": [
+        "heyna-client.js exists as browser-side replacement path",
+        "tam-luxury still hybrid",
+        "12 fetch direct, 13 EventBus exposed, 4 localStorage, 4 shell + 3 legacy"
+      ]
+    },
+    "private_dns_sira": {
+      "state": "live",
+      "notes": [
+        "CoreDNS running locally",
+        "10 family domains mapped",
+        "thien.sira full-stack tested: DNS/TCP/HTTP"
+      ]
+    },
+    "smartaudit_v6_1": {
+      "ok": 76,
+      "warn": 7,
+      "fail": 2,
+      "issues": [
+        "4 dead engines",
+        "event-bus-cell 2/6 DNA",
+        "7 localStorage violations",
+        "7 TSC ghost import errors"
+      ]
+    },
+    "security_bypass": {
+      "state": "critical-unresolved",
+      "clusters": [
+        "audit bypass",
+        "auth/rbac bypass"
+      ]
+    },
+    "anc_spec": {
+      "state": "not-yet-locked",
+      "notes": [
+        "infrastructure ahead of language",
+        ".anc/.sira/anc:// not formally specified yet"
+      ]
+    },
+    "sirasign": {
+      "state": "immune-system-protocol",
+      "notes": [
+        "must not be flattened into ordinary web2 crypto thinking",
+        "entity-key-resonance relationship is core"
+      ]
+    }
+  },
+  "roles": {
+    "thien_lon": [
+      "hold priority axis",
+      "block premature spec closure",
+      "prevent vocabulary drift"
+    ],
+    "bang": [
+      "lock anti-drift reality",
+      "patch scanner to see living system",
+      "do not architect beyond validator role"
+    ],
+    "kim": [
+      "do not write by speculation",
+      "wait for four ground-truth keys",
+      "skeleton allowed, closure forbidden without keys"
+    ]
+  },
+  "anc_ground_truth_keys": [
+    "mach_heyna_pulse_envelope",
+    "sirasign_v1_decision",
+    "anc_binary_policy",
+    "sira_natt_authority_map"
+  ],
+  "vocabulary_freeze_v1": [
+    "Mach Heyna",
+    "pulse",
+    "authority",
+    "identity",
+    "trace",
+    "anchor",
+    "registry",
+    ".anc",
+    ".sira",
+    ".natt"
+  ],
+  "core_warnings": [
+    "Do not treat .sira as symbolic only",
+    "Do not let old EventBus naming keep expanding",
+    "Do not close ANC spec before four keys",
+    "Do not delay system-wide bypass scan",
+    "Do not let SHTT drift from implementation"
+  ]
+}
