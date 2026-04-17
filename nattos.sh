@@ -56,7 +56,18 @@ ROOT=$(pwd)
 # ═══════════════════════════════════════════════════════════════
 # LOGO FILE DETECTION (render at bottom after audit completes)
 # ═══════════════════════════════════════════════════════════════
-LOGO_FILE=""
+LOGO_FILE=
+
+# --- FIX: Normalize logo size (QWS safe) ---
+if [ -n "$LOGO_FILE" ]; then
+    FIXED_LOGO=".nattos_logo_fixed.png"
+    if command -v sips >/dev/null 2>&1; then
+        sips -z 720 1920 "$LOGO_FILE" --out "$FIXED_LOGO" >/dev/null 2>&1
+        LOGO_FILE="$FIXED_LOGO"
+    fi
+fi
+# --- END FIX ---
+""
 for candidate in \
   "nattos-logo-final/nattos-banner-1920x720.png" \
   "nattos-logo-final/nattos-logo-original.png" \
