@@ -331,7 +331,7 @@ for cell in "${KERNEL_EXPECTED[@]}"; do
   P="src/cells/kernel/$cell"
   if [[ -d "$P" ]]; then
     FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
-    MF=$([[ -f "$P/neural-main-cell.cell.anc" ]] && echo "MF✅" || echo "MF❌")
+    MF=$(ls "$P"/*.cell.anc 1>/dev/null 2>&1 && echo "MF✅" || echo "MF❌")
     PT=$([[ -d "$P/ports" ]] && echo "PORT✅" || echo "PORT❌")
     ENG=$(find "$P" -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
     ok "$cell | $FC files | $MF | $PT | engines:$ENG"; inc_ok; ((KERNEL_OK++)) || true
@@ -355,7 +355,7 @@ for cell_dir in src/cells/business/*/; do
   FC=$(find "$cell_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 
   # 6 components check
-  HAS_IDENTITY=$([[ -f "$cell_dir/neural-main-cell.cell.anc" ]] && echo 1 || echo 0)
+  HAS_IDENTITY=$(ls "$cell_dir"/*.cell.anc 1>/dev/null 2>&1 && echo 1 || echo 0)
   HAS_CAPABILITY=$(find "$cell_dir" -name "*.engine.ts" -o -name "*.service.ts" 2>/dev/null | grep -v index | grep -q . && echo 1 || echo 0)
   HAS_BOUNDARY=$(find "$cell_dir" -name "*boundary*" -o -name "*policy*" 2>/dev/null | grep -q . && echo 1 || echo 0)
   HAS_TRACE=$(find "$cell_dir" -name "*.entity.ts" -o -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
@@ -415,7 +415,7 @@ python3 << 'PY37'
 import os, json
 
 REQUIRED_COMPONENTS = {
-    "manifest":   lambda p: os.path.isfile(os.path.join(p, "neural-main-cell.cell.anc")),
+    "manifest":   lambda p: any(f.endswith(".cell.anc") for f in os.listdir(p) if os.path.isfile(os.path.join(p, f))),
     "domain":     lambda p: os.path.isdir(os.path.join(p, "domain")),
     "ports":      lambda p: os.path.isdir(os.path.join(p, "ports")),
     "application":lambda p: os.path.isdir(os.path.join(p, "application")),
@@ -2267,7 +2267,7 @@ if os.path.isdir(biz_path):
     for cell in sorted(os.listdir(biz_path)):
         cp = os.path.join(biz_path, cell)
         if not os.path.isdir(cp): continue
-        has_mf = os.path.isfile(os.path.join(cp, 'neural-main-cell.cell.anc'))
+        has_mf = any(f.endswith(".cell.anc") for f in os.listdir(cp) if os.path.isfile(os.path.join(cp, f)))
         has_port = any('smartlink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
         has_domain = os.path.isdir(os.path.join(cp, 'domain'))
         fc = count_files(cp)
