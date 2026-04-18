@@ -1,0 +1,614 @@
+{
+  "emit_total_unique": 76,
+  "on_total_unique": 74,
+  "both_total_unique": 44,
+  "emit_only_total": 32,
+  "on_only_total": 30,
+  "emit_only": {
+    "BomCreated": [
+      "src/cells/business/production-cell/domain/services/flow.engine.ts"
+    ],
+    "FINANCE_CLASSIFY_ACCOUNT": [
+      "src/cells/business/payment-cell/domain/services/_v2.payment-flow.engine.ts"
+    ],
+    "FINANCE_ORDER_FLOW_BUILD": [
+      "src/cells/business/period-close-cell/domain/services/closing.executor.ts"
+    ],
+    "GoodsDispatched": [
+      "src/cells/business/warehouse-cell/domain/services/logistics.engine.ts"
+    ],
+    "INVENTORY_CODE_NORMALIZE": [
+      "src/cells/business/warehouse-cell/index.ts"
+    ],
+    "INVENTORY_ITEM_RECEIVED": [
+      "src/cells/business/warehouse-cell/index.ts"
+    ],
+    "PERIOD_CLOSE_AWAITING_APPROVAL": [
+      "nattos-server/server.js",
+      "src/cells/business/period-close-cell/index.ts"
+    ],
+    "PERIOD_CLOSE_FAILED": [
+      "src/cells/business/period-close-cell/index.ts"
+    ],
+    "PRICING_GOLD_PRICE_REQUEST": [
+      "src/cells/business/order-cell/domain/services/order.engine.ts"
+    ],
+    "PRICING_PRODUCT_PRICE_REQUEST": [
+      "src/cells/business/order-cell/domain/services/order.engine.ts"
+    ],
+    "ProductionSpecReady": [
+      "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+      "src/cells/business/production-cell/domain/services/flow.engine.ts"
+    ],
+    "ProductionStageAdvanced": [
+      "src/cells/business/casting-cell/domain/engines/casting.engine.ts",
+      "src/cells/business/production-cell/domain/services/flow.engine.ts"
+    ],
+    "TAX_ANOMALY_DETECTED": [
+      "nattos-server/server.js"
+    ],
+    "TAX_FILED": [
+      "nattos-server/server.js",
+      "src/cells/business/tax-cell/index.ts"
+    ],
+    "TNDN_CALCULATED": [
+      "nattos-server/server.js"
+    ],
+    "approval.updated": [
+      "nattos-server/server.js"
+    ],
+    "audit.constitutional": [
+      "src/governance/gatekeeper/constitutional-mapping.engine.ts"
+    ],
+    "audit.event": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "customer.notified": [
+      "nattos-server/server.js"
+    ],
+    "dust.recovered": [
+      "nattos-server/server.js"
+    ],
+    "finance.financial.anomaly.detected.v1": [
+      "src/cells/business/finance-cell/projections/risk-projection.ts"
+    ],
+    "finance.invoice.issued.confirmed.v1": [
+      "src/cells/business/finance-cell/handlers/invoice-issued-handler.ts"
+    ],
+    "finance.saga.compensated.v1": [
+      "src/cells/business/finance-cell/sagas/compensation-saga.ts"
+    ],
+    "gatekeeper.alert": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "quantum.cross_validate": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "quantum.entity.frozen": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "quantum.entity.unfrozen": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "quantum.escalation": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "quantum.omega_lock": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "sales.order.completed.v1": [
+      "src/cells/business/finance-cell/handlers/payment-succeeded-handler.ts"
+    ],
+    "sales.order.on_hold.v1": [
+      "src/cells/business/finance-cell/handlers/payment-failed-handler.ts"
+    ],
+    "wip:in-progress": [
+      "src/cells/business/finishing-cell/domain/engines/finishing.engine.ts"
+    ]
+  },
+  "on_only": {
+    "*": [
+      "nattos-server/app Tâm luxury/nattos-server.cjs",
+      "nattos-server/server.js"
+    ],
+    "FINANCE_DEPRECIATION_REQUEST": [
+      "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+    ],
+    "OMEGA_LOCKDOWN": [
+      "NaUion-Server/vision/ui-vision/App.jsx",
+      "NaUion-Server/vision/vision-engine/security/SecurityOverlay.tsx",
+      "src/components/AuditVisualizer.tsx"
+    ],
+    "SkuModelCreated": [
+      "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+    ],
+    "StockReplenished": [
+      "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+    ],
+    "audit": [
+      "src/components/AuditVisualizer.tsx"
+    ],
+    "buyback.requested": [
+      "nattos-server/server.js"
+    ],
+    "casting-cell.execute": [
+      "src/cells/business/casting-cell/domain/engines/casting.engine.ts"
+    ],
+    "cell.data.feed": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts"
+    ],
+    "cell.state.reset": [
+      "nattos-server/app Tâm luxury/nattos-chromatic.js"
+    ],
+    "customs.declaration": [
+      "nattos-server/server.js"
+    ],
+    "event": [
+      "src/core/events/event-bus.ts"
+    ],
+    "flow.completed": [
+      "src/cells/kernel/audit-cell/domain/services/iseu-boundary.surface.ts"
+    ],
+    "gdb.analyze.request": [
+      "src/cells/business/sales-cell/domain/engines/gdb-pattern.engine.ts"
+    ],
+    "gsheets.data.synced": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts"
+    ],
+    "iseu.feedback": [
+      "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts"
+    ],
+    "iseu.sensor.pulse": [
+      "nattos-server/server.js"
+    ],
+    "order.created": [
+      "nattos-server/server.js",
+      "src/cells/business/order-cell/domain/services/order.engine.ts"
+    ],
+    "payment-cell.execute": [
+      "src/cells/business/payment-cell/domain/services/payment.engine.ts"
+    ],
+    "polishing.complete": [
+      "nattos-server/server.js"
+    ],
+    "prdmaterials-cell.execute": [
+      "src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts"
+    ],
+    "quantum.freeze.request": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+    ],
+    "sales-cell.execute": [
+      "src/cells/business/sales-cell/domain/engines/sales.engine.ts"
+    ],
+    "security.failed": [
+      "NaUion-Server/vision/ui-vision/App.jsx",
+      "src/components/AuditVisualizer.tsx"
+    ],
+    "smart_get_data.result": [
+      "src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts"
+    ],
+    "system.audit": [
+      "nattos-server/server.js",
+      "src/cells/kernel/monitor-cell/index.ts"
+    ],
+    "vision.density.changed": [
+      "NaUion-Server/vision/ui-vision/App.jsx",
+      "src/components/AuditVisualizer.tsx"
+    ],
+    "vision.state.changed": [
+      "NaUion-Server/vision/ui-vision/App.jsx",
+      "NaUion-Server/vision/vision-engine/components/SceneContainer.tsx",
+      "src/components/AuditVisualizer.tsx"
+    ],
+    "warehouse.inventory.insufficient.v1": [
+      "src/cells/business/finance-cell/sagas/finance-saga.ts"
+    ],
+    "warehouse.stock_updated": [
+      "nattos-server/apps/tam-luxury/heyna-client.js"
+    ]
+  },
+  "both": {
+    "AuditLogged": {
+      "emit_files": [
+        "src/cells/business/production-cell/domain/services/flow.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "src/cells/kernel/audit-cell/application/handlers/audithandler.ts"
+      ]
+    },
+    "BCTC_GENERATED": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/server.js"
+      ]
+    },
+    "GoodsReceived": {
+      "emit_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+      ]
+    },
+    "MaterialLossReported": {
+      "emit_files": [
+        "src/cells/business/casting-cell/domain/engines/casting.engine.ts",
+        "src/cells/business/prdmaterials-cell/domain/services/prdmaterials.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+      ]
+    },
+    "PERIOD_CLOSE_COMPLETED": {
+      "emit_files": [
+        "nattos-server/server.js",
+        "src/cells/business/period-close-cell/index.ts"
+      ],
+      "on_files": [
+        "nattos-server/server.js",
+        "src/cells/business/tax-cell/index.ts"
+      ]
+    },
+    "ProductionCompleted": {
+      "emit_files": [
+        "src/cells/business/production-cell/domain/services/flow.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+      ]
+    },
+    "REPORT_GENERATED": {
+      "emit_files": [
+        "nattos-server/server.js",
+        "src/cells/business/finance-cell/domain/services/bctc-2025.runner.ts"
+      ],
+      "on_files": [
+        "nattos-server/server.js",
+        "src/cells/business/period-close-cell/index.ts"
+      ]
+    },
+    "StockReserved": {
+      "emit_files": [
+        "src/cells/business/casting-cell/domain/engines/casting.engine.ts",
+        "src/cells/business/production-cell/domain/services/flow.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+      ]
+    },
+    "ViolationDetected": {
+      "emit_files": [
+        "src/cells/business/production-cell/domain/services/flow.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "src/cells/kernel/audit-cell/application/handlers/audithandler.ts"
+      ]
+    },
+    "anomaly.detected": {
+      "emit_files": [
+        "src/core/events/typed-eventbus.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts"
+      ]
+    },
+    "audit.record": {
+      "emit_files": [
+        "nattos-server/app Tâm luxury/services/calibration/calibrationengine.ts",
+        "nattos-server/app Tâm luxury/services/ingestion/idempotencymanager.ts",
+        "nattos-server/app Tâm luxury/services/learningengine.ts",
+        "nattos-server/app Tâm luxury/services/staging/eventstaginglayer.ts",
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "nattos-server/server.js",
+        "src/cells/business/finishing-cell/infrastructure/finishing.wiring.ts",
+        "src/cells/business/sales-cell/domain/engines/gdb-pattern.engine.ts",
+        "src/cells/kernel/audit-cell/application/handlers/audithandler.ts",
+        "src/cells/kernel/audit-cell/domain/services/gdb-result.subscriber.ts"
+      ],
+      "on_files": [
+        "nattos-server/server.js",
+        "src/cells/kernel/audit-cell/application/handlers/audithandler.ts",
+        "src/cells/kernel/audit-cell/domain/services/iseu-boundary.surface.ts",
+        "src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts"
+      ]
+    },
+    "audit.recorded": {
+      "emit_files": [
+        "src/cells/kernel/audit-cell/application/handlers/audithandler.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts",
+        "src/cells/kernel/notification-cell/index.ts"
+      ]
+    },
+    "casting.complete": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/server.js"
+      ]
+    },
+    "cell.metric": {
+      "emit_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "nattos-server/server.js",
+        "src/cells/business/analytics-cell/domain/services/enterprise-linker.engine.ts",
+        "src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts",
+        "src/cells/business/buyback-cell/domain/services/buyback.engine.ts",
+        "src/cells/business/casting-cell/domain/engines/casting.engine.ts",
+        "src/cells/business/comms-cell/domain/services/room.engine.ts",
+        "src/cells/business/compliance-cell/domain/services/fraud-guard.engine.ts",
+        "src/cells/business/constants-cell/domain/services/constants.engine.ts",
+        "src/cells/business/customer-cell/domain/services/customer.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/nattos-server.cjs",
+        "nattos-server/server.js",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/threshold.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/index.ts"
+      ]
+    },
+    "cell.state": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts",
+        "src/governance/gatekeeper/constitutional-mapping.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/nattos-chromatic.js"
+      ]
+    },
+    "chromatic.state.changed": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/index.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/audit-cell/application/handlers/audithandler.ts"
+      ]
+    },
+    "constitutional.response": {
+      "emit_files": [
+        "src/cells/kernel/observation-cell/infrastructure/chromatic-snapshot-publisher.ts",
+        "src/governance/gatekeeper/constitutional-mapping.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/quantum-defense.engine.ts"
+      ]
+    },
+    "constitutional.violation": {
+      "emit_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "src/governance/gatekeeper/constitutional-mapping.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "src/cells/kernel/quantum-defense-cell/index.ts"
+      ]
+    },
+    "finance.invoice.created.v1": {
+      "emit_files": [
+        "src/cells/business/finance-cell/usecases/create-invoice.ts"
+      ],
+      "on_files": [
+        "src/cells/business/finance-cell/sagas/payment-saga.ts"
+      ]
+    },
+    "finishing.complete": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/server.js"
+      ]
+    },
+    "gdb.analyze.result": {
+      "emit_files": [
+        "src/cells/business/sales-cell/domain/engines/gdb-pattern.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/audit-cell/domain/services/gdb-result.subscriber.ts"
+      ]
+    },
+    "gia-vang.updated": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "src/cells/business/pricing-cell/index.ts"
+      ]
+    },
+    "inventory.in": {
+      "emit_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/server.js"
+      ]
+    },
+    "iseu.reinforcement": {
+      "emit_files": [
+        "src/cells/kernel/audit-cell/domain/services/iseu-boundary.surface.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/domain/services/iseu-reinforcement.subscriber.ts"
+      ]
+    },
+    "monitor.health_checked": {
+      "emit_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/quantum-defense-cell/index.ts"
+      ]
+    },
+    "nauion.state": {
+      "emit_files": [
+        "nattos-server/server.js",
+        "src/cells/kernel/audit-cell/domain/services/iseu-boundary.surface.ts",
+        "src/core/nauion/nauion.voice.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "payment.received": {
+      "emit_files": [
+        "nattos-server/server.js",
+        "src/cells/business/finance-cell/index.ts"
+      ],
+      "on_files": [
+        "nattos-server/server.js",
+        "src/cells/business/payment-cell/domain/services/_v2.payment-flow.engine.ts"
+      ]
+    },
+    "production.planned": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/server.js"
+      ]
+    },
+    "quantum.behavior_alert": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/ai-behavior.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "quantum.kill": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/kill-switch.engine.ts"
+      ],
+      "on_files": [
+        "NaUion-Server/vision/vision-engine/security/SecurityOverlay.tsx",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/ai-lockdown.engine.ts"
+      ]
+    },
+    "quantum.lockdown": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/ai-lockdown.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "quantum.purity_violation": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/cell-purity.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "quantum.rehab_failed": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/rehabilitation.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "quantum.rehabilitated": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/kill-switch.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/rehabilitation.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/ai-lockdown.engine.ts"
+      ]
+    },
+    "quantum.released": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/ai-lockdown.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "quantum.violation": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/governance-enforcement.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/kill-switch.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "sales.confirm": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "nattos-server/server.js"
+      ]
+    },
+    "sales.order.created.v1": {
+      "emit_files": [
+        "src/cells/business/finance-cell/index.ts",
+        "src/cells/business/sales-cell/sales.service.ts"
+      ],
+      "on_files": [
+        "src/cells/business/finance-cell/sagas/finance-saga.ts"
+      ]
+    },
+    "stone.complete": {
+      "emit_files": [
+        "nattos-server/server.js"
+      ],
+      "on_files": [
+        "nattos-server/server.js"
+      ]
+    },
+    "sync.progress.cleared": {
+      "emit_files": [
+        "src/cells/infrastructure/sync-cell/domain/services/sync.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "sync.progress.saved": {
+      "emit_files": [
+        "src/cells/infrastructure/sync-cell/domain/services/sync.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/monitor-cell/index.ts"
+      ]
+    },
+    "threshold.evaluated": {
+      "emit_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/threshold.engine.ts"
+      ],
+      "on_files": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts"
+      ]
+    },
+    "wip:phoi": {
+      "emit_files": [
+        "src/cells/business/casting-cell/domain/engines/casting.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts",
+        "src/cells/business/finishing-cell/infrastructure/finishing.wiring.ts"
+      ]
+    },
+    "wip:stone": {
+      "emit_files": [
+        "src/cells/business/casting-cell/domain/engines/casting.engine.ts"
+      ],
+      "on_files": [
+        "nattos-server/app Tâm luxury/wiring/domain-flow.wiring.ts"
+      ]
+    }
+  }
+}
