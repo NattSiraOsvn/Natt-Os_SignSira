@@ -1,53 +1,116 @@
 /**
- * NATT-OS EventBus Guards
- * Lock #7: Idempotency key
- * Lock #8: Causation ordering
- * Lock #9: Back-pressure (không hard limit — chỉ cảnh báo + throttle)
+ * NATT-OS EventBus Touch Points (refactored per SPEC NEN v1.1)
+ *
+ * Lock #7: Idempotency — touch + chromatic emit (no boolean decision)
+ * Lock #8: Causation — touch + chromatic emit
+ * Lock #9: Back-pressure — chromatic state from latency
+ *
+ * Per LAW-1 + LAW-4: guards do NOT decide. They mark + emit chromatic.
+ * Field reaction = Quantum Defense reads chromatic.
+ *
+ * Backwards-compat: each touch returns object { proceed, chromatic_state, signature }.
+ * Legacy callers reading `.proceed` get same boolean semantics during migration.
  */
 import { EventEnvelope } from "../events/event-envelope";
 
+type ChromaticState = "stable" | "nominal" | "drift" | "warning" | "risk" | "critical" | "optimal";
+
+type TouchResult = {
+  proceed: boolean;            // legacy compat — derived from chromatic
+  chromatic_state: ChromaticState;
+  signature: {
+    origin: string;
+    trace_id: string;
+    touched_at: string;
+  };
+  reason?: string;
+};
+
+function makeSignature(origin: string): TouchResult["signature"] {
+  return {
+    origin,
+    trace_id: "TRACE-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10),
+    touched_at: new Date().toISOString(),
+  };
+}
+
 // ── Lock #7: Idempotency ──
 const _processedIds = new Set<string>();
-const _idempotencyWindow = 3_600_000; // 1 hour
+const _idempotencyWindow = 3_600_000;
 const _idempotencyTimestamps = new Map<string, number>();
 
 export const IdempotencyGuard = {
-  check(envelope: EventEnvelope): boolean {
+  check(envelope: EventEnvelope): TouchResult {
     const key = `${envelope.event_id}:${envelope.correlation_id}`;
+    const sig = makeSignature("eventbus:idempotency");
+
     if (_processedIds.has(key)) {
-      console.warn(`[IdempotencyGuard] Duplicate event blocked: ${envelope.event_type} id=${envelope.event_id}`);
-      return false; // already processed
+      console.warn(`[IDEMPOTENCY_TOUCH] duplicate event — chromatic: stable | ${envelope.event_type} id=${envelope.event_id}`);
+      return {
+        proceed: false,
+        chromatic_state: "stable",
+        signature: sig,
+        reason: "already_processed",
+      };
     }
+
     _processedIds.add(key);
     _idempotencyTimestamps.set(key, Date.now());
-    return true; // ok to process
+    return {
+      proceed: true,
+      chromatic_state: "nominal",
+      signature: sig,
+    };
   },
 
   cleanup(): void {
     const cutoff = Date.now() - _idempotencyWindow;
     for (const [key, ts] of _idempotencyTimestamps) {
-      if (ts < cutoff) { _processedIds.delete(key); _idempotencyTimestamps.delete(key); }
+      if (ts < cutoff) {
+        _processedIds.delete(key);
+        _idempotencyTimestamps.delete(key);
+      }
     }
   },
 };
 
 // ── Lock #8: Causation ordering ──
-const _pendingByCausation = new Map<string, EventEnvelope[]>(); // waiting for parent
+const _pendingByCausation = new Map<string, EventEnvelope[]>();
 
 export const OrderingGuard = {
-  // Returns true if envelope can be processed now
-  canProcess(envelope: EventEnvelope, processedEventIds: Set<string>): boolean {
-    if (!envelope.causation_id) return true; // root event, no parent needed
-    if (processedEventIds.has(envelope.causation_id)) return true; // parent processed
-    // Parent not yet processed — queue
+  canProcess(envelope: EventEnvelope, processedEventIds: Set<string>): TouchResult {
+    const sig = makeSignature("eventbus:ordering");
+
+    if (!envelope.causation_id) {
+      return {
+        proceed: true,
+        chromatic_state: "nominal",
+        signature: sig,
+        reason: "root_event",
+      };
+    }
+
+    if (processedEventIds.has(envelope.causation_id)) {
+      return {
+        proceed: true,
+        chromatic_state: "nominal",
+        signature: sig,
+        reason: "parent_processed",
+      };
+    }
+
     const queue = _pendingByCausation.get(envelope.causation_id) ?? [];
     queue.push(envelope);
     _pendingByCausation.set(envelope.causation_id, queue);
-    console.debug(`[OrderingGuard] Queued ${envelope.event_type} waiting for causation=${envelope.causation_id}`);
-    return false;
+    console.debug(`[ORDERING_TOUCH] queued — chromatic: warning | ${envelope.event_type} causation=${envelope.causation_id}`);
+    return {
+      proceed: false,
+      chromatic_state: "warning",
+      signature: sig,
+      reason: "parent_pending",
+    };
   },
 
-  // Call after processing an event to release pending children
   release(processedEventId: string): EventEnvelope[] {
     const pending = _pendingByCausation.get(processedEventId) ?? [];
     _pendingByCausation.delete(processedEventId);
@@ -55,8 +118,8 @@ export const OrderingGuard = {
   },
 };
 
-// ── Lock #9: Back-pressure (không hard limit — adaptive) ──
-const _subscriberLatency = new Map<string, number[]>(); // subscriberCell → [latency ms]
+// ── Lock #9: Back-pressure ──
+const _subscriberLatency = new Map<string, number[]>();
 const WARN_THRESHOLD_MS = 500;
 const ALERT_THRESHOLD_MS = 2000;
 const WINDOW_SIZE = 20;
@@ -68,11 +131,11 @@ export const BackPressureGuard = {
     if (history.length > WINDOW_SIZE) history.shift();
     _subscriberLatency.set(subscriberCell, history);
 
-    const avg = history.reduce((s,v) => s+v, 0) / history.length;
+    const avg = history.reduce((s, v) => s + v, 0) / history.length;
     if (avg > ALERT_THRESHOLD_MS) {
-      console.error(`[BackPressureGuard] ALERT: ${subscriberCell} avg latency ${avg.toFixed(0)}ms — subscriber overwhelmed`);
+      console.error(`[BACKPRESSURE_TOUCH] chromatic: critical | ${subscriberCell} avg ${avg.toFixed(0)}ms`);
     } else if (avg > WARN_THRESHOLD_MS) {
-      console.warn(`[BackPressureGuard] WARN: ${subscriberCell} avg latency ${avg.toFixed(0)}ms`);
+      console.warn(`[BACKPRESSURE_TOUCH] chromatic: warning | ${subscriberCell} avg ${avg.toFixed(0)}ms`);
     }
   },
 
@@ -80,7 +143,7 @@ export const BackPressureGuard = {
     const stats: Record<string, { avg: number; max: number; count: number }> = {};
     for (const [cell, latencies] of _subscriberLatency) {
       stats[cell] = {
-        avg: latencies.reduce((s,v) => s+v, 0) / latencies.length,
+        avg: latencies.reduce((s, v) => s + v, 0) / latencies.length,
         max: Math.max(...latencies),
         count: latencies.length,
       };
@@ -88,10 +151,34 @@ export const BackPressureGuard = {
     return stats;
   },
 
-  isHealthy(subscriberCell: string): boolean {
+  health(subscriberCell: string): TouchResult {
+    const sig = makeSignature("eventbus:backpressure");
     const history = _subscriberLatency.get(subscriberCell);
-    if (!history?.length) return true;
-    const avg = history.reduce((s,v) => s+v, 0) / history.length;
-    return avg < ALERT_THRESHOLD_MS;
+
+    if (!history?.length) {
+      return {
+        proceed: true,
+        chromatic_state: "nominal",
+        signature: sig,
+        reason: "no_history",
+      };
+    }
+
+    const avg = history.reduce((s, v) => s + v, 0) / history.length;
+    let state: ChromaticState = "nominal";
+    if (avg > ALERT_THRESHOLD_MS) state = "critical";
+    else if (avg > WARN_THRESHOLD_MS) state = "warning";
+    else if (avg < WARN_THRESHOLD_MS / 4) state = "optimal";
+
+    return {
+      proceed: state !== "critical",
+      chromatic_state: state,
+      signature: sig,
+      reason: `avg_latency_${avg.toFixed(0)}ms`,
+    };
+  },
+
+  isHealthy(subscriberCell: string): boolean {
+    return this.health(subscriberCell).proceed;
   },
 };

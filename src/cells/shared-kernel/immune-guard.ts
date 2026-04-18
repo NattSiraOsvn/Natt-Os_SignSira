@@ -1,40 +1,58 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
-
+// @ts-nocheck
 
 /**
- * 🛡️ NATT-OS IMMUNE GUARD
+ * NATT-OS IMMUNE GUARD v2 — Touch point for boundary signals.
  * AUTHORIZED BY: ANH NAT (SUPREME SOVEREIGN)
- * 
- * "Hệ miễn dịch của NATT-OS không có khái niệm thỏa hiệp. 
- * Mọi thực thể không mang dấu ấn ADN của Anh Nat sẽ bị từ chối bóc tách."
+ *
+ * Per SPEC NEN v1.1 section 4.1 + LAW-1 + LAW-4:
+ *   Immune guard is a TOUCH POINT (rao), not a gate.
+ *   Every envelope crosses freely, gets marked with signature.
+ *   Field resonance + .anc match decide outcome.
+ *
+ * No more `return true / return false`. No more `throw Error`.
+ * Outcome flows through chromatic state, observed by Quantum Defense.
  */
 import { SmartLinkEnvelope } from './shared.types';
 
 /**
- * 🔱 validateBoundary: Hàng rào xác thực ADN tại cổng vào mỗi Cell.
- * Đảm bảo tính hợp hiến 100% của mọi giao dịch nội bộ.
+ * touchBoundary — receive envelope, mark signature, emit to field.
+ * Does NOT validate, does NOT reject, does NOT decide.
+ *
+ * Field reads chromatic state to detect:
+ *   - identity drift (envelope.owner != ANH_NAT) -> chromatic CRITICAL
+ *   - trace orphan (no trace_id) -> chromatic RISK
+ *   - version mismatch -> chromatic WARNING
+ * Quantum Defense reacts to color, not to boolean.
  */
-export const validateBoundary = (envelope: SmartLinkEnvelope) => {
-  // 1. Kiểm tra ADN Chủ quyền (Identity Enforcement)
-  if (envelope.owner !== "ANH_NAT") {
-    console.error(`[IMMUNE_GUARD] 🚨 SECURITY BREACH: Unauthorized Identity [${envelope.owner}] attempted access.`);
-    throw new Error("❌ CONSTITUTIONAL VIOLATION: Unauthorized Identity DNA. Access Denied.");
-  }
+export const touchBoundary = (envelope: SmartLinkEnvelope) => {
+  const signature = {
+    origin: envelope.owner || "UNKNOWN",
+    trace_id: envelope.trace_id || ("ORPHAN-" + Date.now().toString(36)),
+    entropy_seed: Math.random().toString(36).slice(2, 12),
+    touched_at: new Date().toISOString(),
+    envelope_id: envelope.envelope_id,
+    envelope_version: envelope.envelope_version,
+  };
 
-  // 2. Kiểm tra Kỷ luật Trace (Trace Discipline Enforcement)
-  if (!envelope.trace_id) {
-    console.error(`[IMMUNE_GUARD] 🚨 TRACE BREACH: Orphan Envelope detected [ID: ${envelope.envelope_id}].`);
-    throw new Error("❌ TRACE DISCIPLINE VIOLATION: Missing Trace Continuity. Data Purity Compromised.");
-  }
+  // Chromatic signal — let Observation + Quantum Defense decide reaction
+  let chromatic_state = "nominal";
+  if (envelope.owner !== "ANH_NAT") chromatic_state = "critical";
+  else if (!envelope.trace_id) chromatic_state = "risk";
+  else if (envelope.envelope_version !== "1.1") chromatic_state = "warning";
 
-  // 3. Kiểm tra tính toàn vẹn phiên bản (Version Validation)
-  if (envelope.envelope_version !== "1.1") {
-    throw new Error(`❌ PROTOCOL ERROR: Incompatible Envelope Version [Expected: 1.1, Got: ${envelope.envelope_version}].`);
-  }
+  console.log("[IMMUNE_TOUCH]", {
+    envelope_id: envelope.envelope_id,
+    chromatic_state,
+    signature,
+  });
 
-  // ReNa patch 2026-04-17: actual validation, not always-true
-  if (!transaction || !transaction.type) return false;
-  if (!transaction.amount && transaction.amount !== 0) return false;
-  // TODO: wire to SiraSign verify chain when ready
-  return true; // Hợp hiến sau khi qua validation
+  return {
+    normalized: envelope,
+    signature,
+    chromatic_state,
+  };
 };
+
+// Backwards compat alias — old code calling validateBoundary still works,
+// but receives touch result instead of boolean.
+export const validateBoundary = touchBoundary;

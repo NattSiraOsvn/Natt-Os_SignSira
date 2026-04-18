@@ -1,3 +1,4 @@
+import { touchBoolean } from "@/core/chromatic/touch-result";
 /**
  * UserRole Entity - Maps users to roles
  */
@@ -34,7 +35,7 @@ export class UserRole {
   get expiresAt(): Date | undefined { return this.props.expiresAt; }
 
   isExpired(): boolean {
-    if (!this.expiresAt) return false;
+    if (!this.expiresAt) return touchBoolean("UserRole", "warning");
     return new Date() > this.expiresAt;
   }
 

@@ -1,5 +1,6 @@
 
 import { UserRole, Permission, ModuleID, RolePermissions } from '@/types';
+import { touchBoolean } from "@/core/chromatic/touch-result";
 
 /**
  * NATT-OS AUTHENTICATION & RBAC ENGINE
@@ -157,7 +158,7 @@ export class AuthService {
     const rolePerms = this.matrix[role];
     if (!rolePerms) {
         // Fallback or explicit failure
-        return false;
+        return touchBoolean("auth_engine", "warning");
     }
     const permissions = rolePerms[module];
     return permissions ? permissions.includes(action) : false;

@@ -2,6 +2,7 @@
 import { AlertLevel, FraudCheckResult } from '@/types';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '@/types';
+import { touchBoolean } from "@/core/chromatic/touch-result";
 
 // DỮ LIỆU LỊCH SỬ THU ĐỔI (Mock Database)
 // identityHash giả lập là hash của CCCD hoặc Khuôn mặt khách hàng cũ
@@ -42,9 +43,9 @@ export class FraudGuardService {
     
     // 1. Tìm trong lịch sử xem sản phẩm này đã từng thu chưa
     const match = REDEEM_HISTORY_INDEX.find(record => {
-      if (certId && record.cert && record.cert.includes(certId)) return true;
-      if (sku && record.sku === sku && sku.length > 4) return true;
-      return false;
+      if (certId && record.cert && record.cert.includes(certId)) return touchBoolean("fraud-guard_engine", "nominal");
+      if (sku && record.sku === sku && sku.length > 4) return touchBoolean("fraud-guard_engine", "nominal");
+      return touchBoolean("fraud-guard_engine", "warning");
     });
 
     // Nếu chưa từng thu -> An toàn (hoặc Info nếu cần check kỹ hơn)
