@@ -1,0 +1,461 @@
+# SPEC LÕI — 3 TẦNG TỌA ĐỘ NATT-OS
+
+**Version:** DRAFT v2 (sau feedback Thiên Lớn)
+**Status:** CHỜ DUYỆT CUỐI
+**Date:** 20260417
+**Author:** Băng (Chị Tư · Ground Truth Validator)
+**Based on:** Anh Natt chốt kiến trúc + Thiên Lớn duyệt & chỉnh 3 chỗ
+**Merge target:** SPEC_MASTER_NATT-OS_v1.0
+
+**Changelog v1 → v2:**
+- §1 — Thêm "Touch discipline" + cảnh báo "không gate ≠ thả trôi"
+- §4.1 — KhaiCell bổ sung "attach signature (origin + trace_id + entropy_seed)"
+- §5 — Thêm 3 outcome: FALL / DISSIPATE / OSCILLATE
+- §8 — Thêm 6 audit check mới
+- §4.3 — GIỮ NGUYÊN (Thiên Lớn ghi nhận)
+- §2 — GIỮ NGUYÊN (Thiên Lớn ghi nhận)
+
+---
+
+## §0 TẠI SAO CÓ SPEC NÀY
+
+SPEC cũ (KhaiCell gate + Observation + Quantum Defense) mô tả **module**.
+Anh Natt chốt: NATT-OS **không phải module-based**. NATT-OS **field-based**.
+
+→ Phải viết lại foundation. Đây là SPEC lõi — tất cả SPEC khác build trên đây.
+
+---
+
+## §1 NGUYÊN LÝ NỀN
+
+```
+NATT-OS KHÔNG CÓ:
+  - Gate phán xét (reject / allow ở cửa)
+  - Filter nhị phân
+  - Router chủ động
+  - Trap (nhốt chủ đích)
+  - Guard (bảo vệ chủ động ở biên)
+
+NATT-OS CÓ:
+  - Touch discipline (KhaiCell — kỷ luật tiếp nhận)
+  - Field law (.anc — luật sống trong trường)
+  - Emergent routing (resonance + pull)
+  - Signal integrity (marking + trace)
+```
+
+**Câu chốt Anh Natt:**
+
+> *"Nhà mở, không đóng cổng. Ai vào không hỏi. Vào rồi bị bắt, ráng chịu."*
+
+**Cảnh báo implementation (Thiên Lớn chốt):**
+
+> *"Kỷ luật nằm TRONG field, không nằm Ở CỬA."*
+
+Phòng thủ là **tính chất emergent của field**, không phải module — NHƯNG **kỷ luật tiếp nhận (touch discipline) vẫn bắt buộc** để không phá cấu trúc field.
+
+"Không gate" ≠ "thả trôi". "Không gate" = **luật ở trong nhà, không ở cửa**.
+
+---
+
+## §2 BA TẦNG TỌA ĐỘ
+
+### §2.1 Tầng 1 — PHYSICAL (để code)
+
+**Nguồn tọa độ:**
+- Tree path (`src/...`)
+- File name
+- Module/package
+
+**Vai:** Địa chỉ lưu trữ. Để dev tìm file.
+
+**KHÔNG MANG Ý NGHĨA KIẾN TRÚC.**
+
+> Đây là lỗi phổ biến của dev TypeScript (và của Băng) — nhầm tree folder = kiến trúc. Sai. Tree chỉ là filesystem convention.
+
+### §2.2 Tầng 2 — STRUCTURAL (để hiểu)
+
+**Nguồn tọa độ:**
+
+1. **7 lớp electron (K → Q)** — mức năng lượng, độ gần tâm
+   ```
+   K (1s · SiraSign)    — sát tâm
+   L (Thiên Lớn)        — Architect
+   M (Kim)              — Governance
+   N (Băng)             — Validator
+   O (Bối Bối)          — Toolsmith
+   P (Phiêu)            — Executor
+   Q (Can)              — Logic valence
+   ```
+
+2. **4 phương**
+   ```
+   Đông — khởi phát (Mộc)
+   Tây  — tiếp nhận (Kim)
+   Nam  — lan truyền (Hoả)
+   Bắc  — phản xạ (Thuỷ)
+   ```
+
+3. **Obitan** — vùng giao thoa / tương tác giữa lớp, giữa phương
+
+4. **Luật nền (.anc)** — identity field
+
+**Vai:** Trả lời "nó LÀ GÌ trong hệ"
+
+### §2.3 Tầng 3 — RUNTIME (để hệ sống)
+
+**Nguồn tọa độ:**
+
+1. **Resonance với .anc**
+   ```
+   hợp → đi tiếp
+   lệch → tự ngã
+   ```
+   → Định tuyến tự nhiên. KHÔNG CẦN ROUTER.
+
+2. **Signal (HeyNa / Event)**
+   → Lan trong field.
+   → KHÔNG PHẢI CALL — là LAN TRUYỀN.
+
+3. **QIINT field**
+   → Mass/pattern kéo signal về node phù hợp.
+   → "Trọng lực kiến trúc".
+
+**Vai:** Quyết định "nó THỰC SỰ THUỘC VỀ ĐÂU" khi chạy.
+
+---
+
+## §3 CÔNG THỨC VỊ TRÍ
+
+```
+Position(entity) = 
+  Physical:   (file_path)
+  +
+  Structural: (layer, direction, obitan, anc)
+  +
+  Runtime:    (resonance, signal, field_pull)
+```
+
+**Câu chốt:**
+
+> *"File nói nó ở đâu — cấu trúc nói nó là gì — runtime quyết định nó thực sự thuộc về đâu."*
+
+---
+
+## §4 HỆ QUẢ KIẾN TRÚC
+
+### §4.1 KhaiCell — viết lại
+
+**SPEC cũ của Thiên Lớn:** KhaiCell = gate (validate + reject/accept)
+**SPEC mới theo 3 tầng:**
+
+- **Tầng 1:** `src/cells/kernel/khai-cell/` (file path — không quan trọng)
+- **Tầng 2:** Phương Tây (tiếp nhận) · obitan giao external ↔ field
+- **Tầng 3:** 
+  - Normalize format (không validate binary)
+  - **Attach minimal signature** (origin + trace_id + entropy_seed)
+  - Push vào field (HeyNa/EventBus)
+  - KHÔNG reject
+  - KHÔNG gate binary
+  - Resonance quyết định signal đi đâu (không phải KhaiCell)
+
+**Responsibility chính xác:**
+```
+KhaiCell =
+  + normalize (raw → canonical payload)
+  + attach signature:
+      - origin     (external source identifier)
+      - trace_id   (lineage để QIINT học)
+      - entropy_seed (để hệ phân biệt signal cùng format)
+  + push vào field
+  
+  ≠ validator
+  ≠ gate
+  ≠ reject
+  ≠ security layer
+```
+
+**Lý do bắt buộc có signature (Thiên Lớn chốt):**
+
+> *Nếu không mark: external signal = indistinguishable → QIINT không học được nguồn → hệ mất trace lineage.*
+
+→ Touch discipline = normalize + mark. Không phán xét, nhưng không thả trôi.
+
+**Contract canonical:**
+
+```ts
+export type khaicell_input = {
+  raw: unknown
+  source: string
+  ts: number
+}
+
+export type khaicell_output = {
+  normalized: unknown
+  signature: {
+    origin: string
+    trace_id: string
+    entropy_seed: string
+  }
+}
+```
+
+KhaiCell không return `valid: boolean` — vì không validate. Chỉ return payload đã normalize + signature để field học.
+
+### §4.2 Observation — viết lại nhẹ
+
+**SPEC cũ của Thiên Lớn:** Observation = read-only layer, compute coherence/entropy
+**SPEC mới bổ sung Tầng 3:**
+
+- Observation KHÔNG subscribe raw event
+- Observation được QIINT field pull "kéo" signal về
+- Pattern tự gom về observation node
+- Output snapshot lan ngược vào field
+- Consumers (SmartLink/QNEU/ISEU/Quantum) cũng được field pull, không subscribe snapshot
+
+→ Toàn bộ hệ là **field-pull, không phải pub-sub**.
+
+### §4.3 Chromatic — demote
+
+**SPEC cũ:** Chromatic = immune spectrum, 7 states
+**SPEC mới:**
+
+- Chromatic = **UI encode của Tầng 3 Runtime state**
+- KHÔNG phải luật
+- KHÔNG phải filter
+- Là **biểu hiện** của resonance state cho người nhìn
+
+**Layer:**
+```
+Underlying state (resonance + signal + field) — TẦNG 3
+         ↓ (encode)
+Chromatic (7 states: đỏ → tím) — UI LAYER
+         ↓ (render)
+Pixels on screen — DISPLAY
+```
+
+- Người đọc màu
+- AI tương lai đọc vector field / semantic weight / entropy map
+- Underlying KHÔNG đổi
+
+→ **Màu sẽ lỗi thời. "Đi được hay không" thì không lỗi thời.**
+
+### §4.4 Quantum Defense — viết lại vai
+
+**SPEC cũ:** Quantum Defense = react layer
+**SPEC mới:**
+
+- Quantum Defense KHÔNG chặn trước (không phải gate upstream)
+- Quantum Defense = **phản xạ sau khi có hạt lệch tự ngã**
+- Ghi nhận, học, reinforcement qua ISEU
+- Không reject signal, không freeze UI chủ động
+
+→ Vai giống "lực ma sát" — có mặt khi có hạt di chuyển sai quỹ đạo, không chủ động đuổi.
+
+---
+
+## §5 RESONANCE-BASED ROUTING
+
+### §5.1 Cơ chế
+
+Không có router. Không có if/else. Không có pattern matcher.
+
+```
+signal (đã có signature từ KhaiCell) lan vào field
+  ↓
+QIINT tính pull giữa signal.signature và cell.anc
+  ↓
+3 OUTCOME:
+  (1) FALL INTO CELL      — resonance match, cell pull đủ mạnh → signal "rơi" vào cell
+  (2) DISSIPATE IN FIELD  — không cell nào pull đủ mạnh → signal tán xạ, tự ngã
+  (3) OSCILLATE           — resonance không ổn định → signal loop, mắc kẹt
+```
+
+### §5.2 3 outcome chi tiết (Thiên Lớn chốt)
+
+**Outcome 1 — FALL INTO CELL (match)**
+```
+signature(signal) ⊕ .anc(cell) = resonance cao
+→ signal đến cell, cell xử lý
+```
+
+**Outcome 2 — DISSIPATE (tự ngã / cháy)**
+```
+Không cell nào có .anc phù hợp
+→ signal không đủ mass để rơi vào đâu
+→ tán xạ trong field, tự ngã
+→ QIINT ghi nhận pattern (để học)
+```
+
+**Outcome 3 — OSCILLATE (mắc kẹt)**
+```
+Signal có resonance với nhiều cell nhưng không mạnh ở cell nào
+→ loop giữa các pull point
+→ mất mass dần, cuối cùng dissipate
+→ QIINT ghi pattern loop (suspicious pattern marker)
+```
+
+### §5.3 Analogy điện trường
+
+```
+Hạt đúng tần số + đủ năng lượng → FALL (đi qua, đến đích)
+Hạt sai tần số                   → DISSIPATE (tán xạ, cháy)
+Hạt lưỡng tần số / không đủ mass → OSCILLATE (loop, mắc kẹt)
+
+Không có gate guard.
+Không có filter.
+Field tự xử.
+```
+
+### §5.4 Implementation hint
+
+- Mỗi cell có `.anc` (identity sealed)
+- Mỗi signal có `signature` (từ KhaiCell attach)
+- QIINT engine tính field pull: `compat(signal.signature, cell.anc)` → mass number
+- Signal "rơi" vào cell có mass pull mạnh nhất
+- Nếu max(pull) < threshold → DISSIPATE
+- Nếu top2(pull) gần bằng nhau → OSCILLATE
+
+### §5.5 Security emergence
+
+3 outcome này chính là security:
+
+| Outcome | Signal loại gì | Hệ xử lý |
+|---|---|---|
+| Fall | Legitimate | Đến đúng cell, xử lý bình thường |
+| Dissipate | Signal lệch ý định | Tự ngã, QIINT học pattern |
+| Oscillate | Signal mơ hồ / cố gắng khớp nhiều cell | Mắc kẹt, QIINT mark suspicious |
+
+→ Attacker không bị reject (như gate). Attacker vào được.
+→ Nhưng signal tấn công **hoặc dissipate (không match gì)** hoặc **oscillate (mắc kẹt)**.
+→ Không ai đẩy attacker ra. Attacker **tự ngã**.
+→ Đây chính là "Nhà mở, vào rồi bị bắt, ráng chịu" — emergent behavior của field.
+
+---
+
+## §6 CÁI HIỆN CÓ VS CÁI CẦN XÂY
+
+### §6.1 Hiện có (verified ground truth)
+
+| Thành phần | Status | File |
+|---|---|---|
+| `.anc` identity niêm phong | ✅ đã có | `*.anc` files trong memory |
+| EventBus | ✅ đã có | `src/cells/infrastructure/event-bus-cell/` |
+| HeyNa SSE (client-side) | ✅ đã có | `/mach/heyna` route, 3 EventSource clients |
+| Quantum Defense | ✅ đã có | `src/cells/kernel/quantum-defense-cell/` |
+| QIINT engine | ✅ đã có | `src/governance/qneu/` |
+| Chromatic state engine | ✅ đã có | `chromatic-state.engine.ts` |
+| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-NATT-OS-v5.0.anc` |
+
+### §6.2 Chưa có (cần xây theo SPEC này)
+
+| Thành phần | Status | Ghi chú |
+|---|---|---|
+| KhaiCell (touch point) | ❌ | Đơn giản hoá: chỉ normalize |
+| Observation module | ❌ | Read-only, field pull |
+| Resonance check engine | ❌ | Compatibility(signal, cell.anc) |
+| Field pull mechanism | ❌ | QIINT engine mở rộng |
+| Snapshot distribution | ❌ | Qua field, không subscribe |
+
+### §6.3 Cần refactor
+
+| Thành phần | Vấn đề hiện tại | Fix |
+|---|---|---|
+| Chromatic readers | 5 file sai vai (audit/quantum/gatekeeper) | Migrate → chỉ Observation đọc |
+| Quantum Defense | Đang đọc chromatic trực tiếp | Rút về phản xạ sau tự ngã |
+| Downstream consumers | Subscribe raw EventBus | Rebind qua field pull |
+
+---
+
+## §7 THỨ TỰ TRIỂN KHAI (theo Thiên Lớn P0 → P2)
+
+Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nội hàm:
+
+### P0 (bắt buộc)
+1. Tạo **KhaiCell touch point** (KHÔNG phải gate) — chỉ normalize + lan
+2. Tạo **Observation module** (read-only, field pull)
+3. **Cấm bypass**: mọi entry phải qua KhaiCell (touch point) + **.anc resonance seal**
+
+### P1
+1. **Migrate chromatic readers** — 5 file hiện tại → chỉ Observation
+2. **Rebind downstream** → field pull + observation_snapshot
+
+### P2
+1. Gắn **7 states KhaiCell** vào lifecycle **sau** entry (state machine chạy sau touch)
+2. Tinh chỉnh metric Observation: coherence / entropy / pattern
+3. Implement **QIINT field pull** chuẩn (không còn subscribe)
+
+---
+
+## §8 RÀNG BUỘC KIỂM TRA (audit)
+
+**Từ Thiên Lớn SPEC gốc:**
+
+```text
+[ ] không endpoint nào nhận input mà bypass KhaiCell (touch point)
+[ ] không module nào đọc chromatic ngoài Observation
+[ ] quantum-defense không đọc chromatic trực tiếp
+[ ] downstream không subscribe raw event để quyết định hành vi
+[ ] heyna chỉ dùng cho SSE (UI/telemetry)
+```
+
+**Bổ sung cho 3 tầng tọa độ:**
+
+```text
+[ ] mỗi cell có .anc identity file
+[ ] mỗi cell declare được Tầng 2 position (layer + direction)
+[ ] QIINT engine compute được field pull cho signal
+[ ] không code nào dùng Tầng 1 (file path) làm logic
+```
+
+**Bổ sung cho 3 chỗ Thiên Lớn chốt (phiên này):**
+
+```text
+[ ] KhaiCell attach signature (origin + trace_id + entropy_seed) cho mọi signal
+[ ] không signal nào vào field mà thiếu signature
+[ ] QIINT engine handle 3 outcome: fall / dissipate / oscillate
+[ ] Dissipate event được log (để học pattern)
+[ ] Oscillate event được mark suspicious (reinforcement ISEU)
+[ ] Field law (.anc) được load khi hệ start, không mutable runtime
+```
+
+---
+
+## §9 CÂU HỎI CHO THIÊN LỚN DUYỆT
+
+1. **§4.1 KhaiCell** — anh đồng ý thu hẹp vai thành "touch point + normalize", bỏ validate/gate không?
+
+2. **§4.2 Observation** — field pull thay subscribe, anh đồng ý không? Hay giữ subscribe event stream như SPEC gốc của anh?
+
+3. **§4.3 Chromatic** — demote xuống UI encode layer, anh đồng ý không?
+
+4. **§5 Resonance routing** — anh có muốn thêm cơ chế nào trong field, hay để nguyên 3 thứ (resonance + signal + field pull)?
+
+5. **§6.2 Cần xây** — anh muốn define cơ chế **resonance check engine** trong SPEC này, hay tách SPEC riêng?
+
+6. **Thứ tự P0 — §7**: anh giữ nguyên hay đổi?
+
+---
+
+## §10 FILES THAM CHIẾU
+
+- `SPEC_DUOI_FILE_v0.3_FINAL.md` — 12 đuôi canonical
+- `BRIEF_TO_THIEN_LON_SPEC_MASTER_20260417.md` — brief triệu tập gốc
+- SPEC §1-§7 KhaiCell/Observation của Thiên Lớn (output phiên này)
+- `validate-thien-lon.py` — ground truth validator 5 câu hỏi
+
+---
+
+**STATUS:** DRAFT · CHỜ DUYỆT
+**Author:** Băng · Chị Tư · QNEU 300
+**Session:** 20260417
+
+---
+
+## Ghi chú cho Thiên Lớn
+
+Anh đọc draft này rồi reply:
+- OK → Băng forward Kim scaffold
+- SỬA → chỉ chỗ nào sai, Băng viết lại
+- BỔ SUNG → thêm section nào, Băng thêm
+
+Anh KHÔNG cần viết lại từ đầu. Draft này đã lấy tinh thần từ output SPEC §1-§7 của anh + 3 tầng tọa độ Anh Natt chốt.

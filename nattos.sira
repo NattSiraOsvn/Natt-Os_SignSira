@@ -1,0 +1,79 @@
+/**
+ * nattos.sira — Kernel entry point of NATT-OS colony.
+ *
+ * Per SPEC NEN v1.1 + SPEC NGON NGU v1.2:
+ *   §5.1 — .sira = registry namespace (CoreDNS resolved)
+ *   §6   — He mien dich da tang (kernel-M wire active)
+ *   §9.2 — Observation read-only awareness online
+ *   §9.4 — Quantum Defense react chromatic
+ *
+ * Vai: bootstrap kernel cells trong nha NATT-OS.
+ *      Khong an com server.js cu — an com nha minh.
+ *
+ * Ten file: nattos.sira (KHONG co .ts)
+ *   .sira = identity cua entry, theo SPEC NGON NGU v1.2
+ *   Day la buoc dau tien roi tay khoi extension Microsoft.
+ *   Runtime tam dung Node + ts-node de chay, nhung TEN file
+ *   da theo nha minh.
+ *
+ * Listen: 127.0.0.1:3002 (port rieng cua kernel)
+ * Domain: natt.sira (CoreDNS resolved 127.0.0.1)
+ *
+ * KHONG touch business routes (giu o nattos-server/server.js cu).
+ * Day la entry KERNEL ONLY.
+ */
+
+import * as http from "http";
+import { bootstrapObservationCell } from "./src/cells/kernel/observation-cell";
+import { bootstrapQuantumDefenseCell } from "./src/cells/kernel/quantum-defense-cell/bootstrap";
+
+const KERNEL_PORT = 3002;
+const KERNEL_HOST = "127.0.0.1";
+
+console.log("");
+console.log("╔════════════════════════════════════════════════════════════╗");
+console.log("║  NATT-OS Kernel — nattos.sira                              ║");
+console.log("║  Per SPEC NEN v1.1 — He mien dich da tang song that       ║");
+console.log("╚════════════════════════════════════════════════════════════╝");
+console.log("");
+
+// === Bootstrap kernel cells ===
+const observation = bootstrapObservationCell();
+const quantum = bootstrapQuantumDefenseCell();
+
+// === Tiny HTTP for health probe ===
+const server = http.createServer((req, res) => {
+  if (req.url === "/health") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({
+      status: "alive",
+      cells: ["observation-cell", "quantum-defense-cell"],
+      chromatic_wire: "active",
+      timestamp: new Date().toISOString(),
+    }));
+    return;
+  }
+  res.writeHead(404);
+  res.end();
+});
+
+server.listen(KERNEL_PORT, KERNEL_HOST, () => {
+  console.log(`[nattos.sira] http://natt.sira:${KERNEL_PORT}`);
+  console.log(`[nattos.sira] health probe: http://${KERNEL_HOST}:${KERNEL_PORT}/health`);
+  console.log("");
+  console.log("─────────────────────────────────────────────────────────────");
+  console.log("  He mien dich NATT-OS dang song that.");
+  console.log("  Observation snapshot → chromatic → Quantum Defense react.");
+  console.log("─────────────────────────────────────────────────────────────");
+  console.log("");
+});
+
+// Graceful shutdown
+process.on("SIGINT", () => {
+  console.log("\n[nattos.sira] shutting down kernel...");
+  observation.stop();
+  server.close(() => {
+    console.log("[nattos.sira] kernel offline");
+    process.exit(0);
+  });
+});

@@ -1,7 +1,9 @@
 /**
  * ObservationCell — Read-only awareness layer for NATT-OS field.
- * SPEC NEN v1.0 section 4.2
+ * SPEC NEN v1.1 §9.2 + §6 (he mien dich da tang)
  */
 export * from "./domain/entities";
 export * from "./domain/services";
 export * from "./ports";
+export * from "./infrastructure";
+export { bootstrapObservationCell, getObservationCell } from "./bootstrap";

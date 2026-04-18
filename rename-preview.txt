@@ -1,0 +1,110 @@
+================================================================================
+  NATT-OS FILE RENAME — DRY RUN
+  Theo SPEC NGON NGU v1.2 R01-R13
+  KHÔNG ĐỤNG FILE THẬT. CHỈ LIST MAPPING.
+================================================================================
+  Repo: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+─── R02  (4 files) ───
+    src/cells/business/warehouse-cell/manifest.json
+  → src/cells/business/warehouse-cell/manifest.cell.anc
+    src/cells/business/sales-cell/manifest.json
+  → src/cells/business/sales-cell/manifest.cell.anc
+    src/cells/business/showroom-cell/manifest.json
+  → src/cells/business/showroom-cell/manifest.cell.anc
+    src/cells/kernel/notification-cell/manifest.json
+  → src/cells/kernel/notification-cell/manifest.cell.anc
+
+─── R07/R10  (3 files) ───
+    audit/discipline/log_violation_005_ultimate_negligence.txt
+  → audit/discipline/log_violation_005_ultimate_negligence.heyna
+    audit/discipline/log_violation_004_negligence.txt
+  → audit/discipline/log_violation_004_negligence.heyna
+    audit/summary/api-violations.json
+  → audit/summary/api-violations.heyna
+
+─── R11  (7 files) ───
+    bypass-report.txt
+  → bypass-report.kris
+    scan-report.txt
+  → scan-report.kris
+    bypass-report-v2.txt
+  → bypass-report-v2.kris
+    dryrun-report.txt
+  → dryrun-report.kris
+    audit/reports/2026-04-18_22-09-38_auto.md
+  → audit/reports/2026-04-18_22-09-38_auto.kris
+    audit/reports/2026-04-18_02-46-16_auto.md
+  → audit/reports/2026-04-18_02-46-16_auto.kris
+    audit/reports/2026-04-17_19-27-50_auto.md
+  → audit/reports/2026-04-17_19-27-50_auto.kris
+
+─── R11+  (29 files) ───
+    roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md
+  → roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.kris
+    roadloading/roadmap_nauion_tamlxr.md
+  → roadloading/roadmap_nauion_tamlxr.kris
+    roadloading/NATTOS_COMPLETE_PICTURE_20260416.md
+  → roadloading/NATTOS_COMPLETE_PICTURE_20260416.kris
+    roadloading/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md
+  → roadloading/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.kris
+    roadloading/mapptre.md
+  → roadloading/mapptre.kris
+    roadloading/đổi nn/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md
+  → roadloading/đổi nn/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.kris
+    roadloading/đổi nn/SPEC_3TANG_TOA_DO_DRAFT_20260417.md
+  → roadloading/đổi nn/SPEC_3TANG_TOA_DO_DRAFT_20260417.kris
+    roadloading/đổi nn/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.md
+  → roadloading/đổi nn/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.kris
+    roadloading/đổi nn/NATTOS_COMPLETE_PICTURE_20260416.md
+  → roadloading/đổi nn/NATTOS_COMPLETE_PICTURE_20260416.kris
+    roadloading/đổi nn/SPEC_DUOI_FILE_v0.3_FINAL.md
+  → roadloading/đổi nn/SPEC_DUOI_FILE_v0.3_FINAL.kris
+    ... (+19 more)
+
+─── R12  (1 files) ───
+    src/governance/memory/boiboi/boiboi_memory_recap.json
+  → src/governance/memory/boiboi/boiboi_memory_recap.kris
+
+─── R13  (1 files) ───
+    src/governance/memory/boiboi/boiboi_quick_memory.json
+  → src/governance/memory/boiboi/boiboi_quick_memory.kris
+
+================================================================================
+  TOTAL files to rename: 45
+  Files không match rule nào: 624
+================================================================================
+
+─── UNMATCHED (cần anh quyết) ───
+    .nattos-migration-phase2.log
+    rename-preview.txt
+    .env.local
+    Dockerfile
+    natt-os-twin.json
+    nattos.sira
+    .nattos-migration.log
+    .dockerignore
+    nginx.conf
+    config/sirasign_master.json
+    config/natt-os-twin.json
+    config/repo.json
+    config/resonance.policy.json
+    config/sirasign_v2.json
+    roadloading/Giaodien.html
+    roadloading/đổi nn/Đã dán markdown (1).md
+    roadloading/đổi nn/spec-ngon-ngu-natt-os-v1.1-full.kris
+    docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+    docs/specs/phase5-resonance-protocol.md
+    docs/specs/TamLuxury_CellRegistry_2026-03-09.md
+    docs/specs/uei_architecture_spec_20260309.md
+    docs/specs/NATT-OS_Session_Handoff_2026-03-10.docx
+    docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.md
+    docs/specs/uei_runtime_spec_20260309.md
+    docs/specs/NATT-OS_Session_Handoff_2026-03-09.md
+    docs/specs/business/inventory-cell/inventory-cell-tests.spec.md
+    docs/specs/business/inventory-cell/inventory-business-context.md
+    docs/specs/Vision/log4c.numbers
+    docs/specs/satellite/satellite-colony.spec.md
+    docs/specs/finance/SPECFlowNattOs.md
+    ... (+594 more)
+
