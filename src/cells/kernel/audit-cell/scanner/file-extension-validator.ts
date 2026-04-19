@@ -33,6 +33,10 @@ import {
 } from '../registry/extension-registry';
 
 import { IFileExtensionValidator } from '../contracts/file-extension-validator.interface';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // ─────────────────────────────────────────────────────────────────
 // SKIP PATTERNS
@@ -307,8 +311,6 @@ export class FileExtensionValidator implements IFileExtensionValidator {
 // ─────────────────────────────────────────────────────────────────
 
 if (typeof process !== 'undefined' && process.argv[1]?.includes('file-extension-validator')) {
-  const fs = require('fs');
-  const path = require('path');
 
   const repoRoot = process.argv[2] || process.cwd();
 
