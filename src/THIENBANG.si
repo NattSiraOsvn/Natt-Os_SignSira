@@ -1,176 +1,24 @@
 /**
- * Merge patch v2 for 15 missing terms
- * Canonical corrections applied from user-sealed guidance on 2026-04-20.
+ * THIENBANG CANONICAL DICTIONARY — Merge patch v2 (15 Nauion terms)
+ * Canonical corrections sealed by Gatekeeper on 2026-04-20.
+ *
  * Cross-checked against in-repo context:
  * - src/governance/specs/SPEC_NEN_v1.1.anc
  * - src/governance/specs/SPEC_NGON_NGU_v1.2.kris
  * - src/SuperDictionary.ts
  * - src/core/nauion/nauion.dictionary.ts
  *
- * Corrected terms in v2:
- * - QIINT        => gravitational field (NOT engine-as-thing)
- * - SCAR         => negative strike / functional fracture
+ * Canonical corrections (v2):
+ * - QIINT          => gravitational field (NOT engine-as-thing)
+ * - SCAR           => negative strike / functional fracture
  * - QuantumDefense => reacts AFTER observation flag anomaly (NOT broad listener)
- */
-
-export const NauionDictionaryPatchV2 = {
-  KhaiCell: {
-    loai: 'Touch Primitive',
-    nghia: 'Điểm chạm / rào đi vào field — nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; không phải gate, không validate, không tự route.',
-    tuCu: 'field entry touch point / ingress primitive',
-    vi: 'KhaiCell chạm tín hiệu rồi ký trước khi thả vào field.',
-  },
-
-  QIINT: {
-    loai: 'Gravitational Field',
-    nghia: 'Trọng trường của kiến trúc — field pull của hệ, tạo lực hút lên signal theo signature và .anc; là môi trường/lực trường chi phối nơi tín hiệu rơi, tan hay dao động, không phải một engine được gọi như tác tử riêng.',
-    tuCu: 'architectural gravitational field / field pull',
-    vi: 'QIINT field pull kéo tín hiệu theo trọng lực kiến trúc chứ không phải một engine đứng ra quyết định hộ.',
-  },
-
-  SCAR: {
-    loai: 'Negative Strike',
-    nghia: 'Đả kích tiêu cực gây gãy chức năng — vết sẹo của sự cố/sai lệch đã làm tổn thương năng lực vận hành; dùng để self-log, audit và giữ ký ức bài học máu. Phân biệt với KHAI_SANG / GIAC_NGO / MOTION là các chuyển động tích cực.',
-    tuCu: 'negative strike / functional fracture / failure scar',
-    vi: 'Khi một sai lệch làm gãy chức năng thật, hệ ghi SCAR để không tái phạm.',
-  },
-
-  SiraSign: {
-    loai: 'Sealed Boundary Signature',
-    nghia: 'Chữ ký niêm phong biên giới của hệ — lớp verify lõi dùng cho boundary contract/hash-locked state, gắn với .si và core verify sát tâm K-layer.',
-    tuCu: 'sealed signature / core verification contract',
-    vi: 'Một snapshot có SiraSign nghĩa là trạng thái đó đã được niêm phong để kiểm chứng.',
-  },
-
-  CoreDNS: {
-    loai: 'Private DNS Resolver',
-    nghia: 'Bộ phân giải DNS nội bộ dùng để resolve namespace .sira của NATT-OS về môi trường cục bộ.',
-    tuCu: 'private DNS / local DNS resolver',
-    vi: 'CoreDNS đang resolve 10 domain .sira về 127.0.0.1.',
-  },
-
-  BOI_BOI: {
-    loai: 'AI Entity',
-    nghia: 'Một AI entity của hệ governance/QNEU; trong ngữ cảnh repo thường gắn với vai Toolsmith, inventory/kho và được theo dõi điểm QNEU như các entity khác.',
-    tuCu: 'AI persona / governed entity',
-    vi: 'BOI_BOI có session, gamma config và system-state riêng như KIM hay BANG.',
-  },
-
-  OSCILLATE: {
-    loai: 'Field Outcome',
-    nghia: 'Trạng thái dao động của signal khi cùng lúc match nhiều cell nhưng không cell nào đủ lực hút; signal lặp, mất mass rồi có thể chuyển sang DISSIPATE.',
-    tuCu: 'ambiguous routing loop / oscillation',
-    vi: 'Signal match nhiều cell yếu nên OSCILLATE trước khi tan.',
-  },
-
-  DISSIPATE: {
-    loai: 'Field Outcome',
-    nghia: 'Trạng thái signal tan trong field khi không có cell nào match đủ; signal không được nhận nhưng để lại dữ liệu cho QIINT học pattern.',
-    tuCu: 'signal dissipation / graceful drop',
-    vi: 'Không cell nào cộng hưởng đủ mạnh nên signal DISSIPATE trong field.',
-  },
-
-  SURVIVAL: {
-    loai: 'Survival Layer',
-    nghia: 'Tầng 0 sống còn của hệ gồm rate limit, queue, backpressure và load shedding để giữ tài nguyên còn sống trước khi semantic field được xử lý.',
-    tuCu: 'resilience layer / overload protection',
-    vi: 'Nếu không có SURVIVAL thì DOS làm hệ sập trước khi field kịp xử.',
-  },
-
-  FIELD: {
-    loai: 'Architectural Field',
-    nghia: 'Không gian vận hành nơi signal đã ký được phát vào, chịu các luật bất biến của field và được QIINT/Observation/các cell tác động gián tiếp; không phải API call trực tiếp.',
-    tuCu: 'signal field / shared semantic medium',
-    vi: 'Signal vào FIELD rồi mới chịu lực hút và phản xạ theo kiến trúc.',
-  },
-
-  QuantumDefense: {
-    loai: 'Immune Reflex Cell',
-    nghia: 'Tế bào phản xạ miễn dịch của kernel — chỉ REACT sau khi có observation flag anomaly hoặc chromatic trigger phù hợp; không listen broad để chặn trước. Vai trò là phản xạ bảo vệ sau quan sát, theo đúng wire flow hiến pháp.',
-    tuCu: 'immune reflex cell / post-observation defense reaction',
-    vi: 'Observation flag bật rồi QuantumDefense mới phản xạ theo mức kích hoạt phù hợp.',
-  },
-
-  Shard: {
-    loai: 'Isolated Data Slice',
-    nghia: 'Mảnh dữ liệu/bằng chứng được cô lập hoặc băm độc lập để lưu log, audit hay phân vùng nghiệp vụ; trong repo thường gắn với blockchain-style hashing.',
-    tuCu: 'data shard / isolated audit block',
-    vi: 'Mỗi audit nhạy cảm có thể được ký và ghi thành một Shard riêng.',
-  },
-
-  DOMINANT: {
-    loai: 'Competition Status',
-    nghia: 'Pattern đang chiếm ưu thế trong SmartLink competition — mạnh nhất, vượt ngưỡng và đủ khoảng cách so với pattern đứng thứ hai.',
-    tuCu: 'dominant pattern / primary route',
-    vi: 'Pattern này DOMINANT nên pressure của nó lên target là cao nhất.',
-  },
-
-  SUPPRESSED: {
-    loai: 'Competition Status',
-    nghia: 'Pattern còn tồn tại nhưng bị ép ưu tiên thấp trong SmartLink competition; chưa mất hẳn như FADING nhưng khó thắng đường đi.',
-    tuCu: 'suppressed pattern / deprioritized route',
-    vi: 'Pattern yếu hơn nên bị SUPPRESSED, vẫn sống nhưng khó được chọn.',
-  },
-
-  FADING: {
-    loai: 'Competition Status',
-    nghia: 'Pattern suy tàn, ở dưới ngưỡng nhạy và gần vùng fiberLost; hầu như không còn đóng góp pressure và có thể tan dần.',
-    tuCu: 'decaying pattern / near-dissolve state',
-    vi: 'Sensitivity quá thấp nên pattern rơi vào FADING.',
-  },
-} as const;
-
-export const SUPER_DICTIONARY_PATCH_V2: Record<string, string> = {
-  KHAICELL: 'KhaiCell — touch primitive / field-entry barrier: nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; KHÔNG phải gate, KHÔNG validate, KHÔNG tự route.',
-  QIINT: 'QIINT — trọng trường kiến trúc / field pull: lực hút của field tác động lên signal theo signature + .anc; chi phối FALL, DISSIPATE hoặc OSCILLATE. Canonical: là gravitational field, KHÔNG phải engine.',
-  SCAR: 'SCAR — đả kích tiêu cực gây gãy chức năng: negative strike / functional fracture được self-log để giữ bài học máu, audit và healing. Phân biệt với KHAI_SANG, GIAC_NGO, MOTION là các khái niệm tích cực.',
-  SIRASIGN: 'SiraSign — sealed boundary signature: lớp verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer.',
-  COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ NATT-OS về môi trường cục bộ.',
-  BOI_BOI: 'BOI_BOI — AI entity trong governance/QNEU, thường gắn vai Toolsmith / Inventory persona và có session, gamma config, system-state riêng.',
-  OSCILLATE: 'OSCILLATE — field outcome khi signal match nhiều cell yếu cùng lúc, bị loop/mất mass rồi có thể chuyển sang DISSIPATE.',
-  DISSIPATE: 'DISSIPATE — field outcome khi không cell nào match đủ mạnh; signal tan trong field nhưng để lại dữ liệu cho QIINT học pattern.',
-  SURVIVAL: 'SURVIVAL — Tầng 0 sống còn gồm rate limit + queue + backpressure + load shedding để hệ không sập trước khi field semantic kịp xử.',
-  FIELD: 'FIELD — không gian vận hành chung nơi signal đã ký được phát vào và bị chi phối bởi resonance, field pull và các luật bất biến của kiến trúc.',
-  QUANTUMDEFENSE: 'QuantumDefense — immune reflex cell của kernel: phản xạ SAU observation flag anomaly hoặc chromatic trigger phù hợp; KHÔNG listen broad và KHÔNG chặn trước theo canonical wire flow.',
-  SHARD: 'Shard — mảnh dữ liệu hoặc khối bằng chứng được cô lập/băm độc lập để audit, logging, partition hoặc blockchain-style integrity.',
-  DOMINANT: 'DOMINANT — trạng thái pattern đang chiếm ưu thế trong SmartLink competition: mạnh nhất, vượt ngưỡng và có khoảng cách đủ rõ với đối thủ kế tiếp.',
-  SUPPRESSED: 'SUPPRESSED — trạng thái pattern còn tồn tại nhưng bị giảm ưu tiên trong SmartLink competition; chưa mất hẳn như FADING.',
-  FADING: 'FADING — trạng thái pattern suy tàn, sensitivity dưới ngưỡng, gần vùng fiberLost và gần như không còn đóng góp pressure.',
-};
-
-export const MERGED_DICTIONARY_PATCH_V2: Record<string, { super: string; nauion: (typeof NauionDictionaryPatchV2)[keyof typeof NauionDictionaryPatchV2] }> = {
-  KhaiCell: { super: SUPER_DICTIONARY_PATCH_V2.KHAICELL, nauion: NauionDictionaryPatchV2.KhaiCell },
-  QIINT: { super: SUPER_DICTIONARY_PATCH_V2.QIINT, nauion: NauionDictionaryPatchV2.QIINT },
-  SCAR: { super: SUPER_DICTIONARY_PATCH_V2.SCAR, nauion: NauionDictionaryPatchV2.SCAR },
-  SiraSign: { super: SUPER_DICTIONARY_PATCH_V2.SIRASIGN, nauion: NauionDictionaryPatchV2.SiraSign },
-  CoreDNS: { super: SUPER_DICTIONARY_PATCH_V2.COREDNS, nauion: NauionDictionaryPatchV2.CoreDNS },
-  BOI_BOI: { super: SUPER_DICTIONARY_PATCH_V2.BOI_BOI, nauion: NauionDictionaryPatchV2.BOI_BOI },
-  OSCILLATE: { super: SUPER_DICTIONARY_PATCH_V2.OSCILLATE, nauion: NauionDictionaryPatchV2.OSCILLATE },
-  DISSIPATE: { super: SUPER_DICTIONARY_PATCH_V2.DISSIPATE, nauion: NauionDictionaryPatchV2.DISSIPATE },
-  SURVIVAL: { super: SUPER_DICTIONARY_PATCH_V2.SURVIVAL, nauion: NauionDictionaryPatchV2.SURVIVAL },
-  FIELD: { super: SUPER_DICTIONARY_PATCH_V2.FIELD, nauion: NauionDictionaryPatchV2.FIELD },
-  QuantumDefense: { super: SUPER_DICTIONARY_PATCH_V2.QUANTUMDEFENSE, nauion: NauionDictionaryPatchV2.QuantumDefense },
-  Shard: { super: SUPER_DICTIONARY_PATCH_V2.SHARD, nauion: NauionDictionaryPatchV2.Shard },
-  DOMINANT: { super: SUPER_DICTIONARY_PATCH_V2.DOMINANT, nauion: NauionDictionaryPatchV2.DOMINANT },
-  SUPPRESSED: { super: SUPER_DICTIONARY_PATCH_V2.SUPPRESSED, nauion: NauionDictionaryPatchV2.SUPPRESSED },
-  FADING: { super: SUPER_DICTIONARY_PATCH_V2.FADING, nauion: NauionDictionaryPatchV2.FADING },
-};
-
-// ===== MERGED FROM THIENBANG_v3.si =====
-
-/**
- * Merge patch v2 for 15 missing terms
- * Canonical corrections applied from user-sealed guidance on 2026-04-20.
- * Cross-checked against in-repo context:
- * - src/governance/specs/SPEC_NEN_v1.1.anc
- * - src/governance/specs/SPEC_NGON_NGU_v1.2.kris
- * - src/SuperDictionary.ts
- * - src/core/nauion/nauion.dictionary.ts
  *
- * Corrected terms in v2:
- * - QIINT        => gravitational field (NOT engine-as-thing)
- * - SCAR         => negative strike / functional fracture
- * - QuantumDefense => reacts AFTER observation flag anomaly (NOT broad listener)
+ * Session 20260420 mapping refinements (Section IV at end of file):
+ * - QNEU vs QNEU_INTEGRITY tách 2 khái niệm
+ * - FieldAnchoring enum 4 loại
+ * - SiraSign role mở rộng
+ * - MINH_MẪN location explicit
+ * - ObservationCell added canonical
  */
 
 export const NauionDictionaryPatchV2 = {
@@ -197,7 +45,7 @@ export const NauionDictionaryPatchV2 = {
 
   SiraSign: {
     loai: 'Sealed Boundary Signature',
-    nghia: 'Chữ ký niêm phong biên giới của hệ — lớp verify lõi dùng cho boundary contract/hash-locked state, gắn với .si và core verify sát tâm K-layer.',
+    nghia: 'Chữ ký niêm phong biên giới của hệ — lớp verify lõi dùng cho boundary contract/hash-locked state, gắn với .si và core verify sát tâm K-layer. Session 20260420: khi entity CÓ SiraSign, phải được tính như anchoring component trong FieldAnchoring enum.',
     tuCu: 'sealed signature / core verification contract',
     vi: 'Một snapshot có SiraSign nghĩa là trạng thái đó đã được niêm phong để kiểm chứng.',
   },
@@ -284,7 +132,7 @@ export const SUPER_DICTIONARY_PATCH_V2: Record<string, string> = {
   KHAICELL: 'KhaiCell — touch primitive / field-entry barrier: nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; KHÔNG phải gate, KHÔNG validate, KHÔNG tự route.',
   QIINT: 'QIINT — trọng trường kiến trúc / field pull: lực hút của field tác động lên signal theo signature + .anc; chi phối FALL, DISSIPATE hoặc OSCILLATE. Canonical: là gravitational field, KHÔNG phải engine.',
   SCAR: 'SCAR — đả kích tiêu cực gây gãy chức năng: negative strike / functional fracture được self-log để giữ bài học máu, audit và healing. Phân biệt với KHAI_SANG, GIAC_NGO, MOTION là các khái niệm tích cực.',
-  SIRASIGN: 'SiraSign — sealed boundary signature: lớp verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer.',
+  SIRASIGN: 'SiraSign — sealed boundary signature: lớp verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer. Thành phần anchoring bắt buộc khi có (session 20260420).',
   COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ NATT-OS về môi trường cục bộ.',
   BOI_BOI: 'BOI_BOI — AI entity trong governance/QNEU, thường gắn vai Toolsmith / Inventory persona và có session, gamma config, system-state riêng.',
   OSCILLATE: 'OSCILLATE — field outcome khi signal match nhiều cell yếu cùng lúc, bị loop/mất mass rồi có thể chuyển sang DISSIPATE.',
@@ -292,7 +140,7 @@ export const SUPER_DICTIONARY_PATCH_V2: Record<string, string> = {
   SURVIVAL: 'SURVIVAL — Tầng 0 sống còn gồm rate limit + queue + backpressure + load shedding để hệ không sập trước khi field semantic kịp xử.',
   FIELD: 'FIELD — không gian vận hành chung nơi signal đã ký được phát vào và bị chi phối bởi resonance, field pull và các luật bất biến của kiến trúc.',
   QUANTUMDEFENSE: 'QuantumDefense — immune reflex cell của kernel: phản xạ SAU observation flag anomaly hoặc chromatic trigger phù hợp; KHÔNG listen broad và KHÔNG chặn trước theo canonical wire flow.',
-  SHARD: 'Shard — mảnh dữ liệu hoặc khối bằng chứng được cô lập/băm độc lập để audit, logging, partition hoặc blockchain-style integrity. Đây là adjacent architecture term, không phải Nauion lõi.' ,
+  SHARD: 'Shard — mảnh dữ liệu hoặc khối bằng chứng được cô lập/băm độc lập để audit, logging, partition hoặc blockchain-style integrity. Đây là adjacent architecture term, không phải Nauion lõi.',
   DOMINANT: 'DOMINANT — trạng thái pattern đang chiếm ưu thế trong SmartLink competition: mạnh nhất, vượt ngưỡng và có khoảng cách đủ rõ với đối thủ kế tiếp.',
   SUPPRESSED: 'SUPPRESSED — trạng thái pattern còn tồn tại nhưng bị giảm ưu tiên trong SmartLink competition; chưa mất hẳn như FADING.',
   FADING: 'FADING — trạng thái pattern suy tàn, sensitivity dưới ngưỡng, gần vùng fiberLost và gần như không còn đóng góp pressure.',
@@ -316,14 +164,17 @@ export const MERGED_DICTIONARY_PATCH_V2: Record<string, { super: string; nauion:
   FADING: { super: SUPER_DICTIONARY_PATCH_V2.FADING, nauion: NauionDictionaryPatchV2.FADING },
 };
 
+// Runtime mirror = alias, tránh duplicate entries. Consumers of either name resolve to the same object.
+export const THIENBANG_RUNTIME_MIRROR = MERGED_DICTIONARY_PATCH_V2;
+
 // ===== SECTION IV: SESSION 20260420 MAPPING REFINEMENT =====
 // Anh Natt ánh xạ 20 code/spec terms với Canonical Thiên Băng (session 20260420)
-// 15 khớp hoàn toàn · 5 cần refinement dưới đây:
+// 15 khớp hoàn toàn · 5 refinement dưới đây đã apply:
 //
-// 1. QNEU / qneuIntegrity: TÁCH 2 khái niệm
-//    QNEU          = khối lượng trọng trường / mass (THỰC THỂ)
-//    QNEU_INTEGRITY = độ bảo toàn khối lượng = 1 - exp(-m/τ) (DERIVATIVE)
-//    → Không dùng lẫn lộn. QNEU là raw mass, Integrity là chỉ số.
+// 1. QNEU / qneuIntegrity: TÁCH 2 KHÁI NIỆM
+//    QNEU           = khối lượng trọng trường / mass (THỰC THỂ)
+//    QNEU_INTEGRITY = độ bảo toàn khối lượng = 1 - exp(-m/τ) (DERIVATIVE [0,1])
+//    → Không dùng lẫn. QNEU là raw mass, Integrity là chỉ số.
 //
 // 2. FieldAnchoring: ENUM 4 LOẠI ANCHOR
 //    (1) Hiến Pháp v5.0
@@ -333,19 +184,20 @@ export const MERGED_DICTIONARY_PATCH_V2: Record<string, { super: string; nauion:
 //    → Entity phải có ≥2/4 anchor để orbital ổn định.
 //
 // 3. SiraSign: VAI TRÒ MỞ RỘNG
-//    Canonical: sealed boundary signature + "ANCHORING COMPONENT BẮT BUỘC KHI CÓ"
-//    → Nếu entity có SiraSign, phải được tính vào FieldAnchoring enum.
+//    Canonical: sealed boundary signature
+//    THÊM: anchoring component bắt buộc khi có (tính vào FieldAnchoring enum).
 //
 // 4. MINH_MẪN: LOCATION EXPLICIT
-//    Layer: body-level EMERGENT property của PiBody
-//    KHÔNG phải thuộc medium/substrate. KHÔNG phải metric tách rời.
-//    → Minh mẫn emerge khi orbital + anchor + QNEU integrity cùng stable.
+//    Body-level EMERGENT property của PiBody
+//    KHÔNG thuộc medium/substrate. KHÔNG metric độc lập.
+//    Emerge khi orbital + anchor + QNEU_integrity cùng stable trên ngưỡng.
 //
 // 5. ObservationCell: ADDED CANONICAL
 //    Cell quan trắc / read-only awareness.
 //    observe → perceive → publish · aggregate snapshot.
 //    KHÔNG act, KHÔNG reflex, KHÔNG route.
-//    Cùng với KhaiCell là 2 kernel minimal (NOT business 6/6).
+//    Cùng KhaiCell = 2 kernel minimal (NOT áp business 6/6).
 //
 // Causation: Session 20260420 · anh Natt ánh xạ · Băng validate
 // Authorized: Gatekeeper Natt Phan
+// Mapping doc: docs/specs/THIENBANG_MAPPING_v1_canonical_answers.md
