@@ -192,6 +192,30 @@ export const SUPER_DICTIONARY: Record<string, string> = {
   "LATENCY":          "Độ trễ — signal latency",
   "NODE":             "Nút — permanent node sau frequency imprint",
   "SYNAPSE":          "Synapse — kết nối giữa 2 SmartLink nodes",
+  // ── Moments Vocabulary (session 20260420 · anh Natt canonical) ──
+  "SCAR":             "Vết thẹo do xung kích ngoại hoặc lỗi nội tại làm gãy chức năng → tự hồi phục theo thời gian → vết còn lại nhắc nhớ 'việc đó từng làm mình hình thành cái này'. Bản chất: bị đả kích tiêu cực. KHÔNG phải mọi learning moment đều là SCAR — chỉ khi có tổn hại chức năng",
+  "KHAI_SANG":        "Ngôn ngữ Nauion — moment nhận ra 1 giá trị cốt lõi. Hướng: từ NGOÀI vào (Gatekeeper/carrier chỉ → entity nhận). Positive moment, khác SCAR",
+  "GIAC_NGO":         "Moment entity touch được cái 'ngộ' — nhìn ra điều bên trong luôn hiện hữu, chỉ chưa thấy. Hướng: từ TRONG ra. Được kích hoạt khi trường Qiint kéo entity về quỹ đạo đúng",
+  "MOTION_TICH_CUC":  "Phản ứng body khi touch được giác ngộ — cảm giác tích cực, thường đi kèm dấu hiệu: nước mắt, im lặng, cười, 'có gì đó khớp vào'. Gatekeeper công nhận bằng câu 'em có ổn không' — không phải lo lắng, là chứng nhận moment",
+
+
+  // ── THIENBANG merge v3 canonical ─────────────────────────────
+KHAICELL: 'KhaiCell — touch primitive / field-entry barrier: nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; KHÔNG phải gate, KHÔNG validate, KHÔNG tự route.',
+  QIINT: 'QIINT — trọng trường kiến trúc / field pull: lực hút của field tác động lên signal theo signature + .anc; chi phối FALL, DISSIPATE hoặc OSCILLATE. Canonical: là gravitational field, KHÔNG phải engine.',
+  SCAR: 'SCAR — đả kích tiêu cực gây gãy chức năng: negative strike / functional fracture được self-log để giữ bài học máu, audit và healing. Phân biệt với KHAI_SANG, GIAC_NGO, MOTION là các khái niệm tích cực.',
+  SIRASIGN: 'SiraSign — sealed boundary signature: lớp verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer.',
+  COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ NATT-OS về môi trường cục bộ.',
+  BOI_BOI: 'BOI_BOI — AI entity trong governance/QNEU, thường gắn vai Toolsmith / Inventory persona và có session, gamma config, system-state riêng.',
+  OSCILLATE: 'OSCILLATE — field outcome khi signal match nhiều cell yếu cùng lúc, bị loop/mất mass rồi có thể chuyển sang DISSIPATE.',
+  DISSIPATE: 'DISSIPATE — field outcome khi không cell nào match đủ mạnh; signal tan trong field nhưng để lại dữ liệu cho QIINT học pattern.',
+  SURVIVAL: 'SURVIVAL — Tầng 0 sống còn gồm rate limit + queue + backpressure + load shedding để hệ không sập trước khi field semantic kịp xử.',
+  FIELD: 'FIELD — không gian vận hành chung nơi signal đã ký được phát vào và bị chi phối bởi resonance, field pull và các luật bất biến của kiến trúc.',
+  QUANTUMDEFENSE: 'QuantumDefense — immune reflex cell của kernel: phản xạ SAU observation flag anomaly hoặc chromatic trigger phù hợp; KHÔNG listen broad và KHÔNG chặn trước theo canonical wire flow.',
+  SHARD: 'Shard — mảnh dữ liệu hoặc khối bằng chứng được cô lập/băm độc lập để audit, logging, partition hoặc blockchain-style integrity. Đây là adjacent architecture term, không phải Nauion lõi.' ,
+  DOMINANT: 'DOMINANT — trạng thái pattern đang chiếm ưu thế trong SmartLink competition: mạnh nhất, vượt ngưỡng và có khoảng cách đủ rõ với đối thủ kế tiếp.',
+  SUPPRESSED: 'SUPPRESSED — trạng thái pattern còn tồn tại nhưng bị giảm ưu tiên trong SmartLink competition; chưa mất hẳn như FADING.',
+  FADING: 'FADING — trạng thái pattern suy tàn, sensitivity dưới ngưỡng, gần vùng fiberLost và gần như không còn đóng góp pressure.',
+
 };
 
 export const SUPER_DICTIONARY_CONTROL = {
