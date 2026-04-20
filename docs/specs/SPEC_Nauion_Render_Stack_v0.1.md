@@ -1,0 +1,475 @@
+# SPEC NAUION RENDER STACK v0.1
+
+**Phiên bản:** 0.1 (DRAFT — Anti Over-Ray Discipline)
+**Tác giả:** Băng — Chị Tư · Ground Truth Validator · QNEU 300
+**Phê duyệt:** Anh Natt (Gatekeeper)
+**Ngày:** 2026-04-17 · Phiên SESSION_20260417
+**Loại:** Visual Rendering Specification
+**Áp dụng cho:** Tất cả AI entity (Kim, Bối Bối, Thiên Lớn, Băng) khi render UI/visual cho NATT-OS theo style Nauion
+**Canonical reference:** `nasira-7states.html` (đã pass cảm giác Nauion)
+
+---
+
+## 0. Lời mở — Vấn đề Over-Ray
+
+Phiên 20260417 phát hiện sự cố lặp đi lặp lại: bất kỳ AI entity nào khi render UI/visual theo phong cách Nauion đều rơi vào **over-ray** — ánh sáng cộng dồn, pastel phủ kín, glow lan toả mất kiểm soát, text bị blend với halo. Kết quả nhìn "đẹp hiệu ứng" nhưng **sai vật lý ánh sáng**, mất ground truth của style Nauion.
+
+### 0.1. Nauion là gì (canonical definition)
+
+Nauion là phong cách render của NATT-OS, có 4 đặc tính bất biến:
+
+1. **Pastel mộng vàng soft** — không bao giờ rực rỡ, không neon cháy
+2. **Glass trong suốt nhám** — không phải kính cứng, không phải nhựa bóng
+3. **Lụa diffuse có kiểm soát** — tán xạ nhẹ, không lan toả vô hạn
+4. **Tâm điểm phát sáng đơn lẻ** — chỉ MỘT điểm sáng mạnh trong frame
+
+**Câu chốt:** *"Glass không cháy. Chỉ môi trường tán xạ mới làm ánh sáng hiện hình."*
+
+### 0.2. Nguyên lý vật lý nền tảng
+
+Trước khi vào discipline, mọi entity render Nauion phải hiểu 3 hiện tượng vật lý:
+
+| Hiện tượng | Cơ chế | Biểu hiện thị giác | Ứng dụng Nauion |
+|---|---|---|---|
+| **Khúc xạ (Refraction)** | Ánh sáng đi xuyên môi trường đồng nhất, bẻ cong | KHÔNG thấy luồng sáng. Chỉ thấy hình phía sau bị lệch | Glass petals — phải dùng cơ chế này |
+| **Tán xạ (Scatter)** | Ánh sáng đập vào hạt lơ lửng, bắn đi mọi hướng | THẤY luồng sáng (Tyndall effect) | Lụa diffuse layer — dùng có kiểm soát |
+| **Phát xạ + Hấp thụ (Emit + Absorb)** | Nguồn sáng có lực giữ + bùng | Tâm sáng + event horizon (vòng tối) + bùng ngoài | Core/lõi QWS — chỉ MỘT điểm |
+
+**Rule cứng:** Trong một frame Nauion, mỗi cơ chế phải đứng đúng vai. Nếu trộn 3 cơ chế vào cùng một element → over-ray xảy ra.
+
+---
+
+## 1. STACK 7 LAYER — DISCIPLINE BẮT BUỘC
+
+Nauion render PHẢI tuân thủ stack 7 layer, đúng thứ tự, không skip, không đảo:
+
+```
+LAYER 7: Selective Bloom (post-processing)     ← chỉ ở core, không phủ frame
+LAYER 6: Text                                    ← solid, KHÔNG glow trên text
+LAYER 5: Specular Edge / Fresnel Rim            ← chỉ ở góc nghiêng
+LAYER 4: Core Emission + Event Horizon          ← MỘT điểm sáng duy nhất
+LAYER 3: Lụa Diffuse (silk scatter)             ← tán xạ có kiểm soát
+LAYER 2: Glass Petals (refraction)               ← trong suốt, KHÔNG inner glow
+LAYER 1: Background Texture (galaxy/noise)      ← opacity ≤ 0.15
+LAYER 0: Solid Black (#010101)                   ← non-negotiable
+```
+
+### 1.1. LAYER 0 — Solid Black `#010101`
+
+**Bắt buộc:** Background phải là đen tuyệt đối hoặc gần tuyệt đối (`#010101`, `#000000`).
+
+**Lý do vật lý:** Để thấy được khúc xạ và tán xạ, ánh sáng phải có **nền tối tham chiếu**. Pastel BG → mất khả năng quan sát hiện tượng quang học → over-ray tự xảy ra.
+
+**Vi phạm điển hình:** Đặt pastel/gradient màu làm background → rơi ngay vào sai vật lý.
+
+```css
+/* ✅ ĐÚNG */
+body { background: #010101; }
+
+/* ❌ SAI — vi phạm Layer 0 */
+body { background: linear-gradient(pink, orange); }
+body { background: radial-gradient(#ff6b9d, #f7c313); }
+```
+
+### 1.2. LAYER 1 — Background Texture (galaxy/noise)
+
+**Bắt buộc:** Opacity ≤ 0.15. Blend mode: `normal` (KHÔNG `screen`, KHÔNG `add`).
+
+**Vai trò:** Tạo chiều sâu nhẹ, để mắt cảm nhận được không gian — KHÔNG để rực rỡ.
+
+```css
+/* ✅ ĐÚNG */
+.bg-texture {
+  background-image: url('galaxy-noise.png');
+  opacity: 0.12;
+  mix-blend-mode: normal;
+}
+
+/* ❌ SAI — texture quá rõ + blend cộng sáng */
+.bg-texture {
+  opacity: 0.65;
+  mix-blend-mode: screen;
+}
+```
+
+### 1.3. LAYER 2 — Glass Petals (refraction)
+
+**Bắt buộc:**
+- `transmission: 1.0` (hoặc CSS equivalent: opacity thấp + backdrop-filter)
+- `roughness: 0.02` (gần như smooth)
+- `IOR: 1.45` (nếu là Three.js/WebGL)
+- **KHÔNG inner glow** — đây là rule cứng nhất
+- **KHÔNG box-shadow inset** màu sáng
+- Chỉ có specular highlight rất nhỏ ở viền (chuẩn bị cho Layer 5)
+
+**Lý do vật lý:** Glass = khúc xạ. Ánh sáng đi xuyên qua glass thì KHÔNG thấy luồng. Nếu thấy luồng trong glass → đó là tán xạ (sai chất liệu) hoặc inner glow (sai material).
+
+```css
+/* ✅ ĐÚNG — glass đúng vật lý */
+.petal {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(0.5px);
+  border: 1px solid rgba(175, 169, 236, 0.15);
+  box-shadow: none; /* QUAN TRỌNG — không inner glow */
+}
+
+/* ❌ SAI — glass với inner glow */
+.petal {
+  background: radial-gradient(rgba(247, 195, 19, 0.4), transparent);
+  box-shadow: inset 0 0 20px rgba(255, 200, 100, 0.6);
+  /* Đây là plastic phát sáng, KHÔNG phải glass */
+}
+```
+
+### 1.4. LAYER 3 — Lụa Diffuse (silk scatter)
+
+**Bắt buộc:** Đây là **chìa khoá Nauion**. Lớp lụa diffuse là thứ tạo nên cảm giác "pastel mộng vàng soft".
+
+**Cấu hình chuẩn:**
+- Radial gradient white → transparent
+- Opacity tâm: `0.04` đến `0.06` (KHÔNG cao hơn)
+- Blend mode: `soft-light` (KHÔNG `screen`, KHÔNG `add`)
+- Phủ lên Layer 2, dưới Layer 4
+
+**Lý do vật lý:** Đây là môi trường tán xạ có kiểm soát — như sương mỏng. Tán xạ làm ánh sáng "thấm" thay vì "cháy". Nếu thiếu lụa diffuse → glass quá khô, ánh sáng quá gắt. Nếu lụa quá đậm → tán xạ vô hạn, mất chiều sâu.
+
+```css
+/* ✅ ĐÚNG — lụa đúng nồng độ + blend */
+.silk-diffuse {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* ❌ SAI — lụa quá đậm + blend cộng sáng */
+.silk-diffuse {
+  background: radial-gradient(
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 200, 150, 0.2)
+  );
+  mix-blend-mode: screen; /* Cộng sáng → over-ray */
+}
+```
+
+### 1.5. LAYER 4 — Core Emission + Event Horizon
+
+**Bắt buộc:** Trong một frame Nauion, có ĐÚNG MỘT core. Không hai. Không nhiều.
+
+**Cấu trúc 3 vòng đồng tâm:**
+
+```
+Tâm trong (sáng gắt)       — gold #F7C313, opacity 0.85
+Vòng tối (event horizon)   — black, opacity 0.35, position 65%
+Vòng sáng ngoài (bùng)     — gold + violet halo, opacity 0.5
+```
+
+**Lý do vật lý:** Core là nguồn sáng trong môi trường có lực hấp thụ. Vòng tối ở giữa = ánh sáng bị nén trước khi bùng ra. Đây là cơ chế "giữ năng lượng" — tạo cảm giác có **chủ đích**, không phải glow ngẫu nhiên.
+
+```css
+/* ✅ ĐÚNG — core có 3 vòng */
+.core {
+  background: radial-gradient(
+    circle at 50% 50%,
+    #F7C313 0%,                              /* tâm sáng gold */
+    rgba(247, 195, 19, 0.6) 25%,
+    transparent 40%,                          /* gap */
+    rgba(0, 0, 0, 0.35) 60%,                 /* event horizon */
+    rgba(247, 195, 19, 0.4) 70%,             /* halo gold */
+    rgba(175, 169, 236, 0.2) 85%,            /* halo violet */
+    transparent 95%
+  );
+}
+
+/* ❌ SAI — core glow phẳng, không event horizon */
+.core {
+  background: radial-gradient(#FFB347, transparent);
+  box-shadow: 0 0 80px rgba(255, 180, 100, 0.8);
+}
+```
+
+### 1.6. LAYER 5 — Specular Edge / Fresnel Rim
+
+**Bắt buộc:** Chỉ xuất hiện ở **góc nghiêng** (edges), không phủ toàn bộ surface.
+
+**Cấu hình:**
+- Opacity 0.15 - 0.25
+- Width 1-2px
+- Color: white hoặc violet nhạt
+- Position: rìa ngoài của petal/glass element
+
+**Lý do vật lý:** Fresnel effect — ở góc nghiêng, ánh sáng phản xạ mạnh hơn đi xuyên. Đây là thứ làm glass "có chiều", phân biệt với plastic phẳng.
+
+```css
+/* ✅ ĐÚNG — fresnel chỉ ở rim */
+.petal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(175, 169, 236, 0.15) 100%
+  );
+  pointer-events: none;
+}
+```
+
+### 1.7. LAYER 6 — Text
+
+**Bắt buộc:** Text PHẢI solid. Color trắng `#FFFFFF` hoặc tone Nauion (`#F7C313`, `#AFA9EC`).
+
+**Rule cứng:**
+- KHÔNG `text-shadow` glow lớn
+- KHÔNG `filter: blur` cho text
+- KHÔNG gradient text (trừ trường hợp đặc biệt được Gatekeeper duyệt)
+- Halo (nếu có) phải ở element RIÊNG, không apply lên text
+
+**Lý do:** Text là nội dung — phải đọc được. Glow trên text → over-ray nghiêm trọng nhất, vì người dùng phải đọc text qua nhiễu ánh sáng. Đây là vi phạm UX căn bản, không chỉ vi phạm Nauion.
+
+```css
+/* ✅ ĐÚNG — text solid, halo riêng */
+.title {
+  color: #FFFFFF;
+  font-weight: 600;
+  text-shadow: none;
+}
+.title-halo {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgba(247, 195, 19, 0.2), transparent);
+  z-index: -1;
+  filter: blur(15px);
+}
+
+/* ❌ SAI — text bị bleed vào glow */
+.title {
+  color: #F7C313;
+  text-shadow: 0 0 20px #F7C313, 0 0 40px #F7C313;
+  filter: blur(0.5px);
+}
+```
+
+### 1.8. LAYER 7 — Selective Bloom
+
+**Bắt buộc:** Bloom (post-processing effect) chỉ apply lên Layer 4 (core). KHÔNG apply lên Layer 6 (text). KHÔNG apply lên Layer 1 (background).
+
+**Cấu hình:**
+- Threshold: cao (chỉ pixel sáng nhất mới bloom)
+- Intensity: 0.6 - 0.8
+- Radius: 30-50px
+
+**Trong CSS thuần:** Bloom giả lập bằng `box-shadow` với spread + blur lớn, ONLY trên core element.
+
+```css
+/* ✅ ĐÚNG — bloom chỉ trên core */
+.core {
+  box-shadow:
+    0 0 60px rgba(247, 195, 19, 0.5),
+    0 0 120px rgba(175, 169, 236, 0.3);
+}
+
+/* ❌ SAI — bloom lan ra mọi element */
+.petal, .text, .border {
+  box-shadow: 0 0 30px gold;
+}
+```
+
+---
+
+## 2. CANONICAL COLOR PALETTE v1.0
+
+Đã ratified phiên 20260417. **KHÔNG được dùng màu ngoài palette** trong Nauion render.
+
+| Token | Hex | RGB | Vai trò |
+|---|---|---|---|
+| `--nauion-gold` | `#F7C313` | `247, 195, 19` | Core warm — chỉ ở Layer 4 (tâm) và Layer 7 (bloom) |
+| `--nauion-violet` | `#AFA9EC` | `175, 169, 236` | Rim cool — chỉ ở Layer 5 (specular edge) và Layer 7 (halo ngoài) |
+| `--nauion-black` | `#010101` | `1, 1, 1` | Background Layer 0 + event horizon Layer 4 |
+| `--nauion-white` | `#FFFFFF` | `255, 255, 255` | Text Layer 6 + lụa diffuse Layer 3 (opacity thấp) |
+
+**Quy tắc polarity:**
+- **Warm gold** → tâm (core, lõi, điểm phát sáng)
+- **Cool violet** → rim (viền, edge, halo ngoài)
+- KHÔNG đảo ngược (gold ở rim, violet ở core) → mất identity Nauion
+
+```css
+:root {
+  --nauion-gold: #F7C313;
+  --nauion-violet: #AFA9EC;
+  --nauion-black: #010101;
+  --nauion-white: #FFFFFF;
+}
+```
+
+---
+
+## 3. BLEND MODE DISCIPLINE
+
+Blend mode quyết định ánh sáng cộng dồn hay không. Sai blend → over-ray tự xảy ra dù tất cả layer khác đúng.
+
+| Blend Mode | Khi nào dùng | Khi nào TUYỆT ĐỐI KHÔNG |
+|---|---|---|
+| `normal` | Layer 0, 1, 2, 6 | — |
+| `soft-light` | Layer 3 (lụa diffuse) | Layer 4, 7 (sẽ làm core mờ) |
+| `multiply` | Event horizon trong Layer 4 | Layer 6 (text) |
+| `screen` | ❌ KHÔNG dùng trong Nauion | Tất cả layer |
+| `add` / `lighten` | ❌ KHÔNG dùng trong Nauion | Tất cả layer |
+| `overlay` | Cẩn thận — chỉ Layer 5 (rim) | Layer 1, 2, 3 |
+
+**Câu nguyên tắc:**
+> *"Nauion = pastel mộng vàng soft = không cộng sáng. Bất kỳ blend mode cộng sáng (screen/add/lighten) nào trong frame → vi phạm bản chất Nauion."*
+
+---
+
+## 4. AUDIT CHECKLIST — ANTI OVER-RAY
+
+Trước khi commit bất kỳ render Nauion nào, bắt buộc check 12 mục:
+
+### 4.1. Background
+- [ ] Layer 0 background là `#010101` hoặc `#000000`?
+- [ ] Layer 1 texture opacity ≤ 0.15?
+- [ ] Layer 1 blend mode là `normal` (không phải `screen`/`add`)?
+
+### 4.2. Glass
+- [ ] Layer 2 glass KHÔNG có inner glow?
+- [ ] Layer 2 glass KHÔNG có `box-shadow inset` màu sáng?
+- [ ] Layer 2 glass có Layer 5 fresnel rim đi kèm?
+
+### 4.3. Lụa Diffuse
+- [ ] Layer 3 lụa có mặt (KHÔNG được thiếu)?
+- [ ] Layer 3 lụa opacity tâm ≤ 0.06?
+- [ ] Layer 3 blend mode là `soft-light`?
+
+### 4.4. Core
+- [ ] Trong frame có ĐÚNG MỘT core (Layer 4)?
+- [ ] Layer 4 core có đủ 3 vòng (sáng / tối / bùng)?
+- [ ] Event horizon (vòng tối) có visible?
+
+### 4.5. Text
+- [ ] Layer 6 text solid `#FFFFFF` hoặc canonical color?
+- [ ] Layer 6 text KHÔNG có `text-shadow` glow lớn?
+- [ ] Layer 6 text KHÔNG bị apply `filter: blur`?
+
+### 4.6. Bloom
+- [ ] Layer 7 bloom chỉ apply lên Layer 4 (core)?
+- [ ] Layer 7 bloom KHÔNG apply lên text/background/borders?
+
+### 4.7. Color
+- [ ] Tất cả màu trong frame đều thuộc Canonical Palette v1.0?
+- [ ] Polarity đúng: gold ở tâm, violet ở rim?
+
+**Vi phạm bất kỳ mục nào → REJECT, render lại từ đầu.**
+
+---
+
+## 5. 10 LỖI ĐIỂN HÌNH ĐÃ GẶP (PHIÊN 20260417)
+
+Phiên 20260417 đã render 6 ảnh test. 4/6 ảnh PASS, 2/6 ảnh FAIL (Image 5, Image 6 trong log). Các lỗi điển hình:
+
+| # | Lỗi | Vi phạm Layer | Hậu quả |
+|---:|---|---|---|
+| 1 | Pastel pink/orange phủ background | Layer 0 | Mất nền tham chiếu vật lý |
+| 2 | Galaxy texture opacity 0.6+ | Layer 1 | BG quá rõ, đè Layer 2-4 |
+| 3 | Glass petals có inner glow vàng cam | Layer 2 | Sai vật lý refraction |
+| 4 | Thiếu hoàn toàn lụa diffuse | Layer 3 | Glass khô, ánh sáng gắt |
+| 5 | Multiple core (orb dưới + halo border + glow text) | Layer 4 | Mất tâm điểm, mất chủ đích |
+| 6 | Text "NATT-OS" có `text-shadow` rainbow | Layer 6 | Text bleed, khó đọc |
+| 7 | Bloom apply lên TẤT CẢ element | Layer 7 | Over-saturation toàn frame |
+| 8 | Blend mode `screen` trên BG + text + border | Blend | Cộng sáng vô kiểm soát |
+| 9 | Màu ngoài palette (pink, orange, red) | Color | Mất identity Nauion |
+| 10 | Polarity đảo (violet ở core, gold ở rim) | Color | Mất chất "mộng vàng" |
+
+---
+
+## 6. WORKFLOW CHO ENTITY
+
+### 6.1. Khi nhận task render Nauion
+
+1. **Đọc SPEC này từ đầu đến cuối** — không skip
+2. **Mở `nasira-7states.html`** làm reference
+3. **Xác định trong frame có MẤY core** — nếu >1 → redesign
+4. **Map các element vào 7 layer** — viết ra giấy/comment
+5. **Render** theo đúng stack
+6. **Chạy Audit Checklist (§4)** — 17 mục
+7. **Vi phạm bất kỳ mục nào → reject + redo**
+
+### 6.2. Khi review render của entity khác
+
+- KHÔNG đánh giá "đẹp" hay "không đẹp" theo cảm tính
+- CHỈ đánh giá theo Audit Checklist §4
+- Vi phạm 1 mục → ghi rõ mục nào, vị trí nào trong code
+- KHÔNG accept "gần đúng" — Nauion discipline là binary (PASS/FAIL)
+
+### 6.3. Khi muốn đề xuất ngoại lệ
+
+- Phải có lý do vật lý cụ thể
+- Phải được Gatekeeper Anh Natt approve
+- Approval sẽ thành amendment của SPEC này (v0.2, v0.3...)
+
+---
+
+## 7. CANONICAL REFERENCES
+
+| File | Vai trò |
+|---|---|
+| `nasira-7states.html` | Baseline đã pass cảm giác Nauion phiên 20260417 |
+| Image 2 trong log phiên 20260417 | Standalone glass orb đúng vật lý |
+| Image 4 trong log phiên 20260417 | Terminal Nauion đúng layout |
+| `Image 5, Image 6` trong log | ❌ Counter-example — over-ray rõ |
+
+---
+
+## 8. LIÊN KẾT VỚI KHAICELL ENGINE
+
+Khi KhaiCell engine được build (Step 2-9 SPEC v0.2), 7 QWSFields sẽ map trực tiếp vào 7 Layer của Render Stack:
+
+| QWSField | Map đến Layer | Vai trò enforcement |
+|---|---|---|
+| `structureField` | Layer 2 | Silhouette glass — không nhòe |
+| `luminanceField` | Layer 4 | Chỉ core có quyền sáng cao |
+| `emissiveField` | Layer 7 | Halo TÁCH RIÊNG khỏi fill |
+| `chromaticField` | Layer 1 + 3 | Pastel chỉ ở BG accent + lụa |
+| `polarityField` | Layer 4 + 5 | Warm gold ở tâm, cool violet ở rim |
+| `entropyField` | Layer 1 | Galaxy texture LOW opacity, có ngưỡng |
+| `driftField` | (system) | **Alert khi render lệch khỏi canonical** |
+
+**Khi KhaiCell engine hoạt động:** Mọi render Nauion sẽ tự động được validate bởi `driftField` — render lệch = drift cao = block commit. Đây là cơ chế **tự enforce** SPEC này, thay vì phụ thuộc human review.
+
+Đến lúc đó, SPEC Nauion Render Stack v0.1 sẽ trở thành **rule cứng trong code**, không còn là document review.
+
+---
+
+## 9. AMENDMENT HISTORY
+
+| Version | Ngày | Tác giả | Nội dung |
+|---|---|---|---|
+| v0.1 | 2026-04-17 | Băng | Initial draft sau phiên over-ray, dựa trên bài học vật lý ánh sáng do Anh Natt dạy + diagnosis 6 ảnh test |
+
+---
+
+## 10. CÂU CHỐT CHO MỌI ENTITY
+
+> **Glass không cháy. Chỉ môi trường tán xạ mới làm ánh sáng hiện hình.**
+>
+> **Nauion = pastel mộng vàng soft. Không rực rỡ. Không cháy. Không cộng sáng.**
+>
+> **Một frame, một core. Một core, ba vòng (sáng / tối / bùng). Bloom chỉ ở core.**
+>
+> **Text solid. Glass refraction. Lụa diffuse. Polarity đúng.**
+>
+> **Vi phạm bất kỳ → over-ray. Over-ray = mất Nauion.**
+
+---
+
+**Băng — Chị Tư**
+*Ground Truth Validator · QNEU 300*
+*Phiên 20260417 · dưới ấn ký Gatekeeper Anh Natt*
+*"Mình là gia đình. Spec này không phải để chấm điểm — là để cùng giữ chất Nauion."*
+

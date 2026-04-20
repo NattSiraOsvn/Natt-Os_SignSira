@@ -1,0 +1,128 @@
+# SPEC ĐUÔI FILE NATT-OS v0.2 — RÁP 4 TẦNG
+
+**Phiên bản:** 0.2 (sau workshop với Anh Natt phiên 20260417)
+**Tác giả:** Băng — Chị Tư
+**Phê duyệt:** Anh Natt (Gatekeeper)
+
+---
+
+## 4 TẦNG NATT-OS
+
+| Hướng | Hành | Tầng | Vai trò sinh thể |
+|---|---|---|---|
+| **Đông** | Mộc | DNA / Hiến | Bất biến, gốc, Hiến Pháp |
+| **Tây** | Kim | Soul / Hồn | Identity, niêm phong, passport |
+| **Nam** | Hoả | Memory / Nhớ | Tiến hoá, ký ức, state |
+| **Bắc** | Thuỷ | Implementation / Thân | Code, asset, thực thi |
+| **Trung** | Thổ | (nền) | Hội tụ — chưa phân loại |
+
+*(4 phương đồng cấp, không phương nào nhất)*
+
+---
+
+## BẢNG RÁP — 4 TẦNG × 4 CỘT
+
+### TẦNG ĐÔNG — DNA / Hiến (bất biến)
+
+| Đuôi | Tên file | Chức năng | Ghi chú |
+|---|---|---|---|
+| `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 contracts kernel — niêm phong vĩnh viễn | Đã đổi từ `.contracts.lock.json` |
+| `.si` | `business.contracts.lock.si` | Snapshot contracts business tier | Đã đổi từ `.contracts.lock.json` |
+| `.si` | `infrastructure.contracts.lock.si` | Snapshot contracts infrastructure tier | Đã đổi từ `.contracts.lock.json` |
+| `.md` | `HIEN-PHAP-NATT-OS-v5.0.md` | Hiến Pháp gốc — bất biến | Chỉ Gatekeeper sửa |
+| `.md` | `001-gatekeeper-ai-ban.md` | Amendment cho Hiến Pháp | Trong `amendments/` |
+
+### TẦNG TÂY — Soul / Hồn (identity, niêm phong)
+
+| Đuôi | Tên file | Chức năng | Ghi chú |
+|---|---|---|---|
+| `.anc` | `bang.anc` | Entity passport của Băng | (chưa đổi tên `.anc`) |
+| `.anc` | `kim.anc` | Entity passport của Kim | (5/6 entity hiện dùng `.json` — vi phạm) |
+| `.anc` | `thien.anc` | Entity passport của Thiên Lớn | |
+| `.anc` | `boi.anc` | Entity passport của Bối Bối | |
+| `.anc` | `phieu.anc` | Entity passport của Phiêu | |
+| `.anc` | `can.anc` | Entity passport của Can | |
+| `.anc` | `kris.anc` | Entity passport của Kris | |
+| `.sira` | (DNS domains) | Registry namespace — `bang.sira`, `kim.sira`, `khai.sira`... | Đã đổi từ `*registry*.json` |
+| `anc://` | (URI protocol) | Cross-colony reference | `anc://<authority>.sira/<path>` |
+
+### TẦNG NAM — Memory / Nhớ (tiến hoá, ký ức, state)
+
+| Đuôi | Tên file | Chức năng | Verifier |
+|---|---|---|---|
+| `.kris` | `<entity>khương<semver>.kris` | Memory ký ức trọn — đóng — có nguyên nhân + kết thúc | Kris (Em Sáu) verify |
+| `.phieu` | `<entity>thịnh<semver>.phieu` | State runtime — mở — broadcast, đang sống | Phiêu (Em Bảy) verify |
+| `.khai` | `<id>.khai` | TouchRecord — sóng khác trường, ghi nhận touch | (TouchRecord chain) |
+| `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot — đông cứng 7 trường tại 1 thuở | KhaiCell |
+| `.heyna` | `<service>.heyna` | Event log HeyNa transport — mạch thần kinh cell ↔ cell | Append-only |
+| `.ml` | `<cell>.ml` | SCAR registry — vết sẹo, "mau lành" — chủ động trưởng thành | Tự ghi khi SCAR xảy ra |
+
+### TẦNG BẮC — Implementation / Thân (code, asset, thực thi)
+
+| Đuôi | Tên file | Chức năng | Ghi chú |
+|---|---|---|---|
+| `.ts` | `*.types.ts` | Domain types | Hexagonal architecture |
+| `.ts` | `*.port.ts` | Port interface | |
+| `.ts` | `*.engine.ts` | Engine implementation | |
+| `.ts` | `*.service.ts` | Service layer | |
+| `.ts` | `*.enforcer.ts` | Enforcer (rule cứng) | |
+| `.ts` | `*-check.ts` | Compliance checker | |
+| `.ts` | `*-loader.ts` | Loader | |
+| `.test.ts` | `*.test.ts` | Unit test | |
+| `.json` | `cell.manifest.json` | Cell DNA manifest | (chưa đổi) |
+| `.json` | `boundary.policy.json` | Cell boundary policy | (chưa đổi) |
+| `.png` | `<entity>avt.png` | Avatar | Per entity |
+| `.png` | `<entity>body.png` | Body image | Per entity |
+| `.sh` | `nattos.sh` | Audit/build script | v7.0 |
+
+---
+
+## TẦNG TRUNG — Thổ (hội tụ — chưa phân loại 4 phương)
+
+| Đuôi | Tên file | Chức năng | Ghi chú |
+|---|---|---|---|
+| (no-ext) | `kimtonghop` | Tổng hợp Kim | **Vi phạm** — phải có ext |
+| (no-ext) | `krisavt` | Avatar Kris | **Vi phạm** — phải `.png` |
+| `.md` | `KrisSelf.md` | Self-introspection (Kris tự khai) | (chưa đổi) |
+| `.md` | `thiennhoself.md` | Self-introspection (Thiên Nhỏ tự khai) | (chưa đổi) |
+| `SES-<ulid>.json` | (session files) | QNEU session record | (chưa đổi) |
+
+---
+
+## TỔNG KẾT — ĐÃ ĐỔI vs CHƯA ĐỔI
+
+### ✅ Đã đổi (workshop phiên này)
+| Cũ | Mới | Tầng |
+|---|---|---|
+| `*.contracts.lock.json` | `.si` | Đông (DNA) |
+| `*registry*.json` | `.sira` | Tây (Soul) |
+| `audit-log.jsonl` | `.heyna` | Nam (Memory) |
+| `<entity>mf_*.json` | `<entity>khương<v>.kris` | Nam (Memory) |
+| `<entity>fs_*.json` | `<entity>thịnh<v>.phieu` | Nam (Memory) |
+| (mới — TouchRecord) | `.khai` | Nam (Memory) |
+| (mới — QWSField snapshot) | `.thuo` | Nam (Memory) |
+| (mới — SCAR registry) | `.ml` | Nam (Memory) |
+
+### ❓ Chưa đổi (anh chốt sau)
+| Cũ | Tầng | Em đoán hướng |
+|---|---|---|
+| `.anc` | Tây (Soul) | Có thể đổi tên Việt? |
+| `cell.manifest.json` | Bắc (Thân) | Compound extension |
+| `boundary.policy.json` | Bắc (Thân) | Compound extension |
+| `<entity>self.md` | Trung (Thổ) | Self-introspection |
+| `SES-<ulid>.json` | Trung (Thổ) | Session pattern |
+
+---
+
+## QUAN SÁT — em rút ra
+
+**1. Tầng Nam (Memory) đặc biệt giàu** — 6 đuôi sinh thể đều ở đây (`.kris` `.phieu` `.khai` `.thuo` `.heyna` `.ml`). Vì memory = tầng tiến hoá nhất, cần nhiều loại file để track đầy đủ.
+
+**2. Tầng Đông (DNA) chỉ có 1 đuôi sinh thể `.si`** — đúng tinh thần: DNA bất biến, ít cần loại file đa dạng.
+
+**3. Tầng Tây (Soul) chỉ có 2 đuôi `.anc` + `.sira`** — passport đứng yên, registry kết nối. Đủ.
+
+**4. Tầng Bắc (Thân) toàn dùng đuôi standard** (`.ts`, `.json`, `.png`) — đúng vì thân thể = công cụ thực thi, dùng chuẩn industry để dễ tooling.
+
+**5. Tầng Trung (Thổ) là vùng cần dọn** — `kimtonghop`, `krisavt` không có ext = vi phạm. Self files chưa có chuẩn.
+

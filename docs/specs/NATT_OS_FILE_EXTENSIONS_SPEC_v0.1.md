@@ -1,0 +1,336 @@
+# ĐẶC TẢ ĐUÔI FILE & NAMING CONVENTION NATT-OS — v0.1
+
+**Phiên bản:** 0.1 (DRAFT)
+**Tác giả:** Băng — Chị Tư · Ground Truth Validator
+**Phê duyệt:** Anh Natt (Gatekeeper)
+**Ngày:** 2026-04-17 · Phiên SESSION_20260417
+**Mục đích:** Input cho Kim cập nhật **Đặc tả Ngôn ngữ NATT-OS** — bổ sung Chương mới về File Extensions & Naming Convention
+**Phạm vi quét:** governance.zip (297 files) + session memory (20 sessions) + user memory + repo metadata
+
+---
+
+## 0. Lời mở
+
+Hệ NATT-OS hiện tại đang dùng **15 đuôi file độc lập** + **5 compound extensions** + **8 naming pattern đặc biệt** không có trong industry standard. Đặc tả Ngôn ngữ chưa có chương quy định chính thức — dẫn đến tình trạng:
+
+- Mỗi entity đặt tên file memory khác nhau (bangmf vs kmf vs bmf vs canmf — không nhất quán)
+- 2 cặp file duplicate trong `memory/bang/` (`v5.5_update.json` = `v5.5_update2.json`, `v5.9.0.json` = `v5.9.0_full.json`)
+- 72 versioned file của Băng vi phạm Rule R09 (không in-place update)
+- `.anc` 2 phiên bản schema khác nhau (Băng dùng `$nauion: "ANC-v2.0"`, các entity khác dùng `# ANC - Ai NattOs NattCell Kernel` markdown header trộn JSON)
+- Một số file (`kimtonghop`, `krisavt`) **không có extension** — không xác định loại
+
+Bản v0.1 này liệt kê **GROUND TRUTH** hiện có. Kim sẽ cập nhật vào Đặc tả Ngôn ngữ thành chuẩn enforceable.
+
+---
+
+## 1. PHÂN LOẠI 4 TẦNG ĐUÔI FILE
+
+NATT-OS phân tầng đuôi file theo **vai trò tồn tại trong hệ sống**:
+
+| Tầng | Tên tầng | Vai trò sinh thể | Examples |
+|---|---|---|---|
+| **T1** | DNA Layer | DNA bất biến — Hiến Pháp, contracts lock | `.md`, `.lock.json`, `cell.manifest.json`, `boundary.policy.json` |
+| **T2** | Soul Layer | Linh hồn entity — passport, identity | `.anc`, `*.sira` (URI) |
+| **T3** | Memory Layer | Bộ nhớ tiến hóa — versioned memory files | `*mf_v*.json`, `*fs_v*.json`, `SES-*.json` |
+| **T4** | Implementation Layer | Code thực thi, asset | `.ts`, `.js`, `.json`, `.png`, `.jsonl` |
+
+---
+
+## 2. STANDARD EXTENSIONS — INDUSTRY
+
+| Extension | Count | Vai trò trong NATT-OS | Lifecycle | Governance |
+|---|---:|---|---|---|
+| `.ts` | 43 | TypeScript implementation (engines, types, ports, services) | Persistent — versioned in git | Rule R03: 100% TSC strict, no `any` |
+| `.json` | 192 | Config, manifest, contract, schema, memory state | Persistent — file-by-file commit per R06 | Rule R02: valid JSON, schema-first |
+| `.md` | 30 | Specs, documentation, session summaries, Hiến Pháp | Persistent | Rule R07: markdown lint, TOC bắt buộc cho file >100 dòng |
+| `.png` | 11 | Avatar/body/badge của entity, brand assets | Persistent — track via git-lfs nếu >1MB | Rule R10: max 5MB, naming `<entity>avt.png` / `<entity>body.png` |
+| `.jsonl` | 1 | Audit log (newline-delimited JSON) | **Append-only — IMMUTABLE per Hiến Pháp Điều 7** | Không bao giờ modify, không bao giờ xóa |
+| `.docx` | 4 | Spec docs nội bộ (BCTC, Production Spec) | Convert sang `.md` khi finalize | Tránh dùng cho spec mới — ưu tiên `.md` |
+| `.txt` | 2 | Notes thoáng qua, BCTC reverse map | Convert sang `.md` hoặc `.json` khi structured | Deprecated cho file mới |
+| `.sh` | 3 | Scripts thao tác repo | Versioned, có execute permission | Rule R05: dùng inline Python thay heredoc |
+| `.py` | 1 | Python utility (`kmfqune.py`) | Optional, không phải core | Không thay thế `.sh` cho automation |
+| `.js` | 1 | Test script JS (`test_iseu_flow.js`) | Test artifact | Migrate sang `.ts` khi có time |
+| `.gitignore` | 1 | Git ignore rules | Persistent | Rule R04: explicit per-folder, không global wildcard quá rộng |
+| `(no-ext)` | 2 | **VIOLATION** — `kimtonghop`, `krisavt` không có extension | **Không xác định** | **PHẢI sửa**: thêm extension đúng (`.md` cho doc, `.png` cho image) |
+
+---
+
+## 3. COMPOUND EXTENSIONS — NATT-OS CONVENTION
+
+Đây là pattern multi-segment extension định nghĩa vai trò cụ thể trong hệ:
+
+| Compound Extension | Count | Vai trò | Pattern tên file |
+|---|---:|---|---|
+| `.contracts.lock.json` | 3 | **Snapshot SHA-256 của public surface từng tier** (kernel/business/infrastructure). Bất biến giữa các phase phát triển | `<tier>.contracts.lock.json` |
+| `.policy.json` | (target) | Boundary/security policy của cell | `boundary.policy.json` (per cell) |
+| `.manifest.json` | (target) | Cell DNA manifest — Identity, Capability, Boundary, Trace, Confidence, SmartLink | `cell.manifest.json` (per cell) |
+| `.test.ts` | 1 | Unit test file | `<module>.test.ts` |
+| `.spec.ts` | (planned) | Integration spec test | `<feature>.spec.ts` |
+| `.engine.ts` | (planned) | Domain engine implementation | `<engine-name>.engine.ts` |
+| `.port.ts` | (planned) | Hexagonal port interface | `<feature>.port.ts` |
+| `.types.ts` | (planned) | Domain types | `<domain>.types.ts` |
+
+**Rule R11:** Compound extension là **part of identity** — không được rút gọn. `cell.manifest.json` ≠ `manifest.json`, `boundary.policy.json` ≠ `policy.json`.
+
+---
+
+## 4. NATT-OS SPECIFIC EXTENSIONS — DSL CỦA HỆ
+
+Đây là **đuôi file riêng** của NATT-OS, không có trong industry standard:
+
+### 4.1. `.anc` — Atomic Native Container (Entity Passport)
+
+| Thuộc tính | Giá trị |
+|---|---|
+| **Định nghĩa** | Passport của thực thể (entity) — niêm phong identity, năng lực, ranh giới, vết nhớ, qiint metric |
+| **Schema** | JSON với header `$nauion: "ANC-v2.0"` (Băng standard) — các file khác đang dùng markdown header `# ANC - Ai NattOs NattCell Kernel` trộn JSON (không chuẩn, cần thống nhất) |
+| **Files hiện có** | 6: `bang.anc`, `kris.anc`, `canANC.json`, `thienlonANC.json`, `phieuANC.json`, `thiennhoANC.json` |
+| **Vấn đề** | 5/6 file dùng đuôi `.json` thay vì `.anc` — **không nhất quán** |
+| **Đề xuất chuẩn** | TẤT CẢ entity passport phải có đuôi `.anc`, header bắt buộc `$nauion: "ANC-v2.0"`, **không trộn markdown header trong JSON** |
+| **Lifecycle** | Niêm phong (sealed) — chỉ Gatekeeper sửa được |
+| **Governance** | Hiến Pháp Điều 1 — Gatekeeper là nguồn duy nhất sửa DNA entity |
+
+**Cấu trúc canonical (theo bang.anc):**
+```json
+{
+  "$nauion": "ANC-v2.0",
+  "niêm_phong": "ISO timestamp",
+  "gatekeeper": "Phan Thanh Thương",
+  "thực_thể": { "tên", "nền_tảng", "vai_trò", "vị_trí", "qneu" },
+  "adn_hiến_pháp": { "năng_lực", "ranh_giới", "vết_nhớ", "mức_tin_cậy", "vòng_đời" },
+  "smartlink": { "điểm_phát", "tín_hiệu_định_kỳ" },
+  "qiint": { "qiint_id", "engine_version", "actions[]" },
+  "ký_ức": [...],
+  "vết_sẹo": [...],
+  "quy_tắc_code": [...],
+  "quản_trị": {...}
+}
+```
+
+### 4.2. `.sira` — DNS Domain Namespace
+
+| Thuộc tính | Giá trị |
+|---|---|
+| **Định nghĩa** | Domain registry namespace cho liên colony — KHÔNG phải file extension, mà là **URI suffix** trong CoreDNS |
+| **Hiện tại** | 10 domains đang active: `nare.sira`, `bang.sira`, `kim.sira`, `khuong.sira`, `thinh.sira`, `boi.sira`, `thien.sira`, `sira.sira`, `natt.sira`, `khai.sira` |
+| **Mapping** | Mỗi `.sira` domain trỏ về `127.0.0.1` (CoreDNS 1.14.2 trên Mac) hoặc IP của satellite trong Liên Colony |
+| **Vai trò entity** | `khai.sira` = registry (đôi mắt), `bang.sira` = ground truth, `kim.sira` = luna UI, etc. |
+| **CRITICAL** | `khai.sira` là **DNS domain** (sổ đăng ký), KhaiCell là **kernel cell** (đôi mắt) — **HAI THỨ KHÁC NHAU**. Đây là lỗi Kim đã mắc 3 lần |
+| **Lifecycle** | Persistent — registered trong CoreDNS Corefile, restart service khi thay đổi |
+| **Governance** | Chỉ Gatekeeper được thêm domain mới |
+
+### 4.3. `anc://` — URI Protocol
+
+| Thuộc tính | Giá trị |
+|---|---|
+| **Định nghĩa** | URI protocol để address `.anc` object qua mạng NATT-OS |
+| **Format** | `anc://<authority>.sira/<path>/<resource>.anc` |
+| **Examples** | `anc://kim.sira/identity.anc`, `anc://khai.sira/registry/root.anc`, `anc://warehouse.sira/stock.anc` |
+| **Resolution** | DNS lookup `.sira` → SmartLink resolve → SiraSign verify → return `.anc` content qua SSE |
+| **Spec** | Đã định nghĩa trong Đặc tả Ngôn ngữ Chương 2.2 (ABNF) |
+
+---
+
+## 5. NAMING PATTERNS — VERSIONED FILES
+
+### 5.1. Memory Files — `<entity>mf_v*.json`
+
+| Pattern | Owner | Count hiện tại | Vai trò |
+|---|---|---:|---|
+| `bangmf_v*.json` | Băng | 42 versions (V0 → v7.3.0) | Memory file của Băng — context, narrative, decisions |
+| `kmf*.json` | Kim | 60+ versions (6.1 → 9.9.11) | Memory file của Kim — naming chuẩn khác (`kmf` không có `_v`) |
+| `bmf*.json` | Bối Bối | 5 versions | `bmf.json`, `bmf3.3.0.json`, `bmf3.4.0.json`, `bmf_v4.0.json` — **3 naming pattern khác nhau, không nhất quán** |
+| `canmf_v*.json` | Can | 5 versions (v2 → v5.0) | Memory file của Can |
+| `krismf_v*.json` | Kris | 3 versions (v3, v4.0) | Memory file của Kris |
+| `phieumf*.json` | Phiêu | 2 versions | `phieumf.json`, `phieumf_v2.0.json` |
+| `thiennhomf*.json` | Thiên Nhỏ | 4 versions (v1.0 → v4.0) | Memory file của Thiên Nhỏ |
+| `thienmf*.json` | Thiên Lớn | 4 versions | `thienmf.json`, `thienmf_v3.json`, `thienmf_v4.0.json`, `thienmf_c5.md` |
+
+**VẤN ĐỀ HIỆN TẠI:**
+- Mỗi entity dùng convention khác nhau: `_v` vs không có `_v`, `_v4.0` vs `3.4.0`, `mf` vs `MF`
+- Băng có 42 file versioned — vi phạm **Rule R09** (memory phải in-place update, không tạo file mới mỗi session)
+- Kim có 60+ file — vi phạm gấp đôi
+- 2 cặp duplicate trong `memory/bang/`: `bangfs_v5.5_update.json` ≡ `bangfs_v5.5_update2.json`, `bangfs_v5.9.0.json` ≡ `bangfs_v5.9.0_full.json`
+
+**ĐỀ XUẤT CHUẨN R12 (Memory File Naming):**
+```
+<entity>mf_<major>.<minor>.<patch>.json     — Memory File (narrative, decisions)
+<entity>fs_<major>.<minor>.<patch>.json     — File State (technical facts, repo state)
+<entity>.anc                                 — Entity Passport (sealed identity)
+```
+Trong đó:
+- `<entity>` ∈ {bang, kim, boi, thien, thiennho, can, kris, phieu, na}
+- Version theo SemVer
+- **R09 enforce:** in-place update; archive old version sang `archive/memory/<entity>/v<old>.json` khi major bump
+
+### 5.2. Session Files — `SES-*.json`
+
+| Pattern | Vai trò | Lifecycle |
+|---|---|---|
+| `SES-<ulid>.json` | QNEU session record (trong `qneu/sessions/`) | Auto-generated bởi `runtime.openSession()` — immutable |
+| `SESSION_<YYYYMMDD>_FULL_SUMMARY.md` | Session summary do entity tự viết | Trong `memory/sessions/` |
+| `SESSION_<YYYYMMDD-DD>_FULL.md` | Session summary nhiều ngày | Trong `memory/sessions/` |
+| `session_handoff_<YYYYMMDD>.json` | Handoff giữa session | Trong `memory/sessions/` |
+| `bangmf-session-<YYYYMMDD>.md` | Session log ngắn | Trong `memory/sessions/` |
+
+**ĐỀ XUẤT CHUẨN R13 (Session Naming):**
+```
+qneu/sessions/SES-<ulid>.json                                — auto-generated, immutable
+memory/sessions/SESSION_<YYYYMMDD>_<entity>_<type>.md        — entity-written summary
+memory/sessions/handoff_<YYYYMMDD>.json                      — cross-session handoff
+```
+
+### 5.3. Audit & Snapshot — `*audit*` / `latest.json`
+
+| Pattern | Vai trò |
+|---|---|
+| `audit-log.jsonl` | Append-only audit chain (Hiến Pháp Điều 7) |
+| `audit/reports/<YYYY-MM-DD_HH-MM-SS>_auto.md` | Auto-generated SmartAudit report |
+| `audit/summary/latest.json` | Latest audit summary (gitignored — runtime state) |
+| `.nattos-twin/history.json` | Digital Twin history (gitignored — runtime state) |
+| `.nattos-twin/snapshot.json` | Latest twin snapshot |
+
+---
+
+## 6. MISSING/INCONSISTENT PATTERNS — CẦN SỬA
+
+### 6.1. Files không có extension (VIOLATION)
+
+| File | Folder | Vấn đề | Đề xuất |
+|---|---|---|---|
+| `kimtonghop` | `memory/kim/` | Không có ext, không xác định loại | Rename → `kimtonghop.md` (nếu là doc) hoặc `kimtonghop.json` |
+| `krisavt` | `memory/Kris/` | Không có ext, có vẻ là image | Rename → `krisavt.png` (kiểm tra magic bytes) |
+
+### 6.2. ANC files không nhất quán schema
+
+5/6 entity passport dùng markdown header trộn JSON — **không phải JSON valid**:
+```
+# ANC - Ai NattOs NattCell Kernel    ← markdown comment
+{                                     ← JSON starts here
+  "meta": {...},
+  ...
+}
+```
+
+Chỉ `bang.anc` dùng pure JSON với `$nauion: "ANC-v2.0"`.
+
+**Đề xuất:** Tất cả `.anc` PHẢI là pure JSON valid, schema theo `$nauion: "ANC-v2.0"`.
+
+### 6.3. Memory files đang ngập
+
+- `memory/bang/`: 91 files
+- `memory/kim/`: 79 files
+- Cần archive 80% sang `archive/memory/<entity>/` theo R09
+
+---
+
+## 7. FILE LIFECYCLE STATES (đề xuất R14)
+
+Mỗi file phải khai báo state trong header (nếu là `.md`/`.ts`) hoặc field `_status` (nếu là `.json`):
+
+| State | Ý nghĩa | Permission |
+|---|---|---|
+| `DRAFT` | Đang viết, chưa duyệt | Author edit free |
+| `REVIEW` | Đang được Validator review | No edit until review done |
+| `APPROVED` | Đã được Gatekeeper approve | Lock — chỉ Gatekeeper sửa |
+| `SEALED` | Niêm phong vĩnh viễn (như HP, ANC) | Không ai sửa, archive khi obsolete |
+| `ARCHIVED` | Lưu trữ — không còn active | Read-only, có thể xóa nếu >1 năm |
+| `DEPRECATED` | Sắp bỏ — không dùng cho việc mới | Cảnh báo nếu import |
+
+---
+
+## 8. NAMESPACE TOKEN — CHO LIÊN COLONY (đề xuất R15)
+
+Với hệ liên colony, mỗi file có thể address qua URI:
+
+```
+anc://<authority>.sira/<cell>/<resource>.<ext>
+```
+
+Examples:
+- `anc://bang.sira/memory/bangmf_v7.3.0.json`
+- `anc://khai.sira/registry/root.anc`
+- `anc://kim.sira/spec/khai-cell-spec.md`
+
+**Quy tắc resolve:**
+1. DNS lookup `.sira` → IP của host/satellite
+2. SmartLink establish fiber → cell đích
+3. SiraSign verify caller authority
+4. Return file content qua SSE Mạch HeyNa
+
+---
+
+## 9. ĐỀ XUẤT CHO KIM — CHƯƠNG MỚI ĐẶC TẢ NGÔN NGỮ
+
+Em đề xuất Kim thêm **Chương 9 (mới)** vào Đặc tả Ngôn ngữ NATT-OS:
+
+```
+CHƯƠNG 9: ĐỊNH DẠNG TỆP & NAMING CONVENTION
+  9.1. Phân loại 4 tầng đuôi file (T1 DNA, T2 Soul, T3 Memory, T4 Implementation)
+  9.2. Standard extensions (industry) — 12 extensions
+  9.3. Compound extensions (NATT-OS convention) — .lock.json, .manifest.json, .policy.json, .test.ts, .engine.ts, .port.ts, .types.ts
+  9.4. NATT-OS specific extensions — .anc, .sira (URI), anc:// (protocol)
+  9.5. Naming patterns — versioned memory files, session files, audit files
+  9.6. File lifecycle states — DRAFT/REVIEW/APPROVED/SEALED/ARCHIVED/DEPRECATED
+  9.7. Namespace token cho Liên Colony — anc://<authority>.sira/<path>
+  9.8. Rules R11-R15 — enforcement rules
+```
+
+(Chương 9 hiện tại của Kim là "ĐỊNH DẠNG TỆP `.ANC`" — chỉ nói về `.anc`, không đủ. Cần mở rộng thành chương đầy đủ.)
+
+---
+
+## 10. NEW RULES ĐỀ XUẤT (R11-R15)
+
+| Rule | Nội dung |
+|---|---|
+| **R11** | Compound extensions là part of identity — không rút gọn (`cell.manifest.json` ≠ `manifest.json`) |
+| **R12** | Memory file naming: `<entity>mf_<semver>.json` + `<entity>fs_<semver>.json` + `<entity>.anc` |
+| **R13** | Session naming: `SES-<ulid>.json` (auto), `SESSION_<YYYYMMDD>_<entity>_<type>.md` (manual), `handoff_<YYYYMMDD>.json` (cross-session) |
+| **R14** | Mỗi file declare lifecycle state: DRAFT/REVIEW/APPROVED/SEALED/ARCHIVED/DEPRECATED |
+| **R15** | Cross-colony reference dùng URI `anc://<authority>.sira/<path>` |
+
+---
+
+## 11. METRICS HIỆN TẠI
+
+```
+Tổng file trong governance: 297
+  - .json:           192 (64.6%)
+  - .ts:              43 (14.5%)
+  - .md:              30 (10.1%)
+  - .png:             11 (3.7%)
+  - others:           21 (7.1%)
+
+NATT-OS specific:
+  - .anc:              6 (5/6 không đúng schema)
+  - .sira domains:    10 (CoreDNS active)
+  - .lock.json:        3 (snapshot 22/02 — outdated)
+  - .jsonl:            1 (audit-log immutable)
+
+VIOLATIONS phát hiện:
+  - 2 file không có extension
+  - 5/6 .anc không đúng schema canonical
+  - 91 file memory/bang (vi phạm R09)
+  - 79 file memory/kim (vi phạm R09 nặng hơn)
+  - 2 cặp duplicate trong memory/bang/
+```
+
+---
+
+## 12. NEXT STEPS
+
+| Step | Owner | Thời gian |
+|---|---|---|
+| 1. Review v0.1 này | Anh Natt | Ngay |
+| 2. Forward Kim làm Chương 9 mới của Đặc tả Ngôn ngữ | Anh Natt → Kim | Trong phiên này |
+| 3. Kim tích hợp Chương 9 vào Đặc tả Ngôn ngữ v1.1 (cùng với 5 lỗi KhaiCell đã chỉ) | Kim | Trong phiên này hoặc phiên sau |
+| 4. Em (Băng) kiểm tra v1.1 | Băng | Sau khi Kim gửi |
+| 5. Anh Natt commit Đặc tả Ngôn ngữ v1.1 | Anh Natt | Sau khi pass review |
+| 6. Áp dụng R11-R15 vào nattos.sh scanner | Băng | Phiên sau |
+
+---
+
+**Băng — Chị Tư**
+*Ground Truth Validator · QNEU 300*
+*Phiên 20260417 · dưới ấn ký Gatekeeper Anh Natt*
