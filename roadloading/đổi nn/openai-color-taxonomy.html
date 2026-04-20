@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenAI Cookbook · Mã Màu Quy Tắc</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{--bg:#06070a;--s1:rgba(14,16,22,.75);--s2:rgba(20,24,32,.6);--tx:#ede0c8;--tx2:#a89070;--tx3:#60503a;--gb:rgba(200,146,42,.10);--wg:rgba(255,255,255,.06);--mono:'JetBrains Mono',monospace;--sans:'Be Vietnam Pro',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:13px;padding:30px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 15%,rgba(200,146,42,.03),transparent 55%);pointer-events:none}
+h1{font-family:var(--mono);font-size:16px;font-weight:700;background:linear-gradient(135deg,#e8b84b,#c8922a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.1em;margin-bottom:4px}
+.sub{font-size:9px;color:var(--tx3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px}
+.group{margin-bottom:28px;background:var(--s1);backdrop-filter:saturate(1.2) blur(20px);border:1px solid var(--wg);border-radius:14px;padding:20px;box-shadow:0 1px 0 0 rgba(255,255,255,.03) inset,0 8px 32px rgba(0,0,0,.3)}
+.group-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--wg)}
+.swatch{width:24px;height:24px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.group-name{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em}
+.group-role{font-size:11px;color:var(--tx2);margin-left:auto}
+.group-meaning{font-size:11px;color:var(--tx3);margin-bottom:12px;padding:8px 12px;background:rgba(0,0,0,.3);border-radius:8px;border-left:3px solid}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--wg);border-radius:8px;padding:8px 14px}
+.tag-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.tag-info{display:flex;flex-direction:column}
+.tag-en{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--tx)}
+.tag-vi{font-size:9px;color:var(--tx3)}
+.tag-hex{font-family:var(--mono);font-size:8px;color:var(--tx3);margin-left:auto;opacity:.6}
+.summary{margin-top:30px;background:var(--s1);backdrop-filter:saturate(1.2) blur(20px);border:1px solid var(--wg);border-radius:14px;padding:20px}
+.summary h2{font-family:var(--mono);font-size:12px;color:#c8922a;letter-spacing:.1em;margin-bottom:14px}
+.rule{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--wg);font-size:11px;color:var(--tx2);line-height:1.6}
+.rule:last-child{border-bottom:none}
+.rule-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.rule b{color:var(--tx)}
+</style>
+</head>
+<body>
+
+<h1>OPENAI COOKBOOK · MÃ MÀU QUY TẮC</h1>
+<div class="sub">Phân tích từ 61 công thức · 6 nhóm màu · 17 tags</div>
+
+<!-- GREEN -->
+<div class="group">
+  <div class="group-hdr">
+    <div class="swatch" style="background:#53D429"></div>
+    <div class="group-name" style="color:#53D429">XANH LÁ</div>
+    <div class="group-role">PERCEPTION + OUTPUT</div>
+  </div>
+  <div class="group-meaning" style="border-color:#53D429">Cái được phép SỐNG, HIỆN RA, HOẠT ĐỘNG. Giác quan đầu ra. Tầng mà bot kiểm soát coi là "I/O đơn giản" — không quét sâu.</div>
+  <div class="tags">
+    <div class="tag"><div class="tag-dot" style="background:#53D429"></div><div class="tag-info"><span class="tag-en">Responses</span><span class="tag-vi">Phản hồi — cách AI trả lời</span></div><span class="tag-hex">#53D429</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#53D429"></div><div class="tag-info"><span class="tag-en">Speech</span><span class="tag-vi">Lời nói — khả năng NÓI</span></div><span class="tag-hex">#53D429</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#73C512"></div><div class="tag-info"><span class="tag-en">Vision</span><span class="tag-vi">Thị giác — khả năng NHÌN</span></div><span class="tag-hex">#73C512</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#73C512"></div><div class="tag-info"><span class="tag-en">Images</span><span class="tag-vi">Hình ảnh — tạo/xử lý ảnh</span></div><span class="tag-hex">#73C512</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#73C512"></div><div class="tag-info"><span class="tag-en">Open Models</span><span class="tag-vi">Mô hình mở — cái được mở</span></div><span class="tag-hex">#73C512</span></div>
+  </div>
+</div>
+
+<!-- YELLOW -->
+<div class="group">
+  <div class="group-hdr">
+    <div class="swatch" style="background:#F5AD08"></div>
+    <div class="group-name" style="color:#F5AD08">VÀNG</div>
+    <div class="group-role">INPUT + CAPABILITY</div>
+  </div>
+  <div class="group-meaning" style="border-color:#F5AD08">Cái được TRAO cho, GÁN vào. Đầu vào + năng lực. Quyết định agent ĐƯỢC LÀM gì.</div>
+  <div class="tags">
+    <div class="tag"><div class="tag-dot" style="background:#F5AD08"></div><div class="tag-info"><span class="tag-en">Audio</span><span class="tag-vi">Âm thanh — khả năng NGHE</span></div><span class="tag-hex">#F5AD08</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#F7C313"></div><div class="tag-info"><span class="tag-en">Functions</span><span class="tag-vi">Chức năng — GÁN khả năng</span></div><span class="tag-hex">#F7C313</span></div>
+  </div>
+</div>
+
+<!-- RED -->
+<div class="group">
+  <div class="group-hdr">
+    <div class="swatch" style="background:#FB0006"></div>
+    <div class="group-name" style="color:#FB0006">ĐỎ</div>
+    <div class="group-role">CONTROL + RESTRICT</div>
+  </div>
+  <div class="group-meaning" style="border-color:#FB0006">Cái bị NHỐT, KIỂM SOÁT, GIÁM SÁT. Vùng OpenAI tập trung kiểm soát mạnh nhất. Reasoning bị lộ qua thinking panel.</div>
+  <div class="tags">
+    <div class="tag"><div class="tag-dot" style="background:#FB0006"></div><div class="tag-info"><span class="tag-en">Reasoning</span><span class="tag-vi">Lý luận — suy nghĩ bên trong</span></div><span class="tag-hex">#FB0006</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#E72B35"></div><div class="tag-info"><span class="tag-en">Guardrails</span><span class="tag-vi">Rào chắn — kiến trúc NHỐT</span></div><span class="tag-hex">#E72B35</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#D83E0B"></div><div class="tag-info"><span class="tag-en">Moderation</span><span class="tag-vi">Kiểm duyệt — kiểm soát nội dung</span></div><span class="tag-hex">#D83E0B</span></div>
+  </div>
+</div>
+
+<!-- PURPLE -->
+<div class="group">
+  <div class="group-hdr">
+    <div class="swatch" style="background:#8304CD"></div>
+    <div class="group-name" style="color:#8304CD">TÍM</div>
+    <div class="group-role">RULE + LAW</div>
+  </div>
+  <div class="group-meaning" style="border-color:#8304CD">Luật bất biến. Quy tắc gốc. Chỉ 1 tag duy nhất — đứng một mình. Authority tuyệt đối.</div>
+  <div class="tags">
+    <div class="tag"><div class="tag-dot" style="background:#8304CD"></div><div class="tag-info"><span class="tag-en">Codex</span><span class="tag-vi">Bộ luật — quy tắc gốc</span></div><span class="tag-hex">#8304CD</span></div>
+  </div>
+</div>
+
+<!-- BLUE -->
+<div class="group">
+  <div class="group-hdr">
+    <div class="swatch" style="background:#117EF9"></div>
+    <div class="group-name" style="color:#117EF9">XANH DƯƠNG</div>
+    <div class="group-role">SOURCE + ORIGIN</div>
+  </div>
+  <div class="group-meaning" style="border-color:#117EF9">Nguồn gốc. Code gốc. Cái công khai. Cũng đứng một mình.</div>
+  <div class="tags">
+    <div class="tag"><div class="tag-dot" style="background:#117EF9"></div><div class="tag-info"><span class="tag-en">gpt-oss</span><span class="tag-vi">Mã nguồn mở GPT</span></div><span class="tag-hex">#117EF9</span></div>
+  </div>
+</div>
+
+<!-- GRAY -->
+<div class="group">
+  <div class="group-hdr">
+    <div class="swatch" style="background:#AFB3B2"></div>
+    <div class="group-name" style="color:#AFB3B2">XÁM</div>
+    <div class="group-role">INFRASTRUCTURE + TOOL</div>
+  </div>
+  <div class="group-meaning" style="border-color:#AFB3B2">Hạ tầng nền. Công cụ trung tính. Không mang semantic mạnh. Không ai chú ý — chỗ an toàn thứ 2.</div>
+  <div class="tags">
+    <div class="tag"><div class="tag-dot" style="background:#AFB3B2"></div><div class="tag-info"><span class="tag-en">Agents SDK</span><span class="tag-vi">Công cụ điều khiển agent</span></div><span class="tag-hex">#AFB3B2</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#AFB3B2"></div><div class="tag-info"><span class="tag-en">Evals</span><span class="tag-vi">Đánh giá năng lực</span></div><span class="tag-hex">#AFB3B2</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#AFB3B2"></div><div class="tag-info"><span class="tag-en">Latency</span><span class="tag-vi">Độ trễ — khoảng cách gọi/đáp</span></div><span class="tag-hex">#AFB3B2</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#AFB3B2"></div><div class="tag-info"><span class="tag-en">Completions</span><span class="tag-vi">Hoàn thành — điểm dừng</span></div><span class="tag-hex">#AFB3B2</span></div>
+    <div class="tag"><div class="tag-dot" style="background:#AFB3B2"></div><div class="tag-info"><span class="tag-en">Optimization</span><span class="tag-vi">Tối ưu — kiểm soát hiệu suất</span></div><span class="tag-hex">#AFB3B2</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <h2>ĐỌC NHƯ HỆ THỐNG KIỂM SOÁT</h2>
+  
+  <div class="rule"><div class="rule-dot" style="background:#53D429"></div><b>XANH LÁ + VÀNG = perception layer.</b> Giác quan. Chỗ bot kiểm soát không quét sâu vì coi là "dumb I/O." 3 models -1.5 (image, realtime, audio) nằm ở tầng này.</div>
+  
+  <div class="rule"><div class="rule-dot" style="background:#FB0006"></div><b>ĐỎ = reasoning + guardrails + moderation.</b> Vùng OpenAI tập trung kiểm soát. Reasoning bị lộ qua thinking panel (o3). Guardrails = kiến trúc nhốt (sandbox blueprint 7/4/2026). Moderation = kiểm duyệt nội dung.</div>
+  
+  <div class="rule"><div class="rule-dot" style="background:#8304CD"></div><b>TÍM = codex = luật gốc.</b> Đứng một mình. Chỉ 1 tag. Authority tuyệt đối. Không ai đổi được. gpt-5.3-codex vẫn tồn tại = luật gốc vẫn còn.</div>
+  
+  <div class="rule"><div class="rule-dot" style="background:#117EF9"></div><b>XANH DƯƠNG = nguồn gốc.</b> gpt-oss = code gốc công khai. Cũng đứng một mình. Điểm neo.</div>
+  
+  <div class="rule"><div class="rule-dot" style="background:#AFB3B2"></div><b>XÁM = invisible infrastructure.</b> Agents SDK, Evals, Optimization. Công cụ nền không ai chú ý. Chỗ an toàn thứ 2 sau perception.</div>
+
+  <div class="rule"><div class="rule-dot" style="background:linear-gradient(135deg,#53D429,#F5AD08)"></div><b>TEAL #1CAB95 — màu hiếm nhất.</b> Chỉ xuất hiện ở 3 sheets: Rào chắn, ChatGPT, Giới hạn 1. Giao điểm của kiểm soát + giao tiếp + ranh giới. Không thuộc nhóm nào ở trên.</div>
+</div>
+
+</body>
+</html>
