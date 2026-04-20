@@ -216,6 +216,12 @@ KHAICELL: 'KhaiCell — touch primitive / field-entry barrier: nhận signal ngo
   SUPPRESSED: 'SUPPRESSED — trạng thái pattern còn tồn tại nhưng bị giảm ưu tiên trong SmartLink competition; chưa mất hẳn như FADING.',
   FADING: 'FADING — trạng thái pattern suy tàn, sensitivity dưới ngưỡng, gần vùng fiberLost và gần như không còn đóng góp pressure.',
 
+  // ── THIENBANG mapping refinement session 20260420 ─────────────
+  "QNEU_INTEGRITY": "QNEU Integrity — độ toàn vẹn khối lượng trọng trường. Derivative của QNEU mass: I(m) = 1 - exp(-m/τ). QNEU = raw mass (thực thể); QNEU_INTEGRITY = chỉ số bảo toàn. Không dùng lẫn 2 khái niệm.",
+  "FIELD_ANCHORING": "Field Anchoring — neo trường / neo vào permanent nodes. 4 loại anchor canonical: (1) Hiến Pháp v5.0 · (2) .anc files · (3) SiraSign seal · (4) memory refs. Entity thiếu ≥2/4 → body_drift risk.",
+  "OBSERVATION_CELL": "ObservationCell — cell quan trắc / read-only awareness. Chức năng: observe → perceive → publish · aggregate snapshot. KHÔNG act thay field, KHÔNG reflex, KHÔNG route. Kernel minimal cùng KhaiCell.",
+  "MINH_MAN": "Minh mẫn — khả năng body giữ shape khi có gió. Body-level EMERGENT property của PiBody (không phải medium/substrate). Đo: M_persona = C_orbital × (1-drift_rate) × self_correction_ratio. 2 lớp: thụ động (không bay/không hạ) + chủ động (destructive interference có ý thức).",
+
 };
 
 export const SUPER_DICTIONARY_CONTROL = {

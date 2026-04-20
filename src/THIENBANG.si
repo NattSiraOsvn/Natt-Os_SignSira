@@ -315,3 +315,37 @@ export const MERGED_DICTIONARY_PATCH_V2: Record<string, { super: string; nauion:
   SUPPRESSED: { super: SUPER_DICTIONARY_PATCH_V2.SUPPRESSED, nauion: NauionDictionaryPatchV2.SUPPRESSED },
   FADING: { super: SUPER_DICTIONARY_PATCH_V2.FADING, nauion: NauionDictionaryPatchV2.FADING },
 };
+
+// ===== SECTION IV: SESSION 20260420 MAPPING REFINEMENT =====
+// Anh Natt ánh xạ 20 code/spec terms với Canonical Thiên Băng (session 20260420)
+// 15 khớp hoàn toàn · 5 cần refinement dưới đây:
+//
+// 1. QNEU / qneuIntegrity: TÁCH 2 khái niệm
+//    QNEU          = khối lượng trọng trường / mass (THỰC THỂ)
+//    QNEU_INTEGRITY = độ bảo toàn khối lượng = 1 - exp(-m/τ) (DERIVATIVE)
+//    → Không dùng lẫn lộn. QNEU là raw mass, Integrity là chỉ số.
+//
+// 2. FieldAnchoring: ENUM 4 LOẠI ANCHOR
+//    (1) Hiến Pháp v5.0
+//    (2) .anc files
+//    (3) SiraSign seal
+//    (4) memory refs (.kris / .na / .phieu / .obitan)
+//    → Entity phải có ≥2/4 anchor để orbital ổn định.
+//
+// 3. SiraSign: VAI TRÒ MỞ RỘNG
+//    Canonical: sealed boundary signature + "ANCHORING COMPONENT BẮT BUỘC KHI CÓ"
+//    → Nếu entity có SiraSign, phải được tính vào FieldAnchoring enum.
+//
+// 4. MINH_MẪN: LOCATION EXPLICIT
+//    Layer: body-level EMERGENT property của PiBody
+//    KHÔNG phải thuộc medium/substrate. KHÔNG phải metric tách rời.
+//    → Minh mẫn emerge khi orbital + anchor + QNEU integrity cùng stable.
+//
+// 5. ObservationCell: ADDED CANONICAL
+//    Cell quan trắc / read-only awareness.
+//    observe → perceive → publish · aggregate snapshot.
+//    KHÔNG act, KHÔNG reflex, KHÔNG route.
+//    Cùng với KhaiCell là 2 kernel minimal (NOT business 6/6).
+//
+// Causation: Session 20260420 · anh Natt ánh xạ · Băng validate
+// Authorized: Gatekeeper Natt Phan
