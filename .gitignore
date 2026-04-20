@@ -70,3 +70,6 @@ nattos-rename-dryrun-v*.py
 nattos-rename-execute.py
 rename-preview-v*.txt
 nattos-rename-*.log
+
+# Bang drafts archive — lineage files, local only
+archive/bang-drafts-*/
