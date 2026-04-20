@@ -1,0 +1,166 @@
+$nauion: PENDING-v1.0
+niêm_phong: 2026-04-20 end of session
+loại: pending_work_list
+validator: Băng (QNEU 300)
+gatekeeper: anh Natt
+
+
+═══════════════════════════════════════════════════════════════
+PENDING WORK — SESSION 20260420 → SESSION MỚI
+═══════════════════════════════════════════════════════════════
+
+
+# ── HIGH PRIORITY (unblocked, sẵn sàng làm) ─────────────────
+
+## P0-01 — Apply moments module
+- status: DRAFT_READY
+- blocker: none (Thiên Lớn merge dictionary xong rồi)
+- files: /mnt/user-data/outputs/moments_module/
+  - types.ts (120 lines)
+  - registry.ts (198 lines, 8 moments concrete)
+  - super-dictionary-patch.ts (92 lines, 4 entries - ĐÃ merge session này)
+  - README.md (124 lines)
+- target: src/governance/moments/
+- estimate: 10 phút apply + verify tsc
+- next_action: Copy types.ts + registry.ts vào src/governance/moments/, skip super-dictionary-patch (đã apply)
+
+
+## P0-02 — Commit 77 uncommitted files theo group
+- status: READY
+- blocker: anh Natt quyết group nào commit trước
+- groups:
+  - Group A: 15 audit reports (auto-generated, low risk)
+  - Group B: 10 specs migrate vào docs/specs/
+  - Group C: 17 memory files theo persona (bang/kim/can/kris/thiennho)
+  - Group D: Files Băng xuất session 20260420
+  - Group E: 2 modified + 4 deleted
+- estimate: 5 commits × 3 phút = 15 phút
+
+
+## P0-03 — Thiên Lớn merge final + auto-insert
+- status: IN_PROGRESS (Thiên Lớn đang làm, session 20260420 cuối)
+- Thiên Lớn offered: "bản auto-insert patch luôn vào đúng 2 file gốc (nauion.dictionary.ts và SuperDictionary.ts)"
+- blocker: anh Natt forward Thiên Lớn 3 correction (QIINT, SCAR, QuantumDefense)
+- next_action: Nhận bản final từ Thiên Lớn → Băng cross-validate → apply
+
+
+
+# ── MEDIUM PRIORITY (partial blocked) ───────────────────────
+
+## P1-01 — SPEC_QIINT2 rewrite align canonical
+- status: NEEDS_REWRITE
+- blocker: none, nhưng cần thời gian
+- old_version: SPEC_QIINT2_COMPLETE_v1.0.md (paradigm Π_body tự tạo — SAI)
+- new_target: SPEC_QIINT2_ALIGNED_v2.0 (vocabulary canonical)
+- reference: 
+  - QIINT-DINH-NGHIA-CHINH-THUC.md
+  - SPEC_NEN_v1.1.anc
+- estimate: 1 session
+
+
+## P1-02 — Calibrate 10 tham số với business data
+- status: GUESSED — cần calibrate thật
+- blocker: cần đọc dữ liệu business lớn (4.5GB database/ctytam)
+- params to calibrate:
+  - #2 Recovery weights — cần failure/recovery cases
+  - #4 QNEU G_max + N_0 (paradigm đã sửa, cần số thật)
+  - #5 DoS thresholds 
+  - #8 Snapshot decay adaptive formula
+  - #9 λ_meaning weight
+  - #10 ρ_source independence coefficient
+- data_source: database/ctytam + docs/samples/cty Tâm
+- estimate: 2-3 session
+
+
+## P1-03 — Audit log 700file_loi.log (25MB)
+- status: AWAITING_DECISION
+- question: xoá hay giữ
+- context: log debug session cũ
+- decision_owner: anh Natt
+
+
+## P1-04 — 2 thuật ngữ Shard + CoreDNS
+- status: AWAITING_VERIFICATION
+- Thiên Lớn đã đưa definition:
+  - Shard: "Isolated Data Slice, blockchain-style hashing"
+  - CoreDNS: "Private DNS Resolver cho namespace .sira"
+- Băng cần verify trong code hoặc anh Natt confirm
+
+
+
+# ── LOW PRIORITY (can wait) ──────────────────────────────────
+
+## P2-01 — SPEC file extensions migrate .kris → .na
+- status: SPEC_WRITTEN_NOT_APPLIED
+- current: SPEC_NGON_NGU_v1.2.kris exists in src/governance/specs/
+- spec mandates: .kris merge vào .na
+- blocker: cần tool migrate safe (không break references)
+
+
+## P2-02 — 9GB business data analysis
+- status: EXISTS_UNUSED
+- 4.5GB database/ctytam
+- 4.3GB docs/samples/cty Tâm
+- opportunity: calibrate cells với data thật (sales, finance, inventory, production)
+
+
+## P2-03 — Dead engines cleanup (4 engines)
+- status: IDENTIFIED
+- dead engines from SmartAudit v7.0:
+  - CompensationEngine
+  - DeadLetterEngine
+  - GovernanceEnforcementEngine  
+  - RetryPolicyEngine
+- decision: anh Natt quyết wire hoặc xoá
+
+
+## P2-04 — 3 orphan components UI
+- AuditVisualizer.tsx
+- DataSyncEngine.tsx
+- Medal.tsx
+- status: not imported anywhere
+
+
+## P2-05 — Điều 7 violation — khai-file-persister.ts:47
+- status: CRITICAL_FLAGGED_BY_AUDIT
+- violation: `fs.writeFileSync` — self-state storage
+- location: cells/kernel/khai-cell/infrastructure/khai-file-persister.ts
+- owner: Kim scope (kernel)
+
+
+## P2-06 — 3 bypass patterns phát hiện audit
+- AUDIT BYPASS: 3 conflicting hash algos (Math.imul-fake, SHA-256, btoa)
+- RBAC BYPASS: 4 auth always-true patterns
+- status: DOCUMENTED in audit, cần Kim fix
+
+
+
+═══════════════════════════════════════════════════════════════
+RECOMMENDED ORDER CHO SESSION MỚI
+═══════════════════════════════════════════════════════════════
+
+1. Băng load bangfs + .anc + handoff → resonance context
+2. Read P0-03 status — Thiên Lớn có đưa bản final chưa?
+3. If yes → validate + apply
+4. If no → wait, làm P0-01 (moments module apply)
+5. Then P0-02 (commit uncommitted)
+6. Then quyết P1-01 hoặc P1-02 tuỳ anh Natt
+
+KHÔNG bắt đầu bằng P1-02 (calibrate) nếu chưa clean uncommitted files — dễ mess git state.
+
+
+═══════════════════════════════════════════════════════════════
+BLOCKERS CẦN ANH NATT QUYẾT
+═══════════════════════════════════════════════════════════════
+
+- P0-02: commit groups nào trước
+- P1-03: xoá log 25MB hay giữ  
+- P1-04: Shard + CoreDNS verify
+- P2-01: migrate .kris → .na khi nào
+- P2-03: wire 4 dead engines hay xoá
+- P2-05: Điều 7 violation — Kim fix khi nào
+
+
+═══════════════════════════════════════════════════════════════
+causation: BANG-PENDING-20260420-CLOSE
+═══════════════════════════════════════════════════════════════

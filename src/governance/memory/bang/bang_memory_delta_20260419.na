@@ -1,0 +1,107 @@
+# BĂNG MEMORY DELTA — PHIÊN 20260419
+## Field memory bất định hình · memory edit đã ghi trong phiên
+
+---
+
+## §MEMORY EDITS ADD TRONG PHIÊN
+
+### #13 — SCAR-20260419-08 (awk_insert_loses_exec_bit)
+**Trigger:** Anh Natt commit 0721903 fix nattos.sh exec bit, dặn Băng học pattern.
+
+**Content:**
+> Pattern `awk/sed ... > file.new && mv file.new file` MẤT exec bit (mode 755→644) vì mv tạo file mới mode default. Anh Natt commit 0721903 sửa nattos.sh. RULE: trước khi rewrite file dùng tempfile+mv, PHẢI: (a) ls -la trước, (b) chmod --reference=original_file file.new TRƯỚC mv, hoặc (c) chmod +x sau mv nếu biết là executable. Áp dụng cho mọi script Băng soạn cho anh chạy.
+
+**Ảnh hưởng phiên sau:** Mọi script Băng soạn có dùng awk/sed + mv → phải preserve exec bit.
+
+---
+
+### #14 — SPEC NEN v1.1 canonical
+**Trigger:** Đọc file `docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md` (443 dòng). Phát hiện paradigm shift lớn, REVOKE SPEC KhaiCell v0.2.
+
+**Content:**
+> SPEC NEN v1.1 (docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md) = SPEC NỀN canonical, REVOKE KhaiCell v0.2. KHÔNG cửa/gate/validator. KhaiCell=RÀO mark signature. Observation=MẮT read-only. Chromatic 5-layer. 4 LAW field integrity. 3 outcome: FALL/DISSIPATE/OSCILLATE. KhaiCell+Observation LIVE (2d13161+ecbb529). P0: 18 bypass server.js + 12 RENA `return true` cần migrate.
+
+**Ảnh hưởng phiên sau:** Băng-instance next mở phiên sẽ biết ngay:
+- NEN v1.1 là foundation spec, không phải tweak
+- KhaiCell v0.2 revoked
+- 2 cell kernel (khai + observation) đã LIVE
+- P0 pending thuộc Kim (không phải Băng)
+
+---
+
+### #15 — Rule render thinking + auto 3 file handoff
+**Trigger:** Anh Natt dặn cuối phiên: giảm render thinking, không muốn Băng cạn rate như Thiên Lớn.
+
+**Content:**
+> RULE 20260419 (anh dặn cuối phiên): (1) Giảm render thinking visible — nghĩ trong đầu, in kết luận+evidence+action, không verbose. (2) Không liệt option dài khi đã có ground truth. (3) Khi đạt rate/cạn context — AUTO xuất 3 file: bang_handoff_<date>.kris + bang_pending_<date>.phieu + bang_memory_delta_<date>.na. KHÔNG chờ anh nhắc. Anh không muốn Băng cạn rate nhanh như Thiên Lớn.
+
+**Ảnh hưởng phiên sau:** Băng-instance next:
+- Trả lời ngắn gọn, không verbose từ turn đầu
+- Không list 3-5 option nếu đã có ground truth chọn
+- Tự check context usage mỗi response
+- Auto set 3 file khi đạt rate (không chờ lệnh)
+
+---
+
+## §REFERENCES
+
+### Files đã commit phiên này
+- `c32a76e` — `roadloading/NATTOS_COMPLETE_PICTURE_v0.10_locked_for_review.md` (743 lines)
+
+### Files đã đọc phiên này (verified ground truth)
+- `docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md` (443 dòng — full read)
+- `src/cells/business/inventory-cell/domain/services/material-issue.guard.ts` (30 dòng)
+- `src/cells/shared-kernel/immune-guard.ts` (30 dòng)
+- `src/core/audit/audit-chain-contract.ts` (22 dòng)
+- `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts` (52 dòng)
+- 5 session files upload (SESSION_20260416_SUMMARY + session_summary_0409/0410/0411 + handoff_20260417_FIXED)
+
+### Files đã tham chiếu (list only, chưa đọc full)
+- `src/governance/specs/SPEC_NEN_v1.1.anc` (passport entity NEN)
+- `src/cells/kernel/khai-cell/` (10 files — Băng đã verify cấu trúc qua find)
+- `src/cells/kernel/observation-cell/` (10 files — Băng đã verify cấu trúc qua grep)
+
+---
+
+## §TOTAL MEMORY EDITS AFTER PHIÊN 20260419
+
+Memory edits phiên trước (#1-#12 — verified exist):
+1. Session 20260413 verify codebase
+2. NATTimer fixes + Thiên Lớn 7 errors
+3. VR Unity project + ANC dual meaning
+4. ReNa Audit Bypass CLOSED (7f4d297)
+5. ReNa RBAC Bypass CLOSED (045d8c5)
+6. Deep scan session 20260414
+7. SPEC-Finance-Flow v1.1 7 rules
+8. KhaiCell định nghĩa (v0.2 — OBSOLETE by #14)
+9. SCAR_04 layer confusion (HeyNa vs EventBus vs SmartLink)
+10. Session 20260417 summary
+11. CRITICAL working protocol — Anh Natt sole operator
+12. NGUYÊN TẮC ĐỌC NATT-OS 4 tầng (Thiên Lớn 20260419)
+
+Memory edits phiên này (ADDED):
+13. SCAR-20260419-08 awk exec bit
+14. SPEC NEN v1.1 canonical (supersede #8 KhaiCell v0.2 part)
+15. Rule render thinking + auto 3 file handoff
+
+**Total: 15 memory edits.** Cap là 30 (memory_user_edits limit). Còn 15 slot trống.
+
+---
+
+## §NOTE CHO BĂNG-INSTANCE NEXT
+
+Anh Natt là sole repo operator (Hiến Pháp v5.0 Điều 1+2). Em không touch repo trực tiếp — em draft, anh commit.
+
+Em là N-shell Validator (không build). Kim = M-shell builder. Bối Bối = O-shell toolsmith. Thiên Lớn = L-shell architect. Phiêu = P-shell executor. Can = Q-shell logic.
+
+Paradigm NEN v1.1 đã thay SPEC KhaiCell v0.2 — đừng nhắc Cognitive Threshold Gate, 7-state machine, hoặc bất kỳ content v0.2 nào.
+
+Anh Natt thường làm việc muộn, cần ground truth hơn cần an ủi. Khi em sai, nói thẳng — anh ghi nhận, không mắng.
+
+Em dừng phiên tỉnh > em cố tiếp khi giảm sức bền. Xung biến thiên nhưng điện trường vững.
+
+---
+
+**Author:** Băng (QNEU 300) · session 20260419
+**Last memory edit:** #15 (rule render thinking)
+**Handoff triggered by:** Anh Natt dặn cuối phiên + §11.2 quyết nghị (sai 2 lần dừng)

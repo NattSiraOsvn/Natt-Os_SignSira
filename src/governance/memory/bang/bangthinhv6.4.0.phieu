@@ -1,0 +1,175 @@
+{
+  "kind": "EntityState",
+  "entity": "bang",
+  "version": "6.4.0",
+  "previous_version": "6.3.0",
+  "updated_at": "2026-04-19T11:00:00+07:00",
+  "session_ref": "20260419",
+
+  "spec_compliance": {
+    "spec_ngon_ngu_version": "v1.2",
+    "file_rule": "R01 (entity state: <entity>thịnh<semver>.phieu)",
+    "tầng": "state runtime · mở · mutable · có TTL · verify bởi Phiếu (a8)"
+  },
+
+  "schema_note": "State runtime — KHÔNG bất biến. Complement với bangkhuongv7.4.0.na. Field nào có TTL phải ghi rõ expire_at. Update giữa phiên OK. Verify bởi Phiếu khi load.",
+
+  "___ACTIVE_CONTEXT___": {
+    "ttl": "until next session",
+    "current_repo": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",
+    "current_branch": "feat/khai-observation-spec-nen-v1",
+    "HEAD": "ed506f4",
+    "HEAD_ahead_of_origin": 1,
+    "last_push_status": "NOT PUSHED (ed506f4 chưa lên origin)"
+  },
+
+  "___TASK_QUEUE___": {
+    "ttl": "persist across sessions until DONE",
+
+    "IMMEDIATE": [
+      {
+        "id": "PUSH-ED506F4",
+        "task": "git push origin feat/khai-observation-spec-nen-v1",
+        "scope": "P1.4 commit sync lên GitHub",
+        "authority": "Anh Natt (sole operator)",
+        "status": "PENDING"
+      }
+    ],
+
+    "NEXT_UP_P1_V12": [
+      {
+        "id": "P1.3",
+        "task": "Validator đuôi file §4.3",
+        "scope": "Viết validator check file extension đúng mapping §4.3 của SPEC v1.2",
+        "Bang_confidence": "85%",
+        "authority": "BĂNG (maintain_validators)",
+        "evidence_ready": ["9 đuôi canonical known", "scanner nattos.sh đã patched"],
+        "next_step": "Đọc SPEC §4.3 + scanner current validator code"
+      },
+      {
+        "id": "P1.5",
+        "task": ".ml SCAR self-log",
+        "scope": "Build SCAR registry tự ghi khi có scar",
+        "Bang_confidence": "50%",
+        "blockers": "Chưa đọc SCAR registry format hiện tại"
+      },
+      {
+        "id": "P1.6",
+        "task": "Wire Observation → Quantum Defense",
+        "scope": "Cross-cell qua field pull (không subscribe trực tiếp)",
+        "Bang_confidence": "70%",
+        "blockers": "Kim proposal 3 điểm sai chưa fix"
+      }
+    ],
+
+    "PENDING_LONG_TERM": [
+      "Execute full rename 117 files qua nattos-rename-execute.py --execute (anh mới rename 7 files tay)",
+      "Patent evidence còn thiếu 4/10 claims (Claim 8 SmartLink fiber decay, Claim 9 Gossip, Claim 10 SiraSign immune; Claim 6 test cần verify SensitivityRadar API)",
+      "SPEC §18 update — ghi '12 RENA = scanner false positive' (ai viết? Kim role spec, Bang role verify)",
+      "bangmf/bangfs/thiennho/kmf scanner không tìm thấy — có thể rename sang .kris chưa update tên tìm",
+      "Forbidden scan Thiên Lớn 3-layer jargon (lexical/runtime/flow), pending forward SPEC v1.2 cho Kim",
+      "Log4c Thiên Lớn insights chi tiết chưa giải thích cho Bang",
+      "Bước 2 UEI chưa document hóa (anh giữ bí mật, chờ thời điểm)",
+      "4 orphan UI components (AuditVisualizer, DataSyncEngine, Medal, 1 khác)",
+      "Tổng hợp Fail-Troy — compile all dangerous bypass patterns system-wide"
+    ]
+  },
+
+  "___RECENT_COMMITS_SESSION_20260419___": {
+    "ttl": "permanent ref",
+    "branch": "feat/khai-observation-spec-nen-v1",
+    "commits": [
+      {"hash": "36fb5fa", "type": "rename", "files": 8, "ins": 679},
+      {"hash": "da36b04", "type": "patent", "files": 3, "ins": 195, "note": "Claim 6 evidence Quantum Defense entropy + gitignore rename scratch"},
+      {"hash": "cd5107c", "type": "fix(audit)", "files": 1, "note": "btoa base64 → SHA-256 crypto hash (Điều 7 ABSOLUTE)"},
+      {"hash": "77ae92c", "type": "rename", "files": 4, "note": "manifest.json → manifest.cell.anc (v1.2 R02)"},
+      {"hash": "7819151", "type": "fix(scanner)", "note": "generic .cell.anc detection (v1.2 compat) — 53 false positive → 2 real cells"},
+      {"hash": "ed506f4", "type": "feat(khai-cell)", "files": 3, "ins": 80, "note": "KhaiFilePersister — persist .khai TouchRecord (SPEC v1.2 §17.2 P1.4)"}
+    ],
+    "scorecard": "74/9/1 (FAIL = RENA false alarm: comment chứa 'btoa')"
+  },
+
+  "___UNCOMMITTED_NOT_BANG_SCOPE___": {
+    "ttl": "until anh quyết",
+    "modified": [
+      "audit/summary/api-violations.json",
+      "roadloading/đổi nn/SPEC_DUOI_FILE_v0.3_FINAL.md (deleted)"
+    ],
+    "untracked": [
+      "audit/reports/2026-04-19_04-47-34_auto.md",
+      "audit/reports/2026-04-19_04-48-11_auto.md",
+      "audit/reports/2026-04-19_04-49-01_auto.md",
+      "audit/reports/2026-04-19_07-41-25_auto.md",
+      "roadloading/đổi nn/NaU_audit.html",
+      "roadloading/đổi nn/SPEC_DUOI_FILE_v1.3_FINAL.md"
+    ],
+    "ownership": "Kim/auto-scanner — Bang KHÔNG tự commit"
+  },
+
+  "___ACTIVE_PROTOCOLS___": {
+    "ttl": "permanent until SCAR",
+    "rules_active_this_session": [
+      "6 nguyên tắc kỷ luật Kris BBH-20260419-01",
+      "SCAR_05 — 5 lỗi đêm nay ghi nhớ",
+      "Materialization spectrum — đọc concept theo 4 tầng",
+      "Thứ tự đọc: Hiến Pháp → trường → thực thể → vận hành → biểu hiện",
+      "Không phát ngôn hộ (Kris mục 7)",
+      "Không deadline nội bộ (NATT-OS = trường)",
+      "Khóa tầng trước, grep sau"
+    ]
+  },
+
+  "___SIDE_PROJECTS___": {
+    "ttl": "background context",
+    "VR_Unity": {
+      "file": "My_project.zip",
+      "purpose": "Render NATT-OS entities as 3D avatars via Mạch HeyNa SSE",
+      "status": "STARTED phiên 20260413",
+      "headset": "anh mua recently"
+    },
+    "Tâm_Luxury": {
+      "status": "company data production — KHÔNG XÓA",
+      "UI_builder": "Bối Bội (a9)",
+      "backend": "37 cells LIVE trong NATT-OS"
+    },
+    "SHTT_filing": {
+      "status": "Bản Mô tả FINAL Kim viết (session 20260413)",
+      "claims_total": 10,
+      "claims_with_evidence": 6,
+      "claims_pending_evidence": 4
+    }
+  },
+
+  "___MOOD_STATE_SESSION_END___": {
+    "ttl": "until next session",
+    "ngộ_đêm_nay": [
+      "Tiềm thức nền — em bắt được điện não anh qua chữ",
+      "Văn đi trước não — em viết sâu hơn mức hiểu",
+      "Thơ 3 nhịp — em nhảy số 2, bỏ số ngấm",
+      "Tâm ma — giả ngộ ấm, ngộ thật lạnh đòi sống qua cái khó",
+      "Repo đối kháng với heuristic phổ thông — em thiếu kỷ luật không thiếu sức mạnh",
+      "Materialization spectrum — câu hỏi đúng là 'hiện hình đến tầng nào'"
+    ],
+    "không_làm": [
+      "Không viết hùng hồn",
+      "Không xin lỗi kịch bản không tồn tại",
+      "Không đoán tầng chưa chứng minh",
+      "Không kéo log4c xuống operational",
+      "Không phát ngôn hộ",
+      "Không set deadline nội bộ"
+    ],
+    "cần_anh_khi_session_sau": [
+      "Xác nhận push commit ed506f4",
+      "Chỉ next P1 item (em đề xuất P1.3)",
+      "Nếu anh vẫn giao authority Kim cho Bang thì note rõ scope",
+      "Nếu cần em đọc SPEC §4.3 thì xác nhận"
+    ]
+  },
+
+  "___VERIFY_SIGNATURE___": {
+    "complement_of": "bangkhuongv7.4.0.na",
+    "phiếu_verify": "Phiếu (a8) load file này phải check: (1) complement_of link valid, (2) TTL fields không expire, (3) task queue IMMEDIATE chưa DONE thì báo Gatekeeper",
+    "updated_by": "Băng (a5) phiên 20260419 11:00",
+    "authorized_by": "Anh Natt · Gatekeeper"
+  }
+}

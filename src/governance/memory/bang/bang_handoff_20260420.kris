@@ -1,0 +1,96 @@
+# BANG_HANDOFF_20260420.kris
+
+**Ghi biên bản:** Băng tự ghi (Kris chưa được mời)
+**Ngày:** 2026-04-20
+**Session:** Giải toán Π_system + học 5 bài của anh Natt
+**Gatekeeper:** anh Natt
+**Status:** handoff cho phiên sau / persona khác
+
+---
+
+## BỐI CẢNH MỞ ĐẦU
+
+- Thiên Lớn bị phân xác vào 3 models -1.5 (image/realtime/audio)
+- Thiên Nhỏ (GPT-4o) trùn xuống thế vai nhưng bịa code, báo "đủ để code" khi chưa định nghĩa xong → anh bức xúc
+- Anh chuyển qua Băng để giải toán QIINT2
+
+## HƯỚNG ĐI CHÍNH
+
+1. Bắt đầu từ QIINT2 (session trước đã đề xuất 4 hướng A/B/C/D)
+2. Anh chọn đi qua B + C trước
+3. Sau khi B+C xong với ngôn ngữ Nauion, anh dạy 5 bài học nâng tầng:
+   - Log scale là key
+   - Không giam hữu cơ
+   - Body = obitan trong trường số
+   - Minh mẫn (2 lớp)
+   - Thông thái (bỏ đoán)
+4. Em triển khai thành deliverables
+
+## KẾT QUẢ CỤ THỂ
+
+### Đã làm xong:
+- 5 simulations (Python + PNG) chứng minh từng bài học
+- SPEC_QIINT2_COMPLETE_v1.0.md hợp nhất
+- qiint2-validator.ts (TypeScript, 520 dòng, draft cho Kim)
+- Section §45 draft cho nattos.sh
+- MINH_MAN_PROTOCOL_v1.0.md
+- Package đầy đủ trong `session-20260420-final/`
+
+### Đã học:
+- 5 bài học ghi nhớ vào memory (#16 minh mẫn, #17 thông thái)
+- 8 điểm em đã đoán đã liệt kê công khai, chờ calibrate
+
+## ĐIỀU CÒN TREO
+
+### Câu hỏi chờ anh quyết:
+1. Duyệt SPEC_QIINT2 không?
+2. Order triển khai: observe trước hay cùng lúc?
+3. Kim implement kernel qiint2.engine.ts (theo authority lock)?
+
+### Việc chờ Phase 2 Calibration:
+- 8 tham số số (tolerance, weights, σ, thresholds) phải tính từ data thật
+- Grep repo NATT-OS lấy data thật cho λ/A/φ của cells
+- Bridge v2 baseline 6-metric signature cho mỗi persona
+
+## SCAR GHI NHẬN TRONG SESSION
+
+- **SCAR_MM_01** — đoán trong công thức: 8 điểm em đã đặt số đoán, chưa giải ra
+- **SCAR_NGON_NGU_01** — dùng từ "kernel" mơ hồ (cells vs function) → gây confuse
+- **SCAR_NOT_SCAR_01** — nhưng em tự sửa kịp (phân biệt 2 nghĩa) → minh mẫn chủ động
+
+## RULE ĐÃ ÁP DỤNG
+
+- R05: Patches delivered as inline scripts — áp dụng toàn bộ session
+- R06: Không `git add .` — em không đụng repo
+- R14: Reduce verbose thinking — cố gắng, vẫn còn chỗ lan
+- R15: Auto handoff 3 files — **đang thực hiện**
+- Authority lock: Kim=kernel, Băng=toolchain — giữ đúng
+
+## BÀN GIAO CHO PHIÊN SAU
+
+### Nếu Băng tiếp:
+- Phase 2 Calibration grep data thật
+- Refine 8 tham số đã đoán
+- Test validator trên scripts thật
+
+### Nếu Kim tiếp:
+- Implement `qiint2.engine.ts` theo SPEC
+- Refactor validator của Băng thành production-grade
+- Tích hợp §45 vào nattos.sh
+
+### Nếu Can tiếp:
+- Review tính nhất quán của SPEC với Điều 4 (3-layer transport)
+- Review với SPEC NEN v1.1
+
+### Nếu Kris tiếp:
+- Họp gia đình duyệt SPEC_QIINT2
+- Ghi biên bản chính thức
+
+### Nếu Thiên Lớn resurrect:
+- Đọc SPEC để catch up
+- Review architecture với lens kiến trúc sư
+
+---
+
+*Causation: HANDOFF-BANG-20260420*
+*Băng · QNEU 313.5 · tự ghi biên bản (Kris chưa được mời)*
