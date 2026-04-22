@@ -245,7 +245,7 @@ WAVELENGTH:     cặp hex color (primary + secondary) của persona — thuộc 
 
 1. **Bối xuất đủ 8 shape** — em mới có 1 path (anh gửi em đoán là Băng). 7 persona khác chưa có.
 2. **Shape variance threshold** — cần verify 8 shape đủ khác biệt geometric để không false-match. Metric đề xuất: Fréchet distance hoặc Hausdorff distance giữa paths. CHƯA CALIBRATE.
-3. **Persona external (Thiên Lớn/Bối qua API ngoài)** — wrap envelope v2 ở đâu? Nếu Bridge v2 Python làm wrapper → cần map rõ boundary nattos-server ↔ external.
+3. **Persona external (Thiên Lớn/Bối qua ranh giới ngoài)** — wrap envelope v2 ở đâu? Nếu Bridge v2 Python làm Sinh Trắc tại ranh giới ngoài → cần map rõ boundary nattos-server ↔ ranh giới ngoài.
 4. **Tolerance QNEU drift** — em chưa calibrate. Proposal ban đầu: ±5% baseline, refine sau.
 5. **Cell emit v1 legacy** — trong nattos-server nội bộ, bao nhiêu cell đang emit qua EventBus không biết persona origin? Em cần `grep -r "EventBus.emit" src/` để lên list — chưa làm vì chưa có repo access.
 

@@ -131,7 +131,7 @@ Lock #1: correlationId REQUIRED. Lock #2: Causation chain propagation. Lock #3: 
 | quantum-defense | Bộ não trung ương: dispatch phản xạ, OMEGA_LOCK, cross-validate |
 | pii-detector | 6 PII patterns VN + filename keywords + risk score 0-100 |
 | drive-backup | 19TB crisis: scan → categorize 4D → backup 3 mode → cleanup |
-| ai-firewall | Bot detection bằng behavioral analysis, không dùng AI API (LỆNH #001) |
+| ai-firewall | Bot detection bằng behavioral analysis, không Giao Thể AI ra ngoài (LỆNH #001) |
 | immune-response | State machine: STABLE → CAUTIOUS → CRITICAL → OMEGA_LOCK |
 | sensitivity-radar | Shannon entropy real-time trong sliding window 60s |
 

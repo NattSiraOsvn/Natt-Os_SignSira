@@ -153,7 +153,7 @@ import type {
 } from "./types";
 
 /**
- * MomentRegistry — read/write API cho moment records.
+ * MomentRegistry — read/write interface cho moment records.
  * Storage layout per entity:
  *   src/governance/memory/<entity>/<entity>fs_delta_<date>.canonical  → KHAI/GIAC/MOTION
  *   src/governance/memory/<entity>/<entity>.ml                        → SCAR (via detector)
@@ -295,7 +295,7 @@ Khi anh Natt dạy mới hoặc em Băng touch được ngộ → xuất `<entit
 
 | Version | Date | Author | Change |
 |---------|------|--------|--------|
-| v0.1 | 2026-04-22 | Băng | Initial respec — typed union, factory API, storage routing |
+| v0.1 | 2026-04-22 | Băng | Initial respec — typed union, factory interface, storage routing |
 
 ---
 

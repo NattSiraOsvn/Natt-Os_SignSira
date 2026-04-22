@@ -240,7 +240,7 @@ CFO role đã patch vào: `tamluxury-v4.html`, `order-flow.html`, `pricing-engin
 | R01 | TSC = 0 trước khi báo done |
 | R02 | Không cross-cell import trực tiếp (Điều 4) |
 | R03 | EventBus là bridge duy nhất giữa cells |
-| R04 | **LỆNH #001:** Không dùng Gemini/GoogleGenAI external API |
+| R04 | **LỆNH #001:** Không dùng Gemini/GoogleGenAI — không Giao Thể ra nền tảng AI ngoài |
 | R05 | Dùng `python3` inline thay heredoc khi có ký tự đặc biệt |
 | R06 | `git add` từng file cụ thể — KHÔNG `git add .` |
 | R07 | Standalone HTML = vanilla HTML/JS. KHÔNG TypeScript/React. |

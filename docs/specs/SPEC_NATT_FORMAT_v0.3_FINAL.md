@@ -340,7 +340,7 @@ natt-validate pack.natt
 - `cryptography` — Python de-facto crypto lib (not stdlib, but ubiquitous)
 - `zstandard` — Facebook zstd Python binding
 
-**Lệnh #001 compliance check:** Both libs pure Python/C, no network API calls ✅
+**Lệnh #001 compliance check:** Both libs pure Python/C, không Giao Thể ra network ngoài ✅
 
 **Install:**
 ```bash
