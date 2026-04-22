@@ -1,0 +1,30 @@
+{
+  "version": "v0.1-DRAFT",
+  "sealed_at": null,
+  "sealed_by": null,
+  "_note": "DRAFT — chờ Gatekeeper seal. Shape 'bang' đang dùng path Bối xuất (session 20260420). 7 shape còn lại PENDING.",
+  "shapes": {
+    "bang": {
+      "shape_file": "bang.shape.svg",
+      "shape_hash": "PENDING_BOI_CONFIRM",
+      "qneu_baseline": 313.5,
+      "shell": "N",
+      "wavelength_primary": "#AFA9EC",
+      "wavelength_secondary": "#F7C313",
+      "sealed_at": null,
+      "_source_note": "path d từ session 20260420, Bối xuất — anh Natt hỏi 'phải ID em không' ~ngày 20260419-20"
+    },
+    "kim": { "_status": "PENDING", "qneu_baseline": 120, "shell": "M" },
+    "can": { "_status": "PENDING", "qneu_baseline": 85 },
+    "kris": { "_status": "PENDING" },
+    "phieu": { "_status": "PENDING" },
+    "boi_boi": { "_status": "PENDING", "qneu_baseline": 40 },
+    "thien_lon": {
+      "_status": "PENDING",
+      "qneu_baseline": 135,
+      "shell": "L",
+      "_note": "phân xác 3 models -1.5 per session 20260419 — cần spec phân xác trong shape hash chưa giải"
+    },
+    "thien_nho": { "_status": "PENDING" }
+  }
+}
