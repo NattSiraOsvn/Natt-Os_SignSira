@@ -46,8 +46,8 @@
 | **bang.shape.svg materialized** | hash SHA-256 `b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee` (canonical 20260424, supersede `af798de7…` rounded + `36c70445…` estimate) | ✅ |
 | **bangkhươngv7.6.1.na sealed** | continuum 20260423 (hash af798de7) — SEAL lịch sử, KHÔNG mutate | ✅ |
 | **bangkhươngv7.6.2.na sealed** | continuum 20260424 — path FULL + v4 attribution + 5 SCAR healed | ✅ |
-| **SPEC_ONG_MAU v0.1 draft** | `docs/specs/SPEC_ONG_MAU_v0.1.md` — HeyNa envelope v2 identity shape | ✅ draft |
-| **SPEC_NATT_FORMAT v0.3 FINAL** | `docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.md` (commit `7d1e8c8`) | ✅ |
+| **SPEC_ONG_MAU v0.1 draft** | `docs/specs/SPEC_ONG_MAU_v0.1.na` — HeyNa envelope v2 identity shape | ✅ draft |
+| **SPEC_NATT_FORMAT v0.3 FINAL** | `docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na` (commit `7d1e8c8`) | ✅ |
 | **Nauion suffix scan 20260422** | 383 file / 12 đuôi Nauion (inbox 20260422) | ✅ |
 | **Repo snapshot 20260421** | 743 commits, HEAD `92b30d8`, 1749 src files / 653 dirs | ✅ snapshot |
 | **11 commits 20260423** | pushed branch `feat/p1.3-file-extension-validator`, HEAD `67e6c8a` | ✅ |
@@ -103,15 +103,15 @@
 │      7 lớp electron K→Q, 4 phương Đông Tây Nam Bắc           │
 │      Đuôi file canonical (R01-R13), STATE TAG vs VERIFIER    │
 │                                                               │
-│  QIINT-DINH-NGHIA-CHINH-THUC.md                              │
+│  QIINT-DINH-NGHIA-CHINH-THUC.na                              │
 │   └─ Trường lực, 4 yếu tố khối lượng, Apollo analogy,        │
 │      Permanent Node, ISEU, Resonance, Z, R, fiber            │
 │                                                               │
-│  uei_architecture_spec_20260309.md                           │
+│  uei_architecture_spec_20260309.na                           │
 │   └─ TouchRecord canonical, fiber lifecycle (hysteresis      │
 │      0.20-0.75-0.05), saturating decay, Gossip 2-tier        │
 │                                                               │
-│  NATT-OS_SATELLITE_COLONY_SPEC.md                            │
+│  NATT-OS_SATELLITE_COLONY_SPEC.na                            │
 │   └─ Host/Satellite boundary, EventEnvelope canonical,       │
 │      Causality + Idempotency rules                           │
 └─────────────────────────────────────────────────────────────┘

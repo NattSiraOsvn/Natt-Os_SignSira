@@ -41,7 +41,7 @@ Em merge essence 5 spec, không copy verbatim. Reference đầy đủ ở §10.
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│  QIINT-DINH-NGHIA-CHINH-THUC.md  (227 dòng, 2026-04-13)  │
+│  QIINT-DINH-NGHIA-CHINH-THUC.na  (227 dòng, 2026-04-13)  │
 │  ──────────────────────────────────────────────────────  │
 │  • QIINT = trường lực không gian ý nghĩa                 │
 │  • 4 yếu tố khối lượng:                                  │
@@ -56,7 +56,7 @@ Em merge essence 5 spec, không copy verbatim. Reference đầy đủ ở §10.
 └──────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────┐
-│  uei_architecture_spec_20260309.md  (183 dòng)           │
+│  uei_architecture_spec_20260309.na  (183 dòng)           │
 │  ──────────────────────────────────────────────────────  │
 │  • TouchRecord canonical (struct kernel)                 │
 │  • Fiber lifecycle hysteresis: 0.20 → 0.75 → 0.05        │
@@ -67,7 +67,7 @@ Em merge essence 5 spec, không copy verbatim. Reference đầy đủ ở §10.
 └──────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────┐
-│  NATT-OS_SATELLITE_COLONY_SPEC.md  (115 dòng)            │
+│  NATT-OS_SATELLITE_COLONY_SPEC.na  (115 dòng)            │
 │  ──────────────────────────────────────────────────────  │
 │  • Host/Satellite boundary — cell owned bởi 1 Host       │
 │  • EventEnvelope canonical fields:                       │
@@ -620,9 +620,9 @@ Per v7.6.2 + canonical Apr 20:
 
 ## §10. REFERENCES — 5 canonical
 
-- `docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.md` (sealed 2026-04-13)
-- `docs/specs/uei_architecture_spec_20260309.md`
-- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.md`
+- `docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.na` (sealed 2026-04-13)
+- `docs/specs/uei_architecture_spec_20260309.na`
+- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na`
 - `src/governance/specs/SPEC_NEN_v1.1.anc` (sealed 2026-04-18)
 - `src/governance/specs/SPEC_NGON_NGU_v1.2.kris` (sealed)
 

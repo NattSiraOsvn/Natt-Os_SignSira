@@ -32,22 +32,22 @@ set -euo pipefail
 # TIER 1 hardcoded list — chốt phiên 20260425 (16 file)
 # ============================================================================
 TIER1_FILES=(
-  "docs/specs/0-BOOT-FAMILY-MAP.md"
-  "docs/specs/COLOR_SIRASIGN.md"
-  "docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.md"
-  "docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.md"
-  "docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.md"
-  "docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.md"
-  "docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.md"
-  "docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.md"
-  "docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md"
-  "docs/specs/SPEC_Nauion_Render_Stack_v0.1.md"
-  "docs/specs/SPEC_ONG_MAU_v0.1.md"
-  "docs/specs/THIENBANG_MAPPING_v1_canonical_answers.md"
-  "docs/specs/phase5-resonance-protocol.md"
-  "docs/specs/uei_architecture_spec_20260309.md"
-  "docs/specs/uei_runtime_spec_20260309.md"
-  "docs/specs/Vision/VISION_ENGINE_SPEC_FINAL.md"
+  "docs/specs/0-BOOT-FAMILY-MAP.na"
+  "docs/specs/COLOR_SIRASIGN.na"
+  "docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na"
+  "docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na"
+  "docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.na"
+  "docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.na"
+  "docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na"
+  "docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na"
+  "docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na"
+  "docs/specs/SPEC_Nauion_Render_Stack_v0.1.na"
+  "docs/specs/SPEC_ONG_MAU_v0.1.na"
+  "docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na"
+  "docs/specs/phase5-resonance-protocol.na"
+  "docs/specs/uei_architecture_spec_20260309.na"
+  "docs/specs/uei_runtime_spec_20260309.na"
+  "docs/specs/Vision/VISION_ENGINE_SPEC_FINAL.na"
 )
 
 # Pathspec exclude — historical / vết hằn / archived

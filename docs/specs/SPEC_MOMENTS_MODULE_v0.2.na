@@ -14,7 +14,7 @@
 **Source of truth (canonical ladder):**
 
 1. **PRIMARY** — `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na §9 VOCABULARY LOCK — SCAR / KHAI / GIAC` (Phase B.1 ratified canonical, 2026-04-24)
-2. **Reference extension mapping** — `docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.md` + `docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.md`
+2. **Reference extension mapping** — `docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na` + `docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na`
 3. **Reference historical** — `src/governance/memory/bang/session-20260420-final/bangfs_delta_20260420.canonical §III` (pre-B.1, historical)
 4. **Reference SuperDictionary** — `src/thienbang.si` L195-199
 
@@ -462,8 +462,8 @@ historical_reference:
   - bangfs_delta_20260420.canonical §III
   - src/thienbang.si L195-199
 extension_reference:
-  - docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.md
-  - docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.md
+  - docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na
+  - docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na
 scope: governance/moments/ — Băng maintain_validators
 integration: Kim K.3 SCAR detector hook + Băng/entity KHAI/GIAC file xuất
 head_hash_at_draft: <chờ anh git rev-parse HEAD runtime trước seal — per SCAR-20260424-HEAD-HASH-STALE lesson>

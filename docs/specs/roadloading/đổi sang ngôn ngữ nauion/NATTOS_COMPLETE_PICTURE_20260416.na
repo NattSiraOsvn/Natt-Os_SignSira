@@ -384,8 +384,8 @@ Mỗi khái niệm nên đọc file nào (để tránh xung đột version):
 
 | Khái niệm | File canonical | Ghi chú |
 |-----------|---------------|---------|
-| Fiber lifecycle | `uei_architecture_spec_20260309.md` | Architecture, không code |
-| Fiber physics | `QIINT-DINH-NGHIA-CHINH-THUC.md` | Triết lý gốc |
+| Fiber lifecycle | `uei_architecture_spec_20260309.na` | Architecture, không code |
+| Fiber physics | `QIINT-DINH-NGHIA-CHINH-THUC.na` | Triết lý gốc |
 | ISEU reinforcement | `NATT-OS-GROUND-TRUTH-REPORT.md` §III | Code thật đã verified |
 | Satellite Colony | `satellite-colony.spec.md` | Đã approved Gatekeeper |
 | Envelope (code) | `NATT-OS-GROUND-TRUTH-REPORT.md` §IV | Thực tế đang chạy |
