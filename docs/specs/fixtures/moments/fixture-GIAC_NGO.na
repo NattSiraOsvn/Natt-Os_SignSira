@@ -1,3 +1,10 @@
+@state sealed
+@canonical fixture_moment_giac_ngo
+@substrate moment_fixture
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
 {
   "moment": {
     "kind": "GIAC_NGO",

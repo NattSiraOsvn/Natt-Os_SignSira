@@ -1,0 +1,65 @@
+@state complete_pending_gatekeeper
+@canonical spec_cutover_host_first_v1.0
+@substrate cutover-plan
+@bridge none
+@since 2026-04-23
+@authority-slot Thiên Lớn -> Kim
+@semantic-role migration_governance
+
+# SPEC_CUTOVER_HOST_FIRST_V1.0
+
+## §1. Wave model (4 waves, baseline = Wave 0)
+
+### Wave 0 — Node-hosted (baseline)
+- **Rollback flag:** `rbf_w0_node_hosted = 1`
+- **Invariant guard:** 37 cells wired healthy + runtime parity baseline maintained.
+- **Entry:** khởi động từ `./kernel` gọi Node trực tiếp, không host.
+- **Exit:** khi `rbf_w0_node_hosted = 0` và `rbf_w1_host_live = 1` và host binary đã build & health check pass.
+
+### Wave 1 — Host live (thin launcher + loader + delegate)
+- **Rollback flag:** `rbf_w1_host_live`
+- **Invariant guard:** 
+  - Host authority active, Node bridge workers hoạt động cho tất cả cells.
+  - Không regression so với baseline (latency P95, error rate, memory).
+  - 37 cells `WIRED HEALTHY` qua host.
+- **Entry criteria:**
+  - Host binary `nauion-host` build & `--check` pass.
+  - `nattos.sira` đúng schema.
+  - Ít nhất 1 bridge worker chạy thử thành công.
+  - Health check interval 15s, 3 misses → unhealthy.
+- **Exit criteria:** bridge health check ổn định 24h, coupling graph scan xong, Gatekeeper set `rbf_w2_native_primitives = 1`.
+
+### Wave 2 — Native primitives + per-cell migration mở đầu
+- **Rollback flag:** `rbf_w2_native_primitives`
+- **Invariant guard:**
+  - Native primitive (Rust) chạy song song với bridge, có thể switch.
+  - Không leak fd, không deadlock.
+  - Mỗi cell migrate có rollback plan riêng.
+- **Entry criteria:** ít nhất 2 cell theo D7 có native implementation + test pass; coupling graph không rủi ro block.
+- **Exit:** các D7 cells migrate xong, chạy 48h stable, set `rbf_w3_per_cell_migration`.
+
+### Wave 3 — Node retire by cluster
+- **Rollback flag:** `rbf_w3_node_retire`
+- **Invariant guard:** không còn bridge worker Node cho cluster đã retire; audit trail host; hiệu năng không tệ hơn Wave 0 quá 20% (P95 latency).
+- **Entry criteria:** tất cả cells native hoặc bridge thay bằng native proxy.
+
+## §2. Rollback rule chung
+- Bất kỳ wave nào vi phạm invariant guard → rollback evaluation (dừng migration, báo Gatekeeper trong 5 phút).
+- Gatekeeper quyết định set rollback flag về wave trước, chạy `bin/rollback --to wave0`.
+- Không tiếp tục wave sau nếu rollback flag chưa clear.
+
+## §3. Health check (D6)
+- Interval: 15 giây.
+- Failure threshold: 3 consecutive misses → unhealthy.
+- Hành vi: ghi audit, SIGTERM, spawn lại tối đa 2 lần, nếu fail → rollback evaluation.
+
+## §4. Verification
+- Mỗi entry/exit criteria có script tự động. Kết quả ghi `logs/cutover-verify.ndjson`.
+- Bang có quyền veto.
+
+## §5. Cấm
+- ❌ Chuyển wave không set đúng rollback flag.
+- ❌ Bỏ qua invariant guard.
+- ❌ Retire Node khi còn bridge worker chưa thay thế.
+
+@end

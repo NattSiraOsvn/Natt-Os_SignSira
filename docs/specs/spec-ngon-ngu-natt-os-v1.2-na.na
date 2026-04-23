@@ -59,7 +59,7 @@ v1.2 **KHÔNG rewrite** v1.1. Chỉ override 2 đuôi:
 .khai  — TouchRecord (sóng khác trường)         ← giữ nguyên
 .thuo  — QWSField snapshot / session            ← giữ nguyên
 .heyna — event log HeyNa transport              ← giữ nguyên
-.ml    — SCAR registry                          ← giữ nguyên
+.ml    — Registry (SCAR per-cell + Master)      ← expand semantic v1.2.1
 ```
 
 **Cảnh báo (nhắc lại từ v1.1 §4.2):**
@@ -111,7 +111,7 @@ Thay thế dòng `.khương` và `.kris` bằng dòng `.na` duy nhất:
 | `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot | KhaiCell |
 | `.thuo` | `SES-<ulid>.thuo` | Session record | QNEU |
 | `.heyna` | `<service>.heyna` | Event log | Append-only |
-| `.ml` | `<cell>.ml` | SCAR registry | Tự ghi |
+| `.ml` | `<cell>.ml` hoặc `<scope>-master-registry.ml` | Registry (SCAR per-cell + Master multi-cell) | Tự ghi / Filesystem-scan generated |
 
 ### §3.4 Update R01-R13
 

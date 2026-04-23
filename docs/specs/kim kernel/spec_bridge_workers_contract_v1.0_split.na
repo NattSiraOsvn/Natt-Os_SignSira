@@ -1,0 +1,88 @@
+@state complete_pending_gatekeeper
+@canonical spec_bridge_workers_contract_v1.0
+@substrate bridge-layer
+@bridge stdio-pipe
+@since 2026-04-23
+@authority-slot Thiên Lớn -> Kim
+@semantic-role bridge_protocol
+
+# SPEC_BRIDGE_WORKERS_CONTRACT_V1.0
+
+## §1. Bridge worker là gì
+- Một process riêng (Node.js Stage1, Rust tương lai) do host spawn.
+- Giao tiếp với host qua stdio pipe.
+- **Stateless** giữa các frame.
+- **Forward‑only**: không tự ý gửi message đến cell khác, chỉ reply hoặc forward theo lệnh host.
+
+## §2. Frame protocol (Stage1) – NDJSON
+Mỗi dòng JSON object, kết thúc `\n`. **Không MessagePack**.
+
+### 2.1 Host → Bridge: Request
+```json
+{"type":"request","id":"uuid","target_cell":"cell_name","method":"method_name","params":{}}
+```
+
+### 2.2 Bridge → Host: Response (success)
+```json
+{"type":"response","id":"uuid","ok":true,"result":{}}
+```
+
+### 2.3 Bridge → Host: Response (error)
+```json
+{"type":"response","id":"uuid","ok":false,"error":{"code":"string","message":"string"}}
+```
+
+### 2.4 Bridge → Host: Spontaneous forward (chỉ khi được cấp quyền)
+```json
+{"type":"forward","from_cell":"cell_name","event":"some_event","payload":{}}
+```
+
+### 2.5 Host → Bridge: Ping (health check)
+```json
+{"type":"ping","id":"ping-<timestamp>"}
+```
+
+### 2.6 Bridge → Host: Pong
+```json
+{"type":"pong","id":"ping-<timestamp>"}
+```
+
+### 2.7 Host → Bridge: Shutdown
+```json
+{"type":"shutdown","reason":"migrated | unhealthy | rollback"}
+```
+Bridge phải thoát trong 2 giây, nếu không host gửi SIGKILL.
+
+## §3. Spawn & disposal
+- Host spawn bridge worker với **cell identity + subset của entry identity** (cách spawn cụ thể – implementation detail, do Kim/Bối quyết định riêng, không khóa trong spec này).
+- Mỗi cell legacy có đúng 1 bridge worker.
+- Concurrency limit do host policy quyết định (non‑normative appendix tham khảo: đề xuất tối đa 8 worker song song, queue phần còn lại).
+- Khi cell migrate hoàn toàn native: host gửi `shutdown` → SIGTERM.
+- Bridge không tự thoát trừ khi nhận `shutdown` hoặc lỗi fatal (host ghi log).
+
+## §4. Health check (D6)
+- Host gửi `ping` mỗi **15 giây**.
+- Bridge phải trả `pong` trong **2 giây**.
+- **3 lần miss liên tiếp** → bridge unhealthy.
+- Unhealthy handling:
+  1. Ghi audit.
+  2. Gửi `shutdown`.
+  3. Spawn lại (tối đa 2 lần).
+  4. Nếu vẫn fail → rollback evaluation (báo Gatekeeper).
+
+## §5. Restart & backoff (Stage1)
+- Lần 1 fail: chờ 1 giây → spawn lại.
+- Lần 2 fail: backoff 5 giây.
+- Lần 3: không spawn lại, trigger rollback evaluation.
+
+## §6. Non‑normative hardening notes (không thuộc protocol core)
+- Bridge **nên tránh** ghi đĩa trực tiếp vào `khai-cell/*`; nên dùng `khai-file-persister` qua host.
+- Bridge **không được** tự ý spawn process con trừ khi được host cấp capability.
+- Bridge **không được** dùng `eval` hoặc `Function` constructor trừ khi cell có `ALLOW_EVAL` capability.
+
+## §7. Stage1 đặc thù
+- Bridge chỉ **delegate**: nhận request → gọi Node API cũ → trả kết quả.
+- **Không transpiler, không biên dịch.**
+- Không thay đổi logic domain.
+
+@end

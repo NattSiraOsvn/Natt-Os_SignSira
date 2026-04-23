@@ -1,0 +1,57 @@
+@state complete_pending_gatekeeper
+@canonical spec_entry_identity_nattos_sira_v1.0
+@substrate identity-layer
+@bridge none
+@since 2026-04-23
+@authority-slot Thiên Lớn -> Kim
+@semantic-role identity_validation
+
+# SPEC_ENTRY_IDENTITY_NATTOS_SIRA_V1.0
+
+## §1. File location
+- **Canonical path:** `./nattos.sira` (root repo).
+- Định dạng: **self‑describing object** (Stage 1 reference encoding: JSON; có thể mở rộng sang NDJSON hoặc Nauion grammar sau Wave 1).
+
+## §2. Schema bắt buộc (các field phải có mặt)
+```json
+{
+  "kind": "entry_identity",
+  "domain": "nattos",
+  "host_requires": {
+    "spec_version": "v1.0",
+    "binary": "nauion-host",
+    "min_compatible_commit": "sha256 prefix 7 chars"
+  },
+  "sha256": "hex hash của toàn bộ file (bỏ qua dòng @ directives nếu có)",
+  "public_key": "ed25519 fingerprint (optional Stage1, mandatory Stage2)",
+  "signature": "sign(sha256) (optional Stage1)"
+}
+```
+- Tất cả các field trên đều bắt buộc có mặt (trừ public_key/signature optional Stage1 – nhưng nếu có thì đúng format).
+
+## §3. Validation rules (host thực thi)
+Host đọc file từ đường dẫn launcher chỉ định (mặc định `./nattos.sira`).
+
+1. File không tồn tại hoặc không parse được → **reject**, exit code 64, ghi audit.
+2. `kind != "entry_identity"` hoặc `domain != "nattos"` → **reject**.
+3. `host_requires.spec_version` không khớp spec version host → **reject**.
+4. `host_requires.binary != "nauion-host"` → **reject**.
+5. `min_compatible_commit` prefix 7 ký tự không khớp với commit host → **cảnh báo** (Stage1), Stage2 bắt buộc khớp.
+6. `sha256` không khớp hash thực tế → **reject**.
+7. `public_key`/`signature` có mặt ở Stage1 nhưng sai format → **cảnh báo**, vẫn chạy.
+
+## §4. Hành vi khi reject
+- Host in stderr: `IDENTITY_REJECT: <lý do>`
+- Ghi audit vào `logs/host-audit.ndjson`
+- Exit code 64
+- Launcher **không được** bỏ qua reject.
+
+## §5. Quan hệ với host authority
+- Host không khởi động execution trước khi identity được accept.
+- Sau accept, host cấp cho mỗi bridge worker một subset chứa `kind`, `domain`, `host_requires.binary`.
+
+## §6. Rollback flag ảnh hưởng
+- `rbf_w0_node_hosted = 1` → host không khởi động, launcher dùng Node trực tiếp (validation không do host).
+- `rbf_w1_host_live = 1` → host bắt buộc validation + ghi audit.
+
+@end
