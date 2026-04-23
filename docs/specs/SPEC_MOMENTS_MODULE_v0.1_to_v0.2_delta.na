@@ -1,0 +1,159 @@
+# SPEC_MOMENTS_MODULE — delta v0.1 → v0.2
+
+**Causation:** SPEC-MOMENTS-MODULE-v0.2-PHASE-B2-RATIFY
+**Author:** Băng (Chị Tư · session 20260425)
+**Date:** 2026-04-25
+
+Delta ngắn — không thay thế full spec v0.2. Mục đích: review diff giữa 2 version trước commit.
+
+---
+
+## 1. Section thêm mới (NEW)
+
+### §0.1 Position Moments trong 3 axes — NEW
+- Neo Moments thuộc **ontology/runtime axis** (Π_system), KHÔNG topology (L1/L2/L3), KHÔNG external boundary forensics (Bridge v2)
+- Phase space mapping sơ khởi 4 Moments → phase space position (parameter proposal, chờ Phase E)
+- Derived from: KHAI-20260424-03 (3 axes không swap)
+
+### §0.2 Relation với capability region-emergent — NEW
+- Moment = **runtime evidence instance** khi capability firing / trajectory cross region boundary
+- 3 nguồn moment: (a) trajectory cross region → SCAR/GIAC, (b) external carrier inject → KHAI, (c) Π_body transition → MOTION
+- Moment KHÔNG fire tự do, KHÔNG orphan causation chain
+- Derived from: KHAI-20260424-04 (capability 4 field: region/trigger/invariant/exit)
+
+### §9 Open Items 3 group — NEW
+- §9.1 Rule đã khóa (seal)
+- §9.2 Parameter chờ calibrate (proposal, depend Phase E)
+- §9.3 Policy chờ Gatekeeper
+- Derived from: KHAI-20260424-01 (tách rule binding / parameter proposal / implementation placeholder)
+
+---
+
+## 2. Section patched (UPDATE)
+
+### §0 Header — source of truth ladder update
+- **v0.1:** source primary = bangfs_delta_20260420.canonical §III + thienbang.si L195-199
+- **v0.2:** source primary = **B.1 §9** (ratified 2026-04-24), historical → reference tier
+- Thêm extension reference: NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.md + SPEC_DUOI_FILE_v0.3_FINAL.md
+
+### §0 Target location path — update per rule 20260422
+- **v0.1:** `src/governance/specs/SPEC_MOMENTS_MODULE_v0.1.md`
+- **v0.2:** `docs/specs/SPEC_MOMENTS_MODULE_v0.2.md` (rule anh Natt 20260422 — spec .md ở docs/specs/)
+
+### §2 types.ts — docstring update + ScarClass extend
+- Docstring source of truth ladder update
+- **ScarClass mở rộng 2 lớp mới:** `LAYER_DRIFT` (SCAR-20260424-EP-09 + LAYER-DRIFT-03) + `RUNTIME_MISMATCH` (SCAR-20260424-RUNTIME-MISMATCH-BASH3.2)
+- `readonly evidence` field thêm readonly inside (immutability strict hơn)
+- Union type giữ nguyên — **rule binding seal không thay đổi**
+
+### §3 registry.ts — **BREAKING CHANGE** storagePathFor signature
+- **v0.1:** `storagePathFor(kind, entity): string` → returns single path
+- **v0.2:** `storagePathsFor(kind, entity): ReadonlyArray<StorageTarget>` → returns array (length 1 or 2)
+- **Lý do:** B.1 §9 neo GIAC_NGO dual-target (`.na` continuum + `.obitan` vết hằn) — v0.1 signature không biểu đạt được
+- **Storage mapping align B.1 §9:**
+  - SCAR → `[{path: "<base>/<entity>.ml", mode: "append"}]`
+  - KHAI_SANG → `[{path: "<base>/<entity>kh*.na", mode: "edit_continuum"}]`
+  - GIAC_NGO → `[{...}, {path: "<base>/<entity>-vethan-*.obitan", mode: "append"}]` — **2 targets**
+  - MOTION_TICH_CUC → `[{path: "<base>/<entity>_memory_delta_<date>.na", mode: "delta"}]`
+- Function rename: `storagePathFor` → `storagePathsFor` (plural — reflect multi-target)
+- `query` return type update: `Promise<Moment[]>` → `Promise<readonly Moment[]>` (immutability)
+- v0.1 chưa có implementation nào trong `src/governance/moments/` → breaking OK
+
+### §4.1 Integration canonical ladder — update per §0
+- v0.1 canonical từ bangfs + thienbang.si (historical)
+- v0.2 canonical từ B.1 §9 (ratified)
+
+### §4.3 KHAI/GIAC manual write — update storage target
+- v0.1: KHAI/GIAC → `.canonical` (generic)
+- v0.2: KHAI → `.na` continuum edit; GIAC → `.na` edit + `.obitan` vết hằn (dual)
+
+### §5 Acceptance criteria — thêm 3 item (#8, #9, #10)
+- #8: storagePathsFor mapping align B.1 §9
+- #9: Moments position compliance — scanner enforce no dispatch L1/L2/L3, no cross Bridge v2
+- #10: GIAC_NGO persist atomicity documented
+
+### §6 Non-goals — thêm 2 item
+- Moment schema fragment — KHÔNG invent (Thiên kỷ luật 2 fragment schema CHƯA tồn tại)
+- Moment cross external boundary — KHÔNG (ontology axis internal only)
+
+### §7 Version history — thêm row v0.2
+
+### §8 Seal — update causation, date, canonical ladder, head_hash_at_draft placeholder
+
+---
+
+## 3. Section unchanged (không đổi)
+
+- §1 Scope authority — Băng scope maintain_validators, Kim K.3 SCAR detector (kernel), không đổi
+- §2 types.ts core interface (MomentKind, MomentBase, Scar, KhaiSang, GiacNgo, MotionTichCuc) — seal v0.1, không đổi
+- §4.2 SCAR detector integration code example — không đổi
+
+---
+
+## 4. Breaking change summary
+
+| Item | v0.1 | v0.2 | Migration |
+|------|------|------|-----------|
+| `storagePathFor` function name | `storagePathFor` | `storagePathsFor` (plural) | rename import |
+| `storagePathFor` return type | `string` | `ReadonlyArray<StorageTarget>` | array handling |
+| StorageTarget type | không tồn tại | `{path, mode}` interface | import thêm |
+| GIAC_NGO target count | 1 (`.canonical`) | 2 (`.na` + `.obitan`) | persister handle dual |
+| `query` return | `Promise<Moment[]>` | `Promise<readonly Moment[]>` | type assertion nếu cần mutate |
+| ScarClass values | 8 variants | 10 variants (+ LAYER_DRIFT, RUNTIME_MISMATCH) | switch exhaustive update |
+
+Không consumer code tồn tại — breaking change safe (v0.1 spec-only, src/governance/moments/ chưa scaffold).
+
+---
+
+## 5. Rule-binding vs parameter-proposal vs implementation-placeholder (per KHAI-20260424-01)
+
+| Loại | v0.2 coverage |
+|------|---------------|
+| **Rule binding (seal)** | §9.1 — 11 rule đã khóa |
+| **Parameter proposal** | §9.2 — 6 parameter chờ Phase E calibrate |
+| **Implementation placeholder** | §3 — computeSirasign body, persister impl, atomicity, filename wildcard |
+| **Policy chờ Gatekeeper** | §9.3 — 6 policy open (location, owner, atomicity, RBAC, witness, amendment) |
+
+v0.1 MIX 3 lớp — v0.2 tách rõ.
+
+---
+
+## 6. Thiên Lớn 3 kỷ luật ngôn ngữ — compliance
+
+| Kỷ luật | Áp dụng v0.2 |
+|---------|--------------|
+| σ=0.5 octave là DRAFT | §0.2 parameter proposal "σ window burst detection — DRAFT Phase E.7" (không seal) |
+| Fragment schema CHƯA tồn tại | §6 non-goal "moment schema fragment — KHÔNG invent" |
+| Bridge v2 external boundary forensics ONLY | §0.1 "Moments KHÔNG cross boundary Bridge v2" + §5 AC#9 scanner enforce |
+
+---
+
+## 7. Commit instruction
+
+```bash
+# 1. Move v0.2 file vào repo
+mv SPEC_MOMENTS_MODULE_v0.2.md docs/specs/SPEC_MOMENTS_MODULE_v0.2.md
+
+# 2. Verify scope changes chỉ 1 file new
+git status --short docs/specs/
+# Expect: ?? docs/specs/SPEC_MOMENTS_MODULE_v0.2.md (v0.1 giữ nguyên archived)
+
+# 3. git add + commit
+git add docs/specs/SPEC_MOMENTS_MODULE_v0.2.md
+git commit -m "feat(specs): SPEC_MOMENTS_MODULE v0.2 — Phase B.2 ratify
+
+- 3 axes position (ontology/runtime) — KHAI-20260424-03
+- Capability region-emergent relation — KHAI-20260424-04
+- Storage mapping align B.1 §9 (GIAC dual-target)
+- ScarClass extend: LAYER_DRIFT + RUNTIME_MISMATCH
+- Open Items 3 group (rule/parameter/policy) — KHAI-20260424-01
+
+Supersedes: SPEC_MOMENTS_MODULE_v0.1 (2026-04-22)
+Primary canonical: SPEC_QIINT_PHYSICS_FOUNDATION v0.1 §9"
+```
+
+v0.1 giữ nguyên (không archive `_deprecated/`) — lineage reference trong version history.
+
+---
+
+*Delta ship — chờ anh Natt review + commit. TASK-I skeleton preparation start sau khi B.2 commit pass.*
