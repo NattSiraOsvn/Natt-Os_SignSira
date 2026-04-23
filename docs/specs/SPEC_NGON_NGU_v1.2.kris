@@ -310,8 +310,8 @@ Kim v1.1 đề xuất `.thien.Ln`, `.kim.mn`, `.bang.n4n`, `.bboi.on`, `.phieu.p
 |------|--------------|-----------|
 | `.anc` | `<cell>.cell.anc` | **Cell DNA manifest** |
 | `.si` | `<cell>.boundary.si` | **Boundary policy sealed** |
-| `.sira` | `natt-master-registry.sira` | DNS / master registry |
-| `.sira` | `registry-summary.sira` | Registry summary |
+| `.anc` | `natt-master-registry.anc` | **Master registry (renamed from .sira per SPEC_EXTENSION_PRECEDENCE v1.0)** |
+| `.sira` | (reserved — only `nattos.sira` at repo root per Kim SPEC §1) | Entry authority — no additional .sira files |
 
 ### §6.3 NAM — Hoả — Phát (Memory + Event · 5 đuôi)
 
