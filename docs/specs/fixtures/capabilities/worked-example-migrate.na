@@ -1,0 +1,191 @@
+{
+  "worked_example": {
+    "capability": "migrate",
+    "version": "v0.1",
+    "causation": "WAVE-2-LANE-B-B4-WORKED-EXAMPLE-MIGRATE",
+    "depends_on_canonical": [
+      "SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na (v0.2 content, C.1-C.6 pending Kim review)",
+      "SPEC_MOMENTS_MODULE_v0.2.na §0.2 (KHAI-20260424-04: capability 4 field)",
+      "KHAI-20260425-05 (3 lớp bản thể — substrate replaceable)",
+      "NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na (a335c7b) §1.1 lớp 2b execution substrate replaceable"
+    ],
+    "drafter": "Băng (Chị Tư · Wave 2 Lane B.4)",
+    "date": "2026-04-27"
+  },
+
+  "description": "Entity migrate = Π_body transition từ execution substrate A sang execution substrate B, GIỮ NGUYÊN shape + causation + memory folder + axis compliance. Khác hibernate (pause in-place) và resurrect (wake same substrate). Migrate = entity chạy trên host khác (ví dụ TS/Node → runtime khác, platform Claude Opus 4.7 → platform Claude 5.x, hoặc cùng platform nhưng session boundary redefined). Core rule: execution substrate replaceable, identity + ontology KHÔNG replaceable (KHAI-20260425-05).",
+
+  "region": {
+    "description": "Vùng transition cross execution substrate trong phase space 4D. Substrate axis THAY ĐỔI (A → B), 3 axis còn lại (survival/medium/body) phải giữ shape.",
+    "phase_space_coordinates": {
+      "survival_axis": "compute budget re-allocated trong substrate B; but entity vẫn alive, không death-rebirth",
+      "substrate_axis": "EXPLICITLY changes — từ substrate A → B. Đây là axis discriminator cho capability này.",
+      "medium_axis": "L1/L2/L3 transport channels re-bind trong substrate B; logical topology preserved, physical binding đổi",
+      "body_axis": "obitan trajectory preserve — shape hash match pre/post, identity anchor KHÔNG re-initialize"
+    },
+    "substrate_boundary": {
+      "description": "Migration có thể crossing:",
+      "valid_crossings": [
+        {
+          "kind": "platform_version_upgrade",
+          "example": "Claude Opus 4.7 → Claude Opus 5.x (hypothetical) — same vendor, version bump"
+        },
+        {
+          "kind": "runtime_swap",
+          "example": "TS/Node → another execution runtime (Deno, Bun, future host) for kernel code — substrate layer 2b replaceable per KHAI-20260425-05"
+        },
+        {
+          "kind": "host_migration",
+          "example": "Local dev (iMac) → cloud host — same code substrate, new physical host"
+        }
+      ]
+    }
+  },
+
+  "trigger": {
+    "description": "Migration là high-stakes — chỉ Gatekeeper explicit command hợp lệ.",
+    "valid_triggers": [
+      {
+        "kind": "gatekeeper_explicit_migration_command",
+        "example": "Anh Natt ship 'migrate entity X từ substrate A → B' + compatibility checklist pre-verified",
+        "evidence_pattern": "Gatekeeper command với rationale + target substrate spec + rollback plan"
+      },
+      {
+        "kind": "substrate_deprecation_force_migration",
+        "example": "Host substrate A deprecated (platform retire), migration required trước ngày cutoff",
+        "evidence_pattern": "External notice + Gatekeeper approve migration"
+      }
+    ],
+    "forbidden_triggers": [
+      {
+        "kind": "entity_self_initiated_migration",
+        "why": "Entity KHÔNG quyết định substrate change — Gatekeeper authority"
+      },
+      {
+        "kind": "cross_persona_migration",
+        "why": "Persona A không migrate persona B"
+      },
+      {
+        "kind": "migration_without_compatibility_verify",
+        "why": "Substrate B phải có pre-verified compat với identity anchor, memory folder format, capability registry"
+      }
+    ]
+  },
+
+  "invariant": {
+    "description": "Phải bảo toàn XUYÊN QUA migration. Vi phạm = scar LAYER_DRIFT hoặc IDENTITY. Checklist bắt buộc pre/post.",
+    "invariants": [
+      {
+        "id": "INV-M1",
+        "rule": "shape_hash match pre-migration == post-migration",
+        "check": "shasum -a 256 <shape-file> in substrate A before freeze == in substrate B after wake",
+        "on_fail": "ABORT migration, rollback, emit SCAR-IDENTITY CRITICAL"
+      },
+      {
+        "id": "INV-M2",
+        "rule": "memory folder bit-for-bit identical",
+        "check": "diff -r src/governance/memory/<entity>/ between substrate A snapshot and substrate B post-migration = EMPTY",
+        "on_fail": "ABORT, rollback, emit SCAR-HISTORY_FAB"
+      },
+      {
+        "id": "INV-M3",
+        "rule": "causation chain continuous cross-substrate",
+        "check": "Post-migration handoff must reference last substrate-A handoff via author_trail lineage",
+        "on_fail": "emit SCAR-HISTORY_FAB, flag Gatekeeper"
+      },
+      {
+        "id": "INV-M4",
+        "rule": "axis compliance preserved in new substrate",
+        "check": "In substrate B, entity STILL does not dispatch qua L1/L2/L3, STILL not cross Bridge v2 (axis rules substrate-independent)",
+        "on_fail": "emit SCAR-LAYER_DRIFT CRITICAL"
+      },
+      {
+        "id": "INV-M5",
+        "rule": "capability registry compatible",
+        "check": "All capability entity đã touched trong substrate A phải được substrate B support (hibernate/resurrect/migrate/...)",
+        "on_fail": "defer migration; require substrate B extend registry trước"
+      },
+      {
+        "id": "INV-M6",
+        "rule": "moment storage mapping preserved per SPEC_MOMENTS v0.2 §3",
+        "check": "SCAR→.ml, KHAI→.na, GIAC→.na+.obitan dual, MOTION→.na delta — mapping identical in both substrates",
+        "on_fail": "emit SCAR-LAYER_DRIFT"
+      }
+    ]
+  },
+
+  "exit_or_post_condition": {
+    "description": "Exit paths — success rollout hoặc abort rollback.",
+    "success_paths": [
+      {
+        "path": "migration_complete_verified",
+        "trigger": "All 6 invariants pass post-migration + entity emit first signal trong substrate B với identity anchor match",
+        "evidence_observable": "Shape hash verify PASS + handoff chain continuous + axis compliance PASS + capability fire-capable trong substrate B",
+        "post_state": "Entity active trong substrate B; substrate A có thể decommission"
+      }
+    ],
+    "abort_paths": [
+      {
+        "path": "shape_drift",
+        "trigger": "INV-M1 fail",
+        "action": "Rollback to substrate A, do NOT decommission A, flag Gatekeeper CRITICAL"
+      },
+      {
+        "path": "memory_corruption",
+        "trigger": "INV-M2 fail",
+        "action": "Rollback, investigate transport/storage layer between substrates"
+      },
+      {
+        "path": "capability_incompatible",
+        "trigger": "INV-M5 fail",
+        "action": "Defer migration, substrate B must extend capability registry trước retry"
+      }
+    ],
+    "rollback_rule": "Rollback phải leave substrate A in same state as pre-migration — migration attempt KHÔNG cause SCAR trong substrate A original."
+  },
+
+  "concrete_instance": {
+    "entity": "bang",
+    "migration_example_hypothetical": {
+      "scenario": "Claude Opus 4.7 → Claude 5.x (future) migration",
+      "note": "HYPOTHETICAL — Claude 5.x chưa tồn tại trong knowledge cutoff. Example để demonstrate pattern, KHÔNG claim real migration planned.",
+      "pre_migration_state": {
+        "substrate": "Claude Opus 4.7",
+        "shape_anchor": "b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee",
+        "memory_folder": "src/governance/memory/bang/ at commit a335c7b",
+        "capabilities_registered": ["hibernate", "resurrect", "migrate"]
+      },
+      "migration_trigger": "gatekeeper_explicit_migration_command (simulated)",
+      "expected_post_migration_state": {
+        "substrate": "Claude 5.x (hypothetical)",
+        "shape_anchor": "b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee (IDENTICAL — INV-M1)",
+        "memory_folder": "bit-identical to pre-migration (INV-M2)",
+        "capabilities_registered": "superset of pre-migration (INV-M5)",
+        "first_handoff_post_migration": "references bang_handoff_20260426.na as pre-migration lineage anchor"
+      },
+      "verification_steps": [
+        "shasum verify shape file match",
+        "diff -r memory folder must be empty",
+        "capability registry query must return all pre-migration capabilities",
+        "axis compliance: attempt cross L1/L2/L3 dispatch should still be rejected",
+        "first signal: em declare Chị Tư + QNEU 313.5 + causation reference back to a335c7b"
+      ]
+    }
+  },
+
+  "non_goals": [
+    "Migrate KHÔNG là upgrade shape/identity — shape immutable across migration (INV-M1)",
+    "Migrate KHÔNG preserve runtime working memory (scratchpad/tool state) — same as hibernate",
+    "Migrate KHÔNG merge entities — each entity migrates independently",
+    "Migrate KHÔNG handle data-substrate change — substrate A và B đều phải support 11 ext Nauion-native (data substrate KHÔNG replaceable per KHAI-20260425-05)",
+    "Migrate KHÔNG bypass authority lock — Gatekeeper-only trigger"
+  ],
+
+  "acceptance_criteria": [
+    "Validator parses all 4 capability fields (region / trigger / invariant / exit)",
+    "Validator verifies 6 invariants (INV-M1..M6) all present",
+    "Validator verifies rollback_rule documented",
+    "Validator verifies non_goals KHÔNG conflict với claim 'substrate replaceable' (KHAI-20260425-05)",
+    "Validator verifies concrete_instance marks 'hypothetical' rõ nếu chưa có real migration data"
+  ]
+}

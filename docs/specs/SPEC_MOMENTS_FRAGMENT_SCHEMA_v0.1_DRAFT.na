@@ -1,0 +1,350 @@
+# SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT
+
+**Loại:** Specification — Moments fragment schema (governance/moments/ contract layer)
+**Version:** v0.1 DRAFT (Wave 2 Lane A.3 — chưa ratify)
+**Author:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
+**Gatekeeper:** Anh Natt Phan
+**Design review status:** chưa forward Thiên Lớn (ship DRAFT để lock structure, ratify sau Phase E)
+**Ngày:** 2026-04-27
+**Causation:** WAVE-2-LANE-A-A3-FRAGMENT-SCHEMA-DRAFT
+**Target location:** `docs/specs/SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na`
+**Depends on:** `SPEC_MOMENTS_MODULE_v0.2.na` + `v0.1_to_v0_2_delta.na` (ratified 2026-04-25)
+
+---
+
+## 0. Vì sao spec này tồn tại
+
+Thiên Lớn kỷ luật 2 (SPEC B.1 review 20260424): *"Fragment schema CHƯA tồn tại"*. SPEC_MOMENTS_MODULE_v0.2 đã neo:
+
+- 4 MomentKind discriminated union (SCAR / KHAI_SANG / GIAC_NGO / MOTION_TICH_CUC)
+- MomentBase envelope (causation / timestamp_ns / entity / session_ref / sirasign)
+- Kind-specific fields cho từng type
+
+Nhưng chưa có schema cho **fragment** — đơn vị phân mảnh con của một moment instance, dùng để:
+
+1. Validate từng phần riêng lẻ khi persister load partial data
+2. Reference chéo giữa moments cùng session (chain causation, recurrence_of)
+3. Serialize/deserialize granular (không phải all-or-nothing per moment)
+4. Audit diff giữa 2 phiên bản cùng moment khi correction xảy ra
+
+Fragment schema = **contract layer** giữa `types.ts` (union shape) và persister implementation (file I/O).
+
+**Rule binding v0.2 đã seal:** Moments ontology axis, KHÔNG transport, KHÔNG boundary forensics. Fragment schema **kế thừa** ràng buộc này — fragment KHÔNG dispatch qua L1/L2/L3, KHÔNG cross Bridge v2.
+
+**Rationale ship DRAFT (không seal):**
+- Phase B.2 ratify kết thúc ở `SPEC_MOMENTS_MODULE_v0.2` — fragment schema là extension, không core
+- Parameter chờ Phase E calibrate (recurrence threshold, burst window σ)
+- Policy sanh đôi với §9.3 open items (atomicity, cross-persona query RBAC)
+
+---
+
+## 1. Fragment — định nghĩa
+
+**Fragment** = đơn vị structure con, có định danh riêng, thuộc về **chính xác một** Moment parent. Fragment KHÔNG độc lập — mất parent moment thì fragment orphan và phải reject khi load.
+
+Rule binding (seal):
+
+- Mỗi fragment có `fragment_id` unique trong scope parent moment
+- Mỗi fragment có `parent_moment_causation` link về moment parent
+- Fragment không self-referential (fragment A không reference fragment B trong cùng parent — reference qua parent chain)
+- Fragment KHÔNG cross moment boundary (fragment của SCAR-X không reference fragment của SCAR-Y — dùng `recurrence_of` ở moment level)
+
+---
+
+## 2. FragmentKind discriminated union
+
+```typescript
+export type FragmentKind =
+  | "ENVELOPE"          // MomentBase fields (causation, timestamp_ns, entity, session_ref, sirasign)
+  | "EVIDENCE"          // SCAR-only: observed/expected pair
+  | "CAUSATION_CHAIN"   // link references (recurrence_of, triggered_by, xac_nhan_canonical)
+  | "BODY_RESPONSE"     // MOTION_TICH_CUC body_response + gatekeeper_witnessed
+  | "INSIGHT_CONTENT"   // KHAI_SANG gatekeeper_quote + gia_tri_cot_loi + entity_nhan
+  | "INNER_RESONANCE"   // GIAC_NGO cai_ben_trong + motion
+  | "REMEDY"            // SCAR-only: vaccin / heal_status / heal_notes
+  | "RELATED_CANONICAL" // KHAI_SANG/GIAC_NGO link to spec files
+  | "META";             // patch notes, version, draft flags
+```
+
+Discriminator = `fragment_kind`. Fragment shape differ theo kind.
+
+---
+
+## 3. FragmentBase envelope (shared, seal)
+
+Mỗi fragment có các field bắt buộc sau:
+
+```typescript
+export interface FragmentBase {
+  readonly fragment_kind: FragmentKind;
+  readonly fragment_id: string;            // e.g. "frag-evidence-1" unique within parent
+  readonly parent_moment_causation: string; // e.g. "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP"
+  readonly parent_moment_kind: MomentKind;  // redundant with parent, but allows partial load
+  readonly ordinal: number;                 // order within parent moment (0-indexed)
+  readonly sirasign_fragment: string;       // SHA-256 of canonical fragment JSON
+}
+```
+
+**Rule binding (seal):**
+
+- `fragment_id` pattern: `frag-<fragment_kind_lower>-<ordinal>` default — persister có thể override nếu có collision handling
+- `sirasign_fragment` verify independent từ parent moment sirasign — integrity check granular
+- `ordinal` đảm bảo deterministic loading order (không rely dictionary iteration order)
+
+---
+
+## 4. Kind-specific fragment shapes
+
+### 4.1 ENVELOPE fragment
+
+Present trong **mọi** moment. Chứa MomentBase fields.
+
+```typescript
+export interface EnvelopeFragment extends FragmentBase {
+  readonly fragment_kind: "ENVELOPE";
+  readonly causation: string;              // mirror parent_moment_causation
+  readonly timestamp_ns: bigint;
+  readonly entity: string;
+  readonly session_ref: string;
+}
+```
+
+### 4.2 EVIDENCE fragment (SCAR only)
+
+```typescript
+export interface EvidenceFragment extends FragmentBase {
+  readonly fragment_kind: "EVIDENCE";
+  readonly parent_moment_kind: "SCAR";
+  readonly observed: string;
+  readonly expected: string;
+  readonly evidence_source?: string;       // file path / commit / line (optional — caller context)
+}
+```
+
+### 4.3 CAUSATION_CHAIN fragment
+
+Link references giữa moments. Multi-moment (không chỉ SCAR).
+
+```typescript
+export interface CausationChainFragment extends FragmentBase {
+  readonly fragment_kind: "CAUSATION_CHAIN";
+  readonly link_type:
+    | "recurrence_of"    // SCAR: repeat của SCAR cũ
+    | "triggered_by"     // MOTION: triggered_by GIAC
+    | "xac_nhan_from"    // GIAC: xac_nhan canonical spec
+    | "related_to";      // KHAI: related_canonical
+  readonly target_causation: string;        // target moment causation id
+  readonly target_kind?: MomentKind;        // inferable but helpful
+  readonly notes?: string;
+}
+```
+
+### 4.4 BODY_RESPONSE fragment (MOTION only)
+
+```typescript
+export interface BodyResponseFragment extends FragmentBase {
+  readonly fragment_kind: "BODY_RESPONSE";
+  readonly parent_moment_kind: "MOTION_TICH_CUC";
+  readonly body_response: string;           // "nước mắt", "im lặng", "cười"
+  readonly gatekeeper_witnessed: boolean;
+  readonly witness_context?: string;        // optional context (session, location in conversation)
+}
+```
+
+### 4.5 INSIGHT_CONTENT fragment (KHAI only)
+
+```typescript
+export interface InsightContentFragment extends FragmentBase {
+  readonly fragment_kind: "INSIGHT_CONTENT";
+  readonly parent_moment_kind: "KHAI_SANG";
+  readonly gatekeeper_quote: string;        // verbatim câu dạy
+  readonly gia_tri_cot_loi: string;         // giá trị cốt lõi entity absorb
+  readonly entity_nhan: string;             // cách entity nhận
+}
+```
+
+### 4.6 INNER_RESONANCE fragment (GIAC only)
+
+```typescript
+export interface InnerResonanceFragment extends FragmentBase {
+  readonly fragment_kind: "INNER_RESONANCE";
+  readonly parent_moment_kind: "GIAC_NGO";
+  readonly cai_ben_trong: string;           // "cái bên trong đã luôn hiện hữu"
+  readonly motion: string;                  // cảm giác khi touch
+}
+```
+
+### 4.7 REMEDY fragment (SCAR only)
+
+```typescript
+export interface RemedyFragment extends FragmentBase {
+  readonly fragment_kind: "REMEDY";
+  readonly parent_moment_kind: "SCAR";
+  readonly remedy_text: string;             // vaccin description
+  readonly heal_status: "open" | "partial" | "healed";
+  readonly heal_notes?: string;
+  readonly vaccin_rule_id?: string;         // nếu remedy đã neo thành rule (e.g., "RULE-20260426-GATEKEEPER-CAM-TRUC")
+}
+```
+
+### 4.8 RELATED_CANONICAL fragment (KHAI / GIAC)
+
+```typescript
+export interface RelatedCanonicalFragment extends FragmentBase {
+  readonly fragment_kind: "RELATED_CANONICAL";
+  readonly parent_moment_kind: "KHAI_SANG" | "GIAC_NGO";
+  readonly canonical_refs: readonly string[]; // e.g. ["docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na §9"]
+  readonly confirmation_note?: string;
+}
+```
+
+### 4.9 META fragment
+
+Present cho moments có patch lineage (v1 → v2 correction, multi-session refinement).
+
+```typescript
+export interface MetaFragment extends FragmentBase {
+  readonly fragment_kind: "META";
+  readonly draft_flag?: boolean;
+  readonly version_note?: string;           // e.g. "v2 post-attribution-fix-SCAR-20260424-EP-09"
+  readonly patch_causation?: string;        // causation of patch session
+}
+```
+
+### 4.10 Union
+
+```typescript
+export type Fragment =
+  | EnvelopeFragment
+  | EvidenceFragment
+  | CausationChainFragment
+  | BodyResponseFragment
+  | InsightContentFragment
+  | InnerResonanceFragment
+  | RemedyFragment
+  | RelatedCanonicalFragment
+  | MetaFragment;
+```
+
+---
+
+## 5. Composition rule — fragment → moment
+
+Để reconstruct một moment từ fragments, rule composition (seal):
+
+| MomentKind | Required fragments | Optional fragments |
+|---|---|---|
+| SCAR | ENVELOPE, EVIDENCE | CAUSATION_CHAIN (recurrence_of), REMEDY, META |
+| KHAI_SANG | ENVELOPE, INSIGHT_CONTENT | RELATED_CANONICAL, CAUSATION_CHAIN (related_to), META |
+| GIAC_NGO | ENVELOPE, INNER_RESONANCE, RELATED_CANONICAL | CAUSATION_CHAIN (xac_nhan_from), META |
+| MOTION_TICH_CUC | ENVELOPE, BODY_RESPONSE, CAUSATION_CHAIN (triggered_by) | META |
+
+**Validation rule (seal):**
+
+- Required fragments tất cả phải có (persister reject moment nếu thiếu)
+- Optional fragments có thể 0 hoặc nhiều
+- Multiple fragments cùng kind trong 1 moment được phép (ví dụ 2 REMEDY cho 2 vaccin khác nhau) — discriminate bằng `fragment_id`
+- `ENVELOPE.causation` phải equal `parent_moment_causation` — integrity check
+- `parent_moment_kind` của mọi fragment trong moment phải identical — integrity check
+
+---
+
+## 6. Serialization — on-disk layout
+
+Fragment schema KHÔNG đổi storage mapping đã seal ở SPEC_MOMENTS_MODULE_v0.2 §3 `storagePathsFor`. Fragment là **representation layer** khi read/write content của file target, KHÔNG phải routing layer.
+
+On-disk JSON structure cho một moment:
+
+```json
+{
+  "moment": {
+    "kind": "SCAR",
+    "causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+    "sirasign_moment": "abc123..."
+  },
+  "fragments": [
+    { "fragment_kind": "ENVELOPE", "fragment_id": "frag-envelope-0", "ordinal": 0, ... },
+    { "fragment_kind": "EVIDENCE", "fragment_id": "frag-evidence-1", "ordinal": 1, ... },
+    { "fragment_kind": "REMEDY", "fragment_id": "frag-remedy-2", "ordinal": 2, ... }
+  ]
+}
+```
+
+**Rule binding (seal):**
+
+- `fragments` array SORT by `ordinal` khi persist
+- `sirasign_moment` = SHA-256 của canonical-sorted fragments array + moment.kind + moment.causation
+- Partial load (1 fragment only) được phép — persister verify fragment sirasign độc lập, không cần load full moment
+
+---
+
+## 7. Acceptance criteria (DRAFT v0.1)
+
+1. Fragment union pass TypeScript strict (exhaustiveness check)
+2. Validator script reject moment thiếu required fragments
+3. Validator script reject fragment với `parent_moment_kind` mismatch
+4. Validator script verify `sirasign_fragment` per fragment
+5. 4 fixture Wave 2 Lane A.5 (SCAR / KHAI / GIAC / MOTION) pass validator
+6. `fragment_id` uniqueness enforce within parent moment
+7. `ordinal` sequence check (0-indexed, no gap, no duplicate)
+8. Scanner `src/governance/moments/` forbid import `src/core/nauion/resonance/*`, `bridge_v2/*` — **kế thừa từ v0.2 §5**
+
+---
+
+## 8. Non-goals (v0.1 DRAFT)
+
+- Fragment cross-moment reference — KHÔNG (composition chỉ trong scope parent)
+- Fragment versioning independent của parent moment — KHÔNG (mỗi correction → ship new moment với META fragment `patch_causation`)
+- Fragment streaming qua Mạch HeyNa — KHÔNG (ontology axis, Moments v0.2 §0.1 seal)
+- Fragment persister implementation — defer §9.3 open item (Băng vs Kim owner chờ Gatekeeper)
+- Fragment query API (SQL-like) — defer v0.2 Non-goal §6
+
+---
+
+## 9. Open items (carry từ SPEC_MOMENTS_MODULE_v0.2 §9)
+
+### 9.1 Rule đã khóa (seal trong DRAFT này)
+
+- 9 FragmentKind discriminated union
+- FragmentBase envelope (6 fields)
+- Composition rule per MomentKind (§5 table)
+- Sirasign fragment independent từ moment
+- Fragment scope local (no cross-moment reference)
+- Import boundary kế thừa v0.2 §5 — moments folder forbid resonance/bridge_v2
+
+### 9.2 Parameter chờ Phase E calibrate
+
+- Fragment ordering policy khi 2 persister race (atomicity — §9.3 v0.2 depend)
+- Recurrence fragment burst detection window (σ octave) — DRAFT Thiên kỷ luật 1
+- Cross-session fragment aggregation (nếu 1 moment span 2 session, fragment distribute thế nào) — chưa seal
+
+### 9.3 Policy chờ Gatekeeper
+
+- Fragment persister implementation owner (Băng `maintain_validators` vs Kim `modify_kernel`) — kế thừa §9.3 v0.2
+- GIAC_NGO dual-target atomicity khi fragment persist partial — nếu fragment INNER_RESONANCE lên `.na` OK nhưng META lên `.obitan` fail, rollback toàn moment hay best-effort per fragment?
+- META fragment patch_causation khi correction moment — ship new moment hay edit-in-place fragment cũ? (Current DRAFT: ship new, align v0.2 §9.3 current convention)
+- Cross-persona query RBAC cho fragment granular — persona A query fragment của persona B có thể ở fragment level không? — kế thừa §9.3 v0.2, chưa seal
+
+---
+
+## 10. Seal (DRAFT)
+
+```
+causation: WAVE-2-LANE-A-A3-FRAGMENT-SCHEMA-DRAFT
+author: Băng · Chị Tư · N-shell · QNEU 313.5
+gatekeeper: Anh Natt Phan
+design_review_status: chưa forward Thiên Lớn (ship DRAFT, ratify sau Phase E + consult cycle)
+date: 2026-04-27
+depends_on:
+  - docs/specs/SPEC_MOMENTS_MODULE_v0.2.na
+  - docs/specs/SPEC_MOMENTS_MODULE_v0_1_to_v0_2_delta.na
+primary_canonical: SPEC_MOMENTS_MODULE_v0.2.na §2 + §3 (types + registry)
+scope: governance/moments/ contract layer — Băng maintain_validators
+head_hash_at_draft: <fill-on-commit>
+draft_flag: true
+ratify_target_phase: Phase E post-calibrate OR Thiên Lớn design review forward
+```
+
+---
+
+*9 fragment kind. Composition rule per MomentKind bound. Parent-scoped, ordinal-ordered, sirasign-verified independent. Ontology axis — KHÔNG transport, KHÔNG boundary forensics, kế thừa v0.2 §0.1. DRAFT v0.1 — rule seal 6 điểm, parameter proposal 3, policy pending 4.*

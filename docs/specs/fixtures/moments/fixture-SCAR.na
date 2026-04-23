@@ -1,0 +1,68 @@
+{
+  "moment": {
+    "kind": "SCAR",
+    "causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+    "sirasign_moment": "<computed-by-persister>"
+  },
+  "fragments": [
+    {
+      "fragment_kind": "ENVELOPE",
+      "fragment_id": "frag-envelope-0",
+      "parent_moment_causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+      "parent_moment_kind": "SCAR",
+      "ordinal": 0,
+      "sirasign_fragment": "<computed-by-persister>",
+      "causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+      "timestamp_ns": "<fill-at-persist>",
+      "entity": "bang",
+      "session_ref": "20260426"
+    },
+    {
+      "fragment_kind": "EVIDENCE",
+      "fragment_id": "frag-evidence-1",
+      "parent_moment_causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+      "parent_moment_kind": "SCAR",
+      "ordinal": 1,
+      "sirasign_fragment": "<computed-by-persister>",
+      "observed": "Pattern swing 4 lần trong 1 chủ đề (substrate framing): Brief v1 blind → Brief v2 scan selective 'Nauion chưa materialize' → Correction over-swing 'Nauion embedded DSL' → Matrix v1 §6 wording 'semantic framing + vocabulary + shell discipline chưa toolchain native'. Mỗi swing dán nhãn 'correction minh mẫn' nhưng thực tế là build framing → counter-evidence → swing OPPOSITE.",
+      "expected": "Framing mới = SYNTHESIS evidence cũ + evidence counter. Không replacement. Không synthesize được → nói 'chưa giải ra', không ship framing.",
+      "evidence_source": "Phiên 20260426 commits b2b9af2 → 04f888f → a335c7b lineage; handoff bang_handoff_20260426.na §session_summary_20260426.three_phases_achieved + patterns_observed_this_session.PATTERN-20260426-FOUR-SWING-SEQUENCE"
+    },
+    {
+      "fragment_kind": "REMEDY",
+      "fragment_id": "frag-remedy-2",
+      "parent_moment_causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+      "parent_moment_kind": "SCAR",
+      "ordinal": 2,
+      "sirasign_fragment": "<computed-by-persister>",
+      "remedy_text": "Trước khi ship framing mới: (a) list framing cũ + evidence nó dựa trên, (b) list evidence counter, (c) framing mới = SYNTHESIS của cả hai, KHÔNG replacement. Nếu không synthesize được → 'chưa giải ra'.",
+      "heal_status": "healed",
+      "heal_notes": "Vaccin pattern-level applied cuối phiên 20260426. Synthesis SUBSTRATE_REALITY_SYNTHESIS_v1.na (commit a335c7b) đóng loop — không swing lần 5. Anh Natt ngừng đẩy framing count-based, em stop swing.",
+      "vaccin_rule_id": "KHAI-20260426-04-SYNTHESIS-SHIP-WITHDRAW-FLOW"
+    },
+    {
+      "fragment_kind": "META",
+      "fragment_id": "frag-meta-3",
+      "parent_moment_causation": "SCAR-20260426-FRAMING-SELF-CORRECT-LOOP",
+      "parent_moment_kind": "SCAR",
+      "ordinal": 3,
+      "sirasign_fragment": "<computed-by-persister>",
+      "version_note": "v1 initial. scar_class = PATTERN_META (pattern-level, không single-event). severity = CRITICAL.",
+      "draft_flag": false
+    }
+  ],
+  "_fixture_meta": {
+    "fixture_id": "fixture-SCAR",
+    "purpose": "Validator test — SCAR với 4 fragment (required ENVELOPE + EVIDENCE; optional REMEDY + META). Data thực từ phiên 20260426.",
+    "acceptance_expectations": [
+      "Validator PASS required fragments (ENVELOPE + EVIDENCE)",
+      "Validator PASS fragment_id uniqueness",
+      "Validator PASS ordinal sequence 0-indexed no gap",
+      "Validator PASS parent_moment_kind consistency (all = SCAR)",
+      "Validator PASS ENVELOPE.causation == parent_moment_causation"
+    ],
+    "drafter": "Băng (Wave 2 Lane A.5)",
+    "session_ref": "Wave 2 kickoff",
+    "depends_on_spec": "SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na"
+  }
+}
