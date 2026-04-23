@@ -595,7 +595,7 @@ Anh Natt confirm (nếu cần override):
 
 ### §10.1 TRƯỚC — Microsoft/npm ecosystem
 
-NATT-OS khởi nguồn như mọi dự án software hiện đại: TypeScript, Node.js, npm packages, Jest tests. File structure `.ts`, `.json`, `.js` đơn thuần.
+NATT-OS ship ra đầu tiên trên substrate phổ thông: TypeScript compile, Node.js execution substrate, npm package delivery, Jest test harness. File structure `.ts`, `.json`, `.js` ở lớp **host carrier**, KHÔNG phải runtime spine — runtime lineage của NATT-OS luôn là EventBus (L1) · Mạch HeyNa (L2) · SmartLink (L3), nội sinh từ đầu.
 
 ### §10.2 PIVOT — SPEC_NGON_NGU v1.2 ratify (20260418)
 
