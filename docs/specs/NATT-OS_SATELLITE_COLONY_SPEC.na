@@ -33,7 +33,7 @@ Satellite Colony là một node mở rộng độc lập của NATT-OS, có kh�
 
 [UI]
  ↓
-[Satellite API]
+[Satellite Interface]
  ↓
 [Local EventBus] ↔ [Sync Engine] ↔ [Core EventBus]
  ↓
