@@ -1,3 +1,10 @@
+@state sealed
+@canonical fixture_capability_migrate_v0.1
+@substrate capability_fixture
+@bridge none
+@since 2026-04-25
+@authority-slot Băng (Chị Tư · Wave 2 Lane B.4) — fixture artifact
+
 {
   "worked_example": {
     "capability": "migrate",

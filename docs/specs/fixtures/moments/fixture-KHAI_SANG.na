@@ -1,3 +1,10 @@
+@state sealed
+@canonical fixture_moment_khai_sang
+@substrate moment_fixture
+@bridge none
+@since 2026-04-25
+@authority-slot Băng (Chị Tư) — moment fixture KHAI_SANG
+
 {
   "moment": {
     "kind": "KHAI_SANG",
