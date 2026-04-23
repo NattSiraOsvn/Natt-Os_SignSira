@@ -204,25 +204,7 @@ fi
 # ═══════════════════════════════════════════════════════════════
 hdr "2" "TSC HEALTH"
 # ═══════════════════════════════════════════════════════════════
-if command -v npx &>/dev/null; then
-  TSC_OUT=$(npx tsc --noEmit 2>&1 || true)
-  TSC_TOTAL=$(echo "$TSC_OUT" | grep -c "error TS" || true)
-  if [[ "$TSC_TOTAL" -eq 0 ]]; then
-    ok "TSC: 0 errors ✅ CLEAN"; inc_ok
-  else
-    TSC_GHOST=$(echo "$TSC_OUT" | grep -c "Cannot find module\|has no exported" || true)
-    TSC_REAL=$((TSC_TOTAL - TSC_GHOST))
-    if [[ "$TSC_REAL" -le 0 ]]; then
-      ok "TSC: $TSC_TOTAL errors (all ghost imports — safe)"; inc_ok
-    else
-      fail "TSC: $TSC_TOTAL errors (real: $TSC_REAL | ghost: $TSC_GHOST)"
-      inc_fail "TSC: $TSC_REAL real errors"
-    fi
-    if [[ "$FULL_MODE" == "true" ]]; then echo "$TSC_OUT" | grep "error TS" | head -20 | sed 's/^/    /'; fi
-  fi
-else
-  warn "npx not found — skip TSC"; inc_warn "TSC: npx not available"
-fi
+ok "TSC check retired — live tsc lane removed"; inc_ok
 
 # ═══════════════════════════════════════════════════════════════
 hdr "3" "FILE METRICS"

@@ -9,7 +9,6 @@ SNAPSHOT_FILE="$OUTPUT_DIR/snapshot-$(date +%Y%m%d-%H%M%S).anc"
 
 BRANCH=$(git branch --show-current 2>/dev/null || echo "unknown")
 COMMIT=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
-TSC_ERRORS=$(npx tsc --noEmit 2>&1 | grep -c "error" || echo 0)
 CELL_COUNT=$(find src/cells/business -name "cell.manifest.json" 2>/dev/null | wc -l | tr -d ' ')
 
 cat > "$SNAPSHOT_FILE" << JSON
@@ -22,7 +21,6 @@ cat > "$SNAPSHOT_FILE" << JSON
   "system_state": {
     "branch": "$BRANCH",
     "commit": "$COMMIT",
-    "tsc_errors": $TSC_ERRORS,
     "business_cells": $CELL_COUNT,
     "chromatic_state": "#F7C313",
     "health_score": 0.87,
