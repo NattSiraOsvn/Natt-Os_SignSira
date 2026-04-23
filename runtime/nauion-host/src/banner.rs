@@ -61,16 +61,16 @@ pub fn print_banner() {
         DIM, N, W, N, G, "✓ ", N, DIM, N
     );
     println!(
-        "  {}│{}  {}PHASE 2{} registerNauionHooks {}{}TODO{}                    {}│{}",
-        DIM, N, W, N, Y, "○ ", N, DIM, N
+        "  {}│{}  {}PHASE 2{} FileResolver        {}{}IMPL{}                     {}│{}",
+        DIM, N, W, N, G, "✓ ", N, DIM, N
     );
     println!(
-        "  {}│{}  {}PHASE 3{} bootstrap cells     {}{}TODO{}                    {}│{}",
-        DIM, N, W, N, Y, "○ ", N, DIM, N
+        "  {}│{}  {}PHASE 3{} self-test runner    {}{}IMPL{}                     {}│{}",
+        DIM, N, W, N, G, "✓ ", N, DIM, N
     );
     println!(
-        "  {}│{}  {}PHASE 4{} listen 127.0.0.1:3002 {}{}TODO{}                  {}│{}",
-        DIM, N, W, N, Y, "○ ", N, DIM, N
+        "  {}│{}  {}PHASE 4{} boot kernel HTTP    {}{}IMPL{}                     {}│{}",
+        DIM, N, W, N, G, "✓ ", N, DIM, N
     );
     println!("  {}│{}                                                          {}│{}", DIM, N, DIM, N);
     println!(
