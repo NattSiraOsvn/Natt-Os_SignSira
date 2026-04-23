@@ -42,7 +42,12 @@ Evidence:
 ### Required header (apply vào `.khai` file):
 
 ```
-@state: S2
+@state sealed
+@canonical pilot_bridge_map_v0.1
+@substrate planning_artifact
+@bridge none
+@since 2026-04-23
+@authority-slot Băng (Chị Tư) — pilot scope ground truth
 @canonical: src/cells/kernel/audit-cell/scanner/file-extension-validator.khai
 @substrate: src/cells/kernel/audit-cell/scanner/file-extension-validator.ts
 @since: 2026-04-23
@@ -77,7 +82,12 @@ Evidence:
 ### Required header:
 
 ```
-@state: S2
+@state sealed
+@canonical pilot_bridge_map_v0.1
+@substrate planning_artifact
+@bridge none
+@since 2026-04-23
+@authority-slot Băng (Chị Tư) — pilot scope ground truth
 @canonical: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai
 @substrate: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts
 @since: 2026-04-23
