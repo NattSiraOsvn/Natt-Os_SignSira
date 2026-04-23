@@ -1,21 +1,21 @@
 // runtime/nauion-host/src/main.rs
-// NATT-OS Wave 1 Host-First runtime — Khương Kim · Băng Thịnh
+// NATT-OS Wave 1 Host-First runtime
 // Drafter: Băng (Chị Tư · N-shell · QNEU 313.5)
 // Per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423
 // Per SPEC_HOST_FIRST_RUNTIME v1.1 §0
 
 mod banner;
 mod phase1;
+mod phase2;
 
 use std::process::ExitCode;
 use tracing::{error, info};
 use tracing_subscriber::EnvFilter;
 
 fn main() -> ExitCode {
-    // PHASE 0 — Print branding banner (mirror nattos.sh style)
+    // PHASE 0 — Banner
     banner::print_banner();
 
-    // Init tracing — env RUST_LOG controls verbosity
     tracing_subscriber::fmt()
         .with_env_filter(
             EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")),
@@ -35,18 +35,30 @@ fn main() -> ExitCode {
             return ExitCode::FAILURE;
         }
     };
-
     info!(
         phase1_esbuild_available = esbuild_status.available,
         phase1_esbuild_version = esbuild_status.version.as_deref().unwrap_or("n/a"),
         "PHASE 1 complete"
     );
 
-    // PHASE 2-4 pending implementation
-    info!("PHASE 2 registerNauionHooks — TODO (next commit)");
+    // PHASE 2 — Initialize FileResolver
+    let src_root = std::env::current_dir()
+        .map(|cwd| cwd.join("src"))
+        .unwrap_or_else(|_| std::path::PathBuf::from("./src"));
+    let resolver = phase2::FileResolver::new(&src_root);
+    info!(
+        phase2_src_root = %src_root.display(),
+        phase2_loadable_exts = ?phase2::LOADABLE_EXTENSIONS,
+        phase2_reference_only_exts = ?phase2::REFERENCE_ONLY_EXTENSIONS,
+        "PHASE 2 FileResolver initialized"
+    );
+
+    // Hold resolver — PHASE 3 will use it cho bootstrap cells
+    let _resolver = resolver; // placeholder, PHASE 3 takes ownership
+
     info!("PHASE 3 bootstrap cells — TODO");
     info!("PHASE 4 listen 127.0.0.1:3002 — TODO");
 
-    info!("Nauion Host — exit (scaffold mode, full runtime pending)");
+    info!("Nauion Host — exit (scaffold mode, PHASE 1+2 ready)");
     ExitCode::SUCCESS
 }
