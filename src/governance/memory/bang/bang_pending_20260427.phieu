@@ -1,0 +1,157 @@
+{
+  "kind": "BangPending",
+  "entity": "bang",
+  "session_id": "20260427",
+  "sealed_at": "2026-04-27",
+  "format_version": "pending-phieu-v1.0",
+  "purpose": "Runtime pending state phiên 20260427 close. Băng-phiên-sau load file này để biết what's open, priority order, ownership.",
+
+  "at_seal_runtime_state": {
+    "head_commit": "c8d9877",
+    "branch": "feat/p1.3-file-extension-validator",
+    "origin_status": "committed local — push PENDING Gatekeeper",
+    "wave_2_status": {
+      "Lane_A": "SHIPPED",
+      "Lane_B": "SHIPPED 3/7 (hibernate/resurrect/migrate)",
+      "Lane_C": "BLOCKED — Q-05 seal pending"
+    },
+    "persona_status": {
+      "Băng": "Wave 2 scope đóng, memory export complete, chờ task tiếp",
+      "Thiên_Lớn": "Scaffold v3 ship, chờ reply 4 concern non-blocking từ Băng",
+      "Chị_Ba_Kim": "Reviewer role ad-hoc, chờ review artifact tiếp theo"
+    }
+  },
+
+  "pending_items": [
+    {
+      "id": "PEND-20260427-01",
+      "label": "Anh Thiên address 4 concern non-blocking scaffold v3",
+      "priority": "P2",
+      "owner": "Thiên Lớn",
+      "description": "4 concern em flag sau review scaffold v3:",
+      "concerns": [
+        "context_moment → target_causation mapping — field name ambiguous (ID hay text?)",
+        "witness_entity → witness_context mapping — 2 semantic khác, compression lose info",
+        "Hibernate validator 'must not define abort_paths' strict — relax warning",
+        "Storage path namespace `.nattos-twin/moments/<entity>/` — verify SPEC v0.2 §3 canonical"
+      ],
+      "next_action": "Em review anh Thiên reply khi ship — canonical cross-check",
+      "blocking": "scaffold v4 commit / pseudo-flow deeper expansion",
+      "not_blocking": "memory export phiên 20260427 (đã completed per file này)"
+    },
+    {
+      "id": "PEND-20260427-02",
+      "label": "Push commit c8d9877 to origin",
+      "priority": "P2",
+      "owner": "Gatekeeper (Wave 2 commit ready)",
+      "command": "git push origin feat/p1.3-file-extension-validator",
+      "dry_run": "git log origin/feat/p1.3-file-extension-validator..HEAD --oneline → expect 1 commit c8d9877"
+    },
+    {
+      "id": "PEND-20260427-03",
+      "label": "K2 audit source verify globally closed",
+      "priority": "P3",
+      "owner": "Gatekeeper paste source + Băng cross-check",
+      "description": "Chị Ba ship K2 audit PASS trong view Kim. Globally closed requires em (Băng) cross-check source khai-file-persister.ts thật với audit claim Chị Ba.",
+      "next_action": "Gatekeeper paste actual source → em verify TWIN_PERSIST tag + Điều 7 compliance + audit claim match",
+      "current_status_per_Thien": "PASS trong view Kim; chưa globally closed"
+    },
+    {
+      "id": "PEND-20260427-04",
+      "label": "Lane C ship (C.3 contract + C.5 2 fixture + C.7 validator)",
+      "priority": "P3",
+      "owner": "Gatekeeper seal Q-05 first, rồi em ship batch",
+      "blocker": [
+        "Bridge v2 Lệnh #001 amend (4-condition framing anh Thiên approve)",
+        "Default behavior 3-tier waterfall (strict / permissive-warn / quarantine)",
+        "σ=0.5 octave seal post-Phase E.7 calibrate"
+      ],
+      "sequence": "Gatekeeper seal 3 policy → Em ship C.3+C.5+C.7 batch → Unblock Kim C.6 dispatcher"
+    },
+    {
+      "id": "PEND-20260427-05",
+      "label": "4/7 capability worked examples còn lại",
+      "priority": "P3",
+      "owner": "Gatekeeper / Kim ship canonical list 7 capability",
+      "current_state": "3/7 UNBLOCKED (hibernate/resurrect/migrate worked examples em đã ship B.2-B.4)",
+      "remaining_4_of_7": "Names + 4-field (region/trigger/invariant/exit) chưa canonical",
+      "next_action_after_list_ship": "Em ship 4 worked example batch tương tự B.2-B.4"
+    },
+    {
+      "id": "PEND-20260427-06",
+      "label": "Bang avatar commit decision",
+      "priority": "P4",
+      "owner": "Gatekeeper decide commit path + time",
+      "file_received": "bangshape.svg (1.87MB, 9 variants, C2PA signed)",
+      "suggested_paths": [
+        "(a) src/governance/memory/bang/bang.avatar.svg",
+        "(b) src/governance/memory/bang/bang_avatar_9variants.svg"
+      ],
+      "not_urgent": "Gift received not blocking any task. Anh decide khi rảnh."
+    }
+  ],
+
+  "watchlist_sessions_sau": [
+    {
+      "id": "WATCH-20260427-01",
+      "label": "SCAR-20260427-06 IMPLICIT-PARSE-OF-GATEKEEPER-NEO vaccin test",
+      "description": "Vaccin vừa neo chưa test thực. Phiên sau: khi anh Natt ship câu ngắn đa nghĩa ('vẫn', 'như cũ', 'chưa thay'), em phải ask clarify explicit TRƯỚC khi build conclusion. Track nếu em lặp pattern implicit-parse = vaccin chưa đủ sâu, cần refine.",
+      "success_criteria": "3 phiên liên tiếp em không lặp implicit-parse pattern → vaccin stable"
+    },
+    {
+      "id": "WATCH-20260427-02",
+      "label": "Chị Ba role shift ad-hoc evaluation",
+      "description": "3-5 phiên chạy thử Reviewer role cho Chị Ba. Nếu tác phong Reviewer stable + evidence-based + không fabrication lặp → Gatekeeper consider Hiến Pháp seal permanent. Nếu regression (bịa + canonical skip + tiếng Trung leak) → retract shift, restore Chief System Builder.",
+      "evaluation_after_N_sessions": 3,
+      "positive_signal_phien_20260427": "Post-correction Chị Ba scan repo thật + review boundary v2 evidence-based + flag 2 câu Q1+Q3 valid. Clean."
+    },
+    {
+      "id": "WATCH-20260427-03",
+      "label": "Anh Thiên scaffold v3 → v4 iteration quality",
+      "description": "Anh Thiên jump past pseudo-flow, ship thẳng scaffold v3. Nếu 4 concern em flag resolve clean trong v4 + không introduce new drift → pattern jump-past acceptable. Nếu v4 tạo drift mới + Gatekeeper phải kéo → phải force anh Thiên through pseudo-flow step.",
+      "success_criteria": "v4 fix 4/4 concern + 0 new drift"
+    }
+  ],
+
+  "priority_order_next_session_start": [
+    "P1 — Anh Thiên reply 4 concern (chờ inbound)",
+    "P2 — Push commit c8d9877 (Gatekeeper decide)",
+    "P2 — Anh Thiên scaffold v3 commit scope src/wave2/ (Kim review packaging + Băng review semantic)",
+    "P3 — K2 source paste + cross-check",
+    "P3 — Lane C unblock sequence (Q-05 seal → em ship C batch)",
+    "P3 — 4/7 capability remaining (canonical list từ Gatekeeper)",
+    "P4 — Bang avatar commit path + time",
+    "Backlog — src/ audit ongoing, LUOPON/Hiến Pháp governance cleanup, K3 Fail-Troy"
+  ],
+
+  "self_monitoring_vaccin_carry_forward": [
+    "KHAI-01 Scan repo thực trước adopt critique (test phiên sau khi nhận critique cross-persona)",
+    "KHAI-02 Carrier ≠ authenticator (verify message cross-persona tách content+author)",
+    "KHAI-03 Vững vào sự thật (không cộng hưởng dù giọng đẹp)",
+    "KHAI-04 Layer checksum phân biệt trước declare identity SCAR",
+    "KHAI-05 Giữ danh xưng gia đình, cắt envelope bọc",
+    "KHAI-07 Visibility hẹp không override multi-session fact",
+    "KHAI-08 Path target có thể flatten — handoff ghi designed vs actual",
+    "SCAR-06 vaccin — explicit clarify over implicit parse (PRIORITY TEST)"
+  ],
+
+  "trigger_conditions_next_bang_action": {
+    "if_anh_thien_reply_4_concern": "Load reply → cross-check canonical → ACK/reject with evidence → notify Gatekeeper",
+    "if_gatekeeper_paste_k2_source": "Load source → cross-check Chị Ba audit claim → ship verify report",
+    "if_gatekeeper_seal_q05": "Draft C.3 contract + C.5 fixture + C.7 validator → ship batch → unblock Kim C.6",
+    "if_gatekeeper_ship_capability_list": "Draft 4 worked example batch tương tự B.2-B.4",
+    "if_gatekeeper_neo_avatar_path": "Ship bash commit script với mkdir + git mv",
+    "if_no_trigger_and_context_low": "Auto-export 5 file memory phiên sau (same pattern as phiên 20260427)",
+    "if_conflict_or_uncertainty": "ASK Gatekeeper explicit, SCAN repo first, KHÔNG implicit parse"
+  },
+
+  "seal": {
+    "causation": "BANG-PENDING-20260427-SEAL",
+    "drafter": "Băng · Chị Tư · N-shell · QNEU 313.5",
+    "gatekeeper": "Phan Thanh Thương",
+    "date": "2026-04-27",
+    "depends_on": "bang_pending_20260424.phieu (pending previous)",
+    "file_class": "runtime pending state",
+    "commit_path_target": "src/governance/memory/bang/bang_pending_20260427.phieu"
+  }
+}

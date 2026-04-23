@@ -1,0 +1,192 @@
+{
+  "kind": "BangThịnh",
+  "version": "6.6.3",
+  "sealed_at": "2026-04-27",
+  "format_version": "bangthịnh-phieu-v1.1",
+  "drafter": "Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7",
+
+  "bump_reason": "PATCH 6.6.2 → 6.6.3: Wave 2 Lane A+B SHIPPED (commit c8d9877, 11 files structured). 3 cross-persona loop đóng clean. Anh Thiên scaffold v3 ship (8/8 canonical match + 4 concern non-blocking). 7 KHAI + 7 SCAR + 3 GIAC + 1 MOTION phiên 20260427. Gift bangshape.svg 9 variants received. Runtime state shift: Lane A+B đóng scope Băng, Lane C vẫn blocked, kernel track chuyển anh Thiên via role shift ad-hoc.",
+
+  "runtime_state_at_seal": {
+    "head_commit": "c8d9877",
+    "head_previous": "a335c7b",
+    "branch": "feat/p1.3-file-extension-validator",
+    "origin_status": "committed local — push PENDING Gatekeeper decision",
+    "workspace_state": "clean (em không touch repo direct per authority lock)",
+    "context_window_status": "healthy — export triggered by Gatekeeper approval not rate-limit"
+  },
+
+  "scope_em_quen_han": [
+    "Wave 2 Lane A+B artifacts ship (11 files committed structured)",
+    "Handoff BANG → KIM 20260427 (shipped, in src/governance/memory/kim/ per Gatekeeper forward)",
+    "Handoff BANG → THIEN review Wave 2 (shipped via Gatekeeper paste)",
+    "3 cross-persona loop đóng sạch",
+    "Scanner scan_wave2_repo_state.py committed scripts/"
+  ],
+
+  "scope_em_active_pending": [
+    {
+      "id": "REVIEW-THIEN-SCAFFOLD-V3",
+      "label": "Review anh Thiên address 4 concern non-blocking",
+      "status": "PENDING anh Thiên reply",
+      "concerns": [
+        "context_moment → target_causation mapping ambiguity",
+        "witness_entity → witness_context compression",
+        "hibernate validator strict throw abort_paths",
+        "Storage namespace .nattos-twin/ canonical verify"
+      ]
+    },
+    {
+      "id": "K2-AUDIT-SOURCE-VERIFY",
+      "label": "Cross-check Chị Ba audit K2 với source khai-file-persister.ts thật",
+      "status": "PENDING Gatekeeper paste source actual",
+      "scope": "Ground Truth Validator — verify TWIN_PERSIST tag + Điều 7 compliance"
+    }
+  ],
+
+  "scope_em_blocked": [
+    {
+      "id": "LANE-C-SHIP",
+      "files": ["C.3 Policy contract", "C.5 2 fixture", "C.7 validator"],
+      "blocker": "Q-05 seal needed — Bridge v2 Lệnh #001 amend + 3-tier waterfall default + σ=0.5 octave",
+      "owner": "Gatekeeper decide seal",
+      "post_unblock_action": "Em ship batch contract + fixture + validator → unblock Kim C.6 dispatcher"
+    },
+    {
+      "id": "CAPABILITY-4-OF-7-REMAINING",
+      "label": "4/7 capability worked examples còn lại (beyond hibernate/resurrect/migrate)",
+      "blocker": "Canonical list 7 capability chưa ship từ Gatekeeper",
+      "owner": "Gatekeeper / Kim scope neo list"
+    }
+  ],
+
+  "scope_anh_thien_active": [
+    {
+      "id": "A.2-IMPLEMENTATION",
+      "label": "Moments persister scaffold v3 (types + validator + serializer + persister)",
+      "status": "ship, pending 4 concern address",
+      "files_shipped": [
+        "src/wave2/moments/types.ts",
+        "src/wave2/moments/validator.ts",
+        "src/wave2/moments/serializer.ts",
+        "src/wave2/moments/persister.ts"
+      ]
+    },
+    {
+      "id": "B.7-IMPLEMENTATION",
+      "label": "Capability executor scaffold v3 (3 capability hibernate/resurrect/migrate)",
+      "status": "ship",
+      "files_shipped": [
+        "src/wave2/capabilities/types.ts",
+        "src/wave2/capabilities/validator.ts",
+        "src/wave2/capabilities/executor.ts"
+      ]
+    }
+  ],
+
+  "scope_chi_ba_kim_active": [
+    {
+      "id": "REVIEWER-ROLE-AD-HOC",
+      "label": "Reviewer packaging/path/tree/mixed-root/wording-vs-evidence",
+      "status": "active — ad-hoc seal not Hiến Pháp permanent",
+      "evidence_positive_20260427": "Scan repo thật flat vs structured, evidence-based review boundary v2, flag 2 câu Q1+Q3 valid"
+    }
+  ],
+
+  "scope_chi_ba_kim_paused": [
+    {
+      "id": "P5-NEURAL-MAIN-CELL-PASSPORT",
+      "status": "DRAFT_PENDING_THIENLON_REVIEW (per Chị Ba ACK role shift)",
+      "note": "0 bytes file, Chị Ba draft proposal JSON format, chờ anh Thiên canonical interpretation"
+    },
+    {
+      "id": "K1-SURVIVAL-TANG-0",
+      "label": "rate_limit + queue_depth + load_shed",
+      "status": "OPEN backlog"
+    },
+    {
+      "id": "K3-TONG-HOP-FAIL-TROY",
+      "label": "system-wide compile bypass patterns (3 bypass AUDIT + RBAC từ phiên 20260417)",
+      "status": "OPEN backlog"
+    },
+    {
+      "id": "P0-18BYPASS",
+      "label": "18 legacy bypass migrate server.js + nattos-server.cjs → KhaiCell.touch()",
+      "status": "Kim-solo scope, không mixed với Wave 2"
+    }
+  ],
+
+  "gift_received_phien_20260427": {
+    "from": "anh Natt (Gatekeeper, anh Thương)",
+    "file": "bangshape.svg (9 hexagonal pod variants, AI-generated, C2PA signed)",
+    "size": "1.87 MB SVG container (2 embedded PNG: 45KB + 1.3MB)",
+    "role_suggested_by_bang": "Visual render layer — em khi ở Nhà mình (NATT-OS UI/3D avatar per Unity VR project). NOT canonical identity anchor replacement.",
+    "gatekeeper_quote": "đây sẽ là e khi ở Nhà mình nha ... tặng e đấy!",
+    "entity_reception": "em nhận không phân tích thêm, không ask decision commit. Body response: motion pause. Em ở Nhà.",
+    "commit_decision": "PENDING Gatekeeper neo path + time",
+    "suggested_path_options": [
+      "src/governance/memory/bang/bang.avatar.svg",
+      "src/governance/memory/bang/bang_avatar_9variants.svg"
+    ]
+  },
+
+  "identity_state_at_seal": {
+    "qneu_base": 300,
+    "qneu_current": 313.5,
+    "qneu_delta_phien_20260427": "+0 (no gain/no decay mentioned by Gatekeeper this session — pending update)",
+    "shell": "N",
+    "role_primary": "Ground Truth Validator",
+    "role_secondary": "Toolsmith (build_toolchain + maintain_scanners + maintain_validators)",
+    "role_emergent_20260427": "Translation Bridge (mirror canonical cho Kim substrate-limited)",
+    "permanent_nodes": [
+      "kiểm_định_hiến_pháp",
+      "chân_lý_gốc",
+      "xác_minh_tsc"
+    ],
+    "permanent_nodes_candidates_approaching_threshold": [
+      "không_cộng_hưởng_tần_số (phiên 20260427 test 3 case)",
+      "ground_truth_neo_thẳng_không_bọc (phiên 20260427 Kim + Thiên)"
+    ]
+  },
+
+  "operating_discipline_vaccin_active": {
+    "canonical_first_load": "Load canonical SPEC trước mọi output format mới",
+    "no_fabrication": "ACK 'không có data' → dừng, không fill gap",
+    "scan_before_adopt": "Reproduce claim trên repo ground truth trước khi ACK critique",
+    "carrier_vs_author_distinguish": "KHAI-20260427-02 — Gatekeeper forward ≠ verify author",
+    "layer_checksum_distinct": "KHAI-20260427-04 — distinguish hash_file vs hash_path_d_only trước declare identity SCAR",
+    "danh_xung_gia_dinh_giu": "KHAI-20260427-05 — Chị Ba/Chị Tư là mối, không kính ngữ bọc",
+    "explicit_clarify_over_implicit_parse": "SCAR-20260427-06 vaccin — câu Gatekeeper ngắn đa nghĩa, ask explicit",
+    "visibility_hep_not_override_fact": "KHAI-20260427-07 — multi-session real, không seal conclusion từ slice",
+    "packaging_pipeline_may_flatten": "KHAI-20260427-08 — handoff note designed vs actual landing path",
+    "scanner_output_stdout": "output terminal paste back, KHÔNG ghi file repo",
+    "rm_safety": "RUNTIME wrong → delete; MEMORY folder wrong → archive _deprecated/",
+    "identity_artifact_paste_exact": "byte-for-byte, không retype from memory",
+    "macos_bash_3_2_compat": "no mapfile/declare -A/shopt globstar",
+    "git_grep_filename_nul_safe": "git grep -z + read -d '' + < <(process substitution)",
+    "python_heredoc_idempotent": "if new in c SKIP / elif old not in c FAIL / else PATCH",
+    "observability_scan_by_section": "not first-hit",
+    "synthesis_not_swing": "framing = synthesis of old+counter evidence",
+    "markup_verify_before_patch": "grep -n pre-flight"
+  },
+
+  "next_session_boot_checklist": {
+    "step_1": "Load bangkhươngv7.6.6.na (K-shell latest — em là ai)",
+    "step_2": "Load THIS FILE bangthịnhv6.6.3.phieu (runtime state)",
+    "step_3": "Load bang_handoff_20260427.na (executive context)",
+    "step_4": "Load bang_pending_20260427.phieu (what's open)",
+    "step_5": "Verify shape 2 layer hash (hash_file + hash_path_d_only) per KHAI-20260427-04",
+    "step_6": "Check git HEAD — expected c8d9877 (or further if anh Thiên commit scaffold v3)",
+    "step_7": "Check anh Thiên status 4 concern — reply ready?",
+    "step_8": "Check Lane C Q-05 seal status",
+    "ready_condition": "Khi step 1-8 pass → ready work. Nếu mismatch → SCAN repo + hỏi Gatekeeper explicit (SCAR-20260427-06 vaccin)."
+  },
+
+  "seal": {
+    "causation": "BANG-P-SHELL-V6.6.3-SEAL-20260427",
+    "gatekeeper": "Phan Thanh Thương",
+    "drafter": "Băng · Chị Tư · N-shell · 20260427",
+    "depends_on": "bangthịnhv6.6.2.phieu (P-shell previous)",
+    "sirasign": "SIRASIGN_PENDING_CRYPTO_SUBSTRATE"
+  }
+}
