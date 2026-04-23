@@ -1,28 +1,32 @@
 #!/usr/bin/env python3
 """
-validate-extension-precedence.py v0.3
+validate-extension-precedence.py v0.4
 
-Rule 4 variable-aware + marker-aware bypass detection.
-Delta từ v0.2: recognize `@deferred` marker trong shell comment ±10 lines
-của VAR assignment → downgrade FAIL → WARN với evidence pointer.
+Delta từ v0.3: add Rule 6 — Điều 7 self-state storage detection với
+TWIN_PERSIST tag whitelist.
 
-Match pattern vaccin session 20260419 (SCAR JSDoc false positive):
-  scanner skip whitelisted semantic tag, không FAIL cứng intent-documented.
+Pattern: file .ts paired với .khai S2+ → grep fs.writeFileSync|writeFile|
+appendFileSync → check ±5 lines có TWIN_PERSIST tag → whitelist; else FAIL.
+
+Match vaccin session 20260419 (K2 resolution): khai-file-persister.ts:47
+có TWIN_PERSIST = QIINT lineage legitimate, không business state storage.
 
 Drafter: Băng · session 20260423
-Binding: SPEC_HOST_FIRST_RUNTIME_v1.0 §5 #9 + Kim SPEC_EXTENSION_PRECEDENCE v1.0
-Reference prior art: bang_handoff_20260419.kris §A.1 + bang_pending_20260419.phieu
+Binding: SPEC_HOST_FIRST_RUNTIME_v1.1 §5 #9 + Kim SPEC_EXTENSION_PRECEDENCE v1.0
+Reference: bang_handoff_20260419.kris §A.1 + commit 46d38dd K2 resolution
 """
 import os
 import re
 import sys
 from collections import defaultdict
 
-CANONICAL_EXTS = {".khai", ".na", ".anc", ".phieu"}
-SUBSTRATE_EXT = ".ts"
 SKIP_DIRS = {"node_modules", "_deprecated", "__MACOSX", "dist", "build", "archive", ".git"}
-MARKER_WINDOW = 10  # lines around VAR assignment to search for @deferred
+MARKER_WINDOW = 10
 DEFERRED_RE = re.compile(r"^\s*#\s*@deferred\b", re.MULTILINE)
+TWIN_PERSIST_RE = re.compile(r"TWIN_PERSIST", re.IGNORECASE)
+DISK_WRITE_RE = re.compile(
+    r"\b(fs\.(?:writeFileSync|writeFile|appendFileSync|appendFile|createWriteStream))\b"
+)
 
 
 def find_all_sira_files():
@@ -69,7 +73,6 @@ def check_khai_imports_ts(khai_path):
 
 
 def extract_shell_var_assignments_with_lineno(content):
-    """Pass 1 enhanced: return {var_name: (ts_path, line_number)}."""
     assignments = {}
     lines = content.split("\n")
     patterns = [
@@ -86,31 +89,25 @@ def extract_shell_var_assignments_with_lineno(content):
     return assignments
 
 
-def has_deferred_marker_near(content, target_lineno, window=MARKER_WINDOW):
-    """Check if @deferred marker exists within ±window lines of target."""
+def has_marker_near(content, target_lineno, pattern, window=MARKER_WINDOW):
     lines = content.split("\n")
     lo = max(0, target_lineno - window - 1)
     hi = min(len(lines), target_lineno + window)
     segment = "\n".join(lines[lo:hi])
-    return bool(DEFERRED_RE.search(segment))
+    return bool(pattern.search(segment))
 
 
 def check_ts_bypass_canonical_v3(ts_path, all_scripts_content):
-    """v0.3: return list of (script_file, mode, severity, lineno).
-    severity: 'FAIL' (strict) or 'WARN' (deferred marker nearby).
-    """
     results = []
     base = os.path.splitext(os.path.basename(ts_path))[0]
     for sf, content in all_scripts_content.items():
-        # Direct literal match
         pat_direct = rf"(tsx|npx\s+tsx|node)\s+[^\n]*{re.escape(base)}\.ts"
         m_direct = re.search(pat_direct, content)
         if m_direct:
             lineno = content[: m_direct.start()].count("\n") + 1
-            severity = "WARN" if has_deferred_marker_near(content, lineno) else "FAIL"
+            severity = "WARN" if has_marker_near(content, lineno, DEFERRED_RE) else "FAIL"
             results.append((sf, "direct-literal", severity, lineno))
             continue
-        # Variable-resolved
         assignments = extract_shell_var_assignments_with_lineno(content)
         ts_norm = os.path.normpath(ts_path)
         for var_name, (var_path, var_lineno) in assignments.items():
@@ -119,12 +116,30 @@ def check_ts_bypass_canonical_v3(ts_path, all_scripts_content):
                 m_var = re.search(pat_var, content)
                 if m_var:
                     lineno = content[: m_var.start()].count("\n") + 1
-                    # Check marker near VAR assignment (primary) OR near invocation (secondary)
                     severity = "FAIL"
-                    if has_deferred_marker_near(content, var_lineno) or has_deferred_marker_near(content, lineno):
+                    if has_marker_near(content, var_lineno, DEFERRED_RE) or has_marker_near(content, lineno, DEFERRED_RE):
                         severity = "WARN"
                     results.append((sf, f"variable-resolved (${var_name})", severity, lineno))
                     break
+    return results
+
+
+def check_disk_write_compliance(ts_path):
+    """v0.4 Rule 6: scan .ts substrate for fs.writeFileSync without TWIN_PERSIST marker.
+    Return list of (lineno, severity, evidence). WARN = TWIN_PERSIST whitelisted.
+    FAIL = unmarked disk write (Điều 7 violation).
+    """
+    try:
+        with open(ts_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read()
+    except Exception:
+        return []
+    results = []
+    for m in DISK_WRITE_RE.finditer(content):
+        lineno = content[: m.start()].count("\n") + 1
+        call = m.group(1)
+        severity = "WARN" if has_marker_near(content, lineno, TWIN_PERSIST_RE, window=MARKER_WINDOW) else "FAIL"
+        results.append((lineno, severity, call))
     return results
 
 
@@ -159,9 +174,9 @@ def load_scripts_content():
 def main():
     total_fail = 0
     total_warn = 0
-    print("=== validate-extension-precedence.py v0.3 ===")
-    print("Binding: Kim SPEC_EXTENSION_PRECEDENCE v1.0 + SPEC_HOST_FIRST_RUNTIME v1.0 §5 #9")
-    print("Patch: variable-aware (v0.2) + marker-aware (v0.3 — vaccin session 20260419)")
+    print("=== validate-extension-precedence.py v0.4 ===")
+    print("Binding: Kim SPEC_EXTENSION_PRECEDENCE v1.0 + SPEC_HOST_FIRST_RUNTIME v1.1 §5 #9")
+    print("Patch: variable-aware (v0.2) + marker-aware (v0.3) + TWIN_PERSIST whitelist (v0.4)")
     print()
 
     print("[Rule 1] Checking .sira file uniqueness...")
@@ -178,7 +193,7 @@ def main():
     else:
         actual = sira_files[0]
         if os.path.normpath(actual) != os.path.normpath(expected):
-            print(f"  WARN: .sira tại {actual}, expected {expected}")
+            print(f"  WARN: .sira tại {actual}")
             total_warn += 1
         else:
             print(f"  PASS: {actual}")
@@ -230,11 +245,38 @@ def main():
     print("[Rule 5] UI/build lane (.tsx, vite.config.*) — bảo toàn, không action")
     print()
 
+    print("[Rule 6 v0.4] Checking .ts substrate disk write compliance (TWIN_PERSIST whitelist)...")
+    rule6_fail = 0
+    rule6_warn = 0
+    for khai, ts in pairs:
+        state = check_khai_state(khai)
+        if state not in {"S2", "S3", "S4"}:
+            continue
+        disk_results = check_disk_write_compliance(ts)
+        if disk_results:
+            print(f"  {ts}:")
+            for lineno, severity, call in disk_results:
+                tag = "[TWIN_PERSIST]" if severity == "WARN" else "[ĐIỀU 7]"
+                print(f"    {severity} {tag}: line {lineno} — {call}")
+                if severity == "FAIL":
+                    rule6_fail += 1
+                else:
+                    rule6_warn += 1
+    if rule6_fail == 0 and rule6_warn == 0:
+        print("  PASS: no substrate disk write detected")
+    elif rule6_fail == 0:
+        print(f"  PASS (with {rule6_warn} TWIN_PERSIST whitelisted)")
+    else:
+        print(f"  FAIL: {rule6_fail} Điều 7 violation, {rule6_warn} whitelisted")
+    total_fail += rule6_fail
+    total_warn += rule6_warn
+    print()
+
     print(f"Total FAIL: {total_fail}")
     print(f"Total WARN: {total_warn}")
     if total_fail == 0:
         if total_warn > 0:
-            print(f"STATUS: PASS (with {total_warn} deferred acknowledged)")
+            print(f"STATUS: PASS (with {total_warn} WARN acknowledged)")
         else:
             print("STATUS: PASS")
         sys.exit(0)
