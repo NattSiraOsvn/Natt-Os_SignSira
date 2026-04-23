@@ -1,0 +1,117 @@
+# B.7 — CAPABILITY DOMAIN MODEL v0.1
+
+file_name: b7-capability-domain-model-v0.1.na
+kind: canonical_domain_model
+status: working_boundary_v2_1
+scope:
+  - hibernate
+  - resurrect
+  - migrate
+
+## 1. Capability vocabulary
+
+CapabilityName =
+  - hibernate
+  - resurrect
+  - migrate
+
+## 2. CapabilityInvariant
+
+CapabilityInvariant = {
+  id: string,
+  rule: string,
+  check: string,
+  on_fail?: string,
+  rollback_rule?: string,
+  atomic_region?: boolean
+}
+
+note:
+  - `on_fail` optional at type-level because canonical hibernate invariants do not carry on_fail
+  - runtime validator will require on_fail for resurrect + migrate
+
+## 3. CapabilityRegion
+
+CapabilityRegion = {
+  description: string,
+  phase_space_coordinates: { string: string },
+
+  atomic_region?: {
+    rule: string,
+    why: string
+  },
+
+  substrate_boundary?: {
+    description: string,
+    valid_crossings: [
+      {
+        kind: string,
+        example: string
+      }
+    ]
+  },
+
+  identity_anchor_preserve?: { string: string }
+}
+
+## 4. CapabilityTriggerSpec
+
+CapabilityTriggerSpec = {
+  description: string,
+  valid_triggers: [
+    {
+      kind: string,
+      example: string,
+      evidence_pattern: string
+    }
+  ],
+  forbidden_triggers: [
+    {
+      kind: string,
+      why: string
+    }
+  ]
+}
+
+## 5. CapabilityExitSpec
+
+CapabilityExitSpec = {
+  description: string,
+  paths?: [
+    {
+      path: string,
+      trigger: string,
+      transitions_to?: string
+    }
+  ],
+  success_paths?: [
+    {
+      path: string,
+      trigger: string,
+      evidence_observable: string,
+      post_state: string
+    }
+  ],
+  abort_paths?: [
+    {
+      path: string,
+      trigger: string,
+      action: string
+    }
+  ],
+  rollback_rule?: string,
+  no_exit_conditions?: string[]
+}
+
+## 6. CapabilitySpec
+
+CapabilitySpec = {
+  capability: CapabilityName,
+  region: CapabilityRegion,
+  trigger: CapabilityTriggerSpec,
+  invariant: {
+    description: string,
+    invariants: CapabilityInvariant[]
+  },
+  exit_or_post_condition: CapabilityExitSpec
+}

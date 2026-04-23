@@ -1,0 +1,74 @@
+# B.7 — CAPABILITY EXECUTOR FLOW v0.1
+
+file_name: b7-capability-executor-flow-v0.1.na
+kind: scaffold_flow
+status: implementation_ready
+
+## 1. Execution input
+
+CapabilityExecutionInput = {
+  spec: CapabilitySpec,
+  entity: string,
+  session_ref: string
+}
+
+CapabilityExecutionResult = {
+  ok: boolean,
+  capability: CapabilityName,
+  entered_region: boolean,
+  trigger_verified: boolean,
+  invariants_verified: [
+    {
+      id: string,
+      ok: boolean,
+      on_fail?: string,
+      rollback_rule?: string
+    }
+  ],
+  exit_evaluated: boolean,
+  notes: string[]
+}
+
+## 2. Execute flow
+
+execute(input):
+  1. validate_capability_execution_input(input)
+  2. entered_region = verify_region(input)
+  3. trigger_verified = verify_trigger(input)
+  4. invariants_verified = evaluate_invariants(input.spec.invariant.invariants)
+  5. exit_evaluated = evaluate_exit(input.spec.exit_or_post_condition, input.spec.capability)
+  6. ok =
+     entered_region
+     AND trigger_verified
+     AND every invariant ok
+     AND exit_evaluated
+  7. notes:
+     - add region failure note if any
+     - add trigger failure note if any
+     - add exit failure note if any
+     - for each failed invariant:
+         - note invariant id
+         - note on_fail if present
+         - note rollback_rule if present
+  8. return CapabilityExecutionResult
+
+## 3. Capability-specific behavior
+
+verify_region:
+  - hibernate -> require identity_anchor_preserve
+  - resurrect -> require atomic_region
+  - migrate -> require substrate_boundary
+
+verify_trigger:
+  - valid_triggers.length > 0
+
+evaluate_exit:
+  - hibernate -> no_exit_conditions present
+  - resurrect -> success_paths + abort_paths present
+  - migrate -> success_paths + abort_paths + rollback_rule present
+
+## 4. Non-goals
+
+- Không implement engine thực thi rule/check thật tại file này
+- Không bind sang dispatcher Lane C
+- Không mở thêm 4 capability còn thiếu

@@ -1,0 +1,78 @@
+# B.7 — CAPABILITY VALIDATION RULES v0.1
+
+file_name: b7-capability-validation-rules-v0.1.na
+kind: scaffold_rules
+status: working_boundary_v2_1
+
+## 1. Required exit fields per capability
+
+REQUIRED_EXIT_FIELDS = {
+  hibernate: [no_exit_conditions],
+  resurrect: [success_paths, abort_paths],
+  migrate: [success_paths, abort_paths, rollback_rule]
+}
+
+## 2. Required region semantics per capability
+
+REQUIRED_REGION_RULES = {
+  hibernate:
+    - identity_anchor_preserve present
+
+  resurrect:
+    - atomic_region present
+
+  migrate:
+    - substrate_boundary present
+}
+
+## 3. Required invariant semantics per capability
+
+REQUIRED_INVARIANT_RULES = {
+  hibernate:
+    - id required
+    - rule required
+    - check required
+    - on_fail optional
+
+  resurrect:
+    - id required
+    - rule required
+    - check required
+    - on_fail required
+
+  migrate:
+    - id required
+    - rule required
+    - check required
+    - on_fail required
+}
+
+## 4. Relaxed hibernate note
+
+canonical_minimum_for_hibernate:
+  - no_exit_conditions required
+  - abort_paths not required
+
+scaffold_policy:
+  - do NOT hard-ban abort_paths at canonical level here
+  - if future spec seals "must not define abort_paths", Gatekeeper can tighten later
+
+## 5. Validation entrypoints
+
+validate_capability_spec(spec):
+  - assert capability in whitelist
+  - assert region.description exists
+  - assert phase_space_coordinates not empty
+  - assert trigger.description exists
+  - assert valid_triggers not empty
+  - assert forbidden_triggers is array
+  - assert invariant.description exists
+  - assert invariants not empty
+  - validate each invariant by capability
+  - validate exit fields by capability
+  - validate region requirements by capability
+
+validate_capability_execution_input(input):
+  - entity required
+  - session_ref required
+  - validate_capability_spec(input.spec)

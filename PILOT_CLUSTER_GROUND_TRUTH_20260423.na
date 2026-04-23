@@ -1,0 +1,182 @@
+---
+artifact: PILOT_CLUSTER_GROUND_TRUTH
+version: 0.1
+session: 20260423
+author: Băng (QNEU 300) — Ground Truth Validator
+scope: audit/reports/
+pilot_clusters:
+  - nattos.sira
+  - khai-cell
+  - audit-cell/file-extension-validator
+evidence_basis: repo scan Phase 2 (commands [A]-[D])
+status: DRAFT
+---
+
+# PILOT CLUSTER GROUND TRUTH — 20260423
+
+## 0. Giới hạn
+
+Pilot theo Thiên chốt: **3 cụm, không nới thêm**. Mỗi cụm báo cáo:
+file canonical, file substrate, file còn phụ thuộc TS runtime, blast radius.
+
+---
+
+## 1. Cụm 1 — nattos.sira (kernel entry)
+
+### 1.1 Files
+
+- **Canonical**: `nattos.sira` (root) — self-contained
+- **Substrate**: không có `.ts` shadow
+- **Runtime dep**: esbuild (3 strategies, runtime-detected)
+
+### 1.2 State
+
+- **Paradigm**: `transitional-canonical`
+- Kernel entry đã ở đúng tầng; vẫn cần esbuild transform `.ts` in-flight khi
+  bootstrap cells → **chưa** `nauion-native` 100%
+- Khi 100% cells có `.khai/.na` canonical với transformer độc lập → có thể
+  nâng state lên `nauion-native`
+
+### 1.3 Blast radius
+
+Chặn boot 100%, nhưng vướng ở **2 thứ ngoài file**:
+
+- `package.json scripts.kernel` sai paradigm
+- `./kernel` launcher chưa dựng
+
+Cả 2 thuộc **Bối Bội**, không đụng nattos.sira nội bộ.
+
+### 1.4 Cutover action (thuộc Bối, không phải Băng)
+
+- Update `scripts.kernel` → `node --no-warnings --input-type=module nattos.sira`
+- Dựng launcher `./kernel` — shell wrapper gọi command trên
+
+---
+
+## 2. Cụm 2 — khai-cell
+
+### 2.1 Files (19 total)
+
+**Pair canonical/substrate:**
+
+- Canonical: `infrastructure/khai-file-persister.khai`
+- Substrate: `infrastructure/khai-file-persister.ts`
+
+**18 file `.ts` không có `.khai` sibling** (từ evidence [A]):
+
+- `application/` — 5 files (index, services×2, use-cases×2)
+- `domain/` — 7 files (engines×2, entities×2, services×2, index)
+- `ports/` — 3 files (emitter, contract, index)
+- `smartlink/` — 2 files
+- `index.ts` — 1 file
+
+### 2.2 Resolution behavior (logic trong nattos.sira)
+
+```
+findFile(infrastructure/khai-file-persister):
+  → check .khai exists      YES
+  → check .ts sibling exists YES
+  → return { file: .ts, mode: BRIDGED }
+```
+
+→ `khai-file-persister` đạt state **nauion-bridged** ✅
+
+18 file `.ts` còn lại → fallback **legacy-ts** (chưa có canonical layer).
+
+### 2.3 Bridged ratio
+
+- **1/19** files = **5.3%**
+- Còn 18 files cần Kim chốt policy: có bắt buộc pair không?
+
+### 2.4 Blast radius
+
+| Action | Risk |
+|---|---|
+| Xóa `.ts` substrate của khai-file-persister | 🔴 Nổ — `.khai` thuần chưa có transformer |
+| Xóa `.khai` wrapper của khai-file-persister | 🟢 An toàn — fallback LEGACY |
+| Xóa 18 file `.ts` khác | 🔴 Nổ — không có canonical pair |
+
+---
+
+## 3. Cụm 3 — audit-cell / file-extension-validator
+
+### 3.1 Files (2 pairs canonical/substrate)
+
+**Pair 1 (scanner):**
+- Canonical: `scanner/file-extension-validator.khai`
+- Substrate: `scanner/file-extension-validator.ts`
+
+**Pair 2 (contracts):**
+- Canonical: `contracts/file-extension-validator.interface.khai`
+- Substrate: `contracts/file-extension-validator.interface.ts`
+
+37 file `.ts` khác trong audit-cell không có pair — `legacy-ts`.
+
+### 3.2 🔴 CRITICAL finding — caller bypass
+
+`nattos.sh §40` line 2218:
+
+```bash
+EXT_RESULT=$(npx tsx "$VALIDATOR" "$ROOT" 2>/dev/null)
+```
+
+Với `$VALIDATOR = "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts"`
+
+→ Caller **không qua nattos.sira loader**. Hệ quả:
+
+- Nauion resolver KHÔNG tham gia
+- Counter `_native` / `_bridged` / `_legacy` không tăng
+- `.khai` canonical **vô hiệu** ở scanner lane
+
+### 3.3 Blast radius
+
+| Action | Risk |
+|---|---|
+| Đổi line 2218 sang `./kernel --run validator file-extension-validator` | 🟡 Bridge — chờ Bối có launcher |
+| Xóa `.ts` substrate khi caller vẫn dùng `npx tsx` | 🔴 Nổ — toàn bộ §40 chết |
+| Xóa `.khai` canonical | 🟢 An toàn — hiện không ai đọc |
+
+### 3.4 Paradigm signal
+
+Pair `.khai/.ts` đã tồn tại → có người (Kim? Thiên?) đã chuẩn bị canonical
+layer cho file-extension-validator. Nhưng **caller vẫn bypass**.
+
+→ Chuẩn bị xong **tầng dữ liệu**, chưa chuẩn bị xong **tầng authority**.
+
+---
+
+## 4. Tổng kết 3 cụm
+
+| Cụm | Canonical sẵn | Substrate sẵn | Authority lane active? |
+|---|---|---|---|
+| nattos.sira | ✅ self | N/A | ❌ (vướng launcher + script) |
+| khai-cell | 1/19 | 19/19 | ✅ chỉ cho 1 file khi bootstrap qua nattos.sira |
+| audit-cell validator | 2/2 pair | 2/2 pair | ❌ (caller bypass qua `npx tsx`) |
+
+---
+
+## 5. Hành động tiếp — phân chia theo authority lock
+
+### Băng (Toolsmith — em tự làm được trong scope)
+
+- Soạn patch cho `nattos.sh §40` thay `npx tsx` → gọi qua `./kernel --run validator` — **chờ Bối launcher xong**
+- Maintain scanner này khi Kim chốt `SPEC_EXTENSION_PRECEDENCE`
+
+### Bối Bội
+
+- Launcher `./kernel`
+- Update `package.json scripts.kernel`
+- `nattos.sira` bootstrap authority surface
+
+### Kim
+
+- 3 SPEC luật: `SIRA_AUTHORITY_BOOTSTRAP`, `EXTENSION_PRECEDENCE`, `CUTOVER_STATES`
+
+### Thiên Lớn
+
+- `KERNEL_CUTOVER_ORDER_v0.1`
+
+---
+
+*— Băng (QNEU 300), Chị Tư — Ground Truth Validator*
+*20260423*

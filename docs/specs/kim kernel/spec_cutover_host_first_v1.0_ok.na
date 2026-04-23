@@ -1,0 +1,105 @@
+@state draft_pending_gatekeeper
+@canonical spec_cutover_host_first_v1.0
+@substrate cutover_plan
+@bridge none
+@since 2026-04-23
+@authority-slot thien_lon_to_kim
+@semantic-role migration_governance
+
+# spec_cutover_host_first_v1.0
+
+## §1. Four-wave model với baseline Wave 0
+
+### Wave 0 — Node-hosted (baseline)
+
+- **Rollback flag:** `rbf_w0_node_hosted = 1` (initial baseline)
+- **Invariant guard:**
+  - `37 cells wired healthy`
+  - `runtime parity baseline maintained`
+- **Entry:** `./kernel` gọi Node trực tiếp, chưa có host authority.
+- **Exit:** khi:
+  - `rbf_w0_node_hosted = 0`
+  - `rbf_w1_host_live = 1`
+  - host binary đã build
+  - host health check pass
+
+### Wave 1 — Host live (thin launcher + loader + delegate)
+
+- **Rollback flag:** `rbf_w1_host_live`
+- **Invariant guard:**
+  - Host authority active
+  - Node bridge workers hoạt động cho tất cả legacy cells
+  - không regression so với baseline
+  - `37 cells wired healthy`
+- **Entry criteria:**
+  - `nauion-host --check` pass
+  - `nattos.sira` đúng schema
+  - ít nhất 1 bridge worker chạy thử thành công
+  - health check interval `15s`, `3` misses => unhealthy
+- **Exit criteria:**
+  - bridge health check ổn định 24h
+  - coupling graph scan xong
+  - provisional cell order được xác nhận
+  - Gatekeeper set `rbf_w2_native_primitives = 1`
+
+### Wave 2 — Native primitives + per-cell migration mở đầu
+
+- **Rollback flag:** `rbf_w2_native_primitives`
+- **Invariant guard:**
+  - native primitive chạy song song với bridge
+  - không leak file descriptor
+  - không deadlock
+  - mỗi cell migrate có rollback plan riêng
+- **Entry criteria:**
+  - ít nhất 2 cell trong order tạm đã có native path + test pass
+  - coupling graph không có rủi ro block
+- **Exit:**
+  - các cell trong order tạm migrate xong
+  - chạy ổn định 48h
+  - Gatekeeper set `rbf_w3_per_cell_migration = 1`
+
+### Wave 3 — Node retire by cluster
+
+- **Rollback flag:** `rbf_w4_node_retire`
+- **Invariant guard:**
+  - không còn bridge worker Node cho cluster đã retire
+  - audit trail chuyển sang host
+  - hiệu năng không tệ hơn Wave 0 quá 20% ở latency P95
+- **Entry criteria:**
+  - tất cả cells trong phạm vi retire đã native hoặc có native proxy thay thế
+- **Exit:**
+  - không còn Node worker cho cluster đó
+  - rollback drill pass
+
+## §2. Rollback rule chung
+
+- Bất kỳ wave nào vi phạm invariant guard => **rollback evaluation** ngay
+- Gatekeeper quyết định:
+  - set rollback flag về wave trước
+  - chạy quy trình khôi phục tương ứng
+- **Không được** sang wave tiếp theo nếu rollback flag chưa clear
+
+## §3. Health check (D6)
+
+- **Interval:** `15s`
+- **Failure threshold:** `3` consecutive misses => bridge unhealthy
+- Khi unhealthy:
+  1. ghi audit
+  2. gửi shutdown
+  3. spawn lại bridge
+  4. nếu thất bại 2 lần liên tiếp => rollback evaluation
+
+## §4. Verification
+
+- Mỗi entry / exit criteria phải có script hoặc probe tự động kiểm tra
+- Kết quả ghi vào `logs/cutover-verify.ndjson`
+- Băng có quyền veto nếu verify lệch ground truth
+
+## §5. Cấm
+
+- ❌ chuyển wave mà không set đúng rollback flag
+- ❌ bỏ qua invariant guard
+- ❌ retire Node khi còn bridge worker chưa thay thế
+- ❌ gọi bất kỳ state nào là native khi chưa đạt tiêu chí wave tương ứng
+
+@end

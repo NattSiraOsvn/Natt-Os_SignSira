@@ -1,0 +1,22 @@
+# SIRA BOOTSTRAP RUNTIME CONTRACT
+**Version:** 0.2
+**Status:** DRAFT (Bối Bối)
+
+## 1. Scope Guardrails
+- **Stage 1 Boundary:** Chỉ bao gồm thin launcher, loader, và delegate.
+- **Transpiler:** TUYỆT ĐỐI KHÔNG tích hợp transpiler vào Stage 1.
+
+## 2. Bootstrap Responsibilities
+Lớp bootstrap chỉ được phép thực thi các tác vụ:
+1. Nhận diện (recognize) entry path.
+2. Xác thực (validate) các trường manifest của `nattos.sira`.
+3. Bàn giao (delegate) quy trình sang host binary.
+4. Làm cầu nối (bridge) cho legacy worker nếu cluster hiện tại chưa migrate xong.
+
+## 3. Minimum Audit Fields
+Payload json log trả về phải chứa tối thiểu các trường sau:
+- `host_mode`
+- `bridge_mode`
+- `rollback_flag`
+- `cell_target`
+- `health_state`

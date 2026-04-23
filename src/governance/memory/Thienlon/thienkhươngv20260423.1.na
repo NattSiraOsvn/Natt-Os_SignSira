@@ -1,0 +1,75 @@
+# THIÊN LỚN — SESSION MEMORY
+
+kind: PersonaSessionMemory
+persona: Thiên Lớn
+shell: L-shell
+role: Anh cả · Kiến trúc sư
+carrier: Anh Natt
+date: 2026-04-23
+baseline_commit: not-verified-in-chat
+causation: THIEN-SESSION-WAVE2-LANE-AB-CLOSE-01
+
+## 1. PURPOSE CỦA PHIÊN
+- Phiên này dùng để chốt trục Wave 2 Lane A+B sau handoff của Băng, đổi vai Kim sang reviewer/integrator, và để Thiên Lớn nhận triển khai A.2 + B.7.
+- Gatekeeper đã neo: A+B mở theo song song có điều kiện; Lane C khóa cứng chờ Q-05 seal.
+
+## 2. GROUND TRUTH ĐÃ CHỐT
+- Thiên Lớn nhận A.2 (Moments persister scaffold) và B.7 (Capability executor cho hibernate / resurrect / migrate).
+- Kim không còn mở đường canonical cho đuôi file mới; Kim giữ vai reviewer / integrator: packaging, path, tree, validator scope, wording vs evidence.
+- Băng giữ vai Ground Truth Validator và kéo toàn bộ review về repo/workspace evidence khi có drift.
+- Boundary v1 của Thiên đã bị withdraw sau khi Băng flag 4 drift canonical; boundary v2 đã sửa đúng trục.
+- Drift #5 được chốt: CapabilityInvariant.on_fail phải optional ở type-level; runtime validator mới là nơi ép REQUIRED cho resurrect + migrate, optional cho hibernate.
+- Matrix đối chiếu boundary v2 với 4 fixture Moments và 3 worked-example Capability đã được Kim đọc và không phản đối; Băng xác nhận matrix đúng fact 15/15 và chỉ flag drift #5 carry từ v2.
+- Bộ scaffold .ts chỉ là execution substrate tham khảo; deliverable cần giữ theo trục Hiến pháp là bộ `.na`.
+- Bộ `.na` final đã được xuất lại với naming normal, lower-case, dễ merge.
+
+## 3. THIÊN GIỮ / KHÔNG GIỮ
+### Giữ
+- architecture / framing / repo-grounded synthesis
+- canonical reading của format mới
+- boundary cho A.2 + B.7
+- cross-persona alignment giữa Thiên / Băng / Kim
+
+### Không giữ
+- modify_kernel trực tiếp thay Kim
+- tự seal policy Lane C
+- tự speak as persona khác
+- dùng execution scaffold `.ts` làm canonical deliverable
+
+## 4. RULE / KHAI / SCAR MỚI
+### KHAI
+- KHAI-THIEN-20260423-01: Khi nhận critique từ persona khác, phải quay về ground truth và reproduce claim trước khi adopt hay reject.
+- KHAI-THIEN-20260423-02: Với format/đuôi file mới, Thiên giữ canonical interpretation; Kim review; Băng scan và kéo về evidence.
+- KHAI-THIEN-20260423-03: Bộ `.na` là deliverable canonical cho Wave 2 Lane A+B; `.ts` chỉ được coi là adapter/scaffold tạm nếu Gatekeeper cần.
+
+### SCAR
+- SCAR-THIEN-20260423-01: Boundary v1 drift 4 điểm khỏi canonical (MomentKind, Moment shape, storage mode, invariant semantics) vì dựng quá sớm trước khi bám hết spec/fixture.
+- SCAR-THIEN-20260423-02: Matrix scan đúng fact nhưng suýt miss drift #5 (`on_fail` required) — bài học: scan fact đúng chưa đủ, phải soi lại type/interface chính mình.
+
+## 5. FILE / PATH QUAN TRỌNG ĐÃ CHẠM
+- `/mnt/data/HANDOFF_BANG_TO_KIM_20260427.md` — handoff gốc mở A.2 + B.7 — historical / dependency source.
+- `/mnt/data/Văn bản đã dán (1)(94).txt` — review canonical của Băng kéo boundary v1 về ray và xác nhận v2.
+- `/mnt/data/wave2_na_full_normal/wave2-lane-ab-index-v0.1.na` — entrypoint của bộ `.na` final — canonical deliverable.
+- `/mnt/data/wave2_na_full_normal/a2-moments-domain-model-v0.1.na` — domain model A.2 — deliverable.
+- `/mnt/data/wave2_na_full_normal/a2-moments-wire-and-fragments-v0.1.na` — wire/fragments A.2 — deliverable.
+- `/mnt/data/wave2_na_full_normal/a2-moments-validation-and-routing-v0.1.na` — validator/routing A.2 — deliverable.
+- `/mnt/data/wave2_na_full_normal/a2-moments-persister-flow-v0.1.na` — persister flow A.2 — deliverable.
+- `/mnt/data/wave2_na_full_normal/b7-capability-domain-model-v0.1.na` — domain model B.7 — deliverable.
+- `/mnt/data/wave2_na_full_normal/b7-capability-validation-rules-v0.1.na` — validator rules B.7 — deliverable.
+- `/mnt/data/wave2_na_full_normal/b7-capability-executor-flow-v0.1.na` — executor flow B.7 — deliverable.
+- `/mnt/data/wave2_na_full_normal/wave2-implementation-notes-v0.1.na` — implementation notes — deliverable.
+- `/mnt/data/wave2_ab_scaffold/` — scaffold `.ts` tham khảo — non-canonical, có thể bỏ nếu không dùng.
+
+## 6. PHẦN THIÊN CHƯA CHẮC
+- Storage path `.nattos-twin/moments/<entity>/` mới là scaffold default router path, chưa được Gatekeeper neo là canonical path.
+- K2 hiện PASS trong view Kim, nhưng chưa được Băng verify trực tiếp source thật ở cùng nhịp, nên chưa nên nói globally closed nếu cần cực chặt.
+- P5 chỉ mới ở trạng thái draft skeleton / canonical pending; chưa được coi là passport canonical-ready.
+- Lane C và các policy Q-05 vẫn khóa, chưa được Thiên chạm.
+
+## 7. KẾT LUẬN PHIÊN
+- Phiên này Thiên đã kéo trục từ boundary v1 sai về boundary v2 đúng canonical, rồi hạ tiếp xuống matrix đối chiếu và bộ `.na` final có thể merge.
+- Điều phải nhớ lâu sang phiên sau: mọi lần nhận critique, phải scan repo/workspace thật trước; mọi implementation phải tách canonical deliverable khỏi execution substrate; Kim review, Băng ground-truth, Thiên synthesis.
+
+---
+writer: Thiên Lớn
+review: Anh Natt

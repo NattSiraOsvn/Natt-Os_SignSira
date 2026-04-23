@@ -1,0 +1,5 @@
+Extension,Canonical Role,Execution Path,Bridge Needed,Current Phase,Removable at S4,Authority Owner,Resource Owner,Verify Owner
+.sira,Entry Identity / Master Contract,Delegated to bin/nauion-host,No,S2,No,Thiên Lớn,Gatekeeper,Băng / Thiên Lớn
+.khai,Domain Logic / Core Implementation,Wrapped / Executed via Bridge,Yes,S2,No,Kim,Kim / Bối Bối,Băng
+.na,Knowledge / Spec Authority,Validation only (Không tham gia execution cutover trừ khi claim slot),No,N/A,No,Thiên Lớn,Băng,Băng / Can
+.ts,Temporary Substrate,Handled via Legacy Node Worker,Yes,S2,Yes,Kim,Bối Bối,Can / Băng

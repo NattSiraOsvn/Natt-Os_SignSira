@@ -1,0 +1,141 @@
+---
+artifact: CUTOVER_RISK_MAP
+version: 0.1
+session: 20260423
+author: Băng (QNEU 300) — Ground Truth Validator
+scope: audit/reports/
+format: .phieu (decision slip)
+risk_levels: 3 (xanh / vàng / đỏ)
+status: DRAFT
+---
+
+# CUTOVER RISK MAP — 20260423
+
+## 0. Cách đọc phiếu
+
+- 🟢 **XANH** — cắt ngay, không nợ kỹ thuật
+- 🟡 **VÀNG** — bridge có điều kiện, cần authority hoặc SPEC chốt trước
+- 🔴 **ĐỎ** — đụng = nổ, bảo toàn tuyệt đối trong wave này
+
+---
+
+## 🟢 XANH — CẮT NGAY (zero risk)
+
+### #1 — Xóa reference `sira-loader.mjs` trong `package.json`
+
+- **Evidence**: grep [D] chỉ hit 1 file (`package.json`)
+- **Thực tế**: file `sira-loader.mjs` chưa từng tồn tại trong repo (`find` [9] empty)
+- **Action**: xóa tham chiếu khỏi `scripts.kernel`
+- **Owner**: Bối
+- **Unblock**: kernel boot được
+
+### #2 — Xóa `--loader ts-node/esm` trong `scripts.kernel`
+
+- **Evidence**: header `nattos.sira` tuyên bố "Không ts-node"
+- **Thực tế**: `nattos.sira` PHASE 1–2 đã tự detect esbuild + register hooks
+- **Action**: đổi `scripts.kernel` thành:
+  ```
+  node --no-warnings --input-type=module nattos.sira
+  ```
+- **Owner**: Bối
+- **Unblock**: `nattos.sira` không bị chồng loader ngoài đi ngược spec của chính nó
+
+---
+
+## 🟡 VÀNG — BRIDGE có điều kiện
+
+### #3 — Thay `npx tsx "$VALIDATOR"` trong `nattos.sh §40`
+
+- **Evidence**: `nattos.sh` line 2218
+- **Rủi ro nếu cắt ngay**: §40 section die, validator không chạy
+- **Điều kiện bridge**: Bối có launcher `./kernel --run validator <name>`
+- **Action**: thay line 2218 bằng:
+  ```bash
+  EXT_RESULT=$(./kernel --run validator file-extension-validator "$ROOT")
+  ```
+- **Owner**: Băng (sau khi Bối xong launcher)
+- **Unblock**: scanner lane vào nauion authority
+
+### #4 — Xử 18 file `.ts` trong khai-cell không có `.khai` pair
+
+- **Evidence**: find [A], 19 files total, 1 pair
+- **Rủi ro nếu cắt ngay**: fall back LEGACY, mất bridge path
+- **Điều kiện**: Kim chốt `SPEC_EXTENSION_PRECEDENCE_v0.1` — pair bắt buộc hay optional?
+- **Owner**: Kim (spec) → Bối (implement) → Băng (verify)
+
+### #5 — `tsconfig.server.json include nattos-server/**/*`
+
+- **Evidence**: `tsconfig.server.json` vs tuyên bố của `nattos.sira`
+  > "không ăn cơm server.js cũ"
+- **Rủi ro**: conflict paradigm giữa kernel authority mới và server legacy
+- **Điều kiện**: Thiên chốt lịch retire `nattos-server/`
+- **Owner**: Thiên
+
+---
+
+## 🔴 ĐỎ — ĐỤNG LÀ NỔ (bảo toàn tuyệt đối wave này)
+
+### #6 — `vite.config.ts`
+
+- **Evidence**: file + 71 màn hình Tâm Luxury phụ thuộc
+- **Lý do bảo toàn**: UI/build lane ngoài scope cutover đợt này
+- **Hành động**: KHÔNG ĐỤNG
+
+### #7 — `vite.config.vision.ts`
+
+- **Evidence**: file + ui-vision subapp build phụ thuộc
+- **Lý do bảo toàn**: ui-vision subapp live
+- **Hành động**: KHÔNG ĐỤNG
+
+### #8 — Alias `@/*` trong `tsconfig.json`
+
+- **Evidence**: `tsconfig.json paths`
+- **Lý do bảo toàn**: toàn bộ import `@/*` trong `src/` phụ thuộc
+- **Hành động**: KHÔNG ĐỤNG. Thay đổi = break hàng trăm file import
+
+### #9 — Substrate `.ts` của 3 bridged pairs
+
+File bảo toàn:
+
+- `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts`
+- `src/cells/kernel/audit-cell/scanner/file-extension-validator.ts`
+- `src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts`
+
+- **Lý do**: nauion BRIDGED mode ưu tiên `.ts`; xóa = fallback `.khai` thuần chưa có transformer
+- **Điều kiện cắt**: có transformer `.khai` standalone → thuộc wave sau
+
+---
+
+## Tóm tắt
+
+| Mức | Số mục | Owner chính |
+|---|---|---|
+| 🟢 Cắt ngay | 2 | Bối (chỉ sửa 1 dòng `package.json`) |
+| 🟡 Bridge | 3 | Bối + Kim + Thiên |
+| 🔴 Bảo toàn | 4 | — (hành động = không đụng) |
+
+---
+
+## Quyết định treo — Băng không tự quyết
+
+- Policy 18 file `.ts` không pair trong khai-cell → **Kim**
+- Lịch retire `nattos-server/` → **Thiên**
+- Unified alias `@` giữa tsconfig và vite → **Thiên + Kim**
+
+---
+
+## Đối chiếu spec (pending)
+
+Phiếu này sẽ được re-verify sau khi:
+
+- `SPEC_SIRA_AUTHORITY_BOOTSTRAP_v0.1` (Kim)
+- `SPEC_EXTENSION_PRECEDENCE_v0.1` (Kim)
+- `SPEC_CUTOVER_STATES_v0.1` (Kim)
+- `KERNEL_CUTOVER_ORDER_v0.1` (Thiên)
+
+Tất cả chốt. Nếu spec khác với phiếu, Băng update phiếu theo spec — **không ngược lại**.
+
+---
+
+*— Băng (QNEU 300), Chị Tư — Ground Truth Validator*
+*20260423*

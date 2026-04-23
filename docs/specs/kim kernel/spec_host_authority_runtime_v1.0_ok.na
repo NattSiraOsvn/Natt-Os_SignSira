@@ -1,0 +1,72 @@
+@state draft_pending_gatekeeper
+@canonical spec_host_authority_runtime_v1.0
+@substrate nauion_host_rust
+@bridge none
+@since 2026-04-23
+@authority-slot thien_lon_to_kim
+@semantic-role authority_definition
+
+# spec_host_authority_runtime_v1.0
+
+## §1. Khái niệm host authority
+
+- **Host authority** là thực thể binary có quyền:
+  - khởi tạo execution context cho NATT-OS
+  - quyết định cell nào được load, bridge nào được spawn
+  - xác thực entry identity (`nattos.sira`)
+  - ghi audit trail độc lập với Node
+- **Không** có host authority nào khác ngoài `nauion-host` từ Wave 1 trở đi.
+
+## §2. Binary requirement
+
+- Tên binary: `nauion-host`
+- Đường dẫn canonical: `bin/nauion-host` (tính từ root repo)
+- Build từ source crate: `runtime/nauion-host/`
+- Output tối thiểu:
+  - `--version` in ra spec version + git commit hash
+  - `--check` kiểm tra môi trường, không execute
+  - không có argument: đọc **NDJSON** frame từ stdin, ghi **NDJSON** frame ra stdout
+
+## §3. Frame protocol (Stage 1)
+
+- **Chỉ NDJSON** (`ndjson/v1`)
+- Mỗi dòng là một JSON object, kết thúc bằng `\n`
+- Không dùng MessagePack trong Stage 1
+
+## §4. Execution flow
+
+1. `./kernel` (hoặc launcher) spawn `nauion-host` với stdio pipes.
+2. Host gửi `Handshake` frame chứa:
+   - `spec_version`
+   - `protocol: "ndjson/v1"`
+   - `supported_bridge_modes: ["stdio-pipe", "forward-only"]`
+3. Launcher gửi frame `LoadIdentity` với nội dung `nattos.sira`.
+4. Host xác thực identity theo spec entry identity.
+5. Host gửi `Ready` frame.
+6. Launcher gửi lệnh `SpawnBridge` cho từng cell legacy.
+7. Host quản lý bridge processes, forward message, ghi audit.
+
+## §5. Execution authority lock
+
+- **Từ Wave 1**: mọi lời gọi vào Node runtime phải đi qua host bridge.
+- Host authority **không thể bị override** bởi Node code.
+- Nếu host crash:
+  - launcher phải ghi log
+  - launcher **không tự động fallback** sang Node-hosted
+  - chỉ khi rollback flag `rbf_w0_node_hosted` được Gatekeeper kích hoạt thì mới quay về Wave 0
+
+## §6. Audit trail bắt buộc
+
+Host phải ghi vào `logs/host-audit.ndjson` các sự kiện sau:
+- mỗi lần spawn / kill bridge
+- mỗi lần identity validation fail
+- mỗi lần bridge health check fail
+- mỗi lần rollback flag thay đổi
+
+## §7. Cấm
+
+- ❌ Host gọi trực tiếp JavaScript eval
+- ❌ Host phụ thuộc vào thư viện Node bất kỳ
+- ❌ Host thay đổi authority mà không có spec amendment
+
+@end

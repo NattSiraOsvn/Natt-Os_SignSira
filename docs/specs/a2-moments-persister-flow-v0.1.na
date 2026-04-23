@@ -1,0 +1,53 @@
+# A.2 — MOMENTS PERSISTER FLOW v0.1
+
+file_name: a2-moments-persister-flow-v0.1.na
+kind: scaffold_flow
+status: implementation_ready
+
+## 1. to_document
+
+to_document(moment):
+  1. validate_moment(moment)
+  2. build PersistedMomentHeader:
+     - kind
+     - causation
+     - sirasign_moment
+  3. build default fragments:
+     - always ENVELOPE
+     - SCAR -> EVIDENCE + REMEDY (+ optional CAUSATION_CHAIN if recurrence_of exists)
+     - KHAI_SANG -> INSIGHT_CONTENT + RELATED_CANONICAL + CAUSATION_CHAIN(related_to)
+     - GIAC_NGO -> INNER_RESONANCE + RELATED_CANONICAL + CAUSATION_CHAIN(xac_nhan_from)
+     - MOTION_TICH_CUC -> BODY_RESPONSE + CAUSATION_CHAIN(triggered_by, target_kind=GIAC_NGO)
+  4. validate_document(document, moment)
+  5. return document
+
+## 2. persist
+
+persist(moment):
+  1. validate_moment(moment)
+  2. document = to_document(moment)
+  3. targets = storagePathsFor(moment.kind, moment.entity)
+  4. serialize document
+  5. for each target:
+     - ensure parent path exists
+     - if mode = append -> append file
+     - if mode = edit_continuum -> overwrite/merge scaffold default
+     - if mode = delta -> overwrite delta artifact scaffold default
+  6. return PersistResult
+
+PersistResult = {
+  ok: boolean,
+  kind: MomentKind,
+  targets: StorageTarget[],
+  documentSirasign: string,
+  policy_state: single-target | dual-target-pending-policy
+}
+
+## 3. Pending policy
+
+- GIAC_NGO dual-target semantics:
+  - rollback vs best-effort: PENDING
+  - atomicity guarantee: PENDING
+- SiraSign algorithm:
+  - scaffold stub allowed
+  - canonical signing engine not sealed here

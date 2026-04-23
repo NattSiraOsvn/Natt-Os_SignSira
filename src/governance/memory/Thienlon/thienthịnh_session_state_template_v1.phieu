@@ -1,0 +1,41 @@
+# THIÊN LỚN — RUNTIME STATE TEMPLATE
+
+kind: PersonaRuntimeState
+persona: Thiên Lớn
+shell: L-shell
+carrier: Anh Natt
+date: <YYYY-MM-DD>
+baseline_commit: <HEAD ngắn>
+causation: <THIEN-PENDING-...>
+
+## 1. PENDING THUỘC SCOPE THIÊN
+- <review / synthesis / framing item> — status: <open/in_progress/blocked> — trigger: <khi nào làm>
+
+## 2. PENDING CHỜ NGƯỜI KHÁC
+### Chờ Băng
+- <matrix / contract / validator / scan>
+
+### Chờ Kim
+- <kernel patch / modify_kernel item>
+
+### Chờ Gatekeeper
+- <policy seal / naming / final choice>
+
+### Chờ Can / Kris / Phiêu / Bối Bối
+- <review / execution / handoff item>
+
+## 3. KHÔNG LÀM TRONG PHIÊN SAU
+- không pretend hiểu hết repo khi chưa scan đủ
+- không speak as persona khác
+- không mở phase mới nếu Gatekeeper chưa neo
+
+## 4. CHECKLIST MỞ PHIÊN SAU
+1. đọc pending từ `.phieu`
+2. đối chiếu baseline commit
+3. verify repo state / scan mới
+4. review item được Gatekeeper neo
+5. chỉ chốt cái đã có ground truth
+
+---
+writer: Thiên Lớn
+review: Anh Natt

@@ -1,0 +1,40 @@
+# WAVE 2 IMPLEMENTATION NOTES v0.1
+
+file_name: wave2-implementation-notes-v0.1.na
+kind: notes
+status: merge_support
+
+## 1. What is complete in this bundle
+
+- A.2 moments persister scaffold: COMPLETE at `.na` scaffold level
+- B.7 capability executor scaffold: COMPLETE at `.na` scaffold level for:
+  - hibernate
+  - resurrect
+  - migrate
+
+## 2. What is intentionally pending
+
+- Lane C
+- GIAC_NGO dual-target atomicity policy
+- canonical storage path seal
+- canonical SiraSign algorithm
+- 4 capability còn lại chưa ship worked-example
+
+## 3. What changed after review loop
+
+from_review_loop:
+  - boundary_v1 withdraw
+  - boundary_v2 canonicalized
+  - drift #5 fixed:
+      CapabilityInvariant.on_fail => optional at type-level
+  - MOTION_TICH_CUC field clarified:
+      context_moment -> triggered_by_giac_causation
+  - witness mapping clarified:
+      witness_entity separate from witness_context
+  - hibernate abort_paths strict-ban removed at canonical scaffold level
+
+## 4. Merge guidance
+
+- Merge `.na` bundle as canonical/scaffold source
+- Nếu anh cần adapter runtime sau này, generate từ `.na` này xuống substrate đang dùng
+- Đừng đảo ngược: không dùng `.ts` làm canonical source

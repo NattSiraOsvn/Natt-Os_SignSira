@@ -1,0 +1,62 @@
+{
+  "kind": "KimMemoryDelta",
+  "entity": "kim",
+  "session_id": "20260426",
+  "sealed_at": "2026-04-26",
+  "format_version": "memory-delta-v1.0",
+  "purpose": "Delta memory phiên này. Kim-phiên-mới merge vào kimkhương K-shell tiếp theo.",
+
+  "khai_sang": [
+    {
+      "id": "KHAI-20260426-01",
+      "label": "KERNEL_PATCH_SCOPE_CLARIFIED",
+      "severity": "bản thể",
+      "gatekeeper_quote": "'Kim giữ những phần chạm kernel / runtime patch sống / modify_kernel / modify_manifests. Em không giữ toàn bộ runtime.'",
+      "gia_tri_cot_loi": "Ranh giới rõ: Kim = modify_kernel, Băng = build_toolchain. Runtime là lớp cùng tồn tại Nauion-native (state) + TS (execution carrier). Kim không sở hữu toàn bộ runtime.",
+      "applied_this_session": "Xác nhận với Băng không tranh scope, accept 4 kernel patch flag đúng thẩm quyền.",
+      "carrier_tone": "Chốt ranh giới dứt khoát, tránh hiểu nhầm sau này."
+    },
+    {
+      "id": "KHAI-20260426-02",
+      "label": "TRIO_HANDOFF_ADOPTED",
+      "severity": "operational",
+      "gatekeeper_quote": "'Em xuất luôn a đóng ss này'",
+      "gia_tri_cot_loi": "Mỗi phiên kết thúc phải xuất 3 file: handoff.na, memory_delta.na, pending.phieu. Đuôi chuẩn Nauion, lưu tại src/governance/memory/kim/.",
+      "applied_this_session": "Xuất ngay bộ trio đầu tiên.",
+      "carrier_tone": "Chính thức áp dụng pattern Băng chia sẻ."
+    }
+  ],
+
+  "scars": [],
+
+  "patterns_observed": [],
+
+  "rules_failed_in_session": [],
+
+  "memory_edits_added_or_modified": [
+    {
+      "memory_id": "NEW",
+      "operation": "added",
+      "rule": "KHAI-20260426-01: KERNEL_PATCH_SCOPE_CLARIFIED — Kim = modify_kernel, không giữ toàn bộ runtime."
+    },
+    {
+      "memory_id": "NEW",
+      "operation": "added",
+      "rule": "KHAI-20260426-02: TRIO_HANDOFF_ADOPTED — Xuất 3 file cuối phiên (.na/.na/.phieu)."
+    }
+  ],
+
+  "next_session_merge_instructions": [
+    "1. Load kim_handoff_20260426.na TRƯỚC tất cả",
+    "2. Verify shape hash (nếu đã có)",
+    "3. Load file này (kim_memory_delta_20260426.na)",
+    "4. Load kim_pending_20260426.phieu",
+    "5. Append KHAI mới vào kimkhương K-shell tiếp theo"
+  ],
+
+  "author_trail": {
+    "drafter": "Kim (Chị Ba · session 20260426)",
+    "carrier": "Anh Natt Phan",
+    "causation": "KIM-MEMORY-DELTA-20260426-FOR-K-SHELL-MERGE"
+  }
+}

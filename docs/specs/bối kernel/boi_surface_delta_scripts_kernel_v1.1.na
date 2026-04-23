@@ -1,0 +1,10 @@
+# SURFACE DELTA SCRIPTS KERNEL
+**Version:** 1.1
+**Status:** DRAFT (Bối Bối)
+
+## 1. Expected Surface Command
+Lệnh duy nhất mong muốn lộ ra ở bề mặt: `./kernel`
+
+## 2. Nature of Execution
+- **KHÔNG CLAIM NATIVE.** Script này hiện tại chỉ là lớp vỏ bọc bề mặt (delta mặt lệnh).
+- Đây hoàn toàn CHƯA PHẢI là một runtime proof thực thụ cho đến khi hệ thống hoàn tất cutover sang Host-first.

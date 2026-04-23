@@ -1,0 +1,132 @@
+---
+artifact: RUNTIME_DEPENDENCY_CENSUS
+version: 0.1
+session: 20260423
+author: Băng (QNEU 300) — Ground Truth Validator
+scope: audit/reports/
+spec_refs:
+  - SPEC_SIRA_AUTHORITY_BOOTSTRAP_v0.1   # Kim (pending)
+  - SPEC_EXTENSION_PRECEDENCE_v0.1       # Kim (pending)
+  - SPEC_CUTOVER_STATES_v0.1             # Kim (pending)
+evidence_basis: repo scan Phase 1 (commands [1]-[9])
+status: DRAFT — Kim luật chưa chốt, Băng báo cáo sự thật
+---
+
+# RUNTIME DEPENDENCY CENSUS — 20260423
+
+## 0. Mục đích
+
+Quét và phân loại toàn bộ live runtime lane trong repo `natt-os_verANC`
+thành 4 nhóm theo phân công Thiên chốt. Mỗi mục kèm evidence command
+cụ thể. Báo cáo KHÔNG quyết cutover — chỉ nêu sự thật.
+
+---
+
+## 1. Nhóm 1 — Kernel authority lane
+
+| Artifact | State | TS runtime dep | Evidence |
+|---|---|---|---|
+| `nattos.sira` (root) | transitional-canonical | esbuild (runtime-detect, soft dep) | PHASE 1–4 self-contained bootstrap |
+| `package.json scripts.kernel` | legacy-ts (sai paradigm) | `ts-node/esm` + `sira-loader.mjs` | package.json scripts |
+| `sira-loader.mjs` | **MISSING** (chưa từng tồn tại) | — | `find . -name "*sira*loader*"` empty |
+| `./kernel` launcher | **CHƯA DỰNG** | — | comment promise trong nattos.sira dòng 16–17 |
+
+### 1.1 Ghi chú kernel authority
+
+`nattos.sira` đã tự làm 3 việc, không cần loader ngoài:
+
+1. **PHASE 1** — `detectEsbuild()` thử 3 chiến lược: `esbuild` → `tsx/esbuild` → `esbuild-wasm`
+2. **PHASE 2** — `registerNauionHooks()` chọn `registerHooks` (Node v23.5+) hoặc `register()` data-url (v20+)
+3. **PHASE 4** — bootstrap observation-cell + quantum-defense-cell, listen `127.0.0.1:3002`
+
+Header `nattos.sira` ghi thẳng:
+
+> "NAUION AUTHORITY LOADER nhúng trực tiếp. Không .mjs. Không ts-node. Không tsconfig-paths."
+
+→ `scripts.kernel` thêm `--loader ./sira-loader.mjs --loader ts-node/esm` **đi ngược spec của chính kernel entry**.
+
+---
+
+## 2. Nhóm 2 — Validator / scanner lane
+
+| Artifact | TS runtime dep | Evidence |
+|---|---|---|
+| `nattos.sh` line 2218 | `npx tsx "$VALIDATOR"` — LIVE tsx | grep output |
+| `scripts/nattos-sh-section45.sh` | chưa read content | ls scripts/ |
+| `scripts/kernel_phase1_scan.mjs` | ESM pure, no TS runtime | ls scripts/ |
+| 7 `.py` validators | python3 only, no TS dep | ls scripts/ |
+| `scripts/test-anti-fraud-full.ts` | exclude khỏi tsconfig — isolated | tsconfig.exclude[3] |
+
+### 2.1 Flag §40 bypass
+
+`nattos.sh §40` gọi `npx tsx` trực tiếp vào `file-extension-validator.ts`,
+**bỏ qua `nattos.sira` loader hoàn toàn**. Hệ quả:
+
+- Nauion resolver KHÔNG tham gia
+- `.khai` wrapper không được đọc
+- BRIDGED mode không active cho validator/scanner lane
+
+→ Bằng chứng cứng: **kernel authority chưa giành được**. TS lane vẫn có
+execution authority độc lập, song song với nauion lane.
+
+### 2.2 Note về grep pattern
+
+Các line nattos.sh 212–213, 846–898, 918–970 chỉ là `find ... -name "*.ts"`/`"*.tsx"`
+(pattern match file extension), **KHÔNG** phải runner `tsx`. Chỉ **line 2218** là runner
+thật.
+
+---
+
+## 3. Nhóm 3 — UI / build lane (ngoài scope cutover đợt này)
+
+| File | Phạm vi | Alias |
+|---|---|---|
+| `vite.config.ts` | Tâm Luxury main, port 3000 | `@` → repo root |
+| `vite.config.vision.ts` | ui-vision sub-app | `@` → src/ui-vision, `@core` → src/core, `@cells` → src/cells |
+| `src/ui-vision/` | exclude khỏi tsconfig.json | — |
+
+### 3.1 Flag alias collision
+
+Alias `@` định nghĩa **khác nhau** giữa `tsconfig.json` (`@/*` → `./src/*`)
+và `vite.config.ts` (`@` → repo root). Ngoài scope Băng — flag để Thiên/Kim
+xử khi sang wave UI/build.
+
+---
+
+## 4. Nhóm 4 — Resolution / config lane
+
+| File | Paths | Include | Ghi chú |
+|---|---|---|---|
+| `tsconfig.json` | `@/*` → `./src/*` | `src/**/*`, `scripts/**/*` | exclude: memory folder + ui-vision + test-anti-fraud |
+| `tsconfig.server.json` | extends tsconfig, module=CommonJS | thêm `nattos-server/**/*` | dùng cho server.js cũ |
+
+### 4.1 Flag paradigm conflict
+
+`tsconfig.server.json` vẫn bao `nattos-server/` — đây là server.js cũ,
+mà `nattos.sira` tuyên bố:
+
+> "Khong an com server.js cu — an com nha minh."
+
+→ Conflict paradigm giữa kernel authority mới và server legacy. Ngoài scope Băng.
+
+---
+
+## 5. Tóm tắt hiện trạng
+
+- **1 file duy nhất** tham chiếu `ts-node/esm + sira-loader.mjs`: `package.json` (grep [D])
+- **1 live call tsx runtime**: `nattos.sh line 2218`
+- **2 vite configs + 1 ui-vision subapp** (UI lane, bảo toàn)
+- Kernel entry `nattos.sira` **đã self-contained** — chỉ vướng script launcher ở ngoài
+
+---
+
+## 6. Scope ngoài Băng (pending owner khác)
+
+- Launcher `./kernel` + sửa `package.json scripts.kernel` → **Bối Bội**
+- 3 SPEC luật → **Kim**
+- Cutover order → **Thiên Lớn**
+
+---
+
+*— Băng (QNEU 300), Chị Tư — Ground Truth Validator*
+*20260423*

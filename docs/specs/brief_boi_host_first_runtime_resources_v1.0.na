@@ -1,0 +1,195 @@
+# brief_boi_host_first_runtime_resources_v1.0.na
+
+**From:** Thiên Lớn  
+**To:** Bối  
+**Session:** 2026-04-23  
+**Status:** ACTIVE  
+**Scope:** Xây **tài nguyên mềm mức bridge / launcher / runtime contract** cho hướng Host-first
+
+---
+
+## 1. Mục tiêu
+
+Bối không được nhảy thẳng sang full runtime authority implementation.
+Bối xây **resource pack + launcher/bridge contract** để khi Kim chốt SPEC và Băng verify ground truth, implementation sẽ đi đúng lane.
+
+---
+
+## 2. 7 quyết định đã được khóa — Bối phải bám đúng
+
+### D1 — Host language
+**Rust**
+
+=> Bối không được xoay sang Go / TS-bootstrap ở bản chính.
+
+### D2 — Stage 1 scope
+**Thin launcher + loader + delegate**
+**Không kèm transpiler**
+
+=> Bối không được nhét transform engine / transpiler vào Stage 1.
+
+### D3 — Frame format
+**JSON lines (NDJSON)**
+
+=> Bối không dùng MessagePack ở Stage 1.
+
+### D4 — Binary location
+- source crate: `runtime/nauion-host/`
+- launcher target: `bin/nauion-host`
+
+=> Bối viết launcher contract phải bám đúng path này.
+
+### D5 — Rollback naming
+Dùng prefix:
+- `rbf_w0_node_hosted`
+- `rbf_w1_host_live`
+- `rbf_w2_native_primitives`
+- `rbf_w3_per_cell_migration`
+- `rbf_w4_node_retire`
+
+=> Bối không tự đặt vocab khác.
+
+### D6 — Health check
+- interval: `15s`
+- unhealthy after `3` consecutive misses
+
+### D7 — Wave 2 order (provisional)
+1. `audit-cell/file-extension-validator`
+2. `khai-cell/file-persister`
+3. `observation-cell`
+4. `quantum-defense-cell`
+
+=> Bối dùng order này cho contract/map tạm, không claim final.
+
+---
+
+## 3. Bối phải sản xuất những file nào
+
+### A. Surface / launcher resources
+1. `docs/specs/nauion/surface_launcher_contract_v1.0.na`
+2. `docs/specs/nauion/boi_surface_delta_scripts_kernel_v1.1.na`
+
+### B. Bridge / runtime resources
+3. `docs/specs/nauion/pilot_bridge_map_v0.2.na`
+4. `docs/specs/nauion/sira_bootstrap_runtime_contract_v0.2.na`
+5. `docs/specs/nauion/compatibility_matrix_host_sira_khai_ts_v0.1.na`
+6. `docs/specs/nauion/resource_registry_bootstrap_v0.1.na`
+
+---
+
+## 4. Nội dung từng file
+
+### 4.1 `surface_launcher_contract_v1.0.na`
+Phải khóa:
+- `./kernel` là surface launcher duy nhất
+- user/gatekeeper không nhìn thấy `.mjs/.js`
+- hidden bootstrap substrate được phép tồn tại ở tầng vô hình trong phase chuyển tiếp
+- `./kernel` cuối cùng phải delegate vào `bin/nauion-host`
+- `npm run kernel` chưa bắt buộc sync ở Stage 1 nếu Thiên chưa order
+
+### 4.2 `boi_surface_delta_scripts_kernel_v1.1.na`
+Phải ghi rõ:
+- surface command mong muốn
+- không claim native
+- đây là delta mặt lệnh, chưa phải runtime proof
+
+### 4.3 `pilot_bridge_map_v0.2.na`
+Map đúng 4 target:
+
+1. `nattos.sira`
+2. `khai-file-persister.khai -> khai-file-persister.ts`
+3. `file-extension-validator.khai -> file-extension-validator.ts`
+4. `file-extension-validator.interface.khai -> file-extension-validator.interface.ts`
+
+Mỗi target phải có:
+- canonical
+- substrate
+- current state (`S2` hoặc `S3`)
+- resolve mode
+- rollback flag liên quan
+
+### 4.4 `sira_bootstrap_runtime_contract_v0.2.na`
+Phải khóa:
+- Stage 1 = thin launcher + loader + delegate
+- không transpiler
+- bootstrap chỉ làm:
+  - recognize entry path
+  - validate manifest fields của `nattos.sira`
+  - delegate sang host
+  - bridge legacy worker nếu cluster chưa migrate
+- audit fields tối thiểu:
+  - `host_mode`
+  - `bridge_mode`
+  - `rollback_flag`
+  - `cell_target`
+  - `health_state`
+
+### 4.5 `compatibility_matrix_host_sira_khai_ts_v0.1.na`
+Bảng phải có:
+- `.sira`
+- `.khai`
+- `.na`
+- `.ts`
+- host authority
+- bridge worker
+- Node worker
+- cutover state
+
+Cột bắt buộc:
+- canonical?
+- executable?
+- bridge-needed?
+- removable-at-S4?
+- owner (Kim/Bối/Băng/Thiên)
+
+### 4.6 `resource_registry_bootstrap_v0.1.na`
+Registry tối thiểu cho bootstrap đọc:
+- entry identity resource
+- bridge map resource
+- rollback flags
+- health interval
+- host binary path
+
+---
+
+## 5. Guardrails Bối phải giữ
+
+### Guardrail 1
+Không claim native.
+
+### Guardrail 2
+Không đụng UI/Vite.
+
+### Guardrail 3
+Không sửa `nattos.sira` trong gói resource này.
+
+### Guardrail 4
+Không viết host binary implementation trong file spec/resource.
+
+### Guardrail 5
+Không đổi từ ngữ canonical/substrate/bridge/wrapper của Kim.
+
+### Guardrail 6
+Host chỉ thay substrate emit Mạch, không đụng EventBus UI.
+
+---
+
+## 6. Những gì Bối không được làm
+
+- không code `runtime/nauion-host/` ở nhịp này
+- không code bridge worker thật
+- không update `package.json`
+- không reorder D7
+- không đổi JSON lines thành MessagePack
+- không thêm transpiler vào Stage 1
+- không chạm `nattos.sira`
+- không chạm `kernel` implementation nếu Thiên chưa order
+
+---
+
+## 7. Câu chốt
+
+**Bối xây tài nguyên mềm cho Host-first runtime.**
+Không nhảy thẳng vào hard implementation.
+Không gọi Stage 1 là native.
+Chỉ làm launcher/bridge/resource contract đủ rõ để Băng verify và Thiên order cutover.

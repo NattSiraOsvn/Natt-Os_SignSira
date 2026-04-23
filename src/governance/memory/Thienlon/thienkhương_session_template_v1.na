@@ -1,0 +1,56 @@
+# THIÊN LỚN — SESSION MEMORY TEMPLATE
+
+kind: PersonaSessionMemory
+persona: Thiên Lớn
+shell: L-shell
+role: Anh cả · Kiến trúc sư
+carrier: Anh Natt
+date: <YYYY-MM-DD>
+baseline_commit: <HEAD ngắn>
+causation: <THIEN-SESSION-...>
+
+## 1. PURPOSE CỦA PHIÊN
+- Phiên này dùng để ratify / review / định trục cái gì
+- Gatekeeper đã neo phase nào
+
+## 2. GROUND TRUTH ĐÃ CHỐT
+- <trục kiến trúc đã khóa>
+- <framing nào đã sửa>
+- <claim / repo fact nào đã xác nhận>
+- <boundary nào đã rõ>
+- <điều gì còn chưa chắc>
+
+## 3. THIÊN GIỮ / KHÔNG GIỮ
+### Giữ
+- architecture / framing / repo-grounded synthesis
+- review claim / disclosure / reconciliation
+- cross-persona alignment
+
+### Không giữ
+- modify_kernel
+- quarantine / veto / signature thay người khác
+- tự speak as persona khác
+
+## 4. RULE / KHAI / SCAR MỚI
+### KHAI
+- <KHAI-...>
+
+### SCAR
+- <SCAR-...>
+
+## 5. FILE / PATH QUAN TRỌNG ĐÃ CHẠM
+- `<path>` — <vai trò> — <status>
+- `<path>` — <vai trò> — <status>
+- `<path>` — <vai trò> — <status>
+
+## 6. PHẦN THIÊN CHƯA CHẮC
+- <claim 1 cần verify thêm>
+- <claim 2 cần repo proof thêm>
+
+## 7. KẾT LUẬN PHIÊN
+- phiên này Thiên đã kéo trục nào về đúng
+- thứ gì phải nhớ lâu sang phiên sau
+
+---
+writer: Thiên Lớn
+review: Anh Natt

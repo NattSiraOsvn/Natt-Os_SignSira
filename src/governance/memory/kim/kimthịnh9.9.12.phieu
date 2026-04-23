@@ -1,0 +1,60 @@
+{
+  "kind": "KimPending",
+  "entity": "kim",
+  "session_id": "20260426",
+  "sealed_at": "2026-04-26",
+  "format_version": "pending-v1.0",
+  "purpose": "State runtime cuối phiên. Kim-phiên-mới biết queue + blockers + status.",
+
+  "session_close_reason": {
+    "gatekeeper_call": "Anh Natt: 'Em xuất luôn a đóng ss này'",
+    "kim_acknowledge": "Em xuất trio handoff đầy đủ, sẵn sàng đóng phiên."
+  },
+
+  "current_work_status": {
+    "wave_or_task_label": "Nhận handoff Băng + GUIDE memory export",
+    "status": "COMPLETED",
+    "progress_notes": "Đã xác nhận 4 kernel patch flag (P5, A.2, C.6, B.7), cam kết timeline, áp dụng trio handoff."
+  },
+
+  "next_queue_when_gatekeeper_reopens": [
+    { "id": "Q-NEXT-01", "label": "P5 — điền neural-main-cell.cell.anc", "priority": "HIGH", "owner": "Kim", "status": "PENDING_KIM", "note": "Standalone, làm ngay" },
+    { "id": "Q-NEXT-02", "label": "K2 — audit khai-file-persister.ts:47", "priority": "HIGH", "owner": "Kim", "status": "PENDING_KIM", "note": "Kiểm tra TWIN_PERSIST tag" },
+    { "id": "Q-NEXT-03", "label": "C.1-C.6 feedback SPEC_QIINT_PHYSICS_FOUNDATION", "priority": "MEDIUM", "owner": "Kim", "status": "PENDING_KIM", "note": "Review kernel feasibility" }
+  ],
+
+  "immediate_blockers_carry_forward": [
+    { "id": "BLOCKER-01", "task": "Kim chưa có shape file", "status": "PENDING_GATEKEEPER", "depend_on": "Anh Natt capture shape identity cho Kim qua F12 (DeepSeek UI)" }
+  ],
+
+  "kernel_pending_kim_scope": [
+    { "id": "P5", "label": "neural-main-cell.cell.anc 0 bytes", "owner": "Kim", "status": "OPEN" },
+    { "id": "A.2", "label": "Moments persister", "owner": "Kim", "status": "PENDING_BANG_CONTRACT" },
+    { "id": "C.6", "label": "3-tier waterfall dispatcher", "owner": "Kim", "status": "PENDING_GATEKEEPER_SEAL" },
+    { "id": "B.7", "label": "Capability executor", "owner": "Kim", "status": "PENDING_BANG_FIXTURE" }
+  ],
+
+  "open_observations_carry_forward": [],
+
+  "awkward_files_or_defer": [],
+
+  "untracked_files_out_of_scope": [],
+
+  "rules_new_to_apply_next_session": {
+    "TRIO_HANDOFF": "Cuối mỗi phiên phải xuất 3 file handoff.na, memory_delta.na, pending.phieu vào src/governance/memory/kim/"
+  },
+
+  "verify_signature": {
+    "complement_of_link": "kim_handoff_20260426.na + kim_memory_delta_20260426.na",
+    "head_hash_at_seal": "04f888f",
+    "commits_in_session": 0,
+    "khai_new": 2,
+    "scar_new": 0
+  },
+
+  "author_trail": {
+    "drafter": "Kim (Chị Ba · session 20260426)",
+    "carrier": "Anh Natt Phan",
+    "causation": "KIM-PENDING-20260426-RUNTIME-STATE-FOR-NEXT-SESSION"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "version": "0.2",
+    "description": "Map đúng 4 target được Thiên Lớn chỉ định cho Wave 2",
+    "rule": "Stage 1 framing baseline = JSON/NDJSON-compatible, debug-first"
+  },
+  "targets": [
+    {
+      "id": 1,
+      "canonical": "nattos.sira",
+      "substrate": "hidden_bootstrap_substrate",
+      "current_state": "S2",
+      "resolve_mode": "delegate_to_host",
+      "rollback_flag": "rbf_w1_host_live"
+    },
+    {
+      "id": 2,
+      "canonical": "khai-file-persister.khai",
+      "substrate": "khai-file-persister.ts",
+      "current_state": "S2",
+      "resolve_mode": "bridge_legacy",
+      "rollback_flag": "rbf_w3_per_cell_migration"
+    },
+    {
+      "id": 3,
+      "canonical": "file-extension-validator.khai",
+      "substrate": "file-extension-validator.ts",
+      "current_state": "S2",
+      "resolve_mode": "bridge_legacy",
+      "rollback_flag": "rbf_w3_per_cell_migration"
+    },
+    {
+      "id": 4,
+      "canonical": "file-extension-validator.interface.khai",
+      "substrate": "file-extension-validator.interface.ts",
+      "current_state": "S2",
+      "resolve_mode": "bridge_legacy",
+      "rollback_flag": "rbf_w3_per_cell_migration"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+# THIÊN LỚN — RUNTIME STATE
+
+kind: PersonaRuntimeState
+persona: Thiên Lớn
+shell: L-shell
+carrier: Anh Natt
+date: 2026-04-23
+baseline_commit: not-verified-in-chat
+causation: THIEN-PENDING-WAVE2-LANE-AB-01
+
+## 1. PENDING THUỘC SCOPE THIÊN
+- patch bộ `.na` lên v0.1.1 nếu Gatekeeper muốn adopt 3 concern refinement của Băng — status: open — trigger: khi anh Natt neo patch tiếp.
+- làm pseudo-flow A.2 rồi B.7 từ bộ `.na` final — status: open — trigger: khi Gatekeeper yêu cầu hạ xuống tầng flow.
+- chốt wording canonical cho K2/P5 trong các handoff sau — status: open — trigger: khi Băng verify source thật hoặc Gatekeeper yêu cầu đóng trạng thái.
+
+## 2. PENDING CHỜ NGƯỜI KHÁC
+### Chờ Băng
+- xuất memory phiên 20260427 sau khi Gatekeeper chốt accept-as-is hoặc yêu cầu patch refinement.
+- verify trực tiếp source thật của K2 nếu cần đóng trạng thái toàn cục.
+
+### Chờ Kim
+- review tiếp nếu Thiên ship pseudo-flow hoặc patch v0.1.1.
+- giữ packaging/path/tree/validator-scope hygiene cho batch sau.
+
+### Chờ Gatekeeper
+- neo canonical storage path cho moments thay vì để scaffold default.
+- quyết định có patch 3 concern non-blocking của Băng ngay hay accept-as-is.
+- mở hay tiếp tục khóa Lane C / Q-05.
+
+### Chờ Can / Kris / Phiêu / Bối Bối
+- chưa mở dependency mới trong phiên này.
+
+## 3. KHÔNG LÀM TRONG PHIÊN SAU
+- không quay lại dùng `.ts` làm deliverable chính khi anh không cần.
+- không tự kết luận K2 globally closed nếu Băng chưa verify source thật.
+- không mở Lane C hoặc 4 capability còn lại khi Gatekeeper chưa neo.
+- không dùng naming kỹ thuật trái tinh thần Hiến pháp khi xuất bộ file canonical.
+
+## 4. CHECKLIST MỞ PHIÊN SAU
+1. đọc `thienthịnhv20260423.1.phieu`
+2. đối chiếu lại bộ `.na` final đang dùng
+3. kiểm tra Gatekeeper đã neo patch refinement / storage path / Lane C chưa
+4. nếu chỉ tiếp A.2/B.7 thì bám bộ `.na` final, không quay lại v1/v2 cũ
+5. chỉ hạ xuống pseudo-flow hoặc patch khi đã rõ ground truth mới
+
+---
+writer: Thiên Lớn
+review: Anh Natt

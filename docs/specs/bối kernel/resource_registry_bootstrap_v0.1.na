@@ -1,0 +1,15 @@
+{
+  "registry_purpose": "Minimum config cho Bootstrap đọc tại Stage 1",
+  "entry_identity_resource": "./kernel",
+  "bridge_map_resource": "docs/specs/nauion/pilot_bridge_map_v0.2.na",
+  "host_binary_path": "bin/nauion-host",
+  "health_interval": "15s",
+  "health_miss_threshold": 3,
+  "rollback_flags_active": [
+    "rbf_w0_node_hosted",
+    "rbf_w1_host_live",
+    "rbf_w2_native_primitives",
+    "rbf_w3_per_cell_migration",
+    "rbf_w4_node_retire"
+  ]
+}
