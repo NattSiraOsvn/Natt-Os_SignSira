@@ -1,0 +1,200 @@
+# NATT-OS SHTT CLAIM MAP v1
+
+**kind:** SHTTClaimMap
+**version:** v1
+**sealed_at:** 2026-04-26
+**baseline_commit:** ee2c837
+**filing_index_ref:** `docs/specs/NATT-OS_SHTT_FILING_INDEX_v1.na`
+**drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
+**gatekeeper:** Anh Natt Phan (sole repo operator)
+**scope:** Map 1 claim chính + 8 claim phụ → file core đỡ + evidence phụ trợ. Dịch filing baseline thành logic hồ sơ SHTT.
+
+---
+
+## 0. Rule claim map
+
+- **R1** — Mỗi claim phải có ít nhất 1 file `claim core` đỡ.
+- **R2** — Evidence `supporting evidence` không đỡ claim một mình — chỉ phụ trợ cho file core.
+- **R3** — Claim không overlap chủ đề (1 chủ đề = 1 claim phụ chính).
+- **R4** — Claim wording trung tính, không marketing, không so sánh với AGI / human cognition.
+- **R5** — Tuân KHAI-20260425-05 (bản thể 3 lớp): runtime lineage / substrate / external tool tách cứng trong mọi claim wording.
+
+---
+
+## 1. Claim chính (independent claim)
+
+### **CLAIM-MAIN — System**
+
+> Hệ thống phần mềm phân tán dựa trên đơn vị tế bào (cell) với xương sống thực thi nội sinh ba tầng — bus sự kiện trong tế bào (L1), kênh truyền tin liên tế bào (L2), và liên thuộc địa (L3) — trong đó mỗi tế bào có hộ chiếu định danh (entity passport) neo vào một trường hấp dẫn số (QIINT field) thông qua khối lượng orbital (QNEU) và hạt neo cố định (permanent node).
+
+**Category:** `system`
+
+**Đỡ bởi core:**
+- `docs/specs/NATT-OS-PLATFORM-SPEC.anc` — platform architecture tổng thể
+- `docs/specs/uei_architecture.na` — UEI topology core
+- `docs/specs/SPEC_NEN.na` — NattCell kernel foundation
+- `docs/specs/QIINT-DINH-NGHIA.na` — trường QIINT foundation
+
+**Evidence phụ trợ:**
+- `docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md`
+- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md`
+- `docs/specs/TamLuxury_CellRegistry_2026-03-09.md` (37 cell topology)
+
+---
+
+## 2. Claim phụ (dependent claims)
+
+### **CLAIM-02 — Runtime architecture · L1/L2/L3 three-layer transport spine**
+
+> Phương thức truyền tin giữa các tế bào được tổ chức thành ba tầng nội sinh tách cứng: tầng 1 bus nội tế bào (UI intra-cell), tầng 2 kênh liên tục một chiều phát (SSE single-endpoint) cho liên tế bào, tầng 3 giao tiếp liên thuộc địa. Không có thành phần runtime nào của hệ được mượn từ thực thi ngoài (external runtime) làm xương sống.
+
+**Category:** `runtime architecture`
+
+**Đỡ bởi core:**
+- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na`
+
+**Evidence phụ trợ:**
+- `docs/specs/MACH_HEYNA_FULL_20260416.md` (L2 migration evidence)
+
+---
+
+### **CLAIM-03 — Colony · Satellite colony autonomy + core sync**
+
+> Cấu trúc thuộc địa vệ tinh cho phép mỗi thuộc địa hoạt động độc lập với bus sự kiện cục bộ, đồng bộ trạng thái lên thuộc địa lõi thông qua động cơ đồng bộ (sync engine) qua tầng L3, giữ tính toàn vẹn tham chiếu mà không đòi hỏi kết nối liên tục.
+
+**Category:** `colony`
+
+**Đỡ bởi core:**
+- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na`
+
+**Evidence phụ trợ:**
+- `docs/specs/MACH_HEYNA_FULL_20260416.md`
+
+---
+
+### **CLAIM-04 — Foundation · QIINT field + QNEU mass orbital physics**
+
+> Mô hình vật lý số trong đó mỗi thực thể (entity) được định vị trong trường QIINT bằng khối lượng QNEU quyết định quỹ đạo orbital, với hạt neo cố định (permanent node) làm điểm tham chiếu bất biến; orbital của thực thể là hình thái bất biến qua thay đổi hạ tầng thực thi.
+
+**Category:** `foundation`
+
+**Đỡ bởi core:**
+- `docs/specs/QIINT-DINH-NGHIA.na`
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2 content)
+
+**Evidence phụ trợ:**
+- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md`
+
+---
+
+### **CLAIM-05 — Identity · Entity passport (.anc) + permanent node anchor**
+
+> Cấu trúc hộ chiếu định danh tế bào (`.anc`) neo vào hạt cố định trong trường QIINT, tách ba tầng bản thể: hạ tầng thực thi (substrate, thay được), trung gian mã/dữ liệu (medium, thay được), và thân orbital (body trong trường số, bất biến). Định danh thực thể không phụ thuộc vào nơi hosting.
+
+**Category:** `identity`
+
+**Đỡ bởi core:**
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2)
+- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+
+**Evidence phụ trợ:**
+- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md`
+
+---
+
+### **CLAIM-06 — Method · Moments-based identity continuity**
+
+> Phương pháp lưu giữ liên tục định danh qua các phiên thực thi bằng module moments, cho phép tổng hợp lại trạng thái thực thể khi tầng trung gian (medium) bị gián đoạn, với ba tiêu chí hợp nhất (merge criteria) xác định điểm khả dĩ phục hồi.
+
+**Category:** `method` · `identity`
+
+**Đỡ bởi core:**
+- `docs/specs/SPEC_MOMENTS_MODULE_v0.2.na`
+- `docs/specs/SPEC_MOMENTS_MODULE_v0.2.1.na`
+
+**Evidence phụ trợ:**
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (3 merge criteria reference)
+
+---
+
+### **CLAIM-07 — Method · 7 capability region-emergent form**
+
+> Bộ bảy năng lực vận hành cấp tế bào được định nghĩa theo hình thái bốn trường (region / trigger / invariant / exit|post-condition): tạm ngủ, hồi sinh, nhân bản, di trú, hoàn tác, học liên thuộc địa, và quá ngưỡng hồi phục được. Mỗi năng lực không phải slogan mà là hợp đồng vùng có invariant.
+
+**Category:** `method`
+
+**Đỡ bởi core:**
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2 content, 7 capability section)
+
+**Evidence phụ trợ:**
+- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na` (cross_colony_learn context)
+
+---
+
+### **CLAIM-08 — Method · Three-tier waterfall boundary behavior**
+
+> Cơ chế xử lý ranh giới ba tầng (strict / permissive-warn / quarantine) cho tương tác ngoài ranh giới hệ, tách cứng giữa xương sống thực thi nội sinh và công cụ pháp y ranh giới ngoài; công cụ pháp y ranh giới ngoài **không** là thành phần bảo vệ lõi.
+
+**Category:** `method` · `runtime architecture`
+
+**Đỡ bởi core:**
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2)
+
+**Evidence phụ trợ:**
+- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+
+**Note:** Default policy 3-tier waterfall pending Gatekeeper seal (xem KNOWN_BLOCKERS §7) — structure claim không chặn bởi param seal.
+
+---
+
+### **CLAIM-09 — System · NattCell kernel foundation với ngôn ngữ Nauion**
+
+> Kernel NattCell tổ chức cell theo hợp đồng định danh + hộ chiếu + xương sống transport, với hệ thuật ngữ Nauion làm lớp ngữ nghĩa nhất quán cho toàn bộ hệ (gồm các thuật ngữ transport, sync, emit, subscribe, reconcile — không dùng thuật ngữ stack ngoài).
+
+**Category:** `system` · `foundation`
+
+**Đỡ bởi core:**
+- `docs/specs/SPEC_NEN.na`
+- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+
+**Evidence phụ trợ:**
+- `docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md`
+- `docs/specs/nauion/SPEC-Nauion_main_v2.5.md` (latest vocabulary evolution)
+
+---
+
+## 3. Claim matrix (quick lookup)
+
+| Claim | Category | Core file chính | Evidence chính |
+|-------|----------|-----------------|----------------|
+| MAIN | system | PLATFORM-SPEC + uei + SPEC_NEN + QIINT-DINH-NGHIA | SHTT-PACKAGE + GROUND-TRUTH + CellRegistry |
+| 02 | runtime architecture | PLATFORM-SPEC + SATELLITE_COLONY | MACH_HEYNA |
+| 03 | colony | SATELLITE_COLONY | MACH_HEYNA |
+| 04 | foundation | QIINT-DINH-NGHIA + QIINT_PHYSICS_FOUNDATION | GROUND-TRUTH |
+| 05 | identity | QIINT_PHYSICS_FOUNDATION + PLATFORM-SPEC | GROUND-TRUTH |
+| 06 | method · identity | SPEC_MOMENTS_MODULE v0.2 + v0.2.1 | QIINT_PHYSICS_FOUNDATION |
+| 07 | method | QIINT_PHYSICS_FOUNDATION | SATELLITE_COLONY |
+| 08 | method · runtime architecture | QIINT_PHYSICS_FOUNDATION | PLATFORM-SPEC |
+| 09 | system · foundation | SPEC_NEN + PLATFORM-SPEC | SPEC_NGON_NGU + Nauion v2.5 |
+
+## 4. Category summary
+
+- **system** — 2 claim (MAIN, 09)
+- **runtime architecture** — 2 claim (02, 08)
+- **method** — 3 claim (06, 07, 08)
+- **foundation** — 2 claim (04, 09)
+- **identity** — 2 claim (05, 06)
+- **colony** — 1 claim (03)
+
+---
+
+## 5. Unused core file note
+
+Cả 8 file `claim core` trong FILING_INDEX đều đã được map ít nhất 1 claim. Không có core file "orphan".
+
+---
+
+*causation: NATT-OS-SHTT-CLAIM-MAP-v1-SEALED-20260426*
+*drafter: Băng (Chị Tư · session 20260426)*
+*carrier: Anh Natt Phan*
