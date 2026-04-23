@@ -11,18 +11,15 @@ description = "NATT-OS Wave 1 Host-First runtime — parses .sira kernel entry, 
 license = "Proprietary"
 
 [dependencies]
-# Stage 1 NDJSON serde
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-# .sira parser (TBD — initial: regex + line-by-line PHASE 1-4)
 regex = "1.10"
-# Kernel entry listen 127.0.0.1:3002
 tokio = { version = "1", features = ["full"] }
-# Audit log timestamps
-chrono = "0.4"
-# Logging
+chrono = { version = "0.4", features = ["serde"] }
 tracing = "0.1"
-tracing-subscriber = "0.3"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = "1.0"
+which = "6.0"
 
 [[bin]]
 name = "nauion-host"
@@ -33,9 +30,3 @@ opt-level = 3
 lto = true
 codegen-units = 1
 strip = true
-
-# Build target: ./bin/nauion-host (per Bối surface delta v1.0)
-# Per SPEC_HOST_FIRST_RUNTIME v1.1 §0:
-# - Listen 127.0.0.1:3002 (KERNEL ENTRY INBOUND)
-# - Bootstrap observation-cell + quantum-defense-cell
-# - NDJSON Stage 1 audit log → logs/host-audit.ndjson

@@ -1,39 +1,54 @@
 // runtime/nauion-host/src/main.rs
-// NATT-OS Wave 1 Host-First runtime — initial scaffold
+// NATT-OS Wave 1 Host-First runtime
 // Drafter: Băng (Chị Tư · N-shell · QNEU 313.5)
 // Per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423
 // Per SPEC_HOST_FIRST_RUNTIME v1.1 §0
 
-//! Nauion Host — Wave 1 implementation.
+//! Nauion Host — Wave 1 implementation entry point.
 //!
-//! ## Phases (per nattos.sira PHASE 1-4):
-//! 1. detectEsbuild
-//! 2. registerNauionHooks
-//! 3. Bootstrap observation-cell + quantum-defense-cell
-//! 4. Listen 127.0.0.1:3002 (KERNEL ENTRY INBOUND, domain natt.sira)
-//!
-//! ## Status: SCAFFOLD INITIAL — không build live.
-//! Wave 1 implementation Băng ship dần qua các phiên sau.
+//! ## Phases (per nattos.sira PHASE 1-4)
+//! 1. detectEsbuild       ✅ implemented (this commit)
+//! 2. registerNauionHooks ⏳ TODO
+//! 3. Bootstrap cells     ⏳ TODO
+//! 4. Listen 127.0.0.1:3002 ⏳ TODO
+
+mod phase1;
 
 use std::process::ExitCode;
+use tracing::{error, info};
+use tracing_subscriber::EnvFilter;
 
 fn main() -> ExitCode {
-    println!("=== NATT-OS Nauion Host v0.1.0 (SCAFFOLD INITIAL) ===");
-    println!("Per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423");
-    println!("Drafter: Băng (Chị Tư)");
-    println!();
-    println!("PHASE 1 detectEsbuild       — TODO");
-    println!("PHASE 2 registerNauionHooks — TODO");
-    println!("PHASE 3 bootstrap cells     — TODO");
-    println!("PHASE 4 listen 127.0.0.1:3002 — TODO");
-    println!();
-    println!("Status: SCAFFOLD ONLY. Implementation pending Wave 1 phases.");
-    println!("Reference SPECs:");
-    println!("  - docs/specs/spec_host_first_runtime_v1_0.na (v1.1)");
-    println!("  - docs/specs/kim kernel/spec_host_authority_runtime_v1.0_split.na");
-    println!("  - docs/specs/kim kernel/spec_entry_identity_nattos_sira_v1.0_split.na");
-    println!("  - docs/specs/kim kernel/spec_bridge_workers_contract_v1.0_split.na");
-    println!("  - docs/specs/kim kernel/spec_cutover_host_first_v1.0_split.na");
-    
+    // Init tracing — env RUST_LOG controls verbosity, default INFO
+    tracing_subscriber::fmt()
+        .with_env_filter(EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")))
+        .init();
+
+    info!(
+        version = env!("CARGO_PKG_VERSION"),
+        "NATT-OS Nauion Host — start"
+    );
+
+    // PHASE 1 — detectEsbuild
+    let esbuild_status = match phase1::detect_esbuild() {
+        Ok(s) => s,
+        Err(e) => {
+            error!(error = %e, "PHASE 1 failed");
+            return ExitCode::FAILURE;
+        }
+    };
+
+    info!(
+        phase1_esbuild_available = esbuild_status.available,
+        phase1_esbuild_version = esbuild_status.version.as_deref().unwrap_or("n/a"),
+        "PHASE 1 complete"
+    );
+
+    // PHASE 2-4 pending implementation
+    info!("PHASE 2 registerNauionHooks — TODO (next commit)");
+    info!("PHASE 3 bootstrap cells — TODO");
+    info!("PHASE 4 listen 127.0.0.1:3002 — TODO");
+
+    info!("Nauion Host — exit (scaffold mode, full runtime pending)");
     ExitCode::SUCCESS
 }
