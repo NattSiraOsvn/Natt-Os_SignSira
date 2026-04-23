@@ -134,7 +134,7 @@ constitutional.violation — vi phạm Hiến Pháp
 - Import trực tiếp từ `src/cells/`
 - Gọi EventBus trực tiếp (phải qua Kênh `/phat/nauion`)
 - Tạo event fake để bypass audit
-- Dùng từ kỹ thuật cũ (GET/POST/API/endpoint) trong variable name
+- Dùng naming legacy không thuộc hệ từ vựng Nauion trong variable name
 
 ---
 
