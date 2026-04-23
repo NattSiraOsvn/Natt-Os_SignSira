@@ -1,4 +1,9 @@
 /**
+ * @state: S2
+ * @canonical: src/cells/kernel/audit-cell/scanner/file-extension-validator.khai
+ * @substrate: src/cells/kernel/audit-cell/scanner/file-extension-validator.ts
+ * @since: 2026-04-23
+ *
  * P1.3 — FILE EXTENSION VALIDATOR (Implementation)
  * SPEC v1.3 FINAL §4.3
  * Tầng 3 (Scanner/Rule) — Băng implement

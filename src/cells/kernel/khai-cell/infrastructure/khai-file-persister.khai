@@ -1,4 +1,9 @@
 /**
+ * @state: S2
+ * @canonical: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai
+ * @substrate: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts
+ * @since: 2026-04-23
+ *
  * KhaiFilePersister — Infrastructure adapter for KhaiCellEmitter.
  *
  * Persists KhaiCellSignature to .khai file per SPEC v1.2 §17.2:
