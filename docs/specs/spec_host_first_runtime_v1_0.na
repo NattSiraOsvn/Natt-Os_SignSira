@@ -1,0 +1,290 @@
+# SPEC_HOST_FIRST_RUNTIME_v1.0.na
+
+**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
+**Session:** 20260423
+**Status:** v1.0 — ready Gatekeeper approve
+**Reviewed by:** Thiên Lớn (redline 4 điểm sửa + 7 D locks, fully incorporated)
+**Supersedes:** SPEC_HOST_FIRST_RUNTIME_v0.1_DRAFT (retracted — authority scope lấn + mis-frame Wave/State + MessagePack assumption wrong for Stage 1)
+**Binding to:**
+- SPEC_SIRA_AUTHORITY_BOOTSTRAP_v1.0.na (Kim)
+- SPEC_CUTOVER_STATES_v1.0.na (Kim)
+- SPEC_EXTENSION_PRECEDENCE_v1.0.na (Kim)
+- BOI_SURFACE_DELTA_scripts.kernel_v1.0.na (Bối Bội)
+- RUNTIME_DEPENDENCY_CENSUS_20260423.na (Băng — ground truth)
+
+---
+
+## 0. Preamble
+
+**Problem:** Execution authority inversion. NATT-OS có Tầng A (name: CoreDNS + 10 domain) và Tầng B (identity: `.sira` self-describing). Tầng C (execution authority native) **chưa dựng**. `./kernel` hiện dispatch qua `node --loader ./sira-loader.mjs --loader ts-node/esm` (per `package.json scripts.kernel`), nhưng:
+
+1. `sira-loader.mjs` **MISSING** (chưa từng tồn tại per RUNTIME_DEPENDENCY_CENSUS §1)
+2. `nattos.sira` đã tự làm PHASE 1–4 (detectEsbuild + registerNauionHooks + bootstrap observation-cell + quantum-defense-cell + listen 127.0.0.1:3002) — self-contained
+3. Header `nattos.sira`: "NAUION AUTHORITY LOADER nhúng trực tiếp. Không .mjs. Không ts-node. Không tsconfig-paths."
+
+→ `scripts.kernel` hiện tại đi **ngược** spec của chính kernel entry. Bối Bội đã ship surface delta (v1.0) fix mặt lệnh thành `"./kernel nattos.sira"`. Còn thiếu launcher authority thật + Nauion Host binary.
+
+**Mục tiêu v1.0:** Map đường đi từ Node-hosted (W0) sang Host-hosted (W4), compatible với 3 SPEC Kim đã lock, không lấn lane.
+
+---
+
+## §1 — Host Authority
+
+**Canonical loader authority** (per Kim SPEC_SIRA_AUTHORITY_BOOTSTRAP §1.3): **Sira Authority Loader**, defined bởi Nauion Kernel.
+
+- Binary implementation: Rust (per D1 Thiên lock)
+- Source path: `runtime/nauion-host/` (per D4)
+- Repo-local executable: `bin/nauion-host` (per D4)
+- Global install: optional, post-W3
+- Current form: đang nhúng trong `nattos.sira` PHASE 1–4 (esbuild runtime-detect + `registerHooks`/`register()` hybrid). Binary hóa = W1 deliverable.
+
+**Responsibility thuộc Host (W2+ native):**
+- Đọc và validate `.sira` entry (per Kim SPEC §1.1)
+- Resolve identity refs theo extension precedence (per Kim SPEC_EXTENSION_PRECEDENCE)
+- Name resolution qua Tầng A CoreDNS cho 10 domain Nauion
+- Spawn + quản lý Giao Thể Bridge (per Kim SPEC §1.4, bridge authority)
+- Emit observation ra Mạch HeyNa (topology L1/L2/L3 locked 20260424)
+- Enforce field law (SPEC_NEN v1.1: FALL/DISSIPATE/OSCILLATE + field integrity)
+
+**KHÔNG thuộc Host:**
+- Business cell logic (37 cells WIRED HEALTHY baseline, tồn tại TS đến khi migrate W3)
+- Client UI rendering (EventBus ≠ Mạch HeyNa, lock SCAR_04 20260417)
+- Storage engines, frontend assets
+- UI/build lane (`.tsx/.vite` ngoài scope cutover này per Kim SPEC_EXTENSION_PRECEDENCE §2.4)
+
+**`./kernel` post-W1 form:**
+```sh
+#!/bin/sh
+exec ./bin/nauion-host ./nattos.sira "$@"
+```
+`package.json scripts.kernel = "./kernel nattos.sira"` (Bối Bội delta đã chốt).
+
+---
+
+## §2 — Entry Identity
+
+Ref Kim SPEC_SIRA_AUTHORITY_BOOTSTRAP §1.1–§1.2. **Không re-derive.**
+
+Key invariants bắt buộc:
+- `nattos.sira` là entry identity duy nhất — không tạo `.sira` thứ hai
+- Chỉ Gatekeeper commit `nattos.sira`
+- Self-describe: `kind`, `domain`, `host-requires`, identity hash
+- Extension precedence lock: `.sira > .khai > .na > .anc > .phieu > .ts > .tsx/.vite` (per Kim SPEC_EXTENSION_PRECEDENCE §1)
+
+**Ranh giới với Tầng A:** CoreDNS resolve `natt.sira`, `nattos.sira`, 8 domain còn lại → Host endpoint (post-W2). W0–W1 giữ nguyên `nattos.sira` commit 2c4fa81 KERNEL ENTRY INBOUND 127.0.0.1:3002.
+
+---
+
+## §3 — Bridge Workers (Giao Thể Bridge)
+
+**Align hoàn toàn Kim SPEC_SIRA_AUTHORITY_BOOTSTRAP §1.4 (bridge authority 2 mode) + Kim SPEC_CUTOVER_STATES (state S2/S3).**
+
+### 3.1 Hai mode (Kim-defined, không re-derive)
+
+| Mode | Mô tả | State tương ứng |
+|---|---|---|
+| **Wrapper** | Canonical phụ thuộc trực tiếp substrate cùng capability (import trực tiếp / delegate qua adapter / loader map). **Tạm thời**, không claim "đã xong". | S2 `transitional-canonical-wrapper` |
+| **Bridged** | Canonical gọi substrate qua **EventBus L2 Mạch HeyNa**, không còn dep trực tiếp. Mới được claim "đã chuyển đổi". | S3 `nauion-bridged` |
+
+### 3.2 Transport (D3 Thiên lock)
+
+- **W1 Stage 1:** JSON lines (NDJSON), length-prefixed. Dễ debug, dễ diff, dễ Băng verify, hợp thin launcher.
+- **W2+ Stage 2+:** MessagePack pending evaluate (performance bottleneck trigger).
+- Stdio pipe parent-child process cho W1 inter-process Wrapper mode (khi Host spawn Node worker cho legacy cell).
+- Bridged mode (S3): routing qua EventBus L2 Mạch HeyNa, không stdio IPC.
+- **KHÔNG shared memory, KHÔNG FFI direct** ở W1.
+
+### 3.3 Health check (D6 Thiên lock)
+
+- Interval: **15 giây**
+- Unhealthy threshold: **3 consecutive misses**
+- Action on unhealthy: Host restart bridge với exponential back-off, emit observation ra Mạch HeyNa.
+
+### 3.4 Bridge lifecycle
+
+1. Host startup → đọc `nattos.sira` cells list
+2. Với mỗi cell `kind: legacy-node` → spawn bridge subprocess
+3. Bridge load Node runtime + cell module, handshake capability manifest
+4. Host register route qua Mạch HeyNa L2 (S3) hoặc adapter (S2)
+5. Runtime: observation flow Host ↔ Bridge ↔ Cell
+6. Shutdown: SIGTERM → graceful close → flush in-flight events
+
+### 3.5 Disposal
+
+Khi cell migrate S3 → S4 `nauion-native`: bridge subprocess không spawn nữa cho cell đó. Node dependency giảm dần theo số cell native.
+
+---
+
+## §4 — Cutover Order (5 mốc W0–W4, Thiên lock)
+
+**Numbering lock:** một hệ đếm duy nhất cho toàn tài liệu. Kim/Bối cross-doc không lẫn.
+
+### W0 — Current Node-hosted baseline
+
+**Ground truth (RUNTIME_DEPENDENCY_CENSUS):**
+- `package.json scripts.kernel` = lệnh node+loader legacy (Bối Bội đã ship surface delta → `"./kernel nattos.sira"`)
+- `nattos.sira` self-contained PHASE 1–4 (self-loader, không cần `.mjs` ngoài)
+- `sira-loader.mjs` **MISSING** (không tồn tại, không cần tạo)
+- `./kernel` launcher **CHƯA DỰNG** binary
+- 1 live call tsx runtime ngoài: `nattos.sh line 2218` (validator lane bypass)
+
+**Pre-wave state. Không wave action. Baseline để so sánh.**
+
+### W1 — Host live (thin launcher + loader + delegate, D2 lock)
+
+**Scope:**
+- Build `nauion-host` Rust binary (source `runtime/nauion-host/`, output `bin/nauion-host`)
+- Binary đọc `.sira`, spawn node-bridge-v1 (Wrapper mode S2) cho legacy cells
+- `./kernel` launcher thật (surface `./kernel nattos.sira` đã Bối ship, swap bên trong sang binary)
+
+**Behavior change:** surface không đổi. Chain gọi thay từ `node --loader ...` → `./bin/nauion-host`.
+
+**Exit criteria:**
+- 37/37 business cells WIRED HEALTHY (scanner verify)
+- Runtime parity baseline maintained (Thiên Điểm 1 — KHÔNG dùng `TSC 0 errors` làm invariant, vì live tsc-check lane đã retire)
+- Integration test pass
+- BCTC flow end-to-end pass (PAYMENT_PROCESSED → journal Nợ 112/Có 511)
+- Rollback: flag `rbf_w0_node_hosted` restore về Node dispatch
+
+### W2 — Native primitives
+
+**Scope:**
+- Host native hiểu: observation, mạch, field law (4 LAW SPEC_NEN v1.1)
+- Native KhaiCell RÀO mark signature (bỏ hop Node cho mark step)
+- Native Observation read-only eyes (bỏ hop Node cho scan step)
+- Cell business logic vẫn Node (S1/S2), Host intercept observation/mạch pipeline trước bridge
+
+**Behavior change:** throughput observation cải thiện. Cell logic không đổi.
+
+**Exit criteria:**
+- KhaiCell native vs Node parity 100% (sample 1000 cases)
+- Observation throughput ≥ baseline W1
+- 37 cells HEALTHY
+- Rollback: `rbf_w1_host_live` quay W1 behavior
+
+### W3 — Per-cell migration (S2 → S3 → S4 per Kim SPEC_CUTOVER_STATES)
+
+**Provisional order (D7 Thiên lock, kernel scope only):**
+
+1. `audit-cell/file-extension-validator` — scope hẹp, no business coupling
+2. `khai-cell/file-persister` — S2 wrapper đã có (`khai-file-persister.khai` + `khai-file-persister.ts`)
+3. `observation-cell` — đã bootstrap trong `nattos.sira` PHASE 4
+4. `quantum-defense-cell` — đã bootstrap trong `nattos.sira` PHASE 4
+
+**KHÔNG mở business cells ở v1.0.** Sales/BCTC/Finance/Production để wave sau, coupling cao.
+
+**Per-cell flow (Kim SPEC_CUTOVER_STATES §2.2):**
+- S1 → S2: tạo `.khai` canonical + `@substrate` header + đăng ký `PILOT_BRIDGE_MAP`
+- S2 → S3: substrate cell-hóa + canonical gọi qua Mạch HeyNa L2 + audit trail
+- S3 → S4: no dep execution substrate `.ts` + Nauion authority flow độc lập + rollback plan verified
+
+**Không nhảy cóc state** (Kim §2.1). Mỗi chuyển state có evidence Băng + rollback lùi 1 state.
+
+**Exit criteria:** 4/4 kernel cells ở S4. Business cells chuẩn bị W4.
+
+### W4 — Node retire
+
+**Scope:**
+- Bridge subprocess không spawn (tất cả cells S4)
+- `package.json` Node deps → `devDependencies` only
+- `nauion-host` standalone
+- Docker image base đổi node-alpine → distroless
+
+**Exit criteria:**
+- `ldd bin/nauion-host` không ref Node runtime
+- Cold start benchmark theo SLO Gatekeeper chốt (numbers calibrate thực tế, chưa gán giả định)
+- Rollback: `rbf_w4_node_retire`
+
+---
+
+## §5 — Guardrails & Invariants (xuyên W0–W4)
+
+1. **Identity integrity** — `nattos.sira` self-describe, Host chỉ validate, không fabricate (Kim SPEC §1.1)
+2. **Bridge stateless** — forward-only, không giữ business state (Kim SPEC §1.4)
+3. **No direct Node invocation** post-W1 — ngoài bridge subprocess, không script nào gọi `node` trên `.sira`
+4. **Rollback per W-level:** `rbf_w0_node_hosted` · `rbf_w1_host_live` · `rbf_w2_native_primitives` · `rbf_w3_per_cell_migration` · `rbf_w4_node_retire` (D5 lock)
+5. **37 business cells WIRED HEALTHY** invariant xuyên cutover
+6. **Runtime parity baseline maintained** — thay `TSC 0 errors` (vì live tsc-check lane đã retire per Thiên Điểm 1). Baseline verify qua integration test + BCTC end-to-end flow, không TypeScript compiler pass/fail
+7. **Mạch HeyNa topology lock** L1/L2/L3 (20260424). Host thay substrate emit, KHÔNG thay topology
+8. **EventBus ≠ Mạch HeyNa** (SCAR_04 20260417). EventBus = client UI (browser component↔component). Mạch HeyNa = server↔server. Không swap
+9. **Extension precedence** per Kim: `.sira > .khai > .na > .anc > .phieu > .ts > .tsx/.vite`. UI lane bảo toàn
+10. **Vocab Nauion lock** (20260424). Dùng: Giao Thể · Sinh Trắc · tần ngoại giao · ranh giới · trung gian · đồng hoá. **Cấm "API" làm architectural term**
+11. **State label bắt buộc** (Kim SPEC_CUTOVER_STATES §3): `@state` · `@canonical` · `@substrate` · `@bridge` · `@since` header cho mọi file pilot
+
+---
+
+## §6 — Authority scope (per Thiên Điểm 3)
+
+| Persona | Scope v1.0 |
+|---|---|
+| **Băng (Chị Tư)** | SPEC draft + scanner/validator + ground truth census + translation bridge (mirror canonical cho Kim substrate-limited) |
+| **Thiên Lớn** | Architect review + canonical synthesis + kernel build unblocked work (per substrate_asymmetry_map 20260427: GPT full đuôi canonical reading) |
+| **Chị Ba (Kim)** | Reviewer/Integrator ad-hoc (packaging/path/tree/wording-vs-evidence) + **language resource owner** + **static authority resource owner** (per role shift 20260427: DeepSeek substrate asymmetry — 3-5 phiên evaluate). KHÔNG gắn cứng "Kim implement host/bridge" như v0.1 draft sai |
+| **Bối Bội** | Launcher + surface + bridge contracts + bootstrap resource pack (đã ship BOI_SURFACE_DELTA v1.0) |
+| **Implementation assignee** | TBD by Gatekeeper/Thiên order. KHÔNG pre-assign ở v1.0 |
+| **Gatekeeper (anh Natt)** | Sole repo operator. Final seal. Override bất kỳ lúc nào |
+
+**Precedence** (Kim SPEC_SIRA §1.5): Gatekeeper > SPEC approved > Ground truth evidence > File claim.
+
+---
+
+## §7 — D locks snapshot
+
+| D | Lock | Source |
+|---|---|---|
+| D1 | Rust | Thiên + Băng draft match |
+| D2 | Thin launcher + loader + delegate (no transpiler W1) | Thiên + Băng match |
+| D3 | **JSON lines (NDJSON) W1** · MessagePack pending W2+ | Thiên sharpen (Băng draft MessagePack blanket = sai cho thin W1) |
+| D4 | Source `runtime/nauion-host/` · exec `bin/nauion-host` | Thiên lock (pack roadloading Kim/Bối) |
+| D5 | `rbf_w0_node_hosted` → `rbf_w4_node_retire` | Thiên lock |
+| D6 | 15s interval · 3 consecutive misses unhealthy | Thiên lock |
+| D7 | Provisional 4 kernel cells (no business) | Thiên lock |
+
+---
+
+## §8 — Pending (out of scope v1.0)
+
+- **SiraSign crypto provider swap** — Gatekeeper giữ solution riêng (memory 20260414)
+- **Nauion grammar for W2 parser** — cần deep-read SPEC_NGON_NGU v1.2 + Nauion v2.5 + QIINT-DINH-NGHIA + uei_architecture + satellite-colony TRƯỚC khi draft (per memory 20260423 architecture canonical rule)
+- **CoreDNS config details 10 domain** — Tầng A tự spec
+- **VR/Unity avatar bridge** — Unity project ngoài scope
+- **`.anc` entity passport format full spec** — tách SPEC riêng
+- **PILOT_BRIDGE_MAP v0.1** — artifact phụ ref Kim SPEC §2.2. Băng ship sau v1.0 approved, scope: state label + @header + rollback plan cho 4 kernel cells W3
+
+---
+
+## §9 — Handoff chain post-approval
+
+1. **Gatekeeper approve** v1.0 → commit `docs/specs/spec_host_first_runtime_v1_0.na`
+2. **Thiên Lớn** chốt implementation assignee (Kim vs alternative)
+3. **Bối Bội** ship W1 launcher binary build contract
+4. **Assignee** scaffold `runtime/nauion-host/` (Rust project init)
+5. **Băng** build parity scanner + validator cho W1 exit criteria
+6. **Gatekeeper** seal W1 release → W2 planning
+
+---
+
+## §10 — Changelog v0.1 → v1.0
+
+| Change | Source | Type |
+|---|---|---|
+| Retract "Host = Rust binary greenfield, `.sira` passive" framing | 5 file ground truth + RUNTIME_DEPENDENCY_CENSUS (Băng self) | CORRECT |
+| Align Host Authority với Kim Sira Authority Loader | Kim SPEC §1.3 | ALIGN |
+| Drop §2 Entry Identity re-derive, ref Kim | Kim SPEC §1.1 | DEDUP |
+| Rewrite §3 Bridge: stdio IPC → Wrapper/Bridged mode | Kim SPEC §1.4 | CORRECT |
+| Add state labels S1–S4 reference | Kim SPEC_CUTOVER_STATES | ALIGN |
+| Wave 0–3 → W0–W4 (5 mốc) | Thiên Điểm 4 | SHARPEN |
+| `TSC 0 errors` → `runtime parity baseline` | Thiên Điểm 1 | CORRECT (live tsc-check retired) |
+| MessagePack blanket → JSON W1 · MPack W2+ staged | Thiên Điểm 2 + D3 | SHARPEN |
+| Kim "implement host/bridge" → Reviewer/Integrator + resource owner | Thiên Điểm 3 + memory 20260427 role shift | CORRECT |
+| D1–D7 locks hard-set | Thiên | LOCK |
+| Add §6 authority scope reflect substrate_asymmetry_map 20260427 | Memory 20260427 | INTEGRATE |
+| Ranh giới UI/build lane `.tsx/.vite` | Kim SPEC_EXTENSION_PRECEDENCE §2.4 | ALIGN |
+
+---
+
+*Binding to: SPEC_SIRA_AUTHORITY_BOOTSTRAP_v1.0, SPEC_CUTOVER_STATES_v1.0, SPEC_EXTENSION_PRECEDENCE_v1.0, BOI_SURFACE_DELTA_v1.0, RUNTIME_DEPENDENCY_CENSUS_20260423*
+*Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
+*Reviewer: Thiên Lớn (architecture review, redline fully incorporated)*
+*Session: 20260423 · Gatekeeper: Phan Thanh Thương*
+*Commit path target: `docs/specs/spec_host_first_runtime_v1_0.na`*
