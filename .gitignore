@@ -73,3 +73,5 @@ nattos-rename-*.log
 
 # Bang drafts archive — lineage files, local only
 archive/bang-drafts-*/
+scripts/__pycache__/
+__pycache__/
