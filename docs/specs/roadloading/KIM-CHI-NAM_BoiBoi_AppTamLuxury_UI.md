@@ -17,7 +17,7 @@ Bội Bội à, em đọc kỹ tài liệu này trước khi viết bất kỳ d
 ## 1. KIẾN TRÚC TỔNG QUAN — ENGINE vs PERCEPTION
 
 ```
-src/cells/                       = ENGINE (Node.js server — KHÔNG CHẠM)
+src/cells/                       = ENGINE (runtime spine — KHÔNG CHẠM)
   EventBus, ISEU, pricing-cell,
   audit-cell, smartlink-cell...
 
