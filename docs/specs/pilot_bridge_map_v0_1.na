@@ -72,7 +72,7 @@ Evidence:
 Evidence:
 - `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai` (canonical)
 - `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts` (substrate)
-- K2 flag pending: `khai-file-persister.ts:47` Điều 7 violation (per memory 20260420 K2 entry — **cross-check Gatekeeper paste source**)
+- K2 RESOLVED (phiên 20260423 grep): `khai-file-persister.ts:47` `fs.writeFileSync` có TWIN_PERSIST annotation pre-existing (line 55 substrate + line 18 canonical JSDoc). QIINT lineage adapter per SPEC_NEN_v1.1 §17.2 — infrastructure legitimate, không Điều 7 violation. Ref: bang_handoff_20260419.kris §A.1.
 
 ### Required header:
 
@@ -85,7 +85,7 @@ Evidence:
 
 ### Transition S2 → S3 conditions:
 
-1. K2 Điều 7 violation **resolved first** (PEND-20260427-03 — Gatekeeper paste source, Băng cross-check)
+1. K2 Điều 7 **RESOLVED** (phiên 20260423) — TWIN_PERSIST annotation pre-existing, QIINT lineage legitimate. Không block Cell 2 S2 → S3 migration.
 2. Khai-cell boundary guard: `src/cells/kernel/khai-cell/khai-cell.boundary.si` — **evidence: exists**
 3. Canonical route qua Mạch HeyNa L2 → warehouse-cell::file-persister (Kim SPEC §3 ví dụ)
 4. TWIN_PERSIST tag compliance verified
@@ -174,7 +174,7 @@ Evidence:
 | # | Cell | Current | Target W3 | Priority | Blocker |
 |---|---|---|---|---|---|
 | 1 | audit-cell/file-extension-validator | S2 | S3 | 1 | `nattos.sh §40` bypass patch |
-| 2 | khai-cell/file-persister | S2 | S3 | 2 | K2 Điều 7 violation resolve |
+| 2 | khai-cell/file-persister | S2 | S3 | 2 | K2 RESOLVED (TWIN_PERSIST pre-existing) — unblock S2→S3 |
 | 3 | observation-cell | S1 | S2 | 3 | Tạo `.khai` canonical |
 | 4 | quantum-defense-cell | S1 | S2 | 4 | Tạo `.khai` canonical + parity test setup |
 
