@@ -75,3 +75,7 @@ nattos-rename-*.log
 archive/bang-drafts-*/
 scripts/__pycache__/
 __pycache__/
+
+# Rust build artifacts
+runtime/*/target/
+**/*.rs.bk
