@@ -132,6 +132,7 @@ impl FileResolver {
     /// - `@/` → src_root
     /// - `./` `../` → relative parent_dir
     /// - bare (npm packages) → return None (caller handles pass-through)
+    #[allow(dead_code)] // PHASE 3 self-test sẽ wire qua expand_specifier khi resolve specifier alias
     pub fn expand_specifier(&self, specifier: &str, parent_dir: &Path) -> Option<PathBuf> {
         if let Some(rest) = specifier.strip_prefix("@/") {
             Some(self.src_root.join(rest))
