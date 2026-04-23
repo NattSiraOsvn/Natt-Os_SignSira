@@ -1,0 +1,154 @@
+{
+  "kind": "BangPending",
+  "entity": "bang",
+  "session_id": "20260425",
+  "sealed_at": "2026-04-25",
+  "format_version": "pending-v1.0",
+  "purpose": "State runtime cuối phiên 20260425. Anh Natt chốt: TASK-I vẫn DEFER, không mở nhánh mới. Chỉ ship handoff xong đóng phiên.",
+
+  "task_i_status": {
+    "id": "TASK-I",
+    "label": "Phase I — ROADLOAD_SHOW_SELF_v2 hybrid (narrative Microsoft → Nauion)",
+    "status": "DEFER_CONFIRMED_BY_GATEKEEPER_20260425",
+    "gatekeeper_quote": "'không mở TASK-I skeleton trong phiên này. Phiên này đã đủ dài và đủ nặng. 8 commit đã khóa xong 3 lớp việc. Đây là điểm đẹp để đóng phiên sạch.'",
+    "prerequisites_already_met": [
+      "Q4 self-neoed DONE (c=hybrid)",
+      "TIER 1 sweep DONE — canonical evidence table 12 đuôi vào form .na ready (commit ab83206)",
+      "SHTT package docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md keep .md (drift audit CLEAN)",
+      "ROADLOAD v2 line 598 drift fixed (commit e83fe2c)"
+    ],
+    "when_to_open": "Phiên sau anh Natt neo explicit 'mở Phase I'. Không tự mở."
+  },
+
+  "v0_x_1_drift_batch_status": {
+    "batch_A_SPEC_MOMENTS_v0.2.1": "DONE (commit 5c0bc1e)",
+    "batch_B_ROADLOAD_v2_line598": "DONE (commit e83fe2c)",
+    "batch_C_KIM_CHI_NAM_line20": "DONE (commit d0ef26f)",
+    "batch_complete": true,
+    "note": "3/3 substrate-vs-lineage drift batch DONE. Broader grep audit 30+ hits phân loại CLEAN vs DRIFT — 4 DRIFT đã fix, 26+ CLEAN (Permanent Node = Qiint concept / Three.js = UI lib / iMac = machine carrier / CI substrate / 'mượn lời' idiom / extensions/kim-swiftui deployment target)."
+  },
+
+  "next_queue_when_gatekeeper_reopens": [
+    {
+      "id": "Q-NEXT-01",
+      "label": "Review phase mới anh Natt muốn mở",
+      "options_likely": [
+        "TASK-I — ROADLOAD_SHOW_SELF_v2 hybrid (narrative Microsoft → Nauion)",
+        "TIER 2 sweep nauion v2.1..v2.5 (vocab cleanup phase riêng)",
+        "Awkward 2 file naming decide (SPEC_NGON_NGU_NATT-OS_v1.2_NA + satellite-colony.spec.md)",
+        "Cross-persona memory migrate (Kim/Can/Kris/Phiêu/Bối/Thiên Lớn)",
+        "Phase C kernel scaffold (Kim owner)",
+        "Phase D1 QIINT2 validator v2 rewrite (Băng scope)",
+        "2 untracked file handle (audit report + bang_pending_20260424.phieu)",
+        "Cross-persona handoff phiên này ship cho Kim/Can/Thiên Lớn"
+      ],
+      "status": "PENDING_GATEKEEPER_NEO"
+    }
+  ],
+
+  "awkward_files_still_defer": [
+    {
+      "file": "docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md",
+      "issue": "Tên đã có `_NA` suffix — rename `.na` → `_NA.na` verbose. KHAI-20260425-03 apply: convention đang thắng trong repo chưa rõ. Defer đến khi Gatekeeper quyết naming normalize hay keep verbose.",
+      "status": "AWKWARD_DEFER"
+    },
+    {
+      "file": "docs/specs/satellite/satellite-colony.spec.md",
+      "issue": "Tên có `.spec.` segment. Rename `.spec.na` vs normalize `satellite-colony.na`? Convention đang thắng chưa rõ (có thể check tương lai với file `inventory-cell-tests.spec.md` trong business/). Defer.",
+      "status": "AWKWARD_DEFER"
+    }
+  ],
+
+  "tier_1_sub_groups_deferred": {
+    "nauion_v2": "docs/specs/nauion/SPEC-Nauion_main_v2.1..v2.5.md — 5 version, vocab cleanup scope riêng (per bang_pending_20260424.phieu carry)",
+    "finance_governance_keep_md": [
+      "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
+      "docs/specs/finance/SPECFlowNattOs.md",
+      "docs/specs/governance/NATT-OS-WORKING-PROTOCOL.md"
+    ],
+    "business_inventory_keep_md": [
+      "docs/specs/business/inventory-cell/inventory-business-context.md",
+      "docs/specs/business/inventory-cell/inventory-cell-tests.spec.md"
+    ],
+    "risk_high_keep_md": [
+      "docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md (external filing)",
+      "docs/specs/NATT-OS_Session_Handoff_2026-03-09.md (historical handoff)",
+      "docs/specs/TamLuxury_CellRegistry_2026-03-09.md (registry snapshot)",
+      "docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md (audit report)"
+    ],
+    "message_brief_keep_md": [
+      "docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md",
+      "docs/specs/MESSAGE_TO_KIM_20260417.md",
+      "docs/specs/REPLY_TO_KIM_20260417.md"
+    ],
+    "roadloading_md_keep_file_phase": "6 file (KIM-CHI-NAM, NATTOS_COMPLETE_PICTURE_20260416/v0.9/v0.10, mapptre, roadmap_nauion_tamlxr) — file-phase defer, NHƯNG ref integrity patched Commit 2B (3 file NATTOS_COMPLETE_PICTURE_*) + 1 file KIM-CHI-NAM line 20 engine substrate fixed Batch C",
+    "mach_heyna_keep_md": "docs/specs/MACH_HEYNA_FULL_20260416.md — migration evidence history"
+  },
+
+  "untracked_files_out_of_scope": [
+    {
+      "file": "audit/reports/2026-04-23_07-47-05_auto.md",
+      "status": "UNTRACKED_UNTOUCHED",
+      "note": "Từ phiên cũ, anh chưa quyết add/commit. Không chạm phiên này. Drift audit CLEAN."
+    },
+    {
+      "file": "src/governance/memory/bang/bang_pending_20260424.phieu",
+      "status": "UNTRACKED_UNTOUCHED",
+      "note": "Pending file phiên 20260424. Anh chưa quyết commit vào memory folder. Không chạm phiên này."
+    },
+    {
+      "file_future": "src/governance/memory/bang/bang_pending_20260425.phieu (this file)",
+      "status": "UNTRACKED_WHEN_SAVED",
+      "note": "File này em ship ra /mnt/user-data/outputs, anh tải về + save vào memory folder. Sẽ untracked giống 20260424. Commit sau khi anh quyết hoặc keep untracked."
+    },
+    {
+      "file_future": "src/governance/memory/bang/bang_handoff_20260425.na + bangkhuong_delta_20260425.na",
+      "status": "UNTRACKED_WHEN_SAVED",
+      "note": "2 file companion cũng untracked khi save. 3 file trio (handoff + delta + pending) cần save cùng vào memory folder."
+    }
+  ],
+
+  "immediate_blockers_carry_forward_from_20260424": [
+    {"id": "BLOCKER-04", "task": "Kim review SPEC_QIINT_PHYSICS_FOUNDATION v0.2 (kernel implementation feasibility C.1-C.6)", "status": "PENDING_KIM"},
+    {"id": "BLOCKER-05", "task": "Can logic check SPEC B.1 v0.2 LAW-1..4 + 3 axes tách", "status": "PENDING_CAN"},
+    {"id": "BLOCKER-06", "task": "Gatekeeper seal 3 policy Thiên Lớn flag (Bridge v2 Lệnh #001 amend + 3-tier waterfall + σ=0.5 octave Phase E.7)", "status": "PENDING_GATEKEEPER"},
+    {"id": "BLOCKER-03", "task": "Rename 30+ legacy bangkhương*.kris → _deprecated/legacy-kris-format/", "status": "PENDING_USER_ACTION"}
+  ],
+
+  "kernel_pending_kim_scope_carry": [
+    {"id": "P5", "label": "neural-main-cell.cell.anc = 0 bytes (passport rỗng)", "owner": "Kim", "status": "OPEN"},
+    {"id": "K1", "label": "SURVIVAL Tầng 0: rate_limit + queue_depth + load_shed", "owner": "Kim", "status": "OPEN"},
+    {"id": "K3", "label": "Tổng hợp Fail-Troy (3 bypass patterns: AUDIT + RBAC)", "owner": "Kim", "status": "OPEN"}
+  ],
+
+  "open_observations_carry_forward": [
+    {"id": "OBS-01", "label": "SCAR-TIME-FAB-02 (open since 20260423)", "note": "Vaccin chưa form — phân biệt 'gán thời gian' vs 'reference event' tự nhiên."},
+    {"id": "OBS-02", "label": "PARADIGM-DRIFT vaccin upgrade post-20260425", "note": "Phiên 20260425 upgrade 3 vaccin mới (git_grep_filename + python_heredoc_idempotent + observability_scan_first). Test phiên sau xem có giữ không."},
+    {"id": "OBS-03", "label": "THIEN_LON_PHAN_XAC status", "note": "Phiên 20260425 anh Thiên gửi directive vocab (anh Natt transcribe), không review trực tiếp. Chờ phiên sau engage."},
+    {"id": "OBS-04", "label": "NEW — observability protocol upgrade", "note": "SCAR-OBSERVABILITY-FAIL hit 3 lần. Vaccin mới 'scan toàn bộ output mỗi turn' chờ test."}
+  ],
+
+  "rules_new_to_apply_next_session": {
+    "git_grep_filename_safety": "git grep -z + read -d '' + < <(process substitution). KHÔNG echo $var | while.",
+    "python_heredoc_idempotent": "if new in c: SKIP / elif old not in c: FAIL / else: PATCH.",
+    "observability_scan_first": "Mỗi turn scan TOÀN BỘ output mỗi turn tìm state change trước act.",
+    "extension_by_genre_phase": ".na canonical active / .md report+brief+historical. KHÔNG sweep broad.",
+    "convention_dang_thang": "Dùng convention đang thắng, không invent sweep phase.",
+    "defer_file_phase_vs_ref_integrity": "File defer rename KHÔNG bảo vệ khỏi ref patch. Ref integrity luôn giữ.",
+    "substrate_vs_lineage_3lop": "Lớp 1 EventBus/HeyNa/SmartLink · Lớp 2 substrate · Lớp 3 external tool. KHÔNG 'mượn' bên thứ 3. BẢN THỂ RULE.",
+    "canonical_no_legacy_vocab": "Canonical không neo vocab đã loại. Câu cấm cũng rephrase.",
+    "re_ask_decided_rule": "Directive Gatekeeper specify file+scope → không re-ask. Ship đi."
+  },
+
+  "verify_signature": {
+    "complement_of_link": "bang_handoff_20260425.na + bangkhuong_delta_20260425.na",
+    "head_hash_at_seal": "d0ef26f",
+    "phieu_verifier_check": "Phiêu load next session → check (1) TASK-I still defer (2) v0.X.1 batch DONE 3/3 (3) awkward files still defer (4) untracked files untouched (5) rules_new applied in first action"
+  },
+
+  "author_trail": {
+    "drafter": "Băng (Chị Tư · session 20260425 · QNEU 313.5)",
+    "carrier": "Anh Natt Phan (sole repo operator)",
+    "causation": "BANG-PENDING-20260425-RUNTIME-STATE-FOR-NEXT-SESSION"
+  }
+}

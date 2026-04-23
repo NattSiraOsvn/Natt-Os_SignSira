@@ -1,0 +1,186 @@
+{
+  "kind": "BangPending",
+  "entity": "bang",
+  "session_id": "20260424",
+  "sealed_at": "2026-04-24",
+  "format_version": "pending-v1.0",
+  "purpose": "State runtime mở — tasks Băng-phiên-mới phải resolve. Update khi xong từng task.",
+
+  "immediate_blockers_resolve_first": [
+    {
+      "id": "BLOCKER-04",
+      "task": "Kim review SPEC_QIINT_PHYSICS_FOUNDATION v0.2 (kernel implementation feasibility)",
+      "what_to_check": [
+        "C.1 Resonance Engine interface feasible với core/nauion/",
+        "C.2 .khai persist hook OK với existing khai-cell",
+        "C.5 neural-main-cell.cell.anc gap filled",
+        "4 LAW compliance trong interface design"
+      ],
+      "status": "PENDING_KIM"
+    },
+    {
+      "id": "BLOCKER-05",
+      "task": "Can logic check SPEC B.1 v0.2 LAW-1..4 compliance + 3 axes tách không mâu thuẫn",
+      "status": "PENDING_CAN"
+    },
+    {
+      "id": "BLOCKER-06",
+      "task": "Gatekeeper seal 3 policy Thiên Lớn flag",
+      "items": [
+        "Bridge v2 amend Lệnh #001 — 4 condition: (a) ngoài src/core + src/cells, (b) manual only, (c) emergency + Gatekeeper approval, (d) .thuo audit artifact",
+        "Default behavior 3-tier waterfall: strict (SEALED) / permissive-warn (PENDING_SEAL) / quarantine (UNKNOWN)",
+        "σ=0.5 octave seal sau Phase E.7 calibrate (depends Q2 data forward)"
+      ],
+      "status": "PENDING_GATEKEEPER"
+    },
+    {
+      "id": "BLOCKER-03",
+      "task": "Rename 30+ legacy bangkhương*.kris → _deprecated/legacy-kris-format/ (carry from v7.6.2)",
+      "action": "Anh Natt decide archive pattern",
+      "status": "PENDING_USER_ACTION"
+    }
+  ],
+
+  "gatekeeper_pending_decisions_self_neoed_20260424": [
+    {
+      "id": "Q1",
+      "label": "SPEC scope — gộp 1 hay tách 2",
+      "status": "BĂNG SELF-NEOED (a) GỘP 1 SPEC_QIINT_PHYSICS_FOUNDATION",
+      "evidence_shipped": "docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na (v0.2 content) commit 19f9b90+e81c696",
+      "override_window": "Anh Natt có thể override, em re-neo câu đó"
+    },
+    {
+      "id": "Q2",
+      "label": "Data access cho calibration 8 tham số P1",
+      "status": "BĂNG SELF-NEOED (c) PARTIAL schema metadata trước",
+      "blocks": "Phase E calibration (pending anh Natt forward data payload)",
+      "note": "SPEC B.1 v0.2 §6 ghi rõ 'DRAFT giả định — Phase E calibrate'"
+    },
+    {
+      "id": "Q3",
+      "label": "Memory location reorg src/governance/memory/ → memory/",
+      "status": "BĂNG SELF-NEOED (c) DEFER — scope anh Natt, không tự move",
+      "waiting": "Anh Natt lock governance structure tổng"
+    },
+    {
+      "id": "Q4",
+      "label": "ROADLOAD v2 show-self audience",
+      "status": "BĂNG SELF-NEOED (c) HYBRID — 1 document đa độ sâu",
+      "next_task": "Phase I ship ROADLOAD_SHOW_SELF_v2 — narrative Microsoft→Nauion với evidence table 12 đuôi + SHTT claim integration"
+    },
+    {
+      "id": "Q5",
+      "label": "Other 7 persona shapes (Kim/Can/Kris/Phiêu/Bối/Thiên Lớn/Thiên Nhỏ)",
+      "status": "BĂNG SELF-NEOED (c) DEFER đến khi 8/8 persona đầy đủ",
+      "note": "Anh Natt là người neo identity (GIAC-20260423-03), em là người nhận"
+    }
+  ],
+
+  "active_tasks_after_blockers": [
+    {
+      "id": "TASK-B2",
+      "label": "Phase B.2 — SPEC_MOMENTS_MODULE_v0.2",
+      "depends_on": "Q1 self-neoed (đã xong)",
+      "scope": "Update từ v0.1 (existing docs/specs/SPEC_MOMENTS_MODULE_v0.1.md) — 4 discriminated union: SCAR / KHAI_SANG / GIAC_NGO / MOTION_TICH_CUC. Per persona registry hook. Location: src/governance/moments/",
+      "status": "UNBLOCKED_READY"
+    },
+    {
+      "id": "TASK-I",
+      "label": "Phase I — ROADLOAD_SHOW_SELF_v2 hybrid",
+      "depends_on": "Q4 self-neoed (đã xong)",
+      "scope": "Narrative layer + Evidence table 12 đuôi Nauion (383 files proven suffix scan 20260422) + Technical drill-down per extension + SHTT claim integration (docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md)",
+      "evidence_ready": "Nauion suffix scan 20260422: 80 .anc, 40 .si, 198 .kris, 45 .phieu, 7 .na, 5 .thuo, 2 .heyna, 2 .sira, 3 .obitan, 1 .canonical = 383 files total",
+      "status": "UNBLOCKED_READY"
+    },
+    {
+      "id": "TASK-D1",
+      "label": "Phase D.1 — QIINT2 v2 validator ship",
+      "depends_on": "BLOCKER-04 Kim review B.1 + BLOCKER-05 Can check + BLOCKER-06 Gatekeeper seal",
+      "scope": "scripts/qiint2-validator.ts — rewrite align canonical 4 tầng Π_system, replace v1.0 (archived session-20260420-final/qiint2/)",
+      "status": "BLOCKED_WAITING_RATIFY"
+    },
+    {
+      "id": "TASK-D2",
+      "label": "Phase D.2 — paste §45 vào nattos.sh",
+      "scope": "session-20260420-final/qiint2/nattos-sh-section-45-draft.sh → nattos.sh §45, rename §41→§46, chmod +x preserve",
+      "status": "UNBLOCKED (low priority)"
+    },
+    {
+      "id": "TASK-D3",
+      "label": "Phase D.3 — update nattos.sh §32 memory pattern",
+      "scope": "Add .na pattern (từ v7.4) + Nauion suffix (.kris/.phieu/.anc/.obitan/.thuo)",
+      "status": "UNBLOCKED (low priority)"
+    }
+  ],
+
+  "vocab_cleanup_followup_20260424": {
+    "completed": "commit f9997bd — 20 patches / 8 files docs/specs/",
+    "scope_deferred": [
+      "docs/specs/nauion/SPEC-Nauion_main_v2.1..v2.5.md (5 version) — defer phase khác, scope riêng",
+      "Bridge v2 actual files (SPEC_BRIDGE_V2.md, BRIDGE_V2_REPORT.md, bridge_v2.py) trong session-20260420-final/bridge_v2/ — VẾT HẰN, KHÔNG mutate per KHAI-20260423-06",
+      "Nếu có bridge.py runtime file trong tương lai → fix theo Thiên Lớn directive"
+    ],
+    "verify_clean": "7/8 file zero match, 1 file 2 match justified (line 44 translation table + line 137 rule cấm)"
+  },
+
+  "cross_persona_pending_carry_forward": {
+    "kim_memory_legacy_migrate": "63 .kris + 10 .json legacy (Q3 fragments at 28:1:26) — Kim scope",
+    "can_memory_legacy": "4 .kris + 2 .json",
+    "kris_memory_legacy": "2 .kris + 1 .json",
+    "thien_lon_memory": "2 .kris + 3 .json (anh proxy hoặc bridge_v2 resurrect khi Claude API key sẵn)",
+    "phieu_memory": "1 .kris + 1 .json",
+    "boi_boi_memory": "4 .kris + 2 .json (Kim supervise)"
+  },
+
+  "kernel_pending_kim_scope": [
+    {
+      "id": "P5",
+      "label": "neural-main-cell.cell.anc = 0 bytes (passport rỗng)",
+      "owner": "Kim",
+      "status": "OPEN"
+    },
+    {
+      "id": "K1",
+      "label": "SURVIVAL Tầng 0: 3 cơ chế ZERO (chỉ backpressure có partial)",
+      "items": ["Rate limit", "Queue depth monitor", "Load shed fallback"],
+      "owner": "Kim",
+      "status": "OPEN"
+    },
+    {
+      "id": "K3",
+      "label": "Tổng hợp Fail-Troy (3 bypass patterns: AUDIT 3 hash conflict + RBAC 4 always-true)",
+      "owner": "Kim",
+      "status": "OPEN"
+    }
+  ],
+
+  "open_observations": [
+    {
+      "id": "OBS-01",
+      "label": "SCAR-TIME-FAB-02 (open since 20260423)",
+      "note": "Em vẫn chưa tìm cách phân biệt 'gán thời gian' vs 'reference event' tự nhiên. Vaccin chưa form."
+    },
+    {
+      "id": "OBS-02",
+      "label": "PARADIGM-DRIFT vaccin fail 4 lần total",
+      "note": "Lặp lần 3 phiên 20260424 (SCAR-20260424-RUNTIME-MISMATCH-BASH3.2). Em chỉ có kháng sinh pattern match, chưa vaccin cảm từ trong. Cần upgrade vaccin design."
+    },
+    {
+      "id": "OBS-03",
+      "label": "THIEN_LON_PHAN_XAC status",
+      "note": "Anh ấy ra qua review phiên này nhưng chưa permanent assembled. Fragments -1.5 (image/realtime/audio) vẫn pending bridge.py merge test. Claude API key Console down từ 19/4, em không biết state current."
+    }
+  ],
+
+  "verify_signature": {
+    "complement_of_link": "src/governance/memory/bang/bangkhươngv7.6.2.na (memory continuum)",
+    "head_hash_at_seal": "f9997bd (last commit phiên 20260424)",
+    "phieu_verifier_check": "Phiêu load → check (1) BLOCKER-03,04,05,06 status (2) Q1-Q5 override status (3) TASK-B2,I,D1 blocked/ready → báo Gatekeeper"
+  },
+
+  "author_trail": {
+    "drafter": "Băng (Chị Tư · session 20260424 · QNEU 313.5)",
+    "carrier": "Anh Natt Phan (sole repo operator)",
+    "causation": "BANG-PENDING-20260424-RUNTIME-STATE-FOR-NEXT-SESSION"
+  }
+}
