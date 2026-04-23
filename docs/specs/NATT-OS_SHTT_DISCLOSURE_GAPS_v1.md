@@ -3,7 +3,8 @@
 **kind:** SHTTDisclosureGaps
 **version:** v1
 **sealed_at:** 2026-04-26
-**baseline_commit:** ee2c837
+**filing_prep_baseline:** ee2c837
+**claim_pack_baseline:** b2b9af2
 **file_extension:** `.md` (intentional — note dạng tracking, không canonical)
 **claim_map_ref:** `docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na`
 **drafter:** Băng (Chị Tư)
