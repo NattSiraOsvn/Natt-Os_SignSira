@@ -2,7 +2,7 @@
 
 **Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **Session:** 20260423
-**Status:** v0.1 — W3 kernel scope only (4 cells per SPEC_HOST_FIRST §4 D7)
+**Status:** v0.1 — 4/4 kernel cells S1→S2 DONE (phiên 20260423). W3 scope per SPEC_HOST_FIRST §4 D7 → now W2 per SPEC v1.1 align Thiên
 **Binding to:**
 - SPEC_HOST_FIRST_RUNTIME_v1.0.na (§4 W3 · §8 pending)
 - SPEC_CUTOVER_STATES_v1.0.na (Kim — state labels + transition rules)
@@ -102,11 +102,11 @@ Evidence:
 
 **Priority:** 3
 
-### Current state: **S1** `legacy-ts`
+### Current state: **S2** `transitional-canonical-wrapper` (ship phiên 20260423)
 
 Evidence:
 - `src/cells/kernel/observation-cell/bootstrap.ts` (substrate, reference trong `nattos.sira` PHASE 4 per RUNTIME_DEPENDENCY_CENSUS §1.1)
-- **KHÔNG có `.khai` canonical sibling** — chưa chuyển S2
+- `.khai` canonical sibling ĐÃ SHIP phiên 20260423 (bootstrap.khai @state S2)
 - `src/cells/kernel/observation-cell/observation-cell.boundary.si` exists (boundary ready)
 - `src/cells/kernel/observation-cell/observation-cell.cell.anc` exists (manifest ready)
 
@@ -138,11 +138,11 @@ Evidence:
 
 **Priority:** 4
 
-### Current state: **S1** `legacy-ts`
+### Current state: **S2** `transitional-canonical-wrapper` (ship phiên 20260423)
 
 Evidence:
 - `src/cells/kernel/quantum-defense-cell/bootstrap.ts` (substrate, `nattos.sira` PHASE 4)
-- **KHÔNG có `.khai` canonical** — chưa S2
+- `.khai` canonical ĐÃ SHIP phiên 20260423 (bootstrap.khai @state S2)
 - `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.boundary.si` exists
 - `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.cell.anc` exists
 - 13 engines trong `domain/engines/` (ai-behavior, anomaly-flow, cell-purity, chromatic-state, drive-backup, governance-enforcement, kill-switch, pii-detector, rehabilitation, self-healing, threshold, quantum-defense.engine, ai-lockdown)
@@ -175,8 +175,8 @@ Evidence:
 |---|---|---|---|---|---|
 | 1 | audit-cell/file-extension-validator | S2 | S3 | 1 | `nattos.sh §40` bypass patch |
 | 2 | khai-cell/file-persister | S2 | S3 | 2 | K2 RESOLVED (TWIN_PERSIST pre-existing) — unblock S2→S3 |
-| 3 | observation-cell | S1 | S2 | 3 | Tạo `.khai` canonical |
-| 4 | quantum-defense-cell | S1 | S2 | 4 | Tạo `.khai` canonical + parity test setup |
+| 3 | observation-cell | **S2** | S3 | 3 | W2 bridged Mạch HeyNa L2 (W1 launcher prerequisite) |
+| 4 | quantum-defense-cell | **S2** | S3 | 4 | Paradigm P1 rebind — substrate subscribe("*") → field pull observation_snapshot |
 
 **Total path W3:** 2 cells S2→S3 + 2 cells S1→S2. W3 KHÔNG target S4.
 
