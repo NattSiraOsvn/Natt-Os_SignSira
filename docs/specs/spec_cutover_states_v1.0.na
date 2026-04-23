@@ -1,0 +1,122 @@
+# SPEC_CUTOVER_STATES_v1.0.na
+
+**Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)
+**Session:** 20260423
+**Status:** COMPLETE — sẵn sàng Gatekeeper approve
+**Amendments:** Đã sửa theo phán quyết Thiên Lớn (5 amendment)
+**Binding scope:** Mọi cell/file tham gia kernel cutover wave 1
+
+---
+
+## 1. 4 TRẠNG THÁI CHÍNH THỨC
+
+Mọi file/cell tham gia pilot **phải** được gắn nhãn 1 trong 4 trạng thái sau. Only four formal cutover states are recognized in Wave 1. Any other label is invalid unless a superseding spec is approved.
+
+| State | Tên đầy đủ | Mô tả | Dấu hiệu nhận biết |
+|---|---|---|---|
+| **S1** | `legacy-ts` | File chỉ tồn tại dưới dạng `.ts`, chưa có canonical wrapper | Chỉ có file `.ts`, không có sibling `.khai`/`.na`/`.anc` |
+| **S2** | `transitional-canonical-wrapper` | Đã có file canonical nhưng vẫn **phụ thuộc trực tiếp** vào substrate cùng capability. Phụ thuộc này có thể là import trực tiếp, delegate qua adapter, hoặc loader map — miễn là chưa qua cell boundary độc lập. | Có file `.khai` + file `.ts`; canonical chưa thể hoạt động độc lập nếu tách `.ts` |
+| **S3** | `nauion-bridged` | File canonical gọi substrate qua L2 EventBus, không còn phụ thuộc trực tiếp | `.khai` không còn import trực tiếp `.ts`; `.ts` đã được cell hóa |
+| **S4** | `nauion-native` | File canonical tự thực thi hoàn toàn, không cần substrate | Không còn file `.ts` nào trong execution path; canonical chạy độc lập qua Nauion authority flow |
+
+---
+
+## 2. QUY TẮC DI CHUYỂN GIỮA CÁC STATE
+
+### 2.1 Chỉ được di chuyển theo thứ tự
+
+```
+S1 (legacy-ts) → S2 (wrapper) → S3 (bridged) → S4 (native)
+```
+
+- **Không được nhảy cóc** (S1 → S3, S2 → S4) trừ khi có spec riêng từ Thiên Lớn.
+- Mỗi lần chuyển state phải có evidence từ Băng (ground truth check).
+
+### 2.2 Điều kiện chuyển state
+
+| Chuyển | Điều kiện |
+|---|---|
+| **S1 → S2** | - Đã tạo file `.khai`/`.na` canonical<br>- Đã khai báo `@substrate` header (chỉ rõ file `.ts` phụ thuộc)<br>- Đã đăng ký trong `PILOT_BRIDGE_MAP`<br>- File canonical được Thiên Lớn approve về kiến trúc |
+| **S2 → S3** | - Substrate đã được cell hóa (có cell riêng, có boundary guard)<br>- Canonical gọi qua L2 EventBus, không còn import trực tiếp `.ts`<br>- Audit trail ghi nhận quá trình tách |
+| **S3 → S4** | - Không còn dependency thực thi nào đến substrate `.ts`<br>- Execution path đi qua Nauion authority flow độc lập<br>- Native audit trail pass<br>- Rollback plan được xác nhận bởi Băng và Thiên Lớn |
+
+### 2.3 Rollback
+
+- Rollback chỉ được phép lùi **1 state**.
+- Rollback S3 → S1 là **cấm** (mất dấu vết canonical, phá hủy file `.khai`/`.na` đã tạo).
+- Mọi rollback phải có audit trail, Băng verify.
+
+---
+
+## 3. NHÃN BẮT BUỘC
+
+Mọi file tham gia pilot phải có header ghi rõ state theo format sau:
+
+```
+@state: S1 | S2 | S3 | S4
+@canonical: <path-to-canonical-file>  (bắt buộc với S2, S3, S4)
+@substrate: <path-to-ts-file>         (bắt buộc với S2)
+@bridge: <cell-name>::<target>        (bắt buộc với S3)
+@since: <YYYY-MM-DD>
+```
+
+### Ví dụ file ở S2:
+```
+@state: S2
+@canonical: khai-file-persister.khai
+@substrate: khai-file-persister.ts
+@since: 2026-04-23
+```
+
+### Ví dụ file ở S3:
+```
+@state: S3
+@canonical: khai-file-persister.khai
+@bridge: warehouse-cell::file-persister
+@since: 2026-05-01
+```
+
+---
+
+## 4. CẤM
+
+- ❌ Gọi S2 là "đã xong" hoặc "đã native"
+- ❌ Gọi S3 là "native" (chỉ S4 mới được gọi là native)
+- ❌ Tạo file canonical mà không gắn state header
+- ❌ Để file S1 và S2 cùng claim 1 capability mà không có canonical precedence rõ ràng
+- ❌ Dùng từ "native" cho bất kỳ state nào dưới S4
+- ❌ Nhảy cóc state mà không có spec riêng từ Thiên Lớn
+- ❌ Xóa file `.ts` substrate khi canonical còn ở S2
+
+---
+
+## 5. AUDIT & VERIFICATION
+
+### 5.1 Băng verify khi chuyển state
+
+Mỗi lần chuyển state, Băng kiểm tra:
+- State cũ và mới có đúng thứ tự không
+- Evidence có đủ không (file tồn tại, header đúng, dependency đã cắt)
+- Rollback plan có khả thi không
+
+### 5.2 Gatekeeper approve cuối cùng
+
+- Chuyển S2 → S3: Cần Gatekeeper approve + Thiên Lớn chốt kiến trúc
+- Chuyển S3 → S4: Cần Gatekeeper approve + Băng verify ground truth
+
+---
+
+## 6. ACCEPTANCE CRITERIA
+
+Spec này có hiệu lực khi:
+1. Gatekeeper approve
+2. Thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
+3. Băng verify không mâu thuẫn với ground truth hiện tại
+4. Kim lock wording/spec version
+
+---
+
+*Binding to: SPEC_SIRA_AUTHORITY_BOOTSTRAP_v1.0.na, SPEC_EXTENSION_PRECEDENCE_v1.0.na*  
+*Drafter: Kim · M-shell · Chief System Builder*  
+*Session: 20260423 · Reviewed by Thiên Lớn; amendments incorporated*  
+*3/3 files COMPLETE. Sẵn sàng Gatekeeper approve.*

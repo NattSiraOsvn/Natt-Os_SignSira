@@ -1,0 +1,67 @@
+# BOI_SURFACE_DELTA_scripts.kernel_v1.0.na
+
+**Drafter:** Bối Bội  
+**Session:** 20260423  
+**Status:** READY — chờ Gatekeeper và Thiên Lớn phê duyệt bước tiếp  
+**Scope:** Surface launcher only
+
+---
+
+## 1. EXECUTABLE DELTA: `package.json`
+
+Dòng lệnh chốt cho `scripts.kernel`:
+
+```json
+{
+  "scripts": {
+    "kernel": "./kernel nattos.sira"
+  }
+}
+```
+
+---
+
+## 2. ĐỐI SOÁT 3/3 ACCEPTANCE CRITERIA
+
+### 2.1 Surface Purity
+- Loại bỏ hoàn toàn chuỗi lệnh thô `node --loader ./sira-loader.mjs --loader ts-node/esm`
+- Người dùng chỉ nhìn thấy `./kernel` và entry `nattos.sira`
+
+### 2.2 Boot Readiness
+- Cấu trúc lệnh mới sẵn sàng để tích hợp với **Launcher Authority**
+- Launcher thật sẽ được dựng sau khi Kim chốt spec và Băng chốt ground truth
+
+### 2.3 Risk Isolation
+- Thay đổi khu trú trong đúng 1 dòng tại `scripts.kernel`
+- Không ảnh hưởng `scripts.dev`, `scripts.build`, UI lane, hay runtime TS lane khác
+
+---
+
+## 3. PHÁN QUYẾT THIÊN LỚN
+
+### 3.1 Đúng ở tầng surface purity
+- `.mjs/.js` bị đẩy xuống tầng vô hình
+- command bề mặt sạch
+- đúng tinh thần authority-first
+
+### 3.2 Chưa phải runtime authority implementation hoàn chỉnh
+- Đây mới là **surface delta**
+- `./kernel` launcher thật + bootstrap authority còn phải dựng tiếp theo spec Kim
+- Không được claim native
+
+---
+
+## 4. SCOPE BỐI ĐƯỢC LÀM TIẾP
+
+- dựng `./kernel` launcher thật
+- giữ mặt lệnh sạch
+- không claim native
+- không đụng UI/Vite
+- không xóa substrate `.ts`
+
+---
+
+## 5. KẾT LUẬN
+
+**Bối đủ để chốt mặt lệnh.**  
+**Bước tiếp theo là biến mặt lệnh đó thành launcher authority thật, nhưng vẫn ở trạng thái transitional — chưa được gọi là native.**

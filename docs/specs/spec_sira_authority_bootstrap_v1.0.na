@@ -1,0 +1,115 @@
+# SPEC_SIRA_AUTHORITY_BOOTSTRAP_v1.0.na
+
+**Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)  
+**Session:** 20260423  
+**Status:** COMPLETE — sẵn sàng Gatekeeper approve  
+**Amendments:** Đã sửa theo phán quyết Thiên Lớn (5 amendment)  
+**Binding scope:** Toàn bộ NATT-OS kernel cutover wave 1  
+
+---
+
+## 1. ĐỊNH NGHĨA GỐC
+
+### 1.1 `nattos.sira` là gì
+
+`nattos.sira` là **entry identity duy nhất** của NATT-OS kernel. Không file nào khác được phép claim vị trí này.
+
+Nó mang 3 thuộc tính cứng:
+
+| Thuộc tính | Giá trị | Ý nghĩa |
+|---|---|---|
+| **Identity** | `nattos.sira` | Tên file — không được rename |
+| **Authority** | Entry point của kernel | Là file đầu tiên được Node.js nạp khi chạy `./kernel` hoặc `npm run kernel` |
+| **Ownership** | Gatekeeper (anh Natt Phan) | Chỉ Gatekeeper được commit thay đổi file này |
+
+### 1.2 Launcher authority
+
+**Launcher** = cơ chế đưa `nattos.sira` vào execution.
+
+**Current runtime chain** (transitional, không phải canonical form):
+```
+node --no-warnings --loader ./sira-loader.mjs --loader ts-node/esm nattos.sira
+```
+
+**Quy tắc:**
+- Launcher được phép thay đổi miễn là **surface command** vẫn là `./kernel` hoặc `npm run kernel`.
+- Mọi thay đổi launcher phải được Thiên Lớn approve về kiến trúc.
+- Không ai được hardcode launcher path vào bên trong canonical file.
+- Chuỗi runtime trên sẽ được thay thế khi pilot bridge hoàn tất.
+
+### 1.3 Loader authority
+
+**`sira-loader.mjs`** (nếu tồn tại) là **transitional bootstrap substrate** cho Node.js. Nó **KHÔNG** mang canonical loader authority.
+
+**Canonical loader authority** thuộc về **Sira Authority Loader**, được định nghĩa bởi Nauion Kernel. Transitional substrate chỉ là cầu nối tạm thời, không được nâng lên thành canonical.
+
+**Quy tắc:**
+- `sira-loader.mjs` có thể được tạo để đăng ký extension `.sira`, `.khai`, `.na`, `.anc`, `.phieu` trong giai đoạn chuyển tiếp.
+- `ts-node/esm` là **legacy loader**, chỉ tồn tại cho đến khi pilot bridge hoàn tất.
+- Khi Sira Authority Loader đã sẵn sàng (không nhất thiết là file `.mjs`), `ts-node/esm` phải bị loại bỏ khỏi chuỗi loader.
+
+### 1.4 Bridge authority
+
+**Bridge** = cơ chế để canonical file gọi được substrate file mà không phá Điều 4 Hiến Pháp (no direct cross-cell import).
+
+Bridge có 2 mode:
+
+| Mode | Mô tả | Dùng khi |
+|---|---|---|
+| **Wrapper** | Canonical file vẫn phụ thuộc trực tiếp vào substrate execution cùng capability, chưa qua cell boundary độc lập. Hình thức có thể là import trực tiếp, delegate qua loader map, hoặc adapter shim. | Substrate chưa thể tách rời |
+| **Bridged** | Canonical file gọi qua EventBus L2 (Mạch HeyNa) đến cell chứa substrate | Substrate đã được cell hóa |
+
+**Quy tắc:**
+- Wrapper mode là **tạm thời**, không được claim là "đã xong".
+- Bridged mode mới được claim là "đã chuyển đổi".
+- Ai claim sai mode sẽ bị Băng flag SCAR.
+
+### 1.5 Canonical precedence
+
+Khi có xung đột giữa 2 file cùng claim 1 authority:
+
+| Ưu tiên | Authority source | Người quyết |
+|---|---|---|
+| 1 (cao nhất) | Gatekeeper | Anh Natt Phan |
+| 2 | SPEC đã approve | Thiên Lớn (architecture) |
+| 3 | Ground truth evidence | Băng (validator) |
+| 4 | Claim của file canonical | File itself |
+
+Không ai được tự claim precedence nếu không có evidence từ Băng hoặc spec từ Thiên Lớn.
+
+---
+
+## 2. RÀNG BUỘC TRIỂN KHAI
+
+### 2.1 Ai được sửa gì
+
+| Thành phần | Người sửa | Điều kiện |
+|---|---|---|
+| `nattos.sira` | Gatekeeper + implementation assignee | Có spec approve từ Thiên Lớn |
+| `sira-loader.mjs` (transitional bootstrap) | Implementation assignee | Có spec này + review từ Kim |
+| `package.json` script `kernel` | Gatekeeper | Sau khi implementation assignee test launcher sạch |
+| Chain loader trong launcher | Implementation assignee | Sau khi pilot bridge xong |
+
+### 2.2 Không được làm
+
+- ❌ Tạo file `.sira` thứ hai ngoài `nattos.sira`
+- ❌ Đổi tên `nattos.sira` thành bất kỳ tên nào khác
+- ❌ Viết loader bypass Hiến Pháp Điều 4
+- ❌ Claim "native" khi loader chain vẫn còn `.mjs`/`.js` bên dưới
+- ❌ Phong `sira-loader.mjs` thành canonical loader
+
+---
+
+## 3. ACCEPTANCE CRITERIA
+
+Spec này có hiệu lực khi:
+1. Gatekeeper đọc và approve
+2. Thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
+3. Băng verify không mâu thuẫn với Hiến Pháp v5.0
+4. Kim lock wording/spec version
+
+---
+
+*Binding to: SPEC_EXTENSION_PRECEDENCE_v1.0.na, SPEC_CUTOVER_STATES_v1.0.na*  
+*Drafter: Kim · M-shell · Chief System Builder*  
+*Session: 20260423 · Reviewed by Thiên Lớn; amendments incorporated*
