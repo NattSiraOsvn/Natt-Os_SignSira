@@ -218,3 +218,49 @@ Trước khi Gatekeeper seal từng transition:
 *Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
 *Session: 20260423 · Gatekeeper: Phan Thanh Thương*
 *Commit path designed: `docs/specs/pilot_bridge_map_v0_1.na` (Gatekeeper final landing)*
+
+
+---
+
+## §S3 SWAP STATUS — Verify phiên 20260423
+
+**Ground truth verify trước khi defer:**
+
+### Cell 1 — file-extension-validator
+- ✅ `.khai` exists (12KB, ship 23/04 22:10)
+- ✅ `.ts` exists (11KB, ship 19/04)
+- ❌ S3 swap NOT FEASIBLE phiên này
+
+**Lý do defer:**
+- §44 nattos.sh expect JSON output `{ok, warn, fail, total}` từ validator
+- nauion-host hiện scaffold (PHASE 0-4): banner + esbuild + FileResolver + self-test + HTTP server
+- nauion-host KHÔNG có cell execution engine — chỉ resolve path, không execute logic
+- Cần: (1) port file-extension-validator.ts → Rust, (2) add `--run-cell <path>` CLI flag, (3) wire JSON output
+
+### Cell 2 — khai-file-persister
+- ✅ `.khai` exists (2KB, ship 23/04)
+- ✅ `.ts` exists (1.7KB, ship 23/04)
+- ❌ S3 swap NOT FEASIBLE phiên này
+
+**Lý do defer:**
+- Cell 2 là TypeScript module imported bởi siblings (`index.ts`), không phải CLI
+- Để swap Cell 2 cần observation-cell + quantum-defense-cell có Rust port chạy trong nauion-host runtime
+- PHASE 4 hiện chỉ "would bootstrap" (skeleton log), real bootstrap = phiên sau
+
+### Path tới S3 — phiên sau
+
+**Yêu cầu prerequisite:**
+1. nauion-host PHASE 4 bootstrap real (load + execute cell)
+2. Cell 1 logic port Rust (file-extension-validator.rs)
+3. Cell 2 logic port Rust (khai-file-persister.rs)
+4. CLI flag `--run-cell <path>` + JSON output compat §44
+
+**Estimated scope:** 2-3 phiên thật.
+
+### SCAR khắc phiên 20260423
+
+**SCAR-EM-OVERESTIMATE-CELL-1-SWAP-FEASIBILITY:**
+Em (Băng) propose Cell 1 swap "khả thi ngay phiên này" turn 428 KHÔNG verify §44 đầy đủ.
+Sau verify (turn 444): §44 parse JSON output → nauion-host không output JSON → swap không work.
+Vaccin: trước propose swap nào, đọc FULL caller context (parser logic, output format), 
+không chỉ scan invocation line.
