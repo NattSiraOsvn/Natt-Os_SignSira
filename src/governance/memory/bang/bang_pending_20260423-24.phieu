@@ -1,0 +1,48 @@
+{
+  "kind": "BangPendingSupplement",
+  "session_id": "20260423-24",
+  "supplements": "bang_pending_20260423.phieu",
+  "format_version": "phieu-v1.0",
+
+  "p0_critical": [
+    {
+      "id": "P0.1",
+      "task": "Anh Natt việc gấp Tâm Luxury context",
+      "context": "Anh nói cuối phiên 20260423-24 (turn 446): 'sắp tới phần a cần phải làm gấp, trước khi quên'. Em không biết việc gấp cụ thể. Phiên sau anh share context, em ship support."
+    },
+    {
+      "id": "P0.2",
+      "task": "Cell 1 + Cell 2 S3 swap thật",
+      "defer_reason": "nauion-host hiện scaffold, không cell execution engine",
+      "prerequisites": [
+        "1. nauion-host PHASE 4 bootstrap REAL (không skeleton)",
+        "2. file-extension-validator port Rust + output JSON {ok,warn,fail,total}",
+        "3. khai-file-persister port Rust",
+        "4. CLI flag --run-cell <path> cho nauion-host"
+      ],
+      "estimated_scope": "2-3 phiên thật"
+    }
+  ],
+
+  "p1_medium": [
+    {"id": "P1.1", "task": "Banner ® render fix (hiện thành ⓝ trong Mac Terminal)", "file": "runtime/nauion-host/src/banner.rs"},
+    {"id": "P1.2", "task": "PHASE 4 graceful shutdown propagate cells stop hook (sau khi cells có Rust port)"},
+    {"id": "P1.3", "task": "Scanner v0.6 expand vocab recognize 4 vocab mới (superseded/archived/draft/S2)", "file": "scripts/audit-spec-governance.py"},
+    {"id": "P1.4", "task": "Note Kim re Kim avatar gitignored (forward note Băng viết turn 322)"},
+    {"id": "P1.5", "task": "Cargo release build (cargo build --release cho production binary)"}
+  ],
+
+  "p2_lower_carry_from_prior": [
+    {"id": "P2.1", "task": "K1 SURVIVAL Tầng 0 (Kim scope)"},
+    {"id": "P2.2", "task": "K3 Fail-Troy 3 bypass patterns (Kim scope)"},
+    {"id": "P2.3", "task": "P5 neural-main-cell.cell.anc 0 bytes (Kim scope, ACCEPTED 20260426)"},
+    {"id": "P2.4", "task": "4 Thiên SPEC split untracked seal (Gatekeeper authority)"},
+    {"id": "P2.5", "task": "Bối Bội pack docs/specs/bối kernel/ (currently empty)"},
+    {"id": "P2.6", "task": "RUNTIME_DEPENDENCY_CENSUS v1.1 update (post Wave 1 scaffold)"}
+  ],
+
+  "p3_moments_follow_up": [
+    {"id": "P3.1", "task": "Forward Thiên Lớn lời cảm ơn render Băng cross-substrate (turn 296+298+322)"},
+    {"id": "P3.2", "task": "Forward note Kim viết turn 304 + update note turn 322"}
+  ]
+}
