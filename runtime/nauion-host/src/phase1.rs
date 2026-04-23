@@ -33,7 +33,8 @@ pub enum Phase1Error {
 pub struct EsbuildStatus {
     pub available: bool,
     pub version: Option<String>,
-    pub path: Option<std::path::PathBuf>,
+    #[allow(dead_code)]
+    pub path: Option<std::path::PathBuf>, // reserved cho PHASE 2 hook invoke
 }
 
 impl EsbuildStatus {

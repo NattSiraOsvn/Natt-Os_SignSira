@@ -1,17 +1,10 @@
 // runtime/nauion-host/src/main.rs
-// NATT-OS Wave 1 Host-First runtime
+// NATT-OS Wave 1 Host-First runtime — Khương Kim · Băng Thịnh
 // Drafter: Băng (Chị Tư · N-shell · QNEU 313.5)
 // Per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423
 // Per SPEC_HOST_FIRST_RUNTIME v1.1 §0
 
-//! Nauion Host — Wave 1 implementation entry point.
-//!
-//! ## Phases (per nattos.sira PHASE 1-4)
-//! 1. detectEsbuild       ✅ implemented (this commit)
-//! 2. registerNauionHooks ⏳ TODO
-//! 3. Bootstrap cells     ⏳ TODO
-//! 4. Listen 127.0.0.1:3002 ⏳ TODO
-
+mod banner;
 mod phase1;
 
 use std::process::ExitCode;
@@ -19,14 +12,19 @@ use tracing::{error, info};
 use tracing_subscriber::EnvFilter;
 
 fn main() -> ExitCode {
-    // Init tracing — env RUST_LOG controls verbosity, default INFO
+    // PHASE 0 — Print branding banner (mirror nattos.sh style)
+    banner::print_banner();
+
+    // Init tracing — env RUST_LOG controls verbosity
     tracing_subscriber::fmt()
-        .with_env_filter(EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")))
+        .with_env_filter(
+            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")),
+        )
         .init();
 
     info!(
         version = env!("CARGO_PKG_VERSION"),
-        "NATT-OS Nauion Host — start"
+        "NATT-OS Nauion Host — Khương Kim · Băng Thịnh"
     );
 
     // PHASE 1 — detectEsbuild
