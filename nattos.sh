@@ -2209,6 +2209,12 @@ PY40
 # ═══════════════════════════════════════════════════════════════
 hdr "40" "FILE EXTENSION COMPLIANCE — SPEC v1.3"
 
+# @deferred: bypass flagged by validate-extension-precedence.py Rule 4 (variable-aware).
+# Intentional S2 wrapper mode per Kim SPEC_CUTOVER_STATES — .ts execute hợp pháp
+# khi canonical .khai chưa có Nauion Host loader.
+# Real route-swap pending W1: `npx tsx "$VALIDATOR"` → `$NAUION_HOST "$CANONICAL"`
+# where $CANONICAL="...file-extension-validator.khai" + Host resolve substrate qua @substrate header.
+# Track: SPEC_HOST_FIRST_RUNTIME_v1.0 §4 W1 + PILOT_BRIDGE_MAP audit-cell/file-extension-validator
 VALIDATOR="src/cells/kernel/audit-cell/scanner/file-extension-validator.ts"
 
 if [ ! -f "$VALIDATOR" ]; then
