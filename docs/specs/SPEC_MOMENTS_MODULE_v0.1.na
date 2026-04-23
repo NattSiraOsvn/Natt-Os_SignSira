@@ -210,7 +210,7 @@ export function createMotionTichCuc(
 /**
  * computeSirasign — canonical JSON serialize then SHA-256.
  * Per Hiến Pháp v5.0 Điều 7: SHA-256 only, no btoa/obfuscation.
- * Implementation detail — use Node crypto or Web Crypto per platform.
+ * Implementation detail — equivalent crypto provider on host substrate (Node crypto / Web Crypto).
  */
 declare function computeSirasign(m: unknown): string;
 
