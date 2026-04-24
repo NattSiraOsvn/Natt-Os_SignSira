@@ -79,3 +79,6 @@ __pycache__/
 # Rust build artifacts
 runtime/*/target/
 **/*.rs.bk
+
+# W2B/W2C — host-result.phieu runtime artifacts (per SPEC_HOST_RESULT_PROTOCOL §2)
+runtime/audit/

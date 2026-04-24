@@ -11,6 +11,7 @@ mod phase3;
 mod phase4;
 mod repo_root;
 mod result_writer;
+mod run_cell;
 
 use std::process::ExitCode;
 use std::sync::Arc;
@@ -22,6 +23,35 @@ async fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().collect();
     let self_test_mode = args.iter().any(|a| a == "--self-test");
     let no_listen = args.iter().any(|a| a == "--no-listen");
+
+    let run_cell_path: Option<std::path::PathBuf> = args.iter()
+        .position(|a| a == "--run-cell")
+        .and_then(|i| args.get(i + 1))
+        .map(std::path::PathBuf::from);
+
+    // W2C — headless run-cell mode: skip banner/listen, write result.phieu, exit
+    if let Some(canonical) = run_cell_path {
+        let repo_root = repo_root::detect();
+        let host_version = env!("CARGO_PKG_VERSION");
+        match run_cell::execute(&canonical, &repo_root, host_version, self_test_mode) {
+            Ok(outcome) => {
+                eprintln!(
+                    "[run-cell] status={} result={}",
+                    outcome.status.as_str(),
+                    outcome.result_path.display()
+                );
+                return match outcome.status {
+                    result_writer::HostResultStatus::Fail => ExitCode::from(1),
+                    _ => ExitCode::SUCCESS,
+                };
+            }
+            Err(e) => {
+                eprintln!("[run-cell] ERROR: {}", e);
+                return ExitCode::from(2);
+            }
+        }
+    }
+
 
     // PHASE 0 — Banner
     banner::print_banner();

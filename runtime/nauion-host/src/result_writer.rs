@@ -158,6 +158,7 @@ impl HostResultWriter {
     }
 }
 
+#[allow(dead_code)] // used internally by format_phieu via cell_safe/canonical_safe
 /// Escape field value per §S12 micro-note 1.
 /// Paths kept raw. Newlines/CRs replaced with space (single-line invariant).
 fn escape_field(s: &str) -> String {
