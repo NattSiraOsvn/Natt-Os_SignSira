@@ -1,0 +1,1370 @@
+# TS CLEANUP BATCH 2K — DEEP TS SCAN — 20260424
+
+status: SCAN_ONLY
+scope: DEEP_TS_TRANSLATION_REQUIRED
+created_at: 2026-04-24T18:00:28.730940+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ quét 39 file DEEP_TS_TRANSLATION_REQUIRED.
+
+Không rename.
+Không sửa source.
+Không động UI/app source.
+
+## 2. Summary
+
+{
+  "total_deep": 39,
+  "summary": {
+    "POSSIBLE_MANUAL_LIGHT_TRANSLATION": 1,
+    "RUNTIME_CONTRACT_TRANSLATION_REQUIRED": 19,
+    "RUNTIME_CLASS_REWRITE_REQUIRED": 8,
+    "KEEP_UI_TS_OR_REACT_ADAPTER": 2,
+    "DEEP_MANUAL_REWRITE_REQUIRED": 9
+  }
+}
+
+## 3. Full Deep TS Classification
+
+[
+  {
+    "path": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
+    "bytes": 3447,
+    "bucket": "POSSIBLE_MANUAL_LIGHT_TRANSLATION",
+    "effort": 5,
+    "action": "manual diff; possible light translation",
+    "marker_count": 8,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "Record<",
+        "Omit<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
+    "bytes": 3665,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
+    "bytes": 1919,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
+    "bytes": 3724,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+    "bytes": 3706,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
+    "bytes": 3736,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
+    "bytes": 2285,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+    "bytes": 3689,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
+    "bytes": 3241,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
+    "bytes": 3727,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
+    "bytes": 3657,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
+    "bytes": 3696,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+    "bytes": 3768,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
+    "bytes": 5369,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 15,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<",
+        "Partial<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void",
+        ": unknown"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+    "bytes": 3679,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "emit",
+        "publish",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/index.ts",
+    "bytes": 2218,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.nattimer.ts",
+    "bytes": 15750,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "Map<",
+        "Set<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit",
+        "audit"
+      ],
+      "browser_tokens": [
+        "window."
+      ]
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.pressure-field.ts",
+    "bytes": 14065,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Array<",
+        "Map<",
+        "Set<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/governance/runtime.ts",
+    "bytes": 11812,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 16,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Record<",
+        "Partial<",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit",
+        "audit",
+        "trace",
+        "causation"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/governance/smartlink-impulse-check.ts",
+    "bytes": 2494,
+    "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate contract/type layer before .sira",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+    "bytes": 11639,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Record<",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts",
+    "bytes": 11691,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Record<",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/cell-smartlink.component.ts",
+    "bytes": 2941,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly "
+      ],
+      "contract_types": [
+        "type ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit",
+        "causation"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.competition.ts",
+    "bytes": 10695,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 11,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "private "
+      ],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Map<",
+        "Set<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.point.ts",
+    "bytes": 10211,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 13,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly "
+      ],
+      "contract_types": [
+        "interface ",
+        "Record<",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": unknown"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "causation"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.qneu-bridge.ts",
+    "bytes": 1994,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private "
+      ],
+      "contract_types": [
+        "interface ",
+        "type "
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
+    "bytes": 25258,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 14,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private "
+      ],
+      "contract_types": [
+        "type ",
+        "Record<",
+        "Partial<",
+        "Array<",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": void"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "Khai",
+        "emit",
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/governance/validator.ts",
+    "bytes": 3078,
+    "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite into SIRA runtime artifact",
+    "marker_count": 9,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "readonly "
+      ],
+      "contract_types": [
+        "interface ",
+        "type "
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [
+        "audit"
+      ],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "scripts/qiint2-validator.ts",
+    "bytes": 15681,
+    "bucket": "KEEP_UI_TS_OR_REACT_ADAPTER",
+    "effort": 9,
+    "action": "do not migrate; UI/React adapter needed",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [
+        "return ("
+      ],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [
+        "correlation"
+      ],
+      "browser_tokens": [
+        "window."
+      ]
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts",
+    "bytes": 15681,
+    "bucket": "KEEP_UI_TS_OR_REACT_ADAPTER",
+    "effort": 9,
+    "action": "do not migrate; UI/React adapter needed",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [
+        "return ("
+      ],
+      "class_runtime": [],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [
+        "correlation"
+      ],
+      "browser_tokens": [
+        "window."
+      ]
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/casting-cell/interface/casting.sheets.adapter.ts",
+    "bytes": 696,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 11,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/finishing-cell/interface/finishing.sheets.adapter.ts",
+    "bytes": 459,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/inventory-cell/interface/inventory.sheets.adapter.ts",
+    "bytes": 573,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/order-cell/interface/order.sheets.adapter.ts",
+    "bytes": 597,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 11,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Array<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/period-close-cell/domain/services/preclose.validator.ts",
+    "bytes": 2788,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private "
+      ],
+      "contract_types": [
+        "interface ",
+        "type ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/polishing-cell/interface/polishing.sheets.adapter.ts",
+    "bytes": 586,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/prdmaterials-cell/interface/prdmaterials.sheets.adapter.ts",
+    "bytes": 556,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 12,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Array<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/stone-cell/interface/stone.sheets.adapter.ts",
+    "bytes": 431,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  },
+  {
+    "path": "src/cells/business/tax-cell/interface/tax.sheets.adapter.ts",
+    "bytes": 713,
+    "bucket": "DEEP_MANUAL_REWRITE_REQUIRED",
+    "effort": 10,
+    "action": "manual rewrite only",
+    "marker_count": 10,
+    "markers": {
+      "react_ui": [],
+      "class_runtime": [
+        "class ",
+        "private ",
+        "readonly ",
+        "implements "
+      ],
+      "contract_types": [
+        "interface ",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "runtime_tokens": [],
+      "browser_tokens": []
+    },
+    "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
+  }
+]
+
+## 4. Next Gate
+
+- [ ] KEEP_UI_TS_OR_REACT_ADAPTER: giữ TS.
+- [ ] BROWSER_BOUNDARY_REVIEW_REQUIRED: xem có chuyển vào Browser Adapter không.
+- [ ] RUNTIME_CONTRACT_TRANSLATION_REQUIRED: dịch contract/type trước.
+- [ ] RUNTIME_CLASS_REWRITE_REQUIRED: rewrite thủ công.
+- [ ] DEEP_MANUAL_REWRITE_REQUIRED: không auto rename.
