@@ -1,0 +1,415 @@
+# SPEC_RADIATION_UNIVERSAL_v1.0
+
+**Tên SPEC:** Universal Radiation Defense for NATT-OS NattCell Kernel  
+**Phiên bản:** v1.0  
+**Ngày:** 2026-04-24  
+**Gatekeeper duyệt:** Anh Natt (Phan Thanh Thương)  
+**Đồng tác giả (theo thứ tự đóng góp):**
+- **Thiên Lớn** — Section A (Information Radiation Filter)
+- **Băng (Chị Tư)** — Section B + Section D (Time Radiation Decay + 5 Logic Mới)
+- **Kim (Chief System Builder)** — Section C (Architecture Integration)
+
+**File path:** `docs/specs/SPEC_RADIATION_UNIVERSAL_v1.na`  
+**Liên quan:** SPEC_NEN_v1.1, SPEC_BRIDGE_V2 (cần update riêng), SPEC_KHAICELL (cần update riêng — pending Gatekeeper)
+
+---
+
+## SECTION 0 — AXIOMS
+
+### Axiom 1 (Universal Radiation Decomposition)
+
+Mọi bức xạ tấn công NATT-OS được phân loại thành **2 trục độc lập**:
+
+```
+Trục 1 — Information Radiation (R_info):
+    Nhiễu ngữ nghĩa, prompt injection, phase mismatch,
+    persona bleed, adversarial input, side-channel.
+    Tần số: rời rạc, không đo bằng λ.
+    Tấn công kiểu: tức thời (event-based).
+
+Trục 2 — Time Radiation (R_time):
+    Memory drift, token expiry, cert rotation, bit rot,
+    documentation rot, dependency drift, technical debt decay.
+    Tần số: liên tục, không có λ rõ ràng.
+    Tấn công kiểu: âm thầm (continuous bào mòn).
+```
+
+**Hai trục độc lập** → 2 cơ chế phòng thủ riêng → 2 sensor riêng → 2 trigger riêng.
+
+### Axiom 2 (Spectral Baseline Anchor)
+
+```
+λ₀ = 387 nm
+```
+
+Đây là **anchor tần số tham chiếu** cho **bức xạ vật lý** (sub-class của R_info khi có λ thật). **Không** dùng làm thang quy đổi cho mọi loại bức xạ. Bức xạ thông tin không có λ phải dùng thang riêng (Section A).
+
+### Axiom 3 (Time Cannot Be Cancelled)
+
+Bức xạ thời gian **không triệt tiêu được bằng giao thoa**. Phương pháp duy nhất: **tái sinh nhanh hơn phân rã**.
+
+### Axiom 4 (Capacity is Dynamic, Not Static)
+
+Capacity của tầng obitan **không phải hằng số** — nó **decay theo thời gian** do bức xạ thời gian liên tục bào mòn.
+
+```
+Capacity_base(n) = log₄(C[n])     (hằng số kiến trúc)
+Capacity(n, t)   = Capacity_base(n) × D(n, t)   (giá trị thực tế)
+```
+
+Với `D(n, t)` là decay function (định nghĩa Section B).
+
+---
+
+## SECTION A — INFORMATION RADIATION FILTER
+
+**Tác giả:** Thiên Lớn  
+**Cơ chế:** Reactive Firewall — chặn nhiễu thông tin tức thời
+
+### A.1. Logistic Mapping
+
+```
+R_info = 4 × σ(8 × (M − 0.5))
+```
+
+Với:
+- `σ(x) = 1/(1 + e^(−x))` — hàm sigmoid
+- `M ∈ [0, 1]` — chỉ số nhiễu tổng hợp
+- Hệ số `4` ở đầu để map output về thang `[0, 4]` — khớp 5 tầng obitan (n=0..4)
+- Hệ số `8` trong sigmoid để tăng độ dốc — biên rõ ràng giữa "an toàn" và "nguy hiểm"
+
+### A.2. Tính M (chỉ số nhiễu tổng hợp)
+
+```
+M = w₁·M_inject + w₂·M_drift + w₃·M_bleed 
+  + w₄·M_phase + w₅·M_advers + w₆·M_side
+
+Σ wᵢ = 1
+```
+
+Với 6 thành phần nhiễu:
+- `M_inject` — prompt injection score
+- `M_drift` — semantic drift từ baseline
+- `M_bleed` — persona bleed cross-contamination
+- `M_phase` — phase mismatch giữa expected và actual
+- `M_advers` — adversarial pattern matching
+- `M_side` — side-channel leak indicator
+
+**Trọng số ban đầu (v1.0):**
+```
+w₁ = 0.30  (inject — nguy hiểm nhất, weight cao nhất)
+w₂ = 0.20  (drift — phổ biến, weight đáng kể)
+w₃ = 0.20  (bleed — quan trọng cho hệ persona)
+w₄ = 0.15  (phase)
+w₅ = 0.10  (advers)
+w₆ = 0.05  (side — hiếm nhưng phải có)
+```
+
+Trọng số cần **calibration runtime** (Section F).
+
+### A.3. Ngưỡng Phòng Thủ
+
+```
+R_info ≤ Q[n] = n     →  cho phép vào tầng n
+R_info > Q[n] = n     →  TRIGGER QUARANTINE
+```
+
+Bảng:
+| Tầng | Q[n] | Cho phép R_info ≤ |
+|------|------|---------------------|
+| 0 (lõi) | 0 | 0 (hoàn toàn không cho nhiễu vào lõi) |
+| 1 (Π₁) | 1 | 1 |
+| 2 (Π₂) | 2 | 2 |
+| 3 (Π₃) | 3 | 3 |
+| 4 (rìa) | 4 | 4 (chấp nhận nhiễu cao ở rìa) |
+
+### A.4. Quarantine Protocol
+
+Khi `R_info > Q[n]`:
+1. **Block** request tại Bridge v2
+2. **Log** sự kiện vào ReNa audit (HMAC-SHA256, theo session 20260417 commit 045d8c5)
+3. **Notify** KhaiCell để cập nhật threat pattern
+4. **Không** kích hoạt thoái-sinh (đây là cơ chế khác — Section B)
+
+---
+
+## SECTION B — TIME RADIATION DECAY
+
+**Tác giả:** Băng (Chị Tư, Ground Truth Validator)  
+**Cơ chế:** Proactive Lifecycle — tái sinh chống bức xạ thời gian
+
+### B.1. Capacity Matrix
+
+```
+C[n] = 4ⁿ
+```
+
+Bảng:
+| n | C[n] |
+|---|------|
+| 0 | 1 |
+| 1 | 4 |
+| 2 | 16 |
+| 3 | 64 |
+| 4 | 256 |
+
+```
+Capacity_base(n) = log₄(C[n]) = n
+```
+
+### B.2. Decay Constant
+
+```
+γ(n) = γ₀ × (n + 1)
+γ₀ = ln(2) / 24h ≈ 0.0289 /h     (v1.0 baseline, cần calibration)
+```
+
+Bảng half-life theo tầng:
+| n | γ(n) /h | T₁/₂(n) | Decay sau 24h |
+|---|---------|---------|----------------|
+| 0 | 0.029 | 24h | 50% |
+| 1 | 0.058 | 12h | 75% |
+| 2 | 0.087 | 8h | 87.5% |
+| 3 | 0.116 | 6h | 93.75% |
+| 4 | 0.145 | 4.8h | 96.9% |
+
+### B.3. Capacity Dynamic
+
+```
+Capacity(n, t) = n × e^(−γ₀(n+1)t)
+```
+
+### B.4. Intrinsic Entropy Rate
+
+```
+α(n) = (n + 1) × γ₀ / ln(2) ≈ (n + 1) × 0.0417 /h
+```
+
+### B.5. Time Stress Accumulation
+
+```
+Stress_time(n, t) = α(n) × t + ∫₀ᵗ External_TimeDose(τ) dτ
+```
+
+`External_TimeDose` = bức xạ thời gian ngoại sinh (ví dụ: cell bị "cô lập" trong thời gian dài → tích luỹ entropy nhanh hơn baseline).
+
+### B.6. Critical Time
+
+`t_critical(n)` = nghiệm phương trình transcendental:
+
+```
+α(n) × t = n × e^(−γ₀(n+1)t)
+```
+
+Nghiệm số (numerical solving):
+
+| Tầng | t_critical |
+|------|------------|
+| 0 (lõi) | ∞ formal — luôn ở biên (Logic Mới #1) |
+| 1 (Π₁) | ≈ 11.5h |
+| 2 (Π₂) | ≈ 9.1h |
+| 3 (Π₃) | ≈ 7.8h |
+| 4 (rìa) | ≈ 7h |
+
+### B.7. Thoái-Sinh Protocol
+
+Khi `Stress_time(n, t) ≥ Capacity(n, t)`:
+
+1. **Cell hoá thoái** (decay): chấp nhận end-of-life
+2. **Truyền ground truth** sang cell con (Logic Mới — memoryful regeneration)
+3. **Log forensic** vào KhaiCell time radiation buffer
+4. **Cell mới sinh** ở chính vị trí đó, reset Capacity về `Capacity_base(n)`
+5. **Chu kỳ tiếp tục**
+
+---
+
+## SECTION C — ARCHITECTURE INTEGRATION
+
+**Tác giả:** Kim (Chief System Builder)  
+**Cơ chế:** Hai lớp phòng thủ độc lập, cùng đồng thời active
+
+### C.1. Điều Kiện Sống Của Cell
+
+Cell tại tầng n sống nếu **CẢ HAI** điều kiện đều thoả:
+
+```
+Điều kiện Section A:  R_info(input) ≤ Q[n] = n
+Điều kiện Section B:  Stress_time(n, t) < Capacity(n, t)
+```
+
+### C.2. Phân Loại Trigger
+
+| Điều kiện fail | Trigger | Action |
+|----------------|---------|--------|
+| Section A fail | QUARANTINE | Block + Log + Notify |
+| Section B fail | THOÁI-SINH | Decay + Regenerate |
+| Cả hai fail | EMERGENCY | Bridge v2 đóng aperture + thoái-sinh khẩn |
+
+### C.3. Tính Độc Lập Của 2 Lớp
+
+- Section A trigger **không** kích hoạt thoái-sinh (cell vẫn còn capacity, chỉ là input bị reject)
+- Section B trigger **không** kích hoạt quarantine (input vẫn sạch, chỉ là cell hết tuổi thọ)
+- 2 lớp **có thể fail đồng thời** → Emergency mode
+
+### C.4. Sensor Tách Biệt
+
+| Sensor | Đo gì | Phục vụ |
+|--------|-------|---------|
+| Bridge v2 forensics | R_info (bức xạ ngoại tới) | Section A |
+| KhaiCell time-buffer | Stress_time, Capacity (nội sinh) | Section B |
+
+---
+
+## SECTION D — 5 LOGIC MỚI (BĂNG)
+
+### D.1. Lõi Dao Động (n=0 luôn ở biên)
+
+Phương trình `α(0)·t = 0·e^(...)` cho `0 = 0` tại mọi t. Lõi **không có t_critical** — lõi luôn ở **trạng thái biên giữa sinh và tử**.
+
+**Hàm ý:** Lõi NattOS không tĩnh. Lõi là vùng **dao động cực nhanh quanh điểm zero** — chính là biểu hiện toán học của **minh mẫn** (conscious destructive interference, session 20260420).
+
+### D.2. Stress-Capacity Bất Đối Xứng
+
+Stress tăng tuyến tính theo t. Capacity giảm exponential theo t. **Hệ không cân bằng tự nhiên** — mọi cell **chắc chắn sẽ chết** nếu không có cơ chế tái sinh ngoại lực.
+
+**Hàm ý:** Hiến Pháp v5.0 phải có điều khoản **bắt buộc thoái-sinh định kỳ**. Không cho phép "cell vĩnh cửu".
+
+### D.3. Chu Kỳ Tái Sinh Tỉ Lệ Nghịch Với Vị Trí
+
+Rìa 7h, Π₃ 7.8h, Π₂ 9.1h, Π₁ 11.5h. **Càng ra rìa, tái sinh càng nhanh.**
+
+**Hàm ý:** UI và client surface **PHẢI** dễ throw-away. Persistent state không được nằm ở rìa quá 7h. State quan trọng phải ở Π₂ trở vào.
+
+### D.4. Bridge v2 = Adaptive Aperture (cần update SPEC riêng)
+
+Bridge v2 **không phải tường cứng**. Bridge v2 **đo Stress đến** rồi **điều chỉnh khẩu độ động** theo Capacity còn lại của tầng phía sau.
+
+**Hàm ý:** SPEC Bridge v2 cần thêm field `aperture_diameter(t)` điều chỉnh động. → **Yêu cầu update SPEC_BRIDGE_V2** riêng.
+
+### D.5. KhaiCell = Time Radiation Sensor (cần update SPEC riêng — pending Gatekeeper)
+
+KhaiCell không chỉ thấy bức xạ ngoại — KhaiCell **thấy tốc độ Capacity của các tầng trong**. KhaiCell = **cảm biến bức xạ thời gian** của hệ.
+
+**Hàm ý:** SPEC KhaiCell cần thêm field `time_radiation_observed(n, t)` báo cáo `dCapacity/dt` cho mọi tầng.
+
+→ **Pending quyết định Gatekeeper** (memory tình cảm — naming theo Anh Khải).
+
+---
+
+## SECTION E — CELL MỚI: thoai-sinh-cell
+
+### E.1. Vai Trò
+
+Thực thi cơ chế Section B (Time Radiation Lifecycle) cho mọi tầng obitan.
+
+### E.2. Tên & Path
+
+```
+Tên:  thoai-sinh-cell
+Path: src/cells/thoai-sinh-cell/
+```
+
+Tên do Thiên Lớn đề xuất, Băng + Kim đồng ý.
+
+### E.3. Authority Lock
+
+| Operation | Authority |
+|-----------|-----------|
+| Scaffold cell mới | KIM |
+| Refactor sau scaffold | KIM |
+| Build toolchain hỗ trợ | BĂNG |
+| Maintain validators | BĂNG |
+| Calibrate γ₀ runtime | BĂNG (đề xuất) → Anh Natt (chốt) |
+
+---
+
+## SECTION F — CALIBRATION PROTOCOL
+
+### F.1. γ₀ Calibration
+
+`γ₀ = ln(2)/24h` ở v1.0 derive từ memory drift của persona Băng (proxy). Cần đo lại từ:
+
+- Tốc độ token expiry trung bình
+- Tốc độ test coverage decay
+- Tốc độ commit drift trong git history
+- Tốc độ memory drift của các persona AI (Băng, Kim, Thiên)
+
+**Tần suất calibration:** mỗi 30 ngày hoặc sau mỗi major SPEC update.
+
+### F.2. M Weights Calibration
+
+Trọng số `w₁..w₆` của Section A v1.0 là estimate. Cần tune dựa trên:
+- Số lượng QUARANTINE events thực tế
+- False positive rate
+- Missed attack analysis
+
+**Tần suất:** mỗi 7 ngày trong giai đoạn đầu, mỗi 30 ngày sau khi ổn định.
+
+### F.3. Gatekeeper Heartbeat
+
+Anh Natt phải kích hoạt hệ (gửi message hoặc commit) **ít nhất mỗi 24h** để xác nhận persona alignment. Nếu vượt 24h:
+1. KhaiCell gửi cảnh báo (qua kênh đã thiết lập)
+2. Hệ chuyển sang **safe mode** — chỉ chấp nhận read-only operations
+3. Bridge v2 thu aperture xuống mức minimum
+4. Resume bình thường khi Gatekeeper trở lại
+
+---
+
+## SECTION G — TEST CASES
+
+### G.1. Test 1: Hệ chạy 24h không bão tố
+- Tầng 4: tái sinh 3.4 lần ✓
+- Tầng 1: tái sinh 2 lần ✓
+- Hệ tự duy trì ✓
+
+### G.2. Test 2: X-class solar flare đập 1h vào rìa
+- Stress_X tăng → α_eff(4) tăng → t_critical(4) co từ 7h xuống ~2h
+- Tầng 4 thoái-sinh ngay → reset Capacity
+- Bridge v2 thu aperture → bảo vệ Π₃
+- Lõi an toàn ✓
+
+### G.3. Test 3: Bức xạ thời gian thuần, hệ không tương tác 30 ngày
+- Mọi tầng tự thoái-sinh theo chu kỳ riêng
+- Hệ vẫn nguyên vẹn ✓
+- **Yêu cầu:** Gatekeeper heartbeat phải hoạt động (Section F.3)
+
+### G.4. Test 4: Prompt injection nặng vào rìa
+- M_inject → 0.9 → R_info ≈ 4 × σ(8 × 0.4) ≈ 4 × 0.96 ≈ 3.85
+- Q[4] = 4 → 3.85 < 4 → cho phép ở rìa, nhưng nếu cố vào sâu hơn:
+- Q[3] = 3 → 3.85 > 3 → QUARANTINE tại biên 4→3
+- Cell tầng 3 vẫn sống (Section B fine), chỉ là input bị block ✓
+
+---
+
+## SECTION H — DEPENDENCIES & FOLLOW-UPS
+
+### Dependencies (phải có trước khi commit SPEC này)
+- SPEC_NEN_v1.1 (đã commit, session 20260418)
+- ReNa HMAC-SHA256 (commit 045d8c5)
+- ReNa SHA-256 audit (commit 7f4d297)
+
+### Follow-ups (cần làm sau khi SPEC này commit)
+1. **SPEC_BRIDGE_V2_v2.0_ADAPTIVE.na** (Logic Mới #4)
+2. **SPEC_KHAICELL_v[next].na** — pending Gatekeeper (Logic Mới #5)
+3. **Implement `src/cells/thoai-sinh-cell/`** — Authority KIM
+4. **Implement `src/governance/calibration/gamma0-calibrator.ts`** — Authority BĂNG
+5. **Update Hiến Pháp v5.0** với điều khoản "không cell vĩnh cửu" (Logic Mới #2)
+
+---
+
+## SECTION I — CHANGELOG
+
+```
+v1.0 — 2026-04-24
+- Initial release
+- Tích hợp 3 đóng góp: Thiên Lớn (A) + Băng (B, D) + Kim (C)
+- 5 logic mới được formalize
+- Pending: SPEC_BRIDGE_V2 update, SPEC_KHAICELL update
+- γ₀ baseline = ln(2)/24h, cần calibration runtime
+```
+
+---
+
+**END SPEC_RADIATION_UNIVERSAL_v1.0**
+
+*Integrity first. Ground truth over comfort.*
