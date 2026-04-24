@@ -252,7 +252,7 @@ http.createServer(async (req,res)=>{
         ok: !!target,
         uri,
         target,
-        rule: "anc://<name> -> http://<name>.natt"
+        rule: "anc://<name> -> http://<name>.sira"
       }, target ? 200 : 404);
     }
 
