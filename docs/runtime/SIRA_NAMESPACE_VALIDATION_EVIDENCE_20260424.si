@@ -1,0 +1,92 @@
+# SIRA NAMESPACE VALIDATION EVIDENCE — 20260424
+
+status: PASS
+owner: Gatekeeper / Anh Natt
+created_at: 2026-04-24T14:21:38.071195+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Purpose
+
+File này ghi evidence cho việc khóa .sira làm SIRA Root Namespace chính.
+
+## 2. Canonical Lock
+
+- .sira = SIRA Root Namespace chính.
+- anc:// = native protocol identity.
+- SmartLink = resolver / coupling layer.
+- http:// = browser transport adapter.
+- .natt = compatibility/bootstrap namespace, không còn là canonical target.
+
+## 3. Validator
+
+Validator file:
+
+tools/validate_sira_namespace.cjs
+
+## 4. Evidence
+
+{
+  "validator": {
+    "cmd": "node tools/validate_sira_namespace.cjs",
+    "exit": 0,
+    "stdout": "SIRA NAMESPACE VALIDATION: PASS\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/SIRA gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
+    "stderr": ""
+  },
+  "dns_core_sira": {
+    "cmd": "dscacheutil -q host -a name core.sira",
+    "exit": 0,
+    "stdout": "name: core.sira\nip_address: 127.0.0.1",
+    "stderr": ""
+  },
+  "dns_anc_sira": {
+    "cmd": "dscacheutil -q host -a name anc.sira",
+    "exit": 0,
+    "stdout": "name: anc.sira\nip_address: 127.0.0.1",
+    "stderr": ""
+  },
+  "health_core_sira": {
+    "cmd": "curl -sS --max-time 3 http://core.sira/api/health",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"host\": \"core.sira\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 1,\n  \"time\": \"2026-04-24T14:21:37.991Z\"\n}",
+    "stderr": ""
+  },
+  "resolve_core": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://core",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://core\",\n  \"target\": \"http://core.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "resolve_audit": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://audit",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://audit\",\n  \"target\": \"http://audit.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "resolve_tam": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://tam",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://tam\",\n  \"target\": \"http://tam.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "resolve_nauion": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://nauion",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://nauion\",\n  \"target\": \"http://nauion.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "audit_tail": {
+    "cmd": "curl -sS --max-time 3 http://core.sira/api/audit",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"total\": 1,\n  \"events\": [\n    {\n      \"audit_id\": \"audit_81fb01445801\",\n      \"timestamp\": \"2026-04-24T14:16:40.912Z\",\n      \"action\": \"gateway.boot\",\n      \"host\": \"127.0.0.1\",\n      \"result\": \"BOOTED\",\n      \"payload_summary\": {\n        \"PORT\": 80,\n        \"TAM\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n        \"NAUION\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n        \"AUDIT_HTML\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\"\n      }\n    }\n  ]\n}",
+    "stderr": ""
+  }
+}
+
+## 5. Next Gate
+
+- [ ] Gắn nút ANC/SIRA status vào Audit UI Runtime Hub.
+- [ ] Thêm SCAN kiểm tra .sira drift trong màn audit.
+- [ ] Ghi route map .sira vào dashboard.
+- [ ] Khóa auth boundary trước khi mở public/LAN rộng.

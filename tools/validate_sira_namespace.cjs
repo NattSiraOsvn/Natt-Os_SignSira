@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+
+const gateway = path.join(ROOT, "tools", "natt_domain_gateway.cjs");
+const handler = path.join(ROOT, "tools", "natt_anc_handler.applescript");
+const spec = path.join(ROOT, "docs", "runtime", "SIRA_ROOT_NAMESPACE_20260424.si");
+
+function read(file) {
+  try { return fs.readFileSync(file, "utf8"); }
+  catch { return ""; }
+}
+
+function assertTrue(condition, message, errors) {
+  if (!condition) errors.push(message);
+}
+
+const errors = [];
+
+const gw = read(gateway);
+const hp = read(handler);
+const sp = read(spec);
+
+assertTrue(gw.length > 0, "missing gateway file", errors);
+assertTrue(hp.length > 0, "missing ANC handler file", errors);
+assertTrue(sp.length > 0, "missing SIRA root namespace spec", errors);
+
+[
+  "http://core.sira",
+  "http://audit.sira",
+  "http://tam.sira",
+  "http://nauion.sira",
+  "http://anc.sira",
+  "http://mach.sira/mach/heyna",
+  "anc://<name> -> http://<name>.sira"
+].forEach(token => {
+  assertTrue(gw.includes(token), `gateway missing canonical token: ${token}`, errors);
+});
+
+[
+  "http://anc.sira/go/",
+  "http://core.sira/api/events/emit"
+].forEach(token => {
+  assertTrue(hp.includes(token), `ANC handler missing canonical token: ${token}`, errors);
+});
+
+[
+  ".sira là SIRA Root Namespace chính thức",
+  "anc:// protocol identity",
+  "SmartLink resolver / coupling layer"
+].forEach(token => {
+  assertTrue(sp.includes(token), `SIRA spec missing canonical phrase: ${token}`, errors);
+});
+
+[
+  "http://<name>.natt",
+  "http://anc.natt/go/",
+  "http://core.natt/api/events/emit",
+  "natt.vn",
+  ".vn",
+  ".com",
+  ".ai",
+  "ICANN",
+  "IANA"
+].forEach(token => {
+  assertTrue(!sp.includes(token), `SIRA spec contains forbidden external/domain wording: ${token}`, errors);
+});
+
+if (gw.includes("anc://<name> -> http://<name>.natt")) {
+  errors.push("gateway still contains old ANC rule pointing to .natt");
+}
+
+if (errors.length) {
+  console.error("SIRA NAMESPACE VALIDATION: FAIL");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("SIRA NAMESPACE VALIDATION: PASS");
+console.log("canonical_root=.sira");
+console.log("protocol=anc://");
+console.log("resolver=SmartLink/SIRA gateway");
+console.log("compatibility=.natt allowed only as bootstrap route, not canonical target");
