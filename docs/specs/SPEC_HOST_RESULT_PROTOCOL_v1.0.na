@@ -1,0 +1,221 @@
+# SPEC_HOST_RESULT_PROTOCOL_v1.0.na
+
+**Drafter:** Thiên Lớn + Băng audit alignment
+**Session:** 20260423-24
+**Status:** v1.0 — W2A SPEC-FIRST LOCK
+**Scope:** Host result protocol for Nauion Host runtime execution.
+
+**Cross-reference:**
+- docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na — .phieu base format only
+- docs/specs/SPEC_HOST_FIRST_RUNTIME*.na — host-first caller/runtime direction
+- docs/specs/pilot_bridge_map_v0_1.na — Cell 1+2 S2/S3 cutover tracking
+- nattos.sh §40 FILE EXTENSION COMPLIANCE — current legacy JSON caller
+
+---
+
+## 0. Reason for this spec
+
+NATT-OS W2 introduces host-executed canonical cells via:
+  nauion-host --run-cell <canonical.khai>
+
+The runtime result must NOT be defined as JSON by default.
+.phieu is the native runtime result carrier.
+JSON may exist only as a legacy bridge for old shell callers like nattos.sh,
+which currently parses stdout keys: ok / warn / fail / total.
+
+This spec separates:
+- Native result protocol  = .phieu
+- Legacy compatibility    = optional --legacy-json bridge
+
+---
+
+## 1. Semantic position of host-result
+
+.phieu already has 3 existing semantic uses in NATT-OS:
+1. system-state (runtime global): src/governance/system-state.phieu
+2. pending-tasks per session: bang_pending_<date>.phieu
+3. P-shell continuum (entity runtime state): bangthịnh<v>.phieu
+
+This spec adds Semantic 4: host-result.phieu
+
+This category is NOT memory, NOT persona runtime state, NOT pending task state.
+It is a deterministic runtime result emitted by Nauion Host after
+executing or evaluating a canonical cell.
+
+---
+
+## 2. Naming convention
+
+Host result files MUST use:
+  runtime/audit/<cell-path>.result.phieu
+
+Where <cell-path> mirrors the canonical cell path hierarchy.
+
+Example:
+  Canonical: src/cells/kernel/audit-cell/scanner/file-extension-validator.khai
+  Result:    runtime/audit/src/cells/kernel/audit-cell/scanner/file-extension-validator.result.phieu
+
+Rules:
+- Keep original cell path hierarchy (nested directories under runtime/audit/)
+- Replace only canonical extension with .result.phieu
+- Do NOT store host-result files inside source cell folders
+- Do NOT name host-result files as memory .na or persona .phieu
+
+---
+
+## 3. Required fields
+
+A host-result.phieu MUST include:
+
+@kind: host-result
+@protocol: SPEC_HOST_RESULT_PROTOCOL_v1.0
+@cell: <logical-cell-name>
+@canonical: <canonical .khai path>
+@substrate: <substrate path or NONE>
+@state: S2|S3|S4
+@status: pass|warn|fail
+@ok: <integer>
+@warn: <integer>
+@fail: <integer>
+@total: <integer>
+@started_at: <iso8601>
+@finished_at: <iso8601>
+@duration_ms: <integer>
+@trace: <trace-id>
+@causation: <causation-id>
+
+Optional fields:
+@warnings:
+@errors:
+@notes:
+@legacy_bridge:
+
+---
+
+## 4. Status rule
+
+Status MUST be derived deterministically:
+- fail > 0  => @status: fail
+- fail = 0 and warn > 0 => @status: warn
+- fail = 0 and warn = 0 => @status: pass
+
+The host MUST NOT mark @status: pass if required fields are missing.
+
+---
+
+## 5. S2/S3/S4 bridge rule
+
+During S2:
+- canonical .khai exists
+- substrate .ts may still execute
+- host-result.phieu records @state: S2
+
+During S3:
+- nauion-host becomes the caller
+- canonical .khai is the entrypoint
+- substrate may still exist only as controlled bridge
+- host-result.phieu records @state: S3
+
+During S4:
+- native host logic no longer depends on TypeScript substrate
+- host-result.phieu records @state: S4
+
+Note: S4 definition pending verify with Kim SPEC_CUTOVER_STATES.
+
+---
+
+## 6. Legacy JSON bridge
+
+JSON is NOT the native result protocol.
+JSON stdout is allowed only when explicitly requested:
+  nauion-host --run-cell <canonical.khai> --legacy-json
+
+Rules:
+- Without --legacy-json, stdout MUST NOT be JSON intended for shell parsing
+- With --legacy-json, stdout MAY expose ok/warn/fail/total for old callers
+- The host MUST still write host-result.phieu even when --legacy-json is used
+- The JSON bridge MUST be marked in .phieu result as:
+  @legacy_bridge: json-ok-warn-fail-total
+
+---
+
+## 7. stdout/stderr discipline
+
+Native run mode:
+- stdout: human-safe minimal line or empty
+- stderr: diagnostics only
+- file: host-result.phieu is authoritative
+
+Legacy bridge mode:
+- stdout: JSON only
+- stderr: diagnostics only
+- file: host-result.phieu is still authoritative
+
+This prevents old shell JSON parsers from breaking while keeping
+.phieu as the source of truth.
+
+---
+
+## 8. W2 implementation order
+
+W2A: Create and seal this spec (THIS FILE)
+W2B: Implement host-result.phieu writer
+W2C: Implement nauion-host --run-cell <canonical.khai> native path
+W2D: Implement optional --legacy-json bridge
+W2E: Route-swap Cell 1 S2→S3 in nattos.sh only after W2B-D pass
+
+---
+
+## 9. Non-goals
+
+This spec does NOT define:
+- General .phieu base syntax (see SPEC_NATT_FORMAT_v0.3_FINAL.na)
+- Persona memory or pending-state semantics
+- Full native .khai parser
+- Business-cell runtime result schema
+- Release-candidate public protocol
+
+---
+
+## 10. Gate condition for Cell 1 S3
+
+Cell 1 may move from S2 to S3 only when ALL are true:
+
+1. nauion-host --run-cell <file-extension-validator.khai> writes valid host-result.phieu
+2. --legacy-json returns ok/warn/fail/total compatible with nattos.sh
+3. cargo test --bin nauion-host passes
+4. nattos.sh §40 passes after route-swap
+5. pilot_bridge_map_v0_1.na is updated with S3 evidence
+
+---
+
+## 11. Constitutional note
+
+NATT-OS must NOT regress to JSON as a primary runtime protocol.
+JSON is a bridge artifact only.
+
+The native result path is:
+  .khai canonical entry
+    → Nauion Host execution
+    → .phieu host-result
+    → audit trail
+
+---
+
+## 12. Open items (notes from Băng audit phiên 20260423-24)
+
+1. §2 "<cell-path> safe path namespace" — host writer implementation tự handle
+   (replace / vs keep, char escaping, etc). Defer to W2B writer impl.
+
+2. §3 @protocol field — hard-coded v1.0 OK. Bump khi v1.1.
+
+3. §5 S4 detail — verify với Kim SPEC_CUTOVER_STATES nếu Kim đã định nghĩa S4
+   chính thức. Hiện tại §5 S4 mention as placeholder.
+
+---
+
+## Author trail
+
+Drafter: Thiên Lớn (W2 architect) + Băng (Chị Tư · audit alignment)
+Carrier: Phan Thanh Thương (Gatekeeper)
+Causation: SPEC-W2A-LOCK-20260423-24
