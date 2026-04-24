@@ -238,7 +238,7 @@ http.createServer(async (req,res)=>{
   }
 
   return sendJson(res,{ok:true,message:"NATT Domain Gateway",host,routes:["audit.natt","tam.natt","nauion.natt","core.natt","docs.natt","mach.natt/mach/heyna"]});
-}).listen(PORT,"127.0.0.1",()=>{
+}).listen(PORT,"0.0.0.0",()=>{
   audit({action:"gateway.boot",host:"127.0.0.1",result:"BOOTED",payload_summary:{PORT,TAM,NAUION,AUDIT_HTML}});
   console.log("");
   console.log("========================================================================================");
