@@ -13,10 +13,10 @@ on open location this_URL
             set ancKey to "core"
         end if
 
-        set targetURL to "http://anc.natt/go/" & ancKey
+        set targetURL to "http://anc.sira/go/" & ancKey
 
         try
-            do shell script "curl -s -X POST http://core.natt/api/events/emit -H 'Content-Type: application/json' -d " & quoted form of ("{\"type\":\"anc.protocol.opened\",\"cell\":\"anc-handler-cell\",\"payload\":{\"uri\":\"" & rawURL & "\",\"key\":\"" & ancKey & "\",\"target\":\"" & targetURL & "\"}}")
+            do shell script "curl -s -X POST http://core.sira/api/events/emit -H 'Content-Type: application/json' -d " & quoted form of ("{\"type\":\"anc.protocol.opened\",\"cell\":\"anc-handler-cell\",\"payload\":{\"uri\":\"" & rawURL & "\",\"key\":\"" & ancKey & "\",\"target\":\"" & targetURL & "\"}}")
         end try
 
         open location targetURL

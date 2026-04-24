@@ -17,6 +17,7 @@ function id(prefix){ return prefix + "_" + crypto.randomBytes(6).toString("hex")
 function routeKeyFromHost(host){
   const h = String(host || "").toLowerCase().split(":")[0];
 
+  if (h.endsWith(".sira")) return h.replace(".sira", "");
   if (h.endsWith(".natt")) return h.replace(".natt", "");
 
   const first = h.split(".")[0];
@@ -221,18 +222,18 @@ http.createServer(async (req,res)=>{
 
   if(routeKey==="anc"){
     const ANC_MAP = {
-      core: "http://core.natt",
-      runtime: "http://runtime.natt",
-      audit: "http://audit.natt",
-      tam: "http://tam.natt",
-      nauion: "http://nauion.natt",
-      docs: "http://docs.natt",
-      mach: "http://mach.natt/mach/heyna",
-      heyna: "http://heyna.natt/mach/heyna",
-      gate: "http://gate.natt",
-      sira: "http://sira.natt",
-      khai: "http://khai.natt",
-      bridge: "http://bridge.natt"
+      core: "http://core.sira",
+      runtime: "http://runtime.sira",
+      audit: "http://audit.sira",
+      tam: "http://tam.sira",
+      nauion: "http://nauion.sira",
+      docs: "http://docs.sira",
+      mach: "http://mach.sira/mach/heyna",
+      heyna: "http://heyna.sira/mach/heyna",
+      gate: "http://gate.sira",
+      sira: "http://sira.sira",
+      khai: "http://khai.sira",
+      bridge: "http://bridge.sira"
     };
 
     function resolveAncUri(input){
@@ -288,9 +289,9 @@ ${rows}
       host: "anc.natt",
       resolver: "ANC Resolver",
       examples: [
-        "http://anc.natt/go/core",
-        "http://anc.natt/go/audit",
-        "http://anc.natt/api/resolve?uri=anc://nauion"
+        "http://anc.sira/go/core",
+        "http://anc.sira/go/audit",
+        "http://anc.sira/api/resolve?uri=anc://nauion"
       ]
     });
   }
@@ -347,12 +348,12 @@ ${rows}
   console.log("NAUION ROOT:", NAUION);
   console.log("");
   console.log("OPEN:");
-  console.log(`  http://audit.natt:${PORT}`);
-  console.log(`  http://tam.natt:${PORT}`);
-  console.log(`  http://nauion.natt:${PORT}`);
-  console.log(`  http://core.natt:${PORT}`);
-  console.log(`  http://docs.natt:${PORT}`);
-  console.log(`  http://mach.natt:${PORT}/mach/heyna`);
+  console.log(`  http://audit.sira:${PORT}`);
+  console.log(`  http://tam.sira:${PORT}`);
+  console.log(`  http://nauion.sira:${PORT}`);
+  console.log(`  http://core.sira:${PORT}`);
+  console.log(`  http://docs.sira:${PORT}`);
+  console.log(`  http://mach.sira:${PORT}/mach/heyna`);
   console.log("");
   console.log("Stop: Ctrl + C");
   console.log("========================================================================================");
