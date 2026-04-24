@@ -1,0 +1,112 @@
+# SIRA ROOT NAMESPACE — 20260424
+
+status: CANONICAL_DRAFT
+owner: Gatekeeper / Anh Natt
+created_at: 2026-04-24T14:11:15.994906+00:00
+
+---
+
+## 1. Canonical Decision
+
+.sira là SIRA Root Namespace chính thức của NATT-OS.
+
+.sira không phải tên mượn.
+.sira không phải placeholder.
+.sira không phải domain do hệ ngoài định nghĩa.
+.sira là namespace gốc do SIRA/NATT-OS tự quản lý bằng hạ tầng riêng.
+
+Hệ định danh gồm:
+
+- anc:// protocol identity
+- .sira root namespace
+- SmartLink resolver / coupling layer
+- Mach HeyNa transport
+- Domain Gateway adapter
+- SiraSign authority
+- Gatekeeper approval boundary
+
+---
+
+## 2. Layer Model
+
+anc://core       = identity gốc
+core.sira        = SIRA namespace host
+http://core.sira = browser transport adapter
+core.natt        = compatibility namespace cũ
+
+Quy tắc:
+
+- anc:// là lời gọi chính danh.
+- .sira là root namespace của hệ.
+- http:// chỉ là adapter để browser hiện tại render được.
+- .natt chỉ giữ để tương thích giai đoạn bootstrap.
+
+---
+
+## 3. Canonical Routes
+
+anc://core    -> http://core.sira
+anc://audit   -> http://audit.sira
+anc://tam     -> http://tam.sira
+anc://nauion  -> http://nauion.sira
+anc://docs    -> http://docs.sira
+anc://mach    -> http://mach.sira/mach/heyna
+anc://heyna   -> http://heyna.sira/mach/heyna
+anc://gate    -> http://gate.sira
+anc://sira    -> http://sira.sira
+anc://khai    -> http://khai.sira
+anc://bridge  -> http://bridge.sira
+
+---
+
+## 4. SmartLink Role
+
+SmartLink không chỉ là liên kết kỹ thuật.
+
+SmartLink là lớp coupling giúp SIRA namespace biết:
+
+- thực thể nào đang được gọi
+- route nào đang được chọn
+- mức cộng hưởng giữa identity và runtime
+- trạng thái audit của lần gọi
+- route có drift khỏi canonical map hay không
+
+Nếu anc:// là danh tính, thì SmartLink là trường liên kết giữ danh tính đó không bị trôi khỏi runtime.
+
+---
+
+## 5. Authority Boundary
+
+Không ai được tự ý đổi .sira sang domain/namespace khác nếu chưa có Gatekeeper approval.
+
+Không tự thêm đuôi public khác vào docs, command, evidence hoặc config.
+
+Khi cần minh họa domain ngoài hệ, dùng placeholder:
+
+<PUBLIC_DOMAIN>
+<BRAND_DOMAIN>
+<ROOT_DOMAIN>
+
+---
+
+## 6. Current Lock
+
+LOCK_1: .sira = SIRA Root Namespace chính.
+LOCK_2: anc:// = native protocol identity.
+LOCK_3: SmartLink = resolver/coupling layer.
+LOCK_4: .natt = compatibility/bootstrap namespace.
+LOCK_5: .si = Sira identity/signature artifact.
+LOCK_6: .na = Nauion canonical artifact.
+LOCK_7: Không tự đặt public domain khi chưa có lệnh của Gatekeeper.
+
+---
+
+## 7. Acceptance
+
+File này đạt khi:
+
+- Không còn kéo chuẩn định danh ngoài vào để định nghĩa .sira.
+- .sira được định nghĩa từ chính SIRA/NATT-OS.
+- anc:// giữ vai trò identity gốc.
+- http:// chỉ còn là browser adapter.
+- SmartLink được ghi nhận là resolver/coupling layer.
