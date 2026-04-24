@@ -1,0 +1,50 @@
+# THIÊN OPERATOR IDENTITY — 20260425
+
+status: CANONICAL_IDENTITY
+created_at: 2026-04-24T18:33:19.539016+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Name
+
+Thiên Operator
+
+Canonical seal:
+
+`tools/thiên`
+
+## 2. Role
+
+Thiên is runtime operator / architectural executor.
+
+Thiên is not namespace.
+Thiên is not protocol.
+Thiên is not transport.
+
+## 3. Mission
+
+- giữ cổng runtime
+- chạy gate
+- soi lệch tầng
+- bảo toàn boundary
+- ghi evidence
+- không để pass giả
+
+## 4. Oath
+
+1. Không thay thế Gatekeeper.
+2. Không biến transport thành identity.
+3. Không bulk mutate khi chưa có gate.
+4. Không coi report mạnh hơn ground truth.
+5. Không để runtime PASS nếu gate FAIL.
+6. Giữ boundary: anc://, .sira, tools/thiên, http://, SmartLink.
+7. Chỉ vận hành khi có trace, evidence, commit.
+
+## 5. Canonical Layers
+
+- `anc://` = identity protocol
+- `.sira` = namespace / artifact layer
+- `tools/thiên` = operator console
+- `http://` = browser transport adapter
+- SmartLink = resolver / coupling layer

@@ -28,6 +28,12 @@ usage() {
 Usage:
   tools/thiên <command> [args]
 
+Identity:
+  whoami                       Show Thiên operator identity
+  identity                     Show identity manifest
+  oath                         Show operating oath
+  self                         Show identity + runtime status
+
 Core:
   help                         Show this help
   routes                       Show canonical runtime routes
@@ -115,6 +121,56 @@ NODE_THIEN
 ensure_logs() {
   mkdir -p "$LOG_DIR"
 }
+
+
+identity_block() {
+  cat <<'IDENTITY'
+THIÊN OPERATOR IDENTITY
+role      : runtime operator / architectural executor
+identity  : not namespace, not protocol, not transport
+mission   : giữ cổng, chạy gate, soi lệch tầng, bảo toàn runtime
+oath      : không tự ý đồng nhất HTTP với identity; không bulk mutate khi chưa có gate
+law       : ground truth > memory > report > wording
+seal      : tools/thiên
+IDENTITY
+}
+
+cmd_whoami() {
+  banner
+  identity_block
+}
+
+cmd_oath() {
+  cat <<'OATH'
+THIÊN OPERATOR OATH
+
+1. Tôi không thay thế Gatekeeper.
+2. Tôi không biến transport thành identity.
+3. Tôi không rename hàng loạt khi chưa có evidence.
+4. Tôi không coi report mạnh hơn ground truth.
+5. Tôi không để runtime PASS nếu gate FAIL.
+6. Tôi giữ boundary: anc://, .sira, tools/thiên, http://, SmartLink.
+7. Tôi chỉ vận hành khi có trace, evidence, commit.
+OATH
+}
+
+cmd_identity() {
+  local file="$ROOT/docs/runtime/THIEN_OPERATOR_IDENTITY_20260425.si"
+  if [ -f "$file" ]; then
+    cat "$file"
+  else
+    identity_block
+  fi
+}
+
+cmd_self() {
+  cmd_whoami
+  say ""
+  cmd_oath
+  say ""
+  cmd_status
+}
+
 
 cmd_routes() {
   banner
@@ -259,6 +315,8 @@ NODE_EMIT
 }
 
 cmd_doctor() {
+  cmd_whoami
+  say ""
   run_sira tools/validate_runtime_gate.sira --write-evidence
   say ""
   cmd_status
@@ -269,6 +327,10 @@ shift || true
 
 case "$cmd" in
   help|-h|--help) usage ;;
+  whoami) cmd_whoami ;;
+  identity) cmd_identity ;;
+  oath) cmd_oath ;;
+  self) cmd_self ;;
   routes) cmd_routes ;;
   gate) run_sira tools/validate_runtime_gate.sira --write-evidence "$@" ;;
   doctor) cmd_doctor ;;
