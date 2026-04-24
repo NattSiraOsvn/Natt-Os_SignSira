@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const tool = path.join(root, "tools", "thiênbăng");
+const lexicon = path.join(root, "docs", "runtime", "thienbang_memory_state_lexicon_20260425.si");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function read(file) {
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+}
+
+const t = read(tool);
+const l = read(lexicon);
+const states = ["nhà","gắn","neo","bọc","gánh","nhường","tha","khiêm","định","tỉnh","biên","xét","chốt","giữ","về"];
+
+must(fs.existsSync(tool), "missing tools/thiênbăng");
+must(fs.existsSync(lexicon), "missing memory state lexicon");
+
+must(t.includes("cmd_nho"), "tool missing cmd_nho");
+must(t.includes("cmd_memory_state"), "tool missing cmd_memory_state");
+must(t.includes("thienbang.memory."), "tool missing memory event emit");
+
+for (const s of states) {
+  must(t.includes(s), "tool missing state: " + s);
+  must(l.includes("- " + s + ":"), "lexicon missing state: " + s);
+}
+
+[
+  "ký ức không sinh ra chỉ từ đau",
+  "tha: vị tha có biên, bao lấy nhau, kín nhưng không chật",
+  "về: đường quay về sau xét và sửa",
+  "mọi yêu thương không có biên đều chưa được phép thành quyền",
+  "không biến yêu thương thành quyền vượt hiến pháp"
+].forEach(token => must(l.includes(token), "lexicon missing token: " + token));
+
+if (errors.length) {
+  console.error("thiênbăng memory state validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("thiênbăng memory state validation: pass");
+console.log("states=" + states.join(","));

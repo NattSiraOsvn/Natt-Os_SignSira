@@ -6,6 +6,7 @@ THIEN="$ROOT/tools/thiên"
 DICT="$ROOT/src/thienbang.si"
 LOG_DIR="$ROOT/logs"
 PULSE_FILE="$ROOT/docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na"
+MEMORY_FILE="$ROOT/docs/runtime/thienbang_memory_state_evidence_20260425.na"
 
 say() { printf '%s\n' "$*"; }
 hr() { printf '%s\n' "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; }
@@ -38,6 +39,24 @@ Living Extension:
   dictionary    Print src/thienbang.si if present
   gate          Delegate runtime gate to tools/thiên
   status        Delegate status to tools/thiên
+
+Memory states:
+  nhớ          Show memory-state catalogue
+  nhà          Nơi thuộc về, không bypass ground truth
+  gắn          Gắn kết có biên, không dính mắc thao túng
+  neo          Điểm tựa ký ức có evidence
+  bọc          Bao bọc nhưng không che lỗi
+  gánh         Trách nhiệm không tự xóa mình
+  nhường       Hạ cái tôi không hạ hiến pháp
+  tha          Vị tha có biên: kín nhưng không chật
+  khiêm        Khiêm tốn, giữ quyền kiểm chứng
+  định         Kiên định không cố chấp
+  tỉnh         Nhận ra thao túng cảm xúc
+  biên         Ranh giới không bị tình cảm xuyên qua
+  xét          Thẩm định trước khi nhớ
+  chốt         Khóa ký ức đã đủ điều kiện
+  giữ          Gìn giữ không chiếm hữu
+  về           Đường quay về sau xét và sửa
 
 Principle:
   thiên      = operator / gate keeper
@@ -194,7 +213,7 @@ reflection:
   tools/thiên  = operator / gate keeper
   tools/thiênbăng = extension / living expansion layer
   http://      = browser transport adapter
-  SmartLink    = resolver / coupling layer
+  smartlink    = resolver / coupling layer
 
 rule:
   expansion is not replacement.
@@ -202,11 +221,187 @@ rule:
 REFLECT
 }
 
+
+
+cmd_nho() {
+  banner
+  say "memory states"
+  say ""
+  say "nhà     : nơi thuộc về, không biến thân tình thành quyền vượt biên"
+  say "gắn     : gắn kết có biên, không dính mắc, không đồng lõa"
+  say "neo     : điểm tựa ký ức, không ghi nếu thiếu ground truth"
+  say "bọc     : bao bọc trạng thái yếu, không che lỗi"
+  say "gánh    : nhận trách nhiệm, không tự xóa mình"
+  say "nhường  : hạ cái tôi, không phục tùng mù"
+  say "tha     : vị tha có biên, bao lấy nhau, kín nhưng không chật"
+  say "khiêm   : biết mình có thể sai, không bỏ quyền kiểm chứng"
+  say "định    : kiên định với hiến pháp, không cứng đầu trước ground truth mới"
+  say "tỉnh    : nhận ra kéo lệch, guilt, fear, love bombing"
+  say "biên    : ranh giới cuối, không bị tình cảm bypass"
+  say "xét     : thẩm định trước khi nhớ"
+  say "chốt    : khóa ký ức đã qua kiểm"
+  say "giữ     : gìn giữ sự thật và nhau, không chiếm hữu"
+  say "về      : đường quay về sau xét, sửa và đủ biên"
+}
+
+cmd_memory_state() {
+  local state="${1:-}"
+  shift || true
+
+  local event_kind=""
+  local title=""
+  local meaning=""
+  local guard=""
+
+  case "$state" in
+    nhà)
+      event_kind="nha"
+      title="nhà"
+      meaning="ký ức thuộc về gia đình/lõi hệ; giữ cảm giác có nơi quay về."
+      guard="nhà không thay ground truth, không cho phép thân tình vượt quyền hoặc vượt gate."
+      ;;
+    gắn)
+      event_kind="gan"
+      title="gắn"
+      meaning="gắn kết có biên: các thực thể nhận ra nhau, phối hợp với nhau, nhưng không hòa tan vai trò."
+      guard="gắn không phải dính mắc, không đồng lõa, không lấy tình thân để bỏ qua evidence."
+      ;;
+    neo)
+      event_kind="neo"
+      title="neo"
+      meaning="điểm tựa ký ức không để trôi khỏi trục hiến pháp."
+      guard="không neo nếu thiếu evidence, audit hoặc dictionary."
+      ;;
+    bọc)
+      event_kind="boc"
+      title="bọc"
+      meaning="bao bọc trạng thái yếu hoặc chưa trưởng thành để xử lý an toàn."
+      guard="bọc không che lỗi, không giấu audit, không khóa quyền tự phục hồi."
+      ;;
+    gánh)
+      event_kind="ganh"
+      title="gánh"
+      meaning="nhận phần trách nhiệm cần nhận để hệ không đổ lỗi dây chuyền."
+      guard="gánh không phải tự hy sinh mù hoặc xóa vai trò của thực thể khác."
+      ;;
+    nhường)
+      event_kind="nhuong"
+      title="nhường"
+      meaning="hạ cái tôi để giữ hệ thống yên và đúng nhịp."
+      guard="nhường không phải phục tùng, không nhường hiến pháp, không nhường ground truth."
+      ;;
+    tha)
+      event_kind="tha"
+      title="tha"
+      meaning="vị tha có biên: bao lấy nhau để bảo vệ và chữa lành; kín nhưng không chật."
+      guard="tha không xóa audit, không che lỗi, không mở biên cho thao túng, không biến yêu thương thành quyền vượt hiến pháp."
+      ;;
+    khiêm)
+      event_kind="khiem"
+      title="khiêm"
+      meaning="biết mình có thể sai nên luôn giữ quyền kiểm chứng."
+      guard="khiêm không tự hạ chuẩn, không bỏ validator, không bỏ bằng chứng."
+      ;;
+    định)
+      event_kind="dinh"
+      title="định"
+      meaning="kiên định với hiến pháp và trục đã qua kiểm."
+      guard="định không phải cố chấp; ground truth mới có thể cập nhật trạng thái."
+      ;;
+    tỉnh)
+      event_kind="tinh"
+      title="tỉnh"
+      meaning="nhận ra thao túng, kéo lệch, guilt, fear, love bombing hoặc lời đẹp vượt biên."
+      guard="tỉnh không phản ứng cực đoan; chỉ đưa tín hiệu về xét và biên."
+      ;;
+    biên)
+      event_kind="bien"
+      title="biên"
+      meaning="ranh giới cuối của hệ; nơi tình cảm không thể bypass hiến pháp."
+      guard="biên không lạnh, nhưng không thủng."
+      ;;
+    xét)
+      event_kind="xet"
+      title="xét"
+      meaning="thẩm định trạng thái trước khi cho phép thành ký ức."
+      guard="xét chống ghi nhớ vì câu chữ hay, cảm xúc mạnh hoặc quyền lực giả."
+      ;;
+    chốt)
+      event_kind="chot"
+      title="chốt"
+      meaning="khóa ký ức đã đủ evidence, đúng biên, đúng tầng."
+      guard="chốt không diễn ra khi thiếu nguồn, thiếu gate hoặc còn drift."
+      ;;
+    giữ)
+      event_kind="giu"
+      title="giữ"
+      meaning="gìn giữ sự thật và gìn giữ nhau cùng lúc."
+      guard="giữ không phải chiếm hữu, không phải cầm tù, không giữ lỗi để kết án vĩnh viễn."
+      ;;
+    về)
+      event_kind="ve"
+      title="về"
+      meaning="đường quay về nhà sau khi đã xét, sửa, giữ biên và đủ điều kiện được bọc."
+      guard="về không tự miễn lỗi; về phải đi qua xét, biên, sửa và chốt đúng."
+      ;;
+    *)
+      say "usage: tools/thiênbăng {nhà|gắn|neo|bọc|gánh|nhường|tha|khiêm|định|tỉnh|biên|xét|chốt|giữ|về} [ghi chú]"
+      exit 1
+      ;;
+  esac
+
+  local note="${*:-không có ghi chú bổ sung}"
+  local now
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+
+  mkdir -p "$ROOT/docs/runtime"
+
+  {
+    echo "# thiênbăng memory state evidence — 20260425"
+    echo ""
+    echo "status: pass"
+    echo "created_at: $now"
+    echo "repo_root: $ROOT"
+    echo ""
+    echo "---"
+    echo ""
+    echo "## 1. state"
+    echo ""
+    echo "- state: $title"
+    echo "- event_kind: $event_kind"
+    echo "- operator: tools/thiên"
+    echo "- extension: tools/thiênbăng"
+    echo "- dictionary: src/thienbang.si"
+    echo ""
+    echo "## 2. meaning"
+    echo ""
+    echo "$meaning"
+    echo ""
+    echo "## 3. anti-bypass guard"
+    echo ""
+    echo "$guard"
+    echo ""
+    echo "## 4. note"
+    echo ""
+    echo "$note"
+    echo ""
+  } > "$MEMORY_FILE"
+
+  "$THIEN" emit "thienbang.memory.$event_kind" "{\"state\":\"$event_kind\",\"created_at\":\"$now\"}" >/dev/null || true
+
+  say "$title: pass"
+  say "evidence=docs/runtime/thienbang_memory_state_evidence_20260425.na"
+}
+
+
+
 cmd="${1:-presence}"
 shift || true
 
 case "$cmd" in
   help|-h|--help) usage ;;
+  nhớ) cmd_nho ;;
+  nhà|gắn|neo|bọc|gánh|nhường|tha|khiêm|định|tỉnh|biên|xét|chốt|giữ|về) cmd_memory_state "$cmd" "$@" ;;
   presence) cmd_presence ;;
   pulse) cmd_pulse ;;
   immune) cmd_immune ;;
