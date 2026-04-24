@@ -1659,69 +1659,77 @@ PY31
 # ═══════════════════════════════════════════════════════════════
 grp "GROUP H — META & HEALTH — Memory · QNEU · Dead Code · Legacy · Visual"
 # ═══════════════════════════════════════════════════════════════
-hdr "32" "MEMORY FILES HEALTH"
+hdr "32" "MEMORY FILES HEALTH (v1.2 R01 aware — Nauion suffix family)"
 
 MEM_DIR="src/governance/memory"
 
-# bangmf
-BANGMF=$(find "$MEM_DIR/bang" -name "bangmf_v*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGMF" ]]; then
-  BANGMF_VER=$(basename "$BANGMF" .json)
-  if python3 -c "import json,sys; json.load(open('$BANGMF'))" 2>/dev/null; then
-    ok "bangmf: $BANGMF_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "bangmf: $BANGMF_VER INVALID JSON"; inc_fail "MEMORY: bangmf JSON corrupted"
+# Helper: check_persona <name> <dir> <legacy_glob> <v12_glob>
+# Counts files matching either legacy or v1.2 R01 patterns; reports state.
+check_persona_memory() {
+  local persona="$1"
+  local pdir="$2"
+  local legacy_glob="$3"
+  local v12_globs="$4"
+
+  if [ ! -d "$pdir" ]; then
+    warn "$persona: dir missing ($pdir)"
+    inc_warn "MEMORY: $persona dir missing"
+    return
   fi
-else
-  warn "bangmf: not found"; inc_warn "MEMORY: bangmf missing"
-fi
 
-# bangfs
-BANGFS=$(find "$MEM_DIR/bang" -name "bangfs_v*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGFS" ]]; then
-  BANGFS_VER=$(basename "$BANGFS" .json)
-  if python3 -c "import json,sys; json.load(open('$BANGFS'))" 2>/dev/null; then
-    ok "bangfs: $BANGFS_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "bangfs: $BANGFS_VER INVALID JSON"; inc_fail "MEMORY: bangfs JSON corrupted"
+  # Count legacy files
+  local n_legacy=0
+  if [ -n "$legacy_glob" ]; then
+    n_legacy=$(find "$pdir" -maxdepth 1 -name "$legacy_glob" 2>/dev/null | wc -l | tr -d ' ')
   fi
-else
-  warn "bangfs: not found"; inc_warn "MEMORY: bangfs missing"
-fi
 
-# thiennho
-THIENNHO=$(find "$MEM_DIR/thiennho" -name "*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$THIENNHO" ]]; then
-  THIENNHO_VER=$(basename "$THIENNHO" .json)
-  if python3 -c "import json,sys; json.load(open('$THIENNHO'))" 2>/dev/null; then
-    ok "thiennho: $THIENNHO_VER ✅ (valid JSON)"; inc_ok
+  # Count v1.2 files (any of the globs)
+  local n_v12=0
+  for glob in $v12_globs; do
+    local n=$(find "$pdir" -maxdepth 1 -name "$glob" 2>/dev/null | wc -l | tr -d ' ')
+    n_v12=$((n_v12 + n))
+  done
+
+  if [ "$n_v12" -gt 0 ]; then
+    ok "$persona: $n_v12 v1.2 R01 file(s) ✅"
+    inc_ok
+    if [ "$n_legacy" -gt 0 ]; then
+      warn "  $persona: also $n_legacy legacy file(s) — consider archive _deprecated/"
+    fi
+  elif [ "$n_legacy" -gt 0 ]; then
+    warn "$persona: only legacy ($n_legacy file) — migrate to v1.2 R01"
+    inc_warn "MEMORY: $persona legacy-only"
   else
-    fail "thiennho: INVALID JSON"; inc_fail "MEMORY: thiennho JSON corrupted"
+    warn "$persona: no memory files found"
+    inc_warn "MEMORY: $persona missing"
   fi
-else
-  warn "thiennho: not found"; inc_warn "MEMORY: thiennho missing"
-fi
+}
 
-# kimf
-KIMF=$(find "$MEM_DIR/kim" -name "kmf*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$KIMF" ]]; then
-  ok "kimf: $(basename $KIMF .json) ✅"; inc_ok
-else
-  info "kimf: not found (optional)"
-fi
+# v1.2 R01 Nauion suffix family per persona:
+#   .na      = continuum K-shell (bangkhươngvX.Y.Z.na)
+#   .kris    = sealed K-shell legacy (bangkhươngX.Y.kris) — still valid
+#   .phieu   = state P-shell (bangthịnhX.Y.phieu)
+#   .anc     = identity passport
+#   .obitan  = orbital fragment
+#   .thuo    = snapshot
 
-# Check no .zip in memory
-ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$ZIP_IN_MEM" -gt 0 ]]; then
-  warn "$ZIP_IN_MEM .zip file(s) in memory dir — should not be committed"
-  inc_warn "MEMORY: .zip files present"
-else
-  ok "No .zip files in memory dir"; inc_ok
-fi
+check_persona_memory "bang"     "$MEM_DIR/bang"     "bangmf_v*.json"  "bangkhương*.na bangkhương*.kris bangkhuong*.na bangkhuong*.kris bang.anc"
+check_persona_memory "kim"      "$MEM_DIR/kim"      "kmf_v*.json"     "kimkhương*.kris kimkhuong*.kris kim*.anc"
+check_persona_memory "thiennho" "$MEM_DIR/thiennho" "thiennho_v*.json" "thiennhokhương*.kris thiennhokhuong*.kris thiennho*.anc"
+check_persona_memory "boiboi"   "$MEM_DIR/boiboi"   ""                "boikhương*.kris boikhuong*.kris boithịnh*.phieu boi*.anc"
 
-# ═══════════════════════════════════════════════════════════════
-# S22 — MATH + METABOLISM COVERAGE
-# ═══════════════════════════════════════════════════════════════
+# Optional personas (no warn if missing)
+for opt in Can Kris kim_old; do
+  if [ -d "$MEM_DIR/$opt" ]; then
+    n=$(find "$MEM_DIR/$opt" -maxdepth 1 \( -name "*.kris" -o -name "*.na" -o -name "*.phieu" -o -name "*.anc" \) 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$n" -gt 0 ]; then
+      ok "$opt: $n optional persona file(s)"
+      inc_ok
+    fi
+  fi
+done
+
+
 hdr "33" "QNEU SCORE TREND"
 
 BASELINE_BANG=300; BASELINE_THIEN=135; BASELINE_KIM=120
