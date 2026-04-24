@@ -19,7 +19,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 {
   "validator": {
-    "cmd": "node tools/sira_runtime_runner.mjs tools/validate_sira_browser_adapter.sira",
+    "cmd": "tools/thiên tools/validate_sira_browser_adapter.sira",
     "exit": 0,
     "stdout": "SIRA BROWSER ADAPTER VALIDATION: PASS\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
     "stderr": ""

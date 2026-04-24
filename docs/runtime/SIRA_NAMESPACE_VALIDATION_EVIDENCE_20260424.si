@@ -29,7 +29,7 @@ tools/validate_sira_namespace.sira
 
 {
   "validator": {
-    "cmd": "node tools/sira_runtime_runner.mjs tools/validate_sira_namespace.sira",
+    "cmd": "tools/thiên tools/validate_sira_namespace.sira",
     "exit": 0,
     "stdout": "SIRA NAMESPACE VALIDATION: PASS\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/SIRA gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
     "stderr": ""

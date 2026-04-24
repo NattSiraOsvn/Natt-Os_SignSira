@@ -20,7 +20,7 @@ Nguyên tắc:
 
 ## 2. Current Runtime Gate
 
-- `.sira` runtime runner: tools/sira_runtime_runner.mjs
+- `.sira` runtime runner: tools/thiên
 - SIRA gateway: tools/natt_domain_gateway.sira
 - Namespace validator: tools/validate_sira_namespace.sira
 - Browser Adapter validator: tools/validate_sira_browser_adapter.sira
