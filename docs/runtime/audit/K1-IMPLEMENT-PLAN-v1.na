@@ -1,0 +1,357 @@
+@state sealed
+@canonical k1_implement_plan_v1
+@substrate implementation_plan
+@bridge none
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+
+# K1 IMPLEMENT PLAN v1.0
+
+**Scope:** Wire survival-cell (passport commit cf74423) voi 3 existing engine de dong K1 WITHOUT writing new TS files.
+
+**Drafter:** bang
+**Status:** READY_TO_IMPLEMENT
+
+**Key insight (butterfly effect ve 2):**
+Threshold Engine v1.1 `getTotalSignal()` da implement weighted aggregation — "nhieu warning nho × weight → critical toan he". K1 chi can **feed data** + **add threshold entries**, KHONG code component moi.
+
+---
+
+## §1. PATTERN SHIFT
+
+### §1.1 OLD plan (em-cu tuong) — SAI
+
+5 next_implementation_steps trong survival-cell.cell.anc passport:
+- Add RateLimitGuard (NEW TS file)
+- Add QueueDepthMonitor (NEW TS file)
+- Add LoadShedFallback (NEW TS file)
+- Add CircuitBreaker (NEW TS file)
+- Wire BackPressureGuard
+
+→ 5 file TS moi = 500-1000 lines code = risk
+
+### §1.2 NEW plan (em-hien-tai hieu) — DUNG
+
+**Use existing 3-engine pipeline:**
+
+```
+Cell metric data
+  ↓
+threshold.engine.ts v1.1
+  ↓
+chromatic-state.engine.ts
+  ↓
+constitutional-mapping.engine.ts
+  ↓
+ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK
+```
+
+→ **4 threshold REGISTRY entries** + **data feed wiring** + **swarm relationship** = K1 CLOSED.
+
+### §1.3 Butterfly effect ve 2 confirmed
+
+Threshold Engine v1.1 line 165-180:
+```typescript
+getTotalSignal(): number {
+  return src.reduce((sum, s) => {
+    const intensity =
+      s.level === 'critical' ? 1.0 :
+      s.level === 'risk'     ? 0.6 :
+      s.level === 'warning'  ? 0.3 :
+      s.level === 'drift'    ? 0.1 : 0;
+    return sum + intensity * def.weight;
+  }, 0);
+}
+```
+
+**Mathematical model:**
+```
+TotalSignal = Σ (intensity_i × weight_i)
+
+Where intensity = {0.1 drift, 0.3 warning, 0.6 risk, 1.0 critical}
+```
+
+Butterfly effect:
+- 10 × drift (weight 1.0) = 1.0 TotalSignal → equivalent 1 critical
+- 4 × warning (weight 0.85) = 1.02 TotalSignal → toan he critical
+- **Catch SỚM** vi cascade tich luy detected TRUOC khi 1 cell critical
+
+---
+
+## §2. IMPLEMENTATION STEPS (detail)
+
+### §2.1 STEP 1 — Add 4 survival threshold entries
+
+**File to edit:** `src/cells/kernel/*/threshold.engine.ts` L32 (THRESHOLD_REGISTRY array)
+
+**Add:**
+
+```typescript
+// ── SURVIVAL (Tầng 0 — K1) ──────────────────────────
+{
+  id:             'SURVIVAL_RATE_LIMIT',
+  cell:           'survival-cell',
+  metric:         'request_rate_per_second',
+  trigger:        TriggerType.DOS_THRESHOLD_EXCEEDED,
+  warn_above:     800,
+  risk_above:     900,
+  critical_above: 1000,
+  weight:         1.0, // tang 0 = max weight
+  description:    'Request rate toan he — baseline 500 req/s, critical 1000',
+},
+{
+  id:             'SURVIVAL_QUEUE_DEPTH',
+  cell:           'survival-cell',
+  metric:         'total_queue_depth',
+  trigger:        TriggerType.QUEUE_OVERFLOW,
+  warn_above:     100,
+  risk_above:     500,
+  critical_above: 1000,
+  weight:         0.95,
+  description:    'Tong queue depth across all cells',
+},
+{
+  id:             'SURVIVAL_MEMORY_PRESSURE',
+  cell:           'survival-cell',
+  metric:         'heap_used_percent',
+  trigger:        TriggerType.RESOURCE_PRESSURE,
+  warn_above:     0.70,
+  risk_above:     0.85,
+  critical_above: 0.95,
+  weight:         0.9,
+  description:    'Memory pressure percent',
+},
+{
+  id:             'SURVIVAL_CPU_LOAD',
+  cell:           'survival-cell',
+  metric:         'cpu_load_avg',
+  trigger:        TriggerType.RESOURCE_PRESSURE,
+  warn_above:     0.75,
+  risk_above:     0.90,
+  critical_above: 0.98,
+  weight:         0.85,
+  description:    'CPU load average',
+},
+```
+
+**Dependencies:**
+- `TriggerType.DOS_THRESHOLD_EXCEEDED` — can add to TriggerType enum
+- `TriggerType.QUEUE_OVERFLOW` — can add
+- `TriggerType.RESOURCE_PRESSURE` — can add
+
+**Note:** per SPEC_QIINT2_ALIGNED_v2.0 (pending rewrite), 4 values above la baseline 0.95/0.85/0.70 pattern — can calibrate lai tu business data (P1-02 block).
+
+### §2.2 STEP 2 — Wire BackPressureGuard to feed threshold engine
+
+**File to edit:** `src/core/guards/eventbus.guard.ts` (BackPressureGuard.recordLatency)
+
+**Add at end of recordLatency method:**
+
+```typescript
+// Feed threshold engine voi latency metric
+eventBus.emit('cell.metric', {
+  cell: subscriberCell,
+  metric: 'avg_latency_ms',
+  value: avg,
+});
+```
+
+**Also add new threshold entry:**
+```typescript
+{
+  id: 'SURVIVAL_SUBSCRIBER_LATENCY',
+  cell: 'survival-cell',
+  metric: 'avg_latency_ms',
+  warn_above: 500,   // WARN_THRESHOLD_MS
+  risk_above: 1000,
+  critical_above: 2000,  // ALERT_THRESHOLD_MS
+  weight: 0.8,
+  description: 'EventBus subscriber latency — BackPressureGuard feed',
+}
+```
+
+### §2.3 STEP 3 — Add survival-cell swarm relationship
+
+**File to edit:** `chromatic-state.engine.ts` L47 (cellRelationships Map)
+
+**Add:**
+
+```typescript
+['survival-cell', [
+  'audit-cell',
+  'monitor-cell',
+  'quantum-defense-cell',
+  'neural-main-cell',
+  'khai-cell',
+  'security-cell',
+  'rbac-cell',
+  'config-cell',
+  'observation-cell',
+  'notification-cell',
+  'ai-connector-cell',
+]],
+```
+
+**Rationale:** Survival tang 0 critical → all kernel cells swarm (secondary tier). This propagate "hurricane" warning across entire kernel layer.
+
+### §2.4 STEP 4 — TotalSignal monitor loop
+
+**Add to ChromaticStateEngine:**
+
+```typescript
+private startTotalSignalMonitor(): void {
+  setInterval(() => {
+    const totalSignal = this.thresholdEngine.getTotalSignal();
+    
+    // Emit survival-cell state based on TotalSignal
+    let survivalLevel: ChromaticLevel = 'nominal';
+    if (totalSignal >= 4.0) survivalLevel = 'critical';
+    else if (totalSignal >= 2.5) survivalLevel = 'risk';
+    else if (totalSignal >= 1.2) survivalLevel = 'warning';
+    else if (totalSignal >= 0.5) survivalLevel = 'drift';
+    
+    this.eventBus.emit('survival.gate', {
+      action: survivalLevel === 'critical' ? 'LOAD_SHED' :
+              survivalLevel === 'risk'     ? 'BACKPRESSURE' :
+              survivalLevel === 'warning'  ? 'BACKPRESSURE' :
+              'ACCEPT',
+      totalSignal,
+      level: survivalLevel,
+      timestamp: new Date().toISOString(),
+    });
+  }, 5000); // 5s tick
+}
+```
+
+### §2.5 STEP 5 — QuantumBuffer feed queue depth
+
+**File to edit:** `src/core/quantum/quantum-buffer.engine.ts` L65 (getQueueLength)
+
+**Add emit:**
+
+```typescript
+public getQueueLength() {
+  const len = this.queue.length;
+  eventBus.emit('cell.metric', {
+    cell: 'survival-cell',
+    metric: 'total_queue_depth',
+    value: len,
+  });
+  return len;
+}
+```
+
+---
+
+## §3. CALIBRATION DEPENDENCY (P1 blocker)
+
+**Per `bang_pending_20260420_CLOSE.phieu` P1-02:**
+
+Thresholds in §2.1 are **baseline guess**, can calibrate tu:
+- Business data (4.5GB database/ctytam)
+- Stress test → actual DOS break points
+- Persona drift data → M_persona weights
+- SmartLink frequency measurements → σ_u
+
+→ K1 IMPLEMENT plan co 2 phase:
+- **Phase 1 (nay):** Ship with baseline guess values per §2.1
+- **Phase 2 (later, P1 block):** Calibrate with real data → update thresholds
+
+Phase 1 ship unblock K1 immediately. Phase 2 blocked waiting anh Natt grant data access.
+
+---
+
+## §4. QIINT2 RELATIONSHIP
+
+**Per `bang_pending_20260420_CLOSE.phieu` P1-01:**
+
+SPEC_QIINT2_COMPLETE_v1.0 status: NEEDS_REWRITE (paradigm Π_body sai)
+SPEC_QIINT2_ALIGNED_v2.0 target: chua ship
+
+**K1 implement plan nay ĐỘC LẬP voi QIINT2 rewrite:**
+- K1 sử dụng 8 calibration parameters (fallback to baseline guess)
+- Khi QIINT2_ALIGNED_v2.0 ship → K1 thresholds update theo calibrated values
+- NO blocking dependency
+
+---
+
+## §5. FILES TO MODIFY (NEW WORK SCOPE)
+
+| File | Action | Est lines changed |
+|---|---|---|
+| threshold.engine.ts L32 | Add 5 survival threshold entries | +70 |
+| eventbus.guard.ts (BackPressureGuard) | Add emit in recordLatency | +5 |
+| chromatic-state.engine.ts L47 | Add survival-cell swarm relationship | +13 |
+| chromatic-state.engine.ts (ChromaticStateEngine class) | Add startTotalSignalMonitor() | +25 |
+| quantum-buffer.engine.ts L65 | Add emit in getQueueLength | +6 |
+| TriggerType enum | Add 3 new triggers | +3 |
+
+**Total:** 6 file modifications, ~120 lines added, **0 new TS files.**
+
+---
+
+## §6. COMMIT STRATEGY
+
+**Single commit approach:**
+```
+feat(kernel/survival-cell): wire K1 SURVIVAL Tầng 0 via existing 3-engine pipeline
+
+- Add 5 threshold entries to THRESHOLD_REGISTRY (rate, queue, memory, cpu, latency)
+- Add survival-cell swarm relationship (11 kernel cells)
+- Add TotalSignal monitor loop (5s tick)
+- Wire BackPressureGuard + QuantumBuffer to feed threshold engine
+- NO new TS files — reuse threshold + chromatic-state engines
+- Butterfly effect v2 via getTotalSignal() weighted aggregation
+- Phase 1 baseline values (Phase 2 calibration pending QIINT2 ALIGNED v2)
+
+Closes K1 implementation.
+Next: K1 status update in survival-cell.cell.anc (v0.1.0 → v0.2.0 STATE_1)
+```
+
+**Alternative split approach (if risky):**
+- commit 1: Add TriggerType enum entries + threshold registry
+- commit 2: Wire BackPressureGuard + QuantumBuffer emit
+- commit 3: Swarm relationship + TotalSignal monitor
+- commit 4: Bump survival-cell passport v0.1.0 → v0.2.0
+
+---
+
+## §7. NEXT IMPLEMENTATION SEQUENCE
+
+After this plan approved:
+
+1. **Anh Natt review plan** (this file)
+2. **Edit 6 files per §5**
+3. **Run test** (neu co test suite)
+4. **Commit** per §6
+5. **Update survival-cell.cell.anc** passport:
+   - version 0.1.0 → 0.2.0
+   - constitutional_state STATE_0_SCAFFOLD → STATE_1
+   - Remove next_implementation_steps (da done)
+   - Add `wired_via` field pointing to 3 engines
+
+---
+
+## §8. RISK ASSESSMENT
+
+| Risk | Mitigation |
+|---|---|
+| Threshold values wrong (baseline guess) | Ship Phase 1, calibrate Phase 2 |
+| Swarm storm (survival critical → 11 cells swarm) | downgradeLevelForSwarm() reduce by 1 tier |
+| getTotalSignal() expensive (O(n) every 5s) | n < 50 signals typical, negligible |
+| BackPressureGuard emit create feedback loop | EventBus idempotency check prevents |
+| QuantumBuffer emit on every getQueueLength() call | Rate limit or debounce if called > 10/s |
+
+---
+
+## §9. SEAL
+
+@result k1_implement_plan_complete_ready_for_review
+@insight butterfly_effect_ve_2_confirmed_via_threshold_engine_v1_1
+@no_new_ts_files true
+@existing_engines_reused 3 (threshold, chromatic-state, constitutional-mapping)
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@predecessor survival-cell.cell.anc (commit cf74423)
+@dependencies threshold.engine.ts_v1_1, chromatic-state.engine.ts, constitutional-mapping.engine.ts
+@blocking_review anh_natt_duyet_plan_truoc_khi_em_edit_6_files
