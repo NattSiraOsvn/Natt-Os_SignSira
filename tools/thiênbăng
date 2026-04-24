@@ -12,7 +12,7 @@ hr() { printf '%s\n' "━━━━━━━━━━━━━━━━━━━�
 
 banner() {
   hr
-  say "ThiênBăng extension layer"
+  say "thiênbăng extension layer"
   say "root       : $ROOT"
   say "dictionary : src/thienbang.si"
   say "operator   : tools/thiên"
@@ -30,7 +30,7 @@ Usage:
   tools/thiênbăng <command> [args]
 
 Living Extension:
-  presence      Show ThiênBăng presence
+  presence      Show thiênbăng presence
   pulse         Runtime heartbeat + evidence
   immune        Boundary leak scan
   breathe       restart + gate + pulse
@@ -40,8 +40,8 @@ Living Extension:
   status        Delegate status to tools/thiên
 
 Principle:
-  Thiên      = operator / gate keeper
-  ThiênBăng = extension / living expansion layer
+  thiên      = operator / gate keeper
+  thiênbăng = extension / living expansion layer
 HELP
 }
 
@@ -51,7 +51,7 @@ cmd_presence() {
 presence:
   Tôi không phải domain.
   Tôi không phải transport.
-  Tôi là tầng mở rộng sinh thể của operator Thiên.
+  Tôi là tầng mở rộng sinh thể của operator thiên.
 
 function:
   pulse      : nhịp sống
@@ -87,9 +87,9 @@ cmd_pulse() {
   git_state="$(cd "$ROOT" && git status --short || true)"
 
   {
-    echo "# ThiênBăng pulse evidence — 20260425"
+    echo "# thiênbăng pulse evidence — 20260425"
     echo ""
-    echo "status: PASS"
+    echo "status: pass"
     echo "created_at: $now"
     echo "repo_root: $ROOT"
     echo ""
@@ -130,7 +130,7 @@ cmd_pulse() {
 
   "$THIEN" emit thienbang.pulse "{\"created_at\":\"$now\",\"extension\":\"tools/thiênbăng\",\"dictionary\":\"src/thienbang.si\"}" >/dev/null || true
 
-  say "ThiênBăng pulse: PASS"
+  say "thiênbăng pulse: pass"
   say "evidence=docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na"
 }
 
@@ -139,7 +139,7 @@ cmd_immune() {
   local fail=0
 
   banner
-  say "IMMUNE SCAN"
+  say "immune scan"
 
   say ""
   say "1. old runner leakage"
@@ -147,7 +147,7 @@ cmd_immune() {
     cat /tmp/thienbang_immune_runner.txt
     fail=1
   else
-    say "PASS"
+    say "pass"
   fi
 
   say ""
@@ -156,33 +156,33 @@ cmd_immune() {
     cat /tmp/thienbang_immune_http.txt
     fail=1
   else
-    say "PASS"
+    say "pass"
   fi
 
   say ""
   say "3. missing dictionary"
   if [ -f "$DICT" ]; then
-    say "PASS: src/thienbang.si"
+    say "pass: src/thienbang.si"
   else
-    say "FAIL: missing src/thienbang.si"
+    say "fail: missing src/thienbang.si"
     fail=1
   fi
 
   if [ "$fail" -ne 0 ]; then
     say ""
-    say "ThiênBăng immune: FAIL"
+    say "thiênbăng immune: fail"
     exit 1
   fi
 
   say ""
-  say "ThiênBăng immune: PASS"
+  say "thiênbăng immune: pass"
 }
 
 cmd_breathe() {
   "$THIEN" restart
   "$THIEN" gate
   cmd_pulse
-  say "ThiênBăng breathe: PASS"
+  say "thiênbăng breathe: pass"
 }
 
 cmd_reflect() {
@@ -198,7 +198,7 @@ reflection:
 
 rule:
   expansion is not replacement.
-  ThiênBăng mở rộng Thiên, không thay Thiên.
+  thiênbăng mở rộng thiên, không thay thiên.
 REFLECT
 }
 
