@@ -1,19 +1,20 @@
 import { EventBus } from "../../../../core/events/event-bus";
 // ── compliance-smartlink.port.ts ────────────────────────────
-export interface ComplianceSignal {
+// SIRA_CONTRACT_INTERFACE ComplianceSignal
+const ComplianceSignal = {
   type: "FRAUD_DETECTED" | "COMPLIANCE_OK" | "AUDIT_REQUIRED" | "ROUND_NUMBER_ANOMALY";
-  payload: Record<string, unknown>;
-  timestamp: number;
+  payload;
+  timestamp;
 }
 
-const COMPLIANCE_MAP: Record<string, string> = {
+const COMPLIANCE_MAP = {
   "FRAUD_DETECTED":       "FraudDetected",
   "COMPLIANCE_OK":        "ComplianceOK",
   "AUDIT_REQUIRED":       "AuditRequired",
   "ROUND_NUMBER_ANOMALY": "RoundNumberAnomaly",
 };
 
-export function publishComplianceSignal(signal: ComplianceSignal): void {
+export function publishComplianceSignal(signal: ComplianceSignal) {
   EventBus.emit(COMPLIANCE_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
 }
 

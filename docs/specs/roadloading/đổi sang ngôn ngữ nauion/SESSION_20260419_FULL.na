@@ -29,7 +29,7 @@
 ### A2. P1.3 — FILE EXTENSION VALIDATOR (COMPLETED)
 
 **Kim scaffold (Tầng 2 — Structural/Manifest):**
-- `src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts`
+- `src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.sira`
 - `src/cells/kernel/audit-cell/types/validation-result.types.ts`
 - `src/cells/kernel/audit-cell/registry/extension-registry.ts`
 - Commit: `bfac0d2`, pushed to `feat/p1.3-file-extension-validator`

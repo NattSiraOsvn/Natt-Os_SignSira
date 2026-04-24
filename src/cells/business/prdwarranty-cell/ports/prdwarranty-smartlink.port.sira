@@ -1,19 +1,20 @@
 import { EventBus } from "../../../../core/events/event-bus";
 // ── prdwarranty-smartlink.port.ts ───────────────────────────
-export interface WarrantySignal {
+// SIRA_CONTRACT_INTERFACE WarrantySignal
+const WarrantySignal = {
   type: "WARRANTY_CLAIMED" | "WARRANTY_APPROVED" | "WARRANTY_CRITICAL" | "WARRANTY_EXPIRED";
-  payload: Record<string, unknown>;
-  timestamp: number;
+  payload;
+  timestamp;
 }
 
-const WARRANTY_MAP: Record<string, string> = {
+const WARRANTY_MAP = {
   "WARRANTY_CLAIMED":   "WarrantyClaimed",
   "WARRANTY_APPROVED":  "WarrantyApproved",
   "WARRANTY_CRITICAL":  "WarrantyCritical",
   "WARRANTY_EXPIRED":   "WarrantyExpired",
 };
 
-export function publishWarrantySignal(signal: WarrantySignal): void {
+export function publishWarrantySignal(signal: WarrantySignal) {
   EventBus.emit(WARRANTY_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
 }
 

@@ -1,0 +1,16 @@
+/**
+ * P1.3 — FILE EXTENSION VALIDATOR INTERFACE
+ * SPEC v1.3 FINAL §4.3
+ * Tầng 2 (Structural/Manifest) — Kim scaffold
+ */
+
+import { ValidationResult, ExtensionRule } from '../types/validation-result.types';
+
+// SIRA_CONTRACT_INTERFACE IFileExtensionValidator
+const IFileExtensionValidator = {
+  validate(filePath): ValidationResult;
+  validateBatch(filePaths[]): Map<string, ValidationResult>;
+  getRule(extension): ExtensionRule | null;
+  getAllRules(): ExtensionRule[];
+  getCanonicalExtensions()[];
+}

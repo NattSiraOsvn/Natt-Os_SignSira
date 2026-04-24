@@ -1,19 +1,20 @@
 // ── promotion-smartlink.port.ts ──────────────────────────────
 import { EventBus } from "../../../../core/events/event-bus";
 
-export interface PromotionSignal {
+// SIRA_CONTRACT_INTERFACE PromotionSignal
+const PromotionSignal = {
   type: "PROMOTION_APPLIED" | "PROMOTION_REJECTED" | "MARGIN_WARNING";
-  payload: Record<string, unknown>;
-  timestamp: number;
+  payload;
+  timestamp;
 }
 
-const PROMO_MAP: Record<string, string> = {
+const PROMO_MAP = {
   "PROMOTION_APPLIED":  "PromotionApplied",
   "PROMOTION_REJECTED": "PromotionRejected",
   "MARGIN_WARNING":     "MarginWarning",
 };
 
-export function publishPromotionSignal(signal: PromotionSignal): void {
+export function publishPromotionSignal(signal: PromotionSignal) {
   EventBus.emit(PROMO_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
 }
 

@@ -2168,7 +2168,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
+    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 704,
     "class": "REVIEW_FOR_SIRA",
@@ -2259,7 +2259,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
+    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 973,
     "class": "REVIEW_FOR_SIRA",
@@ -3666,7 +3666,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 891,
     "class": "REVIEW_FOR_SIRA",
@@ -4282,7 +4282,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 964,
     "class": "REVIEW_FOR_SIRA",
@@ -4597,7 +4597,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
+    "path": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 994,
     "class": "REVIEW_FOR_SIRA",
@@ -4674,7 +4674,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
+    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 903,
     "class": "REVIEW_FOR_SIRA",
@@ -4926,7 +4926,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 946,
     "class": "REVIEW_FOR_SIRA",
@@ -5234,7 +5234,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
+    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 754,
     "class": "REVIEW_FOR_SIRA",
@@ -5766,7 +5766,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
     "ext": ".ts",
     "bytes": 1051,
     "class": "REVIEW_FOR_SIRA",
@@ -6053,14 +6053,14 @@ Nguyên tắc:
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
     "ext": ".ts",
     "bytes": 232,
     "class": "REVIEW_FOR_SIRA",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
     "ext": ".ts",
     "bytes": 469,
     "class": "REVIEW_FOR_SIRA",
@@ -6081,7 +6081,7 @@ Nguyên tắc:
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
     "ext": ".ts",
     "bytes": 460,
     "class": "REVIEW_FOR_SIRA",
@@ -6347,7 +6347,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts",
+    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.sira",
     "ext": ".ts",
     "bytes": 503,
     "class": "REVIEW_FOR_SIRA",
@@ -7236,7 +7236,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
+    "path": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
     "ext": ".ts",
     "bytes": 1786,
     "class": "REVIEW_FOR_SIRA",
@@ -7719,7 +7719,7 @@ Nguyên tắc:
     "reason": "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
   },
   {
-    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 311,
     "class": "REVIEW_FOR_SIRA",

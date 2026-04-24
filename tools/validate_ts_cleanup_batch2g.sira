@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2G_PORT_CONTRACT_TO_SIRA_20260424.na");
+
+if (!fs.existsSync(evidence)) {
+  console.error("Missing evidence:", evidence);
+  process.exit(1);
+}
+
+const content = fs.readFileSync(evidence, "utf8");
+const required = [
+  "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+  "LIGHT_HARD_TRANSLATION_CANDIDATE",
+  "renamed",
+  "skipped"
+];
+const missing = required.filter(x => !content.includes(x));
+
+if (missing.length) {
+  console.error("TS CLEANUP BATCH2G VALIDATION: FAIL");
+  for (const x of missing) console.error(" - missing " + x);
+  process.exit(1);
+}
+
+console.log("TS CLEANUP BATCH2G VALIDATION: PASS");
+console.log("scope=PORT_CONTRACT + LIGHT_HARD only");

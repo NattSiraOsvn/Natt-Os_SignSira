@@ -1,0 +1,12 @@
+import { SmartLink, LinkType } from '../domain/entities';
+
+// SIRA_CONTRACT_INTERFACE SmartLinkRepository
+const SmartLinkRepository = {
+  save(link: SmartLink);
+  getById(id);
+  getBySource(sourceType, sourceId);
+  getByTarget(targetType, targetId);
+  getByType(linkType: LinkType);
+  delete(id);
+  getAll();
+}

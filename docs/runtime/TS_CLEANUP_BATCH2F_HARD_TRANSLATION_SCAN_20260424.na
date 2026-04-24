@@ -34,7 +34,7 @@ Không động app/UI.
 
 [
   {
-    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts",
+    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.sira",
     "bytes": 503,
     "cluster": "LIGHT_HARD_TRANSLATION_CANDIDATE",
     "effort": 4,
@@ -77,7 +77,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
+    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
     "bytes": 704,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -123,7 +123,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
+    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
     "bytes": 973,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -169,7 +169,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
     "bytes": 891,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -215,7 +215,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
     "bytes": 964,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -261,7 +261,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
+    "path": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
     "bytes": 994,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -307,7 +307,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
+    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
     "bytes": 903,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -353,7 +353,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
     "bytes": 946,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -399,7 +399,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
+    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
     "bytes": 754,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -445,7 +445,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
     "bytes": 1051,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -492,7 +492,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
     "bytes": 232,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -537,7 +537,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
     "bytes": 469,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -583,7 +583,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
     "bytes": 460,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -625,7 +625,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
+    "path": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
     "bytes": 1786,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -671,7 +671,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
     "bytes": 311,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -722,7 +722,7 @@ Không động app/UI.
 
 [
   {
-    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts",
+    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.sira",
     "bytes": 503,
     "cluster": "LIGHT_HARD_TRANSLATION_CANDIDATE",
     "effort": 4,
@@ -765,7 +765,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
+    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
     "bytes": 704,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -811,7 +811,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
+    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
     "bytes": 973,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -857,7 +857,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
     "bytes": 891,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -903,7 +903,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
     "bytes": 964,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -949,7 +949,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
+    "path": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
     "bytes": 994,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -995,7 +995,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
+    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
     "bytes": 903,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1041,7 +1041,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
     "bytes": 946,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1087,7 +1087,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
+    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
     "bytes": 754,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1133,7 +1133,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
     "bytes": 1051,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1180,7 +1180,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
     "bytes": 232,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1225,7 +1225,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
     "bytes": 469,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1271,7 +1271,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
     "bytes": 460,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1313,7 +1313,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
+    "path": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
     "bytes": 1786,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,
@@ -1359,7 +1359,7 @@ Không động app/UI.
     "source_action": "manual translation"
   },
   {
-    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
     "bytes": 311,
     "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
     "effort": 4,

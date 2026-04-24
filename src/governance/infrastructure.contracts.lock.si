@@ -82,11 +82,11 @@
           "sha256": "b8230e5447a3e772798d1707d7180e4bec514a7f02b936c5359b23d96bda638b"
         },
         {
-          "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+          "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
           "sha256": "4681ced65afb5c38a1f4644a2087d54d1ab9e9ce5f3502c75645544d316f3375"
         },
         {
-          "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+          "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
           "sha256": "e770dd5aa6f58511bf0fd677be86ddd8f78689a9b0d4fa178f69f6e60c97112a"
         },
         {
@@ -94,7 +94,7 @@
           "sha256": "abb86d5a95b1d25c97b6d1a27c772ff094bbfe327aff82f9d891153df28aed96"
         },
         {
-          "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+          "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
           "sha256": "b646c6ebcfd1d0d89ef384a17072b58f21b1918eaaa43603b6718eca22605108"
         }
       ],

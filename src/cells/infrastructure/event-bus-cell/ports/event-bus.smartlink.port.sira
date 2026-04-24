@@ -3,21 +3,22 @@
 // Điều 4: no direct cell-to-cell calls, all through EventBus
 // ═══════════════════════════════════════════════════════════════
 
-export interface EventBusSmartLinkPort {
+// SIRA_CONTRACT_INTERFACE EventBusSmartLinkPort
+const EventBusSmartLinkPort = {
   /** Route event to all subscribers */
-  route(event: string, payload: unknown): void;
+  route(event, payload);
 
   /** Register subscriber for event pattern */
-  subscribe(pattern: string, handler: (payload: unknown) => void): () => void;
+  subscribe(pattern, handler: (payload) => void): () => void;
 
   /** Get dead letter queue entries */
-  getDeadLetters(): Array<{ event: string; payload: unknown; reason: string; timestamp: number }>;
+  getDeadLetters();
 
   /** Get routing metrics */
   getMetrics(): {
-    totalRouted: number;
-    totalDeadLetters: number;
-    totalRetries: number;
-    activeSubscribers: number;
+    totalRouted;
+    totalDeadLetters;
+    totalRetries;
+    activeSubscribers;
   };
 }

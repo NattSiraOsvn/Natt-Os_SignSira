@@ -17,9 +17,9 @@ export const NEURAL_MAIN_EVENTS = {
   VALIDATION_COMPLETE:  'neural-main.validation.complete',
   AUDIT_QUERY_RESPONSE: 'audit.query.response',
   GATEKEEPER_OVERRIDE:  'gatekeeper.qneu.override',
-} as const;
+};
 
-export type NeuralMainEventType = typeof NEURAL_MAIN_EVENTS[keyof typeof NEURAL_MAIN_EVENTS];
+// SIRA_TYPE_ALIAS NeuralMainEventType = typeof NEURAL_MAIN_EVENTS[keyof typeof NEURAL_MAIN_EVENTS];
 
 export const NeuralMainSmartLinkPort = forgeSmartLinkPort({
   cellId: 'neural-main-cell',
@@ -32,9 +32,9 @@ export const NeuralMainSmartLinkPort = forgeSmartLinkPort({
   },
 });
 
-export function publishNeuralEvent(type: NeuralMainEventType, payload: unknown): void {
+export function publishNeuralEvent(type: NeuralMainEventType, payload) {
   EventBus.publish(
-    { type: type as any, payload },
+    { type: type, payload },
     'neural-main-cell',
     undefined
   );

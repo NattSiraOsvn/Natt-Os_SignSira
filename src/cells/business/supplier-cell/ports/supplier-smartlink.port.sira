@@ -1,20 +1,21 @@
 // supplier-smartlink.port.ts
 import { EventBus } from "../../../../core/events/event-bus";
 
-export interface SupplierSignal {
+// SIRA_CONTRACT_INTERFACE SupplierSignal
+const SupplierSignal = {
   type: "SUPPLIER_APPROVED" | "SUPPLIER_REJECTED" | "SUPPLIER_RISK_FLAGGED" | "PURCHASE_ORDERED";
-  payload: Record<string, unknown>;
-  timestamp: number;
+  payload;
+  timestamp;
 }
 
-const _SIGNAL_EVENT_MAP: Record<string, string> = {
+const _SIGNAL_EVENT_MAP = {
   "SUPPLIER_APPROVED":      "SupplierApproved",
   "SUPPLIER_REJECTED":      "SupplierRejected",
   "SUPPLIER_RISK_FLAGGED":  "SupplierRiskFlagged",
   "PURCHASE_ORDERED":       "PurchaseOrdered",
 };
 
-export function publishSupplierSignal(signal: SupplierSignal): void {
+export function publishSupplierSignal(signal: SupplierSignal) {
   const eventType = _SIGNAL_EVENT_MAP[signal.type] ?? signal.type;
   EventBus.emit(eventType, { ...signal.payload, timestamp: signal.timestamp });
 }

@@ -1,0 +1,14 @@
+import { ImmuneState } from "../domain/entities"
+
+// SIRA_CONTRACT_INTERFACE NetworkTopology
+const NetworkTopology = {
+  nodes[]
+  edges
+  weakPoints[]
+}
+
+// SIRA_CONTRACT_INTERFACE QuantumDefenseSmartLinkPort
+const QuantumDefenseSmartLinkPort = {
+  onImmuneStateChange(state: ImmuneState)
+  getNetworkTopology(): NetworkTopology
+}

@@ -142,7 +142,7 @@ export function forgeSmartLinkPort(config: PortConfig) {
 **Cell dùng thế nào:**
 
 ```typescript
-// src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts
+// src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira
 
 import { forgeSmartLinkPort } from "@/satellites/port-forge/port.factory";
 

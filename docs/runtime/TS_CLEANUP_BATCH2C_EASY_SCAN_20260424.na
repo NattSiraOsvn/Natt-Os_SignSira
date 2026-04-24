@@ -1499,7 +1499,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
+    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
     "exists": true,
     "bytes": 704,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1518,7 +1518,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
+    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
     "exists": true,
     "bytes": 973,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1713,7 +1713,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
     "exists": true,
     "bytes": 891,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1865,7 +1865,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
     "exists": true,
     "bytes": 964,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1928,7 +1928,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
+    "path": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
     "exists": true,
     "bytes": 994,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1947,7 +1947,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
+    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
     "exists": true,
     "bytes": 903,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1988,7 +1988,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
     "exists": true,
     "bytes": 946,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2049,7 +2049,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
+    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
     "exists": true,
     "bytes": 754,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2134,7 +2134,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
     "exists": true,
     "bytes": 1051,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2424,7 +2424,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
     "exists": true,
     "bytes": 232,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2442,7 +2442,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
     "exists": true,
     "bytes": 469,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2460,7 +2460,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
     "exists": true,
     "bytes": 460,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2496,7 +2496,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts",
+    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.sira",
     "exists": true,
     "bytes": 503,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2637,7 +2637,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
+    "path": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
     "exists": true,
     "bytes": 1786,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2695,7 +2695,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
     "exists": true,
     "bytes": 311,
     "bucket": "HARD_TRANSLATION_REQUIRED",
