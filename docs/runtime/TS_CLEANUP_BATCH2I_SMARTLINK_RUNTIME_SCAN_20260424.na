@@ -1,0 +1,638 @@
+# TS CLEANUP BATCH 2I — SMARTLINK RUNTIME SCAN — 20260424
+
+status: SCAN_ONLY
+scope: SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA
+created_at: 2026-04-24T17:44:48.386533+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ quét nhóm SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA.
+
+Không rename.
+Không sửa source.
+Không động HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA.
+Không động ENGINE_TRANSLATE_TO_SIRA.
+Không động DEEP_TS_TRANSLATION_REQUIRED.
+
+## 2. Summary
+
+{
+  "total_smartlink_runtime": 16,
+  "summary": {
+    "CONTRACT_HEAVY_TRANSLATE_REQUIRED": 7,
+    "CLASS_RUNTIME_REWRITE_REQUIRED": 9
+  },
+  "next_possible_count": 0
+}
+
+## 3. Next Possible Candidates
+
+[]
+
+## 4. Full SmartLink Runtime Classification
+
+[
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
+    "bytes": 4121,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 10,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void",
+        ": unknown"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
+    "bytes": 102,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 3,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [],
+      "imports_exports": [
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
+    "bytes": 1816,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 11,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Omit<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void",
+        ": unknown"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+    "bytes": 8877,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 15,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Map<",
+        "Set<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void",
+        ": any"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [
+        " as "
+      ],
+      "runtime_tokens": [
+        "SmartLink",
+        "EventBus",
+        "publish",
+        "audit"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
+    "bytes": 3190,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Map<",
+        "Set<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
+    "bytes": 369,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
+    "bytes": 427,
+    "bucket": "CONTRACT_HEAVY_TRANSLATE_REQUIRED",
+    "effort": 6,
+    "action": "translate type/interface contracts before .sira",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [],
+      "access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
+    "bytes": 775,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 8,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
+    "bytes": 833,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 7,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": unknown"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
+    "bytes": 272,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 5,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [
+        "public "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
+    "bytes": 1862,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
+    "bytes": 1124,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 8,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Set<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
+    "bytes": 397,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 8,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": unknown"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
+    "bytes": 4084,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 14,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void",
+        ": any"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [
+        " as "
+      ],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
+    "bytes": 559,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 7,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink",
+        "emit"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
+    "bytes": 989,
+    "bucket": "CLASS_RUNTIME_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access syntax indicates real TS runtime",
+    "marker_count": 8,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class": [
+        "class "
+      ],
+      "access": [
+        "private "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Map<"
+      ],
+      "annotations": [
+        ": string"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "casts": [],
+      "runtime_tokens": [
+        "SmartLink"
+      ]
+    },
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+  }
+]
+
+## 5. Next Gate
+
+- [ ] Nếu có POSSIBLE_JS_COMPATIBLE_TO_SIRA: migrate batch nhỏ.
+- [ ] Nếu có LIGHT_RUNTIME_TRANSLATION_CANDIDATE: dịch annotation nhẹ trước.
+- [ ] CONTRACT_HEAVY_TRANSLATE_REQUIRED phải dịch interface/type contract.
+- [ ] CLASS_RUNTIME_REWRITE_REQUIRED không auto rename.
+- [ ] SMARTLINK_DEEP_TRANSLATION_REQUIRED giữ để rewrite thủ công.
