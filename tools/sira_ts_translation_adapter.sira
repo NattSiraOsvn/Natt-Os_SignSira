@@ -1,0 +1,213 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+
+function read(file) {
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+}
+
+function write(file, content) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, content, "utf8");
+}
+
+function rel(p) {
+  return path.relative(ROOT, p).replaceAll(path.sep, "/");
+}
+
+function detectMarkers(code) {
+  const markers = {
+    interface: code.includes("interface "),
+    typeAlias: code.includes("type "),
+    enum: code.includes("enum "),
+    classRuntime: code.includes("class "),
+    accessModifier: ["private ", "public ", "protected ", "readonly "].some(x => code.includes(x)),
+    implements: code.includes("implements "),
+    generics: ["Record<", "Partial<", "Pick<", "Omit<", "Array<", "Promise<", "Map<", "Set<"].some(x => code.includes(x)),
+    annotations: [": string", ": number", ": boolean", ": Promise", ": void", ": any", ": unknown"].some(x => code.includes(x)),
+    reactUi: ["React.", "JSX.", "useState", "useEffect", "return ("].some(x => code.includes(x)),
+    browserBoundary: ["window.", "document.", "localStorage", "EventSource", "WebSocket", "fetch("].some(x => code.includes(x)),
+    importsExports: ["import ", "export "].some(x => code.includes(x)),
+    runtimeTokens: ["SmartLink", "EventBus", "HeyNa", "Khai", "emit", "subscribe", "publish", "audit", "trace", "correlation", "causation"].some(x => code.includes(x)),
+  };
+  return markers;
+}
+
+function classifyFile(file) {
+  const abs = path.resolve(ROOT, file);
+  if (!fs.existsSync(abs)) {
+    return { ok: false, file, class: "MISSING", action: "skip" };
+  }
+
+  const code = read(abs);
+  const markers = detectMarkers(code);
+  const lower = file.toLowerCase();
+
+  let cls = "MANUAL_REVIEW_REQUIRED";
+  let action = "do not mutate";
+
+  if (markers.reactUi || lower.endsWith(".tsx")) {
+    cls = "KEEP_TS_UI_ADAPTER_REQUIRED";
+    action = "keep TypeScript until UI adapter exists";
+  } else if (markers.classRuntime || markers.accessModifier || markers.implements) {
+    cls = "SIRA_CLASS_REWRITE_REQUIRED";
+    action = "manual runtime rewrite required";
+  } else if (markers.interface || markers.typeAlias || markers.generics || markers.enum) {
+    cls = "SIRA_CONTRACT_TRANSLATION_REQUIRED";
+    action = "translate contract/type layer into SIRA contract artifact";
+  } else if (markers.browserBoundary) {
+    cls = "BROWSER_ADAPTER_BOUNDARY_REVIEW";
+    action = "review whether file belongs in SIRA Browser Adapter";
+  } else if (markers.annotations) {
+    cls = "LIGHT_TRANSLATION_CANDIDATE";
+    action = "single-file light annotation cleanup possible";
+  } else {
+    cls = "POSSIBLE_SIRA_RUNTIME_ARTIFACT";
+    action = "manual verify, then emit .sira artifact";
+  }
+
+  return {
+    ok: true,
+    file,
+    bytes: fs.statSync(abs).size,
+    class: cls,
+    action,
+    markers,
+  };
+}
+
+function translateContractPreview(file) {
+  const abs = path.resolve(ROOT, file);
+  if (!fs.existsSync(abs)) {
+    throw new Error("File not found: " + file);
+  }
+
+  const code = read(abs);
+  const markers = detectMarkers(code);
+
+  if (markers.reactUi || markers.classRuntime || markers.accessModifier || markers.implements) {
+    return {
+      ok: false,
+      reason: "unsafe_for_auto_preview",
+      classification: classifyFile(file),
+      preview: null,
+    };
+  }
+
+  let out = code;
+
+  out = out.replace(/export\s+interface\s+([A-Za-z0-9_]+)\s*\{/g, "// SIRA_CONTRACT_INTERFACE $1\nconst $1 = {");
+  out = out.replace(/\binterface\s+([A-Za-z0-9_]+)\s*\{/g, "// SIRA_CONTRACT_INTERFACE $1\nconst $1 = {");
+  out = out.replace(/export\s+type\s+([A-Za-z0-9_]+)\s*=\s*/g, "// SIRA_TYPE_ALIAS $1 = ");
+  out = out.replace(/\btype\s+([A-Za-z0-9_]+)\s*=\s*/g, "// SIRA_TYPE_ALIAS $1 = ");
+  out = out.replace(/:\s*(string|number|boolean|any|unknown|void)\b/g, "");
+  out = out.replace(/:\s*Promise<[^>]+>/g, "");
+  out = out.replace(/:\s*Array<[^>]+>/g, "");
+  out = out.replace(/:\s*Record<[^>]+>/g, "");
+  out = out.replace(/([A-Za-z0-9_])\?\s*:/g, "$1:");
+  out = out.replace(/\s+as\s+(any|unknown|string|number|boolean|never)\b/g, "");
+  out = out.replace(/\s+as\s+const\b/g, "");
+
+  return {
+    ok: true,
+    source: file,
+    target_suggested: file.replace(/\.(ts|tsx)$/i, ".sira"),
+    classification: classifyFile(file),
+    preview: out,
+  };
+}
+
+function loadKnownRemaining() {
+  const reports = [
+    "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+    "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+    "docs/runtime/TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na",
+    "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+  ];
+
+  const result = [];
+  for (const r of reports) {
+    const abs = path.join(ROOT, r);
+    if (!fs.existsSync(abs)) continue;
+    const content = read(abs);
+    const paths = [...content.matchAll(/"path":\s*"([^"]+\.(?:ts|tsx))"/g)].map(m => m[1]);
+    for (const p of paths) result.push({ report: r, path: p, classification: classifyFile(p) });
+  }
+
+  const seen = new Set();
+  return result.filter(x => {
+    const k = x.path;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+function main() {
+  const args = process.argv.slice(2);
+  const cmd = args[0] || "plan";
+
+  if (cmd === "plan") {
+    const rows = loadKnownRemaining();
+    const summary = {};
+    for (const r of rows) {
+      const k = r.classification.class;
+      summary[k] = (summary[k] || 0) + 1;
+    }
+
+    console.log(JSON.stringify({
+      ok: true,
+      mode: "plan",
+      policy: "no bulk mutation; single-file preview only",
+      total_known_remaining: rows.length,
+      summary,
+      rows,
+    }, null, 2));
+    return;
+  }
+
+  if (cmd === "classify") {
+    const file = args[1];
+    if (!file) {
+      console.error("Usage: classify <file.ts>");
+      process.exit(1);
+    }
+    console.log(JSON.stringify(classifyFile(file), null, 2));
+    return;
+  }
+
+  if (cmd === "preview") {
+    const file = args[1];
+    if (!file) {
+      console.error("Usage: preview <file.ts>");
+      process.exit(1);
+    }
+    console.log(JSON.stringify(translateContractPreview(file), null, 2));
+    return;
+  }
+
+  if (cmd === "write-preview") {
+    const file = args[1];
+    const out = args[2];
+    if (!file || !out) {
+      console.error("Usage: write-preview <file.ts> <out.sira.preview>");
+      process.exit(1);
+    }
+    const preview = translateContractPreview(file);
+    if (!preview.ok) {
+      console.error(JSON.stringify(preview, null, 2));
+      process.exit(1);
+    }
+    write(path.resolve(ROOT, out), preview.preview);
+    console.log(JSON.stringify({ ok: true, wrote: out, source: file }, null, 2));
+    return;
+  }
+
+  console.error("Unknown command:", cmd);
+  console.error("Commands: plan | classify <file> | preview <file> | write-preview <file> <out>");
+  process.exit(1);
+}
+
+main();

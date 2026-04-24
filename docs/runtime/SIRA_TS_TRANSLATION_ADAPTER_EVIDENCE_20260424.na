@@ -1,0 +1,1770 @@
+# SIRA TS Translation Adapter Evidence — 20260424
+
+status: PASS
+created_at: 2026-04-24T18:10:42.881500+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Adapter
+
+- tools/sira_ts_translation_adapter.sira
+- tools/validate_sira_ts_translation_adapter.sira
+
+## 2. Policy
+
+- no bulk mutation
+- single-file preview only
+- manual translation boundary preserved
+
+## 3. Plan Summary
+
+{
+  "total_known_remaining": 69,
+  "summary": {
+    "SIRA_CLASS_REWRITE_REQUIRED": 36,
+    "SIRA_CONTRACT_TRANSLATION_REQUIRED": 29,
+    "KEEP_TS_UI_ADAPTER_REQUIRED": 4
+  }
+}
+
+## 4. Full Plan
+
+{
+  "ok": true,
+  "mode": "plan",
+  "policy": "no bulk mutation; single-file preview only",
+  "total_known_remaining": 69,
+  "summary": {
+    "SIRA_CLASS_REWRITE_REQUIRED": 36,
+    "SIRA_CONTRACT_TRANSLATION_REQUIRED": 29,
+    "KEEP_TS_UI_ADAPTER_REQUIRED": 4
+  },
+  "rows": [
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/SyncEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/sync-cell/infrastructure/adapters/SyncEventEmitterAdapter.ts",
+        "bytes": 683,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/kernel/audit-cell/infrastructure/adapters/AuditEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/audit-cell/infrastructure/adapters/AuditEventEmitterAdapter.ts",
+        "bytes": 575,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/kernel/config-cell/infrastructure/adapters/ConfigEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/config-cell/infrastructure/adapters/ConfigEventEmitterAdapter.ts",
+        "bytes": 794,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/MonitorEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/monitor-cell/infrastructure/adapters/MonitorEventEmitterAdapter.ts",
+        "bytes": 626,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/QuantumDefenseEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/QuantumDefenseEventEmitterAdapter.ts",
+        "bytes": 778,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/RBACEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/rbac-cell/infrastructure/adapters/RBACEventEmitterAdapter.ts",
+        "bytes": 934,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/cells/kernel/security-cell/infrastructure/adapters/SecurityEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/security-cell/infrastructure/adapters/SecurityEventEmitterAdapter.ts",
+        "bytes": 694,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/core/events/typed-eventbus.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/events/typed-eventbus.ts",
+        "bytes": 1720,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts",
+        "bytes": 3590,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-gateway-verify.draft.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/memory/bang/_bang_inbox_20260420/heyna-gateway-verify.draft.ts",
+        "bytes": 4123,
+        "class": "KEEP_TS_UI_ADAPTER_REQUIRED",
+        "action": "keep TypeScript until UI adapter exists",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": true,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
+        "bytes": 4121,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
+        "bytes": 102,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": false,
+          "annotations": false,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
+        "bytes": 1816,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+        "bytes": 8877,
+        "class": "KEEP_TS_UI_ADAPTER_REQUIRED",
+        "action": "keep TypeScript until UI adapter exists",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": true,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
+        "bytes": 3190,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
+        "bytes": 369,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
+        "bytes": 427,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
+        "bytes": 775,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
+        "bytes": 833,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
+        "bytes": 272,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": false,
+          "annotations": false,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
+        "bytes": 1862,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
+        "bytes": 1124,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
+        "bytes": 397,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
+        "bytes": 4084,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
+        "bytes": 559,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na",
+      "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
+        "bytes": 989,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na",
+      "path": "src/cells/kernel/neural-main-cell/core/validator.engine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/neural-main-cell/core/validator.engine.ts",
+        "bytes": 2843,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na",
+      "path": "src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts",
+        "bytes": 8772,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na",
+      "path": "src/cells/business/payment-cell/domain/engines/payment-gateway.engine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/payment-cell/domain/engines/payment-gateway.engine.ts",
+        "bytes": 1216,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na",
+      "path": "src/core/SmartLinkEngine.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/SmartLinkEngine.ts",
+        "bytes": 6209,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
+        "bytes": 3447,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
+        "bytes": 3665,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
+        "bytes": 1919,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
+        "bytes": 3724,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+        "bytes": 3706,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
+        "bytes": 3736,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
+        "bytes": 2285,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+        "bytes": 3689,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
+        "bytes": 3241,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
+        "bytes": 3727,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
+        "bytes": 3657,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
+        "bytes": 3696,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+        "bytes": 3768,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
+        "bytes": 5369,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+        "bytes": 3679,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/index.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/index.ts",
+        "bytes": 2218,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/smartlink.nattimer.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/smartlink.nattimer.ts",
+        "bytes": 15750,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": true,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/smartlink.pressure-field.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/smartlink.pressure-field.ts",
+        "bytes": 14065,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/governance/runtime.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/runtime.ts",
+        "bytes": 11812,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/governance/smartlink-impulse-check.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/smartlink-impulse-check.ts",
+        "bytes": 2494,
+        "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
+        "action": "translate contract/type layer into SIRA contract artifact",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "bytes": 11639,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts",
+        "bytes": 11691,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": false,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/cell-smartlink.component.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/cell-smartlink.component.ts",
+        "bytes": 2941,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/smartlink.competition.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/smartlink.competition.ts",
+        "bytes": 10695,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/smartlink.point.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/smartlink.point.ts",
+        "bytes": 10211,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/core/smartlink/smartlink.qneu-bridge.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/core/smartlink/smartlink.qneu-bridge.ts",
+        "bytes": 1994,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
+        "bytes": 25258,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/governance/validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/validator.ts",
+        "bytes": 3078,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": true,
+          "implements": false,
+          "generics": false,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "scripts/qiint2-validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "scripts/qiint2-validator.ts",
+        "bytes": 15681,
+        "class": "KEEP_TS_UI_ADAPTER_REQUIRED",
+        "action": "keep TypeScript until UI adapter exists",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": true,
+          "browserBoundary": true,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts",
+        "bytes": 15681,
+        "class": "KEEP_TS_UI_ADAPTER_REQUIRED",
+        "action": "keep TypeScript until UI adapter exists",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": false,
+          "accessModifier": false,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": true,
+          "browserBoundary": true,
+          "importsExports": true,
+          "runtimeTokens": true
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/casting-cell/interface/casting.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/casting-cell/interface/casting.sheets.adapter.ts",
+        "bytes": 696,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/finishing-cell/interface/finishing.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/finishing-cell/interface/finishing.sheets.adapter.ts",
+        "bytes": 459,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/inventory-cell/interface/inventory.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/inventory-cell/interface/inventory.sheets.adapter.ts",
+        "bytes": 573,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/order-cell/interface/order.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/order-cell/interface/order.sheets.adapter.ts",
+        "bytes": 597,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/period-close-cell/domain/services/preclose.validator.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/period-close-cell/domain/services/preclose.validator.ts",
+        "bytes": 2788,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": true,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": false,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/polishing-cell/interface/polishing.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/polishing-cell/interface/polishing.sheets.adapter.ts",
+        "bytes": 586,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/prdmaterials-cell/interface/prdmaterials.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/prdmaterials-cell/interface/prdmaterials.sheets.adapter.ts",
+        "bytes": 556,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/stone-cell/interface/stone.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/stone-cell/interface/stone.sheets.adapter.ts",
+        "bytes": 431,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": false,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    },
+    {
+      "report": "docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na",
+      "path": "src/cells/business/tax-cell/interface/tax.sheets.adapter.ts",
+      "classification": {
+        "ok": true,
+        "file": "src/cells/business/tax-cell/interface/tax.sheets.adapter.ts",
+        "bytes": 713,
+        "class": "SIRA_CLASS_REWRITE_REQUIRED",
+        "action": "manual runtime rewrite required",
+        "markers": {
+          "interface": true,
+          "typeAlias": false,
+          "enum": false,
+          "classRuntime": true,
+          "accessModifier": true,
+          "implements": true,
+          "generics": true,
+          "annotations": true,
+          "reactUi": false,
+          "browserBoundary": false,
+          "importsExports": true,
+          "runtimeTokens": false
+        }
+      }
+    }
+  ]
+}

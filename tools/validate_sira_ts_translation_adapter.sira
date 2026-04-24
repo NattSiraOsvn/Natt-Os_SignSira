@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+
+const adapter = path.join(ROOT, "tools", "sira_ts_translation_adapter.sira");
+const spec = path.join(ROOT, "docs", "runtime", "SIRA_TS_TRANSLATION_ADAPTER_20260424.na");
+
+const errors = [];
+
+function must(condition, msg) {
+  if (!condition) errors.push(msg);
+}
+
+function read(file) {
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+}
+
+const a = read(adapter);
+const s = read(spec);
+
+must(a.includes("no bulk mutation"), "adapter must declare no bulk mutation");
+must(a.includes("plan"), "adapter missing plan mode");
+must(a.includes("classify"), "adapter missing classify mode");
+must(a.includes("preview"), "adapter missing preview mode");
+must(a.includes("write-preview"), "adapter missing write-preview mode");
+must(a.includes("SIRA_CONTRACT_TRANSLATION_REQUIRED"), "adapter missing contract classification");
+must(a.includes("SIRA_CLASS_REWRITE_REQUIRED"), "adapter missing class rewrite classification");
+
+must(s.includes("SIRA TS Translation Adapter"), "spec missing title");
+must(s.includes("no bulk mutation"), "spec missing no bulk mutation rule");
+must(s.includes("single-file preview"), "spec missing single-file preview rule");
+must(s.includes("manual translation"), "spec missing manual translation boundary");
+
+if (errors.length) {
+  console.error("SIRA TS TRANSLATION ADAPTER VALIDATION: FAIL");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("SIRA TS TRANSLATION ADAPTER VALIDATION: PASS");
+console.log("mode=adapter scaffold");
+console.log("mutation_policy=no bulk mutation");
