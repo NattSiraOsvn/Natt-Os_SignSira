@@ -10,6 +10,7 @@ mod phase2;
 mod phase3;
 mod phase4;
 mod repo_root;
+mod result_writer;
 
 use std::process::ExitCode;
 use std::sync::Arc;
