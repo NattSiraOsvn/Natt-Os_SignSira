@@ -18,7 +18,7 @@ export class PrecloseValidator {
     const dustReport = await this.checkDustCloseReport(period);
     if (!dustReport) {
       errors.push({
-        code: 'MISSING_DUST_CLOSE_REPORT',
+        code: 'missing_DUST_CLOSE_REPORT',
         message: `TR-006 BLOCK: Chua co DUST_CLOSE_REPORT status=APPROVED cho period=${period}.`,
         details: { period }
       });

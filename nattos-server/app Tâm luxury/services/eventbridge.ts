@@ -11,10 +11,10 @@ import { PersonaID } from '../types';
  */
 
 export type SystemEvent = 
-  | 'SALES_ORDER_CREATED' 
+  | 'SALES_ORDER_created' 
   | 'INVENTORY_CHECKED' 
   | 'PRODUCTION_STARTED' 
-  | 'LOGISTICS_DISPATCHED' 
+  | 'LOGISTICS_DISpatched' 
   | 'FINANCE_PAID' 
   | 'ARCHIVE_SEALED';
 
@@ -52,7 +52,7 @@ class SystemEventBridgeService {
     console.log(`[EVENT-BRIDGE] 📡 Broadcasting: ${eventType}`, data);
     
     // 1. Log to Blockchain Audit (Giả lập băm hash sự kiện quan trọng)
-    if (eventType.includes('CREATED') || eventType.includes('PAID') || eventType.includes('SEALED')) {
+    if (eventType.includes('created') || eventType.includes('PAID') || eventType.includes('SEALED')) {
         const hash = ShardingService.generateShardHash({ type: eventType, data, ts: Date.now() });
         // Trong thực tế sẽ lưu hash này vào AuditLog
     }

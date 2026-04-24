@@ -1,5 +1,5 @@
-# Natt-OS · Session Summary
-## 2026-03-29 · Băng (Chị Tư) × Anh Nat × Thiên Lớn × Kim
+# natt-os · Session Summary
+## 2026-03-29 · Băng (Chị Tư) × Anh Nat × thiên Lớn × Kim
 
 ---
 
@@ -22,13 +22,13 @@
 
 ## II. NHỮNG GÌ ĐÃ BUILD TRONG SESSION
 
-### 1. NaSira Icon — 7 Chromatic States
-- File: `nasira-7states.html` (Thiên Lớn Spec)
+### 1. Nasira Icon — 7 Chromatic States
+- File: `nasira-7states.html` (thiên Lớn Spec)
 - **nucleus-index**: `.nucleus-index` div spin 20s — trục nhận thức
 - **Galaxy petal**: `radial-gradient` 4 lớp — cánh không chìm nền đen
 - **4D scale**: p0=1.10, p2=1.18, p3=0.83… não tự suy 3D
 - **Aura vũ trụ**: `.nasira::before` blur 30px glow màu nucleus
-- **7 states**: CRITICAL(đỏ) → RISK(vàng) → WARNING(cam) → DRIFT(lục) → NOMINAL(lam) → STABLE(chàm) → OPTIMAL(tím)
+- **7 states**: CRITICAL(đỏ) → RISK(vàng) → warnING(cam) → DRIFT(lục) → NOMINAL(lam) → STABLE(chàm) → OPTIMAL(tím)
 - **Galaxy background**: canvas JS stars + 5 lớp nebula
 
 ### 2. Cell Mapping — Butterfly Effect
@@ -42,9 +42,9 @@
 ### 3. Nauion UI — `nattos-ui/` (13 files)
 ```
 nattos-ui/
-├── index.html          ← UI chính (galaxy bg + NaSira header + 3 panel)
+├── index.html          ← UI chính (galaxy bg + Nasira header + 3 panel)
 ├── app.js              ← HeyNa bootstrap, tick 1s, event→Nauion→view
-├── nauion-engine.js    ← Nauion v2 (đã fix 3 lỗi Thiên Lớn)
+├── nauion-engine.js    ← Nauion v2 (đã fix 3 lỗi thiên Lớn)
 ├── styles.css          ← Liquid Glass Layer system
 ├── nattos-visionos.css ← Kim spec: floating elevation + specular
 ├── core/
@@ -58,7 +58,7 @@ nattos-ui/
     └── butterfly.js    ← pulse/ripple/flash CSS-class based
 ```
 
-### 4. Nauion Engine v2 — 3 lỗi Thiên Lớn đã fix
+### 4. Nauion Engine v2 — 3 lỗi thiên Lớn đã fix
 | Lỗi | Fix |
 |---|---|
 | `NAUION.gây` undefined (typo) | đổi key thành `gay: 'gãy'` |
@@ -103,11 +103,11 @@ nattos-ui/
 
 ---
 
-## V. FILES TRONG `Natt-OS-FINAL/`
+## V. FILES TRONG `natt-os-FINAL/`
 
 ```
-Natt-OS-FINAL/
-├── nasira-7states.html      ← NaSira × Thiên Lớn (mở thẳng browser)
+natt-os-FINAL/
+├── nasira-7states.html      ← Nasira × thiên Lớn (mở thẳng browser)
 ├── nattos-mapping.html      ← Cell Mapping + Butterfly (mở thẳng browser)
 └── nattos-ui/               ← 13 files — deploy → python3 -m http.server 3000
 ```

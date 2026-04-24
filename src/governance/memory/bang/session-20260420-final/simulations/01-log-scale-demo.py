@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — LOG SCALE BREAKTHROUGH DETECTION
+natt-os — LOG SCALE BREAKTHROUGH DETECTION
 ═══════════════════════════════════════════════════════════════════════
 
 Test với dynamic range 10⁸:
@@ -85,7 +85,7 @@ cells: List[Cell] = [
 
 # ===== PRINT DATA =====
 print("=" * 82)
-print(f"{'Natt-OS — LOG SCALE BREAKTHROUGH DETECTION':^82}")
+print(f"{'natt-os — LOG SCALE BREAKTHROUGH DETECTION':^82}")
 print("=" * 82)
 print(f"\n{'Cell':<18} {'Group':<11} {'λ(Hz)':>10} {'log λ':>7} {'A':>6} {'log A':>7} {'Gate':>5}")
 print("-" * 82)
@@ -156,7 +156,7 @@ def interference_log(cx, cy, sigma_u=np.log(2)):
 fig = plt.figure(figsize=(18, 11))
 gs = GridSpec(3, 2, figure=fig, hspace=0.4, wspace=0.25)
 
-fig.suptitle('Natt-OS — Linear vs Log Scale (dynamic range 10⁸)',
+fig.suptitle('natt-os — Linear vs Log Scale (dynamic range 10⁸)',
              fontsize=15, fontweight='bold', y=0.99)
 
 group_colors = {

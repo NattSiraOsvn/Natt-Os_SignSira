@@ -1,6 +1,6 @@
 // SmartLink barrel — Điều 22 sợi dẫn truyền thần kinh
-export * from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
-export * from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance";
+export * from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
+export * from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.governance";
 
 // Convenience singleton registry
 interface SmartLinkRegistration {
@@ -34,7 +34,7 @@ export const SmartLinkRegistry = {
   // Auto-register all known cells on import
   bootstrap: (): void => {
     const kernelCells    = ["audit-cell","config-cell","monitor-cell","rbac-cell","security-cell"];
-    const infraCells     = ["smartlink-cell","sync-cell","warehouse-cell","shared-contracts-cell"];
+    const infraCells     = ["SmartLink-cell","sync-cell","warehouse-cell","shared-contracts-cell"];
     const businessCells  = ["finance-cell","hr-cell","sales-cell","order-cell","inventory-cell",
                              "payment-cell","customer-cell","production-cell","pricing-cell",
                              "warranty-cell","buyback-cell","promotion-cell","showroom-cell",

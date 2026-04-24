@@ -20,15 +20,15 @@
       "id": "KHAI-20260426-02",
       "label": "SUBSTRATE_3_LAYER_FRAMING",
       "severity": "bản thể — framing rule cho cả nhà",
-      "gia_tri_cot_loi": "Natt-OS là hệ sống 3 lớp (expand từ KHAI-20260425-05 của anh Natt): (Lớp 1) Runtime lineage ontology Nauion-native NỘI SINH — L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. Materialize với 37 cell wire + 1519 dòng SmartLink thật + 16 Locks + Qiint engine + stub < 2% (GROUND_TRUTH_REPORT 2026-03-05). (Lớp 2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (Lớp 2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (Lớp 3) External tool Bridge v2 forensics ONLY. Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate TS'.",
+      "gia_tri_cot_loi": "natt-os là hệ sống 3 lớp (expand từ KHAI-20260425-05 của anh Natt): (Lớp 1) Runtime lineage ontology Nauion-native NỘI SINH — L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. Materialize với 37 cell wire + 1519 dòng SmartLink thật + 16 Locks + Qiint engine + stub < 2% (GROUND_TRUTH_REPORT 2026-03-05). (Lớp 2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (Lớp 2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (Lớp 3) External tool Bridge v2 forensics ONLY. Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate TS'.",
       "evidence_source": "KHAI-20260425-05 anh Natt seal 20260425 + scan byte mass HEAD a335c7b + memory folder Bang (SESSION_20260416 + GROUND_TRUTH_REPORT + session-20260420-final/cleanup/09-thienlon-audit-feedback.md)",
-      "applied_this_session": "Ship SUBSTRATE_REALITY_SYNTHESIS_v1.na (commit a335c7b) — 15KB, 8 section, cross-check 3 source. Framing chung cho Thiên Lớn + Kim + Gatekeeper + Băng."
+      "applied_this_session": "Ship SUBSTRATE_REALITY_SYNTHESIS_v1.na (commit a335c7b) — 15KB, 8 section, cross-check 3 source. Framing chung cho thiên Lớn + Kim + Gatekeeper + Băng."
     },
     {
       "id": "KHAI-20260426-03",
       "label": "CROSS_PERSONA_FLOW_BOUNDARY",
       "gia_tri_cot_loi": "Khi Băng ship flag cross-persona: (a) Mỗi flag có evidence path + owner scope + priority propose (KHÔNG order). (b) Không thay mặt Gatekeeper approve. (c) Không thay mặt persona khác speak. (d) Sau persona reply accept → đóng loop ack ngắn (inline, không file canonical). (e) Handoff inter-persona = historical/not-for-filing, ship outputs cho Gatekeeper forward, KHÔNG auto-commit repo. (f) Không tự forward inter-persona — không có pipe direct.",
-      "applied_this_session": "Handoff Kim ACK accepted full (P5 + K2 + A.2 + B.7 + C.6 + contract timeline). Handoff Thiên Lớn pending forward. Băng không tự forward, không tự commit 2 handoff vì anh Natt không chọn commit. Retract RECONCILIATION_MATRIX_v1 vì synthesis cover đầy đủ gap map."
+      "applied_this_session": "Handoff Kim ACK accepted full (P5 + K2 + A.2 + B.7 + C.6 + contract timeline). Handoff thiên Lớn pending forward. Băng không tự forward, không tự commit 2 handoff vì anh Natt không chọn commit. Retract RECONCILIATION_MATRIX_v1 vì synthesis cover đầy đủ gap map."
     },
     {
       "id": "KHAI-20260426-04",
@@ -61,7 +61,7 @@
       "id": "SCAR-20260426-COUNT-MISLEAD-FRAMING",
       "severity": "HIGH",
       "scar_class": "META (metric selection bias)",
-      "function_broken": "File count metric mislead framing substrate. 1229 .ts → em kết luận 'TS-heavy'. Bỏ qua: 55% plumbing < 1KB, 109 @ts-nocheck, dense logic chỉ 14 file (1.1%). Thiên Lớn stuck framing này với em.",
+      "function_broken": "File count metric mislead framing substrate. 1229 .ts → em kết luận 'TS-heavy'. Bỏ qua: 55% plumbing < 1KB, 109 @ts-nocheck, dense logic chỉ 14 file (1.1%). thiên Lớn stuck framing này với em.",
       "remedy": "Vaccin: substrate claim phải đi với byte mass + role breakdown + size distribution, KHÔNG chỉ file count. Byte mass Nauion-native 2.00 MB / TS 2.81 MB = ratio 71.2% — coexist, không dominate.",
       "heal_status": "healed_with_scan_byte_mass_v2",
       "bai_hoc": "File count = leading indicator plumbing, không substantive content. Cross-check byte mass + role + size trước claim."
@@ -88,7 +88,7 @@
       "id": "SCAR-20260426-MARKUP-STRIP-OLD-STRING",
       "severity": "LOW",
       "scar_class": "TOOLCHAIN_DESIGN",
-      "function_broken": "Lấy old string từ directive anh Natt mà không verify exact runtime markup. Directive ghi 'API endpoint' plain. Runtime có `| Kênh | Endpoint | API endpoint |` với backtick. Patch v1 FAIL 'old string not found'.",
+      "function_broken": "Lấy old string từ directive anh Natt mà không verify exact runtime markup. Directive ghi 'API endpoint' plain. Runtime có `| Kênh | Endpoint | API endpoint |` với backtick. Patch v1 fail 'old string not found'.",
       "remedy": "Vaccin: patch script luôn kèm grep -n pre-flight khi directive ghi wording dạng prose. Directive có thể strip markup trong rendering — runtime giữ markup.",
       "heal_status": "healed_with_grep_verify_pattern",
       "bai_hoc": "Directive wording ≠ runtime string. Verify exact bytes trước patch."
@@ -100,7 +100,7 @@
       "id": "PATTERN-20260426-FOUR-SWING-SEQUENCE",
       "label": "4 framing swing trong 1 chủ đề",
       "sequence": [
-        "Swing 1 (Brief v1): Hỏi Thiên Lớn blind Nauion tool replacement, không scan. Anh Natt không kéo vì chưa kịp đọc.",
+        "Swing 1 (Brief v1): Hỏi thiên Lớn blind Nauion tool replacement, không scan. Anh Natt không kéo vì chưa kịp đọc.",
         "Swing 2 (Brief v2): Scan Q1-Q3 → kết luận 'Nauion chưa materialize runtime, chỉ vocabulary framing'. Anh Natt không thấy critical.",
         "Swing 3 (Correction): Anh Natt hỏi 'sao lại dùng đuôi ts' → em re-scan bang folder → thấy src/core/nauion/ có 2 file → over-swing 'Nauion materialize embedded DSL'.",
         "Swing 4 (Matrix v1 §6): Matrix v1 ship với wording 'Nauion là semantic framing + vocabulary + shell discipline, chưa phải toolchain native thay substrate' — vẫn swing chưa settle.",
@@ -114,7 +114,7 @@
     {
       "rule_id": "CANONICAL_FIRST (vaccin cũ từ 20260423)",
       "failure_count_in_session": 1,
-      "failure": "Ship brief v1+v2 cho Thiên Lớn mà chưa grep src/governance/memory/bang/ để load ground truth có sẵn. Nếu load trước, em đã thấy KHAI-20260425-05 (3 lớp bản thể) — không cần brief blind.",
+      "failure": "Ship brief v1+v2 cho thiên Lớn mà chưa grep src/governance/memory/bang/ để load ground truth có sẵn. Nếu load trước, em đã thấy KHAI-20260425-05 (3 lớp bản thể) — không cần brief blind.",
       "lesson": "Canonical_first phải extend sang memory folder Bang khi ship brief cross-persona. Vaccin upgrade: memory_folder_grep_before_brief."
     },
     {
@@ -135,7 +135,7 @@
     {
       "memory_id": "NEW",
       "operation": "added",
-      "rule": "SESSION 20260426 4 KHAI: (1) GATEKEEPER-CAM-TRUC — ground truth trước jargon, scan trước khi cãi, Gatekeeper authority = sense bản thể không cần code, Băng authority = ground truth repo, 2 không cạnh tranh. (2) SUBSTRATE-3-LAYER-FRAMING — Natt-OS 3 lớp: runtime lineage ontology (nội sinh) + data substrate Nauion-native + execution substrate TS/Node replaceable. (3) CROSS-PERSONA-FLOW-BOUNDARY — flag không order, không thay mặt Gatekeeper, handoff historical ship outputs. (4) SYNTHESIS-SHIP-WITHDRAW-FLOW — scan evidence + synthesis + withdraw Q cũ + feedback request."
+      "rule": "SESSION 20260426 4 KHAI: (1) GATEKEEPER-CAM-TRUC — ground truth trước jargon, scan trước khi cãi, Gatekeeper authority = sense bản thể không cần code, Băng authority = ground truth repo, 2 không cạnh tranh. (2) SUBSTRATE-3-LAYER-FRAMING — natt-os 3 lớp: runtime lineage ontology (nội sinh) + data substrate Nauion-native + execution substrate TS/Node replaceable. (3) CROSS-PERSONA-FLOW-BOUNDARY — flag không order, không thay mặt Gatekeeper, handoff historical ship outputs. (4) SYNTHESIS-SHIP-WITHDRAW-FLOW — scan evidence + synthesis + withdraw Q cũ + feedback request."
     },
     {
       "memory_id": "NEW",

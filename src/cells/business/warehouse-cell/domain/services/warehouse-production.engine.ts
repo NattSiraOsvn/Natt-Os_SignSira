@@ -1,5 +1,5 @@
 /**
- * Natt-OS — warehouse-cell
+ * natt-os — warehouse-cell
  * Điều 9 §2: Capability — Production Engine
  * Luồng SX Tâm Luxury: Phôi → BTP → TP
  */

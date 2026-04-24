@@ -5,10 +5,10 @@
 @since 2026-03-30
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# Natt-OS VISION ENGINE — FULL SPEC v1.0 (FINAL MERGE)
+# natt-os VISION ENGINE — FULL SPEC v1.0 (FINAL MERGE)
 ## Tác giả: Băng (QNEU 300) — Merge từ Kim + Can + Spec gốc
 ## Date: 2026-03-30
-## Dành cho: Kim · Can · Thiên · SHTT
+## Dành cho: Kim · Can · thiên · SHTT
 
 ---
 
@@ -28,7 +28,7 @@
 ```
 L1 — Vision Engine (UI Runtime)
 L2 — Event + Audit Core  
-L3 — SiraSign Biosemi Security
+L3 — siraSign Biosemi Security
 ```
 
 ---
@@ -151,13 +151,13 @@ Mobile: tắt caustics, blur — bật lại khi desktop.
 vision.state.changed    — scene chuyển, cell select, modal open/close
 vision.density.changed  — low/medium/high
 vision.cell.selected    — cell được click
-security.failed         — SiraSign verify fail → OMEGA_LOCKDOWN
+security.failed         — siraSign verify fail → OMEGA_LOCKDOWN
 OMEGA_LOCKDOWN          — toàn hệ thống lock
 ```
 
 ---
 
-## CHƯƠNG VIII — SiraSIGN BIOSEMI INTEGRATION
+## CHƯƠNG VIII — siraSIGN BIOSEMI INTEGRATION
 
 ### Flow bảo mật
 ```
@@ -165,10 +165,10 @@ User action
   ↓
 VisionEngine.secureAction(action, sirasign?)
   ↓
-SiraSignEngine.verifyChain(fsp+ssp+tsp → lsp)
+siraSignEngine.verifyChain(fsp+ssp+tsp → lsp)
   ↓
 IF VALID  → action() → EventBus.emit → Audit
-IF FAILED → EventBus.emit('security.failed') → OMEGA_LOCKDOWN
+IF failED → EventBus.emit('security.failed') → OMEGA_LOCKDOWN
 ```
 
 ### Hash Chain
@@ -177,7 +177,7 @@ lsp = SHA256(fsp_hash + ssp_hash + tsp_hash)
 ```
 
 ### Anti-Replay (bắt buộc)
-Mỗi SiraSign payload phải có:
+Mỗi siraSign payload phải có:
 ```ts
 {
   fsp_hash, ssp_hash, tsp_hash, lsp_hash,
@@ -205,7 +205,7 @@ if (!rbac?.permissions.includes(cell.id)) return null  // ✅ xóa khỏi DOM
 - Auto-lock sau 10 phút idle
 - Lắng `quantum.kill` → tự lock ngay
 - Lắng `OMEGA_LOCKDOWN` → lock + hiển thị breach screen
-- Unlock yêu cầu PIN + SiraSign verify (khi production)
+- Unlock yêu cầu PIN + siraSign verify (khi production)
 - Z-index: 999 — không có gì vượt qua
 
 ---
@@ -236,8 +236,8 @@ EventBus.on('vision.density.changed', handler)
 | V05 | crypto.randomUUID() thay uuid | 2 |
 | V06 | RBAC return null (không display:none) | 3 |
 | V07 | caused_by trong event envelope | 2 |
-| V08 | Anti-replay nonce trong SiraSign | 5 |
-| V09 | SiraSign verify trước mọi secureAction | 5 |
+| V08 | Anti-replay nonce trong siraSign | 5 |
+| V09 | siraSign verify trước mọi secureAction | 5 |
 | V10 | SecurityOverlay z-index 999 | 3 |
 | S01 | Breakpoints đúng xs/sm/md/lg | 2 |
 | S02 | Medal clamp() | 2 |
@@ -274,9 +274,9 @@ EventBus.on('vision.density.changed', handler)
 | Medal + Effects | ✅ Complete | Kim |
 | EventBus wiring | ✅ Fixed | Can |
 | Density (in-memory) | ✅ Fixed | Can |
-| SiraSign Engine | ⚠️ Cần server | Can |
+| siraSign Engine | ⚠️ Cần server | Can |
 | RBAC real | ⚠️ Cần /api/state/rbac-cell | Can |
-| SecurityOverlay | ⚠️ Cần integrate SiraSign | Kim |
+| SecurityOverlay | ⚠️ Cần integrate siraSign | Kim |
 | Anti-replay nonce | ⚠️ Cần add vào payload | Can |
 
 ---

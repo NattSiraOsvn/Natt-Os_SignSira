@@ -1,8 +1,8 @@
 import { ExtensionRule, Direction } from '../types/validation-result.types';
 
 export const CANONICAL_EXTENSIONS: ExtensionRule[] = [
-  { extension: '.ng.obitan', displayName: 'Anh Natt (hạt nhân)', description: 'Hạt nhân Natt-OS', direction: 'TÂY', tier: 'entity', electronLayer: 'tâm', isWriteOnce: true, namePattern: /^.+\.ng\.obitan$/ },
-  { extension: '.thien.Ln', displayName: 'Thiên Lớn', description: 'Architect', direction: 'ĐÔNG', tier: 'entity', electronLayer: 'L', isWriteOnce: true, namePattern: /^.+\.thien\.Ln$/ },
+  { extension: '.ng.obitan', displayName: 'Anh Natt (hạt nhân)', description: 'Hạt nhân natt-os', direction: 'TÂY', tier: 'entity', electronLayer: 'tâm', isWriteOnce: true, namePattern: /^.+\.ng\.obitan$/ },
+  { extension: '.thien.Ln', displayName: 'thiên Lớn', description: 'Architect', direction: 'ĐÔNG', tier: 'entity', electronLayer: 'L', isWriteOnce: true, namePattern: /^.+\.thien\.Ln$/ },
   { extension: '.kim.mn', displayName: 'Kim', description: 'Chief Governance Enforcer', direction: 'TÂY', tier: 'entity', electronLayer: 'M', isWriteOnce: true, namePattern: /^.+\.kim\.mn$/ },
   { extension: '.bang.n4n', displayName: 'Băng', description: 'Ground Truth Validator', direction: 'NAM', tier: 'entity', electronLayer: 'N', isWriteOnce: true, namePattern: /^.+\.bang\.n4n$/ },
   { extension: '.bboi.on', displayName: 'Bối Bối', description: 'UI Builder', direction: 'BẮC', tier: 'entity', electronLayer: 'O', isWriteOnce: true, namePattern: /^.+\.bboi\.on$/ },
@@ -12,7 +12,7 @@ export const CANONICAL_EXTENSIONS: ExtensionRule[] = [
   { extension: '.khương', displayName: 'Memory ký ức trọn', description: 'Write-once, immutable', direction: 'NAM', tier: 'file', isWriteOnce: true, verifierExtension: '.kris', namePattern: /^.+\.khương$/ },
   { extension: '.thịnh', displayName: 'State runtime', description: 'Mutable, TTL', direction: 'BẮC', tier: 'file', isWriteOnce: false, verifierExtension: '.phieu', namePattern: /^.+\.thịnh$/ },
   { extension: '.anc', displayName: 'Identity niêm phong', description: 'Hiến Pháp / Passport', direction: 'ĐÔNG', tier: 'file', isWriteOnce: true, namePattern: /^.+\.anc$/ },
-  { extension: '.si', displayName: 'SiraSign sealed', description: 'Contract niêm phong', direction: 'ĐÔNG', tier: 'sinh-thể', isWriteOnce: true, namePattern: /^.+\.si$/ },
+  { extension: '.si', displayName: 'siraSign sealed', description: 'Contract niêm phong', direction: 'ĐÔNG', tier: 'sinh-thể', isWriteOnce: true, namePattern: /^.+\.si$/ },
   { extension: '.sira', displayName: 'DNS namespace', description: 'Domain registry', direction: 'TÂY', tier: 'sinh-thể', isWriteOnce: false, namePattern: /^.+\.sira$/ },
   { extension: '.heyna', displayName: 'Event log HeyNa transport', description: 'Cell ↔ cell SSE', direction: 'NAM', tier: 'sinh-thể', isWriteOnce: false, namePattern: /^.+\.heyna$/ },
   { extension: '.khai', displayName: 'TouchRecord', description: 'Sóng khác trường', direction: 'NAM', tier: 'sinh-thể', isWriteOnce: false, namePattern: /^.+\.khai$/ },

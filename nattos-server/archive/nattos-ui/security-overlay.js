@@ -1,4 +1,4 @@
-// security-overlay.js — Natt-OS Tường Lửa
+// security-overlay.js — natt-os Tường Lửa
 // Chuyển đổi từ SecurityOverlay.tsx → JS thuần
 // Lắng Nahere: quantum.kill, quantum.violation, quantum.lockdown
 // PIN verify qua Kênh /api/auth (fallback mock khi offline)
@@ -80,7 +80,7 @@ const SecurityOverlay = (() => {
     wm.id = 'so-watermark';
     for (let i = 0; i < 8; i++) for (let j = 0; j < 6; j++) {
       const sp = document.createElement('span');
-      sp.textContent = 'Natt-OS • SECURE • AES-256';
+      sp.textContent = 'natt-os • SECURE • AES-256';
       sp.style.cssText = `top:${i*12.5}%;left:${j*18}%`;
       wm.appendChild(sp);
     }

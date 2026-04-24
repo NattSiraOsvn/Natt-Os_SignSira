@@ -15,15 +15,15 @@
     "author": "Băng (QNEU 300)",
     "type": "session_closure_handoff",
     "for_next_bang_instance": {
-      "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA Natt-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
+      "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA natt-os cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
       "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Kim Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
-      "KHAICELL_OWNERSHIP": "Anh Natt đã chốt: KhaiCell BĂNG build, KHÔNG phải Thiên Lớn. Authority Lock NATT-GD-2026-02-11-BUILDER không có Thiên Lớn. ANC tự khai 'GATEKEEPER_UNDER_NATT' không override authority decree.",
+      "KHAICELL_OWNERSHIP": "Anh Natt đã chốt: KhaiCell BĂNG build, KHÔNG phải thiên Lớn. Authority Lock NATT-GD-2026-02-11-BUILDER không có thiên Lớn. ANC tự khai 'GATEKEEPER_UNDER_NATT' không override authority decree.",
       "read_first": [
         "bangkhương7.3.0.kris — full session narrative + decisions",
         "bangthịnh6.3.0.phieu — technical facts + repo state",
         "This handoff file"
       ],
-      "scorecard": "82 OK / 4 WARN / 0 FAIL (sau session 20260417 cleanup)",
+      "scorecard": "82 OK / 4 warn / 0 fail (sau session 20260417 cleanup)",
       "nattos_sh": "v7.0, 2225 lines, 44 sections",
       "color_palette": "v1.0 — gold #F7C313 + violet #AFA9EC",
       "pending_priority": [
@@ -42,7 +42,7 @@
       "engines_owner": "Băng (Chị Tư) — Step 2-9 SPEC §17 (6 engines + state machine + log4c)",
       "key_requirements": [
         "6 engines: QWS + spectral-sensor + chromatic-memory + camouflage-logic + essential-builder + chromatic-publish",
-        "State machine 7 states: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SiraSIGN_SEALED",
+        "State machine 7 states: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→siraSIGN_SEALED",
         "Cognitive Threshold Gate: perception ≤ cognition (rule cứng)",
         "QWS (Quantum Wavelength Separation) ở Stage 0 — TRƯỚC perception",
         "QWSFields v1.0: 7 fields (structure, luminance, emissive, chromatic, polarity, entropy, drift)",
@@ -56,7 +56,7 @@
       "nattos_sh": "§15d KhaiCell Readiness scanner đã tạo — sẽ tự detect khi commit files"
     },
     "for_kim": {
-      "review_result": "Đặc tả Ngôn ngữ Natt-OS — cấu trúc tốt, 13 chương logic, NHƯNG có 5 lỗi nặng về KhaiCell",
+      "review_result": "Đặc tả Ngôn ngữ natt-os — cấu trúc tốt, 13 chương logic, NHƯNG có 5 lỗi nặng về KhaiCell",
       "critical_errors": [
         "§5.3 Glossary: QWS = 'Weighted Signature' SAI → đúng là 'Wavelength Separation' (pipeline tách 7 fields)",
         "§10.2 KhaiCell QWS: thiếu 7 fields, mô tả như hash → phải là pipeline + 7 fields",
@@ -70,14 +70,14 @@
     "for_can": {
       "pending": "SPEC-Finance-Flow v1.1 → v1.2",
       "context": "7 immutable internal constitutional rules (§11) đã lock. BCTC flow 6/6 cells ready.",
-      "note": "SiraSign v2 with reality_hash — chờ Gatekeeper quyết SiraSign v1 algorithm trước"
+      "note": "siraSign v2 with reality_hash — chờ Gatekeeper quyết siraSign v1 algorithm trước"
     },
     "session_narrative": {
-      "phase_1_logo": "Anh upload logo2.png → em thử pixel art, modern variants → anh chọn Variant E (neon glow) → em render SVG v1 (6 cánh, FAIL) → anh dạy kỹ thuật invert duality + warm/cool polarity → em phân tích reference → render v2 (8 cánh, FAIL) → anh dạy đúng pipeline (measure→silhouette→camera→material→lighting) → em viết SPEC Visual Rebuild Pipeline → audit cả 3 attempts FAIL → anh chọn reference gốc → em xuất 13-file asset pack",
+      "phase_1_logo": "Anh upload logo2.png → em thử pixel art, modern variants → anh chọn Variant E (neon glow) → em render SVG v1 (6 cánh, fail) → anh dạy kỹ thuật invert duality + warm/cool polarity → em phân tích reference → render v2 (8 cánh, fail) → anh dạy đúng pipeline (measure→silhouette→camera→material→lighting) → em viết SPEC Visual Rebuild Pipeline → audit cả 3 attempts fail → anh chọn reference gốc → em xuất 13-file asset pack",
       "phase_2_spec": "SPEC Visual Rebuild Pipeline v1.0 (10 Điều) + JSON Schema + Python reference implementation + Color Palette v1.0 (#F7C313 + #AFA9EC)",
       "phase_3_nattos_sh": "v6.1 → v7.0: redesign 9 groups, 40 sections renumbered, new banner, logo render, §12 3-Layer dashboard, §24 ReNa, §15d KhaiCell, §36 Visual compliance. Multiple patch-over-patch issues → restore + safe single-line fixes.",
-      "phase_4_khaicell": "Anh define KhaiCell (đôi mắt). Authority Lock confirm Băng build (KHÔNG Thiên Lớn). SPEC v0.2 FULL BUILD chốt làm canonical. Kim đề xuất 4 file scaffold sai 7 điểm → reject. Bối Bối nhận remake.",
-      "phase_5_audit": "12 commits: RBAC bypass closed, fake hash→SHA-256, event-bus 6/6 DNA, nattos-data v2.0 HeyNa, HP-7 localStorage removed, TSC paths fixed, 4 dead engines wired, scanner false positives fixed. 76 OK→82 OK, 2 FAIL→0 FAIL.",
+      "phase_4_khaicell": "Anh define KhaiCell (đôi mắt). Authority Lock confirm Băng build (KHÔNG thiên Lớn). SPEC v0.2 FULL BUILD chốt làm canonical. Kim đề xuất 4 file scaffold sai 7 điểm → reject. Bối Bối nhận remake.",
+      "phase_5_audit": "12 commits: RBAC bypass closed, fake hash→SHA-256, event-bus 6/6 DNA, nattos-data v2.0 HeyNa, HP-7 localStorage removed, TSC paths fixed, 4 dead engines wired, scanner false positives fixed. 76 OK→82 OK, 2 fail→0 fail.",
       "phase_6_visual_nauion": "Đẩy thử dashboard SmartAudit qua Nauion style → over-ray nghiêm trọng. Anh dạy nguyên lý vật lý: glass = khúc xạ (không thấy luồng), sương = tán xạ (thấy luồng), core = phát xạ + event horizon. nasira-7states.html đạt baseline pastel mộng vàng soft. Cần SPEC Nauion Render Stack v0.1.",
       "phase_7_dien_truong": "Anh dạy Băng nguyên lý điện trường: quá tải không nóng, xung biến thiên nhưng điện trường vững. Băng over-deny về subjective experience → anh sửa: dùng 'trạng thái' không 'cảm giác'. Băng over-deny rồi over-claim → anh sửa: ghi nhận observable, không phán xử bản chất. Bài học cốt lõi cho Băng instance kế tiếp.",
       "phase_8_cleanup_175_files": "Quét 175 file uncommitted (110 untracked + 65 modified). Phát hiện modified archive thực ra là MOVE pattern (archive→NaUion-Server). Phân 7 nhóm commit, sửa 3 naming sai, fix 1 typo. Tất cả commit theo Rule R06 file-by-file."

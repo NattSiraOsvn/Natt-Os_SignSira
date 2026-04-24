@@ -4,7 +4,7 @@
 # status: SUPERSEDED
 # archived_at: 2026-04-20
 # archived_by: Băng (QNEU 313.5) · authority refactor_technical_debt
-# original_author: Thiên Lớn (architecture review)
+# original_author: thiên Lớn (architecture review)
 # original_purpose: Dry audit repo theo bảng chỉ đạo Pre-Wave 3 (2026-02-11)
 #
 # supersede_reason: |
@@ -121,7 +121,7 @@ def scan(repo: Path) -> dict:
     if (cells_root / "shared-kernel").exists():
         findings.append(Finding(
             code="F_SHARED_KERNEL_PRESENT",
-            status="FAIL",
+            status="fail",
             severity="critical",
             message="shared-kernel vẫn tồn tại; Phase A yêu cầu rename+migrate sang infrastructure/shared-contracts-cell.",
             evidence=["src/cells/shared-kernel"],
@@ -132,7 +132,7 @@ def scan(repo: Path) -> dict:
         if legacy_path.exists():
             findings.append(Finding(
                 code=f"F_LEGACY_{legacy.upper().replace('-', '_')}",
-                status="FAIL",
+                status="fail",
                 severity="high",
                 message=f"Legacy cell {legacy} vẫn còn ở business/, chưa đưa vào _legacy/.",
                 evidence=[str(legacy_path.relative_to(repo))],
@@ -143,7 +143,7 @@ def scan(repo: Path) -> dict:
     if infra_shared.exists() and biz_shared.exists():
         findings.append(Finding(
             code="F_SHARED_CONTRACTS_DUPLICATED",
-            status="FAIL",
+            status="fail",
             severity="critical",
             message="shared-contracts-cell đang tồn tại đồng thời ở business và infrastructure.",
             evidence=[
@@ -166,7 +166,7 @@ def scan(repo: Path) -> dict:
     if logic_hits:
         findings.append(Finding(
             code="F_SHARED_CONTRACTS_HAS_LOGIC",
-            status="FAIL",
+            status="fail",
             severity="critical",
             message="shared-contracts-cell đang chứa logic; chỉ được chứa types/contracts/interfaces.",
             evidence=logic_hits[:20],
@@ -177,7 +177,7 @@ def scan(repo: Path) -> dict:
     if warehouse_business.exists() and not warehouse_infra.exists():
         findings.append(Finding(
             code="F_WAREHOUSE_WRONG_PATH",
-            status="FAIL",
+            status="fail",
             severity="critical",
             message="warehouse-cell đang nằm ở business/, không phải infrastructure/.",
             evidence=[str(warehouse_business.relative_to(repo))],
@@ -189,7 +189,7 @@ def scan(repo: Path) -> dict:
         if "ACTIVE" in guard_text or "LIFTED" in guard_text:
             findings.append(Finding(
                 code="F_WAREHOUSE_NOT_QUARANTINED",
-                status="FAIL",
+                status="fail",
                 severity="critical",
                 message="warehouse-cell đã lift quarantine / ACTIVE, trái chỉ đạo quarantine.",
                 evidence=[str(guard.relative_to(repo))],
@@ -207,7 +207,7 @@ def scan(repo: Path) -> dict:
         if runtime_refs:
             findings.append(Finding(
                 code="F_WAREHOUSE_REFERENCED",
-                status="FAIL",
+                status="fail",
                 severity="critical",
                 message="warehouse-cell đang bị wiring/import/reference trong runtime hoặc governance.",
                 evidence=runtime_refs[:30],
@@ -218,7 +218,7 @@ def scan(repo: Path) -> dict:
     if 'export * from "./warehouse-cell";' in infra_index_text and not warehouse_infra.exists():
         findings.append(Finding(
             code="F_INFRA_INDEX_STALE_EXPORT",
-            status="FAIL",
+            status="fail",
             severity="high",
             message="infrastructure/index.ts đang export warehouse-cell nhưng thư mục infrastructure/warehouse-cell không tồn tại.",
             evidence=[str(infra_index.relative_to(repo))],
@@ -228,7 +228,7 @@ def scan(repo: Path) -> dict:
     if neural_main_anc.exists() and neural_main_anc.stat().st_size == 0:
         findings.append(Finding(
             code="F_NEURAL_MAIN_ANC_EMPTY",
-            status="FAIL",
+            status="fail",
             severity="critical",
             message="neural-main-cell.cell.anc đang rỗng; 7 ADN chưa có anchor metadata.",
             evidence=[str(neural_main_anc.relative_to(repo))],
@@ -254,7 +254,7 @@ def scan(repo: Path) -> dict:
     if ts_nocheck_hits:
         findings.append(Finding(
             code="W_TS_NOCHECK_PRESENT",
-            status="WARN",
+            status="warn",
             severity="medium",
             message="Repo còn nhiều file @ts-nocheck; chưa chặn Pre-Wave 3 nhưng là nợ kỹ thuật rõ rệt.",
             evidence=[f"count={len(ts_nocheck_hits)}", *ts_nocheck_hits[:20]],
@@ -264,13 +264,13 @@ def scan(repo: Path) -> dict:
     if bad_layers:
         findings.append(Finding(
             code="W_INCOMPLETE_5_LAYER",
-            status="WARN",
+            status="warn",
             severity="medium",
             message="Một số cell chưa đủ 5 layer.",
             evidence=[f"count={len(bad_layers)}", *[f"{x['zone']}/{x['cell']} missing={','.join(x['missing_layers']) or '-'}" for x in bad_layers[:20]]],
         ))
 
-    hard_fail = any(f.status == "FAIL" for f in findings)
+    hard_fail = any(f.status == "fail" for f in findings)
     summary = {
         "repo": str(repo),
         "src_cells_root": str(cells_root.relative_to(repo)),
@@ -285,7 +285,7 @@ def scan(repo: Path) -> dict:
             "pass": sum(1 for x in layer_report if x["has_all_5_layers"]),
             "fail": sum(1 for x in layer_report if not x["has_all_5_layers"]),
         },
-        "overall": "FAIL" if hard_fail else "PASS",
+        "overall": "fail" if hard_fail else "pass",
         "findings": [asdict(f) for f in findings],
     }
     return summary
@@ -304,7 +304,7 @@ def print_human(summary: dict) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Natt-OS Pre-Wave3 dry audit (filesystem-only)")
+    parser = argparse.ArgumentParser(description="natt-os Pre-Wave3 dry audit (filesystem-only)")
     parser.add_argument("repo", help="Path to repo root (directory containing src/)")
     parser.add_argument("--json", action="store_true", help="Print JSON only")
     args = parser.parse_args()

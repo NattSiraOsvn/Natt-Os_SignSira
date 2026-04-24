@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { PhapCheSmartLinkPort } from "../../ports/phapche-smartlink.port";
+import { PhapCheSmartLinkPort } from "../../ports/phapche-SmartLink.port";
 import { Contract, ContractType, LegalAlert } from '../entities/contract.entity';
 
 export class PhapCheEngine {

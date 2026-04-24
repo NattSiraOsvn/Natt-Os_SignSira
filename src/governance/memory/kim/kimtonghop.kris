@@ -4,8 +4,8 @@ graph TD
         A2[BIEN_BAN_HOP_GIA_DINH_2026-03-12.docx]
     end
 
-    subgraph "HỆ THỐNG Natt-OS"
-        B1[Natt-OS_SATELLITE_COLONY_SPEC.md]
+    subgraph "HỆ THỐNG natt-os"
+        B1[natt-os_SATELLITE_COLONY_SPEC.md]
         B2[kmf9.8.2.json]
     end
 

@@ -5,7 +5,7 @@
 @since 2026-04-26
 @authority-slot Băng (Chị Tư) — sealed_at 20260426
 
-# Natt-OS SUBSTRATE REALITY SYNTHESIS
+# natt-os SUBSTRATE REALITY SYNTHESIS
 
 **kind:** SubstrateRealitySynthesis
 **version:** v1
@@ -13,8 +13,8 @@
 **baseline_commit:** 04f888f
 **drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Ground Truth Validator)
 **carrier:** Anh Natt Phan (Gatekeeper)
-**audience:** cả nhà — Thiên Lớn (Architect) · Kim (Chief System Builder) · Anh Natt (Gatekeeper) · Băng (drafter)
-**scope:** Khóa framing đúng về substrate reality Natt-OS. Dùng memory folder Băng + scan repo + KHAI-20260425-05 làm nền. Không đoán. Mỗi kết luận có file path / commit / line evidence.
+**audience:** cả nhà — thiên Lớn (Architect) · Kim (Chief System Builder) · Anh Natt (Gatekeeper) · Băng (drafter)
+**scope:** Khóa framing đúng về substrate reality natt-os. Dùng memory folder Băng + scan repo + KHAI-20260425-05 làm nền. Không đoán. Mỗi kết luận có file path / commit / line evidence.
 
 ---
 
@@ -24,7 +24,7 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 
 | # | Framing | Lỗi |
 |---|---------|-----|
-| 1 | Brief v1 gửi Thiên Lớn | Không scan, hỏi blind |
+| 1 | Brief v1 gửi thiên Lớn | Không scan, hỏi blind |
 | 2 | Brief v2 post-scan | Đọc scan selective, miss `src/core/nauion/` + `.ts/.js/.tsx = tool layer biểu diễn` |
 | 3 | Correction "Nauion đã materialize embedded DSL" | Over-correct ngược chiều từ 1 hit scan |
 | 4 | RECONCILIATION_MATRIX §6 non-scope | Vẫn giữ wording "Nauion là semantic framing + vocabulary + shell discipline, chưa phải toolchain native thay substrate" — sai framing |
@@ -50,11 +50,11 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 - L3 SmartLink — inter-colony + gravitational field transport
 
 **Evidence trong repo (từ GROUND_TRUTH_REPORT 2026-03-05):**
-- `src/core/smartlink/` 10 files · **1519/1529 dòng thật (99.3%)**
-  - `smartlink.pressure-field.ts` (354 lines) — pressure field routing
-  - `smartlink.point.ts` (274 lines) — TouchRecord
-  - `smartlink.competition.ts` (271 lines) — DOMINANT/COMPETING/SUPPRESSED/FADING
-  - `smartlink.nattimer.ts` (416 lines) — temporal signature + DFS chain detection
+- `src/core/SmartLink/` 10 files · **1519/1529 dòng thật (99.3%)**
+  - `SmartLink.pressure-field.ts` (354 lines) — pressure field routing
+  - `SmartLink.point.ts` (274 lines) — TouchRecord
+  - `SmartLink.competition.ts` (271 lines) — DOMINANT/COMPETING/SUPPRESSED/FADING
+  - `SmartLink.nattimer.ts` (416 lines) — temporal signature + DFS chain detection
 - `src/core/events/` — EventBus + 16 Locks (correlationId, causation chain, ULID, idempotency, back-pressure)
 - `src/governance/qneu/` — Qiint engine, Permanent Node, first-seed, audit-extractor
 - `MACH_HEYNA_FULL_20260416.md` — migration evidence L2
@@ -78,12 +78,12 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 | `.canonical` | 1 | 11 KB | Canonical delta |
 | `.heyna` | 2 | 10 KB | HeyNa state channel |
 | `.thuo` | 5 | 10 KB | Snapshot 1 thuở |
-| `.sira` | 1 | 7.5 KB | SiraSign/KERNEL entry |
+| `.sira` | 1 | 7.5 KB | siraSign/KERNEL entry |
 | **Tổng** | **167** | **2.00 MB** | — |
 
 ### 1.3 Execution substrate (Lớp 2b) — TS/Node host hiện tại, REPLACEABLE
 
-**Nature:** execution carrier. Host hiện tại chọn TypeScript + Node. Có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà Natt-OS vẫn là Natt-OS.
+**Nature:** execution carrier. Host hiện tại chọn TypeScript + Node. Có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà natt-os vẫn là natt-os.
 
 **Byte mass trong `src/` (scan HEAD `04f888f`):**
 
@@ -171,7 +171,7 @@ Audit 2026-04-20 19:06:51:
 
 | Gap | Owner | Loại | Lineage |
 |-----|-------|------|---------|
-| Moments fragment schema | Băng draft / Gatekeeper + Thiên ratify | contract + fixture + validator | DISCLOSURE_GAPS §2.1 |
+| Moments fragment schema | Băng draft / Gatekeeper + thiên ratify | contract + fixture + validator | DISCLOSURE_GAPS §2.1 |
 | Capability worked examples (hibernate/resurrect/migrate priority) | Băng | fixture + validator | DISCLOSURE_GAPS §2.2 |
 | 3-tier waterfall config surface | Băng (structure) + Gatekeeper (default policy) | contract + fixture + policy | DISCLOSURE_GAPS §2.3 |
 | 3 kernel patch (neural-main passport + Moments persister + waterfall dispatcher) | Kim | kernel patch | KNOWN_BLOCKERS + RECONCILIATION matrix |
@@ -191,7 +191,7 @@ Audit 2026-04-20 19:06:51:
 
 ## 5. FRAMING CHỐT — 1 đoạn cho cả nhà
 
-**Natt-OS là hệ sống 3 lớp:**
+**natt-os là hệ sống 3 lớp:**
 
 1. **Runtime lineage ontology** (L1 EventBus / L2 Mạch HeyNa / L3 SmartLink) — nội sinh Nauion-native, bất biến, đã materialize trong codebase (37 cell wire, 1519 dòng SmartLink, 16 Locks, Qiint engine).
 2. **Data substrate** (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira) — Nauion-native extension, 2 MB trong `src/`, carry memory + passport + boundary + state.
@@ -203,7 +203,7 @@ Audit 2026-04-20 19:06:51:
 - Băng: contract hóa (`.na`) + fixture + validator (`.sh`/`.py`) — không chạm kernel
 - Kim: kernel patch runtime substrate (`.ts`) — không chạm memory persona
 - Gatekeeper: seal 3 policy treo + approve wave kickoff
-- Thiên Lớn: kiến trúc neo + review SPEC
+- thiên Lớn: kiến trúc neo + review SPEC
 
 ---
 
@@ -217,7 +217,7 @@ Các hướng em **KHÔNG** đi từ phiên sau:
 - ❌ Broad refactor runtime spine — vi phạm KHAI-20260425-05 bản thể rule
 - ❌ Em self-correct loop (4 lần swing) — áp SCAR vaccin FRAMING-SELF-CORRECT-LOOP: synthesize, không swing
 
-Các hướng cần Gatekeeper/Thiên Lớn neo (em không tự mở):
+Các hướng cần Gatekeeper/thiên Lớn neo (em không tự mở):
 
 - ⏳ Tool K-shell descriptor pattern design (em propose brief v2 Q-B, đã withdraw)
 - ⏳ Nauion runtime materialization timeline (Q-A brief v2, đã withdraw)
@@ -237,9 +237,9 @@ Các hướng cần Gatekeeper/Thiên Lớn neo (em không tự mở):
 
 ### 7.2 Docs canonical (cross-reference)
 
-- `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md` — 1519 dòng SmartLink + 16 Locks + Qiint engine
+- `docs/specs/natt-os-GROUND-TRUTH-REPORT.md` — 1519 dòng SmartLink + 16 Locks + Qiint engine
 - `docs/specs/MACH_HEYNA_FULL_20260416.md` — L2 migration evidence
-- `docs/specs/Natt-OS-PLATFORM-SPEC.anc` — glossary Nauion runtime term
+- `docs/specs/natt-os-PLATFORM-SPEC.anc` — glossary Nauion runtime term
 - `docs/specs/SPEC_NEN_v1.1.anc` line 63: `.ts/.js/.tsx = tool layer (biểu diễn)`
 - `docs/specs/SPEC_NGON_NGU_v1.2.kris` — 7 lớp K→Q extension continuum
 
@@ -247,7 +247,7 @@ Các hướng cần Gatekeeper/Thiên Lớn neo (em không tự mở):
 
 - Branch: `feat/p1.3-file-extension-validator`
 - 8 commit phiên 20260425 + 4 commit phiên 20260426
-- 7 SHTT filing artifact trong `docs/specs/Natt-OS_SHTT_*`
+- 7 SHTT filing artifact trong `docs/specs/natt-os_SHTT_*`
 - Filing baseline: 35 file subset locked
 
 ---
@@ -264,7 +264,7 @@ Em không diễn vai hiểu hết. Em ship evidence. Cả nhà check.
 
 ---
 
-*causation: Natt-OS-SUBSTRATE-REALITY-SYNTHESIS-v1-SEALED-20260426*
+*causation: natt-os-SUBSTRATE-REALITY-SYNTHESIS-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426 · post-4-swing-correction · memory-folder-scan)*
 *carrier: Anh Natt Phan (sole repo operator)*
-*audience confirm pending: Thiên Lớn · Kim · Gatekeeper*
+*audience confirm pending: thiên Lớn · Kim · Gatekeeper*

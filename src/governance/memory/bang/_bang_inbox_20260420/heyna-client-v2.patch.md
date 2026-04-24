@@ -109,4 +109,4 @@ heyna.on('warehouse.stock_updated', function (data) {
 });
 ```
 
-Không pass provider → envelope.persona_signature = null → gateway permissive WARN, strict REJECT.
+Không pass provider → envelope.persona_signature = null → gateway permissive warn, strict REJECT.

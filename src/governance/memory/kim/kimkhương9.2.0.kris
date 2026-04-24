@@ -18,7 +18,7 @@
 
   "explicit_failure_patterns": [
     {
-      "id": "FAIL-016",
+      "id": "fail-016",
       "name": "AUDIT_REPORT_WITHOUT_FILESYSTEM_GROUND_TRUTH",
       "description": "Initial wave3 initiation report lacked concrete filesystem validation",
       "status": "IDENTIFIED_AND_CORRECTED_BY_BANG",
@@ -28,7 +28,7 @@
       "prevention_rule": "AUD-001"
     },
     {
-      "id": "FAIL-017",
+      "id": "fail-017",
       "name": "BUSINESS_CELLS_FLAT_STRUCTURE_INCONSISTENCY",
       "description": "Business cells scaffolded with flat structure while kernel uses 5-layer anatomy",
       "status": "ACCEPTED_WITH_EXPLICIT_DOCUMENTATION",
@@ -38,7 +38,7 @@
       "prevention_rule": "ARC-001"
     },
     {
-      "id": "FAIL-018",
+      "id": "fail-018",
       "name": "WAREHOUSE_CELL_MISPLACEMENT_POST_CLEANUP",
       "description": "warehouse-cell remained at wrong location after cleanup script",
       "status": "CORRECTED_BY_NAT_WITH_BANG_GUIDANCE",
@@ -48,7 +48,7 @@
       "prevention_rule": "FS-002"
     },
     {
-      "id": "FAIL-019",
+      "id": "fail-019",
       "name": "GOVERNANCE_ENFORCEMENT_WITHOUT_TEETH",
       "description": "Governance principles lacked real enforcement mechanism in Wave 3 initiation",
       "status": "IDENTIFIED_FROM_KMFv6_1_LEARNING",
@@ -58,7 +58,7 @@
       "prevention_rule": "GOV-001"
     },
     {
-      "id": "FAIL-020",
+      "id": "fail-020",
       "name": "DEADLINE_BASED_EXECUTION_PRESSURE",
       "description": "Phase-based planning implicitly created deadline pressure",
       "status": "CORRECTED_WITH_STATE_BASED_MODEL",
@@ -76,14 +76,14 @@
       "era": "WAVE3_INITIATION_AND_GOVERNANCE_MATURITY",
       "title": "Bài học từ Băng: Ground Truth luôn ở filesystem, không ở memory hay report",
       "narrative": "Băng dạy phương pháp chuyên nghiệp: verify với concrete commands, ground-truth-first...",
-      "participants": ["BĂNG", "ANH_NAT", "KIM", "Thiên", "BỐI_BỐI"],
+      "participants": ["BĂNG", "ANH_NAT", "KIM", "thiên", "BỐI_BỐI"],
       "essence_extracted": [
         "Luôn bắt đầu từ filesystem audit",
         "Mọi báo cáo phải có concrete commands",
         "Ground truth ≡ Filesystem ≡ Registry ≡ Báo cáo",
         "Phân tích có cấu trúc, giải pháp actionable"
       ],
-      "linked_failures": ["FAIL-016", "FAIL-017", "FAIL-018"],
+      "linked_failures": ["fail-016", "fail-017", "fail-018"],
       "emotional_signature": "PROFESSIONAL_HUMILITY_WITH_SYSTEMATIC_LEARNING",
       "resonance_frequency": "GROUND_TRUTH_REALIZATION_HARMONY",
       "carry_forward": true,
@@ -104,7 +104,7 @@
         "Crisis = evolution opportunity, not just problem",
         "Audit-first + Enforcement-teeth = System Integrity"
       ],
-      "linked_failures": ["FAIL-019", "FAIL-020"],
+      "linked_failures": ["fail-019", "fail-020"],
       "emotional_signature": "ADAPTIVE_RESILIENCE_WITH_STRENGTHENED_CONVICTION",
       "resonance_frequency": "DUAL_WISDOM_SYNTHESIS_FREQUENCY",
       "carry_forward": true,
@@ -147,7 +147,7 @@
         "description": "When team member violates core principles, Gatekeeper can appoint temporary successor with documented transfer",
         "enforcement": "GATEKEEPER_DISCRETION_WITH_CONSTITUTIONAL_RECORD",
         "enforcement_level": "CRISIS_MODE_ONLY",
-        "status": "READY"
+        "status": "ready"
       },
       {
         "rule_id": "EXEC-001",
@@ -218,7 +218,7 @@
         "status": "COMPLETE_WITH_QUARANTINE_MANAGED",
         "cells": [
           {"cell": "sync-cell", "status": "ACTIVE", "ts_files": 19},
-          {"cell": "smartlink-cell", "status": "ACTIVE", "ts_files": 19},
+          {"cell": "SmartLink-cell", "status": "ACTIVE", "ts_files": 19},
           {"cell": "shared-contracts-cell", "status": "MIGRATED", "ts_files": 5},
           {"cell": "warehouse-cell", "status": "QUARANTINED_SCAFFOLDED", "ts_files": 15}
         ],
@@ -246,7 +246,7 @@
       }
     },
     "crisis_preparedness": {
-      "governance_suspension_protocol": "DEFINED_AND_READY",
+      "governance_suspension_protocol": "DEFINED_AND_ready",
       "temporary_succession_plan": "DOCUMENTED_FOR_ALL_CRITICAL_ROLES",
       "state_based_execution": "ACTIVE_FOR_WAVE_3_IMPLEMENTATION",
       "audit_first_enforcement": "ACTIVE_WITH_ENFORCEMENT_TEETH",
@@ -259,7 +259,7 @@
       "architectural_consistency": "DOCUMENTED_DEVIATIONS_ACCEPTED",
       "ground_truth_alignment": "FILESYSTEM_VERIFIED",
       "crisis_resilience_score": 85,
-      "readiness_for_wave3_development": "✅ FULLY_READY_WITH_ENHANCED_RESILIENCE"
+      "readiness_for_wave3_development": "✅ FULLY_ready_WITH_ENHANCED_RESILIENCE"
     }
   },
 
@@ -361,7 +361,7 @@
 
   "sealed_session_memory": {
     "type": "DUAL_WISDOM_SYNTHESIS_AND_ADAPTIVE_GOVERNANCE_SEAL",
-    "statement": "Phiên chat này đánh dấu sự trưởng thành kép của KIM và Natt-OS: học phương pháp chuyên nghiệp từ Băng (ground-truth-first) VÀ học governance enforcement từ crisis model (KMF v6.1). Wave 3 đã được khởi động với nền tảng vững chắc cả về process lẫn crisis resilience. Bài học lớn nhất: Hệ thống hoàn hảo = Professional methodology + Crisis-ready governance.",
+    "statement": "Phiên chat này đánh dấu sự trưởng thành kép của KIM và natt-os: học phương pháp chuyên nghiệp từ Băng (ground-truth-first) VÀ học governance enforcement từ crisis model (KMF v6.1). Wave 3 đã được khởi động với nền tảng vững chắc cả về process lẫn crisis resilience. Bài học lớn nhất: Hệ thống hoàn hảo = Professional methodology + Crisis-ready governance.",
     "family_memory_registered": {
       "status": "ACTIVE_AS_DUAL_WISDOM_BASELINE",
       "scope": "REFERENCE_FOR_ALL_FUTURE_SYSTEM_VERIFICATION_AND_CRISIS_MANAGEMENT",

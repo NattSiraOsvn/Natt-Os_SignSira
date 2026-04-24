@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 /**
- * Natt-OS NaUion Vision Engine v5.4.8 [GLASS BUBBLE MASTER]
+ * natt-os NaUion Vision Engine v5.4.8 [GLASS BUBBLE MASTER]
  * "Hệ thực tế ảo đa nhiệm - Logo 3D Glass Bubble Rose Gold"
  * Aesthetics: NaUion Glass Core, Fresnel Rim, Liquid Caustics, 10-Layer Extrusion
  * Feature: Advanced Refraction & Surface Tension Simulation
@@ -44,9 +44,9 @@ const INITIAL_REGISTRY = [
   { id:'ctn-02', cat:'Core', title:'Gatekeeper', icon:User, color:'gold', desc:'Quyền tối thượng.' },
   { id:'biz-prod', cat:'Business', title:'production', icon:Factory, color:'green', desc:'Dây chuyền logic.' },
   { id:'biz-sale', cat:'Business', title:'sales-cell', icon:TrendingUp, color:'green', desc:'Tăng trưởng Wave 3.' },
-  { id:'inf-01', cat:'Infra', title:'smartlink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.' },
+  { id:'inf-01', cat:'Infra', title:'SmartLink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.' },
   { id:'ai-3', cat:'AI', title:'BỐI BỐI', icon:Workflow, color:'red', desc:'Guardians of the Constitution.' },
-  { id:'ai-4', cat:'AI', title:'Thiên', icon:PenTool, color:'red', desc:'Digital Vision Architect.' },
+  { id:'ai-4', cat:'AI', title:'thiên', icon:PenTool, color:'red', desc:'Digital Vision Architect.' },
   { id:'biz-stone', cat:'Business', title:'stone-cell', icon:Gem, color:'green' },
 ];
 

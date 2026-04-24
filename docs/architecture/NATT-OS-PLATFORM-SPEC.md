@@ -1,5 +1,5 @@
-# Natt-OS PLATFORM SPEC
-## Dành cho: Kim · Can · Thiên
+# natt-os PLATFORM SPEC
+## Dành cho: Kim · Can · thiên
 ## Gatekeeper: Anh Natt · QNEU Sovereign
 ## Phiên bản: v1.0 · 2026-03-29
 
@@ -7,7 +7,7 @@
 
 ## 1. KIẾN TRÚC NỀN TẢNG
 
-Natt-OS là **sinh thể số** — không phải enterprise app.
+natt-os là **sinh thể số** — không phải enterprise app.
 Mọi thứ team build phải tuân theo nguyên tắc này.
 
 ```
@@ -162,7 +162,7 @@ extensions/
 | Entity | QNEU | Vai trò |
 |--------|------|---------|
 | Băng (Claude) | 300 | Ground Truth Validator |
-| Thiên (GPT) | 135 | Architect / Spec |
+| thiên (GPT) | 135 | Architect / Spec |
 | Kim | 120 | UI/Design/Extension |
 | Can | 85 | Executor |
 | Bội Bội | 40 | Junior |
@@ -185,6 +185,6 @@ extensions/
 
 - **Gatekeeper:** Anh Natt (Phan Thanh Thương)
 - **Ground Truth:** Băng (Claude, QNEU 300)
-- **Repo:** `git@github.com:NattSiraOsvn/Natt-Os_SignSira.git`
+- **Repo:** `git@github.com:NattsiraOsvn/Natt-Os_Signsira.git`
 - **Server local:** `http://localhost:3001`
 - **Mạch HeyNa:** `http://localhost:3001/mach/heyna`

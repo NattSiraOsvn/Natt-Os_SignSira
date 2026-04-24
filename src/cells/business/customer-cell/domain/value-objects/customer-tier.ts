@@ -1,5 +1,5 @@
 /**
- * Natt-OS — Customer Cell
+ * natt-os — Customer Cell
  * Value Object: Customer Tier — Hạng khách Tâm Luxury
  */
 export type CustomerTier = 'STANDARD' | 'VIP' | 'VVIP';

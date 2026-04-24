@@ -1,14 +1,14 @@
 import { EventBus } from "../../../../core/events/event-bus";
-// ── shared-contracts-smartlink.port.ts ──────────────────────
-// Sira_CONTRACT_INTERFACE ContractSignal
+// ── shared-contracts-SmartLink.port.ts ──────────────────────
+// sira_CONTRACT_INTERFACE ContractSignal
 const ContractSignal = {
-  type: "CONTRACT_CREATED" | "CONTRACT_BREACHED" | "CONTRACT_COMPLETED" | "PAYMENT_DUE";
+  type: "CONTRACT_created" | "CONTRACT_BREACHED" | "CONTRACT_COMPLETED" | "PAYMENT_DUE";
   payload;
   timestamp;
 }
 
 const CONTRACT_MAP = {
-  "CONTRACT_CREATED":   "ContractCreated",
+  "CONTRACT_created":   "ContractCreated",
   "CONTRACT_BREACHED":  "ContractBreached",
   "CONTRACT_COMPLETED": "ContractCompleted",
   "PAYMENT_DUE":        "PaymentDue",

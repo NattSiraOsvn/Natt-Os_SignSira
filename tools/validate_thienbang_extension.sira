@@ -37,17 +37,17 @@ must(fs.existsSync(spec), "missing THIENBANG extension spec");
 
 [
   "Expansion is not replacement",
-  "ThiênBăng mở rộng Thiên, không thay Thiên",
+  "thiênbăng mở rộng thiên, không thay thiên",
   "living expansion layer"
 ].forEach(token => must(s.includes(token), "spec missing token: " + token));
 
 if (errors.length) {
-  console.error("ThiênBăng extension validation: FAIL");
+  console.error("thiênbăng extension validation: fail");
   for (const e of errors) console.error(" - " + e);
   process.exit(1);
 }
 
-console.log("ThiênBăng extension validation: PASS");
+console.log("thiênbăng extension validation: pass");
 console.log("operator=tools/thiên");
 console.log("extension=tools/thiênbăng");
 console.log("dictionary=src/thienbang.si");

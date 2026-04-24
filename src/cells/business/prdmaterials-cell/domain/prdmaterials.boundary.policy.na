@@ -4,7 +4,7 @@ export const PRDMATERIALS_BOUNDARY = {
   canSendTo: ['casting-cell', 'warehouse-cell', 'audit-cell'],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',
-    'BYPASS_CONSTITUTION',
+    'BYpass_CONSTITUTION',
     'EXTERNAL_API_WITHOUT_GATEKEEPER',
   ],
   requiresGatekeeperApproval: ['BULK_LAP_CANCEL', 'PERIOD_CLOSE'],

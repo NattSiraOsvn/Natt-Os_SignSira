@@ -52,7 +52,7 @@ export class SmartLinkMappingEngine extends SimpleEventEmitter {
         id: 'REVENUE_MAPPING',
         name: 'Doanh thu bán hàng',
         description: 'Ánh xạ doanh thu từ đơn hàng sang tài khoản kế toán',
-        source: { system: 'SALES', entity: 'SalesOrder', eventType: 'ORDER_CREATED' },
+        source: { system: 'SALES', entity: 'SalesOrder', eventType: 'ORDER_created' },
         sourceField: 'pricing.totalAmount',
         destination: { system: 'ACCOUNTING', entity: 'JournalEntry', accountType: 'REVENUE' },
         destinationField: 'debit_accounts.revenue',
@@ -129,7 +129,7 @@ export class SmartLinkMappingEngine extends SimpleEventEmitter {
       if (!rule.enabled) continue;
       
       // Simplified matching logic for demo
-      if (rule.source.system === 'SALES' && event.type === 'ORDER_CREATED') {
+      if (rule.source.system === 'SALES' && event.type === 'ORDER_created') {
          applicable.push(rule);
       }
     }

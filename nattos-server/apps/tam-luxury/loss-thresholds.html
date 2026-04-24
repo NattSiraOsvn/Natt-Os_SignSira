@@ -109,7 +109,7 @@ input{-webkit-user-select:text!important;user-select:text!important}
       <div class="hdr-sub">Ngưỡng tối đa theo danh mục SP × công đoạn · Cập nhật: <span id="updTime">—</span></div>
     </div>
     <div class="hdr-right">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--text3)">v1.0 · Điều 12 Hiến Pháp Natt-OS</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text3)">v1.0 · Điều 12 Hiến Pháp natt-os</div>
       <button class="btn btn-ghost" onclick="window.print()">🖨 In Bảng</button>
       <button class="btn btn-primary" onclick="saveAll()">💾 Lưu Thay Đổi</button>
     </div>
@@ -339,11 +339,11 @@ function runLiveTest() {
   const lossPct = (loss / before * 100);
   const t       = DATA[cat]?.stages[stage];
   if(!t) return;
-  const level   = lossPct <= t.max ? 'OK' : lossPct <= t.critical ? 'WARNING' : 'CRITICAL';
-  const color   = level==='OK'?'var(--green)':level==='WARNING'?'var(--amber)':'var(--red)';
-  const label   = level==='OK'?'✅ ĐẠT':level==='WARNING'?'⚠️ CẢNH BÁO':'🚨 VƯỢT NGƯỠNG CRITICAL';
+  const level   = lossPct <= t.max ? 'OK' : lossPct <= t.critical ? 'warnING' : 'CRITICAL';
+  const color   = level==='OK'?'var(--green)':level==='warnING'?'var(--amber)':'var(--red)';
+  const label   = level==='OK'?'✅ ĐẠT':level==='warnING'?'⚠️ CẢNH BÁO':'🚨 VƯỢT NGƯỠNG CRITICAL';
   document.getElementById('lt-result').innerHTML = `
-    <div style="background:${level==='OK'?'rgba(61,214,140,.08)':level==='WARNING'?'rgba(240,160,48,.08)':'rgba(240,80,80,.08)'};border:1px solid ${color};border-radius:3px;padding:8px 12px;display:flex;gap:14px;align-items:center">
+    <div style="background:${level==='OK'?'rgba(61,214,140,.08)':level==='warnING'?'rgba(240,160,48,.08)':'rgba(240,80,80,.08)'};border:1px solid ${color};border-radius:3px;padding:8px 12px;display:flex;gap:14px;align-items:center">
       <span style="font-family:var(--mono);font-size:14px;font-weight:600;color:${color}">${lossPct.toFixed(2)}%</span>
       <span style="color:${color};font-weight:600">${label}</span>
       <span style="color:var(--text3);font-size:10px">Ngưỡng: ≤${t.max}% · Critical: ${t.critical}%</span>

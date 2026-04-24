@@ -1,6 +1,6 @@
 # TS CLEANUP BATCH 1 — MIGRATE_TO_NA — 20260424
 
-status: PASS
+status: pass
 scope: MIGRATE_TO_NA only
 
 ## 1. Rule
@@ -8,7 +8,7 @@ scope: MIGRATE_TO_NA only
 Batch này chỉ rename các file đã được inventory phân loại MIGRATE_TO_NA.
 
 Không động KEEP_AS_TYPESCRIPT_FOR_NOW.
-Không động REVIEW_FOR_Sira.
+Không động REVIEW_FOR_sira.
 
 ## 2. Renamed
 
@@ -178,7 +178,7 @@ Không động REVIEW_FOR_Sira.
 
 [
   "src/governance/business.contracts.lock.si",
-  "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na",
-  "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na",
+  "audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.na",
+  "audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na",
   "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na"
 ]

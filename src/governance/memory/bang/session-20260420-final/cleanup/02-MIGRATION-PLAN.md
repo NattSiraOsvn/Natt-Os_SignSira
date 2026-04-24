@@ -1,4 +1,4 @@
-# Natt-OS NAUION CLEANUP — MIGRATION PLAN (Bang scope)
+# natt-os NAUION CLEANUP — MIGRATION PLAN (Bang scope)
 
 **Phạm vi:** Những action em tự làm được mà không overstep persona khác.
 **Nguyên tắc:** R05 (python3/bash inline) · R06 (git add từng file) · KHÔNG git add . · KHÔNG xoá file chưa verify.
@@ -118,8 +118,8 @@ File cross-persona được list đầy đủ trong `06-cross-persona-flag.md`. 
 3. Verify git status, commit từng group (R06)
 4. Em xuất passport `bang_v7.5.0.anc` khi anh duyệt Phase 1 xong
 5. Apply scanner patch `05-phase2-scanner-patch.md` vào `nattos.sh`
-6. Chạy `./nattos.sh` verify section 32 còn WARN không
-7. Forward `06-cross-persona-flag.md` cho Kim/Can/Kris/Phiêu (+ Bối Bối qua Kim proxy, Thiên Lớn khi resurrect)
+6. Chạy `./nattos.sh` verify section 32 còn warn không
+7. Forward `06-cross-persona-flag.md` cho Kim/Can/Kris/Phiêu (+ Bối Bối qua Kim proxy, thiên Lớn khi resurrect)
 
 **KHÔNG chạy:**
 - `git add .` — R06

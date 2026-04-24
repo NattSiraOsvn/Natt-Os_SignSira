@@ -30,7 +30,7 @@ export class FinanceAuditLogger {
     console.info(`[AUDIT-LEDGER] 0x${auditHash.substring(0,16)}... | ${entry.action} on ${entry.entity_id}`);
 
     // 2. Tín hiệu cho Gatekeeper Monitor
-    if (entry.action.includes('CANCEL') || entry.action.includes('FAIL')) {
+    if (entry.action.includes('CANCEL') || entry.action.includes('fail')) {
       NotifyBus.push({
         type: 'RISK',
         title: 'AUDIT CRITICAL ALERT',

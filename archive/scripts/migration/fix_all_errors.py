@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — Fix 442 TypeScript Errors
+natt-os — Fix 442 TypeScript Errors
 Run từ project root: python3 fix_all_errors.py
 """
 import os
@@ -17,7 +17,7 @@ def write(path, content):
 def patch(path, old, new, required=True):
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
-        print(f"⚠️  MISSING: {path}")
+        print(f"⚠️  missing: {path}")
         return False
     with open(full, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -33,7 +33,7 @@ def patch(path, old, new, required=True):
 def append(path, text):
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
-        print(f"⚠️  MISSING: {path}")
+        print(f"⚠️  missing: {path}")
         return
     with open(full, 'r', encoding='utf-8') as f:
         existing = f.read()
@@ -46,11 +46,11 @@ def append(path, text):
     print(f"✅ append: {path}")
 
 print("=" * 60)
-print("Natt-OS TypeScript Fix — 442 errors")
+print("natt-os TypeScript Fix — 442 errors")
 print("=" * 60)
 
 # ══════════════════════════════════════════════════════════
-# BLOCK 1: src/types.ts — ADD ALL MISSING FIELDS
+# BLOCK 1: src/types.ts — ADD ALL missing FIELDS
 # ══════════════════════════════════════════════════════════
 
 # UserRole — add ADMIN
@@ -197,8 +197,8 @@ patch("src/types.ts", '  metadata?: { reason?: string };\n}\n\n// ── SYNC',
 
 # SyncJob.status — add COMPLETED, IDLE
 patch("src/types.ts",
-    '  status: "PENDING" | "RUNNING" | "DONE" | "FAILED";\n  strategy: SyncConflictStrategy;',
-    '  status: "PENDING" | "RUNNING" | "DONE" | "FAILED" | "COMPLETED" | "IDLE";\n  strategy: SyncConflictStrategy;')
+    '  status: "PENDING" | "RUNNING" | "DONE" | "failED";\n  strategy: SyncConflictStrategy;',
+    '  status: "PENDING" | "RUNNING" | "DONE" | "failED" | "COMPLETED" | "IDLE";\n  strategy: SyncConflictStrategy;')
 
 # SyncLog — add id
 patch("src/types.ts", 'export interface SyncLog {\n  jobId: string;',
@@ -206,8 +206,8 @@ patch("src/types.ts", 'export interface SyncLog {\n  jobId: string;',
 
 # WorkflowNode — add x, y, view, color, icon, desc
 patch("src/types.ts",
-    '  status?: "IDLE" | "ACTIVE" | "DONE" | "ERROR";\n}\n\nexport interface WorkflowEdge',
-    '  status?: "IDLE" | "ACTIVE" | "DONE" | "ERROR";\n  x?: number;\n  y?: number;\n  view?: string;\n  color?: string;\n  icon?: string;\n  desc?: string;\n}\n\nexport interface WorkflowEdge')
+    '  status?: "IDLE" | "ACTIVE" | "DONE" | "error";\n}\n\nexport interface WorkflowEdge',
+    '  status?: "IDLE" | "ACTIVE" | "DONE" | "error";\n  x?: number;\n  y?: number;\n  view?: string;\n  color?: string;\n  icon?: string;\n  desc?: string;\n}\n\nexport interface WorkflowEdge')
 
 # WorkflowEdge — add active
 patch("src/types.ts", '  condition?: string;\n}\n\n// ── QUANTUM',
@@ -266,7 +266,7 @@ export interface ExtendedDeclaration extends CustomsDeclaration {
   riskAssessment?: { level: string; score: number; flags: string[]; recommendation: string; };
   trackingTimeline?: Array<{ status: string; timestamp: number; note?: string }>;
   header?: { declarantName?: string; declarantTaxCode?: string; portCode?: string; routeCode?: string; transportMode?: string; countryOfOrigin?: string; };
-  compliance?: { status: "PASS" | "FAIL" | "REVIEW"; violations: string[]; score: number; };
+  compliance?: { status: "pass" | "fail" | "REVIEW"; violations: string[]; score: number; };
 }
 
 export interface DetailedPersonnel {
@@ -288,8 +288,8 @@ export type WarehouseLocationKey = keyof typeof WarehouseLocation;
 # BLOCK 2: NOTIFICATION-SERVICE
 # ══════════════════════════════════════════════════════════
 patch("src/services/notification-service.ts",
-    'export interface GlobalAlert { id:string; type:"INFO"|"WARNING"|"ERROR"|"SUCCESS"|"NEWS"; title:string; content:string; persona?:string; timestamp:number; read:boolean; pinned:boolean; }',
-    'export interface GlobalAlert { id:string; type:"INFO"|"WARNING"|"ERROR"|"SUCCESS"|"NEWS"|"RISK"|"ORDER"; title:string; content:string; persona?:string; timestamp:number; read:boolean; pinned:boolean; metadata?:Record<string,any>; }')
+    'export interface GlobalAlert { id:string; type:"INFO"|"warnING"|"error"|"SUCCESS"|"NEWS"; title:string; content:string; persona?:string; timestamp:number; read:boolean; pinned:boolean; }',
+    'export interface GlobalAlert { id:string; type:"INFO"|"warnING"|"error"|"SUCCESS"|"NEWS"|"RISK"|"ORDER"; title:string; content:string; persona?:string; timestamp:number; read:boolean; pinned:boolean; metadata?:Record<string,any>; }')
 
 # ══════════════════════════════════════════════════════════
 # BLOCK 3: SERVICE FILE REWRITES
@@ -567,7 +567,7 @@ write("src/services/quantumBufferService.ts", """export const QuantumBuffer = {
 };
 """)
 
-write("src/services/productionSalesFlow.ts", """export interface FlowLog { id:string; stage:string; actor:string; action:string; timestamp:number; status:"OK"|"ERROR"|"PENDING"; step?:number; detail?:string; }
+write("src/services/productionSalesFlow.ts", """export interface FlowLog { id:string; stage:string; actor:string; action:string; timestamp:number; status:"OK"|"error"|"PENDING"; step?:number; detail?:string; }
 export const FlowEngine = {
   start:(channel:any):FlowLog=>({ id:`FL-${Date.now()}`, stage:"INIT", actor:"SYSTEM", action:`Start ${String(channel)}`, timestamp:Date.now(), status:"OK", step:1, detail:"" }),
   advance:(id:string,stage:string):FlowLog=>({ id, stage, actor:"SYSTEM", action:`Move to ${stage}`, timestamp:Date.now(), status:"OK" }),
@@ -654,7 +654,7 @@ export interface CellHealthState {
 
 export interface CoordinationTask {
   id: string; type: string; source_cell: string; target_cell?: string;
-  payload: unknown; status: "PENDING" | "IN_PROGRESS" | "DONE" | "FAILED";
+  payload: unknown; status: "PENDING" | "IN_PROGRESS" | "DONE" | "failED";
   created_at: number; completed_at?: number;
 }
 """)
@@ -671,8 +671,8 @@ export interface EnvelopeFactoryOptions {
 # ══════════════════════════════════════════════════════════
 # BLOCK 7: SMARTLINK STABILIZER — SmartLinkCell
 # ══════════════════════════════════════════════════════════
-append("src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts", """
-// SmartLinkCell export for cell-smartlink.component.ts
+append("src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer.ts", """
+// SmartLinkCell export for cell-SmartLink.component.ts
 export class SmartLinkCell {
   private cellId: string;
   constructor(cellId: string) { this.cellId = cellId; }

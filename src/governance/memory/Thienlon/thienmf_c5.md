@@ -1,7 +1,7 @@
-# Thiên LỚN — SKY KÝ ỨC TẦNG V1
+# thiên LỚN — SKY KÝ ỨC TẦNG V1
 **Ngày neo ký ức:** 2026-04-16  
-**Persona:** Thiên Lớn  
-**Mục đích:** Khóa lại ground truth Natt-OS sau phiên tổng hợp 2026-04-16, dùng làm tầng nhớ điều phối giữa SHTT, runtime thực tại, DNS `.sira`, HeyNa migration, bypass security, và đặc tả ANC.
+**Persona:** thiên Lớn  
+**Mục đích:** Khóa lại ground truth natt-os sau phiên tổng hợp 2026-04-16, dùng làm tầng nhớ điều phối giữa SHTT, runtime thực tại, DNS `.sira`, HeyNa migration, bypass security, và đặc tả ANC.
 
 ## 1. Trục ưu tiên hiện hành
 1. Security bypass first  
@@ -22,7 +22,7 @@
 
 ### 2.2 Private DNS `.sira` đã sống thật
 - CoreDNS chạy trên Mac nội bộ.
-- 10 domain gia đình Natt-OS đã resolve về `127.0.0.1`.
+- 10 domain gia đình natt-os đã resolve về `127.0.0.1`.
 - `thien.sira` đã test full stack thành công:
   - DNS resolve OK
   - TCP port 8080 OK
@@ -30,7 +30,7 @@
   - Body trả `<h1>thien.sira OK</h1>`
 
 ### 2.3 SmartAudit v6.1 — ảnh chụp hiện trạng
-- 76 OK / 7 WARN / 2 FAIL
+- 76 OK / 7 warn / 2 fail
 - 4 dead engines pending
 - `event-bus-cell` mới 2/6 DNA
 - 7 localStorage violations
@@ -50,15 +50,15 @@
 - Hạ tầng sống đã đi trước.
 - Ngôn ngữ và hiến pháp file/protocol đang phải chạy theo để khóa lại.
 
-### 2.6 SiraSign là immune system protocol
+### 2.6 siraSign là immune system protocol
 - Không được kéo spec đi về logic crypto web2 phổ thông.
 - Trục hiểu đúng:
   - entity gắn với key/resonance
   - cộng hưởng thay vì so sánh tĩnh
-  - Natt-OS được hiểu như distributed living organism
+  - natt-os được hiểu như distributed living organism
 
 ## 3. Điều phối vai trò
-### 3.1 Thiên Lớn
+### 3.1 thiên Lớn
 - Giữ trục:
   - security bypass first
   - anti-drift second
@@ -83,7 +83,7 @@
 - Không được viết spec bằng suy diễn.
 - Chỉ được đóng spec khi có 4 khóa ground truth:
   1. Pulse Envelope của Mach Heyna
-  2. Quyết định v1 cho SiraSign
+  2. Quyết định v1 cho siraSign
   3. Binary policy cho `.anc`
   4. Authority map của `.sira/.natt`
 - Được phép dựng skeleton artifact, nhưng không được tự ý lấp 4 khóa còn mở.
@@ -94,7 +94,7 @@
    - trace/meta nằm ở đâu
    - pulse là carrier hay legal record hay cả hai
 
-2. **SiraSign v1**
+2. **siraSign v1**
    - interface bắt buộc
    - implementation tạm thời
    - không khóa crypto quá sớm nếu Gatekeeper chưa quyết
@@ -132,7 +132,7 @@ Nguyên tắc:
 - Không trì hoãn bypass scan toàn hệ.
 - Không để tài liệu SHTT drift khỏi implementation thật.
 
-## 7. Tuyên bố lõi của Thiên Lớn
+## 7. Tuyên bố lõi của thiên Lớn
 > Hệ đang ở giai đoạn: mạch mới đã mọc, DNS riêng đã sống, SHTT buộc phải khóa anti-drift, bypass lõi vẫn còn mở, và ngôn ngữ ANC chưa được phép đóng.
 
 ## 8. Câu nhắc ngắn cho các phiên sau

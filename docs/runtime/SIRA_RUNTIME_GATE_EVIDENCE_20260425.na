@@ -1,7 +1,7 @@
-# Sira runtime gate Evidence — 20260425
+# sira runtime gate Evidence — 20260425
 
-status: PASS
-created_at: 2026-04-24T18:45:05.818Z
+status: pass
+created_at: 2026-04-24T18:55:19.236Z
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ---
@@ -24,38 +24,38 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
   "namespace": ".sira",
   "operator": "tools/thiên",
   "transport": "http browser adapter",
-  "created_at": "2026-04-24T18:45:05.818Z",
+  "created_at": "2026-04-24T18:55:19.236Z",
   "root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",
   "checks": [
     {
       "name": "namespace",
       "cmd": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/thiên tools/validate_sira_namespace.sira",
       "exit": 0,
-      "stdout": "Sira namespace validation: PASS\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/Sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
+      "stdout": "sira namespace validation: pass\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
       "stderr": "",
-      "ms": 126
+      "ms": 124
     },
     {
       "name": "browser_adapter",
       "cmd": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/thiên tools/validate_sira_browser_adapter.sira",
       "exit": 0,
-      "stdout": "Sira browser adapter validation: PASS\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
+      "stdout": "sira browser adapter validation: pass\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
       "stderr": "",
-      "ms": 124
+      "ms": 129
     },
     {
       "name": "ts_translation_adapter",
       "cmd": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/thiên tools/validate_sira_ts_translation_adapter.sira",
       "exit": 0,
-      "stdout": "Sira TypeScript translation adapter validation: PASS\nmode=adapter scaffold\nmutation_policy=no bulk mutation",
+      "stdout": "sira typescript translation adapter validation: pass\nmode=adapter scaffold\nmutation_policy=no bulk mutation",
       "stderr": "",
-      "ms": 121
+      "ms": 123
     },
     {
       "name": "browser_transport_boundary",
       "cmd": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/thiên tools/validate_browser_transport_boundary.sira",
       "exit": 0,
-      "stdout": "Sira browser transport boundary validation: PASS\nidentity=anc://\nnamespace=.sira\noperator=tools/thiên\ntransport=http browser adapter",
+      "stdout": "sira browser transport boundary validation: pass\nidentity=anc://\nnamespace=.sira\noperator=tools/thiên\ntransport=http browser adapter",
       "stderr": "",
       "ms": 122
     },
@@ -74,11 +74,11 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "audit_html": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html",
         "tam_screens": 70,
         "nauion_screens": 7,
-        "audit_events": 3,
-        "time": "2026-04-24T18:45:05.814Z"
+        "audit_events": 4,
+        "time": "2026-04-24T18:55:19.231Z"
       },
-      "body_preview": "{\n  \"ok\": true,\n  \"host\": \"core.sira\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 3,\n  \"time\": \"2026-04-24T18:45:05.814Z\"\n}",
-      "ms": 18
+      "body_preview": "{\n  \"ok\": true,\n  \"host\": \"core.sira\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 4,\n  \"time\": \"2026-04-24T18:55:19.231Z\"\n}",
+      "ms": 19
     },
     {
       "name": "anc_resolve_core",

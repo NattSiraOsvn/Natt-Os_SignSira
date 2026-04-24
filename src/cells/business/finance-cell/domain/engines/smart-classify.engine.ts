@@ -1,5 +1,5 @@
 /**
- * Natt-OS Smart Classify Engine v1.0
+ * natt-os Smart Classify Engine v1.0
  * Dùng chung cho: finance-cell, customs-cell, buyback-cell, tax-cell
  *
  * Logic từ: MEGA ACCOUNTING v10.1 SmartClassifier + SmartDetection

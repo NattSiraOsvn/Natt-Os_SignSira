@@ -27,17 +27,17 @@ Per memory commit `045d8c5` builder-authority-lock:
 
 ### §2.3 Substrate fit
 - Băng (Claude Opus 4.7) đọc full đuôi mới `.na/.anc/.phieu/.obitan/.canonical` native
-- Đã sealed SPEC v1.1 align Thiên 4 split (commit `3726478`)
+- Đã sealed SPEC v1.1 align thiên 4 split (commit `3726478`)
 - Đã build 3 scanner phiên 20260423 (state-labels v1.0, extension-precedence v0.4, audit-spec-governance v0.5) — proven toolchain capability
 
 ### §2.4 Wave 1 vs Wave 2 boundary
-- Thiên Lớn ship Wave 2 scaffold (A.2 Moments + B.7 Capability scaffold v3) per memory `bang_handoff_20260427.na`
+- thiên Lớn ship Wave 2 scaffold (A.2 Moments + B.7 Capability scaffold v3) per memory `bang_handoff_20260427.na`
 - Wave 1 Host-first = khác layer, không collision
 - Băng nhận Wave 1 Host = clean lane, không touch Wave 2 pending 4 concern
 
 ### §2.5 Substrate asymmetry rule out alternatives
 - **Kim (DeepSeek):** không đọc được `.na/.anc/.phieu/.obitan/.canonical`. Không assignable kernel build (per `bang_handoff_20260427.na` role shift evidence).
-- **Thiên Lớn (GPT):** Architect role primary. Wave 2 scaffold v3 đang ship + 4 concern non-blocking pending. Không nên load thêm Wave 1 Host concurrent.
+- **thiên Lớn (GPT):** Architect role primary. Wave 2 scaffold v3 đang ship + 4 concern non-blocking pending. Không nên load thêm Wave 1 Host concurrent.
 - **Băng:** Toolsmith + Translation Bridge scope, free bandwidth post-Wave 1 baseline hardening (15 commit phiên 20260423).
 
 ## §3. SCOPE BĂNG NHẬN
@@ -47,16 +47,16 @@ Per memory commit `045d8c5` builder-authority-lock:
 - Cargo.toml + src/main.rs initial
 - Canonical reading layer cho SPEC `.na` (parser + validator)
 - Integration với `nattos.sira` kernel entry — cross-link tự handle, không handoff
-- Cross-link 4 Thiên SPEC split (`docs/specs/kim kernel/`) làm reference primary
+- Cross-link 4 thiên SPEC split (`docs/specs/kim kernel/`) làm reference primary
 
 ### §3.2 Boundaries TÔN TRỌNG
-- KHÔNG touch Thiên Wave 2 scope (`src/wave2/moments/` + `src/wave2/capabilities/`) — đang pending 4 concern
+- KHÔNG touch thiên Wave 2 scope (`src/wave2/moments/` + `src/wave2/capabilities/`) — đang pending 4 concern
 - KHÔNG touch Kim ad-hoc Reviewer scope (packaging/path/tree review)
-- KHÔNG modify SPEC architecture của Thiên — em implement, không re-architect
+- KHÔNG modify SPEC architecture của thiên — em implement, không re-architect
 - Báo cáo Gatekeeper qua commit message mỗi milestone
 
 ### §3.3 Cross-persona dependency
-- Thiên Lớn: scaffold v4 + 4 concern address (PEND-20260427-01) — em wait, không block Thiên
+- thiên Lớn: scaffold v4 + 4 concern address (PEND-20260427-01) — em wait, không block thiên
 - Bối Bội: pack `docs/specs/bối kernel/` (currently empty) — em integrate khi Bối ship
 - Kim: review packaging post-scaffold — em ship trước, Kim review sau
 
@@ -67,8 +67,8 @@ Done khi:
 2. `runtime/nauion-host/src/main.rs` parse `nattos.sira` PHASE 1-4
 3. Listen `127.0.0.1:3002` per SPEC_HOST_FIRST_RUNTIME v1.1 §0
 4. Bootstrap observation-cell + quantum-defense-cell `bootstrap.khai` (commits `89a05dc` + `1e2365d`)
-5. NDJSON Stage 1 audit log `logs/host-audit.ndjson` per Thiên `spec_host_authority §6`
-6. Cutover verify `logs/cutover-verify.ndjson` per Thiên `spec_cutover §4`
+5. NDJSON Stage 1 audit log `logs/host-audit.ndjson` per thiên `spec_host_authority §6`
+6. Cutover verify `logs/cutover-verify.ndjson` per thiên `spec_cutover §4`
 7. Parity scanner `validate-host-parity.py` ship (Băng W1 exit criteria)
 8. Cell 1 + Cell 2 S2→S3 swap `npx tsx VALIDATOR.ts` → `$NAUION_HOST $CANONICAL.khai`
 9. PILOT_BRIDGE_MAP v0.2 update reflect S2→S3
@@ -76,7 +76,7 @@ Done khi:
 ## §5. BINDING
 
 - SPEC_HOST_FIRST_RUNTIME v1.1 (`docs/specs/spec_host_first_runtime_v1_0.na`)
-- 4 Thiên SPEC split (`docs/specs/kim kernel/spec_*_v1.0_split.na`)
+- 4 thiên SPEC split (`docs/specs/kim kernel/spec_*_v1.0_split.na`)
 - RUNTIME_DEPENDENCY_CENSUS v1.0 (`docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na`)
 - PILOT_BRIDGE_MAP v0.1 (`docs/specs/pilot_bridge_map_v0_1.na`)
 - Bối surface delta v1.0 (`docs/specs/boi_surface_delta_scripts_kernel_v1.0.na`)

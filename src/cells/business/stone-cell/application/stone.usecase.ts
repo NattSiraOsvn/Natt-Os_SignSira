@@ -2,7 +2,7 @@
 
 /**
  * stone-cell — application/stone.usecase.ts
- * Sprint 2 | Tâm Luxury Natt-OS
+ * Sprint 2 | Tâm Luxury natt-os
  *
  * Subscribe: WIP_IN_PROGRESS (từ finishing-cell)
  * Emit:      WIP_STONE (sang polishing-cell)

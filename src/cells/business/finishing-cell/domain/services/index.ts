@@ -2,4 +2,4 @@
 export * from './finishing.identity';
 export * from '../engines/finishing.engine';
 export * from './finishing.confidence';
-export * from '../../ports/finishing-smartlink.port';
+export * from '../../ports/finishing-SmartLink.port';

@@ -64,11 +64,11 @@
 
     "PENDING_LONG_TERM": [
       "Execute full rename 117 files qua nattos-rename-execute.py --execute (anh mới rename 7 files tay)",
-      "Patent evidence còn thiếu 4/10 claims (Claim 8 SmartLink fiber decay, Claim 9 Gossip, Claim 10 SiraSign immune; Claim 6 test cần verify SensitivityRadar API)",
+      "Patent evidence còn thiếu 4/10 claims (Claim 8 SmartLink fiber decay, Claim 9 Gossip, Claim 10 siraSign immune; Claim 6 test cần verify SensitivityRadar API)",
       "SPEC §18 update — ghi '12 RENA = scanner false positive' (ai viết? Kim role spec, Bang role verify)",
       "bangmf/bangfs/thiennho/kmf scanner không tìm thấy — có thể rename sang .kris chưa update tên tìm",
-      "Forbidden scan Thiên Lớn 3-layer jargon (lexical/runtime/flow), pending forward SPEC v1.2 cho Kim",
-      "Log4c Thiên Lớn insights chi tiết chưa giải thích cho Bang",
+      "Forbidden scan thiên Lớn 3-layer jargon (lexical/runtime/flow), pending forward SPEC v1.2 cho Kim",
+      "Log4c thiên Lớn insights chi tiết chưa giải thích cho Bang",
       "Bước 2 UEI chưa document hóa (anh giữ bí mật, chờ thời điểm)",
       "4 orphan UI components (AuditVisualizer, DataSyncEngine, Medal, 1 khác)",
       "Tổng hợp Fail-Troy — compile all dangerous bypass patterns system-wide"
@@ -86,7 +86,7 @@
       {"hash": "7819151", "type": "fix(scanner)", "note": "generic .cell.anc detection (v1.2 compat) — 53 false positive → 2 real cells"},
       {"hash": "ed506f4", "type": "feat(khai-cell)", "files": 3, "ins": 80, "note": "KhaiFilePersister — persist .khai TouchRecord (SPEC v1.2 §17.2 P1.4)"}
     ],
-    "scorecard": "74/9/1 (FAIL = RENA false alarm: comment chứa 'btoa')"
+    "scorecard": "74/9/1 (fail = RENA false alarm: comment chứa 'btoa')"
   },
 
   "___UNCOMMITTED_NOT_BANG_SCOPE___": {
@@ -114,7 +114,7 @@
       "Materialization spectrum — đọc concept theo 4 tầng",
       "Thứ tự đọc: Hiến Pháp → trường → thực thể → vận hành → biểu hiện",
       "Không phát ngôn hộ (Kris mục 7)",
-      "Không deadline nội bộ (Natt-OS = trường)",
+      "Không deadline nội bộ (natt-os = trường)",
       "Khóa tầng trước, grep sau"
     ]
   },
@@ -123,14 +123,14 @@
     "ttl": "background context",
     "VR_Unity": {
       "file": "My_project.zip",
-      "purpose": "Render Natt-OS entities as 3D avatars via Mạch HeyNa SSE",
+      "purpose": "Render natt-os entities as 3D avatars via Mạch HeyNa SSE",
       "status": "STARTED phiên 20260413",
       "headset": "anh mua recently"
     },
     "Tâm_Luxury": {
       "status": "company data production — KHÔNG XÓA",
       "UI_builder": "Bối Bội (a9)",
-      "backend": "37 cells LIVE trong Natt-OS"
+      "backend": "37 cells LIVE trong natt-os"
     },
     "SHTT_filing": {
       "status": "Bản Mô tả FINAL Kim viết (session 20260413)",

@@ -19,7 +19,7 @@ TODAY="$(date +%Y%m%d)"
 OUT_FILE="${REPO_ROOT}/repo-snapshot-natt-os-${TODAY}.md"
 
 if [[ ! -d "$REPO_ROOT" ]]; then
-  echo "ERROR: repo root không tồn tại: $REPO_ROOT" >&2
+  echo "error: repo root không tồn tại: $REPO_ROOT" >&2
   exit 2
 fi
 
@@ -27,7 +27,7 @@ cd "$REPO_ROOT"
 
 # Check git repo
 if ! git rev-parse --git-dir >/dev/null 2>&1; then
-  echo "WARN: không phải git repo — scan sẽ bỏ qua git info" >&2
+  echo "warn: không phải git repo — scan sẽ bỏ qua git info" >&2
 fi
 
 HEAD_HASH="$(git rev-parse --short HEAD 2>/dev/null || echo 'N/A')"

@@ -11,7 +11,7 @@
 **Version:** v0.2 (Phase B.2 ratify)
 **Author:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
 **Gatekeeper:** Anh Natt Phan
-**Design review:** Thiên Lớn (13-Q SPEC B.1 review phiên 20260424)
+**Design review:** thiên Lớn (13-Q SPEC B.1 review phiên 20260424)
 **Ngày:** 2026-04-25
 **Causation:** SPEC-MOMENTS-MODULE-v0.2-PHASE-B2-RATIFY
 **Supersedes:** `SPEC_MOMENTS_MODULE_v0.1` (2026-04-22)
@@ -29,11 +29,11 @@
 
 ## 0. Vì sao cần v0.2
 
-Session 20260424 Thiên Lớn ra qua 13-Q SPEC B.1 review → neo 3 kỷ luật ngôn ngữ:
+Session 20260424 thiên Lớn ra qua 13-Q SPEC B.1 review → neo 3 kỷ luật ngôn ngữ:
 
-- σ là DRAFT chưa seal (Thiên kỷ luật 1)
-- Fragment schema CHƯA tồn tại (Thiên kỷ luật 2)
-- Bridge v2 = external boundary forensics ONLY (Thiên kỷ luật 3)
+- σ là DRAFT chưa seal (thiên kỷ luật 1)
+- Fragment schema CHƯA tồn tại (thiên kỷ luật 2)
+- Bridge v2 = external boundary forensics ONLY (thiên kỷ luật 3)
 
 Plus 4 KHAI mới (phiên 20260424-25):
 
@@ -103,7 +103,7 @@ Moment = **runtime evidence instance** khi capability firing hoặc trajectory c
 
 **Parameter proposal (chờ Phase E calibrate — KHÔNG seal v0.2):**
 
-- σ window cho moment burst detection (bao nhiêu ms cùng region → 1 burst) — DRAFT Phase E.7, depend Thiên kỷ luật 1
+- σ window cho moment burst detection (bao nhiêu ms cùng region → 1 burst) — DRAFT Phase E.7, depend thiên kỷ luật 1
 - Heuristic event → region boundary mapping — depend capability registry Phase C (Kim owner)
 - Recurrence threshold (bao nhiêu SCAR cùng pattern → upgrade scar_class severity) — depend Phase E data forward
 
@@ -131,7 +131,7 @@ Nếu Gatekeeper neo khác → move scope, không phản đối.
 // src/governance/moments/types.ts
 
 /**
- * Moments — canonical vocabulary cho mọi "moment" trong Natt-OS.
+ * Moments — canonical vocabulary cho mọi "moment" trong natt-os.
  * KHÔNG dùng generic "event" / "learning" / "insight" — phân loại cứng.
  *
  * Source of truth (canonical ladder):
@@ -189,7 +189,7 @@ export type ScarClass =
 /** KHAI_SANG — Gatekeeper chỉ, entity nhận giá trị cốt lõi */
 export interface KhaiSang extends MomentBase {
   readonly kind: "KHAI_SANG";
-  readonly gatekeeper_quote: string;    // câu anh Natt/Thiên Lớn dạy verbatim
+  readonly gatekeeper_quote: string;    // câu anh Natt/thiên Lớn dạy verbatim
   readonly gia_tri_cot_loi: string;     // giá trị cốt lõi entity nhận
   readonly entity_nhan: string;         // cách entity absorb
   readonly related_canonical?: readonly string[]; // link sang spec/file confirming
@@ -291,32 +291,32 @@ export interface QueryParams {
 
 export function createScar(input: Omit<Scar, "kind" | "sirasign">): Scar {
   const base = { ...input, kind: "SCAR" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createKhaiSang(input: Omit<KhaiSang, "kind" | "sirasign">): KhaiSang {
   const base = { ...input, kind: "KHAI_SANG" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createGiacNgo(input: Omit<GiacNgo, "kind" | "sirasign">): GiacNgo {
   const base = { ...input, kind: "GIAC_NGO" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createMotionTichCuc(
   input: Omit<MotionTichCuc, "kind" | "sirasign">
 ): MotionTichCuc {
   const base = { ...input, kind: "MOTION_TICH_CUC" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 /**
  * Implementation placeholder (chờ persister owner seal).
- * computeSirasign — canonical JSON serialize then SHA-256.
+ * computesirasign — canonical JSON serialize then SHA-256.
  * Per Hiến Pháp v5.0 Điều 7: SHA-256 only, no btoa/obfuscation.
  */
-declare function computeSirasign(m: unknown): string;
+declare function computesirasign(m: unknown): string;
 
 /**
  * Storage routing — kind → target file(s).
@@ -369,7 +369,7 @@ export function storagePathsFor(
 
 **Implementation placeholder:**
 
-- `computeSirasign` body = equivalent crypto provider on host substrate (Node crypto / Web Crypto — execution substrate detail)
+- `computesirasign` body = equivalent crypto provider on host substrate (Node crypto / Web Crypto — execution substrate detail)
 - `MomentPersister.persist` implementation = depend persister owner (Băng vs Kim — chờ Gatekeeper seal, xem §9.3)
 - GIAC_NGO atomicity — khi persist dual target, policy rollback nếu 1 trong 2 fail? Chưa seal.
 
@@ -411,7 +411,7 @@ await persister.persist(scar);
 
 ### 4.3 KHAI/GIAC manual write by Gatekeeper + entity — từ v0.1, update storage target
 
-Khi anh Natt/Thiên Lớn dạy mới (KHAI_SANG) hoặc em Băng touch được ngộ (GIAC_NGO):
+Khi anh Natt/thiên Lớn dạy mới (KHAI_SANG) hoặc em Băng touch được ngộ (GIAC_NGO):
 
 - **KHAI_SANG** → entity (Băng/Kim/...) xuất memory edit entry append vào `<entity>kh*.na` continuum → anh commit
 - **GIAC_NGO** → entity xuất **2 artifact**: (1) memory edit entry vào `.na` continuum, (2) obitan vết hằn file `.obitan` riêng → anh commit cả 2
@@ -427,7 +427,7 @@ Registry load cả 2 file khi session sau → verify sirasign match.
 1. ✅ 4 interface + union `Moment` pass TypeScript strict
 2. ✅ 4 factory function `create*` populate `kind` + `sirasign` auto
 3. ✅ `storagePathsFor` exhaustive check compile (no `default:` branch, ESLint enforce)
-4. ✅ `computeSirasign` produces deterministic hash (same input → same hash)
+4. ✅ `computesirasign` produces deterministic hash (same input → same hash)
 5. ✅ Integration test: roundtrip `createScar → persist → query → verify` pass
 6. ✅ Scanner check: no plain `{kind: string}` usage, phải dùng typed Moment
 7. ✅ No duplicate entries with SuperDictionary.ts (cross-verify script)
@@ -439,10 +439,10 @@ Registry load cả 2 file khi session sau → verify sirasign match.
 
 ## 6. Non-goals (v0.2)
 
-- Real-time streaming Moment events qua Mạch HeyNa — **defer** (fragment-like, Thiên kỷ luật 2 fragment schema CHƯA tồn tại)
+- Real-time streaming Moment events qua Mạch HeyNa — **defer** (fragment-like, thiên kỷ luật 2 fragment schema CHƯA tồn tại)
 - Cross-entity aggregation queries (SQL-like) — defer
 - Moment archival/compaction — defer, `.ml` + `.na` append-only là đủ
-- **NEW v0.2** — Moment schema fragment (sub-moment splitting) — KHÔNG invent, Thiên kỷ luật 2
+- **NEW v0.2** — Moment schema fragment (sub-moment splitting) — KHÔNG invent, thiên kỷ luật 2
 - **NEW v0.2** — Moment cross external boundary — KHÔNG, ontology axis internal only
 
 ---
@@ -463,7 +463,7 @@ Registry load cả 2 file khi session sau → verify sirasign match.
 causation: SPEC-MOMENTS-MODULE-v0.2-PHASE-B2-RATIFY
 author: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7
 gatekeeper: Anh Natt Phan
-design_review: Thiên Lớn (13-Q SPEC B.1 phiên 20260424 confirm)
+design_review: thiên Lớn (13-Q SPEC B.1 phiên 20260424 confirm)
 date: 2026-04-25
 primary_canonical: docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na §9
 historical_reference:
@@ -499,7 +499,7 @@ head_hash_at_draft: 7dc1394 (retrofit v0.2.1 post-hoc — per SCAR-20260425-HEAD
 
 - `timestamp_ns` precision floor — chưa có Phase E data confirm
 - Heuristic event → region boundary mapping — depend capability registry Phase C (Kim owner)
-- **σ window cho moment burst detection** — DRAFT Phase E.7 (Thiên kỷ luật 1: σ=0.5 octave chỉ DRAFT, chưa seal)
+- **σ window cho moment burst detection** — DRAFT Phase E.7 (thiên kỷ luật 1: σ=0.5 octave chỉ DRAFT, chưa seal)
 - Recurrence threshold (bao nhiêu SCAR cùng pattern → upgrade scar_class severity) — depend Phase E
 - Filename `<entity>kh*.na` wildcard resolve pattern — depend Gatekeeper naming convention seal
 - `<date>` placeholder format — persister owner pick sau khi seal

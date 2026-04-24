@@ -1,6 +1,6 @@
 /**
  * typed-eventbus.ts — L3 Typed Overlay
- * Thiên Lớn spec: bọc EventBus, KHÔNG thay thế core
+ * thiên Lớn spec: bọc EventBus, KHÔNG thay thế core
  *
  * Nguyên tắc:
  * - EventBus core KHÔNG bị đụng

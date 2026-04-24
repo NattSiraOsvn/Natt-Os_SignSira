@@ -23,9 +23,9 @@
 
     "RULE_02_NEVER_IMPORT_UNVERIFIED_PATHS": {
       "pattern": "import type { X } from '@/path/that/does/not/exist'",
-      "example_bad": "import type { SmartLinkPort } from '@/kernel/smartlink/smartlink.port'; // path sai, file nằm ở @/cells/infrastructure/smartlink-cell/...",
+      "example_bad": "import type { SmartLinkPort } from '@/kernel/SmartLink/SmartLink.port'; // path sai, file nằm ở @/cells/infrastructure/SmartLink-cell/...",
       "example_good": "TRƯỚC khi import: grep -rn 'export.*SmartLinkPort' src/ để tìm đúng path thật",
-      "tsc_error": "TS2307: Cannot find module '@/kernel/smartlink/smartlink.port'",
+      "tsc_error": "TS2307: Cannot find module '@/kernel/SmartLink/SmartLink.port'",
       "frequency": "Xảy ra 5+ lần — đặc biệt với SmartLink paths",
       "fix": "KHÔNG BAO GIỜ đoán import path. LUÔN grep -rn export trước."
     },
@@ -58,7 +58,7 @@
       "template": {
         "file": "{cell-name}/domain/services/{cell}.confidence.ts",
         "exports": ["interface {Cell}ConfidenceScore", "interface {Cell}ConfidenceFactor", "function calculate{Cell}Confidence()"],
-        "NO_IMPORTS_FROM": ["@/kernel/smartlink/smartlink.port — path không tồn tại"],
+        "NO_IMPORTS_FROM": ["@/kernel/SmartLink/SmartLink.port — path không tồn tại"],
         "score_range": "0-100, tính từ weighted factors"
       },
       "lesson": "tax.confidence.ts lỗi 2 lần vì import SmartLinkPort sai path. Confidence component KHÔNG cần SmartLink import — nó tính score từ business data."
@@ -89,11 +89,11 @@
     "RULE_09_SMARTLINK_PORT_PATTERNS": {
       "correct_import": "import { forgeSmartLinkPort } from '@/satellites/port-forge';",
       "wrong_imports": [
-        "@/kernel/smartlink/smartlink.port — KHÔNG tồn tại",
-        "@/core/smartlink — KHÔNG tồn tại"
+        "@/kernel/SmartLink/SmartLink.port — KHÔNG tồn tại",
+        "@/core/SmartLink — KHÔNG tồn tại"
       ],
       "port_creation": "Dùng forgeSmartLinkPort({ cellId, signals }) — satellite pattern, KHÔNG viết port thủ công trừ trường hợp đặc biệt (bom3dprd-cell có custom signal types)",
-      "touch_record_import": "import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';"
+      "touch_record_import": "import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';"
     },
 
     "RULE_10_NATT_CELL_6_COMPONENTS": {
@@ -104,7 +104,7 @@
         "3_Boundary": "{cell}.boundary.ts hoặc boundary.policy.ts — allowed callers/targets",
         "4_Trace": "{cell}.trace.ts hoặc trace.logger.ts — audit trail",
         "5_Confidence": "{cell}.confidence.ts — self-assessment score 0-100",
-        "6_SmartLink": "ports/{cell}-smartlink.port.ts — communication port"
+        "6_SmartLink": "ports/{cell}-SmartLink.port.ts — communication port"
       },
       "check_command": "./anattos.sh audit 2>&1 | grep {cell-name}",
       "status_meanings": {
@@ -128,7 +128,7 @@
       ]
     },
 
-    "RULE_12_GHOST_VS_REAL_ERRORS": {
+    "RULE_12_GHOST_VS_REAL_errorS": {
       "ghost_errors": "TS2307 'Cannot find module' cho files chưa được tạo (pre-existing, legacy V1). Đây là lỗi CŨ, không phải lỗi Băng tạo ra.",
       "real_errors": "Lỗi mới Băng tạo ra qua thay đổi code. VD: type mismatch, missing export, sai interface.",
       "rule": "Real errors = 0 là mục tiêu. Ghost errors = pre-existing, chỉ giảm khi tạo file mới. KHÔNG panic về ghost errors — check baseline trước.",
@@ -167,10 +167,10 @@
       "domain/services/": "business logic (usecase, engine, wiring, confidence)",
       "domain/entities/": "domain models",
       "domain/": "boundary.policy.ts, trace.logger.ts",
-      "ports/": "smartlink port + index.ts"
+      "ports/": "SmartLink port + index.ts"
     },
     "key_files": {
-      "smartlink_engine": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+      "SmartLink_engine": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts",
       "event_bus": "src/core/events/event-bus.ts",
       "port_forge": "src/satellites/port-forge.ts",
       "constitution": "src/governance/constitution/",
@@ -184,7 +184,7 @@
     "cells_live": "tax-cell 6/6, warehouse-cell 6/6 LIVE, warranty-cell 6/6 LIVE",
     "bctc_flow": "6/6 ✅",
     "production_flow": "8/8",
-    "smartlink_wired": "27+ (23 base + 4 new from session)",
+    "SmartLink_wired": "27+ (23 base + 4 new from session)",
     "anti_fraud": "4 engines + 1 orchestrator + pho-guard 4/4 tests",
     "remaining": {
       "port_only_cells": "bom3dprd, casting, constants, finishing, order, polishing, prdwarranty, shared-contracts, stone, tax — need engine wiring",

@@ -1,6 +1,6 @@
 import { EventBus } from "../../../../core/events/event-bus";
-// ── comms-smartlink.port.ts ──────────────────────────────────
-// Sira_CONTRACT_INTERFACE CommsSignal
+// ── comms-SmartLink.port.ts ──────────────────────────────────
+// sira_CONTRACT_INTERFACE CommsSignal
 const CommsSignal = {
   type: "MESSAGE_SENT" | "ALERT_RAISED" | "SYSTEM_NOTIFICATION";
   payload;

@@ -1,17 +1,17 @@
-Natt-OS FULL SYSTEM AUDIT — 2026-03-09 14:40
+natt-os FULL SYSTEM AUDIT — 2026-03-09 14:40
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 【1】GIT STATUS
 321ad9c (HEAD -> main) feat(event-system): wire SmartLink ports → EventBus
-3364fd9 feat(event-system): Natt-OS Event Bus v1.0
-0d3f85a feat(event-bus): Natt-OS Event System v1.0
+3364fd9 feat(event-system): natt-os Event Bus v1.0
+0d3f85a feat(event-bus): natt-os Event System v1.0
 4eb543a feat(business-graph): fill use-cases + beef engines + apps layer — 0 errors
 b5e841d feat(business-graph): fill use-cases + beef engines + apps layer — 0 errors
 5b3fb10 feat(business-graph): fill use-cases + beef engines + apps layer
 b8eb0de feat(business-graph): fill use-cases + beef engines + apps layer
 16823d6 feat(business-graph): fill use-cases + beef engines + apps layer
-2baa112 fix(smartlink-p2): correct port method names
-50dc752 feat(smartlink-p2): wire SmartLink vào 4 object engines + compliance
+2baa112 fix(SmartLink-p2): correct port method names
+50dc752 feat(SmartLink-p2): wire SmartLink vào 4 object engines + compliance
 ---
 ?? src/governance/memory/kim/kmf9.5.14.json
 ?? src/governance/memory/kim/kmf9.5.15.json
@@ -36,34 +36,34 @@ compliance-cell	finance-cell	order-cell	production-cell	showroom-cell
 ── Kernel cells:
 audit-cell	config-cell	index.ts	monitor-cell	rbac-cell	security-cell
 ── Infrastructure cells:
-ai-connector-cell	notification-cell	smartlink-cell		warehouse-cell
+ai-connector-cell	notification-cell	SmartLink-cell		warehouse-cell
 index.ts		shared-contracts-cell	sync-cell
 
 【5】CELL HEALTH — file count per cell
-  analytics-cell | files:10 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  buyback-cell | files:12 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  compliance-cell | files:8 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  customer-cell | files:10 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  customs-cell | files:9 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  finance-cell | files:15 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  hr-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  inventory-cell | files:19 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  order-cell | files:13 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  payment-cell | files:10 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  pricing-cell | files:20 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  production-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  promotion-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  sales-cell | files:18 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  showroom-cell | files:14 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  warehouse-cell | files:11 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
-  warranty-cell | files:14 | ✅PORT | ✅DOM | ✅MF | smartlink_ports:1
+  analytics-cell | files:10 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  buyback-cell | files:12 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  compliance-cell | files:8 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  customer-cell | files:10 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  customs-cell | files:9 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  finance-cell | files:15 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  hr-cell | files:11 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  inventory-cell | files:19 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  order-cell | files:13 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  payment-cell | files:10 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  pricing-cell | files:20 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  production-cell | files:11 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  promotion-cell | files:11 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  sales-cell | files:18 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  showroom-cell | files:14 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  warehouse-cell | files:11 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
+  warranty-cell | files:14 | ✅PORT | ✅DOM | ✅MF | SmartLink_ports:1
 
 【6】SMARTLINK STATUS
 Core layer:
-cell-smartlink.component.ts	smartlink-legacy.engine.ts	smartlink.pressure-field.ts
-index.ts			smartlink.competition.ts	smartlink.qneu-bridge.ts
-quantum-brain.engine.ts		smartlink.nattimer.ts
-quantum-buffer.engine.ts	smartlink.point.ts
+cell-SmartLink.component.ts	SmartLink-legacy.engine.ts	SmartLink.pressure-field.ts
+index.ts			SmartLink.competition.ts	SmartLink.qneu-bridge.ts
+quantum-brain.engine.ts		SmartLink.nattimer.ts
+quantum-buffer.engine.ts	SmartLink.point.ts
 Cell ports wired (import port in engine):
   ✅ analytics-cell (wired)
   ⭕ buyback-cell (port exists, not wired)
@@ -85,7 +85,7 @@ Cell ports wired (import port in engine):
 
 【7】GOVERNANCE
 Constitution:
-HIEN-PHAP-Natt-OS-v4.0.md
+HIEN-PHAP-natt-os-v4.0.md
 QNEU files:
 audit-bridge.ts
 calculator.ts
@@ -335,7 +335,7 @@ QNEU system state:
 }
 
 【8】CORE INFRASTRUCTURE
-audit			health			patent			smartlink
+audit			health			patent			SmartLink
 cell			infrastructure		registry		snapshot
 conflict		ingestion		routing			state-manager.ts
 events			memory			signals
@@ -352,16 +352,16 @@ events			memory			signals
   core/audit/sharding-engine.ts → export const generateShardHash,export const ShardingService,
   core/audit/audit-chain-contract.ts → export class SimpleAuditChain,
   core/audit/integrity-scanner.ts → export const IntegrityScanner,
-  core/smartlink/quantum-buffer.engine.ts → export const QuantumBuffer,
-  core/smartlink/smartlink.qneu-bridge.ts → export const QneuBridge,
-  core/smartlink/smartlink.point.ts → export class SmartLinkPoint,
-  core/smartlink/cell-smartlink.component.ts → export class CellSmartLinkComponent,
-  core/smartlink/smartlink.competition.ts → export const PatternCompetition,
-  core/smartlink/smartlink.pressure-field.ts → export const PressureField,
-  core/smartlink/smartlink-legacy.engine.ts → export const SmartLinkEngine,
-  core/smartlink/index.ts → export const SmartLinkRegistry,
-  core/smartlink/smartlink.nattimer.ts → export const NATTimer,
-  core/smartlink/quantum-brain.engine.ts → export const QuantumBrain,
+  core/SmartLink/quantum-buffer.engine.ts → export const QuantumBuffer,
+  core/SmartLink/SmartLink.qneu-bridge.ts → export const QneuBridge,
+  core/SmartLink/SmartLink.point.ts → export class SmartLinkPoint,
+  core/SmartLink/cell-SmartLink.component.ts → export class CellSmartLinkComponent,
+  core/SmartLink/SmartLink.competition.ts → export const PatternCompetition,
+  core/SmartLink/SmartLink.pressure-field.ts → export const PressureField,
+  core/SmartLink/SmartLink-legacy.engine.ts → export const SmartLinkEngine,
+  core/SmartLink/index.ts → export const SmartLinkRegistry,
+  core/SmartLink/SmartLink.nattimer.ts → export const NATTimer,
+  core/SmartLink/quantum-brain.engine.ts → export const QuantumBrain,
   core/registry/module-registry.ts → export const MODULE,
   core/routing/task-router.ts → export const TaskRouter,
   core/routing/deterministic-router.ts → export class DeterministicRouter,export const Router,
@@ -407,8 +407,8 @@ events			memory			signals
   cells/business/finance-cell/domain/services/tax.engine.ts → export const TaxEngine,export const TaxReportService,
   cells/business/showroom-cell/domain/services/showroom.engine.ts → export class ShowroomEngine,
   cells/infrastructure/warehouse-cell/domain/services/warehouse.engine.ts → export class WarehouseEngine,
-  cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts → export const SmartLinkMappingEngine,
-  cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts → export const SmartLinkEngine,
+  cells/infrastructure/SmartLink-cell/domain/services/SmartLink-mapping.engine.ts → export const SmartLinkMappingEngine,
+  cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts → export const SmartLinkEngine,
   cells/infrastructure/sync-cell/domain/services/offline.engine.ts → 
   cells/infrastructure/ai-connector-cell/domain/services/gemini.engine.ts → export const generatePersonaResponse,export const generateBlueprint,
   cells/infrastructure/ai-connector-cell/domain/services/ai.engine.ts → export const aiEngine,
@@ -486,7 +486,7 @@ finance-service			sale-terminal
   hr-service | files:2
   sale-terminal | files:3
 
-【14】MISSING / EMPTY DIRS
+【14】missing / EMPTY DIRS
 src/cells/business/payment-cell/domain/value-objects
 src/cells/business/customer-cell/application/use-cases
 src/cells/infrastructure/warehouse-cell/application/services

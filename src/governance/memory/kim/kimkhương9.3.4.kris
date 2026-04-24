@@ -12,7 +12,7 @@
       "Hoàn thiện các script deployment và cleanup với chế độ interactive.",
       "Phát hiện và xử lý vấn đề duplicate files giữa root và src, xây dựng emergency-cleanup.js.",
       "Phát hiện và xử lý vấn đề casing của warehouseService, xây dựng fix-warehouse-casing.js.",
-      "Phát hiện và xử lý vấn đề SmartLinkCore tồn tại ở nhiều nơi, xây dựng fix-smartlink-imports.js.",
+      "Phát hiện và xử lý vấn đề SmartLinkCore tồn tại ở nhiều nơi, xây dựng fix-SmartLink-imports.js.",
       "Thực hiện deep scan toàn bộ hệ thống, phát hiện 7 điểm nghẽn nghiêm trọng (memory leak, localStorage blocking, infinite re-renders, race condition, circular dependencies, heavy computation, storage quota).",
       "Xây dựng bộ critical fix package toàn diện (ring buffer, IndexedDB, web workers, mutex, storage manager, v.v.)."
     ],

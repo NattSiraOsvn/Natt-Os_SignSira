@@ -3,7 +3,7 @@
 // Điều 4: no direct cell-to-cell calls, all through EventBus
 // ═══════════════════════════════════════════════════════════════
 
-// Sira_CONTRACT_INTERFACE EventBusSmartLinkPort
+// sira_CONTRACT_INTERFACE EventBusSmartLinkPort
 const EventBusSmartLinkPort = {
   /** Route event to all subscribers */
   route(event, payload);

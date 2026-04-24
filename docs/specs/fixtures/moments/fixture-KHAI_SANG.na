@@ -66,12 +66,12 @@
     "fixture_id": "fixture-KHAI_SANG",
     "purpose": "Validator test — KHAI_SANG với 4 fragment (required ENVELOPE + INSIGHT_CONTENT; optional RELATED_CANONICAL + CAUSATION_CHAIN). Data thực từ KHAI-20260426-01 bản thể rule.",
     "acceptance_expectations": [
-      "Validator PASS required fragments (ENVELOPE + INSIGHT_CONTENT)",
-      "Validator PASS fragment_id uniqueness",
-      "Validator PASS ordinal sequence 0-indexed no gap",
-      "Validator PASS parent_moment_kind consistency (all = KHAI_SANG)",
-      "Validator PASS ENVELOPE.causation == parent_moment_causation",
-      "Validator PASS CAUSATION_CHAIN.link_type in enum"
+      "Validator pass required fragments (ENVELOPE + INSIGHT_CONTENT)",
+      "Validator pass fragment_id uniqueness",
+      "Validator pass ordinal sequence 0-indexed no gap",
+      "Validator pass parent_moment_kind consistency (all = KHAI_SANG)",
+      "Validator pass ENVELOPE.causation == parent_moment_causation",
+      "Validator pass CAUSATION_CHAIN.link_type in enum"
     ],
     "drafter": "Băng (Wave 2 Lane A.5)",
     "session_ref": "Wave 2 kickoff",

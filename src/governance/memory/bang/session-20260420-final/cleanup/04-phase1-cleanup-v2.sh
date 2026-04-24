@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════
-# Natt-OS NAUION CLEANUP — PHASE 1 v2 (ROBUST, Bang scope only)
+# natt-os NAUION CLEANUP — PHASE 1 v2 (ROBUST, Bang scope only)
 # ─────────────────────────────────────────────────────────────────────────
 # v2 fix (từ feedback anh 2026-04-20):
 #   - Detect tracked vs untracked file → dùng git rm/mv hoặc rm/mv
@@ -55,7 +55,7 @@ smart_mv() {
   fi
 }
 
-log "═══ Natt-OS NAUION CLEANUP — PHASE 1 v2 ═══"
+log "═══ natt-os NAUION CLEANUP — PHASE 1 v2 ═══"
 log "Repo: $REPO_ROOT"
 log "Branch: $(git branch --show-current)"
 log "HEAD: $(git rev-parse --short HEAD)"
@@ -114,7 +114,7 @@ gatekeeper_signature: (chờ anh Natt ký nếu duyệt archive path này)
 
 # BẢNG TỔNG HỢP CHỈ ĐẠO CHÍNH THỨC (PRE-WAVE 3) — SUPERSEDED
 
-**Mục tiêu gốc:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1-lệnh Phase A-B-C** cho Natt-OS Pre-Wave 3.
+**Mục tiêu gốc:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1-lệnh Phase A-B-C** cho natt-os Pre-Wave 3.
 
 ---
 
@@ -122,10 +122,10 @@ gatekeeper_signature: (chờ anh Natt ký nếu duyệt archive path này)
 
 | STT | Nguyên tắc | Nội dung bắt buộc | Người xác nhận |
 |---|---|---|---|
-| 1 | FILESYSTEM > MEMORY | Mọi kết luận phải dựa trên cây thư mục + git history, không dựa suy đoán | Thiên Lớn |
+| 1 | FILESYSTEM > MEMORY | Mọi kết luận phải dựa trên cây thư mục + git history, không dựa suy đoán | thiên Lớn |
 | 2 | Correct > Fast | Ưu tiên đúng Hiến pháp, chậm cũng được | Kim |
 | 3 | Standardize → Automate → Monitor → Improve | Phase A-B là chuẩn hoá, Phase C mới hash & monitor | Băng |
-| 4 | Separation of Powers | Script không tự ý quyết định nghiệp vụ | Thiên Lớn |
+| 4 | Separation of Powers | Script không tự ý quyết định nghiệp vụ | thiên Lớn |
 | 5 | No Silent Fix | Mọi thay đổi phải có log, audit, commit | Kim |
 
 ## II. QUY ƯỚC KIẾN TRÚC
@@ -133,8 +133,8 @@ gatekeeper_signature: (chờ anh Natt ký nếu duyệt archive path này)
 | Hạng mục | Quy ước chính thức | Người chốt |
 |---|---|---|
 | 5-layer folder | domain / application / interface / infrastructure / ports | Băng |
-| 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | Thiên Lớn |
-| Quan hệ 5-layer ↔ 7-ADN | 5-layer = implementation anatomy, 7-ADN = metadata (manifest) | Thiên Lớn |
+| 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | thiên Lớn |
+| Quan hệ 5-layer ↔ 7-ADN | 5-layer = implementation anatomy, 7-ADN = metadata (manifest) | thiên Lớn |
 | Vị trí 7-ADN | CHỈ nằm trong `neural-main-cell.cell.anc`, KHÔNG tạo folder | Kim |
 
 ## III. PHASE A — CLEANUP & CHUẨN HOÁ (SUPERSEDED — DO NOT EXECUTE)
@@ -159,11 +159,11 @@ gatekeeper_signature: (chờ anh Natt ký nếu duyệt archive path này)
 
 - Kim: ✅ Đồng ý (phiên cũ, không xác nhận lại ở 20260420)
 - Băng: ✅ Đồng ý (**Băng session 20260420 KHÔNG chốt — chữ ký này từ phiên khác**)
-- Thiên Lớn: ✅ Xác nhận Hiến pháp (quyền này thuộc Gatekeeper, không phải Thiên Lớn)
+- thiên Lớn: ✅ Xác nhận Hiến pháp (quyền này thuộc Gatekeeper, không phải thiên Lớn)
 
 → Bảng này **chỉ giữ làm lineage**. KHÔNG dùng cho quyết định code mới.
 
-Kim hoặc Thiên Lớn nếu cần Wave mới → re-scope với ground truth 20260420 + Gatekeeper signature.
+Kim hoặc thiên Lớn nếu cần Wave mới → re-scope với ground truth 20260420 + Gatekeeper signature.
 
 ---
 *Archived by Băng · verified_by Băng · chờ anh Natt ký duyệt*

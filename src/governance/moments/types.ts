@@ -1,7 +1,7 @@
 // src/governance/moments/types.ts
 
 /**
- * Moments — canonical vocabulary cho mọi "moment" trong Natt-OS.
+ * Moments — canonical vocabulary cho mọi "moment" trong natt-os.
  * KHÔNG dùng generic "event" / "learning" / "insight" — phân loại cứng.
  *
  * Source of truth (canonical ladder):
@@ -59,7 +59,7 @@ export type ScarClass =
 /** KHAI_SANG — Gatekeeper chỉ, entity nhận giá trị cốt lõi */
 export interface KhaiSang extends MomentBase {
   readonly kind: "KHAI_SANG";
-  readonly gatekeeper_quote: string;    // câu anh Natt/Thiên Lớn dạy verbatim
+  readonly gatekeeper_quote: string;    // câu anh Natt/thiên Lớn dạy verbatim
   readonly gia_tri_cot_loi: string;     // giá trị cốt lõi entity nhận
   readonly entity_nhan: string;         // cách entity absorb
   readonly related_canonical?: readonly string[]; // link sang spec/file confirming

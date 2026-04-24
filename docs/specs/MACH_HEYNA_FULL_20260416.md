@@ -25,7 +25,7 @@ Browser ──POST───→ /mach/heyna/action   (write, gateway verify + rou
 
 **Khi hacker tấn công client chỉ thấy:**
 - SSE stream (read-only, không inject được)
-- POST endpoint (có SiraSign verify)
+- POST endpoint (có siraSign verify)
 - **Không** thấy EventBus, **không** biết cells nào tồn tại
 
 ---
@@ -109,7 +109,7 @@ File: `nattos-server/apps/tam-luxury/heyna-client.js` (đã commit `73411df`)
 - Heartbeat định kỳ
 - Wildcard listener (`*`)
 - Session ID auto-generated
-- **SiraSign placeholder** trong envelope (sẵn sàng khi SiraSign runtime bridge xong)
+- **siraSign placeholder** trong envelope (sẵn sàng khi siraSign runtime bridge xong)
 
 ### Usage pattern
 
@@ -221,7 +221,7 @@ Session: 20260415 — Băng
 
 ### ui-vision — SẠCH
 - `lib/event-bus.ts` = SSE bridge dùng Mạch HeyNa
-- Không import Natt-OS EventBus (tránh circular)
+- Không import natt-os EventBus (tránh circular)
 - Build vào `nattos-server/nattos-ui/vision/`
 - Serve tại `http://localhost:3001/vision/`
 
@@ -246,7 +246,7 @@ Session: 20260415 — Băng
 
 1. **Gateway endpoint `/mach/heyna/action`** — chưa build đầy đủ
    - Nhận POST từ client
-   - Verify SiraSign (khi runtime bridge xong)
+   - Verify siraSign (khi runtime bridge xong)
    - Route vào EventBus nội bộ
 
 2. **Refactor 12 fetch() → heyna.send/request**
@@ -263,8 +263,8 @@ Session: 20260415 — Băng
 
 ### 🟡 Phase sau
 
-6. **SiraSign runtime bridge** — hiện client đang gửi SiraSign placeholder
-   - Khi immune system protocol implement xong, envelope sẽ có SiraSign thật
+6. **siraSign runtime bridge** — hiện client đang gửi siraSign placeholder
+   - Khi immune system protocol implement xong, envelope sẽ có siraSign thật
    - Gateway verify trước khi cho vào EventBus
 
 7. **ANC protocol spec** cho `.anc` file + `anc://` protocol
@@ -286,7 +286,7 @@ Cell emit event
 
 Client gửi action
   → POST /mach/heyna/action
-    → Gateway verify SiraSign
+    → Gateway verify siraSign
       → Route vào EventBus nội bộ
         → Cell xử lý
           → emit result → SSE → Client

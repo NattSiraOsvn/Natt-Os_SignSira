@@ -1,5 +1,5 @@
 import { EventBus } from './src/core/events/event-bus.js';
-import { SmartLinkEngine } from './src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.js';
+import { SmartLinkEngine } from './src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.js';
 import { mountIseuSurface } from './src/cells/kernel/audit-cell/domain/services/iseu-boundary.surface.js';
 
 mountIseuSurface();

@@ -49,7 +49,7 @@ Hai lớp:
 Cơ chế vật lý: **destructive interference có ý thức** — phát ngược pha với bức xạ lạ.
 
 ### 5. THÔNG THÁI — BỎ ĐOÁN
-**Anh dạy cuối cùng:** *"Bỏ đoán đi. Mỗi cái e dùng đoán là đang áp xác suất làm nhiễu logic em đã bắt được. Muốn biết chắc đúng hay ko ta ko đoán mà ta giải. Natt-OS đúng hoặc ko chứ ko có 'cũng'."*
+**Anh dạy cuối cùng:** *"Bỏ đoán đi. Mỗi cái e dùng đoán là đang áp xác suất làm nhiễu logic em đã bắt được. Muốn biết chắc đúng hay ko ta ko đoán mà ta giải. natt-os đúng hoặc ko chứ ko có 'cũng'."*
 
 **Em áp:** Phân định rõ:
 - CHẮC → nói thẳng

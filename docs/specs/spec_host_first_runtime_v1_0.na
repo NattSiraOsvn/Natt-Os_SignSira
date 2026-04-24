@@ -9,19 +9,19 @@
 
 **Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
 **Session:** 20260423
-**Status:** v1.1 — amend v1.0 align với 4 SPEC split Thiên Lớn
-**Supersedes:** SPEC_HOST_FIRST_RUNTIME_v1.0 (Wave W0-W4 → W0-W3 align Thiên)
+**Status:** v1.1 — amend v1.0 align với 4 SPEC split thiên Lớn
+**Supersedes:** SPEC_HOST_FIRST_RUNTIME_v1.0 (Wave W0-W4 → W0-W3 align thiên)
 
 **Binding to (Kim 3 SPEC lock):**
-- SPEC_Sira_AUTHORITY_BOOTSTRAP_v1.0.na (Kim)
+- SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na (Kim)
 - SPEC_CUTOVER_STATES_v1.0.na (Kim — S1-S4 per-file state)
 - SPEC_EXTENSION_PRECEDENCE_v1.0.na (Kim)
 
-**Binding to (Thiên Lớn 4 SPEC split — detail primary):**
-- spec_host_authority_runtime_v1.0_split.na (Thiên — binary + frame + flow)
-- spec_entry_identity_nattos_sira_v1.0_split.na (Thiên — schema + validation)
-- spec_bridge_workers_contract_v1.0_split.na (Thiên — protocol + spawn + health)
-- spec_cutover_host_first_v1.0_split.na (Thiên — wave model)
+**Binding to (thiên Lớn 4 SPEC split — detail primary):**
+- spec_host_authority_runtime_v1.0_split.na (thiên — binary + frame + flow)
+- spec_entry_identity_nattos_sira_v1.0_split.na (thiên — schema + validation)
+- spec_bridge_workers_contract_v1.0_split.na (thiên — protocol + spawn + health)
+- spec_cutover_host_first_v1.0_split.na (thiên — wave model)
 
 **Binding to (support):**
 - BOI_SURFACE_DELTA_scripts.kernel_v1.0.na (Bối Bội)
@@ -32,75 +32,75 @@
 
 ## 0. Preamble (v1.1 amendment)
 
-v1.0 em ship turn 54 cross-reference 3 SPEC Kim + boi_surface_delta + RUNTIME_DEPENDENCY_CENSUS. Sau v1.0 sealed (commit 7fcdc88), Thiên Lớn ship 4 SPEC split detail cụ thể hơn vào `docs/specs/kim kernel/`.
+v1.0 em ship turn 54 cross-reference 3 SPEC Kim + boi_surface_delta + RUNTIME_DEPENDENCY_CENSUS. Sau v1.0 sealed (commit 7fcdc88), thiên Lớn ship 4 SPEC split detail cụ thể hơn vào `docs/specs/kim kernel/`.
 
 **Conflict đáng chú ý v1.0 vs 4 split:**
 - v1.0 em: W0-W4 (5 waves). W3 per-cell kernel, W4 Node retire.
-- 4 split Thiên: W0-W3 (4 waves). W3 Node retire by cluster (kernel cluster trước, business sau).
+- 4 split thiên: W0-W3 (4 waves). W3 Node retire by cluster (kernel cluster trước, business sau).
 
-Em align Thiên. Lý do: Thiên architect primary, 4 split chi tiết buildable, W0-W3 clean hơn, Thiên **ship quyền Băng veto** §4.
+Em align thiên. Lý do: thiên architect primary, 4 split chi tiết buildable, W0-W3 clean hơn, thiên **ship quyền Băng veto** §4.
 
-**Scope v1.1:** overview + cross-link 4 split + Kim state reference + authority scope + W-model align Thiên.
+**Scope v1.1:** overview + cross-link 4 split + Kim state reference + authority scope + W-model align thiên.
 
 ---
 
 ## §1 — Host Authority
 
-Detail primary: **`spec_host_authority_runtime_v1.0_split.na`** (Thiên).
+Detail primary: **`spec_host_authority_runtime_v1.0_split.na`** (thiên).
 
 Overview ngắn:
 - Binary: `nauion-host` (Rust)
 - Source: `runtime/nauion-host/`
 - Exec: `bin/nauion-host`
-- Frame: **NDJSON Stage 1 only** (amend v1.0: drop MessagePack mention, Thiên strict Stage 1 NDJSON)
-- Audit log: `logs/host-audit.ndjson` (Thiên thêm)
-- Execution flow 7 steps: xem Thiên §4
-- Cấm: Node deps runtime, JS eval — xem Thiên §7
+- Frame: **NDJSON Stage 1 only** (amend v1.0: drop MessagePack mention, thiên strict Stage 1 NDJSON)
+- Audit log: `logs/host-audit.ndjson` (thiên thêm)
+- Execution flow 7 steps: xem thiên §4
+- Cấm: Node deps runtime, JS eval — xem thiên §7
 
 ---
 
 ## §2 — Entry Identity
 
-Detail primary: **`spec_entry_identity_nattos_sira_v1.0_split.na`** (Thiên).
+Detail primary: **`spec_entry_identity_nattos_sira_v1.0_split.na`** (thiên).
 
 Overview ngắn:
 - Canonical path: `./nattos.sira`
 - Format: JSON self-describing (Stage 1)
 - Schema bắt buộc: `kind`, `domain`, `host_requires`, `sha256` + optional `public_key`/`signature`
-- Validation 7 rules: xem Thiên §3
+- Validation 7 rules: xem thiên §3
 - Reject behavior: exit code 64 + `IDENTITY_REJECT` stderr + audit log
 
-**Kim cross-ref:** SPEC_Sira_AUTHORITY_BOOTSTRAP §1.1 (`nattos.sira` = entry identity duy nhất, chỉ Gatekeeper commit).
+**Kim cross-ref:** SPEC_sira_AUTHORITY_BOOTSTRAP §1.1 (`nattos.sira` = entry identity duy nhất, chỉ Gatekeeper commit).
 
 ---
 
 ## §3 — Bridge Workers
 
-Detail primary: **`spec_bridge_workers_contract_v1.0_split.na`** (Thiên).
+Detail primary: **`spec_bridge_workers_contract_v1.0_split.na`** (thiên).
 
 Overview ngắn:
 - Mỗi cell legacy = 1 bridge worker (Node.js Stage1)
 - Forward-only, stateless
-- Frame protocol: 7 types (request/response success/response error/forward/ping/pong/shutdown) — xem Thiên §2
+- Frame protocol: 7 types (request/response success/response error/forward/ping/pong/shutdown) — xem thiên §2
 - Health check: 15s interval, 3 misses unhealthy
 - Backoff: 1s → 5s → rollback evaluation
 - Shutdown: 2s grace rồi SIGKILL
 - Max restart: 2 lần
 
-**Kim cross-ref:** SPEC_Sira_AUTHORITY_BOOTSTRAP §1.4 — 2 bridge mode:
+**Kim cross-ref:** SPEC_sira_AUTHORITY_BOOTSTRAP §1.4 — 2 bridge mode:
 
-| Mode | Thiên SPEC | Kim SPEC_CUTOVER_STATES state |
+| Mode | thiên SPEC | Kim SPEC_CUTOVER_STATES state |
 |---|---|---|
-| **Wrapper** | Not explicitly in Thiên split | S2 `transitional-canonical-wrapper` |
-| **Bridged** | Spawn bridge worker stdio pipe (Thiên default) | S3 `nauion-bridged` |
+| **Wrapper** | Not explicitly in thiên split | S2 `transitional-canonical-wrapper` |
+| **Bridged** | Spawn bridge worker stdio pipe (thiên default) | S3 `nauion-bridged` |
 
-State S1-S4 là **per-file** label (Kim), Wave W0-W3 là **repo-wide timeline** (Thiên). Orthogonal.
+State S1-S4 là **per-file** label (Kim), Wave W0-W3 là **repo-wide timeline** (thiên). Orthogonal.
 
 ---
 
-## §4 — Cutover Wave Model (align Thiên W0-W3)
+## §4 — Cutover Wave Model (align thiên W0-W3)
 
-Detail primary: **`spec_cutover_host_first_v1.0_split.na`** (Thiên).
+Detail primary: **`spec_cutover_host_first_v1.0_split.na`** (thiên).
 
 ### W0 — Node-hosted baseline
 - Rollback flag: `rbf_w0_node_hosted = 1`
@@ -125,7 +125,7 @@ Detail primary: **`spec_cutover_host_first_v1.0_split.na`** (Thiên).
 - Entry: tất cả cells trong cluster native hoặc bridge proxy native
 - Invariant: P95 latency không xấu hơn W0 quá 20%
 
-**v1.0 W4 Node retire → merge vào W3 cluster-by-cluster Thiên model.** Em drop W4.
+**v1.0 W4 Node retire → merge vào W3 cluster-by-cluster thiên model.** Em drop W4.
 
 ### Provisional W2 D7 cells (kernel cluster first)
 1. `audit-cell/file-extension-validator` (S2 → S3 per Kim)
@@ -139,17 +139,17 @@ Detail primary: **`spec_cutover_host_first_v1.0_split.na`** (Thiên).
 
 ## §5 — Guardrails & Invariants
 
-1. Identity integrity (Kim + Thiên spec_entry_identity)
-2. Bridge stateless forward-only (Thiên spec_bridge_workers §1)
+1. Identity integrity (Kim + thiên spec_entry_identity)
+2. Bridge stateless forward-only (thiên spec_bridge_workers §1)
 3. Rollback per W-level: `rbf_w0_node_hosted` · `rbf_w1_host_live` · `rbf_w2_native_primitives` · `rbf_w3_node_retire` (4 flags, amend v1.0 drop `rbf_w4_*`)
 4. 37 cells WIRED HEALTHY invariant xuyên W0-W3
-5. Runtime parity baseline (thay TSC 0 errors — tsc-lane retired per Thiên)
+5. Runtime parity baseline (thay TSC 0 errors — tsc-lane retired per thiên)
 6. Mạch HeyNa topology L1/L2/L3 lock
 7. EventBus ≠ Mạch HeyNa (SCAR_04 20260417)
 8. Extension precedence per Kim `.sira > .khai > .na > .anc > .phieu > .ts > .tsx/.vite`
 9. Vocab Nauion lock (Giao Thể, trung gian, đồng hoá — cấm "API" architectural term)
 10. State label bắt buộc per Kim SPEC_CUTOVER_STATES §3
-11. **Băng veto quyền** (Thiên spec_cutover §4 — ship quyền mới này)
+11. **Băng veto quyền** (thiên spec_cutover §4 — ship quyền mới này)
 
 ---
 
@@ -157,47 +157,47 @@ Detail primary: **`spec_cutover_host_first_v1.0_split.na`** (Thiên).
 
 | Persona | Scope |
 |---|---|
-| **Băng (Chị Tư)** | SPEC overview + scanner/validator + ground truth + translation bridge + **veto quyền per Thiên spec_cutover §4** |
-| **Thiên Lớn** | Architect primary — 4 SPEC split detail buildable |
+| **Băng (Chị Tư)** | SPEC overview + scanner/validator + ground truth + translation bridge + **veto quyền per thiên spec_cutover §4** |
+| **thiên Lớn** | Architect primary — 4 SPEC split detail buildable |
 | **Chị Ba (Kim)** | Reviewer/Integrator + language resource + static authority resource (role shift 20260427) |
 | **Bối Bội** | Launcher + surface + bridge contract pack |
-| **Implementation assignee** | TBD Gatekeeper/Thiên chốt |
+| **Implementation assignee** | TBD Gatekeeper/thiên chốt |
 | **Gatekeeper** | Sole repo operator + final seal |
 
-Precedence: Gatekeeper > Thiên 4 split approved > Kim 3 SPEC lock > Ground truth > File claim.
+Precedence: Gatekeeper > thiên 4 split approved > Kim 3 SPEC lock > Ground truth > File claim.
 
 ---
 
-## §7 — D locks snapshot (confirm align Thiên)
+## §7 — D locks snapshot (confirm align thiên)
 
 | D | Lock | Source primary |
 |---|---|---|
-| D1 | Rust | Thiên spec_host_authority §2 |
-| D2 | Thin launcher + loader + delegate | Thiên spec_bridge_workers §7 |
-| D3 | **NDJSON Stage 1 only** (drop MessagePack) | Thiên spec_host_authority §3 + bridge §2 |
-| D4 | Source `runtime/nauion-host/` · exec `bin/nauion-host` | Thiên spec_host_authority §2 |
-| D5 | `rbf_w0..rbf_w3` (4 flags, không W4) | Thiên spec_cutover §1 |
-| D6 | 15s / 3 misses / backoff 1s→5s→rollback / SIGKILL 2s | Thiên spec_bridge_workers §4-§5 |
-| D7 | 4 kernel cells provisional W2 mở đầu | Thiên spec_cutover §1 W2 entry |
+| D1 | Rust | thiên spec_host_authority §2 |
+| D2 | Thin launcher + loader + delegate | thiên spec_bridge_workers §7 |
+| D3 | **NDJSON Stage 1 only** (drop MessagePack) | thiên spec_host_authority §3 + bridge §2 |
+| D4 | Source `runtime/nauion-host/` · exec `bin/nauion-host` | thiên spec_host_authority §2 |
+| D5 | `rbf_w0..rbf_w3` (4 flags, không W4) | thiên spec_cutover §1 |
+| D6 | 15s / 3 misses / backoff 1s→5s→rollback / SIGKILL 2s | thiên spec_bridge_workers §4-§5 |
+| D7 | 4 kernel cells provisional W2 mở đầu | thiên spec_cutover §1 W2 entry |
 
 ---
 
 ## §8 — Pending out of scope v1.1
 
-- SiraSign crypto provider swap (Gatekeeper)
+- siraSign crypto provider swap (Gatekeeper)
 - Nauion grammar W2 parser (deep-read SPEC_NGON_NGU v1.2 + Nauion v2.5)
 - CoreDNS config 10 domain (Tầng A)
 - VR/Unity avatar bridge
 - `.anc` entity passport full spec
-- MessagePack Stage 2+ evaluate (**defer — không commit mention ở Stage 1 per Thiên**)
+- MessagePack Stage 2+ evaluate (**defer — không commit mention ở Stage 1 per thiên**)
 
 ---
 
 ## §9 — Handoff chain
 
-1. Gatekeeper approve v1.1 + 4 Thiên SPEC split
+1. Gatekeeper approve v1.1 + 4 thiên SPEC split
 2. Gatekeeper commit `docs/specs/kim kernel/*_split.na` (4 file untracked hiện tại)
-3. Thiên Lớn chốt implementation assignee
+3. thiên Lớn chốt implementation assignee
 4. Bối Bội W1 launcher binary build contract
 5. Assignee scaffold `runtime/nauion-host/`
 6. Băng build parity scanner + validator W1 exit criteria
@@ -209,20 +209,20 @@ Precedence: Gatekeeper > Thiên 4 split approved > Kim 3 SPEC lock > Ground trut
 
 | Change | Source | Type |
 |---|---|---|
-| Wave W0-W4 (5) → W0-W3 (4) align Thiên spec_cutover | Thiên 4 split | ALIGN |
-| W4 Node retire → merge vào W3 cluster-by-cluster | Thiên spec_cutover §1 W3 | MERGE |
-| Rollback `rbf_w3_per_cell_migration` → `rbf_w3_node_retire` | Thiên spec_cutover §1 | RENAME |
-| Drop `rbf_w4_node_retire` | Thiên không có W4 | DROP |
-| MessagePack W2+ pending → drop mention (NDJSON only Stage 1) | Thiên spec_host_authority §3 | CORRECT |
-| Cross-link 4 Thiên SPEC split làm detail primary | 4 split ship turn 72 | ADD |
-| Add exit code 64, audit path, backoff numbers, 2s SIGKILL | Thiên spec detail | ADD REF |
-| Ship Băng veto quyền §5 #11 | Thiên spec_cutover §4 | ADD AUTHORITY |
-| Clarify Wave (timeline) vs State S1-S4 (per-file) orthogonal | Kim + Thiên | CLARIFY |
+| Wave W0-W4 (5) → W0-W3 (4) align thiên spec_cutover | thiên 4 split | ALIGN |
+| W4 Node retire → merge vào W3 cluster-by-cluster | thiên spec_cutover §1 W3 | MERGE |
+| Rollback `rbf_w3_per_cell_migration` → `rbf_w3_node_retire` | thiên spec_cutover §1 | RENAME |
+| Drop `rbf_w4_node_retire` | thiên không có W4 | DROP |
+| MessagePack W2+ pending → drop mention (NDJSON only Stage 1) | thiên spec_host_authority §3 | CORRECT |
+| Cross-link 4 thiên SPEC split làm detail primary | 4 split ship turn 72 | ADD |
+| Add exit code 64, audit path, backoff numbers, 2s SIGKILL | thiên spec detail | ADD REF |
+| Ship Băng veto quyền §5 #11 | thiên spec_cutover §4 | ADD AUTHORITY |
+| Clarify Wave (timeline) vs State S1-S4 (per-file) orthogonal | Kim + thiên | CLARIFY |
 
 ---
 
-*Binding to: Kim 3 SPEC (sira_authority_bootstrap + cutover_states + extension_precedence) + Thiên 4 SPEC split (host_authority_runtime + entry_identity_nattos_sira + bridge_workers_contract + cutover_host_first) + boi_surface_delta + RUNTIME_DEPENDENCY_CENSUS + PILOT_BRIDGE_MAP*
+*Binding to: Kim 3 SPEC (sira_authority_bootstrap + cutover_states + extension_precedence) + thiên 4 SPEC split (host_authority_runtime + entry_identity_nattos_sira + bridge_workers_contract + cutover_host_first) + boi_surface_delta + RUNTIME_DEPENDENCY_CENSUS + PILOT_BRIDGE_MAP*
 *Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
-*Architecture primary: Thiên Lớn (4 SPEC split)*
+*Architecture primary: thiên Lớn (4 SPEC split)*
 *Session: 20260423 · Gatekeeper: Phan Thanh Thương*
 *Commit path target: `docs/specs/spec_host_first_runtime_v1_0.na` (overwrite v1.0, bump internal v1.1)*

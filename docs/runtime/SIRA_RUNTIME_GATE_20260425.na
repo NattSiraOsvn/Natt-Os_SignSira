@@ -1,4 +1,4 @@
-# Sira runtime gate — 20260425
+# sira runtime gate — 20260425
 
 status: CANONICAL_DRAFT
 created_at: 2026-04-24T18:22:24.483214+00:00
@@ -20,9 +20,9 @@ Chạy một lệnh:
 
 Runtime gate kiểm:
 
-- Sira namespace validator
-- Sira browser adapter validator
-- Sira TS translation adapter validator
+- sira namespace validator
+- sira browser adapter validator
+- sira TS translation adapter validator
 - Browser transport boundary validator
 - `core.sira/api/health`
 - `anc.sira/api/resolve?uri=anc://core`
@@ -42,7 +42,7 @@ Runtime gate kiểm:
 
 ## 4. Rule
 
-Không merge hoặc tiếp tục migration nếu runtime gate FAIL.
+Không merge hoặc tiếp tục migration nếu runtime gate fail.
 
 ---
 

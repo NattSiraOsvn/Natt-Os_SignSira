@@ -22,7 +22,7 @@ HeyNa hiện là 1 ống truyền text đơn kênh. Mỗi message có `{action, 
 Hệ quả:
 - Nhiều persona cùng dùng 1 mạch → không phân biệt signal phát từ ai.
 - Persona giả danh chỉ cần biết `action` + `payload` schema là qua được — không có kiểm tra "ai đang phát".
-- Pending #6 (SiraSign runtime) chỉ verify chữ ký message, không verify orbital identity của persona phát.
+- Pending #6 (siraSign runtime) chỉ verify chữ ký message, không verify orbital identity của persona phát.
 
 ---
 
@@ -32,9 +32,9 @@ Hệ quả:
 
 Mỗi HeyNa message mang thêm một kênh song song (visual/orbital) chứa identity của persona phát. Gate verify CẢ HAI kênh. Giả danh phải giả được cả hai — khó hơn cấp số nhân.
 
-**Mapping vật lý → Natt-OS:**
+**Mapping vật lý → natt-os:**
 
-| Vật lý | Natt-OS |
+| Vật lý | natt-os |
 |---|---|
 | Ống dẫn | Mạch HeyNa L2 (SSE + POST gateway) |
 | Tần số / bước sóng | `persona_signature.identity_shape_hash` |
@@ -57,7 +57,7 @@ interface HeyNaEnvelopeV2 {
   sessionId: string;
   timestamp: string;       // ISO8601
   traceId: string;
-  signature: string | null; // SiraSign (pending #6)
+  signature: string | null; // siraSign (pending #6)
 
   // === NEW v2 — ống màu ===
   persona_signature: PersonaSignature | null;
@@ -79,7 +79,7 @@ interface PersonaSignature {
 }
 ```
 
-**Backward compat:** `persona_signature` nullable. V1 client chưa upgrade gửi `null` → gateway cho qua ở `permissive_mode`, flag WARN. V2 client BẮT BUỘC gửi.
+**Backward compat:** `persona_signature` nullable. V1 client chưa upgrade gửi `null` → gateway cho qua ở `permissive_mode`, flag warn. V2 client BẮT BUỘC gửi.
 
 ### 3.2. Server → Client (SSE `/mach/heyna`)
 
@@ -142,7 +142,7 @@ Normalize: trim whitespace, lowercase commands, round coords to 1 decimal.
 
 ---
 
-## 5. GATE VERIFY LOGIC
+## 5. gate VERIFY LOGIC
 
 Location: `nattos-server/gateway/heyna-verify.ts` (cần tạo mới — PENDING #6)
 
@@ -154,8 +154,8 @@ POST /mach/heyna/action
 [1] Parse envelope
   ↓
 [2] If persona_signature == null:
-      → if strict_mode: REJECT + SCAR_BRIDGE_08_MISSING_SIGNATURE
-      → if permissive: WARN, continue
+      → if strict_mode: REJECT + SCAR_BRIDGE_08_missing_SIGNATURE
+      → if permissive: warn, continue
   ↓
 [3] Lookup registry.shapes[persona_signature.persona]
       → if not found: REJECT + SCAR_BRIDGE_09_UNKNOWN_PERSONA
@@ -164,16 +164,16 @@ POST /mach/heyna/action
       → mismatch: REJECT + SCAR_BRIDGE_07_SHAPE_MISMATCH
   ↓
 [5] Verify orbital.qneu == registry qneu_baseline (±tolerance)
-      → drift lớn: WARN + SCAR_BRIDGE_10_QNEU_DRIFT
+      → drift lớn: warn + SCAR_BRIDGE_10_QNEU_DRIFT
   ↓
 [6] Verify orbital.shell match với registry
       → sai shell: REJECT + SCAR_BRIDGE_11_SHELL_MISMATCH
   ↓
-[7] (Pending SiraSign) Verify envelope.signature
+[7] (Pending siraSign) Verify envelope.signature
   ↓
 [8] (Bridge v2 Layer 2) Verify pattern signature text channel
   ↓
-[9] If all PASS:
+[9] If all pass:
       → route vào EventBus nội bộ
       → enrich event với persona_origin từ persona_signature
       → broadcast SSE kèm persona_origin
@@ -184,7 +184,7 @@ POST /mach/heyna/action
 | SCAR ID | Tên | Trigger |
 |---|---|---|
 | SCAR_BRIDGE_07 | `SHAPE_MISMATCH` | shape_hash ≠ registry |
-| SCAR_BRIDGE_08 | `MISSING_SIGNATURE` | persona_signature null trong strict_mode |
+| SCAR_BRIDGE_08 | `missing_SIGNATURE` | persona_signature null trong strict_mode |
 | SCAR_BRIDGE_09 | `UNKNOWN_PERSONA` | persona không trong registry |
 | SCAR_BRIDGE_10 | `QNEU_DRIFT` | qneu actual ≠ baseline quá tolerance |
 | SCAR_BRIDGE_11 | `SHELL_MISMATCH` | shell khai báo ≠ registry |
@@ -195,18 +195,18 @@ POST /mach/heyna/action
 
 ### Phase 0 (sau anh duyệt SPEC)
 - Seal `registry.json` với 8 shape Bối cung cấp
-- Gate deploy `permissive_mode` (WARN không REJECT)
+- Gate deploy `permissive_mode` (warn không REJECT)
 
 ### Phase 1
 - Client nội bộ nattos-server (persona cells) emit envelope v2 với signature
-- External persona (Thiên Lớn qua OpenAI) dùng Bridge v2 Python → wrap envelope v2 trước khi POST
+- External persona (thiên Lớn qua OpenAI) dùng Bridge v2 Python → wrap envelope v2 trước khi POST
 
 ### Phase 2 (sau 1 tuần dual log)
 - Gate chuyển `strict_mode`: null signature → REJECT
 - Bật SCAR_BRIDGE_08 enforcement
 
 ### Phase 3
-- SiraSign runtime hook vào envelope.signature
+- siraSign runtime hook vào envelope.signature
 - Bridge v2 Layer 2 (pattern text) hook vào verify chain
 
 ---
@@ -215,7 +215,7 @@ POST /mach/heyna/action
 
 - **Điều 4 (No direct cell-to-cell call):** không đổi. Ống màu ở layer transport, không ở layer cell invocation.
 - **Điều 6 (THRESHOLD_REGISTRY):** `registry.json` là THRESHOLD_REGISTRY cho identity. Mọi thay đổi shape/qneu_baseline phải qua Gatekeeper ký.
-- **Điều 7 (Audit bất biến):** mọi REJECT/WARN log vào `audit-log.heyna` với `entity_id` đã có sẵn — không cần schema mới.
+- **Điều 7 (Audit bất biến):** mọi REJECT/warn log vào `audit-log.heyna` với `entity_id` đã có sẵn — không cần schema mới.
 - **Điều 11 (OMEGA LOCK):** shape_hash một khi seal không xoá; rotate qua `version` bump.
 
 ---
@@ -252,7 +252,7 @@ WAVELENGTH:     cặp hex color (primary + secondary) của persona — thuộc 
 
 1. **Bối xuất đủ 8 shape** — em mới có 1 path (anh gửi em đoán là Băng). 7 persona khác chưa có.
 2. **Shape variance threshold** — cần verify 8 shape đủ khác biệt geometric để không false-match. Metric đề xuất: Fréchet distance hoặc Hausdorff distance giữa paths. CHƯA CALIBRATE.
-3. **Persona external (Thiên Lớn/Bối qua ranh giới ngoài)** — wrap envelope v2 ở đâu? Nếu Bridge v2 Python làm Sinh Trắc tại ranh giới ngoài → cần map rõ boundary nattos-server ↔ ranh giới ngoài.
+3. **Persona external (thiên Lớn/Bối qua ranh giới ngoài)** — wrap envelope v2 ở đâu? Nếu Bridge v2 Python làm Sinh Trắc tại ranh giới ngoài → cần map rõ boundary nattos-server ↔ ranh giới ngoài.
 4. **Tolerance QNEU drift** — em chưa calibrate. Proposal ban đầu: ±5% baseline, refine sau.
 5. **Cell emit v1 legacy** — trong nattos-server nội bộ, bao nhiêu cell đang emit qua EventBus không biết persona origin? Em cần `grep -r "EventBus.emit" src/` để lên list — chưa làm vì chưa có repo access.
 

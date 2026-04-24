@@ -2,7 +2,7 @@
  * SmartLink Impulse Runtime Check — Điều 8
  * Kiểm tra sức khỏe của sợi dẫn truyền thần kinh
  */
-import { SmartLinkEngine } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+import { SmartLinkEngine } from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
 
 export interface ImpulseCheckResult {
   timestamp: number;
@@ -32,11 +32,11 @@ export const SmartLinkImpulseCheck = {
       totalAmplitude = links.reduce((sum: number, l: any) => sum + (l.amplitude ?? 1), 0);
 
       if (activeLinks === 0) {
-        violations.push("WARN: No active SmartLink connections detected");
+        violations.push("warn: No active SmartLink connections detected");
         recommendations.push("Initialize SmartLink nodes before sending impulses");
       }
     } catch {
-      violations.push("WARN: SmartLinkEngine not yet initialized");
+      violations.push("warn: SmartLinkEngine not yet initialized");
       recommendations.push("Call SmartLinkEngine.init() at app startup");
       activeLinks = 0;
     }

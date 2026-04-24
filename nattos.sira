@@ -1,5 +1,5 @@
 /**
- * nattos.sira — Kernel entry point of Natt-OS colony.
+ * nattos.sira — Kernel entry point of natt-os colony.
  *
  * Per SPEC NEN v1.1 + SPEC NGON NGU v1.2:
  *   §5.1 — .sira = registry namespace (CoreDNS resolved)
@@ -7,7 +7,7 @@
  *   §9.2 — Observation read-only awareness online
  *   §9.4 — Quantum Defense react chromatic
  *
- * Vai: bootstrap kernel cells trong nha Natt-OS.
+ * Vai: bootstrap kernel cells trong nha natt-os.
  *      Khong an com server.js cu — an com nha minh.
  *
  * NAUION AUTHORITY LOADER nhúng trực tiếp.
@@ -223,7 +223,7 @@ function nauionLoad(url, context, nextLoad) {
       const code = transformTS(source, filePath);
       return { format: 'module', source: code, shortCircuit: true };
     } catch (err) {
-      console.error(`[nattos.sira] TRANSFORM FAILED: ${filePath}`);
+      console.error(`[nattos.sira] TRANSFORM failED: ${filePath}`);
       console.error(`  ${err.message}`);
       throw err;
     }
@@ -238,7 +238,7 @@ function nauionLoad(url, context, nextLoad) {
 
 if (SELF_TEST) {
   console.log('');
-  console.log('═══ Natt-OS Kernel Self-Test ═══');
+  console.log('═══ natt-os Kernel Self-Test ═══');
   console.log('');
 
   // Test 1: esbuild
@@ -312,7 +312,7 @@ if (SELF_TEST) {
 const hookMethod = await registerNauionHooks();
 
 if (!_hooksRegistered) {
-  console.error('[nattos.sira] WARNING: Could not register Nauion hooks.');
+  console.error('[nattos.sira] warnING: Could not register Nauion hooks.');
   console.error('  Falling back to Node default resolution.');
   console.error('  @/* aliases and .khai bridges will not work.');
   console.error('  Run: ./kernel --self-test to diagnose.');
@@ -323,7 +323,7 @@ const KERNEL_HOST = "127.0.0.1";
 
 console.log("");
 console.log("╔════════════════════════════════════════════════════════════╗");
-console.log("║  Natt-OS Kernel — nattos.sira                            ║");
+console.log("║  natt-os Kernel — nattos.sira                            ║");
 console.log(`║  Nauion Authority: ${hookMethod.padEnd(20)} esbuild: ${_esbuildSource.padEnd(14)}║`);
 console.log("║  Không .mjs — Không ts-node — Không tsconfig-paths       ║");
 console.log("╚════════════════════════════════════════════════════════════╝");
@@ -337,7 +337,7 @@ try {
   observation = obsModule.bootstrapObservationCell();
   console.log('[nattos.sira] ✅ observation-cell bootstrapped');
 } catch (err) {
-  console.error('[nattos.sira] ❌ observation-cell FAILED:', err.message);
+  console.error('[nattos.sira] ❌ observation-cell failED:', err.message);
   if (err.code === 'ERR_MODULE_NOT_FOUND') {
     console.error('  Hint: check @/* alias resolution — run ./kernel --self-test');
   }
@@ -349,7 +349,7 @@ try {
   quantum = qdModule.bootstrapQuantumDefenseCell();
   console.log('[nattos.sira] ✅ quantum-defense-cell bootstrapped');
 } catch (err) {
-  console.error('[nattos.sira] ❌ quantum-defense-cell FAILED:', err.message);
+  console.error('[nattos.sira] ❌ quantum-defense-cell failED:', err.message);
   process.exit(1);
 }
 
@@ -380,7 +380,7 @@ server.listen(KERNEL_PORT, KERNEL_HOST, () => {
   console.log("");
   console.log("─────────────────────────────────────────────────────────────");
   console.log(`  Nauion Loader: ${_native} native, ${_bridged} bridged, ${_legacy} legacy`);
-  console.log("  He mien dich Natt-OS dang song that.");
+  console.log("  He mien dich natt-os dang song that.");
   console.log("  Observation snapshot → chromatic → Quantum Defense react.");
   console.log("─────────────────────────────────────────────────────────────");
   console.log("");

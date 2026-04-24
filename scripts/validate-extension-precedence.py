@@ -6,7 +6,7 @@ Delta từ v0.3: add Rule 6 — Điều 7 self-state storage detection với
 TWIN_PERSIST tag whitelist.
 
 Pattern: file .ts paired với .khai S2+ → grep fs.writeFileSync|writeFile|
-appendFileSync → check ±5 lines có TWIN_PERSIST tag → whitelist; else FAIL.
+appendFileSync → check ±5 lines có TWIN_PERSIST tag → whitelist; else fail.
 
 Match vaccin session 20260419 (K2 resolution): khai-file-persister.ts:47
 có TWIN_PERSIST = QIINT lineage legitimate, không business state storage.
@@ -105,7 +105,7 @@ def check_ts_bypass_canonical_v3(ts_path, all_scripts_content):
         m_direct = re.search(pat_direct, content)
         if m_direct:
             lineno = content[: m_direct.start()].count("\n") + 1
-            severity = "WARN" if has_marker_near(content, lineno, DEFERRED_RE) else "FAIL"
+            severity = "warn" if has_marker_near(content, lineno, DEFERRED_RE) else "fail"
             results.append((sf, "direct-literal", severity, lineno))
             continue
         assignments = extract_shell_var_assignments_with_lineno(content)
@@ -116,9 +116,9 @@ def check_ts_bypass_canonical_v3(ts_path, all_scripts_content):
                 m_var = re.search(pat_var, content)
                 if m_var:
                     lineno = content[: m_var.start()].count("\n") + 1
-                    severity = "FAIL"
+                    severity = "fail"
                     if has_marker_near(content, var_lineno, DEFERRED_RE) or has_marker_near(content, lineno, DEFERRED_RE):
-                        severity = "WARN"
+                        severity = "warn"
                     results.append((sf, f"variable-resolved (${var_name})", severity, lineno))
                     break
     return results
@@ -126,8 +126,8 @@ def check_ts_bypass_canonical_v3(ts_path, all_scripts_content):
 
 def check_disk_write_compliance(ts_path):
     """v0.4 Rule 6: scan .ts substrate for fs.writeFileSync without TWIN_PERSIST marker.
-    Return list of (lineno, severity, evidence). WARN = TWIN_PERSIST whitelisted.
-    FAIL = unmarked disk write (Điều 7 violation).
+    Return list of (lineno, severity, evidence). warn = TWIN_PERSIST whitelisted.
+    fail = unmarked disk write (Điều 7 violation).
     """
     try:
         with open(ts_path, "r", encoding="utf-8", errors="replace") as f:
@@ -138,7 +138,7 @@ def check_disk_write_compliance(ts_path):
     for m in DISK_WRITE_RE.finditer(content):
         lineno = content[: m.start()].count("\n") + 1
         call = m.group(1)
-        severity = "WARN" if has_marker_near(content, lineno, TWIN_PERSIST_RE, window=MARKER_WINDOW) else "FAIL"
+        severity = "warn" if has_marker_near(content, lineno, TWIN_PERSIST_RE, window=MARKER_WINDOW) else "fail"
         results.append((lineno, severity, call))
     return results
 
@@ -183,20 +183,20 @@ def main():
     sira_files = find_all_sira_files()
     expected = "./nattos.sira"
     if len(sira_files) == 0:
-        print(f"  FAIL: không tìm thấy {expected}")
+        print(f"  fail: không tìm thấy {expected}")
         total_fail += 1
     elif len(sira_files) > 1:
-        print(f"  FAIL: {len(sira_files)} .sira files:")
+        print(f"  fail: {len(sira_files)} .sira files:")
         for f in sira_files:
             print(f"    - {f}")
         total_fail += len(sira_files) - 1
     else:
         actual = sira_files[0]
         if os.path.normpath(actual) != os.path.normpath(expected):
-            print(f"  WARN: .sira tại {actual}")
+            print(f"  warn: .sira tại {actual}")
             total_warn += 1
         else:
-            print(f"  PASS: {actual}")
+            print(f"  pass: {actual}")
     print()
 
     print("[Rule 2+3] Checking .khai + .ts sibling pairs...")
@@ -207,13 +207,13 @@ def main():
         state = check_khai_state(khai)
         imports_ts = check_khai_imports_ts(khai)
         if state in {"S3", "S4"} and imports_ts:
-            print(f"  FAIL: {khai} claims {state} nhưng vẫn import .ts")
+            print(f"  fail: {khai} claims {state} nhưng vẫn import .ts")
             pair_issues += 1
         if state is None:
-            print(f"  FAIL: {khai} thiếu @state header")
+            print(f"  fail: {khai} thiếu @state header")
             pair_issues += 1
     if pair_issues == 0 and pairs:
-        print(f"  PASS: all {len(pairs)} pairs compliant")
+        print(f"  pass: all {len(pairs)} pairs compliant")
     total_fail += pair_issues
     print()
 
@@ -226,18 +226,18 @@ def main():
         if results:
             print(f"  {ts} called via:")
             for sf, mode, severity, lineno in results:
-                tag = "[DEFERRED]" if severity == "WARN" else "[STRICT]"
+                tag = "[DEFERRED]" if severity == "warn" else "[STRICT]"
                 print(f"    {severity} {tag}: {sf}:{lineno}  [{mode}]")
-                if severity == "FAIL":
+                if severity == "fail":
                     rule4_fail += 1
                 else:
                     rule4_warn += 1
     if rule4_fail == 0 and rule4_warn == 0:
-        print("  PASS: no .ts bypass detected")
+        print("  pass: no .ts bypass detected")
     elif rule4_fail == 0:
-        print(f"  PASS (with {rule4_warn} deferred marker acknowledged)")
+        print(f"  pass (with {rule4_warn} deferred marker acknowledged)")
     else:
-        print(f"  FAIL: {rule4_fail} strict bypass, {rule4_warn} deferred")
+        print(f"  fail: {rule4_fail} strict bypass, {rule4_warn} deferred")
     total_fail += rule4_fail
     total_warn += rule4_warn
     print()
@@ -256,32 +256,32 @@ def main():
         if disk_results:
             print(f"  {ts}:")
             for lineno, severity, call in disk_results:
-                tag = "[TWIN_PERSIST]" if severity == "WARN" else "[ĐIỀU 7]"
+                tag = "[TWIN_PERSIST]" if severity == "warn" else "[ĐIỀU 7]"
                 print(f"    {severity} {tag}: line {lineno} — {call}")
-                if severity == "FAIL":
+                if severity == "fail":
                     rule6_fail += 1
                 else:
                     rule6_warn += 1
     if rule6_fail == 0 and rule6_warn == 0:
-        print("  PASS: no substrate disk write detected")
+        print("  pass: no substrate disk write detected")
     elif rule6_fail == 0:
-        print(f"  PASS (with {rule6_warn} TWIN_PERSIST whitelisted)")
+        print(f"  pass (with {rule6_warn} TWIN_PERSIST whitelisted)")
     else:
-        print(f"  FAIL: {rule6_fail} Điều 7 violation, {rule6_warn} whitelisted")
+        print(f"  fail: {rule6_fail} Điều 7 violation, {rule6_warn} whitelisted")
     total_fail += rule6_fail
     total_warn += rule6_warn
     print()
 
-    print(f"Total FAIL: {total_fail}")
-    print(f"Total WARN: {total_warn}")
+    print(f"Total fail: {total_fail}")
+    print(f"Total warn: {total_warn}")
     if total_fail == 0:
         if total_warn > 0:
-            print(f"STATUS: PASS (with {total_warn} WARN acknowledged)")
+            print(f"STATUS: pass (with {total_warn} warn acknowledged)")
         else:
-            print("STATUS: PASS")
+            print("STATUS: pass")
         sys.exit(0)
     else:
-        print("STATUS: FAIL")
+        print("STATUS: fail")
         sys.exit(1)
 
 

@@ -1,5 +1,5 @@
 /**
- * Natt-OS SmartLink Touch Points (refactored per SPEC NEN v1.1)
+ * natt-os SmartLink Touch Points (refactored per SPEC NEN v1.1)
  *
  * Lock #10: SmartLink coupling — touch + chromatic (no throw)
  * Lock #11: Pressure cap — chromatic from pressure level
@@ -29,22 +29,22 @@ function makeSignature(origin: string): TouchResult["signature"] {
 // ── Lock #10: SmartLink observer-only ──
 export const SmartLinkCouplingGuard = {
   touchCoupling(callerModule: string, targetModule: string): TouchResult {
-    const sig = makeSignature("smartlink:coupling");
+    const sig = makeSignature("SmartLink:coupling");
     const FORBIDDEN_IMPORTS = [
       "/domain/services/",
       "/domain/entities/",
       ".engine.ts",
     ];
     const isForbidden = FORBIDDEN_IMPORTS.some(p => targetModule.includes(p));
-    const isSmartLink = callerModule.includes("smartlink");
+    const isSmartLink = callerModule.includes("SmartLink");
 
     if (isForbidden && isSmartLink) {
-      console.error(`[COUPLING_TOUCH] chromatic: critical | smartlink "${callerModule}" -> domain "${targetModule}"`);
+      console.error(`[COUPLING_TOUCH] chromatic: critical | SmartLink "${callerModule}" -> domain "${targetModule}"`);
       return {
         proceed: false,
         chromatic_state: "critical",
         signature: sig,
-        reason: "smartlink_imports_domain",
+        reason: "SmartLink_imports_domain",
       };
     }
 
@@ -96,7 +96,7 @@ export const PressureCapGuard = {
   },
 
   touchPressure(cellId: string): TouchResult {
-    const sig = makeSignature("smartlink:pressure");
+    const sig = makeSignature("SmartLink:pressure");
     const p = _pressureValues.get(cellId) ?? 0;
     let state: ChromaticState = "nominal";
     if (p >= MAX_PRESSURE * 0.95) state = "critical";
@@ -125,7 +125,7 @@ const MAX_GOSSIP_CACHE = 1000;
 
 export const GossipGuard = {
   touchGossip(gossipId: string, originCell: string): TouchResult {
-    const sig = makeSignature("smartlink:gossip");
+    const sig = makeSignature("SmartLink:gossip");
 
     if (_gossipCache.has(gossipId)) {
       console.debug(`[GOSSIP_TOUCH] chromatic: stable | dedupe ${gossipId} from ${originCell}`);

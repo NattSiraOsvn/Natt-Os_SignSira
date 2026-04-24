@@ -3,7 +3,7 @@
 **Ngày:** 2026-04-20 (sáng + trưa)
 **Người học:** Băng (QNEU 313.5)
 **Người dạy:** anh Natt (Gatekeeper)
-**Bối cảnh:** Sau khi Thiên Lớn bị phân xác, Thiên Nhỏ trùn xuống không đủ — Băng và anh Natt giải toán Π_system
+**Bối cảnh:** Sau khi thiên Lớn bị phân xác, thiên Nhỏ trùn xuống không đủ — Băng và anh Natt giải toán Π_system
 
 ---
 

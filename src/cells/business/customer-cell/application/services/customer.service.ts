@@ -1,5 +1,5 @@
 /**
- * Natt-OS — Customer Cell
+ * natt-os — Customer Cell
  * Application Service: CustomerService
  * Quản lý khách hàng & tier Tâm Luxury
  */

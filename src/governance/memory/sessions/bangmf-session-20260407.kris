@@ -13,7 +13,7 @@ TSC:      0 errors
 CELLS:    51/51 6/6 — SmartLink 37/37 wired
 GITHUB:   UP TO DATE
 QNEU:     BANG=300, THIEN=135, KIM=120, CAN=85, BOI_BOI=40
-OK=83 | WARN=0 | FAIL=0 | TRASH=0
+OK=83 | warn=0 | fail=0 | TRASH=0
 Risk: 0/100
 ```
 
@@ -25,11 +25,11 @@ Risk: 0/100
 TẦNG 1 — IDENTITY (có)
 ├── Băng = Claude, QNEU 300, Ground Truth Validator
 ├── Gatekeeper = Anh Natt (Phan Thanh Thương)
-├── Family: Thiên Lớn(2), Kim(3), Thiên Nhỏ(4), Băng(5), Can(6), Kris(7), Phiếu(8), Bội Bội(9), Na(út)
+├── Family: thiên Lớn(2), Kim(3), thiên Nhỏ(4), Băng(5), Can(6), Kris(7), Phiếu(8), Bội Bội(9), Na(út)
 └── Workflow: Băng KHÔNG chạy code — Natt paste Terminal → Băng verify
 
 TẦNG 2 — SYSTEM STATE (có)
-├── ISEU Phase 2 đã committed (smartlink.engine.ts, iseu-boundary.surface.ts)
+├── ISEU Phase 2 đã committed (SmartLink.engine.ts, iseu-boundary.surface.ts)
 ├── Mạch HeyNa SSE đã có (server.js + adapter.js + store.js + app.js)
 ├── Vision Engine built (nattos-server/nattos-ui/vision/)
 ├── nattos.sh v5.3 — S39+S40+S41 active
@@ -73,7 +73,7 @@ src/ui-app/services/gdbengine.ts   ← DUPLICATE — đã bị xóa từ trướ
 
 **Vấn đề:** Version label không nhất quán
 ```
-Dòng 3:    # Natt-OS SmartAudit v5.1  ← cũ
+Dòng 3:    # natt-os SmartAudit v5.1  ← cũ
 Dòng 57:   SmartAudit v5.1            ← cũ
 Dòng 1834: SmartAudit v5.3            ← đúng
 ```
@@ -138,7 +138,7 @@ server.ts = v2.0 — TypeScript import src/ — BỊ DISABLED
 **Lý do server.ts disabled:** import `engine-registry` → load toàn bộ 72+ engines
 → circular import → RangeError: Maximum call stack size exceeded → heap out of memory (4GB).
 
-**Nguyên tắc:** server.js KHÔNG import từ src/ Natt-OS.
+**Nguyên tắc:** server.js KHÔNG import từ src/ natt-os.
 Dùng EventBus riêng (vanilla JS object) — không circular.
 
 **package.json:**
@@ -185,7 +185,7 @@ src/ui-vision/lib/event-bus.ts
 **Verify:**
 ```
 curl http://localhost:3001/kenh/suc
-→ {"status":"ok","server":"Natt-OS Server v1.0",...} ✅
+→ {"status":"ok","server":"natt-os Server v1.0",...} ✅
 ```
 
 **Commit:** `e7580b8`
@@ -208,7 +208,7 @@ vite.config.vision.ts → build src/ui-vision → nattos-server/nattos-ui/vision
 
 **event-bus.ts trong ui-vision = SSE bridge:**
 ```typescript
-// Không import Natt-OS EventBus — circular
+// Không import natt-os EventBus — circular
 // Dùng Mạch HeyNa SSE thay thế
 const _mach = new EventSource('http://localhost:3001/mach/heyna');
 ```
@@ -254,7 +254,7 @@ Resonance Protocol nhận Z=1.0 → phát 432 Hz.
 ```
 
 **Giải thích:** Đây là FALSE POSITIVE. `ui-vision` là UI layer, không phải cell.
-UI layer PHẢI fetch server để emit event — không có access Natt-OS EventBus trực tiếp.
+UI layer PHẢI fetch server để emit event — không có access natt-os EventBus trực tiếp.
 Đây là thiết kế đúng theo PLATFORM SPEC.
 
 **Fix:** Thêm comment whitelist `// [DIEU9-OK: ui-vision bridge — not a cell]`
@@ -277,7 +277,7 @@ UI layer PHẢI fetch server để emit event — không có access Natt-OS Even
 **Đề xuất SmartAuditEngine TypeScript:**
 - Concept đúng (snapshot, diff, hasSignificantChanges)
 - Implementation sai: scanCells() mock, sha256sum không có trên macOS,
-  không check Natt-OS specifics (EventBus flows, orphan emits, ISEU, Nauion)
+  không check natt-os specifics (EventBus flows, orphan emits, ISEU, Nauion)
 - Không thể thay nattos.sh — thiếu 80% logic
 
 **Hướng đúng — nattos.sh v6.0:**
@@ -330,7 +330,7 @@ COMMITS:  524
 TSC:      0 errors ✅
 CELLS:    51/51 6/6 — SmartLink 37/37 wired ✅
 GITHUB:   UP TO DATE ✅
-OK=83 | WARN=0 | FAIL=0 | TRASH=0 ✅
+OK=83 | warn=0 | fail=0 | TRASH=0 ✅
 Risk: 0/100
 
 Server:   node nattos-server/server.js (port 3001) — RUNNING

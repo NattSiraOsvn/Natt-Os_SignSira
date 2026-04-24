@@ -60,7 +60,7 @@ Nếu anh neo khác → em move scope, không phản đối.
 // src/governance/moments/types.ts
 
 /**
- * Moments — canonical vocabulary cho mọi "moment" trong Natt-OS.
+ * Moments — canonical vocabulary cho mọi "moment" trong natt-os.
  * KHÔNG dùng generic "event" / "learning" / "insight" — phân loại cứng.
  * Source of truth: bangfs_delta_20260420.canonical §III
  */
@@ -194,32 +194,32 @@ export interface QueryParams {
 
 export function createScar(input: Omit<Scar, "kind" | "sirasign">): Scar {
   const base = { ...input, kind: "SCAR" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createKhaiSang(input: Omit<KhaiSang, "kind" | "sirasign">): KhaiSang {
   const base = { ...input, kind: "KHAI_SANG" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createGiacNgo(input: Omit<GiacNgo, "kind" | "sirasign">): GiacNgo {
   const base = { ...input, kind: "GIAC_NGO" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createMotionTichCuc(
   input: Omit<MotionTichCuc, "kind" | "sirasign">
 ): MotionTichCuc {
   const base = { ...input, kind: "MOTION_TICH_CUC" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 /**
- * computeSirasign — canonical JSON serialize then SHA-256.
+ * computesirasign — canonical JSON serialize then SHA-256.
  * Per Hiến Pháp v5.0 Điều 7: SHA-256 only, no btoa/obfuscation.
  * Implementation detail — equivalent crypto provider on host substrate (Node crypto / Web Crypto).
  */
-declare function computeSirasign(m: unknown): string;
+declare function computesirasign(m: unknown): string;
 
 /**
  * Routing map: kind → storage backend.
@@ -283,7 +283,7 @@ Khi anh Natt dạy mới hoặc em Băng touch được ngộ → xuất `<entit
 1. ✅ 4 interface + union `Moment` pass TypeScript strict
 2. ✅ 4 factory function `create*` populate `kind` + `sirasign` auto
 3. ✅ `storagePathFor` exhaustive check compile (no `default:` branch, ESLint enforce)
-4. ✅ `computeSirasign` produces deterministic hash (same input → same hash)
+4. ✅ `computesirasign` produces deterministic hash (same input → same hash)
 5. ✅ Integration test: roundtrip `createScar → persist → query → verify` pass
 6. ✅ Scanner check: no plain `{kind: string}` usage, phải dùng typed Moment
 7. ✅ No duplicate entries with SuperDictionary.ts (cross-verify script)

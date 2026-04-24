@@ -94,7 +94,7 @@
   </div>
 
   <table class="data-table">
-    <thead><tr><th>Mã NV</th><th>Tên</th><th>Check-in</th><th>Check-out</th><th>Giờ</th><th>SiraSign</th></tr></thead>
+    <thead><tr><th>Mã NV</th><th>Tên</th><th>Check-in</th><th>Check-out</th><th>Giờ</th><th>siraSign</th></tr></thead>
     <tbody id="todayTbody"></tbody>
   </table>
 </div>
@@ -102,7 +102,7 @@
 <!-- Modals -->
 <div id="sirasignModal" class="modal-overlay" style="display:none;">
   <div class="modal liquid-glass">
-    <h3>🔐 SiraSign Verification</h3>
+    <h3>🔐 siraSign Verification</h3>
     <p style="margin-bottom:16px;">Nhập mã PIN (mặc định: 123456)</p>
     <input type="password" id="sirasignPin" placeholder="PIN" maxlength="6">
     <div style="display:flex;gap:12px;margin-top:20px;">
@@ -128,7 +128,7 @@
 
 <script type="module">
   // ═══════════════════════════════════════════════════════════════════
-  // Natt-OS NAUION v2.5 – CELL-DRIVEN ATTENDANCE (CSV DATABASE)
+  // natt-os NAUION v2.5 – CELL-DRIVEN ATTENDANCE (CSV DATABASE)
   // ═══════════════════════════════════════════════════════════════════
 
   // --- EventBus ---
@@ -197,12 +197,12 @@
     }
 
     async checkin({empCode, ip, network, sirasign}){
-      if(sirasign!=='VALID'){toast('SiraSign không hợp lệ','error');return;}
+      if(sirasign!=='VALID'){toast('siraSign không hợp lệ','error');return;}
       if(this.attendance.has(empCode)){toast('Hôm nay đã check-in','info');return;}
       const now = new Date();
       const record = {
         checkIn: formatTime(now), checkOut: null, ip, network,
-        sirasign: `Sira-${Date.now().toString(36)}`, report: null, overtime: 0
+        sirasign: `sira-${Date.now().toString(36)}`, report: null, overtime: 0
       };
       this.attendance.set(empCode, record);
       toast(`✅ Check-in ${record.checkIn}`, 'success');
@@ -354,14 +354,14 @@
     bus.emit('NAHERE',{source:'hr-cell',attendance:hrCell.attendance}); // cập nhật giờ
   });
 
-  function openSiraSignModal(action){
+  function opensiraSignModal(action){
     pendingAction=action;
     document.getElementById('sirasignModal').style.display='flex';
     document.getElementById('sirasignPin').value='';
   }
 
-  document.getElementById('btnCheckin').addEventListener('click',()=>openSiraSignModal('checkin'));
-  document.getElementById('btnCheckout').addEventListener('click',()=>openSiraSignModal('checkout'));
+  document.getElementById('btnCheckin').addEventListener('click',()=>opensiraSignModal('checkin'));
+  document.getElementById('btnCheckout').addEventListener('click',()=>opensiraSignModal('checkout'));
 
   document.getElementById('sirasignConfirmBtn').addEventListener('click',()=>{
     const pin=document.getElementById('sirasignPin').value;

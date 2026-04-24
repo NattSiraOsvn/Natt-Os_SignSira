@@ -1,5 +1,5 @@
 /**
- * Natt-OS Security Service
+ * natt-os Security Service
  * Tâm Luxury — Screen Protection + Crypto Engine + Digital Signature
  *
  * Điều 9 compliant — Web Crypto API only, zero external dependency
@@ -145,7 +145,7 @@ export class ScreenProtection {
   }
 
   private static _triggerViolation(type: string, detail: string): void {
-    console.warn(`[Natt-OS Security] Violation: ${type} — ${detail}`);
+    console.warn(`[natt-os Security] Violation: ${type} — ${detail}`);
     // Emit vào audit-cell qua EventBus (không gọi API)
     window.dispatchEvent(new CustomEvent("natt:security:violation", {
       detail: { type, detail, timestamp: Date.now() }

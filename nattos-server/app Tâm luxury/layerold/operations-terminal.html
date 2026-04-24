@@ -454,9 +454,9 @@ const WAC_DATA=[
 ];
 const SKU_BASE=[
   {sku:'NNA-TL-001',name:'Nhẫn Nam Diamond Rolex',cat:'Nhẫn Nam',material:'Vàng 18K Trắng',weight:3.2,stone:'Kim cương 7.2ly GIA',size:'16-22',days:14,cost:85000000,files:[{name:'NNA-TL-001_v3.stl',size:2840000,type:'3D'},{name:'NNA-TL-001_drawing.pdf',size:450000,type:'PDF'},{name:'NNA-TL-001_ref.jpg',size:280000,type:'IMG'}],revisions:3,status:'PRODUCTION'},
-  {sku:'NNU-TL-088',name:'Nhẫn Nữ Halo Double',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',weight:2.1,stone:'Kim cương GIA 5ly',size:'12-17',days:12,cost:38000000,files:[{name:'NNU-TL-088_v2.stl',size:1920000,type:'3D'},{name:'NNU-TL-088_photo.jpg',size:380000,type:'IMG'}],revisions:2,status:'READY'},
+  {sku:'NNU-TL-088',name:'Nhẫn Nữ Halo Double',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',weight:2.1,stone:'Kim cương GIA 5ly',size:'12-17',days:12,cost:38000000,files:[{name:'NNU-TL-088_v2.stl',size:1920000,type:'3D'},{name:'NNU-TL-088_photo.jpg',size:380000,type:'IMG'}],revisions:2,status:'ready'},
   {sku:'LN-TL-045',name:'Lắc Nữ Tennis Diamond',cat:'Lắc',material:'Vàng 18K Trắng',weight:5.8,stone:'Kim cương tấm VVS1',size:'16cm-18cm',days:18,cost:92000000,files:[{name:'LN-TL-045_v1.stl',size:3210000,type:'3D'}],revisions:1,status:'DESIGN'},
-  {sku:'DN-TL-033',name:'Dây Chuyền Choker',cat:'Dây',material:'Vàng 18K Vàng',weight:4.2,stone:'Không đá',size:'38cm-42cm',days:10,cost:42000000,files:[{name:'DN-TL-033_drawing.ai',size:890000,type:'AI'},{name:'DN-TL-033_v2.stl',size:2100000,type:'3D'}],revisions:2,status:'READY'},
+  {sku:'DN-TL-033',name:'Dây Chuyền Choker',cat:'Dây',material:'Vàng 18K Vàng',weight:4.2,stone:'Không đá',size:'38cm-42cm',days:10,cost:42000000,files:[{name:'DN-TL-033_drawing.ai',size:890000,type:'AI'},{name:'DN-TL-033_v2.stl',size:2100000,type:'3D'}],revisions:2,status:'ready'},
   {sku:'BT-TL-021',name:'Bông Tai Drop Diamond',cat:'Bông Tai',material:'Vàng 18K Trắng',weight:1.8,stone:'Kim cương 4ly GIA',size:'Một size',days:8,cost:18500000,files:[{name:'BT-TL-021_v1.obj',size:1450000,type:'3D'}],revisions:1,status:'PRODUCTION'},
   {sku:'NNC-TL-012',name:'Nhẫn Cưới Solitaire',cat:'Nhẫn Nữ',material:'Vàng 18K Trắng',weight:2.8,stone:'Kim cương 1ct GIA',size:'12-18',days:20,cost:95000000,files:[{name:'NNC-TL-012_v4.stl',size:2680000,type:'3D'},{name:'NNC-TL-012_cert.pdf',size:180000,type:'PDF'}],revisions:4,status:'PRODUCTION'},
 ];
@@ -701,7 +701,7 @@ function handleWACFiles(input){
 // ═══════════════ 3D DESIGN VAULT ════════════════
 function renderSKUGrid(){
   document.getElementById('skuCount').textContent=filteredSKUs.length;
-  const statusMap={PRODUCTION:'ba',READY:'bg',DESIGN:'bb'};
+  const statusMap={PRODUCTION:'ba',ready:'bg',DESIGN:'bb'};
   const emojiMap={'Nhẫn Nam':'💍','Nhẫn Nữ':'💎','Lắc':'⌚','Dây':'📿','Bông Tai':'👂','Nhẫn Cưới':'💝'};
   document.getElementById('skuGrid').innerHTML=filteredSKUs.map(s=>`
     <div class="sku-card ${selectedSKU?.sku===s.sku?'selected':''}" onclick="selectSKU('${s.sku}')">

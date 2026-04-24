@@ -67,7 +67,7 @@ export const CalibrationWizard: React.FC = () => {
              </div>
              <h2 className="ai-headline text-5xl italic uppercase tracking-tighter">Neural Calibration Lab</h2>
              <p className="text-gray-400 text-lg font-light leading-relaxed italic">
-                "Chào Anh Natt, Thiên cần 30 giây để học nhịp độ nhập liệu của Anh. Điều này giúp hệ thống mở rộng ngưỡng xử lý Quantum, tránh các cảnh báo giả khi Anh đang bùng nổ năng suất."
+                "Chào Anh Natt, thiên cần 30 giây để học nhịp độ nhập liệu của Anh. Điều này giúp hệ thống mở rộng ngưỡng xử lý Quantum, tránh các cảnh báo giả khi Anh đang bùng nổ năng suất."
              </p>
              <button onClick={startTest} className="px-12 py-5 bg-amber-500 text-black font-black text-xs uppercase tracking-[0.4em] rounded-2xl hover:bg-amber-400 transition-all shadow-[0_0_50px_rgba(245,158,11,0.2)] active:scale-95">
                 BẮT ĐẦU HIỆU CHUẨN
@@ -93,7 +93,7 @@ export const CalibrationWizard: React.FC = () => {
                onChange={(e) => setTestText(e.target.value)}
                autoFocus
                className="w-full h-48 bg-white/[0.02] border border-white/10 rounded-[3rem] p-10 text-xl text-white outline-none focus:border-amber-500 transition-all shadow-inner resize-none"
-               placeholder="Gõ lại đoạn văn bản trên để Thiên bóc tách CPM..."
+               placeholder="Gõ lại đoạn văn bản trên để thiên bóc tách CPM..."
              />
 
              <div className="flex gap-4 items-center justify-center opacity-40">
@@ -124,10 +124,10 @@ export const CalibrationWizard: React.FC = () => {
                 <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-10 bg-black border-white/5">
                    <div className="flex items-center gap-4 mb-6">
                       <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
-                      <h4 className="text-sm font-black text-white uppercase tracking-widest">Thiên Advisor</h4>
+                      <h4 className="text-sm font-black text-white uppercase tracking-widest">thiên Advisor</h4>
                    </div>
                    <p className="text-sm text-gray-400 italic leading-relaxed font-light">
-                      "Thưa Anh Natt, Thiên đã lập bản đồ nhịp điệu của Anh. Với tốc độ {metrics.currentCPM.toFixed(0)} ký tự/phút, Thiên đề xuất mở rộng ngưỡng **Burst Capacity** lên mức x1.8. Anh sẽ có thể làm việc siêu tốc mà không bao giờ gặp màn hình Quantum Staging."
+                      "Thưa Anh Natt, thiên đã lập bản đồ nhịp điệu của Anh. Với tốc độ {metrics.currentCPM.toFixed(0)} ký tự/phút, thiên đề xuất mở rộng ngưỡng **Burst Capacity** lên mức x1.8. Anh sẽ có thể làm việc siêu tốc mà không bao giờ gặp màn hình Quantum Staging."
                    </p>
                 </div>
                 

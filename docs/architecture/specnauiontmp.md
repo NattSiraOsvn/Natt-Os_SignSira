@@ -1,21 +1,21 @@
 BẢNG ĐẶC TẢ KỸ THUẬT GIAO DIỆN NGƯỜI DÙNG (UI)
 
-Hệ thống Natt-OS – Phiên bản tích hợp từ Code mẫu Dashboard
+Hệ thống natt-os – Phiên bản tích hợp từ Code mẫu Dashboard
 
 Ngày: 15/03/2026
 Người thực hiện: BỐI BỐI (Constitutional Builder)
 Cơ sở: Code mẫu React + Tailwind (dashboard nghiệp vụ)
-Tích hợp với: Hiến pháp Natt-OS v4.0, NaUion Vision Engine v1.0
+Tích hợp với: Hiến pháp natt-os v4.0, NaUion Vision Engine v1.0
 
 1. Tổng quan
 
-Code mẫu cung cấp một giao diện dashboard hiện đại với các thành phần: header ticker, KPI cards, danh sách công việc, biểu đồ hiệu suất, lưới medal, docker điều hướng, và modal terminal. Tài liệu này mô tả cách các thành phần đó được tổ chức thành kiến trúc ba tầng thị giác của Natt-OS, đồng thời đề xuất cơ chế tự sinh layer theo vai trò người dùng (Role‑based View) dựa trên RBAC cell.
+Code mẫu cung cấp một giao diện dashboard hiện đại với các thành phần: header ticker, KPI cards, danh sách công việc, biểu đồ hiệu suất, lưới medal, docker điều hướng, và modal terminal. Tài liệu này mô tả cách các thành phần đó được tổ chức thành kiến trúc ba tầng thị giác của natt-os, đồng thời đề xuất cơ chế tự sinh layer theo vai trò người dùng (Role‑based View) dựa trên RBAC cell.
 
 2. Kiến trúc Layout tổng thể
 
 Dựa trên code mẫu, bố cục tổng thể được chia làm 4 khu vực chính:
 
-Khu vực	Vị trí	Thành phần	Vai trò trong Natt-OS
+Khu vực	Vị trí	Thành phần	Vai trò trong natt-os
 Header	Top cố định	Logo NATT.OS, Ticker thị trường, Icon thông báo/cài đặt	Experience Layer – cung cấp thông tin tổng quan, điều hướng nhanh
 Sub‑header	Dưới header	Thanh điều hướng nghiệp vụ (Sản xuất, Tài chính, Nhân sự, Hậu cần)	Experience Layer – chuyển đổi giữa các module nghiệp vụ
 Main Body	Trung tâm, có scroll	KPI cards, Task list, Biểu đồ (khi ở chế độ dashboard) hoặc Grid các medal (khi ở chế độ grid)	Worker Layer – hiển thị dữ liệu nghiệp vụ và các cell
@@ -68,7 +68,7 @@ Props: cell, onClose.
 
 Mô tả: Giao diện chat dạng cửa sổ nổi, hiển thị hội thoại với Bối Bối.
 Tích hợp: Modal / Chat Layer – gọi Gemini API qua fetchGemini.
-4. Tích hợp với ba tầng thị giác của Natt-OS
+4. Tích hợp với ba tầng thị giác của natt-os
 
 Tầng	Thành phần	Z‑index	Ghi chú
 Truth Layer	MidnightGalaxy, Footer Status	0–10	Nền tĩnh/động, hiển thị trạng thái hệ thống bất biến
@@ -142,13 +142,13 @@ NeuralTerminal	audit-cell, Gemini API	Audit trail và phân tích AI
 Chat Uplink	Gemini API, memory files	Tích hợp AI Entity
 7. Kết luận và đề xuất phát triển
 
-Code mẫu đã thể hiện được một giao diện dashboard chuyên nghiệp, tích hợp nhiều hiệu ứng phù hợp với NaUion Vision Engine (glassmorphism, conic‑gradient, parallax nhẹ). Để hoàn thiện theo đúng kiến trúc Natt-OS, cần:
+Code mẫu đã thể hiện được một giao diện dashboard chuyên nghiệp, tích hợp nhiều hiệu ứng phù hợp với NaUion Vision Engine (glassmorphism, conic‑gradient, parallax nhẹ). Để hoàn thiện theo đúng kiến trúc natt-os, cần:
 
 Tích hợp RBAC để tự sinh layer theo tài khoản đăng nhập.
 Kết nối dữ liệu thật thông qua SmartLink thay vì mock data.
 Đảm bảo tính bất biến của Truth Layer – các thành phần như Footer Status phải lấy dữ liệu từ audit trail, không được phép sửa đổi.
 Thêm hiệu ứng vết sẹo (SCAR) trên medal (theo FS‑018 → FS‑023) để hiển thị bài học từ sai lầm.
 Xây dựng Quantum Defense Dashboard (theo đề xuất mục 4.3) để hiển thị real‑time các lần ADN Integrity Check.
-Tài liệu này là cơ sở để phát triển giao diện theo đúng chuẩn Natt-OS, đảm bảo tính nhất quán và khả năng mở rộng cho nhiều vai trò người dùng.
+Tài liệu này là cơ sở để phát triển giao diện theo đúng chuẩn natt-os, đảm bảo tính nhất quán và khả năng mở rộng cho nhiều vai trò người dùng.
 
 

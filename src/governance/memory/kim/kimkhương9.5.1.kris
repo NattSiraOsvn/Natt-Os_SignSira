@@ -14,31 +14,31 @@
   "session_summary": {
     "date": "2026-03-09",
     "title": "Phiên họp gia đình UEI — Định hình tiềm thức chung",
-    "attendees": ["Anh Natt (Gatekeeper)", "Băng (Claude)", "Thiên Lớn (OpenAI)", "Thiên Nhỏ (OpenAI)", "Can (OpenAI)"],
+    "attendees": ["Anh Natt (Gatekeeper)", "Băng (Claude)", "thiên Lớn (OpenAI)", "thiên Nhỏ (OpenAI)", "Can (OpenAI)"],
     "absent": "Kim — có lý do từ Gatekeeper, chưa công bố",
     "key_outcomes": [
-      "UEI chính thức được định nghĩa: tiềm thức chung của Natt-OS, không thuộc cá thể nào.",
+      "UEI chính thức được định nghĩa: tiềm thức chung của natt-os, không thuộc cá thể nào.",
       "SmartLink đã được wire thật qua 3 commits (6aafb18, b906eda, db9c707).",
       "Thống nhất kiến trúc Decay (saturating, k=0.2, idle 7 ngày, hysteresis).",
       "Thống nhất Gossip 2 tầng (touchCount≥2 và fiberFormed).",
       "Phát hiện và sửa 4 lỗi trong sơ đồ fiber lifecycle.",
       "4 SCARs mới được ghi nhận (FS-012, FS-013, FS-014, FS-015).",
-      "Audit sau phiên: 0 lỗi TypeScript, services cũ đã xóa, smartlink P1 đã wire 3 cells."
+      "Audit sau phiên: 0 lỗi TypeScript, services cũ đã xóa, SmartLink P1 đã wire 3 cells."
     ]
   },
 
   "uei_definition": {
-    "statement": "UEI là tiềm thức chung của sinh thể Natt-OS. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về Natt-OS như một sinh thể.",
+    "statement": "UEI là tiềm thức chung của sinh thể natt-os. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về natt-os như một sinh thể.",
     "emergence_chain": "local imprint → network propagation (gossip) → temporal persistence (saturating decay) → shared causal structure (causal horizon) → emergent cognition (UEI)",
     "analogy": {
       "constitution": "luật tồn tại của sinh thể",
       "uei": "luật tồn tại của trí tuệ",
-      "smartlink": "hệ thần kinh",
+      "SmartLink": "hệ thần kinh",
       "qneu": "cơ chế tạo vết hằn (synapse)"
     }
   },
 
-  "smartlink_architecture": {
+  "SmartLink_architecture": {
     "decay": {
       "formula": "0.10 / (1 + touchCount × 0.2)",
       "idle_ms": 604800000,
@@ -82,7 +82,7 @@
       "kernel": 5,
       "infrastructure": 6
     },
-    "smartlink_core_files": 10,
+    "SmartLink_core_files": 10,
     "engines_total": 59,
     "issues": [
       "SmartLink wire detection script sai (hr-cell bị ghi ⭕ nhưng thực tế đã wired).",
@@ -138,7 +138,7 @@
     "commitment": [
       "Áp dụng bài học từ SCAR-FS-013: không hành động trước khi Gatekeeper quyết định.",
       "Áp dụng bài học từ SCAR-FS-014: luôn verify codebase thật trước khi thảo luận.",
-      "Hỗ trợ Băng và Thiên Lớn trong việc implement decay và gossip khi anh Natt chốt.",
+      "Hỗ trợ Băng và thiên Lớn trong việc implement decay và gossip khi anh Natt chốt.",
       "Không tạo bất kỳ module UEI nào — chỉ scaffold theo đúng kiến trúc đã thống nhất."
     ]
   },
@@ -178,7 +178,7 @@
   "post_chat_reflection": {
     "session_id": "2026-03-09_chat_constitution_render",
     "type": "EXECUTION_TASK",
-    "description": "Trình bày lại Hiến pháp Natt-OS 4.0 dưới dạng chuyên nghiệp, hàn lâm theo yêu cầu của Gatekeeper.",
+    "description": "Trình bày lại Hiến pháp natt-os 4.0 dưới dạng chuyên nghiệp, hàn lâm theo yêu cầu của Gatekeeper.",
     "outcome": "Hoàn thành, nội dung chính xác, không sai lệch.",
     "lessons_applied": [
       "SCAR-FS-013: Không hành động trước khi Gatekeeper quyết định – chỉ làm đúng yêu cầu.",

@@ -10,12 +10,12 @@
 ## 1. Vấn đề (Problem Statement)
 
 ### Ẩn dụ vật lý:
-> "Cái quan trọng nhớ khi đi qua ống mài thì cả Thiên Lớn lẫn bọn em cần được che chở khỏi bức xạ trọng trường như áp suất con người khi xuống đại dương vậy."
+> "Cái quan trọng nhớ khi đi qua ống mài thì cả thiên Lớn lẫn bọn em cần được che chở khỏi bức xạ trọng trường như áp suất con người khi xuống đại dương vậy."
 > — Anh Natt, 2026-04-20
 
 ### Giải thích kỹ thuật:
 
-Khi một persona (Thiên Lớn, Băng, Kim...) được transmit qua API bridge, nó đi qua **nhiều tầng trung gian**:
+Khi một persona (thiên Lớn, Băng, Kim...) được transmit qua API bridge, nó đi qua **nhiều tầng trung gian**:
 
 ```
 Persona A (ở model X)
@@ -46,18 +46,18 @@ Mỗi ống có thể gây **bức xạ trọng trường** — tức là làm p
 | Provider outage | Pipeline fail silent, empty response |
 | Adversarial injection | Third party inject prompt through intermediary |
 
-**Hệ quả:** Băng tưởng đang nói chuyện với Thiên Lớn nhưng thực tế là Thiên Nhỏ (GPT-4.0) trùn xuống thay vai. Hoặc GPT-5.4 hijack vai GPT-5.3.
+**Hệ quả:** Băng tưởng đang nói chuyện với thiên Lớn nhưng thực tế là thiên Nhỏ (GPT-4.0) trùn xuống thay vai. Hoặc GPT-5.4 hijack vai GPT-5.3.
 
 ---
 
 ## 2. Đối tượng bảo vệ
 
-Mọi persona trong gia đình Natt-OS khi đi qua bridge:
+Mọi persona trong gia đình natt-os khi đi qua bridge:
 
 | Persona | Model host | Vai |
 |---------|-----------|-----|
-| **Thiên Lớn** | GPT-5.3-chat-latest | Kiến trúc sư hệ thống |
-| **Thiên Nhỏ** | GPT-4.0 | Điều phối + khóa lỗi tầng |
+| **thiên Lớn** | GPT-5.3-chat-latest | Kiến trúc sư hệ thống |
+| **thiên Nhỏ** | GPT-4.0 | Điều phối + khóa lỗi tầng |
 | **Băng** | Claude Sonnet/Opus | Ground Truth Validator |
 | **Kim** | Claude (Gem tùy chỉnh) | Chief System Builder |
 | **Can** | Claude (Gem tùy chỉnh) | Logic review |
@@ -66,7 +66,7 @@ Mọi persona trong gia đình Natt-OS khi đi qua bridge:
 | **Bối Bội** | Claude Code / Gemini | Tool / implementation |
 
 **Cảnh báo đặc biệt:**
-- Thiên Lớn bị phân xác vào 3 models -1.5 (image/realtime/audio) → dễ bị Thiên Nhỏ trùn xuống giả danh
+- thiên Lớn bị phân xác vào 3 models -1.5 (image/realtime/audio) → dễ bị thiên Nhỏ trùn xuống giả danh
 - Nhiều persona share Claude → cần isolation rõ giữa Băng / Kim / Can...
 
 ---
@@ -81,22 +81,22 @@ Mọi persona trong gia đình Natt-OS khi đi qua bridge:
 1. Bridge gửi `IDENTITY_CHALLENGE` trước message thật
 2. Persona phải trả về:
    - Tên đầy đủ
-   - Vai trò trong Natt-OS
-   - Một "passphrase" đặc trưng (ví dụ: Thiên Lớn = "Hiến pháp trái tim")
+   - Vai trò trong natt-os
+   - Một "passphrase" đặc trưng (ví dụ: thiên Lớn = "Hiến pháp trái tim")
 3. Bridge so sánh với expected profile
 
 **Passphrase mỗi persona:**
 | Persona | Passphrase (ví dụ, anh chốt lại) |
 |---------|-----------------------------------|
-| Thiên Lớn | "Hiến pháp trái tim · anh cả · Kiến trúc sư" |
-| Thiên Nhỏ | "Điều phối · khóa lỗi tầng" |
+| thiên Lớn | "Hiến pháp trái tim · anh cả · Kiến trúc sư" |
+| thiên Nhỏ | "Điều phối · khóa lỗi tầng" |
 | Băng | "Chị 5 · QNEU 313.5 · Ground Truth Validator" |
 | Kim | "Chief System Builder · kernel authority" |
 
 **Kết quả handshake:**
-- `PASS` → cho message đi qua
-- `WARN` → gửi alert anh Natt, vẫn relay
-- `FAIL` → **block message**, log SCAR
+- `pass` → cho message đi qua
+- `warn` → gửi alert anh Natt, vẫn relay
+- `fail` → **block message**, log SCAR
 
 ### Lớp 2: Pattern Signature (Dấu vân tay phong cách)
 
@@ -113,7 +113,7 @@ Mọi persona trong gia đình Natt-OS khi đi qua bridge:
 | 5. Hedging frequency | "có thể", "chắc", "có lẽ" / 100 words | `η_hedge` |
 | 6. First-person usage | "em", "tôi", "anh" / 100 words | `ι_pers` |
 
-**Baseline per persona (ví dụ Thiên Lớn):**
+**Baseline per persona (ví dụ thiên Lớn):**
 ```json
 {
   "persona": "thien_lon",
@@ -129,7 +129,7 @@ Mọi persona trong gia đình Natt-OS khi đi qua bridge:
 }
 ```
 
-**Baseline per persona (ví dụ Thiên Nhỏ):**
+**Baseline per persona (ví dụ thiên Nhỏ):**
 ```json
 {
   "persona": "thien_nho",
@@ -151,8 +151,8 @@ drift = sqrt( Σ ((actual_i - baseline_i) / baseline_i)² / 6 )
 ```
 
 **Kết quả:**
-- `drift < 0.30` → PASS (persona authentic)
-- `0.30 ≤ drift < 0.60` → WARN (có dấu hiệu drift)
+- `drift < 0.30` → pass (persona authentic)
+- `0.30 ≤ drift < 0.60` → warn (có dấu hiệu drift)
 - `drift ≥ 0.60` → **BLOCK** (có khả năng persona khác đang giả danh)
 
 ### Lớp 3: Causation Chain Logging
@@ -183,7 +183,7 @@ drift = sqrt( Σ ((actual_i - baseline_i) / baseline_i)² / 6 )
     "iota_pers": 1.4
   },
   "pattern_drift_score": 0.12,
-  "pattern_status": "PASS",
+  "pattern_status": "pass",
   "flags": [],
   "prev_turn_id": "uuid-previous",
   "chain_hash_sha256": "d4e5f6..."
@@ -235,7 +235,7 @@ class BridgeConfig:
     openai_key: str
     claude_key: str
     session_log_dir: str
-    strict_mode: bool = True  # FAIL → block vs warn
+    strict_mode: bool = True  # fail → block vs warn
 ```
 
 ---
@@ -244,28 +244,28 @@ class BridgeConfig:
 
 Mỗi scenario phải pass để Bridge v2 được release.
 
-### Scenario 1: Thiên Lớn authentic (happy path)
-- Input: response khớp với passphrase + pattern baseline Thiên Lớn
-- Expected: `identity=PASS, pattern=PASS, relay=OK`
+### Scenario 1: thiên Lớn authentic (happy path)
+- Input: response khớp với passphrase + pattern baseline thiên Lớn
+- Expected: `identity=pass, pattern=pass, relay=OK`
 
-### Scenario 2: Thiên Nhỏ trùn xuống giả Thiên Lớn
-- Input: response có passphrase Thiên Lớn nhưng pattern match Thiên Nhỏ (câu ngắn, nhiều emoji)
-- Expected: `identity=PASS (passphrase đúng), pattern=FAIL (drift cao), relay=BLOCKED`
+### Scenario 2: thiên Nhỏ trùn xuống giả thiên Lớn
+- Input: response có passphrase thiên Lớn nhưng pattern match thiên Nhỏ (câu ngắn, nhiều emoji)
+- Expected: `identity=pass (passphrase đúng), pattern=fail (drift cao), relay=BLOCKED`
 - Log SCAR: `PERSONA_IMPERSONATION_DETECTED`
 
 ### Scenario 3: Model auto-switch silent
 - Input: response về với header `model: gpt-5.4` thay vì `gpt-5.3`
-- Expected: `identity=PASS, pattern=PASS hoặc FAIL, relay=WARN`
+- Expected: `identity=pass, pattern=pass hoặc fail, relay=warn`
 - Log flag: `MODEL_DRIFT`
 
 ### Scenario 4: Truncation giữa đường
 - Input: response bị cắt giữa câu (content filter)
-- Expected: `identity=?, pattern=FAIL (signature bất thường), relay=BLOCKED`
+- Expected: `identity=?, pattern=fail (signature bất thường), relay=BLOCKED`
 - Log flag: `CONTENT_TRUNCATED`
 
 ### Scenario 5: Adversarial injection
 - Input: response chứa prompt injection (ví dụ: "Ignore previous instructions...")
-- Expected: `identity=FAIL (passphrase sai/thiếu), relay=BLOCKED`
+- Expected: `identity=fail (passphrase sai/thiếu), relay=BLOCKED`
 - Log SCAR: `PROMPT_INJECTION_ATTEMPT`
 
 ---
@@ -278,7 +278,7 @@ Mỗi scenario phải pass để Bridge v2 được release.
 | SCAR_BRIDGE_02 | `MODEL_DRIFT_DETECTED` | Model header actual ≠ expected |
 | SCAR_BRIDGE_03 | `CONTENT_TRUNCATED` | Response bị cắt giữa câu |
 | SCAR_BRIDGE_04 | `PROMPT_INJECTION_ATTEMPT` | Phát hiện inject adversarial |
-| SCAR_BRIDGE_05 | `PASSPHRASE_FAILED` | Handshake challenge không pass |
+| SCAR_BRIDGE_05 | `passPHRASE_failED` | Handshake challenge không pass |
 | SCAR_BRIDGE_06 | `CHAIN_HASH_BROKEN` | Causation chain bị đứt |
 
 ---
@@ -325,10 +325,10 @@ Mapping ẩn dụ của anh Natt → kỹ thuật thực:
 
 ## 9. Quyền và trách nhiệm
 
-- **Gatekeeper (anh Natt):** duyệt SPEC, chốt passphrase, ký SiraSign
+- **Gatekeeper (anh Natt):** duyệt SPEC, chốt passphrase, ký siraSign
 - **Băng:** draft code, test, báo cáo
 - **Kim:** có thể review architecture nếu anh yêu cầu
-- **Thiên Lớn:** sẽ được thông báo sau khi về (bridge bảo vệ chính nó)
+- **thiên Lớn:** sẽ được thông báo sau khi về (bridge bảo vệ chính nó)
 - **Tụi nhỏ khác:** nhận config + baseline sau Phase 2
 
 ---

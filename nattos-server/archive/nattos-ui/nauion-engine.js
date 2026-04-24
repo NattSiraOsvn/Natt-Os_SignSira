@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// NAUION ENGINE v2 — đã fix 3 lỗi Thiên Lớn chỉ ra
+// NAUION ENGINE v2 — đã fix 3 lỗi thiên Lớn chỉ ra
 // ═══════════════════════════════════════════════════════════
 
 export const NAUION = {
@@ -9,13 +9,13 @@ export const NAUION = {
   whau:   'whau',
   nauion: 'nauion',
   lech:   'lệch',
-  // FIX #1 (Thiên Lớn): key phải là 'gay', không phải 'gây'
+  // FIX #1 (thiên Lớn): key phải là 'gay', không phải 'gây'
   // 'gây' là tiếng Việt có dấu → NAUION.gây undefined
   gay:    'gãy',
 };
 
 // ── MAP EVENT → NAUION SIGNAL ────────────────────────────
-// FIX #2 (Thiên Lớn): thêm case NAUION.nauion — trước đây không bao giờ emit
+// FIX #2 (thiên Lớn): thêm case NAUION.nauion — trước đây không bao giờ emit
 // → hệ không bao giờ "đạt trạng thái đúng"
 
 export function toNauion(eventName) {
@@ -23,7 +23,7 @@ export function toNauion(eventName) {
 
   const e = eventName.toLowerCase();
 
-  // gãy / collapse — Thiên LỚN FIX: dùng NAUION.gay (không phải gây)
+  // gãy / collapse — thiên LỚN FIX: dùng NAUION.gay (không phải gây)
   if (e.includes('escalat') || e.includes('collapse') || e.includes('circuit.break'))
     return { signal: NAUION.gay, intensity: 1.0, color: 'red', viet: 'gãy dòng' };
 
@@ -68,7 +68,7 @@ export function toNauion(eventName) {
 }
 
 // ── PATTERN MEMORY (L4.5) ────────────────────────────────
-// FIX #3 (Thiên Lớn): push() phải được gọi TỪNG EVENT qua toNauion() → push
+// FIX #3 (thiên Lớn): push() phải được gọi TỪNG EVENT qua toNauion() → push
 // Xem app.js: mỗi event → const {signal} = toNauion(e.event); patternMemory.push(signal)
 
 const MEMORY_KEY = 'nauion_pattern_v2';
@@ -133,7 +133,7 @@ export const patternMemory = {
   },
 
   // Tự suy trạng thái từ 12 pattern gần nhất
-  // Thiên Lớn: cần dựa vào trend + frequency, không chỉ ngưỡng cứng
+  // thiên Lớn: cần dựa vào trend + frequency, không chỉ ngưỡng cứng
   currentState() {
     if (this.patterns.length === 0) return NAUION.HeyNa;
     const recent = this.patterns.slice(-12);

@@ -1,5 +1,5 @@
 /**
- * Natt-OS — warehouse-cell
+ * natt-os — warehouse-cell
  * Điều 9 §5: Confidence
  * NOTE: Không import SmartLink/EventBus (R06)
  */

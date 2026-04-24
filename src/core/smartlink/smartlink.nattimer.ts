@@ -1,7 +1,7 @@
 /**
- * Natt-OS SmartLink — NATTimer
+ * natt-os SmartLink — NATTimer
  * ════════════════════════════════════════════════════════
- * src/core/smartlink/smartlink.nattimer.ts
+ * src/core/SmartLink/SmartLink.nattimer.ts
  *
  * NATTimer = NATT Temporal Integration Memory
  *
@@ -11,7 +11,7 @@
  *   Chuỗi thời gian này = temporal signature của một pattern.
  *   Khi thấy A lần sau → não predict B sẽ đến sau ~200ms.
  *
- * Natt-OS tương tự:
+ * natt-os tương tự:
  *   sales-cell → finance-cell (Δ150ms)
  *   → finance-cell → audit-cell (Δ80ms)
  *   → audit-cell → monitor-cell (Δ200ms)
@@ -32,7 +32,7 @@
  * (xem NOTE ở cuối file)
  */
 
-import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
+import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -409,7 +409,7 @@ export const NATTimer = {
  * Để NATTimer hoạt động, gọi NATTimer.record() sau mỗi SmartLink touch.
  * Cách đơn giản nhất: thêm vào CellSmartLinkComponent.emit():
  *
- *   import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
+ *   import { NATTimer } from '@/core/SmartLink/SmartLink.nattimer';
  *
  *   async emit(targetCellId, impulse) {
  *     const result = SmartLinkCell.requestTouch(this.cellId, targetCellId, impulse);

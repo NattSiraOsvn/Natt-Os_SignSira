@@ -130,7 +130,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
                  value={rawInput}
                  onChange={(e) => setRawInput(e.target.value)}
                  className="w-full bg-black/60 border border-white/10 rounded-2xl p-6 text-sm text-gray-300 h-48 focus:border-amber-500 outline-none transition-all font-light italic mb-6 shadow-inner"
-                 placeholder="Dán dữ liệu báo cáo/Excel để Thiên bóc tách quy trình tác vụ..."
+                 placeholder="Dán dữ liệu báo cáo/Excel để thiên bóc tách quy trình tác vụ..."
                />
                <div className="space-y-4">
                   <div className="flex flex-wrap gap-3">
@@ -144,16 +144,16 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
                   <input type="file" ref={fileInputRef} className="hidden" multiple onChange={handleFileSelect} />
                </div>
                <button onClick={handleLearn} disabled={isLearning || (!rawInput.trim() && selectedFiles.length === 0)} className="w-full mt-8 py-6 bg-amber-500 text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-2xl shadow-xl hover:bg-amber-400 transition-all disabled:opacity-20 active:scale-95">
-                 {isLearning ? 'Thiên ĐANG PHÂN TÁCH ROLE...' : 'XÁC LẬP GIAO THỨC TÁC VỤ →'}
+                 {isLearning ? 'thiên ĐANG PHÂN TÁCH ROLE...' : 'XÁC LẬP GIAO THỨC TÁC VỤ →'}
                </button>
             </div>
 
             <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={isLearning} />
-                  <h4 className="ai-sub-headline text-blue-400 italic">Thiên - Tham mưu Shard</h4>
+                  <h4 className="ai-sub-headline text-blue-400 italic">thiên - Tham mưu Shard</h4>
                </div>
-               <p className="text-[13px] text-gray-400 italic leading-relaxed font-light">"Thưa Anh Natt, Thiên đã cập nhật logic RBAC (Role-Based Access Control) vào bộ não bóc tách. Nếu Anh nạp file báo cáo tổng, Thiên sẽ chỉ đề xuất các bước Nhập liệu cho Nhân viên và đề xuất Duyệt lệnh cho Anh hoặc Quản đốc."</p>
+               <p className="text-[13px] text-gray-400 italic leading-relaxed font-light">"Thưa Anh Natt, thiên đã cập nhật logic RBAC (Role-Based Access Control) vào bộ não bóc tách. Nếu Anh nạp file báo cáo tổng, thiên sẽ chỉ đề xuất các bước Nhập liệu cho Nhân viên và đề xuất Duyệt lệnh cho Anh hoặc Quản đốc."</p>
             </div>
          </div>
 
@@ -204,7 +204,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
             ) : (
               <div className="ai-panel p-20 flex flex-col items-center justify-center text-center opacity-20 italic h-full">
                  <div className="text-[120px] mb-10 grayscale">🧬</div>
-                 <p className="text-2xl font-serif">Nạp tri thức để Thiên bóc tách...</p>
+                 <p className="text-2xl font-serif">Nạp tri thức để thiên bóc tách...</p>
               </div>
             )}
          </div>

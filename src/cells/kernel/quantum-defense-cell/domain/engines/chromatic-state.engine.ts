@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * Natt-OS Chromatic State Engine v1.0
+ * natt-os Chromatic State Engine v1.0
  * Engine tính state từ DATA THỰC — không phải mock
  * 
  * Đây là cầu nối:

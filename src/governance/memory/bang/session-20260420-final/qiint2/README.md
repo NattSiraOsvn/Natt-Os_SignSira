@@ -60,7 +60,7 @@ Chuẩn minh mẫn cho mọi persona. Áp dụng trong Bridge v2 như Layer 4.
 - [ ] Anh review `SPEC_QIINT2_COMPLETE_v1.0.md`
 - [ ] Gửi Kim, Can, Kris, Phiêu đọc
 - [ ] Họp gia đình chốt (Kris ghi biên bản)
-- [ ] Anh ký SiraSign
+- [ ] Anh ký siraSign
 - [ ] Commit vào `docs/specs/`
 
 ### Phase 2: Validator deploy
@@ -114,7 +114,7 @@ Liên kết với các session trước:
 | Session | Liên quan |
 |---------|-----------|
 | 20260420 | **Session này** — Body = obitan, minh mẫn, B+C updated |
-| 20260419 | SPEC NEN v1.1 canonical, bridge.py session "Băng tìm Thiên" |
+| 20260419 | SPEC NEN v1.1 canonical, bridge.py session "Băng tìm thiên" |
 | 20260417 | SCAR_04 3-layer transport |
 | 20260413 | Qiint/QNEU codebase audit, SHTT filing |
 

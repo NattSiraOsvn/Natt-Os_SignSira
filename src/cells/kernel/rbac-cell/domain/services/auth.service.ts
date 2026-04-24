@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════════
-// AUTH SERVICE — Natt-OS Kernel RBAC
-// Status: REAL VALIDATION (pre-SiraSign)
+// AUTH SERVICE — natt-os Kernel RBAC
+// Status: REAL VALIDATION (pre-siraSign)
 // Patched: 2026-04-17 — ReNa security fix
-// TODO: Replace with SiraSign resonance auth when ready
+// TODO: Replace with siraSign resonance auth when ready
 // ═══════════════════════════════════════════════════════════════
 
 import * as crypto from "crypto";
@@ -63,7 +63,7 @@ export const AuthService = {
   },
 
   /**
-   * Generate HMAC-signed token (pre-SiraSign)
+   * Generate HMAC-signed token (pre-siraSign)
    */
   generateToken: (userId: string): string => {
     const timestamp = Date.now().toString();

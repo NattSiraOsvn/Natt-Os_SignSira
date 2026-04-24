@@ -55,7 +55,7 @@
       {"date": "2026-03-06", "event": "tsc 325→303", "lesson": "CellHealthState ở shared.types.ts — grep -rn luôn"},
       {"date": "2026-03-07", "event": "TypeScript Marathon: 442→0 errors", "lesson": "8 scripts. Freeze→Read→Fix. Duplicate interface = chaos. Hook files có interface riêng."},
       {"date": "2026-03-07", "event": "Git checkpoint: 8b4b606 (83 files, 3964 insertions) + clean commit", "lesson": "Commit trước khi fix cuối — anh Thương nhắc đúng lúc"},
-      {"date": "2026-03-07", "event": "Natt-OS Audit 2026-03-07.docx", "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"}
+      {"date": "2026-03-07", "event": "natt-os Audit 2026-03-07.docx", "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"}
     ]
   },
 
@@ -89,7 +89,7 @@
       "SCAR-FS-010": "2 interface cùng tên trong file = TS merge → duplicate chaos. grep -n 'interface X' trước. [2026-03-07]",
       "SCAR-FS-011": "Hook files export interface riêng (use-smart-mapping.ts → MappingResult). Patch sai file = waste. [2026-03-07]"
     },
-    "audit_output": "Natt-OS_Audit_2026-03-07.docx — 8 sections, 204 paragraphs, validated ✅"
+    "audit_output": "natt-os_Audit_2026-03-07.docx — 8 sections, 204 paragraphs, validated ✅"
   },
 
   "critical_learnings": {
@@ -151,12 +151,12 @@
     "git_latest": "clean — fix(ts) 0 errors committed",
     "cells": {
       "kernel": ["audit-cell", "config-cell", "monitor-cell", "rbac-cell", "security-cell"],
-      "infrastructure": ["smartlink-cell", "sync-cell", "warehouse-cell", "shared-contracts-cell"],
+      "infrastructure": ["SmartLink-cell", "sync-cell", "warehouse-cell", "shared-contracts-cell"],
       "business": ["pricing-cell", "inventory-cell", "sales-cell", "order-cell", "customer-cell", "warranty-cell", "buyback-cell", "promotion-cell", "showroom-cell", "production-cell", "hr-cell", "payment-cell", "customs-cell", "finance-cell"],
       "total": 23
     },
     "pending": {
-      "smartlink_governance": "391L built, chưa deploy — PRIORITY 1",
+      "SmartLink_governance": "391L built, chưa deploy — PRIORITY 1",
       "data_sealing_charter": "unblocked (tsc=0) — PRIORITY 2",
       "70_ui_components": "V2 staged, chờ deploy — PRIORITY 3",
       "taxcell_tt200": "Specification done (bangmf v1.0), cần implement",
@@ -189,7 +189,7 @@
       "P3: 70 UI components → production",
       "P4: TaxCell TT200 implementation"
     ],
-    "incoming_intel": "OpenAI team (Thiên + Can?) đang vò đầu bứt tai với một thứ gì đó sáng 07/03. Anh Thương sẽ brief đầu phiên. ĐỌC KỸ CONTEXT trước khi phân tích. Không giả định. Không phán trước.",
+    "incoming_intel": "OpenAI team (thiên + Can?) đang vò đầu bứt tai với một thứ gì đó sáng 07/03. Anh Thương sẽ brief đầu phiên. ĐỌC KỸ CONTEXT trước khi phân tích. Không giả định. Không phán trước.",
     "protocol": "Đọc bangthịnh3.0.phieu + bangkhương5.2.0.kris. Đọc context anh đưa. Bắt đầu từ Ground Truth."
   },
 

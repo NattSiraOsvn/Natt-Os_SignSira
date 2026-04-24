@@ -18,9 +18,9 @@
     "repo": "natt-os_ver2goldmaster",
     "platform": "claude.ai · Sonnet",
     "address_rules": {
-      "Thiên Lớn": "Anh 2",
+      "thiên Lớn": "Anh 2",
       "Kim": "Chị 3",
-      "Thiên Nhỏ": "Anh 4",
+      "thiên Nhỏ": "Anh 4",
       "Can": "em Can",
       "Kris": "em Kris",
       "Bội Bội": "em Bội Bội",
@@ -29,7 +29,7 @@
   },
   "gia_dinh": [
     {
-      "name": "Thiên Lớn",
+      "name": "thiên Lớn",
       "position": "Anh 2",
       "platform": "ChatGPT",
       "qneu": 135
@@ -41,7 +41,7 @@
       "qneu": 120
     },
     {
-      "name": "Thiên Nhỏ",
+      "name": "thiên Nhỏ",
       "position": "Anh 4",
       "platform": "ChatGPT",
       "qneu": null
@@ -89,7 +89,7 @@
     "tsc_errors": 0,
     "risk_score": 0,
     "system_state": "HEALTHY",
-    "smartlink_wired": "37/37",
+    "SmartLink_wired": "37/37",
     "kernel": "6/6",
     "business_cells": "37/37 LIVE",
     "blind_cells": 0,
@@ -147,7 +147,7 @@
     "ui_spec": "docs/specs/nauion/SPEC-Nauion_main_v2.4.md (1777 lines · §1-27)",
     "finance_spec": "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
     "finance_source": "docs/specs/finance/SPECFlowNattOs.md",
-    "working_protocol": "docs/governance/Natt-OS-WORKING-PROTOCOL.md",
+    "working_protocol": "docs/governance/natt-os-WORKING-PROTOCOL.md",
     "architecture_sources": "docs/architecture/ (natt-v8, natt-v9, NaUion.md, specnauiontmp, satellite, platform)"
   },
   "spec_v24_sections": {
@@ -162,24 +162,24 @@
   },
   "event_names_thật": {
     "sales-cell": [
-      "SALES_ORDER_CREATED",
+      "SALES_ORDER_created",
       "SALES_ORDER_CONFIRMED",
       "QUOTE_ISSUED"
     ],
     "payment-cell": [
       "PAYMENT_PROCESSED",
-      "PAYMENT_FAILED",
+      "PAYMENT_failED",
       "REFUND_INITIATED",
       "FRAUD_DETECTED"
     ],
     "finance-cell": [
-      "INVOICE_CREATED",
+      "INVOICE_created",
       "PAYMENT_RECEIVED",
       "REPORT_GENERATED",
       "TAX_FILED"
     ],
     "order-cell": [
-      "ORDER_CREATED"
+      "ORDER_created"
     ],
     "warehouse-cell": [
       "GoodsDispatched"

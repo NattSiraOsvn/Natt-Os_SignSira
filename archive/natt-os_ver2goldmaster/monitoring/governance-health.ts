@@ -8,7 +8,7 @@ export class GovernanceHealthMonitor {
     const checks = [
       { check: 'Audit Trail Manager', healthy: true, status: 'GREEN' },
       { check: 'Enforcement Engine', healthy: true, status: 'GREEN' },
-      { check: 'SiraSign Verifier', healthy: true, status: 'GREEN' },
+      { check: 'siraSign Verifier', healthy: true, status: 'GREEN' },
       { check: 'Policy Hash Lock', healthy: true, status: 'GREEN' },
       { check: 'Memory Governance', healthy: true, status: 'GREEN' },
       { check: 'Causality Store', healthy: true, status: 'GREEN' }

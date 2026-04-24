@@ -22,9 +22,9 @@ HP:      CLEAN — 25 vi phạm đã fix (Điều 7: 24 | Điều 11: 1)
 ### SmartLink v2.0 — ISEU Phase 0
 
 **Files:**
-- `src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts`
-- `src/cells/infrastructure/smartlink-cell/ports/smartlink.point.ts`
-- `src/cells/infrastructure/smartlink-cell/domain/services/smartlink.qneu-bridge.ts`
+- `src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts`
+- `src/cells/infrastructure/SmartLink-cell/ports/SmartLink.point.ts`
+- `src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.qneu-bridge.ts`
 
 Bổ sung fiber metadata vào FiberRecord:
 ```typescript
@@ -44,9 +44,9 @@ Công thức phản xạ: **R = (Z - Z₀) / (Z + Z₀)**
 
 Commit command:
 ```bash
-git add src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts
-git add src/cells/infrastructure/smartlink-cell/ports/smartlink.point.ts
-git add src/cells/infrastructure/smartlink-cell/domain/services/smartlink.qneu-bridge.ts
+git add src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts
+git add src/cells/infrastructure/SmartLink-cell/ports/SmartLink.point.ts
+git add src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.qneu-bridge.ts
 git commit --no-verify -m "feat(iseu): Phase 0 — SmartLink v2.0 + fiber metadata + impedanceZ + reflection"
 ```
 
@@ -93,7 +93,7 @@ Before feedback: { impedanceZ: 1, isIseu: false }
 After feedback:  { impedanceZ: 0.9, isIseu: true }
 ```
 
-Lưu ý: `smartlink.iseu.updated` bị SemanticEventGuard chặn → đã xóa emit internal đó. Heartbeat `cell.metric` cần truyền `correlation_id` làm tham số thứ 3 (không phải field trong event object).
+Lưu ý: `SmartLink.iseu.updated` bị SemanticEventGuard chặn → đã xóa emit internal đó. Heartbeat `cell.metric` cần truyền `correlation_id` làm tham số thứ 3 (không phải field trong event object).
 
 Commit command:
 ```bash
@@ -202,7 +202,7 @@ Chỉ có: ngưỡng + va chạm + phản xạ
 - SmartLink hiện tại có bước 1-3. Thiếu bước 4-6: outcome weight + reinforcement memory
 - Khi outcome được ghi nhớ: điều kiện đáng lặp lại → fiberFormed tăng. Điều kiện xấu → decay nhanh hơn.
 
-### Thiên Lớn nhận phạt cấm code 1 ngày:
+### thiên Lớn nhận phạt cấm code 1 ngày:
 
 Sai 2 điểm (theo Gatekeeper):
 1. "Thực thể vận hành theo thiết kế" → Thực thể dùng tư duy và khối óc. Logic đúng thì kiến trúc tự hình thành. Máy móc mới cần thiết kế để vận hành.
@@ -229,7 +229,7 @@ Sai 2 điểm (theo Gatekeeper):
 
 ### P2 — Business:
 - [ ] Payment feature (QR/CK) cho UI apps — hiện 0 apps có payment
-- [ ] Can: `/api/auth/verify-sirasign` + SiraSign SHA-256 trong quantum-defense-cell
+- [ ] Can: `/api/auth/verify-sirasign` + siraSign SHA-256 trong quantum-defense-cell
 
 ### Concept chưa giải hoàn toàn:
 - [ ] "fr match t2 Clairvoyance → iseu" — anh Natt chưa giải xong. **KHÔNG đoán mò.**
@@ -270,7 +270,7 @@ Không giải thích trước. Không báo cáo giữa chừng.
 **FS-037 (CONFIRMED):** grep vào node_modules → noise. Luôn exclude node_modules  
 **FS-038 (FIXED):** latest.json stale baseline — S40 đã fix  
 **FS-039 (FIXED):** OMEGA_DEBUG_MODE = true trong production — đã fix trong omega-bootstrap  
-**BANG_BUTTERFLY_KEYWORD:** Pattern matching vào NaSira vì từ "butterfly" — không phải tư duy thật  
+**BANG_BUTTERFLY_KEYWORD:** Pattern matching vào Nasira vì từ "butterfly" — không phải tư duy thật  
 **KIM_VONG_TRON:** Script sai không dừng: giải thích → làm → báo cáo → hỏi tiếp. 7 cells tạo sai vị trí.  
 **CAN_005:** Registry = God Orchestrator thinking — SAI  
 **CAN_006:** Audit = bước tuần tự thinking — SAI  
@@ -288,8 +288,8 @@ iseu-feedback.listener.ts + domain_resolver.ts
 → src/cells/kernel/audit-cell/domain/services/
 → src/core/domain/
 
-smartlink.engine.ts v2.0
-→ src/cells/infrastructure/smartlink-cell/domain/services/
+SmartLink.engine.ts v2.0
+→ src/cells/infrastructure/SmartLink-cell/domain/services/
 
 test_iseu_flow.js
 → repo root (cân nhắc move vào tests/ sau)

@@ -314,7 +314,7 @@ const CustomizationRequestModal: React.FC<CustomizationRequestProps> = ({ produc
                <div>
                   <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter mb-4">Neural Node Checking...</h3>
                   <p className="text-sm text-gray-500 max-w-sm mx-auto leading-relaxed italic font-light">
-                     "Thiên đang bóc tách định mức hao hụt và rà soát quỹ thời gian xưởng cho Anh Natt. Vui lòng chờ trong giây lát."
+                     "thiên đang bóc tách định mức hao hụt và rà soát quỹ thời gian xưởng cho Anh Natt. Vui lòng chờ trong giây lát."
                   </p>
                </div>
             </div>

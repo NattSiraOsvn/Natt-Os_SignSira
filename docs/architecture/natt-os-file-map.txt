@@ -1,4 +1,4 @@
-# Natt-OS DL · Bản đồ File Đầy Đủ
+# natt-os DL · Bản đồ File Đầy Đủ
 # Mục đích: anh tự merge vào nauion-v4.html
 # Cập nhật: 14/03/2026
 
@@ -217,7 +217,7 @@ LAYER 8 — SYSTEM MODULES
 SERVICES CHƯA DÙNG
 ══════════════════════════════════════════
 ⬜ services/geminiService.ts     (7,626)  → Gemini API wrapper (model: gemini-3-pro-preview)
-⬜ services/aiEngine.ts          (4,172)  → AI routing (Thiên/Cần/Kris)
+⬜ services/aiEngine.ts          (4,172)  → AI routing (thiên/Cần/Kris)
 ⬜ services/documentAI.ts        (12,530) → PDF/doc extraction
 ⬜ services/gdbEngine.ts         (11,125) → GDB/graph DB engine
 ⬜ services/customsService.ts    (12,677) → HQ/tờ khai service

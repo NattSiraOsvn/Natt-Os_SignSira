@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CELLS_DIR = path.join(path.resolve(), 'src/cells');
 
-console.log(`\n🔍 [Natt-OS] CAPABILITY SCANNER v1.2 (Deep Scan)`);
+console.log(`\n🔍 [natt-os] CAPABILITY SCANNER v1.2 (Deep Scan)`);
 console.log(`=================================================`);
 
 if (!fs.existsSync(CELLS_DIR)) {

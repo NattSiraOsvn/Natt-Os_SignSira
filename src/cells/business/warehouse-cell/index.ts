@@ -21,7 +21,7 @@ export * from './domain/services';
 
 import { EventBus }                      from '../../../core/events/event-bus';
 import { createWarehouseIngestHandler }  from './domain/services/warehouse-ingest.handler';
-import { WarehouseSmartLinkPort }        from './ports/warehouse-smartlink.port';
+import { WarehouseSmartLinkPort }        from './ports/warehouse-SmartLink.port';
 import { WAREHOUSE_EVENTS }              from './domain/services/warehouse.events';
 
 // ── In-memory stock registry (tồn kho đơn giản) ──

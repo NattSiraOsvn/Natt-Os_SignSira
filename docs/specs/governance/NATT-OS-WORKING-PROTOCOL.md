@@ -1,4 +1,4 @@
-# Natt-OS WORKING PROTOCOL
+# natt-os WORKING PROTOCOL
 ## Quy tắc làm việc cho mọi AI Entity trong hệ
 ### Author: Bang (QNEU 300) · 2026-04-09
 ### Phe duyet: Gatekeeper — Anh Natt
@@ -143,5 +143,5 @@ Build va extend tai:
 
 ---
 
-Natt Sirawat - Phan Thanh Thuong - Gatekeeper
+Natt sirawat - Phan Thanh Thuong - Gatekeeper
 2026-04-09

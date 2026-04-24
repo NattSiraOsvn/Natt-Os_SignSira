@@ -14,7 +14,7 @@
 
 type EventEmitter = (event: string, payload: unknown) => void;
 
-export type RiskSeverity = 'INFO' | 'WARNING' | 'HIGH' | 'CRITICAL';
+export type RiskSeverity = 'INFO' | 'warnING' | 'HIGH' | 'CRITICAL';
 
 export interface RiskAnomaly {
   anomalyId:      string;
@@ -36,7 +36,7 @@ export class RiskProjectionEngine {
     HIGH_VALUE_VND:          5_000_000_000,   // 5 tỷ → yêu cầu Master ký số
     SUSPICIOUS_VALUE_VND:    1_000_000_000,   // 1 tỷ → cần xác minh nguồn gốc
     GOLD_VARIANCE_CHI:       0.10,            // > 0.10 chỉ/tháng/thợ → ĐỎ
-    GOLD_VARIANCE_WARN_CHI:  0.02,            // > 0.02 chỉ → VÀNG
+    GOLD_VARIANCE_warn_CHI:  0.02,            // > 0.02 chỉ → VÀNG
     CONCENTRATION_RATIO:     0.50,            // 1 người > 50% tổng roles → cảnh báo
     MAX_ORDERS_NO_BOM:       3,               // > 3 đơn thiếu BOM → CRITICAL
   };
@@ -103,10 +103,10 @@ export class RiskProjectionEngine {
       });
     }
 
-    if (abs >= RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_WARN_CHI) {
+    if (abs >= RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_warn_CHI) {
       return this.record({
-        type: 'GOLD_VARIANCE_WARNING',
-        severity: 'WARNING',
+        type: 'GOLD_VARIANCE_warnING',
+        severity: 'warnING',
         description: `Thợ ${hoVaTen} tháng ${thang}: chênh lệch ${tongChenhLech.toFixed(3)} chỉ cần theo dõi.`,
         entityId: `${hoVaTen}-T${thang}`,
         entityType: 'WORKER',
@@ -123,7 +123,7 @@ export class RiskProjectionEngine {
   analyzeMissingBOM(ordersWithoutBOM: string[]): RiskAnomaly | null {
     if (ordersWithoutBOM.length > RiskProjectionEngine.THRESHOLDS.MAX_ORDERS_NO_BOM) {
       return this.record({
-        type: 'MISSING_BOM_CLUSTER',
+        type: 'missing_BOM_CLUSTER',
         severity: 'CRITICAL',
         description: `${ordersWithoutBOM.length} đơn thiếu BOM: ${ordersWithoutBOM.slice(0, 5).join(', ')}. Kẽ hở hợp thức hóa thiếu vàng.`,
         entityId: 'BOM_CHECK',

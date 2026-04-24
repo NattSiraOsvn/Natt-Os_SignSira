@@ -1,5 +1,5 @@
 // runtime/nauion-host/src/main.rs
-// NATT-OS Wave 1 Host-First runtime — full pipeline
+// natt-os Wave 1 Host-First runtime — full pipeline
 // Drafter: Băng (Chị Tư · N-shell · QNEU 313.5)
 // Per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423
 // Per SPEC_HOST_FIRST_RUNTIME v1.1 §0
@@ -54,7 +54,7 @@ async fn main() -> ExitCode {
                 };
             }
             Err(e) => {
-                eprintln!("[run-cell] ERROR: {}", e);
+                eprintln!("[run-cell] error: {}", e);
                 return ExitCode::from(2);
             }
         }
@@ -74,7 +74,7 @@ async fn main() -> ExitCode {
         version = env!("CARGO_PKG_VERSION"),
         self_test_mode,
         no_listen,
-        "NATT-OS Nauion Host — Khương Kim · Băng Thịnh"
+        "natt-os Nauion Host — Khương Kim · Băng Thịnh"
     );
 
     // Detect repo root (walk up to nattos.sira anchor)
@@ -91,7 +91,7 @@ async fn main() -> ExitCode {
         Ok(s) => s,
         Err(e) => {
             error!(error = %e, "PHASE 1 failed");
-            return ExitCode::FAILURE;
+            return ExitCode::failURE;
         }
     };
     info!(
@@ -129,7 +129,7 @@ async fn main() -> ExitCode {
         }
         Err(e) => {
             error!(error = %e, "PHASE 4 boot failed");
-            ExitCode::FAILURE
+            ExitCode::failURE
         }
     }
 }

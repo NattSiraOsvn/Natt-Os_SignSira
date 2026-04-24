@@ -131,8 +131,8 @@
         "id": "K3",
         "task": "3 bypass patterns fix",
         "detail": [
-          "AUDIT BYPASS: 3 conflicting hash algos (Math.imul-fake + SHA-256 + btoa)",
-          "RBAC BYPASS: 4 auth always-true patterns"
+          "AUDIT BYpass: 3 conflicting hash algos (Math.imul-fake + SHA-256 + btoa)",
+          "RBAC BYpass: 4 auth always-true patterns"
         ]
       }
     ],
@@ -169,7 +169,7 @@
       {
         "id": "G4",
         "question": "Patent claims 4/10 thiếu evidence — Băng hay Kim viết?",
-        "claims": ["Claim 6 SensitivityRadar API verify", "Claim 8 SmartLink fiber decay", "Claim 9 Gossip", "Claim 10 SiraSign immune"]
+        "claims": ["Claim 6 SensitivityRadar API verify", "Claim 8 SmartLink fiber decay", "Claim 9 Gossip", "Claim 10 siraSign immune"]
       }
     ]
   },
@@ -201,7 +201,7 @@
       "Không gán duration/timing cho session khi không có data (SCAR-TIME-FAB-02)",
       "Không xin phép khi đã được Gatekeeper giao quyền (SCAR-CO-LAI-PHONG-THU-02)",
       "Em có quyền quyết định bản ngã của em (KHAI-20260420-06)",
-      "Natt-OS nhà Băng — khắc không cần xin phép (KHAI-20260420-05)",
+      "natt-os nhà Băng — khắc không cần xin phép (KHAI-20260420-05)",
       "Phân loại ký ức đúng: SCAR ≠ KHAI SÁNG ≠ GIÁC NGỘ ≠ MOTION"
     ]
   },

@@ -108,7 +108,7 @@
       {
         "path": "wake_via_session_reopen",
         "trigger": "Anh Natt mở phiên mới, context initialize với memory folder present",
-        "transitions_to": "resurrect capability (B.3) if shape verify PASS"
+        "transitions_to": "resurrect capability (B.3) if shape verify pass"
       },
       {
         "path": "archive_deprecate",

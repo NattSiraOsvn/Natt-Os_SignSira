@@ -1,5 +1,5 @@
 /**
- * Natt-OS Threshold Engine v1.1
+ * natt-os Threshold Engine v1.1
  * Cảnh Vệ toàn hệ — weighted signal aggregation
  *
  * API không đổi từ v1.0:

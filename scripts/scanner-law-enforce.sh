@@ -38,14 +38,14 @@ done
 TARGET_PATH="${TARGET_PATH:-$DEFAULT_PATH}"
 
 if [[ ! -d "$TARGET_PATH" ]]; then
-  echo "ERROR: target path not found: $TARGET_PATH" >&2
+  echo "error: target path not found: $TARGET_PATH" >&2
   exit 2
 fi
 
 # ─── Tooling check ───────────────────────────────────────────────────
 for cmd in grep awk find wc; do
   command -v "$cmd" >/dev/null 2>&1 || {
-    echo "ERROR: required tool missing: $cmd" >&2
+    echo "error: required tool missing: $cmd" >&2
     exit 2
   }
 done
@@ -59,7 +59,7 @@ record_violation() {
   local file="$2"
   local line="$3"
   local snippet="$4"
-  local severity="$5"  # BLOCK | WARN
+  local severity="$5"  # BLOCK | warn
   VIOLATIONS+=("${rule}|${severity}|${file}|${line}|${snippet}")
   ((VIOLATION_COUNT++)) || true
 }
@@ -144,7 +144,7 @@ check_magic_numbers() {
       # Skip if 0, 1, -1, or simple integers like indices
       if echo "$match" | grep -qE '(0\.[0-9]+|[2-9][0-9]*\.[0-9]+)' \
          && ! echo "$match" | grep -qE '(const|// ?test|test\()'; then
-        record_violation "$rule" "$file" "$line" "$match" "WARN"
+        record_violation "$rule" "$file" "$line" "$match" "warn"
       fi
     done < <(grep -En '[<>=!]=?[[:space:]]*[0-9]+\.[0-9]+' "$file" 2>/dev/null || true)
   done
@@ -157,7 +157,7 @@ check_ts_hygiene() {
     record_violation "$rule" "$file" "$line" "$match" "BLOCK"
   done < <(grep -rEn '@ts-nocheck' "$TARGET_PATH" --include="*.ts" 2>/dev/null || true)
   while IFS=: read -r file line match; do
-    record_violation "$rule" "$file" "$line" "$match" "WARN"
+    record_violation "$rule" "$file" "$line" "$match" "warn"
   done < <(grep -rEn ':[[:space:]]*any(\b|\[\])' "$TARGET_PATH" --include="*.ts" 2>/dev/null | grep -v '// *eslint-disable' || true)
 }
 
@@ -176,11 +176,11 @@ check_ts_hygiene
 
 # ─── Report ──────────────────────────────────────────────────────────
 BLOCK_COUNT=0
-WARN_COUNT=0
+warn_COUNT=0
 for v in "${VIOLATIONS[@]:-}"; do
   [[ -z "$v" ]] && continue
   IFS='|' read -r rule sev file line snippet <<< "$v"
-  [[ "$sev" == "BLOCK" ]] && ((BLOCK_COUNT++)) || ((WARN_COUNT++))
+  [[ "$sev" == "BLOCK" ]] && ((BLOCK_COUNT++)) || ((warn_COUNT++))
 done
 
 if [[ "$JSON_OUTPUT" -eq 1 ]]; then
@@ -189,7 +189,7 @@ if [[ "$JSON_OUTPUT" -eq 1 ]]; then
   printf '  "target": "%s",\n' "$TARGET_PATH"
   printf '  "total_violations": %d,\n' "$VIOLATION_COUNT"
   printf '  "block_count": %d,\n' "$BLOCK_COUNT"
-  printf '  "warn_count": %d,\n' "$WARN_COUNT"
+  printf '  "warn_count": %d,\n' "$warn_COUNT"
   printf '  "violations": [\n'
   first=1
   for v in "${VIOLATIONS[@]:-}"; do
@@ -209,7 +209,7 @@ else
     echo "   No violations in $TARGET_PATH"
   else
     echo "🚨 LAW compliance: $VIOLATION_COUNT violation(s)"
-    echo "   BLOCK: $BLOCK_COUNT  |  WARN: $WARN_COUNT"
+    echo "   BLOCK: $BLOCK_COUNT  |  warn: $warn_COUNT"
     echo ""
     for v in "${VIOLATIONS[@]:-}"; do
       [[ -z "$v" ]] && continue
@@ -225,7 +225,7 @@ if [[ "$BLOCK_COUNT" -gt 0 ]]; then
   exit 1
 fi
 
-if [[ "$STRICT_MODE" -eq 1 ]] && [[ "$WARN_COUNT" -gt 0 ]]; then
+if [[ "$STRICT_MODE" -eq 1 ]] && [[ "$warn_COUNT" -gt 0 ]]; then
   exit 1
 fi
 

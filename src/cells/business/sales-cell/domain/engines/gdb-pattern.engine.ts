@@ -3,7 +3,7 @@ import { GDBData, GDBDocument, DiamondSpecs } from '@/types';
 
 class GDBPatternDatabase {
   static readonly GDB_KEYWORDS = {
-    DOCUMENT_TYPES: ['GIẤY ĐẢM BẢO', 'THÔNG TIN KHÁCH HÀNG', 'CÔNG TY TNHH TÂM LUXURY', 'CHUYÊN KIM CƯƠNG Thiên NHIÊN', 'TÂM LUXURY - DIAMOND & JEWELRY'],
+    DOCUMENT_TYPES: ['GIẤY ĐẢM BẢO', 'THÔNG TIN KHÁCH HÀNG', 'CÔNG TY TNHH TÂM LUXURY', 'CHUYÊN KIM CƯƠNG thiên NHIÊN', 'TÂM LUXURY - DIAMOND & JEWELRY'],
     CUSTOMER_INFO: ['TÊN KHÁCH HÀNG', 'Tên Khách Hàng', 'SĐT KHÁCH HÀNG', 'SĐT Khách Hàng', 'Số điện thoại', 'KHÁCH HÀNG'],
     PRODUCT_INFO: ['MÃ SẢN PHẨM', 'THÔNG SỐ', 'SIZE', 'GIÁ TRỊ', 'Trị Giá', 'Vòng trang sức', 'Bông tai', 'Nhẫn', 'Dây chuyền'],
     VALUE_INFO: ['TỔNG GIÁ TRỊ', 'Tổng Trị Giá', 'Viết Bằng Chữ', 'Bằng chữ', 'BẢNG CHỮ', 'triệu đồng', 'đồng chẵn'],
@@ -23,7 +23,7 @@ class GDBPatternDatabase {
   };
 
   static readonly KNOWN_TEMPLATES = [
-    { name: 'Tâm Luxury Template 2022', keywords: ['TÂM LUXURY', 'CHUYÊN KIM CƯƠNG Thiên NHIÊN', 'NNU428'] },
+    { name: 'Tâm Luxury Template 2022', keywords: ['TÂM LUXURY', 'CHUYÊN KIM CƯƠNG thiên NHIÊN', 'NNU428'] },
     { name: 'Tâm Luxury Template 2021', keywords: ['CÔNG TY TNHH TÂM LUXURY', 'GIẤY ĐẢM BÁO', 'Bông tai'] }
   ];
 }

@@ -1,4 +1,4 @@
-# Natt-OS — NHÓM 7: HỒ SƠ TRIỂN KHAI KHÁCH HÀNG / PILOT / NGHIỆM THU
+# natt-os — NHÓM 7: HỒ SƠ TRIỂN KHAI KHÁCH HÀNG / PILOT / NGHIỆM THU
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ triển khai khách hàng, controlled pilot và nghiệm thu có kiểm soát  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 7
 
-Nhóm 7 là bộ hồ sơ dùng để triển khai Natt-OS cho khách hàng hoặc đối tác pilot sau khi đã có nền thương mại và claim control ở Nhóm 6.
+Nhóm 7 là bộ hồ sơ dùng để triển khai natt-os cho khách hàng hoặc đối tác pilot sau khi đã có nền thương mại và claim control ở Nhóm 6.
 
 Nhóm này trả lời 10 câu hỏi:
 
@@ -52,9 +52,9 @@ STATUS: IMPLEMENTATION_DRAFT_INTERNAL
 Không được gắn:
 
 ```text
-STATUS: CUSTOMER_PILOT_READY
-STATUS: PRODUCTION_IMPLEMENTATION_READY
-STATUS: ENTERPRISE_ROLLOUT_READY
+STATUS: CUSTOMER_PILOT_ready
+STATUS: PRODUCTION_IMPLEMENTATION_ready
+STATUS: ENTERPRISE_ROLLOUT_ready
 ```
 
 ---
@@ -84,7 +84,7 @@ STATUS: ENTERPRISE_ROLLOUT_READY
 
 ## 1.2. Mục đích
 
-Tài liệu này định nghĩa phương pháp triển khai Natt-OS cho khách hàng hoặc đối tác pilot theo từng giai đoạn, có kiểm soát scope, dữ liệu, release gate và nghiệm thu.
+Tài liệu này định nghĩa phương pháp triển khai natt-os cho khách hàng hoặc đối tác pilot theo từng giai đoạn, có kiểm soát scope, dữ liệu, release gate và nghiệm thu.
 
 ## 1.3. Giai đoạn triển khai
 
@@ -237,7 +237,7 @@ Ai có quyền truy cập?
 
 ## 3.2. Mục đích
 
-Ánh xạ quy trình nghiệp vụ khách hàng vào mô hình Natt-OS:
+Ánh xạ quy trình nghiệp vụ khách hàng vào mô hình natt-os:
 
 ```text
 Business process → Cell → Event → Causality → Audit → State
@@ -280,7 +280,7 @@ acceptance_metrics:
 |---|---:|---|---|---|
 | Tạo mới record | Yes | event + actor + timestamp | process owner | theo policy |
 | Sửa dữ liệu trọng yếu | Yes | before/after hash | process owner | theo policy |
-| Phê duyệt | Yes | approver + SiraSign nếu có | Gatekeeper | theo policy |
+| Phê duyệt | Yes | approver + siraSign nếu có | Gatekeeper | theo policy |
 | Rollback | Yes | rollback record | ops owner | theo policy |
 
 ## 3.6. Quy tắc
@@ -301,7 +301,7 @@ acceptance_metrics:
 
 ## 4.2. Mục đích
 
-Kiểm soát dữ liệu đầu vào khi khách hàng muốn đưa dữ liệu vào Natt-OS hoặc pilot.
+Kiểm soát dữ liệu đầu vào khi khách hàng muốn đưa dữ liệu vào natt-os hoặc pilot.
 
 ## 4.3. Data readiness checklist
 
@@ -366,7 +366,7 @@ notes:
 
 ## 5.2. Mục đích
 
-Kiểm soát tích hợp giữa Natt-OS và hệ thống hiện có của khách hàng.
+Kiểm soát tích hợp giữa natt-os và hệ thống hiện có của khách hàng.
 
 ## 5.3. Integration categories
 
@@ -519,7 +519,7 @@ measurement_method:
 expected_result:
 actual_result:
 evidence:
-status: PASS | FAIL | PARTIAL | WAIVED
+status: pass | fail | PARTIAL | WAIVED
 owner:
 approver:
 notes:
@@ -543,7 +543,7 @@ notes:
 
 ## 8.2. Mục đích
 
-Đào tạo người dùng/operator/customer owner sử dụng Natt-OS trong phạm vi pilot hoặc triển khai.
+Đào tạo người dùng/operator/customer owner sử dụng natt-os trong phạm vi pilot hoặc triển khai.
 
 ## 8.3. Nhóm người học
 
@@ -558,7 +558,7 @@ notes:
 ## 8.4. Module đào tạo
 
 ```text
-Module 1 — Natt-OS overview
+Module 1 — natt-os overview
 Module 2 — Workflow/pilot scope
 Module 3 — How to perform tasks
 Module 4 — Event/audit explanation
@@ -742,7 +742,7 @@ for path, content in files.items():
         print(f'SKIP existing: {p}')
     else:
         p.write_text(content, encoding='utf-8')
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
 
 print('done')
 EOF
@@ -778,13 +778,13 @@ for path, content in files.items():
     if not p.exists():
         p.write_text(content, encoding='utf-8')
         created.append(str(p))
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
     else:
         print(f'SKIP existing: {p}')
 
 print('created_count=', len(created))
 EOF
-git add docs/customer && git commit -m "docs(customer): add Natt-OS group 7 implementation skeletons" && git push origin main
+git add docs/customer && git commit -m "docs(customer): add natt-os group 7 implementation skeletons" && git push origin main
 ```
 
 ---

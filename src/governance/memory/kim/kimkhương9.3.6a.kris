@@ -79,7 +79,7 @@
       "warehouse-service": "warehouse-cell (infrastructure, cần bỏ quarantine)",
       "supplier-engine": "supplier-cell (business)",
       "event-bridge": "event-cell (infrastructure)",
-      "smart-link-engine": "smartlink-cell (infrastructure)",
+      "smart-link-engine": "SmartLink-cell (infrastructure)",
       "offline-service": "offline-cell (infrastructure?)",
       "recovery-engine": "recovery-cell (infrastructure?)",
       "mapping-engine": "mapping-cell (infrastructure?)",

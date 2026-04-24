@@ -105,7 +105,7 @@ export enum IngestStatus {
   MAPPING = 'MAPPING',
   PENDING_APPROVAL = 'PENDING_APPROVAL',
   COMMITTED = 'COMMITTED',
-  FAILED = 'FAILED',
+  failED = 'failED',
   QUARANTINED = 'QUARANTINED'
 }
 
@@ -120,7 +120,7 @@ export enum ApprovalStatus {
 export enum OrderStatus {
   SALE_ORDER = 'SALE_ORDER',
   DESIGNING = 'DESIGNING',
-  WAX_READY = 'WAX_READY',
+  WAX_ready = 'WAX_ready',
   MATERIAL_ISSUED = 'MATERIAL_ISSUED',
   CASTING = 'CASTING',
   COLLECTING_BTP = 'COLLECTING_BTP',
@@ -128,7 +128,7 @@ export enum OrderStatus {
   STONE_SETTING = 'STONE_SETTING',
   FINISHING = 'FINISHING',
   QC_PENDING = 'QC_PENDING',
-  QC_PASSED = 'QC_PASSED',
+  QC_passED = 'QC_passED',
   COMPLETED = 'COMPLETED',
   LOSS_ALERT = 'LOSS_ALERT',
   DRAFT = 'DRAFT',
@@ -224,7 +224,7 @@ export enum SyncConflictStrategy {
 
 export enum AlertLevel {
   INFO = 'INFO',
-  WARNING = 'WARNING',
+  warnING = 'warnING',
   HIGH = 'HIGH',
   CRITICAL = 'CRITICAL',
   FATAL = 'FATAL',
@@ -361,7 +361,7 @@ export interface OperationRecord {
   module: string;
   params: any;
   timestamp: number;
-  status: 'PENDING' | 'SUCCESS' | 'FAILED' | 'RECOVERED';
+  status: 'PENDING' | 'SUCCESS' | 'failED' | 'RECOVERED';
   error?: string;
 }
 
@@ -487,7 +487,7 @@ export interface SyncJob {
   name: string;
   source: string;
   destination: string;
-  status: 'IDLE' | 'RUNNING' | 'COMPLETED' | 'FAILED';
+  status: 'IDLE' | 'RUNNING' | 'COMPLETED' | 'failED';
   progress: number;
   totalRows: number;
   processedRows: number;
@@ -500,7 +500,7 @@ export interface SyncJob {
 export interface SyncLog {
   id: string;
   timestamp: number;
-  level: 'INFO' | 'WARNING' | 'ERROR' | 'SECURE' | 'SUCCESS';
+  level: 'INFO' | 'warnING' | 'error' | 'SECURE' | 'SUCCESS';
   message: string;
 }
 
@@ -750,7 +750,7 @@ export interface DistributedTask {
   origin: string;
   targetModule: ViewType;
   payload: any;
-  status: 'PENDING' | 'COMPLETED' | 'FAILED';
+  status: 'PENDING' | 'COMPLETED' | 'failED';
   timestamp: number;
   priority?: 'URGENT' | 'NORMAL';
 }
@@ -1126,14 +1126,14 @@ export interface RiskAssessment {
 
 export interface ComplianceCheck {
   isCompliant: boolean;
-  issues: { type: string; severity: 'BLOCKING' | 'WARNING'; message: string }[];
+  issues: { type: string; severity: 'BLOCKING' | 'warnING'; message: string }[];
   requiredDocuments: string[];
 }
 
 export interface TrackingStep {
   id: string;
   label: string;
-  status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED';
+  status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'failED';
   timestamp?: number;
   location?: string;
   notes?: string;
@@ -1279,7 +1279,7 @@ export interface WorkflowNode {
   color: string;
   icon: string;
   desc: string;
-  status: 'ACTIVE' | 'IDLE' | 'ERROR';
+  status: 'ACTIVE' | 'IDLE' | 'error';
 }
 
 export interface WorkflowEdge {
@@ -1418,7 +1418,7 @@ export interface FraudCheckResult {
   allowed: boolean;
   level: AlertLevel;
   message: string;
-  action: 'PROCEED' | 'BLOCK' | 'WARN' | 'LOCK_ACCOUNT';
+  action: 'PROCEED' | 'BLOCK' | 'warn' | 'LOCK_ACCOUNT';
   historyRecord?: any;
 }
 
@@ -1499,7 +1499,7 @@ export interface AccountingEntry {
   referenceType?: string;
   journalType?: 'REVENUE' | 'COGS' | 'EXPENSE' | 'ALLOCATION';
   description: string;
-  status: 'DRAFT' | 'LINKED' | 'POSTED' | 'SYNCED' | 'ERROR';
+  status: 'DRAFT' | 'LINKED' | 'POSTED' | 'SYNCED' | 'error';
   matchScore?: number;
   aiNote?: string;
   entries: AccountingLine[];

@@ -5,7 +5,7 @@
   "session_date": "2026-03-28",
   "filesystem_snapshot": {
     "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "head_commit": "64cb88e+ — fix(UI): loadAuditTrail + Liquid Glass CSS inject",
     "commits": "390+",
     "ts_files": "1300+",
@@ -25,7 +25,7 @@
     "trigger_types": "src/governance/gatekeeper/trigger-types.ts",
     "flow_history": ".nattos-twin/flow-history.json",
     "nauion_v9": "src/ui-app/nauion/nauion-v9.html",
-    "milestone_doc": "docs/flag/Natt-OS_Milestone_L2_Intelligence_28Mar2026.md"
+    "milestone_doc": "docs/flag/natt-os_Milestone_L2_Intelligence_28Mar2026.md"
   },
   "intelligence_files": {
     "anomaly_detector": "src/metabolism/healing/anomaly-detector.ts",
@@ -47,7 +47,7 @@
     "infrastructure_cells": 3,
     "total": 47,
     "all_6_6": true,
-    "smartlink_wired": 38,
+    "SmartLink_wired": 38,
     "port_only": 0
   },
   "event_system": {
@@ -76,7 +76,7 @@
     "audit_trail": "6777+ events live — verified qua console, Refresh button fix in progress",
     "intelligence_panel": "L4 Intelligence view added — loadIntelligence() wired",
     "can_spec_files": ["NaUion.md", "specnauiontmp.md", "natt-v9.md", "natt-v8.md", "use-contextual-ui.ts"],
-    "gsheets_server": "REMOVED — không dùng nữa. sync-cell giữ lại"
+    "gsheets_server": "removed — không dùng nữa. sync-cell giữ lại"
   },
   "liquid_glass_tokens": {
     "lg_blur_strong": "blur(40px) saturate(180%)",

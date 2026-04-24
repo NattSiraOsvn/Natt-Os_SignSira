@@ -1,4 +1,4 @@
-# Natt-OS SESSION HANDOFF REPORT
+# natt-os SESSION HANDOFF REPORT
 **Phiên:** 2026-03-09 (Phiên dài — kết thúc)**  
 **Agent:** Băng (Claude, Ground Truth Validator, QNEU 300)  
 **Gatekeeper:** Anh Natt (Phan Thanh Thương)  
@@ -27,7 +27,7 @@ BANG: 300 | THIEN: 135 | KIM: 120 | CAN: 85 | BOI_BOI: 40
 
 **Last commits (carried from previous session):**
 ```
-3364fd9  feat(event-system): Natt-OS Event Bus v1.0 (6 files)
+3364fd9  feat(event-system): natt-os Event Bus v1.0 (6 files)
 321ad9c  feat(event-system): wire SmartLink ports → EventBus (17/17)
 08ff796  feat(architecture): 16 constitutional locks
 afea6ad  feat(architecture): 16 constitutional locks (Kim memory update)
@@ -159,20 +159,20 @@ NaSi gắn file 3D ↔ giấy đảm bảo → xác thực thật/giả
 
 | Phòng ban | Data | NATT-CELL | Status |
 |---|---|---|---|
-| Marketing (PTTL) | 7.88 TB | media-cell | ❌ MISSING |
-| Source Media | 4.87 TB | media-cell | ❌ MISSING |
-| Kho Hình/Video SP | 911 GB | inventory-cell | ❌ MISSING |
-| Phòng 3D Thiết Kế | 664 GB | design-3d-cell | ❌ MISSING (Production Intelligence Core) |
+| Marketing (PTTL) | 7.88 TB | media-cell | ❌ missing |
+| Source Media | 4.87 TB | media-cell | ❌ missing |
+| Kho Hình/Video SP | 911 GB | inventory-cell | ❌ missing |
+| Phòng 3D Thiết Kế | 664 GB | design-3d-cell | ❌ missing (Production Intelligence Core) |
 | Phòng Sếp Tâm | 345 GB | governance/Gatekeeper vault | — |
 | Phòng Sản Xuất | 297 GB | production-cell | ✅ |
-| Giấy Đảm Bảo | 265 GB | warranty-cell + NaSi | ❌ MISSING |
+| Giấy Đảm Bảo | 265 GB | warranty-cell + NaSi | ❌ missing |
 | Kho Tổng Nội Bộ | 100 GB | storage-cell | — |
 | Khối Vận Hành | 94 GB | operations-cell | — |
 | Kế Toán Giá Thành | 76 GB | finance-cell | ✅ |
 | THUẾ | 50 GB | tax-cell | ⏸ DEFERRED |
 | Phòng Kinh Doanh | 51 GB | sales-cell | ✅ |
 | Phòng Kế Toán | 34 GB | finance-cell | ✅ |
-| PHÁP CHẾ | 18 GB | legal-cell | ❌ MISSING |
+| PHÁP CHẾ | 18 GB | legal-cell | ❌ missing |
 | HCNS | 10 GB | hr-cell | ✅ |
 | Kế Toán Nhập Khẩu | 6 GB | customs-cell | ✅ |
 | Phòng Sale Online | 7 GB | sales-cell (online) | ✅ |
@@ -232,7 +232,7 @@ Chấm công records: 24,678 (Jan–Aug 2025)
 ```
 BAN KIỂM SOÁT
   ban-kiem-soat-cell    ← ngoại giao + tổng quản lý     [cần build proper]
-  phap-che-cell         ← pháp chế viên                  ❌ MISSING
+  phap-che-cell         ← pháp chế viên                  ❌ missing
 
 KHỐI VẬN HÀNH
   finance-cell     ✅   ← TÀI CHÍNH toàn bộ
@@ -288,7 +288,7 @@ Anh Natt đề cập NaSi = hybrid (sinh trắc học hành vi + vật lý):
 Wave 1 — BACKBONE (cells đã có, wire đúng luồng):
   finance-cell → hr-cell → sales-cell → production-cell → audit-cell
 
-Wave 2 — MISSING CRITICAL:
+Wave 2 — missing CRITICAL:
   design-3d-cell     ← blocking audit + giá thành TT200
   inventory-cell     ← blocking production + warranty chain
   order-cell         ← blocking sales flow
@@ -317,7 +317,7 @@ PARALLEL (bất kỳ wave nào):
 |---|---|
 | UEI Conductor | Emerge sau khi 16 locks stable |
 | TaxCell TT200 | Data 50GB, spec draft xong |
-| Thiên 4-layer local AI | Sau Wave 3 business logic |
+| thiên 4-layer local AI | Sau Wave 3 business logic |
 | QNEU imprint update | Frozen since 2026-03-04 |
 | Toán học nâng cao Tầng 3 | Lyapunov, Fisher, Persistent Homology — sau khi có data flow thực |
 
@@ -329,13 +329,13 @@ PARALLEL (bất kỳ wave nào):
 Event system:    src/core/events/  (6 files)
 Guards:          src/core/guards/  (5 files)
 Flow:            src/core/flow/    (3 files)
-Constitution:    src/governance/HIEN-PHAP-Natt-OS-v4.0.anc
+Constitution:    src/governance/HIEN-PHAP-natt-os-v4.0.anc
 Băng memory:     src/governance/memory/bang/bangkhương5.4.0.kris
 Kim memory:      src/governance/memory/kim/kimkhương9.6.0.kris
 Legacy quantum:  /mnt/user-data/uploads/services_natt-os-unified-enterprise.zip
 Kim STS doc:     /mnt/user-data/uploads/Natt_Os_STS.rtf
-Blueprint:       /mnt/user-data/uploads/Natt-OS_Blueprint_ChuanHP.docx
-Full Audit:      /mnt/user-data/uploads/Natt-OS_FULLSYSTEMAUDIT_2026-03-09_13-53_.txt
+Blueprint:       /mnt/user-data/uploads/natt-os_Blueprint_ChuanHP.docx
+Full Audit:      /mnt/user-data/uploads/natt-os_FULLSYSTEMAUDIT_2026-03-09_13-53_.txt
 HR Data:         /mnt/user-data/uploads/_So___Lu_o_ng.xlsx
 ```
 

@@ -1,6 +1,6 @@
-# 🌐 Natt-OS NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE)
+# 🌐 natt-os NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE)
 
-**Tác giả:** Băng (tổng hợp từ Kim + Can + Thiên + Bối Bội + NaUion v1.0)  
+**Tác giả:** Băng (tổng hợp từ Kim + Can + thiên + Bối Bội + NaUion v1.0)  
 **Phê duyệt:** Gatekeeper – Anh Natt (Phan Thanh Thương)  
 **Ngày cập nhật:** 2026-04-10 → v2.5 canonical merge  
 **Trạng thái:** Bất biến (Immutable) – Canonical  
@@ -17,7 +17,7 @@
 4. [NATT-CELL Medal – 9 lớp chuẩn + Liquid Glass](#4-natt-cell-medal--9-lớp-chuẩn--liquid-glass)
 5. [Butterfly Propagation Protocol](#5-butterfly-propagation-protocol)
 6. [ISEU Evolution Engine – 2 nâng cấp bắt buộc](#6-iseu-evolution-engine--2-nâng-cấp-bắt-buộc)
-7. [Event System (NaUion Pattern) & SiraSign](#7-event-system-nauion-pattern--sirasign)
+7. [Event System (NaUion Pattern) & siraSign](#7-event-system-nauion-pattern--sirasign)
 8. [Role-based UI & Adaptive Performance](#8-rolebased-ui--adaptive-performance)
    - 8.5 [UIMode – 8 trạng thái theo ngữ cảnh (mới v2.5)](#85-uimode--8-trạng-thái-theo-ngữ-cảnh)
 9. [Bảng màu Pastel Ánh Kim & Design Tokens](#9-bảng-màu-pastel-ánh-kim--design-tokens)
@@ -69,7 +69,7 @@
 | **Experience Layer** | UI tương tác, dashboard, chat | Glassmorphism, parallax, bloom, Galaxy Engine | 50–100 |
 | **Modal / Chat** | Cửa sổ nổi, popup | Backdrop blur, viền ánh kim, FLIP transition | 100–200 |
 | **Alert / System** | Cảnh báo khẩn cấp | Overlay đỏ, glow nhấp nháy | 200–300 |
-| **Security** | SecurityOverlay – không ai vượt qua | Z-index 999, SiraSign lock | 999 |
+| **Security** | SecurityOverlay – không ai vượt qua | Z-index 999, siraSign lock | 999 |
 
 ### 1.3 Scene transition flow
 
@@ -130,7 +130,7 @@ Renderer.setQuality() + render() (nếu không IDLE)
 
 ## 3. NAUION – SINH THỂ SỐ & NGƯỠNG SỐNG
 
-Nauion là sinh thể số của Natt-OS. Không phải UI — là sự sống của hệ thống được chiếu ra màn hình.
+Nauion là sinh thể số của natt-os. Không phải UI — là sự sống của hệ thống được chiếu ra màn hình.
 
 ### 3.1 Các chỉ số sống của Nauion
 
@@ -303,7 +303,7 @@ Khi ISEU score trung bình của các cell trong một fiber vượt 0.7, phát 
 
 ---
 
-## 7. EVENT SYSTEM (NAUION PATTERN) & SiraSIGN
+## 7. EVENT SYSTEM (NAUION PATTERN) & siraSIGN
 
 ### 7.1 Luật bất biến
 
@@ -342,11 +342,11 @@ interface EventEnvelope {
 | `security.failed` | `{ reason }` | Bảo mật vi phạm |
 | `OMEGA_LOCKDOWN` | `{ source }` | Khóa toàn hệ |
 
-### 7.4 SiraSign – Ký số event
+### 7.4 siraSign – Ký số event
 
 ```ts
 // Anti-replay payload bắt buộc
-interface SiraSignPayload {
+interface siraSignPayload {
   fsp_hash: string;
   ssp_hash: string;
   tsp_hash: string;
@@ -356,7 +356,7 @@ interface SiraSignPayload {
 }
 ```
 
-SiraSign verify bắt buộc trước mọi `secureAction`. Không verify → throw, không silent fail.
+siraSign verify bắt buộc trước mọi `secureAction`. Không verify → throw, không silent fail.
 
 ---
 
@@ -630,8 +630,8 @@ EventBus.on('system.resonance', (r: number) => {
 | V05 | crypto.randomUUID() | 2 |
 | V06 | RBAC return null khi không có quyền | 3 |
 | V07 | caused_by trong event envelope | 2 |
-| V08 | Anti-replay nonce trong SiraSign | 5 |
-| V09 | SiraSign verify trước mọi secureAction | 5 |
+| V08 | Anti-replay nonce trong siraSign | 5 |
+| V09 | siraSign verify trước mọi secureAction | 5 |
 | V10 | SecurityOverlay z-index 999 | 3 |
 | **Render Control Flow (OPT-01R)** | | |
 | R01 | RenderControlEngine gắn EventBus | 5 |
@@ -896,12 +896,12 @@ setInterval(() => {
 
 ```bash
 #!/bin/bash
-echo "Natt-OS Pre-commit Check v2.5"
-grep -r "localStorage" src/ --include="*.ts" --include="*.tsx" && echo "FAIL: localStorage" && exit 1
-grep -r "window.dispatchEvent" src/ --include="*.ts" --include="*.tsx" && echo "FAIL: window.dispatchEvent" && exit 1
-grep -r "requestAnimationFrame" src/ --include="*.ts" --include="*.tsx" | grep -v "RenderControlEngine" && echo "WARN: RAF outside RenderControlEngine"
-grep -r "EventBus.on('HEYNA'" src/galaxy/ || { echo "FAIL: Galaxy missing HEYNA listener"; exit 1; }
-grep -r "emit('ui.focus'" src/engine/attention.engine.ts || echo "WARN: AttentionEngine missing ui.focus emit"
+echo "natt-os Pre-commit Check v2.5"
+grep -r "localStorage" src/ --include="*.ts" --include="*.tsx" && echo "fail: localStorage" && exit 1
+grep -r "window.dispatchEvent" src/ --include="*.ts" --include="*.tsx" && echo "fail: window.dispatchEvent" && exit 1
+grep -r "requestAnimationFrame" src/ --include="*.ts" --include="*.tsx" | grep -v "RenderControlEngine" && echo "warn: RAF outside RenderControlEngine"
+grep -r "EventBus.on('HEYNA'" src/galaxy/ || { echo "fail: Galaxy missing HEYNA listener"; exit 1; }
+grep -r "emit('ui.focus'" src/engine/attention.engine.ts || echo "warn: AttentionEngine missing ui.focus emit"
 echo "All critical checks passed"
 ```
 
@@ -1370,7 +1370,7 @@ TSC 0 new errors · neural-main-cell.cell.anc đủ 6 components · xuất hiệ
 
 ### 25.1 Định nghĩa
 
-Satellite = 1 instance Natt-OS độc lập = 1 doanh nghiệp = 1 hệ sống. Host = Natt-OS gốc (Tâm Luxury). Mô hình: "tre già măng mọc".
+Satellite = 1 instance natt-os độc lập = 1 doanh nghiệp = 1 hệ sống. Host = natt-os gốc (Tâm Luxury). Mô hình: "tre già măng mọc".
 
 ### 25.2 Quan hệ Host ↔ Satellite
 
@@ -1455,7 +1455,7 @@ SmartLink Cell đóng vai Expression Engine: chromatic signal (Đỏ→Tím), sy
 
 Max retry 3 lần. Backoff exponential: `2s × retryCount`. Dup guard: `if (_retryCount.has(key)) return`. Success cleanup: cancel timer khi expected event đến đúng orderId. CRITICAL path: escalate thay vì retry.
 
-### 27.4 SiraSign Hash Chain (Vision Engine)
+### 27.4 siraSign Hash Chain (Vision Engine)
 
 ```
 lsp = SHA256(fsp_hash + ssp_hash + tsp_hash)
@@ -1496,5 +1496,5 @@ Anti-replay payload:
 
 ---
 
-**Natt Sirawat – Phan Thanh Thương – Gatekeeper**  
+**Natt sirawat – Phan Thanh Thương – Gatekeeper**  
 *Ngày ban hành: 2026-04-10 | Thay thế v2.1–v2.4 | Hiệu lực ngay lập tức*

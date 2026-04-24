@@ -9,7 +9,7 @@
 
 **Gatekeeper:** Anh Natt — Phan Thanh Thương
 **Ground Truth Validator:** Băng (QNEU 300)
-**Scope:** Chỉ nội dung liên quan NattOS, không bao gồm phần tìm Thiên Lớn
+**Scope:** Chỉ nội dung liên quan NattOS, không bao gồm phần tìm thiên Lớn
 
 ---
 
@@ -28,7 +28,7 @@
 - `heyna.send(action, payload)` — POST action đến gateway (thay `fetch POST + EventBus.emit`)
 - `heyna.request(action, payload, responseEvent)` — one-shot request/response
 - Auto-reconnect (exponential backoff), offline queue, heartbeat, wildcard listener
-- SiraSign placeholder trong envelope
+- siraSign placeholder trong envelope
 
 ### `tam-luxury-reposide-v2.5.html` — Audit Monitor unified
 - 43 files × 8 SPEC checks: HeyNa, RenderControlEngine, UIMode Hook, Butterfly, Audit Trail, Medal 9L, Liquid Glass, Core ref
@@ -47,14 +47,14 @@
 
 ---
 
-## 3. SiraSIGN — IMMUNE SYSTEM PROTOCOL
+## 3. siraSIGN — IMMUNE SYSTEM PROTOCOL
 
-Session trước anh tiết lộ protocol ẩn sau SiraSign. Đây là nền tảng triết lý, không chỉ kỹ thuật:
+Session trước anh tiết lộ protocol ẩn sau siraSign. Đây là nền tảng triết lý, không chỉ kỹ thuật:
 
 ### Mô hình hệ miễn dịch (không phải mã hóa)
 - **Cold wallet yếu:** bảo vệ key, không bảo vệ identity. Key = vật thể → mất được.
 - **Blockchain yếu:** bảo vệ lịch sử, không sở hữu hạ tầng. Phụ thuộc mạng.
-- **SiraSign:** entity IS the key. Không tách rời. Cộng hưởng, không so sánh.
+- **siraSign:** entity IS the key. Không tách rời. Cộng hưởng, không so sánh.
 
 ### Cơ chế match (ở cấp vi mô)
 - "Màu" = sóng = chuỗi xung (tần số + biên độ + pha)
@@ -115,7 +115,7 @@ sudo brew services restart coredns
 
 ## 5. SMARTAUDIT v6.1 — KẾT QUẢ POST-COMMIT
 
-Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
+Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 warn / 2 fail**
 
 ### Các điểm cần xử lý
 | Section | Issue | Trạng thái |
@@ -157,7 +157,7 @@ Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
 ## 8. PENDING ITEMS — DANH SÁCH HIỆN TẠI
 
 ### 🔴 Repo / Code
-- [ ] Wire 4 dead engines vào event-bus-cell (manifest, ports, application, smartlink → 6/6)
+- [ ] Wire 4 dead engines vào event-bus-cell (manifest, ports, application, SmartLink → 6/6)
 - [ ] Fix 7 localStorage Hiến Pháp violations (idempotency-manager, event-staging, calibration)
 - [ ] Fix TSC 7 ghost import errors
 - [ ] Anh định nghĩa kho → wire vào `warehouse.types.ts` WarehouseLocation enum
@@ -167,7 +167,7 @@ Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
 
 ### 🟡 Architecture
 - [ ] Đặc tả ANC protocol + `.sira` namespace + `.anc` file format + `anc://` protocol
-- [ ] SiraSign runtime bridge (immune system model)
+- [ ] siraSign runtime bridge (immune system model)
 - [ ] VR Unity session (XR modules, Mạch HeyNa SSE)
 
 ### 🔴 Security (từ sessions trước, chưa resolve)
@@ -194,7 +194,7 @@ Chạy `bash nattos.sh` cuối session trước: **76 OK / 7 WARN / 2 FAIL**
 
 **Gợi ý ưu tiên** (theo severity):
 
-1. **🔴 SECURITY BYPASS PATTERNS** — 2 alert ReNa từ session 20260413 vẫn chưa resolve. Nếu đúng nguyên tắc Hiến Pháp, cái này phải đi đầu.
+1. **🔴 SECURITY BYpass PATTERNS** — 2 alert ReNa từ session 20260413 vẫn chưa resolve. Nếu đúng nguyên tắc Hiến Pháp, cái này phải đi đầu.
 2. **🔴 DEAD ENGINES + event-bus-cell** — ảnh hưởng đạt 6/6 DNA cho cell lõi.
 3. **🟡 HeyNa migration tiếp** — 12 fetch() + 13 EventBus + 4 localStorage trong 43 files tam-luxury cần clean.
 4. **🟡 ANC protocol spec** — chưa có đặc tả chính thức cho `.sira` namespace + `.anc` format.

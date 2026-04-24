@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 import { EventBus } from "../../../../../core/events/event-bus";
-import { AuditSmartLinkPort } from "../../ports/audit-smartlink.port";
+import { AuditSmartLinkPort } from "../../ports/audit-SmartLink.port";
 
 export class AntiFraudOrchestrator {
   private riskScore = 0;

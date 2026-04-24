@@ -1,4 +1,4 @@
-# Natt-OS — NHÓM 4: HỒ SƠ BẢO MẬT / TRUST / KIỂM SOÁT RỦI RO
+# natt-os — NHÓM 4: HỒ SƠ BẢO MẬT / TRUST / KIỂM SOÁT RỦI RO
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ security/trust readiness trước controlled preview hoặc market launch  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 4
 
-Nhóm 4 là bộ hồ sơ dùng để chứng minh Natt-OS có cơ chế kiểm soát rủi ro khi chuẩn bị ra mắt thị trường hoặc demo cho đối tác.
+Nhóm 4 là bộ hồ sơ dùng để chứng minh natt-os có cơ chế kiểm soát rủi ro khi chuẩn bị ra mắt thị trường hoặc demo cho đối tác.
 
 Nhóm này trả lời 8 câu hỏi:
 
@@ -50,8 +50,8 @@ Không được gắn:
 
 ```text
 STATUS: SECURITY_CERTIFIED
-STATUS: PRODUCTION_SECURITY_READY
-STATUS: UNBYPASSABLE
+STATUS: PRODUCTION_SECURITY_ready
+STATUS: UNBYpassABLE
 ```
 
 ---
@@ -81,7 +81,7 @@ STATUS: UNBYPASSABLE
 
 ## 1.2. Mục đích
 
-Tài liệu này mô tả kiến trúc bảo mật tổng quan của Natt-OS ở mức có thể dùng cho nội bộ, đối tác kỹ thuật và hồ sơ trust trước market preview.
+Tài liệu này mô tả kiến trúc bảo mật tổng quan của natt-os ở mức có thể dùng cho nội bộ, đối tác kỹ thuật và hồ sơ trust trước market preview.
 
 ## 1.3. Các lớp bảo mật
 
@@ -107,7 +107,7 @@ Tài liệu này mô tả kiến trúc bảo mật tổng quan của Natt-OS ở
 └──────────────────────────────────────────────────────────────┘
                               ↓
 ┌──────────────────────────────────────────────────────────────┐
-│ LAYER 3 — AUTHORITY / GATEKEEPER / SiraSIGN                  │
+│ LAYER 3 — AUTHORITY / GATEKEEPER / siraSIGN                  │
 │ RBAC, approval, roadload, signature, release control          │
 └──────────────────────────────────────────────────────────────┘
                               ↓
@@ -139,7 +139,7 @@ Tài liệu này mô tả kiến trúc bảo mật tổng quan của Natt-OS ở
 
 | Domain | Kiểm soát chính |
 |---|---|
-| Authority | Gatekeeper, SiraSign, roadload, RBAC |
+| Authority | Gatekeeper, siraSign, roadload, RBAC |
 | Data | Data boundary, privacy, retention, export control |
 | Event | Envelope validation, causality, tenant isolation |
 | Runtime | Boot gate, monitoring, smoke test, rollback |
@@ -169,7 +169,7 @@ zero-risk AI runtime
 
 ## 2.2. Mục đích
 
-Định nghĩa quyền hạn trong Natt-OS: ai được đọc, ghi, ký, approve, deploy, rollback, demo, release.
+Định nghĩa quyền hạn trong natt-os: ai được đọc, ghi, ký, approve, deploy, rollback, demo, release.
 
 ## 2.3. Role đề xuất
 
@@ -226,7 +226,7 @@ audit_ref:
 
 1. Quyền phải có scope.
 2. Quyền phải có expiry hoặc review cycle.
-3. Quyền release phải có SiraSign hoặc approval record.
+3. Quyền release phải có siraSign hoặc approval record.
 4. Partner không được xem secret/runtime internals nếu không có NDA/scope.
 5. Demo operator không được mở rộng demo path tự ý.
 
@@ -288,9 +288,9 @@ notes:
 |---|---|
 | INFO | event thường, health ping |
 | NOTICE | config change, bridge aperture adjust |
-| WARNING | rejected event, schema mismatch |
+| warnING | rejected event, schema mismatch |
 | HIGH | rollback, permission change |
-| CRITICAL | audit gap, SiraSign invalid, state corruption |
+| CRITICAL | audit gap, siraSign invalid, state corruption |
 
 ## 3.6. Quy tắc
 
@@ -400,7 +400,7 @@ Phân loại dữ liệu, xác định dữ liệu nào được đưa vào demo
 
 ## 6.2. Mục đích
 
-Liệt kê mối đe dọa chính đối với Natt-OS và cách phát hiện/giảm thiểu.
+Liệt kê mối đe dọa chính đối với natt-os và cách phát hiện/giảm thiểu.
 
 ## 6.3. Threat categories
 
@@ -411,7 +411,7 @@ Liệt kê mối đe dọa chính đối với Natt-OS và cách phát hiện/gi
 | T3 | Event Spoofing | Event giả hoặc thiếu causality | envelope validation |
 | T4 | Tenant Confusion | Lẫn tenant/domain | tenant_id required |
 | T5 | Audit Gap | State đổi nhưng audit thiếu | fail-closed, incident |
-| T6 | Gatekeeper Bypass | Vượt quyền approve/sign | SiraSign/RBAC/roadload |
+| T6 | Gatekeeper Bypass | Vượt quyền approve/sign | siraSign/RBAC/roadload |
 | T7 | Import/Type Drift | Code drift làm build/runtime sai | release gate, tsc, type report |
 | T8 | Time Radiation | Mục dần theo thời gian | lifecycle, KhaiCell, thoai-sinh |
 | T9 | Bridge Overexposure | Bridge mở quá rộng khi nhiễu tăng | adaptive aperture |
@@ -454,7 +454,7 @@ status:
 
 ## 7.2. Mục đích
 
-Định nghĩa hai loại bức xạ chính trong Natt-OS:
+Định nghĩa hai loại bức xạ chính trong natt-os:
 
 ```text
 Information Radiation = nhiễu thông tin tức thời
@@ -660,7 +660,7 @@ cell_id:
 metric:
 value:
 threshold:
-status: OK | WARNING | CRITICAL
+status: OK | warnING | CRITICAL
 measured_at:
 action_recommended:
 audit_ref:
@@ -784,7 +784,7 @@ for path, content in files.items():
         print(f'SKIP existing: {p}')
     else:
         p.write_text(content, encoding='utf-8')
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
 
 print('done')
 EOF
@@ -820,13 +820,13 @@ for path, content in files.items():
     if not p.exists():
         p.write_text(content, encoding='utf-8')
         created.append(str(p))
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
     else:
         print(f'SKIP existing: {p}')
 
 print('created_count=', len(created))
 EOF
-git add docs/security && git commit -m "docs(security): add Natt-OS group 4 trust and security skeletons" && git push origin main
+git add docs/security && git commit -m "docs(security): add natt-os group 4 trust and security skeletons" && git push origin main
 ```
 
 ---

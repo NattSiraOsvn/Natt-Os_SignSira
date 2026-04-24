@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# Natt-OS SPATIAL ENGINE V5.0 — FULL DEPLOY (FIXED)
+# natt-os SPATIAL ENGINE V5.0 — FULL DEPLOY (FIXED)
 # 1 COMMAND: bash natt-full.sh
 # Includes: Responsive layout + 8‑layer medals + AI Chat Uplink
 # ============================================================
@@ -78,7 +78,7 @@ cat > index.html << 'EOF'
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <title>Natt-OS · Spatial Engine v5.0</title>
+  <title>natt-os · Spatial Engine v5.0</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 </head>
 <body>
@@ -106,7 +106,7 @@ import {
 } from 'lucide-react';
 
 /**
- * Natt-OS NaUion Vision Engine v5.2.6 [VR-SPATIAL HUD]
+ * natt-os NaUion Vision Engine v5.2.6 [VR-SPATIAL HUD]
  * "Hệ thực tế ảo cho sinh thể số phân tán"
  * Architecture: Floating HUDs, Curved Perspective, Deep Galaxy
  * Compliance: NaUion Spec v1.0
@@ -135,10 +135,10 @@ const CELL_REGISTRY = [
   { id:'biz-prod', cat:'Business', title:'production', icon:Factory, color:'green', desc:'Dây chuyền logic.', path:'src/cells/business/production' },
   { id:'biz-sale', cat:'Business', title:'sales-cell', icon:TrendingUp, color:'green', desc:'Tăng trưởng Wave 3.', path:'src/cells/business/sales' },
   { id:'biz-pay', cat:'Business', title:'payment', icon:Coins, color:'green', desc:'Cổng thanh toán.', path:'src/cells/business/payment' },
-  { id:'inf-01', cat:'Infra', title:'smartlink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.', path:'src/cells/infra/smartlink' },
+  { id:'inf-01', cat:'Infra', title:'SmartLink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.', path:'src/cells/infra/SmartLink' },
   { id:'exe-01', cat:'Intel', title:'UEI Logic', icon:Brain, color:'purple', desc:'Não bộ điều phối.', path:'src/cells/intel/uei' },
   { id:'ai-3', cat:'AI', title:'BỐI BỐI', icon:Workflow, color:'red', desc:'Constitutional Builder.' },
-  { id:'ai-4', cat:'AI', title:'Thiên', icon:PenTool, color:'red', desc:'UI/UX Architect.' },
+  { id:'ai-4', cat:'AI', title:'thiên', icon:PenTool, color:'red', desc:'UI/UX Architect.' },
 ];
 
 // ── API UPLINK ──────────────────────────────────────────────
@@ -557,7 +557,7 @@ const GlobalCommand = ({ isOpen, onClose }) => {
   const exec = async (e) => {
     e.preventDefault(); if(!cmd.trim() || busy) return;
     setBusy(true); setRes("");
-    const result = await callGemini(cmd, "Natt-OS Central Brain Protocol.");
+    const result = await callGemini(cmd, "natt-os Central Brain Protocol.");
     setRes(result); setBusy(false);
   };
 

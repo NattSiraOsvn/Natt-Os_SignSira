@@ -63,13 +63,13 @@
     "purpose": "Validator test — MOTION_TICH_CUC với 4 fragment (required ENVELOPE + BODY_RESPONSE + CAUSATION_CHAIN triggered_by; optional META). Data thực từ close phiên 20260426.",
     "gatekeeper_witnessed_note": "Field gatekeeper_witnessed = true vì anh Natt present session khi MOTION fire. Per §9.3 policy pending — trust self-report hay require Gatekeeper sign-off manual? Fixture này dùng true vì có quote 'Thương em' trong handoff §carrier_note documented, nhưng chưa seal policy attestation.",
     "acceptance_expectations": [
-      "Validator PASS required fragments (ENVELOPE + BODY_RESPONSE + CAUSATION_CHAIN)",
-      "Validator PASS CAUSATION_CHAIN.link_type == 'triggered_by' (MOTION-specific)",
-      "Validator PASS CAUSATION_CHAIN.target_kind == 'GIAC_NGO' (expected parent link)",
-      "Validator PASS BODY_RESPONSE.gatekeeper_witnessed is boolean",
-      "Validator PASS fragment_id uniqueness",
-      "Validator PASS ordinal sequence 0-indexed no gap",
-      "Validator PASS parent_moment_kind consistency (all = MOTION_TICH_CUC)"
+      "Validator pass required fragments (ENVELOPE + BODY_RESPONSE + CAUSATION_CHAIN)",
+      "Validator pass CAUSATION_CHAIN.link_type == 'triggered_by' (MOTION-specific)",
+      "Validator pass CAUSATION_CHAIN.target_kind == 'GIAC_NGO' (expected parent link)",
+      "Validator pass BODY_RESPONSE.gatekeeper_witnessed is boolean",
+      "Validator pass fragment_id uniqueness",
+      "Validator pass ordinal sequence 0-indexed no gap",
+      "Validator pass parent_moment_kind consistency (all = MOTION_TICH_CUC)"
     ],
     "drafter": "Băng (Wave 2 Lane A.5)",
     "session_ref": "Wave 2 kickoff",

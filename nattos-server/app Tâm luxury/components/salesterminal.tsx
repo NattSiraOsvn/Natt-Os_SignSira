@@ -102,8 +102,8 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
       setExchangeItems([...exchangeItems, newItem]);
       setCustomer({ name: data.customerName, phone: data.phone || '' });
       
-      // Nếu FraudGuard cảnh báo (WARNING/CRITICAL), yêu cầu định danh ngay
-      if (fraudCheck.level === AlertLevel.WARNING || fraudCheck.level === AlertLevel.CRITICAL) {
+      // Nếu FraudGuard cảnh báo (warnING/CRITICAL), yêu cầu định danh ngay
+      if (fraudCheck.level === AlertLevel.warnING || fraudCheck.level === AlertLevel.CRITICAL) {
           NotifyBus.push({ 
               type: 'RISK', 
               title: 'CẢNH BÁO THU ĐỔI', 
@@ -113,7 +113,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
       } else {
           NotifyBus.push({ 
               type: 'SUCCESS', 
-              title: 'Thiên: GĐB Hợp lệ', 
+              title: 'thiên: GĐB Hợp lệ', 
               content: `Đã khoá chính sách: Thu -${buybackDeduction}% | Đổi -${exchangeDeduction}%.`, 
               persona: PersonaID.THIEN 
           });
@@ -263,7 +263,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
     try {
       const res = await PaymentEngine.createPayment({ orderId: `ORD-${Date.now()}`, amount: finalTotal, provider: 'VNPAY', customerName: customer.name });
       setPaymentData(res);
-      logAction('SALES_CHECKOUT', `Thiên: Khởi tạo thanh toán. Khách: ${customer.name}. Net: ${finalTotal.toLocaleString()}`);
+      logAction('SALES_CHECKOUT', `thiên: Khởi tạo thanh toán. Khách: ${customer.name}. Net: ${finalTotal.toLocaleString()}`);
     } finally { setIsCheckingOut(false); }
   };
 
@@ -480,7 +480,7 @@ const SalesTerminal: React.FC<SalesTerminalProps> = ({ metrics, updateFinance, l
                     </div>
                     <div className="space-y-2">
                        <p className="text-4xl font-mono font-black text-white italic">{finalTotal.toLocaleString()} đ</p>
-                       <p className="text-[9px] text-gray-500 font-black uppercase tracking-[0.4em]">Thiên: Chờ Shard ngân hàng xác thực...</p>
+                       <p className="text-[9px] text-gray-500 font-black uppercase tracking-[0.4em]">thiên: Chờ Shard ngân hàng xác thực...</p>
                     </div>
                     <button onClick={() => {  setPaymentStep('success')
     window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'sales.confirm', source: 'SalesTerminal' } }));

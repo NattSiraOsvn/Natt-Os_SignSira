@@ -1,6 +1,6 @@
 // buyback-cell contracts
 export const EVENTS_BUYBACK = {
-  CREATED: "buyback.created",
+  created: "buyback.created",
   UPDATED: "buyback.updated",
   DELETED: "buyback.deleted",
 } as const;

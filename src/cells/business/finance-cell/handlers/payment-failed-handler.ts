@@ -13,7 +13,7 @@ export class PaymentFailedHandler extends ProductionBase {
     const { order_id, reason } = event.payload;
     console.warn(`[FINANCE-HANDLER] Payment Failed for Order: ${order_id}. Reason: ${reason}`);
 
-    await this.logAudit('PAYMENT_FAILURE_LOGGED', event.trace.correlation_id, {
+    await this.logAudit('PAYMENT_failURE_LOGGED', event.trace.correlation_id, {
       order_id,
       reason
     }, event.event_id);
@@ -22,7 +22,7 @@ export class PaymentFailedHandler extends ProductionBase {
     await EventBus.emit('sales.order.on_hold.v1', {
       ...event,
       event_name: 'sales.order.on_hold.v1',
-      payload: { order_id, reason: 'PAYMENT_FAILED', detail: reason }
+      payload: { order_id, reason: 'PAYMENT_failED', detail: reason }
     });
   }
 }

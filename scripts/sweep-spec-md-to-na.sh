@@ -3,7 +3,7 @@
 # sweep-spec-md-to-na.sh v2 — Sweep TIER 1 spec files .md → .na + cross-ref patch
 #
 # v2 FIX (SCAR-20260425-GIT-GREP-QUOTE-UNICODE-NFD):
-#   v1 dùng pipeline `echo "$ref_files" | while read ref_file` — FAIL với
+#   v1 dùng pipeline `echo "$ref_files" | while read ref_file` — fail với
 #   filename có space + Unicode NFD (macOS HFS/APFS) vì git grep -l wrap
 #   filename trong "..." khi gặp special char. v2 dùng git grep -z
 #   null-separator + bash read -d '' để raw bytes filename truyền đúng vào sed.
@@ -18,7 +18,7 @@
 #   ./scripts/sweep-spec-md-to-na.sh --execute      # rename + patch + verify
 #
 # Derived from directives:
-#   - Anh Natt + anh Thiên Lớn 20260425 (Path A Commit 2A/2B)
+#   - Anh Natt + anh thiên Lớn 20260425 (Path A Commit 2A/2B)
 #   - KHAI-20260425-02 extension by genre + phase
 #   - KHAI-20260425-03 convention đang thắng, không invent
 #   - KHAI-20260425-04 defer file-phase ≠ defer reference integrity
@@ -33,8 +33,8 @@ set -euo pipefail
 # ============================================================================
 TIER1_FILES=(
   "docs/specs/0-BOOT-FAMILY-MAP.na"
-  "docs/specs/COLOR_SiraSIGN.na"
-  "docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na"
+  "docs/specs/COLOR_siraSIGN.na"
+  "docs/specs/natt-os_SATELLITE_COLONY_SPEC.na"
   "docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na"
   "docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.na"
   "docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.na"
@@ -71,13 +71,13 @@ preflight() {
     local target="${f%.md}.na"
 
     if ! git ls-files --error-unmatch "$f" > /dev/null 2>&1; then
-      echo "  FAIL  $f (not tracked by git)"
+      echo "  fail  $f (not tracked by git)"
       errors=$((errors+1))
     elif [ ! -f "$f" ]; then
-      echo "  FAIL  $f (tracked but missing on disk)"
+      echo "  fail  $f (tracked but missing on disk)"
       errors=$((errors+1))
     elif [ -e "$target" ]; then
-      echo "  FAIL  $target (target already exists — collision)"
+      echo "  fail  $target (target already exists — collision)"
       errors=$((errors+1))
     else
       echo "  OK    $f"
@@ -91,7 +91,7 @@ preflight() {
     exit 1
   fi
   echo ""
-  echo "Pre-flight PASS: ${#TIER1_FILES[@]} files tracked, present, target clear."
+  echo "Pre-flight pass: ${#TIER1_FILES[@]} files tracked, present, target clear."
 }
 
 # ============================================================================
@@ -226,7 +226,7 @@ execute() {
     echo "  Clean — no stale refs to old .md basenames."
   else
     echo ""
-    echo "WARNING: $remaining TIER 1 basename(s) still referenced. Review before commit."
+    echo "warnING: $remaining TIER 1 basename(s) still referenced. Review before commit."
   fi
 }
 

@@ -8,8 +8,8 @@
 
 # AUDIT REPORT — NaU_audit.html (UI Dashboard Mock-up)
 
-**Scope:** UI mock-up file NaU_audit.html — "Natt-OS Core | Client Integration: Tâm Luxury"
-**Purpose:** Dashboard audit 71 màn hình Client App Tâm Luxury tuân thủ Natt-OS Spec v0.9
+**Scope:** UI mock-up file NaU_audit.html — "natt-os Core | Client Integration: Tâm Luxury"
+**Purpose:** Dashboard audit 71 màn hình Client App Tâm Luxury tuân thủ natt-os Spec v0.9
 **Audit method:** Read-only code review, KHÔNG modify file.
 
 ---
@@ -25,9 +25,9 @@
 ### §1.2 Mục đích thiết kế
 File này phục vụ 2 workflow:
 1. **Audit checklist** — 71 màn hình Client App × 3 tiêu chí compliance
-2. **Demo visualizer** — Natt-OS Qiint Field routing simulator (KhaiCell + 3 target cells)
+2. **Demo visualizer** — natt-os Qiint Field routing simulator (KhaiCell + 3 target cells)
 
-### §1.3 Positioning trong Natt-OS architecture
+### §1.3 Positioning trong natt-os architecture
 Đây là **internal tool cho ownership/audit**, không phải:
 - ❌ Cell chính thức (không có .cell.anc passport)
 - ❌ Kernel component
@@ -41,7 +41,7 @@ File này phục vụ 2 workflow:
 ### §2.1 3-panel layout
 | Panel | Chức năng | Width |
 |---|---|---|
-| Sidebar-left | Hiến Pháp Natt-OS v0.9 reference (rules + 12 file canonical) | 340px |
+| Sidebar-left | Hiến Pháp natt-os v0.9 reference (rules + 12 file canonical) | 340px |
 | Center | 71 screen cards (audit checklist grid) | flex-grow |
 | Panel-right | Terminal (Python CLI simulator) + Qiint Field visualizer | 380px |
 
@@ -54,7 +54,7 @@ File này phục vụ 2 workflow:
   name: string,           // Tên màn hình
   file: string,           // .tsx file reference
   rule: "R01" - "R10",    // Rule binding
-  ext: string             // Đuôi file Natt-OS canonical
+  ext: string             // Đuôi file natt-os canonical
 }
 ```
 
@@ -71,7 +71,7 @@ File này phục vụ 2 workflow:
 | 1 | Gửi qua Mạch HeyNa (Transport L2) | Manual checkbox (user tick) |
 | 2 | Qua Gateway OS KhaiCell | Manual checkbox (user tick) |
 | 3 | Tuân thủ UI (Liquid Glass/UIMode) | Manual checkbox (user tick) |
-| 4 | Tuân thủ 12 Đuôi File Natt-OS | **AUTO** (sau runPy('execute')) — không manual |
+| 4 | Tuân thủ 12 Đuôi File natt-os | **AUTO** (sau runPy('execute')) — không manual |
 
 → Screen "approved" (isProduct=true) khi **tất cả 4 tiêu chí passed**.
 
@@ -131,7 +131,7 @@ L1 (App Tâm Luxury) → L2 (Mạch HeyNa) → KhaiCell Gateway (Normalize/Sign)
 
 | Concept | File implementation | SPEC reference |
 |---|---|---|
-| KhaiCell = "Normalize & Sign, KHÔNG GATE" | sidebar-left rule 3 | SPEC_NEN §2.4 KhaiCell role |
+| KhaiCell = "Normalize & Sign, KHÔNG gate" | sidebar-left rule 3 | SPEC_NEN §2.4 KhaiCell role |
 | 3 outcomes (FALL/DISSIPATE/OSCILLATE) | triggerSignal random outcome | SPEC_NEN §2.4 Tầng 0 |
 | L1/L2/L3 topology | 3 layers rendered in panel-right | SPEC B.1 §1 |
 | Chromatic colors (7 states) | CSS :root variables | Session 20260417 Color Palette v1.0 (gold + violet) — partial |
@@ -169,8 +169,8 @@ Client code directly modifying OS Memory: 142 files
 **Impact:** Audit state ephemeral, không reliable cho team coordination.
 
 #### §4.2.5 Hiến Pháp "v0.9" — không khớp với repo
-- Sidebar header: "Hiến Pháp Natt-OS v0.9 — LOCKED"
-- Repo actual: `src/governance/HIEN-PHAP-Natt-OS-v5.0.anc` (v5.0)
+- Sidebar header: "Hiến Pháp natt-os v0.9 — LOCKED"
+- Repo actual: `src/governance/HIEN-PHAP-natt-os-v5.0.anc` (v5.0)
 - Khác biệt lớn — có thể file cũ chưa update version
 
 ### §4.3 ✅ STRENGTHS
@@ -210,7 +210,7 @@ Cần 5 thay đổi:
 1. **Replace hardcoded `predefinedScreens`** → fetch từ `docs/architecture/screens.manifest.json` (nếu exist) hoặc scan `src/` cho `.tsx` files
 2. **Replace `runPy` setTimeout** → real fetch call đến backend running `scripts/scan-client-compliance.py`
 3. **Replace localStorage** → commit audit state vào repo `runtime/audit/client-integration.result.phieu` (per SPEC_HOST_RESULT_PROTOCOL)
-4. **Update version** → "Hiến Pháp Natt-OS v5.0" khớp với repo
+4. **Update version** → "Hiến Pháp natt-os v5.0" khớp với repo
 5. **Add SIMULATION banner** → nếu giữ demo mode, mark rõ "DEMO — không chạy migration thật"
 
 #### §5.2.2 NẾU chỉ dùng làm demo/presentation (current state)
@@ -267,7 +267,7 @@ File này có value educational cho new team members — archive vào `docs/arch
 ### §7.3 Follow-up files cần check (em chưa scan repo)
 - `docs/architecture/` có screen manifest không?
 - Có file `nattos-client-integrator.py` thật chưa?
-- `HIEN-PHAP-Natt-OS-v5.0.anc` nội dung còn match sidebar rules không?
+- `HIEN-PHAP-natt-os-v5.0.anc` nội dung còn match sidebar rules không?
 
 ---
 

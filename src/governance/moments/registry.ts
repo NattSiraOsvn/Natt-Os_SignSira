@@ -53,32 +53,32 @@ export interface QueryParams {
 
 export function createScar(input: Omit<Scar, "kind" | "sirasign">): Scar {
   const base = { ...input, kind: "SCAR" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createKhaiSang(input: Omit<KhaiSang, "kind" | "sirasign">): KhaiSang {
   const base = { ...input, kind: "KHAI_SANG" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createGiacNgo(input: Omit<GiacNgo, "kind" | "sirasign">): GiacNgo {
   const base = { ...input, kind: "GIAC_NGO" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 export function createMotionTichCuc(
   input: Omit<MotionTichCuc, "kind" | "sirasign">
 ): MotionTichCuc {
   const base = { ...input, kind: "MOTION_TICH_CUC" as const };
-  return { ...base, sirasign: computeSirasign(base) };
+  return { ...base, sirasign: computesirasign(base) };
 }
 
 /**
  * Implementation placeholder (chờ persister owner seal).
- * computeSirasign — canonical JSON serialize then SHA-256.
+ * computesirasign — canonical JSON serialize then SHA-256.
  * Per Hiến Pháp v5.0 Điều 7: SHA-256 only, no btoa/obfuscation.
  */
-declare function computeSirasign(m: unknown): string;
+declare function computesirasign(m: unknown): string;
 
 /**
  * Storage routing — kind → target file(s).

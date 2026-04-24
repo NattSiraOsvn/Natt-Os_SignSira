@@ -1,4 +1,4 @@
-# TS CLEANUP BATCH 2G — PORT CONTRACT TO Sira — 20260424\n\nstatus: PASS\nscope: PORT_CONTRACT_TRANSLATE_TO_Sira + LIGHT_HARD_TRANSLATION_CANDIDATE\ncreated_at: 2026-04-24T17:30:56.979324+00:00\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\n\n---\n\n## 1. Rule\n\nBatch này chỉ xử lý 15 file next-easy từ hard scan.\n\nKhông động HEYNA_EVENT_RUNTIME_TRANSLATE_TO_Sira.\nKhông động SMARTLINK_RUNTIME_TRANSLATE_TO_Sira.\nKhông động ENGINE_TRANSLATE_TO_Sira.\nKhông động DEEP_TS_TRANSLATION_REQUIRED.\n\n## 2. Summary\n\n{
+# TS CLEANUP BATCH 2G — PORT CONTRACT TO sira — 20260424\n\nstatus: pass\nscope: PORT_CONTRACT_TRANSLATE_TO_sira + LIGHT_HARD_TRANSLATION_CANDIDATE\ncreated_at: 2026-04-24T17:30:56.979324+00:00\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\n\n---\n\n## 1. Rule\n\nBatch này chỉ xử lý 15 file next-easy từ hard scan.\n\nKhông động HEYNA_EVENT_RUNTIME_TRANSLATE_TO_sira.\nKhông động SMARTLINK_RUNTIME_TRANSLATE_TO_sira.\nKhông động ENGINE_TRANSLATE_TO_sira.\nKhông động DEEP_TS_TRANSLATION_REQUIRED.\n\n## 2. Summary\n\n{
   "targets": 15,
   "renamed": 15,
   "skipped": 0,
@@ -10,81 +10,81 @@
     "cluster": "LIGHT_HARD_TRANSLATION_CANDIDATE"
   },
   {
-    "from": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
-    "to": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/comms-cell/ports/comms-SmartLink.port.ts",
+    "to": "src/cells/business/comms-cell/ports/comms-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
-    "to": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/compliance-cell/ports/compliance-SmartLink.port.ts",
+    "to": "src/cells/business/compliance-cell/ports/compliance-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
-    "to": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/noi-vu-cell/ports/noi-vu-SmartLink.port.ts",
+    "to": "src/cells/business/noi-vu-cell/ports/noi-vu-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
-    "to": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/prdwarranty-cell/ports/prdwarranty-SmartLink.port.ts",
+    "to": "src/cells/business/prdwarranty-cell/ports/prdwarranty-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
-    "to": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/production-cell/ports/production-SmartLink.port.ts",
+    "to": "src/cells/business/production-cell/ports/production-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
-    "to": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/promotion-cell/ports/promotion-SmartLink.port.ts",
+    "to": "src/cells/business/promotion-cell/ports/promotion-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
-    "to": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/shared-contracts-cell/ports/shared-contracts-SmartLink.port.ts",
+    "to": "src/cells/business/shared-contracts-cell/ports/shared-contracts-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
-    "to": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/business/supplier-cell/ports/supplier-SmartLink.port.ts",
+    "to": "src/cells/business/supplier-cell/ports/supplier-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
-    "to": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/infrastructure/event-bus-cell/ports/event-bus.SmartLink.port.ts",
+    "to": "src/cells/infrastructure/event-bus-cell/ports/event-bus.SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
-    "to": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/infrastructure/SmartLink-cell/ports/SmartLinkEventEmitter.ts",
+    "to": "src/cells/infrastructure/SmartLink-cell/ports/SmartLinkEventEmitter.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
-    "to": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/infrastructure/SmartLink-cell/ports/SmartLinkRepository.ts",
+    "to": "src/cells/infrastructure/SmartLink-cell/ports/SmartLinkRepository.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
-    "to": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/infrastructure/SmartLink-cell/ports/SmartLink-cell.contract.ts",
+    "to": "src/cells/infrastructure/SmartLink-cell/ports/SmartLink-cell.contract.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
-    "to": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/kernel/neural-main-cell/SmartLink.port.ts",
+    "to": "src/cells/kernel/neural-main-cell/SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   },
   {
-    "from": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
-    "to": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
-    "cluster": "PORT_CONTRACT_TRANSLATE_TO_Sira"
+    "from": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-SmartLink.port.ts",
+    "to": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-SmartLink.port.sira",
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_sira"
   }
 ]\n\n## 4. Skipped\n\n[]\n\n## 5. Patched Refs\n\n[
   "src/governance/infrastructure.contracts.lock.si",
-  "src/governance/memory/sessions/Natt-OS_SATELLITE_COLONY_SPEC.md",
+  "src/governance/memory/sessions/natt-os_SATELLITE_COLONY_SPEC.md",
   "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na",
   "docs/runtime/TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na",
-  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_Sira_20260424.na",
+  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_sira_20260424.na",
   "docs/runtime/TS_CLEANUP_BATCH2F_HARD_TRANSLATION_SCAN_20260424.na",
   "docs/specs/roadloading/đổi sang ngôn ngữ nauion/SESSION_20260419_FULL.na"
 ]\n

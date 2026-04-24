@@ -1,6 +1,6 @@
 /**
  * order-cell / application / order.usecase.ts
- * Use cases: poll Google Sheets → parse → emit ORDER_CREATED
+ * Use cases: poll Google Sheets → parse → emit ORDER_created
  */
 
 import { Order, createOrder } from '../domain/order.entity';
@@ -58,7 +58,7 @@ export class CreateOrderUseCase {
     await this.repo.save(order);
 
     this.emit({
-      eventType: 'ORDER_CREATED',
+      eventType: 'ORDER_created',
       orderId: order.orderId,
       orderType: order.orderType,
       productCode: order.productCode,

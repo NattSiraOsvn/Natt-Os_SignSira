@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Natt-OS KhaiCell — 3 Tests
+natt-os KhaiCell — 3 Tests
 Per Thien Lon spec checks:
-  Test 1 — BYPASS:    can anyone enter without KhaiCell?
+  Test 1 — BYpass:    can anyone enter without KhaiCell?
   Test 2 — MISUSE:    can anyone call KhaiCell like a function (not as touch)?
   Test 3 — COLLAPSE:  with many entries, does the system keep its trust?
 
@@ -42,12 +42,12 @@ def walk_code():
 
 
 # =====================================================================
-# TEST 1 — BYPASS
+# TEST 1 — BYpass
 # =====================================================================
 def test_1_bypass():
     """Run validate-khaicell-bypass.py and parse violations."""
     print("\n" + "=" * 70)
-    print("  TEST 1 — BYPASS: can entries skip KhaiCell?")
+    print("  TEST 1 — BYpass: can entries skip KhaiCell?")
     print("=" * 70)
     script = os.path.join(ROOT, "validate-khaicell-bypass.py")
     if not os.path.isfile(script):
@@ -63,12 +63,12 @@ def test_1_bypass():
             count = int(m.group(1))
             print(f"  bypass count: {count}")
             if count == 0:
-                print("  [PASS] no entries bypass KhaiCell")
+                print("  [pass] no entries bypass KhaiCell")
             else:
-                print(f"  [FAIL] {count} entries bypass KhaiCell")
+                print(f"  [fail] {count} entries bypass KhaiCell")
             return count
     except Exception as e:
-        print(f"  [ERROR] {e}")
+        print(f"  [error] {e}")
         return None
 
 
@@ -92,8 +92,8 @@ def test_2_misuse():
         (r"khaicell\.sign\s*\(", "DIRECT_SIGN"),
         (r"KhaiCellService\.normalize", "STATIC_NORMALIZE"),
         (r"KhaiCellService\.sign", "STATIC_SIGN"),
-        (r"jest\.mock.*khai-cell", "MOCK_BYPASS"),
-        (r"sinon\.stub.*khaicell", "STUB_BYPASS"),
+        (r"jest\.mock.*khai-cell", "MOCK_BYpass"),
+        (r"sinon\.stub.*khaicell", "STUB_BYpass"),
         (r"//\s*TODO.*khai", "TODO_DEFER"),
         (r"//\s*FIXME.*khai", "FIXME_DEFER"),
     ]
@@ -117,9 +117,9 @@ def test_2_misuse():
             pass
 
     if not violations:
-        print("  [PASS] no misuse — KhaiCell is touched, not called as function")
+        print("  [pass] no misuse — KhaiCell is touched, not called as function")
     else:
-        print(f"  [FAIL] {len(violations)} misuse cases")
+        print(f"  [fail] {len(violations)} misuse cases")
         by_kind = defaultdict(list)
         for v in violations:
             by_kind[v["kind"]].append(v)
@@ -213,12 +213,12 @@ def test_3_collapse():
     fail_count = len(checks) - pass_count
 
     for letter, name, ok, note in checks:
-        mark = "PASS" if ok else "FAIL"
+        mark = "pass" if ok else "fail"
         print(f"  [{mark}] {letter}. {name:18s} {note}")
 
     print()
     if fail_count == 0:
-        print(f"  [PASS] {pass_count}/5 — structurally collapse-resistant")
+        print(f"  [pass] {pass_count}/5 — structurally collapse-resistant")
     else:
         print(f"  [PARTIAL] {pass_count}/5 passed — {fail_count} weak points")
     return fail_count
@@ -230,7 +230,7 @@ def test_3_collapse():
 def main():
     print()
     print("#" * 70)
-    print("#  Natt-OS KhaiCell — 3 Tests (Thien Lon spec)")
+    print("#  natt-os KhaiCell — 3 Tests (Thien Lon spec)")
     print("#" * 70)
 
     bypass = test_1_bypass()
@@ -246,7 +246,7 @@ def main():
     print(f"  Test 3 (collapse):  {5 - (collapse_failures or 0)}/5 checks pass")
 
     if bypass == 0 and misuse == 0 and (collapse_failures or 0) == 0:
-        print("\n  RESULT: ALL PASS — KhaiCell holds the trunk.")
+        print("\n  RESULT: ALL pass — KhaiCell holds the trunk.")
     else:
         print("\n  RESULT: action items above.")
     print()

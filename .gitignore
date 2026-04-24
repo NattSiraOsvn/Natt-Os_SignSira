@@ -51,7 +51,7 @@ sirasign*.json
 .DS_Store
 repo.json
 
-# NATT-OS runtime
+# natt-os runtime
 .nattos-twin/
 audit/summary/
 audit/log/
@@ -65,7 +65,7 @@ docs/vision/log4a.pdf
 docs/vision/log4b.pdf
 docs/vision/log4c.numbers
 
-# NATT-OS rename tools (scratch)
+# natt-os rename tools (scratch)
 nattos-rename-dryrun-v*.py
 nattos-rename-execute.py
 rename-preview-v*.txt
@@ -85,6 +85,6 @@ runtime/audit/
 
 # nattos.sh backups (W2E + earlier)
 nattos.sh.bak-*
-# NATT-OS: ignore generated Rust build artifacts
+# natt-os: ignore generated Rust build artifacts
 **/target/
 docs/runtime/nauion-host/target/

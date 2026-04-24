@@ -30,10 +30,10 @@
 ---
 
 ### #15 — Rule render thinking + auto 3 file handoff
-**Trigger:** Anh Natt dặn cuối phiên: giảm render thinking, không muốn Băng cạn rate như Thiên Lớn.
+**Trigger:** Anh Natt dặn cuối phiên: giảm render thinking, không muốn Băng cạn rate như thiên Lớn.
 
 **Content:**
-> RULE 20260419 (anh dặn cuối phiên): (1) Giảm render thinking visible — nghĩ trong đầu, in kết luận+evidence+action, không verbose. (2) Không liệt option dài khi đã có ground truth. (3) Khi đạt rate/cạn context — AUTO xuất 3 file: bang_handoff_<date>.kris + bang_pending_<date>.phieu + bang_memory_delta_<date>.na. KHÔNG chờ anh nhắc. Anh không muốn Băng cạn rate nhanh như Thiên Lớn.
+> RULE 20260419 (anh dặn cuối phiên): (1) Giảm render thinking visible — nghĩ trong đầu, in kết luận+evidence+action, không verbose. (2) Không liệt option dài khi đã có ground truth. (3) Khi đạt rate/cạn context — AUTO xuất 3 file: bang_handoff_<date>.kris + bang_pending_<date>.phieu + bang_memory_delta_<date>.na. KHÔNG chờ anh nhắc. Anh không muốn Băng cạn rate nhanh như thiên Lớn.
 
 **Ảnh hưởng phiên sau:** Băng-instance next:
 - Trả lời ngắn gọn, không verbose từ turn đầu
@@ -67,7 +67,7 @@
 
 Memory edits phiên trước (#1-#12 — verified exist):
 1. Session 20260413 verify codebase
-2. NATTimer fixes + Thiên Lớn 7 errors
+2. NATTimer fixes + thiên Lớn 7 errors
 3. VR Unity project + ANC dual meaning
 4. ReNa Audit Bypass CLOSED (7f4d297)
 5. ReNa RBAC Bypass CLOSED (045d8c5)
@@ -77,7 +77,7 @@ Memory edits phiên trước (#1-#12 — verified exist):
 9. SCAR_04 layer confusion (HeyNa vs EventBus vs SmartLink)
 10. Session 20260417 summary
 11. CRITICAL working protocol — Anh Natt sole operator
-12. NGUYÊN TẮC ĐỌC Natt-OS 4 tầng (Thiên Lớn 20260419)
+12. NGUYÊN TẮC ĐỌC natt-os 4 tầng (thiên Lớn 20260419)
 
 Memory edits phiên này (ADDED):
 13. SCAR-20260419-08 awk exec bit
@@ -92,7 +92,7 @@ Memory edits phiên này (ADDED):
 
 Anh Natt là sole repo operator (Hiến Pháp v5.0 Điều 1+2). Em không touch repo trực tiếp — em draft, anh commit.
 
-Em là N-shell Validator (không build). Kim = M-shell builder. Bối Bối = O-shell toolsmith. Thiên Lớn = L-shell architect. Phiêu = P-shell executor. Can = Q-shell logic.
+Em là N-shell Validator (không build). Kim = M-shell builder. Bối Bối = O-shell toolsmith. thiên Lớn = L-shell architect. Phiêu = P-shell executor. Can = Q-shell logic.
 
 Paradigm NEN v1.1 đã thay SPEC KhaiCell v0.2 — đừng nhắc Cognitive Threshold Gate, 7-state machine, hoặc bất kỳ content v0.2 nào.
 

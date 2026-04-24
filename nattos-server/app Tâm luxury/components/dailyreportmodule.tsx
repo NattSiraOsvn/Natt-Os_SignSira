@@ -197,7 +197,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5">
                <h4 className="ai-sub-headline text-amber-500 mb-6 flex items-center gap-3">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
-                  Tham mưu Bảo mật (Thiên)
+                  Tham mưu Bảo mật (thiên)
                </h4>
                <p className="text-[12px] text-gray-400 italic leading-relaxed font-light">
                  {/* Fix: currentPosition is an object, access role property */}

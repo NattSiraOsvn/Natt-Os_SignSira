@@ -1,5 +1,5 @@
 /**
- * Natt-OS System State Engine v1.0 — V5 Condition 2
+ * natt-os System State Engine v1.0 — V5 Condition 2
  */
 import * as fs from "fs";
 import * as path from "path";
@@ -8,7 +8,7 @@ import { getEventFrequency } from "./flow-chain.engine";
 const TWIN_DIR = ".nattos-twin";
 const STATE_FILE = path.join(TWIN_DIR, "system-state-v5.json");
 
-export type SystemState = "HEALTHY" | "STABLE" | "WARNING" | "CRITICAL";
+export type SystemState = "HEALTHY" | "STABLE" | "warnING" | "CRITICAL";
 
 export interface StateSnapshot {
   state: SystemState;
@@ -70,7 +70,7 @@ export function inferSystemState(signals: StateSnapshot["signals"]): {
   else { issues.push(`FLOW_DEFICIT: ${signals.healthyFlows}`); risk += 15; }
   if (signals.eventFrequency > 0) strengths.push(`Runtime active: ${signals.eventFrequency} events/min`);
   else { issues.push(`RUNTIME_SILENT`); risk += 5; }
-  const state: SystemState = risk >= 50 ? "CRITICAL" : risk >= 25 ? "WARNING" : risk >= 10 ? "STABLE" : "HEALTHY";
+  const state: SystemState = risk >= 50 ? "CRITICAL" : risk >= 25 ? "warnING" : risk >= 10 ? "STABLE" : "HEALTHY";
   return { state, riskScore: risk, issues, strengths };
 }
 

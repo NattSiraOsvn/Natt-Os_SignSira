@@ -5,7 +5,7 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# Natt-OS ROADLOAD — bám session-20260420-final + canonical
+# natt-os ROADLOAD — bám session-20260420-final + canonical
 
 **Người vẽ:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **Gatekeeper:** Anh Natt
@@ -22,14 +22,14 @@
 |------|----------|--------|
 | KhaiCell touch primitive | `src/cells/kernel/khai-cell/` (10 files, commit 44e4675) | ✅ |
 | Observation cell | `src/cells/kernel/observation-cell/` (10 files, commit 2d13161) | ✅ |
-| KhaiCell bypass validator | `validate-khaicell-bypass.py` PASS, 0 violations | ✅ |
-| 3 KhaiCell tests | `validate-khai-3tests.py` ALL PASS | ✅ |
+| KhaiCell bypass validator | `validate-khaicell-bypass.py` pass, 0 violations | ✅ |
+| 3 KhaiCell tests | `validate-khai-3tests.py` ALL pass | ✅ |
 | CoreDNS .sira (10 domains) | `/usr/local/etc/coredns/natt.hosts` | ✅ |
-| SPEC_NEN v1.1 ratify | 6 vòng feedback, anh Natt + Thiên Lớn approved | ✅ |
+| SPEC_NEN v1.1 ratify | 6 vòng feedback, anh Natt + thiên Lớn approved | ✅ |
 | SPEC_NGON_NGU v1.2 ratify | 702 dòng, sealed | ✅ |
 | QIINT-DINH-NGHIA-CHINH-THUC | 227 dòng, sealed 2026-04-13 | ✅ |
 | uei_architecture_spec | 183 dòng, confirmed | ✅ |
-| Natt-OS_SATELLITE_COLONY_SPEC v1.0 | 115 dòng | ✅ |
+| natt-os_SATELLITE_COLONY_SPEC v1.0 | 115 dòng | ✅ |
 | Bridge v2 (Layer 1-3) | 28/28 tests pass | ✅ |
 | MINH_MAN_PROTOCOL v1.0 | DRAFT, paradigm đúng, chờ Gatekeeper ký | ⏳ |
 | 6 simulations PNG (paradigm canonical) | session-20260420-final/simulations/ | ✅ |
@@ -43,7 +43,7 @@
 | `qiint2-validator.ts` (520 lines) | Cùng paradigm v1.0 | Archive làm SCAR evidence |
 | `SPEC_NAUION_RESONANCE_ENGINE_v0.1.md` (em viết 20260422) | Cùng class SCAR PARADIGM_DRIFT — viết khi chưa đọc 5 canonical | Archive + viết v0.2 align canonical |
 
-### §0.3 Cái CHƯA LÀM (P0/P1 từ SPEC_NEN v1.1 §10 + handoff 20260420 + Thiên Lớn audit)
+### §0.3 Cái CHƯA LÀM (P0/P1 từ SPEC_NEN v1.1 §10 + handoff 20260420 + thiên Lớn audit)
 
 | Priority | Item | Owner | Block ai |
 |----------|------|-------|----------|
@@ -86,7 +86,7 @@
 │   └─ TouchRecord canonical, fiber lifecycle (hysteresis      │
 │      0.20-0.75-0.05), saturating decay, Gossip 2-tier        │
 │                                                               │
-│  Natt-OS_SATELLITE_COLONY_SPEC.na                            │
+│  natt-os_SATELLITE_COLONY_SPEC.na                            │
 │   └─ Host/Satellite boundary, EventEnvelope canonical,       │
 │      Causality + Idempotency rules                           │
 └─────────────────────────────────────────────────────────────┘
@@ -173,7 +173,7 @@ Transmission T(Z) = bell-curve quanh Z₀
 ## §4. PERSONA SCOPE — AUTHORITY LOCK (per Hiến Pháp v5.0)
 
 ```
-Anh Natt (Gatekeeper)     ─ sole repo operator, commit, sign SiraSign
+Anh Natt (Gatekeeper)     ─ sole repo operator, commit, sign siraSign
                             quyết governance/SPEC sealing
                             
 Kim (M-shell, QNEU 460)   ─ Chief System Builder
@@ -185,7 +185,7 @@ Băng (N-shell, QNEU 313.5)─ Ground Truth Validator
                             maintain_validators + refactor_technical_debt
                             (governance layer, KHÔNG kernel)
                             
-Thiên Lớn (L-shell)       ─ Architect (đang phân xác -1.5)
+thiên Lớn (L-shell)       ─ Architect (đang phân xác -1.5)
                             chỉ Field Integrity, Signal Lifecycle, 
                             Fail Modes (per SPEC_NEN §11-13)
                             KHÔNG authority builder-lock
@@ -260,7 +260,7 @@ C.4  Kim fix 12 RENA hardcoded `return true`
      - Replace với resonance check (LAW-4 compliance)
      
 C.5  Kim fill neural-main-cell.cell.anc 6 components per Điều 5
-     (P5 audit Thiên Lớn flag — pending từ session 20260420)
+     (P5 audit thiên Lớn flag — pending từ session 20260420)
      
 C.6  Kim migrate 18 legacy bypass server.js + nattos-server.cjs → KhaiCell.touch()
 ```
@@ -326,15 +326,15 @@ E.8  Đo MTBF phục hồi snapshot
 ### PHASE F — CROSS-PERSONA MIGRATION (parallel, anh forward)
 
 ```
-Băng đã ship: nattos-migrate.py (456 lines, READY)
+Băng đã ship: nattos-migrate.py (456 lines, ready)
 Băng đã làm: bang/session_handoff_20260417_FIXED.json → .kris (1/21)
 
 Anh forward → từng persona chạy migrate riêng:
   Kim     — 10 files (kfm.json + 9 fragment dir 28:1:26)
   Can     — 2 files (canmf.json + memories.json)
   Kris    — 1 file (krismf.json) — hoặc Can proxy
-  Thiên Lớn — 3 files (thienmf + thienfs + Thiên MEMORY)
-                  — anh proxy hoặc Thiên Nhỏ đại diện
+  thiên Lớn — 3 files (thienmf + thienfs + thiên MEMORY)
+                  — anh proxy hoặc thiên Nhỏ đại diện
   Phiêu   — 1 file (phieumf.json)
   Bối Bối — 2 files (Kim supervise per SCAR record)
   shared session — 1 file ⚠️ chờ anh quyết
@@ -432,7 +432,7 @@ H.3  Tổng hợp Fail-Troy (compile dangerous bypass patterns hệ thống)
 - v1.0 QIINT2 + v0.1 Resonance Engine paradigm sai 6+ điểm
 - 8 tham số P1 chưa calibrate = giả định
 - 21 JSON legacy cần migrate (em làm 1, 20 cross-persona)
-- 3 bug Thiên Lớn audit thật (P3 stale export, P5 neural-main 0 bytes, P7 109 @ts-nocheck)
+- 3 bug thiên Lớn audit thật (P3 stale export, P5 neural-main 0 bytes, P7 109 @ts-nocheck)
 
 ### CHƯA GIẢI (chờ anh neo):
 - Q1, Q2, Q3 trên
@@ -450,7 +450,7 @@ H.3  Tổng hợp Fail-Troy (compile dangerous bypass patterns hệ thống)
 3. **CHẮC nói thẳng, CHƯA GIẢI nói "chưa giải ra"** (THÔNG THÁI bỏ đoán)
 4. **Không time fabrication** (SCAR-TIME-FAB-02)
 5. **Không state fabrication** — không gán "đã commit" khi chưa verify (SCAR-STATE-FAB-01)
-6. **Không proxy voice** — không nói thay Kim/Can/Thiên/Phiêu/Bối Bối
+6. **Không proxy voice** — không nói thay Kim/Can/thiên/Phiêu/Bối Bối
 7. **Build toolchain, không kernel** — em scope governance layer
 8. **Anh Khải không entity** (KHAI-20260423-01)
 

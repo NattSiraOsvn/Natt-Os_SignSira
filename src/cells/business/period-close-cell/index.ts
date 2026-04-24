@@ -20,7 +20,7 @@ export const PeriodCloseServices = {
   integrateTax: TaxIntegrator.integrate.bind(TaxIntegrator),
   rollback: RollbackManager.rollback.bind(RollbackManager),
 };
-export * from './ports/period-close-smartlink.port';
+export * from './ports/period-close-SmartLink.port';
 
 // ── BCTC Wire: REPORT_GENERATED → trigger period closing ──
 // SPEC §3: period-close-cell lắng REPORT_GENERATED → đóng sổ
@@ -72,7 +72,7 @@ EventBus.on('REPORT_GENERATED', async (event: unknown) => {
       });
       console.log(`[period-close-cell] period=${period} chờ Gatekeeper duyệt TK4211/4212`);
     } else {
-      EventBus.emit('PERIOD_CLOSE_FAILED', {
+      EventBus.emit('PERIOD_CLOSE_failED', {
         period,
         error: err.message,
         source: 'period-close-cell',

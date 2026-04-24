@@ -24,7 +24,7 @@ const ResonanceProtocol = (() => {
   let currentZ = 1.0, targetZ = 1.0;
   let running = false, lastPulse = 0, muted = false;
 
-  // ── Z → freq (log mapping, Thiên Lớn + Kris) ──
+  // ── Z → freq (log mapping, thiên Lớn + Kris) ──
   function zToFreq(Z) {
     return Math.min(FREQ_MAX, Math.max(FREQ_MIN, BASE_FREQ * (1 + Math.log10(1 + Z))));
   }

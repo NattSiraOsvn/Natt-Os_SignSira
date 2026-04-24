@@ -9,7 +9,7 @@
 //   BomRejected   → production-cell + design-3d-cell (BOM sai spec)
 
 import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 
 // ── BOM record ──
 export interface BomRecord {
@@ -104,7 +104,7 @@ EventBus.subscribe('BomCreated' as any, (envelope: any) => {
       bomId, orderId: p.orderId, maHang: p.maHang, reason,
     });
     _emit('audit-cell', 'ViolationDetected', {
-      bomId, orderId: p.orderId, rule: 'BOM_VALIDATION_FAILED', reason,
+      bomId, orderId: p.orderId, rule: 'BOM_VALIDATION_failED', reason,
     });
   }
 }, 'bom3dprd-cell');

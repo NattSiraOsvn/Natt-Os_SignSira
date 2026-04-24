@@ -1,6 +1,6 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 /**
- * Natt-OS Gold Price Engine v1.0
+ * natt-os Gold Price Engine v1.0
  * Port từ GoldPrice block + Doc 17 visionOcr_() DOCUMENT_TEXT_DETECTION
  * Target: pricing-cell/domain/engines/
  *

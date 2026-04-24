@@ -5,7 +5,7 @@
 @since 2026-04-24
 @authority-slot bang (Chi Tu, runtime owner per session 20260424)
 
-# K3 FAIL-TROY AUDIT COMPILE v1.1
+# K3 fail-TROY AUDIT COMPILE v1.1
 
 **Update reason:** §9.1 review complete. Found 2 NEW oversight + 1 confirmed placeholder. Memory note "3 bypass patterns" CONFIRMED — pattern thứ 3 surfaced.
 
@@ -14,7 +14,7 @@
 **Status:** AUDIT_OPEN_NEW_FINDINGS_REQUIRE_KIM_FIX
 
 **Cross-reference v1.0:**
-- audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na (this file, prev version)
+- audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.na (this file, prev version)
 
 ---
 
@@ -24,7 +24,7 @@
 
 | File | v1.0 status | v1.1 verdict |
 |---|---|---|
-| `src/core/smartlink/smartlink.nattimer.ts:105` | NEEDS_REVIEW | **CONFIRMED_PLACEHOLDER** (NOT_BYPASS) |
+| `src/core/SmartLink/SmartLink.nattimer.ts:105` | NEEDS_REVIEW | **CONFIRMED_PLACEHOLDER** (NOT_BYpass) |
 
 ### §1.2 NEW Oversight (1 file flagged)
 
@@ -42,7 +42,7 @@
 
 ---
 
-## §2. DEEP REVIEW — smartlink.nattimer.ts (PLACEHOLDER CONFIRM)
+## §2. DEEP REVIEW — SmartLink.nattimer.ts (PLACEHOLDER CONFIRM)
 
 ### §2.1 Function `_chainId(sequence: string[])` line 96-105
 
@@ -68,7 +68,7 @@ Updated placeholder list:
 - `src/core/snapshot/snapshot.engine.ts` (FNV-1a)
 - `src/core/memory/immutable-memory.engine.ts` (FNV-1a)
 - `src/governance/policy/policy-signature.engine.na` (Murmurhash)
-- **`src/core/smartlink/smartlink.nattimer.ts` (FNV-1a) — NEW**
+- **`src/core/SmartLink/SmartLink.nattimer.ts` (FNV-1a) — NEW**
 
 ---
 
@@ -100,7 +100,7 @@ async verify(_h: string): Promise<boolean> { return true; }
 **Impact:**
 - Tamper detection broken: modified records pass verification
 - Chain audit untrustworthy
-- This is **AUDIT_VERIFY_BYPASS** — pattern THỨ 3 đã đề cập trong memory note nhưng chưa từng được fix in commit history
+- This is **AUDIT_VERIFY_BYpass** — pattern THỨ 3 đã đề cập trong memory note nhưng chưa từng được fix in commit history
 
 **Risk level:** 🔴 CRITICAL (production audit code)
 
@@ -150,7 +150,7 @@ async computeEntryHash(record: unknown): Promise<string> {
 
 | Pattern | v1.0 status | v1.1 status |
 |---|---|---|
-| AUDIT_BYPASS_HASH (3 conflict) | PARTIAL_CLOSED (3 placeholder + 2 needs review) | **STILL_PARTIAL** — 4 placeholder confirmed + 1 OVERSIGHT (§3.1.2) |
+| AUDIT_BYpass_HASH (3 conflict) | PARTIAL_CLOSED (3 placeholder + 2 needs review) | **STILL_PARTIAL** — 4 placeholder confirmed + 1 OVERSIGHT (§3.1.2) |
 | RBAC_ALWAYS_TRUE (4 patterns) | FULLY_CLOSED | FULLY_CLOSED (unchanged) |
 | **AUDIT_VERIFY_ALWAYS_TRUE (NEW)** | NOT_DETECTED in v1.0 | **NEW OVERSIGHT** — pattern thứ 3 (§3.1.1) |
 | ESCAPE_HATCH | CLEAN | CLEAN (unchanged) |
@@ -180,7 +180,7 @@ v1.0 regex pattern for RBAC_ALWAYS_TRUE was too narrow:
 
 ### §5.3 NOT_BLOCKING (carry-forward as known debt)
 
-- `auth.service.ts:5` SiraSign resonance auth migration
+- `auth.service.ts:5` siraSign resonance auth migration
 - `@ts-nocheck` pragma reduction sprint
 
 ---
@@ -193,5 +193,5 @@ v1.0 regex pattern for RBAC_ALWAYS_TRUE was too narrow:
 @drafter bang
 @drafter_role runtime_owner_session_20260424
 @kim_scope_respected true (no code modified, only flagged)
-@predecessor audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na (commit dc58943)
+@predecessor audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.na (commit dc58943)
 @delta v1.0 → v1.1: §9.1 reviewed, 2 oversight + 1 placeholder confirmed, pattern thứ 3 named

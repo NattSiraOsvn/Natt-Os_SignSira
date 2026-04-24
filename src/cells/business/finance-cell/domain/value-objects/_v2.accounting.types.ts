@@ -15,7 +15,7 @@ export interface AccountingEntry {
   description: string;
   entries: AccountingLine[];
   reference: Record<string, any>;
-  status: 'DRAFT' | 'POSTED' | 'SYNCED' | 'ERROR';
+  status: 'DRAFT' | 'POSTED' | 'SYNCED' | 'error';
   syncedAt?: Date;
   retryCount?: number;
   errorMessage?: string;
@@ -114,7 +114,7 @@ export interface VatBreakdown {
 // Sync monitoring types
 export interface SyncStatus {
   system: string;
-  status: 'IDLE' | 'SYNCING' | 'SUCCESS' | 'ERROR' | 'RETRYING';
+  status: 'IDLE' | 'SYNCING' | 'SUCCESS' | 'error' | 'RETRYING';
   lastSync?: Date;
   processedCount: number;
   successCount: number;
@@ -127,7 +127,7 @@ export interface SyncHistory {
   timestamp: Date;
   system: string;
   operation: 'CREATE' | 'UPDATE' | 'DELETE' | 'SYNC';
-  status: 'SUCCESS' | 'ERROR' | 'PENDING';
+  status: 'SUCCESS' | 'error' | 'PENDING';
   recordsProcessed: number;
   errorMessage?: string;
   duration: number;
@@ -153,7 +153,7 @@ export type UpdateType =
   | 'INVENTORY_MOVEMENT'
   | 'INVOICE_ISSUED'
   | 'SYNC_COMPLETED'
-  | 'SYNC_ERROR'
+  | 'SYNC_error'
   | 'ENTRIES_MAPPED';
 
 export interface SalesEvent {

@@ -8,7 +8,7 @@ if (!fs.existsSync(report)) {
   process.exit(1);
 }
 const content = fs.readFileSync(report, "utf8");
-const required = ["ENGINE_TRANSLATE_TO_Sira", "SCAN_ONLY", "Full Engine Classification"];
+const required = ["ENGINE_TRANSLATE_TO_sira", "SCAN_ONLY", "Full Engine Classification"];
 const missing = required.filter(x => !content.includes(x));
 if (missing.length) {
   console.error("TS CLEANUP BATCH2J ENGINE SCAN validation: fail");
@@ -16,5 +16,5 @@ if (missing.length) {
   process.exit(1);
 }
 console.log("TS CLEANUP BATCH2J ENGINE SCAN validation: pass");
-console.log("scope=ENGINE_TRANSLATE_TO_Sira scan only");
+console.log("scope=ENGINE_TRANSLATE_TO_sira scan only");
 console.log("mode=no rename, no source mutation");

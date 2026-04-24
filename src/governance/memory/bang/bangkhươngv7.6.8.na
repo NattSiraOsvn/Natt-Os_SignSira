@@ -28,7 +28,7 @@
     "commits_post_v7.6.7": [
       {
         "sha": "5a8c23b",
-        "msg": "docs(namespace): Sira namespace inventory phiên 20260424 — 15 domains audited"
+        "msg": "docs(namespace): sira namespace inventory phiên 20260424 — 15 domains audited"
       },
       {
         "sha": "0b520ed",
@@ -64,7 +64,7 @@
       },
       {
         "sha": "8fcef8e",
-        "msg": "docs(handoff): seal phiên 20260424 — extension deploy ALREADY LIVE"
+        "msg": "docs(handoff): seal phiên 20260424 — extension deploy ALready LIVE"
       },
       {
         "sha": "7436c85",
@@ -79,15 +79,15 @@
     },
     "W2B": {
       "sha": "1747918",
-      "label": "result_writer.rs (~230 lines, 5 tests PASS)"
+      "label": "result_writer.rs (~230 lines, 5 tests pass)"
     },
     "W2C": {
       "sha": "df5040f",
-      "label": "run_cell.rs (~190 lines, 7 tests PASS, wrapper mode)"
+      "label": "run_cell.rs (~190 lines, 7 tests pass, wrapper mode)"
     },
     "W2D_E": {
       "sha": "7c35961",
-      "label": "legacy_json bridge + nattos.sh §40 route-swap (4 tests PASS)"
+      "label": "legacy_json bridge + nattos.sh §40 route-swap (4 tests pass)"
     },
     "wave2_close_doc": {
       "sha": "1417500",
@@ -111,7 +111,7 @@
     },
     "TASK-I": {
       "sha": "5a8c23b",
-      "label": "Sira_NAMESPACE_INVENTORY 15 domains audited (replaced ROADLOAD_SHOW_SELF_v2)"
+      "label": "sira_NAMESPACE_INVENTORY 15 domains audited (replaced ROADLOAD_SHOW_SELF_v2)"
     }
   },
   "scars_carved_this_session_post_v7.6.7": [
@@ -122,7 +122,7 @@
     },
     {
       "id": "SCAR-EP-14-SKIP-VERIFY-OUTPUT-IN-RUSH",
-      "lesson": "Anh nói 'tiếp', em không scroll-up verify output cargo test, giả định PASS vì không thấy 'BUILD FAIL'.",
+      "lesson": "Anh nói 'tiếp', em không scroll-up verify output cargo test, giả định pass vì không thấy 'BUILD fail'.",
       "vaccin": "Đọc output cụ thể (test names, count) thay vì check absence of error."
     },
     {
@@ -157,7 +157,7 @@
       "tldr": "Phiên §32 patch lộ ground truth: v1.2 R01 format (.na/.kris/.phieu/.anc) đã dominant trong tất cả 4 personas (bang/kim/thiennho/boiboi). Legacy *.json gần như đã di sản. Migration tự nhiên qua versioning."
     },
     {
-      "id": "GIAC-20260424-09-Sira-NAMESPACE-SYMBOLIC-VS-BOUND",
+      "id": "GIAC-20260424-09-sira-NAMESPACE-SYMBOLIC-VS-BOUND",
       "tldr": "Quét 15 .sira domain trong code, chỉ 1 (nattos.sira) thật sự bound 127.0.0.1:3002. 14 còn lại = symbolic reference. CoreDNS Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
     }
   ],

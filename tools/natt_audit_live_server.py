@@ -85,9 +85,9 @@ def api_wave():
 
     patterns = {
         "W0_repo": ["package.json", "tsconfig.json", "src"],
-        "W1_file_layer": [".anc", ".na", ".phieu", "Sira_NAMESPACE", "Nauion", "NaUion"],
+        "W1_file_layer": [".anc", ".na", ".phieu", "sira_NAMESPACE", "Nauion", "NaUion"],
         "W2_loader_parser": ["loader", "parser", "interpreter", "Runtime", "readFileSync"],
-        "W3_enforcement": ["required", "on_fail", "fail-closed", "Gatekeeper", "SiraSign", "audit"],
+        "W3_enforcement": ["required", "on_fail", "fail-closed", "Gatekeeper", "siraSign", "audit"],
         "W4_transport": ["Mach HeyNa", "HeyNa", "/mach/heyna", "/phat/nauion", "EventEnvelope", "causation_id", "correlation_id", "span_id"],
         "W5_lifecycle": ["thoai-sinh", "thoái-sinh", "generation_id", "tombstone", "KhaiCell", "TimeRadiation", "R_info", "capacity"]
     }
@@ -129,7 +129,7 @@ def api_repo_scan():
     canonical = [p for p in files if p.suffix.lower() in CANONICAL_EXTS]
 
     refs = {}
-    for key in ["localStorage", "EventEnvelope", "Gatekeeper", "SiraSign", "SmartLink", "HeyNa", "KhaiCell", "audit", "tenant_id", "causation_id", "correlation_id", "span_id"]:
+    for key in ["localStorage", "EventEnvelope", "Gatekeeper", "siraSign", "SmartLink", "HeyNa", "KhaiCell", "audit", "tenant_id", "causation_id", "correlation_id", "span_id"]:
         refs[key] = []
         for p in text_files:
             c = read(p)
@@ -287,9 +287,9 @@ def verify():
         errors.append(f"missing {EXT_JS}")
     if errors:
         for e in errors:
-            print("VERIFY_FAIL:", e)
+            print("VERIFY_fail:", e)
         return 1
-    print("VERIFY_PASS: audit runtime extension server ready")
+    print("VERIFY_pass: audit runtime extension server ready")
     return 0
 
 def main():
@@ -302,7 +302,7 @@ def main():
     port = find_port()
     url = f"http://127.0.0.1:{port}/NaU_audit.html"
     print("=" * 88)
-    print("Natt-OS AUDIT UI — RUNTIME EXTENSION HUB")
+    print("natt-os AUDIT UI — RUNTIME EXTENSION HUB")
     print("=" * 88)
     print("ROOT       :", ROOT)
     print("UI         :", UI)

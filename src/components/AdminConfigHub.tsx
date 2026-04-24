@@ -19,7 +19,7 @@ const AdminConfigHub: React.FC = () => {
   const [modules, setModules] = useState<ModuleConfig[]>(ModuleRegistry.getAllModules());
   const [isSaving, setIsSaving] = useState(false);
   const [globalSettings, setGlobalSettings] = useState({
-    systemName: 'Natt-OS Unified',
+    systemName: 'natt-os Unified',
     version: '3.1.26',
     autoLockDelay: 300000,
     confidenceThreshold: 75,

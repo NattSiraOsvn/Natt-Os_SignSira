@@ -61,7 +61,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
+    "path": "src/cells/business/analytics-cell/ports/analytics-SmartLink.port.ts",
     "bytes": 3665,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -96,7 +96,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
+    "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-SmartLink.port.ts",
     "bytes": 1919,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -131,7 +131,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
+    "path": "src/cells/business/buyback-cell/ports/buyback-SmartLink.port.ts",
     "bytes": 3724,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -166,7 +166,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+    "path": "src/cells/business/customer-cell/ports/customer-SmartLink.port.ts",
     "bytes": 3706,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -201,7 +201,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
+    "path": "src/cells/business/customs-cell/ports/customs-SmartLink.port.ts",
     "bytes": 3736,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -236,7 +236,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
+    "path": "src/cells/business/design-3d-cell/ports/design-3d-SmartLink.port.ts",
     "bytes": 2285,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -271,7 +271,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+    "path": "src/cells/business/finance-cell/ports/finance-SmartLink.port.ts",
     "bytes": 3689,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -306,7 +306,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
+    "path": "src/cells/business/hr-cell/ports/hr-SmartLink.port.ts",
     "bytes": 3241,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -341,7 +341,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
+    "path": "src/cells/business/payment-cell/ports/payment-SmartLink.port.ts",
     "bytes": 3727,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -376,7 +376,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
+    "path": "src/cells/business/pricing-cell/ports/pricing-SmartLink.port.ts",
     "bytes": 3657,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -411,7 +411,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
+    "path": "src/cells/business/sales-cell/ports/sales-SmartLink.port.ts",
     "bytes": 3696,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -446,7 +446,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+    "path": "src/cells/business/showroom-cell/ports/showroom-SmartLink.port.ts",
     "bytes": 3768,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -481,7 +481,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
+    "path": "src/cells/business/warehouse-cell/ports/warehouse-SmartLink.port.ts",
     "bytes": 5369,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -518,7 +518,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+    "path": "src/cells/business/warranty-cell/ports/warranty-SmartLink.port.ts",
     "bytes": 3679,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -553,7 +553,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/index.ts",
+    "path": "src/core/SmartLink/index.ts",
     "bytes": 2218,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -585,7 +585,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/smartlink.nattimer.ts",
+    "path": "src/core/SmartLink/SmartLink.nattimer.ts",
     "bytes": 15750,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -621,7 +621,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/smartlink.pressure-field.ts",
+    "path": "src/core/SmartLink/SmartLink.pressure-field.ts",
     "bytes": 14065,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -694,7 +694,7 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/governance/smartlink-impulse-check.ts",
+    "path": "src/governance/SmartLink-impulse-check.ts",
     "bytes": 2494,
     "bucket": "RUNTIME_CONTRACT_TRANSLATION_REQUIRED",
     "effort": 6,
@@ -730,7 +730,7 @@ Không động UI/app source.
     "bytes": 11639,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 10,
     "markers": {
       "react_ui": [],
@@ -763,7 +763,7 @@ Không động UI/app source.
     "bytes": 11691,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 10,
     "markers": {
       "react_ui": [],
@@ -792,11 +792,11 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/cell-smartlink.component.ts",
+    "path": "src/core/SmartLink/cell-SmartLink.component.ts",
     "bytes": 2941,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 13,
     "markers": {
       "react_ui": [],
@@ -828,11 +828,11 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/smartlink.competition.ts",
+    "path": "src/core/SmartLink/SmartLink.competition.ts",
     "bytes": 10695,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 11,
     "markers": {
       "react_ui": [],
@@ -862,11 +862,11 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/smartlink.point.ts",
+    "path": "src/core/SmartLink/SmartLink.point.ts",
     "bytes": 10211,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 13,
     "markers": {
       "react_ui": [],
@@ -898,11 +898,11 @@ Không động UI/app source.
     "source_cluster": "DEEP_TS_TRANSLATION_REQUIRED"
   },
   {
-    "path": "src/core/smartlink/smartlink.qneu-bridge.ts",
+    "path": "src/core/SmartLink/SmartLink.qneu-bridge.ts",
     "bytes": 1994,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 10,
     "markers": {
       "react_ui": [],
@@ -935,7 +935,7 @@ Không động UI/app source.
     "bytes": 25258,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 14,
     "markers": {
       "react_ui": [],
@@ -972,7 +972,7 @@ Không động UI/app source.
     "bytes": 3078,
     "bucket": "RUNTIME_CLASS_REWRITE_REQUIRED",
     "effort": 8,
-    "action": "manual rewrite into Sira runtime artifact",
+    "action": "manual rewrite into sira runtime artifact",
     "marker_count": 9,
     "markers": {
       "react_ui": [],

@@ -8,12 +8,12 @@ export const taxBoundaryPolicy = {
     'gatekeeper',
   ],
   allowedTargets: [
-    'smartlink-cell',
+    'SmartLink-cell',
     'audit-cell',
   ],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',
-    'BYPASS_CONSTITUTION',
+    'BYpass_CONSTITUTION',
     'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
   ],
   requiresGatekeeperApproval: [

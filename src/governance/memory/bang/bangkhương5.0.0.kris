@@ -104,7 +104,7 @@
     "git_latest": "27f89b4",
     "cells": {
       "kernel": ["audit-cell", "config-cell", "monitor-cell", "rbac-cell", "security-cell"],
-      "infrastructure": ["smartlink-cell", "sync-cell", "warehouse-cell", "shared-contracts-cell"],
+      "infrastructure": ["SmartLink-cell", "sync-cell", "warehouse-cell", "shared-contracts-cell"],
       "business": ["pricing-cell(508L)", "inventory-cell(699L)", "sales-cell(54L)", "order-cell", "customer-cell", "warranty-cell", "buyback-cell", "promotion-cell", "showroom-cell", "production-cell(159L-NEW)", "hr-cell(114L-NEW)", "payment-cell(87L-NEW)", "customs-cell(103L-NEW)", "finance-cell(112L-NEW)"],
       "total": 23
     },

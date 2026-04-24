@@ -2,7 +2,7 @@
 
 set -e  # dừng nếu có lỗi
 
-echo "🚀 Bắt đầu build production chain – Tâm Luxury Natt-OS"
+echo "🚀 Bắt đầu build production chain – Tâm Luxury natt-os"
 
 # 1. Tạo cấu trúc thư mục
 mkdir -p src/cells/business/{order,prdmaterials,casting,stone,finishing,polishing,inventory,tax}-cell
@@ -18,7 +18,7 @@ cat > src/governance/event-contracts/production-events.ts << 'EOF'
 // ============================================================
 
 export interface OrderCreatedEvent {
-  eventType: 'ORDER_CREATED';
+  eventType: 'ORDER_created';
   orderId: string;
   orderType: 'KD' | 'CT';
   productCode: string;
@@ -128,7 +128,7 @@ export interface DustAlertEvent {
   lossRate: number;
   expected: number;
   deviation: number;
-  level: 'WARNING' | 'HIGH' | 'CRITICAL';
+  level: 'warnING' | 'HIGH' | 'CRITICAL';
   message: string;
 }
 
@@ -330,7 +330,7 @@ for cell in "${cells[@]}"; do
   "version": "1.0.0",
   "qneu": 100,
   "dependencies": [],
-  "smartlink": {
+  "SmartLink": {
     "subscribes": [],
     "emits": []
   }
@@ -402,7 +402,7 @@ EOF
 
   # Tạo port config
   mkdir -p "$cell_dir/ports"
-  cat > "$cell_dir/ports/${cell}.smartlink.port.ts" << EOF
+  cat > "$cell_dir/ports/${cell}.SmartLink.port.ts" << EOF
 import { forgeSmartLinkPort } from '@/satellites/port-forge/port.factory';
 
 export const ${cell^}SmartLinkPort = forgeSmartLinkPort({
@@ -469,7 +469,7 @@ if [ ! -f package.json ]; then
 {
   "name": "tam-luxury-production",
   "version": "1.0.0",
-  "description": "Production chain Natt-OS",
+  "description": "Production chain natt-os",
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
@@ -557,7 +557,7 @@ for cell in "${cells[@]}"; do
   if [[ "$cell" == "dust-recovery" ]]; then
     dir="src/cells/infrastructure/dust-recovery-cell"
   fi
-  for file in "neural-main-cell.cell.anc" "index.ts" "${cell}.engine.ts" "${cell}.entity.ts" "${cell}.events.ts" "ports/${cell}.smartlink.port.ts"; do
+  for file in "neural-main-cell.cell.anc" "index.ts" "${cell}.engine.ts" "${cell}.entity.ts" "${cell}.events.ts" "ports/${cell}.SmartLink.port.ts"; do
     if [ ! -f "$dir/$file" ]; then
       echo "❌ Missing $dir/$file"
       ((errors++))

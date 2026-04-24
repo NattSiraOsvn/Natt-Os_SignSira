@@ -1,6 +1,6 @@
 import { EventBus } from "../../../../core/events/event-bus";
-// ── production-smartlink.port.ts ────────────────────────────
-// Sira_CONTRACT_INTERFACE ProductionSignal
+// ── production-SmartLink.port.ts ────────────────────────────
+// sira_CONTRACT_INTERFACE ProductionSignal
 const ProductionSignal = {
   type: "PRODUCTION_STARTED" | "PRODUCTION_COMPLETED" | "WEIGHT_ANOMALY" | "MATERIAL_LOSS";
   payload;

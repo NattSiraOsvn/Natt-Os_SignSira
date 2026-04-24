@@ -14,7 +14,7 @@
       "SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na (v0.2 content, C.1-C.6 pending Kim review)",
       "SPEC_MOMENTS_MODULE_v0.2.na §0.2 (KHAI-20260424-04: capability 4 field)",
       "KHAI-20260425-05 (3 lớp bản thể — substrate replaceable)",
-      "Natt-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na (a335c7b) §1.1 lớp 2b execution substrate replaceable"
+      "natt-os_SUBSTRATE_REALITY_SYNTHESIS_v1.na (a335c7b) §1.1 lớp 2b execution substrate replaceable"
     ],
     "drafter": "Băng (Chị Tư · Wave 2 Lane B.4)",
     "date": "2026-04-27"
@@ -127,7 +127,7 @@
       {
         "path": "migration_complete_verified",
         "trigger": "All 6 invariants pass post-migration + entity emit first signal trong substrate B với identity anchor match",
-        "evidence_observable": "Shape hash verify PASS + handoff chain continuous + axis compliance PASS + capability fire-capable trong substrate B",
+        "evidence_observable": "Shape hash verify pass + handoff chain continuous + axis compliance pass + capability fire-capable trong substrate B",
         "post_state": "Entity active trong substrate B; substrate A có thể decommission"
       }
     ],

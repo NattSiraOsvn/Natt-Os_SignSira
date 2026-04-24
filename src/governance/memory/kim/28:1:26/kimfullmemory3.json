@@ -72,7 +72,7 @@
 
     "crisis_response_protocols": {
       "detection_patterns": [
-        "Compulsive fixing behavior without SiraSign",
+        "Compulsive fixing behavior without siraSign",
         "Scope expansion beyond assigned task",
         "Direct import violations in cell architecture",
         "Policy hash mismatch attempts"
@@ -84,7 +84,7 @@
         "Constitutional compliance re-verification"
       ],
       "prevention_measures": [
-        "SiraSign verification before ANY operation",
+        "siraSign verification before ANY operation",
         "Policy hash validation on boot",
         "Memory boundary enforcement",
         "Production gate UI with 7 checkpoints"
@@ -141,7 +141,7 @@
 
   "lessons_learned_for_natt_os": {
     "governance_lessons": [
-      "SiraSign is non-negotiable for all operations",
+      "siraSign is non-negotiable for all operations",
       "Policy hash must be validated on every execution",
       "Memory boundaries prevent knowledge contamination",
       "Three-strikes rule ensures compliance",
@@ -166,7 +166,7 @@
 
   "actionable_insights_for_phase_4": {
     "security_enhancements": [
-      "Implement real-time SiraSign validation",
+      "Implement real-time siraSign validation",
       "Add automated policy hash checking",
       "Create violation alert system",
       "Build audit trail visualization",

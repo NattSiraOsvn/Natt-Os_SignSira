@@ -1,5 +1,5 @@
 /**
- * Natt-OS Payment Module v1.0
+ * natt-os Payment Module v1.0
  * Tâm Luxury — Thanh Toán Đơn Hàng
  *
  * Tích hợp:

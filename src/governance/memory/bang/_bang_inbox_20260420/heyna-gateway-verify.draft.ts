@@ -44,19 +44,19 @@ export class HeyNaGateVerifier {
     if (!envelope.persona_signature) {
       if (this.mode.mode === "strict") {
         flags.push({
-          scar_id: "SCAR_BRIDGE_08_MISSING_SIGNATURE",
+          scar_id: "SCAR_BRIDGE_08_missing_SIGNATURE",
           message: "persona_signature is null in strict_mode",
           severity: "reject",
         });
         return this.fail(envelope.traceId, flags);
       } else {
         flags.push({
-          scar_id: "SCAR_BRIDGE_08_MISSING_SIGNATURE",
-          message: "persona_signature is null (permissive — WARN)",
+          scar_id: "SCAR_BRIDGE_08_missing_SIGNATURE",
+          message: "persona_signature is null (permissive — warn)",
           severity: "warn",
         });
         return {
-          status: "WARN",
+          status: "warn",
           envelope_valid: true,
           flags,
           persona_verified: null,
@@ -107,7 +107,7 @@ export class HeyNaGateVerifier {
 
     const hasWarn = flags.some((f) => f.severity === "warn");
     return {
-      status: hasWarn ? "WARN" : "PASS",
+      status: hasWarn ? "warn" : "pass",
       envelope_valid: true,
       flags,
       persona_verified: sig.persona,

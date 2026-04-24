@@ -186,7 +186,7 @@ const FinanceAudit: React.FC = () => {
 
           <div className="glass p-8 rounded-[3rem] border border-blue-500/20 bg-blue-500/5 shadow-2xl">
             <h4 className="text-[10px] text-blue-400 font-black uppercase tracking-widest mb-4 flex items-center">
-               <span className="mr-2 text-lg">🧠</span> Cố Vấn | Advisor: Thiên
+               <span className="mr-2 text-lg">🧠</span> Cố Vấn | Advisor: thiên
             </h4>
             <div className="text-[11px] text-gray-400 leading-relaxed italic space-y-4">
               <p>

@@ -14,7 +14,7 @@ export class GmailIntelligence {
     actionNeeded: boolean;
   }> {
     const prompt = `
-      Bạn là KRIS - Trợ lý pháp lý vận hành của Natt-OS.
+      Bạn là KRIS - Trợ lý pháp lý vận hành của natt-os.
       Hãy phân tích nội dung email sau từ Nhà cung cấp: ${supplier.tenNhaCungCap}.
       
       YÊU CẦU:

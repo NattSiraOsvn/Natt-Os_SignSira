@@ -63,7 +63,7 @@ const SKIP_FILES = new Set([
  * Extract ALL possible extensions from a filename.
  * "bangkhương1.0.0.kris" → [".kris", ".0.kris", ...]
  * "audit-cell.cell.anc" → [".anc", ".cell.anc"]
- * "HIEN-PHAP-Natt-OS-v5.0.anc" → [".anc", ".0.anc"]
+ * "HIEN-PHAP-natt-os-v5.0.anc" → [".anc", ".0.anc"]
  */
 function extractExtensions(filename: string): string[] {
   const parts = filename.split('.');

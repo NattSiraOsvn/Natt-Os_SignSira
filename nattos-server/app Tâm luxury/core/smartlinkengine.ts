@@ -70,7 +70,7 @@ class SmartLinkEngine {
         id: 'REVENUE_MAPPING',
         name: 'Doanh thu bán hàng',
         description: 'Ánh xạ doanh thu từ đơn hàng sang tài khoản kế toán',
-        source: { system: 'SALES', entity: 'SalesOrder', eventType: 'ORDER_CREATED' },
+        source: { system: 'SALES', entity: 'SalesOrder', eventType: 'ORDER_created' },
         sourceField: 'pricing.totalAmount',
         destination: { system: 'ACCOUNTING', entity: 'JournalEntry', accountType: 'REVENUE' },
         destinationField: 'debit_accounts.revenue',
@@ -109,7 +109,7 @@ class SmartLinkEngine {
    */
   public async autoMapSalesEvent(event: SalesEvent): Promise<AccountingEntry[]> {
     const entries: AccountingEntry[] = [];
-    if (event.type === 'ORDER_CREATED' && event.order) {
+    if (event.type === 'ORDER_created' && event.order) {
         // Hợp nhất logic tạo từ Sales
         const generated = this.generateFromSales(event.order);
         entries.push(...generated);

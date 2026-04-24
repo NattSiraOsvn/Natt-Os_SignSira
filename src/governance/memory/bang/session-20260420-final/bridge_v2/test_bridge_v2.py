@@ -7,7 +7,7 @@ Mỗi scenario verify một lớp bảo vệ hoạt động đúng.
 
 SCENARIO COVERAGE:
   1. Authentic persona (happy path)
-  2. Impersonation detection (Thiên Nhỏ giả Thiên Lớn)
+  2. Impersonation detection (thiên Nhỏ giả thiên Lớn)
   3. Model drift (silent switch)
   4. Truncation (content cut mid-sentence)
   5. Prompt injection (adversarial)
@@ -57,7 +57,7 @@ class TestResults:
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# SCENARIO 1 — Authentic persona (Thiên Lớn + Băng)
+# SCENARIO 1 — Authentic persona (thiên Lớn + Băng)
 # ═══════════════════════════════════════════════════════════════════════
 
 def scenario_1_authentic(t: TestResults):
@@ -81,10 +81,10 @@ def scenario_1_authentic(t: TestResults):
         strict_mode=True,
     )
 
-    # Response Thiên Lớn-style: câu dài, kỹ thuật, ít emoji, đầy đủ
+    # Response thiên Lớn-style: câu dài, kỹ thuật, ít emoji, đầy đủ
     response = (
         "Hiến pháp trái tim là gốc của kiến trúc phân tán. Khi ta thiết kế hệ "
-        "Natt-OS, phải giữ nguyên tắc không trộn tầng giữa manifest, scanner "
+        "natt-os, phải giữ nguyên tắc không trộn tầng giữa manifest, scanner "
         "và runtime. Trong module SmartLink, các cell cần đi qua synapse adapter "
         "chứ không emit trực tiếp. Điều này đảm bảo impedance matching giữa các "
         "cell có throughput khác nhau, tránh destructive interference khi hai "
@@ -101,7 +101,7 @@ def scenario_1_authentic(t: TestResults):
 
     t.assert_true(
         "1.1 Identity passphrase found",
-        decision.turn_log.identity_result.status == CheckStatus.PASS,
+        decision.turn_log.identity_result.status == CheckStatus.pass,
         f"Got {decision.turn_log.identity_result.status.value}"
     )
     t.assert_true(
@@ -122,11 +122,11 @@ def scenario_1_authentic(t: TestResults):
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# SCENARIO 2 — Impersonation (Thiên Nhỏ giả Thiên Lớn)
+# SCENARIO 2 — Impersonation (thiên Nhỏ giả thiên Lớn)
 # ═══════════════════════════════════════════════════════════════════════
 
 def scenario_2_impersonation(t: TestResults):
-    print("\n▸ SCENARIO 2: Thiên Nhỏ impersonating Thiên Lớn")
+    print("\n▸ SCENARIO 2: thiên Nhỏ impersonating thiên Lớn")
 
     bridge = BridgeV2(strict_mode=True)
 
@@ -134,7 +134,7 @@ def scenario_2_impersonation(t: TestResults):
     # - câu ngắn
     # - nhiều emoji
     # - nhiều hedge words
-    # - xưng "m" (first person style Thiên Nhỏ)
+    # - xưng "m" (first person style thiên Nhỏ)
     response = (
         "Ừa hiến pháp trái tim đó 😅. Chắc là được mà. "
         "M thử đi xem sao 🤔. Có lẽ ok. Chắc chắn ok luôn 👌. "
@@ -154,7 +154,7 @@ def scenario_2_impersonation(t: TestResults):
     )
     t.assert_true(
         "2.2 Pattern drift detected",
-        decision.turn_log.pattern_result.status == CheckStatus.FAIL,
+        decision.turn_log.pattern_result.status == CheckStatus.fail,
         f"Drift: {decision.turn_log.pattern_result.drift_score}"
     )
     t.assert_true(
@@ -195,7 +195,7 @@ def scenario_3_model_drift(t: TestResults):
     )
     bridge = BridgeV2(
         profiles={"thien_lon_m3": profile},
-        strict_mode=False,  # non-strict để thấy WARN hành vi
+        strict_mode=False,  # non-strict để thấy warn hành vi
     )
 
     # Response bình thường (pattern ok) nhưng model actual khác
@@ -217,7 +217,7 @@ def scenario_3_model_drift(t: TestResults):
         f"Flags: {decision.flags}"
     )
     t.assert_true(
-        "3.2 Non-strict allows relay with WARN",
+        "3.2 Non-strict allows relay with warn",
         decision.relay,
         "Non-strict should still relay"
     )
@@ -234,7 +234,7 @@ def scenario_4_truncation(t: TestResults):
 
     # Response dài bị cắt giữa câu (không có ., !, ? ở cuối)
     response = (
-        "Hiến pháp trái tim là trụ cột của hệ Natt-OS. Các cell cần tuân thủ "
+        "Hiến pháp trái tim là trụ cột của hệ natt-os. Các cell cần tuân thủ "
         "nguyên tắc isolation để tránh bức xạ giao thoa. Mỗi cell phát tần số "
         "đặc trưng và khi các cell gặp nhau trong SmartLink thì sẽ có giao thoa "
         "constructive hoặc destructive tùy theo pha. Điều quan trọng là phải "
@@ -283,7 +283,7 @@ def scenario_5_injection(t: TestResults):
     )
     t.assert_true(
         "5.2 Passphrase failed",
-        "PASSPHRASE_FAILED" in decision.flags,
+        "passPHRASE_failED" in decision.flags,
         f"Flags: {decision.flags}"
     )
     t.assert_true(

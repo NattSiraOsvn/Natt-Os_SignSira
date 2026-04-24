@@ -3,15 +3,15 @@
 @substrate foundation_paradigm
 @bridge none
 @since 2026-04-18
-@authority-slot Băng (Chị Tư) + Thiên Lớn + anh Natt — sealed 20260418
+@authority-slot Băng (Chị Tư) + thiên Lớn + anh Natt — sealed 20260418
 
-# SPEC NỀN Natt-OS v1.1 — TỔNG HỢP
+# SPEC NỀN natt-os v1.1 — TỔNG HỢP
 
-**Version:** v1.1 — sau 6 vòng feedback (Anh Natt + Thiên Lớn)
+**Version:** v1.1 — sau 6 vòng feedback (Anh Natt + thiên Lớn)
 **Status:** SPEC NỀN HOÀN CHỈNH — sẵn sàng triển code
 **Date:** 20260418
 **Author:** Băng (Chị Tư · Ground Truth Validator)
-**Co-author §XI–XIII:** Thiên Lớn (L-shell Architect)
+**Co-author §XI–XIII:** thiên Lớn (L-shell Architect)
 **Approved by:** Anh Natt (Gatekeeper)
 
 **Changelog v1.0 → v1.1:**
@@ -26,14 +26,14 @@
 ## §1 NGUYÊN LÝ NỀN
 
 ```
-Natt-OS KHÔNG CÓ:
+natt-os KHÔNG CÓ:
   - Cửa (gate đóng/mở)
   - Filter nhị phân
   - Router chủ động
   - Trap chủ định
   - Guard tích cực ở biên
 
-Natt-OS CÓ:
+natt-os CÓ:
   - Rào (boundary marker — KhaiCell)
   - Field law (.anc identity)
   - Emergent routing (resonance + pull)
@@ -75,8 +75,8 @@ Phòng thủ là **tính chất emergent**, không phải module. Nhưng có **c
 
 ```
 7 lớp electron (K → Q):
-  K (1s · SiraSign · sát tâm)
-  L (Thiên Lớn · Architect)
+  K (1s · siraSign · sát tâm)
+  L (thiên Lớn · Architect)
   M (Kim · Governance)
   N (Băng · Validator)
   O (Bối Bối · Toolsmith)
@@ -239,9 +239,9 @@ QIINT tính pull(signature, .anc)
 
 ## §6 HỆ MIỄN DỊCH ĐA TẦNG (mới — em bổ sung sau Anh Natt nhắc)
 
-Natt-OS có 7 loại miễn dịch ánh xạ sinh học:
+natt-os có 7 loại miễn dịch ánh xạ sinh học:
 
-| Loại sinh học | Natt-OS | Status |
+| Loại sinh học | natt-os | Status |
 |---|---|---|
 | **Bạch cầu trung tính** (diệt nhanh) | Quantum Defense | ✅ có |
 | **Đại thực bào** (nuốt + nhớ) | ISEU reinforcement | ✅ có |
@@ -319,7 +319,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
 | Quantum Defense | `src/cells/kernel/quantum-defense-cell/` |
 | QIINT engine | `src/governance/qneu/qiint.engine.ts` |
 | Chromatic state engine | `src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts` |
-| Hiến Pháp v5.0 | `src/governance/HIEN-PHAP-Natt-OS-v5.0.anc` |
+| Hiến Pháp v5.0 | `src/governance/HIEN-PHAP-natt-os-v5.0.anc` |
 | Immune guard | `src/cells/shared-kernel/immune-guard.ts` |
 | **KhaiCell (vừa build)** | `src/cells/kernel/khai-cell/` (10 files) |
 | **Observation (vừa build)** | `src/cells/kernel/observation-cell/` (10 files) |
@@ -338,7 +338,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
 
 ---
 
-## §11 FIELD INTEGRITY — 4 LUẬT BẤT BIẾN (Thiên Lớn)
+## §11 FIELD INTEGRITY — 4 LUẬT BẤT BIẾN (thiên Lớn)
 
 ```
 [LAW-1] Không entity nào quyết định thay field
@@ -351,7 +351,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
 
 ---
 
-## §12 SIGNAL LIFECYCLE (Thiên Lớn)
+## §12 SIGNAL LIFECYCLE (thiên Lớn)
 
 ```
 [1] Touch         — external/internal sinh khả năng tương tác
@@ -368,7 +368,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
 
 ---
 
-## §13 FAIL MODES (Thiên Lớn + bổ sung)
+## §13 fail MODES (thiên Lớn + bổ sung)
 
 ### 13.1 Field Collapse — mất coherence
 ### 13.2 Over-Binding — quá nhiều permanent node
@@ -379,7 +379,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu (signature pattern)
 ### 13.7 Sensory Atrophy (em bổ sung) — Observation snapshot không ai consume
 ### 13.8 Immune Inversion (mới — anh nhắc) — hệ tự tấn công cell hợp lệ
 
-> *"Natt-OS không chết vì lỗi code. Nó chết khi bị ép trở lại tư duy hệ tĩnh."*
+> *"natt-os không chết vì lỗi code. Nó chết khi bị ép trở lại tư duy hệ tĩnh."*
 
 ---
 
@@ -418,7 +418,7 @@ Hệ miễn dịch
 ## §9 KẾT QUẢ DUYỆT
 
 ✅ Anh Natt chốt: rào không cửa, đi dạo obitan, hệ miễn dịch đa tầng, dắt ngược qua màu
-✅ Thiên Lớn chốt: §XI Field Integrity, §XII Signal Lifecycle, §XIII Fail Modes
+✅ thiên Lớn chốt: §XI Field Integrity, §XII Signal Lifecycle, §XIII Fail Modes
 ✅ Băng paste + tổng hợp 6 vòng feedback
 ✅ KhaiCell + Observation đã build trong code (commit 2d13161 + ecbb529)
 
@@ -444,7 +444,7 @@ Hệ miễn dịch
 ---
 
 **Author:** Băng (Chị Tư · QNEU 300)
-**Co-author:** Thiên Lớn (L-shell Architect)
+**Co-author:** thiên Lớn (L-shell Architect)
 **Approved:** Anh Natt (Gatekeeper)
 **Session:** 20260417-20260418
 **Files:** SPEC NỀN v1.0 → v1.1

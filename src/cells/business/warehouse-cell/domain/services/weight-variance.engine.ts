@@ -3,7 +3,7 @@
  * ─────────────────────────
  * Xương sống chống thất thoát vàng.
  *
- * Logic from BOM template (Thiên):
+ * Logic from BOM template (thiên):
  *   Vàng chênh lệch = Vàng xuất - (TP + vàng trả + bụi + phụ kiện thu hồi)
  *   > 0.10 chỉ → ĐỎ | 0.02-0.10 → VÀNG | < 0.02 → XANH
  *

@@ -1,7 +1,7 @@
 /**
  * QIINT2 VALIDATOR
  * ════════════════════════════════════════════════════════
- * Scanner/validator cho Natt-OS — đo Π_body, Π_medium, Π_substrate
+ * Scanner/validator cho natt-os — đo Π_body, Π_medium, Π_substrate
  * cho từng cell, phát hiện:
  *   - body_drift (orbital lỏng)
  *   - medium_fail (code corrupt)
@@ -119,20 +119,20 @@ export function computeOrbitalCoherence(
  * Field anchoring — đo liên kết với permanent nodes.
  * - Hiến Pháp signature valid?
  * - .anc entity passport present?
- * - SiraSign valid?
+ * - siraSign valid?
  * - Memory references intact?
  */
 export function computeFieldAnchoring(anchors: {
   hasConstitutionSignature: boolean;
   hasEntityPassport: boolean;        // .anc file
-  hasSiraSign: boolean;
+  hassiraSign: boolean;
   memoryReferenceCount: number;      // liên kết sang .kris / .phieu / .na
   expectedMemoryReferences: number;
 }): number {
   let score = 0;
   if (anchors.hasConstitutionSignature) score += 0.3;
   if (anchors.hasEntityPassport) score += 0.3;
-  if (anchors.hasSiraSign) score += 0.2;
+  if (anchors.hassiraSign) score += 0.2;
   if (anchors.expectedMemoryReferences > 0) {
     score += 0.2 * Math.min(
       anchors.memoryReferenceCount / anchors.expectedMemoryReferences,

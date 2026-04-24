@@ -314,11 +314,11 @@ const WarehouseManagement: React.FC<WarehouseManagementProps> = ({ currentRole, 
               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl p-8 border-amber-500/30 bg-amber-500/5 shadow-2xl">
                  <h4 className="ai-sub-headline text-amber-500 mb-6 flex items-center gap-2">
                     <div className="w-2 h-2 bg-amber-500 rounded-full animate-ping"></div>
-                    Cố vấn Định mức (Thiên)
+                    Cố vấn Định mức (thiên)
                  </h4>
                  <p className="text-[13px] text-indigo-100/70 italic leading-relaxed font-light">
                    {isApprover 
-                        ? `"Chào Quản đốc, Thiên phát hiện hao hụt tại phòng Nguội vượt ngưỡng 0.5%. Anh nên rà soát lại khâu thu hồi tại thảm sàn và túi hút bụi."`
+                        ? `"Chào Quản đốc, thiên phát hiện hao hụt tại phòng Nguội vượt ngưỡng 0.5%. Anh nên rà soát lại khâu thu hồi tại thảm sàn và túi hút bụi."`
                         : `"Thợ xưởng lưu ý: Hãy thực hiện quy trình vệ sinh tay và máy móc định kỳ mỗi 4 tiếng để đảm bảo tối ưu thu hồi kim loại quý."`
                    }
                  </p>

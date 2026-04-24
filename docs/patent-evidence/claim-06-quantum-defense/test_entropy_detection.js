@@ -67,7 +67,7 @@ console.log(`  → entropy: ${entropyNoisy.toFixed(2)} | level: ${levelNoisy}`);
 const passed = entropyClean < 30 && entropyNoisy > 50;
 
 console.log('\n' + '='.repeat(50));
-console.log(`RESULT: ${passed ? '✅ PASS' : '❌ FAIL'}`);
+console.log(`RESULT: ${passed ? '✅ pass' : '❌ fail'}`);
 console.log(`  CLEAN entropy < 30:  ${entropyClean < 30 ? '✓' : '✗'} (${entropyClean.toFixed(2)})`);
 console.log(`  NOISY entropy > 50:  ${entropyNoisy > 50 ? '✓' : '✗'} (${entropyNoisy.toFixed(2)})`);
 console.log('='.repeat(50));

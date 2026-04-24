@@ -1,4 +1,4 @@
-# ThiênBăng extension layer — 20260425
+# thiênbăng extension layer — 20260425
 
 status: CANONICAL_EXTENSION
 created_at: 2026-04-24T18:37:22.568780+00:00
@@ -8,9 +8,9 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Decision
 
-Tầng mở rộng sinh thể dùng tên ThiênBăng để khớp từ điển `src/thienbang.si`.
+Tầng mở rộng sinh thể dùng tên thiênbăng để khớp từ điển `src/thienbang.si`.
 
-Không dùng Sira làm tên operator.
+Không dùng sira làm tên operator.
 
 ## 2. Layering
 
@@ -35,4 +35,4 @@ Không dùng Sira làm tên operator.
 
 Expansion is not replacement.
 
-ThiênBăng mở rộng Thiên, không thay Thiên.
+thiênbăng mở rộng thiên, không thay thiên.

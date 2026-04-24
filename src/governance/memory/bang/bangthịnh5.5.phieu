@@ -5,7 +5,7 @@
   "previous_version": "5.4 (2026-03-30)",
   "filesystem_snapshot": {
     "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "head_commit": "bd95399 chore: remove governance.zip from repo + gitignore *.zip",
     "commits": 461,
     "ts_files": 1330,
@@ -13,8 +13,8 @@
     "tsc_errors": 0
   },
   "key_files": {
-    "constitution_active": "src/governance/HIEN-PHAP-Natt-OS-v4.0.anc",
-    "constitution_sealed": "src/governance/HIEN-PHAP-Natt-OS-v5.0.anc (25/03/2026 — CHƯA deploy)",
+    "constitution_active": "src/governance/HIEN-PHAP-natt-os-v4.0.anc",
+    "constitution_sealed": "src/governance/HIEN-PHAP-natt-os-v5.0.anc (25/03/2026 — CHƯA deploy)",
     "bangmf": "src/governance/memory/bang/bangkhương6.4.0.kris",
     "bangfs": "src/governance/memory/bang/bangthịnh5.5.phieu",
     "canmf": "src/governance/memory/can/cankhương4.0.kris",
@@ -22,7 +22,7 @@
     "smartaudit": "nattos.sh (v5.1, 1661 lines — gap: thiếu S39+S40 so với v5.3)",
     "immune_policy": "audit/policy/IMMUNE_POLICY.json",
     "iseu_spec": "docs/specs/ISEU_Core_Specification_v3_0.md",
-    "smartlink_engine": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+    "SmartLink_engine": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts",
     "iseu_listener": "src/cells/kernel/audit-cell/domain/services/iseu-feedback.listener.ts",
     "anti_fraud": "src/cells/kernel/audit-cell/domain/services/anti-fraud.orchestrator.ts",
     "na_home": "database/nabie/",
@@ -36,7 +36,7 @@
     "infrastructure_cells": 3,
     "total_live": 46,
     "all_6_6": 37,
-    "smartlink_wired": 37,
+    "SmartLink_wired": 37,
     "kernel_shells": [
       "ai-connector-cell (2/6)",
       "notification-cell (1/6)",
@@ -92,7 +92,7 @@
     ],
     "P2_business": [
       "payment feature (QR/CK) cho UI apps",
-      "Can: /api/auth/verify-sirasign + SiraSign SHA-256",
+      "Can: /api/auth/verify-sirasign + siraSign SHA-256",
       "QNEU frequencyImprints — vết hằn thật cần được record"
     ],
     "pending_unresolved": [
@@ -122,7 +122,7 @@
   "sirasign": {
     "van_de": "sirasign_master.json + sirasign_v2.json lọt repo root — nhạy cảm",
     "action": "Gatekeeper phải tự chạy: git rm sirasign_master.json sirasign_v2.json",
-    "can_build_pending": "/api/auth/verify-sirasign, /api/auth/verify-pin, SiraSign SHA-256 quantum-defense-cell"
+    "can_build_pending": "/api/auth/verify-sirasign, /api/auth/verify-pin, siraSign SHA-256 quantum-defense-cell"
   },
   "workflow_rules": {
     "nguyen_ly_fix": "Có lệnh → làm luôn. Kết quả là bằng chứng. Không giải thích trước. Không báo cáo giữa chừng.",

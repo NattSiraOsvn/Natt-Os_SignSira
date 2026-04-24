@@ -15,7 +15,7 @@
     "risk": 0,
     "state": "HEALTHY",
     "cells": "51 total · 37 business · 6 kernel · infra complete",
-    "smartlink": "44/44 — all cells have port",
+    "SmartLink": "44/44 — all cells have port",
     "eventbus": "UNIFIED (EventBridge DEPRECATED)",
     "bctc_chain": "LIVE + VERIFIED FY2025",
     "ts_nocheck": 105,
@@ -35,7 +35,7 @@
       "SPEC v2.5: TOC đầy đủ §1-27 + §8.5 UIMode từ use-contextual-ui.ts — canonical",
       "BCTC closed-loop: POST /api/bctc/run → REPORT_GENERATED → PERIOD_CLOSE_COMPLETED → TAX_FILED → BCTC_GENERATED",
       "server.js = vanilla JS ONLY — không ts-node, không require TypeScript trực tiếp",
-      "51 cells: tất cả có smartlink port + index.ts — dust-recovery-cell cuối cùng",
+      "51 cells: tất cả có SmartLink port + index.ts — dust-recovery-cell cuối cùng",
       "Bội Bội: brief gửi xong — KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md",
       "HR data: Kim + Bội Bội đang làm — Băng không đụng"
     ]
@@ -76,7 +76,7 @@
   "read_these_files_first": [
     "src/governance/memory/bang/bangkhương6.9.0.kris",
     "src/governance/memory/bang/bangthịnh5.9.0.phieu",
-    "docs/specs/governance/Natt-OS-WORKING-PROTOCOL.md",
+    "docs/specs/governance/natt-os-WORKING-PROTOCOL.md",
     "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
     "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
     "audit/summary/latest.json"

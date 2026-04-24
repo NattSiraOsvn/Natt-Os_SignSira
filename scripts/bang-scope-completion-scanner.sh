@@ -50,7 +50,7 @@ elif command -v git >/dev/null 2>&1; then
 fi
 
 if [[ -z "$REPO_ROOT" ]] || [[ ! -d "$REPO_ROOT" ]]; then
-  echo "ERROR: Không tìm thấy git repo. Chạy script từ trong repo natt-os_ver2goldmaster." >&2
+  echo "error: Không tìm thấy git repo. Chạy script từ trong repo natt-os_ver2goldmaster." >&2
   exit 1
 fi
 
@@ -62,13 +62,13 @@ if [[ $USE_ASCII -eq 1 ]]; then
   S_PART="[PART]"
   S_TODO="[TODO]"
   S_UNK="[ ?  ]"
-  S_WARN="[WARN]"
+  S_warn="[warn]"
 else
   S_DONE="✅"
   S_PART="⏳"
   S_TODO="❌"
   S_UNK="❓"
-  S_WARN="⚠️"
+  S_warn="⚠️"
 fi
 
 # ── Counters ─────────────────────────────────────────────────────────────
@@ -174,7 +174,7 @@ phase_header "PHASE 0.1 — Băng prior DONE (verify still in repo)"
 ev=""
 ev=$(check_file_or_find "scripts/validate-khaicell-bypass.py" "validate-khaicell-bypass.py" ".")
 if [[ -n "$ev" ]]; then
-  add_item "0.1" "P0.1.1" "KhaiCell bypass validator (PASS, 0 violations)" "DONE" "$ev"
+  add_item "0.1" "P0.1.1" "KhaiCell bypass validator (pass, 0 violations)" "DONE" "$ev"
 else
   add_item "0.1" "P0.1.1" "KhaiCell bypass validator" "TODO" "scripts/validate-khaicell-bypass.py"
 fi
@@ -182,7 +182,7 @@ fi
 # 3 KhaiCell tests
 ev=$(check_file_or_find "scripts/validate-khai-3tests.py" "validate-khai-3tests.py" ".")
 if [[ -n "$ev" ]]; then
-  add_item "0.1" "P0.1.2" "KhaiCell 3-tests (ALL PASS)" "DONE" "$ev"
+  add_item "0.1" "P0.1.2" "KhaiCell 3-tests (ALL pass)" "DONE" "$ev"
 else
   add_item "0.1" "P0.1.2" "KhaiCell 3-tests" "TODO" "scripts/validate-khai-3tests.py"
 fi
@@ -225,7 +225,7 @@ fi
 # PHASE 0.3 — Băng P0 fix (warehouse stale export)
 # ═══════════════════════════════════════════════════════════════════════════
 
-phase_header "PHASE 0.3 — Băng P0 FIX (Thiên Lớn audit P3)"
+phase_header "PHASE 0.3 — Băng P0 FIX (thiên Lớn audit P3)"
 
 if [[ -f "src/cells/infrastructure/index.ts" ]]; then
   if grep -q 'warehouse-cell' "src/cells/infrastructure/index.ts" 2>/dev/null; then
@@ -457,7 +457,7 @@ else
 fi
 
 # H.3 Tổng hợp Fail-Troy
-ev=$(check_file_or_find "docs/audits/FAIL_TROY_COMPILATION.md" "FAIL*TROY*.md" ".")
+ev=$(check_file_or_find "docs/audits/fail_TROY_COMPILATION.md" "fail*TROY*.md" ".")
 if [[ -n "$ev" ]]; then
   add_item "H" "H.3" "Tổng hợp Fail-Troy" "DONE" "$ev"
 else

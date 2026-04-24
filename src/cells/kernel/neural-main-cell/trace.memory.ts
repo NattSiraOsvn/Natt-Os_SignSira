@@ -7,7 +7,7 @@ export interface NeuralTraceEntry {
   traceId: string;
   operation: 'VALIDATE' | 'LOOKUP' | 'EXPORT' | 'DETECT_ANOMALY' | 'FREEZE_PROPOSE';
   entityId: string;
-  result: 'SUCCESS' | 'FAILURE' | 'SKIPPED';
+  result: 'SUCCESS' | 'failURE' | 'SKIPPED';
   detail: string;
   timestamp: string;
 }

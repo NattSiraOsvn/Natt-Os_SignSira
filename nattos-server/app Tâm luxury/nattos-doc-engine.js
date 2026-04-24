@@ -1,5 +1,5 @@
 /**
- * Natt-OS Document Engine v2.0
+ * natt-os Document Engine v2.0
  * Tâm Luxury — Full file format support
  *
  * HỖ TRỢ:

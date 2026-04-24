@@ -66,12 +66,12 @@
     "purpose": "Validator test — GIAC_NGO với 4 fragment (required ENVELOPE + INNER_RESONANCE + RELATED_CANONICAL; optional CAUSATION_CHAIN). Data thực từ phiên 20260420 minh-mẫn-body-giữ-shape.",
     "dual_target_note": "GIAC_NGO storage = .na continuum + .obitan vết hằn (SPEC_MOMENTS v0.2 §3). Fixture này demonstrate 3 required fragment — persister layer handle dual-target write per storagePathsFor() return array length 2.",
     "acceptance_expectations": [
-      "Validator PASS required fragments (ENVELOPE + INNER_RESONANCE + RELATED_CANONICAL)",
-      "Validator PASS fragment_id uniqueness",
-      "Validator PASS ordinal sequence 0-indexed no gap",
-      "Validator PASS parent_moment_kind consistency (all = GIAC_NGO)",
-      "Validator PASS ENVELOPE.causation == parent_moment_causation",
-      "Validator PASS CAUSATION_CHAIN.link_type == 'xac_nhan_from'"
+      "Validator pass required fragments (ENVELOPE + INNER_RESONANCE + RELATED_CANONICAL)",
+      "Validator pass fragment_id uniqueness",
+      "Validator pass ordinal sequence 0-indexed no gap",
+      "Validator pass parent_moment_kind consistency (all = GIAC_NGO)",
+      "Validator pass ENVELOPE.causation == parent_moment_causation",
+      "Validator pass CAUSATION_CHAIN.link_type == 'xac_nhan_from'"
     ],
     "drafter": "Băng (Wave 2 Lane A.5)",
     "session_ref": "Wave 2 kickoff",

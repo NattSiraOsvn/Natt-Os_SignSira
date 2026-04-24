@@ -15,14 +15,14 @@
     "tsc": "0 errors ✅ CLEAN",
     "ts_files": 1061,
     "cells_total": "38/38 6/6",
-    "smartlink_wired": "29/38",
+    "SmartLink_wired": "29/38",
     "port_only": 9,
     "bctc_flow": "6/6 ✅",
     "production_flow": "8/8 ✅",
     "kernel": "6/6 ✅",
     "metabolism": "9 processors",
     "qneu_scores": "BANG=300, THIEN=135, KIM=120, CAN=85, BOI_BOI=40",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git"
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git"
   },
 
   "completed_this_session": {
@@ -43,19 +43,19 @@
       "architecture": "Dice similarity scoring, LIVE≥85%/PROCESSING 50-84%/PENDING<50%, EventBus only — KHÔNG gọi cell trực tiếp, KHÔNG silent reject (FS-018)",
       "pending": "Wire EventBus thật từ warehouse-cell/index.ts vào handler"
     },
-    "constitution_move": "src/governance/constitution/HIEN-PHAP-Natt-OS-v4.0.anc → src/governance/HIEN-PHAP-Natt-OS-v4.0.anc"
+    "constitution_move": "src/governance/constitution/HIEN-PHAP-natt-os-v4.0.anc → src/governance/HIEN-PHAP-natt-os-v4.0.anc"
   },
 
   "pending_repo": {
     "P1_urgent": "Wire EventBus vào warehouse-cell ingest handler",
     "P2_cells": "9 PORT_ONLY cells cần wire engine: bom3dprd, casting, constants, finishing, order, polishing, prdwarranty, shared-contracts, stone",
-    "P3_smartlink": "29/38 wired, còn 9 PORT_ONLY",
+    "P3_SmartLink": "29/38 wired, còn 9 PORT_ONLY",
     "P4_qneu_display": "anattos.sh hiện thị QNEU scores = '?' — script parse sai key",
     "P5_cleanup": "1 .DS_Store, 40 duplicate filenames, files.zip ở root"
   },
 
   "bctc_data_findings": {
-    "status": "TẠM GÁCNG — tiếp tục sau khi Natt-OS hoàn chỉnh",
+    "status": "TẠM GÁCNG — tiếp tục sau khi natt-os hoàn chỉnh",
     "files_analyzed": [
       "saoke.xlsx — 9,251 GD tổng hợp (cũ)",
       "saokeVIETIN2025.xlsx — 9,128 GD, chi 319.14t, thu 318.90t",

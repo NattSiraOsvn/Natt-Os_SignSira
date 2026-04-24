@@ -1,8 +1,8 @@
 /**
- * LOGGER INTERFACE - Natt-OS
+ * LOGGER INTERFACE - natt-os
  */
 
-export type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'FATAL';
+export type LogLevel = 'DEBUG' | 'INFO' | 'warn' | 'error' | 'FATAL';
 
 export interface LogEntry {
   timestamp: number;

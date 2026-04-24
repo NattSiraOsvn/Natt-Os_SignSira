@@ -1,9 +1,9 @@
-// ── promotion-smartlink.port.ts ──────────────────────────────
+// ── promotion-SmartLink.port.ts ──────────────────────────────
 import { EventBus } from "../../../../core/events/event-bus";
 
-// Sira_CONTRACT_INTERFACE PromotionSignal
+// sira_CONTRACT_INTERFACE PromotionSignal
 const PromotionSignal = {
-  type: "PROMOTION_APPLIED" | "PROMOTION_REJECTED" | "MARGIN_WARNING";
+  type: "PROMOTION_APPLIED" | "PROMOTION_REJECTED" | "MARGIN_warnING";
   payload;
   timestamp;
 }
@@ -11,7 +11,7 @@ const PromotionSignal = {
 const PROMO_MAP = {
   "PROMOTION_APPLIED":  "PromotionApplied",
   "PROMOTION_REJECTED": "PromotionRejected",
-  "MARGIN_WARNING":     "MarginWarning",
+  "MARGIN_warnING":     "MarginWarning",
 };
 
 export function publishPromotionSignal(signal: PromotionSignal) {

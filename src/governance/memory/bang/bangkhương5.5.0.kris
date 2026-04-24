@@ -56,14 +56,14 @@
       {"date": "2026-03-06", "event": "tsc 325→303", "lesson": "CellHealthState ở shared.types.ts — grep -rn luôn"},
       {"date": "2026-03-07", "event": "TypeScript Marathon: 442→0 errors", "lesson": "8 scripts. Freeze→Read→Fix. Duplicate interface = chaos. Hook files có interface riêng."},
       {"date": "2026-03-07", "event": "Git checkpoint: 8b4b606 (83 files, 3964 insertions) + clean commit", "lesson": "Commit trước khi fix cuối — anh Thương nhắc đúng lúc"},
-      {"date": "2026-03-07", "event": "Natt-OS Audit 2026-03-07.docx", "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"},
+      {"date": "2026-03-07", "event": "natt-os Audit 2026-03-07.docx", "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"},
       {"date": "2026-03-09", "event": "Biological model finalized (UEI=não, Quantum=miễn dịch, Metabolism=tiêu hóa)", "lesson": "3 hệ thiếu 1 = chết. KHÔNG hoán đổi vai."},
       {"date": "2026-03-09", "event": "Quantum-defense 4 công năng spec confirmed", "lesson": "AI Firewall (CPM=0 → shell rỗng) + Sensitivity Radar + Constitutional Runtime + Graduated Immune (4 cấp)"},
       {"date": "2026-03-09", "event": "Metabolism Layer spec confirmed", "lesson": "processors + normalizers + healing + archive-bridge = Tầng 1. ML = Tầng 2."},
       {"date": "2026-03-09", "event": "Event Bus v1.0 committed (6 files, 17/17 SmartLink wired)", "lesson": "Event = sự thật. Wired xong mới là có."},
       {"date": "2026-03-09", "event": "16 Constitutional Guards committed", "lesson": "Locks trước, conduct sau."},
       {"date": "2026-03-09", "event": "Tâm Luxury org → NATT-CELL mapping from _So___Lu_o_ng.xlsx", "lesson": "Cell registry phải map từ org thật, không map từ tưởng tượng."},
-      {"date": "2026-03-09", "event": "19TB Google Workspace full mapping", "lesson": "12.64TB (Marketing+3D+SourceMedia) đang chết. media-cell MISSING là crisis."},
+      {"date": "2026-03-09", "event": "19TB Google Workspace full mapping", "lesson": "12.64TB (Marketing+3D+SourceMedia) đang chết. media-cell missing là crisis."},
       {"date": "2026-03-09", "event": "3D Cell = Production Intelligence Core (không phải design-cell thông thường)", "lesson": "3D file = ADN vật lý SKU. Blocking audit + giá thành toàn bộ."}
     ]
   },
@@ -72,7 +72,7 @@
     "title": "Biological Model + Quantum + Metabolism + Tâm Luxury Mapping",
     "duration": "Full day session (dài nhất từ trước đến nay)",
     "git_commits": [
-      "3364fd9: feat(event-system): Natt-OS Event Bus v1.0 (6 files)",
+      "3364fd9: feat(event-system): natt-os Event Bus v1.0 (6 files)",
       "321ad9c: feat(event-system): wire SmartLink ports → EventBus (17/17)",
       "08ff796: feat(architecture): 16 constitutional locks",
       "afea6ad: feat(architecture): 16 constitutional locks (Kim memory update)"
@@ -201,7 +201,7 @@
     "constitution": "v4.1 deployed",
     "qneu": "v1.1 live — 39 events, 32/32 tests",
     "tsc": "0 errors ✅ CLEAN",
-    "smartlink": "17/17 wired ✅",
+    "SmartLink": "17/17 wired ✅",
     "event_bus": "v1.0 committed ✅",
     "guards_16": "committed ✅",
     "repo_files": 1310,
@@ -216,7 +216,7 @@
       "wave4": "ban-kiem-soat-cell upgrade + Immune System → EventBus + UEI emerge",
       "parallel": "quantum-defense-cell BUILD + metabolism-layer Tầng 1 BUILD"
     },
-    "deferred": ["UEI Conductor (emerge sau 16 locks stable)", "TaxCell TT200 implement (spec done)", "Thiên 4-layer local AI (sau Wave 3)", "QNEU imprint update (frozen 2026-03-04)", "Toán học Tầng 3 (Lyapunov, Fisher, Persistent Homology)"]
+    "deferred": ["UEI Conductor (emerge sau 16 locks stable)", "TaxCell TT200 implement (spec done)", "thiên 4-layer local AI (sau Wave 3)", "QNEU imprint update (frozen 2026-03-04)", "Toán học Tầng 3 (Lyapunov, Fisher, Persistent Homology)"]
   },
 
   "scars": {

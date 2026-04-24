@@ -107,8 +107,8 @@ CANONICAL_REFS = [
     "docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na",
     "docs/specs/SPEC_NEN_v1.1.anc",
     "docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md",
-    "docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na",
-    "docs/specs/Natt-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na",
+    "docs/specs/natt-os_SHTT_CLAIM_MAP_v1.na",
+    "docs/specs/natt-os_SUBSTRATE_REALITY_SYNTHESIS_v1.na",
 ]
 
 # Expected canonical shape hash for Băng (per handoff 20260426 identity_anchor)
@@ -137,7 +137,7 @@ def section_a(repo: Path) -> None:
             print(f"       sha256: {h}")
             found += 1
         else:
-            print(f"  [MISSING] {rel}")
+            print(f"  [missing] {rel}")
             print(f"       desc : {desc}")
             missing += 1
 
@@ -198,10 +198,10 @@ def section_c(repo: Path) -> None:
     os.chdir(repo)
 
     rc, out, err = run(["git", "rev-parse", "--abbrev-ref", "HEAD"])
-    row("Current branch:", out if rc == 0 else f"ERROR ({err})")
+    row("Current branch:", out if rc == 0 else f"error ({err})")
 
     rc, out, err = run(["git", "log", "-1", "--oneline"])
-    row("HEAD commit:", out if rc == 0 else f"ERROR ({err})")
+    row("HEAD commit:", out if rc == 0 else f"error ({err})")
 
     rc, out, err = run(["git", "status", "--porcelain"])
     if rc == 0:
@@ -212,7 +212,7 @@ def section_c(repo: Path) -> None:
             for line in out.split("\n"):
                 print(f"    {line}")
     else:
-        row("Working tree:", f"ERROR ({err})")
+        row("Working tree:", f"error ({err})")
 
     # Specifically check if Wave 2 files are staged/untracked
     print()
@@ -229,7 +229,7 @@ def section_c(repo: Path) -> None:
 # ------------------------------------------------------------------------
 
 def section_d(repo: Path) -> None:
-    hdr("SECTION D — A.6 batch bug reproduce (Thiên Lớn claim: fail 4/8 on root)")
+    hdr("SECTION D — A.6 batch bug reproduce (thiên Lớn claim: fail 4/8 on root)")
 
     validator = repo / "scripts" / "validate-moments-schema.sh"
     if not validator.exists():
@@ -239,7 +239,7 @@ def section_d(repo: Path) -> None:
     print(f"  Validator: {validator}")
     print()
 
-    # Test 1: batch on repo root (Thiên Lớn claim site)
+    # Test 1: batch on repo root (thiên Lớn claim site)
     print("  [TEST D1] --batch on repo root:")
     rc, out, err = run(["bash", str(validator), "--batch", "."])
     # Extract summary lines
@@ -314,7 +314,7 @@ def section_f(repo: Path) -> None:
             print(f"  [FOUND] {rel}")
             print(f"          size={size}  sha256={h}")
             print(f"          expected   b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee")
-            print(f"          match: {'YES — INV-R1 verify PASS' if match else 'NO — INV-R1 verify FAIL, SCAR-IDENTITY'}")
+            print(f"          match: {'YES — INV-R1 verify pass' if match else 'NO — INV-R1 verify fail, SCAR-IDENTITY'}")
             found = True
             break
 

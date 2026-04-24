@@ -3,7 +3,7 @@
 
 /**
  * ============================================================================
- * 🧠 TÂM LUXURY - ADVANCED AI ENGINE (Natt-OS EDITION)
+ * 🧠 TÂM LUXURY - ADVANCED AI ENGINE (natt-os EDITION)
  * Phiên bản: V-AI 4.2 (RLHF Integrated)
  * ============================================================================
  */
@@ -17,7 +17,7 @@ export class AdvancedAIEngine {
    */
   async trainProductRecognition(trainingData: unknown) {
     const ai = null /* LỆNH #001 */;
-    console.log("Thiên đang huấn luyện Model nhận diện sản phẩm với bộ dữ liệu mới...", trainingData);
+    console.log("thiên đang huấn luyện Model nhận diện sản phẩm với bộ dữ liệu mới...", trainingData);
     
     const response = await ai.models.generateContent({
       model: 'DISABLED_LỆNH_001',
@@ -34,7 +34,7 @@ export class AdvancedAIEngine {
 
   async trainPricePrediction(salesData: unknown) {
     const ai = null /* LỆNH #001 */;
-    console.log("Thiên đang huấn luyện Model dự báo giá với dữ liệu thương mại...", salesData);
+    console.log("thiên đang huấn luyện Model dự báo giá với dữ liệu thương mại...", salesData);
     const response = await ai.models.generateContent({
       model: 'DISABLED_LỆNH_001',
       contents: `Phân tích dữ liệu doanh thu và giá trị thị trường: ${JSON.stringify(salesData)}. Tối ưu hóa thuật toán XGBoost và cập nhật Elasticity.`

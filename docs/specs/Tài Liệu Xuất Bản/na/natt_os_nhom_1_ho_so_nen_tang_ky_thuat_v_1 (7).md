@@ -1,4 +1,4 @@
-# Natt-OS — NHÓM 8: HỒ SƠ NỘI BỘ ĐỘI NGŨ / GOVERNANCE / DELIVERY CONTROL
+# natt-os — NHÓM 8: HỒ SƠ NỘI BỘ ĐỘI NGŨ / GOVERNANCE / DELIVERY CONTROL
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ tổ chức đội ngũ, phân quyền, review, release meeting, demo safety và postmortem  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 8
 
-Nhóm 8 là bộ hồ sơ nội bộ dùng để vận hành đội ngũ Natt-OS khi chuẩn bị release, demo, pilot hoặc triển khai khách hàng.
+Nhóm 8 là bộ hồ sơ nội bộ dùng để vận hành đội ngũ natt-os khi chuẩn bị release, demo, pilot hoặc triển khai khách hàng.
 
 Nhóm này trả lời 10 câu hỏi:
 
@@ -53,7 +53,7 @@ Không được gắn:
 ```text
 STATUS: TEAM_OPERATING_SYSTEM_ENFORCED
 STATUS: RELEASE_GOVERNANCE_LOCKED
-STATUS: CUSTOMER_DELIVERY_READY
+STATUS: CUSTOMER_DELIVERY_ready
 ```
 
 ---
@@ -83,7 +83,7 @@ STATUS: CUSTOMER_DELIVERY_READY
 
 ## 1.2. Mục đích
 
-Tài liệu này định nghĩa vai trò nội bộ trong Natt-OS, trách nhiệm chính, quyền hạn và boundary của từng vai.
+Tài liệu này định nghĩa vai trò nội bộ trong natt-os, trách nhiệm chính, quyền hạn và boundary của từng vai.
 
 ## 1.3. Role chính
 
@@ -223,7 +223,7 @@ Ví dụ:
 ```text
 fix/warehouse-cell-props-drift
 docs/release-gate-group-2
-chore/audit-smartlink-scan
+chore/audit-SmartLink-scan
 hotfix/incident-audit-gap-001
 ```
 
@@ -343,7 +343,7 @@ last_updated:
 
 ## 4.6. Language rules
 
-1. Dùng thuật ngữ canonical: EventEnvelope, Causality, Audit, Ground Truth, Gatekeeper, SiraSign, SmartLink, Mach HeyNa.
+1. Dùng thuật ngữ canonical: EventEnvelope, Causality, Audit, Ground Truth, Gatekeeper, siraSign, SmartLink, Mach HeyNa.
 2. Không dùng synonym marketing nếu phá lexicon.
 3. Không claim tuyệt đối.
 4. Phân biệt concept, spec, implementation, evidence.
@@ -445,7 +445,7 @@ Chuẩn hóa cuộc họp trước khi chuyển trạng thái release: technical
 ```text
 [ ] Branch/commit xác định
 [ ] Build Verification Report cập nhật
-[ ] Runtime Smoke Test PASS hoặc có waiver
+[ ] Runtime Smoke Test pass hoặc có waiver
 [ ] Known Issues cập nhật
 [ ] Release blockers phân loại
 [ ] Security/Trust docs không thiếu critical item
@@ -775,7 +775,7 @@ for path, content in files.items():
         print(f'SKIP existing: {p}')
     else:
         p.write_text(content, encoding='utf-8')
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
 
 print('done')
 EOF
@@ -811,13 +811,13 @@ for path, content in files.items():
     if not p.exists():
         p.write_text(content, encoding='utf-8')
         created.append(str(p))
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
     else:
         print(f'SKIP existing: {p}')
 
 print('created_count=', len(created))
 EOF
-git add docs/internal && git commit -m "docs(internal): add Natt-OS group 8 governance skeletons" && git push origin main
+git add docs/internal && git commit -m "docs(internal): add natt-os group 8 governance skeletons" && git push origin main
 ```
 
 ---

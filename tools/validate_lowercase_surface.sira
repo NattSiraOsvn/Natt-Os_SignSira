@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+
+const excludeDirs = new Set([
+  ".git", "node_modules", "dist", "logs", ".next", ".nuxt",
+  "coverage", ".cache", ".turbo", "target"
+]);
+
+const humanExts = new Set([".md", ".na", ".si", ".txt", ".phieu", ".kris"]);
+const softSurfaceExts = new Set([".html", ".sh", ".sira"]);
+
+const badNames = ["Thiên", "ThiênBăng", "Sira", "Natt-OS"];
+const badStatus = ["IMMUNE SCAN", "VALIDATION: PASS", "VALIDATION: FAIL", "GATE: PASS", "GATE: FAIL", "VERIFY PASS", "VERIFY FAIL"];
+
+const technicalAllowPath = [
+  "/archive/",
+  "/fixtures/",
+  "/node_modules/",
+  "/target/",
+];
+
+const allowFiles = new Set([
+  "tools/validate_lowercase_surface.sira",
+  "tools/validate_natural_case_surface.sira",
+  "docs/runtime/lowercase_surface_full_repo_20260425.na",
+  "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na",
+  "docs/runtime/NATURAL_CASE_SURFACE_20260425.na"
+]);
+
+function walk(dir, out = []) {
+  for (const name of fs.readdirSync(dir)) {
+    const p = path.join(dir, name);
+    const st = fs.statSync(p);
+    if (st.isDirectory()) {
+      if (!excludeDirs.has(name)) walk(p, out);
+    } else if (st.isFile()) {
+      const ext = path.extname(p);
+      if (humanExts.has(ext) || softSurfaceExts.has(ext)) {
+        out.push({ p, rel: path.relative(ROOT, p).replaceAll(path.sep, "/"), ext });
+      }
+    }
+  }
+  return out;
+}
+
+function technicalLine(line) {
+  if (/SIRA_|THIEN_|NATT_|CANONICAL_|SCAN_ONLY|PY_NATT|HTTPParser|JSON|URL|API|CPU|GPU/.test(line)) return true;
+  if (/const |let |var |function |class |interface |type |enum |import |export |process\.env/.test(line)) return true;
+  if (/grep|regex|token|badNames|badStatus|allowFiles|validation/i.test(line) && /".*"/.test(line)) return true;
+  return false;
+}
+
+const violations = [];
+
+for (const item of walk(ROOT)) {
+  if (allowFiles.has(item.rel)) continue;
+  if (technicalAllowPath.some(x => item.rel.includes(x))) continue;
+
+  const lines = fs.readFileSync(item.p, "utf8").split(/\r?\n/);
+
+  lines.forEach((line, idx) => {
+    if (technicalLine(line)) return;
+
+    for (const token of badNames) {
+      if (line.includes(token)) {
+        violations.push(`${item.rel}:${idx + 1}: ${token}`);
+      }
+    }
+
+    for (const token of badStatus) {
+      if (line.includes(token)) {
+        violations.push(`${item.rel}:${idx + 1}: ${token}`);
+      }
+    }
+
+    // Chỉ bắt GATE / VALIDATION trong human docs nếu là standalone word rõ ràng.
+    if (humanExts.has(item.ext)) {
+      if (/\bGATE\b/.test(line)) violations.push(`${item.rel}:${idx + 1}: GATE`);
+      if (/\bVALIDATION\b/.test(line)) violations.push(`${item.rel}:${idx + 1}: VALIDATION`);
+      if (/\bPASS\b/.test(line)) violations.push(`${item.rel}:${idx + 1}: PASS`);
+      if (/\bFAIL\b/.test(line)) violations.push(`${item.rel}:${idx + 1}: FAIL`);
+    }
+  });
+}
+
+if (violations.length) {
+  console.error("lowercase surface validation: fail");
+  for (const v of violations.slice(0, 120)) console.error(" - " + v);
+  if (violations.length > 120) console.error(` - ... ${violations.length - 120} more`);
+  process.exit(1);
+}
+
+console.log("lowercase surface validation: pass");
+console.log("rule=lowercase human surface; technical identifiers and archive evidence allowed");

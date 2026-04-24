@@ -1,4 +1,4 @@
-# Natt-OS SHTT — KNOWN BLOCKERS (NON-FILING-BLOCKING)
+# natt-os SHTT — KNOWN BLOCKERS (NON-FILING-BLOCKING)
 
 **kind:** SHTTKnownBlockers
 **version:** v1
@@ -8,7 +8,7 @@
 **drafter:** Băng (Chị Tư)
 **scope:** Ghi chú các blocker kỹ thuật · governance đã biết. Cần xử lý cho hard-freeze / production governance, NHƯNG không làm invalid filing claim core.
 
-> **Rule:** Blockers trong file này thuộc về **runtime production readiness**, không phải **pre-filing validity**. Filing subset 35 file trong `Natt-OS_SHTT_FILING_INDEX_v1.na` vẫn đủ điều kiện nộp.
+> **Rule:** Blockers trong file này thuộc về **runtime production readiness**, không phải **pre-filing validity**. Filing subset 35 file trong `natt-os_SHTT_FILING_INDEX_v1.na` vẫn đủ điều kiện nộp.
 
 ---
 
@@ -59,7 +59,7 @@
 ## 7. Gatekeeper 3 policy treo
 
 Cần seal cho hard-freeze, nhưng không chặn filing:
-- Bridge v2 amend Lệnh #001 — 4-condition framing Thiên Lớn approve
+- Bridge v2 amend Lệnh #001 — 4-condition framing thiên Lớn approve
 - Default behavior 3-tier waterfall (strict / permissive-warn / quarantine)
 - σ=0.5 octave seal sau Phase E.7 calibrate (pending Q2 data forward)
 - **Owner:** Gatekeeper
@@ -70,7 +70,7 @@ Cần seal cho hard-freeze, nhưng không chặn filing:
 
 - SPEC_QIINT_PHYSICS_FOUNDATION v0.2 pending Kim review (C.1-C.6 kernel feasibility)
 - SPEC B.1 v0.2 LAW-1..4 logic compliance pending Can check
-- **Filing impact:** v0.2 đã ratify bởi Thiên Lớn (4 đúng trục + 5 tách binding/proposal). Đủ cho claim core. Review Kim/Can là step phase C/D — governance progression, không chặn filing
+- **Filing impact:** v0.2 đã ratify bởi thiên Lớn (4 đúng trục + 5 tách binding/proposal). Đủ cho claim core. Review Kim/Can là step phase C/D — governance progression, không chặn filing
 - **Status:** PENDING_KIM · PENDING_CAN
 
 ---
@@ -85,7 +85,7 @@ Cần seal cho hard-freeze, nhưng không chặn filing:
 | 4 | Neural main passport rỗng | Kim | No | Yes |
 | 5 | Legacy `.kris` rename | Gatekeeper | No | No (cosmetic) |
 | 6 | SURVIVAL Tầng 0 | Kim | No | Yes |
-| 7 | 3 policy Thiên flag | Gatekeeper | No | Yes |
+| 7 | 3 policy thiên flag | Gatekeeper | No | Yes |
 | 8 | Kim/Can B.1 review | Kim/Can | No | Yes |
 
 **All blockers: non-filing-blocking.**
@@ -95,12 +95,12 @@ Cần seal cho hard-freeze, nhưng không chặn filing:
 
 ## Liên kết
 
-- **Filing index:** `docs/specs/Natt-OS_SHTT_FILING_INDEX_v1.na`
-- **Pre-freeze checklist:** `docs/specs/Natt-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
+- **Filing index:** `docs/specs/natt-os_SHTT_FILING_INDEX_v1.na`
+- **Pre-freeze checklist:** `docs/specs/natt-os_SHTT_PREFREEZE_CHECKLIST_v1.na`
 - **Baseline commit:** `ca68825`
 
 ---
 
-*causation: Natt-OS-SHTT-KNOWN-BLOCKERS-v1-SEALED-20260426*
+*causation: natt-os-SHTT-KNOWN-BLOCKERS-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426)*
 *carrier: Anh Natt Phan*

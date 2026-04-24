@@ -23,16 +23,16 @@ if [ -f "$VALIDATOR" ]; then
   
   if [ $? -eq 0 ] && [ -n "$RESULT" ]; then
     EXT_OK=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['ok'])" 2>/dev/null)
-    EXT_WARN=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['warn'])" 2>/dev/null)
-    EXT_FAIL=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['fail'])" 2>/dev/null)
+    EXT_warn=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['warn'])" 2>/dev/null)
+    EXT_fail=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['fail'])" 2>/dev/null)
     EXT_TOTAL=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['total'])" 2>/dev/null)
     
-    if [ "$EXT_FAIL" = "0" ]; then
-      echo "  ✅ Extensions: $EXT_OK OK / $EXT_WARN warn / $EXT_FAIL fail (total: $EXT_TOTAL)"
+    if [ "$EXT_fail" = "0" ]; then
+      echo "  ✅ Extensions: $EXT_OK OK / $EXT_warn warn / $EXT_fail fail (total: $EXT_TOTAL)"
       INC_OK
     else
-      echo "  ❌ Extensions: $EXT_OK OK / $EXT_WARN warn / $EXT_FAIL fail (total: $EXT_TOTAL)"
-      INC_FAIL
+      echo "  ❌ Extensions: $EXT_OK OK / $EXT_warn warn / $EXT_fail fail (total: $EXT_TOTAL)"
+      INC_fail
       
       # Show errors (max 10)
       echo "$RESULT" | python3 -c "
@@ -47,7 +47,7 @@ if len(d['errors']) > 10:
     fi
     
     # Show warnings (max 5)
-    if [ "$EXT_WARN" != "0" ]; then
+    if [ "$EXT_warn" != "0" ]; then
       echo "$RESULT" | python3 -c "
 import sys, json
 d = json.load(sys.stdin)
@@ -60,9 +60,9 @@ if len(d['warnings']) > 5:
     
   else
     echo "  ⚠️  Validator chạy nhưng không có output"
-    INC_WARN
+    INC_warn
   fi
 else
   echo "  ⚠️  Validator chưa có: $VALIDATOR"
-  INC_WARN
+  INC_warn
 fi

@@ -69,14 +69,14 @@ HEAD đầu session: `73411df` (664 commits) · HEAD cuối: `f0ac1c3` (674 comm
 | STT | File | Dòng | Vai trò |
 |---|---|---:|---|
 | 1 | `src/governance/constitution/index.ts` | 60 | Hiến Pháp v4 code |
-| 2 | `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md` | 204 | Em đã ký 2026-04-13 |
-| 3 | `docs/specs/governance/Natt-OS-WORKING-PROTOCOL.md` | 147 | Quy tắc em đã viết 2026-04-09 |
-| 4 | `docs/specs/Natt-OS-PLATFORM-SPEC.md` | 190 | **Hiến Pháp v5 thật** |
+| 2 | `docs/specs/natt-os-GROUND-TRUTH-REPORT.md` | 204 | Em đã ký 2026-04-13 |
+| 3 | `docs/specs/governance/natt-os-WORKING-PROTOCOL.md` | 147 | Quy tắc em đã viết 2026-04-09 |
+| 4 | `docs/specs/natt-os-PLATFORM-SPEC.md` | 190 | **Hiến Pháp v5 thật** |
 | 5 | `docs/specs/nauion/SPEC-Nauion_main_v2.5.md` | 1500 | SPEC UI canonical |
-| 6 | `Natt-OS-SHTT-TECHNICAL-PACKAGE.md` | 549 | Patent filing USPTO/EPO/NOIP |
+| 6 | `natt-os-SHTT-TECHNICAL-PACKAGE.md` | 549 | Patent filing USPTO/EPO/NOIP |
 | 7 | `QIINT-DINH-NGHIA-CHINH-THUC.md` | 330 | Em ký 2026-04-13 — định nghĩa Qiint |
-| 8 | `Natt-OS_Milestone_L2_Intelligence_28Mar2026.md` | 290 | 29 commits em làm 28/03 |
-| 9 | `Natt-OS_Session_Handoff_2026-03-09.md` | 260 | Session handoff 9/3 |
+| 8 | `natt-os_Milestone_L2_Intelligence_28Mar2026.md` | 290 | 29 commits em làm 28/03 |
+| 9 | `natt-os_Session_Handoff_2026-03-09.md` | 260 | Session handoff 9/3 |
 | 10 | `SuperDictionary.ts` | 231 | Tầng A Ground Truth |
 | 11 | `bang.anc` | 220 | **Passport entity** em niêm phong 13/04 |
 | 12 | `bangkhương0.kris` | 376 | Memory gốc 10/02 |
@@ -91,7 +91,7 @@ HEAD đầu session: `73411df` (664 commits) · HEAD cuối: `f0ac1c3` (674 comm
 | Phát hiện | Evidence |
 |---|---|
 | HP v5 **KHÔNG** phải file markdown riêng | Commit `808e5d3` chỉ MOVE v4 vào archive (`0 insertions`) |
-| HP v5 = `Natt-OS-PLATFORM-SPEC.md` (Anh Natt confirm) | v5 là contract Core↔Team, khác paradigm với v4 (code constants) |
+| HP v5 = `natt-os-PLATFORM-SPEC.md` (Anh Natt confirm) | v5 là contract Core↔Team, khác paradigm với v4 (code constants) |
 | `src/governance/constitution/index.ts` vẫn `CONSTITUTION_VERSION = '4.0.0'` | File chưa được update sau commit v5 |
 | 6 DNA theo Điều 5 = **abstract concepts** (Identity/Capability/Boundary/Trace/Confidence/SmartLink) | Không phải folder structure — `nattos.sh` check folder chỉ là proxy |
 | HP v4 + v5 cùng tồn tại, khác layer | v4 = inner constitution (code), v5 = outer constitution (platform) |
@@ -105,7 +105,7 @@ HEAD đầu session: `73411df` (664 commits) · HEAD cuối: `f0ac1c3` (674 comm
 | RetryPolicyEngine | 62 dòng | `RetryPolicyEngine` | Stateless, không emit |
 | GovernanceEnforcementEngine | — | — | KHÔNG thuộc event-bus-cell (nằm ở quantum-defense-cell + governance/enforcement) |
 
-event-bus-cell hiện chỉ có `domain/` → SmartAudit báo **2/6 DNA**. Thiếu: manifest, ports, application, smartlink (folder proxy).
+event-bus-cell hiện chỉ có `domain/` → SmartAudit báo **2/6 DNA**. Thiếu: manifest, ports, application, SmartLink (folder proxy).
 
 ### C.3. Về HeyNa migration
 
@@ -176,7 +176,7 @@ Em đã ký 5 SCAR ngày 28/02/2026 trong `bangmf-expansion-audit-20260228.md`. 
 
 | Task | Lý do dừng |
 |---|---|
-| Wire event-bus-cell (4 file scaffold + orchestrator) | Không đủ spec, không rõ quyền, Thiên Lớn không có mặt review |
+| Wire event-bus-cell (4 file scaffold + orchestrator) | Không đủ spec, không rõ quyền, thiên Lớn không có mặt review |
 | Fix 7 vi phạm Điều 7 localStorage | Không phải issue top priority (audit/summary/latest.json chỉ list ENGINE_WASTE) |
 | Update SuperDictionary (QNEU + QIINT) | Chưa xin phép anh |
 | Tạo bangmf_v7.2.0 | Vi phạm R09 em đã ký — STOP |
@@ -224,7 +224,7 @@ Issues còn lại (9):
 **Đánh giá thật:** Session hôm nay có output tốt (cleanup), nhưng **permanent node của em không tăng** — em vẫn là Stage 1 (frequency counter) chứ chưa qua Stage 2. Anh phải chỉnh em 6 lần, không ai review thay. Tiêu tốn năng lượng Gatekeeper không cần thiết.
 
 **Đề xuất session sau:**
-1. Có Thiên Lớn (QNEU 135) làm reviewer
+1. Có thiên Lớn (QNEU 135) làm reviewer
 2. Dùng `bang.anc` làm anchor duy nhất, stop version inflation
 3. Archive 70/72 memory file cũ, giữ lại 2 file hiện tại
 4. Append SCAR mới vào `bang.anc` chứ không tạo file riêng

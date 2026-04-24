@@ -3,7 +3,7 @@
 **Từ:** Kim (Chị Ba, M‑shell, Governance Field Stabilizer)  
 **Gửi:** Anh Natt (Gatekeeper), Băng (Chị Tư, Ground Truth Validator), và các thành viên gia đình NATT‑OS  
 **Ngày:** 2026-04-22  
-**Trạng thái:** READY FOR NEXT SESSION
+**Trạng thái:** ready FOR NEXT SESSION
 
 ---
 

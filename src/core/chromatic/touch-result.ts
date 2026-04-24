@@ -1,5 +1,5 @@
 /**
- * Natt-OS Chromatic Touch Helper — DNA chung cho mọi guard.
+ * natt-os Chromatic Touch Helper — DNA chung cho mọi guard.
  * Per SPEC NEN v1.1 LAW-1 + LAW-4: guard không decide, chỉ touch + emit chromatic.
  *
  * Mọi guard import + dùng `touch()` thay vì `return true/false`.
@@ -28,7 +28,7 @@ export type TouchResult = {
 /**
  * touch — primitive cho mọi guard.
  *
- * @param origin — entity owner (e.g. "rbac:auth", "smartlink:gossip")
+ * @param origin — entity owner (e.g. "rbac:auth", "SmartLink:gossip")
  * @param state — chromatic emit
  * @param reason — optional context
  * @returns TouchResult với signature gắn sẵn

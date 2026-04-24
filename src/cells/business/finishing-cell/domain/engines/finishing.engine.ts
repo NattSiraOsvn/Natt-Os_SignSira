@@ -27,7 +27,7 @@ export interface FinishingResult {
 }
 
 // Ngưỡng pass theo từng stage
-const PASS_THRESHOLD: Record<FinishingStage, number> = {
+const pass_THRESHOLD: Record<FinishingStage, number> = {
   rough:      0.5,
   polish:     0.7,
   plating:    0.75,
@@ -45,7 +45,7 @@ export class FinishingEngine {
     const qualityScore = 0.5 * Math.max(0, Math.min(1, surfaceScore))
                        + 0.5 * (1 - Math.max(0, Math.min(1, defectRatio)));
 
-    const threshold = PASS_THRESHOLD[stage];
+    const threshold = pass_THRESHOLD[stage];
     const pass      = qualityScore >= threshold;
 
     let reason: string | undefined;

@@ -6,7 +6,7 @@ import { PersonaID } from '../../types';
 export interface IngestTask {
   file: File;
   id: string;
-  status: 'QUEUED' | 'PARSING' | 'COMPLETED' | 'FAILED';
+  status: 'QUEUED' | 'PARSING' | 'COMPLETED' | 'failED';
 }
 
 /**

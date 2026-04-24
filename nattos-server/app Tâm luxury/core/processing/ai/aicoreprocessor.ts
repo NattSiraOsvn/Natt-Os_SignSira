@@ -41,7 +41,7 @@ export class AICoreProcessor {
 
       return result;
     } catch (error) {
-      Ingestion.updateStatus(metadata.id, IngestStatus.FAILED);
+      Ingestion.updateStatus(metadata.id, IngestStatus.failED);
       throw error;
     }
   }

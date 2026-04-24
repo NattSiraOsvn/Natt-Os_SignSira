@@ -1,7 +1,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import{PaymentSmartLinkPort}from"../../ports/payment-smartlink.port";
+import{PaymentSmartLinkPort}from"../../ports/payment-SmartLink.port";
 export interface PaymentResponse{success:boolean;transactionId:string;amount:number;currency:string;method:string;timestamp:string;errorCode?:string;qrCodeUrl?:string;}
-export interface PaymentRecord{id:string;orderId:string;amount:number;method:string;status:"PENDING"|"COMPLETED"|"FAILED"|"REFUNDED";transactionId?:string;createdAt:number;completedAt?:number;}
+export interface PaymentRecord{id:string;orderId:string;amount:number;method:string;status:"PENDING"|"COMPLETED"|"failED"|"REFUNDED";transactionId?:string;createdAt:number;completedAt?:number;}
 const _records=new Map<string,PaymentRecord>();
 export const PaymentEngine={
   process:async(amount:number,method:string):Promise<PaymentResponse>=>{

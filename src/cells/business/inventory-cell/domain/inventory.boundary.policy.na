@@ -7,7 +7,7 @@ export const INVENTORY_BOUNDARY = {
   canSendTo: ['finance-cell', 'audit-cell', 'warehouse-cell'],
   prohibitedActions: [
     'DELETE_STOCK_ENTRY',
-    'BYPASS_CONSTITUTION',
+    'BYpass_CONSTITUTION',
     'BACKDATED_ADJUST_GT30DAYS',
   ],
   requiresGatekeeperApproval: ['MONTH_END_CLOSE', 'BULK_ADJUST'],

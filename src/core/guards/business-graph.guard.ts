@@ -1,5 +1,5 @@
 /**
- * Natt-OS Business Graph Touch Points (refactored per SPEC NEN v1.1)
+ * natt-os Business Graph Touch Points (refactored per SPEC NEN v1.1)
  *
  * Lock #13: Shared semantic contracts — touch + chromatic
  * Lock #14: Cell boundary enforcement — touch + chromatic (no throw)

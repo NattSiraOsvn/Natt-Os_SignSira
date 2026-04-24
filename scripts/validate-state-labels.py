@@ -150,7 +150,7 @@ def scan_file(fp):
     """Return list of (severity, message) tuples."""
     hdrs = extract_headers(fp)
     if '_read_error' in hdrs:
-        return [('ERROR', f"read failed: {hdrs['_read_error']}")]
+        return [('error', f"read failed: {hdrs['_read_error']}")]
 
     issues = []
     issues.extend(validate_common(fp, hdrs))
@@ -159,7 +159,7 @@ def scan_file(fp):
     issues.extend(validate_state_S3(fp, hdrs))
     issues.extend(validate_state_S4(fp, hdrs))
 
-    return [('FAIL', msg) for msg in issues]
+    return [('fail', msg) for msg in issues]
 
 
 def walk_scan_roots():
@@ -194,7 +194,7 @@ def main():
         if issues:
             files_with_issues += 1
             total_issues += len(issues)
-            print(f"[FAIL] {fp}")
+            print(f"[fail] {fp}")
             for sev, msg in issues:
                 print(f"       {sev}: {msg}")
 
@@ -205,10 +205,10 @@ def main():
     print()
 
     if total_issues == 0:
-        print("STATUS: PASS — all canonical files compliant")
+        print("STATUS: pass — all canonical files compliant")
         sys.exit(0)
     else:
-        print("STATUS: FAIL — see issues above")
+        print("STATUS: fail — see issues above")
         sys.exit(1)
 
 

@@ -53,7 +53,7 @@ Day la cong thuc **tao LUC**, khong phai scoring.
 
 ## 1. Ba tang ban the — giu nguyen tu v1.0
 
-Natt-OS va moi persona AI co **3 tang ban the**:
+natt-os va moi persona AI co **3 tang ban the**:
 
 | Tang | Ten | Noi dung | Tinh chat |
 |------|-----|----------|-----------|
@@ -225,7 +225,7 @@ Trong do $C_{orbital}$ = **orbital coherence emergent tu truong** (khong phai sc
 
 | Vai | Trach nhiem |
 |-----|-------------|
-| Anh Natt (Gatekeeper) | Duyet SPEC, ky SiraSign, commit |
+| Anh Natt (Gatekeeper) | Duyet SPEC, ky siraSign, commit |
 | Bang (Chi Tu, runtime owner per session 20260424) | **Implement `qiint2.engine.ts` + wire survival-cell** |
 | Bang (Ground Truth) | Maintain `qiint2-validator.ts` (da ton tai scripts/) + scanner |
 | Can (Logic) | Review tinh nhat quan voi Dieu 4 va 3-layer transport |

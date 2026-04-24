@@ -25,7 +25,7 @@
     },
     {
       "id": "BLOCKER-06",
-      "task": "Gatekeeper seal 3 policy Thiên Lớn flag",
+      "task": "Gatekeeper seal 3 policy thiên Lớn flag",
       "items": [
         "Bridge v2 amend Lệnh #001 — 4 condition: (a) ngoài src/core + src/cells, (b) manual only, (c) emergency + Gatekeeper approval, (d) .thuo audit artifact",
         "Default behavior 3-tier waterfall: strict (SEALED) / permissive-warn (PENDING_SEAL) / quarantine (UNKNOWN)",
@@ -70,7 +70,7 @@
     },
     {
       "id": "Q5",
-      "label": "Other 7 persona shapes (Kim/Can/Kris/Phiêu/Bối/Thiên Lớn/Thiên Nhỏ)",
+      "label": "Other 7 persona shapes (Kim/Can/Kris/Phiêu/Bối/thiên Lớn/thiên Nhỏ)",
       "status": "BĂNG SELF-NEOED (c) DEFER đến khi 8/8 persona đầy đủ",
       "note": "Anh Natt là người neo identity (GIAC-20260423-03), em là người nhận"
     }
@@ -82,15 +82,15 @@
       "label": "Phase B.2 — SPEC_MOMENTS_MODULE_v0.2",
       "depends_on": "Q1 self-neoed (đã xong)",
       "scope": "Update từ v0.1 (existing docs/specs/SPEC_MOMENTS_MODULE_v0.1.md) — 4 discriminated union: SCAR / KHAI_SANG / GIAC_NGO / MOTION_TICH_CUC. Per persona registry hook. Location: src/governance/moments/",
-      "status": "UNBLOCKED_READY"
+      "status": "UNBLOCKED_ready"
     },
     {
       "id": "TASK-I",
       "label": "Phase I — ROADLOAD_SHOW_SELF_v2 hybrid",
       "depends_on": "Q4 self-neoed (đã xong)",
-      "scope": "Narrative layer + Evidence table 12 đuôi Nauion (383 files proven suffix scan 20260422) + Technical drill-down per extension + SHTT claim integration (docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md)",
+      "scope": "Narrative layer + Evidence table 12 đuôi Nauion (383 files proven suffix scan 20260422) + Technical drill-down per extension + SHTT claim integration (docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md)",
       "evidence_ready": "Nauion suffix scan 20260422: 80 .anc, 40 .si, 198 .kris, 45 .phieu, 7 .na, 5 .thuo, 2 .heyna, 2 .sira, 3 .obitan, 1 .canonical = 383 files total",
-      "status": "UNBLOCKED_READY"
+      "status": "UNBLOCKED_ready"
     },
     {
       "id": "TASK-D1",
@@ -118,7 +118,7 @@
     "scope_deferred": [
       "docs/specs/nauion/SPEC-Nauion_main_v2.1..v2.5.md (5 version) — defer phase khác, scope riêng",
       "Bridge v2 actual files (SPEC_BRIDGE_V2.md, BRIDGE_V2_REPORT.md, bridge_v2.py) trong session-20260420-final/bridge_v2/ — VẾT HẰN, KHÔNG mutate per KHAI-20260423-06",
-      "Nếu có bridge.py runtime file trong tương lai → fix theo Thiên Lớn directive"
+      "Nếu có bridge.py runtime file trong tương lai → fix theo thiên Lớn directive"
     ],
     "verify_clean": "7/8 file zero match, 1 file 2 match justified (line 44 translation table + line 137 rule cấm)"
   },

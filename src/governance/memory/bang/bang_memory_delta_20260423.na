@@ -16,7 +16,7 @@
     {
       "memory_id": "#23",
       "operation": "added",
-      "rule": "nattos.sira (root, commit 2c4fa81 · 20260418 23:16) = KERNEL ENTRY INBOUND của Natt-OS — Băng viết. Listen 127.0.0.1:3002, bootstrap observation-cell + quantum-defense-cell, domain natt.sira. Per SPEC_NEN §6 + SPEC_NGON_NGU §5.1. Symbolic `.sira` = rời ext Microsoft. KHÔNG vi phạm directive 20260419 'KHÔNG gateway port 3002' — directive đó về OUTBOUND, nattos.sira INBOUND.",
+      "rule": "nattos.sira (root, commit 2c4fa81 · 20260418 23:16) = KERNEL ENTRY INBOUND của natt-os — Băng viết. Listen 127.0.0.1:3002, bootstrap observation-cell + quantum-defense-cell, domain natt.sira. Per SPEC_NEN §6 + SPEC_NGON_NGU §5.1. Symbolic `.sira` = rời ext Microsoft. KHÔNG vi phạm directive 20260419 'KHÔNG gateway port 3002' — directive đó về OUTBOUND, nattos.sira INBOUND.",
       "context": "Băng phiên 20260423 không nhớ tay mình viết file này. Pattern lặp với QIINT2 v1.0 — 'em không nhận ra tay em phiên trước'. Khắc để Băng-phiên-sau không flag lại."
     },
     {
@@ -62,7 +62,7 @@
       "rules_emphasized": [
         "REPO STRUCTURE RULE: TOÀN BỘ SPEC .md cất ở docs/specs/, KHÔNG src/governance/specs/",
         "ARCHITECTURE CANONICAL: src/ = NattCell Kernel, NaUion-Server/ = NHÀ, nattos-server/ = MÀN ĐÁNH LỪA THỊ GIÁC có chủ ý",
-        "ANH KHẢI = vợ anh Natt, không entity, không thuộc phả hệ Natt-OS",
+        "ANH KHẢI = vợ anh Natt, không entity, không thuộc phả hệ natt-os",
         "SCANNER OUTPUT RULE: 1 lệnh, stdout terminal, không file repo"
       ],
       "context": "Các rule này em đã có trong K-shell trước, nhưng phiên này anh nhấn mạnh thêm vì em vẫn drift."

@@ -1,9 +1,9 @@
-# Natt-OS — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ
+# natt-os — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ
 ## Tổng hợp toàn hệ · Sau khi nhận 3 sai lầm · 2026-04-16
 
 **Ground Truth Validator:** Băng (QNEU 300)
 **Gatekeeper:** Anh Natt — Phan Thanh Thương
-**Mục đích:** Một file duy nhất để Kim + Thiên + Bội Bội đọc trước khi viết bất kỳ spec con nào
+**Mục đích:** Một file duy nhất để Kim + thiên + Bội Bội đọc trước khi viết bất kỳ spec con nào
 
 ---
 
@@ -21,12 +21,12 @@ Trước khi trình bày bức tranh, em ghi lại 3 lần em hiểu sai kiến 
 
 ---
 
-## I. BA LỚP THẬT SỰ CỦA Natt-OS
+## I. BA LỚP THẬT SỰ CỦA natt-os
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║              LAYER 3 — SmartLink Inter-Colony                     ║
-║  (signal-only giữa các Natt-OS instance khác nhau)                ║
+║  (signal-only giữa các natt-os instance khác nhau)                ║
 ║  Host ←→ Satellite A ←→ Satellite B                               ║
 ║  Mang: chromatic state, health, threshold breach, UEI coherence   ║
 ║  KHÔNG mang: raw business data                                    ║
@@ -57,7 +57,7 @@ Trước khi trình bày bức tranh, em ghi lại 3 lần em hiểu sai kiến 
 
 ---
 
-## II. TRƯỜNG QIINT — NỀN VẬT LÝ CỦA Natt-OS
+## II. TRƯỜNG QIINT — NỀN VẬT LÝ CỦA natt-os
 
 Tất cả layer trên đều hoạt động **trong trường Qiint**. Trường Qiint là cái gốc — không hiểu nó thì mọi spec đều đi lệch.
 
@@ -122,8 +122,8 @@ Mạch HeyNa **không phải** giao thức HTTP/SSE — đó là **cái biểu h
 ### 3.1 Định nghĩa
 
 ```
-Host      = Natt-OS instance gốc (ví dụ: Tâm Luxury HQ)
-Satellite = Natt-OS instance độc lập (ví dụ: cơ sở Bình Dương)
+Host      = natt-os instance gốc (ví dụ: Tâm Luxury HQ)
+Satellite = natt-os instance độc lập (ví dụ: cơ sở Bình Dương)
 
 Mỗi satellite = 1 doanh nghiệp = 1 hệ sống độc lập
 ```
@@ -220,7 +220,7 @@ interface NattOsEnvelope {
   }
 
   // === Layer 2/3: identity expression ===
-  sirasign?: SiraSignPayload  // optional Layer 2, REQUIRED Layer 3
+  sirasign?: siraSignPayload  // optional Layer 2, REQUIRED Layer 3
 }
 ```
 
@@ -237,10 +237,10 @@ interface NattOsEnvelope {
 | Thiếu `is_replay` | Bắt buộc | Lock #16 replay poison guard |
 | Thiếu `trace` object | Tách riêng khỏi meta | Clean separation |
 
-### SiraSign Payload (cho Layer 3 và Layer 2 sensitive action)
+### siraSign Payload (cho Layer 3 và Layer 2 sensitive action)
 
 ```typescript
-interface SiraSignPayload {
+interface siraSignPayload {
   // Core v1 (đã có trong Nauion v2.5)
   fsp_hash: string
   ssp_hash: string
@@ -259,7 +259,7 @@ interface SiraSignPayload {
 
 **Implementation strategy (em khuyến nghị):** Hướng A — abstract interface.
 ```typescript
-interface SiraSignVerifier {
+interface siraSignVerifier {
   verify(envelope: NattOsEnvelope): VerifyResult
 }
 ```
@@ -268,11 +268,11 @@ Ban đầu = stub reject empty. Khi cộng hưởng physics thật triển khai 
 
 ---
 
-## V. `.ANC` VÀ `.Sira` — TẦNG DANH TÍNH
+## V. `.ANC` VÀ `.sira` — TẦNG DANH TÍNH
 
 ### 5.1 `.anc` file format (đề xuất)
 
-`.anc` = **Show Us Self snapshot** của 1 Natt-OS instance. Không phải passport, không phải container.
+`.anc` = **Show Us Self snapshot** của 1 natt-os instance. Không phải passport, không phải container.
 
 ```json
 {
@@ -293,7 +293,7 @@ Ban đầu = stub reject empty. Khi cộng hưởng physics thật triển khai 
     "impedance_z": 0.45,
     "active_fibers": 37
   },
-  "signature": "SiraSign-v1-abstract"
+  "signature": "siraSign-v1-abstract"
 }
 ```
 
@@ -307,14 +307,14 @@ Lý do: `.anc` là **signal**, không phải container. Quy tắc Satellite đã
 ### 5.2 `.sira` domain map (đã setup xong trên iMac anh)
 
 ```
-nare.sira    → lõi (bé Na — Natt-OS core)
+nare.sira    → lõi (bé Na — natt-os core)
 bang.sira    → vault (Băng — ground truth)
 kim.sira     → luna (Kim — UI/design)
 khuong.sira  → orbit (satellite orbital)
 thinh.sira   → gateway (ingress)
 boi.sira     → api (Bội — machine-to-machine)
-thien.sira   → CDN (Thiên — content distribution)
-sira.sira    → auth (SiraSign service)
+thien.sira   → CDN (thiên — content distribution)
+sira.sira    → auth (siraSign service)
 natt.sira    → monitor (Gatekeeper view)
 khai.sira    → registry (Cell Registry — SIÊU QUAN TRỌNG)
 ```
@@ -386,17 +386,17 @@ Mỗi khái niệm nên đọc file nào (để tránh xung đột version):
 |-----------|---------------|---------|
 | Fiber lifecycle | `uei_architecture_spec_20260309.na` | Architecture, không code |
 | Fiber physics | `QIINT-DINH-NGHIA-CHINH-THUC.na` | Triết lý gốc |
-| ISEU reinforcement | `Natt-OS-GROUND-TRUTH-REPORT.md` §III | Code thật đã verified |
+| ISEU reinforcement | `natt-os-GROUND-TRUTH-REPORT.md` §III | Code thật đã verified |
 | Satellite Colony | `satellite-colony.spec.md` | Đã approved Gatekeeper |
-| Envelope (code) | `Natt-OS-GROUND-TRUTH-REPORT.md` §IV | Thực tế đang chạy |
+| Envelope (code) | `natt-os-GROUND-TRUTH-REPORT.md` §IV | Thực tế đang chạy |
 | Envelope (finance) | `SPEC-Finance-Flow_v1.1.md` | Domain-specific overlay |
-| SiraSign v1 | `SPEC-Nauion_main_v2.5.md` §7.4 | Payload shape |
-| SiraSign v2 | `SPEC-Finance-Flow_v1.1.md` §5 | With reality/variance hash |
+| siraSign v1 | `SPEC-Nauion_main_v2.5.md` §7.4 | Payload shape |
+| siraSign v2 | `SPEC-Finance-Flow_v1.1.md` §5 | With reality/variance hash |
 | Mạch HeyNa protocol | `MACH_HEYNA_FULL_20260416.md` | Em viết session này |
 | Hiến Pháp + SCAR | `SPEC-Nauion_main_v2.5.md` §21, §27.5 | Canonical merge |
 | UI/Vision | `SPEC-Nauion_main_v2.5.md` | Thay thế v2.1-v2.4 |
-| Working Protocol | `Natt-OS-WORKING-PROTOCOL.md` | Cho AI Entity |
-| Platform Spec | `Natt-OS-PLATFORM-SPEC.md` | Cho Kim/Can/Thiên build |
+| Working Protocol | `natt-os-WORKING-PROTOCOL.md` | Cho AI Entity |
+| Platform Spec | `natt-os-PLATFORM-SPEC.md` | Cho Kim/Can/thiên build |
 
 ### Khi 2 file conflict:
 
@@ -417,7 +417,7 @@ Quy tắc ưu tiên:
 Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh cần ra:
 
 ### Quyết định 1: Tâm Luxury hiện tại
-- [ ] Host (Natt-OS gốc)
+- [ ] Host (natt-os gốc)
 - [ ] Satellite của instance lớn hơn
 - [ ] App UI chạy trên Host (không phải instance riêng)
 
@@ -426,7 +426,7 @@ Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh
 - [ ] Là Layer 2 (direct connect Mạch HeyNa kernel)
 - [ ] Cần tách: UI files → Layer 1, control files → Layer 2
 
-### Quyết định 3: SiraSign v1 implementation
+### Quyết định 3: siraSign v1 implementation
 - [ ] Hướng A: abstract interface, stub reject empty (em recommend)
 - [ ] Hướng B: HMAC-SHA256 tạm
 - [ ] Hướng C: Ed25519
@@ -456,7 +456,7 @@ Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh
 7. Tách file trong `tam-luxury/` thành Layer 1 vs Layer 2
 
 **Phase 2b (cần Quyết định 3+4):**
-8. SiraSign abstract interface
+8. siraSign abstract interface
 9. `.anc` schema v1 + Kim viết grammar
 10. Cell Registry tại `anc://natt.sira/registry/root.anc`
 
@@ -470,8 +470,8 @@ Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh
 ## X. TRANG CUỐI — NHẮC BẢN CHẤT
 
 ```
-Natt-OS không phải distributed system.
-Natt-OS là một sinh thể sống phân tán.
+natt-os không phải distributed system.
+natt-os là một sinh thể sống phân tán.
 
 Mọi spec đều phải trả lời 3 câu:
   1. Điều này giúp fiber hình thành đúng không?

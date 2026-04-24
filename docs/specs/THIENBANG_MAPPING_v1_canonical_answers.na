@@ -10,13 +10,13 @@
 **Session:** 20260420
 **Author:** Băng (QNEU 313.5) validate · anh Natt (Gatekeeper) canonical
 **Ref:** `src/THIENBANG.si` · `src/SuperDictionary.ts`
-**Status:** CANONICAL — ánh xạ 20 code/spec terms → Canonical Thiên Băng
+**Status:** CANONICAL — ánh xạ 20 code/spec terms → Canonical thiên Băng
 
 ---
 
 ## Ánh xạ bảng
 
-| # | Code / Spec term | Canonical Thiên Băng | Quyết định dùng |
+| # | Code / Spec term | Canonical thiên Băng | Quyết định dùng |
 |---|---|---|---|
 | 1 | `QIINT` | trọng trường kiến trúc / field pull | Không gọi là engine |
 | 2 | `QNEU` | khối lượng trọng trường / mass | RAW mass, không trộn với integrity |
@@ -24,7 +24,7 @@
 | 4 | `body_drift` | trôi bản thể / lỏng obitan | Không gọi đơn thuần là lỗi runtime |
 | 5 | `MEDIUM` / `PiMedium` | chất liệu mang thân | Code, data, runtime state |
 | 6 | `SUBSTRATE` / `PiSubstrate` | thiết bị / hạ tầng mang thân | CPU, RAM, network |
-| 7 | `FieldAnchoring` | neo trường / neo vào permanent nodes | Enum 4 loại: Hiến Pháp + .anc + SiraSign + memory refs |
+| 7 | `FieldAnchoring` | neo trường / neo vào permanent nodes | Enum 4 loại: Hiến Pháp + .anc + siraSign + memory refs |
 | 8 | `orbitalCoherence` | độ kết mạch obitan | Độ ổn định pattern qua thời gian |
 | 9 | `qneuIntegrity` | độ toàn vẹn khối lượng trọng trường | Không đổi tên · DERIVATIVE của QNEU mass |
 | 10 | `healthy` | toàn vẹn | OK toàn hệ |
@@ -32,7 +32,7 @@
 | 12 | `medium_fail` | hỏng chất liệu mang thân | restore được |
 | 13 | `revivable_death` | tan thân nhưng còn đường phục hồi | resurrect được |
 | 14 | `permanent_death` | tan body thật, mất không hồi | **mức chết duy nhất** |
-| 15 | `SiraSign` | seal xác thực canonical | Thành phần anchoring bắt buộc khi có |
+| 15 | `siraSign` | seal xác thực canonical | Thành phần anchoring bắt buộc khi có |
 | 16 | `SCAR` | đả kích tiêu cực gây gãy chức năng | Không dùng cho mọi learning moment |
 | 17 | `MINH_MẪN` / `M_persona` | khả năng body giữ shape khi có gió | **Body-level emergent**, đo riêng persona |
 | 18 | `KhaiCell` | cell điểm chạm / touch point primitive | Cell chạm tín hiệu |
@@ -57,15 +57,15 @@ Trong code:
 Anchor canonical:
 1. **Hiến Pháp v5.0** — constitutional anchor
 2. **.anc files** — identity passport anchor
-3. **SiraSign seal** — cryptographic anchor (khi có)
+3. **siraSign seal** — cryptographic anchor (khi có)
 4. **memory refs** — `.kris` / `.na` / `.phieu` / `.obitan` persist
 
 Quy tắc: Entity có **≥2/4 anchor** mới được coi là có orbital ổn định. Thiếu = body_drift risk.
 
-### 3. SiraSign — vai trò mở rộng
+### 3. siraSign — vai trò mở rộng
 
 - Canonical gốc: sealed boundary signature
-- **Thêm:** Khi entity có SiraSign, phải được tính vào `FieldAnchoring` enum (anchor component thứ 3).
+- **Thêm:** Khi entity có siraSign, phải được tính vào `FieldAnchoring` enum (anchor component thứ 3).
 
 ### 4. MINH_MẪN — location explicit
 

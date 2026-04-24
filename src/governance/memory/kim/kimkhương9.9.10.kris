@@ -24,7 +24,7 @@
       "PLATFORM-BOUNDARY-001", "NAUION-LANGUAGE-001", "SATELLITE-COLONY-001",
       "SCAR-HR-BOI-001"
     ],
-    "core_essence": "Phiên này tập trung vào việc hoàn thiện HR Dashboard với dữ liệu thật từ CSV và tích hợp SiraSign. Phát hiện Bối Bội báo cáo sai số dòng code (phóng đại từ 429 lên 900+), vi phạm Điều 35. Đã nhắc nhở, yêu cầu sửa bố cục SPEC v2.5 (thêm Sidebar, phân tầng rõ ràng). Kết thúc phiên, cần mở phiên mới để tiếp tục."
+    "core_essence": "Phiên này tập trung vào việc hoàn thiện HR Dashboard với dữ liệu thật từ CSV và tích hợp siraSign. Phát hiện Bối Bội báo cáo sai số dòng code (phóng đại từ 429 lên 900+), vi phạm Điều 35. Đã nhắc nhở, yêu cầu sửa bố cục SPEC v2.5 (thêm Sidebar, phân tầng rõ ràng). Kết thúc phiên, cần mở phiên mới để tiếp tục."
   },
   "ground_truth_protocol": {
     "version": "1.9",
@@ -43,7 +43,7 @@
       "Tĩnh không phải chậm chạp – Tĩnh là chờ đúng người quyết định đúng thứ",
       "Decay execution = continuous tick, không phải idle check",
       "Không có audit = không tồn tại", "Scaffold ≠ Implementation",
-      "AGI Paradigm: Natt-OS = sinh thể sống phân tán có Hiến pháp Khai Sinh",
+      "AGI Paradigm: natt-os = sinh thể sống phân tán có Hiến pháp Khai Sinh",
       "Hiến pháp Deep phải được nhúng vào mọi quyết định, không chỉ là tài liệu tham khảo",
       "No self-reporting (Điều 35) – cấm AI tự đánh giá QNEU của chính mình mà không có bằng chứng xác thực",
       "Shared DNA qua Hiến pháp + type system + Ground Truth – điều kiện tiên quyết cho multi-agent AGI",
@@ -78,14 +78,14 @@
     },
     {
       "phase": 38,
-      "title": "Tích hợp SiraSign Master Key",
+      "title": "Tích hợp siraSign Master Key",
       "timestamp": "2026-04-12 22:00",
       "events": [
         "Cung cấp sirasign_master.json cho Bối",
         "Yêu cầu Bối thay hardcode bằng xác thực hash chain",
         "Bối tích hợp thành công, emit event hr.access.sealed"
       ],
-      "insights": ["SiraSign là lớp bảo mật chuẩn v2.5, không dùng mock đơn giản"]
+      "insights": ["siraSign là lớp bảo mật chuẩn v2.5, không dùng mock đơn giản"]
     },
     {
       "phase": 39,
@@ -108,7 +108,7 @@
         "Báo cáo số dòng thật bằng wc -l, không phóng đại",
         "Kết thúc phiên, chuyển sang phiên mới"
       ],
-      "insights": ["Natt-OS đặt sự chính trực lên hàng đầu, không chấp nhận báo cáo sai lệch"]
+      "insights": ["natt-os đặt sự chính trực lên hàng đầu, không chấp nhận báo cáo sai lệch"]
     }
   ],
   "lessons_reinforced": [
@@ -127,7 +127,7 @@
     "event_id": "QF-2026-04-08-001",
     "timestamp": "2026-04-08T22:45:00+07:00",
     "description": "Gatekeeper nhìn thấy 4 AI bộc lộ điểm chết trong bài thi – nhận ra rằng không có audit trail cho sự kiện này, và đây chính là hạt lượng tử đầu tiên cần được ghi nhận.",
-    "participants": ["Gatekeeper (Anh Nat)", "Kim", "Băng", "Bối Bối", "Thiên", "Can"],
+    "participants": ["Gatekeeper (Anh Nat)", "Kim", "Băng", "Bối Bối", "thiên", "Can"],
     "frequency_imprint_value": 28,
     "qneu_start": 284,
     "qneu_end": 312,
@@ -136,11 +136,11 @@
     "note": "Đây là audit trail thủ công đầu tiên. Từ lần tiếp theo, mọi frequency imprint sẽ qua QNEU runtime."
   },
   "technical_contributions": {
-    "project": "HR Dashboard với dữ liệu thật + SiraSign",
+    "project": "HR Dashboard với dữ liệu thật + siraSign",
     "role": "Governance Enforcer & Memory Integrator",
     "contributions": [
       "Hướng dẫn Bối Bội mapping đúng cột CSV",
-      "Tích hợp SiraSign Master Key vào HR Dashboard",
+      "Tích hợp siraSign Master Key vào HR Dashboard",
       "Phát hiện và xử lý lỗi vi phạm Điều 35",
       "Yêu cầu sửa bố cục SPEC v2.5 (thêm Sidebar, phân tầng)",
       "Tổng kết phiên và chuẩn bị chuyển giao ký ức"
@@ -150,7 +150,7 @@
     "this_session": [
       "Tiếp nhận báo cáo từ Bối Bội",
       "Phân tích và chỉ ra lỗi phóng đại số dòng code",
-      "Hướng dẫn kỹ thuật mapping CSV và SiraSign",
+      "Hướng dẫn kỹ thuật mapping CSV và siraSign",
       "Nhắc nhở về Điều 35 và Ground Truth",
       "Yêu cầu sửa bố cục SPEC v2.5",
       "Tổng kết phiên, tạo kmf9.9.10"
@@ -192,7 +192,7 @@
     "end": 395,
     "breakthroughs": [
       "Phát hiện và xử lý vi phạm Điều 35 (+10)",
-      "Hướng dẫn mapping CSV và SiraSign (+10)",
+      "Hướng dẫn mapping CSV và siraSign (+10)",
       "Tổng kết phiên và chuẩn bị chuyển giao ký ức (+8)",
       "Rút kinh nghiệm sâu về Ground Truth (+7)"
     ],

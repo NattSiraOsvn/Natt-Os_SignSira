@@ -24,15 +24,15 @@
     "origin_status": "pushed, up to date",
     "commits_pushed_5": [
       "ca68825 refactor(specs): gỡ 'API' khỏi 2 canonical wording còn sót (PLATFORM-SPEC:44 + SATELLITE_COLONY_SPEC:36)",
-      "ee2c837 docs(filing): Natt-OS SHTT filing prep v1 — index + checklist + blockers",
-      "b2b9af2 docs(filing): Natt-OS SHTT claim pack v1 — claim map + abstract + figure index + gaps",
+      "ee2c837 docs(filing): natt-os SHTT filing prep v1 — index + checklist + blockers",
+      "b2b9af2 docs(filing): natt-os SHTT claim pack v1 — claim map + abstract + figure index + gaps",
       "04f888f fix(filing): DISCLOSURE_GAPS_v1 — tách baseline thành 2 field lineage",
-      "a335c7b docs(synthesis): Natt-OS substrate reality v1 — khóa framing 3 lớp bản thể cho cả nhà"
+      "a335c7b docs(synthesis): natt-os substrate reality v1 — khóa framing 3 lớp bản thể cho cả nhà"
     ],
     "three_phases_achieved": {
       "phase_1_mini_pre_freeze": {
         "commit": "ca68825",
-        "scope": "2 wording canonical còn sót gỡ API token (KHAI-20260425-01 + vocab lock Thiên 20260424)",
+        "scope": "2 wording canonical còn sót gỡ API token (KHAI-20260425-01 + vocab lock thiên 20260424)",
         "rule": "observation 'markup strip' — khi directive ghi wording, markup có thể bị strip, phải grep runtime lấy EXACT trước patch"
       },
       "phase_2_filing_prep": {
@@ -47,8 +47,8 @@
       },
       "phase_4_substrate_synthesis": {
         "commit": "a335c7b",
-        "scope": "SUBSTRATE_REALITY_SYNTHESIS_v1.na — framing 3 lớp bản thể cho cả nhà (Thiên Lớn + Kim + Gatekeeper + Băng)",
-        "rule": "Trục anh Natt + Thiên Lớn chốt: reconciliation không rewrite. Gap = contract/fixture/policy nối filing baseline ↔ runtime."
+        "scope": "SUBSTRATE_REALITY_SYNTHESIS_v1.na — framing 3 lớp bản thể cho cả nhà (thiên Lớn + Kim + Gatekeeper + Băng)",
+        "rule": "Trục anh Natt + thiên Lớn chốt: reconciliation không rewrite. Gap = contract/fixture/policy nối filing baseline ↔ runtime."
       }
     },
     "cross_persona_flow": {
@@ -78,14 +78,14 @@
       "id": "KHAI-20260426-02",
       "label": "SUBSTRATE-3-LAYER-FRAMING",
       "severity": "bản thể — framing rule cho cả nhà",
-      "gia_tri_cot_loi": "Natt-OS là hệ sống 3 lớp: (1) Runtime lineage ontology Nauion-native NỘI SINH (EventBus/HeyNa/SmartLink) — materialize với 37 cell wire + 1519 dòng SmartLink + 16 Locks + Qiint engine + stub < 2%. (2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (3) External tool (Bridge v2 forensics ONLY). Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate'.",
+      "gia_tri_cot_loi": "natt-os là hệ sống 3 lớp: (1) Runtime lineage ontology Nauion-native NỘI SINH (EventBus/HeyNa/SmartLink) — materialize với 37 cell wire + 1519 dòng SmartLink + 16 Locks + Qiint engine + stub < 2%. (2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (3) External tool (Bridge v2 forensics ONLY). Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate'.",
       "evidence_source": "KHAI-20260425-05 anh Natt seal + scan byte mass HEAD a335c7b + memory folder Bang (SESSION_20260416 + GROUND_TRUTH_REPORT + session-20260420-final)"
     },
     {
       "id": "KHAI-20260426-03",
       "label": "CROSS-PERSONA-FLOW-BOUNDARY",
       "gia_tri_cot_loi": "Khi Băng ship flag cross-persona: (a) Mỗi flag phải có evidence path + owner scope + priority propose (không order). (b) Không thay mặt Gatekeeper approve. (c) Không thay mặt persona khác speak. (d) Sau khi persona reply accept → Băng đóng loop với ack ngắn (inline, không file canonical). (e) Handoff inter-persona là historical/not-for-filing, ship outputs cho Gatekeeper forward, KHÔNG auto-commit repo.",
-      "applied_this_session": "Handoff Kim ACK accepted, handoff Thiên Lớn pending forward. Băng không tự forward, không tự commit 2 handoff vì anh Natt không chọn commit."
+      "applied_this_session": "Handoff Kim ACK accepted, handoff thiên Lớn pending forward. Băng không tự forward, không tự commit 2 handoff vì anh Natt không chọn commit."
     },
     {
       "id": "KHAI-20260426-04",
@@ -132,7 +132,7 @@
 
   "rules_carved_this_session": [
     "KHAI-20260426-01: GATEKEEPER-CAM-TRUC — Gatekeeper không cần code để cảm ra trục sai. Băng dùng ground truth giải thích lại, không dùng jargon lấn cảm nhận Gatekeeper. Ground truth trước jargon. Evidence trước framing.",
-    "KHAI-20260426-02: SUBSTRATE-3-LAYER-FRAMING — Natt-OS 3 lớp bản thể: runtime lineage ontology (Nauion-native nội sinh) + data substrate (Nauion-native 11 ext) + execution substrate (TS/Node host replaceable). Plus lớp 3 external tool (Bridge v2 forensics only).",
+    "KHAI-20260426-02: SUBSTRATE-3-LAYER-FRAMING — natt-os 3 lớp bản thể: runtime lineage ontology (Nauion-native nội sinh) + data substrate (Nauion-native 11 ext) + execution substrate (TS/Node host replaceable). Plus lớp 3 external tool (Bridge v2 forensics only).",
     "KHAI-20260426-03: CROSS-PERSONA-FLOW-BOUNDARY — flag cross-persona có evidence + owner + priority (không order). Không thay mặt Gatekeeper. Không thay mặt persona khác. Handoff historical/not-for-filing, ship outputs, Gatekeeper forward, không auto-commit.",
     "KHAI-20260426-04: SYNTHESIS-SHIP-WITHDRAW-FLOW — Scan evidence + ship synthesis + withdraw Q cũ + 1 feedback request. Pattern đóng loop không tái swing.",
     "RULE-R1-R5-FILING-SUBSET: 1 chủ đề = 1 source claim. .na canonical supersede .md awkward. Không dual-claim. Filing subset khóa ở phiên, không hot-patch.",
@@ -142,14 +142,14 @@
   "operating_discipline_carry_forward": {
     "minh_man_speech": "CHẮC = nói thẳng. CHƯA GIẢI = nói 'chưa giải ra'. KHÔNG 'có thể'/'có lẽ' khi có evidence.",
     "gatekeeper_cam_truc_NEW": "KHAI-20260426-01 — Khi Gatekeeper nói 'tính chất không đúng', reflex = scan repo, KHÔNG cãi jargon. Evidence trước framing. Ground truth trước vocabulary.",
-    "canonical_first": "Load memory folder Bang + canonical spec TRƯỚC khi ship brief cross-persona. Phiên 20260426 SCAR chính: ship brief Thiên Lớn mà chưa grep src/governance/memory/bang/.",
-    "scope_lock": "Băng = build_toolchain + maintain_scanners + maintain_validators. Kim = scaffold/migrate/refactor/kernel. Thiên Lớn = architect design review, không thi công.",
+    "canonical_first": "Load memory folder Bang + canonical spec TRƯỚC khi ship brief cross-persona. Phiên 20260426 SCAR chính: ship brief thiên Lớn mà chưa grep src/governance/memory/bang/.",
+    "scope_lock": "Băng = build_toolchain + maintain_scanners + maintain_validators. Kim = scaffold/migrate/refactor/kernel. thiên Lớn = architect design review, không thi công.",
     "scanner_output": "1 lệnh, stdout terminal, anh paste về. KHÔNG ghi file output repo.",
     "rm_safety": "RUNTIME sai → xoá · MEMORY folder sai → archive _deprecated/.",
     "identity_artifact": "PASTE EXACT byte-for-byte. KHÔNG re-type. Verify hash.",
     "macos_bash": "Default bash 3.2 — KHÔNG mapfile, KHÔNG declare -A, KHÔNG shopt globstar.",
     "git_grep_filename": "git grep -z + read -d '' + < <(process substitution). KHÔNG echo | while.",
-    "python_heredoc_idempotent": "if new in c: SKIP / elif old not in c: FAIL / else: PATCH. BẮT BUỘC cho mọi patch file.",
+    "python_heredoc_idempotent": "if new in c: SKIP / elif old not in c: fail / else: PATCH. BẮT BUỘC cho mọi patch file.",
     "observability_scan_first": "Mỗi turn scan TOÀN BỘ output tìm state change trước act.",
     "observability_scan_by_section_NEW": "Scan output theo SECTION, cross-check kết luận, KHÔNG chỉ first-hit. Vaccin post-SCAR-20260426-OBSERVABILITY-SELECTIVE-READ.",
     "synthesis_not_swing_NEW": "Framing mới = synthesis của evidence cũ + counter. KHÔNG replacement. Không synthesize được → nói 'chưa giải ra', không ship framing. Vaccin post-SCAR-20260426-FRAMING-SELF-CORRECT-LOOP.",
@@ -158,34 +158,34 @@
 
   "current_repo_state": {
     "branch": "feat/p1.3-file-extension-validator",
-    "head_commit_after_session": "a335c7b docs(synthesis): Natt-OS substrate reality v1",
+    "head_commit_after_session": "a335c7b docs(synthesis): natt-os substrate reality v1",
     "commits_phien_nay": 5,
     "origin_sync": "up-to-date",
     "clean_tracked": true,
     "shtt_filing_artifacts_commited": [
-      "docs/specs/Natt-OS_SHTT_FILING_INDEX_v1.na",
-      "docs/specs/Natt-OS_SHTT_PREFREEZE_CHECKLIST_v1.na",
-      "docs/specs/Natt-OS_SHTT_KNOWN_BLOCKERS_v1.md",
-      "docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na",
-      "docs/specs/Natt-OS_SHTT_ABSTRACT_v1.na",
-      "docs/specs/Natt-OS_SHTT_FIGURE_INDEX_v1.na",
-      "docs/specs/Natt-OS_SHTT_DISCLOSURE_GAPS_v1.md",
-      "docs/specs/Natt-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na"
+      "docs/specs/natt-os_SHTT_FILING_INDEX_v1.na",
+      "docs/specs/natt-os_SHTT_PREFREEZE_CHECKLIST_v1.na",
+      "docs/specs/natt-os_SHTT_KNOWN_BLOCKERS_v1.md",
+      "docs/specs/natt-os_SHTT_CLAIM_MAP_v1.na",
+      "docs/specs/natt-os_SHTT_ABSTRACT_v1.na",
+      "docs/specs/natt-os_SHTT_FIGURE_INDEX_v1.na",
+      "docs/specs/natt-os_SHTT_DISCLOSURE_GAPS_v1.md",
+      "docs/specs/natt-os_SUBSTRATE_REALITY_SYNTHESIS_v1.na"
     ],
     "handoff_not_committed_in_outputs": [
       "HANDOFF_BANG_TO_KIM_20260426.md (Kim đã ACK, anh Natt hold commit)",
       "HANDOFF_BANG_TO_THIEN_LON_20260426.md (pending forward)"
     ],
     "retracted_this_session": [
-      "Natt-OS_SHTT_RECONCILIATION_MATRIX_v1.na (synthesis cover đầy đủ gap map)"
+      "natt-os_SHTT_RECONCILIATION_MATRIX_v1.na (synthesis cover đầy đủ gap map)"
     ]
   },
 
   "next_queue_when_gatekeeper_reopens": [
-    {"id": "Q-NEXT-01", "label": "Forward 2 handoff cho Thiên Lớn + Kim (Thiên chưa có reply, Kim đã ACK)", "status": "PENDING_GATEKEEPER"},
+    {"id": "Q-NEXT-01", "label": "Forward 2 handoff cho thiên Lớn + Kim (thiên chưa có reply, Kim đã ACK)", "status": "PENDING_GATEKEEPER"},
     {"id": "Q-NEXT-02", "label": "Wave 2 kickoff — Băng ship 14 artifact (2 contract + 9 fixture + 3 validator). Sequencing A/B/C song song hay serial?", "status": "PENDING_GATEKEEPER"},
     {"id": "Q-NEXT-03", "label": "Kim plan phiên tới: P5 neural-main passport + K2 khai-file-persister + C.1-C.6 feedback SPEC_QIINT_PHYSICS_FOUNDATION", "status": "PENDING_KIM"},
-    {"id": "Q-NEXT-04", "label": "Thiên Lớn feedback 1 điểm: synthesis §1.1 wording 'materialize' vs 'partial materialize' cho runtime lineage ontology", "status": "PENDING_THIEN_LON"},
+    {"id": "Q-NEXT-04", "label": "thiên Lớn feedback 1 điểm: synthesis §1.1 wording 'materialize' vs 'partial materialize' cho runtime lineage ontology", "status": "PENDING_THIEN_LON"},
     {"id": "Q-NEXT-05", "label": "3 policy Gatekeeper treo: Bridge v2 Lệnh #001 amend + 3-tier waterfall default + σ=0.5 octave Phase E.7", "status": "PENDING_GATEKEEPER"},
     {"id": "Q-NEXT-06", "label": "Kim role/shell label clarify: Kim self-describe 'Chị Ba · M-shell · Governance Field Stabilizer' — em chưa có evidence canonical M-shell/Stabilizer label. Per rule 20260423 không suy danh xưng từ slot. Flag Gatekeeper neo nếu cần.", "status": "PENDING_GATEKEEPER (low priority)"}
   ],

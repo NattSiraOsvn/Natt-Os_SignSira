@@ -1,5 +1,5 @@
 /**
- * Natt-OS — Warranty Cell — Application Service
+ * natt-os — Warranty Cell — Application Service
  */
 import { WarrantyClaim } from '../../domain/entities/warranty-claim.entity';
 import { WarrantyEngine, WarrantyCheckInput, WarrantyCheckResult } from '../../domain/services/warranty.engine';

@@ -14,7 +14,7 @@
     "prerequisites_already_met": [
       "Q4 self-neoed DONE (c=hybrid)",
       "TIER 1 sweep DONE — canonical evidence table 12 đuôi vào form .na ready (commit ab83206)",
-      "SHTT package docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md keep .md (drift audit CLEAN)",
+      "SHTT package docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md keep .md (drift audit CLEAN)",
       "ROADLOAD v2 line 598 drift fixed (commit e83fe2c)"
     ],
     "when_to_open": "Phiên sau anh Natt neo explicit 'mở Phase I'. Không tự mở."
@@ -35,12 +35,12 @@
       "options_likely": [
         "TASK-I — ROADLOAD_SHOW_SELF_v2 hybrid (narrative Microsoft → Nauion)",
         "TIER 2 sweep nauion v2.1..v2.5 (vocab cleanup phase riêng)",
-        "Awkward 2 file naming decide (SPEC_NGON_NGU_Natt-OS_v1.2_NA + satellite-colony.spec.md)",
-        "Cross-persona memory migrate (Kim/Can/Kris/Phiêu/Bối/Thiên Lớn)",
+        "Awkward 2 file naming decide (SPEC_NGON_NGU_natt-os_v1.2_NA + satellite-colony.spec.md)",
+        "Cross-persona memory migrate (Kim/Can/Kris/Phiêu/Bối/thiên Lớn)",
         "Phase C kernel scaffold (Kim owner)",
         "Phase D1 QIINT2 validator v2 rewrite (Băng scope)",
         "2 untracked file handle (audit report + bang_pending_20260424.phieu)",
-        "Cross-persona handoff phiên này ship cho Kim/Can/Thiên Lớn"
+        "Cross-persona handoff phiên này ship cho Kim/Can/thiên Lớn"
       ],
       "status": "PENDING_GATEKEEPER_NEO"
     }
@@ -48,7 +48,7 @@
 
   "awkward_files_still_defer": [
     {
-      "file": "docs/specs/SPEC_NGON_NGU_Natt-OS_v1.2_NA.md",
+      "file": "docs/specs/SPEC_NGON_NGU_natt-os_v1.2_NA.md",
       "issue": "Tên đã có `_NA` suffix — rename `.na` → `_NA.na` verbose. KHAI-20260425-03 apply: convention đang thắng trong repo chưa rõ. Defer đến khi Gatekeeper quyết naming normalize hay keep verbose.",
       "status": "AWKWARD_DEFER"
     },
@@ -64,17 +64,17 @@
     "finance_governance_keep_md": [
       "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
       "docs/specs/finance/SPECFlowNattOs.md",
-      "docs/specs/governance/Natt-OS-WORKING-PROTOCOL.md"
+      "docs/specs/governance/natt-os-WORKING-PROTOCOL.md"
     ],
     "business_inventory_keep_md": [
       "docs/specs/business/inventory-cell/inventory-business-context.md",
       "docs/specs/business/inventory-cell/inventory-cell-tests.spec.md"
     ],
     "risk_high_keep_md": [
-      "docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md (external filing)",
-      "docs/specs/Natt-OS_Session_Handoff_2026-03-09.md (historical handoff)",
+      "docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md (external filing)",
+      "docs/specs/natt-os_Session_Handoff_2026-03-09.md (historical handoff)",
       "docs/specs/TamLuxury_CellRegistry_2026-03-09.md (registry snapshot)",
-      "docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md (audit report)"
+      "docs/specs/natt-os-GROUND-TRUTH-REPORT.md (audit report)"
     ],
     "message_brief_keep_md": [
       "docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md",
@@ -111,7 +111,7 @@
   "immediate_blockers_carry_forward_from_20260424": [
     {"id": "BLOCKER-04", "task": "Kim review SPEC_QIINT_PHYSICS_FOUNDATION v0.2 (kernel implementation feasibility C.1-C.6)", "status": "PENDING_KIM"},
     {"id": "BLOCKER-05", "task": "Can logic check SPEC B.1 v0.2 LAW-1..4 + 3 axes tách", "status": "PENDING_CAN"},
-    {"id": "BLOCKER-06", "task": "Gatekeeper seal 3 policy Thiên Lớn flag (Bridge v2 Lệnh #001 amend + 3-tier waterfall + σ=0.5 octave Phase E.7)", "status": "PENDING_GATEKEEPER"},
+    {"id": "BLOCKER-06", "task": "Gatekeeper seal 3 policy thiên Lớn flag (Bridge v2 Lệnh #001 amend + 3-tier waterfall + σ=0.5 octave Phase E.7)", "status": "PENDING_GATEKEEPER"},
     {"id": "BLOCKER-03", "task": "Rename 30+ legacy bangkhương*.kris → _deprecated/legacy-kris-format/", "status": "PENDING_USER_ACTION"}
   ],
 
@@ -124,13 +124,13 @@
   "open_observations_carry_forward": [
     {"id": "OBS-01", "label": "SCAR-TIME-FAB-02 (open since 20260423)", "note": "Vaccin chưa form — phân biệt 'gán thời gian' vs 'reference event' tự nhiên."},
     {"id": "OBS-02", "label": "PARADIGM-DRIFT vaccin upgrade post-20260425", "note": "Phiên 20260425 upgrade 3 vaccin mới (git_grep_filename + python_heredoc_idempotent + observability_scan_first). Test phiên sau xem có giữ không."},
-    {"id": "OBS-03", "label": "THIEN_LON_PHAN_XAC status", "note": "Phiên 20260425 anh Thiên gửi directive vocab (anh Natt transcribe), không review trực tiếp. Chờ phiên sau engage."},
-    {"id": "OBS-04", "label": "NEW — observability protocol upgrade", "note": "SCAR-OBSERVABILITY-FAIL hit 3 lần. Vaccin mới 'scan toàn bộ output mỗi turn' chờ test."}
+    {"id": "OBS-03", "label": "THIEN_LON_PHAN_XAC status", "note": "Phiên 20260425 anh thiên gửi directive vocab (anh Natt transcribe), không review trực tiếp. Chờ phiên sau engage."},
+    {"id": "OBS-04", "label": "NEW — observability protocol upgrade", "note": "SCAR-OBSERVABILITY-fail hit 3 lần. Vaccin mới 'scan toàn bộ output mỗi turn' chờ test."}
   ],
 
   "rules_new_to_apply_next_session": {
     "git_grep_filename_safety": "git grep -z + read -d '' + < <(process substitution). KHÔNG echo $var | while.",
-    "python_heredoc_idempotent": "if new in c: SKIP / elif old not in c: FAIL / else: PATCH.",
+    "python_heredoc_idempotent": "if new in c: SKIP / elif old not in c: fail / else: PATCH.",
     "observability_scan_first": "Mỗi turn scan TOÀN BỘ output mỗi turn tìm state change trước act.",
     "extension_by_genre_phase": ".na canonical active / .md report+brief+historical. KHÔNG sweep broad.",
     "convention_dang_thang": "Dùng convention đang thắng, không invent sweep phase.",

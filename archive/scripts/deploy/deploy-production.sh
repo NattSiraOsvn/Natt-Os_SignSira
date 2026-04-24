@@ -1,12 +1,12 @@
 
 #!/bin/bash
-# Natt-OS PRODUCTION DEPLOYMENT PROTOCOL
+# natt-os PRODUCTION DEPLOYMENT PROTOCOL
 # Version: 1.0.0
 # Security Level: OMEGA
 
 set -e
 
-echo "🚀 Natt-OS: INITIATING PRODUCTION DEPLOYMENT"
+echo "🚀 natt-os: INITIATING PRODUCTION DEPLOYMENT"
 echo "=========================================="
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo "DEPLOY_TIME: $TIMESTAMP"

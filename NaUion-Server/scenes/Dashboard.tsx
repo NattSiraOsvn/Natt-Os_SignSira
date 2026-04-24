@@ -40,7 +40,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* KPI Bar — data thật từ Natt-OS audit */}
+        {/* KPI Bar — data thật từ natt-os audit */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           <KPI label="Total Cells" value={String(CELLS.length)} sub="38 business + kernel" />
           <KPI label="Avg Confidence" value={`${avgConf}%`} sub="across all cells" />

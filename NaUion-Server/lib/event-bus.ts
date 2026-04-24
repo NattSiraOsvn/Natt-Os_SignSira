@@ -1,5 +1,5 @@
 // event-bus.ts — ui-vision bridge
-// Dùng Mạch HeyNa SSE thay Natt-OS EventBus (không circular)
+// Dùng Mạch HeyNa SSE thay natt-os EventBus (không circular)
 
 type Handler = (event: any) => void;
 

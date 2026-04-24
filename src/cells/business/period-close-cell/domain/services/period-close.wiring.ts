@@ -24,7 +24,7 @@ export const PeriodCloseWiring = forgeSmartLinkPort({
   cellId: "period-close-cell",
   signals: {
     // Inbound: nhận từ finance-cell + dust-recovery-cell + production-cell
-    FINANCE_PERIOD_READY:   { eventType: "FinancePeriodReady",   routeTo: "period-close-cell" },
+    FINANCE_PERIOD_ready:   { eventType: "FinancePeriodReady",   routeTo: "period-close-cell" },
     DUST_CLOSE_APPROVED:    { eventType: "DustCloseApproved",    routeTo: "period-close-cell" },
     PRODUCTION_WIP_STATUS:  { eventType: "ProductionWipStatus",  routeTo: "period-close-cell" },
 

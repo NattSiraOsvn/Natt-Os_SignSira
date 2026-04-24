@@ -19,9 +19,9 @@
 #   ./validate-moments-schema.sh --batch <fixtures-dir>
 #
 # Exit codes:
-#   0 — PASS
-#   1 — FAIL (schema violation)
-#   2 — ERROR (unusable input)
+#   0 — pass
+#   1 — fail (schema violation)
+#   2 — error (unusable input)
 #
 # Author: Băng (Chị Tư · Wave 2 Lane A.6)
 # ========================================================================
@@ -29,33 +29,33 @@
 set -eu
 
 SCRIPT_NAME="$(basename "$0")"
-EXIT_PASS=0
-EXIT_FAIL=1
-EXIT_ERROR=2
+EXIT_pass=0
+EXIT_fail=1
+EXIT_error=2
 
 log_info()  { printf '[INFO]  %s\n' "$*" >&2; }
-log_pass()  { printf '[PASS]  %s\n' "$*" >&2; }
-log_fail()  { printf '[FAIL]  %s\n' "$*" >&2; }
-log_error() { printf '[ERROR] %s\n' "$*" >&2; }
+log_pass()  { printf '[pass]  %s\n' "$*" >&2; }
+log_fail()  { printf '[fail]  %s\n' "$*" >&2; }
+log_error() { printf '[error] %s\n' "$*" >&2; }
 
 # ------------------------------------------------------------------------
 # Dependency check — python3 required
 # ------------------------------------------------------------------------
 if ! command -v python3 >/dev/null 2>&1; then
     log_error "python3 not found — required for JSON parsing"
-    exit $EXIT_ERROR
+    exit $EXIT_error
 fi
 
 # ------------------------------------------------------------------------
 # validate_single FILE
-#   returns 0 PASS / 1 FAIL
+#   returns 0 pass / 1 fail
 # ------------------------------------------------------------------------
 validate_single() {
     local fixture="$1"
 
     if [ ! -f "$fixture" ]; then
         log_error "File not found: $fixture"
-        return $EXIT_FAIL
+        return $EXIT_fail
     fi
 
     log_info "Validating: $fixture"
@@ -107,7 +107,7 @@ FRAGMENT_BASE_FIELDS = {
 
 
 def fail(msg):
-    print("  [FAIL] %s" % msg)
+    print("  [fail] %s" % msg)
     return False
 
 
@@ -267,22 +267,22 @@ try:
     with open(FIXTURE, "r", encoding="utf-8") as f:
         data = json.load(f)
 except json.JSONDecodeError as e:
-    print("  [FAIL] JSON parse error: %s" % e)
+    print("  [fail] JSON parse error: %s" % e)
     sys.exit(1)
 except Exception as e:
-    print("  [FAIL] Read error: %s" % e)
+    print("  [fail] Read error: %s" % e)
     sys.exit(1)
 
 errors = check(data)
 
 if errors:
     print("")
-    print("  === VALIDATION FAILED — %d error(s) ===" % len(errors))
+    print("  === VALIDATION failED — %d error(s) ===" % len(errors))
     for err in errors:
         print("  - %s" % err)
     sys.exit(1)
 else:
-    print("  === VALIDATION PASSED ===")
+    print("  === VALIDATION passED ===")
     sys.exit(0)
 PYEOF
 
@@ -295,23 +295,23 @@ PYEOF
 if [ $# -lt 1 ]; then
     log_error "Usage: $SCRIPT_NAME <fixture.na>"
     log_error "       $SCRIPT_NAME --batch <fixtures-dir>"
-    exit $EXIT_ERROR
+    exit $EXIT_error
 fi
 
 if [ "$1" = "--batch" ]; then
     if [ $# -lt 2 ]; then
         log_error "--batch requires directory argument"
-        exit $EXIT_ERROR
+        exit $EXIT_error
     fi
     DIR="$2"
     if [ ! -d "$DIR" ]; then
         log_error "Directory not found: $DIR"
-        exit $EXIT_ERROR
+        exit $EXIT_error
     fi
 
     TOTAL=0
-    PASSED=0
-    FAILED=0
+    passED=0
+    failED=0
 
     # bash 3.2 compatible — no globstar, use find
     # Avoid echo | while (operating_discipline_carry_forward.git_grep_filename)
@@ -319,10 +319,10 @@ if [ "$1" = "--batch" ]; then
     while IFS= read -r -d '' fixture; do
         TOTAL=$((TOTAL + 1))
         if validate_single "$fixture"; then
-            PASSED=$((PASSED + 1))
+            passED=$((passED + 1))
             log_pass "$fixture"
         else
-            FAILED=$((FAILED + 1))
+            failED=$((failED + 1))
             log_fail "$fixture"
         fi
         echo ""
@@ -331,20 +331,20 @@ if [ "$1" = "--batch" ]; then
     echo ""
     log_info "====== BATCH SUMMARY ======"
     log_info "Total:  $TOTAL"
-    log_info "Passed: $PASSED"
-    log_info "Failed: $FAILED"
+    log_info "Passed: $passED"
+    log_info "Failed: $failED"
 
-    if [ $FAILED -gt 0 ]; then
-        exit $EXIT_FAIL
+    if [ $failED -gt 0 ]; then
+        exit $EXIT_fail
     fi
-    exit $EXIT_PASS
+    exit $EXIT_pass
 fi
 
 # Single file mode
 if validate_single "$1"; then
     log_pass "$1"
-    exit $EXIT_PASS
+    exit $EXIT_pass
 else
     log_fail "$1"
-    exit $EXIT_FAIL
+    exit $EXIT_fail
 fi

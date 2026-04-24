@@ -2,7 +2,7 @@
 
 **Folder này chứa artifact đã SUPERSEDED / NEEDS_REWRITE — KHÔNG dùng làm rule hoặc spec hiện hành.**
 
-Giữ làm **lineage** (ref cho Thiên Lớn resurrect, Kim/Can review state history). Không đưa vào active zone `src/` để tránh persona khác hoặc scanner load nhầm.
+Giữ làm **lineage** (ref cho thiên Lớn resurrect, Kim/Can review state history). Không đưa vào active zone `src/` để tránh persona khác hoặc scanner load nhầm.
 
 ---
 
@@ -39,7 +39,7 @@ Giữ làm **lineage** (ref cho Thiên Lớn resurrect, Kim/Can review state his
 
 - ✅ Đọc context historical (hiểu tại sao state hiện tại là state đúng)
 - ✅ Ref trong commit message / documentation khi cần giải thích lineage
-- ✅ Thiên Lớn resurrect: đọc để update cached rule
+- ✅ thiên Lớn resurrect: đọc để update cached rule
 
 ---
 

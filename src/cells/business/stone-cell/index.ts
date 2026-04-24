@@ -5,4 +5,4 @@ export { createStoneRecord, addStoneItem, setStone, rejectStone, isStoneComplete
 export type { IStoneRepository, IStoneSheetAdapter, RawStoneSpec } from './application/stone.usecase';
 export { ProcessWipInProgressUseCase, SetStoneUseCase } from './application/stone.usecase';
 export { StoneEngine, InMemoryStoneRepository } from './infrastructure/stone.engine';
-export * from './ports/stone-smartlink.port';
+export * from './ports/stone-SmartLink.port';

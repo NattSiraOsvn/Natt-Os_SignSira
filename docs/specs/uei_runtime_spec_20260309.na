@@ -16,14 +16,14 @@
 ## 1. Files cần chỉnh sửa
 
 ```
-src/core/smartlink/smartlink.point.ts        ← applyFiberDecay() + hysteresis
-src/core/smartlink/smartlink.qneu-bridge.ts  ← FiberSummary interface
-src/cells/infrastructure/smartlink-cell/     ← gossipQueue + receiveGossip
+src/core/SmartLink/SmartLink.point.ts        ← applyFiberDecay() + hysteresis
+src/core/SmartLink/SmartLink.qneu-bridge.ts  ← FiberSummary interface
+src/cells/infrastructure/SmartLink-cell/     ← gossipQueue + receiveGossip
 ```
 
 ---
 
-## 2. Constants cần thêm vào smartlink.point.ts
+## 2. Constants cần thêm vào SmartLink.point.ts
 
 ```typescript
 const FIBER_DECAY_IDLE_MS      = 7 * 24 * 60 * 60 * 1000
@@ -130,7 +130,7 @@ touch(targetCellId: string, layers: TouchLayers): TouchRecord | null {
 ## 5. FiberSummary interface
 
 ```typescript
-// Thêm vào smartlink.types.ts hoặc smartlink.qneu-bridge.ts
+// Thêm vào SmartLink.types.ts hoặc SmartLink.qneu-bridge.ts
 interface FiberSummary {
   nodes: [string, string]   // [sourceCell, targetCell]
   strength: number
@@ -191,7 +191,7 @@ receiveGossip(summary: FiberSummary): void {
 ## 7. Thứ tự implement
 
 ```
-Bước 1: Thêm constants vào smartlink.point.ts
+Bước 1: Thêm constants vào SmartLink.point.ts
 Bước 2: applyFiberDecay() — saturating formula + continuous tick model
 Bước 3: touch() — gọi applyFiberDecay() ở đầu + dissolve check
 Bước 4: FiberSummary interface

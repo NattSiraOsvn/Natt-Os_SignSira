@@ -184,13 +184,13 @@ def main():
 
     file_path = Path(args.file)
     if not file_path.exists():
-        print(f"ERROR: File khong ton tai: {file_path}", file=sys.stderr)
+        print(f"error: File khong ton tai: {file_path}", file=sys.stderr)
         sys.exit(2)
 
     try:
         data = load_todo_file(file_path)
     except json.JSONDecodeError as e:
-        print(f"ERROR: JSON khong parse duoc - {e}", file=sys.stderr)
+        print(f"error: JSON khong parse duoc - {e}", file=sys.stderr)
         sys.exit(2)
 
     if args.list:
@@ -199,7 +199,7 @@ def main():
 
     if not args.todo_id or not args.status:
         print(
-            "ERROR: Can --todo-id va --status (hoac dung --list de xem).",
+            "error: Can --todo-id va --status (hoac dung --list de xem).",
             file=sys.stderr,
         )
         sys.exit(2)
@@ -213,7 +213,7 @@ def main():
             completed_at=args.completed_at,
         )
     except ValueError as e:
-        print(f"ERROR: {e}", file=sys.stderr)
+        print(f"error: {e}", file=sys.stderr)
         sys.exit(3)
 
     save_todo_file_atomic(file_path, data)

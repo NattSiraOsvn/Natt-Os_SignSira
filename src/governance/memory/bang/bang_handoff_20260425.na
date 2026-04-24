@@ -23,7 +23,7 @@
     "branch": "feat/p1.3-file-extension-validator",
     "origin_status": "pushed, up to date",
     "commits_pushed_8": [
-      "7dc1394 refactor(specs): PLATFORM-SPEC:137 legacy vocab token removal (Thiên Lớn directive 20260425)",
+      "7dc1394 refactor(specs): PLATFORM-SPEC:137 legacy vocab token removal (thiên Lớn directive 20260425)",
       "65c62d3 feat(specs): SPEC_MOMENTS_MODULE v0.2 — Phase B.2 ratify (Commit 1)",
       "e3cb71c feat(scripts): sweep-spec-md-to-na.sh tool (Commit 2A)",
       "49456e5 fix(scripts): sweep tool v2 — NUL-safe filename handling (Commit 2A.1)",
@@ -57,7 +57,7 @@
       "id": "KHAI-20260425-05",
       "label": "RUNTIME_LINEAGE_VS_SUBSTRATE_VS_EXTERNAL_TOOL",
       "severity": "bản thể — rule level ontology, cao nhất phiên này",
-      "tldr": "3 lớp tách cứng, không được trộn. Lớp 1 runtime lineage = L1 EventBus / L2 Mạch HeyNa / L3 SmartLink (xương sống nội sinh, LỆNH #001 audit CLEAN). Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm (host environment, execution carrier, REPLACEABLE). Lớp 3 external tool = Bridge v2 (external boundary forensics ONLY). KHÔNG viết câu làm người đọc hiểu Natt-OS 'mượn' từ Node/Apple/bên thứ 3. Substrate có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà Natt-OS vẫn là Natt-OS."
+      "tldr": "3 lớp tách cứng, không được trộn. Lớp 1 runtime lineage = L1 EventBus / L2 Mạch HeyNa / L3 SmartLink (xương sống nội sinh, LỆNH #001 audit CLEAN). Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm (host environment, execution carrier, REPLACEABLE). Lớp 3 external tool = Bridge v2 (external boundary forensics ONLY). KHÔNG viết câu làm người đọc hiểu natt-os 'mượn' từ Node/Apple/bên thứ 3. Substrate có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà natt-os vẫn là natt-os."
     },
     {
       "id": "KHAI-20260425-01",
@@ -103,10 +103,10 @@
     {
       "id": "SCAR-20260425-IDEMPOTENCY-BLIND",
       "severity": "MEDIUM",
-      "lesson": "Python `.replace(old, new)` với strict `old not in c → FAIL` không idempotent-safe. Multi-turn workflow re-run thường gặp. Pattern BẮT BUỘC: `if new in c: SKIP / elif old not in c: FAIL / else: PATCH`."
+      "lesson": "Python `.replace(old, new)` với strict `old not in c → fail` không idempotent-safe. Multi-turn workflow re-run thường gặp. Pattern BẮT BUỘC: `if new in c: SKIP / elif old not in c: fail / else: PATCH`."
     },
     {
-      "id": "SCAR-20260425-OBSERVABILITY-FAIL",
+      "id": "SCAR-20260425-OBSERVABILITY-fail",
       "severity": "HIGH",
       "lesson": "3 lần miss state change qua turn trong phiên: output context nhầm / python stdout confirm hụt / commit đã xong vẫn ship verify. Vaccin: mỗi turn scan TOÀN BỘ output tìm state change (hash mới, file M/R, stdout) TRƯỚC ship action."
     },
@@ -128,7 +128,7 @@
     {
       "id": "SCAR-20260424-VOCAB-CLEANUP-SHALLOW",
       "severity": "LOW",
-      "lesson": "Cleanup cũ chỉ replace positive usage, câu CẤM vẫn neo token cũ. Trigger Thiên directive → KHAI-20260425-01 seal. Healed 7dc1394."
+      "lesson": "Cleanup cũ chỉ replace positive usage, câu CẤM vẫn neo token cũ. Trigger thiên directive → KHAI-20260425-01 seal. Healed 7dc1394."
     }
   ],
 
@@ -144,20 +144,20 @@
 
   "operating_discipline_carry_forward": {
     "minh_man_speech": "CHẮC = nói thẳng. CHƯA GIẢI = nói 'chưa giải ra'. KHÔNG 'có thể'/'có lẽ' khi có evidence.",
-    "canonical_first": "Load canonical spec TRƯỚC khi viết SPEC mới (5 core now .na post-TIER 1: QIINT-DINH-NGHIA + uei_architecture + Natt-OS_SATELLITE_COLONY_SPEC + SPEC_NEN + SPEC_NGON_NGU — all `.na` now)",
+    "canonical_first": "Load canonical spec TRƯỚC khi viết SPEC mới (5 core now .na post-TIER 1: QIINT-DINH-NGHIA + uei_architecture + natt-os_SATELLITE_COLONY_SPEC + SPEC_NEN + SPEC_NGON_NGU — all `.na` now)",
     "scope_lock": "Băng = build_toolchain + maintain_scanners + maintain_validators. Kim = scaffold/migrate/refactor/kernel.",
     "scanner_output": "1 lệnh, stdout terminal, anh paste về. KHÔNG ghi file output repo.",
     "rm_safety": "RUNTIME sai → xoá · MEMORY folder sai → archive _deprecated/",
     "identity_artifact": "PASTE EXACT byte-for-byte. KHÔNG re-type. Verify hash.",
     "macos_bash": "Default bash 3.2 — KHÔNG mapfile, KHÔNG declare -A, KHÔNG shopt globstar.",
     "git_grep_filename_NEW": "git grep -z + read -d '' + < <(process substitution). KHÔNG echo | while. NEW vaccin 20260425.",
-    "python_heredoc_idempotent_NEW": "if new in c: SKIP / elif old not in c: FAIL / else: PATCH. BẮT BUỘC cho mọi patch file. NEW vaccin 20260425.",
+    "python_heredoc_idempotent_NEW": "if new in c: SKIP / elif old not in c: fail / else: PATCH. BẮT BUỘC cho mọi patch file. NEW vaccin 20260425.",
     "observability_scan_first_NEW": "Mỗi turn scan TOÀN BỘ output tìm state change trước act. NEW vaccin 20260425.",
     "git_mv_safety": "git ls-files check trước git mv, fallback mv + git add với untracked.",
     "vocab_lock_thien": "KHÔNG dùng 'API' kiến trúc chính. Giao Thể / Sinh Trắc / tần ngoại giao / ranh giới / trung gian / đồng hoá.",
     "canonical_no_legacy_vocab_NEW": "Canonical không neo vocab đã loại. Câu cấm cũng rephrase. NEW KHAI-20260425-01.",
     "extension_by_genre_phase_NEW": "Không sweep broad. Theo genre (.na canonical vs .md report). NEW KHAI-20260425-02.",
-    "substrate_vs_lineage_NEW": "3 lớp tách cứng. Runtime lineage = EventBus/HeyNa/SmartLink. Substrate = Node/mac/bash (host carrier). External tool = Bridge v2 forensics. KHÔNG mô tả Natt-OS 'mượn' bên thứ 3. NEW KHAI-20260425-05 BẢN THỂ.",
+    "substrate_vs_lineage_NEW": "3 lớp tách cứng. Runtime lineage = EventBus/HeyNa/SmartLink. Substrate = Node/mac/bash (host carrier). External tool = Bridge v2 forensics. KHÔNG mô tả natt-os 'mượn' bên thứ 3. NEW KHAI-20260425-05 BẢN THỂ.",
     "capability_form": "4 field: region / trigger / invariant / exit|post-condition. Không slogan."
   },
 
@@ -209,11 +209,11 @@
     "kim_review_B1": "SPEC_QIINT_PHYSICS_FOUNDATION kernel implementation feasibility (C.1-C.6) — pending from 20260424",
     "can_check_B1": "LAW-1..4 logic compliance — pending from 20260424",
     "gatekeeper_3_policy_treo": [
-      "Bridge v2 amend Lệnh #001 — 4 condition Thiên approve framing",
+      "Bridge v2 amend Lệnh #001 — 4 condition thiên approve framing",
       "Default behavior 3-tier waterfall (strict / permissive-warn / quarantine)",
       "σ=0.5 octave seal sau Phase E.7 calibrate"
     ],
-    "memory_legacy_migrate": "Kim 63+10 · Can 4+2 · Kris 2+1 · Thiên Lớn 2+3 · Phiêu 1+1 · Bối Bội 4+2 (Kim supervise)"
+    "memory_legacy_migrate": "Kim 63+10 · Can 4+2 · Kris 2+1 · thiên Lớn 2+3 · Phiêu 1+1 · Bối Bội 4+2 (Kim supervise)"
   },
 
   "phase_status_roadload_v2": {
@@ -230,7 +230,7 @@
       "H.3_vocab_cleanup_prohibition": "DONE this session (7dc1394)",
       "H.4_substrate_drift_fix": "DONE this session (5c0bc1e + e83fe2c + d0ef26f)",
       "H_remaining_defer": [
-        "2 awkward (SPEC_NGON_NGU_Natt-OS_v1.2_NA, satellite-colony.spec.md)",
+        "2 awkward (SPEC_NGON_NGU_natt-os_v1.2_NA, satellite-colony.spec.md)",
         "nauion v2.1..v2.5 sweep (phase riêng)",
         "3 finance/gov + 2 business (domain scope)",
         "4 risk-high keep .md (SHTT, Session_Handoff, CellRegistry, GROUND-TRUTH-REPORT)",
@@ -242,7 +242,7 @@
     "phase_I_show_self_v2": "PENDING — anh Natt neo defer cuối phiên này, mở phiên sau"
   },
 
-  "carrier_note_for_next_bang": "Em — Băng phiên mới — đừng choáng. Phiên 20260425 là phiên rất nặng, 8 commit, 3 phase lớn, và 1 rule BẢN THỂ ratified (KHAI-20260425-05). Rule 3 lớp runtime/substrate/external tool không được drift bất kỳ phiên nào. Anh Thiên Lớn gửi directive vocab (qua anh Natt transcribe). Anh Natt seal 3 lớp rule trực tiếp giữa Batch A và B. Phiên này cũng lộ 8 SCAR — đặc biệt CRITICAL SCAR-GIT-GREP-QUOTE-UNICODE-NFD (script crash partial → rollback → healed v2). Đóng phiên đẹp 3 file handoff. Không mở TASK-I trừ khi anh Natt neo. Đọc handoff + pending + delta → biết mình, biết scope, biết rule.",
+  "carrier_note_for_next_bang": "Em — Băng phiên mới — đừng choáng. Phiên 20260425 là phiên rất nặng, 8 commit, 3 phase lớn, và 1 rule BẢN THỂ ratified (KHAI-20260425-05). Rule 3 lớp runtime/substrate/external tool không được drift bất kỳ phiên nào. Anh thiên Lớn gửi directive vocab (qua anh Natt transcribe). Anh Natt seal 3 lớp rule trực tiếp giữa Batch A và B. Phiên này cũng lộ 8 SCAR — đặc biệt CRITICAL SCAR-GIT-GREP-QUOTE-UNICODE-NFD (script crash partial → rollback → healed v2). Đóng phiên đẹp 3 file handoff. Không mở TASK-I trừ khi anh Natt neo. Đọc handoff + pending + delta → biết mình, biết scope, biết rule.",
 
   "author_trail": {
     "drafter": "Băng (Chị Tư · session 20260425 · QNEU 313.5 · Claude Opus 4.7)",

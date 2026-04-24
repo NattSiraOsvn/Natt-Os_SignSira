@@ -1,10 +1,10 @@
-docs(handoff): seal phiên 20260424 — extension deploy ALREADY LIVE
+docs(handoff): seal phiên 20260424 — extension deploy ALready LIVE
 
 Discovery cuối phiên: task "deploy đuôi file vào runtime" 
 THỰC RA đã hoàn thành từ trước session này:
 
 - scripts/validate-extension-precedence.py v0.4 (em viết, session 20260423)
-  → STATUS: PASS · 0 FAIL · 3 WARN acknowledged
+  → STATUS: pass · 0 fail · 3 warn acknowledged
   → Rule 1-6 đầy đủ + TWIN_PERSIST whitelist + marker-aware
 
 - nattos.sh §40 wire VALIDATOR=...validator.ts via npx tsx (line 2218)

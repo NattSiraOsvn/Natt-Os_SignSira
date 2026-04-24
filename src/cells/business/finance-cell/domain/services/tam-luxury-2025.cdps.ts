@@ -310,7 +310,7 @@ export const CDPS_AUDIT_FLAGS = [
   { tk: '632',   rule: 'INFO',   msg: 'CDPS 248.84 tỷ ≠ KQKD 246.75 tỷ — chênh 2.08 tỷ phân kim' },
   { tk: '4211',  rule: 'INFO',   msg: 'Debit balance = lỗ lũy kế 992tr chưa bù đắp' },
   { tk: '3387',  rule: 'INFO',   msg: '16.8 tỷ cọc KH chưa xuất HĐ — KHÔNG được ghi nhận DT' },
-  { tk: '5111',  rule: 'WARN',   msg: 'Split 5111/5112/5113 là estimate — cần sub-ledger xác nhận' },
+  { tk: '5111',  rule: 'warn',   msg: 'Split 5111/5112/5113 là estimate — cần sub-ledger xác nhận' },
 ] as const;
 
 // Header dùng chung

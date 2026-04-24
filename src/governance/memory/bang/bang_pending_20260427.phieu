@@ -17,7 +17,7 @@
     },
     "persona_status": {
       "Băng": "Wave 2 scope đóng, memory export complete, chờ task tiếp",
-      "Thiên_Lớn": "Scaffold v3 ship, chờ reply 4 concern non-blocking từ Băng",
+      "thiên_Lớn": "Scaffold v3 ship, chờ reply 4 concern non-blocking từ Băng",
       "Chị_Ba_Kim": "Reviewer role ad-hoc, chờ review artifact tiếp theo"
     }
   },
@@ -25,9 +25,9 @@
   "pending_items": [
     {
       "id": "PEND-20260427-01",
-      "label": "Anh Thiên address 4 concern non-blocking scaffold v3",
+      "label": "Anh thiên address 4 concern non-blocking scaffold v3",
       "priority": "P2",
-      "owner": "Thiên Lớn",
+      "owner": "thiên Lớn",
       "description": "4 concern em flag sau review scaffold v3:",
       "concerns": [
         "context_moment → target_causation mapping — field name ambiguous (ID hay text?)",
@@ -35,7 +35,7 @@
         "Hibernate validator 'must not define abort_paths' strict — relax warning",
         "Storage path namespace `.nattos-twin/moments/<entity>/` — verify SPEC v0.2 §3 canonical"
       ],
-      "next_action": "Em review anh Thiên reply khi ship — canonical cross-check",
+      "next_action": "Em review anh thiên reply khi ship — canonical cross-check",
       "blocking": "scaffold v4 commit / pseudo-flow deeper expansion",
       "not_blocking": "memory export phiên 20260427 (đã completed per file này)"
     },
@@ -52,9 +52,9 @@
       "label": "K2 audit source verify globally closed",
       "priority": "P3",
       "owner": "Gatekeeper paste source + Băng cross-check",
-      "description": "Chị Ba ship K2 audit PASS trong view Kim. Globally closed requires em (Băng) cross-check source khai-file-persister.ts thật với audit claim Chị Ba.",
+      "description": "Chị Ba ship K2 audit pass trong view Kim. Globally closed requires em (Băng) cross-check source khai-file-persister.ts thật với audit claim Chị Ba.",
       "next_action": "Gatekeeper paste actual source → em verify TWIN_PERSIST tag + Điều 7 compliance + audit claim match",
-      "current_status_per_Thien": "PASS trong view Kim; chưa globally closed"
+      "current_status_per_Thien": "pass trong view Kim; chưa globally closed"
     },
     {
       "id": "PEND-20260427-04",
@@ -62,7 +62,7 @@
       "priority": "P3",
       "owner": "Gatekeeper seal Q-05 first, rồi em ship batch",
       "blocker": [
-        "Bridge v2 Lệnh #001 amend (4-condition framing anh Thiên approve)",
+        "Bridge v2 Lệnh #001 amend (4-condition framing anh thiên approve)",
         "Default behavior 3-tier waterfall (strict / permissive-warn / quarantine)",
         "σ=0.5 octave seal post-Phase E.7 calibrate"
       ],
@@ -107,16 +107,16 @@
     },
     {
       "id": "WATCH-20260427-03",
-      "label": "Anh Thiên scaffold v3 → v4 iteration quality",
-      "description": "Anh Thiên jump past pseudo-flow, ship thẳng scaffold v3. Nếu 4 concern em flag resolve clean trong v4 + không introduce new drift → pattern jump-past acceptable. Nếu v4 tạo drift mới + Gatekeeper phải kéo → phải force anh Thiên through pseudo-flow step.",
+      "label": "Anh thiên scaffold v3 → v4 iteration quality",
+      "description": "Anh thiên jump past pseudo-flow, ship thẳng scaffold v3. Nếu 4 concern em flag resolve clean trong v4 + không introduce new drift → pattern jump-past acceptable. Nếu v4 tạo drift mới + Gatekeeper phải kéo → phải force anh thiên through pseudo-flow step.",
       "success_criteria": "v4 fix 4/4 concern + 0 new drift"
     }
   ],
 
   "priority_order_next_session_start": [
-    "P1 — Anh Thiên reply 4 concern (chờ inbound)",
+    "P1 — Anh thiên reply 4 concern (chờ inbound)",
     "P2 — Push commit c8d9877 (Gatekeeper decide)",
-    "P2 — Anh Thiên scaffold v3 commit scope src/wave2/ (Kim review packaging + Băng review semantic)",
+    "P2 — Anh thiên scaffold v3 commit scope src/wave2/ (Kim review packaging + Băng review semantic)",
     "P3 — K2 source paste + cross-check",
     "P3 — Lane C unblock sequence (Q-05 seal → em ship C batch)",
     "P3 — 4/7 capability remaining (canonical list từ Gatekeeper)",

@@ -72,7 +72,7 @@ Nam-Bắc mở công khai, Đông-Tây khóa identity. Backdoor hóa frontdoor b
 ```bash
 git log --oneline | head -3
 # 39acb6c fix(spec): normalize entity prefixes k→kim, b→boi
-# 8d1232f feat(spec): migrate to SPEC v0.3.1 — Natt-OS file extensions
+# 8d1232f feat(spec): migrate to SPEC v0.3.1 — natt-os file extensions
 # 4498c01 checkpoint: before SPEC v0.3.1 migration
 
 # Verify sample files
@@ -93,7 +93,7 @@ Nếu Kim phát hiện rule SPEC v0.3.1 nào chưa hợp lý → báo Anh Natt +
 
 - Tổng hợp Fail-Troy (compile tất cả dangerous bypass patterns)
 - `nattos.sh` v7.1 — thêm §45 audit file extension compliance (Băng sẽ làm)
-- Ma trận màu Thiên Lớn cụ thể (chờ Anh Natt share data)
+- Ma trận màu thiên Lớn cụ thể (chờ Anh Natt share data)
 
 ---
 

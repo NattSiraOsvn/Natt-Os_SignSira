@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — Fix Remaining 174 TypeScript Errors (Part 2)
+natt-os — Fix Remaining 174 TypeScript Errors (Part 2)
 Run từ project root AFTER fix_all_errors.py: python3 fix_remaining.py
 """
 import os
@@ -17,7 +17,7 @@ def write(path, content):
 def patch(path, old, new, required=True):
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
-        print(f"⚠️  MISSING: {path}")
+        print(f"⚠️  missing: {path}")
         return False
     with open(full, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -33,7 +33,7 @@ def patch(path, old, new, required=True):
 def append(path, text):
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
-        print(f"⚠️  MISSING: {path}")
+        print(f"⚠️  missing: {path}")
         return
     with open(full, 'r', encoding='utf-8') as f:
         existing = f.read()
@@ -45,7 +45,7 @@ def append(path, text):
     print(f"✅ append: {path}")
 
 print("=" * 60)
-print("Natt-OS Fix Part 2 — 174 remaining errors")
+print("natt-os Fix Part 2 — 174 remaining errors")
 print("=" * 60)
 
 # ══════════════════════════════════════════════════════════
@@ -276,7 +276,7 @@ export interface RFMData {
 
 export interface FlowLog {
   id: string; stage: string; actor: string; action: string;
-  timestamp: number; status: "OK" | "ERROR" | "PENDING";
+  timestamp: number; status: "OK" | "error" | "PENDING";
   step?: number; detail?: string;
 }
 

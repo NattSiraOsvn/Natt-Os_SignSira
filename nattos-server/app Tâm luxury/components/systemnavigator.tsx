@@ -14,7 +14,7 @@ const SystemNavigator: React.FC<SystemNavigatorProps> = ({ setActiveView }) => {
   // Subscribe to Event Bridge to visualize flow
   useEffect(() => {
     // Khi có event Sales -> Pulse Sales Node
-    const unsubSales = EventBridge.subscribe('SALES_ORDER_CREATED', () => {
+    const unsubSales = EventBridge.subscribe('SALES_ORDER_created', () => {
         setActivePulse('SALES');
         setTimeout(() => setActivePulse(null), 2000);
     });

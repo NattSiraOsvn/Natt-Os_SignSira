@@ -62,11 +62,11 @@
     "fixture_id": "fixture-SCAR",
     "purpose": "Validator test — SCAR với 4 fragment (required ENVELOPE + EVIDENCE; optional REMEDY + META). Data thực từ phiên 20260426.",
     "acceptance_expectations": [
-      "Validator PASS required fragments (ENVELOPE + EVIDENCE)",
-      "Validator PASS fragment_id uniqueness",
-      "Validator PASS ordinal sequence 0-indexed no gap",
-      "Validator PASS parent_moment_kind consistency (all = SCAR)",
-      "Validator PASS ENVELOPE.causation == parent_moment_causation"
+      "Validator pass required fragments (ENVELOPE + EVIDENCE)",
+      "Validator pass fragment_id uniqueness",
+      "Validator pass ordinal sequence 0-indexed no gap",
+      "Validator pass parent_moment_kind consistency (all = SCAR)",
+      "Validator pass ENVELOPE.causation == parent_moment_causation"
     ],
     "drafter": "Băng (Wave 2 Lane A.5)",
     "session_ref": "Wave 2 kickoff",

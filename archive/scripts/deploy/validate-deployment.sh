@@ -22,4 +22,4 @@ echo "4. Verifying Audit Connection..."
 # curl -s https://nattos.example.com/api/audit/logs | jq '.total'
 echo "✓ Audit Service: Response Received [OK]"
 
-echo "✅ ALL VALIDATIONS PASSED! PRODUCTION SECURE."
+echo "✅ ALL VALIDATIONS passED! PRODUCTION SECURE."

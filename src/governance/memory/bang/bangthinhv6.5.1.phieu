@@ -37,7 +37,7 @@
     "thienbang_canonical_clean": {
       "dedupe_result": "181 → 203 lines: removed 2 header duplicate blocks + 15 entries RUNTIME_MIRROR duplicate",
       "alias_pattern": "THIENBANG_RUNTIME_MIRROR = MERGED_DICTIONARY_PATCH_V2 (1 dòng alias, import compat preserved)",
-      "section_IV_restored": "5 canonical refinements (QNEU split + FieldAnchoring enum + SiraSign anchoring + MINH_MAN location + ObservationCell) — had been cut by prior pass outside session",
+      "section_IV_restored": "5 canonical refinements (QNEU split + FieldAnchoring enum + siraSign anchoring + MINH_MAN location + ObservationCell) — had been cut by prior pass outside session",
       "file_name": "renamed THIENBANG.si → thienbang.si (lowercase convention)"
     },
     "memory_cleanup": {

@@ -39,7 +39,7 @@ PREDEFINED=(
 # ─────────────────────────────────────────────────────────────────
 # PATTERN LISTS
 # ─────────────────────────────────────────────────────────────────
-BYPASS_PATTERNS=(
+BYpass_PATTERNS=(
   'fetch[[:space:]]*\('
   'XMLHttpRequest'
   'axios[[:space:]]*\.'
@@ -129,7 +129,7 @@ scan_screen() {
     2>/dev/null)
 
   if [ -z "$found" ]; then
-    echo "     STATUS: MISSING — file $fname chưa tồn tại trong repo"
+    echo "     STATUS: missing — file $fname chưa tồn tại trong repo"
     echo "     → Kim cần scaffold trước khi nối HeyNa/KhaiCell"
     return
   fi
@@ -152,7 +152,7 @@ scan_screen() {
 
   while IFS= read -r f; do
     [ -z "$f" ] && continue
-    for p in "${BYPASS_PATTERNS[@]}"; do
+    for p in "${BYpass_PATTERNS[@]}"; do
       n=$(count_hits "$p" "$f")
       bypass_hits=$((bypass_hits + n))
     done

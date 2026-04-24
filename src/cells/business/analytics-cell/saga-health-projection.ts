@@ -6,7 +6,7 @@ import { EventEnvelope, SagaLog } from '../../../types';
 
 export interface SagaState {
   correlation_id: string;
-  current_status: 'PROCESSING' | 'COMPLETED' | 'COMPENSATING' | 'FAILED';
+  current_status: 'PROCESSING' | 'COMPLETED' | 'COMPENSATING' | 'failED';
   steps: SagaLog[];
   last_updated: number;
 }

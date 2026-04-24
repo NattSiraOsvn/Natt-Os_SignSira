@@ -196,9 +196,9 @@ const BankingProcessor: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
          <div className="glass p-10 rounded-[3rem] border border-amber-500/20 bg-amber-500/5 shadow-2xl">
-            <h4 className="text-[10px] text-amber-500 font-black uppercase tracking-widest mb-6">Tham mưu Kế toán (Thiên)</h4>
+            <h4 className="text-[10px] text-amber-500 font-black uppercase tracking-widest mb-6">Tham mưu Kế toán (thiên)</h4>
             <p className="text-[13px] text-gray-400 italic leading-relaxed font-light">
-              "Thưa Anh Natt, Robot đã bóc tách chính xác các khoản thuế hải quan từ nội dung giao dịch. Thiên kiến nghị Anh kiểm tra lại Shard 'HCM222425' - đây là mã tờ khai có giá trị lớn cần đối soát GĐB nhập khẩu ngay."
+              "Thưa Anh Natt, Robot đã bóc tách chính xác các khoản thuế hải quan từ nội dung giao dịch. thiên kiến nghị Anh kiểm tra lại Shard 'HCM222425' - đây là mã tờ khai có giá trị lớn cần đối soát GĐB nhập khẩu ngay."
             </p>
          </div>
          <div className="glass p-10 rounded-[3rem] border border-blue-500/20 bg-blue-500/5 shadow-2xl">

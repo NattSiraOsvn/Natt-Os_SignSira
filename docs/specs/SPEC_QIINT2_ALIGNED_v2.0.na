@@ -22,7 +22,7 @@
 
 **Out of scope:**
 - QNEU persona scoring (thuoc SPEC_QNEU rieng)
-- SiraSign signing (thuoc SPEC_SiraSIGN)
+- siraSign signing (thuoc SPEC_siraSIGN)
 
 ---
 
@@ -102,7 +102,7 @@ K1_survival.decide(load) = measure(current_state)
 | Default | ln(2) = 0.693 — 1 octave (GUESSED) |
 | Domain | SmartLink resonance frequency uncertainty |
 | How to measure | Đo phổ cộng hưởng thật giữa cells qua touch-timestamps |
-| Data source | `src/core/smartlink/smartlink.nattimer.ts` NATTimer chain observations |
+| Data source | `src/core/SmartLink/SmartLink.nattimer.ts` NATTimer chain observations |
 | Used by | SmartLink frequency matching, Bridge v2 |
 | Calibration owner | Bang (phase 2) |
 

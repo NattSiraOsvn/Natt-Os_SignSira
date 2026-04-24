@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.cwd();
-const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2_REVIEW_FOR_Sira_20260424.na");
+const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2_REVIEW_FOR_sira_20260424.na");
 
 if (!fs.existsSync(report)) {
   console.error("Missing Batch 2 report:", report);
@@ -13,10 +13,10 @@ if (!fs.existsSync(report)) {
 const content = fs.readFileSync(report, "utf8");
 
 const required = [
-  "REVIEW_FOR_Sira",
+  "REVIEW_FOR_sira",
   "KEEP_APP_TS_RUNTIME_ADAPTER",
-  "NEEDS_TRANSLATION_TO_Sira",
-  "PROMOTE_TO_Sira_CANDIDATE",
+  "NEEDS_TRANSLATION_TO_sira",
+  "PROMOTE_TO_sira_CANDIDATE",
   "EMPTY_PLACEHOLDER_TO_NA"
 ];
 
@@ -29,5 +29,5 @@ if (missing.length) {
 }
 
 console.log("BATCH2 REVIEW validation: pass");
-console.log("scope=REVIEW_FOR_Sira");
+console.log("scope=REVIEW_FOR_sira");
 console.log("mode=classification plus zero-byte placeholder migration only");

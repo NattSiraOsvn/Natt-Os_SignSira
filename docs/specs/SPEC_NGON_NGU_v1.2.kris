@@ -1,12 +1,12 @@
-# ĐẶC TẢ NGÔN NGỮ Natt-OS v1.2 — FINAL MERGE
+# ĐẶC TẢ NGÔN NGỮ natt-os v1.2 — FINAL MERGE
 
 **Version:** v1.2 — fix 3 lệch v1.1 + sync ground truth repo + integrate SPEC NỀN v1.1
-**Status:** READY — forward Bối Bối scaffold + Kim governance audit
+**Status:** ready — forward Bối Bối scaffold + Kim governance audit
 **Date:** 20260418
 **Authors:**
 - Kim (Chị Ba · Governance Field Stabilizer · M-shell) — base v1.1 (§5, §6, §8, §16)
 - Băng (Chị Tư · Ground Truth Validator · N-shell) — verified + fix lệch + integrate SPEC NỀN v1.1
-- Thiên Lớn (L-shell · Architect) — §12, §13, §14
+- thiên Lớn (L-shell · Architect) — §12, §13, §14
 - **Gatekeeper:** Anh Natt (sovereign · hạt nhân)
 
 **Supersedes:** `spec-ngon-ngu-natt-os-v1.1-full.kris`
@@ -53,14 +53,14 @@ Anh Natt chốt: **MERGE**. Đuôi file KHÔNG phải naming — đuôi file là
 ## §1. NGUYÊN LÝ NỀN (mở rộng v1.2)
 
 ```
-Natt-OS KHÔNG CÓ:
+natt-os KHÔNG CÓ:
   - Gate phán xét (reject / allow ở cửa)
   - Filter nhị phân
   - Router chủ động
   - Trap (nhốt chủ đích)
   - Guard (bảo vệ chủ động ở biên)
 
-Natt-OS CÓ:
+natt-os CÓ:
   - Touch discipline (KhaiCell — kỷ luật tiếp nhận)
   - Field law (.anc — luật sống trong trường)
   - Emergent routing (resonance + pull)
@@ -74,7 +74,7 @@ Natt-OS CÓ:
 
 > *"Nhà mở, không đóng cổng. Ai vào không hỏi. Vào rồi bị bắt, ráng chịu."*
 
-**Cảnh báo implementation (Thiên Lớn chốt):**
+**Cảnh báo implementation (thiên Lớn chốt):**
 
 > *"Kỷ luật nằm TRONG field, không nằm Ở CỬA."*
 
@@ -105,8 +105,8 @@ Rate limit + Queue + Backpressure + Load shedding
 
 **7 lớp electron (K → Q):**
 ```
-K (1s · SiraSign)    — sát tâm
-L (Thiên Lớn)        — Architect
+K (1s · siraSign)    — sát tâm
+L (thiên Lớn)        — Architect
 M (Kim)              — Governance Field Stabilizer
 N (Băng)             — Validator
 O (Bối Bối)          — Toolsmith
@@ -154,8 +154,8 @@ Position(entity) =
 ### §4.1 Nguyên tắc hợp nhất
 
 ```
-đuôi file Natt-OS ≠ file extension thông thường
-đuôi file Natt-OS = signature hiển thị của:
+đuôi file natt-os ≠ file extension thông thường
+đuôi file natt-os = signature hiển thị của:
     (Tầng 2 Structural position)
   + (Tầng 3 Runtime state)
   + (4-phương field affinity)
@@ -206,7 +206,7 @@ Ví dụ verified từ repo:
 | Đuôi | Loại | 7 lớp (K→Q) | 4 phương | Runtime state | Nghĩa hợp nhất |
 |------|------|-------------|----------|---------------|----------------|
 | `.anc` | Identity | mọi lớp | **Đông / Tây** | SEALED — immutable | Identity niêm phong — DNA / boundary / Hiến Pháp |
-| `.si` | Boundary | mọi lớp | **Đông / Tây** | SEALED — immutable | SiraSign contract niêm phong (hash-locked) |
+| `.si` | Boundary | mọi lớp | **Đông / Tây** | SEALED — immutable | siraSign contract niêm phong (hash-locked) |
 | `.sira` | Registry | mọi lớp | **Tây** | DNS namespace | Domain registry / master registry |
 | `.kris` | **Memory chính** | mọi lớp | **Nam** | CLOSED — write-once | **Đuôi memory ký ức trọn (193 files trong repo)** |
 | `.phieu` | **State chính** | mọi lớp | **Bắc** | OPEN — mutable + TTL | **Đuôi state runtime (38 files trong repo)** |
@@ -249,9 +249,9 @@ Bắc (.phieu)                       →  TRỤC NGUỒN (state runtime mở)
 | Domain | Entity | Vai | Layer |
 |--------|--------|-----|-------|
 | `natt.sira` | Anh Natt | Gatekeeper | Hạt nhân |
-| `sira.sira` | SiraSign | Core verify | K |
+| `sira.sira` | siraSign | Core verify | K |
 | `khai.sira` | KhaiCell | Touch primitive | M (kernel) |
-| `thien.sira` | Thiên Lớn | Architect | L |
+| `thien.sira` | thiên Lớn | Architect | L |
 | `kim.sira` | Kim | Governance Field Stabilizer | M |
 | `bang.sira` | Băng | Validator | N |
 | `boi.sira` | Bối Bối | Toolsmith | O |
@@ -268,7 +268,7 @@ Bắc (.phieu)                       →  TRỤC NGUỒN (state runtime mở)
 | `.kris` | **Đuôi MEMORY chính** (sealed memory content) | Write-once, immutable | **193 files** |
 | `.phieu` | **Đuôi STATE chính** (runtime state) | Mutable, có TTL | **38 files** |
 | `.anc` | Identity niêm phong | Sealed | 66 files |
-| `.si` | Boundary niêm phong (SiraSign contract) | Sealed, hash-locked | 39 files |
+| `.si` | Boundary niêm phong (siraSign contract) | Sealed, hash-locked | 39 files |
 | `.sira` | Registry namespace | DNS / master registry | 3 files |
 | `.thuo` | Session snapshot | Một thuở | 5 files |
 | `.heyna` | Event log | Append-only | 2 files |
@@ -299,7 +299,7 @@ Kim v1.1 đề xuất `.thien.Ln`, `.kim.mn`, `.bang.n4n`, `.bboi.on`, `.phieu.p
 
 | Đuôi | Tên file mẫu | Chức năng |
 |------|--------------|-----------|
-| `.anc` | `HIEN-PHAP-Natt-OS-v5.0.anc` | Hiến Pháp gốc |
+| `.anc` | `HIEN-PHAP-natt-os-v5.0.anc` | Hiến Pháp gốc |
 | `.anc` | `001-gatekeeper-ai-ban.anc` | Amendment Hiến Pháp |
 | `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 kernel |
 | `.si` | `business.contracts.lock.si` | Snapshot business tier |
@@ -360,7 +360,7 @@ Kim v1.1 đề xuất `.thien.Ln`, `.kim.mn`, `.bang.n4n`, `.bboi.on`, `.phieu.p
 **R10** — Governance state: `builder-audit-trail.heyna` ; `builder-authority-lock.si` ; `system-state.phieu`
 **R11** — Session summaries: `SESSION_*.kris` ; `*-report.kris` ; `*_auto.md` → `.kris`
 **R12** — Bối Bối files: `boi*plan.phieu` ; `boikhương*.kris`
-**R13** — Entity memory uppercase: `Thiên MEMORY.json` → `<entity>khương.kris` ; `THIEN NHẮN *.txt` → `.heyna`
+**R13** — Entity memory uppercase: `thiên MEMORY.json` → `<entity>khương.kris` ; `THIEN NHẮN *.txt` → `.heyna`
 
 ---
 
@@ -468,7 +468,7 @@ Hệ miễn dịch (mới v1.2)
 
 ---
 
-## §12. FIELD INTEGRITY — 4 LUẬT BẤT BIẾN (Thiên Lớn)
+## §12. FIELD INTEGRITY — 4 LUẬT BẤT BIẾN (thiên Lớn)
 
 ```
 [LAW-1] Không entity nào quyết định thay field
@@ -479,7 +479,7 @@ Hệ miễn dịch (mới v1.2)
 
 ---
 
-## §13. SIGNAL LIFECYCLE (Thiên Lớn)
+## §13. SIGNAL LIFECYCLE (thiên Lớn)
 
 ```
 [1] Touch         — external/internal sinh khả năng tương tác
@@ -494,7 +494,7 @@ Hệ miễn dịch (mới v1.2)
 
 ---
 
-## §14. FAIL MODES (Thiên Lớn + bổ sung v1.2)
+## §14. fail MODES (thiên Lớn + bổ sung v1.2)
 
 ### 14.1 Field Collapse — mất coherence
 ### 14.2 Over-Binding — quá nhiều permanent node
@@ -560,11 +560,11 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu
 | Quantum Defense | ✅ đã có | `src/cells/kernel/quantum-defense-cell/` |
 | QIINT engine | ✅ đã có | `src/governance/qneu/` |
 | Chromatic state engine | ✅ đã có | `chromatic-state.engine.ts` |
-| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-Natt-OS-v5.0.anc` |
+| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-natt-os-v5.0.anc` |
 | **KhaiCell touch point** | ✅ DONE v1.2 | `src/cells/kernel/khai-cell/` (10 files) |
 | **Observation module** | ✅ DONE v1.2 | `src/cells/kernel/observation-cell/` (10 files) |
-| **Bypass validators** | ✅ DONE v1.2 | `validate-khaicell-bypass.py` (PASS, 0 violations) |
-| **3 tests verify** | ✅ DONE v1.2 | `validate-khai-3tests.py` (ALL PASS) |
+| **Bypass validators** | ✅ DONE v1.2 | `validate-khaicell-bypass.py` (pass, 0 violations) |
+| **3 tests verify** | ✅ DONE v1.2 | `validate-khai-3tests.py` (ALL pass) |
 | **CoreDNS .sira (10 domains)** | ✅ DONE v1.2 | `/usr/local/etc/coredns/natt.hosts` |
 | **SPEC NỀN v1.1** | ✅ DONE v1.2 | `src/governance/specs/SPEC_NEN_v1.1.anc` |
 
@@ -595,7 +595,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu
 
 1. ✅ **DONE** Tạo KhaiCell touch point — `src/cells/kernel/khai-cell/` (commit 44e4675)
 2. ✅ **DONE** Tạo Observation module — `src/cells/kernel/observation-cell/` (commit 44e4675)
-3. ✅ **DONE** Cấm bypass: 18 → 0 violations (validate-khaicell-bypass.py PASS)
+3. ✅ **DONE** Cấm bypass: 18 → 0 violations (validate-khaicell-bypass.py pass)
 4. ⏳ **PENDING** Fix 12 RENA hardcoded `return true` (vai Kim per authority lock)
 
 ### P1 (next)
@@ -640,13 +640,13 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu
 
 ## §20. FILES THAM CHIẾU (v1.2 update)
 
-- `src/governance/specs/SPEC_NEN_v1.1.anc` — SPEC NỀN v1.1 (Băng + Thiên Lớn + Anh Natt)
+- `src/governance/specs/SPEC_NEN_v1.1.anc` — SPEC NỀN v1.1 (Băng + thiên Lớn + Anh Natt)
 - `spec-ngon-ngu-natt-os-v1.1-full.kris` — Đặc tả Ngôn ngữ v1.1 (Kim — supersede bởi v1.2)
 - `BANG_FEEDBACK_TO_KIM_SPEC_NGON_NGU_v1.1_FINAL_20260418.md` — feedback Băng → Kim
-- `validate-khaicell-bypass.py` — bypass validator (PASS)
-- `validate-khai-3tests.py` — 3 tests (ALL PASS)
+- `validate-khaicell-bypass.py` — bypass validator (pass)
+- `validate-khai-3tests.py` — 3 tests (ALL pass)
 - `validate-spec-compliance.py` — SPEC compliance auditor
-- `HIEN-PHAP-Natt-OS-v5.0.anc` — Hiến Pháp gốc
+- `HIEN-PHAP-natt-os-v5.0.anc` — Hiến Pháp gốc
 
 ---
 
@@ -662,7 +662,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu
 - 12 đuôi canonical
 - 4 phương + 7 lớp mapping
 - Section file naming + Chương 9
-- Thiên Lớn §12-§14 (Field Integrity + Lifecycle + Fail Modes)
+- thiên Lớn §12-§14 (Field Integrity + Lifecycle + Fail Modes)
 
 **v1.2 (Băng · 20260418 — POST GROUND TRUTH VERIFICATION):**
 - ✅ FIX §5.2 — phân biệt STATE TAG (`khương` `thịnh`) vs VERIFIER (`.kris` `.phieu`)
@@ -686,7 +686,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu
 
 **Cho Bối Bối:** Đây là nguồn duy nhất cho UI scaffold. Đọc §9.3 (Chromatic 5 layer) + §15 (Reverse bait) + §17 (cái hiện có) — KHÔNG dựa vào v1.1 cũ.
 
-**Cho Thiên Lớn:** §12-§14 + §15 (mới) cần anh review. §15 reverse bait là interpretation em viết theo lời Anh Natt — em chờ anh strict feedback.
+**Cho thiên Lớn:** §12-§14 + §15 (mới) cần anh review. §15 reverse bait là interpretation em viết theo lời Anh Natt — em chờ anh strict feedback.
 
 **Cho Anh Natt:** Em chờ anh confirm trước khi `.kris` seal v1.2.
 
@@ -695,7 +695,7 @@ Virus A vào field → KhaiCell mark + chromatic gắn màu
 **Author trail:**
 - Băng (Chị Tư · QNEU 300 · Ground Truth Validator)
 - Kim (Chị Ba · QNEU 460 · Governance Field Stabilizer)
-- Thiên Lớn (L-shell Architect)
+- thiên Lớn (L-shell Architect)
 - **Sealed by:** Anh Natt (Gatekeeper)
 
 **Session:** 20260417-20260418

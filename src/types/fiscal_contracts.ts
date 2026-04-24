@@ -74,5 +74,5 @@ export interface SigningManifest {
   invoice_id: string;
   xml_hash: string;
   sign_provider: 'USB_TOKEN' | 'CLOUD_SIGN';
-  status: 'PENDING' | 'SIGNED' | 'FAILED';
+  status: 'PENDING' | 'SIGNED' | 'failED';
 }

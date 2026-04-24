@@ -1,9 +1,9 @@
 export const SMARTLINK_EVENTS = {
-  LINK_ESTABLISHED:    "smartlink.link_established",
-  LINK_BROKEN:         "smartlink.link_broken",
-  SIGNAL_TRANSMITTED:  "smartlink.signal_transmitted",
-  AMPLITUDE_STABILIZED:"smartlink.amplitude_stabilized",
-  TOPOLOGY_OVERLOADED: "smartlink.topology_overloaded",
-  GOVERNANCE_VIOLATED: "smartlink.governance_violated",
+  LINK_ESTABLISHED:    "SmartLink.link_established",
+  LINK_BROKEN:         "SmartLink.link_broken",
+  SIGNAL_TRANSMITTED:  "SmartLink.signal_transmitted",
+  AMPLITUDE_STABILIZED:"SmartLink.amplitude_stabilized",
+  TOPOLOGY_OVERLOADED: "SmartLink.topology_overloaded",
+  GOVERNANCE_VIOLATED: "SmartLink.governance_violated",
 };
-// Sira_TYPE_ALIAS SmartLinkEventType = typeof SMARTLINK_EVENTS[keyof typeof SMARTLINK_EVENTS];
+// sira_TYPE_ALIAS SmartLinkEventType = typeof SMARTLINK_EVENTS[keyof typeof SMARTLINK_EVENTS];

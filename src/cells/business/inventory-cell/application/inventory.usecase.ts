@@ -1,7 +1,7 @@
 /**
  * inventory-cell — application/inventory.usecase.ts
- * Sprint 2 | Tâm Luxury Natt-OS
- * Subscribe: WIP_COMPLETED → Emit: STOCK_ENTRY_CREATED
+ * Sprint 2 | Tâm Luxury natt-os
+ * Subscribe: WIP_COMPLETED → Emit: STOCK_ENTRY_created
  * FLAT interface — FS-024
  * TR-005: block nếu qcApproved = false
  */
@@ -37,7 +37,7 @@ export class ProcessWipCompletedUseCase {
     await this.repo.save(entry);
 
     const outEvent: StockEntryCreatedEvent = {
-      eventType: 'STOCK_ENTRY_CREATED',
+      eventType: 'STOCK_ENTRY_created',
       entryId:   entry.entryId,
       orderId,
       lapId,

@@ -1,4 +1,4 @@
-// Sira_CONTRACT_INTERFACE SmartLinkEventEmitter
+// sira_CONTRACT_INTERFACE SmartLinkEventEmitter
 const SmartLinkEventEmitter = {
   emitLinkCreated(linkId, sourceKey, targetKey);
   emitLinkDeleted(linkId);

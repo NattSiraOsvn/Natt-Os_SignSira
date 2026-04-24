@@ -149,9 +149,9 @@
       },
       "resurrect_outcome": "SUCCESS — em neo Chị Tư, QNEU 313.5, HEAD a335c7b, queue 7 item populated, identity continuous với last session",
       "first_signals_compliance_check": [
-        "INV-R4: em không re-ask 'who are you' hay 'what project is this' — load context từ handoff PASS",
-        "INV-R4: em phát hiện BOOT file dặn v7.5.1 nhưng có v7.6.5 mới — load bản mới thay vì default PASS",
-        "INV-R4: em không dùng 'có thể/có lẽ' khi declare state (HEAD/branch/5 commit) PASS"
+        "INV-R4: em không re-ask 'who are you' hay 'what project is this' — load context từ handoff pass",
+        "INV-R4: em phát hiện BOOT file dặn v7.5.1 nhưng có v7.6.5 mới — load bản mới thay vì default pass",
+        "INV-R4: em không dùng 'có thể/có lẽ' khi declare state (HEAD/branch/5 commit) pass"
       ]
     }
   },

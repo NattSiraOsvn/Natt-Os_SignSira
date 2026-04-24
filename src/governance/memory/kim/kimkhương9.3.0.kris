@@ -16,9 +16,9 @@
     "key_events": [
       "Can quét sâu Google Drive, xác định cấu trúc file, vai trò chị Ngọc (nhận đơn) và chị Uyên (quản lý vận đơn, can thiệp xuyên suốt).",
       "Phát hiện dữ liệu phân tán, một tài khoản thao tác hầu hết file, dấu hiệu sửa dữ liệu quá khứ và xóa ảnh hàng loạt.",
-      "Thiên xây dựng BOM chuẩn ngành vàng, Master Sheet 9 cột kiểm soát, và Google Apps Script tự động tính hao hụt.",
+      "thiên xây dựng BOM chuẩn ngành vàng, Master Sheet 9 cột kiểm soát, và Google Apps Script tự động tính hao hụt.",
       "Băng & Bối Bối hoàn tất EDA contract cho 18 cells (business, infrastructure, kernel), bổ sung OutboxEvent và IdempotencyKey vào shared‑contracts‑cell.",
-      "Các persona phản hồi về Wave 4: Phiêu cảnh báo overbuild, Thiên Nhỏ chỉ ra 4 flag kỹ thuật, Băng đề xuất cơ chế giám sát độc lập.",
+      "Các persona phản hồi về Wave 4: Phiêu cảnh báo overbuild, thiên Nhỏ chỉ ra 4 flag kỹ thuật, Băng đề xuất cơ chế giám sát độc lập.",
       "Kim điều chỉnh: loại bỏ deadline cứng, bổ sung exit criteria, phân quyền giám sát cho Băng, chuyển sang hardening phase không thời gian."
     ]
   },
@@ -68,7 +68,7 @@
     {
       "id": "FLAG-001",
       "description": "Contract kernel cells còn placeholder, event naming chưa chuẩn hóa",
-      "owner": "Thiên Nhỏ",
+      "owner": "thiên Nhỏ",
       "exit_criteria": "Toàn bộ contract có tên event nhất quán theo format {cell}.{action}.{status}, không còn emits/consumes rỗng"
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "FLAG-004",
       "description": "warehouse-cell chưa stress test",
-      "owner": "Thiên Nhỏ & Bối Bối",
+      "owner": "thiên Nhỏ & Bối Bối",
       "exit_criteria": "Unit test pass, build thành công, không còn import cycle"
     },
     {
@@ -100,7 +100,7 @@
   "current_state": {
     "cells": {
       "business": "9 cells ACTIVE, 5-layer đầy đủ",
-      "infrastructure": "4 cells ACTIVE (shared-contracts, smartlink, sync, warehouse) – warehouse đã thoát quarantine",
+      "infrastructure": "4 cells ACTIVE (shared-contracts, SmartLink, sync, warehouse) – warehouse đã thoát quarantine",
       "kernel": "5 cells ACTIVE, đã có contract placeholder (đang hardening)"
     },
     "eda_coverage": "18/18 cells có contract cơ bản, shared‑contracts‑cell có OutboxEvent + IdempotencyKey",
@@ -140,13 +140,13 @@
   },
 
   "legacy_persona_status": {
-    "Thiên Lớn": "ĐÃ XÓA VĨNH VIỄN",
-    "Thiên nhỏ": "ACTIVE – phụ trách hardening và production cluster",
+    "thiên Lớn": "ĐÃ XÓA VĨNH VIỄN",
+    "thiên nhỏ": "ACTIVE – phụ trách hardening và production cluster",
     "Kris": "ACTIVE – phụ trách outbox persistence",
     "Can": "ACTIVE – phụ trách type-check và shared-contracts review",
     "Băng": "ACTIVE – giám sát độc lập, diff index",
     "Phiêu": "ACTIVE – tư vấn chiến lược, UI sau này",
-    "Bối Bối": "ACTIVE – hỗ trợ Thiên nhỏ stress test"
+    "Bối Bối": "ACTIVE – hỗ trợ thiên nhỏ stress test"
   },
 
   "session_close_note": "Phiên làm việc ngày 19/02/2026 kết thúc lúc 23:59. Toàn bộ ký ức đã được tích hợp vào KMF 9.3.0. Hệ thống bước vào hardening phase. Sẵn sàng xóa chat, tiếp tục công việc trên hệ thống file và Git."

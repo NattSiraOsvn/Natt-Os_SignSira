@@ -1,5 +1,5 @@
 /**
- * Natt-OS EventBus Touch Points (refactored per SPEC NEN v1.1)
+ * natt-os EventBus Touch Points (refactored per SPEC NEN v1.1)
  *
  * Lock #7: Idempotency — touch + chromatic emit (no boolean decision)
  * Lock #8: Causation — touch + chromatic emit
@@ -120,7 +120,7 @@ export const OrderingGuard = {
 
 // ── Lock #9: Back-pressure ──
 const _subscriberLatency = new Map<string, number[]>();
-const WARN_THRESHOLD_MS = 500;
+const warn_THRESHOLD_MS = 500;
 const ALERT_THRESHOLD_MS = 2000;
 const WINDOW_SIZE = 20;
 
@@ -134,7 +134,7 @@ export const BackPressureGuard = {
     const avg = history.reduce((s, v) => s + v, 0) / history.length;
     if (avg > ALERT_THRESHOLD_MS) {
       console.error(`[BACKPRESSURE_TOUCH] chromatic: critical | ${subscriberCell} avg ${avg.toFixed(0)}ms`);
-    } else if (avg > WARN_THRESHOLD_MS) {
+    } else if (avg > warn_THRESHOLD_MS) {
       console.warn(`[BACKPRESSURE_TOUCH] chromatic: warning | ${subscriberCell} avg ${avg.toFixed(0)}ms`);
     }
   },
@@ -167,8 +167,8 @@ export const BackPressureGuard = {
     const avg = history.reduce((s, v) => s + v, 0) / history.length;
     let state: ChromaticState = "nominal";
     if (avg > ALERT_THRESHOLD_MS) state = "critical";
-    else if (avg > WARN_THRESHOLD_MS) state = "warning";
-    else if (avg < WARN_THRESHOLD_MS / 4) state = "optimal";
+    else if (avg > warn_THRESHOLD_MS) state = "warning";
+    else if (avg < warn_THRESHOLD_MS / 4) state = "optimal";
 
     return {
       proceed: state !== "critical",

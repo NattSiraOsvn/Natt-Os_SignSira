@@ -63,7 +63,7 @@ const ProductionWallboard: React.FC = () => {
   return (
     <div className="h-full bg-black flex flex-col p-10 space-y-12 animate-in fade-in duration-1000 overflow-hidden">
       
-      {/* GLOBAL TICKER IS NOW IN APPSHELL - REMOVED LOCAL TICKER */}
+      {/* GLOBAL TICKER IS NOW IN APPSHELL - removed LOCAL TICKER */}
 
       <header className="flex justify-between items-center mt-2">
          <div>

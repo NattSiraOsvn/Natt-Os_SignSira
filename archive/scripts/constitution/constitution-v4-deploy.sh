@@ -1,6 +1,6 @@
 #!/bin/bash
 # ╔══════════════════════════════════════════════════════════════════════╗
-# ║  Natt-OS CONSTITUTION v4.0 DEPLOYMENT + SYSTEM CLEANUP             ║
+# ║  natt-os CONSTITUTION v4.0 DEPLOYMENT + SYSTEM CLEANUP             ║
 # ║                                                                      ║
 # ║  Soạn bởi:   BĂNG (Ground Truth Validator + System Architect)        ║
 # ║  Duyệt bởi:  ANH NATT (Gatekeeper)                                  ║
@@ -33,9 +33,9 @@ DRY_RUN=true
 # Counters
 ARCHIVED=0
 DELETED=0
-CREATED=0
+created=0
 MOVED=0
-ERRORS=0
+errorS=0
 
 # ═══════════════════════════════════════════
 # UTILITIES
@@ -45,8 +45,8 @@ log() { echo "[$(timestamp)] $1" >> "$LOG_FILE"; }
 
 info()    { echo -e "  ${CYAN}ℹ${NC}  $1"; log "INFO: $1"; }
 success() { echo -e "  ${GREEN}✅${NC} $1"; log "OK: $1"; }
-warn()    { echo -e "  ${YELLOW}⚠️${NC}  $1"; log "WARN: $1"; }
-fail()    { echo -e "  ${RED}❌${NC} $1"; log "ERROR: $1"; ERRORS=$((ERRORS+1)); }
+warn()    { echo -e "  ${YELLOW}⚠️${NC}  $1"; log "warn: $1"; }
+fail()    { echo -e "  ${RED}❌${NC} $1"; log "error: $1"; errorS=$((errorS+1)); }
 skip()    { echo -e "  ${DIM}⏭  $1${NC}"; log "SKIP: $1"; }
 action()  { echo -e "  ${MAGENTA}▶${NC}  $1"; log "ACTION: $1"; }
 
@@ -64,7 +64,7 @@ safe_mkdir() {
         else
             mkdir -p "$1"
             success "Created: $1"
-            CREATED=$((CREATED+1))
+            created=$((created+1))
         fi
     fi
 }
@@ -109,7 +109,7 @@ safe_cp() {
             safe_mkdir "$(dirname "$dst")"
             cp "$src" "$dst"
             success "Copied: $src → $dst"
-            CREATED=$((CREATED+1))
+            created=$((created+1))
         fi
     else
         fail "Source not found: $src"
@@ -124,17 +124,17 @@ preflight() {
     
     # Check we're in the right directory
     if [ ! -d "src/cells" ]; then
-        fail "src/cells/ not found. Are you in the Natt-OS root directory?"
+        fail "src/cells/ not found. Are you in the natt-os root directory?"
         echo ""
-        echo -e "${RED}Chạy script này từ thư mục gốc Natt-OS (nơi có src/, natt-os/, tsconfig.json)${NC}"
+        echo -e "${RED}Chạy script này từ thư mục gốc natt-os (nơi có src/, natt-os/, tsconfig.json)${NC}"
         exit 1
     fi
     
-    success "Đang ở thư mục Natt-OS root"
+    success "Đang ở thư mục natt-os root"
     
     # Check constitution v4.0 exists
-    if [ ! -f "HIEN-PHAP-Natt-OS-v4.0.anc" ]; then
-        fail "HIEN-PHAP-Natt-OS-v4.0.anc not found in current directory!"
+    if [ ! -f "HIEN-PHAP-natt-os-v4.0.anc" ]; then
+        fail "HIEN-PHAP-natt-os-v4.0.anc not found in current directory!"
         echo -e "${YELLOW}Hãy copy file Hiến pháp v4.0 vào thư mục gốc trước khi chạy script${NC}"
         exit 1
     fi
@@ -182,17 +182,17 @@ phase2_deploy_constitution() {
     
     # --- ENFORCEMENT location (active, machine-readable) ---
     safe_mkdir "src/governance/constitution/v4.0"
-    safe_cp "HIEN-PHAP-Natt-OS-v4.0.anc" "src/governance/constitution/v4.0/HIEN-PHAP-Natt-OS-v4.0.anc"
+    safe_cp "HIEN-PHAP-natt-os-v4.0.anc" "src/governance/constitution/v4.0/HIEN-PHAP-natt-os-v4.0.anc"
     
     # --- ARCHIVE location (sealed, read-only reference) ---
     safe_mkdir "natt-os/constitution"
-    safe_cp "HIEN-PHAP-Natt-OS-v4.0.anc" "natt-os/constitution/HIEN-PHAP-Natt-OS-v4.0.anc"
+    safe_cp "HIEN-PHAP-natt-os-v4.0.anc" "natt-os/constitution/HIEN-PHAP-natt-os-v4.0.anc"
     
     # --- Create index.ts for programmatic access ---
     if [ "$DRY_RUN" = false ]; then
         cat > "src/governance/constitution/index.ts" << 'INDEXEOF'
 /**
- * Natt-OS Constitution v4.0 — Programmatic Reference
+ * natt-os Constitution v4.0 — Programmatic Reference
  * 
  * Hiến pháp là source of truth duy nhất.
  * File này export constants cho enforcement trong code.
@@ -225,7 +225,7 @@ export const CELL_MANDATORY_COMPONENTS = [
 /** Điều 8 — Phân loại NATT-CELL */
 export const CELL_CATEGORIES = {
   KERNEL: ['audit-cell', 'config-cell', 'monitor-cell', 'rbac-cell', 'security-cell'],
-  INFRASTRUCTURE: ['smartlink-cell', 'sync-cell', 'warehouse-cell', 'shared-contracts-cell'],
+  INFRASTRUCTURE: ['SmartLink-cell', 'sync-cell', 'warehouse-cell', 'shared-contracts-cell'],
   BUSINESS: ['pricing-cell', 'inventory-cell', 'sales-cell', 'order-cell', 'customer-cell', 
              'warranty-cell', 'buyback-cell', 'promotion-cell', 'showroom-cell'],
 } as const;
@@ -249,15 +249,15 @@ export const QNEU_FORBIDDEN_SOURCES = [
 
 /** Điều 44 — Work states */
 export const WORK_STATES = [
-  'NOT_READY',
-  'ARCH_READY', 
+  'NOT_ready',
+  'ARCH_ready', 
   'ENFORCED',
   'STABLE',
   'INVISIBLE',
 ] as const;
 INDEXEOF
         success "Created src/governance/constitution/index.ts"
-        CREATED=$((CREATED+1))
+        created=$((created+1))
     else
         action "[DRY] Create src/governance/constitution/index.ts (enforcement constants)"
     fi
@@ -462,7 +462,7 @@ phase6_verify() {
     
     # Check enforcement location
     checks_total=$((checks_total+1))
-    if [ -f "src/governance/constitution/v4.0/HIEN-PHAP-Natt-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
+    if [ -f "src/governance/constitution/v4.0/HIEN-PHAP-natt-os-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
         success "✓ Constitution v4.0 at ENFORCEMENT: src/governance/constitution/v4.0/"
         checks_passed=$((checks_passed+1))
     else
@@ -471,7 +471,7 @@ phase6_verify() {
     
     # Check archive location
     checks_total=$((checks_total+1))
-    if [ -f "natt-os/constitution/HIEN-PHAP-Natt-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
+    if [ -f "natt-os/constitution/HIEN-PHAP-natt-os-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
         success "✓ Constitution v4.0 at ARCHIVE: natt-os/constitution/"
         checks_passed=$((checks_passed+1))
     else
@@ -516,26 +516,26 @@ summary() {
         echo -e "  ${GREEN}MODE: EXECUTED${NC}"
         echo ""
         echo -e "  Archived: ${ARCHIVED}"
-        echo -e "  Created:  ${CREATED}"
+        echo -e "  Created:  ${created}"
         echo -e "  Moved:    ${MOVED}"
         echo -e "  Deleted:  ${DELETED}"
-        echo -e "  Errors:   ${ERRORS}"
+        echo -e "  Errors:   ${errorS}"
     fi
     
     echo ""
     echo -e "  ${CYAN}Cấu trúc Hiến pháp sau deploy:${NC}"
     echo ""
     echo "  natt-os/constitution/                  ← ARCHIVE (sealed, read-only)"
-    echo "  └── HIEN-PHAP-Natt-OS-v4.0.anc"
+    echo "  └── HIEN-PHAP-natt-os-v4.0.anc"
     echo ""
     echo "  src/governance/constitution/            ← ENFORCEMENT (active)"
     echo "  ├── index.ts                            ← Programmatic constants"
     echo "  └── v4.0/"
-    echo "      └── HIEN-PHAP-Natt-OS-v4.0.anc"
+    echo "      └── HIEN-PHAP-natt-os-v4.0.anc"
     echo ""
     echo -e "  ${CYAN}Cấu trúc hệ thống sau cleanup:${NC}"
     echo ""
-    echo "  Natt-OS/"
+    echo "  natt-os/"
     echo "  ├── database/              [DB]"
     echo "  ├── docs/                  [DOCS]"
     echo "  ├── natt-os/               [OS LAYER — archive + discipline + security]"
@@ -543,7 +543,7 @@ summary() {
     echo "  │   ├── discipline/        [VIOLATION LOGS]"
     echo "  │   ├── governance/        [PLANS + POLICIES]"
     echo "  │   ├── monitoring/        [AI BEHAVIOR]"
-    echo "  │   ├── security/          [KILL SWITCH + SiraSIGN]"
+    echo "  │   ├── security/          [KILL SWITCH + siraSIGN]"
     echo "  │   └── validation/        [CELL PURITY]"
     echo "  ├── scripts/               [OPS SCRIPTS]"
     echo "  ├── src/                   [LIVE CODE — tsc compiles from here]"
@@ -551,7 +551,7 @@ summary() {
     echo "  │   │   ├── kernel/        [5 kernel cells]"
     echo "  │   │   ├── infrastructure/[4 infra cells]"
     echo "  │   │   ├── business/      [9 business cells]"
-    echo "  │   │   └── shared-kernel/ [shared types + smartlink registry]"
+    echo "  │   │   └── shared-kernel/ [shared types + SmartLink registry]"
     echo "  │   ├── contracts/         [EDA FOUNDATION]"
     echo "  │   ├── core/              [SYSTEM KERNEL]"
     echo "  │   ├── governance/        [CONSTITUTION + MEMORY + RBAC]"
@@ -586,7 +586,7 @@ summary() {
 main() {
     echo ""
     echo -e "${BOLD}╔══════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${BOLD}║  Natt-OS CONSTITUTION v4.0 DEPLOYMENT + CLEANUP            ║${NC}"
+    echo -e "${BOLD}║  natt-os CONSTITUTION v4.0 DEPLOYMENT + CLEANUP            ║${NC}"
     echo -e "${BOLD}║  Hiến pháp Sinh thể Số Phân tán — Bản 4.0                 ║${NC}"
     echo -e "${BOLD}╚══════════════════════════════════════════════════════════════╝${NC}"
     echo ""

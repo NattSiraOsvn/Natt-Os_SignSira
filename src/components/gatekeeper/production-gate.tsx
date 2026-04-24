@@ -5,12 +5,12 @@ import { ShieldCheck, AlertCircle, Clock, CheckCircle2, XCircle, Fingerprint } f
 
 export interface ProductionGateCheck {
   check: string;
-  status: 'PASS' | 'FAIL' | 'PENDING';
+  status: 'pass' | 'fail' | 'PENDING';
   details?: any;
 }
 
 export interface ProductionGateProps {
-  status?: 'BOOTING' | 'CHECKING' | 'PASSED' | 'FAILED' | 'EMERGENCY';
+  status?: 'BOOTING' | 'CHECKING' | 'passED' | 'failED' | 'EMERGENCY';
   checks?: ProductionGateCheck[];
   error?: string;
   emergencyOverrideAvailable?: boolean;
@@ -30,11 +30,11 @@ export const ProductionGate: React.FC<ProductionGateProps> = ({
   error,
   onPassed
 }) => {
-  const isFailed = status === 'FAILED' || status === 'EMERGENCY';
+  const isFailed = status === 'failED' || status === 'EMERGENCY';
   
   const iconFor = (s: string) => {
-    if (s === 'PASS') return <CheckCircle2 size={16} className="text-green-500" />;
-    if (s === 'FAIL') return <XCircle size={16} className="text-red-500" />;
+    if (s === 'pass') return <CheckCircle2 size={16} className="text-green-500" />;
+    if (s === 'fail') return <XCircle size={16} className="text-red-500" />;
     return <Clock size={16} className="text-amber-500 animate-spin" />;
   };
 
@@ -45,40 +45,40 @@ export const ProductionGate: React.FC<ProductionGateProps> = ({
       <div className="w-full max-w-2xl space-y-8 relative z-10">
         <div className="text-center space-y-4">
           <div className={`w-24 h-24 rounded-[2.5rem] mx-auto flex items-center justify-center shadow-2xl border transition-all duration-700 ${
-            status === 'PASSED' ? 'bg-green-600 border-green-400 scale-110' : 
+            status === 'passED' ? 'bg-green-600 border-green-400 scale-110' : 
             isFailed ? 'bg-red-500/10 border-red-500/30' : 'bg-amber-500/10 border-amber-500/30'
           }`}>
-            {status === 'PASSED' ? <Fingerprint size={48} className="text-white" /> : isFailed ? <AlertCircle size={40} className="text-red-500" /> : <ShieldCheck size={40} className="text-amber-500" />}
+            {status === 'passED' ? <Fingerprint size={48} className="text-white" /> : isFailed ? <AlertCircle size={40} className="text-red-500" /> : <ShieldCheck size={40} className="text-amber-500" />}
           </div>
           <h1 className="text-5xl font-serif gold-gradient italic uppercase tracking-tighter">
-            {status === 'PASSED' ? 'ANH NAT DNA DETECTED' : isFailed ? '🚨 SECURITY VIOLATION' : '🔐 PRODUCTION GATE'}
+            {status === 'passED' ? 'ANH NAT DNA DETECTED' : isFailed ? '🚨 SECURITY VIOLATION' : '🔐 PRODUCTION GATE'}
           </h1>
           <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.6em]">
-            Natt-OS • SIG_BY_ADMIN_NAT_2026 • v1.1
+            natt-os • SIG_BY_ADMIN_NAT_2026 • v1.1
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-3">
           {checks.map((c, i) => (
             <div key={i} className={`p-5 rounded-2xl border flex items-center justify-between transition-all ${
-              c.status === 'PASS' ? 'bg-green-500/5 border-green-500/20' : 
-              c.status === 'FAIL' ? 'bg-red-500/5 border-red-500/20' : 
+              c.status === 'pass' ? 'bg-green-500/5 border-green-500/20' : 
+              c.status === 'fail' ? 'bg-red-500/5 border-red-500/20' : 
               'bg-white/[0.02] border-white/5 opacity-40'
             }`}>
               <div className="flex items-center gap-4">
                 {iconFor(c.status)}
                 <span className={`text-[11px] font-bold uppercase tracking-widest ${
-                  c.status === 'PASS' ? 'text-white' : c.status === 'FAIL' ? 'text-red-400' : 'text-gray-500'
+                  c.status === 'pass' ? 'text-white' : c.status === 'fail' ? 'text-red-400' : 'text-gray-500'
                 }`}>{c.check}</span>
               </div>
               <span className={`text-[9px] font-mono font-black ${
-                c.status === 'PASS' ? 'text-green-500' : c.status === 'FAIL' ? 'text-red-500' : 'text-amber-500'
+                c.status === 'pass' ? 'text-green-500' : c.status === 'fail' ? 'text-red-500' : 'text-amber-500'
               }`}>{c.status}</span>
             </div>
           ))}
         </div>
 
-        {status === 'PASSED' && onPassed && (
+        {status === 'passED' && onPassed && (
           <div className="pt-6 text-center animate-in fade-in zoom-in-95 duration-1000">
             <button 
               onClick={onPassed}
@@ -91,7 +91,7 @@ export const ProductionGate: React.FC<ProductionGateProps> = ({
         
         {isFailed && (
            <div className="p-6 bg-red-950/20 border border-red-500/30 rounded-3xl text-center">
-              <p className="text-red-500 font-mono text-xs">{error || 'IDENTITY_VERIFICATION_FAILED'}</p>
+              <p className="text-red-500 font-mono text-xs">{error || 'IDENTITY_VERIFICATION_failED'}</p>
            </div>
         )}
       </div>

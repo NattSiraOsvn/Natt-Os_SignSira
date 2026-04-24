@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natt-OS | Psychology UI (Canonical v2.5)</title>
+    <title>natt-os | Psychology UI (Canonical v2.5)</title>
     
     <!-- [SPEC §15] Tailwind CDN for rapid layout spacing/grid -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -336,7 +336,7 @@
     <div class="film-grain" aria-hidden="true"></div>
 
     <!-- ==========================================================================
-         [SPEC §7.4] SECURITY LAYER (Z: 999) - LOGIN & SiraSIGN
+         [SPEC §7.4] SECURITY LAYER (Z: 999) - LOGIN & siraSIGN
          ========================================================================== -->
     <div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-blur-3xl transition-opacity duration-500" style="z-index: var(--z-security);">
         <div class="liquid-glass p-8 md:p-12 w-[90%] md:w-[480px] flex flex-col items-center relative rounded-[32px]">
@@ -347,7 +347,7 @@
                 <div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_15px_#8FFFD4]"></div>
             </div>
 
-            <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-2 text-glow-gold">Natt-OS</h1>
+            <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-2 text-glow-gold">natt-os</h1>
             <p class="text-xs tracking-widest text-[#B8E8FF] mb-8 opacity-80 text-center font-mono">PSYCHOLOGY UI · V2.5 CANONICAL</p>
             
             <div class="w-full space-y-5 relative z-10">
@@ -356,16 +356,16 @@
                     <input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/80 transition-all font-mono">
                 </div>
                 <div>
-                    <label class="text-[9px] tracking-widest text-gray-400 ml-1 mb-1 block uppercase">SiraSign Passphrase</label>
+                    <label class="text-[9px] tracking-widest text-gray-400 ml-1 mb-1 block uppercase">siraSign Passphrase</label>
                     <input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/80 transition-all font-mono">
                 </div>
             </div>
             
             <button onclick="AppController.handleLogin()" class="w-full liquid-glass mt-8 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/10 hover:text-white transition-all border border-white/20 hover:border-[#8FFFD4]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8FFFD4]">
-                XÁC THỰC Sira
+                XÁC THỰC sira
             </button>
             <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden font-mono bg-red-900/30 px-4 py-2 rounded border border-red-500/30 text-center w-full">
-                [GAY] Tín hiệu từ chối. Vi phạm SiraSign.
+                [GAY] Tín hiệu từ chối. Vi phạm siraSign.
             </p>
         </div>
     </div>
@@ -468,7 +468,7 @@
                         <span>SSE STREAM (AUDIT)</span><span class="text-gray-500 text-[7px]">LIMIT 20</span>
                     </h2>
                     <div id="event-log" class="flex-1 overflow-y-auto font-mono text-[9px] md:text-[10px] space-y-3 custom-scrollbar pr-2" aria-live="polite">
-                        <div class="text-gray-500 italic">Initializing Natt-OS Engine...</div>
+                        <div class="text-gray-500 italic">Initializing natt-os Engine...</div>
                     </div>
                     <button onclick="AppController.openNeuralTerminal()" class="mt-3 w-full py-2 glass-panel rounded text-[9px] tracking-widest text-gray-400 hover:text-white hover:bg-white/10 transition-colors">MỞ NEURAL TERMINAL</button>
                 </div>
@@ -535,7 +535,7 @@
         <!-- FOOTER (Truth Layer / Audit Footer) -->
         <footer class="h-8 bg-black/90 border-t border-white/10 flex items-center justify-between px-4 md:px-6 text-[8px] md:text-[9px] font-mono text-gray-500 shrink-0 z-10 backdrop-blur-md relative">
             <div class="flex items-center gap-2 md:gap-4">
-                <span>Natt-OS KERNEL</span><span class="w-px h-3 bg-white/20"></span>
+                <span>natt-os KERNEL</span><span class="w-px h-3 bg-white/20"></span>
                 <span id="footer-engine-status" class="text-[#8FFFD4]">ENGINES: ONLINE</span>
             </div>
             <div class="flex items-center gap-2 md:gap-4">
@@ -585,7 +585,7 @@
     </div>
 
     <!-- ==========================================================================
-         Natt-OS ENGINE CORE (Vanilla JS)
+         natt-os ENGINE CORE (Vanilla JS)
          [SPEC §7, §8.5, §10, §12, §13, §20, §24]
          ========================================================================== -->
     <script>
@@ -629,7 +629,7 @@
                     const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
                 });
             },
-            // Giả lập hash SHA256 (synchronous) cho mục đích UI SiraSign
+            // Giả lập hash SHA256 (synchronous) cho mục đích UI siraSign
             mockSHA256: (str) => {
                 let hash = 0;
                 for (let i = 0; i < str.length; i++) {
@@ -641,9 +641,9 @@
         };
 
         // ---------------------------------------------------------
-        // [SPEC §7.4] SiraSIGN & SECURITY
+        // [SPEC §7.4] siraSIGN & SECURITY
         // ---------------------------------------------------------
-        class SiraSignProtocol {
+        class siraSignProtocol {
             static generatePayload(actionData) {
                 const fsp = CryptoUtils.mockSHA256("fsp_" + actionData);
                 const ssp = CryptoUtils.mockSHA256("ssp_" + Date.now());
@@ -654,7 +654,7 @@
             static verify(payload) {
                 const checkLsp = CryptoUtils.mockSHA256(payload.fsp_hash + payload.ssp_hash + payload.tsp_hash);
                 const timeDiff = Date.now() - payload.timestamp;
-                if (checkLsp !== payload.lsp_hash || timeDiff > 300000) throw new Error("SiraSign Verification Failed");
+                if (checkLsp !== payload.lsp_hash || timeDiff > 300000) throw new Error("siraSign Verification Failed");
                 return true;
             }
         }
@@ -876,7 +876,7 @@
         const MOCK_DATA = {
             kpis: [
                 { title: 'TOTAL REVENUE (T-REAL)', value: '12.5B ₫', trend: '▲ +12% vs WAVE 2', color: 'gold', class: 'text-glow-gold' },
-                { title: 'PENDING APPROVALS (Sira)', value: '08', trend: 'Finance: 3 | Prod: 5', color: 'purple', class: 'text-[#C8C0FF]' },
+                { title: 'PENDING APPROVALS (sira)', value: '08', trend: 'Finance: 3 | Prod: 5', color: 'purple', class: 'text-[#C8C0FF]' },
                 { title: 'QNEU SCORE (GLOBAL)', value: '300', trend: 'STATUS: HEALTHY · RISK: 0', color: 'rose', class: 'text-white' }
             ],
             tasks: [
@@ -1042,11 +1042,11 @@
                 const pass = document.getElementById('emp-pass').value;
                 const errorEl = document.getElementById('login-error');
 
-                // SiraSign Mock Authentication
+                // siraSign Mock Authentication
                 if (id === 'TLXR-CFO-01' && pass === 'TamLuxury@CFO') {
-                    // Create secure SiraSign payload as per §7.4
-                    const payload = SiraSignProtocol.generatePayload(id);
-                    if(SiraSignProtocol.verify(payload)) {
+                    // Create secure siraSign payload as per §7.4
+                    const payload = siraSignProtocol.generatePayload(id);
+                    if(siraSignProtocol.verify(payload)) {
                         sessionStorage.setItem('nattos_role', 'CFO');
                         sessionStorage.setItem('nattos_id', id);
                         errorEl.classList.add('hidden');

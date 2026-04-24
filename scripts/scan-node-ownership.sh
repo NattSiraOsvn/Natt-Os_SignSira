@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# Natt-OS NODE OWNERSHIP SCANNER
+# natt-os NODE OWNERSHIP SCANNER
 # Đo độ phụ thuộc của repo vào Node ecosystem.
 # Mục đích: biết rõ "nợ" bao nhiêu trước khi quyết định tách.
 #
@@ -44,7 +44,7 @@ has_dir() {
 # ============================================================================
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo "║  Natt-OS NODE OWNERSHIP SCANNER                                  ║"
+echo "║  natt-os NODE OWNERSHIP SCANNER                                  ║"
 echo "║  Đo độ phụ thuộc Node ecosystem — đếm thuần, không phán xét.    ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 echo ""
@@ -269,11 +269,11 @@ echo ""
 
 # Verdict tiers
 if [ "$total_exec" -lt 50 ] && [ "$node_api_total" -lt 100 ] && [ "$deps" -lt 5 ]; then
-    echo "  VERDICT: READY. Scope nhỏ — có thể viết native runtime."
+    echo "  VERDICT: ready. Scope nhỏ — có thể viết native runtime."
 elif [ "$total_exec" -lt 500 ] && [ "$node_api_total" -lt 1000 ]; then
     echo "  VERDICT: PARTIAL. Phải rewrite đáng kể — khả thi theo phase."
 else
-    echo "  VERDICT: NOT READY."
+    echo "  VERDICT: NOT ready."
     echo ""
     echo "  Muốn tách Node hoàn toàn, phải:"
     printf "    1. Rewrite %d executable files sang ngôn ngữ native\n" "$total_exec"

@@ -4,7 +4,7 @@
   "enforcement": "ACTIVE",
   "allowed_dependencies": [
     "shared-contracts-cell",
-    "smartlink-cell"
+    "SmartLink-cell"
   ],
   "forbidden_dependencies": [
     "kernel/*",

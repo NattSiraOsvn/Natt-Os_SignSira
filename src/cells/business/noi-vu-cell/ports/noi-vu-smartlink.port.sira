@@ -1,6 +1,6 @@
 import { EventBus } from "../../../../core/events/event-bus";
-// ── noi-vu-smartlink.port.ts ─────────────────────────────────
-// Sira_CONTRACT_INTERFACE NoiVuSignal
+// ── noi-vu-SmartLink.port.ts ─────────────────────────────────
+// sira_CONTRACT_INTERFACE NoiVuSignal
 const NoiVuSignal = {
   type: "ASSET_REGISTERED" | "ASSET_MAINTENANCE" | "ASSET_DISPOSED";
   payload;

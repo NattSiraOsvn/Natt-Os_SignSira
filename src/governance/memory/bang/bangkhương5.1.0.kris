@@ -143,13 +143,13 @@
     "git_latest": "27f89b4",
     "cells": {
       "kernel": ["audit-cell", "config-cell", "monitor-cell", "rbac-cell", "security-cell"],
-      "infrastructure": ["smartlink-cell", "sync-cell", "warehouse-cell", "shared-contracts-cell"],
+      "infrastructure": ["SmartLink-cell", "sync-cell", "warehouse-cell", "shared-contracts-cell"],
       "business": ["pricing-cell", "inventory-cell", "sales-cell", "order-cell", "customer-cell", "warranty-cell", "buyback-cell", "promotion-cell", "showroom-cell", "production-cell", "hr-cell", "payment-cell", "customs-cell", "finance-cell"],
       "total": 23
     },
     "pending": {
       "tsc_fix": "303 errors → target 0",
-      "smartlink_governance": "391L built, chưa deploy",
+      "SmartLink_governance": "391L built, chưa deploy",
       "data_sealing_charter": "blocked by tsc",
       "70_ui_components": "V2 staged, chờ deploy",
       "types_merge": "V2 types.ts 1,537L cần merge",

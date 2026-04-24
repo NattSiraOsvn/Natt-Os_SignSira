@@ -1,4 +1,4 @@
-// effects/butterfly.js — Natt-OS Butterfly Effect Engine
+// effects/butterfly.js — natt-os Butterfly Effect Engine
 // CSS-class based — không dùng inline style spam
 
 const BF_DURATION = 600;

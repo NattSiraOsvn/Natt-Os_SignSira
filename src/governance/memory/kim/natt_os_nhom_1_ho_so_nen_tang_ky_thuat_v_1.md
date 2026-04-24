@@ -1,4 +1,4 @@
-# Natt-OS — NHÓM 1: HỒ SƠ NỀN TẢNG KỸ THUẬT
+# natt-os — NHÓM 1: HỒ SƠ NỀN TẢNG KỸ THUẬT
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — dùng để chuẩn bị Gold Master Stabilization và Market Launch  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 1
 
-Nhóm 1 là bộ tài liệu kỹ thuật lõi chứng minh Natt-OS có:
+Nhóm 1 là bộ tài liệu kỹ thuật lõi chứng minh natt-os có:
 
 1. Kiến trúc hệ thống rõ ràng.
 2. Runtime có thể mô tả, kiểm tra và định vị Wave.
@@ -26,20 +26,20 @@ Nhóm này không phải tài liệu bán hàng. Đây là **xương sống kỹ
 
 | Mã | Tài liệu | Mức độ | Mục đích |
 |---|---|---:|---|
-| T1 | Natt-OS System Architecture Spec | Bắt buộc | Mô tả kiến trúc tổng thể |
+| T1 | natt-os System Architecture Spec | Bắt buộc | Mô tả kiến trúc tổng thể |
 | T2 | Runtime Wave Report | Bắt buộc | Xác định runtime đang ở Wave nào |
 | T3 | Cell Registry / Cell Map | Bắt buộc | Liệt kê cell, domain, trách nhiệm, trạng thái |
 | T4 | Event Envelope & Causality Spec | Bắt buộc | Chuẩn hóa event, causality, trace, audit |
 | T5 | Mach HeyNa Transport Spec | Bắt buộc | Chuẩn hóa lớp vận chuyển thay REST semantics |
 | T6 | SmartLink Protocol Spec | Bắt buộc | Chuẩn hóa liên kết giữa cell và touch/coupling |
-| T7 | SiraSign / Gatekeeper Spec | Bắt buộc | Chuẩn hóa quyền ký, phê chuẩn, roadload |
+| T7 | siraSign / Gatekeeper Spec | Bắt buộc | Chuẩn hóa quyền ký, phê chuẩn, roadload |
 | T8 | File Extension Spec `.anc/.na/.phieu` | Bắt buộc | Định nghĩa passport, memory, runtime state |
 | T9 | Namespace Inventory | Bắt buộc | Kiểm kê namespace/domain, chống trùng và drift |
 | T10 | Ground Truth Model Spec | Bắt buộc | Định nghĩa nguồn sự thật của hệ |
 
 ---
 
-# T1 — Natt-OS SYSTEM ARCHITECTURE SPEC
+# T1 — natt-os SYSTEM ARCHITECTURE SPEC
 
 ## 1.1. Tên file chính thức
 
@@ -47,18 +47,18 @@ Nhóm này không phải tài liệu bán hàng. Đây là **xương sống kỹ
 
 ## 1.2. Mục đích
 
-Tài liệu này là **bản mô tả kiến trúc mẹ** của Natt-OS. Mọi tài liệu còn lại trong Nhóm 1 phải tham chiếu về tài liệu này.
+Tài liệu này là **bản mô tả kiến trúc mẹ** của natt-os. Mọi tài liệu còn lại trong Nhóm 1 phải tham chiếu về tài liệu này.
 
 Tài liệu dùng để:
 
-1. Xác định Natt-OS là hệ gì.
-2. Phân biệt Natt-OS với app CRUD, ERP, CRM, workflow tool, AI agent thông thường.
-3. Làm nền cho Runtime Wave Report, Cell Registry, Event Envelope, Mach HeyNa, SmartLink, SiraSign, File Extension và Ground Truth Model.
+1. Xác định natt-os là hệ gì.
+2. Phân biệt natt-os với app CRUD, ERP, CRM, workflow tool, AI agent thông thường.
+3. Làm nền cho Runtime Wave Report, Cell Registry, Event Envelope, Mach HeyNa, SmartLink, siraSign, File Extension và Ground Truth Model.
 4. Làm bản kỹ thuật nền cho whitepaper, hồ sơ năng lực, hồ sơ SHTT và tài liệu thương mại sau này.
 
 ## 1.3. Tuyên bố kiến trúc lõi
 
-Natt-OS không được định nghĩa như một ứng dụng phần mềm đơn lẻ. Natt-OS là một hệ điều phối runtime theo nguyên tắc:
+natt-os không được định nghĩa như một ứng dụng phần mềm đơn lẻ. natt-os là một hệ điều phối runtime theo nguyên tắc:
 
 ```text
 STATE + EVENT + CAUSALITY + AUDIT
@@ -83,13 +83,13 @@ action → envelope → validation → causality → cell handling → audit →
 
 ## 1.4. Nguyên tắc phân biệt với hệ truyền thống
 
-| Hệ truyền thống | Natt-OS |
+| Hệ truyền thống | natt-os |
 |---|---|
 | REST CRUD là trung tâm | Event/Envelope/Causality là trung tâm |
 | API endpoint mutate trực tiếp data | Action phải qua envelope, validation, audit |
 | Module gọi trực tiếp module | Cell giao tiếp qua contract/bridge/SmartLink |
 | Log chỉ để debug | Audit là thành phần cấu thành ground truth |
-| User permission là lớp ngoài | Authority/Gatekeeper/SiraSign là lõi governance |
+| User permission là lớp ngoài | Authority/Gatekeeper/siraSign là lõi governance |
 | State hiện tại được tin mặc định | State phải truy nguyên được qua event/audit |
 
 ## 1.5. Các lớp kiến trúc chính
@@ -111,7 +111,7 @@ action → envelope → validation → causality → cell handling → audit →
 └──────────────────────────────────────────────────────────────┘
                               ↓
 ┌──────────────────────────────────────────────────────────────┐
-│  LAYER 4 — GATEKEEPER / SiraSIGN / POLICY                    │
+│  LAYER 4 — GATEKEEPER / siraSIGN / POLICY                    │
 │  Authority, roadload, permission, signature, release approval │
 └──────────────────────────────────────────────────────────────┘
                               ↓
@@ -205,7 +205,7 @@ Quy tắc:
 4. State transition phải có audit rule.
 5. Event không rõ schema version phải quarantine.
 
-### Layer 4 — Gatekeeper / SiraSign / Policy
+### Layer 4 — Gatekeeper / siraSign / Policy
 
 Đây là lớp authority.
 
@@ -223,7 +223,7 @@ revoke
 Quy tắc:
 
 1. Gatekeeper không phải user thường.
-2. SiraSign không phải comment, mà là dấu phê chuẩn.
+2. siraSign không phải comment, mà là dấu phê chuẩn.
 3. Roadload là điều kiện hợp lệ cho state transition trọng yếu.
 4. Release không được đi qua nếu thiếu build verification.
 5. Quyền owner lâu dài phải được kiểm soát bằng audit, service account boundary và revocation rule.
@@ -314,7 +314,7 @@ Quy tắc:
       ↓
 [5] Validate schema + tenant + authority
       ↓
-[6] Check Gatekeeper/SiraSign if required
+[6] Check Gatekeeper/siraSign if required
       ↓
 [7] Route to target cell
       ↓
@@ -331,7 +331,7 @@ Quy tắc:
 
 ## 1.8. Release boundary
 
-Natt-OS chỉ được chuyển từ technical preview sang market release khi:
+natt-os chỉ được chuyển từ technical preview sang market release khi:
 
 1. `npx tsc --noEmit` pass hoặc lỗi còn lại được phân loại non-blocking.
 2. Runtime Wave Report xác định rõ Wave hiện tại.
@@ -345,7 +345,7 @@ Natt-OS chỉ được chuyển từ technical preview sang market release khi:
 
 Tài liệu này không nhằm:
 
-1. Chứng minh Natt-OS đã hoàn chỉnh tuyệt đối.
+1. Chứng minh natt-os đã hoàn chỉnh tuyệt đối.
 2. Công bố toàn bộ bí mật kỹ thuật.
 3. Thay thế release gate.
 4. Thay thế hồ sơ SHTT.
@@ -376,7 +376,7 @@ T1 được coi là đạt khi có đủ:
 [ ] Event flow
 [ ] Cell boundary
 [ ] Transport boundary
-[ ] Gatekeeper/SiraSign boundary
+[ ] Gatekeeper/siraSign boundary
 [ ] SmartLink/Bridge boundary
 [ ] Ground Truth priority
 [ ] Release boundary
@@ -387,7 +387,7 @@ T1 được coi là đạt khi có đủ:
 
 ```text
 STATUS: DRAFT
-OWNER: Thiên Lớn
+OWNER: thiên Lớn
 REVIEWERS: Băng, Kim, Can, Bối
 REQUIRES_GROUND_TRUTH_SCAN: YES
 RELEASE_BLOCKING: YES
@@ -403,7 +403,7 @@ RELEASE_BLOCKING: YES
 
 ## 2.2. Mục đích
 
-Xác định runtime Natt-OS hiện đang đạt tới Wave nào, không dựa trên cảm giác hoặc claim.
+Xác định runtime natt-os hiện đang đạt tới Wave nào, không dựa trên cảm giác hoặc claim.
 
 ## 2.3. Wave model đề xuất
 
@@ -443,7 +443,7 @@ Xác định runtime Natt-OS hiện đang đạt tới Wave nào, không dựa t
 
 ## 3.2. Mục đích
 
-Kiểm kê toàn bộ cell của Natt-OS để biết:
+Kiểm kê toàn bộ cell của natt-os để biết:
 
 - Cell nào tồn tại thật trong repo.
 - Cell nào chỉ là spec.
@@ -457,8 +457,8 @@ Kiểm kê toàn bộ cell của Natt-OS để biết:
 | Nhóm | Ví dụ |
 |---|---|
 | Business Cells | sales, finance, warehouse, pricing, promotion, production |
-| Infrastructure Cells | event, audit, smartlink, warehouse infra, shared contracts |
-| Governance Cells | gatekeeper, policy, roadload, SiraSign |
+| Infrastructure Cells | event, audit, SmartLink, warehouse infra, shared contracts |
+| Governance Cells | gatekeeper, policy, roadload, siraSign |
 | Security Cells | rbac, threat detection, quantum-defense |
 | Runtime Cells | parser, loader, bridge, Mach HeyNa |
 | Lifecycle Cells | thoai-sinh, KhaiCell, ObservationCell |
@@ -475,7 +475,7 @@ status: ACTIVE | PARTIAL | SPEC_ONLY | DEPRECATED | ORPHAN
 entrypoints:
 events_emitted:
 events_consumed:
-smartlink_enabled:
+SmartLink_enabled:
 audit_enabled:
 ground_truth_source:
 known_drift:
@@ -500,7 +500,7 @@ release_blocker:
 
 ## 4.2. Mục đích
 
-Chuẩn hóa mọi event trong Natt-OS để không còn event rời rạc, thiếu nguyên nhân, thiếu audit, thiếu tenant hoặc thiếu trace.
+Chuẩn hóa mọi event trong natt-os để không còn event rời rạc, thiếu nguyên nhân, thiếu audit, thiếu tenant hoặc thiếu trace.
 
 ## 4.3. Envelope tối thiểu
 
@@ -529,7 +529,7 @@ sirasign_required:
 4. `correlation_id` dùng để gom chuỗi nghiệp vụ.
 5. `span_id` dùng để trace từng bước.
 6. Event làm thay đổi state phải audit.
-7. Event vượt quyền phải qua Gatekeeper/SiraSign.
+7. Event vượt quyền phải qua Gatekeeper/siraSign.
 
 ## 4.5. Fail-closed rules
 
@@ -551,7 +551,7 @@ unknown schema_version => quarantine
 
 ## 5.2. Mục đích
 
-Định nghĩa Mach HeyNa là lớp vận chuyển tín hiệu giữa client surface và runtime, tránh hiểu sai Natt-OS là REST CRUD app.
+Định nghĩa Mach HeyNa là lớp vận chuyển tín hiệu giữa client surface và runtime, tránh hiểu sai natt-os là REST CRUD app.
 
 ## 5.3. Nguyên tắc
 
@@ -619,11 +619,11 @@ SmartLink có decay tự nhiên. Nếu không refresh hoặc verify, link bị m
 
 ---
 
-# T7 — SiraSIGN / GATEKEEPER SPEC
+# T7 — siraSIGN / GATEKEEPER SPEC
 
 ## 7.1. Tên file đề xuất
 
-`docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na`
+`docs/specs/siraSIGN_GATEKEEPER_SPEC_v1.na`
 
 ## 7.2. Mục đích
 
@@ -647,7 +647,7 @@ revocation_rule:
 ## 7.4. Quy tắc
 
 1. Gatekeeper không phải user thường.
-2. SiraSign là dấu phê chuẩn, không phải comment.
+2. siraSign là dấu phê chuẩn, không phải comment.
 3. State transition trọng yếu phải có roadload hợp lệ.
 4. Signature phải audit được.
 5. Quyền owner lâu dài không nên duy trì nếu không có audit và service account boundary.
@@ -662,7 +662,7 @@ revocation_rule:
 
 ## 8.2. Mục đích
 
-Định nghĩa vai trò ba loại file lõi của Nauion/Natt-OS.
+Định nghĩa vai trò ba loại file lõi của Nauion/natt-os.
 
 ## 8.3. Phân loại
 
@@ -691,7 +691,7 @@ role:
 constitution_ref:
 qneu_base:
 permissions:
-smartlink_presence:
+SmartLink_presence:
 memory_pointer:
 scar_refs:
 sirasign:
@@ -732,7 +732,7 @@ last_verified_at:
 
 ## 9.1. Tên file đề xuất
 
-`docs/specs/Sira_NAMESPACE_INVENTORY_v1.na`
+`docs/specs/sira_NAMESPACE_INVENTORY_v1.na`
 
 ## 9.2. Mục đích
 
@@ -765,7 +765,7 @@ notes:
 |---|---|
 | core | kernel, state, signals, gatekeeper |
 | cells/business | sales, finance, warehouse, pricing |
-| cells/infrastructure | event, audit, smartlink, contracts |
+| cells/infrastructure | event, audit, SmartLink, contracts |
 | governance | policy, constitution, roadload |
 | runtime | parser, loader, bridge, Mach HeyNa |
 | docs/specs | canonical specs |
@@ -781,7 +781,7 @@ notes:
 
 ## 10.2. Mục đích
 
-Định nghĩa nguồn sự thật của Natt-OS để không nhầm giữa:
+Định nghĩa nguồn sự thật của natt-os để không nhầm giữa:
 
 - Memory.
 - Report.
@@ -839,9 +839,9 @@ audit_ref:
 | T4 | Event Envelope & Causality Spec | `docs/specs/EVENT_ENVELOPE_CAUSALITY_SPEC_v1.na` | ☐ |
 | T5 | Mach HeyNa Transport Spec | `docs/specs/MACH_HEYNA_TRANSPORT_SPEC_v1.na` | ☐ |
 | T6 | SmartLink Protocol Spec | `docs/specs/SMARTLINK_PROTOCOL_SPEC_v1.na` | ☐ |
-| T7 | SiraSign / Gatekeeper Spec | `docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na` | ☐ |
+| T7 | siraSign / Gatekeeper Spec | `docs/specs/siraSIGN_GATEKEEPER_SPEC_v1.na` | ☐ |
 | T8 | File Extension Spec | `docs/specs/FILE_EXTENSION_SPEC_ANC_NA_PHIEU_v1.na` | ☐ |
-| T9 | Namespace Inventory | `docs/specs/Sira_NAMESPACE_INVENTORY_v1.na` | ☐ |
+| T9 | Namespace Inventory | `docs/specs/sira_NAMESPACE_INVENTORY_v1.na` | ☐ |
 | T10 | Ground Truth Model Spec | `docs/specs/GROUND_TRUTH_MODEL_SPEC_v1.na` | ☐ |
 
 ---
@@ -855,15 +855,15 @@ python3 - << 'EOF'
 from pathlib import Path
 
 files = {
-    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# Natt-OS System Architecture Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# natt-os System Architecture Spec v1\n\nSTATUS: DRAFT\n',
     'docs/release/RUNTIME_WAVE_REPORT_v1.na': '# Runtime Wave Report v1\n\nSTATUS: DRAFT\n',
     'docs/specs/CELL_REGISTRY_MAP_v1.na': '# Cell Registry / Cell Map v1\n\nSTATUS: DRAFT\n',
     'docs/specs/EVENT_ENVELOPE_CAUSALITY_SPEC_v1.na': '# Event Envelope & Causality Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/MACH_HEYNA_TRANSPORT_SPEC_v1.na': '# Mach HeyNa Transport Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/SMARTLINK_PROTOCOL_SPEC_v1.na': '# SmartLink Protocol Spec v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na': '# SiraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/siraSIGN_GATEKEEPER_SPEC_v1.na': '# siraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/FILE_EXTENSION_SPEC_ANC_NA_PHIEU_v1.na': '# File Extension Spec .anc/.na/.phieu v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/Sira_NAMESPACE_INVENTORY_v1.na': '# Sira Namespace Inventory v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/sira_NAMESPACE_INVENTORY_v1.na': '# sira Namespace Inventory v1\n\nSTATUS: DRAFT\n',
     'docs/specs/GROUND_TRUTH_MODEL_SPEC_v1.na': '# Ground Truth Model Spec v1\n\nSTATUS: DRAFT\n',
 }
 
@@ -874,7 +874,7 @@ for path, content in files.items():
         print(f'SKIP existing: {p}')
     else:
         p.write_text(content, encoding='utf-8')
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
 
 print('done')
 EOF
@@ -891,15 +891,15 @@ python3 - << 'EOF'
 from pathlib import Path
 
 files = {
-    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# Natt-OS System Architecture Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# natt-os System Architecture Spec v1\n\nSTATUS: DRAFT\n',
     'docs/release/RUNTIME_WAVE_REPORT_v1.na': '# Runtime Wave Report v1\n\nSTATUS: DRAFT\n',
     'docs/specs/CELL_REGISTRY_MAP_v1.na': '# Cell Registry / Cell Map v1\n\nSTATUS: DRAFT\n',
     'docs/specs/EVENT_ENVELOPE_CAUSALITY_SPEC_v1.na': '# Event Envelope & Causality Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/MACH_HEYNA_TRANSPORT_SPEC_v1.na': '# Mach HeyNa Transport Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/SMARTLINK_PROTOCOL_SPEC_v1.na': '# SmartLink Protocol Spec v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na': '# SiraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/siraSIGN_GATEKEEPER_SPEC_v1.na': '# siraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/FILE_EXTENSION_SPEC_ANC_NA_PHIEU_v1.na': '# File Extension Spec .anc/.na/.phieu v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/Sira_NAMESPACE_INVENTORY_v1.na': '# Sira Namespace Inventory v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/sira_NAMESPACE_INVENTORY_v1.na': '# sira Namespace Inventory v1\n\nSTATUS: DRAFT\n',
     'docs/specs/GROUND_TRUTH_MODEL_SPEC_v1.na': '# Ground Truth Model Spec v1\n\nSTATUS: DRAFT\n',
 }
 
@@ -910,13 +910,13 @@ for path, content in files.items():
     if not p.exists():
         p.write_text(content, encoding='utf-8')
         created.append(str(p))
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
     else:
         print(f'SKIP existing: {p}')
 
 print('created_count=', len(created))
 EOF
-git add docs/specs docs/release && git commit -m "docs(release): add Natt-OS group 1 technical foundation skeletons" && git push origin main
+git add docs/specs docs/release && git commit -m "docs(release): add natt-os group 1 technical foundation skeletons" && git push origin main
 ```
 
 ---

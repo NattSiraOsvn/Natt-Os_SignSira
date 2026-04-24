@@ -1,5 +1,5 @@
 /**
- * Natt-OS PolicySignatureEngine
+ * natt-os PolicySignatureEngine
  * Patent Claim: Tamper-resistant constitutional governance through
  *               cryptographic policy signing with version pinning.
  *
@@ -109,9 +109,9 @@ export class PolicySignatureEngine {
 
 export const PolicyEngine = PolicySignatureEngine.getInstance();
 
-// Bootstrap default Natt-OS constitution policy
+// Bootstrap default natt-os constitution policy
 PolicyEngine.registerPolicy({
-  policyId: 'Natt-OS-CONSTITUTION',
+  policyId: 'natt-os-CONSTITUTION',
   version: 'v4.0',
   constitutionHash: '',
   issuedAt: Date.now(),

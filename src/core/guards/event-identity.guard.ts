@@ -1,5 +1,5 @@
 /**
- * Natt-OS Event Identity Guard
+ * natt-os Event Identity Guard
  * Locks: #1 correlationId, #2 causation chain, #3 ULID event_id, #16 replay poison
  * ENFORCEMENT: ABSOLUTE
  */

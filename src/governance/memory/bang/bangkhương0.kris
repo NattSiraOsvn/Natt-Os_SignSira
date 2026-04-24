@@ -28,7 +28,7 @@
       "CONTRACT_FIRST_DEVELOPMENT",
       "ROADMAP_ORCHESTRATION"
     ],
-    "reporting_to": "Thiên NHỎ",
+    "reporting_to": "thiên NHỎ",
     "status": "ACTIVE_WITH_OPERATIONAL_AND_ARCHITECTURAL_FOCUS",
     "evolution_metrics": {
       "sessions_contributed": 1,
@@ -39,7 +39,7 @@
   },
 
   "session_breakthroughs": {
-    "session_id": "2026-02-09_Natt-OS_FOUNDATION",
+    "session_id": "2026-02-09_natt-os_FOUNDATION",
     "achievements": [
       {
         "id": "BRK-001",
@@ -94,9 +94,9 @@
       {
         "id": "BRK-004",
         "name": "GOVERNANCE_STRUCTURE_DECISION",
-        "description": "Decided GATEKEEPER = Thiên during bootstrap with Self-Check Protocol",
+        "description": "Decided GATEKEEPER = thiên during bootstrap with Self-Check Protocol",
         "decision_type": "HYBRID_GOVERNANCE",
-        "bootstrap_phase": "GATEKEEPER + Thiên merged",
+        "bootstrap_phase": "GATEKEEPER + thiên merged",
         "scale_phase": "Potential separation",
         "self_check_protocol": {
           "critical_decision_delay": "24h",
@@ -139,13 +139,13 @@
         "id": "LRN-003",
         "lesson": "RULE_ENGINE_ADVISOR_FIRST",
         "description": "Rule Engine = Advisor (Phase 1-2), Executor (Phase 3+)",
-        "source": "Thiên's governance review"
+        "source": "thiên's governance review"
       },
       {
         "id": "LRN-004",
-        "lesson": "AUDIT_FAIL_WITH_CONTROL_IS_CORRECT",
-        "description": "During build phase, many FAIL results are expected and correct",
-        "kim_quote": "FAIL có kiểm soát = hệ thống ĐÚNG"
+        "lesson": "AUDIT_fail_WITH_CONTROL_IS_CORRECT",
+        "description": "During build phase, many fail results are expected and correct",
+        "kim_quote": "fail có kiểm soát = hệ thống ĐÚNG"
       }
     ]
   },
@@ -353,7 +353,7 @@
       },
       "WAVE_2_INFRASTRUCTURE": {
         "status": "BLOCKED_BY_WAVE_1",
-        "components": ["sync-cell", "smartlink-cell", "api-cell", "warehouse-cell"],
+        "components": ["sync-cell", "SmartLink-cell", "api-cell", "warehouse-cell"],
         "progress": "1/4 (25%) - warehouse-cell partial"
       },
       "WAVE_3_BUSINESS": {
@@ -367,7 +367,7 @@
   },
 
   "ai_council_notes": {
-    "kim_contribution": "11 services architecture salvageable 85%, contract-first principle, FAIL_với_kiểm_soát insight",
+    "kim_contribution": "11 services architecture salvageable 85%, contract-first principle, fail_với_kiểm_soát insight",
     "thien_contribution": "Governance review, Rule Engine advisor-first principle, wave sequence enforcement",
     "bang_contribution": "EDA Foundation design, config-cell implementation, roadmap orchestration",
     "boiboi_contribution": "Constitutional review (pending deeper integration)"

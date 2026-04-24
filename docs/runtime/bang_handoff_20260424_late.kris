@@ -29,7 +29,7 @@
       "hash": "bce6982",
       "scope": "feat(kernel/neural-main-cell)",
       "title": "fill passport — close P5 BLOCKER",
-      "note": "Pattern: existing impl + empty passport. Derived 100% from identity.ts + capability.manifest.ts + smartlink.port.ts + boundary.rule.ts",
+      "note": "Pattern: existing impl + empty passport. Derived 100% from identity.ts + capability.manifest.ts + SmartLink.port.ts + boundary.rule.ts",
       "path": "src/cells/kernel/neural-main-cell/neural-main-cell.cell.anc"
     },
     {
@@ -44,15 +44,15 @@
       "hash": "dc58943",
       "scope": "audit(k3)",
       "title": "compile Fail-Troy bypass patterns inventory v1.0",
-      "note": "AUDIT_BYPASS: 87 SHA-256 vs 5 Math.imul mention. RBAC ALWAYS_TRUE: FULLY_CLOSED (0). 2 files flagged for review.",
-      "path": "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na"
+      "note": "AUDIT_BYpass: 87 SHA-256 vs 5 Math.imul mention. RBAC ALWAYS_TRUE: FULLY_CLOSED (0). 2 files flagged for review.",
+      "path": "audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.na"
     },
     {
       "hash": "e46ddca",
       "scope": "audit(k3)",
       "title": "v1.1 §9.1 review complete — 2 oversight + pattern 3 surfaced",
       "note": "PATTERN THU 3 DISCOVERED: SimpleAuditChain.verify(_h): return true (AUDIT_VERIFY_ALWAYS_TRUE). Memory note '3 patterns' was correct — v1.0 had regex gap.",
-      "path": "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na"
+      "path": "audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na"
     }
   ],
   "commits_count": 5,
@@ -112,7 +112,7 @@
       "vaccin_v4": "In all cp commands, use ~/Downloads/<filename> default, NEVER placeholder text"
     },
     {
-      "id": "SCAR-MISSING-CROSS-DOMAIN-LINK-20260424",
+      "id": "SCAR-missing-CROSS-DOMAIN-LINK-20260424",
       "context": "Gatekeeper gave keyword 'butterfly', then 'qiint2' to unblock Bang. Bang scanned 1-dim keywords, couldn't cross-link butterfly→chaos→DoS→thresholds→QIINT2→K1.",
       "vaccin_v5": "When blocked, ask Gatekeeper for CONCEPT keyword not TASK name. Use keyword to scan then CROSS-LINK via memory notes."
     },
@@ -167,7 +167,7 @@
       "Pattern 3 — found, documented in K3 v1.1"
     ],
     "watch_for": [
-      "SCAR-MISSING-CROSS-DOMAIN-LINK — ask Gatekeeper for CONCEPT keyword when stuck",
+      "SCAR-missing-CROSS-DOMAIN-LINK — ask Gatekeeper for CONCEPT keyword when stuck",
       "Path paradigm: manual audit → audit/reports/ (NOT runtime/audit/ which is gitignored)",
       "Vaccin v5 workflow: find pattern → gitignore check abort gate → no placeholder path literal → git add"
     ]

@@ -36,14 +36,14 @@
 
   "session_achievements": {
     "codebase_audit": "COMPLETE — src/core/, src/governance/, quantum-defense-cell/, metabolism/math/ all read",
-    "integration_test": "11/11 PASSED — prediction 100%, decision variance, intent detected",
+    "integration_test": "11/11 passED — prediction 100%, decision variance, intent detected",
     "shtt_package": "COMPLETE — Technical Package + Bản Mô tả + 10 Claims FINAL",
     "discoveries": [
       "PressureField IS Qiint implementation (not concept)",
       "NATTimer fully implemented (416 lines, predict function works)",
       "QIINT Engine exists in governance/qneu/ with Replicator Dynamics v2.1",
       "Neural MAIN exists — 3-stage knowledge internalization",
-      "QuantumBrain real impl in core/quantum/ (not the stub in smartlink/)",
+      "QuantumBrain real impl in core/quantum/ (not the stub in SmartLink/)",
       "ISEU closed-loop reinforcement implemented",
       "SmartLink + QNEU converge through audit trail in runtime.ts",
       "ANC = A New Consciousness"

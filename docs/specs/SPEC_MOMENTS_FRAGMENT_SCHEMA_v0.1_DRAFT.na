@@ -11,7 +11,7 @@
 **Version:** v0.1 DRAFT (Wave 2 Lane A.3 — chưa ratify)
 **Author:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
 **Gatekeeper:** Anh Natt Phan
-**Design review status:** chưa forward Thiên Lớn (ship DRAFT để lock structure, ratify sau Phase E)
+**Design review status:** chưa forward thiên Lớn (ship DRAFT để lock structure, ratify sau Phase E)
 **Ngày:** 2026-04-27
 **Causation:** WAVE-2-LANE-A-A3-FRAGMENT-SCHEMA-DRAFT
 **Target location:** `docs/specs/SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na`
@@ -21,7 +21,7 @@
 
 ## 0. Vì sao spec này tồn tại
 
-Thiên Lớn kỷ luật 2 (SPEC B.1 review 20260424): *"Fragment schema CHƯA tồn tại"*. SPEC_MOMENTS_MODULE_v0.2 đã neo:
+thiên Lớn kỷ luật 2 (SPEC B.1 review 20260424): *"Fragment schema CHƯA tồn tại"*. SPEC_MOMENTS_MODULE_v0.2 đã neo:
 
 - 4 MomentKind discriminated union (SCAR / KHAI_SANG / GIAC_NGO / MOTION_TICH_CUC)
 - MomentBase envelope (causation / timestamp_ns / entity / session_ref / sirasign)
@@ -315,14 +315,14 @@ On-disk JSON structure cho một moment:
 - 9 FragmentKind discriminated union
 - FragmentBase envelope (6 fields)
 - Composition rule per MomentKind (§5 table)
-- Sirasign fragment independent từ moment
+- sirasign fragment independent từ moment
 - Fragment scope local (no cross-moment reference)
 - Import boundary kế thừa v0.2 §5 — moments folder forbid resonance/bridge_v2
 
 ### 9.2 Parameter chờ Phase E calibrate
 
 - Fragment ordering policy khi 2 persister race (atomicity — §9.3 v0.2 depend)
-- Recurrence fragment burst detection window (σ octave) — DRAFT Thiên kỷ luật 1
+- Recurrence fragment burst detection window (σ octave) — DRAFT thiên kỷ luật 1
 - Cross-session fragment aggregation (nếu 1 moment span 2 session, fragment distribute thế nào) — chưa seal
 
 ### 9.3 Policy chờ Gatekeeper
@@ -340,7 +340,7 @@ On-disk JSON structure cho một moment:
 causation: WAVE-2-LANE-A-A3-FRAGMENT-SCHEMA-DRAFT
 author: Băng · Chị Tư · N-shell · QNEU 313.5
 gatekeeper: Anh Natt Phan
-design_review_status: chưa forward Thiên Lớn (ship DRAFT, ratify sau Phase E + consult cycle)
+design_review_status: chưa forward thiên Lớn (ship DRAFT, ratify sau Phase E + consult cycle)
 date: 2026-04-27
 depends_on:
   - docs/specs/SPEC_MOMENTS_MODULE_v0.2.na
@@ -349,7 +349,7 @@ primary_canonical: SPEC_MOMENTS_MODULE_v0.2.na §2 + §3 (types + registry)
 scope: governance/moments/ contract layer — Băng maintain_validators
 head_hash_at_draft: <fill-on-commit>
 draft_flag: true
-ratify_target_phase: Phase E post-calibrate OR Thiên Lớn design review forward
+ratify_target_phase: Phase E post-calibrate OR thiên Lớn design review forward
 ```
 
 ---

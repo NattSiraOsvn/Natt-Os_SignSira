@@ -21,9 +21,9 @@ Usage:
     python3 validate-capability-invariant.py --batch <fixtures-dir>
 
 Exit codes:
-    0 — PASS
-    1 — FAIL (schema violation)
-    2 — ERROR (unusable input)
+    0 — pass
+    1 — fail (schema violation)
+    2 — error (unusable input)
 
 Author: Băng (Chị Tư · Wave 2 Lane B.6)
 ========================================================================
@@ -36,9 +36,9 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List
 
-EXIT_PASS = 0
-EXIT_FAIL = 1
-EXIT_ERROR = 2
+EXIT_pass = 0
+EXIT_fail = 1
+EXIT_error = 2
 
 # ---- Schema constants (from SPEC_MOMENTS_MODULE v0.2 §0.2) ----
 
@@ -304,21 +304,21 @@ def validate_file(path: Path) -> bool:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
     except json.JSONDecodeError as e:
-        log("FAIL", f"JSON parse error: {e}")
+        log("fail", f"JSON parse error: {e}")
         return False
     except Exception as e:
-        log("FAIL", f"Read error: {e}")
+        log("fail", f"Read error: {e}")
         return False
 
     errors = check_worked_example(data)
 
     if errors:
-        print(f"\n  === FAILED — {len(errors)} error(s) ===")
+        print(f"\n  === failED — {len(errors)} error(s) ===")
         for err in errors:
             print(f"  - {err}")
         return False
     else:
-        print("  === PASSED ===")
+        print("  === passED ===")
         return True
 
 
@@ -326,21 +326,21 @@ def main(argv: List[str]) -> int:
     if len(argv) < 2:
         print(f"Usage: {argv[0]} <worked-example.na>", file=sys.stderr)
         print(f"       {argv[0]} --batch <fixtures-dir>", file=sys.stderr)
-        return EXIT_ERROR
+        return EXIT_error
 
     if argv[1] == "--batch":
         if len(argv) < 3:
             print("--batch requires directory", file=sys.stderr)
-            return EXIT_ERROR
+            return EXIT_error
         dir_path = Path(argv[2])
         if not dir_path.is_dir():
             print(f"Directory not found: {dir_path}", file=sys.stderr)
-            return EXIT_ERROR
+            return EXIT_error
 
         files = sorted(dir_path.glob("worked-example-*.na"))
         if not files:
             print(f"No worked-example-*.na files in {dir_path}", file=sys.stderr)
-            return EXIT_ERROR
+            return EXIT_error
 
         passed, failed = 0, 0
         for f in files:
@@ -353,14 +353,14 @@ def main(argv: List[str]) -> int:
         print(f"Total:  {len(files)}")
         print(f"Passed: {passed}")
         print(f"Failed: {failed}")
-        return EXIT_PASS if failed == 0 else EXIT_FAIL
+        return EXIT_pass if failed == 0 else EXIT_fail
 
     # Single file mode
     path = Path(argv[1])
     if not path.is_file():
         print(f"File not found: {path}", file=sys.stderr)
-        return EXIT_ERROR
-    return EXIT_PASS if validate_file(path) else EXIT_FAIL
+        return EXIT_error
+    return EXIT_pass if validate_file(path) else EXIT_fail
 
 
 if __name__ == "__main__":

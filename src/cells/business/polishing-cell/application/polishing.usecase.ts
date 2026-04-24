@@ -1,6 +1,6 @@
 /**
  * polishing-cell — application/polishing.usecase.ts
- * Sprint 2 | Tâm Luxury Natt-OS
+ * Sprint 2 | Tâm Luxury natt-os
  *
  * Subscribe: WIP_STONE (từ stone-cell)
  * Emit:      WIP_COMPLETED (sang inventory-cell)

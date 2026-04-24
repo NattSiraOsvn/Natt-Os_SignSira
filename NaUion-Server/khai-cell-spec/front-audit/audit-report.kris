@@ -30,14 +30,14 @@
     "petal_count_rebuild": 2,
     "component_count_match": false,
     "pass_fail": {
-      "Điều_6a_dimension": "PASS",
-      "Điều_6b_center": "FAIL",
-      "Điều_6c_color": "FAIL",
-      "Điều_6d_silhouette_iou": "FAIL",
-      "Điều_6e_component_count": "FAIL"
+      "Điều_6a_dimension": "pass",
+      "Điều_6b_center": "fail",
+      "Điều_6c_color": "fail",
+      "Điều_6d_silhouette_iou": "fail",
+      "Điều_6e_component_count": "fail"
     },
     "overall_score": "1/5",
-    "verdict": "FAIL"
+    "verdict": "fail"
   },
   "v2_audit": {
     "dimension": {
@@ -55,14 +55,14 @@
     "petal_count_rebuild": 4,
     "component_count_match": false,
     "pass_fail": {
-      "Điều_6a_dimension": "PASS",
-      "Điều_6b_center": "FAIL",
-      "Điều_6c_color": "FAIL",
-      "Điều_6d_silhouette_iou": "FAIL",
-      "Điều_6e_component_count": "FAIL"
+      "Điều_6a_dimension": "pass",
+      "Điều_6b_center": "fail",
+      "Điều_6c_color": "fail",
+      "Điều_6d_silhouette_iou": "fail",
+      "Điều_6e_component_count": "fail"
     },
     "overall_score": "1/5",
-    "verdict": "FAIL"
+    "verdict": "fail"
   },
   "anti_patterns": {
     "V1": [
@@ -121,9 +121,9 @@
     ]
   },
   "comparative_summary": {
-    "v1_verdict": "FAIL",
+    "v1_verdict": "fail",
     "v1_score": "1/5",
-    "v2_verdict": "FAIL",
+    "v2_verdict": "fail",
     "v2_score": "1/5",
     "improvement_pct_iou": "-1.3%",
     "improvement_pct_delta_e": "7.0 ΔE closer"

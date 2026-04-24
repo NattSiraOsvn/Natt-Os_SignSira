@@ -1,7 +1,7 @@
-// supplier-smartlink.port.ts
+// supplier-SmartLink.port.ts
 import { EventBus } from "../../../../core/events/event-bus";
 
-// Sira_CONTRACT_INTERFACE SupplierSignal
+// sira_CONTRACT_INTERFACE SupplierSignal
 const SupplierSignal = {
   type: "SUPPLIER_APPROVED" | "SUPPLIER_REJECTED" | "SUPPLIER_RISK_FLAGGED" | "PURCHASE_ORDERED";
   payload;

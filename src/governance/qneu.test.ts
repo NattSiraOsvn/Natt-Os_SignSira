@@ -26,7 +26,7 @@ function assert(condition: boolean, name: string): void {
     console.log(`  ✅ ${name}`);
     passed++;
   } else {
-    console.log(`  ❌ FAIL: ${name}`);
+    console.log(`  ❌ fail: ${name}`);
     failed++;
   }
 }
@@ -51,7 +51,7 @@ const basicImpacts: Impact[] = [
   { id: 'i2', category: 'SPEC_CREATION', description: 'test', raw_weight: 30, frequency_count: 1, adjusted_weight: 30, timestamp: '', verified_by: 'GATEKEEPER' },
 ];
 const basicPenalties: Penalty[] = [
-  { id: 'p1', category: 'HIDE_ERROR', description: 'test hide', weight: -10, timestamp: '', verified_by: 'AUDIT_TRAIL' },
+  { id: 'p1', category: 'HIDE_error', description: 'test hide', weight: -10, timestamp: '', verified_by: 'AUDIT_TRAIL' },
 ];
 
 const score1 = calculateQNEU('BANG', 100, basicImpacts, basicPenalties, 'ses-1');
@@ -176,7 +176,7 @@ const nearDeathState: QNEUEntityState = {
 };
 
 const deathResult = applyDecay(nearDeathState);
-assert(deathResult.removedNodeIds.length === 1, 'Decay: near-death node (0.09) REMOVED');
+assert(deathResult.removedNodeIds.length === 1, 'Decay: near-death node (0.09) removed');
 assert(deathResult.state.permanent_nodes.length === 0, 'Decay: permanent nodes now empty');
 
 // Fresh node should NOT decay
@@ -224,7 +224,7 @@ const emptyDescImpact = { ...validImpact, description: '' };
 assert(!validateImpact(emptyDescImpact).valid, 'Empty description rejected');
 
 const validPenalty: Penalty = {
-  id: 'p-valid', category: 'HIDE_ERROR', description: 'Hid errors',
+  id: 'p-valid', category: 'HIDE_error', description: 'Hid errors',
   weight: -20, timestamp: '', verified_by: 'AUDIT_TRAIL',
 };
 assert(validatePenalty(validPenalty).valid, 'Valid penalty passes');
@@ -242,9 +242,9 @@ console.log('');
 console.log('═══════════════════════════════════════════════════════════════');
 console.log(`  RESULTS: ${passed} passed, ${failed} failed`);
 if (failed === 0) {
-  console.log('  ✅ ALL TESTS PASSED');
+  console.log('  ✅ ALL TESTS passED');
 } else {
-  console.log('  ❌ SOME TESTS FAILED');
+  console.log('  ❌ SOME TESTS failED');
   process.exit(1);
 }
 console.log('═══════════════════════════════════════════════════════════════');

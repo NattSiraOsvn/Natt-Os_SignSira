@@ -1,10 +1,10 @@
 /**
  * polishing-cell — domain/polishing.entity.ts
- * Sprint 2 | Tâm Luxury Natt-OS
+ * Sprint 2 | Tâm Luxury natt-os
  * Subscribe: WIP_STONE → Emit: WIP_COMPLETED
  */
 
-export type PolishingStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED';
+export type PolishingStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'failED';
 
 export interface PolishingRecord {
   id:           string;

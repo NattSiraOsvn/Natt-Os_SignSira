@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * Natt-OS — Promotion Cell
+ * natt-os — Promotion Cell
  * Application Service: PromotionService
  * Quản lý khuyến mãi Tâm Luxury — theo tier khách hàng
  */

@@ -1,7 +1,7 @@
 # TS CLEANUP BATCH 2J — ENGINE SCAN — 20260424
 
 status: SCAN_ONLY
-scope: ENGINE_TRANSLATE_TO_Sira
+scope: ENGINE_TRANSLATE_TO_sira
 created_at: 2026-04-24T17:54:04.070651+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
@@ -9,7 +9,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Rule
 
-Batch này chỉ quét nhóm ENGINE_TRANSLATE_TO_Sira.
+Batch này chỉ quét nhóm ENGINE_TRANSLATE_TO_sira.
 
 Không rename.
 Không sửa source.
@@ -65,7 +65,7 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "export "
       ]
     },
-    "source_cluster": "ENGINE_TRANSLATE_TO_Sira"
+    "source_cluster": "ENGINE_TRANSLATE_TO_sira"
   },
   {
     "path": "src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts",
@@ -110,7 +110,7 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "export "
       ]
     },
-    "source_cluster": "ENGINE_TRANSLATE_TO_Sira"
+    "source_cluster": "ENGINE_TRANSLATE_TO_sira"
   },
   {
     "path": "src/cells/business/payment-cell/domain/engines/payment-gateway.engine.ts",
@@ -149,7 +149,7 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "export "
       ]
     },
-    "source_cluster": "ENGINE_TRANSLATE_TO_Sira"
+    "source_cluster": "ENGINE_TRANSLATE_TO_sira"
   },
   {
     "path": "src/core/SmartLinkEngine.ts",
@@ -196,7 +196,7 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "export "
       ]
     },
-    "source_cluster": "ENGINE_TRANSLATE_TO_Sira"
+    "source_cluster": "ENGINE_TRANSLATE_TO_sira"
   }
 ]
 

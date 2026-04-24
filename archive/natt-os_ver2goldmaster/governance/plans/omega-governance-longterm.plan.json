@@ -5,16 +5,16 @@
     "version": "v1.1",
     "timestamp": "2026-01-28T18:00:00+07:00",
     "status": "SIGNED_AND_LOCKED",
-    "sovereign": "ANH_NATTSiraWAT",
+    "sovereign": "ANH_NATTsiraWAT",
     "gatekeeper": "THIEN_LON"
   },
   "sira_sign": {
     "enabled": true,
     "type": "CRYPTO_SIGNATURE",
     "algorithm": "ed25519",
-    "signed_by": "ANH_NATTSiraWAT",
-    "public_key_base64": "Sira_PUB_KEY_BASE64_PLACEHOLDER",
-    "signature_base64": "Sira_SIGN_20260128_180000_ED25519_v1",
+    "signed_by": "ANH_NATTsiraWAT",
+    "public_key_base64": "sira_PUB_KEY_BASE64_PLACEHOLDER",
+    "signature_base64": "sira_SIGN_20260128_180000_ED25519_v1",
     "signed_payload": {
       "value": "OMEGA-GOVERNANCE-LONGTERM|v1.1|2026-01-28T18:00:00+07:00",
       "encoding": "utf8"

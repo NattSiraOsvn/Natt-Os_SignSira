@@ -257,7 +257,7 @@ const DataArchiveVault: React.FC<DataArchiveVaultProps> = ({ currentRole, logAct
             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-amber-500/5 border-amber-500/20 shadow-2xl">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" />
-                  <h4 className="text-sm font-black text-amber-500 uppercase tracking-widest">Thiên Advisor</h4>
+                  <h4 className="text-sm font-black text-amber-500 uppercase tracking-widest">thiên Advisor</h4>
                </div>
                <p className="text-[11px] text-gray-400 italic leading-relaxed">
                   "Thưa Anh Natt, phân vùng dữ liệu '{selectedArchive ? selectedArchive.year : '...'}' đang được giám sát. Niêm phong sẽ tạo ra Merkle Root không thể đảo ngược, đảm bảo tính toàn vẹn 100% trước cơ quan kiểm toán."

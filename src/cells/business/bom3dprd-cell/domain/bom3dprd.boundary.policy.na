@@ -12,11 +12,11 @@ export const bom3dprdBoundaryPolicy = {
     'production-cell',   // BomValidated / BomRejected
     'design-3d-cell',    // BomRejected → sửa spec
     'audit-cell',
-    'smartlink-cell',
+    'SmartLink-cell',
   ],
   prohibitedActions: [
     'DIRECT_DB_WRITE_WITHOUT_AUDIT',
-    'BYPASS_CONSTITUTION',
+    'BYpass_CONSTITUTION',
     'EXTERNAL_API_WITHOUT_GATEKEEPER',
   ],
   requiresGatekeeperApproval: [

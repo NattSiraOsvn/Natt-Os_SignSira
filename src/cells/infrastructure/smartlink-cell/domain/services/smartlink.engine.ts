@@ -72,8 +72,8 @@ function applyFiberDecay(record: TouchRecord, now: number): void {
   if (record.fiber && record.sensitivity <= FIBER_LOST_THRESHOLD) {
     record.fiber = false;
     EventBus.publish(
-      { type: 'smartlink.fiber.lost' as any, payload: { from: record.fromCellId, to: record.toCellId, domainId: record.domainId } },
-      'smartlink-cell', undefined
+      { type: 'SmartLink.fiber.lost' as any, payload: { from: record.fromCellId, to: record.toCellId, domainId: record.domainId } },
+      'SmartLink-cell', undefined
     );
   }
 }
@@ -111,8 +111,8 @@ export const SmartLinkEngine = {
         if (!existing.fiber && existing.sensitivity >= FIBER_FORMED_THRESHOLD) {
           existing.fiber = true;
           EventBus.publish(
-            { type: 'smartlink.fiber.formed' as any, payload: { from: fromCellId, to: toCellId, domainId, sensitivity: existing.sensitivity } },
-            'smartlink-cell', undefined
+            { type: 'SmartLink.fiber.formed' as any, payload: { from: fromCellId, to: toCellId, domainId, sensitivity: existing.sensitivity } },
+            'SmartLink-cell', undefined
           );
         }
 
@@ -239,8 +239,8 @@ export const SmartLinkEngine = {
 
 // ── heartbeat ──
 EventBus.publish(
-  { type: "cell.metric" as any, payload: { cell: "smartlink-cell", metric: "alive", value: 1, ts: Date.now() } },
-  "smartlink-cell",
+  { type: "cell.metric" as any, payload: { cell: "SmartLink-cell", metric: "alive", value: 1, ts: Date.now() } },
+  "SmartLink-cell",
   "system.heartbeat"
 );
 

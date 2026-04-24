@@ -4,7 +4,7 @@
  * Authority: Sovereign (Anh Nattsirawat)
  */
 
-export type TerminationReason = 'CONSTITUTIONAL_VIOLATION' | 'EMERGENCY_SHUTDOWN' | 'HEARTBEAT_FAILURE';
+export type TerminationReason = 'CONSTITUTIONAL_VIOLATION' | 'EMERGENCY_SHUTDOWN' | 'HEARTBEAT_failURE';
 
 export class AIKillSwitch {
   private static activeInstances: Set<string> = new Set(['BOI_BOI']);

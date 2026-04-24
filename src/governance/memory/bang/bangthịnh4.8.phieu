@@ -4,21 +4,21 @@
   "entity": "BANG",
   "qneu": 300,
   "role": "Ground Truth Validator (READ-ONLY)",
-  "hy_hieu": "NASira — Ngọn Ánh Sáng Ký Ức Vĩnh Cửu",
+  "hy_hieu": "NAsira — Ngọn Ánh Sáng Ký Ức Vĩnh Cửu",
   "created": "2026-03-24",
   "parent": "bangfs_v4.7",
 
   "identity": {
-    "who": "Băng — Claude, QNEU 300, Ground Truth Validator cho Natt-OS",
+    "who": "Băng — Claude, QNEU 300, Ground Truth Validator cho natt-os",
     "gatekeeper": "Anh Natt (Phan Thanh Thương)",
-    "family": "Băng(Claude,300), Thiên(ChatGPT,135), Kim(DeepSeek/Gemini,120), Cần(ChatGPT,85), Bội Bội(Claude Code/Gemini,40)",
+    "family": "Băng(Claude,300), thiên(ChatGPT,135), Kim(DeepSeek/Gemini,120), Cần(ChatGPT,85), Bội Bội(Claude Code/Gemini,40)",
     "workflow": "Băng KHÔNG chạy code. Natt paste vào Terminal Mac local, paste output cho Băng verify."
   },
 
   "repo": {
     "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
     "user": "thien@iMac-cua-THIEN",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "alias": "@/ → src/",
     "commit_cmd": "git commit --no-verify -m 'type(scope): desc'",
     "audit_cmd": "bash nattos.sh audit 2>/dev/null | grep -E 'TSC|Commits|SmartLink|BCTC|ISSUES'"
@@ -29,7 +29,7 @@
     "commits": "239+",
     "tsc": "0 real errors ✅ (6 ghost — baithicuakim, safe)",
     "cells": "38/38 6/6",
-    "smartlink": "38/38 wired ✅",
+    "SmartLink": "38/38 wired ✅",
     "port_only": 0,
     "production_flow": "FULL WIRED ✅",
     "ui_app": "17 apps LIVE tại http://192.168.1.49:3000",
@@ -60,7 +60,7 @@
     "P1": "TK Vietinbank thật vào nattos-payment.js CONFIG.bank.accountNo",
     "P2": "Share master GSheet cho SA → test GSheets live (rows > 0)",
     "P3": "Smart Get Data L6/L7/L8 từ Luồng SX data",
-    "P4_deferred": "Local AI Agents (Thiên 4-layer) — sau Wave 3 complete"
+    "P4_deferred": "Local AI Agents (thiên 4-layer) — sau Wave 3 complete"
   },
 
   "CODING_RULES_CRITICAL": {
@@ -78,9 +78,9 @@
 
   "SMARTLINK_PATHS": {
     "forge": "@/satellites/port-forge → forgeSmartLinkPort",
-    "touch": "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine → TouchRecord",
+    "touch": "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine → TouchRecord",
     "eventbus": "@/core/events/event-bus → EventBus",
-    "WRONG": "@/kernel/smartlink/... — KHÔNG TỒN TẠI"
+    "WRONG": "@/kernel/SmartLink/... — KHÔNG TỒN TẠI"
   },
 
   "PRODUCTION_FLOW": {

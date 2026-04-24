@@ -2,4 +2,4 @@
 export * from './domain/entities';
 export * from './domain/services';
 export * from './application';
-export * from './ports/dust-recovery-smartlink.port';
+export * from './ports/dust-recovery-SmartLink.port';

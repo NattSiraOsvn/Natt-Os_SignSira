@@ -102,7 +102,7 @@ Exports:
   - Π_SURVIVAL_THRESHOLDS constant (marked PLACEHOLDER)
 ```
 
-### Step 2: `Π_survival.gate.ts` (GATE — uses Step 1)
+### Step 2: `Π_survival.gate.ts` (gate — uses Step 1)
 
 ```
 File: src/cells/kernel/survival-cell/domain/engines/pi-survival.gate.ts
@@ -118,7 +118,7 @@ Wires BackPressureGuard.health() → Π_survival → decision
 File: src/core/guards/rate-limit.guard.ts
 Algorithm: Token bucket (capacity, refill_rate)
 Per cell: configurable via cell metadata
-NOT smartlink-internal (memory note: "system-wide, khac smartlink-internal")
+NOT SmartLink-internal (memory note: "system-wide, khac SmartLink-internal")
 ```
 
 ### Step 4: `QueueDepthMonitor` (extend existing)
@@ -272,7 +272,7 @@ function survivalDecide(stress, thresholds): Decision {
   if (!thresholds.measured) return BACKPRESSURE;  // defensive default
   if (stress > thresholds.loadShed) return LOAD_SHED;
   if (stress > thresholds.backpressure) return BACKPRESSURE;
-  if (stress > thresholds.accept) return ACCEPT_WITH_WARN;
+  if (stress > thresholds.accept) return ACCEPT_WITH_warn;
   return ACCEPT;
 }
 ```

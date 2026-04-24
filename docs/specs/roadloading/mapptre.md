@@ -103,7 +103,7 @@ thien@iMac natt-os_ver2goldmaster % tree
     │   │   ├── securityoverlay.tsx
     │   │   ├── sellerterminal.tsx
     │   │   ├── sidebar.tsx
-    │   │   ├── smartlinkmapper.tsx
+    │   │   ├── SmartLinkmapper.tsx
     │   │   ├── supplierclassificationpanel.tsx
     │   │   ├── systemmonitor.tsx
     │   │   ├── systemnavigator.tsx
@@ -130,7 +130,7 @@ thien@iMac natt-os_ver2goldmaster % tree
     │   │   │       └── aicoreprocessor.ts
     │   │   ├── signals
     │   │   │   └── types.ts
-    │   │   └── smartlinkengine.ts
+    │   │   └── SmartLinkengine.ts
     │   ├── css
     │   │   ├── nattos-fx-advanced.css
     │   │   └── nattos-glass.css
@@ -884,7 +884,7 @@ thien@iMac natt-os_ver2goldmaster % tree
     │   │   ├── learningengine.ts
     │   │   ├── logisticsservice.ts
     │   │   ├── mapping
-    │   │   │   └── smartlinkmappingengine.ts
+    │   │   │   └── SmartLinkmappingengine.ts
     │   │   ├── modulehelpers.ts
     │   │   ├── moduleregistry.ts
     │   │   ├── notificationservice.ts
@@ -906,7 +906,7 @@ thien@iMac natt-os_ver2goldmaster % tree
     │   │   │   └── contextscoringengine.ts
     │   │   ├── security.service.ts
     │   │   ├── sellerengine.ts
-    │   │   ├── smartlinkengine.ts
+    │   │   ├── SmartLinkengine.ts
     │   │   ├── staging
     │   │   │   └── eventstaginglayer.ts
     │   │   ├── supplier

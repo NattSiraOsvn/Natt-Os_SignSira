@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 /**
- * Natt-OS NaUion Vision Engine v5.2.8 [MULTI-TASKING NEURAL HUD]
+ * natt-os NaUion Vision Engine v5.2.8 [MULTI-TASKING NEURAL HUD]
  * Architecture: Floating Workspace, Pinned Shards, Intelligent Carousel
  * Feature: Multitasking support with parallel module monitoring
  */
@@ -40,10 +40,10 @@ const CELL_REGISTRY = [
   { id:'biz-prod', cat:'Business', title:'production', icon:Factory, color:'green', desc:'Dây chuyền logic.' },
   { id:'biz-sale', cat:'Business', title:'sales-cell', icon:TrendingUp, color:'green', desc:'Tăng trưởng Wave 3.' },
   { id:'biz-pay', cat:'Business', title:'payment', icon:Coins, color:'green', desc:'Cổng thanh toán.' },
-  { id:'inf-01', cat:'Infra', title:'smartlink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.' },
+  { id:'inf-01', cat:'Infra', title:'SmartLink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.' },
   { id:'exe-01', cat:'Intel', title:'UEI Logic', icon:Brain, color:'purple', desc:'Não bộ điều phối.' },
   { id:'ai-3', cat:'AI', title:'BỐI BỐI', icon:Workflow, color:'red', desc:'Constitutional Builder.' },
-  { id:'ai-4', cat:'AI', title:'Thiên', icon:PenTool, color:'red', desc:'UI/UX Architect.' },
+  { id:'ai-4', cat:'AI', title:'thiên', icon:PenTool, color:'red', desc:'UI/UX Architect.' },
   { id:'biz-stone', cat:'Business', title:'stone-cell', icon:Gem, color:'green' },
   { id:'biz-warehouse', cat:'Business', title:'warehouse', icon:Warehouse, color:'amber' },
 ];
@@ -459,7 +459,7 @@ const GlobalCommand = ({ isOpen, onClose }) => {
   const exec = async (e) => {
     e.preventDefault(); if(!cmd.trim() || busy) return;
     setBusy(true); setRes("");
-    const result = await callGemini(cmd, "Natt-OS Central Brain Protocol.");
+    const result = await callGemini(cmd, "natt-os Central Brain Protocol.");
     setRes(result); setBusy(false);
   };
 

@@ -1,6 +1,6 @@
 import { SmartLink, LinkType } from '../domain/entities';
 
-// Sira_CONTRACT_INTERFACE SmartLinkRepository
+// sira_CONTRACT_INTERFACE SmartLinkRepository
 const SmartLinkRepository = {
   save(link: SmartLink);
   getById(id);

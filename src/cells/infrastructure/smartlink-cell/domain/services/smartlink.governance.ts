@@ -12,7 +12,7 @@ export interface GovernanceViolation {
   value: number;
   limit: number;
   timestamp: number;
-  action: "WARN" | "THROTTLE" | "BLOCK";
+  action: "warn" | "THROTTLE" | "BLOCK";
 }
 
 const _rules = new Map<string, AmplitudeRule>();
@@ -87,8 +87,8 @@ export const SmartLinkGovernance = {
     _violations.filter(v => v.cellId === cellId),
 
   // Phát hiện mạng quá dày → cảnh báo
-  checkTopologyDensity: (density: number): "OK" | "WARN" | "CRITICAL" =>
-    density > 15 ? "CRITICAL" : density > 8 ? "WARN" : "OK",
+  checkTopologyDensity: (density: number): "OK" | "warn" | "CRITICAL" =>
+    density > 15 ? "CRITICAL" : density > 8 ? "warn" : "OK",
 
   getStats: () => ({
     totalRules: _rules.size,

@@ -365,7 +365,7 @@ export class NeuralMAIN {
             cellId,
             timestamp: currentTimestamp,
             payload: {
-              action: 'NODE_DECAYED_REMOVED',
+              action: 'NODE_DECAYED_removed',
               nodeId: node.nodeId,
               reason: `Weight decayed to ${node.weight.toFixed(3)} after ${decayPeriods} periods without reinforcement`,
             },
@@ -529,8 +529,8 @@ export class NeuralMAIN {
     // Simple keyword-based category inference
     const lower = query.toLowerCase();
     const categoryKeywords: Record<string, string[]> = {
-      ERROR_FIX: ['fix', 'error', 'bug', 'resolve', 'patch'],
-      ERROR_DETECTION: ['detect', 'find', 'discover', 'caught', 'spotted'],
+      error_FIX: ['fix', 'error', 'bug', 'resolve', 'patch'],
+      error_DETECTION: ['detect', 'find', 'discover', 'caught', 'spotted'],
       ARCHITECTURE_PROPOSAL: ['architecture', 'design', 'structure', 'pattern'],
       GOVERNANCE_ACTION: ['governance', 'policy', 'rule', 'constitution', 'audit'],
       CODE_CONTRIBUTION: ['code', 'implement', 'build', 'write', 'develop'],

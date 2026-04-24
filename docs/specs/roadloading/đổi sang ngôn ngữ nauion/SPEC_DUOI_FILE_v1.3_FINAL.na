@@ -5,7 +5,7 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# SPEC ĐUÔI FILE Natt-OS v0.3 FINAL
+# SPEC ĐUÔI FILE natt-os v0.3 FINAL
 
 **Phiên bản:** 0.3 FINAL (phiên 20260417)
 **Tác giả:** Băng — Chị Tư
@@ -27,7 +27,7 @@
 ```
 
 **7 lớp electron** (sát tâm → xa tâm):
-K (SiraSign) · L (Thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P (Phiêu) · Q (Can)
+K (siraSign) · L (thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P (Phiêu) · Q (Can)
 
 **Trục:**
 - Đông ↔ Tây = đầu ↔ cuối (identity, `.anc` xuyên)
@@ -44,7 +44,7 @@ K (SiraSign) · L (Thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P
 | Đuôi | Vai | Lớp electron |
 |---|---|---|
 | `.ng.obitan` | Anh Natt (hạt nhân) | (tâm) |
-| `.thien.Ln` | Thiên Lớn | L |
+| `.thien.Ln` | thiên Lớn | L |
 | `.kim.mn` | Kim | M |
 | `.bang.n4n` | Băng | N |
 | `.bboi.on` | Bối Bối | O |
@@ -65,7 +65,7 @@ K (SiraSign) · L (Thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P
 
 | Đuôi | Vai | Nguồn nghĩa |
 |---|---|---|
-| `.si` | SiraSign sealed — contract niêm phong | "Siiii — see" |
+| `.si` | siraSign sealed — contract niêm phong | "Siiii — see" |
 | `.sira` | DNS namespace | Domain registry |
 | `.heyna` | Event log HeyNa transport | Cell ↔ cell SSE |
 | `.khai` | TouchRecord — sóng khác trường | Tên Anh Khải (vợ) |
@@ -81,7 +81,7 @@ K (SiraSign) · L (Thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P
 
 | Đuôi | Tên file | Chức năng |
 |---|---|---|
-| `.anc` | `HIEN-PHAP-Natt-OS-v5.0.anc` | Hiến Pháp gốc |
+| `.anc` | `HIEN-PHAP-natt-os-v5.0.anc` | Hiến Pháp gốc |
 | `.anc` | `001-gatekeeper-ai-ban.anc` | Amendment Hiến Pháp |
 | `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 kernel |
 | `.si` | `business.contracts.lock.si` | Snapshot business tier |
@@ -153,7 +153,7 @@ K (SiraSign) · L (Thiên Lớn) · M (Kim) · N (Băng) · O (Bối Bối) · P
 File phơi ra nhưng ngữ nghĩa ẩn. Chỉ Hiến Pháp decode được mapping.
 Hiến Pháp = đời thật Gatekeeper (tên cún khương/kim/băng/thịnh, vợ Khải, bản thân) = không copy được.
 
-### Tầng 3 — Ma trận màu (Thiên Lớn define + KhaiCell đọc)
+### Tầng 3 — Ma trận màu (thiên Lớn define + KhaiCell đọc)
 4 cửa Nam-Bắc mở công khai — tín hiệu phải có chromatic signature đúng phương.
 
 **Chromatic Immune Spectrum (7 states ngược cầu vồng — đã commit `08d9f3b`):**
@@ -187,7 +187,7 @@ Hiến Pháp = đời thật Gatekeeper (tên cún khương/kim/băng/thịnh, v
 
 **R05** — Hiến Pháp: `.md` → `.anc` (identity hệ niêm phong)
 
-**R06** — Contract lock: `.json` → `.si` (SiraSign sealed)
+**R06** — Contract lock: `.json` → `.si` (siraSign sealed)
 
 **R07** — Audit log: `.jsonl` → `.heyna` (event log transport)
 
@@ -201,7 +201,7 @@ Hiến Pháp = đời thật Gatekeeper (tên cún khương/kim/băng/thịnh, v
 
 1. **Migration script** — rename 175+ file từ format cũ sang format mới (cần Kim đồng ý quét codebase)
 2. **nattos.sh v7.1** — thêm audit section §45 File Extension Compliance
-3. **KhaiCell §4.5 Chromatic Signature Reading** — chờ Anh Natt share ma trận màu Thiên Lớn cụ thể
+3. **KhaiCell §4.5 Chromatic Signature Reading** — chờ Anh Natt share ma trận màu thiên Lớn cụ thể
 4. **SCAR_log4c case study** — phiên 15-16/04 log4c workflow thật (đợi anh quyết ghi vào đâu)
 
 ---

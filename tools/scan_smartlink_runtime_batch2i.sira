@@ -13,7 +13,7 @@ if (!fs.existsSync(report)) {
 const content = fs.readFileSync(report, "utf8");
 
 const required = [
-  "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+  "SMARTLINK_RUNTIME_TRANSLATE_TO_sira",
   "SCAN_ONLY",
   "Full SmartLink Runtime Classification",
   "Next Possible Candidates"
@@ -28,5 +28,5 @@ if (missing.length) {
 }
 
 console.log("TS CLEANUP BATCH2I SMARTLINK SCAN validation: pass");
-console.log("scope=SMARTLINK_RUNTIME_TRANSLATE_TO_Sira scan only");
+console.log("scope=SMARTLINK_RUNTIME_TRANSLATE_TO_sira scan only");
 console.log("mode=no rename, no source mutation");

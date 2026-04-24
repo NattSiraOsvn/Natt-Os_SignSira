@@ -1,7 +1,7 @@
 # TS CLEANUP BATCH 2C — EASY SCAN — 20260424
 
 status: SCAN_ONLY
-scope: NEEDS_TRANSLATION_TO_Sira
+scope: NEEDS_TRANSLATION_TO_sira
 created_at: 2026-04-24T16:12:30.878949+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
@@ -9,7 +9,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Rule
 
-Batch này chỉ quét nhóm NEEDS_TRANSLATION_TO_Sira để tìm file có thể dọn dễ.
+Batch này chỉ quét nhóm NEEDS_TRANSLATION_TO_sira để tìm file có thể dọn dễ.
 
 Không rename.
 Không sửa source.
@@ -20,8 +20,8 @@ Không động app/UI.
 {
   "total_needs_translation": 133,
   "summary": {
-    "EASY_JS_COMPATIBLE_TO_Sira": 46,
-    "MEDIUM_LIGHT_TRANSLATION_TO_Sira": 1,
+    "EASY_JS_COMPATIBLE_TO_sira": 46,
+    "MEDIUM_LIGHT_TRANSLATION_TO_sira": 1,
     "HARD_TRANSLATION_REQUIRED": 84,
     "KEEP_APP_TS_ADAPTER": 2
   },
@@ -33,10 +33,10 @@ Không động app/UI.
 
 [
   {
-    "path": "src/cells/business/casting-cell/ports/casting-smartlink.port.sira",
+    "path": "src/cells/business/casting-cell/ports/casting-SmartLink.port.sira",
     "exists": true,
     "bytes": 320,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -47,10 +47,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/constants-cell/ports/constants-smartlink.port.sira",
+    "path": "src/cells/business/constants-cell/ports/constants-SmartLink.port.sira",
     "exists": true,
     "bytes": 252,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -61,10 +61,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.sira",
+    "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-SmartLink.port.sira",
     "exists": true,
     "bytes": 416,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -75,10 +75,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.sira",
+    "path": "src/cells/business/finishing-cell/ports/finishing-SmartLink.port.sira",
     "exists": true,
     "bytes": 315,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -89,10 +89,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.sira",
+    "path": "src/cells/business/inventory-cell/ports/inventory-SmartLink.port.sira",
     "exists": true,
     "bytes": 333,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -103,10 +103,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/it-cell/ports/it-smartlink.port.sira",
+    "path": "src/cells/business/it-cell/ports/it-SmartLink.port.sira",
     "exists": true,
     "bytes": 404,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -117,10 +117,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.sira",
+    "path": "src/cells/business/logistics-cell/ports/logistics-SmartLink.port.sira",
     "exists": true,
     "bytes": 432,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -131,10 +131,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/media-cell/ports/media-smartlink.port.sira",
+    "path": "src/cells/business/media-cell/ports/media-SmartLink.port.sira",
     "exists": true,
     "bytes": 406,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -145,10 +145,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/order-cell/ports/order-smartlink.port.sira",
+    "path": "src/cells/business/order-cell/ports/order-SmartLink.port.sira",
     "exists": true,
     "bytes": 418,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -159,10 +159,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.sira",
+    "path": "src/cells/business/period-close-cell/ports/period-close-SmartLink.port.sira",
     "exists": true,
     "bytes": 340,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -173,10 +173,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.sira",
+    "path": "src/cells/business/phap-che-cell/ports/phapche-SmartLink.port.sira",
     "exists": true,
     "bytes": 432,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -187,10 +187,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.sira",
+    "path": "src/cells/business/polishing-cell/ports/polishing-SmartLink.port.sira",
     "exists": true,
     "bytes": 315,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -201,10 +201,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.sira",
+    "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.SmartLink.port.sira",
     "exists": true,
     "bytes": 346,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -215,10 +215,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.sira",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-SmartLink.port.sira",
     "exists": true,
     "bytes": 269,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -229,10 +229,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/smartlink/index.sira",
+    "path": "src/cells/business/shared-contracts-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 213,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -243,10 +243,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/stone-cell/ports/stone-smartlink.port.sira",
+    "path": "src/cells/business/stone-cell/ports/stone-SmartLink.port.sira",
     "exists": true,
     "bytes": 395,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -257,10 +257,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/tax-cell/ports/tax-smartlink.port.sira",
+    "path": "src/cells/business/tax-cell/ports/tax-SmartLink.port.sira",
     "exists": true,
     "bytes": 339,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -271,10 +271,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.sira",
+    "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 526,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -285,10 +285,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/ai-connector-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/ai-connector-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -299,10 +299,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/notification-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/notification-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -313,10 +313,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/shared-contracts-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -327,10 +327,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/services/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/services/index.sira",
     "exists": true,
     "bytes": 77,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -341,10 +341,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/use-cases/index.sira",
     "exists": true,
     "bytes": 116,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -355,10 +355,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/index.sira",
     "exists": true,
     "bytes": 160,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -369,10 +369,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/index.sira",
     "exists": true,
     "bytes": 128,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -383,10 +383,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/infrastructure/repositories/index.sira",
     "exists": true,
     "bytes": 77,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -397,10 +397,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/interface/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/interface/index.sira",
     "exists": true,
     "bytes": 33,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -411,10 +411,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/index.sira",
     "exists": true,
     "bytes": 43,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -425,10 +425,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/SmartLink-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 633,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -439,10 +439,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.sira",
+    "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 561,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -453,10 +453,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/sync-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -467,10 +467,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/ai-connector-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/ai-connector-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -481,10 +481,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/audit-cell/ports/audit-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 611,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -495,10 +495,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/audit-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/audit-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -509,10 +509,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/config-cell/ports/config-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 590,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -523,10 +523,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/config-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/config-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -537,10 +537,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/khai-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/khai-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 39,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -551,10 +551,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/monitor-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/monitor-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -565,10 +565,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/notification-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/notification-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -579,10 +579,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/observation-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/observation-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 46,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -593,10 +593,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 703,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -607,10 +607,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/rbac-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -621,10 +621,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/security-cell/ports/security-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 633,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -635,10 +635,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/security-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/security-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -649,10 +649,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/quantum-brain.engine.sira",
+    "path": "src/core/SmartLink/quantum-brain.engine.sira",
     "exists": true,
     "bytes": 373,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -663,10 +663,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/quantum-buffer.engine.sira",
+    "path": "src/core/SmartLink/quantum-buffer.engine.sira",
     "exists": true,
     "bytes": 232,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -682,10 +682,10 @@ Không động app/UI.
 
 [
   {
-    "path": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/interface/SmartLinkCell.sira",
     "exists": true,
     "bytes": 255,
-    "bucket": "MEDIUM_LIGHT_TRANSLATION_TO_Sira",
+    "bucket": "MEDIUM_LIGHT_TRANSLATION_TO_sira",
     "effort": 4,
     "action": "remove light TS syntax, then .sira",
     "has_hard_ts_markers": [],
@@ -703,10 +703,10 @@ Không động app/UI.
 
 [
   {
-    "path": "src/cells/business/casting-cell/ports/casting-smartlink.port.sira",
+    "path": "src/cells/business/casting-cell/ports/casting-SmartLink.port.sira",
     "exists": true,
     "bytes": 320,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -717,10 +717,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/constants-cell/ports/constants-smartlink.port.sira",
+    "path": "src/cells/business/constants-cell/ports/constants-SmartLink.port.sira",
     "exists": true,
     "bytes": 252,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -731,10 +731,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.sira",
+    "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-SmartLink.port.sira",
     "exists": true,
     "bytes": 416,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -745,10 +745,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.sira",
+    "path": "src/cells/business/finishing-cell/ports/finishing-SmartLink.port.sira",
     "exists": true,
     "bytes": 315,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -759,10 +759,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.sira",
+    "path": "src/cells/business/inventory-cell/ports/inventory-SmartLink.port.sira",
     "exists": true,
     "bytes": 333,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -773,10 +773,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/it-cell/ports/it-smartlink.port.sira",
+    "path": "src/cells/business/it-cell/ports/it-SmartLink.port.sira",
     "exists": true,
     "bytes": 404,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -787,10 +787,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.sira",
+    "path": "src/cells/business/logistics-cell/ports/logistics-SmartLink.port.sira",
     "exists": true,
     "bytes": 432,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -801,10 +801,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/media-cell/ports/media-smartlink.port.sira",
+    "path": "src/cells/business/media-cell/ports/media-SmartLink.port.sira",
     "exists": true,
     "bytes": 406,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -815,10 +815,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/order-cell/ports/order-smartlink.port.sira",
+    "path": "src/cells/business/order-cell/ports/order-SmartLink.port.sira",
     "exists": true,
     "bytes": 418,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -829,10 +829,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.sira",
+    "path": "src/cells/business/period-close-cell/ports/period-close-SmartLink.port.sira",
     "exists": true,
     "bytes": 340,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -843,10 +843,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.sira",
+    "path": "src/cells/business/phap-che-cell/ports/phapche-SmartLink.port.sira",
     "exists": true,
     "bytes": 432,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -857,10 +857,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.sira",
+    "path": "src/cells/business/polishing-cell/ports/polishing-SmartLink.port.sira",
     "exists": true,
     "bytes": 315,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -871,10 +871,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.sira",
+    "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.SmartLink.port.sira",
     "exists": true,
     "bytes": 346,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -885,10 +885,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.sira",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-SmartLink.port.sira",
     "exists": true,
     "bytes": 269,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -899,10 +899,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/smartlink/index.sira",
+    "path": "src/cells/business/shared-contracts-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 213,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -913,10 +913,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/stone-cell/ports/stone-smartlink.port.sira",
+    "path": "src/cells/business/stone-cell/ports/stone-SmartLink.port.sira",
     "exists": true,
     "bytes": 395,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -927,10 +927,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/tax-cell/ports/tax-smartlink.port.sira",
+    "path": "src/cells/business/tax-cell/ports/tax-SmartLink.port.sira",
     "exists": true,
     "bytes": 339,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -941,10 +941,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.sira",
+    "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 526,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -955,10 +955,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/ai-connector-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/ai-connector-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -969,10 +969,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/notification-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/notification-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -983,10 +983,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/shared-contracts-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -997,10 +997,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/services/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/services/index.sira",
     "exists": true,
     "bytes": 77,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1011,10 +1011,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/use-cases/index.sira",
     "exists": true,
     "bytes": 116,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1025,10 +1025,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/index.sira",
     "exists": true,
     "bytes": 160,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1039,10 +1039,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/index.sira",
     "exists": true,
     "bytes": 128,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1053,10 +1053,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/infrastructure/repositories/index.sira",
     "exists": true,
     "bytes": 77,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1067,10 +1067,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/interface/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/interface/index.sira",
     "exists": true,
     "bytes": 33,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1081,10 +1081,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/index.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/index.sira",
     "exists": true,
     "bytes": 43,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1095,10 +1095,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/SmartLink-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 633,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1109,10 +1109,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.sira",
+    "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 561,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1123,10 +1123,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/smartlink/index.sira",
+    "path": "src/cells/infrastructure/sync-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1137,10 +1137,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/ai-connector-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/ai-connector-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1151,10 +1151,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/audit-cell/ports/audit-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 611,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1165,10 +1165,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/audit-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/audit-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1179,10 +1179,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/config-cell/ports/config-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 590,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1193,10 +1193,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/config-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/config-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1207,10 +1207,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/khai-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/khai-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 39,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1221,10 +1221,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/monitor-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/monitor-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1235,10 +1235,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/notification-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/notification-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1249,10 +1249,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/observation-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/observation-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 46,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1263,10 +1263,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 703,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1277,10 +1277,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/rbac-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1291,10 +1291,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.sira",
+    "path": "src/cells/kernel/security-cell/ports/security-cell-SmartLink.port.sira",
     "exists": true,
     "bytes": 633,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1305,10 +1305,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/security-cell/smartlink/index.sira",
+    "path": "src/cells/kernel/security-cell/SmartLink/index.sira",
     "exists": true,
     "bytes": 164,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1319,10 +1319,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/quantum-brain.engine.sira",
+    "path": "src/core/SmartLink/quantum-brain.engine.sira",
     "exists": true,
     "bytes": 373,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1333,10 +1333,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/quantum-buffer.engine.sira",
+    "path": "src/core/SmartLink/quantum-buffer.engine.sira",
     "exists": true,
     "bytes": 232,
-    "bucket": "EASY_JS_COMPATIBLE_TO_Sira",
+    "bucket": "EASY_JS_COMPATIBLE_TO_sira",
     "effort": 2,
     "action": "rename .ts -> .sira",
     "has_hard_ts_markers": [],
@@ -1347,10 +1347,10 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/interface/SmartLinkCell.sira",
     "exists": true,
     "bytes": 255,
-    "bucket": "MEDIUM_LIGHT_TRANSLATION_TO_Sira",
+    "bucket": "MEDIUM_LIGHT_TRANSLATION_TO_sira",
     "effort": 4,
     "action": "remove light TS syntax, then .sira",
     "has_hard_ts_markers": [],
@@ -1410,7 +1410,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
+    "path": "src/cells/business/analytics-cell/ports/analytics-SmartLink.port.ts",
     "exists": true,
     "bytes": 3665,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1432,7 +1432,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
+    "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-SmartLink.port.ts",
     "exists": true,
     "bytes": 1919,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1455,7 +1455,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
+    "path": "src/cells/business/buyback-cell/ports/buyback-SmartLink.port.ts",
     "exists": true,
     "bytes": 3724,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1499,7 +1499,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
+    "path": "src/cells/business/comms-cell/ports/comms-SmartLink.port.sira",
     "exists": true,
     "bytes": 704,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1518,7 +1518,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
+    "path": "src/cells/business/compliance-cell/ports/compliance-SmartLink.port.sira",
     "exists": true,
     "bytes": 973,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1537,7 +1537,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+    "path": "src/cells/business/customer-cell/ports/customer-SmartLink.port.ts",
     "exists": true,
     "bytes": 3706,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1559,7 +1559,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
+    "path": "src/cells/business/customs-cell/ports/customs-SmartLink.port.ts",
     "exists": true,
     "bytes": 3736,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1581,7 +1581,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
+    "path": "src/cells/business/design-3d-cell/ports/design-3d-SmartLink.port.ts",
     "exists": true,
     "bytes": 2285,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1603,7 +1603,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+    "path": "src/cells/business/finance-cell/ports/finance-SmartLink.port.ts",
     "exists": true,
     "bytes": 3689,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1645,7 +1645,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
+    "path": "src/cells/business/hr-cell/ports/hr-SmartLink.port.ts",
     "exists": true,
     "bytes": 3241,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1713,7 +1713,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-SmartLink.port.sira",
     "exists": true,
     "bytes": 891,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1777,7 +1777,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
+    "path": "src/cells/business/payment-cell/ports/payment-SmartLink.port.ts",
     "exists": true,
     "bytes": 3727,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1865,7 +1865,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-SmartLink.port.sira",
     "exists": true,
     "bytes": 964,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1906,7 +1906,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
+    "path": "src/cells/business/pricing-cell/ports/pricing-SmartLink.port.ts",
     "exists": true,
     "bytes": 3657,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1928,7 +1928,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
+    "path": "src/cells/business/production-cell/ports/production-SmartLink.port.sira",
     "exists": true,
     "bytes": 994,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1947,7 +1947,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
+    "path": "src/cells/business/promotion-cell/ports/promotion-SmartLink.port.sira",
     "exists": true,
     "bytes": 903,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1966,7 +1966,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
+    "path": "src/cells/business/sales-cell/ports/sales-SmartLink.port.ts",
     "exists": true,
     "bytes": 3696,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -1988,7 +1988,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-SmartLink.port.sira",
     "exists": true,
     "bytes": 946,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2007,7 +2007,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+    "path": "src/cells/business/showroom-cell/ports/showroom-SmartLink.port.ts",
     "exists": true,
     "bytes": 3768,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2049,7 +2049,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
+    "path": "src/cells/business/supplier-cell/ports/supplier-SmartLink.port.sira",
     "exists": true,
     "bytes": 754,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2089,7 +2089,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
+    "path": "src/cells/business/warehouse-cell/ports/warehouse-SmartLink.port.ts",
     "exists": true,
     "bytes": 5369,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2112,7 +2112,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+    "path": "src/cells/business/warranty-cell/ports/warranty-SmartLink.port.ts",
     "exists": true,
     "bytes": 3679,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2134,7 +2134,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.SmartLink.port.sira",
     "exists": true,
     "bytes": 1051,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2154,7 +2154,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/services/SmartLinkApplicationService.ts",
     "exists": true,
     "bytes": 4121,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2173,7 +2173,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/use-cases/CreateLinkUseCase.ts",
     "exists": true,
     "bytes": 775,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2191,7 +2191,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/application/use-cases/ResolveLinkUseCase.ts",
     "exists": true,
     "bytes": 833,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2209,7 +2209,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/engines/SmartLink-mapping.engine.ts",
     "exists": true,
     "bytes": 272,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2225,7 +2225,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/entities/SmartLink.ts",
     "exists": true,
     "bytes": 1862,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2249,7 +2249,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/entities/index.ts",
     "exists": true,
     "bytes": 102,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2267,7 +2267,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/LinkResolver.ts",
     "exists": true,
     "bytes": 1124,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2285,7 +2285,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/smart-link.shim.ts",
     "exists": true,
     "bytes": 397,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2304,7 +2304,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink-mapping.engine.ts",
     "exists": true,
     "bytes": 1816,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2326,7 +2326,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts",
     "exists": true,
     "bytes": 8877,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2347,7 +2347,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.governance.ts",
     "exists": true,
     "bytes": 3190,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2366,7 +2366,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer.ts",
     "exists": true,
     "bytes": 4084,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2389,7 +2389,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
     "exists": true,
     "bytes": 559,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2406,7 +2406,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
+    "path": "src/cells/infrastructure/SmartLink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
     "exists": true,
     "bytes": 989,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2424,7 +2424,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/SmartLinkEventEmitter.sira",
     "exists": true,
     "bytes": 232,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2442,7 +2442,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/SmartLinkRepository.sira",
     "exists": true,
     "bytes": 469,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2460,7 +2460,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
+    "path": "src/cells/infrastructure/SmartLink-cell/ports/SmartLink-cell.contract.sira",
     "exists": true,
     "bytes": 460,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2574,7 +2574,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
+    "path": "src/cells/kernel/khai-cell/SmartLink/khai-cell.SmartLink.ts",
     "exists": true,
     "bytes": 369,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2637,7 +2637,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
+    "path": "src/cells/kernel/neural-main-cell/SmartLink.port.sira",
     "exists": true,
     "bytes": 1786,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2655,7 +2655,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
+    "path": "src/cells/kernel/observation-cell/SmartLink/observation-cell.SmartLink.ts",
     "exists": true,
     "bytes": 427,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2695,7 +2695,7 @@ Không động app/UI.
     "original_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-SmartLink.port.sira",
     "exists": true,
     "bytes": 311,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2794,7 +2794,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/cell-smartlink.component.ts",
+    "path": "src/core/SmartLink/cell-SmartLink.component.ts",
     "exists": true,
     "bytes": 2941,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2816,7 +2816,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/index.ts",
+    "path": "src/core/SmartLink/index.ts",
     "exists": true,
     "bytes": 2218,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2835,7 +2835,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/smartlink.competition.ts",
+    "path": "src/core/SmartLink/SmartLink.competition.ts",
     "exists": true,
     "bytes": 10695,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2857,7 +2857,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/smartlink.nattimer.ts",
+    "path": "src/core/SmartLink/SmartLink.nattimer.ts",
     "exists": true,
     "bytes": 15750,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2876,7 +2876,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/smartlink.point.ts",
+    "path": "src/core/SmartLink/SmartLink.point.ts",
     "exists": true,
     "bytes": 10211,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2899,7 +2899,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/smartlink.pressure-field.ts",
+    "path": "src/core/SmartLink/SmartLink.pressure-field.ts",
     "exists": true,
     "bytes": 14065,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -2921,7 +2921,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/smartlink.qneu-bridge.ts",
+    "path": "src/core/SmartLink/SmartLink.qneu-bridge.ts",
     "exists": true,
     "bytes": 1994,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -3054,7 +3054,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/governance/smartlink-impulse-check.ts",
+    "path": "src/governance/SmartLink-impulse-check.ts",
     "exists": true,
     "bytes": 2494,
     "bucket": "HARD_TRANSLATION_REQUIRED",
@@ -3120,7 +3120,7 @@ Không động app/UI.
     "original_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/guards/smartlink.guard.ts",
+    "path": "src/core/guards/SmartLink.guard.ts",
     "exists": true,
     "bytes": 5114,
     "bucket": "KEEP_APP_TS_ADAPTER",

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * Natt-OS IMMUNE GUARD v2 — Touch point for boundary signals.
+ * natt-os IMMUNE GUARD v2 — Touch point for boundary signals.
  * AUTHORIZED BY: ANH NAT (SUPREME SOVEREIGN)
  *
  * Per SPEC NEN v1.1 section 4.1 + LAW-1 + LAW-4:
@@ -21,7 +21,7 @@ import { SmartLinkEnvelope } from './shared.types';
  * Field reads chromatic state to detect:
  *   - identity drift (envelope.owner != ANH_NAT) -> chromatic CRITICAL
  *   - trace orphan (no trace_id) -> chromatic RISK
- *   - version mismatch -> chromatic WARNING
+ *   - version mismatch -> chromatic warnING
  * Quantum Defense reacts to color, not to boolean.
  */
 export const touchBoundary = (envelope: SmartLinkEnvelope) => {

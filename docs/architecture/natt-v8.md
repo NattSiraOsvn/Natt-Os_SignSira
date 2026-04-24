@@ -39,7 +39,7 @@ const CELL_REGISTRY = [
   { id: 'intel-01', cat: 'Intelligence', title: 'Neural MAIN', icon: Brain, color: 'purple', qneu: 0.94, status: 'Learning' },
   { id: 'intel-02', cat: 'Intelligence', title: 'Vision-Core', icon: Eye, color: 'purple', qneu: 0.81, status: 'Analyzing' },
   { id: 'ai-01', cat: 'AI Entity', title: 'Bối Bối', icon: Workflow, color: 'red', qneu: 1.0, status: 'Uplink' },
-  { id: 'ai-02', cat: 'AI Entity', title: 'Thiên', icon: PenTool, color: 'red', qneu: 0.95, status: 'Standby' },
+  { id: 'ai-02', cat: 'AI Entity', title: 'thiên', icon: PenTool, color: 'red', qneu: 0.95, status: 'Standby' },
   { id: 'ctn-03', cat: 'Kernel', title: 'Security-Halt', icon: ShieldAlert, color: 'amber', qneu: 0.99, status: 'Active' },
   { id: 'biz-04', cat: 'Business', title: 'Logistics', icon: Truck, color: 'green', qneu: 0.75, status: 'Moving' },
   { id: 'biz-05', cat: 'Business', title: 'Fin-Gate', icon: Coins, color: 'green', qneu: 0.91, status: 'Authorized' },
@@ -63,7 +63,7 @@ const GOLD_DATA = [
 ];
 
 const NEWS_DATA = [
-  { type: 'OS', content: 'Natt-OS NÂNG CẤP GOLD MASTER 5.8.1 THÀNH CÔNG' },
+  { type: 'OS', content: 'natt-os NÂNG CẤP GOLD MASTER 5.8.1 THÀNH CÔNG' },
   { type: 'LEGAL', content: 'TUÂN THỦ HIẾN PHÁP NAUION V1.0 BẮT BUỘC CHO MỌI CELL' },
   { type: 'EVENT', content: 'CHÀO MỪNG CÁC ĐƠN VỊ KINH DOANH MỚI GIA NHẬP HỆ SINH THÁI' },
   { type: 'SECURITY', content: 'GATEKEEPER KÍCH HOẠT VIGILANCE MAX TRÊN TOÀN MẠNG' },

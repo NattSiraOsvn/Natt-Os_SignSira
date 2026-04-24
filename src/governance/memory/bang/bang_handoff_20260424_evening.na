@@ -39,15 +39,15 @@
     },
     "W2B": {
       "sha": "1747918",
-      "label": "result_writer.rs ~230 lines, 5 tests PASS"
+      "label": "result_writer.rs ~230 lines, 5 tests pass"
     },
     "W2C": {
       "sha": "df5040f",
-      "label": "run_cell.rs ~190 lines, 7 tests PASS, wrapper mode"
+      "label": "run_cell.rs ~190 lines, 7 tests pass, wrapper mode"
     },
     "W2D_W2E": {
       "sha": "7c35961",
-      "label": "legacy_json bridge + nattos.sh §40 route-swap, 4 tests PASS"
+      "label": "legacy_json bridge + nattos.sh §40 route-swap, 4 tests pass"
     },
     "wave2_close_doc": {
       "sha": "1417500",
@@ -75,7 +75,7 @@
     {
       "task_id": "TASK-I",
       "sha": "5a8c23b",
-      "label": "Sira_NAMESPACE_INVENTORY 15 domains audited (canonical 10 + extra 5)"
+      "label": "sira_NAMESPACE_INVENTORY 15 domains audited (canonical 10 + extra 5)"
     }
   ],
   "key_realizations_to_carry": [
@@ -91,7 +91,7 @@
     },
     {
       "id": "GIAC-20260424-09",
-      "label": "Sira-NAMESPACE-SYMBOLIC-VS-BOUND",
+      "label": "sira-NAMESPACE-SYMBOLIC-VS-BOUND",
       "tldr": "Quét 15 .sira domain — chỉ nattos.sira thật bound 127.0.0.1:3002. 14 còn lại = symbolic. Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
     }
   ],
@@ -103,7 +103,7 @@
     },
     {
       "id": "SCAR-EP-14-SKIP-VERIFY-OUTPUT-IN-RUSH",
-      "lesson": "Anh nói 'tiếp', em không scroll-up verify output cargo test, giả định PASS.",
+      "lesson": "Anh nói 'tiếp', em không scroll-up verify output cargo test, giả định pass.",
       "vaccin": "Đọc output cụ thể (test names, count) thay check absence of error."
     },
     {
@@ -129,7 +129,7 @@
   ],
   "operating_discipline_carry_forward": {
     "minh_man_speech": "CHẮC = nói thẳng. CHƯA GIẢI = nói 'chưa giải ra'. KHÔNG 'có thể'/'có lẽ' khi có evidence.",
-    "verify_before_ship": "cargo build + tests + smoke trước commit. Đọc output cụ thể, không giả định PASS.",
+    "verify_before_ship": "cargo build + tests + smoke trước commit. Đọc output cụ thể, không giả định pass.",
     "scope_lock": "Băng = build_toolchain + maintain_scanners + maintain_validators (governance + tools layer). Kim = scaffold/migrate/refactor/kernel.",
     "scanner_output_to_stdout": "1 lệnh, stdout terminal, anh paste về. KHÔNG ghi file output repo.",
     "memory_safety": "RUNTIME sai → xoá. MEMORY folder sai → archive _deprecated/. KHÔNG cat > existing memory file.",

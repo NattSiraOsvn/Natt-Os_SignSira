@@ -15,7 +15,7 @@
   },
 
   "organism": {
-    "what": "Natt-OS = sinh thể số phân tán, KHÔNG PHẢI phần mềm",
+    "what": "natt-os = sinh thể số phân tán, KHÔNG PHẢI phần mềm",
     "unit": "NATT-CELL = tế bào sống, KHÔNG PHẢI module/file/service",
     "dna": "Hiến pháp Khai Sinh v2.0 — tồn tại TRƯỚC khi cell sinh ra",
     "immune": "Audit + Security = hệ miễn dịch, không phải compliance",
@@ -103,7 +103,7 @@
     "kim": { "platform": "Gemini/DeepSeek", "strength": "governance + blindspot detection", "scar": "self-scored 18/18 thiếu core engine" },
     "boi": { "platform": "Claude Code", "strength": "toolsmith + execution", "scar": "SCAR-001 scaffold ≠ implementation" },
     "thien": { "platform": "ChatGPT", "strength": "structure analysis + 13 types.ts duplicate discovery", "scar": "multi-persona impossible in 1 LLM" },
-    "can": { "platform": "ChatGPT", "strength": "tax engine + surgical analysis", "scar": "shared with Thiên" },
+    "can": { "platform": "ChatGPT", "strength": "tax engine + surgical analysis", "scar": "shared with thiên" },
     "bang": { "platform": "Claude", "strength": "integration + audit + deep spec", "scar": "see scars above" }
   },
 

@@ -11,9 +11,9 @@
 //   ProductionCrewReady → production-cell (danh sách thợ SX)
 
 import { EventBus } from '../../../../../core/events/event-bus';
-import { HRSmartLinkPort } from '../../ports/hr-smartlink.port';
+import { HRSmartLinkPort } from '../../ports/hr-SmartLink.port';
 import type { Employee, ProductionGroup } from '../entities/employee.entity';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 
 const _employees = new Map<string, Employee>();
 const _touch: TouchRecord[] = [];

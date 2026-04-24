@@ -68,7 +68,7 @@ const ProductPage: React.FC = () => {
                    Đặt Lịch Xem (Private)
                 </button>
                 <p className="text-center text-[9px] text-gray-600 mt-3 font-black uppercase tracking-widest">
-                   Mã hóa bởi Natt-OS Security
+                   Mã hóa bởi natt-os Security
                 </p>
              </div>
           </div>

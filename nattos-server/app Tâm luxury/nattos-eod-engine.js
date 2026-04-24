@@ -1,5 +1,5 @@
 /**
- * Natt-OS EOD Report Engine v1.0
+ * natt-os EOD Report Engine v1.0
  * Tâm Luxury — Báo Cáo Cuối Ngày
  *
  * Cách dùng: thêm 1 dòng vào bất kỳ HTML nào:

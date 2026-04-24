@@ -77,7 +77,7 @@ pub async fn boot(
         "  Nauion Loader: {} native, {} bridged, {} legacy",
         snap.native, snap.bridged, snap.legacy
     );
-    println!("  He mien dich NATT-OS dang song that.");
+    println!("  He mien dich natt-os dang song that.");
     println!("  Observation snapshot → chromatic → Quantum Defense react.");
     println!("─────────────────────────────────────────────────────────────");
     println!();

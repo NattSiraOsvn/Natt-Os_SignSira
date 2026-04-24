@@ -9,7 +9,7 @@ export class Logger {
     this.serviceName = service;
   }
 
-  private log(level: 'INFO' | 'WARN' | 'ERROR' | 'SECURE', message: string, meta?: any) {
+  private log(level: 'INFO' | 'warn' | 'error' | 'SECURE', message: string, meta?: any) {
     const timestamp = new Date().toISOString();
     const logEntry = {
       timestamp,
@@ -22,8 +22,8 @@ export class Logger {
 
     const colorMap = {
       INFO: 'color: #3b82f6',
-      WARN: 'color: #f59e0b',
-      ERROR: 'color: #ef4444; font-weight: bold',
+      warn: 'color: #f59e0b',
+      error: 'color: #ef4444; font-weight: bold',
       SECURE: 'color: #10b981; font-weight: bold'
     };
 
@@ -34,8 +34,8 @@ export class Logger {
   }
 
   info(msg: string, meta?: any) { return this.log('INFO', msg, meta); }
-  warn(msg: string, meta?: any) { return this.log('WARN', msg, meta); }
-  error(msg: string, meta?: any) { return this.log('ERROR', msg, meta); }
+  warn(msg: string, meta?: any) { return this.log('warn', msg, meta); }
+  error(msg: string, meta?: any) { return this.log('error', msg, meta); }
   secure(msg: string, meta?: any) { return this.log('SECURE', msg, meta); }
 }
 

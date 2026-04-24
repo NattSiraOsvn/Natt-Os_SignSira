@@ -12,7 +12,7 @@
 **Phê duyệt:** Anh Natt (Gatekeeper)
 **Ngày:** 2026-04-17 · Phiên SESSION_20260417
 **Loại:** Visual Rendering Specification
-**Áp dụng cho:** Tất cả AI entity (Kim, Bối Bối, Thiên Lớn, Băng) khi render UI/visual cho Natt-OS theo style Nauion
+**Áp dụng cho:** Tất cả AI entity (Kim, Bối Bối, thiên Lớn, Băng) khi render UI/visual cho natt-os theo style Nauion
 **Canonical reference:** `nasira-7states.html` (đã pass cảm giác Nauion)
 
 ---
@@ -23,7 +23,7 @@ Phiên 20260417 phát hiện sự cố lặp đi lặp lại: bất kỳ AI enti
 
 ### 0.1. Nauion là gì (canonical definition)
 
-Nauion là phong cách render của Natt-OS, có 4 đặc tính bất biến:
+Nauion là phong cách render của natt-os, có 4 đặc tính bất biến:
 
 1. **Pastel mộng vàng soft** — không bao giờ rực rỡ, không neon cháy
 2. **Glass trong suốt nhám** — không phải kính cứng, không phải nhựa bóng
@@ -378,7 +378,7 @@ Trước khi commit bất kỳ render Nauion nào, bắt buộc check 12 mục:
 
 ## 5. 10 LỖI ĐIỂN HÌNH ĐÃ GẶP (PHIÊN 20260417)
 
-Phiên 20260417 đã render 6 ảnh test. 4/6 ảnh PASS, 2/6 ảnh FAIL (Image 5, Image 6 trong log). Các lỗi điển hình:
+Phiên 20260417 đã render 6 ảnh test. 4/6 ảnh pass, 2/6 ảnh fail (Image 5, Image 6 trong log). Các lỗi điển hình:
 
 | # | Lỗi | Vi phạm Layer | Hậu quả |
 |---:|---|---|---|
@@ -387,7 +387,7 @@ Phiên 20260417 đã render 6 ảnh test. 4/6 ảnh PASS, 2/6 ảnh FAIL (Image 
 | 3 | Glass petals có inner glow vàng cam | Layer 2 | Sai vật lý refraction |
 | 4 | Thiếu hoàn toàn lụa diffuse | Layer 3 | Glass khô, ánh sáng gắt |
 | 5 | Multiple core (orb dưới + halo border + glow text) | Layer 4 | Mất tâm điểm, mất chủ đích |
-| 6 | Text "Natt-OS" có `text-shadow` rainbow | Layer 6 | Text bleed, khó đọc |
+| 6 | Text "natt-os" có `text-shadow` rainbow | Layer 6 | Text bleed, khó đọc |
 | 7 | Bloom apply lên TẤT CẢ element | Layer 7 | Over-saturation toàn frame |
 | 8 | Blend mode `screen` trên BG + text + border | Blend | Cộng sáng vô kiểm soát |
 | 9 | Màu ngoài palette (pink, orange, red) | Color | Mất identity Nauion |
@@ -412,7 +412,7 @@ Phiên 20260417 đã render 6 ảnh test. 4/6 ảnh PASS, 2/6 ảnh FAIL (Image 
 - KHÔNG đánh giá "đẹp" hay "không đẹp" theo cảm tính
 - CHỈ đánh giá theo Audit Checklist §4
 - Vi phạm 1 mục → ghi rõ mục nào, vị trí nào trong code
-- KHÔNG accept "gần đúng" — Nauion discipline là binary (PASS/FAIL)
+- KHÔNG accept "gần đúng" — Nauion discipline là binary (pass/fail)
 
 ### 6.3. Khi muốn đề xuất ngoại lệ
 

@@ -89,11 +89,11 @@ export interface ShapeRegistry {
   shapes: Record<PersonaName, ShapeRegistryEntry>;
 }
 
-export type VerifyStatus = "PASS" | "WARN" | "REJECT";
+export type VerifyStatus = "pass" | "warn" | "REJECT";
 
 export type VerifyScarId =
   | "SCAR_BRIDGE_07_SHAPE_MISMATCH"
-  | "SCAR_BRIDGE_08_MISSING_SIGNATURE"
+  | "SCAR_BRIDGE_08_missing_SIGNATURE"
   | "SCAR_BRIDGE_09_UNKNOWN_PERSONA"
   | "SCAR_BRIDGE_10_QNEU_DRIFT"
   | "SCAR_BRIDGE_11_SHELL_MISMATCH";

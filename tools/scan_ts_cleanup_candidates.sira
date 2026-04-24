@@ -35,7 +35,7 @@ function classify(file) {
 
   if (lower.includes("/tools/") || lower.startsWith("tools/")) {
     return {
-      class: "MIGRATE_TO_Sira",
+      class: "MIGRATE_TO_sira",
       reason: "tool/runtime executable should use .sira artifact boundary"
     };
   }
@@ -45,13 +45,13 @@ function classify(file) {
     lower.includes("gateway") ||
     lower.includes("runtime") ||
     lower.includes("adapter") ||
-    lower.includes("smartlink") ||
+    lower.includes("SmartLink") ||
     lower.includes("eventbus") ||
     lower.includes("mach") ||
     lower.includes("heyna")
   ) {
     return {
-      class: "REVIEW_FOR_Sira",
+      class: "REVIEW_FOR_sira",
       reason: "runtime-like naming; verify if executable boundary or app source"
     };
   }

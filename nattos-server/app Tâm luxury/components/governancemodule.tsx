@@ -163,7 +163,7 @@ const GovernanceModule: React.FC<GovernanceModuleProps> = ({ currentRole, logAct
         </div>
       </section>
 
-      {/* 3. LOGIC WARNING PANEL */}
+      {/* 3. LOGIC warnING PANEL */}
       <section className="bg-yellow-50 border border-yellow-200 rounded-xl p-8 relative overflow-hidden">
          <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-200/20 blur-3xl rounded-full"></div>
          <h4 className="text-[10px] font-black text-yellow-800 uppercase tracking-widest mb-4 flex items-center gap-2">

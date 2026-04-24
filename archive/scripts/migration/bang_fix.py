@@ -191,7 +191,7 @@ patch('services/analytics/analytics-service.ts',
 # event-bridge — add on() method
 # ─────────────────────────────────────────────────────────────────────────────
 print('[7] event-bridge...')
-w('services/event-bridge.ts', '''// Natt-OS EventBridge
+w('services/event-bridge.ts', '''// natt-os EventBridge
 type Handler = (...args: unknown[]) => void;
 const listeners: Record<string, Handler[]> = {};
 export const EventBridge = {
@@ -258,7 +258,7 @@ patch('core/core/ingestion/data-sync-engine.tsx',
 # superdictionary — fix circular (both files same content)
 # ─────────────────────────────────────────────────────────────────────────────
 print('[11] superdictionary...')
-DICT = '''// Natt-OS SuperDictionary
+DICT = '''// natt-os SuperDictionary
 export const SUPER_DICTIONARY: Record<string, unknown> = {};
 export const SUPER_DICTIONARY_CONTROL = {
   get: (k: string): unknown => SUPER_DICTIONARY[k] ?? null,
@@ -328,7 +328,7 @@ export default stateManager;
 ''')
 
 # ─────────────────────────────────────────────────────────────────────────────
-# MISSING STUBS — check and create if not exist
+# missing STUBS — check and create if not exist
 # ─────────────────────────────────────────────────────────────────────────────
 print('[15] Ensure all stubs exist...')
 

@@ -27,7 +27,7 @@ from PIL import Image, ImageOps, ImageEnhance, ImageFilter
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# STAGE 1 — MEASUREMENT PASS  (Điều 1: bắt buộc)
+# STAGE 1 — MEASUREMENT pass  (Điều 1: bắt buộc)
 # ═══════════════════════════════════════════════════════════════════════════
 
 def measure_canvas(img: Image.Image) -> Dict[str, Any]:

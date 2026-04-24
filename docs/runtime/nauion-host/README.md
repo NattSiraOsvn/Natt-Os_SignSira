@@ -1,6 +1,6 @@
 # runtime/nauion-host/
 
-Wave 1 Host-First implementation — Natt-OS Nauion Host (Rust binary).
+Wave 1 Host-First implementation — natt-os Nauion Host (Rust binary).
 
 **Assignee:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **Decided:** Phan Thanh Thương Giao 20260423
@@ -26,12 +26,12 @@ Per Bối Bội surface delta v1.0 (`docs/specs/boi_surface_delta_scripts_kernel
 ## SPEC binding
 
 - SPEC_HOST_FIRST_RUNTIME v1.1
-- 4 Thiên split (`docs/specs/kim kernel/`)
+- 4 thiên split (`docs/specs/kim kernel/`)
 - RUNTIME_DEPENDENCY_CENSUS v1.0
 - PILOT_BRIDGE_MAP v0.1
 
 ## Cross-persona boundaries
 
-- KHÔNG touch `src/wave2/` (Thiên Wave 2 scope)
-- KHÔNG modify SPEC architecture (Thiên architect, em implement)
+- KHÔNG touch `src/wave2/` (thiên Wave 2 scope)
+- KHÔNG modify SPEC architecture (thiên architect, em implement)
 - Báo cáo Gatekeeper qua commit message mỗi milestone

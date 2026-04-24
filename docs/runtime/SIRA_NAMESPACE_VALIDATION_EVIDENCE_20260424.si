@@ -1,6 +1,6 @@
-# Sira namespace validation EVIDENCE — 20260424
+# sira namespace validation EVIDENCE — 20260424
 
-status: PASS
+status: pass
 owner: Gatekeeper / Anh Natt
 created_at: 2026-04-24T14:21:38.071195+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
@@ -9,11 +9,11 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Purpose
 
-File này ghi evidence cho việc khóa .sira làm Sira Root Namespace chính.
+File này ghi evidence cho việc khóa .sira làm sira Root Namespace chính.
 
 ## 2. Canonical Lock
 
-- .sira = Sira Root Namespace chính.
+- .sira = sira Root Namespace chính.
 - anc:// = native protocol identity.
 - SmartLink = resolver / coupling layer.
 - http:// = browser transport adapter.
@@ -31,7 +31,7 @@ tools/validate_sira_namespace.sira
   "validator": {
     "cmd": "tools/thiên tools/validate_sira_namespace.sira",
     "exit": 0,
-    "stdout": "Sira namespace validation: PASS\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/Sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
+    "stdout": "sira namespace validation: pass\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
     "stderr": ""
   },
   "dns_core_sira": {
@@ -86,7 +86,7 @@ tools/validate_sira_namespace.sira
 
 ## 5. Next Gate
 
-- [ ] Gắn nút ANC/Sira status vào Audit UI Runtime Hub.
+- [ ] Gắn nút ANC/sira status vào Audit UI Runtime Hub.
 - [ ] Thêm SCAN kiểm tra .sira drift trong màn audit.
 - [ ] Ghi route map .sira vào dashboard.
 - [ ] Khóa auth boundary trước khi mở public/LAN rộng.

@@ -25,7 +25,7 @@ export class RealTimeNotificationService {
     // Simulate network handshake
     setTimeout(() => {
       this.isConnected = true;
-      console.log('[RealTime] Connected to Natt-OS Event Stream.');
+      console.log('[RealTime] Connected to natt-os Event Stream.');
       
       // Announce connection
       NotifyBus.push({

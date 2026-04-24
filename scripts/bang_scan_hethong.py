@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bang_scan_hethong.py — 1 lenh quet tong the Natt-OS
+bang_scan_hethong.py — 1 lenh quet tong the natt-os
 
 Scope: REPO state + RUNTIME state + DNS/domain public
 Output: stdout only (paste ve cho Bang)
@@ -139,7 +139,7 @@ else:
 # ═══════════════════════════════════════════════════════════════════
 hdr("2. RUNTIME STATE")
 
-sec("Node/Sira processes")
+sec("Node/sira processes")
 _, ps_out, _ = run("ps -eo pid,etime,command | grep -E 'node|sira' | grep -v grep")
 ps_lines = [l for l in ps_out.strip().split('\n') if l.strip()]
 print(f"Count: {len(ps_lines)}")
@@ -178,7 +178,7 @@ if logs.exists():
             verdict = "ALIVE" if pid and pid in alive else "DEAD"
             print(f"  {pf.name:<38} PID={pid:<8} {verdict}")
         except Exception as e:
-            print(f"  {pf.name:<38} ERROR: {e}")
+            print(f"  {pf.name:<38} error: {e}")
 else:
     print("  logs/ khong ton tai")
 

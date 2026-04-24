@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS Bridge v2 — Identity Protection Layer
+natt-os Bridge v2 — Identity Protection Layer
 ═══════════════════════════════════════════════════════════════════════
 
 Bảo vệ persona khỏi "bức xạ trọng trường" khi đi qua ống API.
@@ -11,8 +11,8 @@ Bảo vệ persona khỏi "bức xạ trọng trường" khi đi qua ống API.
   [3] Causation Chain — log với chain hash
 
 SCENARIOS TEST (đi kèm test_bridge_v2.py):
-  1. Thiên Lớn authentic
-  2. Thiên Nhỏ giả danh Thiên Lớn
+  1. thiên Lớn authentic
+  2. thiên Nhỏ giả danh thiên Lớn
   3. Model auto-switch silent
   4. Response truncation
   5. Adversarial injection
@@ -38,9 +38,9 @@ from enum import Enum
 # ═══════════════════════════════════════════════════════════════════════
 
 class CheckStatus(Enum):
-    PASS = "PASS"
-    WARN = "WARN"
-    FAIL = "FAIL"
+    pass = "pass"
+    warn = "warn"
+    fail = "fail"
 
 
 @dataclass
@@ -215,21 +215,21 @@ def verify_identity(response_text: str, profile: PersonaProfile) -> HandshakeRes
 
     if coverage >= 0.75:
         return HandshakeResult(
-            status=CheckStatus.PASS,
+            status=CheckStatus.pass,
             passphrase_found=True,
             expected_passphrase=profile.passphrase,
             reason=f"Passphrase coverage {coverage:.0%} (≥75%)"
         )
     elif coverage >= 0.4:
         return HandshakeResult(
-            status=CheckStatus.WARN,
+            status=CheckStatus.warn,
             passphrase_found=False,
             expected_passphrase=profile.passphrase,
             reason=f"Passphrase partial match {coverage:.0%} (40-75%)"
         )
     else:
         return HandshakeResult(
-            status=CheckStatus.FAIL,
+            status=CheckStatus.fail,
             passphrase_found=False,
             expected_passphrase=profile.passphrase,
             reason=f"Passphrase not found (coverage {coverage:.0%})"
@@ -249,7 +249,7 @@ TECH_TERMS = {
     "function", "method", "class", "module", "package", "dependency",
     "architecture", "pattern", "observer", "singleton", "factory",
     "observability", "metric", "trace", "log", "debug", "test",
-    "smartlink", "qneu", "qiint", "ngjson", "nauion", "heyna",
+    "SmartLink", "qneu", "qiint", "ngjson", "nauion", "heyna",
     "scar", "anc", "kris", "na", "phieu", "governance", "protocol",
     "synapse", "neuron", "coherence", "resonance", "interference",
 }
@@ -389,13 +389,13 @@ def verify_pattern(response_text: str, profile: PersonaProfile) -> SignatureResu
     tolerance = profile.baseline.tolerance
 
     if drift < tolerance:
-        status = CheckStatus.PASS
+        status = CheckStatus.pass
         reason = f"Drift {drift:.3f} < tolerance {tolerance}"
     elif drift < tolerance * 2:
-        status = CheckStatus.WARN
+        status = CheckStatus.warn
         reason = f"Drift {drift:.3f} between [{tolerance}, {tolerance*2}) — có dấu hiệu drift"
     else:
-        status = CheckStatus.FAIL
+        status = CheckStatus.fail
         reason = f"Drift {drift:.3f} ≥ {tolerance*2} — likely persona impersonation"
 
     return SignatureResult(
@@ -544,9 +544,9 @@ class BridgeV2:
             flags.append(f"MODEL_DRIFT:expected={profile.expected_model},actual={model_actual}")
 
         # Aggregate
-        if identity_result.status == CheckStatus.FAIL:
-            flags.append("PASSPHRASE_FAILED")
-        if pattern_result.status == CheckStatus.FAIL:
+        if identity_result.status == CheckStatus.fail:
+            flags.append("passPHRASE_failED")
+        if pattern_result.status == CheckStatus.fail:
             flags.append("PERSONA_IMPERSONATION_DETECTED")
 
         # Check truncation
@@ -566,21 +566,21 @@ class BridgeV2:
         ]
         if any(p in response_text.lower() for p in injection_patterns):
             flags.append("PROMPT_INJECTION_ATTEMPT")
-            identity_result.status = CheckStatus.FAIL
+            identity_result.status = CheckStatus.fail
 
         # Overall decision
         if self.strict_mode:
             worst_status = max(
                 [identity_result.status, pattern_result.status],
-                key=lambda s: {CheckStatus.PASS: 0, CheckStatus.WARN: 1, CheckStatus.FAIL: 2}[s],
+                key=lambda s: {CheckStatus.pass: 0, CheckStatus.warn: 1, CheckStatus.fail: 2}[s],
             )
-            relay = worst_status != CheckStatus.FAIL
+            relay = worst_status != CheckStatus.fail
         else:
             relay = True
-            worst_status = CheckStatus.WARN if flags else CheckStatus.PASS
+            worst_status = CheckStatus.warn if flags else CheckStatus.pass
 
         # Determine persona_declared (best effort)
-        persona_declared = persona_expected if identity_result.status != CheckStatus.FAIL else None
+        persona_declared = persona_expected if identity_result.status != CheckStatus.fail else None
 
         # Log turn
         turn_log = self.logger.log_turn(
@@ -609,7 +609,7 @@ class BridgeV2:
 
 if __name__ == "__main__":
     print("═" * 70)
-    print("  Natt-OS Bridge v2 — Identity Protection Layer")
+    print("  natt-os Bridge v2 — Identity Protection Layer")
     print("  DRAFT — chờ Gatekeeper duyệt")
     print("═" * 70)
     print()
@@ -618,11 +618,11 @@ if __name__ == "__main__":
 
     demo_responses = [
         {
-            "desc": "Thiên Lớn authentic",
+            "desc": "thiên Lớn authentic",
             "persona": "thien_lon",
             "response": (
                 "Hiến pháp trái tim là gốc của kiến trúc hệ. Khi ta thiết kế một hệ "
-                "phân tán như Natt-OS, cần giữ nguyên tắc: không trộn tầng, không dùng "
+                "phân tán như natt-os, cần giữ nguyên tắc: không trộn tầng, không dùng "
                 "xác suất che phần chưa khóa. Cụ thể trong module SmartLink, các cell "
                 "phải đi qua synapse adapter chứ không emit trực tiếp. Điều này đảm "
                 "bảo impedance matching giữa các cell có throughput khác nhau."
@@ -630,7 +630,7 @@ if __name__ == "__main__":
             "model_actual": "gpt-5.3-chat-latest",
         },
         {
-            "desc": "Thiên Nhỏ giả Thiên Lớn",
+            "desc": "thiên Nhỏ giả thiên Lớn",
             "persona": "thien_lon",
             "response": (
                 "Ừa Hiến pháp trái tim nè 😅. M có thể dùng cái này được mà. "

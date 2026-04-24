@@ -111,40 +111,40 @@
       "status": "🚨 CẦN XÂY DỰNG",
       "files": 0,
       "components": "1/6",
-      "smartlink": "NONE❌",
+      "SmartLink": "NONE❌",
       "priority": "P1 - IMMEDIATE"
     },
     "prdmaterials-cell": {
       "status": "⚠️ PARTIAL",
       "files": 6,
       "components": "4/6",
-      "smartlink": "NONE❌",
+      "SmartLink": "NONE❌",
       "priority": "P2 - NEXT"
     },
     "prdwarranty-cell": {
       "status": "⚠️ PARTIAL",
       "files": 4,
       "components": "4/6",
-      "smartlink": "NONE❌",
+      "SmartLink": "NONE❌",
       "priority": "P2 - NEXT"
     },
     "shared-contracts-cell": {
       "status": "⚠️ INFRA PARTIAL",
       "files": 7,
       "components": "3/6",
-      "smartlink": "NONE❌",
+      "SmartLink": "NONE❌",
       "priority": "P2 - NEXT"
     }
   },
 
   "warranty_cell_discovery": {
-    "previous_status": "❌ MISSING P2 - BLOCKING",
+    "previous_status": "❌ missing P2 - BLOCKING",
     "current_status": "✅ LIVE - DEPLOYED",
     "evidence": {
       "format": "PDF scan có template cố định (Giấy Đảm Bảo)",
       "files": 14,
       "components": "6/6",
-      "smartlink": "WIRED✅"
+      "SmartLink": "WIRED✅"
     },
     "deployment_steps_completed": [
       "Kích hoạt warranty-cell với UDP parser hiện có",
@@ -203,7 +203,7 @@
       "files": 30,
       "components": "6/6",
       "engines": 5,
-      "smartlink": "WIRED✅",
+      "SmartLink": "WIRED✅",
       "status": "✅ LIVE"
     },
     "integration_plan_updated": {
@@ -258,7 +258,7 @@
         "specificationblock.tsx"
       ]
     },
-    "cells_no_smartlink": {
+    "cells_no_SmartLink": {
       "count": 12,
       "severity": "HIGH",
       "action": "🔌 Thêm SmartLink ports cho các cell:",
@@ -330,12 +330,12 @@
   },
 
   "cell_registry_v1_1": {
-    "previous": "v1.0 (17 LIVE, nhiều MISSING)",
+    "previous": "v1.0 (17 LIVE, nhiều missing)",
     "updates_from_audit": {
-      "warranty-cell": "❌ MISSING P2 → ✅ LIVE (14 files, 6/6, WIRED✅)",
-      "inventory-cell": "❌ MISSING P1 → ✅ LIVE (19 files, 6/6, WIRED✅)",
-      "design-3d-cell": "❌ MISSING P1 → ✅ LIVE (14 files, 6/6, WIRED✅)",
-      "order-cell": "❌ MISSING P2 → ✅ LIVE (13 files, 6/6, WIRED✅)",
+      "warranty-cell": "❌ missing P2 → ✅ LIVE (14 files, 6/6, WIRED✅)",
+      "inventory-cell": "❌ missing P1 → ✅ LIVE (19 files, 6/6, WIRED✅)",
+      "design-3d-cell": "❌ missing P1 → ✅ LIVE (14 files, 6/6, WIRED✅)",
+      "order-cell": "❌ missing P2 → ✅ LIVE (13 files, 6/6, WIRED✅)",
       "production-cell": "✅ LIVE (14 files, 6/6, WIRED✅)",
       "warehouse-cell": "✅ LIVE (23 files, 6/6, WIRED✅)",
       "showroom-cell": "✅ LIVE (15 files, 6/6, WIRED✅)",
@@ -343,19 +343,19 @@
       "buyback-cell": "✅ LIVE (16 files, 6/6, WIRED✅)",
       "customs-cell": "✅ LIVE (12 files, 6/6, WIRED✅)",
       "metabolism-layer": "⏸ DEFERRED → ✅ TIER1 LIVE (9 processors)",
-      "media-cell": "❌ MISSING P3 → ⚠️ PARTIAL (5/6, cần SmartLink)",
-      "casting-cell": "❌ MISSING P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
-      "stone-cell": "❌ MISSING P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
-      "finishing-cell": "❌ MISSING P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
-      "polishing-cell": "❌ MISSING P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
+      "media-cell": "❌ missing P3 → ⚠️ PARTIAL (5/6, cần SmartLink)",
+      "casting-cell": "❌ missing P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
+      "stone-cell": "❌ missing P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
+      "finishing-cell": "❌ missing P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
+      "polishing-cell": "❌ missing P3 → ✅ LIVE (7 files, 5/6, có SmartLink)",
       "bom3dprd-cell": "🚨 NEW - CẦN XÂY DỰNG (0 files, 1/6 components)"
     },
     "new_status_summary": {
       "LIVE": "27 (thêm inventory, design-3d, order, warranty, casting, stone, finishing, polishing, showroom, analytics, buyback, customs)",
-      "READY_TO_DEPLOY": [],
-      "MISSING_P1": ["bom3dprd-cell"],
-      "MISSING_P2": ["prdmaterials-cell", "prdwarranty-cell", "shared-contracts-cell"],
-      "MISSING_P3": [
+      "ready_TO_DEPLOY": [],
+      "missing_P1": ["bom3dprd-cell"],
+      "missing_P2": ["prdmaterials-cell", "prdwarranty-cell", "shared-contracts-cell"],
+      "missing_P3": [
         "comms-cell", "constants-cell", "it-cell", "logistics-cell", 
         "media-cell", "noi-vu-cell", "phap-che-cell", "supplier-cell"
       ],
@@ -367,7 +367,7 @@
   "wave_sequence_revision": {
     "original": {
       "wave1": "BACKBONE (finance, hr, sales, production, audit)",
-      "wave2": "CRITICAL MISSING (design-3d, inventory, order, warranty)",
+      "wave2": "CRITICAL missing (design-3d, inventory, order, warranty)",
       "wave3": "COMPLETE (media, noi-vu, it, casting, stone, finishing, polishing, phap-che)",
       "wave4": "GOVERNANCE UPGRADE (ban-kiem-soat, quantum, phap-che)"
     },
@@ -434,7 +434,7 @@
       "security_at_processor": "✅ Mask ngay từ tầng processor, không để lộ data"
     },
     "new_from_audit": {
-      "smartlink_is_key": "✅ SmartLink là chỉ số quan trọng nhất để đánh giá cell",
+      "SmartLink_is_key": "✅ SmartLink là chỉ số quan trọng nhất để đánh giá cell",
       "six_component_health": "✅ 6-component health check phải được maintain",
       "clean_code_matters": "✅ Empty directories và duplicate files là rác cần dọn",
       "commit_frequency": "✅ Commit frequency phản ánh sức khỏe hệ thống"
@@ -445,7 +445,7 @@
     "new_learnings_from_audit": [
       {
         "scar_id": "SCAR-AUDIT-001 (CELL_OVERESTIMATION)",
-        "description": "Một số cell tưởng là MISSING nhưng thực tế đã LIVE (inventory, design-3d, order)",
+        "description": "Một số cell tưởng là missing nhưng thực tế đã LIVE (inventory, design-3d, order)",
         "validation": "✅ Cần audit thường xuyên để cập nhật trạng thái thực"
       },
       {

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS SPEC NEN v1.0 Compliance Auditor
+natt-os SPEC NEN v1.0 Compliance Auditor
 Used by nattos.sh section 45.
 
 Checks:
@@ -120,7 +120,7 @@ def check_extensions():
 def main():
     print()
     print("=" * 70)
-    print("  Natt-OS SPEC NEN v1.0 Compliance Audit")
+    print("  natt-os SPEC NEN v1.0 Compliance Audit")
     print("=" * 70)
 
     ok_count = 0
@@ -128,14 +128,14 @@ def main():
 
     # Check 1
     ok, msg = check_khai_exists()
-    mark = "PASS" if ok else "FAIL"
+    mark = "pass" if ok else "fail"
     print(f"\n[1] KhaiCell scaffold:           [{mark}] {msg}")
     if ok: ok_count += 1
     else: fail_count += 1
 
     # Check 2
     ok, msg = check_observation_exists()
-    mark = "PASS" if ok else "FAIL"
+    mark = "pass" if ok else "fail"
     print(f"[2] Observation scaffold:        [{mark}] {msg}")
     if ok: ok_count += 1
     else: fail_count += 1
@@ -143,10 +143,10 @@ def main():
     # Check 3
     bypass_count, msg = check_bypass()
     if bypass_count == 0:
-        print(f"[3] KhaiCell bypass:             [PASS] 0 violations")
+        print(f"[3] KhaiCell bypass:             [pass] 0 violations")
         ok_count += 1
     elif bypass_count > 0:
-        print(f"[3] KhaiCell bypass:             [WARN] {bypass_count} violations")
+        print(f"[3] KhaiCell bypass:             [warn] {bypass_count} violations")
         fail_count += 1
     else:
         print(f"[3] KhaiCell bypass:             [SKIP] {msg}")
@@ -154,10 +154,10 @@ def main():
     # Check 4
     rena_count, rena_list = check_rena()
     if rena_count == 0:
-        print(f"[4] RENA hardcoded true/false:   [PASS] 0 found")
+        print(f"[4] RENA hardcoded true/false:   [pass] 0 found")
         ok_count += 1
     else:
-        print(f"[4] RENA hardcoded true/false:   [FAIL] {rena_count} found")
+        print(f"[4] RENA hardcoded true/false:   [fail] {rena_count} found")
         for v in rena_list[:5]:
             print(f"       {v}")
         fail_count += 1
@@ -165,17 +165,17 @@ def main():
     # Check 5
     ext_count, ext_list = check_extensions()
     if ext_count == 0:
-        print(f"[5] File extension SPEC v0.3.1:  [PASS] all migrated")
+        print(f"[5] File extension SPEC v0.3.1:  [pass] all migrated")
         ok_count += 1
     else:
-        print(f"[5] File extension SPEC v0.3.1:  [FAIL] {ext_count} stragglers")
+        print(f"[5] File extension SPEC v0.3.1:  [fail] {ext_count} stragglers")
         for v in ext_list[:5]:
             print(f"       {v}")
         fail_count += 1
 
     print()
     print("=" * 70)
-    print(f"  RESULT: {ok_count} PASS / {fail_count} FAIL")
+    print(f"  RESULT: {ok_count} pass / {fail_count} fail")
     print("=" * 70)
     print()
 

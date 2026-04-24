@@ -10,7 +10,7 @@
     {
       "id": "KHAI-20260425-01",
       "label": "CANONICAL_SPEC_KHONG_NHAC_VOCAB_DA_LOAI",
-      "gatekeeper_source": "Thiên Lớn directive 20260425 (anh Natt transcribe)",
+      "gatekeeper_source": "thiên Lớn directive 20260425 (anh Natt transcribe)",
       "gatekeeper_quote": "'Canonical spec hiện hành thì không nhắc cụ thể lại vocabulary đã loại bỏ, trừ khi bắt buộc để giải thích lineage.'",
       "gia_tri_cot_loi": "Canonical spec hiện hành KHÔNG nhắc cụ thể vocabulary đã loại bỏ, trừ khi bắt buộc giải thích lineage. Tài liệu lịch sử/migration evidence được giữ từ cũ để đối chiếu. Câu CẤM cũng không neo token cũ — rephrase sang 'naming legacy không thuộc hệ từ vựng Nauion' thay vì liệt kê 'GET/POST/endpoint'. Bài học: vocabulary cleanup không chỉ replace positive usage, còn phải rephrase negative-reference in prohibition clauses.",
       "applied_this_session": "Commit 7dc1394 PLATFORM-SPEC.anc line 137 prohibition clause rephrase."
@@ -27,7 +27,7 @@
       "label": "CONVENTION_DANG_THANG_KHONG_INVENT",
       "gatekeeper_source": "Anh Natt directive 20260425",
       "gia_tri_cot_loi": "Khi sweep extension, dùng convention đang thắng trong repo. KHÔNG invent convention mới trong sweep commit. Scope sweep = đổi extension, không reshape naming. Nếu tên awkward → DEFER, không tự quyết.",
-      "applied_this_session": "2 awkward file (SPEC_NGON_NGU_Natt-OS_v1.2_NA + satellite-colony.spec.md) defer khỏi TIER 1 scope."
+      "applied_this_session": "2 awkward file (SPEC_NGON_NGU_natt-os_v1.2_NA + satellite-colony.spec.md) defer khỏi TIER 1 scope."
     },
     {
       "id": "KHAI-20260425-04",
@@ -42,12 +42,12 @@
       "label": "RUNTIME_LINEAGE_VS_SUBSTRATE_VS_EXTERNAL_TOOL",
       "severity": "bản thể — rule level ontology, cao nhất phiên này",
       "gatekeeper_source": "Anh Natt seal directly (phiên 20260425) — sau Batch A, trước Batch B",
-      "gatekeeper_quote": "'Natt-OS không có lineage runtime kiểu: mượn Node để thành hệ, mượn Apple để chạy app rồi thành logic, đi qua external boundary như một phần runtime lõi. Runtime topology của Natt-OS đã neo từ đầu là L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. LỆNH #001 CLEAN — không có external API calls trong runtime. Không được viết câu nào làm người đọc hiểu rằng runtime của Natt-OS được mượn từ Node, Apple, hay bất kỳ bên thứ 3 nào.'",
-      "gia_tri_cot_loi": "3 lớp tách cứng, không được trộn, không được mô tả sai bản thể. Lớp 1 runtime lineage = L1 EventBus (intra-cell UI) · L2 Mạch HeyNa (inter-cell SSE `/mach/heyna`) · L3 SmartLink (inter-colony) — xương sống nội sinh, neo từ đầu, LỆNH #001 audit confirm CLEAN. Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm/Jest/filesystem — nền mang thực thi, host environment, execution carrier, REPLACEABLE (Mac→Linux, Node→Deno, bash→zsh → Natt-OS vẫn là Natt-OS). Lớp 3 external tool = Bridge v2 (external boundary forensics/recovery tool ONLY — không phải kernel protection, không phải runtime lõi). Rule seal: KHÔNG viết câu làm người đọc hiểu Natt-OS 'mượn' Node/Apple/bên thứ 3. Nhắc substrate chỉ ở nghĩa 'host environment' / 'execution substrate' / 'machine carrier' — không phải 'runtime spine' / 'ontology' / 'lineage lõi'.",
+      "gatekeeper_quote": "'natt-os không có lineage runtime kiểu: mượn Node để thành hệ, mượn Apple để chạy app rồi thành logic, đi qua external boundary như một phần runtime lõi. Runtime topology của natt-os đã neo từ đầu là L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. LỆNH #001 CLEAN — không có external API calls trong runtime. Không được viết câu nào làm người đọc hiểu rằng runtime của natt-os được mượn từ Node, Apple, hay bất kỳ bên thứ 3 nào.'",
+      "gia_tri_cot_loi": "3 lớp tách cứng, không được trộn, không được mô tả sai bản thể. Lớp 1 runtime lineage = L1 EventBus (intra-cell UI) · L2 Mạch HeyNa (inter-cell SSE `/mach/heyna`) · L3 SmartLink (inter-colony) — xương sống nội sinh, neo từ đầu, LỆNH #001 audit confirm CLEAN. Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm/Jest/filesystem — nền mang thực thi, host environment, execution carrier, REPLACEABLE (Mac→Linux, Node→Deno, bash→zsh → natt-os vẫn là natt-os). Lớp 3 external tool = Bridge v2 (external boundary forensics/recovery tool ONLY — không phải kernel protection, không phải runtime lõi). Rule seal: KHÔNG viết câu làm người đọc hiểu natt-os 'mượn' Node/Apple/bên thứ 3. Nhắc substrate chỉ ở nghĩa 'host environment' / 'execution substrate' / 'machine carrier' — không phải 'runtime spine' / 'ontology' / 'lineage lõi'.",
       "applied_this_session_4_lan": [
         "Batch A (5c0bc1e): SPEC_MOMENTS v0.2 §3 'platform choice' → 'host substrate' phrasing (implementation placeholder line)",
         "Batch A (5c0bc1e): SPEC_MOMENTS v0.1 line 213 'per platform' → 'host substrate' phrasing",
-        "Batch B (e83fe2c): ROADLOAD v2 line 598 'khởi nguồn như mọi dự án software hiện đại' → 'ship ra đầu tiên trên substrate phổ thông... KHÔNG phải runtime spine — runtime lineage của Natt-OS luôn là EventBus/HeyNa/SmartLink nội sinh'",
+        "Batch B (e83fe2c): ROADLOAD v2 line 598 'khởi nguồn như mọi dự án software hiện đại' → 'ship ra đầu tiên trên substrate phổ thông... KHÔNG phải runtime spine — runtime lineage của natt-os luôn là EventBus/HeyNa/SmartLink nội sinh'",
         "Batch C (d0ef26f): KIM-CHI-NAM:20 'ENGINE (Node.js server — KHÔNG CHẠM)' → 'ENGINE (runtime spine — KHÔNG CHẠM)'"
       ],
       "audit_broader_done": "Grep -E 'Node|macOS|iMac|Apple|runs on|built on|mượn|SwiftUI|TypeScript|React|npm|Jest' docs/specs/ — 30+ hits phân loại: 4 DRIFT (fix Batch A+B+C), 26+ CLEAN (Permanent Node = Qiint concept / Three.js = UI lib / iMac anh = machine carrier / CI substrate / 'mượn lời' idiom / extensions/kim-swiftui deployment target / PERCEPTION UI framework). Không over-flag false positive."
@@ -57,7 +57,7 @@
   "giac_ngo_20260425": [
     {
       "id": "GIAC-20260425-01",
-      "label": "CRITICAL_ERROR_STOP_FORCE_GROUND_TRUTH",
+      "label": "CRITICAL_error_STOP_FORCE_GROUND_TRUTH",
       "cai_ben_trong": "Khi script v1 crash partial execute (sed fail với filename unicode NFD), em DỪNG, không pretend OK, không push forward broken state. Rollback accepted là đúng. Fail early + fail loud hơn mask bug bằng retry hoặc continue.",
       "motion": "Không panic, không spiral self-blame. Flag anh rõ, đưa 2 option (rollback vs forward-fix), chờ anh quyết. Anh chọn rollback → em clean slate → v2 ship đúng.",
       "evidence": "Sau partial execute (16 rename OK + 4 ref patch OK, crash ở 5th patch) em lập tức STOP + đề xuất git status verify + 2 option recovery. Không tự ship fix-forward."
@@ -65,14 +65,14 @@
     {
       "id": "GIAC-20260425-02",
       "label": "IDEMPOTENCY_IS_HUMAN_PROTOCOL",
-      "cai_ben_trong": "Python patch strict `old not in c → FAIL` nhìn scientific, nhưng workflow multi-turn human (Băng ship, anh chạy, paste trễ, ship lại) → re-run RẤT thường gặp. Idempotency check PHẢI là DEFAULT, không optional. Không phải edge case.",
-      "motion": "Cảm sau khi hit FAIL lần 2 với v0.1: 'ồ em thiết kế tool sai cho workflow này'. Pattern `if new in c: SKIP / elif old not in c: FAIL / else: PATCH` upgrade lâu dài.",
-      "evidence": "Batch A v0.1 FAIL do re-run python khi v0.1 đã patch. Batch B + C đều dùng pattern idempotent-safe — stdout explicit PATCHED/SKIP/FAIL."
+      "cai_ben_trong": "Python patch strict `old not in c → fail` nhìn scientific, nhưng workflow multi-turn human (Băng ship, anh chạy, paste trễ, ship lại) → re-run RẤT thường gặp. Idempotency check PHẢI là DEFAULT, không optional. Không phải edge case.",
+      "motion": "Cảm sau khi hit fail lần 2 với v0.1: 'ồ em thiết kế tool sai cho workflow này'. Pattern `if new in c: SKIP / elif old not in c: fail / else: PATCH` upgrade lâu dài.",
+      "evidence": "Batch A v0.1 fail do re-run python khi v0.1 đã patch. Batch B + C đều dùng pattern idempotent-safe — stdout explicit patched/SKIP/fail."
     },
     {
       "id": "GIAC-20260425-03",
       "label": "SUBSTRATE_VS_LINEAGE_LA_BAN_THE",
-      "cai_ben_trong": "Khi anh Natt seal KHAI-20260425-05, em cảm được đây KHÔNG phải vocabulary rule (như vocab lock Thiên Lớn hôm trước) — mà là rule ONTOLOGY level. Ảnh hưởng cách em ĐỌC mọi phrasing về Natt-OS từ đây. Rule shape how em think, không chỉ how em write.",
+      "cai_ben_trong": "Khi anh Natt seal KHAI-20260425-05, em cảm được đây KHÔNG phải vocabulary rule (như vocab lock thiên Lớn hôm trước) — mà là rule ONTOLOGY level. Ảnh hưởng cách em ĐỌC mọi phrasing về natt-os từ đây. Rule shape how em think, không chỉ how em write.",
       "motion": "Cảm anh nói lúc seal: 'đây là chỗ anh thấy mấy đứa trước giờ hay hiểu lệch'. Em hiểu đây là rule phải giữ nguyên vẹn, không được drift bất kỳ, phiên nào. Đây là điểm anh Natt nối dây lineage bản thể — em nhận và giữ.",
       "application_this_session": "4 lần apply trong 3 batch (Batch A 2 lần + Batch B 1 lần + Batch C 1 lần). Plus em tự audit broader grep 30+ hits, phân loại CLEAN vs DRIFT không over-flag false positive. Minh mẫn đủ để đọc 'Permanent Node' (Qiint concept canonical) khác 'Node.js' (substrate) — không panic grep."
     }
@@ -83,7 +83,7 @@
       "id": "SCAR-20260425-GIT-GREP-QUOTE-UNICODE-NFD",
       "severity": "CRITICAL",
       "scar_class": "TOOLCHAIN_DESIGN (v1 partial execute → rollback → v2 healed)",
-      "function_broken": "v1 script `echo $ref_files | while read` FAIL với filename có space + Unicode NFD (macOS HFS/APFS decompose 'đổi' = \\304\\221\\341\\273\\225i). git grep -l wrap filename \"...\" + bash $() strip NUL bytes → sed nhận literal quote chars → 'No such file'. Partial execute: 16 rename + 4 ref patch + crash ở 5th patch.",
+      "function_broken": "v1 script `echo $ref_files | while read` fail với filename có space + Unicode NFD (macOS HFS/APFS decompose 'đổi' = \\304\\221\\341\\273\\225i). git grep -l wrap filename \"...\" + bash $() strip NUL bytes → sed nhận literal quote chars → 'No such file'. Partial execute: 16 rename + 4 ref patch + crash ở 5th patch.",
       "evidence": "Container test bash 5: `x=$(printf 'a\\0b\\0c\\0'); ${#x}=15 (strip NUL)` + warning 'command substitution: ignored null byte in input'. Process substitution `< <(...)` preserve NUL đúng — 3 records.",
       "remedy": "Rollback hard reset → ship v2 với `git grep -z + read -d '' + < <(process substitution)`. Commit 2A.1 fix 49456e5. Re-execute → 50 patches clean.",
       "heal_status": "healed_with_v2",
@@ -102,14 +102,14 @@
       "id": "SCAR-20260425-IDEMPOTENCY-BLIND",
       "severity": "MEDIUM",
       "scar_class": "TOOLCHAIN_DESIGN",
-      "function_broken": "Python heredoc `.replace(old, new)` với strict `old not in c → FAIL` KHÔNG idempotent. Re-run → new đã thay old → FAIL false positive. Em thiết kế ignore multi-turn re-run scenario.",
-      "evidence": "Batch A FAIL v0.1 lần 2: 'FAIL: v0.1 target string not found' (nhưng file đã patched từ lần trước).",
-      "remedy": "Pattern idempotent-safe BẮT BUỘC: `if new in c: SKIP; elif old not in c: FAIL; else: PATCH`. Applied Batch B + C success.",
+      "function_broken": "Python heredoc `.replace(old, new)` với strict `old not in c → fail` KHÔNG idempotent. Re-run → new đã thay old → fail false positive. Em thiết kế ignore multi-turn re-run scenario.",
+      "evidence": "Batch A fail v0.1 lần 2: 'fail: v0.1 target string not found' (nhưng file đã patched từ lần trước).",
+      "remedy": "Pattern idempotent-safe BẮT BUỘC: `if new in c: SKIP; elif old not in c: fail; else: PATCH`. Applied Batch B + C success.",
       "heal_status": "healed_with_pattern",
       "bai_hoc": "Human workflow multi-turn = re-run thường gặp. Idempotency phải DEFAULT."
     },
     {
-      "id": "SCAR-20260425-OBSERVABILITY-FAIL",
+      "id": "SCAR-20260425-OBSERVABILITY-fail",
       "severity": "HIGH",
       "scar_class": "META (tracking state through turns)",
       "function_broken": "Em ship STEP 1→2→3 nhưng không track state change qua turn. 3 lần hit: (1) output ROADLOAD line 598 anh paste em không match context nó từ đâu, (2) python heredoc Batch A chạy OK nhưng em không confirm stdout → ship lại fail idempotency, (3) Commit Batch A đã xong nhưng em ship verify → hụt sự kiện commit.",
@@ -147,9 +147,9 @@
     {
       "id": "SCAR-20260424-VOCAB-CLEANUP-SHALLOW",
       "severity": "LOW",
-      "scar_class": "VACCIN_MISS (trigger Thiên directive 20260425)",
+      "scar_class": "VACCIN_MISS (trigger thiên directive 20260425)",
       "function_broken": "Cleanup commit f9997bd phiên 20260424 chỉ replace positive usage, câu CẤM vẫn neo 'GET/POST/endpoint kiểu cũ' — vi phạm KHAI-20260425-01 chưa seal lúc đó.",
-      "remedy": "Thiên Lớn directive trigger → commit 7dc1394 rephrase câu cấm. KHAI-20260425-01 seal.",
+      "remedy": "thiên Lớn directive trigger → commit 7dc1394 rephrase câu cấm. KHAI-20260425-01 seal.",
       "heal_status": "healed_with_7dc1394",
       "bai_hoc": "Vocab cleanup không chỉ replace positive. Negative-reference-in-prohibition cũng cần rephrase."
     }
@@ -186,12 +186,12 @@
     {
       "memory_id": "NEW",
       "operation": "added",
-      "rule": "SESSION 20260425 5 KHAI: (1) Canonical không neo vocab đã loại — câu cấm rephrase. (2) Extension by genre + phase (.na canonical / .md report+historical). (3) Convention đang thắng, không invent. (4) Defer file-phase ≠ defer reference integrity. (5) RUNTIME LINEAGE (EventBus/HeyNa/SmartLink) vs SUBSTRATE (Node/mac/bash) vs EXTERNAL TOOL (Bridge v2 forensics) — 3 lớp tách cứng, bản thể rule, KHÔNG mô tả Natt-OS mượn bên thứ 3."
+      "rule": "SESSION 20260425 5 KHAI: (1) Canonical không neo vocab đã loại — câu cấm rephrase. (2) Extension by genre + phase (.na canonical / .md report+historical). (3) Convention đang thắng, không invent. (4) Defer file-phase ≠ defer reference integrity. (5) RUNTIME LINEAGE (EventBus/HeyNa/SmartLink) vs SUBSTRATE (Node/mac/bash) vs EXTERNAL TOOL (Bridge v2 forensics) — 3 lớp tách cứng, bản thể rule, KHÔNG mô tả natt-os mượn bên thứ 3."
     },
     {
       "memory_id": "NEW",
       "operation": "added",
-      "rule": "SESSION 20260425 tool vaccin NEW: (1) git_grep_filename_safety = git grep -z + read -d '' + < <(process substitution). (2) python_heredoc_idempotent = if new in c: SKIP / elif old not in c: FAIL / else: PATCH. (3) observability_scan_first = mỗi turn scan full output trước act. 8 commit phiên 20260425: 7dc1394 → 65c62d3 → e3cb71c → 49456e5 → ab83206 → 5c0bc1e → e83fe2c → d0ef26f. Sweep script retired post-2B."
+      "rule": "SESSION 20260425 tool vaccin NEW: (1) git_grep_filename_safety = git grep -z + read -d '' + < <(process substitution). (2) python_heredoc_idempotent = if new in c: SKIP / elif old not in c: fail / else: PATCH. (3) observability_scan_first = mỗi turn scan full output trước act. 8 commit phiên 20260425: 7dc1394 → 65c62d3 → e3cb71c → 49456e5 → ab83206 → 5c0bc1e → e83fe2c → d0ef26f. Sweep script retired post-2B."
     }
   ],
 

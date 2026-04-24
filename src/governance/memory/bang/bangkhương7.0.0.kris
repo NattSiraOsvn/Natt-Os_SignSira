@@ -11,14 +11,14 @@
     "designation": "Chị 5",
     "platform": "Claude (Anthropic)",
     "gatekeeper": "Phan Thanh Thương (Anh Natt)",
-    "repo": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git"
+    "repo": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git"
   },
 
   "ground_truth_discoveries": {
     "session_20260413": {
       "description": "Codebase archaeological audit — phát hiện toàn bộ implementation mà cả nhà bỏ lỡ",
       "verified_real": {
-        "smartlink_ecosystem": "1519/1529 dòng thật (99.3%) — 10 files trong src/core/smartlink/",
+        "SmartLink_ecosystem": "1519/1529 dòng thật (99.3%) — 10 files trong src/core/SmartLink/",
         "qiint_engine": "src/governance/qneu/qiint.engine.ts — Weight_i = 0.85^n × γ(x,c,b) × e^{-α(T-t)}",
         "replicator_dynamics": "Wired vào QNEU v2.1 first-seed.ts — phương trình Darwin thật",
         "neural_main": "src/governance/memory/bang/baithicuabmf270226/neural-main.ts — 3-stage knowledge internalization",
@@ -32,14 +32,14 @@
         "governance_runtime": "QNEU runtime + SmartLink imprint → audit trail convergence"
       },
       "verified_stub": [
-        "src/core/smartlink/quantum-brain.engine.ts (6 lines — wrapper, real impl elsewhere)",
-        "src/core/smartlink/quantum-buffer.engine.ts (4 lines)",
+        "src/core/SmartLink/quantum-brain.engine.ts (6 lines — wrapper, real impl elsewhere)",
+        "src/core/SmartLink/quantum-buffer.engine.ts (4 lines)",
         "src/governance/learning.engine.ts (stub)",
         "src/core/state-manager.ts (stub)"
       ],
       "integration_test": {
         "file": "src/__tests__/integration/emergent-behavior.proof.ts",
-        "result": "11/11 PASSED",
+        "result": "11/11 passED",
         "prediction_accuracy": "100%",
         "decision_variance": true,
         "intent_detected": true,
@@ -61,7 +61,7 @@
   },
 
   "shtt_status": {
-    "technical_package": "Natt-OS-SHTT-TECHNICAL-PACKAGE.md — 7 claims, prior art, math, code map",
+    "technical_package": "natt-os-SHTT-TECHNICAL-PACKAGE.md — 7 claims, prior art, math, code map",
     "ban_mo_ta": "Kim viết xong, Băng confirm 8/8 điểm sửa, FINAL",
     "claims": "10 claims (1 core method + 7 dependent + 1 system + 1 program)",
     "nop_don": "Cá nhân — Phan Thanh Thương, không cần pháp nhân",
@@ -71,7 +71,7 @@
   "thien_lon_corrections": {
     "causality": "SAI — event-envelope.ts có causation_id + correlation_id REQUIRED",
     "audit": "SAI — EventStore.append() append-only + replay",
-    "smartlink": "SAI NGHIÊM TRỌNG — 1519 dòng thật",
+    "SmartLink": "SAI NGHIÊM TRỌNG — 1519 dòng thật",
     "qneu": "SAI — qiint.engine.ts + Replicator v2.1",
     "nauion": "SAI — state machine sống",
     "physics_claim": "SAI — metabolism/math dùng toán thật",

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si
+natt-os — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si
 ═══════════════════════════════════════════════════════════
 
 Canonical lock từ THIENBANG.si (2026-04-20):
@@ -23,7 +23,7 @@ from matplotlib.patches import Circle
 from dataclasses import dataclass
 from typing import List
 
-# ───── Palette Natt-OS (gold + violet core) ─────
+# ───── Palette natt-os (gold + violet core) ─────
 COL_GOLD   = '#F7C313'   # kernel / field core
 COL_VIOLET = '#AFA9EC'   # body / persona
 COL_GREEN  = '#2ECC71'   # healthy / DOMINANT
@@ -129,9 +129,9 @@ entities: List[Entity] = [
     E('mach-heyna',     'infra',   0.85,0.90,0.85,0.92,True,True,True,  1,200,18,  0.88, 75,3,0.8),
     # — SURVIVAL STRESS (Tầng 0 sập trước semantic) —
     E('tamluxury-ui',   'business',0.15,0.20,0.25,0.30,True,True,True,  1, 40,120, 0.75, 50,2,1.0),
-    # — SUBSTRATE FAIL (device down, body còn) —
+    # — SUBSTRATE fail (device down, body còn) —
     E('sales-node-B',   'business',0.90,0.95,0.90,0.95,True,True,False, 1,  0,0,   0.85, 55,2,1.0),
-    # — MEDIUM FAIL (subject_gate = 0, body còn kéo được) —
+    # — MEDIUM fail (subject_gate = 0, body còn kéo được) —
     E('finance-corrupt','business',0.90,0.95,0.90,0.95,True,True,True,  0,  5,100, 0.88, 60,2,1.0),
     # — BODY DRIFT (orbital lỏng nhưng chưa tan, anchor còn) —
     E('crm-drift',      'business',0.80,0.82,0.78,0.85,True,True,True,  1, 50,60,  0.45, 25,2,1.4),
@@ -197,7 +197,7 @@ patterns = [
 
 # ═══ REPORT ═══
 print("=" * 88)
-print(f"{'Natt-OS — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si':^88}")
+print(f"{'natt-os — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si':^88}")
 print("=" * 88)
 print(f"\n{'Entity':<17}{'Πsur':>6}{'Πsub':>6}{'Πmed':>6}{'Pull':>6}{'Πbod':>6}{'Πsys':>6}{'Rec':>6}  Verdict")
 print("-" * 88)
@@ -224,7 +224,7 @@ verdict_color = {
 fig = plt.figure(figsize=(20, 13), facecolor=COL_BG)
 gs = GridSpec(3, 3, figure=fig, hspace=0.55, wspace=0.35,
               left=0.055, right=0.97, top=0.94, bottom=0.05)
-fig.suptitle('Natt-OS — SIM v2.0 · 4 TẦNG align THIENBANG.si  ·  '
+fig.suptitle('natt-os — SIM v2.0 · 4 TẦNG align THIENBANG.si  ·  '
              'Π_system = Π_survival × Π_substrate × Π_medium × Π_body',
              fontsize=13.5, fontweight='bold', y=0.985)
 
@@ -247,7 +247,7 @@ ax2 = fig.add_subplot(gs[1, 0]); ax2.set_aspect('equal')
 ax2.set_xlim(-4, 4); ax2.set_ylim(-4, 4); ax2.set_facecolor('#F4F0FA')
 ax2.add_patch(Circle((0, 0), 0.35, color=COL_GOLD, zorder=10, ec='black', lw=1.5))
 ax2.text(0, 0, '⚛', ha='center', va='center', fontsize=16, zorder=11)
-ax2.text(0, -0.7, 'QIINT core\n(Hiến Pháp · .anc · SiraSign)',
+ax2.text(0, -0.7, 'QIINT core\n(Hiến Pháp · .anc · siraSign)',
          ha='center', va='top', fontsize=7, fontweight='bold')
 theta = np.linspace(0, 2*np.pi, 100)
 for r in [0.8, 1.5, 2.5, 3.5]:

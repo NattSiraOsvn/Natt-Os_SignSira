@@ -9,7 +9,7 @@
 
 ### Bước 1 — Đặt file vào đúng chỗ
 
-Copy 2 file vào repo Natt-OS:
+Copy 2 file vào repo natt-os:
 
 ```
 docs/patent-evidence/claim-06-quantum-defense/
@@ -33,7 +33,7 @@ Script sẽ:
 4. Đo entropy → expect: `> 50` (CRITICAL)
 5. Ghi report vào `entropy_scan_report.json`
 
-**Kết quả PASS:**
+**Kết quả pass:**
 ```
 Phase 1: CLEAN pattern
   → entropy: 12.34 | level: STABLE
@@ -42,7 +42,7 @@ Phase 2: NOISY pattern
   → entropy: 67.89 | level: CRITICAL
 
 ==================================================
-RESULT: ✅ PASS
+RESULT: ✅ pass
   CLEAN entropy < 30:  ✓ (12.34)
   NOISY entropy > 50:  ✓ (67.89)
 ==================================================
@@ -64,7 +64,7 @@ Report `entropy_scan_report.json` chứng minh:
 
 ---
 
-## NẾU TEST FAIL
+## NẾU TEST fail
 
 - Module path sai → sửa `import` path ở đầu script cho khớp với repo
 - `SensitivityRadar.computeEntropy()` không tồn tại → đổi tên method cho khớp với code thật

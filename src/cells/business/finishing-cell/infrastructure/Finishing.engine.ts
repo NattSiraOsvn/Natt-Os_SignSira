@@ -2,7 +2,7 @@
 
 /**
  * finishing-cell — infrastructure/finishing.engine.ts
- * Sprint 2 | Tâm Luxury Natt-OS
+ * Sprint 2 | Tâm Luxury natt-os
  */
 
 import { FinishingRecord } from '../domain/finishing.entity';

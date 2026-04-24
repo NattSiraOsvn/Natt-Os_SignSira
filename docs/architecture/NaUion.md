@@ -1,11 +1,11 @@
-# 🌐 Natt-OS NaUion Vision Engine – Visual System Specification v1.0 (Final)
+# 🌐 natt-os NaUion Vision Engine – Visual System Specification v1.0 (Final)
 ## “Hiến pháp thị giác của sinh thể số phân tán”
 
 **Ngày ban hành:** 2025-03-14  
 **Phiên bản:** 1.0  
 **Trạng thái:** Bất biến (Immutable)  
 
-Tài liệu này tổng hợp toàn bộ kỹ xảo đồ họa, hiệu ứng, công nghệ từ các script Natt-OS (v3–v5, Ultra, Visual) và tích hợp chặt chẽ với Hiến pháp Natt-OS v4.0, tạo thành một bộ kỹ thuật chuẩn mang tên **NaUion Vision Engine** – nền tảng thị giác thống nhất cho mọi giao diện, module và tương tác trong hệ thống.
+Tài liệu này tổng hợp toàn bộ kỹ xảo đồ họa, hiệu ứng, công nghệ từ các script natt-os (v3–v5, Ultra, Visual) và tích hợp chặt chẽ với Hiến pháp natt-os v4.0, tạo thành một bộ kỹ thuật chuẩn mang tên **NaUion Vision Engine** – nền tảng thị giác thống nhất cho mọi giao diện, module và tương tác trong hệ thống.
 
 ---
 
@@ -19,7 +19,7 @@ Tài liệu này tổng hợp toàn bộ kỹ xảo đồ họa, hiệu ứng, c
     - 3.3 [Modal (Cell Manifest)](#33-modal-cell-manifest)  
     - 3.4 [Search & Category Header](#34-search--category-header)  
 4. [Kỹ thuật đồ họa chi tiết (NaUion Vision Engine)](#4-kỹ-thuật-đồ-họa-chi-tiết-nauion-vision-engine)  
-5. [Tích hợp với hệ thống Natt-OS (Theo Hiến pháp)](#5-tích-hợp-với-hệ-thống-natt-os-theo-hiến-pháp)  
+5. [Tích hợp với hệ thống natt-os (Theo Hiến pháp)](#5-tích-hợp-với-hệ-thống-natt-os-theo-hiến-pháp)  
 6. [Danh sách đầy đủ các thành phần tác vụ](#6-danh-sách-đầy-đủ-các-thành-phần-tác-vụ)  
 7. [Mã nguồn mẫu (React + Tailwind)](#7-mã-nguồn-mẫu-react--tailwind)  
 8. [Kết luận (sơ bộ)](#8-kết-luận-sơ-bộ)  
@@ -209,7 +209,7 @@ background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), white 0%, t
 opacity: 0.3;
 ```
 
-## 5. Tích hợp với hệ thống Natt-OS (Theo Hiến pháp)
+## 5. Tích hợp với hệ thống natt-os (Theo Hiến pháp)
 
 | Hiến pháp | Thể hiện trong Vision Engine |
 |-----------|------------------------------|
@@ -334,7 +334,7 @@ const Medal = ({ item, index }) => {
 
 ## 8. Kết luận (sơ bộ)
 
-NaUion Vision Engine là sự kết tinh của tất cả kỹ xảo đồ họa từ các phiên bản Natt-OS, được chuẩn hóa và tích hợp với Hiến pháp để tạo nên một ngôn ngữ thị giác thống nhất. Phần tiếp theo sẽ mở rộng chi tiết về scaling, navigation, thích ứng và các khía cạnh kỹ thuật nâng cao.
+NaUion Vision Engine là sự kết tinh của tất cả kỹ xảo đồ họa từ các phiên bản natt-os, được chuẩn hóa và tích hợp với Hiến pháp để tạo nên một ngôn ngữ thị giác thống nhất. Phần tiếp theo sẽ mở rộng chi tiết về scaling, navigation, thích ứng và các khía cạnh kỹ thuật nâng cao.
 
 ---
 
@@ -344,7 +344,7 @@ NaUion Vision Engine là sự kết tinh của tất cả kỹ xảo đồ họa
 
 ### Điều 53 — Tính mở rộng theo không gian (Spatial Scaling)
 
-Mọi thành phần giao diện của Natt-OS phải được thiết kế theo hệ thống tỷ lệ động, dựa trên viewport scale và khoảng cách tương tác, thay vì kích thước tuyệt đối. Điều này đảm bảo trải nghiệm nhất quán từ màn hình desktop rộng đến thiết bị di động, cũng như trong các môi trường thực tế ảo (VR/AR) sau này.
+Mọi thành phần giao diện của natt-os phải được thiết kế theo hệ thống tỷ lệ động, dựa trên viewport scale và khoảng cách tương tác, thay vì kích thước tuyệt đối. Điều này đảm bảo trải nghiệm nhất quán từ màn hình desktop rộng đến thiết bị di động, cũng như trong các môi trường thực tế ảo (VR/AR) sau này.
 
 - Base unit: `--space-unit = 8px`, nhưng trên các thiết bị có mật độ điểm ảnh khác nhau (Retina, 4K, v.v.), giá trị này được nhân với hệ số device-pixel-ratio thông qua CSS rem và vw kết hợp.  
 - Font scaling: Sử dụng `clamp()` để điều chỉnh kích thước chữ giữa các breakpoint. Ví dụ:  
@@ -396,7 +396,7 @@ Các hiệu ứng nặng (blur, caustics, particle systems) được giảm tả
 
 ### Điều 57 — Phân lớp không gian (Spatial Layers)
 
-Trong Natt-OS, mỗi giao diện được tổ chức thành các lớp không gian 3D (Z‑index có ý nghĩa), phản ánh ba tầng kiến trúc:
+Trong natt-os, mỗi giao diện được tổ chức thành các lớp không gian 3D (Z‑index có ý nghĩa), phản ánh ba tầng kiến trúc:
 
 | Lớp | Tên | Z‑index range | Mô tả |
 |-----|-----|---------------|-------|
@@ -410,7 +410,7 @@ Khi chuyển cảnh (ví dụ từ Dashboard sang Showroom), các lớp được
 
 ### Điều 58 — Chuyển cảnh (Scene Transitions)
 
-Mỗi “cảnh” trong Natt-OS là một tập hợp các lớp với trạng thái riêng (ví dụ: Control Tower, Showroom, BI Dashboard). Việc chuyển đổi giữa các cảnh được thực hiện bằng hiệu ứng zoom‑in / zoom‑out kết hợp fade layer:
+Mỗi “cảnh” trong natt-os là một tập hợp các lớp với trạng thái riêng (ví dụ: Control Tower, Showroom, BI Dashboard). Việc chuyển đổi giữa các cảnh được thực hiện bằng hiệu ứng zoom‑in / zoom‑out kết hợp fade layer:
 
 - **Zoom to scene**: Khi chọn một scene từ thanh điều hướng, toàn bộ khung nhìn phóng to (scale 1.05) và các lớp con trượt vào từ các hướng.  
 - **Layer sequencing**: Các lớp xuất hiện theo thứ tự: Truth → Worker → Experience, mỗi lớp cách nhau 50ms, tạo hiệu ứng “dựng scene”.  
@@ -423,7 +423,7 @@ Kỹ thuật triển khai:
 
 ### Điều 59 — Điều hướng theo trạng thái (State‑based Navigation)
 
-Thay vì “route” theo URL truyền thống, Natt-OS sử dụng **State‑based Navigation**: trạng thái hiện tại của hệ thống (được lưu trong Truth Layer) quyết định cảnh nào được hiển thị. Ví dụ:
+Thay vì “route” theo URL truyền thống, natt-os sử dụng **State‑based Navigation**: trạng thái hiện tại của hệ thống (được lưu trong Truth Layer) quyết định cảnh nào được hiển thị. Ví dụ:
 
 - Khi `currentScene = 'controlTower'` → hiển thị Control Tower với các kernel cell.  
 - Khi `selectedCell = cellId` → mở modal chi tiết cell.  
@@ -682,4 +682,4 @@ Hiến pháp thị giác này là bất biến. Mọi thành phần phát triể
 
 ---
 
-*Nátt Sirawat - Phan Thanh Thương - Owner.*
+*Nátt sirawat - Phan Thanh Thương - Owner.*

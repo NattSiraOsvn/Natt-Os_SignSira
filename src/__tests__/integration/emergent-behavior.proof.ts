@@ -1,5 +1,5 @@
 /**
- * Natt-OS Emergent Behavior Proof — Integration Test
+ * natt-os Emergent Behavior Proof — Integration Test
  * ════════════════════════════════════════════════════════
  * src/__tests__/integration/emergent-behavior.proof.ts
  *
@@ -21,10 +21,10 @@
  * Ngày tạo: 2026-04-13
  */
 
-import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
-import { PressureField } from '@/core/smartlink/smartlink.pressure-field';
-import { PatternCompetition } from '@/core/smartlink/smartlink.competition';
-import { SmartLinkRegistry } from '@/core/smartlink/index';
+import { NATTimer } from '@/core/SmartLink/SmartLink.nattimer';
+import { PressureField } from '@/core/SmartLink/SmartLink.pressure-field';
+import { PatternCompetition } from '@/core/SmartLink/SmartLink.competition';
+import { SmartLinkRegistry } from '@/core/SmartLink/index';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -65,7 +65,7 @@ interface ProofReport {
 const REPORT: ProofReport = {
   version: '1.0',
   generated_at: '',
-  system: 'Natt-OS v2 Gold Master',
+  system: 'natt-os v2 Gold Master',
   scenario: 'Two-phase routing shift — sales→finance→tax vs sales→inventory→logistics',
   results: {} as any,
   summary: {} as any,
@@ -111,7 +111,7 @@ function simulateFlowChain(
 // ══════════════════════════════════════════════════════════════════════════
 
 async function runProof(): Promise<void> {
-  logSection('Natt-OS EMERGENT BEHAVIOR PROOF');
+  logSection('natt-os EMERGENT BEHAVIOR PROOF');
   console.log(`  Timestamp: ${new Date().toISOString()}`);
   console.log(`  Scenario:  Two-phase routing shift`);
 
@@ -431,6 +431,6 @@ async function runProof(): Promise<void> {
 
 // ── RUN ───────────────────────────────────────────────────────────────────
 runProof().catch(err => {
-  console.error('PROOF FAILED:', err);
+  console.error('PROOF failED:', err);
   process.exit(1);
 });

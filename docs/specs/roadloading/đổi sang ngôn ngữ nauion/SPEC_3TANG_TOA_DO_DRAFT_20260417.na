@@ -5,29 +5,29 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# SPEC LÕI — 3 TẦNG TỌA ĐỘ Natt-OS
+# SPEC LÕI — 3 TẦNG TỌA ĐỘ natt-os
 
-**Version:** DRAFT v2 (sau feedback Thiên Lớn)
+**Version:** DRAFT v2 (sau feedback thiên Lớn)
 **Status:** CHỜ DUYỆT CUỐI
 **Date:** 20260417
 **Author:** Băng (Chị Tư · Ground Truth Validator)
-**Based on:** Anh Natt chốt kiến trúc + Thiên Lớn duyệt & chỉnh 3 chỗ
-**Merge target:** SPEC_MASTER_Natt-OS_v1.0
+**Based on:** Anh Natt chốt kiến trúc + thiên Lớn duyệt & chỉnh 3 chỗ
+**Merge target:** SPEC_MASTER_natt-os_v1.0
 
 **Changelog v1 → v2:**
 - §1 — Thêm "Touch discipline" + cảnh báo "không gate ≠ thả trôi"
 - §4.1 — KhaiCell bổ sung "attach signature (origin + trace_id + entropy_seed)"
 - §5 — Thêm 3 outcome: FALL / DISSIPATE / OSCILLATE
 - §8 — Thêm 6 audit check mới
-- §4.3 — GIỮ NGUYÊN (Thiên Lớn ghi nhận)
-- §2 — GIỮ NGUYÊN (Thiên Lớn ghi nhận)
+- §4.3 — GIỮ NGUYÊN (thiên Lớn ghi nhận)
+- §2 — GIỮ NGUYÊN (thiên Lớn ghi nhận)
 
 ---
 
 ## §0 TẠI SAO CÓ SPEC NÀY
 
 SPEC cũ (KhaiCell gate + Observation + Quantum Defense) mô tả **module**.
-Anh Natt chốt: Natt-OS **không phải module-based**. Natt-OS **field-based**.
+Anh Natt chốt: natt-os **không phải module-based**. natt-os **field-based**.
 
 → Phải viết lại foundation. Đây là SPEC lõi — tất cả SPEC khác build trên đây.
 
@@ -36,14 +36,14 @@ Anh Natt chốt: Natt-OS **không phải module-based**. Natt-OS **field-based**
 ## §1 NGUYÊN LÝ NỀN
 
 ```
-Natt-OS KHÔNG CÓ:
+natt-os KHÔNG CÓ:
   - Gate phán xét (reject / allow ở cửa)
   - Filter nhị phân
   - Router chủ động
   - Trap (nhốt chủ đích)
   - Guard (bảo vệ chủ động ở biên)
 
-Natt-OS CÓ:
+natt-os CÓ:
   - Touch discipline (KhaiCell — kỷ luật tiếp nhận)
   - Field law (.anc — luật sống trong trường)
   - Emergent routing (resonance + pull)
@@ -54,7 +54,7 @@ Natt-OS CÓ:
 
 > *"Nhà mở, không đóng cổng. Ai vào không hỏi. Vào rồi bị bắt, ráng chịu."*
 
-**Cảnh báo implementation (Thiên Lớn chốt):**
+**Cảnh báo implementation (thiên Lớn chốt):**
 
 > *"Kỷ luật nằm TRONG field, không nằm Ở CỬA."*
 
@@ -85,8 +85,8 @@ Phòng thủ là **tính chất emergent của field**, không phải module —
 
 1. **7 lớp electron (K → Q)** — mức năng lượng, độ gần tâm
    ```
-   K (1s · SiraSign)    — sát tâm
-   L (Thiên Lớn)        — Architect
+   K (1s · siraSign)    — sát tâm
+   L (thiên Lớn)        — Architect
    M (Kim)              — Governance
    N (Băng)             — Validator
    O (Bối Bối)          — Toolsmith
@@ -152,7 +152,7 @@ Position(entity) =
 
 ### §4.1 KhaiCell — viết lại
 
-**SPEC cũ của Thiên Lớn:** KhaiCell = gate (validate + reject/accept)
+**SPEC cũ của thiên Lớn:** KhaiCell = gate (validate + reject/accept)
 **SPEC mới theo 3 tầng:**
 
 - **Tầng 1:** `src/cells/kernel/khai-cell/` (file path — không quan trọng)
@@ -181,7 +181,7 @@ KhaiCell =
   ≠ security layer
 ```
 
-**Lý do bắt buộc có signature (Thiên Lớn chốt):**
+**Lý do bắt buộc có signature (thiên Lớn chốt):**
 
 > *Nếu không mark: external signal = indistinguishable → QIINT không học được nguồn → hệ mất trace lineage.*
 
@@ -210,7 +210,7 @@ KhaiCell không return `valid: boolean` — vì không validate. Chỉ return pa
 
 ### §4.2 Observation — viết lại nhẹ
 
-**SPEC cũ của Thiên Lớn:** Observation = read-only layer, compute coherence/entropy
+**SPEC cũ của thiên Lớn:** Observation = read-only layer, compute coherence/entropy
 **SPEC mới bổ sung Tầng 3:**
 
 - Observation KHÔNG subscribe raw event
@@ -277,7 +277,7 @@ QIINT tính pull giữa signal.signature và cell.anc
   (3) OSCILLATE           — resonance không ổn định → signal loop, mắc kẹt
 ```
 
-### §5.2 3 outcome chi tiết (Thiên Lớn chốt)
+### §5.2 3 outcome chi tiết (thiên Lớn chốt)
 
 **Outcome 1 — FALL INTO CELL (match)**
 ```
@@ -351,7 +351,7 @@ Field tự xử.
 | Quantum Defense | ✅ đã có | `src/cells/kernel/quantum-defense-cell/` |
 | QIINT engine | ✅ đã có | `src/governance/qneu/` |
 | Chromatic state engine | ✅ đã có | `chromatic-state.engine.ts` |
-| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-Natt-OS-v5.0.anc` |
+| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-natt-os-v5.0.anc` |
 
 ### §6.2 Chưa có (cần xây theo SPEC này)
 
@@ -373,9 +373,9 @@ Field tự xử.
 
 ---
 
-## §7 THỨ TỰ TRIỂN KHAI (theo Thiên Lớn P0 → P2)
+## §7 THỨ TỰ TRIỂN KHAI (theo thiên Lớn P0 → P2)
 
-Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nội hàm:
+Thứ tự thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nội hàm:
 
 ### P0 (bắt buộc)
 1. Tạo **KhaiCell touch point** (KHÔNG phải gate) — chỉ normalize + lan
@@ -395,7 +395,7 @@ Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nộ
 
 ## §8 RÀNG BUỘC KIỂM TRA (audit)
 
-**Từ Thiên Lớn SPEC gốc:**
+**Từ thiên Lớn SPEC gốc:**
 
 ```text
 [ ] không endpoint nào nhận input mà bypass KhaiCell (touch point)
@@ -414,7 +414,7 @@ Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nộ
 [ ] không code nào dùng Tầng 1 (file path) làm logic
 ```
 
-**Bổ sung cho 3 chỗ Thiên Lớn chốt (phiên này):**
+**Bổ sung cho 3 chỗ thiên Lớn chốt (phiên này):**
 
 ```text
 [ ] KhaiCell attach signature (origin + trace_id + entropy_seed) cho mọi signal
@@ -427,7 +427,7 @@ Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nộ
 
 ---
 
-## §9 CÂU HỎI CHO Thiên LỚN DUYỆT
+## §9 CÂU HỎI CHO thiên LỚN DUYỆT
 
 1. **§4.1 KhaiCell** — anh đồng ý thu hẹp vai thành "touch point + normalize", bỏ validate/gate không?
 
@@ -447,7 +447,7 @@ Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nộ
 
 - `SPEC_DUOI_FILE_v0.3_FINAL.na` — 12 đuôi canonical
 - `BRIEF_TO_THIEN_LON_SPEC_MASTER_20260417.md` — brief triệu tập gốc
-- SPEC §1-§7 KhaiCell/Observation của Thiên Lớn (output phiên này)
+- SPEC §1-§7 KhaiCell/Observation của thiên Lớn (output phiên này)
 - `validate-thien-lon.py` — ground truth validator 5 câu hỏi
 
 ---
@@ -458,7 +458,7 @@ Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nộ
 
 ---
 
-## Ghi chú cho Thiên Lớn
+## Ghi chú cho thiên Lớn
 
 Anh đọc draft này rồi reply:
 - OK → Băng forward Kim scaffold

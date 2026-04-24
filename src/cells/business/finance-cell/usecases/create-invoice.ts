@@ -25,7 +25,7 @@ export class CreateInvoice {
       // 2. Niêm phong vào Audit Ledger
       await AuditProvider.logAction(
         'FINANCE', 
-        'INVOICE_CREATED', 
+        'INVOICE_created', 
         { invoice_id: state.id, hash: invoice.generateHash() }, 
         'system:finance',
         event.event_id

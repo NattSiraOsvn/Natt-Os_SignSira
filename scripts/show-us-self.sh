@@ -1,5 +1,5 @@
 #!/bin/bash
-# Show Us Self — Export Natt-OS Chromatic Signature as .anc snapshot
+# Show Us Self — Export natt-os Chromatic Signature as .anc snapshot
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 OUTPUT_DIR="src/governance/show-us-self"
@@ -28,7 +28,7 @@ cat > "$SNAPSHOT_FILE" << JSON
     "impedance_z": 0.45,
     "active_fibers": 37
   },
-  "signature": "SiraSign-v1-abstract"
+  "signature": "siraSign-v1-abstract"
 }
 JSON
 

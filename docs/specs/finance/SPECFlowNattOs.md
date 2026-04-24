@@ -1,6 +1,6 @@
 ###📜 NAUION–TAMLXR · CLOSED-LOOP FLOW SPEC v1.0 (Can)
 🎯 Mục tiêu
-Reality → System → Reconciliation → SiraSign → Snapshot → Truth
+Reality → System → Reconciliation → siraSign → Snapshot → Truth
 
 Truth chỉ tồn tại khi vòng được khóa bằng đo lường độc lập + xác nhận chịu trách nhiệm.
 
@@ -37,10 +37,10 @@ type ReconciliationResult = {
   status: 'matched'|'mismatch'
   computed_at: number
 }
-4. Acknowledgement Domain (SiraSign)
+4. Acknowledgement Domain (siraSign)
 Ký vào snapshot đã đối soát
 Invariant: ký gắn trách nhiệm + bằng chứng
-type SiraSignSnapshot = {
+type siraSignSnapshot = {
   snapshot_id: string
   ledger_hash: string
   reality_hash: string
@@ -59,7 +59,7 @@ II. 🔁 FLOW CHUẨN (STATE MACHINE)
     ↓
 [RECONCILING]
     ↓
-[MATCHED] ──→ [READY_FOR_SIGN]
+[MATCHED] ──→ [ready_FOR_SIGN]
     ↓ mismatch
 [FLAGGED] ──→ [REQUIRE_INTERVENTION]
     ↓
@@ -99,11 +99,11 @@ function reconcile(snapshot: string, reality: RealityRecord[]): ReconciliationRe
 
 Rule: dùng measurement độc lập; không đọc lại chính ledger để “tự đúng”
 
-6. SiraSign (UPGRADE)
+6. siraSign (UPGRADE)
 
 Mở rộng từ code hiện có
 
-interface SiraSignPayloadV2 {
+interface siraSignPayloadV2 {
   fsp_hash: string
   ssp_hash: string
   tsp_hash: string
@@ -123,7 +123,7 @@ verifyChain()
 → verifyReconciliation()
 → verifyPolicyVersion()
 → verifyEvidenceRefs()
-→ PASS → allow sign
+→ pass → allow sign
 IV. 🔐 SECURITY & INTEGRITY
 Nonce + ±5 phút window (đã có)
 Hash chain (fsp→ssp→tsp→lsp) (đã có)
@@ -149,7 +149,7 @@ Control Center
 Proposed Events
 Risk Flags
 Reconciliation Panel
-Sign Panel (SiraSign)
+Sign Panel (siraSign)
 Variance Dashboard
 Snapshot Manager (lock/unlock)
 VII. 📦 DEPLOY PLAN (P0)
@@ -159,16 +159,16 @@ Policy:
 IMMUNE_POLICY.json (versioned)
 Reconciliation:
 inventory + cash trước
-SiraSign v2:
+siraSign v2:
 bind snapshot + evidence
 Control Center UI (minimal)
 🎯 CHỐT
 System chỉ đề xuất
 Reality kiểm chứng
-SiraSign khóa lại
+siraSign khóa lại
 → Truth
 ===============================
-###🚀 P0 · BOOTSTRAP CORE (Event → State → Ledger → Reconcile → SiraSign)
+###🚀 P0 · BOOTSTRAP CORE (Event → State → Ledger → Reconcile → siraSign)
 1) Cấu trúc thư mục
 mkdir -p src/core/{event,policy,state,ledger,reconcile,sirasign,api,tests}
 touch src/core/event/{bus.ts,types.ts}
@@ -225,11 +225,11 @@ export function applyPolicy(e: EventEnvelope) {
 }
 4) State Machine (guard)
 // src/core/state/machine.ts
-type OrderState = 'CREATED'|'CONFIRMED'|'IN_PRODUCTION'|'COMPLETED'|'CLOSED'
+type OrderState = 'created'|'CONFIRMED'|'IN_PRODUCTION'|'COMPLETED'|'CLOSED'
 
 export function canTransition(from: OrderState, to: OrderState) {
   const map: Record<OrderState, OrderState[]> = {
-    CREATED: ['CONFIRMED'],
+    created: ['CONFIRMED'],
     CONFIRMED: ['IN_PRODUCTION'],
     IN_PRODUCTION: ['COMPLETED'],
     COMPLETED: ['CLOSED'],
@@ -282,9 +282,9 @@ export function reconcile(reality: RealityRecord[]) {
 }
 
 function hash(s:string){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0}return Math.abs(h).toString(16)}
-7) SiraSign v2 (bind snapshot + reality + policy)
+7) siraSign v2 (bind snapshot + reality + policy)
 // src/core/sirasign/types.ts
-export type SiraSignPayload = {
+export type siraSignPayload = {
   fsp_hash: string
   ssp_hash: string
   tsp_hash: string
@@ -301,7 +301,7 @@ export type SiraSignPayload = {
 const USED = new Set<string>()
 const WINDOW = 5*60*1000
 
-export function verify(p: SiraSignPayload){
+export function verify(p: siraSignPayload){
   if (Math.abs(Date.now()-p.timestamp) > WINDOW) return fail('timestamp_expired')
   if (USED.has(p.nonce)) return fail('nonce_replayed')
   if (p.policy_version !== '2026.03.P0') return fail('policy_mismatch')
@@ -342,7 +342,7 @@ export async function runCycle(realityRecords:any[]){
   // 3) Reconcile
   const r = reconcile(realityRecords)
 
-  // 4) SiraSign (build payload)
+  // 4) siraSign (build payload)
   const payload = {
     fsp_hash: 'a', ssp_hash: 'b', tsp_hash: 'c',
     lsp_hash: hash('abc'),
@@ -355,7 +355,7 @@ export async function runCycle(realityRecords:any[]){
   }
 
   const sig = verify(payload)
-  if (!sig.valid) throw new Error('SIGN_FAIL')
+  if (!sig.valid) throw new Error('SIGN_fail')
 
   // 5) Snapshot locked (P0)
   return { snapshot: snapshotHash(), status: 'TRUTH' }
@@ -376,24 +376,24 @@ import { runCycle } from '../api/server'
 
   const res = await runCycle(reality)
   console.log(res)
-  if (res.status !== 'TRUTH') throw new Error('E2E_FAIL')
-  console.log('E2E_PASS')
+  if (res.status !== 'TRUTH') throw new Error('E2E_fail')
+  console.log('E2E_pass')
 })()
-✅ TIÊU CHÍ PASS (P0)
+✅ TIÊU CHÍ pass (P0)
  Event idempotent (emit 2 lần không nhân đôi)
  Ledger commit atomic
  Reconcile dùng Reality độc lập
- SiraSign fail-closed (thiếu evidence/nonce/timestamp → fail)
+ siraSign fail-closed (thiếu evidence/nonce/timestamp → fail)
  Snapshot chỉ tạo sau khi verify pass
- E2E_PASS
+ E2E_pass
 ▶️ CHẠY
 npm init -y
 npm i tsx typescript @types/node
 npx tsx src/core/tests/e2e.spec.ts
 🔒 CHỐT
-Reality đo → Hệ ghi → Đối soát → SiraSign → Snapshot = TRUTH
+Reality đo → Hệ ghi → Đối soát → siraSign → Snapshot = TRUTH
 =======================================
-###P1. Natt-OS · FULL CORE BUILD
+###P1. natt-os · FULL CORE BUILD
 // CLOSED LOOP TRUTH SYSTEM
 // ===============================
 
@@ -450,11 +450,11 @@ const POLICY = {
 // STATE MACHINE
 // ===============================
 
-type OrderState = 'CREATED'|'CONFIRMED'|'DONE'
+type OrderState = 'created'|'CONFIRMED'|'DONE'
 
 function canTransition(from: OrderState, to: OrderState) {
   const map: Record<OrderState, OrderState[]> = {
-    CREATED: ['CONFIRMED'],
+    created: ['CONFIRMED'],
     CONFIRMED: ['DONE'],
     DONE: []
   }
@@ -475,7 +475,7 @@ function commitAtomic(entries: Entry[]) {
     LEDGER = [...LEDGER, ...entries]
   } catch {
     LEDGER = backup
-    throw new Error('LEDGER_FAIL')
+    throw new Error('LEDGER_fail')
   }
 }
 
@@ -505,7 +505,7 @@ function reconcile(reality: RealityRecord[]) {
 }
 
 // ===============================
-// SiraSIGN ENGINE
+// siraSIGN ENGINE
 // ===============================
 
 const NONCES = new Set<string>()
@@ -559,7 +559,7 @@ export async function runFullCycle(reality: RealityRecord[]) {
   // 3. Reconciliation
   const rec = reconcile(reality)
 
-  // 4. SiraSign
+  // 4. siraSign
   const signPayload = {
     reality_hash: rec.reality_hash,
     policy_version: POLICY.version,
@@ -568,7 +568,7 @@ export async function runFullCycle(reality: RealityRecord[]) {
   }
 
   const valid = verifySignature(signPayload)
-  if (!valid) throw new Error('SIGN_FAIL')
+  if (!valid) throw new Error('SIGN_fail')
 
   // 5. Snapshot
   return {
@@ -664,7 +664,7 @@ CREATE TABLE snapshots (
   signed BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP DEFAULT NOW()
 );
-6. SiraSign
+6. siraSign
 CREATE TABLE sirasign (
   id UUID PRIMARY KEY,
   snapshot_id UUID,
@@ -700,7 +700,7 @@ Ledger = function(Event Stream)
 
 👉 Không bao giờ sửa ledger trực tiếp
 
-III. 🔐 REAL SiraSIGN (CRYPTO)
+III. 🔐 REAL siraSIGN (CRYPTO)
 👉 Bỏ mock → dùng ed25519
 npm install tweetnacl
 Code:
@@ -755,7 +755,7 @@ Required panels:
 Proposed Events
 Ledger View
 Reconciliation View
-SiraSign Panel
+siraSign Panel
 UI Rule:
 Không cho user nhập số
 → chỉ cho xác nhận hoặc reject
@@ -814,7 +814,7 @@ Truth (P2)
 → Multi-Signature
 → Public Verification
 → TRUST
-III. 🖋️ SiraSIGN NÂNG CẤP (P3)
+III. 🖋️ siraSIGN NÂNG CẤP (P3)
 Không còn là:
 
 👉 ký nội bộ
@@ -893,7 +893,7 @@ ACCOUNTANT    đối soát
 MANAGER    ký
 AUDITOR    verify
 REGULATOR    đọc public
-II. 🔐 MULTI-SIGN (SiraSIGN P3)
+II. 🔐 MULTI-SIGN (siraSIGN P3)
 1. Snapshot nâng cấp
 ALTER TABLE snapshots ADD COLUMN sign_status TEXT;
 ALTER TABLE snapshots ADD COLUMN required_signatures INT;
@@ -992,7 +992,7 @@ Reality (độc lập)
 → Reconciliation
     ↕ Reality
 
-→ Multi-SiraSign
+→ Multi-siraSign
 
 → Snapshot Lock
 
@@ -1021,7 +1021,7 @@ P3 = người khác tin
 SYSTEM → TRUSTABLE
 🚀 TRẠNG THÁI
 
-👉 P3 SPEC: READY TO BUILD
+👉 P3 SPEC: ready TO BUILD
 =============================================================
 ###🚀 TRIỂN KHAI THỰC TẾ — CLOSED LOOP SYSTEM
 🎯 Mục tiêu
@@ -1048,7 +1048,7 @@ Trong ngày → hệ ghi event
 Cuối ngày:
 → generate report
 → user kiểm tra
-→ SiraSign
+→ siraSign
 → LOCK DAY
 4. Code (core)
 export async function createDailyReport(date: string) {
@@ -1062,7 +1062,7 @@ export async function createDailyReport(date: string) {
     snapshot_hash: hash
   })
 }
-II. 🔐 MODULE 2 — SiraSIGN DAILY LOCK
+II. 🔐 MODULE 2 — siraSIGN DAILY LOCK
 export async function signDailyReport(reportId: string, user: string) {
   const report = await db.get('daily_reports', reportId)
 
@@ -1099,7 +1099,7 @@ Daily Reports
 → variance
 
 IF OK:
-  → PASS
+  → pass
 
 IF lệch:
   → Settlement
@@ -1114,7 +1114,7 @@ export async function runAudit(month: string, realityData: any) {
     month,
     reality_data: realityData,
     variance,
-    status: isEmpty(variance) ? 'PASS' : 'MISMATCH'
+    status: isEmpty(variance) ? 'pass' : 'MISMATCH'
   })
 }
 IV. 🔧 MODULE 4 — SETTLEMENT
@@ -1136,7 +1136,7 @@ Code
 export async function lockPeriod(month: string) {
   const audit = await getAudit(month)
 
-  if (audit.status !== 'PASS') throw 'AUDIT_NOT_PASSED'
+  if (audit.status !== 'pass') throw 'AUDIT_NOT_passED'
 
   await db.insert('period_lock', {
     month,
@@ -1151,7 +1151,7 @@ Reality
 → Event
 → Ledger
 → Daily Report
-→ SiraSign
+→ siraSign
 → LOCK DAY
 
 [MONTHLY]
@@ -1160,7 +1160,7 @@ Reality
 → Reconciliation
 → Settlement (nếu lệch)
 → Re-audit
-→ PASS
+→ pass
 
 → LOCK PERIOD
 
@@ -1185,7 +1185,7 @@ VII. 🧪 TEST THỰC CHIẾN
 ⚠️ 3 ĐIỀU KHÔNG ĐƯỢC PHÁ
 1. Không bypass daily sign
 2. Không audit thiếu reality
-3. Không lock khi chưa PASS
+3. Không lock khi chưa pass
 🎯 CHỐT
 
 Anh vừa có:
@@ -1195,5 +1195,5 @@ Daily Responsibility
 = CLOSED LOOP TRUTH SYSTEM
 🚀 TRẠNG THÁI
 
-👉 READY TO IMPLEMENT REAL
+👉 ready TO IMPLEMENT REAL
 

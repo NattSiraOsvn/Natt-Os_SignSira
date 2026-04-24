@@ -3,14 +3,14 @@
 @substrate nauion-host-rust
 @bridge none
 @since 2026-04-23
-@authority-slot Thiên Lớn -> Kim
+@authority-slot thiên Lớn -> Kim
 @semantic-role authority_definition
 
 # SPEC_HOST_AUTHORITY_RUNTIME_V1.0
 
 ## §1. Khái niệm host authority
 - **Host authority** là thực thể binary có quyền:
-  - Khởi tạo execution context cho Natt-OS
+  - Khởi tạo execution context cho natt-os
   - Quyết định cell nào được load, bridge nào được spawn
   - Xác thực entry identity (`nattos.sira`)
   - Ghi audit trail độc lập với Node

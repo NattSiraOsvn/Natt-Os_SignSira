@@ -5,7 +5,7 @@
   "session_date": "2026-03-28",
   "filesystem_snapshot": {
     "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "head_commit": "feat(cells): inject cell.metric — blind cells 26→0, sensing 100%",
     "commits": 342,
     "ts_files": 1306,
@@ -27,7 +27,7 @@
     "infrastructure_cells": 3,
     "total": 47,
     "all_6_6": true,
-    "smartlink_wired": 30,
+    "SmartLink_wired": 30,
     "port_only": 8
   },
   "port_only_cells": [

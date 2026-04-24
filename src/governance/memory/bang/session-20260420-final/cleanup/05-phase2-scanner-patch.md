@@ -2,7 +2,7 @@
 
 **Ngày:** 2026-04-20
 **Scope:** Bang authority — `maintain_scanners`
-**Impact:** Fix false-positive WARN trong audit. Không thay đổi hành vi cells.
+**Impact:** Fix false-positive warn trong audit. Không thay đổi hành vi cells.
 
 ---
 
@@ -77,7 +77,7 @@ section_32_memory_files() {
       if [[ "$optional" == "optional" ]]; then
         section_info "$persona memory: not found (optional)"
       else
-        section_fail "$persona memory: MISSING (cả legacy lẫn v1.2)"
+        section_fail "$persona memory: missing (cả legacy lẫn v1.2)"
       fi
     fi
   }
@@ -105,13 +105,13 @@ section_32_memory_files() {
     "kriskhương*.kris kriskhuong*.kris krismhương*.kris" \
     "" "optional"
 
-  # ── Thiên Lớn ──
+  # ── thiên Lớn ──
   check_persona_memory "thien-lon" "$MEM_DIR/Thienlon" \
-    "thienmf*.json Thiên*MEMORY*.json" \
+    "thienmf*.json thiên*MEMORY*.json" \
     "thienkhương*.kris thienkhuong*.kris thienkhương*.heyna" \
     "thienfs*.json thienthịnh*.phieu" ""
 
-  # ── Thiên Nhỏ (folder riêng) ──
+  # ── thiên Nhỏ (folder riêng) ──
   if [[ -d "$MEM_DIR/thiennho" ]]; then
     local thn_count=$(ls "$MEM_DIR/thiennho"/*.anc "$MEM_DIR/thiennho"/*.kris 2>/dev/null | wc -l)
     if (( thn_count > 0 )); then
@@ -120,7 +120,7 @@ section_32_memory_files() {
       section_warn "thiennho folder exists but no memory files"
     fi
   else
-    section_warn "thiennho memory dir: MISSING"
+    section_warn "thiennho memory dir: missing"
   fi
 
   # ── Phiêu ──
@@ -162,10 +162,10 @@ Audit next run sẽ ra (với state hiện tại):
   (...)
 ```
 
-Thay vì false-positive WARN, scanner sẽ:
-1. PASS cho persona đã có v1.2 format
-2. WARN chính xác cho persona vẫn còn legacy json
-3. FAIL chỉ khi thực sự missing cả 2
+Thay vì false-positive warn, scanner sẽ:
+1. pass cho persona đã có v1.2 format
+2. warn chính xác cho persona vẫn còn legacy json
+3. fail chỉ khi thực sự missing cả 2
 
 ---
 

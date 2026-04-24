@@ -9,7 +9,7 @@
 ## .anc  (80 files)
 
 ### ./docs/specs
-  - Natt-OS-PLATFORM-SPEC.anc
+  - natt-os-PLATFORM-SPEC.anc
 
 ### ./src/cells/business/analytics-cell
   - analytics-cell.cell.anc
@@ -137,8 +137,8 @@
 ### ./src/cells/infrastructure/shared-contracts-cell
   - shared-contracts-cell.cell.anc
 
-### ./src/cells/infrastructure/smartlink-cell
-  - smartlink-cell.cell.anc
+### ./src/cells/infrastructure/SmartLink-cell
+  - SmartLink-cell.cell.anc
 
 ### ./src/cells/infrastructure/sync-cell
   - sync-cell.cell.anc
@@ -187,7 +187,7 @@
   - 001-gatekeeper-ai-ban.anc
 
 ### ./src/governance/archive
-  - HIEN-PHAP-Natt-OS-v4.0.anc
+  - HIEN-PHAP-natt-os-v4.0.anc
 
 ### ./src/governance/memory/Can
   - can.anc
@@ -222,7 +222,7 @@
   - SPEC_NEN_v1.1.anc
 
 ### ./src/governance
-  - HIEN-PHAP-Natt-OS-v5.0.anc
+  - HIEN-PHAP-natt-os-v5.0.anc
 
 ---
 
@@ -303,8 +303,8 @@
 ### ./src/cells/infrastructure/shared-contracts-cell
   - shared-contracts-cell.boundary.si
 
-### ./src/cells/infrastructure/smartlink-cell
-  - smartlink-cell.boundary.si
+### ./src/cells/infrastructure/SmartLink-cell
+  - SmartLink-cell.boundary.si
 
 ### ./src/cells/infrastructure/sync-cell
   - sync-cell.boundary.si

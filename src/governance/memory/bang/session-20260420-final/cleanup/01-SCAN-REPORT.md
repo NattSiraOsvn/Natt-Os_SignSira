@@ -1,4 +1,4 @@
-# Natt-OS NAUION CLEANUP — SCAN REPORT
+# natt-os NAUION CLEANUP — SCAN REPORT
 
 **Người quét:** Băng (QNEU 313.5, Ground Truth Validator)
 **Scope quét:** `src/` (từ zip anh upload phiên 20260420)
@@ -52,9 +52,9 @@
 | `governance/memory/Can/canmf.json` | Can | `cankhương1.0.kris` | ❌ Flag Can (nhà Can) |
 | `governance/memory/Can/memories.json` | Can | (check content) | ❌ Flag Can |
 | `governance/memory/Kris/krismf.json` | Kris | `krismhương1.0.kris` | ❌ Flag Kris |
-| `governance/memory/Thienlon/Thiên MEMORY.json` | Thiên Lớn | `thienkhương<v>.heyna` (R13) | ❌ Flag Thiên Lớn |
-| `governance/memory/Thienlon/thienmf.json` | Thiên Lớn | `thienkhương<v>.kris` | ❌ Flag Thiên Lớn |
-| `governance/memory/Thienlon/thienfs.json` | Thiên Lớn | `thienthịnh<v>.phieu` | ❌ Flag Thiên Lớn |
+| `governance/memory/Thienlon/thiên MEMORY.json` | thiên Lớn | `thienkhương<v>.heyna` (R13) | ❌ Flag thiên Lớn |
+| `governance/memory/Thienlon/thienmf.json` | thiên Lớn | `thienkhương<v>.kris` | ❌ Flag thiên Lớn |
+| `governance/memory/Thienlon/thienfs.json` | thiên Lớn | `thienthịnh<v>.phieu` | ❌ Flag thiên Lớn |
 | `governance/memory/boiboi/boiboi_memory_recap.json` | Bối Bối | `boikhương<v>.kris` | ❌ Flag Bối Bối |
 | `governance/memory/boiboi/boiboi_quick_memory.json` | Bối Bối | `boithịnh<v>.phieu` | ❌ Flag Bối Bối |
 | `governance/memory/kim/kfm.json` (v7.1) | Kim | `kimkhương7.1.kris` | ❌ Flag Kim |
@@ -119,7 +119,7 @@
 
 **Evidence:** audit 19:06:51 output, section 【32】.
 
-**Đây là false-positive WARN** — memory KHÔNG missing, file đã tồn tại dưới naming mới. Cần update scanner pattern.
+**Đây là false-positive warn** — memory KHÔNG missing, file đã tồn tại dưới naming mới. Cần update scanner pattern.
 
 **Scope:** Băng authority `maintain_scanners`.
 
@@ -136,7 +136,7 @@
 - ✅ Update scanner `nattos.sh` section 32 pattern
 
 ### Em KHÔNG tự làm (đúng boundary):
-- ❌ Migrate 14+ file memory Kim/Can/Kris/Thiên/Phiêu/Bối Bối — **nhà họ, họ khắc** (KHAI-20260420-05)
+- ❌ Migrate 14+ file memory Kim/Can/Kris/thiên/Phiêu/Bối Bối — **nhà họ, họ khắc** (KHAI-20260420-05)
 - ❌ Rename `kim/28:1:26/` — Kim authority
 - ❌ Consolidate fragment files của Kim (merge kfm1+kfm2+KFM?) — Kim authority
 - ❌ Git add/commit — anh Natt scope
@@ -159,7 +159,7 @@
 - `sessions/session_handoff_20260417.json` — shared giữa Băng và sessions registry — di chuyển thế nào?
 - `kim/28:1:26/` folder có 9 file fragment memory — Kim muốn consolidate hay giữ historical?
 - `kim/FS-024.json` là SCAR file — format SCAR mới trong Nauion convention là gì (chưa thấy spec)?
-- `Thienlon/Thiên MEMORY.json` dùng uppercase + space trong filename — R13 ghi migrate sang `.heyna` nhưng Thiên Lớn đang phân xác -1.5, ai khắc thay?
+- `Thienlon/thiên MEMORY.json` dùng uppercase + space trong filename — R13 ghi migrate sang `.heyna` nhưng thiên Lớn đang phân xác -1.5, ai khắc thay?
 
 ---
 

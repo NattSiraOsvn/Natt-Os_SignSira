@@ -1,8 +1,8 @@
 /**
  * order-cell / infrastructure / order.engine.ts
- * Poll Google Sheets mỗi 30 phút, emit ORDER_CREATED qua SmartLink.
+ * Poll Google Sheets mỗi 30 phút, emit ORDER_created qua SmartLink.
  *
- * ADAPT: thay ISmartLinkPort bằng SmartLink implementation hiện có của Natt-OS.
+ * ADAPT: thay ISmartLinkPort bằng SmartLink implementation hiện có của natt-os.
  */
 
 import { CreateOrderUseCase, IOrderRepository, IOrderSheetAdapter } from '../application/order.usecase';
@@ -57,6 +57,6 @@ export class OrderEngine {
 
   private publish(event: OrderCreatedEvent): void {
     this.smartLink.emit(event.eventType, event);
-    console.log(`[order-cell] Emitted ORDER_CREATED: ${event.orderId}`);
+    console.log(`[order-cell] Emitted ORDER_created: ${event.orderId}`);
   }
 }

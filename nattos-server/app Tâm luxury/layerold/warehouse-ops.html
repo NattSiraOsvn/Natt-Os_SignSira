@@ -123,7 +123,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
         </div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:16px">
           <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--text3);text-transform:uppercase;margin-bottom:14px">Cảnh Báo Tồn Thấp</div>
-          ${[['Kim cương 1ct GIA','2 viên','CRITICAL'],['Vàng 24K','1.2 chỉ','WARN'],['Đá ruby 5ly','3 viên','WARN']].map(r=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:center"><span>${r[0]}</span><span style="display:flex;gap:8px;align-items:center"><span style="font-family:var(--mono);color:var(--amber)">${r[1]}</span><span class="badge ${r[2]==='CRITICAL'?'br':'ba'}">${r[2]}</span></span></div>`).join('')}
+          ${[['Kim cương 1ct GIA','2 viên','CRITICAL'],['Vàng 24K','1.2 chỉ','warn'],['Đá ruby 5ly','3 viên','warn']].map(r=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:center"><span>${r[0]}</span><span style="display:flex;gap:8px;align-items:center"><span style="font-family:var(--mono);color:var(--amber)">${r[1]}</span><span class="badge ${r[2]==='CRITICAL'?'br':'ba'}">${r[2]}</span></span></div>`).join('')}
         </div>
       </div>
     </div>

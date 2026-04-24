@@ -20,9 +20,9 @@ Last 10 commits:
 1439c07 chore(docs): reorg roadloading → docs/specs/roadloading
 d08ef48 chore(governance): archive outdated registries + snapshots
 3f6db78 refactor: move 3 SUPERSEDED artifacts out of src/ → _deprecated/ root
-d24086c docs(memory/bang): Thiên Lớn audit feedback — 3 valid findings + rule SUPERSEDED flag
+d24086c docs(memory/bang): thiên Lớn audit feedback — 3 valid findings + rule SUPERSEDED flag
 ebb92c6 chore(audit): session 20260420 auto reports + phase 1+3 logs
-84fb27c refactor(infra,archive): fix P3 stale export + archive Thiên Lớn pre_wave3 audit
+84fb27c refactor(infra,archive): fix P3 stale export + archive thiên Lớn pre_wave3 audit
 26a16a2 docs(memory/bang): session 20260420 cleanup deliverables
 
 Working tree changes: 1
@@ -224,14 +224,14 @@ event-bus-cell
 index.ts
 notification-cell
 shared-contracts-cell
-smartlink-cell
+SmartLink-cell
 sync-cell
 ```
 
 ## [5] GOVERNANCE ROOT
 
 ```
--rw-r--r--   1 thien  staff   5543 Apr 17 15:52 HIEN-PHAP-Natt-OS-v5.0.anc
+-rw-r--r--   1 thien  staff   5543 Apr 17 15:52 HIEN-PHAP-natt-os-v5.0.anc
 -rw-------   1 thien  staff   3204 Apr  2 01:13 audit-bridge.ts
 -rw-r--r--@  1 thien  staff   2934 Apr  2 01:13 audit-integrity-check.ts
 -rw-r--r--   1 thien  staff  10440 Apr 17 15:52 audit-log.heyna
@@ -249,7 +249,7 @@ sync-cell
 -rw-r--r--   1 thien  staff   8098 Apr 17 15:52 persistence.ts
 -rw-------   1 thien  staff  11431 Apr  2 01:13 qneu.test.ts
 -rw-------   1 thien  staff  11812 Apr  2 01:13 runtime.ts
--rw-r--r--@  1 thien  staff   2494 Apr 13 20:55 smartlink-impulse-check.ts
+-rw-r--r--@  1 thien  staff   2494 Apr 13 20:55 SmartLink-impulse-check.ts
 -rw-------   1 thien  staff   1485 Apr  2 01:13 storage.interface.ts
 -rw-r--r--   1 thien  staff   8151 Apr 17 15:52 system-state.phieu
 -rw-r--r--@  1 thien  staff    236 Mar  5 18:17 tsconfig.qneu.json
@@ -300,14 +300,14 @@ src/governance/memory/bang/0-BOOT-BANG.md
 Active specs in docs/specs/:
 docs/specs/0-BOOT-FAMILY-MAP.md
 docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md
-docs/specs/COLOR_SiraSIGN.md
+docs/specs/COLOR_siraSIGN.md
 docs/specs/MACH_HEYNA_FULL_20260416.md
 docs/specs/MESSAGE_TO_KIM_20260417.md
-docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md
-docs/specs/Natt-OS-PLATFORM-SPEC.anc
-docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md
-docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.md
-docs/specs/Natt-OS_Session_Handoff_2026-03-09.md
+docs/specs/natt-os-GROUND-TRUTH-REPORT.md
+docs/specs/natt-os-PLATFORM-SPEC.anc
+docs/specs/natt-os-SHTT-TECHNICAL-PACKAGE.md
+docs/specs/natt-os_SATELLITE_COLONY_SPEC.md
+docs/specs/natt-os_Session_Handoff_2026-03-09.md
 docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.md
 docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.md
 docs/specs/REPLY_TO_KIM_20260417.md
@@ -315,7 +315,7 @@ docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.md
 docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.md
 docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.md
 docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md
-docs/specs/SPEC_NGON_NGU_Natt-OS_v1.2_NA.md
+docs/specs/SPEC_NGON_NGU_natt-os_v1.2_NA.md
 docs/specs/SPEC_Nauion_Render_Stack_v0.1.md
 docs/specs/SPEC_ONG_MAU_v0.1.md
 docs/specs/THIENBANG_MAPPING_v1_canonical_answers.md
@@ -379,7 +379,7 @@ SPEC_QIINT2_v1.0_NEEDS_REWRITE.md
 ## [10] CANONICAL CHECKPOINT
 
 ```
-OK  [5543B]  src/governance/HIEN-PHAP-Natt-OS-v5.0.anc
+OK  [5543B]  src/governance/HIEN-PHAP-natt-os-v5.0.anc
 OK  [14432B]  src/governance/specs/SPEC_NEN_v1.1.anc
 OK  [28372B]  src/governance/specs/SPEC_NGON_NGU_v1.2.kris
 OK  [13808B]  src/thienbang.si

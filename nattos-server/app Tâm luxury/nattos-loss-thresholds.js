@@ -1,12 +1,12 @@
 /**
- * Natt-OS Loss Threshold Config v1.0
+ * natt-os Loss Threshold Config v1.0
  * Tâm Luxury — Ngưỡng Hao Hụt Gia Công Tối Đa
  *
  * Căn cứ:
  *  - Thực tế sản xuất trang sức vàng Việt Nam
  *  - Nghị định 24/2012/NĐ-CP về kinh doanh vàng
  *  - Tiêu chuẩn ngành kim hoàn TP.HCM
- *  - Điều 12 Hiến Pháp Natt-OS — Ground Truth
+ *  - Điều 12 Hiến Pháp natt-os — Ground Truth
  *
  * Nguyên tắc:
  *  - Hao hụt = (Trước - Sau - Thu hồi) / Trước × 100%
@@ -151,7 +151,7 @@ function getLossThreshold(category, stage) {
 function evaluateLoss(category, stage, actualPct) {
   const t = getLossThreshold(category, stage);
   if (actualPct <= t.max)      return { level: 'OK',       color: '#3dd68c', label: '✅ ĐẠT', threshold: t.max };
-  if (actualPct <= t.critical) return { level: 'WARNING',  color: '#f0a030', label: '⚠️ CẢNH BÁO', threshold: t.max };
+  if (actualPct <= t.critical) return { level: 'warnING',  color: '#f0a030', label: '⚠️ CẢNH BÁO', threshold: t.max };
   return                              { level: 'CRITICAL',  color: '#f05050', label: '🚨 VƯỢT NGƯỠNG CRITICAL', threshold: t.max };
 }
 

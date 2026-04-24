@@ -38,7 +38,7 @@ const FinancialDashboard: React.FC = () => {
     );
     
     await mapSalesEvent({
-      type: 'ORDER_CREATED',
+      type: 'ORDER_created',
       order: mockOrder,
       timestamp: new Date()
     });

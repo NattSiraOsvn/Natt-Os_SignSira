@@ -28,7 +28,7 @@
 Execution chain hiện tại:
 1. `./kernel` (shell launcher, root) → sẽ exec `./bin/nauion-host` khi W1 live
 2. Pre-W1: fallback Node-hosted — `node --loader ./sira-loader.mjs --loader ts-node/esm`
-3. `sira-loader.mjs` **MISSING** (không tồn tại, không cần tạo per `nattos.sira` self-contained)
+3. `sira-loader.mjs` **missing** (không tồn tại, không cần tạo per `nattos.sira` self-contained)
 4. `nattos.sira` (root, commit 2c4fa81 · 2026-04-18 23:16) = **KERNEL ENTRY INBOUND** — self-loader PHASE 1-4:
    - PHASE 1: `detectEsbuild`
    - PHASE 2: `registerNauionHooks`
@@ -44,7 +44,7 @@ Execution chain hiện tại:
 
 ---
 
-## §2. BYPASS POINTS (validator lane)
+## §2. BYpass POINTS (validator lane)
 
 ### §2.1 `nattos.sh §40` line 2215
 
@@ -60,7 +60,7 @@ else
 
 **Bypass:** `npx tsx` direct call vào `.ts` substrate, không qua `.khai` canonical.
 
-**Status:** @deferred marker applied (commit 31762c0 line 2212). Scanner v0.3+ marker-aware → WARN không FAIL.
+**Status:** @deferred marker applied (commit 31762c0 line 2212). Scanner v0.3+ marker-aware → warn không fail.
 
 **Real fix pending:** W1 Nauion Host live → swap `npx tsx "$VALIDATOR"` → `$NAUION_HOST "$CANONICAL"` where `$CANONICAL = "src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"`.
 
@@ -92,7 +92,7 @@ Scanner v0.4 Rule 6 detect `fs.writeFileSync | writeFile | appendFile | createWr
 fs.writeFileSync(filePath, JSON.stringify(output, null, 2));
 ```
 
-**Status:** WARN [TWIN_PERSIST] — QIINT lineage adapter per SPEC_NEN_v1.1 §17.2, không business state storage. K2 Điều 7 resolution commit 46d38dd human-annotate, 652d7fe scanner-machine verify.
+**Status:** warn [TWIN_PERSIST] — QIINT lineage adapter per SPEC_NEN_v1.1 §17.2, không business state storage. K2 Điều 7 resolution commit 46d38dd human-annotate, 652d7fe scanner-machine verify.
 
 ### §3.2 Other substrates (Cell 3 + Cell 4 `bootstrap.ts`)
 
@@ -107,8 +107,8 @@ Rule 6 scan clean cho 2 cells này.
 
 ### §4.1 `npx tsx` live calls
 
-1. `nattos.sh:2215` (§40 FILE EXTENSION COMPLIANCE) — deferred WARN
-2. `scripts/nattos-sh-section45.sh:16` — deferred WARN
+1. `nattos.sh:2215` (§40 FILE EXTENSION COMPLIANCE) — deferred warn
+2. `scripts/nattos-sh-section45.sh:16` — deferred warn
 
 **Total:** 2 live `npx tsx` calls, cùng validator, cùng pattern. Không call khác sau scan v0.4.
 
@@ -125,8 +125,8 @@ Rule 6 scan clean cho 2 cells này.
 
 Per SPEC_NEN_v1.1 §17.2 TwinPersist paradigm:
 - `.nattos-twin/khai/<trace_id>.khai` — KhaiCellSignature persistence (khai-file-persister.ts)
-- `logs/host-audit.ndjson` — host authority audit log (Thiên spec_host_authority §6, pending W1 binary)
-- `logs/cutover-verify.ndjson` — per wave entry/exit verification (Thiên spec_cutover §4)
+- `logs/host-audit.ndjson` — host authority audit log (thiên spec_host_authority §6, pending W1 binary)
+- `logs/cutover-verify.ndjson` — per wave entry/exit verification (thiên spec_cutover §4)
 
 **Current state (pre-W1):** Only `.nattos-twin/khai/` dir potentially exists at runtime. Others created khi Host binary live.
 
@@ -134,7 +134,7 @@ Per SPEC_NEN_v1.1 §17.2 TwinPersist paradigm:
 
 ## §6. GROUND TRUTH VERIFIED
 
-- Scanner v0.4 final run: 0 FAIL / 3 WARN acknowledged
+- Scanner v0.4 final run: 0 fail / 3 warn acknowledged
 - 5 sibling `.khai + .ts` pairs compliant (@state S2 headers)
 - `./nattos.sira` uniqueness enforced
 - 2 bypass @deferred markers + 1 TWIN_PERSIST whitelist recognized

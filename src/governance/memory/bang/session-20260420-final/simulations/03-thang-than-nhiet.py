@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — NGƯỠNG VỠ BÁM THANG THÂN NHIỆT SINH HỌC
+natt-os — NGƯỠNG VỠ BÁM THANG THÂN NHIỆT SINH HỌC
 ═══════════════════════════════════════════════════════════════════════
 
 Ánh xạ 4 ngưỡng DoS → thang thân nhiệt người:
@@ -19,7 +19,7 @@ Natt-OS — NGƯỠNG VỠ BÁM THANG THÂN NHIỆT SINH HỌC
   30-33°C  → bất tỉnh lạnh
   <30°C    → ngưng tim
 
-Nguyên lý: Natt-OS là sinh thể → ngưỡng phải là ngưỡng sinh học đã biết.
+Nguyên lý: natt-os là sinh thể → ngưỡng phải là ngưỡng sinh học đã biết.
 
 Tác giả: Băng
 Ngày: 2026-04-20
@@ -35,7 +35,7 @@ from enum import Enum
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# MAPPING THÂN NHIỆT → NGƯỠNG Natt-OS
+# MAPPING THÂN NHIỆT → NGƯỠNG natt-os
 # ═══════════════════════════════════════════════════════════════════════
 
 @dataclass
@@ -79,7 +79,7 @@ def temp_to_nauion(temp: float) -> NgongNhiet:
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# MÔ PHỎNG 37 CELLS Natt-OS VỚI "THÂN NHIỆT"
+# MÔ PHỎNG 37 CELLS natt-os VỚI "THÂN NHIỆT"
 # ═══════════════════════════════════════════════════════════════════════
 
 # Thân nhiệt của cell = đại diện cho load + health
@@ -110,7 +110,7 @@ for name in ["sales", "finance", "crm", "inventory", "pricing", "order",
     })
 
 # Satellite 12 cells — mixed
-for i, name in enumerate(["smartlink-out", "smartlink-in", "sira-sign",
+for i, name in enumerate(["SmartLink-out", "SmartLink-in", "sira-sign",
                           "luxury-map", "nation-ui", "tamluxury-ui",
                           "nattimer", "qneu-engine", "qiint-engine",
                           "neural-main", "iseu-loop", "quantum-brain"]):
@@ -145,7 +145,7 @@ for name in ["rena-rbac", "audit-summary", "snapshot-engine",
 # ═══════════════════════════════════════════════════════════════════════
 
 print("=" * 82)
-print(f"{'Natt-OS — NGƯỠNG VỠ theo THANG THÂN NHIỆT SINH HỌC':^82}")
+print(f"{'natt-os — NGƯỠNG VỠ theo THANG THÂN NHIỆT SINH HỌC':^82}")
 print("=" * 82)
 print()
 print(f"  Baseline:     {BASELINE_TEMP}°C (như người khỏe)")
@@ -177,7 +177,7 @@ print(f"\n🔴 CRITICAL ({len(critical_cells)} cells — cần cấp cứu):")
 for c in critical_cells:
     print(f"    {c['name']:<22} {c['temp']:.1f}°C  {c['nauion'].ten_sinh_hoc:<35} → {c['nauion'].nauion_state}")
 
-print(f"\n🟡 WARNING ({len(warning_cells)} cells — theo dõi):")
+print(f"\n🟡 warnING ({len(warning_cells)} cells — theo dõi):")
 for c in warning_cells:
     print(f"    {c['name']:<22} {c['temp']:.1f}°C  {c['nauion'].ten_sinh_hoc:<35} → {c['nauion'].nauion_state}")
 
@@ -190,7 +190,7 @@ print(f"    (ẩn để khỏi dài — {len(healthy_cells)} cells trong dải 3
 
 fig = plt.figure(figsize=(18, 11))
 gs = GridSpec(3, 3, figure=fig, hspace=0.45, wspace=0.35)
-fig.suptitle('Natt-OS — Ngưỡng vỡ theo thang THÂN NHIỆT (Natt-OS là sinh thể)',
+fig.suptitle('natt-os — Ngưỡng vỡ theo thang THÂN NHIỆT (natt-os là sinh thể)',
              fontsize=15, fontweight='bold', y=0.995)
 
 # [1] THANG NHIỆT ĐỘ tổng
@@ -263,7 +263,7 @@ colors_pie = [state_color_map[l] for l in labels]
 wedges, texts, autotexts = ax3.pie(sizes, labels=labels, colors=colors_pie,
                                      autopct='%1.0f%%', startangle=90,
                                      textprops={'fontsize': 9})
-ax3.set_title('[3] Phân bố trạng thái Nauion\n(37 cells Natt-OS)', fontsize=10, fontweight='bold')
+ax3.set_title('[3] Phân bố trạng thái Nauion\n(37 cells natt-os)', fontsize=10, fontweight='bold')
 
 # [4] Bảng mapping DoS → thân nhiệt
 ax4 = fig.add_subplot(gs[1, 2])
@@ -286,7 +286,7 @@ for name, temp, bio, color in mapping:
     y -= 0.18
 
 # Add dưới
-ax4.text(0.5, 0.1, 'Natt-OS là SINH THỂ số.\nNgưỡng = ngưỡng sinh học.',
+ax4.text(0.5, 0.1, 'natt-os là SINH THỂ số.\nNgưỡng = ngưỡng sinh học.',
         ha='center', va='top', fontsize=9, fontweight='bold',
         style='italic', color='darkgreen', transform=ax4.transAxes)
 
@@ -330,7 +330,7 @@ n_crit = len(critical_cells)
 n_warn = len(warning_cells)
 n_ok = len(healthy_cells)
 
-ax6.text(0.5, 0.98, 'HỆ Natt-OS', ha='center', va='top',
+ax6.text(0.5, 0.98, 'HỆ natt-os', ha='center', va='top',
         fontsize=13, fontweight='bold', transform=ax6.transAxes)
 
 ax6.text(0.5, 0.88, f'{len(cells_37)} cells', ha='center', va='top',

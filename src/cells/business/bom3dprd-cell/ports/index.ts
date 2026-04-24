@@ -1,1 +1,1 @@
-export * from "./bom3dprd-smartlink.port";
+export * from "./bom3dprd-SmartLink.port";

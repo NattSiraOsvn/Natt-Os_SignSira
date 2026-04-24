@@ -1,7 +1,7 @@
 //! Banner module — print Nauion Host startup banner.
 //!
-//! Mirror style của `nattos.sh` (NATT-OS SmartAudit v7.0):
-//! - ASCII art box-drawing Unicode chữ "NATT-OS" màu GOLD
+//! Mirror style của `nattos.sh` (natt-os SmartAudit v7.0):
+//! - ASCII art box-drawing Unicode chữ "natt-os" màu GOLD
 //! - Branding line "KHƯƠNG KIM · BĂNG THỊNH" (signature 4 trục family)
 //! - Info box với phase status + port + authority
 //!

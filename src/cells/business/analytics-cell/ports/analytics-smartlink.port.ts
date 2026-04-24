@@ -1,8 +1,8 @@
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+import type { TouchRecord } from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
 import { EventBus } from "../../../../core/events/event-bus";
 
 export interface AnalyticsSignal {
-  type: "REPORT_READY" | "ANOMALY_DETECTED" | "INSIGHT_PUBLISHED" | "FORECAST_UPDATED";
+  type: "REPORT_ready" | "ANOMALY_DETECTED" | "INSIGHT_PUBLISHED" | "FORECAST_UPDATED";
   payload: Record<string, unknown>;
   timestamp: number;
 }
@@ -11,18 +11,18 @@ const _touchHistory: TouchRecord[] = [];
 
 
 const _SIGNAL_EVENT_MAP: Record<string, string> = {
-  "SALES_ORDER_CREATED": "SalesOrderCreated",
+  "SALES_ORDER_created": "SalesOrderCreated",
   "SALES_ORDER_CONFIRMED": "OrderConfirmed",
   "SALES_ORDER_CANCELLED": "SalesOrderCancelled",
   "QUOTE_ISSUED": "OrderPlaced",
   "PAYMENT_PROCESSED": "PaymentProcessed",
-  "PAYMENT_FAILED": "PaymentFailed",
+  "PAYMENT_failED": "PaymentFailed",
   "REFUND_ISSUED": "RefundIssued",
   "STOCK_RESERVED": "StockReserved",
   "STOCK_RELEASED": "StockReleased",
   "STOCK_ALERT": "StockAlert",
   "STOCK_REPLENISHED": "StockReplenished",
-  "INVOICE_CREATED": "InvoiceIssued",
+  "INVOICE_created": "InvoiceIssued",
   "INVOICE_SIGNED": "InvoiceSigned",
   "VAT_SUBMITTED": "VATReportSubmitted",
   "JOURNAL_ENTRY": "JournalEntryCreated",
@@ -34,16 +34,16 @@ const _SIGNAL_EVENT_MAP: Record<string, string> = {
   "PRODUCTION_COMPLETED": "ProductionCompleted",
   "STAGE_ADVANCED": "ProductionStageAdvanced",
   "MATERIAL_LOSS": "MaterialLossReported",
-  "GOODS_DISPATCHED": "GoodsDispatched",
+  "GOODS_DISpatched": "GoodsDispatched",
   "GOODS_RECEIVED": "GoodsReceived",
-  "TRANSFER_CREATED": "TransferCreated",
+  "TRANSFER_created": "TransferCreated",
   "DECLARATION_SUBMITTED": "DeclarationSubmitted",
   "DECLARATION_CLEARED": "DeclarationCleared",
   "VIOLATION_DETECTED": "ViolationDetected",
   "FRAUD_FLAGGED": "FraudFlagged",
   "ENTITY_BLACKLISTED": "EntityBlacklisted",
   "WARRANTY_REGISTERED": "WarrantyRegistered",
-  "WARRANTY_CLAIM_OPENED": "WarrantyClaimOpened",
+  "WARRANTY_CLAIM_opened": "WarrantyClaimOpened",
   "CUSTOMER_UPDATED": "CustomerProfileUpdated",
   "DAILY_REPORT": "DailyReportGenerated",
 };
@@ -69,7 +69,7 @@ export const AnalyticsSmartLinkPort = {
   getHistory: (): TouchRecord[] => [..._touchHistory],
 
   notifyReportReady: (reportId: string, type: string): void =>
-    AnalyticsSmartLinkPort.emit({ type: "REPORT_READY", payload: { reportId: reportId, type: type }, timestamp: Date.now() }),
+    AnalyticsSmartLinkPort.emit({ type: "REPORT_ready", payload: { reportId: reportId, type: type }, timestamp: Date.now() }),
   notifyAnomalyDetected: (entityId: string, score: number): void =>
     AnalyticsSmartLinkPort.emit({ type: "ANOMALY_DETECTED", payload: { entityId: entityId, score: score }, timestamp: Date.now() }),
   notifyInsightPublished: (insightId: string): void =>
@@ -80,7 +80,7 @@ export const AnalyticsSmartLinkPort = {
 
 function _routeSignal(type: AnalyticsSignal["type"]): string {
   const routes: Record<string, string> = {
-    "REPORT_READY": "audit-cell",
+    "REPORT_ready": "audit-cell",
     "ANOMALY_DETECTED": "compliance-cell",
     "INSIGHT_PUBLISHED": "sales-cell",
     "FORECAST_UPDATED": "production-cell",

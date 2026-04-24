@@ -9,13 +9,13 @@
 
 ## §A. GROUND TRUTH VERIFY ĐƯỢC
 
-### A.1. INC_FAIL_RENA resolution — 3 alert đều FALSE POSITIVE
-- **§24 RBAC/AUDIT BYPASS** — scanner match JSDoc comment, không phải code thật. `material-issue.guard.ts` + `immune-guard.ts` viết đúng paradigm touch point (void return, no boolean).
+### A.1. INC_fail_RENA resolution — 3 alert đều FALSE POSITIVE
+- **§24 RBAC/AUDIT BYpass** — scanner match JSDoc comment, không phải code thật. `material-issue.guard.ts` + `immune-guard.ts` viết đúng paradigm touch point (void return, no boolean).
 - **Math.imul audit-chain-contract.ts:18** — dead code (0 import), Java String.hashCode placeholder, không phải audit chain thật (chain thật đã fix SHA-256 commit 7f4d297 phiên 17/04).
 - **§23 Điều 7 khai-file-persister.ts:47** — có tag `TWIN_PERSIST: intentional disk write`. Là infrastructure adapter hợp lệ cho QIINT lineage, không phải business state storage.
 
 ### A.2. SPEC NEN v1.1 là canonical foundation
-- File: `docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md` (443 dòng, Băng+Thiên+Anh Natt)
+- File: `docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md` (443 dòng, Băng+thiên+Anh Natt)
 - **REVOKE** SPEC KhaiCell v0.2 (Băng ký 17/04, paradigm sai)
 - Paradigm: KHÔNG cửa/gate/validator. KhaiCell=RÀO mark signature. Observation=MẮT read-only. 4 LAW field integrity. 3 outcome: FALL/DISSIPATE/OSCILLATE.
 - KhaiCell + Observation đã LIVE trong code (commit 2d13161 + ecbb529). 10 files mỗi cell. 3/6 DNA là ĐÚNG cho paradigm mới (không thiếu).

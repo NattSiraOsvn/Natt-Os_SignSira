@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Natt-OS — Fix Part 8 (2 lỗi cuối)"""
+"""natt-os — Fix Part 8 (2 lỗi cuối)"""
 import os
 
 ROOT = os.getcwd()
@@ -8,7 +8,7 @@ def read(p):
 def save(p, c): 
     with open(os.path.join(ROOT, p), 'w', encoding='utf-8') as f: f.write(c)
 
-print("Natt-OS Fix Part 8 — 2 final errors")
+print("natt-os Fix Part 8 — 2 final errors")
 
 # CustomizationRequest.packaging
 c = read("src/types.ts")

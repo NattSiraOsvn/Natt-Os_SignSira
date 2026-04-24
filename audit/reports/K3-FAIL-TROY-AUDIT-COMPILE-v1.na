@@ -5,9 +5,9 @@
 @since 2026-04-24
 @authority-slot bang (Chi Tu, runtime owner per session 20260424)
 
-# K3 FAIL-TROY AUDIT COMPILE v1.0
+# K3 fail-TROY AUDIT COMPILE v1.0
 
-**Scope:** Tong hop bypass patterns toan he Natt-OS theo P3.3 (pending tu handoff 20260417)
+**Scope:** Tong hop bypass patterns toan he natt-os theo P3.3 (pending tu handoff 20260417)
 
 **Audit method:** Read-only scan via regex. KHONG modify code (per memory: "Kim scope, em audit only").
 
@@ -26,7 +26,7 @@
 
 | Pattern | Memory note | Ground truth scan | Verdict |
 |---|---|---|---|
-| AUDIT BYPASS (3 hash conflict) | "Math.imul-fake + SHA-256 + btoa" | 13 mention; 5 in CORE; 3/5 confirmed placeholder | PARTIAL_CLOSED |
+| AUDIT BYpass (3 hash conflict) | "Math.imul-fake + SHA-256 + btoa" | 13 mention; 5 in CORE; 3/5 confirmed placeholder | PARTIAL_CLOSED |
 | RBAC ALWAYS_TRUE (4 patterns) | "4 always-true" | 0 found; RBAC real impl present | FULLY_CLOSED |
 | ESCAPE HATCH (NO_AUTH, SKIP) | (not in note) | 0 found | CLEAN |
 | @ts-nocheck pragma | (not in note) | ~115 files | TECHNICAL_DEBT_NOT_SECURITY |
@@ -36,7 +36,7 @@
 
 ---
 
-## §2. AUDIT BYPASS — 3 HASH CONFLICT (PARTIAL_CLOSED)
+## §2. AUDIT BYpass — 3 HASH CONFLICT (PARTIAL_CLOSED)
 
 ### §2.1 Original threat (per session 20260417)
 
@@ -60,7 +60,7 @@ Top kernel/core implementations:
 - `src/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine.ts` — `createHash("sha256").update(str).digest("hex")`
 - `src/cells/kernel/audit-cell/domain/services/auditchainservice.ts` — `createHash("sha256")`
 - `src/cells/kernel/audit-cell/domain/services/audit-writer.service.ts` — Web Crypto API real
-- `src/governance/moments/registry.ts` — `computeSirasign — canonical JSON serialize then SHA-256`
+- `src/governance/moments/registry.ts` — `computesirasign — canonical JSON serialize then SHA-256`
 
 ### §2.4 Math.imul mentions remaining (13 files, deep review)
 
@@ -74,7 +74,7 @@ Top kernel/core implementations:
 | `src/core/memory/immutable-memory.engine.ts` | 39 | `Math.imul(h, 0x01000193)` (FNV-1a) | session 20260414 |
 | `src/governance/policy/policy-signature.engine.na` | 43 | `Math.imul(h1 ^ ch, 2654435761)` (Murmurhash) | session 20260414 |
 
-**Status:** NOT_BYPASS — ready for crypto provider injection
+**Status:** NOT_BYpass — ready for crypto provider injection
 
 #### §2.4.2 NEEDS FOLLOW-UP CONFIRM (NOT in 20260414 deep scan)
 
@@ -83,7 +83,7 @@ Top kernel/core implementations:
 | File | Line | Pattern | Action |
 |---|---|---|---|
 | `src/core/audit/audit-chain-contract.ts` | 18 | `Math.imul(31, h) + s.charCodeAt(i) | 0` (DJB2 variant) | NEEDS_REVIEW |
-| `src/core/smartlink/smartlink.nattimer.ts` | 105 | `Math.imul(h, 0x01000193)` (FNV-1a) | NEEDS_REVIEW |
+| `src/core/SmartLink/SmartLink.nattimer.ts` | 105 | `Math.imul(h, 0x01000193)` (FNV-1a) | NEEDS_REVIEW |
 
 **Recommendation:** Manual review required. If placeholder per architecture decision: add comment + add to 20260414 placeholder list. If oversight: replace with crypto.createHash('sha256').
 
@@ -101,7 +101,7 @@ Top kernel/core implementations:
 - `src/governance/memory/bang/bangthịnh6.3.0.phieu:110` — `audit_fake_hash: CLOSED — 7f4d297`
 - `src/governance/memory/bang/bangthinhv6.5.0.phieu:134` — historical note
 - `docs/specs/0-BOOT-FAMILY-MAP.na:74` — K3 entry pointer
-- `docs/specs/COLOR_SiraSIGN.na:174` — checklist entry
+- `docs/specs/COLOR_siraSIGN.na:174` — checklist entry
 
 ---
 
@@ -169,21 +169,21 @@ Scan found ~115 files with `// @ts-nocheck — TODO: fix type errors, remove thi
 
 | File | Line | TODO |
 |---|---|---|
-| `src/cells/kernel/rbac-cell/domain/services/auth.service.ts` | 5 | "Replace with SiraSign resonance auth when ready" |
+| `src/cells/kernel/rbac-cell/domain/services/auth.service.ts` | 5 | "Replace with siraSign resonance auth when ready" |
 
-**Status:** Documented technical debt waiting for SiraSign full activation. Tracked separately from K3 bypass concerns.
+**Status:** Documented technical debt waiting for siraSign full activation. Tracked separately from K3 bypass concerns.
 
 ---
 
-## §7. SPEC/CONFIG INTENTIONAL BYPASS NOTATION
+## §7. SPEC/CONFIG INTENTIONAL BYpass NOTATION
 
 Found 2 references to "bypass" as intentional design feature:
 
 | File | Line | Context |
 |---|---|---|
 | `config/sirasign_v2.json` | 18 | `"bypass_protocol": {...}` — designed escape protocol with conditions |
-| `src/cells/kernel/quantum-defense-cell/interface/QuantumDefenseCell.ts` | 37 | `gatekeeperOverride(action: "BYPASS" | "FORCE_LOCK")` — Gatekeeper-only escape with audit |
-| `src/cells/business/casting-cell/domain/casting.boundary.policy.na` | 16 | `'BYPASS_CONSTITUTION'` enum value for policy violation tracking |
+| `src/cells/kernel/quantum-defense-cell/interface/QuantumDefenseCell.ts` | 37 | `gatekeeperOverride(action: "BYpass" | "FORCE_LOCK")` — Gatekeeper-only escape with audit |
+| `src/cells/business/casting-cell/domain/casting.boundary.policy.na` | 16 | `'BYpass_CONSTITUTION'` enum value for policy violation tracking |
 
 **Verdict:** Intentional design with audit trail. NOT bypass exploit.
 
@@ -212,13 +212,13 @@ Scan did not surface a third category meeting bypass-pattern threshold beyond AU
 
 Before K3 marked CLOSED, 2 files need confirm:
 - `src/core/audit/audit-chain-contract.ts:18`
-- `src/core/smartlink/smartlink.nattimer.ts:105`
+- `src/core/SmartLink/SmartLink.nattimer.ts:105`
 
 For each: review whether Math.imul usage is intentional placeholder (add to architecture doc) or oversight (replace with SHA-256).
 
 ### §9.2 OPEN_FOLLOWUPS (not blocking K3)
 
-- `auth.service.ts:5` SiraSign resonance auth migration when ready
+- `auth.service.ts:5` siraSign resonance auth migration when ready
 - `@ts-nocheck` pragma reduction (separate sprint, not K3)
 
 ### §9.3 K3 STATUS RECOMMENDATION

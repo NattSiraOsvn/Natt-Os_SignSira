@@ -3,7 +3,7 @@ import { UserRole, Permission, ModuleID, RolePermissions } from '@/types';
 import { touchBoolean } from "@/core/chromatic/touch-result";
 
 /**
- * Natt-OS AUTHENTICATION & RBAC ENGINE
+ * natt-os AUTHENTICATION & RBAC ENGINE
  * Quản lý ma trận quyền hạn dựa trên Identity Role
  */
 export class AuthService {

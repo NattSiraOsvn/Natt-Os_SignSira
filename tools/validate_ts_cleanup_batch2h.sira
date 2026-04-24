@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.cwd();
-const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na");
+const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_sira_20260424.na");
 
 if (!fs.existsSync(evidence)) {
   console.error("Missing evidence:", evidence);
@@ -13,7 +13,7 @@ if (!fs.existsSync(evidence)) {
 const content = fs.readFileSync(evidence, "utf8");
 
 const required = [
-  "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_Sira",
+  "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_sira",
   "renamed",
   "skipped",
   "patched_refs"
@@ -28,5 +28,5 @@ if (missing.length) {
 }
 
 console.log("TS CLEANUP BATCH2H validation: pass");
-console.log("scope=HEYNA_EVENT_RUNTIME_TRANSLATE_TO_Sira");
+console.log("scope=HEYNA_EVENT_RUNTIME_TRANSLATE_TO_sira");
 console.log("mode=light-compatible migration only");

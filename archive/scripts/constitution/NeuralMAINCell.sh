@@ -7,7 +7,7 @@ touch src/cells/governance/neural-main-cell/capability.manifest.ts
 touch src/cells/governance/neural-main-cell/boundary.rule.ts
 touch src/cells/governance/neural-main-cell/trace.memory.ts
 touch src/cells/governance/neural-main-cell/confidence.score.ts
-touch src/cells/governance/neural-main-cell/smartlink.port.ts
+touch src/cells/governance/neural-main-cell/SmartLink.port.ts
 
 # Tạo các file cho Stability Validator
 touch src/cells/governance/neural-main-cell/core/validator.engine.ts

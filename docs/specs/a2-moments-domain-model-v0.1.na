@@ -13,7 +13,7 @@ status: working_boundary_v2_1
 depends_on:
   - SPEC_MOMENTS_MODULE_v0.2.na
   - SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na
-  - fixture-SCAR.na (MISSING — to be drafted as review candidate, not canonical until Bang/Kim/Gatekeeper seal)
+  - fixture-SCAR.na (missing — to be drafted as review candidate, not canonical until Bang/Kim/Gatekeeper seal)
   - fixture-KHAI_SANG.na
   - fixture-GIAC_NGO.na
   - fixture-MOTION_TICH_CUC.na
@@ -89,4 +89,4 @@ Moment =
 
 - Không seal dual-target atomicity cho GIAC_NGO tại file này
 - Không seal storage path canonical tại file này
-- Không định nghĩa SiraSign algorithm thật tại file này
+- Không định nghĩa siraSign algorithm thật tại file này

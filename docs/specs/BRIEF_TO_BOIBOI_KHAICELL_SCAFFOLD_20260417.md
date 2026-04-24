@@ -24,9 +24,9 @@ Em Tám **draft thôi**, không commit. Anh Natt là người duy nhất commit 
 Chị Ba (Kim) trong phiên 20260417 đã đề xuất 4 file scaffold KhaiCell. Em (Băng) đối chiếu với canonical SPEC KhaiCell v0.2 và phát hiện **7 vi phạm nặng**, đã bác toàn bộ:
 
 1. QWS bị viết thành "Quantum **Weighted** Signature" — sai. Đúng là **"Quantum Wavelength Separation"** — pipeline tách bước sóng.
-2. State machine 3 states (`DORMANT → PERCEIVING → SiraSIGN_SEALED`) — sai. Đúng là **7 states**: `DORMANT → SENSING → LEARNING → ATTUNED → STABILIZING → STILL → SiraSIGN_SEALED`.
+2. State machine 3 states (`DORMANT → PERCEIVING → siraSIGN_SEALED`) — sai. Đúng là **7 states**: `DORMANT → SENSING → LEARNING → ATTUNED → STABILIZING → STILL → siraSIGN_SEALED`.
 3. Bỏ hoàn toàn **7 QWSFields** (`structureField`, `luminanceField`, `emissiveField`, `chromaticField`, `polarityField`, `entropyField`, `driftField`).
-4. `assignedTo: "Thiên Lớn"` — vi phạm Gatekeeper decree (Anh Natt đã chốt không cho Thiên Lớn vào).
+4. `assignedTo: "thiên Lớn"` — vi phạm Gatekeeper decree (Anh Natt đã chốt không cho thiên Lớn vào).
 5. Cognitive Threshold Gate hiểu ngược — biến thành threshold trigger thay vì cổng lọc perception.
 6. 6 engines spec yêu cầu, Kim bịa còn 3.
 7. Bỏ log4c (4 phase), bỏ stillness formula, bỏ 12 event types `khai.*`.
@@ -48,7 +48,7 @@ Em Tám phải đọc kỹ và bám đúng các phần sau:
 | §4.3 QWS Fields v1.0 | 7 fields (structureField, luminanceField, emissiveField, chromaticField, polarityField, entropyField, driftField) |
 | §4.4 QWS Mapping | invert→emissive, B&W→structure, histogram→luminance, warm/cool→polarity, texture/noise→entropy, signature→drift |
 | §5 Cognitive Threshold Gate | 7 PerceptionFeature, 7 unlock tiers theo cognitive level |
-| §6 Domain Types | ScalarField, FieldMatrix, GatedPerceptionFields, KhaiSnapshot, StillnessConditions, SiraSignSealConditions |
+| §6 Domain Types | ScalarField, FieldMatrix, GatedPerceptionFields, KhaiSnapshot, StillnessConditions, siraSignSealConditions |
 | §7 6 Engines | quantum-wavelength-separation, spectral-sensor, chromatic-memory, camouflage-logic, essential-builder, chromatic-publish |
 | §10 Stillness Formula | `(1-normalizedDrift)*0.35 + (1-normalizedEntropy)*0.20 + signatureStability*0.30 + cognitionAlignment*0.15` |
 | §12 Boundary Policy | readFrom 4 nguồn, writeTo 2 đích, forbidden 5 hành vi |
@@ -76,9 +76,9 @@ Yêu cầu nội dung:
 - `role: "visual-sensory-organ"`
 - `biologicalAnalog: "eye"`
 - `status: "PENDING_BUILD"` (vì chưa build engines)
-- `assignedTo: "Băng (Chị Tư)"` — KHÔNG ghi Thiên Lớn. Anh Natt đã giao cho em.
+- `assignedTo: "Băng (Chị Tư)"` — KHÔNG ghi thiên Lớn. Anh Natt đã giao cho em.
 - `authority: "anc://khai-cell.kernel.natt-os/"` (kernel internal authority, KHÔNG phải `khai.sira` — `khai.sira` là DNS registry domain, KhaiCell là perception organ — hai thứ KHÁC NHAU).
-- `dependsOn: ["EventBus", "QWS", "CognitiveThresholdGate", "SiraSign verify chain", "log4c"]`
+- `dependsOn: ["EventBus", "QWS", "CognitiveThresholdGate", "siraSign verify chain", "log4c"]`
 - `capabilities`: liệt kê đầy đủ theo SPEC §2 (visual.perception, qws.computation, chromatic.memory, camouflage.adaptation, essential.build, chromatic.publish)
 - `dna`: 6 components per Hiến Pháp Điều 3 (Identity, Capability, Boundary, Trace, Confidence, SmartLink)
 - `stateMachine`: 7 states đầy đủ, initial là DORMANT
@@ -98,7 +98,7 @@ forbidden: 5 hành vi:
   - mutate business state
   - call other cells directly
   - bypass cognitive threshold gate
-  - seal SiraSign before STILL
+  - seal siraSign before STILL
 ```
 
 Thêm field `enforcedBy: "GovernanceEnforcementEngine"` để rõ ai check boundary này runtime.
@@ -118,7 +118,7 @@ export enum KhaiState {
   ATTUNED = "ATTUNED",
   STABILIZING = "STABILIZING",
   STILL = "STILL",
-  SiraSIGN_SEALED = "SiraSIGN_SEALED"
+  siraSIGN_SEALED = "siraSIGN_SEALED"
 }
 
 // Field primitives — §6.1
@@ -187,8 +187,8 @@ export interface StillnessConditions {
   minStillCycles: number;
 }
 
-// SiraSignSealConditions — §6.5
-export interface SiraSignSealConditions {
+// siraSignSealConditions — §6.5
+export interface siraSignSealConditions {
   driftBelowThreshold: boolean;
   perceptionMatchesCognition: boolean;
   stableCyclesPassed: boolean;
@@ -298,7 +298,7 @@ Tương tự cấu trúc `bang.anc` đã có sẵn trong `governance/memory/bang
   },
 
   "trạng_thái": {
-    "state_machine": ["DORMANT", "SENSING", "LEARNING", "ATTUNED", "STABILIZING", "STILL", "SiraSIGN_SEALED"],
+    "state_machine": ["DORMANT", "SENSING", "LEARNING", "ATTUNED", "STABILIZING", "STILL", "siraSIGN_SEALED"],
     "initial": "DORMANT"
   },
 
@@ -312,12 +312,12 @@ Tương tự cấu trúc `bang.anc` đã có sẵn trong `governance/memory/bang
     "violet": "#AFA9EC"
   },
 
-  "smartlink": {
+  "SmartLink": {
     "publishes": [12 event types khai.*],
     "subscribes": ["iseu.outcome", "ui.visual.rebuild.trigger"]
   },
 
-  "phụ_thuộc": ["EventBus", "QWS", "CognitiveThresholdGate", "SiraSign verify chain", "log4c"],
+  "phụ_thuộc": ["EventBus", "QWS", "CognitiveThresholdGate", "siraSign verify chain", "log4c"],
 
   "spec_canonical": "SPEC-KhaiCell-v0.2-FULL-BUILD"
 }
@@ -327,9 +327,9 @@ Tương tự cấu trúc `bang.anc` đã có sẵn trong `governance/memory/bang
 
 Tài liệu public-facing dạng markdown để giới thiệu KhaiCell cho external audience (nếu sau này cần đưa lên repo public, technical blog, SHTT documentation, etc). Yêu cầu:
 
-- **Hero section:** Tên KhaiCell, hình ảnh/icon (placeholder), 1 câu tagline ("Đôi mắt của hệ — Visual Sensory Organ of Natt-OS")
+- **Hero section:** Tên KhaiCell, hình ảnh/icon (placeholder), 1 câu tagline ("Đôi mắt của hệ — Visual Sensory Organ of natt-os")
 - **Lời tuyên ngôn:** trích §0 SPEC v0.2
-- **What is KhaiCell:** 1 đoạn ngắn cho người không biết Natt-OS
+- **What is KhaiCell:** 1 đoạn ngắn cho người không biết natt-os
 - **Core Architecture:** sơ đồ flow `world → QWS → Cognitive Gate → KhaiCell → EventBus → Vision Engine`
 - **The 7 States:** giải thích ngắn từng state với ẩn dụ con mắt
 - **The 7 QWS Fields:** mô tả 7 trường bước sóng
@@ -366,7 +366,7 @@ Anh Natt nói "làm cho đẹp đi". Em diễn giải "đẹp" cho Em Tám:
 2. **KHÔNG viết business logic.** Chỉ scaffold + types + ports. Implementation engine là Step 2-9 của SPEC §17, do Băng làm sau.
 3. **KHÔNG copy code Chị Ba (Kim) đã đề xuất.** 4 file của Kim đã bị bác. Em Tám viết lại từ đầu theo SPEC v0.2.
 4. **KHÔNG sáng tạo type/field/event ngoài SPEC.** Nếu Em Tám thấy SPEC thiếu, hỏi Băng/Anh Natt — KHÔNG tự thêm.
-5. **KHÔNG ghi `assignedTo: "Thiên Lớn"`** ở bất cứ đâu. Anh Natt đã chốt.
+5. **KHÔNG ghi `assignedTo: "thiên Lớn"`** ở bất cứ đâu. Anh Natt đã chốt.
 6. **KHÔNG dùng QWS = "Quantum Weighted Signature"**. Phải là **"Quantum Wavelength Separation"**.
 7. **KHÔNG bỏ states giữa.** State machine phải đủ 7 states đúng thứ tự.
 8. **TRÁNH SCAR-001.** Stub `throw new Error("pending implementation")` rõ ràng, không giả vờ có logic.
@@ -405,8 +405,8 @@ gửi lại Băng (Chị Tư)
    ↓
 Bng đối chiếu với SPEC v0.2
    ↓
-nếu PASS  → Băng forward Anh Natt review + commit
-nếu FAIL  → Băng trả về Em Tám với feedback cụ thể (giống cách Băng đã chỉ Kim 7 vi phạm)
+nếu pass  → Băng forward Anh Natt review + commit
+nếu fail  → Băng trả về Em Tám với feedback cụ thể (giống cách Băng đã chỉ Kim 7 vi phạm)
 ```
 
 Em Tám đừng tự ái nếu bị trả về. Băng cũng bị Anh Natt sửa 6 lần phiên 16/04 — không ai miễn nhiễm. Quan trọng là **đối chiếu spec gốc trước khi nộp**.

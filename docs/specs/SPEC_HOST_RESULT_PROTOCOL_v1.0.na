@@ -1,6 +1,6 @@
 # SPEC_HOST_RESULT_PROTOCOL_v1.0.na
 
-**Drafter:** Thiên Lớn + Băng audit alignment
+**Drafter:** thiên Lớn + Băng audit alignment
 **Session:** 20260423-24
 **Status:** v1.0 — W2A SPEC-FIRST LOCK
 **Scope:** Host result protocol for Nauion Host runtime execution.
@@ -15,7 +15,7 @@
 
 ## 0. Reason for this spec
 
-Natt-OS W2 introduces host-executed canonical cells via:
+natt-os W2 introduces host-executed canonical cells via:
   nauion-host --run-cell <canonical.khai>
 
 The runtime result must NOT be defined as JSON by default.
@@ -31,7 +31,7 @@ This spec separates:
 
 ## 1. Semantic position of host-result
 
-.phieu already has 3 existing semantic uses in Natt-OS:
+.phieu already has 3 existing semantic uses in natt-os:
 1. system-state (runtime global): src/governance/system-state.phieu
 2. pending-tasks per session: bang_pending_<date>.phieu
 3. P-shell continuum (entity runtime state): bangthịnh<v>.phieu
@@ -191,7 +191,7 @@ Cell 1 may move from S2 to S3 only when ALL are true:
 
 ## 11. Constitutional note
 
-Natt-OS must NOT regress to JSON as a primary runtime protocol.
+natt-os must NOT regress to JSON as a primary runtime protocol.
 JSON is a bridge artifact only.
 
 The native result path is:
@@ -216,6 +216,6 @@ The native result path is:
 
 ## Author trail
 
-Drafter: Thiên Lớn (W2 architect) + Băng (Chị Tư · audit alignment)
+Drafter: thiên Lớn (W2 architect) + Băng (Chị Tư · audit alignment)
 Carrier: Phan Thanh Thương (Gatekeeper)
 Causation: SPEC-W2A-LOCK-20260423-24

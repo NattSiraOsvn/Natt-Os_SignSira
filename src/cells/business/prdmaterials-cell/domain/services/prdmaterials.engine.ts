@@ -15,7 +15,7 @@ import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '@/core/events/typed-eventbus';
 import { createLap, markDefect, Lap, LapItem } from '../prdmaterials.entity';
 import { assessPrdMaterialsConfidence } from './prdmaterials.confidence';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 
 const _laps   = new Map<string, Lap>();   // key = orderId
 const _touch: TouchRecord[] = [];
@@ -75,7 +75,7 @@ EventBus.subscribe('StockReserved' as any, (envelope: any) => {
   if (!lap) {
     // Lap chưa tạo (đơn hot) → tạo ngay
     _emit('audit-cell', 'AuditLogged', {
-      orderId: p.orderId, event: 'LAP_CREATED_ON_DEMAND', note: 'no prior reserve',
+      orderId: p.orderId, event: 'LAP_created_ON_DEMAND', note: 'no prior reserve',
     });
     return;
   }

@@ -184,13 +184,13 @@ const MasterDashboard: React.FC<MasterDashboardProps> = ({ metrics, actionLogs, 
                <button className="w-full mt-6 py-4 bg-white/5 border border-white/10 text-gray-400 text-[10px] font-black uppercase rounded-xl hover:text-cyan-400 transition-all shrink-0">Chi tiết Sổ cái Thuế</button>
             </div>
 
-            {/* AI ADVISORY - Thiên STRATEGIC */}
+            {/* AI ADVISORY - thiên STRATEGIC */}
             <div className="flex-1 ai-panel p-10 flex flex-col items-center text-center bg-gradient-to-br from-amber-500/10 to-transparent border-amber-500/20 relative shadow-2xl overflow-hidden group">
                <div className="absolute top-0 right-0 p-6 opacity-[0.03] text-9xl group-hover:opacity-[0.05] transition-opacity">🏛️</div>
                <AIAvatar personaId={PersonaID.THIEN} size="lg" isThinking={false} />
-               <h4 className="mt-8 ai-sub-headline text-amber-500 italic">TỔNG THAM MƯU Thiên</h4>
+               <h4 className="mt-8 ai-sub-headline text-amber-500 italic">TỔNG THAM MƯU thiên</h4>
                <div className="mt-6 p-6 bg-black/60 rounded-[2.5rem] border border-white/5 italic font-light text-gray-400 text-[13px] leading-relaxed relative z-10 shadow-inner">
-                  "Thưa Anh Natt, Robot đã đồng bộ **52 cột tờ khai**. Thiên phát hiện chênh lệch thuế VAT hàng nhập khẩu 1.5% tại Shard HK-2026. Anh nên thực hiện lệnh **AUDIT SCAN** ngay."
+                  "Thưa Anh Natt, Robot đã đồng bộ **52 cột tờ khai**. thiên phát hiện chênh lệch thuế VAT hàng nhập khẩu 1.5% tại Shard HK-2026. Anh nên thực hiện lệnh **AUDIT SCAN** ngay."
                </div>
                <div className="mt-8 w-full space-y-3 relative z-10">
                   <button className="w-full py-4 bg-amber-500 text-black font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-amber-400 shadow-xl transition-all active:scale-95">XÁC THỰC SHARD 2026</button>

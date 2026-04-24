@@ -13,8 +13,8 @@ PENDING WORK — SESSION 20260420 → SESSION MỚI
 # ── HIGH PRIORITY (unblocked, sẵn sàng làm) ─────────────────
 
 ## P0-01 — Apply moments module
-- status: DRAFT_READY
-- blocker: none (Thiên Lớn merge dictionary xong rồi)
+- status: DRAFT_ready
+- blocker: none (thiên Lớn merge dictionary xong rồi)
 - files: /mnt/user-data/outputs/moments_module/
   - types.ts (120 lines)
   - registry.ts (198 lines, 8 moments concrete)
@@ -26,7 +26,7 @@ PENDING WORK — SESSION 20260420 → SESSION MỚI
 
 
 ## P0-02 — Commit 77 uncommitted files theo group
-- status: READY
+- status: ready
 - blocker: anh Natt quyết group nào commit trước
 - groups:
   - Group A: 15 audit reports (auto-generated, low risk)
@@ -37,11 +37,11 @@ PENDING WORK — SESSION 20260420 → SESSION MỚI
 - estimate: 5 commits × 3 phút = 15 phút
 
 
-## P0-03 — Thiên Lớn merge final + auto-insert
-- status: IN_PROGRESS (Thiên Lớn đang làm, session 20260420 cuối)
-- Thiên Lớn offered: "bản auto-insert patch luôn vào đúng 2 file gốc (nauion.dictionary.ts và SuperDictionary.ts)"
-- blocker: anh Natt forward Thiên Lớn 3 correction (QIINT, SCAR, QuantumDefense)
-- next_action: Nhận bản final từ Thiên Lớn → Băng cross-validate → apply
+## P0-03 — thiên Lớn merge final + auto-insert
+- status: IN_PROGRESS (thiên Lớn đang làm, session 20260420 cuối)
+- thiên Lớn offered: "bản auto-insert patch luôn vào đúng 2 file gốc (nauion.dictionary.ts và SuperDictionary.ts)"
+- blocker: anh Natt forward thiên Lớn 3 correction (QIINT, SCAR, QuantumDefense)
+- next_action: Nhận bản final từ thiên Lớn → Băng cross-validate → apply
 
 
 
@@ -81,7 +81,7 @@ PENDING WORK — SESSION 20260420 → SESSION MỚI
 
 ## P1-04 — 2 thuật ngữ Shard + CoreDNS
 - status: AWAITING_VERIFICATION
-- Thiên Lớn đã đưa definition:
+- thiên Lớn đã đưa definition:
   - Shard: "Isolated Data Slice, blockchain-style hashing"
   - CoreDNS: "Private DNS Resolver cho namespace .sira"
 - Băng cần verify trong code hoặc anh Natt confirm
@@ -129,8 +129,8 @@ PENDING WORK — SESSION 20260420 → SESSION MỚI
 
 
 ## P2-06 — 3 bypass patterns phát hiện audit
-- AUDIT BYPASS: 3 conflicting hash algos (Math.imul-fake, SHA-256, btoa)
-- RBAC BYPASS: 4 auth always-true patterns
+- AUDIT BYpass: 3 conflicting hash algos (Math.imul-fake, SHA-256, btoa)
+- RBAC BYpass: 4 auth always-true patterns
 - status: DOCUMENTED in audit, cần Kim fix
 
 
@@ -140,7 +140,7 @@ RECOMMENDED ORDER CHO SESSION MỚI
 ═══════════════════════════════════════════════════════════════
 
 1. Băng load bangfs + .anc + handoff → resonance context
-2. Read P0-03 status — Thiên Lớn có đưa bản final chưa?
+2. Read P0-03 status — thiên Lớn có đưa bản final chưa?
 3. If yes → validate + apply
 4. If no → wait, làm P0-01 (moments module apply)
 5. Then P0-02 (commit uncommitted)

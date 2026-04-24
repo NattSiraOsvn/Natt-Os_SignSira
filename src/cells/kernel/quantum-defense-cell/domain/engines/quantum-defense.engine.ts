@@ -1,5 +1,5 @@
 /**
- * Natt-OS Quantum Defense Engine v1.0
+ * natt-os Quantum Defense Engine v1.0
  * Hệ miễn dịch thị giác — build từ spec 12 sections
  * 
  * Không phải spec nữa. Đây là code thật.
@@ -122,7 +122,7 @@ export class QuantumDefenseEngine {
         this.emitChromaticSignal(source_cell, 'risk', trigger);
         break;
 
-      case ResponseType.EMIT_WARNING:
+      case ResponseType.EMIT_warnING:
         this.emitChromaticSignal(source_cell, 'warning', trigger);
         break;
 

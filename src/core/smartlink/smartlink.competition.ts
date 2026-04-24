@@ -1,7 +1,7 @@
 /**
- * Natt-OS SmartLink — Pattern Competition Layer
+ * natt-os SmartLink — Pattern Competition Layer
  * ════════════════════════════════════════════════════════
- * src/core/smartlink/smartlink.competition.ts
+ * src/core/SmartLink/SmartLink.competition.ts
  *
  * Pattern competition = cơ chế chọn lọc tự nhiên của mạng sợi.
  *
@@ -22,8 +22,8 @@
  * pattern competition là cơ chế hệ "chọn" pattern nào được lan xa hơn.
  */
 
-import type { TouchRecord } from './smartlink.point';
-import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
+import type { TouchRecord } from './SmartLink.point';
+import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -256,16 +256,16 @@ function _getRegisteredCellIds(): string[] {
 }
 
 /*
- * NOTE — cần thêm 1 method vào SmartLinkCell trong smartlink.stabilizer.ts:
+ * NOTE — cần thêm 1 method vào SmartLinkCell trong SmartLink.stabilizer.ts:
  *
  * static getRegisteredCellIds(): string[] {
  *   return Array.from(_points.keys());
  * }
  *
- * Không thêm ở đây vì smartlink.stabilizer.ts là file riêng.
+ * Không thêm ở đây vì SmartLink.stabilizer.ts là file riêng.
  * Anh copy lệnh này vào terminal để patch:
  *
  * sed -i '' '/static getPoint(cellId: string)/i\
  *   static getRegisteredCellIds(): string[] { return Array.from(_points.keys()); }\
- * ' src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts
+ * ' src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer.ts
  */

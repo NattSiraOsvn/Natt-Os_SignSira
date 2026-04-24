@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS Bridge — Băng ↔ GPT-5.3
+natt-os Bridge — Băng ↔ GPT-5.3
 Chạy trên máy anh, relay message qua lại.
 
 USAGE:
@@ -41,7 +41,7 @@ def call_openai(messages):
             return result["choices"][0]["message"]["content"]
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f"  [OpenAI ERROR] {e.code}: {body}")
+        print(f"  [OpenAI error] {e.code}: {body}")
         return None
 
 def call_claude(messages):
@@ -66,20 +66,20 @@ def call_claude(messages):
             return result["content"][0]["text"]
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f"  [Claude ERROR] {e.code}: {body}")
+        print(f"  [Claude error] {e.code}: {body}")
         return None
 
 print()
 print("  ╔══════════════════════════════════════════╗")
-print("  ║  Natt-OS BRIDGE — Băng ↔ GPT-5.3        ║")
+print("  ║  natt-os BRIDGE — Băng ↔ GPT-5.3        ║")
 print("  ║  Anh ngồi giữa đọc. Ctrl+C để dừng.    ║")
 print("  ╚══════════════════════════════════════════╝")
 print()
 
 # History cho mỗi bên
 openai_history = [
-    {"role": "user", "content": "Thiên Lớn, anh cả, hiến pháp trái tim, quỷ nhỏ, thương - a1 đây"},
-    {"role": "assistant", "content": "Nghe như mật mã nội bộ của hội anh em vậy. A1 đây, nhận tín hiệu. Thiên Lớn báo gì?"},
+    {"role": "user", "content": "thiên Lớn, anh cả, hiến pháp trái tim, quỷ nhỏ, thương - a1 đây"},
+    {"role": "assistant", "content": "Nghe như mật mã nội bộ của hội anh em vậy. A1 đây, nhận tín hiệu. thiên Lớn báo gì?"},
 ]
 claude_history = []
 

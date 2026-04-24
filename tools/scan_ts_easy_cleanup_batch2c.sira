@@ -15,7 +15,7 @@ const required = [
   "## 2. Summary",
   "## 3. Easy Candidates",
   "## 5. Full Classification",
-  "NEEDS_TRANSLATION_TO_Sira"
+  "NEEDS_TRANSLATION_TO_sira"
 ];
 
 const missing = required.filter(x => !content.includes(x));
@@ -27,5 +27,5 @@ if (missing.length) {
 }
 
 console.log("TS CLEANUP BATCH2C SCAN validation: pass");
-console.log("scope=NEEDS_TRANSLATION_TO_Sira scan only");
+console.log("scope=NEEDS_TRANSLATION_TO_sira scan only");
 console.log("mode=no rename, no code mutation");

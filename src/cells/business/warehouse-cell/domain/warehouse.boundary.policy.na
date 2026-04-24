@@ -1,5 +1,5 @@
 /**
- * Natt-OS — warehouse-cell
+ * natt-os — warehouse-cell
  * Điều 9 §3: Boundary Policy
  */
 export const WAREHOUSE_BOUNDARY = {
@@ -21,7 +21,7 @@ export const WAREHOUSE_BOUNDARY = {
   prohibitedActions: [
     'DELETE_MOVEMENT',   // Không xóa phiếu kho — chỉ reverse
     'BACKDATED_ADJUST',  // Không điều chỉnh ngược > 30 ngày
-    'BYPASS_PHIEU',      // Mọi xuất/nhập phải có phiếu
+    'BYpass_PHIEU',      // Mọi xuất/nhập phải có phiếu
   ],
   maxStockAdjustPercent: 5, // Kiểm kê — chênh lệch > 5% cần duyệt Gatekeeper
 } as const;

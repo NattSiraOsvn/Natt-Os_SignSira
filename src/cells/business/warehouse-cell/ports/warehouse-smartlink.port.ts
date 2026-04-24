@@ -1,7 +1,7 @@
-// warehouse-cell/ports/warehouse-smartlink.port.ts
+// warehouse-cell/ports/warehouse-SmartLink.port.ts
 // Wave 1 — Thêm INGEST signals routing theo SCAR FS-018
 
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 import { EventBus } from '../../../../core/events/event-bus';
 
 // ── Outbound signals (giao tiếp ra ngoài) ──
@@ -16,7 +16,7 @@ export type WarehouseOutboundSignal =
   | 'STOCK_ALERT'        // → production-cell + compliance-cell
   // Kho vào/ra
   | 'GOODS_RECEIVED'     // → inventory-cell
-  | 'GOODS_DISPATCHED'   // → order-cell
+  | 'GOODS_DISpatched'   // → order-cell
   | 'NHAP_KHO_DONE'      // → finance-cell (bút toán Nợ 152/156 Có 331)
   | 'XUAT_KHO_DONE'      // → finance-cell (bút toán Nợ 632 Có 155/156)
   | 'LOCATION_UPDATED'   // → inventory-cell
@@ -41,7 +41,7 @@ function _routeSignal(type: WarehouseOutboundSignal): string {
     'STOCK_UPDATED':     'inventory-cell',
     'STOCK_ALERT':       'compliance-cell',
     'GOODS_RECEIVED':    'inventory-cell',
-    'GOODS_DISPATCHED':  'order-cell',
+    'GOODS_DISpatched':  'order-cell',
     'NHAP_KHO_DONE':     'finance-cell',
     'XUAT_KHO_DONE':     'finance-cell',
     'LOCATION_UPDATED':  'inventory-cell',
@@ -60,7 +60,7 @@ const _EVENT_MAP: Partial<Record<WarehouseOutboundSignal, string>> = {
   'STOCK_UPDATED':     'WAREHOUSE.STOCK_UPDATED',
   'STOCK_ALERT':       'WAREHOUSE.STOCK_ALERT',
   'GOODS_RECEIVED':    'GoodsReceived',
-  'GOODS_DISPATCHED':  'GoodsDispatched',
+  'GOODS_DISpatched':  'GoodsDispatched',
   'NHAP_KHO_DONE':     'WAREHOUSE.NHAP_KHO_DONE',
   'XUAT_KHO_DONE':     'WAREHOUSE.XUAT_KHO_DONE',
   'LOCATION_UPDATED':  'WAREHOUSE.LOCATION_UPDATED',
@@ -104,7 +104,7 @@ export const WarehouseSmartLinkPort = {
   notifyGoodsReceived:    (shipmentId: string, items: string[]) =>
     WarehouseSmartLinkPort.emit({ type: 'GOODS_RECEIVED',    payload: { shipmentId, items }, timestamp: Date.now() }),
   notifyGoodsDispatched:  (shipmentId: string, orderId: string) =>
-    WarehouseSmartLinkPort.emit({ type: 'GOODS_DISPATCHED',  payload: { shipmentId, orderId }, timestamp: Date.now() }),
+    WarehouseSmartLinkPort.emit({ type: 'GOODS_DISpatched',  payload: { shipmentId, orderId }, timestamp: Date.now() }),
   notifyNhapKhoDone:      (orderId: string, maHang: string, weight: number) =>
     WarehouseSmartLinkPort.emit({ type: 'NHAP_KHO_DONE',     payload: { orderId, maHang, weight }, timestamp: Date.now() }),
   notifyXuatKhoDone:      (orderId: string, maHang: string, weight: number) =>

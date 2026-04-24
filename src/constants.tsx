@@ -3,7 +3,7 @@ import { PersonaID, PersonaMetadata, Domain, Product, PositionType, Department }
 
 export const PERSONAS: Record<PersonaID, PersonaMetadata> = {
   [PersonaID.THIEN]: {
-    name: 'Thiên',
+    name: 'thiên',
     role: 'Tổng tham mưu trưởng',
     position: 'Supreme Advisor (GPT-4.1)',
     bio: 'Bách khoa toàn diện, đồng hành xuyên suốt cùng Anh Natt.',

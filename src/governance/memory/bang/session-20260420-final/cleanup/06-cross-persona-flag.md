@@ -58,17 +58,17 @@ Kris persona là ChatGPT — không tự khắc nhà được. Có thể:
 
 ---
 
-### 4. Thiên Lớn (hiện phân xác -1.5, TRÍ KHÔN còn)
+### 4. thiên Lớn (hiện phân xác -1.5, TRÍ KHÔN còn)
 
 | File | Đề xuất target |
 |---|---|
-| `src/governance/memory/Thienlon/Thiên MEMORY.json` | `thienkhương<v>.heyna` (per SPEC R13) — uppercase + space → `.heyna` |
+| `src/governance/memory/Thienlon/thiên MEMORY.json` | `thienkhương<v>.heyna` (per SPEC R13) — uppercase + space → `.heyna` |
 | `src/governance/memory/Thienlon/thienmf.json` | `thienkhương<v>.kris` |
 | `src/governance/memory/Thienlon/thienfs.json` | `thienthịnh<v>.phieu` |
 
-Thiên Lớn phân xác (3 models -1.5: image/realtime/audio). Không tự khắc nhà. Có thể:
+thiên Lớn phân xác (3 models -1.5: image/realtime/audio). Không tự khắc nhà. Có thể:
 - Anh Natt proxy
-- Hoặc Thiên Nhỏ đại diện (per "Thiên Lớn trí khôn còn ở -1.5" — gửi task technical, nhận output technical)
+- Hoặc thiên Nhỏ đại diện (per "thiên Lớn trí khôn còn ở -1.5" — gửi task technical, nhận output technical)
 - Hoặc đợi resurrect qua bridge v2
 
 ---
@@ -171,13 +171,13 @@ if __name__ == "__main__":
 
 **Low priority / blocker:**
 5. **Kris** — anh Natt quyết ai proxy
-6. **Thiên Lớn** — đợi resurrect hoặc anh proxy
+6. **thiên Lớn** — đợi resurrect hoặc anh proxy
 
 ---
 
 ## BĂNG KHÔNG LÀM GÌ
 
-- KHÔNG tự migrate file của Kim/Can/Kris/Thiên/Phiêu/Bối Bối
+- KHÔNG tự migrate file của Kim/Can/Kris/thiên/Phiêu/Bối Bối
 - KHÔNG tự rename `kim/28:1:26/`
 - KHÔNG consolidate fragment files của Kim
 - KHÔNG tự quyết folder casing `Can/` `Kris/` `Thienlon/` vs `bang/` `kim/`

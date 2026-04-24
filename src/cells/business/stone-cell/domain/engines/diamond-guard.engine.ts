@@ -1,5 +1,5 @@
 /**
- * Natt-OS — stone-cell
+ * natt-os — stone-cell
  * DiamondGuardEngine — Cross-check NK kim cương 3 chiều
  *
  * SOURCE HIERARCHY (Ground Truth):

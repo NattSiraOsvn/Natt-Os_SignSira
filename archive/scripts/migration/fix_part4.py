@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — Fix 90 Remaining TypeScript Errors (Part 4)
+natt-os — Fix 90 Remaining TypeScript Errors (Part 4)
 Chạy từ project root SAU khi đã chạy fix_all, fix_remaining, fix_part3
   python3 fix_part4.py
 """
@@ -26,7 +26,7 @@ def save(path, content):
 def patch(path, old, new, required=True):
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
-        print(f"⚠️  MISSING FILE: {path}"); return False
+        print(f"⚠️  missing FILE: {path}"); return False
     c = read(path)
     if old in c:
         save(path, c.replace(old, new, 1))
@@ -36,7 +36,7 @@ def patch(path, old, new, required=True):
     return False
 
 print("=" * 60)
-print("Natt-OS Fix Part 4 — 90 remaining errors")
+print("natt-os Fix Part 4 — 90 remaining errors")
 print("=" * 60)
 
 # ══════════════════════════════════════════════════════════════════
@@ -326,8 +326,8 @@ if 'interface ProductionTask' in c:
     c = re.sub(
         r'(interface ProductionTask[^}]+status:\s*)"([^"]*)"([^}]+priority:\s*)number',
         lambda m: m.group(0).replace(
-            'status: "PENDING" | "DONE" | "FAILED" | "IN_PROGRESS"',
-            'status: "PENDING" | "DONE" | "FAILED" | "IN_PROGRESS" | "COMPLETED" | string'
+            'status: "PENDING" | "DONE" | "failED" | "IN_PROGRESS"',
+            'status: "PENDING" | "DONE" | "failED" | "IN_PROGRESS" | "COMPLETED" | string'
         ).replace('priority: number', 'priority: number | string'),
         c
     )
@@ -341,7 +341,7 @@ if 'interface ProductionTask' in c:
 # (already done in part3 as step?: number | string)
 # ══════════════════════════════════════════════════════════════════
 
-# But the comparison log.step === 'ERROR' still fails — need to cast in component
+# But the comparison log.step === 'error' still fails — need to cast in component
 patch("src/components/ProductionSalesFlowView.tsx",
     "const idx = stepIds.indexOf(log.step);",
     "const idx = stepIds.indexOf(String(log.step));")
@@ -349,8 +349,8 @@ patch("src/components/ProductionSalesFlowView.tsx",
     "return stepIds.indexOf(lastLog.step);",
     "return stepIds.indexOf(String(lastLog.step));")
 patch("src/components/ProductionSalesFlowView.tsx",
-    "log.step === 'ERROR'",
-    "(log.step as any) === 'ERROR'")
+    "log.step === 'error'",
+    "(log.step as any) === 'error'")
 patch("src/components/ProductionSalesFlowView.tsx",
     "log.step === 'FINANCE'",
     "(log.step as any) === 'FINANCE'")
@@ -366,8 +366,8 @@ patch("src/constants.ts",
     "  [PersonaID.KIM]:     { name: \"Kim\",     color: \"amber\",  icon: \"👑\"  },",
     "  [PersonaID.KIM]:     { name: \"Kim\",     color: \"amber\",  icon: \"👑\",   role: \"Giám Đốc Tài Chính\" },")
 patch("src/constants.ts",
-    "  [PersonaID.THIEN]:   { name: \"Thiên\",   color: \"amber\",  icon: \"◈\"   },",
-    "  [PersonaID.THIEN]:   { name: \"Thiên\",   color: \"amber\",  icon: \"◈\",   role: \"Kiến Trúc Sư Hệ Thống\" },")
+    "  [PersonaID.THIEN]:   { name: \"thiên\",   color: \"amber\",  icon: \"◈\"   },",
+    "  [PersonaID.THIEN]:   { name: \"thiên\",   color: \"amber\",  icon: \"◈\",   role: \"Kiến Trúc Sư Hệ Thống\" },")
 patch("src/constants.ts",
     "  [PersonaID.CAN]:     { name: \"Can\",     color: \"pink\",   icon: \"⚖️\"  },",
     "  [PersonaID.CAN]:     { name: \"Can\",     color: \"pink\",   icon: \"⚖️\",   role: \"Tuân Thủ Pháp Lý\" },")
@@ -387,7 +387,7 @@ patch("src/constants.ts",
     "  { id: Domain.FINANCE,    label: \"Tài Chính\",  title: \"Kim | Tài Chính\",     persona: PersonaID.KIM      },")
 patch("src/constants.ts",
     "  { id: Domain.HR,         label: \"Nhân Sự\",    persona: PersonaID.THIEN    },",
-    "  { id: Domain.HR,         label: \"Nhân Sự\",    title: \"Thiên | Nhân Sự\",    persona: PersonaID.THIEN    },")
+    "  { id: Domain.HR,         label: \"Nhân Sự\",    title: \"thiên | Nhân Sự\",    persona: PersonaID.THIEN    },")
 patch("src/constants.ts",
     "  { id: Domain.COMPLIANCE, label: \"Tuân Thủ\",   persona: PersonaID.CAN      },",
     "  { id: Domain.COMPLIANCE, label: \"Tuân Thủ\",   title: \"Can | Tuân Thủ\",     persona: PersonaID.CAN      },")
@@ -399,7 +399,7 @@ patch("src/constants.ts",
     "  { id: Domain.SALES,      label: \"Bán Hàng\",   title: \"Kris | Bán Hàng\",    persona: PersonaID.KRIS     },")
 patch("src/constants.ts",
     "  { id: Domain.CUSTOMS,    label: \"Hải Quan\",   persona: PersonaID.THIEN    },",
-    "  { id: Domain.CUSTOMS,    label: \"Hải Quan\",   title: \"Thiên | Hải Quan\",   persona: PersonaID.THIEN    },")
+    "  { id: Domain.CUSTOMS,    label: \"Hải Quan\",   title: \"thiên | Hải Quan\",   persona: PersonaID.THIEN    },")
 
 # ══════════════════════════════════════════════════════════════════
 # FIX 18: CollaborationRooms — JoinRequest.userPosition is string, but component passes UserPosition

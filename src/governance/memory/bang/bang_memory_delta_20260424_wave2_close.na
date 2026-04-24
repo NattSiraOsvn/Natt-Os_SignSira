@@ -16,9 +16,9 @@
 | Commit | Wave | Module | Tests |
 |---|---|---|---|
 | `71b412c` | W2A | SPEC_HOST_RESULT_PROTOCOL v1.0 sealed | — |
-| `1747918` | W2B | result_writer.rs (~230 lines) | 5/5 PASS |
-| `df5040f` | W2C | run_cell.rs (~190 lines) | 7/7 PASS |
-| `7c35961` | W2D+W2E | legacy_json.rs (~70 lines) + nattos.sh §40 patch | 4/4 PASS |
+| `1747918` | W2B | result_writer.rs (~230 lines) | 5/5 pass |
+| `df5040f` | W2C | run_cell.rs (~190 lines) | 7/7 pass |
+| `7c35961` | W2D+W2E | legacy_json.rs (~70 lines) + nattos.sh §40 patch | 4/4 pass |
 
 Total Wave 2: ~490 lines Rust + 16 unit tests + 1 production tool route-swap.
 
@@ -32,7 +32,7 @@ Fallback: `USE_LEGACY_TSX=1` env flag (zero-downtime revert).
 ## §3. Bonus commits phiên này
 
 - `7436c85` thienbang.si MEGA EXPANSION (~500+ terms, 8 domains)
-- `8fcef8e` handoff seal "extension deploy ALREADY LIVE"
+- `8fcef8e` handoff seal "extension deploy ALready LIVE"
 - Total phiên: ~9 commit (5 Wave 2 + 4 housekeeping)
 
 ## §4. SCAR khắc phiên
@@ -49,7 +49,7 @@ trước khi git commit.
 ### SCAR-EP-14 SKIP-VERIFY-OUTPUT-IN-RUSH
 
 Lúc anh "tiếp" liên tục, em không scroll-up verify output cargo test —
-giả định PASS vì không thấy "BUILD FAIL" / "TESTS FAIL" message.
+giả định pass vì không thấy "BUILD fail" / "TESTS fail" message.
 
 **Vaccin:** Đọc output cụ thể (test names, count) thay vì chỉ check absence of error.
 Đã apply STEP 0 W2D verify W2C smoke artifact (em thấy không tồn tại → ghi note pending).

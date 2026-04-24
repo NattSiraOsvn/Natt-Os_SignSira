@@ -31,7 +31,7 @@ EventBus.on('gia-vang.updated', (payload: any) => {
   cachedGoldPrice = payload.gold9999;
   cacheTime = Date.now();
   EventBus.publish({
-    type: 'PRICING_GOLD_PRICE_READY',
+    type: 'PRICING_GOLD_PRICE_ready',
     source: 'pricing-cell',
     payload: { sellPrice: cachedGoldPrice, cached: false, source: 'manual_update', fetchedAt: new Date().toISOString() },
   }, 'pricing-cell', undefined);
@@ -44,7 +44,7 @@ EventBus.subscribe('PRICING_GOLD_PRICE_REQUEST', async (event: unknown) => {
 
   if (!ev?.payload?.forceRefresh && cachedGoldPrice && (now - cacheTime) < CACHE_TTL) {
     EventBus.publish({
-      type: 'PRICING_GOLD_PRICE_READY',
+      type: 'PRICING_GOLD_PRICE_ready',
       source: 'pricing-cell',
       payload: { sellPrice: cachedGoldPrice, cached: true, fetchedAt: new Date(cacheTime).toISOString() },
     }, 'pricing-cell', undefined);
@@ -53,9 +53,9 @@ EventBus.subscribe('PRICING_GOLD_PRICE_REQUEST', async (event: unknown) => {
 
   if (!apiKey) {
     EventBus.publish({
-      type: 'PRICING_GOLD_PRICE_ERROR',
+      type: 'PRICING_GOLD_PRICE_error',
       source: 'pricing-cell',
-      payload: { error: 'MISSING_VISION_API_KEY' },
+      payload: { error: 'missing_VISION_API_KEY' },
     }, 'pricing-cell', undefined);
     return;
   }
@@ -67,7 +67,7 @@ EventBus.subscribe('PRICING_GOLD_PRICE_REQUEST', async (event: unknown) => {
   }
 
   EventBus.publish({
-    type: result.sellPrice ? 'PRICING_GOLD_PRICE_READY' : 'PRICING_GOLD_PRICE_ERROR',
+    type: result.sellPrice ? 'PRICING_GOLD_PRICE_ready' : 'PRICING_GOLD_PRICE_error',
     source: 'pricing-cell',
     payload: result,
   }, 'pricing-cell', undefined);
@@ -85,16 +85,16 @@ EventBus.subscribe('PRICING_PRODUCT_PRICE_REQUEST', (event: unknown) => {
   };
   if (!ev?.payload || !cachedGoldPrice) {
     EventBus.publish({
-      type: 'PRICING_PRODUCT_PRICE_ERROR',
+      type: 'PRICING_PRODUCT_PRICE_error',
       source: 'pricing-cell',
-      payload: { error: cachedGoldPrice ? 'MISSING_PARAMS' : 'GOLD_PRICE_NOT_LOADED' },
+      payload: { error: cachedGoldPrice ? 'missing_PARAMS' : 'GOLD_PRICE_NOT_LOADED' },
     }, 'pricing-cell', undefined);
     return;
   }
 
   const result = calcProductPrice({ ...ev.payload, goldPricePerChi: cachedGoldPrice });
   EventBus.publish({
-    type: 'PRICING_PRODUCT_PRICE_READY',
+    type: 'PRICING_PRODUCT_PRICE_ready',
     source: 'pricing-cell',
     payload: result,
   }, 'pricing-cell', undefined);

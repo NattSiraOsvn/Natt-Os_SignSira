@@ -67,7 +67,7 @@ const AppShell: React.FC<AppShellProps> = ({
       {/* DESKTOP SIDEBAR */}
       <aside className={`hidden md:flex flex-col transition-all duration-500 ease-in-out bg-black/95 backdrop-blur-3xl border-r border-white/5 z-50 ${isSidebarOpen ? 'w-80' : 'w-20'}`}>
         <div className="h-20 flex items-center justify-between px-6 shrink-0 border-b border-white/5 bg-gradient-to-r from-amber-500/5 to-transparent">
-          <span className="ai-headline text-2xl tracking-tighter uppercase italic">{isSidebarOpen ? 'Natt-OS' : 'Ω'}</span>
+          <span className="ai-headline text-2xl tracking-tighter uppercase italic">{isSidebarOpen ? 'natt-os' : 'Ω'}</span>
           <button onClick={() => setSidebarOpen(!isSidebarOpen)} className="text-gray-600 hover:text-amber-500 transition-colors">{isSidebarOpen ? '«' : '»'}</button>
         </div>
 
@@ -117,7 +117,7 @@ const AppShell: React.FC<AppShellProps> = ({
             <div className="w-[85%] h-full bg-[#050505] border-r border-white/10 flex flex-col p-6 shadow-2xl animate-in slide-in-from-left duration-300" onClick={e => e.stopPropagation()}>
                  <div className="flex justify-between items-center mb-8 pb-6 border-b border-white/5">
                     <div>
-                       <h2 className="text-2xl font-serif italic gold-gradient tracking-tighter">Natt-OS</h2>
+                       <h2 className="text-2xl font-serif italic gold-gradient tracking-tighter">natt-os</h2>
                        <p className="text-[9px] text-gray-500 uppercase tracking-widest font-black">Mobile Node</p>
                     </div>
                     <button onClick={() => setMobileMenuOpen(false)} className="p-2 bg-white/5 rounded-full text-gray-400 hover:text-white">✕</button>

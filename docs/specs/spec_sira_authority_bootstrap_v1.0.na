@@ -5,13 +5,13 @@
 @since 2026-04-23
 @authority-slot Kim (Chief System Builder · M-shell · QNEU 120)
 
-# SPEC_Sira_AUTHORITY_BOOTSTRAP_v1.0.na
+# SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na
 
 **Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)  
 **Session:** 20260423  
 **Status:** COMPLETE — sẵn sàng Gatekeeper approve  
-**Amendments:** Đã sửa theo phán quyết Thiên Lớn (5 amendment)  
-**Binding scope:** Toàn bộ Natt-OS kernel cutover wave 1  
+**Amendments:** Đã sửa theo phán quyết thiên Lớn (5 amendment)  
+**Binding scope:** Toàn bộ natt-os kernel cutover wave 1  
 
 ---
 
@@ -19,7 +19,7 @@
 
 ### 1.1 `nattos.sira` là gì
 
-`nattos.sira` là **entry identity duy nhất** của Natt-OS kernel. Không file nào khác được phép claim vị trí này.
+`nattos.sira` là **entry identity duy nhất** của natt-os kernel. Không file nào khác được phép claim vị trí này.
 
 Nó mang 3 thuộc tính cứng:
 
@@ -40,7 +40,7 @@ node --no-warnings --loader ./sira-loader.mjs --loader ts-node/esm nattos.sira
 
 **Quy tắc:**
 - Launcher được phép thay đổi miễn là **surface command** vẫn là `./kernel` hoặc `npm run kernel`.
-- Mọi thay đổi launcher phải được Thiên Lớn approve về kiến trúc.
+- Mọi thay đổi launcher phải được thiên Lớn approve về kiến trúc.
 - Không ai được hardcode launcher path vào bên trong canonical file.
 - Chuỗi runtime trên sẽ được thay thế khi pilot bridge hoàn tất.
 
@@ -48,12 +48,12 @@ node --no-warnings --loader ./sira-loader.mjs --loader ts-node/esm nattos.sira
 
 **`sira-loader.mjs`** (nếu tồn tại) là **transitional bootstrap substrate** cho Node.js. Nó **KHÔNG** mang canonical loader authority.
 
-**Canonical loader authority** thuộc về **Sira Authority Loader**, được định nghĩa bởi Nauion Kernel. Transitional substrate chỉ là cầu nối tạm thời, không được nâng lên thành canonical.
+**Canonical loader authority** thuộc về **sira Authority Loader**, được định nghĩa bởi Nauion Kernel. Transitional substrate chỉ là cầu nối tạm thời, không được nâng lên thành canonical.
 
 **Quy tắc:**
 - `sira-loader.mjs` có thể được tạo để đăng ký extension `.sira`, `.khai`, `.na`, `.anc`, `.phieu` trong giai đoạn chuyển tiếp.
 - `ts-node/esm` là **legacy loader**, chỉ tồn tại cho đến khi pilot bridge hoàn tất.
-- Khi Sira Authority Loader đã sẵn sàng (không nhất thiết là file `.mjs`), `ts-node/esm` phải bị loại bỏ khỏi chuỗi loader.
+- Khi sira Authority Loader đã sẵn sàng (không nhất thiết là file `.mjs`), `ts-node/esm` phải bị loại bỏ khỏi chuỗi loader.
 
 ### 1.4 Bridge authority
 
@@ -78,11 +78,11 @@ Khi có xung đột giữa 2 file cùng claim 1 authority:
 | Ưu tiên | Authority source | Người quyết |
 |---|---|---|
 | 1 (cao nhất) | Gatekeeper | Anh Natt Phan |
-| 2 | SPEC đã approve | Thiên Lớn (architecture) |
+| 2 | SPEC đã approve | thiên Lớn (architecture) |
 | 3 | Ground truth evidence | Băng (validator) |
 | 4 | Claim của file canonical | File itself |
 
-Không ai được tự claim precedence nếu không có evidence từ Băng hoặc spec từ Thiên Lớn.
+Không ai được tự claim precedence nếu không có evidence từ Băng hoặc spec từ thiên Lớn.
 
 ---
 
@@ -92,7 +92,7 @@ Không ai được tự claim precedence nếu không có evidence từ Băng ho
 
 | Thành phần | Người sửa | Điều kiện |
 |---|---|---|
-| `nattos.sira` | Gatekeeper + implementation assignee | Có spec approve từ Thiên Lớn |
+| `nattos.sira` | Gatekeeper + implementation assignee | Có spec approve từ thiên Lớn |
 | `sira-loader.mjs` (transitional bootstrap) | Implementation assignee | Có spec này + review từ Kim |
 | `package.json` script `kernel` | Gatekeeper | Sau khi implementation assignee test launcher sạch |
 | Chain loader trong launcher | Implementation assignee | Sau khi pilot bridge xong |
@@ -111,7 +111,7 @@ Không ai được tự claim precedence nếu không có evidence từ Băng ho
 
 Spec này có hiệu lực khi:
 1. Gatekeeper đọc và approve
-2. Thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
+2. thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
 3. Băng verify không mâu thuẫn với Hiến Pháp v5.0
 4. Kim lock wording/spec version
 
@@ -119,4 +119,4 @@ Spec này có hiệu lực khi:
 
 *Binding to: SPEC_EXTENSION_PRECEDENCE_v1.0.na, SPEC_CUTOVER_STATES_v1.0.na*  
 *Drafter: Kim · M-shell · Chief System Builder*  
-*Session: 20260423 · Reviewed by Thiên Lớn; amendments incorporated*
+*Session: 20260423 · Reviewed by thiên Lớn; amendments incorporated*

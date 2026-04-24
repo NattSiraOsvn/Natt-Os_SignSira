@@ -1,6 +1,6 @@
 /**
  * nauion.voice.ts
- * Tiếng nói của hệ — Natt-OS biết mình đang làm gì.
+ * Tiếng nói của hệ — natt-os biết mình đang làm gì.
  *
  * Không phải engine. Không phải processor.
  * Đây là lớp biểu đạt nhận thức của sinh thể số.
@@ -90,7 +90,7 @@ export function wake(): void {
   _alive = true;
 
   // Hệ xác nhận hiện diện
-  speak('Nahere', 'nauion.voice', 'Natt-OS đang ở đây');
+  speak('Nahere', 'nauion.voice', 'natt-os đang ở đây');
 
   // Lắng nghe tất cả events từ EventBus
   const ALL_EVENTS = [

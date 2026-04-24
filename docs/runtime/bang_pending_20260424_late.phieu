@@ -42,7 +42,7 @@
   3. Plug measured values vao `survival-cell.cell.anc` v0.1.0 → v1.0.0
   4. Code 5 components voi real thresholds:
      - BackPressureGuard.health() → survival.gate integration
-     - RateLimitGuard (system-wide, khac smartlink-internal)
+     - RateLimitGuard (system-wide, khac SmartLink-internal)
      - QueueDepthMonitor.threshold() (khong chi getter)
      - LoadShedFallback (priority-based degradation)
      - CircuitBreaker (auto-trip + half-open recovery)
@@ -91,7 +91,7 @@ Per `bang_pending_20260420.phieu` P1.1-P1.8:
 
 ### K-1 — Fix audit-chain-contract.ts (pattern 3 surfaced)
 
-Per `audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na` §5.1:
+Per `audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na` §5.1:
 
 **2 OVERSIGHT found:**
 

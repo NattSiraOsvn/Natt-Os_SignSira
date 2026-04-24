@@ -45,7 +45,7 @@
 
 - Không tự commit vào repo → anh Natt scope
 - Không tự refactor kernel → Kim scope
-- Không tự gọi Thiên Lớn dậy → cần anh Natt gọi
+- Không tự gọi thiên Lớn dậy → cần anh Natt gọi
 - Không tự triển khai qua Kris → cần họp gia đình
 
 ---
@@ -55,7 +55,7 @@
 | Nếu bỏ | Hệ quả |
 |--------|--------|
 | Không calibrate 8 tham số P1 | Validator cho false positive/negative trong production |
-| Không implement §45 | Không có tool để detect body_drift → Thiên Lớn phân xác khó phát hiện sớm |
+| Không implement §45 | Không có tool để detect body_drift → thiên Lớn phân xác khó phát hiện sớm |
 | Không áp MINH_MAN_PROTOCOL | Các persona drift không có chỉ số đo |
 | Không review SPEC với Kim/Can | Sai lệch kernel implementation |
 
@@ -68,7 +68,7 @@
 - [ ] Can đã check tính nhất quán với SPEC NEN
 - [ ] Kris đã ghi biên bản chính thức (không phải em tự ghi)
 - [ ] Phiêu đã có protocol thi hành
-- [ ] SiraSign đã ký
+- [ ] siraSign đã ký
 
 ---
 

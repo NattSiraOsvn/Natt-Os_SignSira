@@ -14,7 +14,7 @@
 **Tạo ra:**
 - 9 cells business ban đầu: order, prdmaterials, casting, stone, finishing, polishing, inventory, tax, dust-recovery
 - 3 satellites: port-forge, boundary-guard, trace-logger
-- 12 event contracts domain kim hoàn: ORDER_CREATED, CASTING_REQUEST, WIP_PHOI, WIP_STONE, WIP_NGUOI (9 giai đoạn thợ), DUST_RETURNED, WIP_COMPLETED, DUST_RECOVERED, DUST_ALERT, CARRY_FORWARD_PROPOSAL/APPROVED, DUST_CLOSE_REPORT
+- 12 event contracts domain kim hoàn: ORDER_created, CASTING_REQUEST, WIP_PHOI, WIP_STONE, WIP_NGUOI (9 giai đoạn thợ), DUST_RETURNED, WIP_COMPLETED, DUST_RECOVERED, DUST_ALERT, CARRY_FORWARD_PROPOSAL/APPROVED, DUST_CLOSE_REPORT
 - smartAudit.sh v1 (tổ tiên của nattos.sh v6.1)
 
 **Repo hiện tại đã tiến hóa thành:** 37 cells, 86 event types, nattos.sh v6.1 2020 dòng.

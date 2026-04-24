@@ -1,6 +1,6 @@
-# Sira browser adapter validation EVIDENCE — 20260424
+# sira browser adapter validation EVIDENCE — 20260424
 
-status: PASS
+status: pass
 owner: Gatekeeper / Anh Natt
 created_at: 2026-04-24T15:09:19.131381+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
@@ -9,7 +9,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Canonical Lock
 
-- tools/natt_domain_gateway.sira = Sira browser adapter implementation.
+- tools/natt_domain_gateway.sira = sira browser adapter implementation.
 - anc:// = identity.
 - .sira = root namespace.
 - SmartLink = resolver / coupling layer.
@@ -21,7 +21,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
   "validator": {
     "cmd": "tools/thiên tools/validate_sira_browser_adapter.sira",
     "exit": 0,
-    "stdout": "Sira browser adapter validation: PASS\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
+    "stdout": "sira browser adapter validation: pass\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
     "stderr": ""
   },
   "health_core_sira": {

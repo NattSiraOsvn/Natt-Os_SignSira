@@ -36,7 +36,7 @@ export type WarrantyTicketStatus =
   | 'CUSTOMER_APPROVED' // Khách đồng ý
   | 'IN_PROGRESS'       // Đang thực hiện
   | 'QUALITY_CHECK'     // Kiểm tra chất lượng
-  | 'READY'             // Sẵn sàng trả
+  | 'ready'             // Sẵn sàng trả
   | 'RETURNED'          // Đã trả khách
   | 'CANCELLED';        // Hủy
 

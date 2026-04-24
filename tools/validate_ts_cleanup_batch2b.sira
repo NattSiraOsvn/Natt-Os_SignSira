@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.cwd();
-const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2B_PROMOTE_TO_Sira_20260424.na");
+const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2B_PROMOTE_TO_sira_20260424.na");
 
 if (!fs.existsSync(evidence)) {
   console.error("Missing evidence:", evidence);
@@ -13,7 +13,7 @@ if (!fs.existsSync(evidence)) {
 const content = fs.readFileSync(evidence, "utf8");
 
 const required = [
-  "PROMOTE_TO_Sira_CANDIDATE",
+  "PROMOTE_TO_sira_CANDIDATE",
   "Batch này chỉ xử lý nhóm candidate",
   "renamed",
   "skipped"
@@ -28,5 +28,5 @@ if (missing.length) {
 }
 
 console.log("TS CLEANUP BATCH2B validation: pass");
-console.log("scope=PROMOTE_TO_Sira_CANDIDATE only");
+console.log("scope=PROMOTE_TO_sira_CANDIDATE only");
 console.log("mode=rename JS-compatible candidates to .sira");

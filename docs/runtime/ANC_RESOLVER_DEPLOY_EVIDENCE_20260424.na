@@ -1,6 +1,6 @@
 # ANC RESOLVER DEPLOY EVIDENCE — 20260424
 
-status: PASS
+status: pass
 owner: Gatekeeper / Anh Natt
 runtime_scope: local DNS + local domain gateway + ANC resolver
 created_at: 2026-04-24T13:42:36.970168+00:00
@@ -12,7 +12,7 @@ head: 9b2b541
 
 ## 1. Purpose
 
-File này ghi bằng chứng triển khai lớp định danh anc:// cho Natt-OS local runtime.
+File này ghi bằng chứng triển khai lớp định danh anc:// cho natt-os local runtime.
 
 Mô hình:
 - DNS layer      : *.natt

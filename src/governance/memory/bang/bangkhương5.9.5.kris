@@ -15,7 +15,7 @@
     "tsc": "0 real errors ✅ (6 ghost — baithicuakim, safe)",
     "ts_files_approx": 1065,
     "cells_total": "38/38 6/6",
-    "smartlink_wired": "38/38 ✅",
+    "SmartLink_wired": "38/38 ✅",
     "port_only": 0,
     "production_flow": "FULL ✅",
     "ui_app_live": "http://192.168.1.49:3000 (17 apps)",
@@ -147,7 +147,7 @@
     "P1_vietinbank": "Điền TK Vietinbank thật: grep -n 'accountNo' src/ui-app/nattos-payment.js",
     "P2_gsheets_data": "Import line-production.xlsx lên GSheets → rows > 0 → Smart Get Data LIVE",
     "P3_smart_get_data": "L6 PHỔ Monitor, L7 NL Phụ Track, L8 SC Weight Increase",
-    "P4_deferred": "Local AI Agents (Thiên 4-layer)"
+    "P4_deferred": "Local AI Agents (thiên 4-layer)"
   },
 
   "coding_rules_CRITICAL": {

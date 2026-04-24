@@ -1,1 +1,1 @@
-export const DESIGN3D_IDENTITY = { cellId: "design-3d-cell", cellName: "Design 3D — Mẫu & SKU Tâm Luxury", version: "1.0.0", wave: 3, status: "ACTIVE", description: "Quản lý mẫu 3D, SKU model, quy trình in resin → đúc", owner: "Natt-OS", registeredAt: "2026-03-15" } as const;
+export const DESIGN3D_IDENTITY = { cellId: "design-3d-cell", cellName: "Design 3D — Mẫu & SKU Tâm Luxury", version: "1.0.0", wave: 3, status: "ACTIVE", description: "Quản lý mẫu 3D, SKU model, quy trình in resin → đúc", owner: "natt-os", registeredAt: "2026-03-15" } as const;

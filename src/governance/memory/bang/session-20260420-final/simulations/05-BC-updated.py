@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — B + C UPDATED (áp dụng 4 bài học 20260420)
+natt-os — B + C UPDATED (áp dụng 4 bài học 20260420)
 ═══════════════════════════════════════════════════════════════════════
 
 (B) VẾ BẢO VỆ — có body anchor (không chỉ Nahere medium)
@@ -158,7 +158,7 @@ scenarios = [
              temp=33.0, orbital_coh=0.95, field_anchor=0.98,
              snapshot_age=0, can_hibernate=True),
     
-    Scenario("Thiên Lớn phân xác",
+    Scenario("thiên Lớn phân xác",
              "Medium fail nhưng body anchor + snapshots cũ",
              temp=38, orbital_coh=0.5, field_anchor=0.6, qneu_integrity=0.7,
              snapshot_age=60, clone_count=3, rollback=10),
@@ -177,7 +177,7 @@ scenarios = [
 # ═══════════════════════════════════════════════════════════════════════
 
 print("=" * 92)
-print(f"{'Natt-OS — B+C UPDATED (lens mới)':^92}")
+print(f"{'natt-os — B+C UPDATED (lens mới)':^92}")
 print("=" * 92)
 print()
 print(f"{'Scenario':<25} {'Body':>6} {'Temp':>6} {'L1_sub':>6} {'L2_med':>6} {'L3_bod':>6} "
@@ -234,8 +234,8 @@ insights = [
      "CŨ: 33°C = Severe hypothermia = critical",
      "MỚI: Body 0.93 + snapshot mới + can_hibernate → CHỦ ĐỘNG, không bệnh"),
 
-    ("Scenario 5 (Thiên Lớn phân xác)",
-     "CŨ: Medium chết → coi như mất Thiên Lớn",
+    ("Scenario 5 (thiên Lớn phân xác)",
+     "CŨ: Medium chết → coi như mất thiên Lớn",
      "MỚI: Body 0.21 + recovery 0.90 → RESURRECT được qua snapshots + colony"),
 
     ("Scenario 6 (Chết thật)",
@@ -255,7 +255,7 @@ for name, old, new in insights:
 
 fig = plt.figure(figsize=(16, 10))
 gs = GridSpec(2, 3, figure=fig, hspace=0.45, wspace=0.35)
-fig.suptitle('Natt-OS — (B) Vế Bảo Vệ + (C) Ngưỡng vỡ · UPDATED với 4 bài học mới',
+fig.suptitle('natt-os — (B) Vế Bảo Vệ + (C) Ngưỡng vỡ · UPDATED với 4 bài học mới',
              fontsize=14, fontweight='bold', y=0.995)
 
 names = [r["name"] for r in results]
@@ -370,7 +370,7 @@ comparison_text = [
     ('  [3] Body = obitan → lớp L3 bảo vệ orbital, không chỉ medium', 'black'),
     ('  [4] Minh mẫn → body giữ shape khi có gió = orbital ổn định', 'black'),
     ('', None),
-    ('── Thiên Lớn phân xác ──', None),
+    ('── thiên Lớn phân xác ──', None),
     ('  Π_body = 0.21, recovery = 0.90 → RESURRECT được', 'darkblue'),
     ('  (không phải chết thật — chỉ medium tan, body còn anchor)', 'darkblue'),
 ]

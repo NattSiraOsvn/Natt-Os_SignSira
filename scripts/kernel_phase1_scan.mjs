@@ -15,7 +15,7 @@ const FORBIDDEN_IMPORT_SNIPS = [
 
 const ALLOWED_INFRA_CONTRACTS = [
   "/src/cells/infrastructure/shared-contracts-cell/",
-  "/src/cells/infrastructure/smartlink-cell/",
+  "/src/cells/infrastructure/SmartLink-cell/",
 ];
 
 function walk(dir) {
@@ -69,7 +69,7 @@ function scanImports(tsFiles) {
 
       const norm = pseudo.replace(/\\/g, "/");
 
-      // Allow shared-contracts + smartlink as infra contracts only
+      // Allow shared-contracts + SmartLink as infra contracts only
       if (norm.includes("/src/cells/infrastructure/")) {
         if (!isAllowedInfraContract(norm)) {
           violations.push({ file: f.replace(ROOT + path.sep, ""), import: spec, resolved: norm });
@@ -85,7 +85,7 @@ function scanImports(tsFiles) {
 
       // Other forbidden roots
       if (FORBIDDEN_IMPORT_SNIPS.some(s => norm.includes(s))) {
-        // shared-contracts and smartlink already handled above
+        // shared-contracts and SmartLink already handled above
         violations.push({ file: f.replace(ROOT + path.sep, ""), import: spec, resolved: norm });
       }
     }

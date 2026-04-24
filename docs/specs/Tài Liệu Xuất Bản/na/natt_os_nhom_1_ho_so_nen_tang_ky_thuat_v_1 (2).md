@@ -1,4 +1,4 @@
-# Natt-OS — NHÓM 3: HỒ SƠ RUNTIME / VẬN HÀNH THỰC TẾ
+# natt-os — NHÓM 3: HỒ SƠ RUNTIME / VẬN HÀNH THỰC TẾ
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ vận hành runtime, kiểm soát triển khai và demo có kiểm soát  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 3
 
-Nhóm 3 là bộ tài liệu dùng để vận hành Natt-OS trong môi trường thực tế sau khi Nhóm 2 đã khóa được release gate tối thiểu.
+Nhóm 3 là bộ tài liệu dùng để vận hành natt-os trong môi trường thực tế sau khi Nhóm 2 đã khóa được release gate tối thiểu.
 
 Nhóm này trả lời 7 câu hỏi:
 
@@ -46,7 +46,7 @@ STATUS: OPERATIONAL_DRAFT_FOR_TECHNICAL_PREVIEW
 Không được gắn:
 
 ```text
-STATUS: PRODUCTION_READY
+STATUS: PRODUCTION_ready
 ```
 
 ---
@@ -76,7 +76,7 @@ STATUS: PRODUCTION_READY
 
 ## 1.2. Mục đích
 
-Tài liệu này mô tả cách khởi động Natt-OS runtime từ trạng thái repo lạnh đến trạng thái có thể kiểm tra health, event, audit và UI/client surface.
+Tài liệu này mô tả cách khởi động natt-os runtime từ trạng thái repo lạnh đến trạng thái có thể kiểm tra health, event, audit và UI/client surface.
 
 ## 1.3. Nội dung bắt buộc
 
@@ -173,7 +173,7 @@ curl -s -X POST http://localhost:3001/api/events/emit \
 
 ## 2.2. Mục đích
 
-Chuẩn hóa môi trường chạy Natt-OS để tránh lỗi do Node version, dependency, env, path, domain local hoặc cấu hình máy.
+Chuẩn hóa môi trường chạy natt-os để tránh lỗi do Node version, dependency, env, path, domain local hoặc cấu hình máy.
 
 ## 2.3. Matrix môi trường
 
@@ -182,7 +182,7 @@ Chuẩn hóa môi trường chạy Natt-OS để tránh lỗi do Node version, d
 | local_dev | dev/test cá nhân | developer/operator | mock hoặc local |
 | technical_preview | demo kỹ thuật nội bộ | Gatekeeper approved | dữ liệu giả hoặc đã kiểm soát |
 | staging | test trước release | release owner | dữ liệu test có cấu trúc |
-| production | vận hành thật | Gatekeeper/SiraSign | dữ liệu thật, audit bắt buộc |
+| production | vận hành thật | Gatekeeper/siraSign | dữ liệu thật, audit bắt buộc |
 
 ## 2.4. Thông số bắt buộc
 
@@ -240,7 +240,7 @@ SMARTLINK_*    → coupling/bridge settings
 
 ## 3.2. Mục đích
 
-Định nghĩa quy trình deploy Natt-OS có kiểm soát, có gate, có rollback và có audit.
+Định nghĩa quy trình deploy natt-os có kiểm soát, có gate, có rollback và có audit.
 
 ## 3.3. Deployment stages
 
@@ -261,12 +261,12 @@ SMARTLINK_*    → coupling/bridge settings
 
 ```text
 [ ] Release Gate Checklist đạt yêu cầu tương ứng
-[ ] Build Verification Report PASS hoặc PARTIAL có phê duyệt
+[ ] Build Verification Report pass hoặc PARTIAL có phê duyệt
 [ ] Known Issues Register đã cập nhật
 [ ] Backup point đã tạo
 [ ] Rollback target đã xác định
 [ ] Người deploy có quyền
-[ ] Gatekeeper/SiraSign nếu cần
+[ ] Gatekeeper/siraSign nếu cần
 ```
 
 ## 3.5. Deployment record schema
@@ -284,7 +284,7 @@ build_result:
 smoke_test_result:
 audit_check_result:
 rollback_target:
-status: SUCCESS | PARTIAL | FAILED | ROLLED_BACK
+status: SUCCESS | PARTIAL | failED | ROLLED_BACK
 notes:
 ```
 
@@ -355,7 +355,7 @@ audit.gap.detected
 bridge.aperture.closed
 gatekeeper.signature.invalid
 cell.handler.missing
-smartlink.decay.threshold_exceeded
+SmartLink.decay.threshold_exceeded
 ```
 
 ## 4.7. Quy tắc
@@ -376,7 +376,7 @@ smartlink.decay.threshold_exceeded
 
 ## 5.2. Mục đích
 
-Đưa ra quy trình xử lý khi Natt-OS gặp lỗi runtime, event, audit, build, drift hoặc security/trust incident.
+Đưa ra quy trình xử lý khi natt-os gặp lỗi runtime, event, audit, build, drift hoặc security/trust incident.
 
 ## 5.3. Phân loại incident
 
@@ -386,7 +386,7 @@ smartlink.decay.threshold_exceeded
 | I2 | Build/compile regression | High |
 | I3 | Event không vào audit | Critical |
 | I4 | Audit gap hoặc audit corrupt | Critical |
-| I5 | Gatekeeper/SiraSign bypass | Critical |
+| I5 | Gatekeeper/siraSign bypass | Critical |
 | I6 | Cell state mismatch | High |
 | I7 | Import/type drift tái phát | Medium |
 | I8 | UI hiển thị sai state | Medium |
@@ -502,7 +502,7 @@ runtime boot fail
 health check fail
 event/audit flow fail
 critical incident
-Gatekeeper/SiraSign bypass nghi vấn
+Gatekeeper/siraSign bypass nghi vấn
 data/state corruption
 smoke test fail after deploy
 ```
@@ -765,7 +765,7 @@ for path, content in files.items():
         print(f'SKIP existing: {p}')
     else:
         p.write_text(content, encoding='utf-8')
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
 
 print('done')
 EOF
@@ -801,13 +801,13 @@ for path, content in files.items():
     if not p.exists():
         p.write_text(content, encoding='utf-8')
         created.append(str(p))
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
     else:
         print(f'SKIP existing: {p}')
 
 print('created_count=', len(created))
 EOF
-git add docs/operations && git commit -m "docs(operations): add Natt-OS group 3 runtime operations skeletons" && git push origin main
+git add docs/operations && git commit -m "docs(operations): add natt-os group 3 runtime operations skeletons" && git push origin main
 ```
 
 ---

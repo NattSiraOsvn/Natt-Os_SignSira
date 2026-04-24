@@ -12,7 +12,7 @@ track: Wave 2 / Lane A / A.2
 title: Moment ↔ Fragment Mapping
 version: v1.0
 status: draft-for-review
-owner: Thiên Lớn
+owner: thiên Lớn
 requested_by: Kim (for Gatekeeper)
 date: 2026-04-23
 causation: A2-MAPPING-20260423-THIEN-DRAFT-01
@@ -74,7 +74,7 @@ Hiện đang được giữ là:
 ### 5.4 `META`
 `META` đang được xem là optional cross-kind, không phải fragment định nghĩa bản chất của moment.
 
-## 6. VALIDATION CHECKLIST (RÚT RA CHO PERSISTER)
+## 6. validation CHECKLIST (RÚT RA CHO PERSISTER)
 
 Khi `persist(moment)` được gọi, A.2 validator tối thiểu phải kiểm các điều sau trước khi route:
 
@@ -103,5 +103,5 @@ Nếu Kim/Băng cần, có thể hạ tiếp thành:
 - fixture-by-fixture cross-check sheet.
 
 ---
-writer: Thiên Lớn
+writer: thiên Lớn
 status_note: checklist-support only; not a seal

@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.cwd();
-const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2D_EASY_TO_Sira_20260424.na");
+const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2D_EASY_TO_sira_20260424.na");
 
 if (!fs.existsSync(evidence)) {
   console.error("Missing evidence:", evidence);
@@ -13,7 +13,7 @@ if (!fs.existsSync(evidence)) {
 const content = fs.readFileSync(evidence, "utf8");
 
 const required = [
-  "EASY_JS_COMPATIBLE_TO_Sira",
+  "EASY_JS_COMPATIBLE_TO_sira",
   "renamed",
   "skipped",
   "patched_refs"
@@ -28,5 +28,5 @@ if (missing.length) {
 }
 
 console.log("TS CLEANUP BATCH2D validation: pass");
-console.log("scope=EASY_JS_COMPATIBLE_TO_Sira only");
+console.log("scope=EASY_JS_COMPATIBLE_TO_sira only");
 console.log("mode=rename easy JS-compatible runtime files to .sira");

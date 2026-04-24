@@ -11,7 +11,7 @@ export class PolicyEnforcer {
   static async enforce(policy: any, aiId: string, envelope: any, action: any) {
     console.log(`[ENFORCER] Inspecting action from ${aiId}...`);
 
-    // 1. Kiểm tra Policy (Thiên)
+    // 1. Kiểm tra Policy (thiên)
     const decision = await GovernanceEnforcementEngine.validateAICommand(aiId, envelope, policy);
     
     if (!decision.allowed) {

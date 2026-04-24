@@ -16,7 +16,7 @@ const EnterpriseArchitecture: React.FC = () => {
     <div className="p-8 max-w-[1600px] mx-auto h-full overflow-y-auto space-y-10 animate-in fade-in duration-700 pb-20">
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-8">
         <div>
-          <h2 className="text-5xl font-serif gold-gradient mb-2 tracking-tighter italic">Natt-OS: Factory Architecture</h2>
+          <h2 className="text-5xl font-serif gold-gradient mb-2 tracking-tighter italic">natt-os: Factory Architecture</h2>
           <p className="text-gray-400 font-light text-lg">Hệ sinh thái Quản trị Sản xuất & Thu hồi Định mức Kim hoàn.</p>
         </div>
         <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10">

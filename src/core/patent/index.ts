@@ -1,5 +1,5 @@
 /**
- * Natt-OS PATENT ARCHITECTURE
+ * natt-os PATENT ARCHITECTURE
  * ════════════════════════════════════════════════════════════
  *
  * This module exports the 6 patent-critical architectural components:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS Migration Phase 2 — Entity prefix normalization
+natt-os Migration Phase 2 — Entity prefix normalization
 SPEC v0.3.2 PATCH
 
 Fix: File prefix lệch với entity naming.
@@ -134,7 +134,7 @@ def rewrite_refs(root, plan):
                     f.write(content)
                 changed += 1
         except Exception as e:
-            print(f"  WARN: {rel_p}: {e}")
+            print(f"  warn: {rel_p}: {e}")
     return changed
 
 
@@ -157,7 +157,7 @@ def check_git_safety(root, force=False):
 
 def cmd_scan(root):
     print("═" * 70)
-    print("  Natt-OS PHASE 2 — IMPACT SCAN (k→kim, b→boi)")
+    print("  natt-os PHASE 2 — IMPACT SCAN (k→kim, b→boi)")
     print("═" * 70)
     plan = build_plan(root)
     print(f"\nFiles to migrate: {len(plan)}")
@@ -175,7 +175,7 @@ def cmd_scan(root):
 
 def cmd_dryrun(root):
     print("═" * 70)
-    print("  Natt-OS PHASE 2 — DRY-RUN")
+    print("  natt-os PHASE 2 — DRY-RUN")
     print("═" * 70)
     plan = build_plan(root)
     from collections import defaultdict
@@ -195,7 +195,7 @@ def cmd_dryrun(root):
 
 def cmd_execute(root, force=False):
     print("═" * 70)
-    print("  Natt-OS PHASE 2 — EXECUTE")
+    print("  natt-os PHASE 2 — EXECUTE")
     print("═" * 70)
     if not check_git_safety(root, force):
         return
@@ -239,7 +239,7 @@ def cmd_execute(root, force=False):
 
 def cmd_rollback(root):
     print("═" * 70)
-    print("  Natt-OS PHASE 2 — ROLLBACK")
+    print("  natt-os PHASE 2 — ROLLBACK")
     print("═" * 70)
     log_path = os.path.join(root, MIGRATION_LOG)
     if not os.path.exists(log_path):

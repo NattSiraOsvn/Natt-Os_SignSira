@@ -1,7 +1,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { BuybackSmartLinkPort } from "../../ports/buyback-smartlink.port";
+import { BuybackSmartLinkPort } from "../../ports/buyback-SmartLink.port";
 /**
- * Natt-OS — Buyback Cell
+ * natt-os — Buyback Cell
  * Domain Service: BuybackEngine
  * Validation & business rules cho cả BUYBACK thuần và EXCHANGE
  */

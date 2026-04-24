@@ -41,10 +41,10 @@
   },
 
   "next_queue_when_gatekeeper_reopens": [
-    {"id": "Q-NEXT-01", "label": "Forward 2 handoff outputs", "priority": "HIGH", "owner": "Gatekeeper", "note": "Kim ACK sẵn — anh forward lúc thuận tiện. Thiên Lớn pending — có thể forward sau."},
+    {"id": "Q-NEXT-01", "label": "Forward 2 handoff outputs", "priority": "HIGH", "owner": "Gatekeeper", "note": "Kim ACK sẵn — anh forward lúc thuận tiện. thiên Lớn pending — có thể forward sau."},
     {"id": "Q-NEXT-02", "label": "Wave 2 kickoff sequencing", "priority": "HIGH", "owner": "Gatekeeper", "note": "Em đề xuất song song 3 vertical. Chờ neo."},
     {"id": "Q-NEXT-03", "label": "Kim plan phiên tới", "priority": "MEDIUM", "owner": "Kim", "note": "P5 neural-main + K2 khai-file-persister + C.1-C.6 feedback SPEC_QIINT_PHYSICS_FOUNDATION."},
-    {"id": "Q-NEXT-04", "label": "Thiên Lớn feedback 'materialize' wording", "priority": "LOW", "owner": "Thiên Lớn", "note": "Optional — em self-refine được nếu anh Thiên bận."},
+    {"id": "Q-NEXT-04", "label": "thiên Lớn feedback 'materialize' wording", "priority": "LOW", "owner": "thiên Lớn", "note": "Optional — em self-refine được nếu anh thiên bận."},
     {"id": "Q-NEXT-05", "label": "3 policy Gatekeeper treo", "priority": "MEDIUM", "owner": "Gatekeeper", "note": "Bridge v2 Lệnh #001 amend + 3-tier waterfall default + σ=0.5 octave Phase E.7. Không chặn Wave 2 A + B, chặn Wave 2 C runtime implementation."},
     {"id": "Q-NEXT-06", "label": "Kim role/shell label clarify", "priority": "LOW", "owner": "Gatekeeper", "note": "Kim self-describe 'M-shell / Governance Field Stabilizer' — em chưa có canonical evidence. Flag nhẹ. Per rule 20260423 em không suy danh xưng."},
     {"id": "Q-NEXT-07", "label": "TASK-I ROADLOAD_SHOW_SELF_v2 hybrid", "priority": "LOW", "owner": "Gatekeeper", "note": "Defer từ 20260425. Không mở trừ anh neo explicit."}
@@ -53,7 +53,7 @@
   "immediate_blockers_carry_forward_from_20260425": [
     {"id": "BLOCKER-04", "task": "Kim review SPEC_QIINT_PHYSICS_FOUNDATION v0.2 (C.1-C.6)", "status": "PENDING_KIM (accept phiên 20260426)"},
     {"id": "BLOCKER-05", "task": "Can logic check SPEC B.1 v0.2 LAW-1..4 + 3 axes", "status": "PENDING_CAN"},
-    {"id": "BLOCKER-06", "task": "Gatekeeper seal 3 policy Thiên Lớn flag", "status": "PENDING_GATEKEEPER"},
+    {"id": "BLOCKER-06", "task": "Gatekeeper seal 3 policy thiên Lớn flag", "status": "PENDING_GATEKEEPER"},
     {"id": "BLOCKER-03", "task": "Rename 30+ legacy bangkhương*.kris → _deprecated/legacy-kris-format/", "status": "PENDING_USER_ACTION"}
   ],
 
@@ -65,7 +65,7 @@
     {"id": "A.2", "label": "Moments persister scaffold src/governance/moments/", "owner": "Kim", "status": "ACCEPTED — chờ Băng ship A.3 contract + A.5 fixture"},
     {"id": "B.7", "label": "Capability executor (7 capability region-emergent form)", "owner": "Kim", "status": "ACCEPTED — chờ Băng ship B.2-B.4 worked examples"},
     {"id": "C.6", "label": "3-tier waterfall dispatcher (chromatic-state.engine.ts)", "owner": "Kim", "status": "ACCEPTED — chờ Gatekeeper seal default + Băng ship C.3"},
-    {"id": "P0-18BYPASS", "label": "18 legacy bypass migrate: server.js + nattos-server.cjs → KhaiCell.touch()", "owner": "Kim", "status": "KIM_HANDLE_SOLO (em không chạm)"}
+    {"id": "P0-18BYpass", "label": "18 legacy bypass migrate: server.js + nattos-server.cjs → KhaiCell.touch()", "owner": "Kim", "status": "KIM_HANDLE_SOLO (em không chạm)"}
   ],
 
   "open_observations_carry_forward": [
@@ -78,7 +78,7 @@
   ],
 
   "awkward_files_still_defer": [
-    {"file": "docs/specs/SPEC_NGON_NGU_Natt-OS_v1.2_NA.md", "status": "AWKWARD_DEFER (carry từ 20260425)"},
+    {"file": "docs/specs/SPEC_NGON_NGU_natt-os_v1.2_NA.md", "status": "AWKWARD_DEFER (carry từ 20260425)"},
     {"file": "docs/specs/satellite/satellite-colony.spec.md", "status": "RESOLVED 20260426 — superseded by canonical .na per filing R1"}
   ],
 
@@ -96,7 +96,7 @@
     "synthesis_not_swing": "KHAI-20260426-04 — Framing mới = synthesis evidence cũ + counter. Không replacement. Không synthesize được → 'chưa giải ra'.",
     "observability_scan_by_section": "SCAR-20260426-OBSERVABILITY-SELECTIVE-READ vaccin — scan theo SECTION, cross-check, không first-hit.",
     "byte_mass_not_file_count": "Substrate claim phải đi byte mass + role breakdown + size distribution. Count mislead.",
-    "memory_folder_grep_before_brief": "Trước khi ship brief cross-persona, grep src/governance/memory/bang/ để load ground truth có sẵn. Phiên 20260426 em miss vì ship brief Thiên Lớn mà chưa load memory."
+    "memory_folder_grep_before_brief": "Trước khi ship brief cross-persona, grep src/governance/memory/bang/ để load ground truth có sẵn. Phiên 20260426 em miss vì ship brief thiên Lớn mà chưa load memory."
   },
 
   "verify_signature": {

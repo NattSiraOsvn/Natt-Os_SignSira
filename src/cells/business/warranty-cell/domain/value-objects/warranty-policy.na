@@ -1,5 +1,5 @@
 /**
- * Natt-OS — Warranty Cell
+ * natt-os — Warranty Cell
  * Value Object: Warranty Policies — Chính sách bảo hành Tâm Luxury
  */
 
@@ -48,7 +48,7 @@ export const WARRANTY_POLICIES: Record<WarrantyType, WarrantyPolicy> = {
     name: 'Bảo hành toàn diện (VIP/VVIP)',
     durationMonths: 36,
     coverageDescription: 'Bao gồm kết cấu + ổ đá + bề mặt + đánh bóng định kỳ',
-    excludes: ['Mất mát', 'Thiên tai'],
+    excludes: ['Mất mát', 'thiên tai'],
   },
 };
 

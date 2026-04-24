@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS KhaiCell Bypass Detector v2
+natt-os KhaiCell Bypass Detector v2
 SPEC NEN v1.0 P0 item 3.
 """
 
@@ -111,7 +111,7 @@ def scan_file(path):
 def main():
     print()
     print("=" * 70)
-    print("  Natt-OS KhaiCell Bypass Detector v2")
+    print("  natt-os KhaiCell Bypass Detector v2")
     print("=" * 70)
 
     total_files = 0
@@ -157,9 +157,9 @@ def main():
 
     print()
     if violations:
-        print(f"RESULT: FAIL — {len(violations)} violations")
+        print(f"RESULT: fail — {len(violations)} violations")
     else:
-        print("RESULT: PASS")
+        print("RESULT: pass")
     print()
 
 

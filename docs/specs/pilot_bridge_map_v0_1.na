@@ -2,11 +2,11 @@
 
 **Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **Session:** 20260423
-**Status:** v0.1 — 4/4 kernel cells S1→S2 DONE (phiên 20260423). W3 scope per SPEC_HOST_FIRST §4 D7 → now W2 per SPEC v1.1 align Thiên
+**Status:** v0.1 — 4/4 kernel cells S1→S2 DONE (phiên 20260423). W3 scope per SPEC_HOST_FIRST §4 D7 → now W2 per SPEC v1.1 align thiên
 **Binding to:**
 - SPEC_HOST_FIRST_RUNTIME_v1.0.na (§4 W3 · §8 pending)
 - SPEC_CUTOVER_STATES_v1.0.na (Kim — state labels + transition rules)
-- SPEC_Sira_AUTHORITY_BOOTSTRAP_v1.0.na (Kim — bridge authority)
+- SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na (Kim — bridge authority)
 - SPEC_EXTENSION_PRECEDENCE_v1.0.na (Kim — canonical vs substrate)
 
 **Commit path target (per KHAI-20260427-08 note):** `docs/specs/pilot_bridge_map_v0_1.na`
@@ -125,7 +125,7 @@ Evidence:
 1. **Tạo file `.khai` canonical:** `src/cells/kernel/observation-cell/observation-cell.khai`
 2. Header `@substrate: bootstrap.ts` declare rõ
 3. Đăng ký trong PILOT_BRIDGE_MAP (**file này**)
-4. Thiên Lớn approve về kiến trúc (observation-cell đã bootstrap `nattos.sira` PHASE 4 — architecture baseline đã có)
+4. thiên Lớn approve về kiến trúc (observation-cell đã bootstrap `nattos.sira` PHASE 4 — architecture baseline đã có)
 
 ### Required header (apply khi tạo `.khai`):
 
@@ -162,7 +162,7 @@ Evidence:
 1. Tạo `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.khai`
 2. Header `@substrate: bootstrap.ts`
 3. Đăng ký PILOT_BRIDGE_MAP
-4. Thiên approve (đã bootstrap baseline)
+4. thiên approve (đã bootstrap baseline)
 
 **Note:** quantum-defense-cell coupling cao với immune response + threat detection + kill-switch. Migrate CẨN THẬN. Parity test 100% trước S2 → S3.
 
@@ -199,7 +199,7 @@ W3 → W4 sẽ scope riêng sau khi 4 cells đạt S3 stable (minimum 3 phiên e
 Trước khi Gatekeeper seal từng transition:
 
 1. **Băng verify** ground truth (state cũ/mới + evidence + rollback khả thi) per Kim SPEC_CUTOVER_STATES §5.1
-2. **Thiên Lớn** chốt kiến trúc (S2 → S3 + S3 → S4 cần architecture review)
+2. **thiên Lớn** chốt kiến trúc (S2 → S3 + S3 → S4 cần architecture review)
 3. **Gatekeeper** approve cuối cùng + commit
 4. Rollback plan khả thi (test rollback trước merge forward)
 
@@ -214,7 +214,7 @@ Trước khi Gatekeeper seal từng transition:
 
 ---
 
-*Binding to: SPEC_HOST_FIRST_RUNTIME_v1.0, SPEC_CUTOVER_STATES_v1.0, SPEC_Sira_AUTHORITY_BOOTSTRAP_v1.0, SPEC_EXTENSION_PRECEDENCE_v1.0*
+*Binding to: SPEC_HOST_FIRST_RUNTIME_v1.0, SPEC_CUTOVER_STATES_v1.0, SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0, SPEC_EXTENSION_PRECEDENCE_v1.0*
 *Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
 *Session: 20260423 · Gatekeeper: Phan Thanh Thương*
 *Commit path designed: `docs/specs/pilot_bridge_map_v0_1.na` (Gatekeeper final landing)*

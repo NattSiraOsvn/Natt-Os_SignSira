@@ -57,15 +57,15 @@
   },
 
   "cell_chain": {
-    "event_flow": "ORDER_CREATED → CASTING_REQUEST → WIP_PHOI → WIP_IN_PROGRESS → WIP_STONE → WIP_COMPLETED → STOCK_ENTRY_CREATED → DUST_CLOSE_REPORT → PERIOD_CLOSE",
+    "event_flow": "ORDER_created → CASTING_REQUEST → WIP_PHOI → WIP_IN_PROGRESS → WIP_STONE → WIP_COMPLETED → STOCK_ENTRY_created → DUST_CLOSE_REPORT → PERIOD_CLOSE",
     "cell_map": {
-      "order-cell": "ORDER_CREATED",
+      "order-cell": "ORDER_created",
       "prdmaterials-cell": "CASTING_REQUEST",
       "casting-cell": "WIP_PHOI",
       "finishing-cell": "WIP_IN_PROGRESS (per worker, stage NGUOI_1→...)",
       "stone-cell": "WIP_STONE (hoặc NO_STONE_REQUIRED)",
       "polishing-cell": "WIP_COMPLETED (PENDING)",
-      "inventory-cell": "STOCK_ENTRY_CREATED (PENDING)",
+      "inventory-cell": "STOCK_ENTRY_created (PENDING)",
       "tax-cell": "cost accumulation TK154 (PENDING)",
       "dust-recovery-cell": "DUST_CLOSE_REPORT",
       "period-close-cell": "PERIOD_CLOSE (block nếu thiếu DUST_CLOSE_REPORT)"
@@ -161,7 +161,7 @@
     "protocol": "Đọc bangfs_v4.2 + bangmf_v5.8.0 TRƯỚC khi làm bất cứ thứ gì",
     "P0": "Verify tsc=189 sau fix finishing.usecase.ts → commit Sprint 2",
     "P1": "polishing-cell full (subscribe WIP_STONE → emit WIP_COMPLETED)",
-    "P2": "inventory-cell full (subscribe WIP_COMPLETED → emit STOCK_ENTRY_CREATED)",
+    "P2": "inventory-cell full (subscribe WIP_COMPLETED → emit STOCK_ENTRY_created)",
     "P3": "tax-cell full (enforce TR-001/002/005)",
     "P4": "GitHub push (git filter-repo fix ZaloSetup.dmg 307MB từ Kim commit 67da6db)",
     "P5": "period-close-cell + Gatekeeper approval gate (deadline 20/03)"

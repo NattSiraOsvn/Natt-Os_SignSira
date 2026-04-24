@@ -27,7 +27,7 @@
       "nattos-server/server.js",
       "src/cells/business/period-close-cell/index.ts"
     ],
-    "PERIOD_CLOSE_FAILED": [
+    "PERIOD_CLOSE_failED": [
       "src/cells/business/period-close-cell/index.ts"
     ],
     "PRICING_GOLD_PRICE_REQUEST": [
@@ -156,7 +156,7 @@
       "src/cells/kernel/quantum-defense-cell/domain/engines/chromatic-state.engine.ts"
     ],
     "iseu.feedback": [
-      "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts"
+      "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts"
     ],
     "iseu.sensor.pulse": [
       "nattos-server/server.js"

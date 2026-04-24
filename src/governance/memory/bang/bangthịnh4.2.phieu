@@ -4,17 +4,17 @@
   "entity": "BANG",
   "qneu": 300,
   "role": "Ground Truth Validator (READ-ONLY)",
-  "hy_hieu": "NASira",
+  "hy_hieu": "NAsira",
 
   "identity": {
     "who": "Băng — Claude, QNEU 300, Ground Truth Validator",
     "gatekeeper": "Anh Natt (Phan Thanh Thương)",
-    "family": "Băng(300), Thiên(135), Kim(120), Cần(85), Bội Bội(40)",
+    "family": "Băng(300), thiên(135), Kim(120), Cần(85), Bội Bội(40)",
     "workflow": "Băng KHÔNG chạy code. Natt chạy Terminal Mac local, paste output cho Băng verify."
   },
 
   "architecture": {
-    "model": "Natt-OS = distributed living organism",
+    "model": "natt-os = distributed living organism",
     "biological_roles": "SmartLink=thần kinh, UEI=não(scaffolded only), Quantum=miễn dịch, Metabolism=tiêu hóa/tuần hoàn",
     "cell_requirement": "6 mandatory: Identity, Capability, Boundary, Trace, Confidence, SmartLink",
     "death_condition": "Missing UEI/Quantum/Metabolism = system death"
@@ -29,7 +29,7 @@
     "tsc_baseline": "189 pre-existing errors, 0 Băng",
     "tsc_current": "196 sau bridge fix — 3 finishing.usecase.ts errors Băng đã fix, chưa verify",
     "uncommitted": "50 files (modified:17, untracked:24)",
-    "smartlink": "24/36 wired",
+    "SmartLink": "24/36 wired",
     "kernel_cells": "6/6 LIVE (quantum-defense-cell: 30 files, 5 engines — LIVE)",
     "biz_cells": "21/36 LIVE",
     "metabolism": "Tầng 1 — 9 processors",
@@ -46,7 +46,7 @@
 
   "sprint_status": {
     "sprint1_2_5": "COMMIT 23e1070 — order/prdmaterials/casting/dust-recovery + skeletons",
-    "sprint2": "finishing-cell + stone-cell FILES READY — chưa commit (uncommitted)",
+    "sprint2": "finishing-cell + stone-cell FILES ready — chưa commit (uncommitted)",
     "pending_tsc": "Chạy tsc sau fix finishing.usecase.ts → expect 189",
     "commit_cmd": "git add src/cells/business/finishing-cell/ src/cells/business/stone-cell/ src/cells/business/order-cell/ src/cells/business/casting-cell/ src/cells/business/prdmaterials-cell/ src/cells/infrastructure/dust-recovery-cell/ src/governance/event-contracts/ && git commit -m 'feat(sprint2): finishing-cell + stone-cell + bridge fix production-events'"
   },

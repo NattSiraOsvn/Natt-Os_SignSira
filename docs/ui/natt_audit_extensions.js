@@ -32,7 +32,7 @@
   hub.innerHTML = `
     <div class="nattExtHead">
       <div>
-        <div class="nattExtTitle">Natt-OS RUNTIME EXTENSION HUB</div>
+        <div class="nattExtTitle">natt-os RUNTIME EXTENSION HUB</div>
         <div style="font:10px JetBrains Mono,monospace;color:#64748b;margin-top:3px">Live APIs attached to localhost backend</div>
       </div>
       <div style="display:flex;gap:6px;align-items:center"><button id="nattExtSmall" class="nattExtSizeBtn">SMALL</button><button id="nattExtReset" class="nattExtSizeBtn">RESET</button><button id="nattExtCopy" class="nattExtCopy">COPY OUTPUT</button><span class="nattExtBadge">LOCAL ONLY</span></div>
@@ -194,7 +194,7 @@
         return print("REPO SEARCH", await get("/api/repo-search?q=" + q));
       }
     } catch (e) {
-      print("ERROR", e.message || String(e));
+      print("error", e.message || String(e));
     }
   }
 

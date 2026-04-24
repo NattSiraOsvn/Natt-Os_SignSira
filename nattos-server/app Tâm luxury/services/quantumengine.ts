@@ -133,7 +133,7 @@ export class QuantumFlowEngine {
     this.state.entropy += (qEvent.sensitivityVector.risk * 5);
 
     // 3. Entanglement Logic (Tạo mối liên kết)
-    if (eventType === 'SALES_ORDER_CREATED') {
+    if (eventType === 'SALES_ORDER_created') {
        this.createEntanglement('SALES', 'INVENTORY', 0.8);
        this.createEntanglement('SALES', 'FINANCE', 0.9);
     }

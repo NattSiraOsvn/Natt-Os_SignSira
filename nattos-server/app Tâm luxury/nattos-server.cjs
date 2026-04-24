@@ -1,8 +1,8 @@
 // @ts-nocheck
 /**
- * Natt-OS Server v1.0
+ * natt-os Server v1.0
  * Pure Event-Driven — no GSheets, no REST CRUD
- * EventBus = Natt-OS core EventBus
+ * EventBus = natt-os core EventBus
  */
 
 const express = require('express');
@@ -41,7 +41,7 @@ EventBus.on('cell.metric', (env) => {
 
 // ── ROUTES ────────────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', server: 'Natt-OS Server v1.0', ts: new Date().toISOString() });
+  res.json({ status: 'ok', server: 'natt-os Server v1.0', ts: new Date().toISOString() });
 });
 
 app.post('/api/events/emit', (req, res) => {
@@ -83,8 +83,8 @@ app.get('/api/audit', (req, res) => {
 
 // ── START ─────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`\n[Natt-OS Server v1.0] http://localhost:${PORT}`);
-  console.log(`[EventBus] Natt-OS core EventBus wired`);
+  console.log(`\n[natt-os Server v1.0] http://localhost:${PORT}`);
+  console.log(`[EventBus] natt-os core EventBus wired`);
   console.log(`  GET  /api/health`);
   console.log(`  POST /api/events/emit`);
   console.log(`  GET  /api/state/:cell`);

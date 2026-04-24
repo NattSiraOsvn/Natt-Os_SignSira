@@ -1,6 +1,6 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 /**
- * Natt-OS Flow Chain Engine v1.0 — V5 Condition 1 + 3
+ * natt-os Flow Chain Engine v1.0 — V5 Condition 1 + 3
  */
 import * as fs from "fs";
 import * as path from "path";

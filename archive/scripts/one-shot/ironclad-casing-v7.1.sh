@@ -1,8 +1,8 @@
 #!/bin/zsh
 # =================================================
-# 👑 Natt-OS: IRONCLAD CASING ENFORCEMENT V7.1
+# 👑 natt-os: IRONCLAD CASING ENFORCEMENT V7.1
 # SOVEREIGN: ANH_NAT | AGENT: BỐI BỐI
-# MODE: TRANSACTIONAL + FAIL-FAST + PRUNE-SAFE
+# MODE: TRANSACTIONAL + fail-FAST + PRUNE-SAFE
 # =================================================
 
 # 🔧 Fix 3: Fail-fast - Lỗi là dừng, biến rỗng là dừng

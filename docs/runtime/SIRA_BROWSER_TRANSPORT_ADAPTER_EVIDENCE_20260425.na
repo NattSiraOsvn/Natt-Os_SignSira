@@ -1,26 +1,26 @@
-# Sira browser transport adapter Evidence — 20260425\n\nstatus: PASS\ncreated_at: 2026-04-24T18:18:28.786024+00:00\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\n\n---\n\n## 1. Decision\n\n`http://` is locked as browser transport adapter only.\n\n`anc://` remains identity protocol.\n\n`.sira` remains root namespace / artifact layer.\n\n`tools/thiên` remains operator launcher.\n\n## 2. Checks\n\n{
+# sira browser transport adapter Evidence — 20260425\n\nstatus: pass\ncreated_at: 2026-04-24T18:18:28.786024+00:00\nrepo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\n\n---\n\n## 1. Decision\n\n`http://` is locked as browser transport adapter only.\n\n`anc://` remains identity protocol.\n\n`.sira` remains root namespace / artifact layer.\n\n`tools/thiên` remains operator launcher.\n\n## 2. Checks\n\n{
   "browser_transport_boundary": {
     "cmd": "tools/thiên tools/validate_browser_transport_boundary.sira",
     "exit": 0,
-    "stdout": "Sira browser transport boundary validation: PASS\nidentity=anc://\nnamespace=.sira\noperator=tools/thiên\ntransport=http browser adapter",
+    "stdout": "sira browser transport boundary validation: pass\nidentity=anc://\nnamespace=.sira\noperator=tools/thiên\ntransport=http browser adapter",
     "stderr": ""
   },
   "sira_namespace": {
     "cmd": "tools/thiên tools/validate_sira_namespace.sira",
     "exit": 0,
-    "stdout": "Sira namespace validation: PASS\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/Sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
+    "stdout": "sira namespace validation: pass\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
     "stderr": ""
   },
   "sira_browser_adapter": {
     "cmd": "tools/thiên tools/validate_sira_browser_adapter.sira",
     "exit": 0,
-    "stdout": "Sira browser adapter validation: PASS\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
+    "stdout": "sira browser adapter validation: pass\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
     "stderr": ""
   },
   "sira_ts_adapter": {
     "cmd": "tools/thiên tools/validate_sira_ts_translation_adapter.sira",
     "exit": 0,
-    "stdout": "Sira TypeScript translation adapter validation: PASS\nmode=adapter scaffold\nmutation_policy=no bulk mutation",
+    "stdout": "sira typescript translation adapter validation: pass\nmode=adapter scaffold\nmutation_policy=no bulk mutation",
     "stderr": ""
   }
 }\n

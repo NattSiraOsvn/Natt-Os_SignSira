@@ -9,7 +9,7 @@ export interface TCTResponse {
 }
 
 export interface InternalSyncResponse {
-  status: 'SYNCED' | 'FAILED';
+  status: 'SYNCED' | 'failED';
   shardId: string;
   blockIndex: number;
   internalHash: string;

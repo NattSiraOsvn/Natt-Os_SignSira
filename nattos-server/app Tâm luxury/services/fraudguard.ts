@@ -79,7 +79,7 @@ export class FraudGuardService {
             };
         }
 
-        // --- RULE 2: TRÙNG LẶP HỆ THỐNG (WARNING) ---
+        // --- RULE 2: TRÙNG LẶP HỆ THỐNG (warnING) ---
         // SP Đã thu + Cùng nhân viên + Cùng định danh
         // => Có thể do mạng lag, click đúp, hoặc khách đổi ý quay lại
         if (isSameStaff && !isDifferentIdentity) {
@@ -108,9 +108,9 @@ export class FraudGuardService {
         // Chưa có Identity Input -> Cảnh báo là hàng đã thu, yêu cầu định danh để verify
         return {
             allowed: false,
-            level: AlertLevel.WARNING,
+            level: AlertLevel.warnING,
             message: `CẢNH BÁO: Sản phẩm ${match.sku} có trong lịch sử thu đổi. YÊU CẦU ĐỊNH DANH (Face/CCCD) để xác thực.`,
-            action: 'WARN',
+            action: 'warn',
             historyRecord: match
         };
     }

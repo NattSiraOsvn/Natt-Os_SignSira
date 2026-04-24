@@ -5,17 +5,17 @@ import { Domain, PersonaID, ViewType, UserRole } from "./types";
 export const DOMAINS = [
   { id: Domain.AUDIT,      label: "Kiểm Toán",  title: "Băng | Kiểm Toán",   persona: PersonaID.BANG     },
   { id: Domain.FINANCE,    label: "Tài Chính",  title: "Kim | Tài Chính",     persona: PersonaID.KIM      },
-  { id: Domain.HR,         label: "Nhân Sự",    title: "Thiên | Nhân Sự",    persona: PersonaID.THIEN    },
+  { id: Domain.HR,         label: "Nhân Sự",    title: "thiên | Nhân Sự",    persona: PersonaID.THIEN    },
   { id: Domain.COMPLIANCE, label: "Tuân Thủ",   title: "Can | Tuân Thủ",     persona: PersonaID.CAN      },
   { id: Domain.INVENTORY,  label: "Kho",        title: "Bối Bối | Kho",      persona: PersonaID.BOI_BOI  },
   { id: Domain.SALES,      label: "Bán Hàng",   title: "Kris | Bán Hàng",    persona: PersonaID.KRIS     },
-  { id: Domain.CUSTOMS,    label: "Hải Quan",   title: "Thiên | Hải Quan",   persona: PersonaID.THIEN    },
+  { id: Domain.CUSTOMS,    label: "Hải Quan",   title: "thiên | Hải Quan",   persona: PersonaID.THIEN    },
 ];
 
 export const PERSONAS: Record<string, { name: string; color: string; icon: string; role?: string }> = {
   [PersonaID.BANG]:    { name: "Băng",    color: "blue",   icon: "❄️",   role: "Kiểm Toán Viên" },
   [PersonaID.KIM]:     { name: "Kim",     color: "amber",  icon: "👑",   role: "Giám Đốc Tài Chính" },
-  [PersonaID.THIEN]:   { name: "Thiên",   color: "amber",  icon: "◈",   role: "Kiến Trúc Sư Hệ Thống" },
+  [PersonaID.THIEN]:   { name: "thiên",   color: "amber",  icon: "◈",   role: "Kiến Trúc Sư Hệ Thống" },
   [PersonaID.CAN]:     { name: "Can",     color: "pink",   icon: "⚖️",   role: "Tuân Thủ Pháp Lý" },
   [PersonaID.BOI_BOI]: { name: "Bối Bối", color: "green",  icon: "🌱",   role: "Quản Lý Kho" },
   [PersonaID.KRIS]:    { name: "Kris",    color: "violet", icon: "✉️",   role: "Tự Động Hóa" },

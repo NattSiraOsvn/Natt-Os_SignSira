@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Natt-OS · Nauion</title>
+  <title>natt-os · Nauion</title>
   <link rel="stylesheet" href="./styles.css"/>
   <style>
   #gx-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
@@ -43,7 +43,7 @@
   .nb-state.warn{color:rgba(255,170,90,.88)}
   .nb-state.crit{color:rgba(255,112,112,.92)}
 
-  /* NASira */
+  /* NAsira */
   .nasira-wrap{--sz:36px;--nc:#C4BCFF;--ng:rgba(196,188,255,.55);--nd:rgba(196,188,255,.30);
     position:relative;width:var(--sz);height:var(--sz);flex-shrink:0}
   .nasira-petals{position:absolute;inset:0;
@@ -89,7 +89,7 @@
     width:30%;height:20%;border-radius:50%;background:rgba(255,255,255,.75);
     filter:blur(1.5px);transform:rotate(-18deg)}
 
-  /* Nauion state colors for NaSira */
+  /* Nauion state colors for Nasira */
   .ns-nauion{--nc:#C4BCFF;--ng:rgba(196,188,255,.55);--nd:rgba(196,188,255,.30)}
   .ns-whao  {--nc:#A8DFFF;--ng:rgba(168,223,255,.50);--nd:rgba(168,223,255,.28)}
   .ns-whau  {--nc:#7FFFCC;--ng:rgba(127,255,204,.48);--nd:rgba(127,255,204,.26)}
@@ -181,7 +181,7 @@
 <div class="l0-grid"></div>
 <div class="l0-scan"></div>
 
-<!-- NaSira shared SVG defs -->
+<!-- Nasira shared SVG defs -->
 <svg width="0" height="0" style="position:absolute;overflow:hidden">
   <defs>
     <linearGradient id="np-og1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -322,7 +322,7 @@ function draw(ts){gx.clearRect(0,0,gxc.width,gxc.height);const tt=ts*.001;
 window.addEventListener('resize',rsz);rsz();requestAnimationFrame(draw);
 </script>
 
-<!-- Natt-OS Payment Module v1.0 -->
+<!-- natt-os Payment Module v1.0 -->
 <script src="../src/ui-app/nattos-payment.js"></script>
 <script src="./resonance.protocol.js"></script>
 <script type="module" src="./app.js"></script>

@@ -51,7 +51,7 @@ Workflow git add FULL:
   5. git add <path>            (add CHI file nay, khong wildcard)
 ```
 
-### §1.5 Vaccin v5 (sau SCAR-MISSING-CROSS-DOMAIN-LINK)
+### §1.5 Vaccin v5 (sau SCAR-missing-CROSS-DOMAIN-LINK)
 ```
 Khi blocker nhan thức (not technical):
   1. Hoi Gatekeeper keyword theo CONCEPT (khong phai task name)
@@ -86,7 +86,7 @@ Khi blocker nhan thức (not technical):
 - Root cause: em assumed anh replace placeholder; anh expected fully-formed command
 - Vaccin: trong tat ca `cp` commands, dung `~/Downloads/<filename>` default, KHONG bao gio placeholder literal
 
-### §2.5 SCAR-MISSING-CROSS-DOMAIN-LINK-20260424
+### §2.5 SCAR-missing-CROSS-DOMAIN-LINK-20260424
 - Context: Anh Natt gave 2 keywords ('butterfly', 'qiint2') to unlock K1
 - Root cause: em scan 1-dimensional keywords, khong cross-link domains
   - Butterfly → chaos → DoS thresholds → QIINT2 → K1 SURVIVAL
@@ -118,7 +118,7 @@ Per `bangthịnh5.5.phieu` pending: "Butterfly effect vế còn lại — không
 
 ### §3.2 Pattern 3 (K3) Surfaced
 
-Per `audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na`:
+Per `audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na`:
 
 - Pattern 3 = `AUDIT_VERIFY_ALWAYS_TRUE` in `SimpleAuditChain.verify(_h): return true`
 - Confirms memory note "3 bypass patterns" was accurate

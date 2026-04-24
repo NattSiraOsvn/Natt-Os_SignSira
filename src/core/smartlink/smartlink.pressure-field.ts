@@ -1,7 +1,7 @@
 /**
- * Natt-OS SmartLink — Pressure Field
+ * natt-os SmartLink — Pressure Field
  * ════════════════════════════════════════════════════════
- * src/core/smartlink/smartlink.pressure-field.ts
+ * src/core/SmartLink/SmartLink.pressure-field.ts
  *
  * Pressure Field = lực kéo của mạng sợi lên routing.
  *
@@ -29,7 +29,7 @@
  *   UEI đọc Pressure Field như một trong các inputs của consciousness.
  */
 
-import { PatternCompetition, type PatternCompetitor, type NetworkCompetitionSnapshot } from './smartlink.competition';
+import { PatternCompetition, type PatternCompetitor, type NetworkCompetitionSnapshot } from './SmartLink.competition';
 import { Router, type RoutingCandidate } from '@/core/routing/deterministic-router';
 
 // ── Types ─────────────────────────────────────────────────────────────────────

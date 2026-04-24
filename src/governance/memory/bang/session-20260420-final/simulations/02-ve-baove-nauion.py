@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Natt-OS — VẾ BẢO VỆ + NGƯỠNG VỠ
+natt-os — VẾ BẢO VỆ + NGƯỠNG VỠ
 ═══════════════════════════════════════════════════════════════════════
 
 Bám ngôn ngữ Nauion canonical:
@@ -18,12 +18,12 @@ Công thức ISEU:
   R       — reflection coefficient = (Z - Z₀) / (Z + Z₀)
   T       — transmission = 1 - R² (năng lượng đi vào hệ)
 
-Ánh xạ 7 trạng thái NaSira theo |R| và phản ứng hệ:
+Ánh xạ 7 trạng thái Nasira theo |R| và phản ứng hệ:
   OPTIMAL  — xung quen, Z match → R thấp, hấp thụ đẹp, trạng thái nauion
   STABLE   — xung bình thường → R < 0.3, trạng thái nauion  
   NOMINAL  — xung có nhẹ lệch → R < 0.5, whau
   DRIFT    — xung lệch nhiều → R = 0.5-0.7, whau + ghi chú lệch
-  WARNING  — xung lạ nhiều → R = 0.7-0.85, whau chuyển whao
+  warnING  — xung lạ nhiều → R = 0.7-0.85, whau chuyển whao
   RISK     — xung tấn công → R = 0.85-0.95, whao
   CRITICAL — xung vượt ngưỡng → R ≥ 0.95, gãy
 
@@ -50,7 +50,7 @@ class Nauion(Enum):
     STABLE   = ("stable",   "#4F46E5", 1)  # chàm — ổn định
     NOMINAL  = ("nominal",  "#2563EB", 2)  # lam — bình thường
     DRIFT    = ("drift",    "#16A34A", 3)  # lục — lệch nhẹ
-    WARNING  = ("warning",  "#EA580C", 4)  # cam — cảnh báo
+    warnING  = ("warning",  "#EA580C", 4)  # cam — cảnh báo
     RISK     = ("risk",     "#CA8A04", 5)  # vàng — nguy cơ
     CRITICAL = ("critical", "#DC2626", 6)  # đỏ — tới hạn
 
@@ -69,7 +69,7 @@ def R_to_nauion(R: float) -> Nauion:
     if r < 0.3:   return Nauion.STABLE
     if r < 0.5:   return Nauion.NOMINAL
     if r < 0.7:   return Nauion.DRIFT
-    if r < 0.85:  return Nauion.WARNING
+    if r < 0.85:  return Nauion.warnING
     if r < 0.95:  return Nauion.RISK
     return Nauion.CRITICAL
 
@@ -90,7 +90,7 @@ def nauion_chain_break() -> List[str]:
 
 @dataclass
 class Cell:
-    """Cell Natt-OS với impedance Z₀ baseline"""
+    """Cell natt-os với impedance Z₀ baseline"""
     name: str
     group: str
     Z0: float = 1.0           # impedance chuẩn
@@ -231,7 +231,7 @@ def find_break_point(
 # SECTION 5 — DEMO SIMULATION
 # ═══════════════════════════════════════════════════════════════════════
 
-# Tạo cells Natt-OS với Z₀ khác nhau
+# Tạo cells natt-os với Z₀ khác nhau
 cells = [
     Cell("khai-cell",       "kernel",       Z0=1.0),
     Cell("observation",     "kernel",       Z0=1.0),
@@ -256,7 +256,7 @@ pulses = [
 # ═══════════════════════════════════════════════════════════════════════
 
 print("=" * 82)
-print(f"{'Natt-OS — VẾ BẢO VỆ + NGƯỠNG VỠ (ngôn ngữ Nauion)':^82}")
+print(f"{'natt-os — VẾ BẢO VỆ + NGƯỠNG VỠ (ngôn ngữ Nauion)':^82}")
 print("=" * 82)
 print()
 
@@ -310,7 +310,7 @@ for i, state in enumerate(scan_result['states']):
 
 fig = plt.figure(figsize=(18, 12))
 gs = GridSpec(3, 3, figure=fig, hspace=0.45, wspace=0.30)
-fig.suptitle('Natt-OS — Vế Bảo Vệ (Nahere + ISEU Reflection) · Ngôn ngữ Nauion',
+fig.suptitle('natt-os — Vế Bảo Vệ (Nahere + ISEU Reflection) · Ngôn ngữ Nauion',
              fontsize=15, fontweight='bold', y=0.995)
 
 # [1] Nauion state matrix

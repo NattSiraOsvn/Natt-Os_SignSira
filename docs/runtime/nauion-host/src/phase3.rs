@@ -37,14 +37,14 @@ impl SelfTestResult {
         if self.passed >= 3 {
             ExitCode::SUCCESS
         } else {
-            ExitCode::FAILURE
+            ExitCode::failURE
         }
     }
 }
 
 pub fn run(esbuild_status: &EsbuildStatus, src_root: &PathBuf) -> SelfTestResult {
     println!();
-    println!("═══ NATT-OS Kernel Self-Test ═══");
+    println!("═══ natt-os Kernel Self-Test ═══");
     println!();
 
     let resolver = FileResolver::new(src_root.clone());
@@ -175,7 +175,7 @@ mod tests {
             all_pass: false,
             partial: false,
         };
-        assert!(matches!(result.exit_code(), ExitCode::FAILURE));
+        assert!(matches!(result.exit_code(), ExitCode::failURE));
     }
 
     #[test]

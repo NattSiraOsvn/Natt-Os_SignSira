@@ -2,7 +2,7 @@
 
 /**
  * finishing-cell — application/finishing.usecase.ts
- * Sprint 2 | Tâm Luxury Natt-OS
+ * Sprint 2 | Tâm Luxury natt-os
  *
  * Subscribe: WIP_PHOI (từ casting-cell)
  * Emit:      WIP_IN_PROGRESS (sang stone-cell / polishing-cell)

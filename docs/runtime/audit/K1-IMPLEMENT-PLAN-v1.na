@@ -10,7 +10,7 @@
 **Scope:** Wire survival-cell (passport commit cf74423) voi 3 existing engine de dong K1 WITHOUT writing new TS files.
 
 **Drafter:** bang
-**Status:** READY_TO_IMPLEMENT
+**Status:** ready_TO_IMPLEMENT
 
 **Key insight (butterfly effect ve 2):**
 Threshold Engine v1.1 `getTotalSignal()` da implement weighted aggregation — "nhieu warning nho × weight → critical toan he". K1 chi can **feed data** + **add threshold entries**, KHONG code component moi.
@@ -162,7 +162,7 @@ eventBus.emit('cell.metric', {
   id: 'SURVIVAL_SUBSCRIBER_LATENCY',
   cell: 'survival-cell',
   metric: 'avg_latency_ms',
-  warn_above: 500,   // WARN_THRESHOLD_MS
+  warn_above: 500,   // warn_THRESHOLD_MS
   risk_above: 1000,
   critical_above: 2000,  // ALERT_THRESHOLD_MS
   weight: 0.8,

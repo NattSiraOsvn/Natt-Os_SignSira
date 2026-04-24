@@ -12,7 +12,7 @@ track: Wave 2 / Lane A / A.2
 title: Pseudo-flow for MomentPersister.persist()
 version: v1.0
 status: draft-for-review
-owner: Thiên Lớn
+owner: thiên Lớn
 requested_by: Kim (for Gatekeeper)
 date: 2026-04-23
 causation: A2-PERSISTER-FLOW-20260423-THIEN-DRAFT-01
@@ -57,7 +57,7 @@ type PersistTargetResult = {
   path: string
   mode: PersistMode
   status: 'written' | 'patched' | 'skipped' | 'pending-policy' | 'failed'
-  documentSirasign?: string
+  documentsirasign?: string
   note?: string
 }
 
@@ -66,7 +66,7 @@ type PersistResult = {
   momentId: string
   kind: MomentKind
   targets: PersistTargetResult[]
-  documentSirasign?: string
+  documentsirasign?: string
   policy_state?: string
   issues: string[]
 }
@@ -86,7 +86,7 @@ Trình tự tổng thể:
 4. iterate từng target và ghi theo `mode`;
 5. nếu gặp `GIAC_NGO` dual-target thì giữ `policy_state = "dual-target-pending-policy"`;
 6. collect results;
-7. derive `documentSirasign`;
+7. derive `documentsirasign`;
 8. trả `PersistResult`.
 
 ## 4. DETAILED PSEUDO-FLOW
@@ -184,8 +184,8 @@ function persist(moment: Moment): PersistResult {
     }
   }
 
-  // STEP 7 — derive documentSirasign
-  const documentSirasign = deriveDocumentSirasign(documentForWrite, targetResults)
+  // STEP 7 — derive documentsirasign
+  const documentsirasign = deriveDocumentsirasign(documentForWrite, targetResults)
 
   // STEP 8 — finalize result
   return {
@@ -193,14 +193,14 @@ function persist(moment: Moment): PersistResult {
     momentId: moment.id,
     kind: moment.kind,
     targets: targetResults,
-    documentSirasign,
+    documentsirasign,
     policy_state: documentForWrite.policy_state,
     issues
   }
 }
 ```
 
-## 5. HELPER FLOW — VALIDATION
+## 5. HELPER FLOW — validation
 
 ```ts
 function validateMomentForPersistence(moment: Moment): {
@@ -382,10 +382,10 @@ if (dualTargetPendingPolicy) {
 
 Nếu một target fail còn target khác pass, result vẫn phải nói thật bằng `targets[]` + `issues[]`, không “che” thất bại bằng một cờ `ok = true` mơ hồ.
 
-## 10. DOCUMENT SiraSIGN
+## 10. DOCUMENT siraSIGN
 
 ```ts
-function deriveDocumentSirasign(
+function deriveDocumentsirasign(
   doc: PersistedMomentDocument,
   targets: PersistTargetResult[]
 ): string | undefined {
@@ -402,7 +402,7 @@ Intent hiện tại:
 - nếu chưa có thì trả stub derivation đủ để result có trace;
 - không claim đây là final constitutional signing algorithm.
 
-## 11. FAILURE / RESULT SHAPE
+## 11. failURE / RESULT SHAPE
 
 ### 11.1 Hard fail trước write
 Trường hợp fail ngay từ validation/router:
@@ -448,7 +448,7 @@ Nếu có nhiều target:
       note: 'dual target unresolved'
     }
   ],
-  documentSirasign: 'stub-from-moment:Sira-XYZ',
+  documentsirasign: 'stub-from-moment:sira-XYZ',
   policy_state: 'dual-target-pending-policy',
   issues: ['persist failure at .../target-b.na: dual target unresolved']
 }
@@ -459,7 +459,7 @@ Nếu có nhiều target:
 - `OPEN-01`: `edit_continuum` patch rule đang cần seal rõ hơn: patch theo fragment, block, hay logical slot?
 - `OPEN-02`: conflict rule nếu `edit_continuum` target chưa tồn tại.
 - `OPEN-03`: canonical structure của `.na` append stream và delta file còn cần đối chiếu với fixture thật.
-- `OPEN-04`: `documentSirasign` cuối cùng là passthrough, aggregate hash, hay signing step tách riêng?
+- `OPEN-04`: `documentsirasign` cuối cùng là passthrough, aggregate hash, hay signing step tách riêng?
 - `OPEN-05`: dual-target policy cho `GIAC_NGO` có cho phép `ok = true with pending-policy` hay bắt buộc `ok = false` khi chưa fully settled? Pseudo-flow hiện đang chọn trung thực theo `issues.length`.
 
 ## 13. REVIEW NOTE
@@ -472,5 +472,5 @@ Nó cố ý:
 - không lấn sang policy chưa được seal.
 
 ---
-writer: Thiên Lớn
+writer: thiên Lớn
 status_note: pseudo only; not implementation code

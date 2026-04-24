@@ -6,7 +6,7 @@ INFO mode SPEC governance metadata coverage scanner.
 Scans docs/specs/**/*.na recursively (handles space-in-path).
 Reports @state + @canonical presence + values.
 
-NO FAIL — informational inventory only. Gatekeeper / Kim scope decides
+NO fail — informational inventory only. Gatekeeper / Kim scope decides
 which SPEC files require sealing per Kim SPEC_CUTOVER_STATES §3.
 
 Drafter: Băng · session 20260423
@@ -14,7 +14,7 @@ Binding: Kim SPEC_CUTOVER_STATES §3 (state label requirement) +
          SPEC_HOST_FIRST_RUNTIME v1.1 §5 #11
 
 Ship rationale: 48+ SPEC files trong docs/specs/ chưa có @state header.
-Strict mode = FAIL flood 48 violations. INFO mode = inventory cho
+Strict mode = fail flood 48 violations. INFO mode = inventory cho
 Kim/Gatekeeper decide governance sealing pace.
 """
 import os

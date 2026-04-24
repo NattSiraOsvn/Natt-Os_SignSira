@@ -1,4 +1,4 @@
-# Natt-OS — NHÓM 2: HỒ SƠ ỔN ĐỊNH CODEBASE / RELEASE GATE
+# natt-os — NHÓM 2: HỒ SƠ ỔN ĐỊNH CODEBASE / RELEASE gate
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ Gold Master Stabilization trước Market Launch  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 2
 
-Nhóm 2 là bộ tài liệu dùng để đưa Natt-OS từ trạng thái **Gold Master đang drift/lỗi compile** về trạng thái **có thể kiểm tra, có thể khóa release, có thể demo có kiểm soát**.
+Nhóm 2 là bộ tài liệu dùng để đưa natt-os từ trạng thái **Gold Master đang drift/lỗi compile** về trạng thái **có thể kiểm tra, có thể khóa release, có thể demo có kiểm soát**.
 
 Nhóm này trả lời 5 câu hỏi:
 
@@ -25,7 +25,7 @@ Nhóm 2 không phải tài liệu kiến trúc mẹ. Nhóm 2 là **bộ hồ sơ
 
 ## 1. Bối cảnh hiện trạng
 
-Theo báo cáo hệ thống ngày 23/02/2026, Natt-OS Gold Master đang gặp lỗi biên dịch lớn do drift schema và thay đổi kiến trúc chưa được cập nhật đồng bộ.
+Theo báo cáo hệ thống ngày 23/02/2026, natt-os Gold Master đang gặp lỗi biên dịch lớn do drift schema và thay đổi kiến trúc chưa được cập nhật đồng bộ.
 
 Các cụm lỗi chính được xác định gồm:
 
@@ -109,7 +109,7 @@ non_blocking_error_count:
 | 2 | Types Drift | Schema/type mismatch | High | Băng | Kim/CAN |
 | 3 | Import Drift | Path refactor drift | Medium | Bối | Kim |
 | 4 | Enum Misuse | Status sai canonical | Medium | Kim/Băng | CAN |
-| 5 | Infra Missing Methods | EventBridge/SmartLink/Audit/Threat | Medium | Bối/Kim | Thiên |
+| 5 | Infra Missing Methods | EventBridge/SmartLink/Audit/Threat | Medium | Bối/Kim | thiên |
 | 6 | UI Type Safety | Dashboard/Seller/App component | Low-Med | Kim | Băng |
 
 ### C. Nguyên tắc sửa
@@ -138,11 +138,11 @@ non_blocking_error_count:
 
 ---
 
-# R2 — COMPILE ERROR RESOLUTION LOG
+# R2 — COMPILE error RESOLUTION LOG
 
 ## 2.1. Tên file chính thức
 
-`docs/release/COMPILE_ERROR_RESOLUTION_LOG_v1.na`
+`docs/release/COMPILE_error_RESOLUTION_LOG_v1.na`
 
 ## 2.2. Mục đích
 
@@ -164,7 +164,7 @@ files_changed:
 summary:
 new_errors_introduced:
 reviewer:
-status: PASS | PARTIAL | FAIL
+status: pass | PARTIAL | fail
 ```
 
 ## 2.4. Cách ghi log
@@ -190,7 +190,7 @@ phải ghi:
 1. Không được ghi “đã fix” nếu chưa có output compile.
 2. Không được chỉ ghi cảm tính “còn ít lỗi”.
 3. Nếu lỗi tăng sau commit, phải ghi regression.
-4. Nếu lỗi giảm nhưng phát sinh lỗi nghiêm trọng hơn, không được mark PASS.
+4. Nếu lỗi giảm nhưng phát sinh lỗi nghiêm trọng hơn, không được mark pass.
 
 ---
 
@@ -368,13 +368,13 @@ Chuẩn hóa enum/status để tránh code tự phát sinh trạng thái không 
 `OperationRecord.status` canonical:
 
 ```text
-PENDING | SUCCESS | FAILURE
+PENDING | SUCCESS | failURE
 ```
 
 Code misuse:
 
 ```text
-FAILED     → phải sửa thành FAILURE
+failED     → phải sửa thành failURE
 RECOVERED  → phải sửa thành SUCCESS hoặc trạng thái recovery riêng nếu có spec
 ```
 
@@ -391,7 +391,7 @@ RECOVERED  → phải sửa thành SUCCESS hoặc trạng thái recovery riêng 
 ## 6.5. Acceptance Criteria
 
 ```text
-[ ] Grep toàn bộ FAILED/RECOVERED
+[ ] Grep toàn bộ failED/RECOVERED
 [ ] Phân loại literal nào là domain thật, literal nào là misuse
 [ ] Sửa misuse sang canonical
 [ ] Không widen OperationRecord.status bừa
@@ -514,7 +514,7 @@ exit_code:
 error_count:
 warning_count:
 duration:
-result: PASS | FAIL | PARTIAL
+result: pass | fail | PARTIAL
 log_path:
 reviewer:
 notes:
@@ -522,7 +522,7 @@ notes:
 
 ## 9.5. Quy tắc
 
-1. PASS chỉ khi exit code = 0.
+1. pass chỉ khi exit code = 0.
 2. PARTIAL chỉ dùng khi có lỗi non-blocking đã được phân loại.
 3. Không copy log rời rạc không có commit hash.
 4. Không chấp nhận “máy em pass” nếu không có command/output.
@@ -530,7 +530,7 @@ notes:
 
 ---
 
-# R10 — RELEASE GATE CHECKLIST
+# R10 — RELEASE gate CHECKLIST
 
 ## 10.1. Tên file chính thức
 
@@ -538,7 +538,7 @@ notes:
 
 ## 10.2. Mục đích
 
-Định nghĩa điều kiện tối thiểu để Natt-OS được phép chuyển trạng thái:
+Định nghĩa điều kiện tối thiểu để natt-os được phép chuyển trạng thái:
 
 ```text
 Internal Technical Preview
@@ -571,8 +571,8 @@ Internal Technical Preview
 ## 10.5. Gate 3 — Release Candidate
 
 ```text
-[ ] npx tsc --noEmit PASS
-[ ] Build Verification Report PASS
+[ ] npx tsc --noEmit pass
+[ ] Build Verification Report pass
 [ ] Runtime Wave Report có evidence
 [ ] EventEnvelope contract có canonical file
 [ ] Audit/Ground Truth rule có file
@@ -607,7 +607,7 @@ không thể bypass
 Câu an toàn hơn:
 
 ```text
-Natt-OS đang trong giai đoạn Gold Master Stabilization, tập trung hoàn thiện runtime, audit trail, cell governance và cơ chế event-driven vận hành doanh nghiệp.
+natt-os đang trong giai đoạn Gold Master Stabilization, tập trung hoàn thiện runtime, audit trail, cell governance và cơ chế event-driven vận hành doanh nghiệp.
 ```
 
 ---
@@ -617,7 +617,7 @@ Natt-OS đang trong giai đoạn Gold Master Stabilization, tập trung hoàn th
 | Mã | Tài liệu | File path | Done |
 |---|---|---|---|
 | R1 | Gold Master Stabilization Report | `docs/release/GOLD_MASTER_STABILIZATION_REPORT_v1.na` | ☐ |
-| R2 | Compile Error Resolution Log | `docs/release/COMPILE_ERROR_RESOLUTION_LOG_v1.na` | ☐ |
+| R2 | Compile Error Resolution Log | `docs/release/COMPILE_error_RESOLUTION_LOG_v1.na` | ☐ |
 | R3 | Type Integrity Report | `docs/release/TYPE_INTEGRITY_REPORT_v1.na` | ☐ |
 | R4 | Warehouse Cell Repair Report | `docs/release/WAREHOUSE_CELL_REPAIR_REPORT_v1.na` | ☐ |
 | R5 | Import Drift Cleanup Report | `docs/release/IMPORT_DRIFT_CLEANUP_REPORT_v1.na` | ☐ |
@@ -639,7 +639,7 @@ from pathlib import Path
 
 files = {
     'docs/release/GOLD_MASTER_STABILIZATION_REPORT_v1.na': '# Gold Master Stabilization Report v1\n\nSTATUS: DRAFT\n',
-    'docs/release/COMPILE_ERROR_RESOLUTION_LOG_v1.na': '# Compile Error Resolution Log v1\n\nSTATUS: DRAFT\n',
+    'docs/release/COMPILE_error_RESOLUTION_LOG_v1.na': '# Compile Error Resolution Log v1\n\nSTATUS: DRAFT\n',
     'docs/release/TYPE_INTEGRITY_REPORT_v1.na': '# Type Integrity Report v1\n\nSTATUS: DRAFT\n',
     'docs/release/WAREHOUSE_CELL_REPAIR_REPORT_v1.na': '# Warehouse Cell Repair Report v1\n\nSTATUS: DRAFT\n',
     'docs/release/IMPORT_DRIFT_CLEANUP_REPORT_v1.na': '# Import Drift Cleanup Report v1\n\nSTATUS: DRAFT\n',
@@ -657,7 +657,7 @@ for path, content in files.items():
         print(f'SKIP existing: {p}')
     else:
         p.write_text(content, encoding='utf-8')
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
 
 print('done')
 EOF
@@ -675,7 +675,7 @@ from pathlib import Path
 
 files = {
     'docs/release/GOLD_MASTER_STABILIZATION_REPORT_v1.na': '# Gold Master Stabilization Report v1\n\nSTATUS: DRAFT\n',
-    'docs/release/COMPILE_ERROR_RESOLUTION_LOG_v1.na': '# Compile Error Resolution Log v1\n\nSTATUS: DRAFT\n',
+    'docs/release/COMPILE_error_RESOLUTION_LOG_v1.na': '# Compile Error Resolution Log v1\n\nSTATUS: DRAFT\n',
     'docs/release/TYPE_INTEGRITY_REPORT_v1.na': '# Type Integrity Report v1\n\nSTATUS: DRAFT\n',
     'docs/release/WAREHOUSE_CELL_REPAIR_REPORT_v1.na': '# Warehouse Cell Repair Report v1\n\nSTATUS: DRAFT\n',
     'docs/release/IMPORT_DRIFT_CLEANUP_REPORT_v1.na': '# Import Drift Cleanup Report v1\n\nSTATUS: DRAFT\n',
@@ -693,13 +693,13 @@ for path, content in files.items():
     if not p.exists():
         p.write_text(content, encoding='utf-8')
         created.append(str(p))
-        print(f'CREATED: {p}')
+        print(f'created: {p}')
     else:
         print(f'SKIP existing: {p}')
 
 print('created_count=', len(created))
 EOF
-git add docs/release && git commit -m "docs(release): add Natt-OS group 2 release gate skeletons" && git push origin main
+git add docs/release && git commit -m "docs(release): add natt-os group 2 release gate skeletons" && git push origin main
 ```
 
 ---

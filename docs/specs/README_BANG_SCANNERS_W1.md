@@ -40,20 +40,20 @@ python3 scripts/validate-extension-precedence.py
 
 ### validate-state-labels.py
 
-**Expected FAILs hiện tại (W0 baseline):**
+**Expected fails hiện tại (W0 baseline):**
 - `src/cells/kernel/observation-cell/bootstrap.ts` — thiếu `@state: S1` header (optional cho .ts)
 - `src/cells/kernel/quantum-defense-cell/bootstrap.ts` — tương tự
 - Pairs S2 `.khai` + `.ts` trong `audit-cell/`, `khai-cell/` — chưa apply @header (W3 deliverable)
 
-**Expected PASS sau khi apply PILOT_BRIDGE_MAP v0.1:**
+**Expected pass sau khi apply PILOT_BRIDGE_MAP v0.1:**
 - 2 cells S2 có full @state/@canonical/@substrate/@since header
 - 2 cells S1→S2 đã tạo `.khai` với header
 
 ### validate-extension-precedence.py
 
 **Expected current state:**
-- Rule 1 (.sira uniqueness): PASS (1 file `./nattos.sira`)
-- Rule 2+3 (pair compliance): FAIL cho khai-cell + audit-cell vì chưa có @state header
+- Rule 1 (.sira uniqueness): pass (1 file `./nattos.sira`)
+- Rule 2+3 (pair compliance): fail cho khai-cell + audit-cell vì chưa có @state header
 - Rule 4 (bypass): FLAG `nattos.sh line 2218` gọi `npx tsx` vào `file-extension-validator.ts` (per RUNTIME_DEPENDENCY_CENSUS §2.1)
 - Rule 5 (UI lane): informational only
 
@@ -79,7 +79,7 @@ Cả 2 scanner tuân thủ:
    - Cell 2 (khai-cell): resolve K2 Điều 7 first → add @headers → route
    - Cell 3 (observation-cell): tạo `.khai` canonical + headers
    - Cell 4 (quantum-defense-cell): tạo `.khai` canonical + headers
-5. **Băng re-run scanners** sau mỗi cell transition → verify PASS
+5. **Băng re-run scanners** sau mỗi cell transition → verify pass
 6. **Gatekeeper seal** W3 milestone khi 4 cells đạt target state
 
 ---

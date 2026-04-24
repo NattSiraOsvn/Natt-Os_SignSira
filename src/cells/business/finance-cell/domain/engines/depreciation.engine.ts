@@ -1,5 +1,5 @@
 /**
- * Natt-OS Depreciation Engine v1.0
+ * natt-os Depreciation Engine v1.0
  * Port từ Doc 10 — TaxCell Ultimate V6.0 _processDepreciation()
  * Target: finance-cell/domain/engines/
  *

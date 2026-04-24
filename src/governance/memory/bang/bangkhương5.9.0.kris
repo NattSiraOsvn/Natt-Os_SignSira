@@ -23,7 +23,7 @@
       "Sales-cell orphan files xóa: sales-service 2.ts, sales-service.tsx, sales-service.ts.zip, sales-service.ts",
       "Full src.zip audit: 2856 files, 43 cells, phát hiện C1-C4 + H1-H4 + M1-M5",
       "Bản sao cleanup: 36 files xóa bằng Python (git rm unicode workaround)",
-      "period-close duplicate port xóa: periodclose-smartlink.port.ts (format cũ)",
+      "period-close duplicate port xóa: periodclose-SmartLink.port.ts (format cũ)",
       "customer-cell: cell.manifest timestamp + duplicate port xóa",
       "hr-cell: 4 timestamp files xóa",
       "bom3dprd-cell: neural-main-cell.cell.anc tạo mới (SKELETON status)"
@@ -32,9 +32,9 @@
 
   "audit_findings_2026_03_13": {
     "total_cells": 43,
-    "full_6_components": ["analytics", "buyback", "casting", "compliance", "constants", "customs", "design-3d", "finance", "hr", "inventory", "order", "payment", "polishing", "pricing", "production", "promotion", "sales", "showroom", "tax", "warehouse", "warranty", "smartlink-cell", "sync-cell", "audit-cell", "config-cell", "monitor-cell", "quantum-defense-cell", "rbac-cell", "security-cell"],
+    "full_6_components": ["analytics", "buyback", "casting", "compliance", "constants", "customs", "design-3d", "finance", "hr", "inventory", "order", "payment", "polishing", "pricing", "production", "promotion", "sales", "showroom", "tax", "warehouse", "warranty", "SmartLink-cell", "sync-cell", "audit-cell", "config-cell", "monitor-cell", "quantum-defense-cell", "rbac-cell", "security-cell"],
     "skeleton_cells": ["comms-cell", "it-cell", "logistics-cell", "media-cell", "noi-vu-cell", "phap-che-cell", "prdwarranty-cell", "shared-contracts-cell", "supplier-cell"],
-    "missing_ports": ["prdmaterials-cell", "infrastructure/shared-contracts-cell", "infrastructure/smartlink-cell", "infrastructure/sync-cell"],
+    "missing_ports": ["prdmaterials-cell", "infrastructure/shared-contracts-cell", "infrastructure/SmartLink-cell", "infrastructure/sync-cell"],
     "stub_hotspots": {"pricing-cell": 15, "polishing-cell": 4, "tax-cell": 3, "inventory-cell": 3},
     "remaining_issues": {
       "warehouse_cell": "QUARANTINE (Gatekeeper approved 2026-02-11) — Wave 3 pending",
@@ -67,7 +67,7 @@
   },
 
   "event_chain_complete": {
-    "flow": "ORDER_CREATED → CASTING_REQUEST → WIP_PHOI → WIP_IN_PROGRESS → WIP_STONE → WIP_COMPLETED → STOCK_ENTRY_CREATED → DUST_CLOSE_REPORT → PERIOD_CLOSE",
+    "flow": "ORDER_created → CASTING_REQUEST → WIP_PHOI → WIP_IN_PROGRESS → WIP_STONE → WIP_COMPLETED → STOCK_ENTRY_created → DUST_CLOSE_REPORT → PERIOD_CLOSE",
     "all_ports_wired": true,
     "status": "COMPLETE"
   },
@@ -81,8 +81,8 @@
     "tsc_non_preexisting": 0,
     "biz_cells_live": "21/36",
     "kernel_cells": "6/6 LIVE",
-    "smartlink_wired": "36/43",
-    "github": "NattSiraOsvn/Natt-Os_SignSira.git — UP TO DATE"
+    "SmartLink_wired": "36/43",
+    "github": "NattsiraOsvn/Natt-Os_Signsira.git — UP TO DATE"
   },
 
   "scars": {

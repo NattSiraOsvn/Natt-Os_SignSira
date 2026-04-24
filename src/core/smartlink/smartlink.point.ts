@@ -1,5 +1,5 @@
 /**
- * Natt-OS SmartLink — SmartLinkPoint
+ * natt-os SmartLink — SmartLinkPoint
  *
  * Mỗi NATT-CELL khi sinh ra có 1 điểm SmartLink.
  * Ban đầu chỉ là điểm tiềm năng — chưa có liên kết nào.
