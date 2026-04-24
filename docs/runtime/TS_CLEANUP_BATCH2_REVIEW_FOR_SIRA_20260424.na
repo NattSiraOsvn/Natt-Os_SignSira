@@ -812,7 +812,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.sira",
     "ext": ".ts",
     "bytes": 255,
     "class": "REVIEW_FOR_SIRA",

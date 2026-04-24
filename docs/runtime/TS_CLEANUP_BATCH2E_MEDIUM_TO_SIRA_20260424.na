@@ -1,0 +1,49 @@
+# TS CLEANUP BATCH 2E — MEDIUM TO SIRA — 20260424
+
+status: PASS
+scope: MEDIUM_LIGHT_TRANSLATION_TO_SIRA only
+created_at: 2026-04-24T17:11:10.457587+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ xử lý nhóm MEDIUM_LIGHT_TRANSLATION_TO_SIRA.
+
+Chỉ cho phép light translation: bỏ `as const`, `as any/unknown/string/number/boolean/never`, `satisfies ...`.
+
+Không động HARD_TRANSLATION_REQUIRED.
+Không động KEEP_APP_TS_ADAPTER.
+
+## 2. Summary
+
+{
+  "targets": 1,
+  "renamed": 1,
+  "skipped": 0,
+  "patched_refs": 3
+}
+
+## 3. Renamed
+
+[
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.sira",
+    "reason": "remove light TS syntax, then .sira",
+    "translation": "removed light TS-only syntax"
+  }
+]
+
+## 4. Skipped
+
+[]
+
+## 5. Patched Refs
+
+[
+  "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na",
+  "docs/runtime/TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na",
+  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na"
+]
