@@ -1,19 +1,25 @@
 {
   "meta": {
     "file": "P0_HEYNA_KHAICELL_20260424.na",
-    "version": "v1.0",
+    "version": "v1.1",
     "created_at": "2026-04-24T22:50:47+07:00",
+    "updated_at": "2026-04-24T23:35:00+07:00",
     "author": "Bang",
     "gatekeeper": "Natt",
     "session": "20260424",
-    "target_repo_path": "src/governance/memory/bang/todo/P0_HEYNA_KHAICELL_20260424.na"
+    "target_repo_path": "docs/runtime/todo/P0_HEYNA_KHAICELL_20260424.na",
+    "changelog": [
+      "v1.0 2026-04-24T22:50 initial draft",
+      "v1.1 2026-04-24T23:35 update target_repo_path from src/governance/memory/bang/todo/ to docs/runtime/todo/ per Natt decision"
+    ]
   },
   "context": {
     "source": "P0 dictation by Natt on 2026-04-24 22:50:47",
     "target_system": "Tam Luxury client app",
     "roadload_canonical": "roadloading/Giaodien.html (repo natt-os_ver2goldmaster)",
     "scope": "10 P0 todos (5 noi-mach-heyna + 5 qua-khaicell) covering 71 screens grouped into 5 buckets",
-    "execution_note": "Natt clarified: team build man tu biet gan mach khi scaffold. Bang chi track todo, khong scan runtime."
+    "execution_note": "Natt clarified: team build man tu biet gan mach khi scaffold. Bang chi track todo, khong scan runtime.",
+    "location_rationale": "docs/runtime/todo/ folder do Natt tao cho nhom file .na dang todo tracker. Dong nhat voi tien le docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na ma Kim commit fcb2349."
   },
   "todos": [
     {
@@ -192,6 +198,7 @@
   "related_references": [
     "roadloading/Giaodien.html (repo natt-os_ver2goldmaster) - 71 man canonical",
     "SPEC NEN v1.1 docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md - KhaiCell RAO mark signature",
-    "session 20260417 nattos.sh v7.0 §43 ReNa + §44 Visual - gian giao truoc khi 71 man scaffold"
+    "session 20260417 nattos.sh v7.0 §43 ReNa + §44 Visual - gian giao truoc khi 71 man scaffold",
+    "docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na (commit fcb2349) - tien le .na tracker trong docs/runtime/"
   ]
 }
