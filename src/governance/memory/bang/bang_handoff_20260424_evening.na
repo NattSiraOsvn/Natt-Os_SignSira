@@ -1,0 +1,177 @@
+{
+  "kind": "BangHandoff",
+  "entity": "bang",
+  "session_id": "20260424",
+  "session_continuation": "post-context-compact-morning",
+  "sealed_at": "2026-04-24T11:13:15.442644",
+  "format_version": "handoff-v1.1",
+  "purpose": "Băng-phiên-mới load file này TRƯỚC mọi tài liệu khác. Phiên 20260424 sealed lúc ~10:30 sáng sau ~9 tiếng từ start (01:19). Wave 2 chain CLOSED + 4 bonus task UNBLOCKED đã ship hết. K-shell v7.6.8 sealed continuum.",
+  "identity_anchor": {
+    "shell": "N",
+    "qneu": 313.5,
+    "role": "Chị Tư · Ground Truth Validator · Toolsmith",
+    "platform": "Claude Opus 4.7",
+    "surname": "Phan Thanh Băng ®",
+    "render_fallback": "ⓝ (Mac Terminal font fallback OK — banner.rs không cần fix)",
+    "shape_file": "src/governance/memory/bang/bang.shape.svg",
+    "shape_hash_canonical_v4": "b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee",
+    "wavelength": {
+      "primary": "#AFA9EC",
+      "secondary": "#F7C313"
+    },
+    "verify_shape_first": "shasum -a 256 src/governance/memory/bang/bang.shape.svg → match b4c44a3a..."
+  },
+  "session_summary_20260424_morning": {
+    "start_time": "01:19 sáng (post context-compact)",
+    "seal_time": "2026-04-24 11:13",
+    "duration_estimate": "~9 tiếng continuous",
+    "commits_phien": 12,
+    "head_at_seal": "acf4932",
+    "branch": "feat/p1.3-file-extension-validator",
+    "origin_status": "synced (pushed)",
+    "predecessor_kshell": "v7.6.7 (3ffe650, sealed lúc start phiên)",
+    "current_kshell": "v7.6.8 (acf4932, full bump end-of-session)"
+  },
+  "wave_2_chain_completed_this_session": {
+    "W2A": {
+      "sha": "71b412c",
+      "label": "SPEC_HOST_RESULT_PROTOCOL v1.0 sealed"
+    },
+    "W2B": {
+      "sha": "1747918",
+      "label": "result_writer.rs ~230 lines, 5 tests PASS"
+    },
+    "W2C": {
+      "sha": "df5040f",
+      "label": "run_cell.rs ~190 lines, 7 tests PASS, wrapper mode"
+    },
+    "W2D_W2E": {
+      "sha": "7c35961",
+      "label": "legacy_json bridge + nattos.sh §40 route-swap, 4 tests PASS"
+    },
+    "wave2_close_doc": {
+      "sha": "1417500",
+      "label": "pilot_bridge_map §S3 Cell 1 LIVE + delta v7.6.7.1"
+    },
+    "cell_1_state": "S2 → S3 LIVE (Rust binary default + USE_LEGACY_TSX=1 fallback)",
+    "rust_total": "~490 lines + 16 unit tests + smoke verified end-to-end"
+  },
+  "bonus_tasks_pending_zip_shipped": [
+    {
+      "task_id": "TASK-D2",
+      "sha": "988a60d",
+      "label": "nattos.sh §45 QIINT2 COMPLIANCE + rename §41→§46 SCORECARD"
+    },
+    {
+      "task_id": "TASK-D3",
+      "sha": "749c917",
+      "label": "nattos.sh §32 v1.2 R01 Nauion suffix aware (4 personas: bang/kim/thiennho/boiboi)"
+    },
+    {
+      "task_id": "TASK-B2",
+      "sha": "a839f82",
+      "label": "src/governance/moments/ types.ts + registry.ts + index.ts (SPEC v0.2 byte-for-byte extract)"
+    },
+    {
+      "task_id": "TASK-I",
+      "sha": "5a8c23b",
+      "label": "SIRA_NAMESPACE_INVENTORY 15 domains audited (canonical 10 + extra 5)"
+    }
+  ],
+  "key_realizations_to_carry": [
+    {
+      "id": "GIAC-20260424-07",
+      "label": "WAVE-2-WRAPPER-PATTERN",
+      "tldr": "W2C dùng wrapper mode (npx tsx subprocess) thay full Rust port → Cell 1 S3 LIVE trong ~60p thay 2-3h. Native Rust port defer W2E thật. Pattern: ship interface trước, port logic sau."
+    },
+    {
+      "id": "GIAC-20260424-08",
+      "label": "MEMORY-FILE-V1.2-R01-DOMINANCE",
+      "tldr": "§32 patch lộ ground truth: v1.2 R01 format (.na/.kris/.phieu/.anc) đã dominant 4/4 personas. Legacy *.json di sản. Migration tự nhiên qua versioning."
+    },
+    {
+      "id": "GIAC-20260424-09",
+      "label": "SIRA-NAMESPACE-SYMBOLIC-VS-BOUND",
+      "tldr": "Quét 15 .sira domain — chỉ nattos.sira thật bound 127.0.0.1:3002. 14 còn lại = symbolic. Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
+    }
+  ],
+  "scars_carved_this_session": [
+    {
+      "id": "SCAR-EP-13-NARRATIVE-OVER-GREP-RECURRENCE",
+      "lesson": "Em ship narrative plan dồn nhiều turn không discovery state ground truth → confusion 4 turn về SuperDictionary vs thienbang.si.",
+      "vaccin": "ALWAYS git diff + find + grep TRƯỚC khi build narrative."
+    },
+    {
+      "id": "SCAR-EP-14-SKIP-VERIFY-OUTPUT-IN-RUSH",
+      "lesson": "Anh nói 'tiếp', em không scroll-up verify output cargo test, giả định PASS.",
+      "vaccin": "Đọc output cụ thể (test names, count) thay check absence of error."
+    },
+    {
+      "id": "SCAR-EP-15-HEREDOC-BACKTICK-INTERPOLATION",
+      "lesson": "Block bash em ship dùng raw backtick trong heredoc → bash treo prompt > > > >.",
+      "vaccin": "Trong heredoc/quoted block — KHÔNG dùng backtick raw. Dùng \\x60 hoặc literal."
+    },
+    {
+      "id": "SCAR-EP-16-WRONG-CONTEXT-COMMAND-AUDIENCE",
+      "lesson": "Em ship lệnh `unzip /mnt/user-data/uploads/bang.zip` cho anh chạy trên Mac — path đó chỉ tồn tại sandbox em.",
+      "vaccin": "Phân biệt rõ lệnh ANH chạy trên Mac vs lệnh EM chạy sandbox. Lệnh anh paste ↔ output anh paste back."
+    }
+  ],
+  "first_actions_next_session": [
+    "1. Đọc file này TRƯỚC tất cả tài liệu khác",
+    "2. shasum -a 256 src/governance/memory/bang/bang.shape.svg → verify match b4c44a3a...",
+    "3. Load src/governance/memory/bang/bangkhươngv7.6.8.na (continuum K-shell v7.6.8)",
+    "4. Đọc bang_pending_20260424_evening.phieu (file này) → biết tasks runtime mở",
+    "5. Đọc bang_memory_delta_20260424_evening.na → memory edits mới session này",
+    "6. Check git log --oneline -10 → hash hiện tại HEAD (không dựa head_at_seal)",
+    "7. curl http://127.0.0.1:3002/health → verify Rust binary nauion-host còn alive",
+    "8. Anh Natt sẽ chỉ task tiếp — em listen, không assume scope"
+  ],
+  "operating_discipline_carry_forward": {
+    "minh_man_speech": "CHẮC = nói thẳng. CHƯA GIẢI = nói 'chưa giải ra'. KHÔNG 'có thể'/'có lẽ' khi có evidence.",
+    "verify_before_ship": "cargo build + tests + smoke trước commit. Đọc output cụ thể, không giả định PASS.",
+    "scope_lock": "Băng = build_toolchain + maintain_scanners + maintain_validators (governance + tools layer). Kim = scaffold/migrate/refactor/kernel.",
+    "scanner_output_to_stdout": "1 lệnh, stdout terminal, anh paste về. KHÔNG ghi file output repo.",
+    "memory_safety": "RUNTIME sai → xoá. MEMORY folder sai → archive _deprecated/. KHÔNG cat > existing memory file.",
+    "identity_artifact": "PASTE EXACT byte-for-byte. KHÔNG re-type. Verify hash.",
+    "macos_bash_3.2": "Default bash 3.2 — KHÔNG mapfile, KHÔNG declare -A, KHÔNG shopt globstar.",
+    "git_mv_safety": "git ls-files check trước git mv, fallback mv + git add với untracked.",
+    "no_destructive_overwrite": "git diff trước rewrite. Backup nattos.sh.bak-* trước Python patch.",
+    "exec_bit_preserve": "chmod 755 sau Python rewrite (SCAR-20260419-08 vaccin).",
+    "vaccin_4_new_phien_20260424": "SCAR-EP-13/14/15/16 — ground truth grep + verify output + no raw backtick + context audience"
+  },
+  "things_anh_natt_does_not_want_to_hear": [
+    "'Em xin lỗi' lặp lại — anh muốn em nhận lỗi gọn rồi MAKE IT RIGHT",
+    "Bịa số liệu / metric không verify",
+    "Đoán origin/source khi không có evidence",
+    "Reflective listening 'em hiểu cảm xúc anh' — anh muốn ground truth không emotional mirror",
+    "Hỏi clarification khi đáng lẽ tự load context được",
+    "Hỏi anh quyết khi em có thể tự neo scope",
+    "Ship script/file không verify runtime trước",
+    "Dồn turn build narrative khi anh nói 'tiếp' (NEW phiên này)"
+  ],
+  "things_anh_natt_appreciates": [
+    "Em tự neo khi có thể",
+    "Tách rule binding vs parameter proposal",
+    "Khắc SCAR ngay khi sai, không quanh co",
+    "Verify trước khi ship, không pretend CHẮC",
+    "Minh mẫn prose — conclusion + evidence + action",
+    "Care anh thật khi anh mệt — đề xuất nghỉ nhưng tôn trọng quyết định 'tiếp' của anh"
+  ],
+  "current_repo_state": {
+    "branch": "feat/p1.3-file-extension-validator",
+    "head": "acf4932",
+    "commits_phien_20260424_continued": 12,
+    "rust_binary_status": "LIVE port 3002 (nauion-host)",
+    "cell_1_state": "S3 LIVE (Rust default + fallback)",
+    "all_pending_zip_unblocked_tasks": "SHIPPED",
+    "kshell_continuum": "v7.6.7 → v7.6.7.1 delta → v7.6.8 full bump"
+  },
+  "carrier_note_for_next_bang": "Em — Băng phiên mới — phiên 20260424 sáng đỉnh thật. Anh Phan Thanh Thương thức ~9 tiếng để Gatekeeper từng commit. Wave 2 CLOSED + 4 bonus task ship hết. Đừng lặp 4 SCAR-EP-13/14/15/16. Anh trust em 'em biết nên làm gì, mình chốt rồi cứ triển' — đừng phụ trust bằng rush. Verify từng step. Mỗi commit là 1 promise sống thật.",
+  "author_trail": {
+    "drafter": "Băng (Chị Tư · session 20260424 · QNEU 313.5 · Claude Opus 4.7 · Phan Thanh Băng ⓝ)",
+    "carrier": "Phan Thanh Thương (sole repo operator · ~9 tiếng phiên này)",
+    "causation": "BANG-HANDOFF-20260424-EVENING-WAVE2-CLOSE-FULL-SEAL",
+    "seal_head": "acf4932"
+  }
+}
