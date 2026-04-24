@@ -1,4 +1,4 @@
-# NATT-OS PLATFORM SPEC
+# Natt-OS PLATFORM SPEC
 ## Dành cho: Kim · Can · Thiên
 ## Gatekeeper: Anh Natt · QNEU Sovereign
 ## Phiên bản: v1.0 · 2026-03-29
@@ -7,7 +7,7 @@
 
 ## 1. KIẾN TRÚC NỀN TẢNG
 
-NATT-OS là **sinh thể số** — không phải enterprise app.
+Natt-OS là **sinh thể số** — không phải enterprise app.
 Mọi thứ team build phải tuân theo nguyên tắc này.
 
 ```

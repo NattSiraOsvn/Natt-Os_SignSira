@@ -1,4 +1,4 @@
-# SIRA Browser Transport Adapter — 20260425
+# Sira browser transport adapter — 20260425
 
 status: CANONICAL_DRAFT
 created_at: 2026-04-24T18:18:28.311421+00:00
@@ -10,16 +10,16 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 `http://` is not identity.
 
-`http://` is only the current browser transport adapter used to render SIRA/NATT-OS runtime surfaces in ordinary browsers.
+`http://` is only the current browser transport adapter used to render Sira/Natt-OS runtime surfaces in ordinary browsers.
 
 Canonical layers:
 
 - `anc://` = identity protocol
-- `.sira` = SIRA root namespace / artifact layer
+- `.sira` = Sira root namespace / artifact layer
 - `tools/thiên` = operator launcher
 - `http://` = browser transport adapter
 - SmartLink = resolver / coupling layer
-- SIRA Browser Adapter = transport/render bridge
+- Sira browser adapter = transport/render bridge
 
 ---
 
@@ -42,7 +42,7 @@ Browser transport may not:
 - become canonical runtime truth
 - bypass audit
 - bypass SmartLink
-- claim ownership over SIRA namespace
+- claim ownership over Sira namespace
 
 ---
 
@@ -75,8 +75,8 @@ The implementation file may use HTTP internally, but documentation and command l
 
 Before any browser transport change:
 
-- SIRA namespace validator PASS
-- SIRA browser adapter validator PASS
-- SIRA TS translation adapter validator PASS
+- Sira namespace validator PASS
+- Sira browser adapter validator PASS
+- Sira TS translation adapter validator PASS
 - `core.sira/api/health` PASS
 - commit and push

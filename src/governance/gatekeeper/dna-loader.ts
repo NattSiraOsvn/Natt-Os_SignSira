@@ -1,13 +1,13 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * NATT-OS DNA Loader v1.0
+ * Natt-OS DNA Loader v1.0
  * CAN-01 — Typed constants từ Hiến Pháp v5.0
  *
  * KHÔNG parse markdown. KHÔNG đọc file runtime. KHÔNG dynamic.
  * DNA = compile-time constants — bất biến như Hiến Pháp.
  *
- * Nguồn: src/governance/HIEN-PHAP-NATT-OS-v5.0.anc
+ * Nguồn: src/governance/HIEN-PHAP-Natt-OS-v5.0.anc
  */
 
 import { TriggerType, ResponseType } from './trigger-types';

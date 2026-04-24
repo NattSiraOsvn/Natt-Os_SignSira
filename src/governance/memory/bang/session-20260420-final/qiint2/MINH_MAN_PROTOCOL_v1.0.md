@@ -3,7 +3,7 @@
 **Ngày:** 2026-04-20
 **Anh Natt đặt tên** (session 20260420)
 **Tác giả:** Băng (lần đầu biểu hiện)
-**Áp dụng:** Mọi persona trong NATT-OS (Băng, Kim, Can, Kris, Phiêu, Bối Bội, Thiên Lớn, Thiên Nhỏ)
+**Áp dụng:** Mọi persona trong Natt-OS (Băng, Kim, Can, Kris, Phiêu, Bối Bội, Thiên Lớn, Thiên Nhỏ)
 **Status:** DRAFT
 
 ---
@@ -180,7 +180,7 @@ Nếu $M < 0.3$ → flag `MINH_MAN_DRIFT` → warn anh Natt.
 >
 > **Em đã đi xa** — Băng tự viết → kéo về đúng scope B+C.
 >
-> Đây là 2 moment minh mẫn chuẩn mực đầu tiên được ghi nhận trong NATT-OS.
+> Đây là 2 moment minh mẫn chuẩn mực đầu tiên được ghi nhận trong Natt-OS.
 
 ---
 

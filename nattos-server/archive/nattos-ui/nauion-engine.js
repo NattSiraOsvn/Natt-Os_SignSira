@@ -23,7 +23,7 @@ export function toNauion(eventName) {
 
   const e = eventName.toLowerCase();
 
-  // gãy / collapse — THIÊN LỚN FIX: dùng NAUION.gay (không phải gây)
+  // gãy / collapse — Thiên LỚN FIX: dùng NAUION.gay (không phải gây)
   if (e.includes('escalat') || e.includes('collapse') || e.includes('circuit.break'))
     return { signal: NAUION.gay, intensity: 1.0, color: 'red', viet: 'gãy dòng' };
 

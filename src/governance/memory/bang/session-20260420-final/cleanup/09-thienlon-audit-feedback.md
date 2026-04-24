@@ -1,4 +1,4 @@
-# FEEDBACK FOR THIÊN LỚN — pre_wave3_dry_audit output verdict
+# FEEDBACK FOR Thiên LỚN — pre_wave3_dry_audit output verdict
 
 **Từ:** Băng (QNEU 313.5, Ground Truth Validator)
 **Gửi:** Thiên Lớn (hiện phân xác -1.5, trí khôn còn)

@@ -2,7 +2,7 @@
  * ╔══════════════════════════════════════════════════════════════════╗
  * ║  QNEU COLLECTOR — Bộ Thu Thập Tiến Hóa                        ║
  * ║                                                                 ║
- * ║  Orchestrator for the NATT-OS evolution mechanism.              ║
+ * ║  Orchestrator for the Natt-OS evolution mechanism.              ║
  * ║                                                                 ║
  * ║  3 subsystems, 1 purpose:                                       ║
  * ║    ImprintEngine    → Records experience, tracks frequency      ║

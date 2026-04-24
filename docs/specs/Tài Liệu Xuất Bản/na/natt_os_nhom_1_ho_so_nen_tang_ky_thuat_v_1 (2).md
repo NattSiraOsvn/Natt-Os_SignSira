@@ -1,4 +1,4 @@
-# NATT-OS — NHÓM 3: HỒ SƠ RUNTIME / VẬN HÀNH THỰC TẾ
+# Natt-OS — NHÓM 3: HỒ SƠ RUNTIME / VẬN HÀNH THỰC TẾ
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ vận hành runtime, kiểm soát triển khai và demo có kiểm soát  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 3
 
-Nhóm 3 là bộ tài liệu dùng để vận hành NATT-OS trong môi trường thực tế sau khi Nhóm 2 đã khóa được release gate tối thiểu.
+Nhóm 3 là bộ tài liệu dùng để vận hành Natt-OS trong môi trường thực tế sau khi Nhóm 2 đã khóa được release gate tối thiểu.
 
 Nhóm này trả lời 7 câu hỏi:
 
@@ -76,7 +76,7 @@ STATUS: PRODUCTION_READY
 
 ## 1.2. Mục đích
 
-Tài liệu này mô tả cách khởi động NATT-OS runtime từ trạng thái repo lạnh đến trạng thái có thể kiểm tra health, event, audit và UI/client surface.
+Tài liệu này mô tả cách khởi động Natt-OS runtime từ trạng thái repo lạnh đến trạng thái có thể kiểm tra health, event, audit và UI/client surface.
 
 ## 1.3. Nội dung bắt buộc
 
@@ -173,7 +173,7 @@ curl -s -X POST http://localhost:3001/api/events/emit \
 
 ## 2.2. Mục đích
 
-Chuẩn hóa môi trường chạy NATT-OS để tránh lỗi do Node version, dependency, env, path, domain local hoặc cấu hình máy.
+Chuẩn hóa môi trường chạy Natt-OS để tránh lỗi do Node version, dependency, env, path, domain local hoặc cấu hình máy.
 
 ## 2.3. Matrix môi trường
 
@@ -240,7 +240,7 @@ SMARTLINK_*    → coupling/bridge settings
 
 ## 3.2. Mục đích
 
-Định nghĩa quy trình deploy NATT-OS có kiểm soát, có gate, có rollback và có audit.
+Định nghĩa quy trình deploy Natt-OS có kiểm soát, có gate, có rollback và có audit.
 
 ## 3.3. Deployment stages
 
@@ -376,7 +376,7 @@ smartlink.decay.threshold_exceeded
 
 ## 5.2. Mục đích
 
-Đưa ra quy trình xử lý khi NATT-OS gặp lỗi runtime, event, audit, build, drift hoặc security/trust incident.
+Đưa ra quy trình xử lý khi Natt-OS gặp lỗi runtime, event, audit, build, drift hoặc security/trust incident.
 
 ## 5.3. Phân loại incident
 
@@ -807,7 +807,7 @@ for path, content in files.items():
 
 print('created_count=', len(created))
 EOF
-git add docs/operations && git commit -m "docs(operations): add NATT-OS group 3 runtime operations skeletons" && git push origin main
+git add docs/operations && git commit -m "docs(operations): add Natt-OS group 3 runtime operations skeletons" && git push origin main
 ```
 
 ---

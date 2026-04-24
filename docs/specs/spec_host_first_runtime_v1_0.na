@@ -13,7 +13,7 @@
 **Supersedes:** SPEC_HOST_FIRST_RUNTIME_v1.0 (Wave W0-W4 → W0-W3 align Thiên)
 
 **Binding to (Kim 3 SPEC lock):**
-- SPEC_SIRA_AUTHORITY_BOOTSTRAP_v1.0.na (Kim)
+- SPEC_Sira_AUTHORITY_BOOTSTRAP_v1.0.na (Kim)
 - SPEC_CUTOVER_STATES_v1.0.na (Kim — S1-S4 per-file state)
 - SPEC_EXTENSION_PRECEDENCE_v1.0.na (Kim)
 
@@ -70,7 +70,7 @@ Overview ngắn:
 - Validation 7 rules: xem Thiên §3
 - Reject behavior: exit code 64 + `IDENTITY_REJECT` stderr + audit log
 
-**Kim cross-ref:** SPEC_SIRA_AUTHORITY_BOOTSTRAP §1.1 (`nattos.sira` = entry identity duy nhất, chỉ Gatekeeper commit).
+**Kim cross-ref:** SPEC_Sira_AUTHORITY_BOOTSTRAP §1.1 (`nattos.sira` = entry identity duy nhất, chỉ Gatekeeper commit).
 
 ---
 
@@ -87,7 +87,7 @@ Overview ngắn:
 - Shutdown: 2s grace rồi SIGKILL
 - Max restart: 2 lần
 
-**Kim cross-ref:** SPEC_SIRA_AUTHORITY_BOOTSTRAP §1.4 — 2 bridge mode:
+**Kim cross-ref:** SPEC_Sira_AUTHORITY_BOOTSTRAP §1.4 — 2 bridge mode:
 
 | Mode | Thiên SPEC | Kim SPEC_CUTOVER_STATES state |
 |---|---|---|

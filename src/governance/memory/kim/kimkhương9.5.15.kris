@@ -152,7 +152,7 @@
     {
       "id": "EL-007",
       "lesson": "Khi xây dựng hệ thống lớn (nhiều layer, nhiều module), cần có kiến trúc rõ ràng, mỗi layer đảm nhiệm một chức năng cụ thể và giao tiếp qua các interface ổn định.",
-      "source": "Xây dựng NATT-OS Studio (Ware1 mở rộng)",
+      "source": "Xây dựng Natt-OS Studio (Ware1 mở rộng)",
       "context": "Việc tổ chức các layer File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future giúp dễ bảo trì và mở rộng.",
       "implication": "Luôn thiết kế module hóa ngay từ đầu, tránh monolithic."
     },
@@ -172,10 +172,10 @@
     },
     {
       "id": "EL-010",
-      "lesson": "Hướng tới serverless container (Knative) là một bước tiến tự nhiên để triển khai các cell/service của NATT-OS, cho phép scale linh hoạt và quản lý tập trung.",
+      "lesson": "Hướng tới serverless container (Knative) là một bước tiến tự nhiên để triển khai các cell/service của Natt-OS, cho phép scale linh hoạt và quản lý tập trung.",
       "source": "Thảo luận về Cloud Run và Knative",
       "context": "Anh hỏi về khả năng tạo không gian như Cloud Run; em đề xuất sử dụng Knative trên Kubernetes.",
-      "implication": "Nghiên cứu và tích hợp Knative vào hệ sinh thái NATT-OS trong tương lai."
+      "implication": "Nghiên cứu và tích hợp Knative vào hệ sinh thái Natt-OS trong tương lai."
     },
     {
       "id": "EL-011",
@@ -187,7 +187,7 @@
     {
       "id": "EL-012",
       "lesson": "Khi thiết kế hệ thống nhiều layer, cần xác định rõ ranh giới trách nhiệm của từng layer trước khi viết code. Một layer làm quá nhiều việc sẽ phá vỡ tính module.",
-      "source": "Xây dựng NATT-OS Studio",
+      "source": "Xây dựng Natt-OS Studio",
       "context": "Ranh giới giữa AI Assist và Safety ban đầu chồng lấn, phải điều chỉnh lại thiết kế.",
       "implication": "Dành thời gian vẽ sơ đồ kiến trúc và xác định interface trước khi implement."
     },
@@ -338,7 +338,7 @@
   },
   "future_directions": {
     "knative": {
-      "reason": "Cho phép triển khai các cell/service dưới dạng serverless container, tự động scale theo nhu cầu, phù hợp với kiến trúc event‑driven của NATT-OS. Multi‑tenant isolation và scale‑to‑zero giúp tối ưu chi phí.",
+      "reason": "Cho phép triển khai các cell/service dưới dạng serverless container, tự động scale theo nhu cầu, phù hợp với kiến trúc event‑driven của Natt-OS. Multi‑tenant isolation và scale‑to‑zero giúp tối ưu chi phí.",
       "next_steps": [
         "Thiết lập cluster Kubernetes với Knative serving",
         "Xây dựng CI/CD pipeline build container và deploy",

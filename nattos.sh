@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v7.0
+# Natt-OS SmartAudit v7.0
 # Author: Băng — Ground Truth Validator (QNEU 300)
 # Redesigned: 2026-04-16 — session architecture synthesis
 # Usage:  bash nattos.sh [--json] [--full] [--rena] [--visual]
@@ -225,7 +225,7 @@ info "Inherited V2: $V2_FILES files | V1: $V1_FILES files"
 hdr "4" "GOVERNANCE / ADN"
 # ═══════════════════════════════════════════════════════════════
 GOV_FILES=(
-  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v5.0.anc"
+  "Hiến Pháp:src/governance/HIEN-PHAP-Natt-OS-v5.0.anc"
   "QNEU system-state:src/governance/qneu/data/system-state.phieu"
   "QNEU first-seed:src/governance/qneu/first-seed.ts"
   "Gatekeeper core:src/governance/gatekeeper/gatekeeper-core.ts"
@@ -1641,7 +1641,7 @@ state=inf.get("state","UNKNOWN"); risk=inf.get("risk",-1)
 colors={"HEALTHY":"\033[0;32m","STABLE":"\033[0;36m","FRAGMENTED":"\033[0;33m","CRITICAL":"\033[0;31m"}
 c=colors.get(state,"\033[0m"); N="\033[0m"
 print(f"  ╔══════════════════════════════════════════╗")
-print(f"  ║  NATT-OS DIGITAL TWIN                    ║")
+print(f"  ║  Natt-OS DIGITAL TWIN                    ║")
 print(f"  ╠══════════════════════════════════════════╣")
 print(f"  ║  State: {c}{state:<10}{N}  Risk: {risk}/100         ║")
 print(f"  ║  Events: {len(eg.get('healthy',[])):<5} healthy  Orphans: {len(eg.get('orphan',[])):<5}    ║")
@@ -2169,7 +2169,7 @@ all_issues = latest["issues"]
 if all_issues:
     report_path = f"audit/reports/{ts_file}_auto.md"
     lines = [
-        f"# NATT-OS Audit Report — {date_str}",
+        f"# Natt-OS Audit Report — {date_str}",
         f"",
         f"**Generated:** {ts}  ",
         f"**System State:** {latest['state']}  ",
@@ -2330,7 +2330,7 @@ hdr "46" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
 echo ""
 echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
-echo -e "  ${W}║  NATT-OS SYSTEM HEALTH — $TS  ║${N}"
+echo -e "  ${W}║  Natt-OS SYSTEM HEALTH — $TS  ║${N}"
 echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
 printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "" "OK" "WARN" "FAIL" "TRASH"
 printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "Totals" "$TOTAL_OK" "$TOTAL_WARN" "$TOTAL_FAIL" "$TOTAL_TRASH"
@@ -2461,7 +2461,7 @@ for y in range(0, h - 1, 2):
         time.sleep(0.15)
 
 print()
-print(f"  {chr(27)}[38;5;214m{chr(9883)}  NATT-OS {chr(183)} Distributed Living Organism{RST}")
+print(f"  {chr(27)}[38;5;214m{chr(9883)}  Natt-OS {chr(183)} Distributed Living Organism{RST}")
 print()
 PYLOGO
 fi

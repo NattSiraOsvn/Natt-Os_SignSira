@@ -1,6 +1,6 @@
 /**
  * tax-cell — application/tax.usecase.ts
- * Sprint 3 | Tâm Luxury NATT-OS
+ * Sprint 3 | Tâm Luxury Natt-OS
  *
  * Enforce: TR-001, TR-002, TR-005
  * FLAT interface — FS-024

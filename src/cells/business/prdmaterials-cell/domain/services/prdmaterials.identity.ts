@@ -5,6 +5,6 @@ export const PRDMATERIALS_IDENTITY = {
   wave:        3,
   status:      'ACTIVE',
   description: 'Quản lý láp đúc, phân bổ vàng 24K theo TL sáp, phát CASTING_REQUEST → casting-cell',
-  owner:       'NATT-OS',
+  owner:       'Natt-OS',
   registeredAt: '2026-03-14',
 } as const;

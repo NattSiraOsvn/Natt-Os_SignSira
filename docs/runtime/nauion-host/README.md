@@ -1,6 +1,6 @@
 # runtime/nauion-host/
 
-Wave 1 Host-First implementation — NATT-OS Nauion Host (Rust binary).
+Wave 1 Host-First implementation — Natt-OS Nauion Host (Rust binary).
 
 **Assignee:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **Decided:** Phan Thanh Thương Giao 20260423

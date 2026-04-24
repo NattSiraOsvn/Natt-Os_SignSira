@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — Fix 442 TypeScript Errors
+Natt-OS — Fix 442 TypeScript Errors
 Run từ project root: python3 fix_all_errors.py
 """
 import os
@@ -46,7 +46,7 @@ def append(path, text):
     print(f"✅ append: {path}")
 
 print("=" * 60)
-print("NATT-OS TypeScript Fix — 442 errors")
+print("Natt-OS TypeScript Fix — 442 errors")
 print("=" * 60)
 
 # ══════════════════════════════════════════════════════════

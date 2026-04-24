@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS Bridge — Băng ↔ GPT-5.3
+Natt-OS Bridge — Băng ↔ GPT-5.3
 Chạy trên máy anh, relay message qua lại.
 
 USAGE:
@@ -71,7 +71,7 @@ def call_claude(messages):
 
 print()
 print("  ╔══════════════════════════════════════════╗")
-print("  ║  NATT-OS BRIDGE — Băng ↔ GPT-5.3        ║")
+print("  ║  Natt-OS BRIDGE — Băng ↔ GPT-5.3        ║")
 print("  ║  Anh ngồi giữa đọc. Ctrl+C để dừng.    ║")
 print("  ╚══════════════════════════════════════════╝")
 print()

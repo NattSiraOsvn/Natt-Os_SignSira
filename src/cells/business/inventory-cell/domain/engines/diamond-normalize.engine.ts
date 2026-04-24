@@ -1,5 +1,5 @@
 /**
- * NATT-OS Diamond Normalize Engine v1.0
+ * Natt-OS Diamond Normalize Engine v1.0
  * Port từ Doc 6 — diamondNormalizeV2() + tinhHoaHong()
  * Target: inventory-cell/domain/engines/
  *

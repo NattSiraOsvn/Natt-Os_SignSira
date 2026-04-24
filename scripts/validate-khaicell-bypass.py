@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS KhaiCell Bypass Detector v2
+Natt-OS KhaiCell Bypass Detector v2
 SPEC NEN v1.0 P0 item 3.
 """
 
@@ -111,7 +111,7 @@ def scan_file(path):
 def main():
     print()
     print("=" * 70)
-    print("  NATT-OS KhaiCell Bypass Detector v2")
+    print("  Natt-OS KhaiCell Bypass Detector v2")
     print("=" * 70)
 
     total_files = 0

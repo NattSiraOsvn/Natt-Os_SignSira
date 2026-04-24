@@ -1,5 +1,5 @@
 /**
- * NATT-OS CellHealthMonitor
+ * Natt-OS CellHealthMonitor
  * Patent Claim: Autonomous self-healing distributed cell network with
  *               dynamic discovery, heartbeat monitoring, and automatic rerouting.
  *

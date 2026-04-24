@@ -5,13 +5,13 @@
 @since 2026-03-25
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# NATT-OS — SATELLITE COLONY SPEC (v1.0)
+# Natt-OS — SATELLITE COLONY SPEC (v1.0)
 
 ---
 
 ## I. PURPOSE
 
-Satellite Colony là một node mở rộng độc lập của NATT-OS, có khả năng:
+Satellite Colony là một node mở rộng độc lập của Natt-OS, có khả năng:
 - Vận hành riêng
 - Đồng bộ với Core qua EventBus
 - Duy trì audit + causality đầy đủ

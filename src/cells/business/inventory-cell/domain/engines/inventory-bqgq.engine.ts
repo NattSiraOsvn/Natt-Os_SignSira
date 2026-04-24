@@ -1,5 +1,5 @@
 /**
- * NATT-OS Inventory BQGQ Engine v1.0
+ * Natt-OS Inventory BQGQ Engine v1.0
  * Wire vào inventory-cell — PORT_ONLY → LIVE
  *
  * Logic từ: MEGA ACCOUNTING v10.1 MegaInventory

@@ -15,7 +15,7 @@
     "author": "Băng (QNEU 300)",
     "type": "session_closure_handoff",
     "for_next_bang_instance": {
-      "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA NATT-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
+      "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA Natt-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
       "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Kim Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
       "KHAICELL_OWNERSHIP": "Anh Natt đã chốt: KhaiCell BĂNG build, KHÔNG phải Thiên Lớn. Authority Lock NATT-GD-2026-02-11-BUILDER không có Thiên Lớn. ANC tự khai 'GATEKEEPER_UNDER_NATT' không override authority decree.",
       "read_first": [
@@ -42,7 +42,7 @@
       "engines_owner": "Băng (Chị Tư) — Step 2-9 SPEC §17 (6 engines + state machine + log4c)",
       "key_requirements": [
         "6 engines: QWS + spectral-sensor + chromatic-memory + camouflage-logic + essential-builder + chromatic-publish",
-        "State machine 7 states: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+        "State machine 7 states: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SiraSIGN_SEALED",
         "Cognitive Threshold Gate: perception ≤ cognition (rule cứng)",
         "QWS (Quantum Wavelength Separation) ở Stage 0 — TRƯỚC perception",
         "QWSFields v1.0: 7 fields (structure, luminance, emissive, chromatic, polarity, entropy, drift)",
@@ -56,7 +56,7 @@
       "nattos_sh": "§15d KhaiCell Readiness scanner đã tạo — sẽ tự detect khi commit files"
     },
     "for_kim": {
-      "review_result": "Đặc tả Ngôn ngữ NATT-OS — cấu trúc tốt, 13 chương logic, NHƯNG có 5 lỗi nặng về KhaiCell",
+      "review_result": "Đặc tả Ngôn ngữ Natt-OS — cấu trúc tốt, 13 chương logic, NHƯNG có 5 lỗi nặng về KhaiCell",
       "critical_errors": [
         "§5.3 Glossary: QWS = 'Weighted Signature' SAI → đúng là 'Wavelength Separation' (pipeline tách 7 fields)",
         "§10.2 KhaiCell QWS: thiếu 7 fields, mô tả như hash → phải là pipeline + 7 fields",

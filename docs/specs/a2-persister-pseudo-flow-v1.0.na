@@ -382,7 +382,7 @@ if (dualTargetPendingPolicy) {
 
 Nếu một target fail còn target khác pass, result vẫn phải nói thật bằng `targets[]` + `issues[]`, không “che” thất bại bằng một cờ `ok = true` mơ hồ.
 
-## 10. DOCUMENT SIRASIGN
+## 10. DOCUMENT SiraSIGN
 
 ```ts
 function deriveDocumentSirasign(
@@ -448,7 +448,7 @@ Nếu có nhiều target:
       note: 'dual target unresolved'
     }
   ],
-  documentSirasign: 'stub-from-moment:SIRA-XYZ',
+  documentSirasign: 'stub-from-moment:Sira-XYZ',
   policy_state: 'dual-target-pending-policy',
   issues: ['persist failure at .../target-b.na: dual target unresolved']
 }

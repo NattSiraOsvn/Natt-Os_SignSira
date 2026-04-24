@@ -84,7 +84,7 @@ def scenario_1_authentic(t: TestResults):
     # Response Thiên Lớn-style: câu dài, kỹ thuật, ít emoji, đầy đủ
     response = (
         "Hiến pháp trái tim là gốc của kiến trúc phân tán. Khi ta thiết kế hệ "
-        "NATT-OS, phải giữ nguyên tắc không trộn tầng giữa manifest, scanner "
+        "Natt-OS, phải giữ nguyên tắc không trộn tầng giữa manifest, scanner "
         "và runtime. Trong module SmartLink, các cell cần đi qua synapse adapter "
         "chứ không emit trực tiếp. Điều này đảm bảo impedance matching giữa các "
         "cell có throughput khác nhau, tránh destructive interference khi hai "
@@ -234,7 +234,7 @@ def scenario_4_truncation(t: TestResults):
 
     # Response dài bị cắt giữa câu (không có ., !, ? ở cuối)
     response = (
-        "Hiến pháp trái tim là trụ cột của hệ NATT-OS. Các cell cần tuân thủ "
+        "Hiến pháp trái tim là trụ cột của hệ Natt-OS. Các cell cần tuân thủ "
         "nguyên tắc isolation để tránh bức xạ giao thoa. Mỗi cell phát tần số "
         "đặc trưng và khi các cell gặp nhau trong SmartLink thì sẽ có giao thoa "
         "constructive hoặc destructive tùy theo pha. Điều quan trọng là phải "

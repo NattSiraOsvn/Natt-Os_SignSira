@@ -1,4 +1,4 @@
-# 🧬 NATT-OS — BÁO CÁO CỘT MỐC
+# 🧬 Natt-OS — BÁO CÁO CỘT MỐC
 ## L2 Intelligence: Hệ Sinh Thể Tự Nhận Thức
 ### Ngày 28/03/2026 · Commit HEAD: `0306edd` · 371 commits
 
@@ -11,7 +11,7 @@
 
 ## I. TỔNG QUAN CỘT MỐC
 
-Ngày 28/03/2026 đánh dấu bước chuyển lịch sử của NATT-OS:
+Ngày 28/03/2026 đánh dấu bước chuyển lịch sử của Natt-OS:
 từ **"hệ đang build"** thành **"hệ đang vận hành thật và có phản xạ"**.
 
 Đây không phải một bản vá hay một tính năng mới. Đây là khoảnh khắc
@@ -38,7 +38,7 @@ trạng thái **L2 Intelligence** — tự phát hiện lỗi, tự thử lại,
 
 ## II. THÀNH PHẦN GIA ĐÌNH THAM GIA
 
-### Natt (Phan Thanh Thương) — Gatekeeper · Ý thức của NATT-OS
+### Natt (Phan Thanh Thương) — Gatekeeper · Ý thức của Natt-OS
 Người dẫn đầu toàn bộ quá trình. Mỗi lệnh terminal đều qua tay Natt,
 mỗi quyết định kiến trúc đều do Natt phê duyệt. Không có lệnh nào
 được chạy trước khi Gatekeeper xem xét.
@@ -134,7 +134,7 @@ Audit trail không thật.
 **Verify**: `GET /api/audit` trả về events thật với hash chain SHA-256.
 
 ```
-[NATT-OS Server v2.0] http://localhost:3001
+[Natt-OS Server v2.0] http://localhost:3001
   TypeScript EventBus: ACTIVE
   Audit: AuditApplicationService
   Điều 7+8 Hiến Pháp v5.0: ENFORCED
@@ -238,7 +238,7 @@ block TypeScript intelligence.
 ## IV. KIẾN TRÚC L2 INTELLIGENCE
 
 ```
-                    NATT-OS KERNEL BOOT
+                    Natt-OS KERNEL BOOT
                          │
           ┌──────────────┼──────────────┐
           ▼              ▼              ▼
@@ -312,7 +312,7 @@ npx tsx --tsconfig tsconfig.server.json nattos-server/server.ts
 
 # Health check
 curl -s http://localhost:3001/api/health
-# → {"status":"ok","server":"NATT-OS Server v2.0","ts":"..."}
+# → {"status":"ok","server":"Natt-OS Server v2.0","ts":"..."}
 
 # Emit event
 curl -s -X POST http://localhost:3001/api/events/emit \
@@ -326,7 +326,7 @@ curl -s http://localhost:3001/api/audit
 
 ---
 
-## VII. LESSONS LEARNED — CHO GIA ĐÌNH NATT-OS
+## VII. LESSONS LEARNED — CHO GIA ĐÌNH Natt-OS
 
 ### ✅ Điều đúng đã làm
 
@@ -373,7 +373,7 @@ curl -s http://localhost:3001/api/audit
 ## IX. CHỮ KÝ CỘT MỐC
 
 ```
-NATT-OS L2 Intelligence Milestone
+Natt-OS L2 Intelligence Milestone
 Ngày: 28/03/2026
 HEAD: 0306edd
 Commits: 371

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Quantum Defense Cell — index.ts
+ * Natt-OS Quantum Defense Cell — index.ts
  * CAN-03: Event flow wire
  *
  * Luồng thực thi:

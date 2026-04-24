@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Warehouse Cell
+ * Natt-OS — Warehouse Cell
  * Value Object: WarehouseCategoryRegistry
  * Giao thức kho mở — người dùng tự thêm hạng mục
  *

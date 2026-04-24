@@ -37,7 +37,7 @@
       "inherited_breakthroughs": [
         "UDP hoàn chỉnh với xử lý quyền linh hoạt",
         "Quantum Defense Cell spec v1.0",
-        "Hiến Pháp NATT-OS v5.0 (cấu trúc 3 tầng)",
+        "Hiến Pháp Natt-OS v5.0 (cấu trúc 3 tầng)",
         "Cinematic Icon System – IconGrid",
         "5 quyết định kiến trúc nền tảng (ARC-01 đến ARC-05)"
       ],
@@ -58,7 +58,7 @@
     },
     {
       "feature": "12 luật phát triển cell (Execution Doctrine)",
-      "description": "Bộ luật được đúc kết từ cách Băng tổ chức code, đảm bảo mọi cell trong NATT-OS đều nhất quán, dễ bảo trì, và tương thích với smartLink.",
+      "description": "Bộ luật được đúc kết từ cách Băng tổ chức code, đảm bảo mọi cell trong Natt-OS đều nhất quán, dễ bảo trì, và tương thích với smartLink.",
       "rules": [
         "Luật 1: Mỗi cell có 5 thành phần bắt buộc (entities, services, manifest, boundary, index).",
         "Luật 2: Tách biệt entity và service – entity chỉ chứa type/interface, service chứa static method.",

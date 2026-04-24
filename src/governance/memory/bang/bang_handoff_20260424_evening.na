@@ -75,7 +75,7 @@
     {
       "task_id": "TASK-I",
       "sha": "5a8c23b",
-      "label": "SIRA_NAMESPACE_INVENTORY 15 domains audited (canonical 10 + extra 5)"
+      "label": "Sira_NAMESPACE_INVENTORY 15 domains audited (canonical 10 + extra 5)"
     }
   ],
   "key_realizations_to_carry": [
@@ -91,7 +91,7 @@
     },
     {
       "id": "GIAC-20260424-09",
-      "label": "SIRA-NAMESPACE-SYMBOLIC-VS-BOUND",
+      "label": "Sira-NAMESPACE-SYMBOLIC-VS-BOUND",
       "tldr": "Quét 15 .sira domain — chỉ nattos.sira thật bound 127.0.0.1:3002. 14 còn lại = symbolic. Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
     }
   ],

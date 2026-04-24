@@ -29,7 +29,7 @@ gatekeeper_signature: (chờ anh Natt ký nếu duyệt archive path này)
 
 # BẢNG TỔNG HỢP CHỈ ĐẠO CHÍNH THỨC (PRE-WAVE 3) — SUPERSEDED
 
-**Mục tiêu gốc:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1-lệnh Phase A-B-C** cho NATT-OS Pre-Wave 3.
+**Mục tiêu gốc:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1-lệnh Phase A-B-C** cho Natt-OS Pre-Wave 3.
 
 ---
 

@@ -2,7 +2,7 @@
 
 set -e  # dừng nếu có lỗi
 
-echo "🚀 Bắt đầu build production chain – Tâm Luxury NATT-OS"
+echo "🚀 Bắt đầu build production chain – Tâm Luxury Natt-OS"
 
 # 1. Tạo cấu trúc thư mục
 mkdir -p src/cells/business/{order,prdmaterials,casting,stone,finishing,polishing,inventory,tax}-cell
@@ -469,7 +469,7 @@ if [ ! -f package.json ]; then
 {
   "name": "tam-luxury-production",
   "version": "1.0.0",
-  "description": "Production chain NATT-OS",
+  "description": "Production chain Natt-OS",
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",

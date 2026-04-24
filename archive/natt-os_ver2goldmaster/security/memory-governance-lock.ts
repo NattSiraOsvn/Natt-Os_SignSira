@@ -7,7 +7,7 @@ import { AuditTrailManager } from '../audit/audit-trail-manager';
  */
 export class MemoryGovernanceLock {
   static async checkWritePermission(aiId: string, context: string, data: any) {
-    const allowedWriters = ['THIEN_LON', 'KIM', 'ANH_NATTSIRAWAT'];
+    const allowedWriters = ['THIEN_LON', 'KIM', 'ANH_NATTSiraWAT'];
     const allowedContexts = ['AUDIT_LOG', 'PERFORMANCE_METRICS', 'COMPLIANCE_REPORTS'];
     
     // 1. Check writer permission

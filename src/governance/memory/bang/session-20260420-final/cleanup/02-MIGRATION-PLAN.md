@@ -1,4 +1,4 @@
-# NATT-OS NAUION CLEANUP — MIGRATION PLAN (Bang scope)
+# Natt-OS NAUION CLEANUP — MIGRATION PLAN (Bang scope)
 
 **Phạm vi:** Những action em tự làm được mà không overstep persona khác.
 **Nguyên tắc:** R05 (python3/bash inline) · R06 (git add từng file) · KHÔNG git add . · KHÔNG xoá file chưa verify.

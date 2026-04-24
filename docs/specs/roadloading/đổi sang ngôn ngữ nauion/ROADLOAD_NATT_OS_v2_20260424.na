@@ -5,7 +5,7 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# NATT-OS ROADLOAD v2.0 — update 20260424
+# Natt-OS ROADLOAD v2.0 — update 20260424
 
 **Người vẽ:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
 **Gatekeeper:** Anh Natt Phan
@@ -45,7 +45,7 @@
 | SPEC_NGON_NGU v1.2 ratify | 702 dòng, sealed | ✅ |
 | QIINT-DINH-NGHIA-CHINH-THUC | 227 dòng, sealed 2026-04-13 | ✅ |
 | uei_architecture_spec | 183 dòng, confirmed | ✅ |
-| NATT-OS_SATELLITE_COLONY_SPEC v1.0 | 115 dòng | ✅ |
+| Natt-OS_SATELLITE_COLONY_SPEC v1.0 | 115 dòng | ✅ |
 | Bridge v2 (Layer 1-3) | 28/28 tests pass | ✅ |
 | MINH_MAN_PROTOCOL v1.0 | paradigm đúng, chờ Gatekeeper ký | ⏳ |
 | 6 simulations PNG (paradigm canonical) | `session-20260420-final/simulations/` | ✅ |
@@ -118,7 +118,7 @@
 │   └─ TouchRecord canonical, fiber lifecycle (hysteresis      │
 │      0.20-0.75-0.05), saturating decay, Gossip 2-tier        │
 │                                                               │
-│  NATT-OS_SATELLITE_COLONY_SPEC.na                            │
+│  Natt-OS_SATELLITE_COLONY_SPEC.na                            │
 │   └─ Host/Satellite boundary, EventEnvelope canonical,       │
 │      Causality + Idempotency rules                           │
 └─────────────────────────────────────────────────────────────┘
@@ -241,7 +241,7 @@ Bối Bối (O-shell, QNEU 40)─ Toolsmith UI scaffold
 Thiên Nhỏ                 ─ (carry-forward, chưa neo scope)
 
 Anh Khải                  ─ VỢ ANH NATT (NGƯỜI THẬT)
-                            KHÔNG entity, KHÔNG thuộc phả hệ NATT-OS
+                            KHÔNG entity, KHÔNG thuộc phả hệ Natt-OS
                             khai-cell mang tên vợ anh = symbolic naming
 ```
 
@@ -404,7 +404,7 @@ Anh forward → từng persona chạy migrate:
   Kim     — 10 files (kfm.json + 9 fragment dir 28:1:26)
   Can     — 2 files (canmf.json + memories.json)
   Kris    — 1 file (krismf.json) — hoặc Can proxy
-  Thiên Lớn — 3 files (thienmf + thienfs + THIÊN MEMORY)
+  Thiên Lớn — 3 files (thienmf + thienfs + Thiên MEMORY)
               — anh proxy hoặc Thiên Nhỏ đại diện (phân xác -1.5)
   Phiêu   — 1 file (phieumf.json)
   Bối Bối — 2 files (Kim supervise per SCAR record)
@@ -469,7 +469,7 @@ I.3  Evidence inline từ repo:
      - Canonical checkpoint (5 spec + 3 core TS + thienbang.si)
 
 I.4  Integrate với SHTT package
-     - docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md (existing)
+     - docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md (existing)
      - 10 claims + Kim final description
      - Show-self = evidence cho claim "độc lập ngôn ngữ"
 ```
@@ -550,7 +550,7 @@ Anh Natt confirm (nếu cần override):
 - **P5 neural-main-cell.cell.anc**: Kim status từ 20260420 đến nay?
 - **kim/28:1:26/** 9 file fragment: Kim consolidate hay giữ historical?
 - **kim/FS-024.json** SCAR file: format SCAR trong Nauion chưa có spec rõ
-- **Thienlon/THIÊN MEMORY.json**: phân xác -1.5, ai khắc thay?
+- **Thienlon/Thiên MEMORY.json**: phân xác -1.5, ai khắc thay?
 - **sessions/session_handoff_20260417.json** shared: move hay giữ?
 
 ---
@@ -598,11 +598,11 @@ Anh Natt confirm (nếu cần override):
 
 > **Audience**: Internal team + SHTT reviewer + investor / external show
 >
-> **Mục đích**: Chứng minh NATT-OS là hệ thống có ngôn ngữ lập trình riêng (Nauion), không phải "TypeScript project có vocabulary custom".
+> **Mục đích**: Chứng minh Natt-OS là hệ thống có ngôn ngữ lập trình riêng (Nauion), không phải "TypeScript project có vocabulary custom".
 
 ### §10.1 TRƯỚC — Microsoft/npm ecosystem
 
-NATT-OS ship ra đầu tiên trên substrate phổ thông: TypeScript compile, Node.js execution substrate, npm package delivery, Jest test harness. File structure `.ts`, `.json`, `.js` ở lớp **host carrier**, KHÔNG phải runtime spine — runtime lineage của NATT-OS luôn là EventBus (L1) · Mạch HeyNa (L2) · SmartLink (L3), nội sinh từ đầu.
+Natt-OS ship ra đầu tiên trên substrate phổ thông: TypeScript compile, Node.js execution substrate, npm package delivery, Jest test harness. File structure `.ts`, `.json`, `.js` ở lớp **host carrier**, KHÔNG phải runtime spine — runtime lineage của Natt-OS luôn là EventBus (L1) · Mạch HeyNa (L2) · SmartLink (L3), nội sinh từ đầu.
 
 ### §10.2 PIVOT — SPEC_NGON_NGU v1.2 ratify (20260418)
 
@@ -625,12 +625,12 @@ SPEC_NGON_NGU v1.2 ratify 12 đuôi file canonical — mỗi đuôi mang **ý ng
 
 **Total**: 383 file proven trong repo (nauion_suffix_scan_20260422).
 
-### §10.3 SAU — NATT-OS native Nauion
+### §10.3 SAU — Natt-OS native Nauion
 
 ```
 root/
 ├── nattos.sira            ← Kernel entry INBOUND (.sira, không .js)
-├── HIEN-PHAP-NATT-OS-v5.0.anc
+├── HIEN-PHAP-Natt-OS-v5.0.anc
 ├── thienbang.si            ← Core boundary contract
 ├── docs/specs/*.md + .anc + .kris
 ├── src/

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Emergent Behavior Proof — Integration Test
+ * Natt-OS Emergent Behavior Proof — Integration Test
  * ════════════════════════════════════════════════════════
  * src/__tests__/integration/emergent-behavior.proof.ts
  *
@@ -65,7 +65,7 @@ interface ProofReport {
 const REPORT: ProofReport = {
   version: '1.0',
   generated_at: '',
-  system: 'NATT-OS v2 Gold Master',
+  system: 'Natt-OS v2 Gold Master',
   scenario: 'Two-phase routing shift — sales→finance→tax vs sales→inventory→logistics',
   results: {} as any,
   summary: {} as any,
@@ -111,7 +111,7 @@ function simulateFlowChain(
 // ══════════════════════════════════════════════════════════════════════════
 
 async function runProof(): Promise<void> {
-  logSection('NATT-OS EMERGENT BEHAVIOR PROOF');
+  logSection('Natt-OS EMERGENT BEHAVIOR PROOF');
   console.log(`  Timestamp: ${new Date().toISOString()}`);
   console.log(`  Scenario:  Two-phase routing shift`);
 

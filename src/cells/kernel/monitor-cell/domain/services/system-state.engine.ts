@@ -1,5 +1,5 @@
 /**
- * NATT-OS System State Engine v1.0 — V5 Condition 2
+ * Natt-OS System State Engine v1.0 — V5 Condition 2
  */
 import * as fs from "fs";
 import * as path from "path";

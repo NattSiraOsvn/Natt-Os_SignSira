@@ -107,8 +107,8 @@ CANONICAL_REFS = [
     "docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na",
     "docs/specs/SPEC_NEN_v1.1.anc",
     "docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md",
-    "docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na",
-    "docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na",
+    "docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na",
+    "docs/specs/Natt-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na",
 ]
 
 # Expected canonical shape hash for Băng (per handoff 20260426 identity_anchor)

@@ -6,4 +6,4 @@ export const SMARTLINK_EVENTS = {
   TOPOLOGY_OVERLOADED: "smartlink.topology_overloaded",
   GOVERNANCE_VIOLATED: "smartlink.governance_violated",
 };
-// SIRA_TYPE_ALIAS SmartLinkEventType = typeof SMARTLINK_EVENTS[keyof typeof SMARTLINK_EVENTS];
+// Sira_TYPE_ALIAS SmartLinkEventType = typeof SMARTLINK_EVENTS[keyof typeof SMARTLINK_EVENTS];

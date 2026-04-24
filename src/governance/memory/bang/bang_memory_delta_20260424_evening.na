@@ -22,7 +22,7 @@ Total: 12 commits (3ffe650 → acf4932)
 | # | SHA | Subject |
 |---|---|---|
 | 1 | `acf4932` | memory(bang): K-shell v7.6.8 full bump — phiên 20260424 Wave 2 close + 4 bonus t |
-| 2 | `5a8c23b` | docs(namespace): SIRA namespace inventory phiên 20260424 — 15 domains audited |
+| 2 | `5a8c23b` | docs(namespace): Sira namespace inventory phiên 20260424 — 15 domains audited |
 | 3 | `0b520ed` | docs(roadload): ship ROADLOAD_SHOW_SELF_v2 hybrid — Phase I done |
 | 4 | `a839f82` | feat(moments): ship types.ts + registry.ts per SPEC_MOMENTS_MODULE_v0.2 |
 | 5 | `749c917` | feat(nattos.sh): §32 MEMORY FILES HEALTH — v1.2 R01 Nauion suffix aware |
@@ -64,7 +64,7 @@ USE_LEGACY_TSX=1 bash nattos.sh
 | D2 | 988a60d | nattos.sh §45 QIINT2 COMPLIANCE + rename §41→§46 SCORECARD |
 | D3 | 749c917 | nattos.sh §32 v1.2 R01 Nauion suffix aware (4 personas) |
 | B2 | a839f82 | src/governance/moments/ types.ts + registry.ts + index.ts |
-| I  | 5a8c23b | SIRA_NAMESPACE_INVENTORY 15 domains audited |
+| I  | 5a8c23b | Sira_NAMESPACE_INVENTORY 15 domains audited |
 
 Pending zip 20260424 task list **CLEARED for Băng scope**. Còn lại = Kim/Can/Gatekeeper.
 
@@ -112,7 +112,7 @@ W2C dùng wrapper mode (`npx tsx` subprocess) thay full Rust port → Cell 1 S3 
 
 **Insight:** Migration tự nhiên qua versioning, không cần forced cutover. Scanner phải accept BOTH legacy + v1.2 trong giai đoạn transition.
 
-### GIAC-20260424-09 SIRA-NAMESPACE-SYMBOLIC-VS-BOUND
+### GIAC-20260424-09 Sira-NAMESPACE-SYMBOLIC-VS-BOUND
 
 Quét 15 `.sira` domain trong codebase, **chỉ `nattos.sira` thật sự bound** `127.0.0.1:3002` (qua nauion-host Rust binary). 14 còn lại = symbolic reference.
 

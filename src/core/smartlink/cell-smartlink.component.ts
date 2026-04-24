@@ -1,5 +1,5 @@
 /**
- * NATT-OS CellSmartLinkComponent
+ * Natt-OS CellSmartLinkComponent
  *
  * Đây là thành phần SmartLink bắt buộc trong mỗi NATT-CELL (Điều 8).
  * Mỗi cell khởi tạo component này khi sinh ra (constitutional birth).

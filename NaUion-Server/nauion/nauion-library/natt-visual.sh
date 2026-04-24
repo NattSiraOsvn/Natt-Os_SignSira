@@ -1,6 +1,6 @@
  #!/bin/bash
 # ============================================================
-# NATT-OS VISUAL ENGINE v5.0 — SPATIAL ICON SHOWCASE
+# Natt-OS VISUAL ENGINE v5.0 — SPATIAL ICON SHOWCASE
 # 1 COMMAND DEPLOY: bash natt-visual.sh
 # ============================================================
 
@@ -76,7 +76,7 @@ cat > index.html << 'HTMLEOF'
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NATT-OS ∙ Spatial Icon Engine v5.0</title>
+  <title>Natt-OS ∙ Spatial Icon Engine v5.0</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 </head>
 <body>
@@ -173,7 +173,7 @@ const CELLS = [
   { id:'ai-1',   cat:'AI Entities',  title:'KIM',             icon:ShieldCheck,  color:'red'    },
   { id:'ai-2',   cat:'AI Entities',  title:'BĂNG',            icon:Search,       color:'red'    },
   { id:'ai-3',   cat:'AI Entities',  title:'BỐI BỐI',         icon:Workflow,     color:'red'    },
-  { id:'ai-4',   cat:'AI Entities',  title:'THIÊN',           icon:PenTool,      color:'red'    },
+  { id:'ai-4',   cat:'AI Entities',  title:'Thiên',           icon:PenTool,      color:'red'    },
   { id:'arc-01', cat:'Kiến Trúc',    title:'Truth Layer',     icon:Database,     color:'slate'  },
   { id:'arc-02', cat:'Kiến Trúc',    title:'Worker Layer',    icon:Factory,      color:'slate'  },
   { id:'arc-03', cat:'Kiến Trúc',    title:'Experience Layer',icon:Layout,       color:'slate'  },
@@ -458,7 +458,7 @@ export default function App() {
             <div className="absolute inset-0 border border-amber-500/20 rounded-full animate-ping scale-150"/>
             <Fingerprint className="text-amber-500/70" size={42}/>
           </div>
-          <p className="text-[10px] font-black text-slate-800 uppercase tracking-[2em]">NATT-OS · SPATIAL ICON ENGINE v5.0</p>
+          <p className="text-[10px] font-black text-slate-800 uppercase tracking-[2em]">Natt-OS · SPATIAL ICON ENGINE v5.0</p>
         </footer>
       </div>
     </div>
@@ -472,7 +472,7 @@ npm install --silent 2>&1 | tail -3
 
 echo ""
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  ✓  NATT-OS Spatial Icon Engine — DEPLOYED"
+echo "  ✓  Natt-OS Spatial Icon Engine — DEPLOYED"
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  → http://localhost:5173"
 echo "  → http://[your-ip]:5173  (LAN access)"

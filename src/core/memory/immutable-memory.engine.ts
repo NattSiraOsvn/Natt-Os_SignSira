@@ -1,5 +1,5 @@
 /**
- * NATT-OS ImmutableMemoryEngine
+ * Natt-OS ImmutableMemoryEngine
  * Patent Claim: Append-only enterprise memory with cryptographic hash chain
  *               and configurable retention policy for constitutional compliance.
  *
@@ -64,7 +64,7 @@ export class ImmutableMemoryEngine {
     payload: T,
     tenantId: string,
     actorId: string,
-    policyVersion = 'NATT-OS-CONSTITUTION-v4.0'
+    policyVersion = 'Natt-OS-CONSTITUTION-v4.0'
   ): MemoryRecord<T> {
     const prevRecord = this.chain[this.chain.length - 1];
     const prevHash = prevRecord?.chain_hash ?? this.GENESIS_HASH;

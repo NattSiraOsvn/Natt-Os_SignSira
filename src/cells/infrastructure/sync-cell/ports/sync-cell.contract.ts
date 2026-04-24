@@ -1,5 +1,5 @@
 /**
- * NATT-OS sync-cell - EDA CONTRACT
+ * Natt-OS sync-cell - EDA CONTRACT
  */
 export const SYNC_CELL_CONTRACT = {
   cellId: 'sync-cell',

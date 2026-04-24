@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bang_scan_hethong.py — 1 lenh quet tong the NATT-OS
+bang_scan_hethong.py — 1 lenh quet tong the Natt-OS
 
 Scope: REPO state + RUNTIME state + DNS/domain public
 Output: stdout only (paste ve cho Bang)

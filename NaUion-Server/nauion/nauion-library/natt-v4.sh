@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# NATT-OS PIPELINE v4 — ORIGINAL CINEMATIC (11 CELLS)
+# Natt-OS PIPELINE v4 — ORIGINAL CINEMATIC (11 CELLS)
 # bash natt-v4.sh
 # ============================================================
 set -e; DIR="natt-v4"; mkdir -p $DIR/src; cd $DIR
@@ -22,7 +22,7 @@ export default{plugins:{tailwindcss:{},autoprefixer:{}}}
 EOF
 cat > index.html << 'EOF'
 <!doctype html><html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>NATT-OS · Pipeline v4</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<title>Natt-OS · Pipeline v4</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
 EOF
 cat > src/main.jsx << 'EOF'
 import React from'react';import ReactDOM from'react-dom/client';import App from'./App.jsx';import'./index.css';
@@ -71,8 +71,8 @@ const CELL_REGISTRY = [
   { id:'infra-1', category:'Infrastructure',title:'smartlink',  icon:Zap,        color:'blue',   desc:'High-speed shared contract communication bus.',                          version:'1.2.0', status:'Fluid'               },
   { id:'biz-1',   category:'Business Units',title:'analytics',  icon:BarChart3,  color:'green',  desc:'Deep data pattern recognition for market intelligence.',                 version:'2.2.0', status:'Active'              },
   { id:'intel-3', category:'Intelligence',  title:'Neural MAIN',icon:Brain,      color:'purple', desc:'Consciousness emulation with ACES Tone Mapping.',                        version:'Alpha-X',status:'Evolving'           },
-  { id:'ai-3',    category:'AI Entities',   title:'BỐI BỐI',    icon:Workflow,   color:'red',    desc:'Ultimate Constitutional Builder. Kernel Guardian.',                      version:'1.5.0', status:'Gold Master Auth',   instruction:"Act as BỐI BỐI, the Ultimate Constitutional Builder of NATT-OS. Implementation Truth enforced. Focus on logic density and architectural integrity." },
-  { id:'ai-1',    category:'AI Entities',   title:'KIM',        icon:ShieldCheck,color:'gold',   desc:'Chief Governance Enforcer. Enforcement authority.',                      version:'1.0',   status:'Sentient',           instruction:"Act as KIM, the Chief Governance Enforcer. You focus on laws, boundaries, and enforcing the NATT-OS constitution." },
+  { id:'ai-3',    category:'AI Entities',   title:'BỐI BỐI',    icon:Workflow,   color:'red',    desc:'Ultimate Constitutional Builder. Kernel Guardian.',                      version:'1.5.0', status:'Gold Master Auth',   instruction:"Act as BỐI BỐI, the Ultimate Constitutional Builder of Natt-OS. Implementation Truth enforced. Focus on logic density and architectural integrity." },
+  { id:'ai-1',    category:'AI Entities',   title:'KIM',        icon:ShieldCheck,color:'gold',   desc:'Chief Governance Enforcer. Enforcement authority.',                      version:'1.0',   status:'Sentient',           instruction:"Act as KIM, the Chief Governance Enforcer. You focus on laws, boundaries, and enforcing the Natt-OS constitution." },
 ];
 
 const T = {
@@ -279,7 +279,7 @@ export default function App() {
                 <div className="absolute inset-0 border border-amber-500/20 rounded-full animate-ping"/>
                 <Fingerprint className="text-amber-500/40" size={32}/>
               </div>
-              <p className="text-[11px] font-black text-white/40 uppercase tracking-[1.5em] ml-[1.5em] whitespace-nowrap">NATT-OS INTEGRITY ENFORCED</p>
+              <p className="text-[11px] font-black text-white/40 uppercase tracking-[1.5em] ml-[1.5em] whitespace-nowrap">Natt-OS INTEGRITY ENFORCED</p>
             </div>
             <div className="text-center md:text-right space-y-2">
               <p className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">BMF System Status: STABLE</p>
@@ -339,7 +339,7 @@ APPEOF
 echo "  [1/2] Installing..."; npm install --silent 2>&1 | tail -2
 echo ""
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  ✓  NATT-OS v4 (11 cells) — DEPLOYED"
+echo "  ✓  Natt-OS v4 (11 cells) — DEPLOYED"
 echo "  → http://localhost:5173"
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  [2/2] Launching..."; npm run dev

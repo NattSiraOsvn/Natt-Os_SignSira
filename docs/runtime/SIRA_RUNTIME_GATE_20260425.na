@@ -1,4 +1,4 @@
-# SIRA Runtime Gate — 20260425
+# Sira runtime gate — 20260425
 
 status: CANONICAL_DRAFT
 created_at: 2026-04-24T18:22:24.483214+00:00
@@ -20,9 +20,9 @@ Chạy một lệnh:
 
 Runtime gate kiểm:
 
-- SIRA namespace validator
-- SIRA browser adapter validator
-- SIRA TS translation adapter validator
+- Sira namespace validator
+- Sira browser adapter validator
+- Sira TS translation adapter validator
 - Browser transport boundary validator
 - `core.sira/api/health`
 - `anc.sira/api/resolve?uri=anc://core`

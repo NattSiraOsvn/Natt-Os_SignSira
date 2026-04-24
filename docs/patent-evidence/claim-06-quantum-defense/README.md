@@ -9,7 +9,7 @@
 
 ### Bước 1 — Đặt file vào đúng chỗ
 
-Copy 2 file vào repo NATT-OS:
+Copy 2 file vào repo Natt-OS:
 
 ```
 docs/patent-evidence/claim-06-quantum-defense/

@@ -2,7 +2,7 @@
  * order-cell / infrastructure / order.engine.ts
  * Poll Google Sheets mỗi 30 phút, emit ORDER_CREATED qua SmartLink.
  *
- * ADAPT: thay ISmartLinkPort bằng SmartLink implementation hiện có của NATT-OS.
+ * ADAPT: thay ISmartLinkPort bằng SmartLink implementation hiện có của Natt-OS.
  */
 
 import { CreateOrderUseCase, IOrderRepository, IOrderSheetAdapter } from '../application/order.usecase';

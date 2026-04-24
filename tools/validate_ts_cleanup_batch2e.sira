@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = process.cwd();
-const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2E_MEDIUM_TO_SIRA_20260424.na");
+const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2E_MEDIUM_TO_Sira_20260424.na");
 
 if (!fs.existsSync(evidence)) {
   console.error("Missing evidence:", evidence);
@@ -13,7 +13,7 @@ if (!fs.existsSync(evidence)) {
 const content = fs.readFileSync(evidence, "utf8");
 
 const required = [
-  "MEDIUM_LIGHT_TRANSLATION_TO_SIRA",
+  "MEDIUM_LIGHT_TRANSLATION_TO_Sira",
   "renamed",
   "skipped",
   "translation"
@@ -22,11 +22,11 @@ const required = [
 const missing = required.filter(x => !content.includes(x));
 
 if (missing.length) {
-  console.error("TS CLEANUP BATCH2E VALIDATION: FAIL");
+  console.error("TS CLEANUP BATCH2E validation: fail");
   for (const x of missing) console.error(" - missing " + x);
   process.exit(1);
 }
 
-console.log("TS CLEANUP BATCH2E VALIDATION: PASS");
-console.log("scope=MEDIUM_LIGHT_TRANSLATION_TO_SIRA only");
+console.log("TS CLEANUP BATCH2E validation: pass");
+console.log("scope=MEDIUM_LIGHT_TRANSLATION_TO_Sira only");
 console.log("mode=light TS syntax translation then .sira");

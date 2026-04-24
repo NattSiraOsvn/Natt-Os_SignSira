@@ -1,6 +1,6 @@
 import { EventBus } from "../../../../core/events/event-bus";
 // ── compliance-smartlink.port.ts ────────────────────────────
-// SIRA_CONTRACT_INTERFACE ComplianceSignal
+// Sira_CONTRACT_INTERFACE ComplianceSignal
 const ComplianceSignal = {
   type: "FRAUD_DETECTED" | "COMPLIANCE_OK" | "AUDIT_REQUIRED" | "ROUND_NUMBER_ANOMALY";
   payload;

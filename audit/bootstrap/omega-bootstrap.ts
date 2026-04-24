@@ -83,7 +83,7 @@ export class OmegaBootstrap {
       const meta = {
         planId: this.policy?.meta?.plan_id || 'UNKNOWN_PLAN',
         gatekeeper: this.policy?.meta?.gatekeeper || 'THIEN_LON',
-        sovereign: this.policy?.meta?.sovereign || 'ANH_NATTSIRAWAT',
+        sovereign: this.policy?.meta?.sovereign || 'ANH_NATTSiraWAT',
         timestamp: this.policy?.meta?.timestamp || now
       };
 
@@ -100,7 +100,7 @@ export class OmegaBootstrap {
         return {
           success: false,
           checks,
-          error: !sigValid ? 'SIRASIGN_INVALID' : 'POLICY_HASH_MISMATCH',
+          error: !sigValid ? 'SiraSIGN_INVALID' : 'POLICY_HASH_MISMATCH',
           detail: !sigValid ? 'Unauthorized signature' : `Actual hash: ${hashResult.hash}`,
           timestamp: now,
           signatureVerified: sigValid,

@@ -52,7 +52,7 @@ const AdvancedAnalytics: React.FC = () => {
         const ai = null /* LỆNH #001 */;
         const response = await ai.models.generateContent({
           model: 'DISABLED_LỆNH_001',
-          contents: `Phân tích dữ liệu: Lệch sổ sách 2024 (Kim cương tấm -227), Kịch bản 2026 (${scenario}). THIÊN tư vấn chiến lược.`
+          contents: `Phân tích dữ liệu: Lệch sổ sách 2024 (Kim cương tấm -227), Kịch bản 2026 (${scenario}). Thiên tư vấn chiến lược.`
         });
         setAiAnalysis(response.text || '');
       } catch (e) {

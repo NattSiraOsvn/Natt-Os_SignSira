@@ -42,12 +42,12 @@ must(fs.existsSync(spec), "missing THIENBANG extension spec");
 ].forEach(token => must(s.includes(token), "spec missing token: " + token));
 
 if (errors.length) {
-  console.error("THIÊNBĂNG EXTENSION VALIDATION: FAIL");
+  console.error("ThiênBăng extension validation: FAIL");
   for (const e of errors) console.error(" - " + e);
   process.exit(1);
 }
 
-console.log("THIÊNBĂNG EXTENSION VALIDATION: PASS");
+console.log("ThiênBăng extension validation: PASS");
 console.log("operator=tools/thiên");
 console.log("extension=tools/thiênbăng");
 console.log("dictionary=src/thienbang.si");

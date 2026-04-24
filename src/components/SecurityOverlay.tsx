@@ -143,7 +143,7 @@ const SecurityOverlay: React.FC<SecurityOverlayProps> = ({
         items.push({
           top: `${(i * 100) / rows}%`,
           left: `${(j * 100) / cols}%`,
-          text: `NATT-OS • SECURE • AES-256`
+          text: `Natt-OS • SECURE • AES-256`
         });
       }
     }

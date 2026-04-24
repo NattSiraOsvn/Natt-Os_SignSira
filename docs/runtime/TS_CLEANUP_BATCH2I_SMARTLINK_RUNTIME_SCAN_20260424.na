@@ -1,7 +1,7 @@
 # TS CLEANUP BATCH 2I — SMARTLINK RUNTIME SCAN — 20260424
 
 status: SCAN_ONLY
-scope: SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA
+scope: SMARTLINK_RUNTIME_TRANSLATE_TO_Sira
 created_at: 2026-04-24T17:44:48.386533+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
@@ -9,12 +9,12 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Rule
 
-Batch này chỉ quét nhóm SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA.
+Batch này chỉ quét nhóm SMARTLINK_RUNTIME_TRANSLATE_TO_Sira.
 
 Không rename.
 Không sửa source.
-Không động HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA.
-Không động ENGINE_TRANSLATE_TO_SIRA.
+Không động HEYNA_EVENT_RUNTIME_TRANSLATE_TO_Sira.
+Không động ENGINE_TRANSLATE_TO_Sira.
 Không động DEEP_TS_TRANSLATION_REQUIRED.
 
 ## 2. Summary
@@ -70,8 +70,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "emit"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
@@ -99,8 +99,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
@@ -139,8 +139,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
@@ -183,8 +183,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "audit"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
@@ -220,8 +220,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
@@ -254,8 +254,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
@@ -288,8 +288,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
@@ -324,8 +324,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "emit"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
@@ -359,8 +359,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
@@ -391,8 +391,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
@@ -432,8 +432,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
@@ -469,8 +469,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
@@ -505,8 +505,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
@@ -551,8 +551,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
@@ -586,8 +586,8 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "emit"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
@@ -624,14 +624,14 @@ Không động DEEP_TS_TRANSLATION_REQUIRED.
         "SmartLink"
       ]
     },
-    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
-    "source_action": "manual TS-to-SIRA translation; runtime boundary"
+    "source_cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
+    "source_action": "manual TS-to-Sira translation; runtime boundary"
   }
 ]
 
 ## 5. Next Gate
 
-- [ ] Nếu có POSSIBLE_JS_COMPATIBLE_TO_SIRA: migrate batch nhỏ.
+- [ ] Nếu có POSSIBLE_JS_COMPATIBLE_TO_Sira: migrate batch nhỏ.
 - [ ] Nếu có LIGHT_RUNTIME_TRANSLATION_CANDIDATE: dịch annotation nhẹ trước.
 - [ ] CONTRACT_HEAVY_TRANSLATE_REQUIRED phải dịch interface/type contract.
 - [ ] CLASS_RUNTIME_REWRITE_REQUIRED không auto rename.

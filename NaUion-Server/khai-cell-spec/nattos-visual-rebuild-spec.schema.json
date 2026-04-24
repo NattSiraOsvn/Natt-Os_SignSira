@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://natt.sira/specs/visual-rebuild-v1.schema.json",
   "title": "NaUion Visual Rebuild Spec",
-  "description": "Canonical schema for visual rebuild specifications in NATT-OS / NaUion system. See SPEC-NaUion-Visual-Rebuild-Pipeline v1.0.",
+  "description": "Canonical schema for visual rebuild specifications in Natt-OS / NaUion system. See SPEC-NaUion-Visual-Rebuild-Pipeline v1.0.",
   "type": "object",
   "required": [
     "spec_id",
@@ -229,7 +229,7 @@
     },
     "nauion_integration": {
       "type": "object",
-      "description": "Integration with NATT-OS entity system (Điều 8).",
+      "description": "Integration with Natt-OS entity system (Điều 8).",
       "properties": {
         "entity_id": { "type": "string" },
         "anc_file_ref": { "type": "string" },

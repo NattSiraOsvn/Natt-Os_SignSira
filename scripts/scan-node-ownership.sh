@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# NATT-OS NODE OWNERSHIP SCANNER
+# Natt-OS NODE OWNERSHIP SCANNER
 # Đo độ phụ thuộc của repo vào Node ecosystem.
 # Mục đích: biết rõ "nợ" bao nhiêu trước khi quyết định tách.
 #
@@ -44,7 +44,7 @@ has_dir() {
 # ============================================================================
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo "║  NATT-OS NODE OWNERSHIP SCANNER                                  ║"
+echo "║  Natt-OS NODE OWNERSHIP SCANNER                                  ║"
 echo "║  Đo độ phụ thuộc Node ecosystem — đếm thuần, không phán xét.    ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 echo ""

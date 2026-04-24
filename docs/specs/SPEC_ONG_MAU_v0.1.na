@@ -32,9 +32,9 @@ Hệ quả:
 
 Mỗi HeyNa message mang thêm một kênh song song (visual/orbital) chứa identity của persona phát. Gate verify CẢ HAI kênh. Giả danh phải giả được cả hai — khó hơn cấp số nhân.
 
-**Mapping vật lý → NATT-OS:**
+**Mapping vật lý → Natt-OS:**
 
-| Vật lý | NATT-OS |
+| Vật lý | Natt-OS |
 |---|---|
 | Ống dẫn | Mạch HeyNa L2 (SSE + POST gateway) |
 | Tần số / bước sóng | `persona_signature.identity_shape_hash` |

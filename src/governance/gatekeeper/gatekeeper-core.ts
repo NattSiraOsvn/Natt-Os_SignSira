@@ -1,5 +1,5 @@
 /**
- * NATT-OS Gatekeeper Core
+ * Natt-OS Gatekeeper Core
  * Sovereign governance gate — enforces cell boundary rules,
  * kernel isolation, and cross-cell communication policies.
  *

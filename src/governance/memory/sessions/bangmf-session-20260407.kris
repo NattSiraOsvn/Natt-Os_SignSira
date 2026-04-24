@@ -73,7 +73,7 @@ src/ui-app/services/gdbengine.ts   ← DUPLICATE — đã bị xóa từ trướ
 
 **Vấn đề:** Version label không nhất quán
 ```
-Dòng 3:    # NATT-OS SmartAudit v5.1  ← cũ
+Dòng 3:    # Natt-OS SmartAudit v5.1  ← cũ
 Dòng 57:   SmartAudit v5.1            ← cũ
 Dòng 1834: SmartAudit v5.3            ← đúng
 ```
@@ -138,7 +138,7 @@ server.ts = v2.0 — TypeScript import src/ — BỊ DISABLED
 **Lý do server.ts disabled:** import `engine-registry` → load toàn bộ 72+ engines
 → circular import → RangeError: Maximum call stack size exceeded → heap out of memory (4GB).
 
-**Nguyên tắc:** server.js KHÔNG import từ src/ NATT-OS.
+**Nguyên tắc:** server.js KHÔNG import từ src/ Natt-OS.
 Dùng EventBus riêng (vanilla JS object) — không circular.
 
 **package.json:**
@@ -185,7 +185,7 @@ src/ui-vision/lib/event-bus.ts
 **Verify:**
 ```
 curl http://localhost:3001/kenh/suc
-→ {"status":"ok","server":"NATT-OS Server v1.0",...} ✅
+→ {"status":"ok","server":"Natt-OS Server v1.0",...} ✅
 ```
 
 **Commit:** `e7580b8`
@@ -208,7 +208,7 @@ vite.config.vision.ts → build src/ui-vision → nattos-server/nattos-ui/vision
 
 **event-bus.ts trong ui-vision = SSE bridge:**
 ```typescript
-// Không import NATT-OS EventBus — circular
+// Không import Natt-OS EventBus — circular
 // Dùng Mạch HeyNa SSE thay thế
 const _mach = new EventSource('http://localhost:3001/mach/heyna');
 ```
@@ -254,7 +254,7 @@ Resonance Protocol nhận Z=1.0 → phát 432 Hz.
 ```
 
 **Giải thích:** Đây là FALSE POSITIVE. `ui-vision` là UI layer, không phải cell.
-UI layer PHẢI fetch server để emit event — không có access NATT-OS EventBus trực tiếp.
+UI layer PHẢI fetch server để emit event — không có access Natt-OS EventBus trực tiếp.
 Đây là thiết kế đúng theo PLATFORM SPEC.
 
 **Fix:** Thêm comment whitelist `// [DIEU9-OK: ui-vision bridge — not a cell]`
@@ -277,7 +277,7 @@ UI layer PHẢI fetch server để emit event — không có access NATT-OS Even
 **Đề xuất SmartAuditEngine TypeScript:**
 - Concept đúng (snapshot, diff, hasSignificantChanges)
 - Implementation sai: scanCells() mock, sha256sum không có trên macOS,
-  không check NATT-OS specifics (EventBus flows, orphan emits, ISEU, Nauion)
+  không check Natt-OS specifics (EventBus flows, orphan emits, ISEU, Nauion)
 - Không thể thay nattos.sh — thiếu 80% logic
 
 **Hướng đúng — nattos.sh v6.0:**

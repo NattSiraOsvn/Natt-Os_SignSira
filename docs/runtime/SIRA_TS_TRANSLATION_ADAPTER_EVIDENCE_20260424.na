@@ -1,4 +1,4 @@
-# SIRA TS Translation Adapter Evidence — 20260424
+# Sira TS Translation Adapter Evidence — 20260424
 
 status: PASS
 created_at: 2026-04-24T18:10:42.881500+00:00
@@ -42,7 +42,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
   },
   "rows": [
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/SyncEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -67,7 +67,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/kernel/audit-cell/infrastructure/adapters/AuditEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -92,7 +92,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/kernel/config-cell/infrastructure/adapters/ConfigEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -117,7 +117,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/MonitorEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -142,7 +142,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/QuantumDefenseEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -167,7 +167,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/RBACEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -192,7 +192,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/cells/kernel/security-cell/infrastructure/adapters/SecurityEventEmitterAdapter.ts",
       "classification": {
         "ok": true,
@@ -217,14 +217,14 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/core/events/typed-eventbus.ts",
       "classification": {
         "ok": true,
         "file": "src/core/events/typed-eventbus.ts",
         "bytes": 1720,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": false,
           "typeAlias": true,
@@ -242,14 +242,14 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts",
       "classification": {
         "ok": true,
         "file": "src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts",
         "bytes": 3590,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -267,7 +267,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       }
     },
     {
-      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na",
+      "report": "docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_Sira_20260424.na",
       "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-gateway-verify.draft.ts",
       "classification": {
         "ok": true,
@@ -299,7 +299,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
         "bytes": 4121,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": false,
           "typeAlias": true,
@@ -324,7 +324,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
         "bytes": 102,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": false,
           "typeAlias": true,
@@ -349,7 +349,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
         "bytes": 1816,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -399,7 +399,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
         "bytes": 3190,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": false,
@@ -424,7 +424,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
         "bytes": 369,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -449,7 +449,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
         "bytes": 427,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -699,7 +699,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/kernel/neural-main-cell/core/validator.engine.ts",
         "bytes": 2843,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -799,7 +799,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
         "bytes": 3447,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": false,
@@ -824,7 +824,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
         "bytes": 3665,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -849,7 +849,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
         "bytes": 1919,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -874,7 +874,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
         "bytes": 3724,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -899,7 +899,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
         "bytes": 3706,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -924,7 +924,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
         "bytes": 3736,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -949,7 +949,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
         "bytes": 2285,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -974,7 +974,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
         "bytes": 3689,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -999,7 +999,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
         "bytes": 3241,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1024,7 +1024,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
         "bytes": 3727,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1049,7 +1049,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
         "bytes": 3657,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1074,7 +1074,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
         "bytes": 3696,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1099,7 +1099,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
         "bytes": 3768,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1124,7 +1124,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
         "bytes": 5369,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1149,7 +1149,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
         "bytes": 3679,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1174,7 +1174,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/core/smartlink/index.ts",
         "bytes": 2218,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": false,
@@ -1199,7 +1199,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/core/smartlink/smartlink.nattimer.ts",
         "bytes": 15750,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": false,
@@ -1224,7 +1224,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/core/smartlink/smartlink.pressure-field.ts",
         "bytes": 14065,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1249,7 +1249,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/governance/runtime.ts",
         "bytes": 11812,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": true,
@@ -1274,7 +1274,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "file": "src/governance/smartlink-impulse-check.ts",
         "bytes": 2494,
         "class": "SIRA_CONTRACT_TRANSLATION_REQUIRED",
-        "action": "translate contract/type layer into SIRA contract artifact",
+        "action": "translate contract/type layer into Sira contract artifact",
         "markers": {
           "interface": true,
           "typeAlias": false,

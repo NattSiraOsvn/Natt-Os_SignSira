@@ -1,6 +1,6 @@
 import { EventBus } from "../../../../core/events/event-bus";
 // ── shared-contracts-smartlink.port.ts ──────────────────────
-// SIRA_CONTRACT_INTERFACE ContractSignal
+// Sira_CONTRACT_INTERFACE ContractSignal
 const ContractSignal = {
   type: "CONTRACT_CREATED" | "CONTRACT_BREACHED" | "CONTRACT_COMPLETED" | "PAYMENT_DUE";
   payload;

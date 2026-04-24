@@ -1,4 +1,4 @@
-HỒ SƠ KỸ THUẬT HỆ THỐNG NATT-OS
+HỒ SƠ KỸ THUẬT HỆ THỐNG Natt-OS
 
 Kiến trúc sinh thể số phân tán – Phiên bản tổng hợp từ KMF9.8.2 & NaUion Vision Engine
 
@@ -56,7 +56,7 @@ Kỹ thuật triển khai
 7.2 Three.js cho không gian 3D
 7.3 Hiệu năng và tối ưu hóa
 7.4 Accessibility (Khả năng truy cập)
-Tích hợp với hệ thống NATT-OS
+Tích hợp với hệ thống Natt-OS
 8.1 Liên kết với SCAR và Audit Trail
 8.2 Quantum Defense và ADN Integrity Check
 8.3 Quy trình thay đổi Ground Truth (Amendment Process)
@@ -253,7 +253,7 @@ Giảm tải theo deviceMemory.
 Tương phản 4.5:1 (WCAG AA).
 prefers-reduced-motion tắt animation.
 ARIA labels đầy đủ, keyboard focus visible.
-8. TÍCH HỢP VỚI HỆ THỐNG NATT-OS
+8. TÍCH HỢP VỚI HỆ THỐNG Natt-OS
 
 8.1 Liên kết với SCAR và Audit Trail
 

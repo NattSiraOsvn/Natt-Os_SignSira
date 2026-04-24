@@ -5,13 +5,13 @@
 @since 2026-04-26
 @authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
 
-# NATT-OS SHTT CLAIM MAP v1
+# Natt-OS SHTT CLAIM MAP v1
 
 **kind:** SHTTClaimMap
 **version:** v1
 **sealed_at:** 2026-04-26
 **baseline_commit:** ee2c837
-**filing_index_ref:** `docs/specs/NATT-OS_SHTT_FILING_INDEX_v1.na`
+**filing_index_ref:** `docs/specs/Natt-OS_SHTT_FILING_INDEX_v1.na`
 **drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **gatekeeper:** Anh Natt Phan (sole repo operator)
 **scope:** Map 1 claim chính + 8 claim phụ → file core đỡ + evidence phụ trợ. Dịch filing baseline thành logic hồ sơ SHTT.
@@ -37,14 +37,14 @@
 **Category:** `system`
 
 **Đỡ bởi core:**
-- `docs/specs/NATT-OS-PLATFORM-SPEC.anc` — platform architecture tổng thể
+- `docs/specs/Natt-OS-PLATFORM-SPEC.anc` — platform architecture tổng thể
 - `docs/specs/uei_architecture.na` — UEI topology core
 - `docs/specs/SPEC_NEN.na` — NattCell kernel foundation
 - `docs/specs/QIINT-DINH-NGHIA.na` — trường QIINT foundation
 
 **Evidence phụ trợ:**
-- `docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md`
-- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md`
+- `docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md`
+- `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md`
 - `docs/specs/TamLuxury_CellRegistry_2026-03-09.md` (37 cell topology)
 
 ---
@@ -58,8 +58,8 @@
 **Category:** `runtime architecture`
 
 **Đỡ bởi core:**
-- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
-- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na`
+- `docs/specs/Natt-OS-PLATFORM-SPEC.anc`
+- `docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na`
 
 **Evidence phụ trợ:**
 - `docs/specs/MACH_HEYNA_FULL_20260416.md` (L2 migration evidence)
@@ -73,7 +73,7 @@
 **Category:** `colony`
 
 **Đỡ bởi core:**
-- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na`
+- `docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na`
 
 **Evidence phụ trợ:**
 - `docs/specs/MACH_HEYNA_FULL_20260416.md`
@@ -91,7 +91,7 @@
 - `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2 content)
 
 **Evidence phụ trợ:**
-- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md`
+- `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md`
 
 ---
 
@@ -103,10 +103,10 @@
 
 **Đỡ bởi core:**
 - `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2)
-- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+- `docs/specs/Natt-OS-PLATFORM-SPEC.anc`
 
 **Evidence phụ trợ:**
-- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md`
+- `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md`
 
 ---
 
@@ -135,7 +135,7 @@
 - `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2 content, 7 capability section)
 
 **Evidence phụ trợ:**
-- `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na` (cross_colony_learn context)
+- `docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na` (cross_colony_learn context)
 
 ---
 
@@ -149,7 +149,7 @@
 - `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` (v0.2)
 
 **Evidence phụ trợ:**
-- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+- `docs/specs/Natt-OS-PLATFORM-SPEC.anc`
 
 **Note:** Default policy 3-tier waterfall pending Gatekeeper seal (xem KNOWN_BLOCKERS §7) — structure claim không chặn bởi param seal.
 
@@ -163,10 +163,10 @@
 
 **Đỡ bởi core:**
 - `docs/specs/SPEC_NEN.na`
-- `docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+- `docs/specs/Natt-OS-PLATFORM-SPEC.anc`
 
 **Evidence phụ trợ:**
-- `docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md`
+- `docs/specs/SPEC_NGON_NGU_Natt-OS_v1.2_NA.md`
 - `docs/specs/nauion/SPEC-Nauion_main_v2.5.md` (latest vocabulary evolution)
 
 ---
@@ -202,6 +202,6 @@ Cả 8 file `claim core` trong FILING_INDEX đều đã được map ít nhất 
 
 ---
 
-*causation: NATT-OS-SHTT-CLAIM-MAP-v1-SEALED-20260426*
+*causation: Natt-OS-SHTT-CLAIM-MAP-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426)*
 *carrier: Anh Natt Phan*

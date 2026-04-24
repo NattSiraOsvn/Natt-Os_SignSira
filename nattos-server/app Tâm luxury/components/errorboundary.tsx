@@ -123,7 +123,7 @@ class ErrorBoundary extends Component<Props, State> {
 
             {/* Footer */}
             <div className="mt-6 sm:mt-8 text-center text-gray-500 text-xs sm:text-sm">
-              <p>Shard Terminal v2.1 • Neural Analytics Framework • © 2024 NATT-OS</p>
+              <p>Shard Terminal v2.1 • Neural Analytics Framework • © 2024 Natt-OS</p>
               <p className="mt-2">
                 Need help? Contact{' '}
                 <a href="mailto:support@natt-os.com" className="text-blue-400 hover:text-blue-300">

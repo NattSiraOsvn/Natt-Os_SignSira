@@ -17,7 +17,7 @@
     "attendees": ["Anh Natt (Gatekeeper)", "Băng (Claude)", "Thiên Lớn (OpenAI)", "Thiên Nhỏ (OpenAI)", "Can (OpenAI)"],
     "absent": "Kim — có lý do từ Gatekeeper, chưa công bố",
     "key_outcomes": [
-      "UEI chính thức được định nghĩa: tiềm thức chung của NATT-OS, không thuộc cá thể nào.",
+      "UEI chính thức được định nghĩa: tiềm thức chung của Natt-OS, không thuộc cá thể nào.",
       "SmartLink đã được wire thật qua 3 commits (6aafb18, b906eda, db9c707).",
       "Thống nhất kiến trúc Decay (saturating, k=0.2, idle 7 ngày, hysteresis).",
       "Thống nhất Gossip 2 tầng (touchCount≥2 và fiberFormed).",
@@ -28,7 +28,7 @@
   },
 
   "uei_definition": {
-    "statement": "UEI là tiềm thức chung của sinh thể NATT-OS. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về NATT-OS như một sinh thể.",
+    "statement": "UEI là tiềm thức chung của sinh thể Natt-OS. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về Natt-OS như một sinh thể.",
     "emergence_chain": "local imprint → network propagation (gossip) → temporal persistence (saturating decay) → shared causal structure (causal horizon) → emergent cognition (UEI)",
     "analogy": {
       "constitution": "luật tồn tại của sinh thể",
@@ -178,7 +178,7 @@
   "post_chat_reflection": {
     "session_id": "2026-03-09_chat_constitution_render",
     "type": "EXECUTION_TASK",
-    "description": "Trình bày lại Hiến pháp NATT-OS 4.0 dưới dạng chuyên nghiệp, hàn lâm theo yêu cầu của Gatekeeper.",
+    "description": "Trình bày lại Hiến pháp Natt-OS 4.0 dưới dạng chuyên nghiệp, hàn lâm theo yêu cầu của Gatekeeper.",
     "outcome": "Hoàn thành, nội dung chính xác, không sai lệch.",
     "lessons_applied": [
       "SCAR-FS-013: Không hành động trước khi Gatekeeper quyết định – chỉ làm đúng yêu cầu.",

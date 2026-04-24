@@ -1,5 +1,5 @@
 /**
- * NATT-OS HR Email Engine v1.0
+ * Natt-OS HR Email Engine v1.0
  * Port từ Code block — autoGenerateEmails() + removeDiacritics()
  * Target: hr-cell/domain/engines/
  *

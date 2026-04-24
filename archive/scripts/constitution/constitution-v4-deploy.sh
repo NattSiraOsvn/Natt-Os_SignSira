@@ -1,6 +1,6 @@
 #!/bin/bash
 # ╔══════════════════════════════════════════════════════════════════════╗
-# ║  NATT-OS CONSTITUTION v4.0 DEPLOYMENT + SYSTEM CLEANUP             ║
+# ║  Natt-OS CONSTITUTION v4.0 DEPLOYMENT + SYSTEM CLEANUP             ║
 # ║                                                                      ║
 # ║  Soạn bởi:   BĂNG (Ground Truth Validator + System Architect)        ║
 # ║  Duyệt bởi:  ANH NATT (Gatekeeper)                                  ║
@@ -124,17 +124,17 @@ preflight() {
     
     # Check we're in the right directory
     if [ ! -d "src/cells" ]; then
-        fail "src/cells/ not found. Are you in the NATT-OS root directory?"
+        fail "src/cells/ not found. Are you in the Natt-OS root directory?"
         echo ""
-        echo -e "${RED}Chạy script này từ thư mục gốc NATT-OS (nơi có src/, natt-os/, tsconfig.json)${NC}"
+        echo -e "${RED}Chạy script này từ thư mục gốc Natt-OS (nơi có src/, natt-os/, tsconfig.json)${NC}"
         exit 1
     fi
     
-    success "Đang ở thư mục NATT-OS root"
+    success "Đang ở thư mục Natt-OS root"
     
     # Check constitution v4.0 exists
-    if [ ! -f "HIEN-PHAP-NATT-OS-v4.0.anc" ]; then
-        fail "HIEN-PHAP-NATT-OS-v4.0.anc not found in current directory!"
+    if [ ! -f "HIEN-PHAP-Natt-OS-v4.0.anc" ]; then
+        fail "HIEN-PHAP-Natt-OS-v4.0.anc not found in current directory!"
         echo -e "${YELLOW}Hãy copy file Hiến pháp v4.0 vào thư mục gốc trước khi chạy script${NC}"
         exit 1
     fi
@@ -182,17 +182,17 @@ phase2_deploy_constitution() {
     
     # --- ENFORCEMENT location (active, machine-readable) ---
     safe_mkdir "src/governance/constitution/v4.0"
-    safe_cp "HIEN-PHAP-NATT-OS-v4.0.anc" "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.anc"
+    safe_cp "HIEN-PHAP-Natt-OS-v4.0.anc" "src/governance/constitution/v4.0/HIEN-PHAP-Natt-OS-v4.0.anc"
     
     # --- ARCHIVE location (sealed, read-only reference) ---
     safe_mkdir "natt-os/constitution"
-    safe_cp "HIEN-PHAP-NATT-OS-v4.0.anc" "natt-os/constitution/HIEN-PHAP-NATT-OS-v4.0.anc"
+    safe_cp "HIEN-PHAP-Natt-OS-v4.0.anc" "natt-os/constitution/HIEN-PHAP-Natt-OS-v4.0.anc"
     
     # --- Create index.ts for programmatic access ---
     if [ "$DRY_RUN" = false ]; then
         cat > "src/governance/constitution/index.ts" << 'INDEXEOF'
 /**
- * NATT-OS Constitution v4.0 — Programmatic Reference
+ * Natt-OS Constitution v4.0 — Programmatic Reference
  * 
  * Hiến pháp là source of truth duy nhất.
  * File này export constants cho enforcement trong code.
@@ -462,7 +462,7 @@ phase6_verify() {
     
     # Check enforcement location
     checks_total=$((checks_total+1))
-    if [ -f "src/governance/constitution/v4.0/HIEN-PHAP-NATT-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
+    if [ -f "src/governance/constitution/v4.0/HIEN-PHAP-Natt-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
         success "✓ Constitution v4.0 at ENFORCEMENT: src/governance/constitution/v4.0/"
         checks_passed=$((checks_passed+1))
     else
@@ -471,7 +471,7 @@ phase6_verify() {
     
     # Check archive location
     checks_total=$((checks_total+1))
-    if [ -f "natt-os/constitution/HIEN-PHAP-NATT-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
+    if [ -f "natt-os/constitution/HIEN-PHAP-Natt-OS-v4.0.anc" ] || [ "$DRY_RUN" = true ]; then
         success "✓ Constitution v4.0 at ARCHIVE: natt-os/constitution/"
         checks_passed=$((checks_passed+1))
     else
@@ -526,16 +526,16 @@ summary() {
     echo -e "  ${CYAN}Cấu trúc Hiến pháp sau deploy:${NC}"
     echo ""
     echo "  natt-os/constitution/                  ← ARCHIVE (sealed, read-only)"
-    echo "  └── HIEN-PHAP-NATT-OS-v4.0.anc"
+    echo "  └── HIEN-PHAP-Natt-OS-v4.0.anc"
     echo ""
     echo "  src/governance/constitution/            ← ENFORCEMENT (active)"
     echo "  ├── index.ts                            ← Programmatic constants"
     echo "  └── v4.0/"
-    echo "      └── HIEN-PHAP-NATT-OS-v4.0.anc"
+    echo "      └── HIEN-PHAP-Natt-OS-v4.0.anc"
     echo ""
     echo -e "  ${CYAN}Cấu trúc hệ thống sau cleanup:${NC}"
     echo ""
-    echo "  NATT-OS/"
+    echo "  Natt-OS/"
     echo "  ├── database/              [DB]"
     echo "  ├── docs/                  [DOCS]"
     echo "  ├── natt-os/               [OS LAYER — archive + discipline + security]"
@@ -543,7 +543,7 @@ summary() {
     echo "  │   ├── discipline/        [VIOLATION LOGS]"
     echo "  │   ├── governance/        [PLANS + POLICIES]"
     echo "  │   ├── monitoring/        [AI BEHAVIOR]"
-    echo "  │   ├── security/          [KILL SWITCH + SIRASIGN]"
+    echo "  │   ├── security/          [KILL SWITCH + SiraSIGN]"
     echo "  │   └── validation/        [CELL PURITY]"
     echo "  ├── scripts/               [OPS SCRIPTS]"
     echo "  ├── src/                   [LIVE CODE — tsc compiles from here]"
@@ -586,7 +586,7 @@ summary() {
 main() {
     echo ""
     echo -e "${BOLD}╔══════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${BOLD}║  NATT-OS CONSTITUTION v4.0 DEPLOYMENT + CLEANUP            ║${NC}"
+    echo -e "${BOLD}║  Natt-OS CONSTITUTION v4.0 DEPLOYMENT + CLEANUP            ║${NC}"
     echo -e "${BOLD}║  Hiến pháp Sinh thể Số Phân tán — Bản 4.0                 ║${NC}"
     echo -e "${BOLD}╚══════════════════════════════════════════════════════════════╝${NC}"
     echo ""

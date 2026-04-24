@@ -141,7 +141,7 @@
     {
       "id": "SCAR-20260424-SCOPE-OVER-FILTER-02",
       "scar_class": "PARADIGM_DRIFT",
-      "function_broken": "Grep scope rộng bắt false-positive 2 file persona scope (Bối Bội — COLOR_SIRASIGN + KIM-CHI-NAM) khi Thiên Lớn directive scope chỉ Bridge/HeyNa. Em định fix 2 file này → suýt vượt scope authority lock (Bối = Kim authority, không Băng).",
+      "function_broken": "Grep scope rộng bắt false-positive 2 file persona scope (Bối Bội — COLOR_SiraSIGN + KIM-CHI-NAM) khi Thiên Lớn directive scope chỉ Bridge/HeyNa. Em định fix 2 file này → suýt vượt scope authority lock (Bối = Kim authority, không Băng).",
       "remedy": "Em flag context check + đề xuất Option A skip 2 file. Anh Natt choice Option B 'dọn quyết liệt sạch' → em fix với semantic persona-level khác transport-level.",
       "heal_status": "healed",
       "bai_hoc": "Grep wide scope → phải semantic filter phân biệt persona-level vs transport-level vocab trước khi fix. Không cleanup mù qua scope."

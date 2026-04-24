@@ -85,7 +85,7 @@ def api_wave():
 
     patterns = {
         "W0_repo": ["package.json", "tsconfig.json", "src"],
-        "W1_file_layer": [".anc", ".na", ".phieu", "SIRA_NAMESPACE", "Nauion", "NaUion"],
+        "W1_file_layer": [".anc", ".na", ".phieu", "Sira_NAMESPACE", "Nauion", "NaUion"],
         "W2_loader_parser": ["loader", "parser", "interpreter", "Runtime", "readFileSync"],
         "W3_enforcement": ["required", "on_fail", "fail-closed", "Gatekeeper", "SiraSign", "audit"],
         "W4_transport": ["Mach HeyNa", "HeyNa", "/mach/heyna", "/phat/nauion", "EventEnvelope", "causation_id", "correlation_id", "span_id"],
@@ -302,7 +302,7 @@ def main():
     port = find_port()
     url = f"http://127.0.0.1:{port}/NaU_audit.html"
     print("=" * 88)
-    print("NATT-OS AUDIT UI — RUNTIME EXTENSION HUB")
+    print("Natt-OS AUDIT UI — RUNTIME EXTENSION HUB")
     print("=" * 88)
     print("ROOT       :", ROOT)
     print("UI         :", UI)

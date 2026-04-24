@@ -62,7 +62,7 @@ const ACTOR_MAP: Record<string, EntityId> = {
   'KIM':     'KIM',
   'kim':     'KIM',
   'THIEN':   'THIEN',
-  'THIÊN':   'THIEN',
+  'Thiên':   'THIEN',
   'thien':   'THIEN',
   'CAN':     'CAN',
   'CẦN':     'CAN',

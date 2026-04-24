@@ -205,7 +205,7 @@ export default function App() {
       <div className="max-w-[1600px] mx-auto px-10 py-24 relative z-10">
         <header className="mb-40 flex flex-col items-center text-center space-y-10">
           <div className="px-8 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-[11px] font-mono tracking-[1em] uppercase animate-pulse">
-            NATT-OS CYBON INTERFACE v6.0
+            Natt-OS CYBON INTERFACE v6.0
           </div>
           
           <div className="relative">

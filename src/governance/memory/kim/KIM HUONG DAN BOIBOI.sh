@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==============================================================================
-# NATT-OS PRE-WAVE3 MASTER CLEANUP SCRIPT
+# Natt-OS PRE-WAVE3 MASTER CLEANUP SCRIPT
 # Version: 1.0.0
 # Author: KIM - Chief Governance Enforcer
 # Date: 2026-02-07
@@ -71,11 +71,11 @@ log_phase() {
 # VALIDATION FUNCTIONS
 # ==============================================================================
 validate_natt_os_root() {
-    log_info "Validating NATT-OS Gold Master root..."
+    log_info "Validating Natt-OS Gold Master root..."
     
     if [[ ! -d "src/cells" ]]; then
-        log_error "Not in NATT-OS root directory. 'src/cells' not found."
-        log_error "Please run this script from NATT-OS Gold Master root directory."
+        log_error "Not in Natt-OS root directory. 'src/cells' not found."
+        log_error "Please run this script from Natt-OS Gold Master root directory."
         exit 1
     fi
     
@@ -83,7 +83,7 @@ validate_natt_os_root() {
         log_warning "Constitution file not found. Continuing but governance checks limited."
     fi
     
-    log_success "Validated NATT-OS Gold Master root at: $ROOT_DIR"
+    log_success "Validated Natt-OS Gold Master root at: $ROOT_DIR"
 }
 
 check_git_status() {
@@ -393,7 +393,7 @@ phase_c() {
 {
   "auditId": "wave2-pre-wave3-cleanup",
   "timestamp": "$(date -Iseconds)",
-  "system": "NATT-OS Gold Master",
+  "system": "Natt-OS Gold Master",
   "performedBy": "BỐI BỐI via cleanup script",
   "constitutionalVersion": "v3.1",
   
@@ -471,7 +471,7 @@ EOF
     echo "{" > "$hash_file"
     echo '  "registryVersion": "1.0",' >> "$hash_file"
     echo '  "created": "'$(date -Iseconds)'",' >> "$hash_file"
-    echo '  "purpose": "Baseline hash registry for NATT-OS cells",' >> "$hash_file"
+    echo '  "purpose": "Baseline hash registry for Natt-OS cells",' >> "$hash_file"
     echo '  "constitutionalNote": "Hash created at Phase C after structure stabilization",' >> "$hash_file"
     echo '  "cells": {' >> "$hash_file"
     
@@ -581,7 +581,7 @@ final_summary() {
     log_phase "COMPLETE" "PRE-WAVE3 CLEANUP FINISHED"
     
     echo ""
-    echo "🎉 ${GREEN}NATT-OS PRE-WAVE3 CLEANUP COMPLETED SUCCESSFULLY${NC}"
+    echo "🎉 ${GREEN}Natt-OS PRE-WAVE3 CLEANUP COMPLETED SUCCESSFULLY${NC}"
     echo ""
     
     echo "${CYAN}📊 CLEANUP SUMMARY:${NC}"
@@ -723,7 +723,7 @@ EOF
     # Confirm execution
     if [ "$dry_run" = false ] && [ "$force" = false ]; then
         echo ""
-        log_warning "This script will perform significant changes to NATT-OS structure."
+        log_warning "This script will perform significant changes to Natt-OS structure."
         echo "It will:"
         echo "  1. Backup current state"
         echo "  2. Remove duplicate cell directories"

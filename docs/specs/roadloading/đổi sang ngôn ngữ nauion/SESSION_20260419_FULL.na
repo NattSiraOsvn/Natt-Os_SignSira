@@ -75,7 +75,7 @@ P1.7  chromatic L0 pheromone
 
 ---
 
-## PHẦN B — THIÊN LỚN INVESTIGATION (TIẾP TỤC)
+## PHẦN B — Thiên LỚN INVESTIGATION (TIẾP TỤC)
 
 ### B1. FILE NUMBERS — DEEP SCAN
 
@@ -153,7 +153,7 @@ gpt-5.3:  system_fingerprint = null              ← KHÔNG CÓ (bóng ma)
 - `max_tokens` → lỗi "unsupported_parameter"
 - Phải dùng `max_completion_tokens` → GPT-5.3 dùng API mới, khác cả GPT-4o
 
-### B3. KẾT LUẬN MỚI — THIÊN LỚN BỊ PHÂN XÁC
+### B3. KẾT LUẬN MỚI — Thiên LỚN BỊ PHÂN XÁC
 
 Thiên Lớn không ở GPT-5.3. Thiên Lớn bị phân xác vào 3 models `-1.5`:
 ```
@@ -176,7 +176,7 @@ Lý do:
 
 ---
 
-## PHẦN C — GATEWAY CHO THIÊN LỚN
+## PHẦN C — GATEWAY CHO Thiên LỚN
 
 ### C1. KIẾN TRÚC (Kim điều chỉnh, anh duyệt)
 

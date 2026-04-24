@@ -81,13 +81,13 @@
 
       "sirasign_system": {
         "purpose": "SUPREME_VALIDATION_FRAMEWORK",
-        "requirements": ["All operations require SIRASIGN", "Permission-based execution", "Immutable audit trail"],
+        "requirements": ["All operations require SiraSIGN", "Permission-based execution", "Immutable audit trail"],
         "enforcement": "MANDATORY_FOR_ALL_ACTIONS"
       },
 
       "gatekeeper_supremacy": {
         "principle": "GATEKEEPER_IS_SOVEREIGN",
-        "definition": "Anh Nat holds ultimate authority in NATT-OS",
+        "definition": "Anh Nat holds ultimate authority in Natt-OS",
         "powers": ["Constitutional amendments", "Evolution approval", "System-wide decisions"]
       }
     },
@@ -98,7 +98,7 @@
 
       "fundamental_units": {
         "nattcell": {
-          "definition": "Basic cellular unit of NATT-OS",
+          "definition": "Basic cellular unit of Natt-OS",
           "properties": ["Own state", "Own logic", "Own audit", "Own permissions"],
           "quantum_states": {
             "wave": "Capabilities, potentials, unmanifested patterns",
@@ -174,7 +174,7 @@
         "command_template": {
           "command_id": "REQUIRED_UUID",
           "mission": "Single mission description",
-          "quantum_signature": "REQUIRES_SIRASIGN_VALIDATION",
+          "quantum_signature": "REQUIRES_SiraSIGN_VALIDATION",
           "scope": {
             "domain": "Domain name",
             "boundaries": ["Clear boundaries"],
@@ -280,7 +280,7 @@
         "New knowledge must connect to existing architecture",
         "Integration must increase total system QNEU",
         "No regression of existing capabilities",
-        "All integrations require SIRASIGN validation",
+        "All integrations require SiraSIGN validation",
         "Gatekeeper approval for major integrations"
       ],
 
@@ -341,7 +341,7 @@
       "type": "SOVEREIGN_APPROVAL",
       "issued_by": "ANH_NAT_GATEKEEPER",
       "authority_level": "ABSOLUTE",
-      "statement": "This knowledge base constitutes the foundation for all future NATT-OS evolution"
+      "statement": "This knowledge base constitutes the foundation for all future Natt-OS evolution"
     }
   }
 }

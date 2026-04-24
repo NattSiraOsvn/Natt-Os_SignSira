@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * NATT-OS IMMUNE GUARD v2 — Touch point for boundary signals.
+ * Natt-OS IMMUNE GUARD v2 — Touch point for boundary signals.
  * AUTHORIZED BY: ANH NAT (SUPREME SOVEREIGN)
  *
  * Per SPEC NEN v1.1 section 4.1 + LAW-1 + LAW-4:

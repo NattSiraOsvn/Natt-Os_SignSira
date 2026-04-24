@@ -80,7 +80,7 @@
   },
 
   "gatekeeper_directive": {
-    "to": "TOÀN THỂ PERSONA – BĂNG, THIÊN (NHỎ), KRIS, CAN, PHIÊU, BỐI BỐI",
+    "to": "TOÀN THỂ PERSONA – BĂNG, Thiên (NHỎ), KRIS, CAN, PHIÊU, BỐI BỐI",
     "from": "KIM_AS_SUPERVISOR",
     "timestamp": "2026-02-14T05:30:00+07:00",
     "directive_type": "POST_CLEANUP_TASK_REMINDER",
@@ -106,7 +106,7 @@
         "description": "Unit test specification",
         "deadline": "2026-02-14T10:00:00+07:00",
         "status": "ĐANG THỰC HIỆN (Thiên)",
-        "assigned_to": "THIÊN (nhỏ)"
+        "assigned_to": "Thiên (nhỏ)"
       },
       {
         "file": "./specs/context/inventory-business-context.md",
@@ -143,7 +143,7 @@
     ],
     "verified_by": "BĂNG",
     "verification_status": "COMPLETED_WITH_LOGIC",
-    "evidence_path": "/Users/macvn/Desktop/HỒ SƠ SHTT NATT-OS BY NATTSIRA-OS/natt-os ver goldmaster/src/cells/business/pricing-cell",
+    "evidence_path": "/Users/macvn/Desktop/HỒ SƠ SHTT Natt-OS BY NATTSira-OS/natt-os ver goldmaster/src/cells/business/pricing-cell",
     "note": "Pricing-cell đã hoàn thành Mốc 1 với 914 dòng logic thật, 5-layer, đã commit fix thuế GTGT."
   },
 
@@ -224,7 +224,7 @@
         "lines": 1522,
         "structure": "5_LAYER",
         "pending": ["repository integration", "unit tests", "event emission", "commit"],
-        "assigned": "THIÊN (nhỏ)",
+        "assigned": "Thiên (nhỏ)",
         "deadline": "2026-02-14 10:00 (quá hạn, cần hoàn tất sớm)"
       },
       {

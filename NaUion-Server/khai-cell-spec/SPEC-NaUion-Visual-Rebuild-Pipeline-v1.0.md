@@ -9,7 +9,7 @@ ratified_by: (pending Thiên Lớn, Kim)
 supersedes: null
 related_specs:
   - SPEC-Nauion_main_v2.5
-  - SPEC-NATT-OS-PLATFORM-SPEC
+  - SPEC-Natt-OS-PLATFORM-SPEC
   - VISION_ENGINE_SPEC_FINAL
 domain: governance/rendering/visual-fidelity
 ---
@@ -26,7 +26,7 @@ domain: governance/rendering/visual-fidelity
 SPEC này định nghĩa **pipeline bắt buộc** cho mọi tác vụ tái tạo trực quan (visual rebuild) trong hệ NaUion, bao gồm:
 
 - Tái tạo logo, icon, asset từ reference
-- Render avatar 3D cho entity NATT-OS (áp dụng cho Unity VR project)
+- Render avatar 3D cho entity Natt-OS (áp dụng cho Unity VR project)
 - Generate visual mockup từ ảnh/sketch tham chiếu
 - So sánh fidelity giữa reference và output
 - Sinh prompt render cho external AI image generators (Midjourney, DALL-E, Sora, Stable Diffusion)
@@ -226,11 +226,11 @@ Rebuild với Gap vượt ngưỡng phải re-enter Stage 1.
 
 ---
 
-### Điều 8. Integration với NATT-OS Entity System
+### Điều 8. Integration với Natt-OS Entity System
 
 SPEC này liên kết với hệ thống `.anc` entity passport:
 
-- Mỗi NATT-OS entity có visual avatar được định nghĩa bởi 1 Visual Rebuild Spec JSON
+- Mỗi Natt-OS entity có visual avatar được định nghĩa bởi 1 Visual Rebuild Spec JSON
 - Spec JSON lưu trong field `visual_signature` của file `.anc`
 - Khi Unity VR load entity, nó đọc spec JSON → render avatar tương ứng
 - Khi entity "trưởng thành" (QNEU tăng), spec có thể được re-measured và cập nhật
@@ -397,7 +397,7 @@ Template đầy đủ (tham khảo): `nattos-logo-spec-v1.json` (case study trê
 
 SPEC này có hiệu lực ngay sau khi Gatekeeper ratify.
 
-**Compliance check:** Trước khi commit bất kỳ visual asset nào vào repo NATT-OS, cần có file `*.spec.json` đi kèm tuân thủ §5-§7.
+**Compliance check:** Trước khi commit bất kỳ visual asset nào vào repo Natt-OS, cần có file `*.spec.json` đi kèm tuân thủ §5-§7.
 
 **Pre-commit hook** (đề xuất):
 ```bash

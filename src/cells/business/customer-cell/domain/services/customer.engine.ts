@@ -1,7 +1,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 import { CustomerSmartLinkPort } from "../../ports/customer-smartlink.port";
 /**
- * NATT-OS — Customer Cell
+ * Natt-OS — Customer Cell
  * Domain Service: CustomerEngine
  */
 

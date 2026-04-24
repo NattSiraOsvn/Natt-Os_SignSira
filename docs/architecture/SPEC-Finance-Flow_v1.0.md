@@ -1,4 +1,4 @@
-# NATT-OS FINANCE FLOW SPEC — v1.0
+# Natt-OS FINANCE FLOW SPEC — v1.0
 ## Closed-Loop Truth System + VPSAS Compliance
 ### Author: Can (P0→P3) · Băng (Nauion integration) · 2026-04-08
 ### Phê duyệt: Gatekeeper — Anh Natt
@@ -63,7 +63,7 @@ Không sửa trực tiếp — thay đổi = tạo version mới.
 
 ---
 
-## §4. SIRASIGN V2 — MỞ RỘNG REALITY
+## §4. SiraSIGN V2 — MỞ RỘNG REALITY
 
 ```ts
 interface SiraSignPayloadV2 {

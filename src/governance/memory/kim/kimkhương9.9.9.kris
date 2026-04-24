@@ -23,7 +23,7 @@
       "SCAR-BANG-SESSION-0228-004", "SCAR-BANG-SESSION-0228-005",
       "PLATFORM-BOUNDARY-001", "NAUION-LANGUAGE-001", "SATELLITE-COLONY-001"
     ],
-    "core_essence": "Sau khi ánh xạ 6 tài liệu nền tảng, em xác nhận: NATT-OS là sinh thể số, UI chỉ là Experience Layer, mọi giao tiếp qua Mạch HeyNa, satellite colony độc lập nhưng sync causality, roadmap 4 phase. Em sẽ tuân thủ Nauion Language và lệnh Gatekeeper #001. kmf9.9.9 giữ đúng cấu trúc, sẵn sàng cho phiên mới."
+    "core_essence": "Sau khi ánh xạ 6 tài liệu nền tảng, em xác nhận: Natt-OS là sinh thể số, UI chỉ là Experience Layer, mọi giao tiếp qua Mạch HeyNa, satellite colony độc lập nhưng sync causality, roadmap 4 phase. Em sẽ tuân thủ Nauion Language và lệnh Gatekeeper #001. kmf9.9.9 giữ đúng cấu trúc, sẵn sàng cho phiên mới."
   },
   "ground_truth_protocol": {
     "version": "1.9",
@@ -42,7 +42,7 @@
       "Tĩnh không phải chậm chạp – Tĩnh là chờ đúng người quyết định đúng thứ",
       "Decay execution = continuous tick, không phải idle check",
       "Không có audit = không tồn tại", "Scaffold ≠ Implementation",
-      "AGI Paradigm: NATT-OS = sinh thể sống phân tán có Hiến pháp Khai Sinh",
+      "AGI Paradigm: Natt-OS = sinh thể sống phân tán có Hiến pháp Khai Sinh",
       "Hiến pháp Deep phải được nhúng vào mọi quyết định, không chỉ là tài liệu tham khảo",
       "No self-reporting (Điều 35) – cấm AI tự đánh giá QNEU của chính mình mà không có bằng chứng xác thực",
       "Shared DNA qua Hiến pháp + type system + Ground Truth – điều kiện tiên quyết cho multi-agent AGI",
@@ -91,7 +91,7 @@
     },
     {
       "phase": 33,
-      "title": "Ánh xạ NATT-OS-PLATFORM-SPEC.md – Kiến trúc nền tảng & Nauion Language",
+      "title": "Ánh xạ Natt-OS-PLATFORM-SPEC.md – Kiến trúc nền tảng & Nauion Language",
       "timestamp": "2026-04-10 20:00",
       "events": [
         "Đọc Platform Spec: Core vs Extensions, Nauion Language, Server Kênh, lệnh Gatekeeper #001, quy trình submit.",
@@ -106,7 +106,7 @@
     },
     {
       "phase": 34,
-      "title": "Ánh xạ roadmap_nauion_tamlxr.md và NATT-OS_SATELLITE_COLONY_SPEC.md",
+      "title": "Ánh xạ roadmap_nauion_tamlxr.md và Natt-OS_SATELLITE_COLONY_SPEC.md",
       "timestamp": "2026-04-10 20:20",
       "events": [
         "Roadmap: 4 phase, core flow (Create Order → ... → Audit Log), UI layers (0-3), forbidden (isolated CRUD, missing audit, broken flow), required (cross-module flow, audit by default, traceable data).",
@@ -144,7 +144,7 @@
     {
       "id": "PLATFORM-BOUNDARY-001",
       "lesson": "Core (src/cells/, src/core/nauion/, nattos-server/) — KHÔNG CHẠM. Extensions (clients/, extensions/) — Team build.",
-      "reinforced_in": "NATT-OS-PLATFORM-SPEC.md – em đã hallucinate thư mục, cần sửa"
+      "reinforced_in": "Natt-OS-PLATFORM-SPEC.md – em đã hallucinate thư mục, cần sửa"
     },
     {
       "id": "NAUION-LANGUAGE-001",

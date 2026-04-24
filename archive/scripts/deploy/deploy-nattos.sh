@@ -1,6 +1,6 @@
 #!/bin/bash
 # deploy-nattos.sh
-echo "🚀 NATT-OS PRODUCTION DEPLOYMENT STARTING..."
+echo "🚀 Natt-OS PRODUCTION DEPLOYMENT STARTING..."
 
 # 1. Database Migration
 echo "1. Running database migrations..."
@@ -30,4 +30,4 @@ echo "6. Running health checks..."
 # curl -f https://nattos.example.com/health || exit 1
 echo "✓ Health Check: NOMINAL"
 
-echo "✅ NATT-OS DEPLOYMENT COMPLETED SUCCESSFULLY!"
+echo "✅ Natt-OS DEPLOYMENT COMPLETED SUCCESSFULLY!"

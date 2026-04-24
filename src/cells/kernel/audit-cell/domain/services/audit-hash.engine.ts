@@ -1,6 +1,6 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 /**
- * NATT-OS Audit Hash Engine v1.0
+ * Natt-OS Audit Hash Engine v1.0
  * Port từ Doc 5 computeMD5() + Doc 9 logAudit() SHA-256
  * Target: audit-cell/domain/engines/
  */

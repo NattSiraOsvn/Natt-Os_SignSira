@@ -1,4 +1,4 @@
-# Tài liệu NATT-OS
+# Tài liệu Natt-OS
 
 Thư mục `docs/` chứa các tài liệu tham khảo, hướng dẫn và lưu trữ. Đây không phải source of truth; source of truth nằm trong `src/` (mã nguồn) và `src/governance/` (hiến pháp, amendments, memory, scars).
 

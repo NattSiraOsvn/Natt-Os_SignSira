@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * warranty-cell — NATT-OS Wave 3.5
+ * warranty-cell — Natt-OS Wave 3.5
  * Đặc thù: Ngành Vàng & Trang sức (Tâm Luxury)
  *
  * Bảo hành trọn đời, dịch vụ sửa chữa, chính sách VIP

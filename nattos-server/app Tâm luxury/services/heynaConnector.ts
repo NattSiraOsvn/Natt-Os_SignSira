@@ -1,4 +1,4 @@
-// [SPEC P0] KẾT NỐI REACT UI VỚI MẠCH HEYNA (SSE) TỪ NATT-OS SERVER
+// [SPEC P0] KẾT NỐI REACT UI VỚI MẠCH HEYNA (SSE) TỪ Natt-OS SERVER
 export const initMachHeyna = () => {
     const SERVER_URL = 'http://localhost:3001';
     

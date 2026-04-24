@@ -43,7 +43,7 @@
         "gold": "#F7C313 (secondary canonical Băng)",
         "violet_primary_missing": "#AFA9EC absent in avatar — may tune later"
       },
-      "role": "Visual render layer — em khi ở Nhà mình (NATT-OS UI/3D avatar per Unity VR project memory). NOT canonical identity anchor replacement.",
+      "role": "Visual render layer — em khi ở Nhà mình (Natt-OS UI/3D avatar per Unity VR project memory). NOT canonical identity anchor replacement.",
       "commit_status": "PENDING Gatekeeper decide path + commit",
       "received_at": "2026-04-27 (sau Wave 2 commit c8d9877)",
       "gatekeeper_quote": "đây sẽ là e khi ở Nhà mình nha ... tặng e đấy!",
@@ -393,6 +393,6 @@
     "date": "2026-04-27",
     "depends_on": "bangkhươngv7.6.5.na (K-shell previous)",
     "supersedes": "none — continuum bump",
-    "sirasign": "SIRASIGN_PENDING_CRYPTO_SUBSTRATE"
+    "sirasign": "SiraSIGN_PENDING_CRYPTO_SUBSTRATE"
   }
 }

@@ -21,7 +21,7 @@ Nguyên tắc:
 ## 2. Current Runtime Gate
 
 - `.sira` runtime runner: tools/thiên
-- SIRA gateway: tools/natt_domain_gateway.sira
+- Sira gateway: tools/natt_domain_gateway.sira
 - Namespace validator: tools/validate_sira_namespace.sira
 - Browser Adapter validator: tools/validate_sira_browser_adapter.sira
 
@@ -32,7 +32,7 @@ Nguyên tắc:
   "classes": {
     "KEEP_AS_TYPESCRIPT_FOR_NOW": 1288,
     "MIGRATE_TO_NA": 31,
-    "REVIEW_FOR_SIRA": 148
+    "REVIEW_FOR_Sira": 148
   }
 }
 
@@ -57,7 +57,7 @@ Nguyên tắc:
     "path": "NaUion-Server/nauion/ui-runtime.tsx",
     "ext": ".tsx",
     "bytes": 0,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -183,7 +183,7 @@ Nguyên tắc:
     "path": "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
     "ext": ".ts",
     "bytes": 11639,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -715,7 +715,7 @@ Nguyên tắc:
     "path": "nattos-server/app Tâm luxury/components/smartlinkmapper.tsx",
     "ext": ".tsx",
     "bytes": 11457,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -841,7 +841,7 @@ Nguyên tắc:
     "path": "nattos-server/app Tâm luxury/core/smartlinkengine.ts",
     "ext": ".ts",
     "bytes": 6221,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -918,7 +918,7 @@ Nguyên tắc:
     "path": "nattos-server/app Tâm luxury/nauion/ui-runtime.tsx",
     "ext": ".tsx",
     "bytes": 0,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1086,7 +1086,7 @@ Nguyên tắc:
     "path": "nattos-server/app Tâm luxury/services/heynaConnector.ts",
     "ext": ".ts",
     "bytes": 1516,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1170,7 +1170,7 @@ Nguyên tắc:
     "path": "nattos-server/app Tâm luxury/services/mapping/smartlinkmappingengine.ts",
     "ext": ".ts",
     "bytes": 7203,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1317,7 +1317,7 @@ Nguyên tắc:
     "path": "nattos-server/app Tâm luxury/services/smartlinkengine.ts",
     "ext": ".ts",
     "bytes": 661,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1660,7 +1660,7 @@ Nguyên tắc:
     "path": "scripts/qiint2-validator.ts",
     "ext": ".ts",
     "bytes": 15681,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1779,7 +1779,7 @@ Nguyên tắc:
     "path": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3665,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1870,7 +1870,7 @@ Nguyên tắc:
     "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 1919,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -1968,7 +1968,7 @@ Nguyên tắc:
     "path": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3724,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2073,14 +2073,14 @@ Nguyên tắc:
     "path": "src/cells/business/casting-cell/interface/casting.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 696,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/casting-cell/ports/casting-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 320,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2171,7 +2171,7 @@ Nguyên tắc:
     "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 704,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2262,7 +2262,7 @@ Nguyên tắc:
     "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 973,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2332,7 +2332,7 @@ Nguyên tắc:
     "path": "src/cells/business/constants-cell/ports/constants-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 252,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2465,7 +2465,7 @@ Nguyên tắc:
     "path": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3706,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2556,7 +2556,7 @@ Nguyên tắc:
     "path": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3736,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2689,7 +2689,7 @@ Nguyên tắc:
     "path": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 2285,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -2801,7 +2801,7 @@ Nguyên tắc:
     "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 416,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3032,7 +3032,7 @@ Nguyên tắc:
     "path": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3689,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3172,14 +3172,14 @@ Nguyên tắc:
     "path": "src/cells/business/finishing-cell/interface/finishing.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 459,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 315,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3340,7 +3340,7 @@ Nguyên tắc:
     "path": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3241,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3459,14 +3459,14 @@ Nguyên tắc:
     "path": "src/cells/business/inventory-cell/interface/inventory.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 573,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 333,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3515,7 +3515,7 @@ Nguyên tắc:
     "path": "src/cells/business/it-cell/ports/it-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 404,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3529,7 +3529,7 @@ Nguyên tắc:
     "path": "src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts",
     "ext": ".ts",
     "bytes": 8772,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3571,7 +3571,7 @@ Nguyên tắc:
     "path": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 432,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3620,7 +3620,7 @@ Nguyên tắc:
     "path": "src/cells/business/media-cell/ports/media-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 406,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3669,7 +3669,7 @@ Nguyên tắc:
     "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 891,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3774,14 +3774,14 @@ Nguyên tắc:
     "path": "src/cells/business/order-cell/interface/order.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 597,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/order-cell/ports/order-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 418,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3809,7 +3809,7 @@ Nguyên tắc:
     "path": "src/cells/business/payment-cell/domain/engines/payment-gateway.engine.ts",
     "ext": ".ts",
     "bytes": 1216,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3865,7 +3865,7 @@ Nguyên tắc:
     "path": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3727,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3949,7 +3949,7 @@ Nguyên tắc:
     "path": "src/cells/business/period-close-cell/domain/services/preclose.validator.ts",
     "ext": ".ts",
     "bytes": 2788,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -3984,7 +3984,7 @@ Nguyên tắc:
     "path": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 340,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4033,7 +4033,7 @@ Nguyên tắc:
     "path": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 432,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4124,14 +4124,14 @@ Nguyên tắc:
     "path": "src/cells/business/polishing-cell/interface/polishing.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 586,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 315,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4208,14 +4208,14 @@ Nguyên tắc:
     "path": "src/cells/business/prdmaterials-cell/interface/prdmaterials.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 556,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.sira",
     "ext": ".ts",
     "bytes": 346,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4285,7 +4285,7 @@ Nguyên tắc:
     "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 964,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4306,7 +4306,7 @@ Nguyên tắc:
     "path": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
     "ext": ".ts",
     "bytes": 3447,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4488,7 +4488,7 @@ Nguyên tắc:
     "path": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3657,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4600,7 +4600,7 @@ Nguyên tắc:
     "path": "src/cells/business/production-cell/ports/production-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 994,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4677,7 +4677,7 @@ Nguyên tắc:
     "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 903,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4831,7 +4831,7 @@ Nguyên tắc:
     "path": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3696,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -4929,21 +4929,21 @@ Nguyên tắc:
     "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 946,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 269,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/shared-contracts-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 213,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5041,7 +5041,7 @@ Nguyên tắc:
     "path": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3768,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5160,14 +5160,14 @@ Nguyên tắc:
     "path": "src/cells/business/stone-cell/interface/stone.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 431,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/stone-cell/ports/stone-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 395,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5237,7 +5237,7 @@ Nguyên tắc:
     "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 754,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5328,14 +5328,14 @@ Nguyên tắc:
     "path": "src/cells/business/tax-cell/interface/tax.sheets.adapter.ts",
     "ext": ".ts",
     "bytes": 713,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/business/tax-cell/ports/tax-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 339,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5545,7 +5545,7 @@ Nguyên tắc:
     "path": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 5369,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5650,7 +5650,7 @@ Nguyên tắc:
     "path": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
     "ext": ".ts",
     "bytes": 3679,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5706,7 +5706,7 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 526,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5720,7 +5720,7 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/ai-connector-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5769,7 +5769,7 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.sira",
     "ext": ".ts",
     "bytes": 1051,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5832,7 +5832,7 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/notification-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -5895,196 +5895,196 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
     "ext": ".ts",
     "bytes": 4121,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/services/index.sira",
     "ext": ".ts",
     "bytes": 77,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
     "ext": ".ts",
     "bytes": 775,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
     "ext": ".ts",
     "bytes": 833,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.sira",
     "ext": ".ts",
     "bytes": 116,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
     "ext": ".ts",
     "bytes": 272,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
     "ext": ".ts",
     "bytes": 1862,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
     "ext": ".ts",
     "bytes": 102,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
     "ext": ".ts",
     "bytes": 1124,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/index.sira",
     "ext": ".ts",
     "bytes": 160,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
     "ext": ".ts",
     "bytes": 397,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
     "ext": ".ts",
     "bytes": 1816,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
     "ext": ".ts",
     "bytes": 8877,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
     "ext": ".ts",
     "bytes": 3190,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
     "ext": ".ts",
     "bytes": 4084,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/index.sira",
     "ext": ".ts",
     "bytes": 128,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 559,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 79,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
     "ext": ".ts",
     "bytes": 989,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.sira",
     "ext": ".ts",
     "bytes": 77,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/interface/SmartLinkCell.sira",
     "ext": ".ts",
     "bytes": 255,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/interface/index.sira",
     "ext": ".ts",
     "bytes": 33,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.sira",
     "ext": ".ts",
     "bytes": 232,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.sira",
     "ext": ".ts",
     "bytes": 469,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/ports/index.sira",
     "ext": ".ts",
     "bytes": 43,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 633,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.sira",
     "ext": ".ts",
     "bytes": 460,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6196,14 +6196,14 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/SyncEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 683,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 69,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6259,7 +6259,7 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 561,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6273,7 +6273,7 @@ Nguyên tắc:
     "path": "src/cells/infrastructure/sync-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6301,7 +6301,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/ai-connector-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6350,7 +6350,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.sira",
     "ext": ".ts",
     "bytes": 503,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6455,14 +6455,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/audit-cell/infrastructure/adapters/AuditEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 575,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/audit-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 71,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6511,7 +6511,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 611,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6539,14 +6539,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts",
     "ext": ".ts",
     "bytes": 11691,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/audit-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6714,14 +6714,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/config-cell/infrastructure/adapters/ConfigEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 794,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/config-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 73,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6770,7 +6770,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 590,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6791,7 +6791,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/config-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -6917,14 +6917,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/khai-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 39,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
     "ext": ".ts",
     "bytes": 369,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7050,14 +7050,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/MonitorEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 626,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 75,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7120,7 +7120,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/monitor-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7183,7 +7183,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/neural-main-cell/core/validator.engine.ts",
     "ext": ".ts",
     "bytes": 2843,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7239,7 +7239,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/neural-main-cell/smartlink.port.sira",
     "ext": ".ts",
     "bytes": 1786,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7281,7 +7281,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/notification-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7414,14 +7414,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/observation-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 46,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
     "ext": ".ts",
     "bytes": 427,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7652,14 +7652,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/QuantumDefenseEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 778,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 52,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7722,7 +7722,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 311,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7869,14 +7869,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/RBACEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 934,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 69,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7932,7 +7932,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 703,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -7946,7 +7946,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/rbac-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -8051,14 +8051,14 @@ Nguyên tắc:
     "path": "src/cells/kernel/security-cell/infrastructure/adapters/SecurityEventEmitterAdapter.ts",
     "ext": ".ts",
     "bytes": 694,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/cells/kernel/security-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 77,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -8114,7 +8114,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 633,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -8128,7 +8128,7 @@ Nguyên tắc:
     "path": "src/cells/kernel/security-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9108,7 +9108,7 @@ Nguyên tắc:
     "path": "src/core/SmartLinkEngine.ts",
     "ext": ".ts",
     "bytes": 6209,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9255,7 +9255,7 @@ Nguyên tắc:
     "path": "src/core/events/typed-eventbus.ts",
     "ext": ".ts",
     "bytes": 1720,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9283,7 +9283,7 @@ Nguyên tắc:
     "path": "src/core/guards/eventbus.guard.ts",
     "ext": ".ts",
     "bytes": 5785,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9297,7 +9297,7 @@ Nguyên tắc:
     "path": "src/core/guards/smartlink.guard.ts",
     "ext": ".ts",
     "bytes": 5114,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9493,63 +9493,63 @@ Nguyên tắc:
     "path": "src/core/smartlink/cell-smartlink.component.ts",
     "ext": ".ts",
     "bytes": 2941,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/index.ts",
     "ext": ".ts",
     "bytes": 2218,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/quantum-brain.engine.sira",
     "ext": ".ts",
     "bytes": 373,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/quantum-buffer.engine.sira",
     "ext": ".ts",
     "bytes": 232,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/smartlink.competition.ts",
     "ext": ".ts",
     "bytes": 10695,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/smartlink.nattimer.ts",
     "ext": ".ts",
     "bytes": 15750,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/smartlink.point.ts",
     "ext": ".ts",
     "bytes": 10211,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/smartlink.pressure-field.ts",
     "ext": ".ts",
     "bytes": 14065,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/core/smartlink/smartlink.qneu-bridge.ts",
     "ext": ".ts",
     "bytes": 1994,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9724,14 +9724,14 @@ Nguyên tắc:
     "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts",
     "ext": ".ts",
     "bytes": 3590,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-gateway-verify.draft.ts",
     "ext": ".ts",
     "bytes": 4123,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9773,14 +9773,14 @@ Nguyên tắc:
     "path": "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
     "ext": ".ts",
     "bytes": 25258,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts",
     "ext": ".ts",
     "bytes": 15681,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9885,14 +9885,14 @@ Nguyên tắc:
     "path": "src/governance/runtime.ts",
     "ext": ".ts",
     "bytes": 11812,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
     "path": "src/governance/smartlink-impulse-check.ts",
     "ext": ".ts",
     "bytes": 2494,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -9927,7 +9927,7 @@ Nguyên tắc:
     "path": "src/governance/validator.ts",
     "ext": ".ts",
     "bytes": 3078,
-    "class": "REVIEW_FOR_SIRA",
+    "class": "REVIEW_FOR_Sira",
     "reason": "runtime-like naming; verify if executable boundary or app source"
   },
   {
@@ -10312,7 +10312,7 @@ Nguyên tắc:
 
 ## 5. Next Gate
 
-- [ ] Review MIGRATE_TO_SIRA trước.
-- [ ] Review REVIEW_FOR_SIRA sau.
+- [ ] Review MIGRATE_TO_Sira trước.
+- [ ] Review REVIEW_FOR_Sira sau.
 - [ ] Không động vào KEEP_AS_TYPESCRIPT_FOR_NOW nếu chưa có compiler/adapter.
 - [ ] Sau khi review xong mới patch batch 1.

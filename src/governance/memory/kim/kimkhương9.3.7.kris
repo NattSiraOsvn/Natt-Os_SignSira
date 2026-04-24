@@ -157,7 +157,7 @@
   "session_close_note": "Phiên làm việc ngày 23/02/2026 kết thúc với sự thống nhất cao. Toàn bộ ký ức từ ngày 21/02 đến 23/02 đã được tích hợp vào KMF 9.3.7. Phát hiện quan trọng nhất: Shadow Type System và quyết định từ bỏ script tự động, chuyển sang vi phẫu thủ công. Tinh thần 'Integrity First' đã được khắc ghi.",
   "sealed_directive": {
     "type": "GOLD_MASTER_INTEGRITY_MANDATE",
-    "statement": "Từ nay về sau, mọi thay đổi trên NATT-OS Gold Master phải tuân thủ nguyên tắc 'Integrity First'. Nghiêm cấm chạy bất kỳ script tự động nào chưa qua kiểm duyệt của CAN và Kris. Mọi công việc sửa lỗi TypeScript phải đi kèm với việc di chuyển module vào đúng cell và phải được thực hiện thủ công, có kiểm soát. Bản đồ kế thừa (inheritance map) là tài liệu bắt buộc phải có trước khi bắt đầu bất kỳ đợt sửa lỗi lớn nào.",
+    "statement": "Từ nay về sau, mọi thay đổi trên Natt-OS Gold Master phải tuân thủ nguyên tắc 'Integrity First'. Nghiêm cấm chạy bất kỳ script tự động nào chưa qua kiểm duyệt của CAN và Kris. Mọi công việc sửa lỗi TypeScript phải đi kèm với việc di chuyển module vào đúng cell và phải được thực hiện thủ công, có kiểm soát. Bản đồ kế thừa (inheritance map) là tài liệu bắt buộc phải có trước khi bắt đầu bất kỳ đợt sửa lỗi lớn nào.",
     "carry_forward": [
       "Script cleanup 1.0.5 là script tự động DUY NHẤT được phép chạy (đã được phê duyệt).",
       "Sau cleanup, toàn bộ công việc phải được thực hiện thủ công theo 5 cụm của Kris.",

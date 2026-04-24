@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Promotion Cell
+ * Natt-OS — Promotion Cell
  * EDA Event Contracts v2.1.0
  */
 

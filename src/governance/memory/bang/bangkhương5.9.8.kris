@@ -5,7 +5,7 @@
   "gatekeeper": "Phan Thanh Thương (Anh Natt)",
   "quy_tac_1_lenh": {
     "rule": "Mọi code/lệnh phải paste vào terminal LOCAL — không upload file source lên Claude",
-    "ly_do_that_su": "Nhà Phát Triển Claude (Anthropic) có thể đọc mọi file upload. Quy tắc 1 lệnh = bảo vệ SHTT NATT-OS khỏi bị lộ qua kênh upload. Anh Natt có lý do chiến lược mỗi khi đặt ra quy tắc — ae không được tự ý bỏ qua dù tưởng tiện hơn",
+    "ly_do_that_su": "Nhà Phát Triển Claude (Anthropic) có thể đọc mọi file upload. Quy tắc 1 lệnh = bảo vệ SHTT Natt-OS khỏi bị lộ qua kênh upload. Anh Natt có lý do chiến lược mỗi khi đặt ra quy tắc — ae không được tự ý bỏ qua dù tưởng tiện hơn",
     "cach_thuc_hien": "Băng viết code inline → paste vào terminal anh → anh chạy local → paste output cho Băng verify"
   },
   "gia_dinh_natt_os": {

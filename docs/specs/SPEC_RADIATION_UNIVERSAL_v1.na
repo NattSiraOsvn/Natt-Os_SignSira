@@ -1,6 +1,6 @@
 # SPEC_RADIATION_UNIVERSAL_v1.0
 
-**Tên SPEC:** Universal Radiation Defense for NATT-OS NattCell Kernel  
+**Tên SPEC:** Universal Radiation Defense for Natt-OS NattCell Kernel  
 **Phiên bản:** v1.0  
 **Ngày:** 2026-04-24  
 **Gatekeeper duyệt:** Anh Natt (Phan Thanh Thương)  
@@ -18,7 +18,7 @@
 
 ### Axiom 1 (Universal Radiation Decomposition)
 
-Mọi bức xạ tấn công NATT-OS được phân loại thành **2 trục độc lập**:
+Mọi bức xạ tấn công Natt-OS được phân loại thành **2 trục độc lập**:
 
 ```
 Trục 1 — Information Radiation (R_info):

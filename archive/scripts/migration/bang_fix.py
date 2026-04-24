@@ -191,7 +191,7 @@ patch('services/analytics/analytics-service.ts',
 # event-bridge — add on() method
 # ─────────────────────────────────────────────────────────────────────────────
 print('[7] event-bridge...')
-w('services/event-bridge.ts', '''// NATT-OS EventBridge
+w('services/event-bridge.ts', '''// Natt-OS EventBridge
 type Handler = (...args: unknown[]) => void;
 const listeners: Record<string, Handler[]> = {};
 export const EventBridge = {
@@ -258,7 +258,7 @@ patch('core/core/ingestion/data-sync-engine.tsx',
 # superdictionary — fix circular (both files same content)
 # ─────────────────────────────────────────────────────────────────────────────
 print('[11] superdictionary...')
-DICT = '''// NATT-OS SuperDictionary
+DICT = '''// Natt-OS SuperDictionary
 export const SUPER_DICTIONARY: Record<string, unknown> = {};
 export const SUPER_DICTIONARY_CONTROL = {
   get: (k: string): unknown => SUPER_DICTIONARY[k] ?? null,

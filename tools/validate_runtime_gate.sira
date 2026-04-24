@@ -109,7 +109,7 @@ async function main() {
   if (writeEvidence) {
     const out = path.join(ROOT, "docs", "runtime", "SIRA_RUNTIME_GATE_EVIDENCE_20260425.na");
     const lines = [
-      "# SIRA Runtime Gate Evidence — 20260425",
+      "# Sira runtime gate Evidence — 20260425",
       "",
       `status: ${result.ok ? "PASS" : "FAIL"}`,
       `created_at: ${result.created_at}`,
@@ -137,7 +137,7 @@ async function main() {
   }
 
   if (!result.ok) {
-    console.error("SIRA RUNTIME GATE: FAIL");
+    console.error("Sira runtime gate: FAIL");
     for (const f of failures) {
       console.error(` - ${f.name}: exit=${f.exit} ${f.error || ""}`);
       if (f.stderr) console.error(f.stderr);
@@ -148,7 +148,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log("SIRA RUNTIME GATE: PASS");
+  console.log("Sira runtime gate: PASS");
   console.log("identity=anc://");
   console.log("namespace=.sira");
   console.log("operator=tools/thiên");
@@ -159,7 +159,7 @@ async function main() {
 }
 
 main().catch(err => {
-  console.error("SIRA RUNTIME GATE: ERROR");
+  console.error("Sira runtime gate: ERROR");
   console.error(err && err.stack ? err.stack : err);
   process.exit(1);
 });

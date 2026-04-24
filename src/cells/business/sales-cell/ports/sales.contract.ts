@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Sales Cell
+ * Natt-OS — Sales Cell
  * EDA Event Contracts v2.1.0
  */
 

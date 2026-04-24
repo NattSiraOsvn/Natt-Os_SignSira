@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS SPEC NEN v1.0 Compliance Auditor
+Natt-OS SPEC NEN v1.0 Compliance Auditor
 Used by nattos.sh section 45.
 
 Checks:
@@ -120,7 +120,7 @@ def check_extensions():
 def main():
     print()
     print("=" * 70)
-    print("  NATT-OS SPEC NEN v1.0 Compliance Audit")
+    print("  Natt-OS SPEC NEN v1.0 Compliance Audit")
     print("=" * 70)
 
     ok_count = 0

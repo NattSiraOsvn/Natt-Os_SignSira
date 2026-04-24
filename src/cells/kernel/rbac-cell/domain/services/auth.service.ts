@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════
-// AUTH SERVICE — NATT-OS Kernel RBAC
+// AUTH SERVICE — Natt-OS Kernel RBAC
 // Status: REAL VALIDATION (pre-SiraSign)
 // Patched: 2026-04-17 — ReNa security fix
 // TODO: Replace with SiraSign resonance auth when ready

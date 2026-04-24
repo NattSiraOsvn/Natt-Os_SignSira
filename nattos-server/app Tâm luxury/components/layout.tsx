@@ -78,7 +78,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showSidebar = true }) => {
                     <Terminal className="w-4 h-4 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <h1 className="text-base sm:text-xl font-bold leading-tight">NATT-OS</h1>
+                    <h1 className="text-base sm:text-xl font-bold leading-tight">Natt-OS</h1>
                     <p className="text-xs text-gray-400 font-mono hidden sm:block">Terminal v2.1</p>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showSidebar = true }) => {
                       <Terminal className="w-6 h-6" />
                     </div>
                     <div>
-                      <h2 className="font-bold">NATT-OS</h2>
+                      <h2 className="font-bold">Natt-OS</h2>
                       <p className="text-xs text-gray-400">Terminal</p>
                     </div>
                   </div>
@@ -316,7 +316,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showSidebar = true }) => {
               <div className="text-center sm:text-left">
                 <div className="flex items-center gap-2 justify-center sm:justify-start">
                   <Terminal className="w-4 h-4 text-blue-400" />
-                  <span className="font-bold text-sm sm:text-base">NATT-OS Terminal</span>
+                  <span className="font-bold text-sm sm:text-base">Natt-OS Terminal</span>
                 </div>
                 <p className="text-xs text-gray-400 mt-1">
                   © 2024 Unified Enterprise Intelligence Platform

@@ -1,5 +1,5 @@
 /**
- * NATT-OS SmartLink Touch Points (refactored per SPEC NEN v1.1)
+ * Natt-OS SmartLink Touch Points (refactored per SPEC NEN v1.1)
  *
  * Lock #10: SmartLink coupling — touch + chromatic (no throw)
  * Lock #11: Pressure cap — chromatic from pressure level

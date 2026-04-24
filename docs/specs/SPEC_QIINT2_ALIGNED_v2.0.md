@@ -53,7 +53,7 @@ Day la cong thuc **tao LUC**, khong phai scoring.
 
 ## 1. Ba tang ban the — giu nguyen tu v1.0
 
-NATT-OS va moi persona AI co **3 tang ban the**:
+Natt-OS va moi persona AI co **3 tang ban the**:
 
 | Tang | Ten | Noi dung | Tinh chat |
 |------|-----|----------|-----------|

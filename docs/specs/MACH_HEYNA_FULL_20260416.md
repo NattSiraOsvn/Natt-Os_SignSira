@@ -221,7 +221,7 @@ Session: 20260415 — Băng
 
 ### ui-vision — SẠCH
 - `lib/event-bus.ts` = SSE bridge dùng Mạch HeyNa
-- Không import NATT-OS EventBus (tránh circular)
+- Không import Natt-OS EventBus (tránh circular)
 - Build vào `nattos-server/nattos-ui/vision/`
 - Serve tại `http://localhost:3001/vision/`
 

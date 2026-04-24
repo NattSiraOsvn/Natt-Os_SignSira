@@ -35,7 +35,7 @@ function classify(file) {
 
   if (lower.includes("/tools/") || lower.startsWith("tools/")) {
     return {
-      class: "MIGRATE_TO_SIRA",
+      class: "MIGRATE_TO_Sira",
       reason: "tool/runtime executable should use .sira artifact boundary"
     };
   }
@@ -51,7 +51,7 @@ function classify(file) {
     lower.includes("heyna")
   ) {
     return {
-      class: "REVIEW_FOR_SIRA",
+      class: "REVIEW_FOR_Sira",
       reason: "runtime-like naming; verify if executable boundary or app source"
     };
   }

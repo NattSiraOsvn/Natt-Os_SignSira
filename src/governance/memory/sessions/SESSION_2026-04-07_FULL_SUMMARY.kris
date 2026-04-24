@@ -102,7 +102,7 @@ Butterfly effect vế còn lại — Băng tìm theo từ khóa "butterfly" tron
 
 ### P0 — Gatekeeper phải quyết
 
-1. **Hiến Pháp v5.0 chưa deploy** — sealed 25/03/2026, đang ở `src/governance/HIEN-PHAP-NATT-OS-v5.0.anc`. Repo vẫn enforce v4.0. V5.0 gọn hơn: 7 chương, 11 điều ABSOLUTE.
+1. **Hiến Pháp v5.0 chưa deploy** — sealed 25/03/2026, đang ở `src/governance/HIEN-PHAP-Natt-OS-v5.0.anc`. Repo vẫn enforce v4.0. V5.0 gọn hơn: 7 chương, 11 điều ABSOLUTE.
 
 2. **sirasign_master.json + sirasign_v2.json còn ở repo root** — chứa khóa ký nhạy cảm. Gatekeeper phải tự chạy:
 ```bash

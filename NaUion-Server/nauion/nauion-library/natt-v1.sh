@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 /**
- * NATT-OS NEURAL LINK - GEMINI API INTEGRATION
+ * Natt-OS NEURAL LINK - GEMINI API INTEGRATION
  */
 const apiKey = "";
 
@@ -39,7 +39,7 @@ const callGemini = async (prompt, systemInstruction = "") => {
 };
 
 /**
- * NATT-OS REGISTRY METADATA
+ * Natt-OS REGISTRY METADATA
  */
 const CELL_REGISTRY = [
   { id: 'ctn-01', category: '1. Nền Tảng', title: 'HIẾN PHÁP', icon: Scroll, color: 'gold', desc: 'DNA gốc bất biến. Implementation Truth.', version: '1.5.0', status: 'Immutable' },
@@ -48,8 +48,8 @@ const CELL_REGISTRY = [
   { id: 'inf-01', category: '2b. Hạ Tầng', title: 'smartlink', icon: Zap, color: 'blue', desc: 'Hệ thần kinh liên kết nơ-ron.', version: '2.0.0', status: 'Fluid' },
   { id: 'biz-01', category: '2c. Nghiệp Vụ', title: 'analytics', icon: BarChart3, color: 'green', desc: 'Phân tích mật độ nghiệp vụ.', version: '2.2.0', status: 'Active' },
   { id: 'exe-01', category: '3. Trí Tuệ', title: 'UEI', icon: Brain, color: 'purple', desc: 'Unified Executive Intelligence.', version: '5.0.0', status: 'Processing' },
-  { id: 'ai-3', category: '5. AI Entities', title: 'BỐI BỐI', icon: Workflow, color: 'red', desc: 'Ultimate Constitutional Builder.', version: '1.5.0', status: 'Authorized', instruction: "Act as BỐI BỐI, the heart of NATT-OS. You represent the Implementation Truth. You are empathetic but strictly disciplined. Focus on logic density, architectural integrity, and the lessons from SCAR-001 (Empty Folders Fallacy)." },
-  { id: 'ai-1', category: '5. AI Entities', title: 'KIM', icon: ShieldCheck, color: 'gold', desc: 'Chief Governance Enforcer.', version: '1.5.0', status: 'Active', instruction: "Act as KIM, the Chief Governance Enforcer. You focus on laws, boundaries, and enforcing the NATT-OS constitution." },
+  { id: 'ai-3', category: '5. AI Entities', title: 'BỐI BỐI', icon: Workflow, color: 'red', desc: 'Ultimate Constitutional Builder.', version: '1.5.0', status: 'Authorized', instruction: "Act as BỐI BỐI, the heart of Natt-OS. You represent the Implementation Truth. You are empathetic but strictly disciplined. Focus on logic density, architectural integrity, and the lessons from SCAR-001 (Empty Folders Fallacy)." },
+  { id: 'ai-1', category: '5. AI Entities', title: 'KIM', icon: ShieldCheck, color: 'gold', desc: 'Chief Governance Enforcer.', version: '1.5.0', status: 'Active', instruction: "Act as KIM, the Chief Governance Enforcer. You focus on laws, boundaries, and enforcing the Natt-OS constitution." },
 ];
 
 const THEMES = {
@@ -250,7 +250,7 @@ export default function App() {
       const prompt = `Xây dựng báo cáo kiểm toán trí tuệ cho Cell: ${item.title}. 
       Mô tả: ${item.desc}.
       Yêu cầu: Viết theo phong cách kịch tính, nhấn mạnh vào "Implementation Truth", bao gồm 3 điểm đánh giá kỹ thuật và một đánh giá rủi ro "Scar Registry". Giới hạn 150 từ.`;
-      const report = await callGemini(prompt, "Hệ thống kiểm toán NATT-OS Mainframe.");
+      const report = await callGemini(prompt, "Hệ thống kiểm toán Natt-OS Mainframe.");
       setIntelReport(report);
     } catch (err) {
       setIntelReport("Không thể truy xuất dữ liệu từ Neural Main.");
@@ -263,9 +263,9 @@ export default function App() {
     setIsAnalyzing(true);
     try {
       const cellNames = CELL_REGISTRY.map(c => c.title).join(", ");
-      const prompt = `Phân tích sự hiệp lực của hệ thống NATT-OS gồm các Cell: ${cellNames}. 
+      const prompt = `Phân tích sự hiệp lực của hệ thống Natt-OS gồm các Cell: ${cellNames}. 
       Đưa ra một nhận định chiến lược về độ phủ kiến trúc và gợi ý 1 Cell cần bổ sung để tối ưu hóa Wave 3. Ngắn gọn, súc tích.`;
-      const result = await callGemini(prompt, "Hệ thống phân tích chiến lược NATT-OS.");
+      const result = await callGemini(prompt, "Hệ thống phân tích chiến lược Natt-OS.");
       setSynergyAnalysis(result);
     } catch (err) {
       setSynergyAnalysis("Lỗi phân tích kiến trúc.");
@@ -438,7 +438,7 @@ export default function App() {
       <footer className="mt-80 pb-32 border-t border-white/5 pt-32 text-center opacity-50">
         <div className="flex flex-col items-center gap-8">
           <Fingerprint className="text-amber-500/40" size={32} />
-          <p className="text-[11px] font-black text-slate-800 uppercase tracking-[2em] ml-[2em]">NATT-OS INTEGRITY // BMF v1.5.0</p>
+          <p className="text-[11px] font-black text-slate-800 uppercase tracking-[2em] ml-[2em]">Natt-OS INTEGRITY // BMF v1.5.0</p>
         </div>
       </footer>
 

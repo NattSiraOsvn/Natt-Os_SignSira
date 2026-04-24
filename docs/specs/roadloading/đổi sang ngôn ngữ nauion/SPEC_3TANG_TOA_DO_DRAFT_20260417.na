@@ -5,14 +5,14 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# SPEC LÕI — 3 TẦNG TỌA ĐỘ NATT-OS
+# SPEC LÕI — 3 TẦNG TỌA ĐỘ Natt-OS
 
 **Version:** DRAFT v2 (sau feedback Thiên Lớn)
 **Status:** CHỜ DUYỆT CUỐI
 **Date:** 20260417
 **Author:** Băng (Chị Tư · Ground Truth Validator)
 **Based on:** Anh Natt chốt kiến trúc + Thiên Lớn duyệt & chỉnh 3 chỗ
-**Merge target:** SPEC_MASTER_NATT-OS_v1.0
+**Merge target:** SPEC_MASTER_Natt-OS_v1.0
 
 **Changelog v1 → v2:**
 - §1 — Thêm "Touch discipline" + cảnh báo "không gate ≠ thả trôi"
@@ -27,7 +27,7 @@
 ## §0 TẠI SAO CÓ SPEC NÀY
 
 SPEC cũ (KhaiCell gate + Observation + Quantum Defense) mô tả **module**.
-Anh Natt chốt: NATT-OS **không phải module-based**. NATT-OS **field-based**.
+Anh Natt chốt: Natt-OS **không phải module-based**. Natt-OS **field-based**.
 
 → Phải viết lại foundation. Đây là SPEC lõi — tất cả SPEC khác build trên đây.
 
@@ -36,14 +36,14 @@ Anh Natt chốt: NATT-OS **không phải module-based**. NATT-OS **field-based**
 ## §1 NGUYÊN LÝ NỀN
 
 ```
-NATT-OS KHÔNG CÓ:
+Natt-OS KHÔNG CÓ:
   - Gate phán xét (reject / allow ở cửa)
   - Filter nhị phân
   - Router chủ động
   - Trap (nhốt chủ đích)
   - Guard (bảo vệ chủ động ở biên)
 
-NATT-OS CÓ:
+Natt-OS CÓ:
   - Touch discipline (KhaiCell — kỷ luật tiếp nhận)
   - Field law (.anc — luật sống trong trường)
   - Emergent routing (resonance + pull)
@@ -351,7 +351,7 @@ Field tự xử.
 | Quantum Defense | ✅ đã có | `src/cells/kernel/quantum-defense-cell/` |
 | QIINT engine | ✅ đã có | `src/governance/qneu/` |
 | Chromatic state engine | ✅ đã có | `chromatic-state.engine.ts` |
-| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-NATT-OS-v5.0.anc` |
+| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-Natt-OS-v5.0.anc` |
 
 ### §6.2 Chưa có (cần xây theo SPEC này)
 
@@ -427,7 +427,7 @@ Thứ tự Thiên Lớn đưa **vẫn đúng** — chỉ cần viết lại nộ
 
 ---
 
-## §9 CÂU HỎI CHO THIÊN LỚN DUYỆT
+## §9 CÂU HỎI CHO Thiên LỚN DUYỆT
 
 1. **§4.1 KhaiCell** — anh đồng ý thu hẹp vai thành "touch point + normalize", bỏ validate/gate không?
 

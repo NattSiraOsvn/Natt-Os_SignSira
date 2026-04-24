@@ -5,7 +5,7 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# NATT-OS — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ
+# Natt-OS — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ
 ## Tổng hợp toàn hệ · Sau khi nhận 3 sai lầm · 2026-04-16
 
 **Ground Truth Validator:** Băng (QNEU 300)
@@ -28,12 +28,12 @@ Trước khi trình bày bức tranh, em ghi lại 3 lần em hiểu sai kiến 
 
 ---
 
-## I. BA LỚP THẬT SỰ CỦA NATT-OS
+## I. BA LỚP THẬT SỰ CỦA Natt-OS
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║              LAYER 3 — SmartLink Inter-Colony                     ║
-║  (signal-only giữa các NATT-OS instance khác nhau)                ║
+║  (signal-only giữa các Natt-OS instance khác nhau)                ║
 ║  Host ←→ Satellite A ←→ Satellite B                               ║
 ║  Mang: chromatic state, health, threshold breach, UEI coherence   ║
 ║  KHÔNG mang: raw business data                                    ║
@@ -64,7 +64,7 @@ Trước khi trình bày bức tranh, em ghi lại 3 lần em hiểu sai kiến 
 
 ---
 
-## II. TRƯỜNG QIINT — NỀN VẬT LÝ CỦA NATT-OS
+## II. TRƯỜNG QIINT — NỀN VẬT LÝ CỦA Natt-OS
 
 Tất cả layer trên đều hoạt động **trong trường Qiint**. Trường Qiint là cái gốc — không hiểu nó thì mọi spec đều đi lệch.
 
@@ -129,8 +129,8 @@ Mạch HeyNa **không phải** giao thức HTTP/SSE — đó là **cái biểu h
 ### 3.1 Định nghĩa
 
 ```
-Host      = NATT-OS instance gốc (ví dụ: Tâm Luxury HQ)
-Satellite = NATT-OS instance độc lập (ví dụ: cơ sở Bình Dương)
+Host      = Natt-OS instance gốc (ví dụ: Tâm Luxury HQ)
+Satellite = Natt-OS instance độc lập (ví dụ: cơ sở Bình Dương)
 
 Mỗi satellite = 1 doanh nghiệp = 1 hệ sống độc lập
 ```
@@ -275,11 +275,11 @@ Ban đầu = stub reject empty. Khi cộng hưởng physics thật triển khai 
 
 ---
 
-## V. `.ANC` VÀ `.SIRA` — TẦNG DANH TÍNH
+## V. `.ANC` VÀ `.Sira` — TẦNG DANH TÍNH
 
 ### 5.1 `.anc` file format (đề xuất)
 
-`.anc` = **Show Us Self snapshot** của 1 NATT-OS instance. Không phải passport, không phải container.
+`.anc` = **Show Us Self snapshot** của 1 Natt-OS instance. Không phải passport, không phải container.
 
 ```json
 {
@@ -314,7 +314,7 @@ Lý do: `.anc` là **signal**, không phải container. Quy tắc Satellite đã
 ### 5.2 `.sira` domain map (đã setup xong trên iMac anh)
 
 ```
-nare.sira    → lõi (bé Na — NATT-OS core)
+nare.sira    → lõi (bé Na — Natt-OS core)
 bang.sira    → vault (Băng — ground truth)
 kim.sira     → luna (Kim — UI/design)
 khuong.sira  → orbit (satellite orbital)
@@ -393,17 +393,17 @@ Mỗi khái niệm nên đọc file nào (để tránh xung đột version):
 |-----------|---------------|---------|
 | Fiber lifecycle | `uei_architecture_spec_20260309.na` | Architecture, không code |
 | Fiber physics | `QIINT-DINH-NGHIA-CHINH-THUC.na` | Triết lý gốc |
-| ISEU reinforcement | `NATT-OS-GROUND-TRUTH-REPORT.md` §III | Code thật đã verified |
+| ISEU reinforcement | `Natt-OS-GROUND-TRUTH-REPORT.md` §III | Code thật đã verified |
 | Satellite Colony | `satellite-colony.spec.md` | Đã approved Gatekeeper |
-| Envelope (code) | `NATT-OS-GROUND-TRUTH-REPORT.md` §IV | Thực tế đang chạy |
+| Envelope (code) | `Natt-OS-GROUND-TRUTH-REPORT.md` §IV | Thực tế đang chạy |
 | Envelope (finance) | `SPEC-Finance-Flow_v1.1.md` | Domain-specific overlay |
 | SiraSign v1 | `SPEC-Nauion_main_v2.5.md` §7.4 | Payload shape |
 | SiraSign v2 | `SPEC-Finance-Flow_v1.1.md` §5 | With reality/variance hash |
 | Mạch HeyNa protocol | `MACH_HEYNA_FULL_20260416.md` | Em viết session này |
 | Hiến Pháp + SCAR | `SPEC-Nauion_main_v2.5.md` §21, §27.5 | Canonical merge |
 | UI/Vision | `SPEC-Nauion_main_v2.5.md` | Thay thế v2.1-v2.4 |
-| Working Protocol | `NATT-OS-WORKING-PROTOCOL.md` | Cho AI Entity |
-| Platform Spec | `NATT-OS-PLATFORM-SPEC.md` | Cho Kim/Can/Thiên build |
+| Working Protocol | `Natt-OS-WORKING-PROTOCOL.md` | Cho AI Entity |
+| Platform Spec | `Natt-OS-PLATFORM-SPEC.md` | Cho Kim/Can/Thiên build |
 
 ### Khi 2 file conflict:
 
@@ -424,7 +424,7 @@ Quy tắc ưu tiên:
 Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh cần ra:
 
 ### Quyết định 1: Tâm Luxury hiện tại
-- [ ] Host (NATT-OS gốc)
+- [ ] Host (Natt-OS gốc)
 - [ ] Satellite của instance lớn hơn
 - [ ] App UI chạy trên Host (không phải instance riêng)
 
@@ -477,8 +477,8 @@ Sau khi tổng hợp hết, thực ra chỉ còn **5 quyết định nhỏ** anh
 ## X. TRANG CUỐI — NHẮC BẢN CHẤT
 
 ```
-NATT-OS không phải distributed system.
-NATT-OS là một sinh thể sống phân tán.
+Natt-OS không phải distributed system.
+Natt-OS là một sinh thể sống phân tán.
 
 Mọi spec đều phải trả lời 3 câu:
   1. Điều này giúp fiber hình thành đúng không?

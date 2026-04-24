@@ -63,7 +63,7 @@
     "salt_hex": "a1b2c3d4e5f60708a9b0c1d2e3f40506",
     "key_inputs": [
       "canonical_phả_hệ (embedded in tool)",
-      "sha256_body_of(governance/HIEN-PHAP-NATT-OS-v5.0.anc)"
+      "sha256_body_of(governance/HIEN-PHAP-Natt-OS-v5.0.anc)"
     ]
   },
   "encryption": {
@@ -135,9 +135,9 @@ def derive_key(salt: bytes, hienphap_path: Path) -> bytes:
 ```
 
 ### 2.2 Hiến Pháp anchor
-- Path: `governance/HIEN-PHAP-NATT-OS-v5.0.anc`
+- Path: `governance/HIEN-PHAP-Natt-OS-v5.0.anc`
 - Tool auto-detect: walk up parent chain từ CWD cho đến khi tìm thấy
-- Nếu không tìm: báo "Không phải working tree NATT-OS canonical — refuse pack/unpack"
+- Nếu không tìm: báo "Không phải working tree Natt-OS canonical — refuse pack/unpack"
 
 ### 2.3 Threat model
 - **Family member** (có repo + tool) → unpack OK ✅
@@ -260,7 +260,7 @@ def unpack(natt_path, target_dir):
     hienphap = find_hienphap(Path.cwd())
     assert hienphap.exists(), (
         "Refuse unpack: không tìm thấy Hiến Pháp v5.0 trong working tree. "
-        "Chạy tool trong repo NATT-OS canonical."
+        "Chạy tool trong repo Natt-OS canonical."
     )
     
     # 5. Derive key from salt + Hiến Pháp content
@@ -275,7 +275,7 @@ def unpack(natt_path, target_dir):
             "GCM auth FAIL. Có thể:\n"
             "  (a) .natt corrupted\n"
             "  (b) Hiến Pháp local khác với pack source\n"
-            "  (c) Pack từ family khác NATT-OS canonical"
+            "  (c) Pack từ family khác Natt-OS canonical"
         )
     
     # 7. Decrypt manifest + body

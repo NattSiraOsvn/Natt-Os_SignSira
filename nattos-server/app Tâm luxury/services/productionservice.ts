@@ -5,7 +5,7 @@ import {
 } from '../types';
 
 /**
- * NATT-OS PRODUCTION ENGINE
+ * Natt-OS PRODUCTION ENGINE
  * Chuyên trách logic SNT, WAC và Bóc tách Hao hụt.
  */
 export class ProductionService {

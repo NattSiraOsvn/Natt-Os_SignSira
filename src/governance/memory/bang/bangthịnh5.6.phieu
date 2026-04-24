@@ -66,12 +66,12 @@
     },
     {
       "decision": "event-bus.ts trong ui-vision = SSE bridge",
-      "reason": "ui-vision không thể import NATT-OS EventBus — circular. SSE bridge là đúng.",
+      "reason": "ui-vision không thể import Natt-OS EventBus — circular. SSE bridge là đúng.",
       "rule": "Điều 9 không áp dụng cho UI layer."
     },
     {
       "decision": "nattos.sh v6.0 = bash extension, không phải TypeScript rewrite",
-      "reason": "SmartAuditEngine TypeScript thiếu 80% NATT-OS logic. Bash extension với snapshot đơn giản hơn.",
+      "reason": "SmartAuditEngine TypeScript thiếu 80% Natt-OS logic. Bash extension với snapshot đơn giản hơn.",
       "pending": true
     }
   ],
@@ -134,7 +134,7 @@
       "detail": "Không có snapshot.json = không có baseline = không thể diff. Memory là bước đầu tiên, không phải mode."
     },
     {
-      "lesson": "SmartAuditEngine TypeScript hay nhưng không đủ cho NATT-OS",
+      "lesson": "SmartAuditEngine TypeScript hay nhưng không đủ cho Natt-OS",
       "detail": "Thiếu: ISEU check, Nauion protocol check, EventBus flow analysis, dead engine detection. nattos.sh biết hết những thứ này."
     }
   ],

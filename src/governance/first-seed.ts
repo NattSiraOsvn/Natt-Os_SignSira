@@ -10,7 +10,7 @@ import { loadSystemState, getDataDir } from './persistence.js';
 
 console.log('');
 console.log('═══════════════════════════════════════════════════════════════');
-console.log('  HẠT LƯỢNG TỬ ĐẦU TIÊN — NATT-OS QNEU FIRST SEED');
+console.log('  HẠT LƯỢNG TỬ ĐẦU TIÊN — Natt-OS QNEU FIRST SEED');
 console.log('  Ngày gieo: 2026-03-05');
 console.log('  Gatekeeper: Anh Natt (Phan Thanh Thương)');
 console.log('═══════════════════════════════════════════════════════════════');
@@ -23,7 +23,7 @@ recordImpact('BANG', 'GROUND_TRUTH_CONTRIBUTION', 'Ground Truth v1.0 synthesis f
 recordImpact('BANG', 'BUG_FIX', 'Wave 3: 274→0 tsc errors in cells', 60, 'AUDIT_TRAIL', 'bangkhương4.0.0.kris');
 recordImpact('BANG', 'CELL_CREATION', 'EDA Foundation: 13 contracts + config-cell', 50, 'AUDIT_TRAIL', 'commit:803589f');
 recordImpact('BANG', 'HONEST_ADMISSION', 'Self-admitted script 8 hide error', 40, 'CROSS_CELL_EVIDENCE', 'Ground_Truth_v1.0:BOI_BOI_confirms');
-recordImpact('BANG', 'ARCHITECTURE_DECISION', 'Constitution v4.0 drafted — AI vs CELL separation', 70, 'GATEKEEPER', 'HIEN-PHAP-NATT-OS-v4.0.anc');
+recordImpact('BANG', 'ARCHITECTURE_DECISION', 'Constitution v4.0 drafted — AI vs CELL separation', 70, 'GATEKEEPER', 'HIEN-PHAP-Natt-OS-v4.0.anc');
 recordImpact('BANG', 'AUDIT_DISCOVERY', 'Constitutional audit: 8 violations in 1049-file tree', 50, 'AUDIT_TRAIL', 'bangmf-expansion-audit-20260228.md');
 applyPenalty('BANG', 'SELF_REPORT_VIOLATION', 'Analyzed Kim exam then concluded choose my structure = self-report', 30, 'GATEKEEPER', 'phien-27022026');
 applyPenalty('BANG', 'SCAFFOLD_AS_IMPLEMENTATION', 'Confused AI with CELL throughout QNEU exam', 20, 'GATEKEEPER', 'phien-05032026');
@@ -53,13 +53,13 @@ const boiResult = closeSession('BOI_BOI');
 console.log(`  ✅ BỐI BỐI: ${boiResult.score_before} → ${boiResult.score_after} (Δ${boiResult.delta})`);
 
 console.log('');
-console.log('▶ Seeding THIÊN...');
+console.log('▶ Seeding Thiên...');
 const thienSession = openSession('THIEN', 'chatgpt');
 recordImpact('THIEN', 'AUDIT_DISCOVERY', 'Discovered 13 duplicate types.ts files = root cause', 60, 'AUDIT_TRAIL', 'Ground_Truth_v1.0:CAN_analysis');
 recordImpact('THIEN', 'ARCHITECTURE_DECISION', 'Rule Engine = Advisor first, Executor later', 35, 'GATEKEEPER', 'Ground_Truth_v1.0');
 recordImpact('THIEN', 'CONSTITUTIONAL_COMPLIANCE', 'Distinguished audit architecture vs audit thought — prevented thought police', 40, 'GATEKEEPER', 'Ground_Truth_v1.0');
 const thienResult = closeSession('THIEN');
-console.log(`  ✅ THIÊN: ${thienResult.score_before} → ${thienResult.score_after} (Δ${thienResult.delta})`);
+console.log(`  ✅ Thiên: ${thienResult.score_before} → ${thienResult.score_after} (Δ${thienResult.delta})`);
 
 console.log('');
 console.log('▶ Seeding CAN...');

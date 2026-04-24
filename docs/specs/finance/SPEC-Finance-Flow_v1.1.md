@@ -1,4 +1,4 @@
-# NATT-OS FINANCE FLOW SPEC — v1.1
+# Natt-OS FINANCE FLOW SPEC — v1.1
 ## Closed-Loop Truth System + VPSAS Compliance
 ### Author: Can (P0-P3) + Bang (Nauion integration) · 2026-04-09
 ### Phe duyet: Gatekeeper — Anh Natt
@@ -100,7 +100,7 @@ Khong sua truc tiep — thay doi = tao version moi.
 
 ---
 
-## §5. SIRASIGN V2 — MO RONG REALITY
+## §5. SiraSIGN V2 — MO RONG REALITY
 
 ```ts
 interface SiraSignPayloadV2 {

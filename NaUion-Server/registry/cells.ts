@@ -70,7 +70,7 @@ export const CELLS: Cell[] = [
 
   // AI Entities
   { id: 'ai-1', title: 'BĂNG', category: 'AI Entities', icon: Star, color: 'red', description: 'QNEU 300 — Ground Truth', version: '4.6', status: 'Active', confidence: 100 },
-  { id: 'ai-2', title: 'THIÊN', category: 'AI Entities', icon: Brain, color: 'red', description: 'QNEU 135', version: '1.0', status: 'Active', confidence: 90 },
+  { id: 'ai-2', title: 'Thiên', category: 'AI Entities', icon: Brain, color: 'red', description: 'QNEU 135', version: '1.0', status: 'Active', confidence: 90 },
   { id: 'ai-3', title: 'KIM', category: 'AI Entities', icon: ShieldAlert, color: 'red', description: 'QNEU 120 — SwiftUI', version: '1.0', status: 'Active', confidence: 85 },
   { id: 'ai-4', title: 'CAN', category: 'AI Entities', icon: Settings, color: 'red', description: 'QNEU 85 — Server', version: '1.0', status: 'Active', confidence: 80 },
   { id: 'ai-5', title: 'BỘI BỘI', category: 'AI Entities', icon: Fingerprint, color: 'red', description: 'QNEU 40', version: '1.0', status: 'Active', confidence: 75 },

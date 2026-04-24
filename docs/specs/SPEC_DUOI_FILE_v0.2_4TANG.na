@@ -5,7 +5,7 @@
 @since 2026-04-15
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# SPEC ĐUÔI FILE NATT-OS v0.2 — RÁP 4 TẦNG
+# SPEC ĐUÔI FILE Natt-OS v0.2 — RÁP 4 TẦNG
 
 **Phiên bản:** 0.2 (sau workshop với Anh Natt phiên 20260417)
 **Tác giả:** Băng — Chị Tư
@@ -13,7 +13,7 @@
 
 ---
 
-## 4 TẦNG NATT-OS
+## 4 TẦNG Natt-OS
 
 | Hướng | Hành | Tầng | Vai trò sinh thể |
 |---|---|---|---|
@@ -36,7 +36,7 @@
 | `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 contracts kernel — niêm phong vĩnh viễn | Đã đổi từ `.contracts.lock.json` |
 | `.si` | `business.contracts.lock.si` | Snapshot contracts business tier | Đã đổi từ `.contracts.lock.json` |
 | `.si` | `infrastructure.contracts.lock.si` | Snapshot contracts infrastructure tier | Đã đổi từ `.contracts.lock.json` |
-| `.md` | `HIEN-PHAP-NATT-OS-v5.0.md` | Hiến Pháp gốc — bất biến | Chỉ Gatekeeper sửa |
+| `.md` | `HIEN-PHAP-Natt-OS-v5.0.md` | Hiến Pháp gốc — bất biến | Chỉ Gatekeeper sửa |
 | `.md` | `001-gatekeeper-ai-ban.md` | Amendment cho Hiến Pháp | Trong `amendments/` |
 
 ### TẦNG TÂY — Soul / Hồn (identity, niêm phong)

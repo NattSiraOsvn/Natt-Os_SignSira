@@ -1,10 +1,10 @@
-NATT-OS FULL SYSTEM AUDIT — 2026-03-09 14:40
+Natt-OS FULL SYSTEM AUDIT — 2026-03-09 14:40
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 【1】GIT STATUS
 321ad9c (HEAD -> main) feat(event-system): wire SmartLink ports → EventBus
-3364fd9 feat(event-system): NATT-OS Event Bus v1.0
-0d3f85a feat(event-bus): NATT-OS Event System v1.0
+3364fd9 feat(event-system): Natt-OS Event Bus v1.0
+0d3f85a feat(event-bus): Natt-OS Event System v1.0
 4eb543a feat(business-graph): fill use-cases + beef engines + apps layer — 0 errors
 b5e841d feat(business-graph): fill use-cases + beef engines + apps layer — 0 errors
 5b3fb10 feat(business-graph): fill use-cases + beef engines + apps layer
@@ -85,7 +85,7 @@ Cell ports wired (import port in engine):
 
 【7】GOVERNANCE
 Constitution:
-HIEN-PHAP-NATT-OS-v4.0.md
+HIEN-PHAP-Natt-OS-v4.0.md
 QNEU files:
 audit-bridge.ts
 calculator.ts

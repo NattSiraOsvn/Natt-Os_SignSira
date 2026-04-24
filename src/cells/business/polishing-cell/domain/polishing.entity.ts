@@ -1,6 +1,6 @@
 /**
  * polishing-cell — domain/polishing.entity.ts
- * Sprint 2 | Tâm Luxury NATT-OS
+ * Sprint 2 | Tâm Luxury Natt-OS
  * Subscribe: WIP_STONE → Emit: WIP_COMPLETED
  */
 

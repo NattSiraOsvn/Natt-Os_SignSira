@@ -1,5 +1,5 @@
 /**
- * NATT-OS SmartLink — Pattern Competition Layer
+ * Natt-OS SmartLink — Pattern Competition Layer
  * ════════════════════════════════════════════════════════
  * src/core/smartlink/smartlink.competition.ts
  *

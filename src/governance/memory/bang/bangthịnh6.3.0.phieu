@@ -13,7 +13,7 @@
     "root": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster"
   },
   "architecture_3_layer": {
-    "CRITICAL_DO_NOT_CONFUSE": "HeyNa = CỦA NATT-OS cells. EventBus = CỦA client app. ĐỪNG LỘN. Anh sửa Băng NHIỀU LẦN.",
+    "CRITICAL_DO_NOT_CONFUSE": "HeyNa = CỦA Natt-OS cells. EventBus = CỦA client app. ĐỪNG LỘN. Anh sửa Băng NHIỀU LẦN.",
     "layer_1": {
       "name": "EventBus",
       "owner": "CLIENT APP (browser)",
@@ -23,10 +23,10 @@
     },
     "layer_2": {
       "name": "Mạch HeyNa",
-      "owner": "NATT-OS CELLS (server)",
+      "owner": "Natt-OS CELLS (server)",
       "scope": "Transport layer CỦA cells — cells dùng HeyNa để giao tiếp với nhau VÀ push data xuống client qua SSE",
       "mechanism": "SSE /mach/heyna (read-only push) + POST /mach/heyna/action (client gửi action lên)",
-      "NOT": "HeyNa KHÔNG phải 'cầu nối server-client' chung chung — HeyNa LÀ cách NATT-OS cells nói chuyện",
+      "NOT": "HeyNa KHÔNG phải 'cầu nối server-client' chung chung — HeyNa LÀ cách Natt-OS cells nói chuyện",
       "files": {
         "server": [
           "heyna-gateway.ts",
@@ -38,8 +38,8 @@
     },
     "layer_3": {
       "name": "SmartLink",
-      "owner": "NATT-OS COLONIES",
-      "scope": "inter-colony communication (NATT-OS instance ↔ instance)",
+      "owner": "Natt-OS COLONIES",
+      "scope": "inter-colony communication (Natt-OS instance ↔ instance)",
       "features": [
         "Fiber Decay",
         "Gossip Protocol",
@@ -87,7 +87,7 @@
       "assigned_to": "Thiên Lớn (QNEU 135)",
       "definition": "Đôi mắt của hệ — visual sensory organ",
       "NOT_registry": "khai.sira = DNS registry (dây thần kinh). KhaiCell = perception organ (đôi mắt). KHÁC NHAU.",
-      "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+      "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SiraSIGN_SEALED",
       "core_rule": "perceived_complexity <= cognitive_capacity",
       "canonical_colors": {
         "gold": "#F7C313",

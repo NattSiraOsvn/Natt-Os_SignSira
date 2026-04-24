@@ -15,8 +15,8 @@ const content = fs.readFileSync(report, "utf8");
 const required = [
   "HARD_TRANSLATION_REQUIRED",
   "POLICY_DOC_LIKELY_TO_NA",
-  "PORT_CONTRACT_TRANSLATE_TO_SIRA",
-  "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+  "PORT_CONTRACT_TRANSLATE_TO_Sira",
+  "SMARTLINK_RUNTIME_TRANSLATE_TO_Sira",
   "DEEP_TS_TRANSLATION_REQUIRED",
   "SCAN_ONLY"
 ];
@@ -24,11 +24,11 @@ const required = [
 const missing = required.filter(x => !content.includes(x));
 
 if (missing.length) {
-  console.error("TS CLEANUP BATCH2F HARD SCAN VALIDATION: FAIL");
+  console.error("TS CLEANUP BATCH2F HARD SCAN validation: fail");
   for (const x of missing) console.error(" - missing " + x);
   process.exit(1);
 }
 
-console.log("TS CLEANUP BATCH2F HARD SCAN VALIDATION: PASS");
+console.log("TS CLEANUP BATCH2F HARD SCAN validation: pass");
 console.log("scope=HARD_TRANSLATION_REQUIRED scan only");
 console.log("mode=no rename, no mutation");

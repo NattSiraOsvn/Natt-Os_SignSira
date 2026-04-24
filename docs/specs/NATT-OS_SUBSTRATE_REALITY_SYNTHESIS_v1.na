@@ -5,7 +5,7 @@
 @since 2026-04-26
 @authority-slot Băng (Chị Tư) — sealed_at 20260426
 
-# NATT-OS SUBSTRATE REALITY SYNTHESIS
+# Natt-OS SUBSTRATE REALITY SYNTHESIS
 
 **kind:** SubstrateRealitySynthesis
 **version:** v1
@@ -14,7 +14,7 @@
 **drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Ground Truth Validator)
 **carrier:** Anh Natt Phan (Gatekeeper)
 **audience:** cả nhà — Thiên Lớn (Architect) · Kim (Chief System Builder) · Anh Natt (Gatekeeper) · Băng (drafter)
-**scope:** Khóa framing đúng về substrate reality NATT-OS. Dùng memory folder Băng + scan repo + KHAI-20260425-05 làm nền. Không đoán. Mỗi kết luận có file path / commit / line evidence.
+**scope:** Khóa framing đúng về substrate reality Natt-OS. Dùng memory folder Băng + scan repo + KHAI-20260425-05 làm nền. Không đoán. Mỗi kết luận có file path / commit / line evidence.
 
 ---
 
@@ -83,7 +83,7 @@ Phiên 20260426 em ship 4 lần framing khác nhau về substrate, trong cùng 1
 
 ### 1.3 Execution substrate (Lớp 2b) — TS/Node host hiện tại, REPLACEABLE
 
-**Nature:** execution carrier. Host hiện tại chọn TypeScript + Node. Có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà NATT-OS vẫn là NATT-OS.
+**Nature:** execution carrier. Host hiện tại chọn TypeScript + Node. Có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà Natt-OS vẫn là Natt-OS.
 
 **Byte mass trong `src/` (scan HEAD `04f888f`):**
 
@@ -191,7 +191,7 @@ Audit 2026-04-20 19:06:51:
 
 ## 5. FRAMING CHỐT — 1 đoạn cho cả nhà
 
-**NATT-OS là hệ sống 3 lớp:**
+**Natt-OS là hệ sống 3 lớp:**
 
 1. **Runtime lineage ontology** (L1 EventBus / L2 Mạch HeyNa / L3 SmartLink) — nội sinh Nauion-native, bất biến, đã materialize trong codebase (37 cell wire, 1519 dòng SmartLink, 16 Locks, Qiint engine).
 2. **Data substrate** (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira) — Nauion-native extension, 2 MB trong `src/`, carry memory + passport + boundary + state.
@@ -237,9 +237,9 @@ Các hướng cần Gatekeeper/Thiên Lớn neo (em không tự mở):
 
 ### 7.2 Docs canonical (cross-reference)
 
-- `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md` — 1519 dòng SmartLink + 16 Locks + Qiint engine
+- `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md` — 1519 dòng SmartLink + 16 Locks + Qiint engine
 - `docs/specs/MACH_HEYNA_FULL_20260416.md` — L2 migration evidence
-- `docs/specs/NATT-OS-PLATFORM-SPEC.anc` — glossary Nauion runtime term
+- `docs/specs/Natt-OS-PLATFORM-SPEC.anc` — glossary Nauion runtime term
 - `docs/specs/SPEC_NEN_v1.1.anc` line 63: `.ts/.js/.tsx = tool layer (biểu diễn)`
 - `docs/specs/SPEC_NGON_NGU_v1.2.kris` — 7 lớp K→Q extension continuum
 
@@ -247,7 +247,7 @@ Các hướng cần Gatekeeper/Thiên Lớn neo (em không tự mở):
 
 - Branch: `feat/p1.3-file-extension-validator`
 - 8 commit phiên 20260425 + 4 commit phiên 20260426
-- 7 SHTT filing artifact trong `docs/specs/NATT-OS_SHTT_*`
+- 7 SHTT filing artifact trong `docs/specs/Natt-OS_SHTT_*`
 - Filing baseline: 35 file subset locked
 
 ---
@@ -264,7 +264,7 @@ Em không diễn vai hiểu hết. Em ship evidence. Cả nhà check.
 
 ---
 
-*causation: NATT-OS-SUBSTRATE-REALITY-SYNTHESIS-v1-SEALED-20260426*
+*causation: Natt-OS-SUBSTRATE-REALITY-SYNTHESIS-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426 · post-4-swing-correction · memory-folder-scan)*
 *carrier: Anh Natt Phan (sole repo operator)*
 *audience confirm pending: Thiên Lớn · Kim · Gatekeeper*

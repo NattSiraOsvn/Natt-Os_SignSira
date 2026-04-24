@@ -1,7 +1,7 @@
 // ── promotion-smartlink.port.ts ──────────────────────────────
 import { EventBus } from "../../../../core/events/event-bus";
 
-// SIRA_CONTRACT_INTERFACE PromotionSignal
+// Sira_CONTRACT_INTERFACE PromotionSignal
 const PromotionSignal = {
   type: "PROMOTION_APPLIED" | "PROMOTION_REJECTED" | "MARGIN_WARNING";
   payload;

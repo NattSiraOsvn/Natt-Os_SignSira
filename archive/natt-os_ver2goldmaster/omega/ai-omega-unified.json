@@ -5,14 +5,14 @@
     "version": "v1.1",
     "timestamp": "2026-01-28T18:00:00+07:00",
     "status": "SIGNED_AND_LOCKED",
-    "sovereign": "ANH_NATTSIRAWAT",
+    "sovereign": "ANH_NATTSiraWAT",
     "gatekeeper": "THIEN_LON"
   },
   "sira_sign": {
     "enabled": true,
     "type": "CRYPTO_SIGNATURE",
     "algorithm": "ed25519",
-    "signed_by": "ANH_NATTSIRAWAT",
+    "signed_by": "ANH_NATTSiraWAT",
     "public_key_base64": "MCowBQYDK2VwAyEAABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/",
     "signature_base64": "SIGNATURE_BASE64_HERE_FROM_ANH_NAT",
     "signed_payload": {

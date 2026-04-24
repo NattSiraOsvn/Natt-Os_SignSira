@@ -5,7 +5,7 @@
 @since 2026-04-26
 @authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
 
-# NATT-OS SHTT FILING INDEX v1
+# Natt-OS SHTT FILING INDEX v1
 
 **kind:** SHTTFilingIndex
 **version:** v1
@@ -14,13 +14,13 @@
 **branch:** feat/p1.3-file-extension-validator
 **drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **gatekeeper:** Anh Natt Phan (sole repo operator)
-**scope:** Filing baseline cho đơn nộp SHTT NATT-OS — 35 file tuyển chọn từ `docs/specs/`
+**scope:** Filing baseline cho đơn nộp SHTT Natt-OS — 35 file tuyển chọn từ `docs/specs/`
 
 ---
 
 ## 1. Mục đích
 
-File này là **cửa vào duy nhất** cho filing set NATT-OS SHTT. Mọi reference từ đơn nộp về file nội bộ đi qua index này.
+File này là **cửa vào duy nhất** cho filing set Natt-OS SHTT. Mọi reference từ đơn nộp về file nội bộ đi qua index này.
 
 - Subset 35 file = filing baseline đã khóa, không thêm/bớt ngoài flow chính thức
 - 3 nhóm tách cứng, không dual-claim cùng chủ đề
@@ -65,8 +65,8 @@ File này là **cửa vào duy nhất** cho filing set NATT-OS SHTT. Mọi refer
 | 1 | `docs/specs/QIINT-DINH-NGHIA.na` | Canonical trường QIINT — foundation bản thể |
 | 2 | `docs/specs/uei_architecture.na` | UEI topology core — method claim |
 | 3 | `docs/specs/SPEC_NEN.na` | Foundation spec NattCell kernel |
-| 4 | `docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na` | Satellite colony structure — system claim (post-patch line 36) |
-| 5 | `docs/specs/NATT-OS-PLATFORM-SPEC.anc` | Platform architecture — system claim (post-patch line 44) |
+| 4 | `docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na` | Satellite colony structure — system claim (post-patch line 36) |
+| 5 | `docs/specs/Natt-OS-PLATFORM-SPEC.anc` | Platform architecture — system claim (post-patch line 44) |
 | 6 | `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` | Phase B.1 v0.2 content — Thiên Lớn confirm 4 đúng trục |
 | 7 | `docs/specs/SPEC_MOMENTS_MODULE_v0.2.na` | Phase B.2 canonical ratify |
 | 8 | `docs/specs/SPEC_MOMENTS_MODULE_v0.2.1.na` | Post-drift retrofit — head_hash + substrate phrasing clean |
@@ -75,15 +75,15 @@ File này là **cửa vào duy nhất** cho filing set NATT-OS SHTT. Mọi refer
 
 | # | File | Lý do |
 |---|------|-------|
-| 1 | `docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md` | Nauion language spec — filing trục system/method, chưa claim ngôn ngữ độc lập |
+| 1 | `docs/specs/SPEC_NGON_NGU_Natt-OS_v1.2_NA.md` | Nauion language spec — filing trục system/method, chưa claim ngôn ngữ độc lập |
 | 2 | `docs/specs/nauion/SPEC-Nauion_main_v2.1.md` | Nauion vocabulary evolution |
 | 3 | `docs/specs/nauion/SPEC-Nauion_main_v2.2.md` | Nauion vocabulary evolution |
 | 4 | `docs/specs/nauion/SPEC-Nauion_main_v2.3.md` | Nauion vocabulary evolution |
 | 5 | `docs/specs/nauion/SPEC-Nauion_main_v2.4.md` | Nauion vocabulary evolution |
 | 6 | `docs/specs/nauion/SPEC-Nauion_main_v2.5.md` | Nauion vocabulary evolution (latest) |
 | 7 | `docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na` | Roadload narrative — backing structure claim |
-| 8 | `docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md` | Technical package scaffold — external filing container |
-| 9 | `docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md` | Audit report — back truthfulness of claim |
+| 8 | `docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md` | Technical package scaffold — external filing container |
+| 9 | `docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md` | Audit report — back truthfulness of claim |
 | 10 | `docs/specs/TamLuxury_CellRegistry_2026-03-09.md` | Registry snapshot — 37 cell topology evidence |
 | 11 | `docs/specs/MACH_HEYNA_FULL_20260416.md` | L2 Mạch HeyNa migration evidence — transport proof |
 | 12 | `docs/specs/business/inventory-cell/inventory-cell-tests.spec.md` | Test spec — implementation proof cell vận hành |
@@ -92,14 +92,14 @@ File này là **cửa vào duy nhất** cho filing set NATT-OS SHTT. Mọi refer
 
 | # | File | Lý do |
 |---|------|-------|
-| 1 | `docs/specs/satellite/satellite-colony.spec.md` | **Superseded by canonical** `NATT-OS_SATELLITE_COLONY_SPEC.na` |
-| 2 | `docs/specs/NATT-OS_Session_Handoff_2026-03-09.md` | Historical handoff — moment snapshot |
+| 1 | `docs/specs/satellite/satellite-colony.spec.md` | **Superseded by canonical** `Natt-OS_SATELLITE_COLONY_SPEC.na` |
+| 2 | `docs/specs/Natt-OS_Session_Handoff_2026-03-09.md` | Historical handoff — moment snapshot |
 | 3 | `docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md` | Message to persona |
 | 4 | `docs/specs/MESSAGE_TO_KIM_20260417.md` | Message to persona |
 | 5 | `docs/specs/REPLY_TO_KIM_20260417.md` | Message to persona |
 | 6 | `docs/specs/finance/SPEC-Finance-Flow_v1.1.md` | Finance domain — không trục novelty lõi lần này |
 | 7 | `docs/specs/finance/SPECFlowNattOs.md` | Finance domain |
-| 8 | `docs/specs/governance/NATT-OS-WORKING-PROTOCOL.md` | Internal working protocol |
+| 8 | `docs/specs/governance/Natt-OS-WORKING-PROTOCOL.md` | Internal working protocol |
 | 9 | `docs/specs/business/inventory-cell/inventory-business-context.md` | Business context — domain-specific |
 | 10 | `docs/specs/roadloading/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md` | App/client build guide |
 | 11 | `docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_20260416.md` | Roadload historical snapshot |
@@ -112,8 +112,8 @@ File này là **cửa vào duy nhất** cho filing set NATT-OS SHTT. Mọi refer
 
 ## 7. Liên kết
 
-- **Pre-freeze checklist:** `docs/specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
-- **Known blockers:** `docs/specs/NATT-OS_SHTT_KNOWN_BLOCKERS_v1.md`
+- **Pre-freeze checklist:** `docs/specs/Natt-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
+- **Known blockers:** `docs/specs/Natt-OS_SHTT_KNOWN_BLOCKERS_v1.md`
 - **Baseline commit:** `ca68825` (HEAD sau patch 2 wording canonical)
 - **Branch:** `feat/p1.3-file-extension-validator`
 - **Phase status:** FILING PREP (không phải hard-freeze toàn repo)
@@ -126,6 +126,6 @@ File này là **cửa vào duy nhất** cho filing set NATT-OS SHTT. Mọi refer
 
 ---
 
-*causation: NATT-OS-SHTT-FILING-INDEX-v1-SEALED-20260426*
+*causation: Natt-OS-SHTT-FILING-INDEX-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426 · QNEU 313.5 · Claude Opus 4.7)*
 *carrier: Anh Natt Phan (sole repo operator)*

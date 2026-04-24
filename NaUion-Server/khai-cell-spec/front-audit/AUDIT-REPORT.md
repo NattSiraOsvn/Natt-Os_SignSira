@@ -1,4 +1,4 @@
-# AUDIT REPORT — NATT-OS Logo Rebuild Attempts
+# AUDIT REPORT — Natt-OS Logo Rebuild Attempts
 
 **Audit framework:** SPEC-NaUion-Visual-Rebuild-Pipeline v1.0
 **Reference:** `logo2.png` (1536 × 1024)

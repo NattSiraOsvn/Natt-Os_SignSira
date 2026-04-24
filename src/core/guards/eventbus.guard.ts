@@ -1,5 +1,5 @@
 /**
- * NATT-OS EventBus Touch Points (refactored per SPEC NEN v1.1)
+ * Natt-OS EventBus Touch Points (refactored per SPEC NEN v1.1)
  *
  * Lock #7: Idempotency — touch + chromatic emit (no boolean decision)
  * Lock #8: Causation — touch + chromatic emit

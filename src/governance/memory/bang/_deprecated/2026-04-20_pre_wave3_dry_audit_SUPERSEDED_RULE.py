@@ -304,7 +304,7 @@ def print_human(summary: dict) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="NATT-OS Pre-Wave3 dry audit (filesystem-only)")
+    parser = argparse.ArgumentParser(description="Natt-OS Pre-Wave3 dry audit (filesystem-only)")
     parser.add_argument("repo", help="Path to repo root (directory containing src/)")
     parser.add_argument("--json", action="store_true", help="Print JSON only")
     args = parser.parse_args()

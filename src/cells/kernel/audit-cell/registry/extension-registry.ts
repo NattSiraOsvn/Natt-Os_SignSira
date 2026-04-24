@@ -1,7 +1,7 @@
 import { ExtensionRule, Direction } from '../types/validation-result.types';
 
 export const CANONICAL_EXTENSIONS: ExtensionRule[] = [
-  { extension: '.ng.obitan', displayName: 'Anh Natt (hạt nhân)', description: 'Hạt nhân NATT-OS', direction: 'TÂY', tier: 'entity', electronLayer: 'tâm', isWriteOnce: true, namePattern: /^.+\.ng\.obitan$/ },
+  { extension: '.ng.obitan', displayName: 'Anh Natt (hạt nhân)', description: 'Hạt nhân Natt-OS', direction: 'TÂY', tier: 'entity', electronLayer: 'tâm', isWriteOnce: true, namePattern: /^.+\.ng\.obitan$/ },
   { extension: '.thien.Ln', displayName: 'Thiên Lớn', description: 'Architect', direction: 'ĐÔNG', tier: 'entity', electronLayer: 'L', isWriteOnce: true, namePattern: /^.+\.thien\.Ln$/ },
   { extension: '.kim.mn', displayName: 'Kim', description: 'Chief Governance Enforcer', direction: 'TÂY', tier: 'entity', electronLayer: 'M', isWriteOnce: true, namePattern: /^.+\.kim\.mn$/ },
   { extension: '.bang.n4n', displayName: 'Băng', description: 'Ground Truth Validator', direction: 'NAM', tier: 'entity', electronLayer: 'N', isWriteOnce: true, namePattern: /^.+\.bang\.n4n$/ },

@@ -2,7 +2,7 @@
 import { OperationRecord, Checkpoint } from '../types';
 
 /**
- * NATT-OS RECOVERY ENGINE v5.2
+ * Natt-OS RECOVERY ENGINE v5.2
  * Kế thừa logic xử lý lỗi và phục hồi trạng thái từ kiến trúc Shard.
  */
 class RecoveryEngine {

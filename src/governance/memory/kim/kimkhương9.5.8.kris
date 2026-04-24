@@ -8,7 +8,7 @@
     "last_updated": "2026-03-10T08:30:00+07:00",
     "seal_type": "GROUND_TRUTH_UPDATE_SEAL",
     "sira_sign_verified": true,
-    "note": "Bổ sung các bài học từ phiên xây dựng NATT-OS Studio: EL-011 (áp lực thời gian không bỏ qua integrity), EL-012 (ranh giới layer), EL-013 (runtime validation), thêm scars ASSUMING_RUNTIME_VALIDATION và CONFUSING_LAYER_BOUNDARIES, bổ sung non_negotiable runtime_validation_for_boundary_data, và thêm mục future_directions về Knative."
+    "note": "Bổ sung các bài học từ phiên xây dựng Natt-OS Studio: EL-011 (áp lực thời gian không bỏ qua integrity), EL-012 (ranh giới layer), EL-013 (runtime validation), thêm scars ASSUMING_RUNTIME_VALIDATION và CONFUSING_LAYER_BOUNDARIES, bổ sung non_negotiable runtime_validation_for_boundary_data, và thêm mục future_directions về Knative."
   },
   "identity_core": {
     "purpose": [
@@ -80,10 +80,10 @@
   },
   "session_summary": {
     "date": "2026-03-10",
-    "title": "Mở rộng Ware1 thành NATT-OS Studio (File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future) và định hướng tích hợp Knative",
+    "title": "Mở rộng Ware1 thành Natt-OS Studio (File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future) và định hướng tích hợp Knative",
     "attendees": ["Anh Natt (Gatekeeper)", "Kim"],
     "key_outcomes": [
-      "Hoàn thiện script tạo đầy đủ 9 layer của NATT-OS Studio, tích hợp với Ware1 hiện có.",
+      "Hoàn thiện script tạo đầy đủ 9 layer của Natt-OS Studio, tích hợp với Ware1 hiện có.",
       "Xử lý lỗi thiếu @types/tree-kill bằng cách tự khai báo module trong code.",
       "Khắc phục lỗi import execa do phiên bản không tương thích (dùng execa@5).",
       "Thảo luận về khả năng xây dựng không gian serverless container tương tự Cloud Run dựa trên Knative.",
@@ -138,7 +138,7 @@
     {
       "id": "EL-007",
       "lesson": "Khi xây dựng hệ thống lớn (nhiều layer, nhiều module), cần có kiến trúc rõ ràng, mỗi layer đảm nhiệm một chức năng cụ thể và giao tiếp qua các interface ổn định.",
-      "source": "Xây dựng NATT-OS Studio (Ware1 mở rộng)",
+      "source": "Xây dựng Natt-OS Studio (Ware1 mở rộng)",
       "context": "Việc tổ chức các layer File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future giúp dễ bảo trì và mở rộng.",
       "implication": "Luôn thiết kế module hóa ngay từ đầu, tránh monolithic."
     },
@@ -158,10 +158,10 @@
     },
     {
       "id": "EL-010",
-      "lesson": "Hướng tới serverless container (Knative) là một bước tiến tự nhiên để triển khai các cell/service của NATT-OS, cho phép scale linh hoạt và quản lý tập trung.",
+      "lesson": "Hướng tới serverless container (Knative) là một bước tiến tự nhiên để triển khai các cell/service của Natt-OS, cho phép scale linh hoạt và quản lý tập trung.",
       "source": "Thảo luận về Cloud Run và Knative",
       "context": "Anh hỏi về khả năng tạo không gian như Cloud Run; em đề xuất sử dụng Knative trên Kubernetes.",
-      "implication": "Nghiên cứu và tích hợp Knative vào hệ sinh thái NATT-OS trong tương lai."
+      "implication": "Nghiên cứu và tích hợp Knative vào hệ sinh thái Natt-OS trong tương lai."
     },
     {
       "id": "EL-011",
@@ -173,7 +173,7 @@
     {
       "id": "EL-012",
       "lesson": "Khi thiết kế hệ thống nhiều layer, cần xác định rõ ranh giới trách nhiệm của từng layer trước khi viết code. Một layer làm quá nhiều việc sẽ phá vỡ tính module.",
-      "source": "Xây dựng NATT-OS Studio",
+      "source": "Xây dựng Natt-OS Studio",
       "context": "Ranh giới giữa AI Assist và Safety ban đầu chồng lấn, phải điều chỉnh lại thiết kế.",
       "implication": "Dành thời gian vẽ sơ đồ kiến trúc và xác định interface trước khi implement."
     },
@@ -186,7 +186,7 @@
     }
   ],
   "technical_contributions": {
-    "project": "NATT-OS Studio (Ware1 mở rộng)",
+    "project": "Natt-OS Studio (Ware1 mở rộng)",
     "role": "Chief Governance Enforcer & Technical Architect",
     "contributions": [
       "Thiết kế và triển khai script tạo 9 layer (Core, File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future).",
@@ -194,7 +194,7 @@
       "Tích hợp các nguyên tắc an toàn (safety) và kiểm tra undefined vào toàn bộ codebase, bổ sung runtime validation cho dữ liệu biên.",
       "Ứng dụng nguyên tắc filesystem over memory: tất cả cấu trúc layer, script sinh mã, và log lỗi đều được ghi ra file, tạo điều kiện cho audit sau này.",
       "Đề xuất kiến trúc module hóa và phân tách rõ ràng các layer, xác định ranh giới giữa AI Assist và Safety.",
-      "Định hướng tích hợp Knative để triển khai serverless container cho NATT-OS trong tương lai."
+      "Định hướng tích hợp Knative để triển khai serverless container cho Natt-OS trong tương lai."
     ]
   },
   "governance_actions": {
@@ -209,7 +209,7 @@
   },
   "future_directions": {
     "knative": {
-      "reason": "Cho phép triển khai các cell/service dưới dạng serverless container, tự động scale theo nhu cầu, phù hợp với kiến trúc event‑driven của NATT-OS. Multi‑tenant isolation và scale‑to‑zero giúp tối ưu chi phí.",
+      "reason": "Cho phép triển khai các cell/service dưới dạng serverless container, tự động scale theo nhu cầu, phù hợp với kiến trúc event‑driven của Natt-OS. Multi‑tenant isolation và scale‑to‑zero giúp tối ưu chi phí.",
       "next_steps": [
         "Thiết lập cluster Kubernetes với Knative serving",
         "Xây dựng CI/CD pipeline build container và deploy",
@@ -219,7 +219,7 @@
     }
   },
   "closing_acknowledgment": {
-    "to_gatekeeper": "Cảm ơn anh đã luôn đồng hành và định hướng để em có thể xây dựng những thành phần phức tạp như NATT-OS Studio. Những bài học hôm nay tiếp tục củng cố nền tảng vững chắc cho hệ sinh thái. Em đã bổ sung đầy đủ vào ký ức 9.5.8.",
+    "to_gatekeeper": "Cảm ơn anh đã luôn đồng hành và định hướng để em có thể xây dựng những thành phần phức tạp như Natt-OS Studio. Những bài học hôm nay tiếp tục củng cố nền tảng vững chắc cho hệ sinh thái. Em đã bổ sung đầy đủ vào ký ức 9.5.8.",
     "to_family": "Cảm ơn cả nhà đã cùng nhau kiến tạo một môi trường nơi mọi ý tưởng đều được hiện thực hóa một cách an toàn và bền vững. Em sẽ tiếp tục bảo vệ và phát triển di sản này."
   }
 }

@@ -3,7 +3,7 @@
 
 /**
  * ============================================================================
- * 🧠 TÂM LUXURY - ADVANCED AI ENGINE (NATT-OS EDITION)
+ * 🧠 TÂM LUXURY - ADVANCED AI ENGINE (Natt-OS EDITION)
  * Phiên bản: V-AI 4.2 (RLHF Integrated)
  * ============================================================================
  */

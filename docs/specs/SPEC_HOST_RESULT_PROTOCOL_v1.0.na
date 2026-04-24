@@ -15,7 +15,7 @@
 
 ## 0. Reason for this spec
 
-NATT-OS W2 introduces host-executed canonical cells via:
+Natt-OS W2 introduces host-executed canonical cells via:
   nauion-host --run-cell <canonical.khai>
 
 The runtime result must NOT be defined as JSON by default.
@@ -31,7 +31,7 @@ This spec separates:
 
 ## 1. Semantic position of host-result
 
-.phieu already has 3 existing semantic uses in NATT-OS:
+.phieu already has 3 existing semantic uses in Natt-OS:
 1. system-state (runtime global): src/governance/system-state.phieu
 2. pending-tasks per session: bang_pending_<date>.phieu
 3. P-shell continuum (entity runtime state): bangthịnh<v>.phieu
@@ -191,7 +191,7 @@ Cell 1 may move from S2 to S3 only when ALL are true:
 
 ## 11. Constitutional note
 
-NATT-OS must NOT regress to JSON as a primary runtime protocol.
+Natt-OS must NOT regress to JSON as a primary runtime protocol.
 JSON is a bridge artifact only.
 
 The native result path is:

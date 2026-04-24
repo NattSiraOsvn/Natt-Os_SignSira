@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — Fix Remaining 174 TypeScript Errors (Part 2)
+Natt-OS — Fix Remaining 174 TypeScript Errors (Part 2)
 Run từ project root AFTER fix_all_errors.py: python3 fix_remaining.py
 """
 import os
@@ -45,7 +45,7 @@ def append(path, text):
     print(f"✅ append: {path}")
 
 print("=" * 60)
-print("NATT-OS Fix Part 2 — 174 remaining errors")
+print("Natt-OS Fix Part 2 — 174 remaining errors")
 print("=" * 60)
 
 # ══════════════════════════════════════════════════════════

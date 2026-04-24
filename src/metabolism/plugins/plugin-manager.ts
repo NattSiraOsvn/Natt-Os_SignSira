@@ -1,5 +1,5 @@
 /**
- * NATT-OS Plugin Manager
+ * Natt-OS Plugin Manager
  * Load, unload, lifecycle — điều phối toàn bộ plugin system
  *
  * Theo STS spec: Plugin System cho phép Metabolism Layer

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS Repo-Wide File Extension Migration
+Natt-OS Repo-Wide File Extension Migration
 SPEC v0.3.1 FINAL — Phiên 20260417
 Author: Băng (Chị Tư)
 Approval required: Anh Natt (Gatekeeper)
@@ -37,7 +37,7 @@ RULES (SPEC v0.3.1):
   R10 builder-audit-trail    → .heyna | builder-authority-lock → .si | system-state → .phieu
   R11 SESSION_*.md, session_summary_*.md, *-report.json, *_auto.md → .kris [NAM]
   R12 bmf.json, boiboi_what_to_do.json → .thịnh | boiboi_memory*, boiboi_quick* → .kris
-  R13 THIÊN MEMORY.json, KIM MEMORY.json → <entity>khương.kris | THIEN NHẮN *.txt → .heyna
+  R13 Thiên MEMORY.json, KIM MEMORY.json → <entity>khương.kris | THIEN NHẮN *.txt → .heyna
 """
 
 import os
@@ -136,10 +136,10 @@ def classify(filepath):
         version = m.group(2).replace("_", ".")
         return f"{entity}thịnh{version}.phieu", "R01-STATE", "BẮC"
 
-    # R13 THIÊN MEMORY.json, KIM MEMORY.json → <entity>khương.kris
-    m = re.match(r"^(THIÊN|KIM|BĂNG|BOI|PHIEU|CAN|KRIS)\s+MEMORY\.json$", name, re.I)
+    # R13 Thiên MEMORY.json, KIM MEMORY.json → <entity>khương.kris
+    m = re.match(r"^(Thiên|KIM|BĂNG|BOI|PHIEU|CAN|KRIS)\s+MEMORY\.json$", name, re.I)
     if m:
-        entity_map = {"THIÊN": "thien", "KIM": "kim", "BĂNG": "bang",
+        entity_map = {"Thiên": "thien", "KIM": "kim", "BĂNG": "bang",
                       "BOI": "boi", "PHIEU": "phieu", "CAN": "can", "KRIS": "kris"}
         entity = entity_map.get(m.group(1).upper(), m.group(1).lower())
         return f"{entity}khương.kris", "R13-ENTITY-MEMORY-CAPS", "NAM"
@@ -308,7 +308,7 @@ def check_git_safety(root, force=False):
 
 def cmd_scan(root):
     print("═" * 70)
-    print("  NATT-OS MIGRATION — IMPACT SCAN (SPEC v0.3.1)")
+    print("  Natt-OS MIGRATION — IMPACT SCAN (SPEC v0.3.1)")
     print("═" * 70)
     plan = build_plan(root)
     print(f"\nFiles to migrate: {len(plan)}")
@@ -329,7 +329,7 @@ def cmd_scan(root):
 
 def cmd_dryrun(root):
     print("═" * 70)
-    print("  NATT-OS MIGRATION — DRY-RUN (NO CHANGES)")
+    print("  Natt-OS MIGRATION — DRY-RUN (NO CHANGES)")
     print("═" * 70)
     plan = build_plan(root)
     from collections import defaultdict
@@ -348,7 +348,7 @@ def cmd_dryrun(root):
 
 def cmd_execute(root, force=False):
     print("═" * 70)
-    print("  NATT-OS MIGRATION — EXECUTE")
+    print("  Natt-OS MIGRATION — EXECUTE")
     print("═" * 70)
     if not check_git_safety(root, force):
         return
@@ -393,7 +393,7 @@ def cmd_execute(root, force=False):
 
 def cmd_rollback(root):
     print("═" * 70)
-    print("  NATT-OS MIGRATION — ROLLBACK")
+    print("  Natt-OS MIGRATION — ROLLBACK")
     print("═" * 70)
     log_path = os.path.join(root, MIGRATION_LOG)
     if not os.path.exists(log_path):

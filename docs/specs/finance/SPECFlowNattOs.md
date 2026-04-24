@@ -393,7 +393,7 @@ npx tsx src/core/tests/e2e.spec.ts
 🔒 CHỐT
 Reality đo → Hệ ghi → Đối soát → SiraSign → Snapshot = TRUTH
 =======================================
-###P1. NATT-OS · FULL CORE BUILD
+###P1. Natt-OS · FULL CORE BUILD
 // CLOSED LOOP TRUTH SYSTEM
 // ===============================
 
@@ -505,7 +505,7 @@ function reconcile(reality: RealityRecord[]) {
 }
 
 // ===============================
-// SIRASIGN ENGINE
+// SiraSIGN ENGINE
 // ===============================
 
 const NONCES = new Set<string>()
@@ -700,7 +700,7 @@ Ledger = function(Event Stream)
 
 👉 Không bao giờ sửa ledger trực tiếp
 
-III. 🔐 REAL SIRASIGN (CRYPTO)
+III. 🔐 REAL SiraSIGN (CRYPTO)
 👉 Bỏ mock → dùng ed25519
 npm install tweetnacl
 Code:
@@ -814,7 +814,7 @@ Truth (P2)
 → Multi-Signature
 → Public Verification
 → TRUST
-III. 🖋️ SIRASIGN NÂNG CẤP (P3)
+III. 🖋️ SiraSIGN NÂNG CẤP (P3)
 Không còn là:
 
 👉 ký nội bộ
@@ -893,7 +893,7 @@ ACCOUNTANT    đối soát
 MANAGER    ký
 AUDITOR    verify
 REGULATOR    đọc public
-II. 🔐 MULTI-SIGN (SIRASIGN P3)
+II. 🔐 MULTI-SIGN (SiraSIGN P3)
 1. Snapshot nâng cấp
 ALTER TABLE snapshots ADD COLUMN sign_status TEXT;
 ALTER TABLE snapshots ADD COLUMN required_signatures INT;
@@ -1062,7 +1062,7 @@ export async function createDailyReport(date: string) {
     snapshot_hash: hash
   })
 }
-II. 🔐 MODULE 2 — SIRASIGN DAILY LOCK
+II. 🔐 MODULE 2 — SiraSIGN DAILY LOCK
 export async function signDailyReport(reportId: string, user: string) {
   const report = await db.get('daily_reports', reportId)
 

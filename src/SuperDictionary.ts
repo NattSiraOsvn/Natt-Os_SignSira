@@ -5,15 +5,15 @@
  */
 
 export const SUPER_DICTIONARY: Record<string, string> = {
-  // ── NATT-OS Core ──────────────────────────────────────────────
-  "NATT-OS":          "Distributed Living Organism Architecture — kiến trúc sinh vật phân tán",
-  "NATT-CELL":        "Tế bào sống trong NATT-OS với 6 thành phần bắt buộc",
+  // ── Natt-OS Core ──────────────────────────────────────────────
+  "Natt-OS":          "Distributed Living Organism Architecture — kiến trúc sinh vật phân tán",
+  "NATT-CELL":        "Tế bào sống trong Natt-OS với 6 thành phần bắt buộc",
   "GATEKEEPER":       "Tế bào chủ quyền — quyết định cuối cùng trong hệ thống",
   "QNEU":             "Quantum Neural Evolution Unit — đơn vị đo tiến hóa AI Entity",
   "SMARTLINK":        "Sợi dẫn truyền thần kinh tồn tại thường trực, nhạy dần theo vết hằn",
   "GROUND_TRUTH":     "src/types.ts + constants.ts + SuperDictionary.ts — nguồn sự thật duy nhất",
   "WAVE":             "Thứ tự sinh của tế bào: Wave1=Kernel, Wave2=Infra, Wave3=Business",
-  "IMMUNE_SYSTEM":    "Hệ kỷ luật của NATT-OS — phát hiện và loại bỏ tế bào bệnh",
+  "IMMUNE_SYSTEM":    "Hệ kỷ luật của Natt-OS — phát hiện và loại bỏ tế bào bệnh",
   "VIET_HANG":        "Vết hằn — frequency imprint tạo permanent node trong QNEU",
 
   // ── Business Domain ───────────────────────────────────────────
@@ -122,15 +122,15 @@ export const SUPER_DICTIONARY: Record<string, string> = {
   "HAO_HUT":               "Hao Hụt — vàng/NVL mất đi khi SX: TL vào - TL ra - bột thu = hao hụt thực",
   "KHO_CONG_DOAN":         "Kho Công Đoạn — kho trung gian lưu SP đang ở từng bước: phôi/nguội/hột/nhám",
   "SO_LUONG_TP":           "Số Lượng Thành Phẩm — SP hoàn chỉnh nhập kho TP sau QC",
-  "DATA_MAP":              "_DATA_MAP — bảng trung tâm lưu JSON từ 19 nguồn, backbone của NATT-OS sync",
+  "DATA_MAP":              "_DATA_MAP — bảng trung tâm lưu JSON từ 19 nguồn, backbone của Natt-OS sync",
   "DELTA_SYNC":            "Delta Sync — chỉ đồng bộ THAY ĐỔI so với lần trước, không copy lại toàn bộ",
   "DATA_HASH":             "Data Hash — MD5 fingerprint mỗi row, dùng phát hiện thay đổi khi delta sync",
   "CHECKPOINT":            "Checkpoint — điểm lưu tiến trình để resume khi timeout (GAS 6 phút giới hạn)",
   "STREAM_A":              "Stream A — luồng đơn SX: CT25 (Chế Tác) + KD25 (Kinh Doanh), rủi ro thấp",
   "STREAM_B":              "Stream B — luồng BH/SR: KB25 (Bảo Hành) + VC (Showroom) + 28xxx (SC), rủi ro cao",
   "CHUNK_WRITER":          "Chunk Writer — ghi 200 rows/lần tránh timeout+quota GAS, flush cuối batch",
-  "ETL":                   "ETL — Extract Transform Load: pipeline đồng bộ dữ liệu nguồn vào NATT-OS",
-  "SOURCE_FILES":          "Source Files — 19 Google Sheets nguồn Tâm Luxury được sync vào NATT-OS",
+  "ETL":                   "ETL — Extract Transform Load: pipeline đồng bộ dữ liệu nguồn vào Natt-OS",
+  "SOURCE_FILES":          "Source Files — 19 Google Sheets nguồn Tâm Luxury được sync vào Natt-OS",
   "BACKUP_TAB":            "Backup Tab — tab sao lưu naming: [fileName_10]__SheetName_20",
   "ORDER_FLOW":            "Order Flow — timeline đơn qua công đoạn SX: sort ngày + đánh số bước",
   "DELTA_CHANGE":          "Delta Change — thay đổi cụ thể được log: loại NEW/UPDATED/STATUS_CHANGE",
@@ -203,8 +203,8 @@ export const SUPER_DICTIONARY: Record<string, string> = {
 KHAICELL: 'KhaiCell — touch primitive / field-entry barrier: nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; KHÔNG phải gate, KHÔNG validate, KHÔNG tự route.',
   QIINT: 'QIINT — trọng trường kiến trúc / field pull: lực hút của field tác động lên signal theo signature + .anc; chi phối FALL, DISSIPATE hoặc OSCILLATE. Canonical: là gravitational field, KHÔNG phải engine.',
   SCAR: 'SCAR — đả kích tiêu cực gây gãy chức năng: negative strike / functional fracture được self-log để giữ bài học máu, audit và healing. Phân biệt với KHAI_SANG, GIAC_NGO, MOTION là các khái niệm tích cực.',
-  SIRASIGN: 'SiraSign — sealed boundary signature: lớp verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer.',
-  COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ NATT-OS về môi trường cục bộ.',
+  SiraSIGN: 'SiraSign — sealed boundary signature: lớp verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer.',
+  COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ Natt-OS về môi trường cục bộ.',
   BOI_BOI: 'BOI_BOI — AI entity trong governance/QNEU, thường gắn vai Toolsmith / Inventory persona và có session, gamma config, system-state riêng.',
   OSCILLATE: 'OSCILLATE — field outcome khi signal match nhiều cell yếu cùng lúc, bị loop/mất mass rồi có thể chuyển sang DISSIPATE.',
   DISSIPATE: 'DISSIPATE — field outcome khi không cell nào match đủ mạnh; signal tan trong field nhưng để lại dữ liệu cho QIINT học pattern.',

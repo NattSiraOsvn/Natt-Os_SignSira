@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS File Rename — Dry Run
+Natt-OS File Rename — Dry Run
 Theo SPEC NGON NGU v1.2 R01-R13.
 
 CHỈ SCAN + IN RA MAPPING. KHÔNG ĐỤNG FILE.
@@ -90,13 +90,13 @@ RULES = [
 
     # R13 — THIEN NHẮN *.txt → .heyna
     (
-        lambda p: re.match(r"(THIEN|THIÊN).*NH(A|Ắ)N.*\.txt$", p.name, re.I),
+        lambda p: re.match(r"(THIEN|Thiên).*NH(A|Ắ)N.*\.txt$", p.name, re.I),
         ".heyna", "R13", "Entity message log"
     ),
 
     # R13 — ENTITY MEMORY.json → .kris
     (
-        lambda p: re.match(r"(THIEN|THIÊN|KIM|BANG|BĂNG|CAN|PHIEU|PHIẾU|BOI|BỐI).*MEMORY\.json$", p.name, re.I),
+        lambda p: re.match(r"(THIEN|Thiên|KIM|BANG|BĂNG|CAN|PHIEU|PHIẾU|BOI|BỐI).*MEMORY\.json$", p.name, re.I),
         ".kris", "R13", "Entity memory file",
     ),
 
@@ -155,7 +155,7 @@ RULES = [
         lambda p: re.match(
             r"(SPEC[-_].*|QIINT[-_].*|BRIEF[-_].*|roadmap.*|NATTOS[-_]COMPLETE.*|"
             r"KIM[-_]CHI[-_]NAM.*|SPEC-Nauion.*|SPEC-Finance.*|SPEC-.*|"
-            r"NATT-OS-.*|MACH_HEYNA.*|COLOR_SIRASIGN.*|VISION_ENGINE.*|"
+            r"Natt-OS-.*|MACH_HEYNA.*|COLOR_SiraSIGN.*|VISION_ENGINE.*|"
             r"workflowsx.*|mapptre.*)\.md$", p.name, re.I),
         ".kris", "R11+", "SPEC / brief / knowledge doc → memory"
     ),
@@ -212,7 +212,7 @@ def walk_repo():
 
 def main():
     print("=" * 80)
-    print("  NATT-OS FILE RENAME — DRY RUN")
+    print("  Natt-OS FILE RENAME — DRY RUN")
     print("  Theo SPEC NGON NGU v1.2 R01-R13")
     print("  KHÔNG ĐỤNG FILE THẬT. CHỈ LIST MAPPING.")
     print("=" * 80)

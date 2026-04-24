@@ -63,14 +63,14 @@
     },
     {
       "id": "Q4",
-      "label": "ROADLOAD v2 show-self audience (NATT-OS độc lập ngôn ngữ Nauion)",
+      "label": "ROADLOAD v2 show-self audience (Natt-OS độc lập ngôn ngữ Nauion)",
       "options": [
         "(a) Internal docs",
         "(b) External show (SHTT/investor/public)",
         "(c) Hybrid (Băng recommend)"
       ],
       "blocks": "ROADLOAD v2 ship",
-      "context": "Anh muốn document chứng minh NATT-OS độc lập ngôn ngữ riêng. 12+ đuôi file Nauion (.kris/.na/.si/.sira/.phieu/.anc/.heyna/.khai/.thuo/.ml/.canonical/.obitan) là evidence visible. Cần story: từ Microsoft .ts → Nauion."
+      "context": "Anh muốn document chứng minh Natt-OS độc lập ngôn ngữ riêng. 12+ đuôi file Nauion (.kris/.na/.si/.sira/.phieu/.anc/.heyna/.khai/.thuo/.ml/.canonical/.obitan) là evidence visible. Cần story: từ Microsoft .ts → Nauion."
     },
     {
       "id": "Q5",
@@ -88,7 +88,7 @@
       "id": "TASK-01",
       "label": "ROADLOAD v2 show-self ship (sau Q4 neo)",
       "depends_on": "Q4",
-      "scope": "Document chứng minh NATT-OS độc lập ngôn ngữ Nauion. Hybrid: narrative + evidence table 12+ extension."
+      "scope": "Document chứng minh Natt-OS độc lập ngôn ngữ Nauion. Hybrid: narrative + evidence table 12+ extension."
     },
     {
       "id": "TASK-02",

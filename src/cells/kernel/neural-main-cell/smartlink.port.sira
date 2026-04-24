@@ -19,7 +19,7 @@ export const NEURAL_MAIN_EVENTS = {
   GATEKEEPER_OVERRIDE:  'gatekeeper.qneu.override',
 };
 
-// SIRA_TYPE_ALIAS NeuralMainEventType = typeof NEURAL_MAIN_EVENTS[keyof typeof NEURAL_MAIN_EVENTS];
+// Sira_TYPE_ALIAS NeuralMainEventType = typeof NEURAL_MAIN_EVENTS[keyof typeof NEURAL_MAIN_EVENTS];
 
 export const NeuralMainSmartLinkPort = forgeSmartLinkPort({
   cellId: 'neural-main-cell',

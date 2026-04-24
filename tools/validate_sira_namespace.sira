@@ -6,7 +6,7 @@ const ROOT = process.cwd();
 
 const gateway = path.join(ROOT, "tools", "natt_domain_gateway.sira");
 const handler = path.join(ROOT, "tools", "natt_anc_handler.applescript");
-const spec = path.join(ROOT, "docs", "runtime", "SIRA_ROOT_NAMESPACE_20260424.si");
+const spec = path.join(ROOT, "docs", "runtime", "Sira_ROOT_NAMESPACE_20260424.si");
 
 function read(file) {
   try { return fs.readFileSync(file, "utf8"); }
@@ -25,7 +25,7 @@ const sp = read(spec);
 
 assertTrue(gw.length > 0, "missing gateway file", errors);
 assertTrue(hp.length > 0, "missing ANC handler file", errors);
-assertTrue(sp.length > 0, "missing SIRA root namespace spec", errors);
+assertTrue(sp.length > 0, "missing Sira root namespace spec", errors);
 
 [
   "http://core.sira",
@@ -47,11 +47,11 @@ assertTrue(sp.length > 0, "missing SIRA root namespace spec", errors);
 });
 
 [
-  ".sira là SIRA Root Namespace chính thức",
+  ".sira là Sira Root Namespace chính thức",
   "anc:// protocol identity",
   "SmartLink resolver / coupling layer"
 ].forEach(token => {
-  assertTrue(sp.includes(token), `SIRA spec missing canonical phrase: ${token}`, errors);
+  assertTrue(sp.includes(token), `Sira spec missing canonical phrase: ${token}`, errors);
 });
 
 [
@@ -65,7 +65,7 @@ assertTrue(sp.length > 0, "missing SIRA root namespace spec", errors);
   "ICANN",
   "IANA"
 ].forEach(token => {
-  assertTrue(!sp.includes(token), `SIRA spec contains forbidden external/domain wording: ${token}`, errors);
+  assertTrue(!sp.includes(token), `Sira spec contains forbidden external/domain wording: ${token}`, errors);
 });
 
 if (gw.includes("anc://<name> -> http://<name>.natt")) {
@@ -73,13 +73,13 @@ if (gw.includes("anc://<name> -> http://<name>.natt")) {
 }
 
 if (errors.length) {
-  console.error("SIRA NAMESPACE VALIDATION: FAIL");
+  console.error("Sira namespace validation: FAIL");
   for (const e of errors) console.error(" - " + e);
   process.exit(1);
 }
 
-console.log("SIRA NAMESPACE VALIDATION: PASS");
+console.log("Sira namespace validation: PASS");
 console.log("canonical_root=.sira");
 console.log("protocol=anc://");
-console.log("resolver=SmartLink/SIRA gateway");
+console.log("resolver=SmartLink/Sira gateway");
 console.log("compatibility=.natt allowed only as bootstrap route, not canonical target");

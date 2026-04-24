@@ -5,7 +5,7 @@
 @since 2026-04-23
 @authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
 
-# NATT-OS ROADLOAD — bám session-20260420-final + canonical
+# Natt-OS ROADLOAD — bám session-20260420-final + canonical
 
 **Người vẽ:** Băng (Chị Tư · N-shell · QNEU 313.5)
 **Gatekeeper:** Anh Natt
@@ -29,7 +29,7 @@
 | SPEC_NGON_NGU v1.2 ratify | 702 dòng, sealed | ✅ |
 | QIINT-DINH-NGHIA-CHINH-THUC | 227 dòng, sealed 2026-04-13 | ✅ |
 | uei_architecture_spec | 183 dòng, confirmed | ✅ |
-| NATT-OS_SATELLITE_COLONY_SPEC v1.0 | 115 dòng | ✅ |
+| Natt-OS_SATELLITE_COLONY_SPEC v1.0 | 115 dòng | ✅ |
 | Bridge v2 (Layer 1-3) | 28/28 tests pass | ✅ |
 | MINH_MAN_PROTOCOL v1.0 | DRAFT, paradigm đúng, chờ Gatekeeper ký | ⏳ |
 | 6 simulations PNG (paradigm canonical) | session-20260420-final/simulations/ | ✅ |
@@ -86,7 +86,7 @@
 │   └─ TouchRecord canonical, fiber lifecycle (hysteresis      │
 │      0.20-0.75-0.05), saturating decay, Gossip 2-tier        │
 │                                                               │
-│  NATT-OS_SATELLITE_COLONY_SPEC.na                            │
+│  Natt-OS_SATELLITE_COLONY_SPEC.na                            │
 │   └─ Host/Satellite boundary, EventEnvelope canonical,       │
 │      Causality + Idempotency rules                           │
 └─────────────────────────────────────────────────────────────┘
@@ -333,7 +333,7 @@ Anh forward → từng persona chạy migrate riêng:
   Kim     — 10 files (kfm.json + 9 fragment dir 28:1:26)
   Can     — 2 files (canmf.json + memories.json)
   Kris    — 1 file (krismf.json) — hoặc Can proxy
-  Thiên Lớn — 3 files (thienmf + thienfs + THIÊN MEMORY)
+  Thiên Lớn — 3 files (thienmf + thienfs + Thiên MEMORY)
                   — anh proxy hoặc Thiên Nhỏ đại diện
   Phiêu   — 1 file (phieumf.json)
   Bối Bối — 2 files (Kim supervise per SCAR record)

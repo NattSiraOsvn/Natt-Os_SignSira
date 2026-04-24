@@ -1,6 +1,6 @@
 #!/bin/zsh
 # =================================================
-# 👑 NATT-OS: IRONCLAD CASING ENFORCEMENT V7.1
+# 👑 Natt-OS: IRONCLAD CASING ENFORCEMENT V7.1
 # SOVEREIGN: ANH_NAT | AGENT: BỐI BỐI
 # MODE: TRANSACTIONAL + FAIL-FAST + PRUNE-SAFE
 # =================================================

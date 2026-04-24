@@ -4,7 +4,7 @@ const path = require("path");
 
 const ROOT = process.cwd();
 
-const spec = path.join(ROOT, "docs", "runtime", "SIRA_BROWSER_TRANSPORT_ADAPTER_20260425.na");
+const spec = path.join(ROOT, "docs", "runtime", "Sira_BROWSER_TRANSPORT_ADAPTER_20260425.na");
 const gateway = path.join(ROOT, "tools", "natt_domain_gateway.sira");
 const launcher = path.join(ROOT, "tools", "thiên");
 
@@ -22,14 +22,14 @@ function must(condition, msg) {
 }
 
 must(fs.existsSync(spec), "missing browser transport adapter spec");
-must(fs.existsSync(gateway), "missing SIRA browser adapter implementation");
+must(fs.existsSync(gateway), "missing Sira browser adapter implementation");
 must(fs.existsSync(launcher), "missing tools/thiên launcher");
 
 [
   "http://` is not identity",
   "browser transport adapter",
   "anc://` = identity protocol",
-  ".sira` = SIRA root namespace",
+  ".sira` = Sira root namespace",
   "tools/thiên` = operator launcher",
   "SmartLink = resolver / coupling layer"
 ].forEach(token => must(s.includes(token), "spec missing canonical token: " + token));
@@ -54,12 +54,12 @@ for (const token of forbiddenIdentityClaims) {
 }
 
 if (errors.length) {
-  console.error("SIRA BROWSER TRANSPORT BOUNDARY VALIDATION: FAIL");
+  console.error("Sira browser transport boundary validation: FAIL");
   for (const e of errors) console.error(" - " + e);
   process.exit(1);
 }
 
-console.log("SIRA BROWSER TRANSPORT BOUNDARY VALIDATION: PASS");
+console.log("Sira browser transport boundary validation: PASS");
 console.log("identity=anc://");
 console.log("namespace=.sira");
 console.log("operator=tools/thiên");

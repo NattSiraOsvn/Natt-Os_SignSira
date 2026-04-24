@@ -277,7 +277,7 @@ http.createServer(async (req,res)=>{
       return sendHtml(res, `<!doctype html>
 <html><head><meta charset="utf-8"><title>ANC Resolver</title></head>
 <body style="margin:0;background:#020617;color:#e2e8f0;font-family:Inter,system-ui;padding:24px">
-<h1 style="color:#c084fc">NATT-OS ANC Resolver</h1>
+<h1 style="color:#c084fc">Natt-OS ANC Resolver</h1>
 <p>Canonical namespace: <code>anc://</code>. HTTP remains transport.</p>
 <p><a style="color:#67e8f9" href="/api/resolve?uri=anc://core">/api/resolve?uri=anc://core</a></p>
 ${rows}
@@ -323,7 +323,7 @@ ${rows}
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SIRA App Hub</title>
+<title>Sira app hub</title>
 <style>
 :root{--bg:#020617;--card:#0f172a;--line:#1e293b;--txt:#e2e8f0;--muted:#94a3b8;--cyan:#67e8f9;--violet:#c084fc;--gold:#fbbf24}
 *{box-sizing:border-box}
@@ -343,7 +343,7 @@ main{padding:24px;max-width:1180px;margin:auto}
 </head>
 <body>
 <header>
-<h1>SIRA App Hub</h1>
+<h1>Sira app hub</h1>
 <p>Root namespace: .sira · Identity: anc:// · Browser Adapter: tools/natt_domain_gateway.sira</p>
 </header>
 <main>
@@ -365,7 +365,7 @@ main{padding:24px;max-width:1180px;margin:auto}
 
   if(routeKey==="audit"){
     if(!AUDIT_HTML) return sendJson(res,{ok:false,error:"audit html not found"},404);
-    return serveBase(req,res,path.dirname(AUDIT_HTML),"NATT-OS AUDIT UI");
+    return serveBase(req,res,path.dirname(AUDIT_HTML),"Natt-OS AUDIT UI");
   }
   if(routeKey==="tam"){
     if(!TAM) return sendJson(res,{ok:false,error:"nattos-server not found"},404);
@@ -373,12 +373,12 @@ main{padding:24px;max-width:1180px;margin:auto}
   }
   if(["nauion","core","runtime","gate","sira","khai","bridge","mach","heyna"].includes(routeKey)){
     if(!NAUION) return sendJson(res,{ok:false,error:"NaUion-Server not found"},404);
-    return serveBase(req,res,NAUION,"NATT-OS / NAUION SERVER");
+    return serveBase(req,res,NAUION,"Natt-OS / NAUION SERVER");
   }
   if(routeKey==="docs"){
     const docs=path.join(ROOT,"docs");
     if(!exists(docs)) return sendJson(res,{ok:false,error:"docs not found"},404);
-    return serveBase(req,res,docs,"NATT-OS DOCS");
+    return serveBase(req,res,docs,"Natt-OS DOCS");
   }
 
   return sendJson(res,{ok:true,message:"NATT Domain Gateway",host,routes:["audit.natt","tam.natt","nauion.natt","core.natt","docs.natt","mach.natt/mach/heyna"]});
@@ -386,7 +386,7 @@ main{padding:24px;max-width:1180px;margin:auto}
   audit({action:"gateway.boot",host:"127.0.0.1",result:"BOOTED",payload_summary:{PORT,TAM,NAUION,AUDIT_HTML}});
   console.log("");
   console.log("========================================================================================");
-  console.log("NATT DOMAIN GATEWAY — LOCAL ROUTING");
+  console.log("Natt domain gateway — local routing");
   console.log("========================================================================================");
   console.log("ROOT       :", ROOT);
   console.log("PORT       :", PORT);

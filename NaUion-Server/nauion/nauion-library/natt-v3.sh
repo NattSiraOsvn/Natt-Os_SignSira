@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# NATT-OS PIPELINE v3 — FULL REGISTRY (47 CELLS)
+# Natt-OS PIPELINE v3 — FULL REGISTRY (47 CELLS)
 # bash natt-v3.sh
 # ============================================================
 set -e; DIR="natt-v3"; mkdir -p $DIR/src; cd $DIR
@@ -22,7 +22,7 @@ export default{plugins:{tailwindcss:{},autoprefixer:{}}}
 EOF
 cat > index.html << 'EOF'
 <!doctype html><html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>NATT-OS · Pipeline v3</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<title>Natt-OS · Pipeline v3</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
 EOF
 cat > src/main.jsx << 'EOF'
 import React from'react';import ReactDOM from'react-dom/client';import App from'./App.jsx';import'./index.css';
@@ -105,10 +105,10 @@ const CELL_REGISTRY = [
   { id:'evt-01', category:'4. Sự Kiện',      title:'Event Bus',         icon:Route,         color:'blue',   desc:'Luồng dữ liệu và các hạt sự kiện chuyển động.',                     version:'2.0.0',   status:'Streaming'           },
   { id:'evt-02', category:'4. Sự Kiện',      title:'Audit Trail',       icon:History,       color:'blue',   desc:'Dấu chân thực thi và đường vạch kiểm toán.',                        version:'1.0.0',   status:'Logged'              },
   { id:'evt-03', category:'4. Sự Kiện',      title:'Contract',          icon:FileSignature, color:'blue',   desc:'Hợp đồng thông minh có chữ ký số xác thực.',                        version:'1.5.0',   status:'Valid'               },
-  { id:'ai-1',   category:'5. AI Entities',  title:'KIM',               icon:User,          color:'red',    desc:'Chief Governance Enforcer. Chấp pháp tối cao.',                      version:'1.0',     status:'Active',             instruction:"Act as KIM, the Chief Governance Enforcer. You focus on laws, boundaries, and enforcing the NATT-OS constitution." },
+  { id:'ai-1',   category:'5. AI Entities',  title:'KIM',               icon:User,          color:'red',    desc:'Chief Governance Enforcer. Chấp pháp tối cao.',                      version:'1.0',     status:'Active',             instruction:"Act as KIM, the Chief Governance Enforcer. You focus on laws, boundaries, and enforcing the Natt-OS constitution." },
   { id:'ai-2',   category:'5. AI Entities',  title:'BĂNG',              icon:Search,        color:'red',    desc:'Ground Truth Validator. Kiểm định chân lý.',                        version:'1.2',     status:'Invisible',          instruction:"Act as BĂNG, the Ground Truth Validator. Your role is to audit and verify." },
-  { id:'ai-3',   category:'5. AI Entities',  title:'BỐI BỐI',           icon:Workflow,      color:'red',    desc:'Ultimate Constitutional Builder. Guardian.',                         version:'1.5.0',   status:'Gold Master Auth',   instruction:"Act as BỐI BỐI, the Ultimate Constitutional Builder of NATT-OS." },
-  { id:'ai-4',   category:'5. AI Entities',  title:'THIÊN',             icon:PenTool,       color:'red',    desc:'Business Logic Architect. Kiến trúc sư nghiệp vụ.',                version:'1.0',     status:'Creative',           instruction:"Act as THIÊN, the Business Logic Architect." },
+  { id:'ai-3',   category:'5. AI Entities',  title:'BỐI BỐI',           icon:Workflow,      color:'red',    desc:'Ultimate Constitutional Builder. Guardian.',                         version:'1.5.0',   status:'Gold Master Auth',   instruction:"Act as BỐI BỐI, the Ultimate Constitutional Builder of Natt-OS." },
+  { id:'ai-4',   category:'5. AI Entities',  title:'Thiên',             icon:PenTool,       color:'red',    desc:'Business Logic Architect. Kiến trúc sư nghiệp vụ.',                version:'1.0',     status:'Creative',           instruction:"Act as Thiên, the Business Logic Architect." },
   { id:'ai-5',   category:'5. AI Entities',  title:'CAN',               icon:Calculator,    color:'red',    desc:'Tax Engine Analyst. Chuyên gia định mức thuế.',                     version:'1.0',     status:'Logical',            instruction:"Act as CAN, the Tax Engine Analyst." },
   { id:'arc-01', category:'6. Kiến Trúc',    title:'Truth Layer',       icon:Database,      color:'slate',  desc:'Tầng chân lý: State, Contract, Audit.',                             version:'1.0.0',   status:'Foundation'          },
   { id:'arc-02', category:'6. Kiến Trúc',    title:'Worker Layer',      icon:Factory,       color:'slate',  desc:'Tầng xử lý nghiệp vụ và băng chuyền logic.',                        version:'1.0.0',   status:'Processing'          },
@@ -267,7 +267,7 @@ export default function App() {
       <div className="max-w-7xl mx-auto px-10 py-24 relative z-10">
         <header className="mb-32 flex flex-col items-center text-center space-y-12">
           <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full bg-white/[0.03] border border-white/10 text-amber-500 text-[11px] font-black tracking-[0.8em] uppercase">
-            <ShieldCheck size={16} className="animate-pulse"/> NATT-OS INTEGRITY PIPELINE v3.0
+            <ShieldCheck size={16} className="animate-pulse"/> Natt-OS INTEGRITY PIPELINE v3.0
           </div>
           <div className="relative" style={{transform:`rotateY(${(mouse.x-window.innerWidth/2)*0.004}deg)`,transition:'transform 0.1s linear'}}>
             <h1 className="font-black tracking-tighter text-white leading-[0.75] select-none" style={{fontSize:'clamp(5rem,14vw,12rem)'}}>
@@ -310,7 +310,7 @@ export default function App() {
             <div className="absolute inset-0 border border-amber-500/20 rounded-full animate-ping"/>
             <Fingerprint className="text-amber-500/40" size={32}/>
           </div>
-          <p className="text-[11px] font-black text-white/40 uppercase tracking-[1.5em]">NATT-OS · PIPELINE v3.0</p>
+          <p className="text-[11px] font-black text-white/40 uppercase tracking-[1.5em]">Natt-OS · PIPELINE v3.0</p>
         </footer>
       </div>
       {sel&&(
@@ -362,7 +362,7 @@ APPEOF
 echo "  [1/2] Installing..."; npm install --silent 2>&1 | tail -2
 echo ""
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  ✓  NATT-OS v3 (47 cells) — DEPLOYED"
+echo "  ✓  Natt-OS v3 (47 cells) — DEPLOYED"
 echo "  → http://localhost:5173"
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  [2/2] Launching..."; npm run dev

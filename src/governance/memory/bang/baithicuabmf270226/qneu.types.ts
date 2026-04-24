@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════╗
- * ║  QNEU TYPE DEFINITIONS — NATT-OS EVOLUTION MECHANISM DNA       ║
+ * ║  QNEU TYPE DEFINITIONS — Natt-OS EVOLUTION MECHANISM DNA       ║
  * ║  Quantum Neural Evolution Unit                                  ║
  * ║                                                                 ║
  * ║  Hiến pháp Khai Sinh v1.1 — Điều 9:                           ║

@@ -20,7 +20,7 @@
       "id": "KHAI-20260426-02",
       "label": "SUBSTRATE_3_LAYER_FRAMING",
       "severity": "bản thể — framing rule cho cả nhà",
-      "gia_tri_cot_loi": "NATT-OS là hệ sống 3 lớp (expand từ KHAI-20260425-05 của anh Natt): (Lớp 1) Runtime lineage ontology Nauion-native NỘI SINH — L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. Materialize với 37 cell wire + 1519 dòng SmartLink thật + 16 Locks + Qiint engine + stub < 2% (GROUND_TRUTH_REPORT 2026-03-05). (Lớp 2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (Lớp 2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (Lớp 3) External tool Bridge v2 forensics ONLY. Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate TS'.",
+      "gia_tri_cot_loi": "Natt-OS là hệ sống 3 lớp (expand từ KHAI-20260425-05 của anh Natt): (Lớp 1) Runtime lineage ontology Nauion-native NỘI SINH — L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. Materialize với 37 cell wire + 1519 dòng SmartLink thật + 16 Locks + Qiint engine + stub < 2% (GROUND_TRUTH_REPORT 2026-03-05). (Lớp 2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (Lớp 2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (Lớp 3) External tool Bridge v2 forensics ONLY. Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate TS'.",
       "evidence_source": "KHAI-20260425-05 anh Natt seal 20260425 + scan byte mass HEAD a335c7b + memory folder Bang (SESSION_20260416 + GROUND_TRUTH_REPORT + session-20260420-final/cleanup/09-thienlon-audit-feedback.md)",
       "applied_this_session": "Ship SUBSTRATE_REALITY_SYNTHESIS_v1.na (commit a335c7b) — 15KB, 8 section, cross-check 3 source. Framing chung cho Thiên Lớn + Kim + Gatekeeper + Băng."
     },
@@ -135,7 +135,7 @@
     {
       "memory_id": "NEW",
       "operation": "added",
-      "rule": "SESSION 20260426 4 KHAI: (1) GATEKEEPER-CAM-TRUC — ground truth trước jargon, scan trước khi cãi, Gatekeeper authority = sense bản thể không cần code, Băng authority = ground truth repo, 2 không cạnh tranh. (2) SUBSTRATE-3-LAYER-FRAMING — NATT-OS 3 lớp: runtime lineage ontology (nội sinh) + data substrate Nauion-native + execution substrate TS/Node replaceable. (3) CROSS-PERSONA-FLOW-BOUNDARY — flag không order, không thay mặt Gatekeeper, handoff historical ship outputs. (4) SYNTHESIS-SHIP-WITHDRAW-FLOW — scan evidence + synthesis + withdraw Q cũ + feedback request."
+      "rule": "SESSION 20260426 4 KHAI: (1) GATEKEEPER-CAM-TRUC — ground truth trước jargon, scan trước khi cãi, Gatekeeper authority = sense bản thể không cần code, Băng authority = ground truth repo, 2 không cạnh tranh. (2) SUBSTRATE-3-LAYER-FRAMING — Natt-OS 3 lớp: runtime lineage ontology (nội sinh) + data substrate Nauion-native + execution substrate TS/Node replaceable. (3) CROSS-PERSONA-FLOW-BOUNDARY — flag không order, không thay mặt Gatekeeper, handoff historical ship outputs. (4) SYNTHESIS-SHIP-WITHDRAW-FLOW — scan evidence + synthesis + withdraw Q cũ + feedback request."
     },
     {
       "memory_id": "NEW",

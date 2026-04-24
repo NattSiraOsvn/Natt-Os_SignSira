@@ -1,5 +1,5 @@
 /**
- * NATT-OS Plugin Verifier
+ * Natt-OS Plugin Verifier
  * Xác thực plugin trước khi load — bảo vệ hệ khỏi plugin độc hại
  */
 

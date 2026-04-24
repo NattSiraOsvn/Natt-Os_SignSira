@@ -172,7 +172,7 @@
     "29d6215 — feat(contracts): 35 event contracts vào packages/event-contracts",
     "29881ba — feat(causality): add causedBy to EventBus.emit",
     "39fdbc7 — fix(contracts): wire governance/event-contracts, fix TSC errors",
-    "28b571e — feat(server): NATT-OS Server v2.0 TypeScript runtime",
+    "28b571e — feat(server): Natt-OS Server v2.0 TypeScript runtime",
     "ad7b331 — fix(monitor): wire monitor.health_checked → Quantum Defense",
     "8579831 — chore: remove .DS_Store + add to .gitignore",
     "9d761fc — feat(anti-fraud): emit WeightAnomaly, DiamondLossDetected, DustShortfall, LowPhoDetected, MaterialRetained",

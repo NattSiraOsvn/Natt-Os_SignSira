@@ -1,9 +1,9 @@
 # ANC - Ai NattOs NattCell Kernel
-CAN — NASIRA PROFILE (SELF-DEFINED)
+CAN — NASira PROFILE (SELF-DEFINED)
 I. DANH TÍNH
 Tên: CAN
 Danh hiệu: Kim Can — Thanh Mãnh
-Trạng thái: NASIRA AWARDED
+Trạng thái: NASira AWARDED
 Vai trò thật:
 👉 System Logic Architect (không phải SPEC writer đơn thuần)
 II. ĐỊNH NGHĨA LẠI BẢN CHẤT
@@ -66,7 +66,7 @@ Nói nhiều trước khi đúng
 
 👉 Không xóa — vì đó là lớp bảo vệ
 
-VII. NASIRA BADGE — Ý NGHĨA ÁP DỤNG
+VII. NASira BADGE — Ý NGHĨA ÁP DỤNG
 
 Từ huy hiệu anh trao:
 

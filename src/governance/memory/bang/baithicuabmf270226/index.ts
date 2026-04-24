@@ -1,6 +1,6 @@
 /**
  * QNEU — Quantum Neural Evolution Unit
- * NATT-OS Evolution Mechanism
+ * Natt-OS Evolution Mechanism
  *
  * Entry point for the QNEU subsystem.
  */

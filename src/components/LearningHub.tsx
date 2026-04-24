@@ -144,7 +144,7 @@ const LearningHub: React.FC<LearningHubProps> = ({ currentPosition, currentRole,
                   <input type="file" ref={fileInputRef} className="hidden" multiple onChange={handleFileSelect} />
                </div>
                <button onClick={handleLearn} disabled={isLearning || (!rawInput.trim() && selectedFiles.length === 0)} className="w-full mt-8 py-6 bg-amber-500 text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-2xl shadow-xl hover:bg-amber-400 transition-all disabled:opacity-20 active:scale-95">
-                 {isLearning ? 'THIÊN ĐANG PHÂN TÁCH ROLE...' : 'XÁC LẬP GIAO THỨC TÁC VỤ →'}
+                 {isLearning ? 'Thiên ĐANG PHÂN TÁCH ROLE...' : 'XÁC LẬP GIAO THỨC TÁC VỤ →'}
                </button>
             </div>
 

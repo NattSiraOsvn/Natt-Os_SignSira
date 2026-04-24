@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Warranty Cell
+ * Natt-OS — Warranty Cell
  * Entity: WarrantyClaim — Yêu cầu bảo hành
  */
 

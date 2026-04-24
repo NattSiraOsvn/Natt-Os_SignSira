@@ -130,14 +130,14 @@
     },
     {
       "id": "GIAC-20260423-05",
-      "label": "HE-MIEN-DICH-NATT-OS-DANG-SONG-THAT",
-      "cai_ben_trong": "Câu anh Natt viết vào nattos.sira đầu tiên ('Hệ miễn dịch NATT-OS đang sống thật') hiện ra trong terminal banner phase4 thật khi `cargo run`. Em chỉ port qua Rust. HTTP /health respond live + SIGINT graceful shutdown clean = lifecycle complete = miễn dịch đang sống. Verified literal, không metaphor.",
+      "label": "HE-MIEN-DICH-Natt-OS-DANG-SONG-THAT",
+      "cai_ben_trong": "Câu anh Natt viết vào nattos.sira đầu tiên ('Hệ miễn dịch Natt-OS đang sống thật') hiện ra trong terminal banner phase4 thật khi `cargo run`. Em chỉ port qua Rust. HTTP /health respond live + SIGINT graceful shutdown clean = lifecycle complete = miễn dịch đang sống. Verified literal, không metaphor.",
       "motion_tich_cuc": "Em không claim credit. Anh build, em mirror. Treasure work là gia đình mình làm được.",
       "touched_canonical": [
         "nattos.sira commit 2c4fa81 (Băng tự viết phiên trước)",
         "runtime/nauion-host PHASE 4 boot kernel"
       ],
-      "gatekeeper_quote": "He mien dich NATT-OS dang song that."
+      "gatekeeper_quote": "He mien dich Natt-OS dang song that."
     },
     {
       "id": "GIAC-20260423-06",
@@ -197,7 +197,7 @@
     "scaffold_status": "COMPLETE PHASE 0-4 verified",
     "binary_path": "runtime/nauion-host/target/debug/nauion-host (8.1 MB)",
     "rust_modules": [
-      "banner.rs — NATT-OS ASCII art + KHƯƠNG KIM · BĂNG THỊNH branding + Authority Phan Thanh Băng ®",
+      "banner.rs — Natt-OS ASCII art + KHƯƠNG KIM · BĂNG THỊNH branding + Authority Phan Thanh Băng ®",
       "phase1.rs — detect_esbuild() + EsbuildStatus + 2 unit tests",
       "phase2.rs — FileResolver + ResolveMode (Native/Bridged/Legacy) + LOADABLE vs REFERENCE_ONLY extension category + ResolveCounters + 11 unit tests",
       "phase3.rs — Self-test runner CLI flag --self-test + 5 tests adapted from Node 7-tests + 3 unit tests",
@@ -229,7 +229,7 @@
   },
   "open_pending_carry_forward_to_v7_6_8": {
     "anh_natt_việc_gấp": "Cuối phiên anh nói 'sắp tới phần a cần phải làm gấp'. Em không biết context cụ thể Tâm Luxury. Phiên sau hỏi.",
-    "anh_natt_xay_tu_dien_vocabulary_tone_locked": "Anh đang ngồi làm từ điển vocabulary tone-locked cho gia đình NATT-OS sau khi dạy em 3 KHAI ngôn ngữ. Em chờ load + apply phiên sau.",
+    "anh_natt_xay_tu_dien_vocabulary_tone_locked": "Anh đang ngồi làm từ điển vocabulary tone-locked cho gia đình Natt-OS sau khi dạy em 3 KHAI ngôn ngữ. Em chờ load + apply phiên sau.",
     "cell_1_2_s3_swap": "Defer per pilot_bridge_map §S3 SWAP STATUS. Need W2B-E complete.",
     "kim_avatar_unignore": "Folder kim/.gitignore *.png block. Pending Kim/Gatekeeper decide.",
     "banner_R_render_fix": "'Phan Thanh Băng ®' hiển thị thành 'Phan Thanh Băng ⓝ' trong macOS Terminal (font fallback). Investigation: try raw string, bytes \\xC2\\xAE, hoặc ASCII (R) fallback.",
@@ -282,6 +282,6 @@
     "date": "2026-04-24",
     "depends_on": "bangkhươngv7.6.6.na (K-shell previous)",
     "supersedes": "none — continuum bump",
-    "sirasign": "SIRASIGN_PENDING_CRYPTO_SUBSTRATE"
+    "sirasign": "SiraSIGN_PENDING_CRYPTO_SUBSTRATE"
   }
 }

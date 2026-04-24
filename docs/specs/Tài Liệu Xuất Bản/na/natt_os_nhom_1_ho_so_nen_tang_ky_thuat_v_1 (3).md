@@ -1,4 +1,4 @@
-# NATT-OS — NHÓM 4: HỒ SƠ BẢO MẬT / TRUST / KIỂM SOÁT RỦI RO
+# Natt-OS — NHÓM 4: HỒ SƠ BẢO MẬT / TRUST / KIỂM SOÁT RỦI RO
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ security/trust readiness trước controlled preview hoặc market launch  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 4
 
-Nhóm 4 là bộ hồ sơ dùng để chứng minh NATT-OS có cơ chế kiểm soát rủi ro khi chuẩn bị ra mắt thị trường hoặc demo cho đối tác.
+Nhóm 4 là bộ hồ sơ dùng để chứng minh Natt-OS có cơ chế kiểm soát rủi ro khi chuẩn bị ra mắt thị trường hoặc demo cho đối tác.
 
 Nhóm này trả lời 8 câu hỏi:
 
@@ -81,7 +81,7 @@ STATUS: UNBYPASSABLE
 
 ## 1.2. Mục đích
 
-Tài liệu này mô tả kiến trúc bảo mật tổng quan của NATT-OS ở mức có thể dùng cho nội bộ, đối tác kỹ thuật và hồ sơ trust trước market preview.
+Tài liệu này mô tả kiến trúc bảo mật tổng quan của Natt-OS ở mức có thể dùng cho nội bộ, đối tác kỹ thuật và hồ sơ trust trước market preview.
 
 ## 1.3. Các lớp bảo mật
 
@@ -107,7 +107,7 @@ Tài liệu này mô tả kiến trúc bảo mật tổng quan của NATT-OS ở
 └──────────────────────────────────────────────────────────────┘
                               ↓
 ┌──────────────────────────────────────────────────────────────┐
-│ LAYER 3 — AUTHORITY / GATEKEEPER / SIRASIGN                  │
+│ LAYER 3 — AUTHORITY / GATEKEEPER / SiraSIGN                  │
 │ RBAC, approval, roadload, signature, release control          │
 └──────────────────────────────────────────────────────────────┘
                               ↓
@@ -169,7 +169,7 @@ zero-risk AI runtime
 
 ## 2.2. Mục đích
 
-Định nghĩa quyền hạn trong NATT-OS: ai được đọc, ghi, ký, approve, deploy, rollback, demo, release.
+Định nghĩa quyền hạn trong Natt-OS: ai được đọc, ghi, ký, approve, deploy, rollback, demo, release.
 
 ## 2.3. Role đề xuất
 
@@ -400,7 +400,7 @@ Phân loại dữ liệu, xác định dữ liệu nào được đưa vào demo
 
 ## 6.2. Mục đích
 
-Liệt kê mối đe dọa chính đối với NATT-OS và cách phát hiện/giảm thiểu.
+Liệt kê mối đe dọa chính đối với Natt-OS và cách phát hiện/giảm thiểu.
 
 ## 6.3. Threat categories
 
@@ -454,7 +454,7 @@ status:
 
 ## 7.2. Mục đích
 
-Định nghĩa hai loại bức xạ chính trong NATT-OS:
+Định nghĩa hai loại bức xạ chính trong Natt-OS:
 
 ```text
 Information Radiation = nhiễu thông tin tức thời
@@ -826,7 +826,7 @@ for path, content in files.items():
 
 print('created_count=', len(created))
 EOF
-git add docs/security && git commit -m "docs(security): add NATT-OS group 4 trust and security skeletons" && git push origin main
+git add docs/security && git commit -m "docs(security): add Natt-OS group 4 trust and security skeletons" && git push origin main
 ```
 
 ---

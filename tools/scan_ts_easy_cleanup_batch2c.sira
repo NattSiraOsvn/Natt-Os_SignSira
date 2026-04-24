@@ -15,17 +15,17 @@ const required = [
   "## 2. Summary",
   "## 3. Easy Candidates",
   "## 5. Full Classification",
-  "NEEDS_TRANSLATION_TO_SIRA"
+  "NEEDS_TRANSLATION_TO_Sira"
 ];
 
 const missing = required.filter(x => !content.includes(x));
 
 if (missing.length) {
-  console.error("TS CLEANUP BATCH2C SCAN VALIDATION: FAIL");
+  console.error("TS CLEANUP BATCH2C SCAN validation: fail");
   for (const x of missing) console.error(" - missing " + x);
   process.exit(1);
 }
 
-console.log("TS CLEANUP BATCH2C SCAN VALIDATION: PASS");
-console.log("scope=NEEDS_TRANSLATION_TO_SIRA scan only");
+console.log("TS CLEANUP BATCH2C SCAN validation: pass");
+console.log("scope=NEEDS_TRANSLATION_TO_Sira scan only");
 console.log("mode=no rename, no code mutation");

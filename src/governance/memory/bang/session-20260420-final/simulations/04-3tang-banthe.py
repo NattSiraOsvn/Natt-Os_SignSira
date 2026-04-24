@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — Π_SYSTEM HOÀN CHỈNH 3 TẦNG
+Natt-OS — Π_SYSTEM HOÀN CHỈNH 3 TẦNG
 ═══════════════════════════════════════════════════════════════════════
 
 Tích hợp từ conversation 20260420:
@@ -48,7 +48,7 @@ class Tang(Enum):
 
 @dataclass
 class Entity:
-    """Một entity NATT-OS có 3 tầng bản thể"""
+    """Một entity Natt-OS có 3 tầng bản thể"""
     name: str
     group: str
 
@@ -262,7 +262,7 @@ entities = [
 # ═══════════════════════════════════════════════════════════════════════
 
 print("=" * 90)
-print(f"{'NATT-OS — Π_SYSTEM 3 TẦNG (Body = obitan trong trường số)':^90}")
+print(f"{'Natt-OS — Π_SYSTEM 3 TẦNG (Body = obitan trong trường số)':^90}")
 print("=" * 90)
 
 header = f"{'Entity':<24} {'Π_body':>7} {'Π_med':>6} {'Π_sub':>6} {'Π_sys':>7} {'Recov':>6} {'Status':<22}"
@@ -331,7 +331,7 @@ for e in revivable:
 
 fig = plt.figure(figsize=(18, 12))
 gs = GridSpec(3, 3, figure=fig, hspace=0.45, wspace=0.35)
-fig.suptitle('NATT-OS — Π_system 3 TẦNG  ·  Body = obitan trong trường số',
+fig.suptitle('Natt-OS — Π_system 3 TẦNG  ·  Body = obitan trong trường số',
              fontsize=15, fontweight='bold', y=0.995)
 
 # [1] 3 tầng stack bar chart

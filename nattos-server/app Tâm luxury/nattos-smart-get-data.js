@@ -1,5 +1,5 @@
 /**
- * NATT-OS Smart Get Data Engine v1.0
+ * Natt-OS Smart Get Data Engine v1.0
  * Tâm Luxury — Phát Hiện Thao Túng Luồng Sản Xuất
  *
  * 5 lớp bảo vệ:
@@ -701,7 +701,7 @@ return { analyze, crossValidate, detectAnomalies, auditTimestamps, analyzeDelta,
 if (typeof module !== 'undefined') module.exports = SmartGetData;
 if (typeof window !== 'undefined') window.SmartGetData = SmartGetData;
 /**
- * NATT-OS Smart Get Data — L6/L7/L8 Extension
+ * Natt-OS Smart Get Data — L6/L7/L8 Extension
  * Append vào cuối nattos-smart-get-data.js
  *
  * L6 — PHỔ Monitor:   PHỔ SX vs SC per thợ → flag thợ SC% cao
@@ -898,7 +898,7 @@ if (typeof window !== 'undefined') {
   window.SmartGetData.L8 = { analyzeScWeightIncrease };
 }
 
-// ── NATT-OS EVENT INTEGRATION ──────────────────────────────────────────────────
+// ── Natt-OS EVENT INTEGRATION ──────────────────────────────────────────────────
 // Gọi từ surveillance.html sau khi load data
 function runL678Analysis(serverData) {
   const results = {};

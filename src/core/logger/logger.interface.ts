@@ -1,5 +1,5 @@
 /**
- * LOGGER INTERFACE - NATT-OS
+ * LOGGER INTERFACE - Natt-OS
  */
 
 export type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'FATAL';

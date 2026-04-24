@@ -9,7 +9,7 @@
 ## .anc  (80 files)
 
 ### ./docs/specs
-  - NATT-OS-PLATFORM-SPEC.anc
+  - Natt-OS-PLATFORM-SPEC.anc
 
 ### ./src/cells/business/analytics-cell
   - analytics-cell.cell.anc
@@ -187,7 +187,7 @@
   - 001-gatekeeper-ai-ban.anc
 
 ### ./src/governance/archive
-  - HIEN-PHAP-NATT-OS-v4.0.anc
+  - HIEN-PHAP-Natt-OS-v4.0.anc
 
 ### ./src/governance/memory/Can
   - can.anc
@@ -222,7 +222,7 @@
   - SPEC_NEN_v1.1.anc
 
 ### ./src/governance
-  - HIEN-PHAP-NATT-OS-v5.0.anc
+  - HIEN-PHAP-Natt-OS-v5.0.anc
 
 ---
 

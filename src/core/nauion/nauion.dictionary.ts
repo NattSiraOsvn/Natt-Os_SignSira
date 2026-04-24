@@ -1,6 +1,6 @@
 /**
  * nauion.dictionary.ts
- * Từ điển ngôn ngữ nền tảng NATT-OS — Nauion Language
+ * Từ điển ngôn ngữ nền tảng Natt-OS — Nauion Language
  *
  * Đây không phải glossary.
  * Đây là ngôn ngữ của sinh thể số — mỗi từ là một trạng thái, không phải tên gọi.

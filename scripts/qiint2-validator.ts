@@ -1,7 +1,7 @@
 /**
  * QIINT2 VALIDATOR
  * ════════════════════════════════════════════════════════
- * Scanner/validator cho NATT-OS — đo Π_body, Π_medium, Π_substrate
+ * Scanner/validator cho Natt-OS — đo Π_body, Π_medium, Π_substrate
  * cho từng cell, phát hiện:
  *   - body_drift (orbital lỏng)
  *   - medium_fail (code corrupt)

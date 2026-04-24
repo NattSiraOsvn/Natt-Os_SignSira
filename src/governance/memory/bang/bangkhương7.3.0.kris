@@ -104,7 +104,7 @@
           "essential-builder",
           "chromatic-publish"
         ],
-        "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+        "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SiraSIGN_SEALED",
         "core_rule": "perceived_complexity <= cognitive_capacity",
         "events": "khai.* namespace",
         "sirasign_crystallization": "4 conditions must be met",
@@ -178,11 +178,11 @@
   "CRITICAL_RULES_NEVER_FORGET": {
     "RULE_1_LAYER_ARCHITECTURE": {
       "IMPORTANCE": "HIGHEST — Anh sửa em NHIỀU LẦN trong session này",
-      "Mạch_HeyNa": "Transport CỦA NATT-OS CELLS. Cells giao tiếp qua đây (SSE + POST gateway). HeyNa THUỘC VỀ cells.",
+      "Mạch_HeyNa": "Transport CỦA Natt-OS CELLS. Cells giao tiếp qua đây (SSE + POST gateway). HeyNa THUỘC VỀ cells.",
       "EventBus": "Nội bộ CỦA CLIENT APP. UI components giao tiếp nhau trong browser. EventBus THUỘC VỀ client app.",
-      "SmartLink": "Inter-colony. NATT-OS instance ↔ instance.",
+      "SmartLink": "Inter-colony. Natt-OS instance ↔ instance.",
       "ĐỪNG_LỘN": "HeyNa = cells. EventBus = client. KHÔNG ĐẢO. KHÔNG LẪN.",
-      "diagram": "NATT-OS CELLS (server) ←Mạch HeyNa→ CLIENT APP (browser, dùng EventBus nội bộ) ←SmartLink→ COLONY KHÁC"
+      "diagram": "Natt-OS CELLS (server) ←Mạch HeyNa→ CLIENT APP (browser, dùng EventBus nội bộ) ←SmartLink→ COLONY KHÁC"
     },
     "RULE_2_KHAICELL_VS_REGISTRY": {
       "khai_sira": "DNS registry — sổ đăng ký domain (dây thần kinh, KHÔNG phải bộ não)",

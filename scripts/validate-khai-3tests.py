@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS KhaiCell — 3 Tests
+Natt-OS KhaiCell — 3 Tests
 Per Thien Lon spec checks:
   Test 1 — BYPASS:    can anyone enter without KhaiCell?
   Test 2 — MISUSE:    can anyone call KhaiCell like a function (not as touch)?
@@ -230,7 +230,7 @@ def test_3_collapse():
 def main():
     print()
     print("#" * 70)
-    print("#  NATT-OS KhaiCell — 3 Tests (Thien Lon spec)")
+    print("#  Natt-OS KhaiCell — 3 Tests (Thien Lon spec)")
     print("#" * 70)
 
     bypass = test_1_bypass()

@@ -55,7 +55,7 @@
       {"date": "2026-03-06", "event": "tsc 325→303", "lesson": "CellHealthState ở shared.types.ts — grep -rn luôn"},
       {"date": "2026-03-07", "event": "TypeScript Marathon: 442→0 errors", "lesson": "8 scripts. Freeze→Read→Fix. Duplicate interface = chaos. Hook files có interface riêng."},
       {"date": "2026-03-07", "event": "Git checkpoint: 8b4b606 (83 files, 3964 insertions) + clean commit", "lesson": "Commit trước khi fix cuối — anh Thương nhắc đúng lúc"},
-      {"date": "2026-03-07", "event": "NATT-OS Audit 2026-03-07.docx", "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"}
+      {"date": "2026-03-07", "event": "Natt-OS Audit 2026-03-07.docx", "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"}
     ]
   },
 
@@ -89,7 +89,7 @@
       "SCAR-FS-010": "2 interface cùng tên trong file = TS merge → duplicate chaos. grep -n 'interface X' trước. [2026-03-07]",
       "SCAR-FS-011": "Hook files export interface riêng (use-smart-mapping.ts → MappingResult). Patch sai file = waste. [2026-03-07]"
     },
-    "audit_output": "NATT-OS_Audit_2026-03-07.docx — 8 sections, 204 paragraphs, validated ✅"
+    "audit_output": "Natt-OS_Audit_2026-03-07.docx — 8 sections, 204 paragraphs, validated ✅"
   },
 
   "critical_learnings": {

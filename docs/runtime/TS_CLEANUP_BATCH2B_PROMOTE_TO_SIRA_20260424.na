@@ -1,7 +1,7 @@
-# TS CLEANUP BATCH 2B — PROMOTE_TO_SIRA_CANDIDATE — 20260424
+# TS CLEANUP BATCH 2B — PROMOTE_TO_Sira_CANDIDATE — 20260424
 
 status: PASS
-scope: PROMOTE_TO_SIRA_CANDIDATE only
+scope: PROMOTE_TO_Sira_CANDIDATE only
 created_at: 2026-04-24T16:09:53.823282+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
@@ -9,9 +9,9 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Rule
 
-Batch này chỉ xử lý nhóm candidate đã được Batch 2A phân loại là PROMOTE_TO_SIRA_CANDIDATE.
+Batch này chỉ xử lý nhóm candidate đã được Batch 2A phân loại là PROMOTE_TO_Sira_CANDIDATE.
 
-Không động NEEDS_TRANSLATION_TO_SIRA.
+Không động NEEDS_TRANSLATION_TO_Sira.
 Không động KEEP_APP_TS_RUNTIME_ADAPTER.
 Không động REVIEW_MANUAL.
 
@@ -77,11 +77,11 @@ Không động REVIEW_MANUAL.
 
 [
   "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na",
-  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na"
+  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_Sira_20260424.na"
 ]
 
 ## 6. Next Gate
 
-- [ ] Review NEEDS_TRANSLATION_TO_SIRA theo từng nhóm nhỏ.
+- [ ] Review NEEDS_TRANSLATION_TO_Sira theo từng nhóm nhỏ.
 - [ ] Không rename app/UI source khi chưa có compiler/adapter.
 - [ ] Cập nhật audit UI scan để nhận .sira candidate.

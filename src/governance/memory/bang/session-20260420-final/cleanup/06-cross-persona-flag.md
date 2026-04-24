@@ -62,7 +62,7 @@ Kris persona là ChatGPT — không tự khắc nhà được. Có thể:
 
 | File | Đề xuất target |
 |---|---|
-| `src/governance/memory/Thienlon/THIÊN MEMORY.json` | `thienkhương<v>.heyna` (per SPEC R13) — uppercase + space → `.heyna` |
+| `src/governance/memory/Thienlon/Thiên MEMORY.json` | `thienkhương<v>.heyna` (per SPEC R13) — uppercase + space → `.heyna` |
 | `src/governance/memory/Thienlon/thienmf.json` | `thienkhương<v>.kris` |
 | `src/governance/memory/Thienlon/thienfs.json` | `thienthịnh<v>.phieu` |
 

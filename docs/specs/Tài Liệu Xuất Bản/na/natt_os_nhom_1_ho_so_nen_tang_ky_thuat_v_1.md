@@ -1,4 +1,4 @@
-# NATT-OS — NHÓM 1: HỒ SƠ NỀN TẢNG KỸ THUẬT
+# Natt-OS — NHÓM 1: HỒ SƠ NỀN TẢNG KỸ THUẬT
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — dùng để chuẩn bị Gold Master Stabilization và Market Launch  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 1
 
-Nhóm 1 là bộ tài liệu kỹ thuật lõi chứng minh NATT-OS có:
+Nhóm 1 là bộ tài liệu kỹ thuật lõi chứng minh Natt-OS có:
 
 1. Kiến trúc hệ thống rõ ràng.
 2. Runtime có thể mô tả, kiểm tra và định vị Wave.
@@ -26,7 +26,7 @@ Nhóm này không phải tài liệu bán hàng. Đây là **xương sống kỹ
 
 | Mã | Tài liệu | Mức độ | Mục đích |
 |---|---|---:|---|
-| T1 | NATT-OS System Architecture Spec | Bắt buộc | Mô tả kiến trúc tổng thể |
+| T1 | Natt-OS System Architecture Spec | Bắt buộc | Mô tả kiến trúc tổng thể |
 | T2 | Runtime Wave Report | Bắt buộc | Xác định runtime đang ở Wave nào |
 | T3 | Cell Registry / Cell Map | Bắt buộc | Liệt kê cell, domain, trách nhiệm, trạng thái |
 | T4 | Event Envelope & Causality Spec | Bắt buộc | Chuẩn hóa event, causality, trace, audit |
@@ -39,7 +39,7 @@ Nhóm này không phải tài liệu bán hàng. Đây là **xương sống kỹ
 
 ---
 
-# T1 — NATT-OS SYSTEM ARCHITECTURE SPEC
+# T1 — Natt-OS SYSTEM ARCHITECTURE SPEC
 
 ## 1.1. Tên file đề xuất
 
@@ -47,7 +47,7 @@ Nhóm này không phải tài liệu bán hàng. Đây là **xương sống kỹ
 
 ## 1.2. Mục đích
 
-Tài liệu này mô tả kiến trúc tổng thể của NATT-OS ở mức có thể dùng để:
+Tài liệu này mô tả kiến trúc tổng thể của Natt-OS ở mức có thể dùng để:
 
 - Cho nội bộ hiểu hệ thống.
 - Làm nền cho whitepaper kỹ thuật.
@@ -58,7 +58,7 @@ Tài liệu này mô tả kiến trúc tổng thể của NATT-OS ở mức có 
 
 ### A. Tuyên bố kiến trúc
 
-NATT-OS là hệ điều phối phần mềm theo mô hình:
+Natt-OS là hệ điều phối phần mềm theo mô hình:
 
 ```text
 STATE + EVENT + CAUSALITY + AUDIT
@@ -116,7 +116,7 @@ Một file spec có:
 
 ## 2.2. Mục đích
 
-Xác định runtime NATT-OS hiện đang đạt tới Wave nào, không dựa trên cảm giác hoặc claim.
+Xác định runtime Natt-OS hiện đang đạt tới Wave nào, không dựa trên cảm giác hoặc claim.
 
 ## 2.3. Wave model đề xuất
 
@@ -156,7 +156,7 @@ Xác định runtime NATT-OS hiện đang đạt tới Wave nào, không dựa t
 
 ## 3.2. Mục đích
 
-Kiểm kê toàn bộ cell của NATT-OS để biết:
+Kiểm kê toàn bộ cell của Natt-OS để biết:
 
 - Cell nào tồn tại thật trong repo.
 - Cell nào chỉ là spec.
@@ -213,7 +213,7 @@ release_blocker:
 
 ## 4.2. Mục đích
 
-Chuẩn hóa mọi event trong NATT-OS để không còn event rời rạc, thiếu nguyên nhân, thiếu audit, thiếu tenant hoặc thiếu trace.
+Chuẩn hóa mọi event trong Natt-OS để không còn event rời rạc, thiếu nguyên nhân, thiếu audit, thiếu tenant hoặc thiếu trace.
 
 ## 4.3. Envelope tối thiểu
 
@@ -264,7 +264,7 @@ unknown schema_version => quarantine
 
 ## 5.2. Mục đích
 
-Định nghĩa Mach HeyNa là lớp vận chuyển tín hiệu giữa client surface và runtime, tránh hiểu sai NATT-OS là REST CRUD app.
+Định nghĩa Mach HeyNa là lớp vận chuyển tín hiệu giữa client surface và runtime, tránh hiểu sai Natt-OS là REST CRUD app.
 
 ## 5.3. Nguyên tắc
 
@@ -332,11 +332,11 @@ SmartLink có decay tự nhiên. Nếu không refresh hoặc verify, link bị m
 
 ---
 
-# T7 — SIRASIGN / GATEKEEPER SPEC
+# T7 — SiraSIGN / GATEKEEPER SPEC
 
 ## 7.1. Tên file đề xuất
 
-`docs/specs/SIRASIGN_GATEKEEPER_SPEC_v1.na`
+`docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na`
 
 ## 7.2. Mục đích
 
@@ -375,7 +375,7 @@ revocation_rule:
 
 ## 8.2. Mục đích
 
-Định nghĩa vai trò ba loại file lõi của Nauion/NATT-OS.
+Định nghĩa vai trò ba loại file lõi của Nauion/Natt-OS.
 
 ## 8.3. Phân loại
 
@@ -445,7 +445,7 @@ last_verified_at:
 
 ## 9.1. Tên file đề xuất
 
-`docs/specs/SIRA_NAMESPACE_INVENTORY_v1.na`
+`docs/specs/Sira_NAMESPACE_INVENTORY_v1.na`
 
 ## 9.2. Mục đích
 
@@ -494,7 +494,7 @@ notes:
 
 ## 10.2. Mục đích
 
-Định nghĩa nguồn sự thật của NATT-OS để không nhầm giữa:
+Định nghĩa nguồn sự thật của Natt-OS để không nhầm giữa:
 
 - Memory.
 - Report.
@@ -552,9 +552,9 @@ audit_ref:
 | T4 | Event Envelope & Causality Spec | `docs/specs/EVENT_ENVELOPE_CAUSALITY_SPEC_v1.na` | ☐ |
 | T5 | Mach HeyNa Transport Spec | `docs/specs/MACH_HEYNA_TRANSPORT_SPEC_v1.na` | ☐ |
 | T6 | SmartLink Protocol Spec | `docs/specs/SMARTLINK_PROTOCOL_SPEC_v1.na` | ☐ |
-| T7 | SiraSign / Gatekeeper Spec | `docs/specs/SIRASIGN_GATEKEEPER_SPEC_v1.na` | ☐ |
+| T7 | SiraSign / Gatekeeper Spec | `docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na` | ☐ |
 | T8 | File Extension Spec | `docs/specs/FILE_EXTENSION_SPEC_ANC_NA_PHIEU_v1.na` | ☐ |
-| T9 | Namespace Inventory | `docs/specs/SIRA_NAMESPACE_INVENTORY_v1.na` | ☐ |
+| T9 | Namespace Inventory | `docs/specs/Sira_NAMESPACE_INVENTORY_v1.na` | ☐ |
 | T10 | Ground Truth Model Spec | `docs/specs/GROUND_TRUTH_MODEL_SPEC_v1.na` | ☐ |
 
 ---
@@ -568,15 +568,15 @@ python3 - << 'EOF'
 from pathlib import Path
 
 files = {
-    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# NATT-OS System Architecture Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# Natt-OS System Architecture Spec v1\n\nSTATUS: DRAFT\n',
     'docs/release/RUNTIME_WAVE_REPORT_v1.na': '# Runtime Wave Report v1\n\nSTATUS: DRAFT\n',
     'docs/specs/CELL_REGISTRY_MAP_v1.na': '# Cell Registry / Cell Map v1\n\nSTATUS: DRAFT\n',
     'docs/specs/EVENT_ENVELOPE_CAUSALITY_SPEC_v1.na': '# Event Envelope & Causality Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/MACH_HEYNA_TRANSPORT_SPEC_v1.na': '# Mach HeyNa Transport Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/SMARTLINK_PROTOCOL_SPEC_v1.na': '# SmartLink Protocol Spec v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/SIRASIGN_GATEKEEPER_SPEC_v1.na': '# SiraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na': '# SiraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/FILE_EXTENSION_SPEC_ANC_NA_PHIEU_v1.na': '# File Extension Spec .anc/.na/.phieu v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/SIRA_NAMESPACE_INVENTORY_v1.na': '# SIRA Namespace Inventory v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/Sira_NAMESPACE_INVENTORY_v1.na': '# Sira Namespace Inventory v1\n\nSTATUS: DRAFT\n',
     'docs/specs/GROUND_TRUTH_MODEL_SPEC_v1.na': '# Ground Truth Model Spec v1\n\nSTATUS: DRAFT\n',
 }
 
@@ -604,15 +604,15 @@ python3 - << 'EOF'
 from pathlib import Path
 
 files = {
-    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# NATT-OS System Architecture Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/NATT_OS_SYSTEM_ARCHITECTURE_SPEC_v1.na': '# Natt-OS System Architecture Spec v1\n\nSTATUS: DRAFT\n',
     'docs/release/RUNTIME_WAVE_REPORT_v1.na': '# Runtime Wave Report v1\n\nSTATUS: DRAFT\n',
     'docs/specs/CELL_REGISTRY_MAP_v1.na': '# Cell Registry / Cell Map v1\n\nSTATUS: DRAFT\n',
     'docs/specs/EVENT_ENVELOPE_CAUSALITY_SPEC_v1.na': '# Event Envelope & Causality Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/MACH_HEYNA_TRANSPORT_SPEC_v1.na': '# Mach HeyNa Transport Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/SMARTLINK_PROTOCOL_SPEC_v1.na': '# SmartLink Protocol Spec v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/SIRASIGN_GATEKEEPER_SPEC_v1.na': '# SiraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/SiraSIGN_GATEKEEPER_SPEC_v1.na': '# SiraSign / Gatekeeper Spec v1\n\nSTATUS: DRAFT\n',
     'docs/specs/FILE_EXTENSION_SPEC_ANC_NA_PHIEU_v1.na': '# File Extension Spec .anc/.na/.phieu v1\n\nSTATUS: DRAFT\n',
-    'docs/specs/SIRA_NAMESPACE_INVENTORY_v1.na': '# SIRA Namespace Inventory v1\n\nSTATUS: DRAFT\n',
+    'docs/specs/Sira_NAMESPACE_INVENTORY_v1.na': '# Sira Namespace Inventory v1\n\nSTATUS: DRAFT\n',
     'docs/specs/GROUND_TRUTH_MODEL_SPEC_v1.na': '# Ground Truth Model Spec v1\n\nSTATUS: DRAFT\n',
 }
 
@@ -629,7 +629,7 @@ for path, content in files.items():
 
 print('created_count=', len(created))
 EOF
-git add docs/specs docs/release && git commit -m "docs(release): add NATT-OS group 1 technical foundation skeletons" && git push origin main
+git add docs/specs docs/release && git commit -m "docs(release): add Natt-OS group 1 technical foundation skeletons" && git push origin main
 ```
 
 ---

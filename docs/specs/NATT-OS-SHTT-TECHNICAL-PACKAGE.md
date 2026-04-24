@@ -1,4 +1,4 @@
-# NATT-OS INTELLECTUAL PROPERTY TECHNICAL PACKAGE
+# Natt-OS INTELLECTUAL PROPERTY TECHNICAL PACKAGE
 ## Patent-Ready Technical Specification
 ## Version 1.0 · 2026-04-13
 
@@ -8,7 +8,7 @@
 **Phan Thanh Thương** (Natt Phan)
 
 ### System Name
-**NATT-OS** — Distributed Living Organism Architecture
+**Natt-OS** — Distributed Living Organism Architecture
 
 ### Filing Target
 USPTO (US), EPO (EU), NOIP (Vietnam)
@@ -56,7 +56,7 @@ Existing distributed systems (microservices, service meshes, event-driven archit
 
 ### 2.2 Prior Art Comparison
 
-| Capability | Istio/Envoy (Service Mesh) | Apache Kafka (Event Stream) | Kubernetes (Orchestration) | TensorFlow (ML Routing) | NATT-OS (Present Invention) |
+| Capability | Istio/Envoy (Service Mesh) | Apache Kafka (Event Stream) | Kubernetes (Orchestration) | TensorFlow (ML Routing) | Natt-OS (Present Invention) |
 |---|---|---|---|---|---|
 | Routing based on interaction history | No | No | No | Yes (offline training) | Yes (real-time, no training phase) |
 | Temporal pattern learning | No | No | No | Possible (offline) | Yes (NATTimer — real-time) |
@@ -85,7 +85,7 @@ Existing distributed systems (microservices, service meshes, event-driven archit
 
 ## 3. SUMMARY OF INVENTION
 
-NATT-OS is a distributed software architecture that models inter-component communication as a gravitational field. Components ("cells") interact through touch events that accumulate into weighted connections ("fibers"). The aggregate of these fibers creates a pressure field that dynamically modifies routing decisions. The system exhibits three emergent properties verified by integration testing:
+Natt-OS is a distributed software architecture that models inter-component communication as a gravitational field. Components ("cells") interact through touch events that accumulate into weighted connections ("fibers"). The aggregate of these fibers creates a pressure field that dynamically modifies routing decisions. The system exhibits three emergent properties verified by integration testing:
 
 **Prediction:** Given a sequence of recent cell activations, the system predicts the next cell to be activated and the expected time delay with measured accuracy of 100% in controlled tests.
 
@@ -500,7 +500,7 @@ A computer-implemented method for governing a distributed software system using 
 
 ## APPENDICES
 
-### A. Glossary of NATT-OS Terms
+### A. Glossary of Natt-OS Terms
 
 | Term | Definition |
 |---|---|

@@ -1,5 +1,5 @@
 /**
- * NATT-OS SmartLink → QNEU Bridge
+ * Natt-OS SmartLink → QNEU Bridge
  *
  * Sau mỗi lần touch, SmartLinkPoint gửi imprint sang QNEU.
  * QNEU không biết SmartLink là gì — chỉ nhận imprint và ghi vết hằn.

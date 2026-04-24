@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * NATT-OS Pricing Cell — Full Price Calculator
+ * Natt-OS Pricing Cell — Full Price Calculator
  *
  * CÔNG THỨC GIÁ BÁN TRANG SỨC TÂM LUXURY:
  *

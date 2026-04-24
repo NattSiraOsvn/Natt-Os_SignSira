@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Showroom Cell
+ * Natt-OS — Showroom Cell
  * EDA Event Contracts v2.1.0
  */
 

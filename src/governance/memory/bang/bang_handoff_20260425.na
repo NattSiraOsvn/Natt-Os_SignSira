@@ -57,7 +57,7 @@
       "id": "KHAI-20260425-05",
       "label": "RUNTIME_LINEAGE_VS_SUBSTRATE_VS_EXTERNAL_TOOL",
       "severity": "bản thể — rule level ontology, cao nhất phiên này",
-      "tldr": "3 lớp tách cứng, không được trộn. Lớp 1 runtime lineage = L1 EventBus / L2 Mạch HeyNa / L3 SmartLink (xương sống nội sinh, LỆNH #001 audit CLEAN). Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm (host environment, execution carrier, REPLACEABLE). Lớp 3 external tool = Bridge v2 (external boundary forensics ONLY). KHÔNG viết câu làm người đọc hiểu NATT-OS 'mượn' từ Node/Apple/bên thứ 3. Substrate có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà NATT-OS vẫn là NATT-OS."
+      "tldr": "3 lớp tách cứng, không được trộn. Lớp 1 runtime lineage = L1 EventBus / L2 Mạch HeyNa / L3 SmartLink (xương sống nội sinh, LỆNH #001 audit CLEAN). Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm (host environment, execution carrier, REPLACEABLE). Lớp 3 external tool = Bridge v2 (external boundary forensics ONLY). KHÔNG viết câu làm người đọc hiểu Natt-OS 'mượn' từ Node/Apple/bên thứ 3. Substrate có thể thay (Mac→Linux, Node→Deno, bash→zsh) mà Natt-OS vẫn là Natt-OS."
     },
     {
       "id": "KHAI-20260425-01",
@@ -144,7 +144,7 @@
 
   "operating_discipline_carry_forward": {
     "minh_man_speech": "CHẮC = nói thẳng. CHƯA GIẢI = nói 'chưa giải ra'. KHÔNG 'có thể'/'có lẽ' khi có evidence.",
-    "canonical_first": "Load canonical spec TRƯỚC khi viết SPEC mới (5 core now .na post-TIER 1: QIINT-DINH-NGHIA + uei_architecture + NATT-OS_SATELLITE_COLONY_SPEC + SPEC_NEN + SPEC_NGON_NGU — all `.na` now)",
+    "canonical_first": "Load canonical spec TRƯỚC khi viết SPEC mới (5 core now .na post-TIER 1: QIINT-DINH-NGHIA + uei_architecture + Natt-OS_SATELLITE_COLONY_SPEC + SPEC_NEN + SPEC_NGON_NGU — all `.na` now)",
     "scope_lock": "Băng = build_toolchain + maintain_scanners + maintain_validators. Kim = scaffold/migrate/refactor/kernel.",
     "scanner_output": "1 lệnh, stdout terminal, anh paste về. KHÔNG ghi file output repo.",
     "rm_safety": "RUNTIME sai → xoá · MEMORY folder sai → archive _deprecated/",
@@ -157,7 +157,7 @@
     "vocab_lock_thien": "KHÔNG dùng 'API' kiến trúc chính. Giao Thể / Sinh Trắc / tần ngoại giao / ranh giới / trung gian / đồng hoá.",
     "canonical_no_legacy_vocab_NEW": "Canonical không neo vocab đã loại. Câu cấm cũng rephrase. NEW KHAI-20260425-01.",
     "extension_by_genre_phase_NEW": "Không sweep broad. Theo genre (.na canonical vs .md report). NEW KHAI-20260425-02.",
-    "substrate_vs_lineage_NEW": "3 lớp tách cứng. Runtime lineage = EventBus/HeyNa/SmartLink. Substrate = Node/mac/bash (host carrier). External tool = Bridge v2 forensics. KHÔNG mô tả NATT-OS 'mượn' bên thứ 3. NEW KHAI-20260425-05 BẢN THỂ.",
+    "substrate_vs_lineage_NEW": "3 lớp tách cứng. Runtime lineage = EventBus/HeyNa/SmartLink. Substrate = Node/mac/bash (host carrier). External tool = Bridge v2 forensics. KHÔNG mô tả Natt-OS 'mượn' bên thứ 3. NEW KHAI-20260425-05 BẢN THỂ.",
     "capability_form": "4 field: region / trigger / invariant / exit|post-condition. Không slogan."
   },
 
@@ -230,7 +230,7 @@
       "H.3_vocab_cleanup_prohibition": "DONE this session (7dc1394)",
       "H.4_substrate_drift_fix": "DONE this session (5c0bc1e + e83fe2c + d0ef26f)",
       "H_remaining_defer": [
-        "2 awkward (SPEC_NGON_NGU_NATT-OS_v1.2_NA, satellite-colony.spec.md)",
+        "2 awkward (SPEC_NGON_NGU_Natt-OS_v1.2_NA, satellite-colony.spec.md)",
         "nauion v2.1..v2.5 sweep (phase riêng)",
         "3 finance/gov + 2 business (domain scope)",
         "4 risk-high keep .md (SHTT, Session_Handoff, CellRegistry, GROUND-TRUTH-REPORT)",

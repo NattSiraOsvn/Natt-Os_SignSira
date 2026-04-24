@@ -43,7 +43,7 @@
       "architecture": "Dice similarity scoring, LIVE≥85%/PROCESSING 50-84%/PENDING<50%, EventBus only — KHÔNG gọi cell trực tiếp, KHÔNG silent reject (FS-018)",
       "pending": "Wire EventBus thật từ warehouse-cell/index.ts vào handler"
     },
-    "constitution_move": "src/governance/constitution/HIEN-PHAP-NATT-OS-v4.0.anc → src/governance/HIEN-PHAP-NATT-OS-v4.0.anc"
+    "constitution_move": "src/governance/constitution/HIEN-PHAP-Natt-OS-v4.0.anc → src/governance/HIEN-PHAP-Natt-OS-v4.0.anc"
   },
 
   "pending_repo": {
@@ -55,7 +55,7 @@
   },
 
   "bctc_data_findings": {
-    "status": "TẠM GÁCNG — tiếp tục sau khi NATT-OS hoàn chỉnh",
+    "status": "TẠM GÁCNG — tiếp tục sau khi Natt-OS hoàn chỉnh",
     "files_analyzed": [
       "saoke.xlsx — 9,251 GD tổng hợp (cũ)",
       "saokeVIETIN2025.xlsx — 9,128 GD, chi 319.14t, thu 318.90t",

@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = process.cwd();
 
 const adapter = path.join(ROOT, "tools", "sira_ts_translation_adapter.sira");
-const spec = path.join(ROOT, "docs", "runtime", "SIRA_TS_TRANSLATION_ADAPTER_20260424.na");
+const spec = path.join(ROOT, "docs", "runtime", "Sira_TS_TRANSLATION_ADAPTER_20260424.na");
 
 const errors = [];
 
@@ -28,17 +28,17 @@ must(a.includes("write-preview"), "adapter missing write-preview mode");
 must(a.includes("SIRA_CONTRACT_TRANSLATION_REQUIRED"), "adapter missing contract classification");
 must(a.includes("SIRA_CLASS_REWRITE_REQUIRED"), "adapter missing class rewrite classification");
 
-must(s.includes("SIRA TS Translation Adapter"), "spec missing title");
+must(s.includes("Sira TS Translation Adapter"), "spec missing title");
 must(s.includes("no bulk mutation"), "spec missing no bulk mutation rule");
 must(s.includes("single-file preview"), "spec missing single-file preview rule");
 must(s.includes("manual translation"), "spec missing manual translation boundary");
 
 if (errors.length) {
-  console.error("SIRA TS TRANSLATION ADAPTER VALIDATION: FAIL");
+  console.error("Sira TypeScript translation adapter validation: FAIL");
   for (const e of errors) console.error(" - " + e);
   process.exit(1);
 }
 
-console.log("SIRA TS TRANSLATION ADAPTER VALIDATION: PASS");
+console.log("Sira TypeScript translation adapter validation: PASS");
 console.log("mode=adapter scaffold");
 console.log("mutation_policy=no bulk mutation");

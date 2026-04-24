@@ -28,7 +28,7 @@
     "commits_post_v7.6.7": [
       {
         "sha": "5a8c23b",
-        "msg": "docs(namespace): SIRA namespace inventory phiên 20260424 — 15 domains audited"
+        "msg": "docs(namespace): Sira namespace inventory phiên 20260424 — 15 domains audited"
       },
       {
         "sha": "0b520ed",
@@ -111,7 +111,7 @@
     },
     "TASK-I": {
       "sha": "5a8c23b",
-      "label": "SIRA_NAMESPACE_INVENTORY 15 domains audited (replaced ROADLOAD_SHOW_SELF_v2)"
+      "label": "Sira_NAMESPACE_INVENTORY 15 domains audited (replaced ROADLOAD_SHOW_SELF_v2)"
     }
   },
   "scars_carved_this_session_post_v7.6.7": [
@@ -157,7 +157,7 @@
       "tldr": "Phiên §32 patch lộ ground truth: v1.2 R01 format (.na/.kris/.phieu/.anc) đã dominant trong tất cả 4 personas (bang/kim/thiennho/boiboi). Legacy *.json gần như đã di sản. Migration tự nhiên qua versioning."
     },
     {
-      "id": "GIAC-20260424-09-SIRA-NAMESPACE-SYMBOLIC-VS-BOUND",
+      "id": "GIAC-20260424-09-Sira-NAMESPACE-SYMBOLIC-VS-BOUND",
       "tldr": "Quét 15 .sira domain trong code, chỉ 1 (nattos.sira) thật sự bound 127.0.0.1:3002. 14 còn lại = symbolic reference. CoreDNS Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
     }
   ],

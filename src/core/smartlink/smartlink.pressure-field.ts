@@ -1,5 +1,5 @@
 /**
- * NATT-OS SmartLink — Pressure Field
+ * Natt-OS SmartLink — Pressure Field
  * ════════════════════════════════════════════════════════
  * src/core/smartlink/smartlink.pressure-field.ts
  *

@@ -1,5 +1,5 @@
 /**
- * ObservationCell — Read-only awareness layer for NATT-OS field.
+ * ObservationCell — Read-only awareness layer for Natt-OS field.
  * SPEC NEN v1.1 §9.2 + §6 (he mien dich da tang)
  */
 export * from "./domain/entities";

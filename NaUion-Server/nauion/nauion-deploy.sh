@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATT-OS | Visual Pipeline Workspace v2.5</title>
+    <title>Natt-OS | Visual Pipeline Workspace v2.5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -202,7 +202,7 @@
             <span class="text-xl text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">⚛</span>
             <div>
                 <h1 class="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-fuchsia-400 uppercase tracking-widest" style="text-shadow: var(--glow-cyan);">
-                    NATT-OS UNIFIED WORKSPACE · SPEC NAUION v2.5
+                    Natt-OS UNIFIED WORKSPACE · SPEC NAUION v2.5
                 </h1>
                 <div class="text-[10px] font-mono text-slate-400 tracking-wide mt-0.5">Visual Pipeline Engine · Field‑Based Architecture</div>
             </div>
@@ -378,7 +378,7 @@
                     <button onclick="clearTerminal()" class="text-[10px] font-mono text-slate-400 hover:text-white bg-slate-800/80 px-2 rounded border border-slate-700">CLEAR</button>
                 </div>
                 <div id="terminal-output" class="flex-grow overflow-y-auto p-4 font-mono text-[10px] leading-relaxed space-y-1.5 text-slate-300 selectable">
-                    <div class="log-entry"><span class="text-blue-400 font-bold">[info]</span> NATT-OS Visual Engine Initialized. SPEC Nauion v2.5 active.</div>
+                    <div class="log-entry"><span class="text-blue-400 font-bold">[info]</span> Natt-OS Visual Engine Initialized. SPEC Nauion v2.5 active.</div>
                     <div class="log-entry"><span class="text-emerald-400 font-bold">[ok]</span> Awaiting image for AI Vision extraction (Measure-First).</div>
                 </div>
             </div>
@@ -397,7 +397,7 @@
         
         <div id="chat-messages" class="flex-grow p-4 overflow-y-auto flex flex-col font-mono text-sm">
             <div class="chat-bubble-ai">
-                Xin chào. Tôi là Gatekeeper AI của NATT-OS. SPEC-Nauion_main_v2.5 đã được tải. Bạn muốn tìm hiểu gì?
+                Xin chào. Tôi là Gatekeeper AI của Natt-OS. SPEC-Nauion_main_v2.5 đã được tải. Bạn muốn tìm hiểu gì?
             </div>
         </div>
 
@@ -463,7 +463,7 @@
                 contents: [{ parts: [{ text: text }] }],
                 systemInstruction: { 
                     parts: [{ 
-                        text: `Bạn là Gatekeeper AI của NATT-OS. Trả lời dựa trên SPEC-Nauion_main_v2.5 sau:\n\n${specContext}\n\nPhong cách ngắn gọn, chính xác, tiếng Việt.` 
+                        text: `Bạn là Gatekeeper AI của Natt-OS. Trả lời dựa trên SPEC-Nauion_main_v2.5 sau:\n\n${specContext}\n\nPhong cách ngắn gọn, chính xác, tiếng Việt.` 
                     }] 
                 }
             };

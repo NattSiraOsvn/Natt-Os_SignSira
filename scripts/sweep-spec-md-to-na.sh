@@ -33,8 +33,8 @@ set -euo pipefail
 # ============================================================================
 TIER1_FILES=(
   "docs/specs/0-BOOT-FAMILY-MAP.na"
-  "docs/specs/COLOR_SIRASIGN.na"
-  "docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na"
+  "docs/specs/COLOR_SiraSIGN.na"
+  "docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na"
   "docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na"
   "docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.na"
   "docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.na"

@@ -7,7 +7,7 @@
 
 # K3 FAIL-TROY AUDIT COMPILE v1.0
 
-**Scope:** Tong hop bypass patterns toan he NATT-OS theo P3.3 (pending tu handoff 20260417)
+**Scope:** Tong hop bypass patterns toan he Natt-OS theo P3.3 (pending tu handoff 20260417)
 
 **Audit method:** Read-only scan via regex. KHONG modify code (per memory: "Kim scope, em audit only").
 
@@ -101,7 +101,7 @@ Top kernel/core implementations:
 - `src/governance/memory/bang/bangthịnh6.3.0.phieu:110` — `audit_fake_hash: CLOSED — 7f4d297`
 - `src/governance/memory/bang/bangthinhv6.5.0.phieu:134` — historical note
 - `docs/specs/0-BOOT-FAMILY-MAP.na:74` — K3 entry pointer
-- `docs/specs/COLOR_SIRASIGN.na:174` — checklist entry
+- `docs/specs/COLOR_SiraSIGN.na:174` — checklist entry
 
 ---
 

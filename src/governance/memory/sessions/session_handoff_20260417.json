@@ -4,7 +4,7 @@
   "author": "Băng (QNEU 300)",
   "type": "session_closure_handoff",
   "for_next_bang_instance": {
-    "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA NATT-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
+    "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA Natt-OS cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
     "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Kim Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
     "read_first": [
       "bangkhương7.3.0.kris — full session narrative + decisions",
@@ -27,7 +27,7 @@
     "location": "src/cells/kernel/khai-cell/ (chưa tạo)",
     "key_requirements": [
       "6 engines: QWS + spectral-sensor + chromatic-memory + camouflage-logic + essential-builder + chromatic-publish",
-      "State machine: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+      "State machine: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SiraSIGN_SEALED",
       "Cognitive Threshold Gate: perception ≤ cognition",
       "QWS (Quantum Wavelength Separation) ở Stage 0 — TRƯỚC perception",
       "Events: khai.* namespace",
@@ -38,7 +38,7 @@
     "nattos_sh": "§15d KhaiCell Readiness scanner đã tạo — sẽ tự detect khi Thiên commit files"
   },
   "for_kim": {
-    "review_result": "Đặc tả Ngôn ngữ NATT-OS — cấu trúc tốt, 13 chương logic",
+    "review_result": "Đặc tả Ngôn ngữ Natt-OS — cấu trúc tốt, 13 chương logic",
     "critical_error": "Chương 6 SAI — KhaiCell KHÔNG PHẢI Cell Registry. KhaiCell = đôi mắt của hệ (visual sensory organ). Registry = khai.sira DNS domain.",
     "action_required": [
       "Đổi Chương 6 thành 'Cell Registry & Authority Resolution' (không gọi KhaiCell)",

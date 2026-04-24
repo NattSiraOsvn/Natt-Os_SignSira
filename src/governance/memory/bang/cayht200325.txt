@@ -4,16 +4,16 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % bash cd /Users/thien/hồ sơ S
 /usr/bin/cd: line 4: cd: /Users/thien/hồ: No such file or directory
 thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 .
-├── HIEN-PHAP-NATT-OS-v4.0.md
+├── HIEN-PHAP-Natt-OS-v4.0.md
 ├── anattos.sh
 ├── archive
 │   └── memory_20260313_131217
 │       └── thresholds.json
 ├── audit
 │   ├── reports
-│   │   ├── NATT-OS FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
-│   │   ├── NATT-OS FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
-│   │   ├── NATT-OS_Audit_2026-03-07.docx
+│   │   ├── Natt-OS FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
+│   │   ├── Natt-OS FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
+│   │   ├── Natt-OS_Audit_2026-03-07.docx
 │   │   ├── after_copy_fix.log
 │   │   ├── audit_2026-02-23_221546.log
 │   │   ├── báo cáo hệ thống 23022026 và Kế hoạch Toàn cảnh.pdf
@@ -89,10 +89,10 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   ├── Sổ Thủ quỹ.xlsx
 │   ├── architecture
 │   │   ├── CELL_MANIFEST_SCHEMA.json
-│   │   ├── HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
-│   │   ├── NATT-OS_Blueprint_ChuanHP.docx
-│   │   ├── NATT-OS_CayHT_MoveGuide.docx
-│   │   ├── NATT-OS_CayHeThong_Chuan.docx
+│   │   ├── HIEN-PHAP-Natt-OS-v4.0-bang-tieng-viet.docx
+│   │   ├── Natt-OS_Blueprint_ChuanHP.docx
+│   │   ├── Natt-OS_CayHT_MoveGuide.docx
+│   │   ├── Natt-OS_CayHeThong_Chuan.docx
 │   │   ├── NATT_OS_Complete_Architecture_Roadmap.docx
 │   │   ├── Natt Os STS.rtf
 │   │   └── TaxCell_Specification_v1.docx
@@ -21504,7 +21504,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   ├── fixtures
 │   │   └── ld1-sc-cua-sau.json
 │   ├── governance
-│   │   ├── HIEN-PHAP-NATT-OS-v4.0.md
+│   │   ├── HIEN-PHAP-Natt-OS-v4.0.md
 │   │   ├── amendments
 │   │   │   ├── 001-gatekeeper-ai-ban.md
 │   │   │   └── amendments
@@ -21517,7 +21517,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   ├── business.contracts.lock.json
 │   │   ├── calculator.ts
 │   │   ├── constitution
-│   │   │   ├── Bản sao HIEN-PHAP-NATT-OS-v4.0.md
+│   │   │   ├── Bản sao HIEN-PHAP-Natt-OS-v4.0.md
 │   │   │   └── index.ts
 │   │   ├── decay-cron.ts
 │   │   ├── dictionary-approval.engine.ts
@@ -21702,11 +21702,11 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   ├── sessions
 │   │   │   │   ├── BCTC_4SO_REVERSE_MAP_2025 (1).txt
 │   │   │   │   ├── BCTC_4SO_REVERSE_MAP_2025.txt
-│   │   │   │   ├── NATT-OS_Production_Addendum_BuiVang_v1.0.docx
-│   │   │   │   ├── NATT-OS_Production_Spec_v1.0.docx
-│   │   │   │   ├── NATT-OS_SATELLITE_COLONY_SPEC.md
-│   │   │   │   ├── NATT-OS_Session_Handoff_2026-03-09.md
-│   │   │   │   ├── NATT-OS_Session_Handoff_2026-03-10.docx
+│   │   │   │   ├── Natt-OS_Production_Addendum_BuiVang_v1.0.docx
+│   │   │   │   ├── Natt-OS_Production_Spec_v1.0.docx
+│   │   │   │   ├── Natt-OS_SATELLITE_COLONY_SPEC.md
+│   │   │   │   ├── Natt-OS_Session_Handoff_2026-03-09.md
+│   │   │   │   ├── Natt-OS_Session_Handoff_2026-03-10.docx
 │   │   │   │   ├── SES-mmcozlpj-67cs46.json
 │   │   │   │   ├── SES-mmcozlps-bhd2yd.json
 │   │   │   │   ├── SES-mmcozlpy-z2yupv.json

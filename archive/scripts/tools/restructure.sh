@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════════
-# NATT-OS RESTRUCTURE — chạy từ project root (nơi có package.json)
+# Natt-OS RESTRUCTURE — chạy từ project root (nơi có package.json)
 # ═══════════════════════════════════════════════════════════════════════════
 set -e
 ROOT="$(pwd)"
@@ -12,7 +12,7 @@ fi
 
 echo ""
 echo "══════════════════════════════════════════════════════"
-echo "  NATT-OS RESTRUCTURE"
+echo "  Natt-OS RESTRUCTURE"
 echo "  Root: $ROOT"
 echo "══════════════════════════════════════════════════════"
 

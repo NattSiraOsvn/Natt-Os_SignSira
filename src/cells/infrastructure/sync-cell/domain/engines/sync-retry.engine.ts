@@ -1,5 +1,5 @@
 /**
- * NATT-OS Sync Retry Engine v1.0
+ * Natt-OS Sync Retry Engine v1.0
  * Port từ Doc 12 — mergeFullDiverseFilesFromFolderOptimized()
  * Target: sync-cell/domain/engines/
  *

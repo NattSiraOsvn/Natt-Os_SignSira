@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — Fix 50 Remaining TypeScript Errors (Part 5 — FINAL)
+Natt-OS — Fix 50 Remaining TypeScript Errors (Part 5 — FINAL)
 Chạy từ project root SAU khi đã chạy fix_all, fix_remaining, fix_part3, fix_part4
   python3 fix_part5.py
 """
@@ -26,7 +26,7 @@ def patch(path, old, new, required=True):
     return False
 
 print("=" * 60)
-print("NATT-OS Fix Part 5 (FINAL) — 50 remaining errors")
+print("Natt-OS Fix Part 5 (FINAL) — 50 remaining errors")
 print("=" * 60)
 
 # ════════════════════════════════════════════════════════

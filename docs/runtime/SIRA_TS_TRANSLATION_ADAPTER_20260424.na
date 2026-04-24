@@ -1,4 +1,4 @@
-# SIRA TS Translation Adapter — 20260424
+# Sira TS Translation Adapter — 20260424
 
 status: CANONICAL_DRAFT
 created_at: 2026-04-24T18:10:42.351837+00:00
@@ -8,7 +8,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Purpose
 
-Adapter này là cầu dịch có kiểm soát từ TypeScript còn lại sang SIRA runtime artifact.
+Adapter này là cầu dịch có kiểm soát từ TypeScript còn lại sang Sira runtime artifact.
 
 Quan trọng: no bulk mutation.
 
@@ -46,7 +46,7 @@ Forbidden:
 - KEEP_TS_UI_ADAPTER_REQUIRED
 - BROWSER_ADAPTER_BOUNDARY_REVIEW
 - LIGHT_TRANSLATION_CANDIDATE
-- POSSIBLE_SIRA_RUNTIME_ARTIFACT
+- POSSIBLE_Sira_RUNTIME_ARTIFACT
 
 ## 4. Command
 
@@ -54,7 +54,7 @@ Forbidden:
 
 ## 5. Gate
 
-- SIRA namespace validator PASS
-- SIRA browser adapter validator PASS
-- SIRA TS translation adapter validator PASS
+- Sira namespace validator PASS
+- Sira browser adapter validator PASS
+- Sira TS translation adapter validator PASS
 - repo clean before any single-file translation

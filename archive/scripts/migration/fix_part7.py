@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NATT-OS — Fix Part 7 (12 errors — truly final)"""
+"""Natt-OS — Fix Part 7 (12 errors — truly final)"""
 import os, re
 
 ROOT = os.getcwd()
@@ -15,7 +15,7 @@ def patch(path, old, new, req=True):
     elif req: print(f"⚠️  not found: {path}")
 
 print("=" * 50)
-print("NATT-OS Fix Part 7 — 12 final errors")
+print("Natt-OS Fix Part 7 — 12 final errors")
 print("=" * 50)
 
 # ── 1. SalaryRule duplicate type/name/amount ──────────

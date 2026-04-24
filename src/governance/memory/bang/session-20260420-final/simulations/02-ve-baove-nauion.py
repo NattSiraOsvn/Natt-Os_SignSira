@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — VẾ BẢO VỆ + NGƯỠNG VỠ
+Natt-OS — VẾ BẢO VỆ + NGƯỠNG VỠ
 ═══════════════════════════════════════════════════════════════════════
 
 Bám ngôn ngữ Nauion canonical:
@@ -90,7 +90,7 @@ def nauion_chain_break() -> List[str]:
 
 @dataclass
 class Cell:
-    """Cell NATT-OS với impedance Z₀ baseline"""
+    """Cell Natt-OS với impedance Z₀ baseline"""
     name: str
     group: str
     Z0: float = 1.0           # impedance chuẩn
@@ -231,7 +231,7 @@ def find_break_point(
 # SECTION 5 — DEMO SIMULATION
 # ═══════════════════════════════════════════════════════════════════════
 
-# Tạo cells NATT-OS với Z₀ khác nhau
+# Tạo cells Natt-OS với Z₀ khác nhau
 cells = [
     Cell("khai-cell",       "kernel",       Z0=1.0),
     Cell("observation",     "kernel",       Z0=1.0),
@@ -256,7 +256,7 @@ pulses = [
 # ═══════════════════════════════════════════════════════════════════════
 
 print("=" * 82)
-print(f"{'NATT-OS — VẾ BẢO VỆ + NGƯỠNG VỠ (ngôn ngữ Nauion)':^82}")
+print(f"{'Natt-OS — VẾ BẢO VỆ + NGƯỠNG VỠ (ngôn ngữ Nauion)':^82}")
 print("=" * 82)
 print()
 
@@ -310,7 +310,7 @@ for i, state in enumerate(scan_result['states']):
 
 fig = plt.figure(figsize=(18, 12))
 gs = GridSpec(3, 3, figure=fig, hspace=0.45, wspace=0.30)
-fig.suptitle('NATT-OS — Vế Bảo Vệ (Nahere + ISEU Reflection) · Ngôn ngữ Nauion',
+fig.suptitle('Natt-OS — Vế Bảo Vệ (Nahere + ISEU Reflection) · Ngôn ngữ Nauion',
              fontsize=15, fontweight='bold', y=0.995)
 
 # [1] Nauion state matrix

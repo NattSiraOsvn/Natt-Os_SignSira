@@ -231,7 +231,7 @@ sync-cell
 ## [5] GOVERNANCE ROOT
 
 ```
--rw-r--r--   1 thien  staff   5543 Apr 17 15:52 HIEN-PHAP-NATT-OS-v5.0.anc
+-rw-r--r--   1 thien  staff   5543 Apr 17 15:52 HIEN-PHAP-Natt-OS-v5.0.anc
 -rw-------   1 thien  staff   3204 Apr  2 01:13 audit-bridge.ts
 -rw-r--r--@  1 thien  staff   2934 Apr  2 01:13 audit-integrity-check.ts
 -rw-r--r--   1 thien  staff  10440 Apr 17 15:52 audit-log.heyna
@@ -300,14 +300,14 @@ src/governance/memory/bang/0-BOOT-BANG.md
 Active specs in docs/specs/:
 docs/specs/0-BOOT-FAMILY-MAP.md
 docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md
-docs/specs/COLOR_SIRASIGN.md
+docs/specs/COLOR_SiraSIGN.md
 docs/specs/MACH_HEYNA_FULL_20260416.md
 docs/specs/MESSAGE_TO_KIM_20260417.md
-docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md
-docs/specs/NATT-OS-PLATFORM-SPEC.anc
-docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md
-docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.md
-docs/specs/NATT-OS_Session_Handoff_2026-03-09.md
+docs/specs/Natt-OS-GROUND-TRUTH-REPORT.md
+docs/specs/Natt-OS-PLATFORM-SPEC.anc
+docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md
+docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.md
+docs/specs/Natt-OS_Session_Handoff_2026-03-09.md
 docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.md
 docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.md
 docs/specs/REPLY_TO_KIM_20260417.md
@@ -315,7 +315,7 @@ docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.md
 docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.md
 docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.md
 docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md
-docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md
+docs/specs/SPEC_NGON_NGU_Natt-OS_v1.2_NA.md
 docs/specs/SPEC_Nauion_Render_Stack_v0.1.md
 docs/specs/SPEC_ONG_MAU_v0.1.md
 docs/specs/THIENBANG_MAPPING_v1_canonical_answers.md
@@ -379,7 +379,7 @@ SPEC_QIINT2_v1.0_NEEDS_REWRITE.md
 ## [10] CANONICAL CHECKPOINT
 
 ```
-OK  [5543B]  src/governance/HIEN-PHAP-NATT-OS-v5.0.anc
+OK  [5543B]  src/governance/HIEN-PHAP-Natt-OS-v5.0.anc
 OK  [14432B]  src/governance/specs/SPEC_NEN_v1.1.anc
 OK  [28372B]  src/governance/specs/SPEC_NGON_NGU_v1.2.kris
 OK  [13808B]  src/thienbang.si

@@ -434,7 +434,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t);font-f
                 <div class="adv-header">
                   <div class="adv-ava" style="background:linear-gradient(135deg,rgba(245,190,80,.15),rgba(245,190,80,.06));border:1px solid rgba(245,190,80,.2)">⚛️</div>
                   <div style="flex:1;padding-left:8px">
-                    <div style="font-family:var(--mono);font-size:8.5px;color:var(--g1);letter-spacing:.1em">CỐ VẤN THIÊN</div>
+                    <div style="font-family:var(--mono);font-size:8.5px;color:var(--g1);letter-spacing:.1em">CỐ VẤN Thiên</div>
                     <div style="font-family:var(--mono);font-size:7px;color:var(--t3);margin-top:1px">Supreme Protocol Active</div>
                   </div>
                 </div>
@@ -727,7 +727,7 @@ function onRoleChange(v){
 // ──────────────────────────────────────
 // TICKER
 // ──────────────────────────────────────
-const T1=[{l:'SJC',v:'82.50M',c:'var(--mint)'},{l:'PNJ',v:'81.80M',c:'var(--mint)'},{l:'XAU/USD',v:'2,340$',c:'var(--g1)'},{l:'USD/VND',v:'25,210',c:'var(--amber)'},{l:'NATT-OS',v:'v4.1',c:'var(--g1)'},{l:'38/38',v:'LIVE',c:'var(--mint)'},{l:'TSC',v:'0 err',c:'var(--mint)'},{l:'LNTT',v:'32.78t GT',c:'var(--g1)'}];
+const T1=[{l:'SJC',v:'82.50M',c:'var(--mint)'},{l:'PNJ',v:'81.80M',c:'var(--mint)'},{l:'XAU/USD',v:'2,340$',c:'var(--g1)'},{l:'USD/VND',v:'25,210',c:'var(--amber)'},{l:'Natt-OS',v:'v4.1',c:'var(--g1)'},{l:'38/38',v:'LIVE',c:'var(--mint)'},{l:'TSC',v:'0 err',c:'var(--mint)'},{l:'LNTT',v:'32.78t GT',c:'var(--g1)'}];
 const T2=[{l:'Deadline',v:'20/03',c:'var(--red)'},{l:'BCTC',v:'6/6 live',c:'var(--mint)'},{l:'ZEN',v:'57% FLAG',c:'var(--red)'},{l:'Buyback',v:'31.7t ✗',c:'var(--red)'},{l:'Băng',v:'QNEU 300',c:'var(--g1)'},{l:'Wave',v:'3 Active',c:'var(--g1)'},{l:'HEAD',v:'f4879db',c:'var(--t3)'}];
 ['t1','t2'].forEach((id,ri)=>{
   const el=document.getElementById(id);

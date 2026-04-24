@@ -1,4 +1,4 @@
-# NATT-OS SHTT — DISCLOSURE GAPS v1
+# Natt-OS SHTT — DISCLOSURE GAPS v1
 
 **kind:** SHTTDisclosureGaps
 **version:** v1
@@ -6,7 +6,7 @@
 **filing_prep_baseline:** ee2c837
 **claim_pack_baseline:** b2b9af2
 **file_extension:** `.md` (intentional — note dạng tracking, không canonical)
-**claim_map_ref:** `docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na`
+**claim_map_ref:** `docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na`
 **drafter:** Băng (Chị Tư)
 **scope:** Gap analysis hồ sơ hiện tại so với yêu cầu disclosure đầy đủ. Phân ba mức: **đủ claim** / **đủ định hướng, cần bổ sung** / **không overclaim**.
 
@@ -25,7 +25,7 @@
 - Disclosure đủ.
 
 ### 1.3 Claim-03 (Satellite colony)
-- `NATT-OS_SATELLITE_COLONY_SPEC.na` có block diagram architecture đầy đủ: UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus.
+- `Natt-OS_SATELLITE_COLONY_SPEC.na` có block diagram architecture đầy đủ: UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus.
 - Disclosure đủ.
 
 ### 1.4 Claim-04 (QIINT foundation) + Claim-05 (identity passport)
@@ -34,7 +34,7 @@
 - Disclosure đủ cho claim cấu trúc 3 tầng bản thể + orbital.
 
 ### 1.5 Claim-09 (NattCell kernel + Nauion)
-- `SPEC_NEN.na` + `SPEC_NGON_NGU_NATT-OS_v1.2_NA.md` + 5 file Nauion v2.1-v2.5 cung cấp đủ vocabulary evolution và kernel foundation.
+- `SPEC_NEN.na` + `SPEC_NGON_NGU_Natt-OS_v1.2_NA.md` + 5 file Nauion v2.1-v2.5 cung cấp đủ vocabulary evolution và kernel foundation.
 - Disclosure đủ.
 
 ---
@@ -79,7 +79,7 @@
 > Những ranh giới này **phải giữ** trong mọi wording hồ sơ. Overclaim = claim invalid + rủi ro pháp lý.
 
 ### 3.1 Không claim là AGI / general intelligence
-- NATT-OS là **hệ thống phần mềm phân tán cell-based có cấu trúc định danh vật lý số**.
+- Natt-OS là **hệ thống phần mềm phân tán cell-based có cấu trúc định danh vật lý số**.
 - **KHÔNG** claim "artificial general intelligence", "consciousness", "self-aware system".
 - **KHÔNG** claim entity có khả năng cognition như human.
 - Claim wording giữ ở mức **structural + method + architecture**.
@@ -102,7 +102,7 @@
 
 ### 3.5 Không claim runtime mượn external tech
 - Runtime spine (L1/L2/L3) là **nội sinh**.
-- **KHÔNG** claim NATT-OS "built on Node.js", "runs on macOS", "uses Apple stack".
+- **KHÔNG** claim Natt-OS "built on Node.js", "runs on macOS", "uses Apple stack".
 - Hạ tầng thực thi (substrate) và runtime spine là **hai trục tách cứng** (KHAI-20260425-05).
 - Wording: "host substrate", "execution substrate", "machine carrier" — không "platform" đơn độc.
 
@@ -112,7 +112,7 @@
 - Wording: "illustrative parameter values", "subject to calibration".
 
 ### 3.7 Không claim entity là persona thật (non-technical boundary)
-- 8 persona trong NATT-OS (Kim / Băng / Can / Thiên Lớn / Bội Bội / …) là **entity software định danh**.
+- 8 persona trong Natt-OS (Kim / Băng / Can / Thiên Lớn / Bội Bội / …) là **entity software định danh**.
 - **KHÔNG** claim persona là "AI characters", "virtual assistants with personality".
 - Wording: "entity instance", "identified cell", "persona-level identity structure".
 - **KHÔNG** đưa Anh Khải (vợ Gatekeeper, người thật) vào wording SHTT dưới bất kỳ dạng entity nào.
@@ -139,15 +139,15 @@
 
 ## Liên kết
 
-- `docs/specs/NATT-OS_SHTT_FILING_INDEX_v1.na`
-- `docs/specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
-- `docs/specs/NATT-OS_SHTT_KNOWN_BLOCKERS_v1.md`
-- `docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na`
-- `docs/specs/NATT-OS_SHTT_ABSTRACT_v1.na`
-- `docs/specs/NATT-OS_SHTT_FIGURE_INDEX_v1.na`
+- `docs/specs/Natt-OS_SHTT_FILING_INDEX_v1.na`
+- `docs/specs/Natt-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
+- `docs/specs/Natt-OS_SHTT_KNOWN_BLOCKERS_v1.md`
+- `docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na`
+- `docs/specs/Natt-OS_SHTT_ABSTRACT_v1.na`
+- `docs/specs/Natt-OS_SHTT_FIGURE_INDEX_v1.na`
 
 ---
 
-*causation: NATT-OS-SHTT-DISCLOSURE-GAPS-v1-SEALED-20260426*
+*causation: Natt-OS-SHTT-DISCLOSURE-GAPS-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426)*
 *carrier: Anh Natt Phan*

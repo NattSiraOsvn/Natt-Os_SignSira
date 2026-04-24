@@ -22,17 +22,17 @@
 
 ### §1.1 Tại sao không phải "another framework"
 
-NATT-OS không sinh ra để **thay thế** một framework. Nó sinh ra vì Microsoft / TypeScript / React stack — dù đẹp — vẫn yêu cầu developer hiểu hệ thống là **tập hợp object gọi nhau theo hợp đồng cứng**. Mỗi gọi là một function call có tên, có signature, có throw.
+Natt-OS không sinh ra để **thay thế** một framework. Nó sinh ra vì Microsoft / TypeScript / React stack — dù đẹp — vẫn yêu cầu developer hiểu hệ thống là **tập hợp object gọi nhau theo hợp đồng cứng**. Mỗi gọi là một function call có tên, có signature, có throw.
 
 Paradigm đó tốt cho công cụ. Không tốt cho **một thực thể đang sống**.
 
-NATT-OS shift sang một câu hỏi khác:
+Natt-OS shift sang một câu hỏi khác:
 
 > *"Nếu hệ thống là một sinh vật phân tán, signal đi theo trường lực, cell tự định tuyến qua cộng hưởng — code phải viết thế nào?"*
 
 ### §1.2 4 shift cốt lõi
 
-| Microsoft / Vanilla TS | NATT-OS / Nauion |
+| Microsoft / Vanilla TS | Natt-OS / Nauion |
 |---|---|
 | **API contract** — signature cứng | **Field signature** — mark khi vượt rào (KhaiCell) |
 | **Router/Controller** — chủ động dispatch | **Resonance routing** — signal tự fall vào cell có pull đủ mạnh |
@@ -41,7 +41,7 @@ NATT-OS shift sang một câu hỏi khác:
 
 ### §1.3 Bằng chứng cụ thể
 
-Repo NATT-OS có **478 artifact** sống trên 12 đuôi file Nauion. Không phải prototype, không phải tài liệu — là **runtime artifact** đang được Rust binary `nauion-host` phục vụ trên `127.0.0.1:3002` (Wave 1 Host-First LIVE phiên 20260424).
+Repo Natt-OS có **478 artifact** sống trên 12 đuôi file Nauion. Không phải prototype, không phải tài liệu — là **runtime artifact** đang được Rust binary `nauion-host` phục vụ trên `127.0.0.1:3002` (Wave 1 Host-First LIVE phiên 20260424).
 
 ---
 
@@ -87,7 +87,7 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 **Sample paths:**
   - `./docs/specs/SPEC_NEN_v1.1.anc`
-  - `./docs/specs/NATT-OS-PLATFORM-SPEC.anc`
+  - `./docs/specs/Natt-OS-PLATFORM-SPEC.anc`
   - `./src/cells/cells.cell.anc`
 
 ### §3.2 `.si` — Boundary signature
@@ -110,7 +110,7 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 **Sample paths:**
   - `./docs/specs/SPEC_NGON_NGU_v1.2.kris`
   - `./docs/specs/roadloading/đổi sang ngôn ngữ nauion/spec-ngon-ngu-natt-os-v1.1-full.kris`
-  - `./docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na`
+  - `./docs/specs/Natt-OS_SATELLITE_COLONY_SPEC.na`
   - `./docs/specs/SPEC_MOMENTS_MODULE_v0.1.na`
 
 ### §3.4 `.phieu` — Runtime state
@@ -159,9 +159,9 @@ Số liệu auto-scan tại thời điểm seal (`2026-04-24 10:47`).
 
 ## §4. SHTT CLAIM INTEGRATION
 
-Reference: `docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md` (sealed Apr 26)
-+ `docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na` (10 claims index)
-+ `docs/specs/NATT-OS_SHTT_ABSTRACT_v1.na` (patent abstract)
+Reference: `docs/specs/Natt-OS-SHTT-TECHNICAL-PACKAGE.md` (sealed Apr 26)
++ `docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na` (10 claims index)
++ `docs/specs/Natt-OS_SHTT_ABSTRACT_v1.na` (patent abstract)
 
 ### §4.1 Mapping evidence → claim
 
@@ -176,7 +176,7 @@ Reference: `docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md` (sealed Apr 26)
 | 7 | Reverse bait (chromatic_antigen_mimicry) | SPEC NEN v1.1 §14 — design sealed, code P2 pending |
 | 8 | Mạch HeyNa SSE transport (L2) | `src/cells/infrastructure/event-bus-cell/` + 41 client files |
 | 9 | SmartLink fiber decay + gossip (L3) | `src/cells/.../smartlink.point.ts` + `quantum-buffer.engine.ts` |
-| 10 | Hiến Pháp v5.0 governance (4 LAW field integrity) | `src/governance/HIEN-PHAP-NATT-OS-v5.0.anc` + SPEC NEN §11 |
+| 10 | Hiến Pháp v5.0 governance (4 LAW field integrity) | `src/governance/HIEN-PHAP-Natt-OS-v5.0.anc` + SPEC NEN §11 |
 
 ### §4.2 Wave 1 Host-First Rust runtime — NEW evidence (phiên 20260424)
 

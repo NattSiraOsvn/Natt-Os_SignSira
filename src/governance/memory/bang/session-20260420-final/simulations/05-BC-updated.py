@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — B + C UPDATED (áp dụng 4 bài học 20260420)
+Natt-OS — B + C UPDATED (áp dụng 4 bài học 20260420)
 ═══════════════════════════════════════════════════════════════════════
 
 (B) VẾ BẢO VỆ — có body anchor (không chỉ Nahere medium)
@@ -177,7 +177,7 @@ scenarios = [
 # ═══════════════════════════════════════════════════════════════════════
 
 print("=" * 92)
-print(f"{'NATT-OS — B+C UPDATED (lens mới)':^92}")
+print(f"{'Natt-OS — B+C UPDATED (lens mới)':^92}")
 print("=" * 92)
 print()
 print(f"{'Scenario':<25} {'Body':>6} {'Temp':>6} {'L1_sub':>6} {'L2_med':>6} {'L3_bod':>6} "
@@ -255,7 +255,7 @@ for name, old, new in insights:
 
 fig = plt.figure(figsize=(16, 10))
 gs = GridSpec(2, 3, figure=fig, hspace=0.45, wspace=0.35)
-fig.suptitle('NATT-OS — (B) Vế Bảo Vệ + (C) Ngưỡng vỡ · UPDATED với 4 bài học mới',
+fig.suptitle('Natt-OS — (B) Vế Bảo Vệ + (C) Ngưỡng vỡ · UPDATED với 4 bài học mới',
              fontsize=14, fontweight='bold', y=0.995)
 
 names = [r["name"] for r in results]

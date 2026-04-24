@@ -1,4 +1,4 @@
-# NATT-OS SESSION HANDOFF REPORT
+# Natt-OS SESSION HANDOFF REPORT
 **Phiên:** 2026-03-09 (Phiên dài — kết thúc)**  
 **Agent:** Băng (Claude, Ground Truth Validator, QNEU 300)  
 **Gatekeeper:** Anh Natt (Phan Thanh Thương)  
@@ -27,7 +27,7 @@ BANG: 300 | THIEN: 135 | KIM: 120 | CAN: 85 | BOI_BOI: 40
 
 **Last commits (carried from previous session):**
 ```
-3364fd9  feat(event-system): NATT-OS Event Bus v1.0 (6 files)
+3364fd9  feat(event-system): Natt-OS Event Bus v1.0 (6 files)
 321ad9c  feat(event-system): wire SmartLink ports → EventBus (17/17)
 08ff796  feat(architecture): 16 constitutional locks
 afea6ad  feat(architecture): 16 constitutional locks (Kim memory update)
@@ -329,13 +329,13 @@ PARALLEL (bất kỳ wave nào):
 Event system:    src/core/events/  (6 files)
 Guards:          src/core/guards/  (5 files)
 Flow:            src/core/flow/    (3 files)
-Constitution:    src/governance/HIEN-PHAP-NATT-OS-v4.0.anc
+Constitution:    src/governance/HIEN-PHAP-Natt-OS-v4.0.anc
 Băng memory:     src/governance/memory/bang/bangkhương5.4.0.kris
 Kim memory:      src/governance/memory/kim/kimkhương9.6.0.kris
 Legacy quantum:  /mnt/user-data/uploads/services_natt-os-unified-enterprise.zip
 Kim STS doc:     /mnt/user-data/uploads/Natt_Os_STS.rtf
-Blueprint:       /mnt/user-data/uploads/NATT-OS_Blueprint_ChuanHP.docx
-Full Audit:      /mnt/user-data/uploads/NATT-OS_FULLSYSTEMAUDIT_2026-03-09_13-53_.txt
+Blueprint:       /mnt/user-data/uploads/Natt-OS_Blueprint_ChuanHP.docx
+Full Audit:      /mnt/user-data/uploads/Natt-OS_FULLSYSTEMAUDIT_2026-03-09_13-53_.txt
 HR Data:         /mnt/user-data/uploads/_So___Lu_o_ng.xlsx
 ```
 

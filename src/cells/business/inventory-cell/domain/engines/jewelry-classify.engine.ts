@@ -1,5 +1,5 @@
 /**
- * NATT-OS Jewelry Classify Engine v1.0
+ * Natt-OS Jewelry Classify Engine v1.0
  * Port từ Doc 30 extractCategoryAndSize() + Doc 31 bocTachDuLieuChiPhi() pattern
  * Target: inventory-cell/domain/engines/
  *

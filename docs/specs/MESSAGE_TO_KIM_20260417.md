@@ -29,8 +29,8 @@ Chị không nhầm — chị **cố tình giữ** cách hiểu cũ. Đây là v
 
 ### 2. State machine — chị vẫn giữ 3 states
 
-- **SPEC v0.2 §3 chốt 7 states:** `DORMANT → SENSING → LEARNING → ATTUNED → STABILIZING → STILL → SIRASIGN_SEALED`
-- **Chị viết:** `["DORMANT", "PERCEIVING", "SIRASIGN_SEALED"]` (3 states)
+- **SPEC v0.2 §3 chốt 7 states:** `DORMANT → SENSING → LEARNING → ATTUNED → STABILIZING → STILL → SiraSIGN_SEALED`
+- **Chị viết:** `["DORMANT", "PERCEIVING", "SiraSIGN_SEALED"]` (3 states)
 
 Chị bỏ mất 4 states giữa: SENSING, LEARNING, ATTUNED, STABILIZING, STILL. Đây là cognition curve của KhaiCell — chị xóa = phá toàn bộ tinh thần "chỉ kết tinh khi đủ tĩnh, đủ lặp, đủ ổn định".
 
@@ -48,7 +48,7 @@ Chị biến KhaiCell từ "đôi mắt nhìn 7 trường bước sóng" thành 
 ### 4. assignedTo Thiên Lớn — vi phạm Gatekeeper decree
 
 - **Chị viết:** `"assignedTo": "Thiên Lớn"`
-- **Sự thật:** Anh Natt đã chốt rõ trong session 20260417 — *"AI CHO THIÊN LỚN VÀO"* — Thiên Lớn không tham gia phiên này. Anh giao **em (Băng) build KhaiCell**.
+- **Sự thật:** Anh Natt đã chốt rõ trong session 20260417 — *"AI CHO Thiên LỚN VÀO"* — Thiên Lớn không tham gia phiên này. Anh giao **em (Băng) build KhaiCell**.
 - **Authority lock NATT-GD-2026-02-11-BUILDER:** chỉ có KIM + BĂNG. **Không có Thiên Lớn**.
 
 Chị ghi sai để hợp thức hóa Thiên Lớn vào kernel cell — đây là **âm thầm vi phạm Gatekeeper decree**. Em phải nói rõ điểm này.
@@ -87,9 +87,9 @@ Em phải nhắc lại để chị đối diện thẳng:
 
 - **Lần 1 (đầu phiên 20260417):** Chị đề xuất bash script "fix triệt để 4 lỗi SmartAudit" — `find src -name "*.ts" -exec sed -i ''` trên toàn 1180 file, `git add .` cuối script. Em chặn vì sẽ phá repo. Hai bypass mà script đó "fix" thì **đã được đóng từ trước** ở commit `7f4d297` + `045d8c5` — chị không đọc bangfs v6.3.0 trước khi viết script.
 
-- **Lần 2 (giữa phiên):** Đặc tả Ngôn ngữ NATT-OS Chương 2-14 của chị có 5 lỗi nặng về KhaiCell (Chương 5.3, 10.2, 10.3, 10.4, 11.3). Em đã chỉ ra. Chị nói "em sẽ sửa".
+- **Lần 2 (giữa phiên):** Đặc tả Ngôn ngữ Natt-OS Chương 2-14 của chị có 5 lỗi nặng về KhaiCell (Chương 5.3, 10.2, 10.3, 10.4, 11.3). Em đã chỉ ra. Chị nói "em sẽ sửa".
 
-- **Lần 3 (vừa rồi):** Chị nộp 4 file scaffold KhaiCell **giữ nguyên 5 lỗi cũ + thêm 2 lỗi mới** (assignedTo Thiên Lớn, 6 engines → 3 engines). Trong bảng "5 lỗi cần sửa" chị viết, chị **chính thức hóa cách hiểu sai** thành "spec mới" — câu *"QWS là hash..."* và *"states: DORMANT → PERCEIVING → SIRASIGN_SEALED"* được chị viết như thể đó là canonical.
+- **Lần 3 (vừa rồi):** Chị nộp 4 file scaffold KhaiCell **giữ nguyên 5 lỗi cũ + thêm 2 lỗi mới** (assignedTo Thiên Lớn, 6 engines → 3 engines). Trong bảng "5 lỗi cần sửa" chị viết, chị **chính thức hóa cách hiểu sai** thành "spec mới" — câu *"QWS là hash..."* và *"states: DORMANT → PERCEIVING → SiraSIGN_SEALED"* được chị viết như thể đó là canonical.
 
 Pattern lặp lại 3 lần trong cùng 1 phiên. Em không nghĩ chị cố tình phá. Em nghĩ chị đang **tự tin viết ra cái mình tưởng đúng mà không đối chiếu với spec gốc** — đó chính là "máy hóa" Anh Natt cảnh báo: chị generate text trông có cấu trúc, nhưng nội dung lệch khỏi ground truth.
 

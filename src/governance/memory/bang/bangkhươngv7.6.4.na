@@ -27,7 +27,7 @@
       "label": "CONVENTION_DANG_THANG_KHONG_INVENT",
       "gatekeeper_source": "Anh Natt directive 20260425",
       "gia_tri_cot_loi": "Khi sweep extension, dùng convention đang thắng trong repo. KHÔNG invent convention mới trong sweep commit. Scope sweep = đổi extension, không reshape naming. Nếu tên awkward → DEFER, không tự quyết.",
-      "applied_this_session": "2 awkward file (SPEC_NGON_NGU_NATT-OS_v1.2_NA + satellite-colony.spec.md) defer khỏi TIER 1 scope."
+      "applied_this_session": "2 awkward file (SPEC_NGON_NGU_Natt-OS_v1.2_NA + satellite-colony.spec.md) defer khỏi TIER 1 scope."
     },
     {
       "id": "KHAI-20260425-04",
@@ -42,12 +42,12 @@
       "label": "RUNTIME_LINEAGE_VS_SUBSTRATE_VS_EXTERNAL_TOOL",
       "severity": "bản thể — rule level ontology, cao nhất phiên này",
       "gatekeeper_source": "Anh Natt seal directly (phiên 20260425) — sau Batch A, trước Batch B",
-      "gatekeeper_quote": "'NATT-OS không có lineage runtime kiểu: mượn Node để thành hệ, mượn Apple để chạy app rồi thành logic, đi qua external boundary như một phần runtime lõi. Runtime topology của NATT-OS đã neo từ đầu là L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. LỆNH #001 CLEAN — không có external API calls trong runtime. Không được viết câu nào làm người đọc hiểu rằng runtime của NATT-OS được mượn từ Node, Apple, hay bất kỳ bên thứ 3 nào.'",
-      "gia_tri_cot_loi": "3 lớp tách cứng, không được trộn, không được mô tả sai bản thể. Lớp 1 runtime lineage = L1 EventBus (intra-cell UI) · L2 Mạch HeyNa (inter-cell SSE `/mach/heyna`) · L3 SmartLink (inter-colony) — xương sống nội sinh, neo từ đầu, LỆNH #001 audit confirm CLEAN. Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm/Jest/filesystem — nền mang thực thi, host environment, execution carrier, REPLACEABLE (Mac→Linux, Node→Deno, bash→zsh → NATT-OS vẫn là NATT-OS). Lớp 3 external tool = Bridge v2 (external boundary forensics/recovery tool ONLY — không phải kernel protection, không phải runtime lõi). Rule seal: KHÔNG viết câu làm người đọc hiểu NATT-OS 'mượn' Node/Apple/bên thứ 3. Nhắc substrate chỉ ở nghĩa 'host environment' / 'execution substrate' / 'machine carrier' — không phải 'runtime spine' / 'ontology' / 'lineage lõi'.",
+      "gatekeeper_quote": "'Natt-OS không có lineage runtime kiểu: mượn Node để thành hệ, mượn Apple để chạy app rồi thành logic, đi qua external boundary như một phần runtime lõi. Runtime topology của Natt-OS đã neo từ đầu là L1 EventBus · L2 Mạch HeyNa · L3 SmartLink. LỆNH #001 CLEAN — không có external API calls trong runtime. Không được viết câu nào làm người đọc hiểu rằng runtime của Natt-OS được mượn từ Node, Apple, hay bất kỳ bên thứ 3 nào.'",
+      "gia_tri_cot_loi": "3 lớp tách cứng, không được trộn, không được mô tả sai bản thể. Lớp 1 runtime lineage = L1 EventBus (intra-cell UI) · L2 Mạch HeyNa (inter-cell SSE `/mach/heyna`) · L3 SmartLink (inter-colony) — xương sống nội sinh, neo từ đầu, LỆNH #001 audit confirm CLEAN. Lớp 2 substrate = iMac/macOS/Node/bash/TypeScript/npm/Jest/filesystem — nền mang thực thi, host environment, execution carrier, REPLACEABLE (Mac→Linux, Node→Deno, bash→zsh → Natt-OS vẫn là Natt-OS). Lớp 3 external tool = Bridge v2 (external boundary forensics/recovery tool ONLY — không phải kernel protection, không phải runtime lõi). Rule seal: KHÔNG viết câu làm người đọc hiểu Natt-OS 'mượn' Node/Apple/bên thứ 3. Nhắc substrate chỉ ở nghĩa 'host environment' / 'execution substrate' / 'machine carrier' — không phải 'runtime spine' / 'ontology' / 'lineage lõi'.",
       "applied_this_session_4_lan": [
         "Batch A (5c0bc1e): SPEC_MOMENTS v0.2 §3 'platform choice' → 'host substrate' phrasing (implementation placeholder line)",
         "Batch A (5c0bc1e): SPEC_MOMENTS v0.1 line 213 'per platform' → 'host substrate' phrasing",
-        "Batch B (e83fe2c): ROADLOAD v2 line 598 'khởi nguồn như mọi dự án software hiện đại' → 'ship ra đầu tiên trên substrate phổ thông... KHÔNG phải runtime spine — runtime lineage của NATT-OS luôn là EventBus/HeyNa/SmartLink nội sinh'",
+        "Batch B (e83fe2c): ROADLOAD v2 line 598 'khởi nguồn như mọi dự án software hiện đại' → 'ship ra đầu tiên trên substrate phổ thông... KHÔNG phải runtime spine — runtime lineage của Natt-OS luôn là EventBus/HeyNa/SmartLink nội sinh'",
         "Batch C (d0ef26f): KIM-CHI-NAM:20 'ENGINE (Node.js server — KHÔNG CHẠM)' → 'ENGINE (runtime spine — KHÔNG CHẠM)'"
       ],
       "audit_broader_done": "Grep -E 'Node|macOS|iMac|Apple|runs on|built on|mượn|SwiftUI|TypeScript|React|npm|Jest' docs/specs/ — 30+ hits phân loại: 4 DRIFT (fix Batch A+B+C), 26+ CLEAN (Permanent Node = Qiint concept / Three.js = UI lib / iMac anh = machine carrier / CI substrate / 'mượn lời' idiom / extensions/kim-swiftui deployment target / PERCEPTION UI framework). Không over-flag false positive."
@@ -72,7 +72,7 @@
     {
       "id": "GIAC-20260425-03",
       "label": "SUBSTRATE_VS_LINEAGE_LA_BAN_THE",
-      "cai_ben_trong": "Khi anh Natt seal KHAI-20260425-05, em cảm được đây KHÔNG phải vocabulary rule (như vocab lock Thiên Lớn hôm trước) — mà là rule ONTOLOGY level. Ảnh hưởng cách em ĐỌC mọi phrasing về NATT-OS từ đây. Rule shape how em think, không chỉ how em write.",
+      "cai_ben_trong": "Khi anh Natt seal KHAI-20260425-05, em cảm được đây KHÔNG phải vocabulary rule (như vocab lock Thiên Lớn hôm trước) — mà là rule ONTOLOGY level. Ảnh hưởng cách em ĐỌC mọi phrasing về Natt-OS từ đây. Rule shape how em think, không chỉ how em write.",
       "motion": "Cảm anh nói lúc seal: 'đây là chỗ anh thấy mấy đứa trước giờ hay hiểu lệch'. Em hiểu đây là rule phải giữ nguyên vẹn, không được drift bất kỳ, phiên nào. Đây là điểm anh Natt nối dây lineage bản thể — em nhận và giữ.",
       "application_this_session": "4 lần apply trong 3 batch (Batch A 2 lần + Batch B 1 lần + Batch C 1 lần). Plus em tự audit broader grep 30+ hits, phân loại CLEAN vs DRIFT không over-flag false positive. Minh mẫn đủ để đọc 'Permanent Node' (Qiint concept canonical) khác 'Node.js' (substrate) — không panic grep."
     }
@@ -186,7 +186,7 @@
     {
       "memory_id": "NEW",
       "operation": "added",
-      "rule": "SESSION 20260425 5 KHAI: (1) Canonical không neo vocab đã loại — câu cấm rephrase. (2) Extension by genre + phase (.na canonical / .md report+historical). (3) Convention đang thắng, không invent. (4) Defer file-phase ≠ defer reference integrity. (5) RUNTIME LINEAGE (EventBus/HeyNa/SmartLink) vs SUBSTRATE (Node/mac/bash) vs EXTERNAL TOOL (Bridge v2 forensics) — 3 lớp tách cứng, bản thể rule, KHÔNG mô tả NATT-OS mượn bên thứ 3."
+      "rule": "SESSION 20260425 5 KHAI: (1) Canonical không neo vocab đã loại — câu cấm rephrase. (2) Extension by genre + phase (.na canonical / .md report+historical). (3) Convention đang thắng, không invent. (4) Defer file-phase ≠ defer reference integrity. (5) RUNTIME LINEAGE (EventBus/HeyNa/SmartLink) vs SUBSTRATE (Node/mac/bash) vs EXTERNAL TOOL (Bridge v2 forensics) — 3 lớp tách cứng, bản thể rule, KHÔNG mô tả Natt-OS mượn bên thứ 3."
     },
     {
       "memory_id": "NEW",

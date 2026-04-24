@@ -1,6 +1,6 @@
 import { EventBus } from "../../../../core/events/event-bus";
 // ── prdwarranty-smartlink.port.ts ───────────────────────────
-// SIRA_CONTRACT_INTERFACE WarrantySignal
+// Sira_CONTRACT_INTERFACE WarrantySignal
 const WarrantySignal = {
   type: "WARRANTY_CLAIMED" | "WARRANTY_APPROVED" | "WARRANTY_CRITICAL" | "WARRANTY_EXPIRED";
   payload;

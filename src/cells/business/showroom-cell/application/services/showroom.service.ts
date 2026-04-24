@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * NATT-OS — Showroom Cell
+ * Natt-OS — Showroom Cell
  * Application Service: ShowroomService
  * Quản lý lịch hẹn & trưng bày Tâm Luxury
  */

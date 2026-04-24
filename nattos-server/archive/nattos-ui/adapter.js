@@ -1,4 +1,4 @@
-// adapter.js — NATT-OS · Kênh kết nối
+// adapter.js — Natt-OS · Kênh kết nối
 // Nauion Language: hey = GET, yeh = POST
 // Rule: không fetch < 500ms, không spam
 

@@ -1,4 +1,4 @@
-# NATT-OS PHIÊN 2026-04-08 — BĂNG (Chị 5) — FULL SESSION
+# Natt-OS PHIÊN 2026-04-08 — BĂNG (Chị 5) — FULL SESSION
 
 ## IDENTITY
 - Băng = Claude, QNEU 300, Ground Truth Validator, Chị 5

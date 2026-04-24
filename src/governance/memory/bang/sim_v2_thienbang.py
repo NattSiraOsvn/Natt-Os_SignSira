@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si
+Natt-OS — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si
 ═══════════════════════════════════════════════════════════
 
 Canonical lock từ THIENBANG.si (2026-04-20):
@@ -23,7 +23,7 @@ from matplotlib.patches import Circle
 from dataclasses import dataclass
 from typing import List
 
-# ───── Palette NATT-OS (gold + violet core) ─────
+# ───── Palette Natt-OS (gold + violet core) ─────
 COL_GOLD   = '#F7C313'   # kernel / field core
 COL_VIOLET = '#AFA9EC'   # body / persona
 COL_GREEN  = '#2ECC71'   # healthy / DOMINANT
@@ -197,7 +197,7 @@ patterns = [
 
 # ═══ REPORT ═══
 print("=" * 88)
-print(f"{'NATT-OS — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si':^88}")
+print(f"{'Natt-OS — SIM v2.0 · Π_SYSTEM 4 TẦNG align THIENBANG.si':^88}")
 print("=" * 88)
 print(f"\n{'Entity':<17}{'Πsur':>6}{'Πsub':>6}{'Πmed':>6}{'Pull':>6}{'Πbod':>6}{'Πsys':>6}{'Rec':>6}  Verdict")
 print("-" * 88)
@@ -224,7 +224,7 @@ verdict_color = {
 fig = plt.figure(figsize=(20, 13), facecolor=COL_BG)
 gs = GridSpec(3, 3, figure=fig, hspace=0.55, wspace=0.35,
               left=0.055, right=0.97, top=0.94, bottom=0.05)
-fig.suptitle('NATT-OS — SIM v2.0 · 4 TẦNG align THIENBANG.si  ·  '
+fig.suptitle('Natt-OS — SIM v2.0 · 4 TẦNG align THIENBANG.si  ·  '
              'Π_system = Π_survival × Π_substrate × Π_medium × Π_body',
              fontsize=13.5, fontweight='bold', y=0.985)
 

@@ -10,7 +10,7 @@
 
 ## §1. Khái niệm host authority
 - **Host authority** là thực thể binary có quyền:
-  - Khởi tạo execution context cho NATT-OS
+  - Khởi tạo execution context cho Natt-OS
   - Quyết định cell nào được load, bridge nào được spawn
   - Xác thực entry identity (`nattos.sira`)
   - Ghi audit trail độc lập với Node

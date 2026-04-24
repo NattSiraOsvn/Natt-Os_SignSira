@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v4.0
+# Natt-OS SmartAudit v4.0
 # Author: Băng — Ground Truth Validator
 # Usage:  bash smartAudit.sh [--json] [--full]
 #         Chạy từ root natt-os ver2goldmaster
@@ -132,7 +132,7 @@ info "Inherited V2: $V2_FILES files | V1: $V1_FILES files"
 hdr "4" "GOVERNANCE / ADN"
 # ═══════════════════════════════════════════════════════════════
 GOV_FILES=(
-  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v4.0.anc"
+  "Hiến Pháp:src/governance/HIEN-PHAP-Natt-OS-v4.0.anc"
   "QNEU system-state:src/governance/qneu/data/system-state.phieu"
   "QNEU first-seed:src/governance/qneu/first-seed.ts"
   "Gatekeeper core:src/governance/gatekeeper/gatekeeper-core.ts"
@@ -1245,7 +1245,7 @@ c = colors.get(state, "\033[0m")
 N = "\033[0m"
 
 print(f"  ╔══════════════════════════════════════════════════╗")
-print(f"  ║  NATT-OS DIGITAL TWIN — {twin['generated_at'][:10]}         ║")
+print(f"  ║  Natt-OS DIGITAL TWIN — {twin['generated_at'][:10]}         ║")
 print(f"  ╠══════════════════════════════════════════════════╣")
 print(f"  ║  System State:    {c}{state:<12}{N}  Risk: {risk}/100      ║")
 print(f"  ║  Healthy Flows:   {flows:<5}   Orphan Events: {orphans:<5}     ║")
@@ -1262,7 +1262,7 @@ hdr "16" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
 echo ""
 echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
-echo -e "  ${W}║  NATT-OS SYSTEM HEALTH — $TS  ║${N}"
+echo -e "  ${W}║  Natt-OS SYSTEM HEALTH — $TS  ║${N}"
 echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
 printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "" "OK" "WARN" "FAIL" "TRASH"
 printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "Totals" "$TOTAL_OK" "$TOTAL_WARN" "$TOTAL_FAIL" "$TOTAL_TRASH"

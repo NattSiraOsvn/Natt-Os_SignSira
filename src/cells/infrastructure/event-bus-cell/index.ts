@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // EVENT-BUS-CELL — Entry Point
-// Infrastructure cell: central event routing for NATT-OS
+// Infrastructure cell: central event routing for Natt-OS
 // ═══════════════════════════════════════════════════════════════
 
 export { EventBusApplication } from "./application/event-bus.application";

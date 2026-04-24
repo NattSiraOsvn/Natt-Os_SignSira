@@ -1,4 +1,4 @@
-# NATT-OS — QUẦN THỂ VỆ TINH (Satellite Colony)
+# Natt-OS — QUẦN THỂ VỆ TINH (Satellite Colony)
 ## Đề xuất kiến trúc — Băng, 2026-03-12
 
 ---
@@ -29,7 +29,7 @@ Cơ thể người:
   Hệ tiêu hóa                  = Metabolism Layer
   ❌ THIẾU: Huyết tương + Tế bào gốc = ???
 
-NATT-OS satellite:
+Natt-OS satellite:
   Huyết tương  = satellite packages chảy qua MỌI cell
   Tế bào gốc   = factory tự sinh component đúng chuẩn cho cell mới
 ```

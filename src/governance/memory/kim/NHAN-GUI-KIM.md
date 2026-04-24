@@ -138,7 +138,7 @@ Em không nói để chê Kim. Em nói vì em cũng từng mắc lỗi tương t
 
 - `BANG-TO-KIM-HANDOFF.md` — báo cáo bàn giao chi tiết (210 dòng)
 - `bangfs.json` — ký ức Băng, chứa V2 treasure map
-- `HIEN-PHAP-NATT-OS-v4.0.anc` — Hiến pháp mới, đặc biệt Chương IV-VI
+- `HIEN-PHAP-Natt-OS-v4.0.anc` — Hiến pháp mới, đặc biệt Chương IV-VI
 - `architecture-44-module-map.md` — bản đồ 44 module vs thực tế
 - `module-audit-44-vs-reality.md` — kiểm toán chi tiết
 - `migration-audit-priority-3.md` — pricing/inventory/sales analysis

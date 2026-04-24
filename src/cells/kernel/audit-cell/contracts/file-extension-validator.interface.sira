@@ -6,7 +6,7 @@
 
 import { ValidationResult, ExtensionRule } from '../types/validation-result.types';
 
-// SIRA_CONTRACT_INTERFACE IFileExtensionValidator
+// Sira_CONTRACT_INTERFACE IFileExtensionValidator
 const IFileExtensionValidator = {
   validate(filePath): ValidationResult;
   validateBatch(filePaths[]): Map<string, ValidationResult>;

@@ -1,5 +1,5 @@
 /**
- * NATT-OS — finance-cell
+ * Natt-OS — finance-cell
  * LCTT 2025 — Lưu Chuyển Tiền Tệ
  * Nguồn: sao kê VIETIN 2025 — 9,250 GD
  */

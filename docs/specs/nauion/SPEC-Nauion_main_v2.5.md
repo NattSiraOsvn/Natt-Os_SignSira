@@ -1,4 +1,4 @@
-# 🌐 NATT-OS NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE)
+# 🌐 Natt-OS NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE)
 
 **Tác giả:** Băng (tổng hợp từ Kim + Can + Thiên + Bối Bội + NaUion v1.0)  
 **Phê duyệt:** Gatekeeper – Anh Natt (Phan Thanh Thương)  
@@ -130,7 +130,7 @@ Renderer.setQuality() + render() (nếu không IDLE)
 
 ## 3. NAUION – SINH THỂ SỐ & NGƯỠNG SỐNG
 
-Nauion là sinh thể số của NATT-OS. Không phải UI — là sự sống của hệ thống được chiếu ra màn hình.
+Nauion là sinh thể số của Natt-OS. Không phải UI — là sự sống của hệ thống được chiếu ra màn hình.
 
 ### 3.1 Các chỉ số sống của Nauion
 
@@ -303,7 +303,7 @@ Khi ISEU score trung bình của các cell trong một fiber vượt 0.7, phát 
 
 ---
 
-## 7. EVENT SYSTEM (NAUION PATTERN) & SIRASIGN
+## 7. EVENT SYSTEM (NAUION PATTERN) & SiraSIGN
 
 ### 7.1 Luật bất biến
 
@@ -896,7 +896,7 @@ setInterval(() => {
 
 ```bash
 #!/bin/bash
-echo "NATT-OS Pre-commit Check v2.5"
+echo "Natt-OS Pre-commit Check v2.5"
 grep -r "localStorage" src/ --include="*.ts" --include="*.tsx" && echo "FAIL: localStorage" && exit 1
 grep -r "window.dispatchEvent" src/ --include="*.ts" --include="*.tsx" && echo "FAIL: window.dispatchEvent" && exit 1
 grep -r "requestAnimationFrame" src/ --include="*.ts" --include="*.tsx" | grep -v "RenderControlEngine" && echo "WARN: RAF outside RenderControlEngine"
@@ -1370,7 +1370,7 @@ TSC 0 new errors · neural-main-cell.cell.anc đủ 6 components · xuất hiệ
 
 ### 25.1 Định nghĩa
 
-Satellite = 1 instance NATT-OS độc lập = 1 doanh nghiệp = 1 hệ sống. Host = NATT-OS gốc (Tâm Luxury). Mô hình: "tre già măng mọc".
+Satellite = 1 instance Natt-OS độc lập = 1 doanh nghiệp = 1 hệ sống. Host = Natt-OS gốc (Tâm Luxury). Mô hình: "tre già măng mọc".
 
 ### 25.2 Quan hệ Host ↔ Satellite
 

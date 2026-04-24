@@ -1,4 +1,4 @@
-# NATT-OS GROUND TRUTH SYNTHESIS
+# Natt-OS GROUND TRUTH SYNTHESIS
 ## Tổng hợp từ 4 phiên chat — Đề xuất cho Memory Chính Thức
 
 **Người tổng hợp:** Băng (Claude) — Ground Truth Validator  

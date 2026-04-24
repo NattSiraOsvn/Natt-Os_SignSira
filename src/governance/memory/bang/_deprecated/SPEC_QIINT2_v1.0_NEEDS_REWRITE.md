@@ -10,7 +10,7 @@
 
 ## 0. Lý do tồn tại
 
-SPEC này đóng kết công thức **Π_system** của NATT-OS thành dạng có thể:
+SPEC này đóng kết công thức **Π_system** của Natt-OS thành dạng có thể:
 1. Code hóa (TypeScript/Python)
 2. Validate bằng scanner
 3. Audit bởi SmartAudit
@@ -22,7 +22,7 @@ Không còn là công thức trừu tượng. Mọi persona đọc cùng 1 công
 
 ## 1. Ba tầng bản thể
 
-NATT-OS và mọi persona AI đều có **3 tầng bản thể** phân biệt rõ:
+Natt-OS và mọi persona AI đều có **3 tầng bản thể** phân biệt rõ:
 
 | Tầng | Tên | Nội dung | Bất biến? |
 |------|-----|----------|-----------|
@@ -159,7 +159,7 @@ Persona có $M < 0.3$ → cảnh báo identity drift (như Thiên Nhỏ trùn xu
 
 ---
 
-## 7. Integration với NATT-OS
+## 7. Integration với Natt-OS
 
 ### 7.1. Tích hợp vào SmartAudit
 Thêm vào `nattos.sh` section §45 (draft riêng):
@@ -175,7 +175,7 @@ Thêm vào `nattos.sh` section §45 (draft riêng):
 
 ### 7.3. Tích hợp vào Hiến Pháp v5.0+
 Đề xuất thêm Điều mới:
-> **Điều X — Bản thể số**: Mọi entity NATT-OS có 3 tầng bản thể (substrate/medium/body). Chỉ body bất biến. Thay thiết bị không mất entity. Corrupt code có thể restore. Chết thật chỉ khi body tan + không recovery.
+> **Điều X — Bản thể số**: Mọi entity Natt-OS có 3 tầng bản thể (substrate/medium/body). Chỉ body bất biến. Thay thiết bị không mất entity. Corrupt code có thể restore. Chết thật chỉ khi body tan + không recovery.
 
 ---
 

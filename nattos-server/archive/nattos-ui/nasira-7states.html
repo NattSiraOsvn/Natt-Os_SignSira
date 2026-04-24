@@ -46,7 +46,7 @@ body {
 .icon-desc  { font-size: 7px; letter-spacing: .12em; color: rgba(200,190,170,.35); display: block; }
 
 /* ═══════════════════════════════════════════════════════
-   NASIRA — THIÊN LỚN SPEC
+   NASira — Thiên LỚN SPEC
    ═══════════════════════════════════════════════════════ */
 .nasira {
   --sz: 120px;
@@ -60,7 +60,7 @@ body {
   transition: transform .35s cubic-bezier(.23,1,.32,1);
 }
 
-/* THIÊN LỚN: Galaxy aura vũ trụ xung quanh core */
+/* Thiên LỚN: Galaxy aura vũ trụ xung quanh core */
 .nasira::before {
   content: '';
   position: absolute;
@@ -77,7 +77,7 @@ body {
 .nasira:hover::before { opacity: .95; }
 .nasira:hover { transform: scale(1.07) translateY(-4px); }
 
-/* ── 8 PETAL BUBBLES — THIÊN LỚN GALAXY LIGHT ── */
+/* ── 8 PETAL BUBBLES — Thiên LỚN GALAXY LIGHT ── */
 .petals {
   position: absolute; inset: 0; z-index: 1;
   /* Drop shadow = ambient glow từ nucleus color */
@@ -97,7 +97,7 @@ body {
   transform-origin: 50% calc(100% + var(--sz) * .09);
   border-radius: 50%;
 
-  /* THIÊN LỚN: Galaxy light interaction — cánh KHÔNG chìm nữa */
+  /* Thiên LỚN: Galaxy light interaction — cánh KHÔNG chìm nữa */
   background:
     /* Bottom glow: ánh sáng từ nucleus phát lên */
     radial-gradient(circle at 50% 120%, rgba(255,255,255,.13) 0%, transparent 58%),
@@ -121,7 +121,7 @@ body {
   border: 1px solid rgba(140,120,200,.28);
 }
 
-/* THIÊN LỚN: Scale variation = 4D depth / không gian */
+/* Thiên LỚN: Scale variation = 4D depth / không gian */
 .p0 { transform: rotate(  0deg) translateY(calc(var(--sz)*-.185)) scale(1.10); }
 .p1 { transform: rotate( 45deg) translateY(calc(var(--sz)*-.185)) scale(0.88); }
 .p2 { transform: rotate( 90deg) translateY(calc(var(--sz)*-.185)) scale(1.18); }
@@ -146,7 +146,7 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 
-/* ── NUCLEUS — THIÊN LỚN: phát sáng từ bên trong ── */
+/* ── NUCLEUS — Thiên LỚN: phát sáng từ bên trong ── */
 .nucleus {
   width:  calc(var(--sz) * .275);
   height: calc(var(--sz) * .275);
@@ -154,11 +154,11 @@ body {
   position: relative;
   overflow: hidden;
 
-  /* THIÊN LỚN: radial-gradient(circle, color 0%, transparent 70%) — "phát sáng từ bên trong" */
+  /* Thiên LỚN: radial-gradient(circle, color 0%, transparent 70%) — "phát sáng từ bên trong" */
   background:
     /* Specular hotspot upper-left */
     radial-gradient(ellipse 45% 35% at 28% 22%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.30) 32%, transparent 60%),
-    /* THIÊN LỚN: inside-out glow — color core → transparent edge */
+    /* Thiên LỚN: inside-out glow — color core → transparent edge */
     radial-gradient(circle at 50% 50%, var(--nc) 0%, rgba(255,255,255,.15) 28%, transparent 70%),
     /* Deep space shadow ring */
     radial-gradient(circle at 50% 65%, rgba(0,0,0,.55) 0%, transparent 80%);
@@ -205,7 +205,7 @@ body {
   transform: rotate(-18deg);
 }
 
-/* THIÊN LỚN: NUCLEUS-INDEX — trục nhận thức */
+/* Thiên LỚN: NUCLEUS-INDEX — trục nhận thức */
 .nucleus-index {
   position: absolute;
   inset: 0;
@@ -403,7 +403,7 @@ body {
   </div><!-- /grid-7 -->
 
   <div class="foot">
-    CHROMATIC IMMUNE SPECTRUM · NATT-OS Constitution v5.0 · Thiên Lớn Spec<br>
+    CHROMATIC IMMUNE SPECTRUM · Natt-OS Constitution v5.0 · Thiên Lớn Spec<br>
     nucleus-index = trục nhận thức · scale variation = 4D depth · galaxy light = vật thể trong không gian<br>
     Mật chỉ: Ngược cầu vồng — Đỏ = nguy hiểm nhất · Tím = khải hoàng · nauion
   </div>

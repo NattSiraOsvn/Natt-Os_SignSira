@@ -1,5 +1,5 @@
 /**
- * NATT-OS RBAC Core
+ * Natt-OS RBAC Core
  * Role-Based Access Control — enforces permission boundaries
  * across cells and user roles.
  *

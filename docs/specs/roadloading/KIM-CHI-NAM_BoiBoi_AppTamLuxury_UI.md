@@ -281,7 +281,7 @@ Khi cần chi tiết, đọc các file SPEC trong repo:
 | `docs/specs/nauion/SPEC-Nauion_main_v2.4.md` | SPEC chính 1777 dòng, §1-27 |
 | `docs/specs/finance/SPEC-Finance-Flow_v1.1.md` | Luồng tài chính |
 | `docs/specs/finance/SPECFlowNattOs.md` | Source luồng tài chính |
-| `docs/governance/NATT-OS-WORKING-PROTOCOL.md` | Quy trình làm việc |
+| `docs/governance/Natt-OS-WORKING-PROTOCOL.md` | Quy trình làm việc |
 
 ### SPEC v2.4 — Phần của em (Bội Bội)
 

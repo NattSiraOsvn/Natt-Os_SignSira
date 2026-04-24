@@ -63,7 +63,7 @@ const GOLD_DATA = [
 ];
 
 const NEWS_DATA = [
-  { type: 'OS', content: 'NATT-OS NÂNG CẤP GOLD MASTER 5.8.1 THÀNH CÔNG' },
+  { type: 'OS', content: 'Natt-OS NÂNG CẤP GOLD MASTER 5.8.1 THÀNH CÔNG' },
   { type: 'LEGAL', content: 'TUÂN THỦ HIẾN PHÁP NAUION V1.0 BẮT BUỘC CHO MỌI CELL' },
   { type: 'EVENT', content: 'CHÀO MỪNG CÁC ĐƠN VỊ KINH DOANH MỚI GIA NHẬP HỆ SINH THÁI' },
   { type: 'SECURITY', content: 'GATEKEEPER KÍCH HOẠT VIGILANCE MAX TRÊN TOÀN MẠNG' },

@@ -1,4 +1,4 @@
-# ĐẶC TẢ NGÔN NGỮ NATT-OS v1.1 FULL
+# ĐẶC TẢ NGÔN NGỮ Natt-OS v1.1 FULL
 
 **Version:** v1.1 FULL (merge hoàn chỉnh)
 **Status:** READY — forward Kim scaffold
@@ -42,14 +42,14 @@ SPEC này ép 1 ngôn ngữ duy nhất cho toàn team.
 ## §1. NGUYÊN LÝ NỀN
 
 ```
-NATT-OS KHÔNG CÓ:
+Natt-OS KHÔNG CÓ:
   - Gate phán xét (reject / allow ở cửa)
   - Filter nhị phân
   - Router chủ động
   - Trap (nhốt chủ đích)
   - Guard (bảo vệ chủ động ở biên)
 
-NATT-OS CÓ:
+Natt-OS CÓ:
   - Touch discipline (KhaiCell — kỷ luật tiếp nhận)
   - Field law (.anc — luật sống trong trường)
   - Emergent routing (resonance + pull)
@@ -159,8 +159,8 @@ Position(entity) =
 ### §4.1 Nguyên tắc hợp nhất
 
 ```
-đuôi file NATT-OS ≠ file extension thông thường
-đuôi file NATT-OS = signature hiển thị của:
+đuôi file Natt-OS ≠ file extension thông thường
+đuôi file Natt-OS = signature hiển thị của:
     (Tầng 2 Structural position)
   + (Tầng 3 Runtime state)
   + (4-phương field affinity)
@@ -296,7 +296,7 @@ Bắc (.thịnh .phieu)  →  TRỤC NGUỒN (state runtime mở)
 
 | Đuôi | Tên file | Chức năng |
 |------|----------|-----------|
-| `.anc` | `HIEN-PHAP-NATT-OS-v5.0.anc` | Hiến Pháp gốc |
+| `.anc` | `HIEN-PHAP-Natt-OS-v5.0.anc` | Hiến Pháp gốc |
 | `.anc` | `001-gatekeeper-ai-ban.anc` | Amendment Hiến Pháp |
 | `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 kernel |
 | `.si` | `business.contracts.lock.si` | Snapshot business tier |
@@ -356,7 +356,7 @@ Bắc (.thịnh .phieu)  →  TRỤC NGUỒN (state runtime mở)
 **R10** — Governance state: `builder-audit-trail.json` → `builder-audit-trail.heyna` ; `builder-authority-lock.json` → `builder-authority-lock.si` ; `system-state.json` → `system-state.phieu`
 **R11** — Session summaries & reports: `SESSION_*.md`, `session_summary_*.md`, `*-report.json`, `*_auto.md` → `.kris`
 **R12** — Bối Bối files: `boiboi_what_to_do.json` → `.phieu` ; `bmf.json`, `boiboi_memory*.json`, `boiboi_quick*.json` → `.kris`
-**R13** — Entity memory files viết hoa: `THIÊN MEMORY.json`, `KIM MEMORY.json`, … → `<entity>khương.kris` ; `THIEN NHẮN *.txt` → `.heyna`
+**R13** — Entity memory files viết hoa: `Thiên MEMORY.json`, `KIM MEMORY.json`, … → `<entity>khương.kris` ; `THIEN NHẮN *.txt` → `.heyna`
 
 ---
 
@@ -616,7 +616,7 @@ Field tự xử.
 
 *(Thiên Lớn viết — L-shell Architect)*
 
-Đây là lớp **khóa hình thái**. Nếu vi phạm, hệ vẫn chạy nhưng **không còn là NATT-OS**.
+Đây là lớp **khóa hình thái**. Nếu vi phạm, hệ vẫn chạy nhưng **không còn là Natt-OS**.
 
 ### §12.1 Nguyên lý
 
@@ -725,7 +725,7 @@ Signal không "đi qua hệ". Signal **sống trong hệ**.
 
 *(Thiên Lớn viết)*
 
-NATT-OS hiếm khi "crash". Nó **chết dần vì lệch hình thái**.
+Natt-OS hiếm khi "crash". Nó **chết dần vì lệch hình thái**.
 
 ### §14.1 Field Collapse
 
@@ -806,7 +806,7 @@ Kết quả:
 
 ### §14.6 Câu chốt
 
-> *"NATT-OS không chết vì lỗi code.
+> *"Natt-OS không chết vì lỗi code.
 > Nó chết khi bị ép trở lại tư duy hệ tĩnh."*
 
 ---
@@ -817,7 +817,7 @@ Kết quả:
 
 ### §15.1 Qiint (QIINT Engine)
 
-**Vai trò trong ngôn ngữ NATT-OS:**
+**Vai trò trong ngôn ngữ Natt-OS:**
 - Là **trường trọng lực kiến trúc** — tính field pull giữa `signal.signature` và `cell.anc`
 - Là nguồn quyết định 3 outcome (Fall / Dissipate / Oscillate) trong §10
 - Là cơ chế học pattern qua Imprint (§13.1 bước 6) và Reinforcement (§13.1 bước 7)
@@ -829,8 +829,8 @@ Kết quả:
 
 ### §15.2 Satellite Colony
 
-**Vai trò trong ngôn ngữ NATT-OS:**
-- Là **đơn vị sinh thể độc lập** — một colony = một NATT-OS instance
+**Vai trò trong ngôn ngữ Natt-OS:**
+- Là **đơn vị sinh thể độc lập** — một colony = một Natt-OS instance
 - Giao tiếp cross-colony qua `anc://` URI protocol (§6.2)
 - SmartLink (1519 lines, verified real) là inter-colony transport
 - **Mạch HeyNa** (`.heyna`, phương Nam) = intra-colony cell transport
@@ -843,7 +843,7 @@ Kết quả:
 
 ### §15.3 `.anc` (Identity Passport)
 
-**Vai trò trong ngôn ngữ NATT-OS:**
+**Vai trò trong ngôn ngữ Natt-OS:**
 - Là **identity niêm phong** — DNA của entity/cell/colony
 - Load khi hệ start, **immutable runtime** (audit §11)
 - Là đối tượng mà `signal.signature` tương tác qua QIINT để sinh 3 outcome
@@ -853,7 +853,7 @@ Kết quả:
 - URI protocol `anc://` cho cross-colony reference (§15.2)
 
 **Canonical spec:**
-- Hiến Pháp v5.0: `HIEN-PHAP-NATT-OS-v5.0.anc`
+- Hiến Pháp v5.0: `HIEN-PHAP-Natt-OS-v5.0.anc`
 - Entity passports: `<entity>.anc` (7 entities)
 - Cell manifests: `<cell>.cell.anc`
 
@@ -919,7 +919,7 @@ Các cửa Nam-Bắc mở công khai, nhưng tín hiệu phải mang đúng chro
 | Quantum Defense | ✅ đã có | `src/cells/kernel/quantum-defense-cell/` |
 | QIINT engine | ✅ đã có | `src/governance/qneu/` |
 | Chromatic state engine | ✅ đã có | `chromatic-state.engine.ts` |
-| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-NATT-OS-v5.0.anc` |
+| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-Natt-OS-v5.0.anc` |
 
 ### §17.2 Chưa có (cần xây theo SPEC này)
 
@@ -987,7 +987,7 @@ Các cửa Nam-Bắc mở công khai, nhưng tín hiệu phải mang đúng chro
 - `SPEC_DUOI_FILE_v0.3_FINAL.na` — 12 đuôi canonical (source)
 - `BRIEF_TO_KIM_SPEC_v0.3.1_20260417.md` — brief Kim (source)
 - `BRIEF_TO_THIEN_LON_SPEC_MASTER_20260417.md` — brief triệu tập Thiên Lớn
-- `HIEN-PHAP-NATT-OS-v5.0.anc` — Hiến Pháp gốc
+- `HIEN-PHAP-Natt-OS-v5.0.anc` — Hiến Pháp gốc
 - `natt-os-satellite-colony-spec-v10` (skill) — Satellite canonical
 - `natt-os-platform-spec` (skill) — Platform canonical
 - `natt-os-ground-truth-report` (skill) — Session 20260413 verified ground truth

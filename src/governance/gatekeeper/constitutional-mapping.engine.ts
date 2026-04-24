@@ -1,5 +1,5 @@
 /**
- * NATT-OS Constitutional Mapping Engine v1.1
+ * Natt-OS Constitutional Mapping Engine v1.1
  * CAN-02: DNA gate added to execute()
  *
  * Thay đổi từ v1.0:

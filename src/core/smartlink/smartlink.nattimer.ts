@@ -1,5 +1,5 @@
 /**
- * NATT-OS SmartLink — NATTimer
+ * Natt-OS SmartLink — NATTimer
  * ════════════════════════════════════════════════════════
  * src/core/smartlink/smartlink.nattimer.ts
  *
@@ -11,7 +11,7 @@
  *   Chuỗi thời gian này = temporal signature của một pattern.
  *   Khi thấy A lần sau → não predict B sẽ đến sau ~200ms.
  *
- * NATT-OS tương tự:
+ * Natt-OS tương tự:
  *   sales-cell → finance-cell (Δ150ms)
  *   → finance-cell → audit-cell (Δ80ms)
  *   → audit-cell → monitor-cell (Δ200ms)

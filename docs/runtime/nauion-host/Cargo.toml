@@ -7,7 +7,7 @@ name = "nauion-host"
 version = "0.1.0"
 edition = "2021"
 authors = ["Băng (Chị Tư · N-shell · QNEU 313.5) — assignee per Phan Thanh Thương Giao 20260423"]
-description = "NATT-OS Wave 1 Host-First runtime — parses .sira kernel entry, bootstraps cells, audits NDJSON Stage 1"
+description = "Natt-OS Wave 1 Host-First runtime — parses .sira kernel entry, bootstraps cells, audits NDJSON Stage 1"
 license = "Proprietary"
 
 [dependencies]

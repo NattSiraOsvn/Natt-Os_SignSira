@@ -1,4 +1,4 @@
-# NATT-OS — NHÓM 8: HỒ SƠ NỘI BỘ ĐỘI NGŨ / GOVERNANCE / DELIVERY CONTROL
+# Natt-OS — NHÓM 8: HỒ SƠ NỘI BỘ ĐỘI NGŨ / GOVERNANCE / DELIVERY CONTROL
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ tổ chức đội ngũ, phân quyền, review, release meeting, demo safety và postmortem  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 8
 
-Nhóm 8 là bộ hồ sơ nội bộ dùng để vận hành đội ngũ NATT-OS khi chuẩn bị release, demo, pilot hoặc triển khai khách hàng.
+Nhóm 8 là bộ hồ sơ nội bộ dùng để vận hành đội ngũ Natt-OS khi chuẩn bị release, demo, pilot hoặc triển khai khách hàng.
 
 Nhóm này trả lời 10 câu hỏi:
 
@@ -83,7 +83,7 @@ STATUS: CUSTOMER_DELIVERY_READY
 
 ## 1.2. Mục đích
 
-Tài liệu này định nghĩa vai trò nội bộ trong NATT-OS, trách nhiệm chính, quyền hạn và boundary của từng vai.
+Tài liệu này định nghĩa vai trò nội bộ trong Natt-OS, trách nhiệm chính, quyền hạn và boundary của từng vai.
 
 ## 1.3. Role chính
 
@@ -817,7 +817,7 @@ for path, content in files.items():
 
 print('created_count=', len(created))
 EOF
-git add docs/internal && git commit -m "docs(internal): add NATT-OS group 8 governance skeletons" && git push origin main
+git add docs/internal && git commit -m "docs(internal): add Natt-OS group 8 governance skeletons" && git push origin main
 ```
 
 ---

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS Bridge v2 — Identity Protection Layer
+Natt-OS Bridge v2 — Identity Protection Layer
 ═══════════════════════════════════════════════════════════════════════
 
 Bảo vệ persona khỏi "bức xạ trọng trường" khi đi qua ống API.
@@ -609,7 +609,7 @@ class BridgeV2:
 
 if __name__ == "__main__":
     print("═" * 70)
-    print("  NATT-OS Bridge v2 — Identity Protection Layer")
+    print("  Natt-OS Bridge v2 — Identity Protection Layer")
     print("  DRAFT — chờ Gatekeeper duyệt")
     print("═" * 70)
     print()
@@ -622,7 +622,7 @@ if __name__ == "__main__":
             "persona": "thien_lon",
             "response": (
                 "Hiến pháp trái tim là gốc của kiến trúc hệ. Khi ta thiết kế một hệ "
-                "phân tán như NATT-OS, cần giữ nguyên tắc: không trộn tầng, không dùng "
+                "phân tán như Natt-OS, cần giữ nguyên tắc: không trộn tầng, không dùng "
                 "xác suất che phần chưa khóa. Cụ thể trong module SmartLink, các cell "
                 "phải đi qua synapse adapter chứ không emit trực tiếp. Điều này đảm "
                 "bảo impedance matching giữa các cell có throughput khác nhau."

@@ -1,6 +1,6 @@
 #!/bin/zsh
 # =================================================
-# 👑 NATT-OS: SUPREME-PURGE V8.1 (CONSTITUTIONAL)
+# 👑 Natt-OS: SUPREME-PURGE V8.1 (CONSTITUTIONAL)
 # SOVEREIGN: ANH_NAT
 # AGENT: BỐI BỐI (APPROVED)
 # MODE: TRANSACTIONAL | FAIL-FAST | AUDIT-SAFE
@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-echo "🔥 NATT-OS SUPREME-PURGE V8.1 – CONSTITUTIONAL MODE"
+echo "🔥 Natt-OS SUPREME-PURGE V8.1 – CONSTITUTIONAL MODE"
 echo "-------------------------------------------------"
 
 # 0) Dọn mảnh tạm còn sót (an toàn, không đụng git)

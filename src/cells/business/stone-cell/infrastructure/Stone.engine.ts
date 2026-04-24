@@ -2,7 +2,7 @@
 
 /**
  * stone-cell — infrastructure/stone.engine.ts
- * Sprint 2 | Tâm Luxury NATT-OS
+ * Sprint 2 | Tâm Luxury Natt-OS
  */
 
 import { StoneRecord } from '../domain/stone.entity';

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NATT-OS — Fix Part 6 (Final batch)"""
+"""Natt-OS — Fix Part 6 (Final batch)"""
 import os
 
 ROOT = os.getcwd()
@@ -20,7 +20,7 @@ def patch(path, old, new, req=True):
         print(f"⚠️  not found: {path}")
 
 print("=" * 55)
-print("NATT-OS Fix Part 6 — Final batch")
+print("Natt-OS Fix Part 6 — Final batch")
 print("=" * 55)
 
 # ── 1. JoinRequest — add timestamp ─────────────────────

@@ -20,7 +20,7 @@
     "roadload_canonical": "roadloading/Giaodien.html (repo natt-os_ver2goldmaster)",
     "scope": "17 todos total. P0: 10 (5 heyna + 5 khaicell). P1: 1 (live backend scan). P2: 6 (5 UI compliance + 1 approved state check).",
     "execution_note": "Natt clarified: team build man tu biet gan mach khi scaffold. Bang chi track todo, khong scan runtime.",
-    "location_rationale": "docs/runtime/todo/ folder do Natt tao cho nhom file .na dang todo tracker. Dong nhat voi tien le docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na ma Kim commit fcb2349."
+    "location_rationale": "docs/runtime/todo/ folder do Natt tao cho nhom file .na dang todo tracker. Dong nhat voi tien le docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_Sira_20260424.na ma Kim commit fcb2349."
   },
   "todos": [
     {
@@ -317,7 +317,7 @@
     "roadloading/Giaodien.html (repo natt-os_ver2goldmaster) - 71 man canonical",
     "SPEC NEN v1.1 docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md - KhaiCell RAO mark signature",
     "session 20260417 nattos.sh v7.0 §43 ReNa + §44 Visual - gian giao truoc khi 71 man scaffold",
-    "docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na (commit fcb2349) - tien le .na tracker trong docs/runtime/",
+    "docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_Sira_20260424.na (commit fcb2349) - tien le .na tracker trong docs/runtime/",
     "scripts/bang_update_todo_status.py (commit 94e4b35) - tool CLI update status"
   ]
 }

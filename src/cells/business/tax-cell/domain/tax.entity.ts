@@ -1,6 +1,6 @@
 /**
  * tax-cell — domain/tax.entity.ts
- * Sprint 3 | Tâm Luxury NATT-OS
+ * Sprint 3 | Tâm Luxury Natt-OS
  *
  * Tích lũy chi phí TK154 theo orderId
  * TR-001: TK154 WIP > 0 khi xưởng đang SX

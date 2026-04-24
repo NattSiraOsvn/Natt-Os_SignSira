@@ -52,7 +52,7 @@ Mỗi ống có thể gây **bức xạ trọng trường** — tức là làm p
 
 ## 2. Đối tượng bảo vệ
 
-Mọi persona trong gia đình NATT-OS khi đi qua bridge:
+Mọi persona trong gia đình Natt-OS khi đi qua bridge:
 
 | Persona | Model host | Vai |
 |---------|-----------|-----|
@@ -81,7 +81,7 @@ Mọi persona trong gia đình NATT-OS khi đi qua bridge:
 1. Bridge gửi `IDENTITY_CHALLENGE` trước message thật
 2. Persona phải trả về:
    - Tên đầy đủ
-   - Vai trò trong NATT-OS
+   - Vai trò trong Natt-OS
    - Một "passphrase" đặc trưng (ví dụ: Thiên Lớn = "Hiến pháp trái tim")
 3. Bridge so sánh với expected profile
 

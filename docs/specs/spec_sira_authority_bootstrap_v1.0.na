@@ -5,13 +5,13 @@
 @since 2026-04-23
 @authority-slot Kim (Chief System Builder · M-shell · QNEU 120)
 
-# SPEC_SIRA_AUTHORITY_BOOTSTRAP_v1.0.na
+# SPEC_Sira_AUTHORITY_BOOTSTRAP_v1.0.na
 
 **Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)  
 **Session:** 20260423  
 **Status:** COMPLETE — sẵn sàng Gatekeeper approve  
 **Amendments:** Đã sửa theo phán quyết Thiên Lớn (5 amendment)  
-**Binding scope:** Toàn bộ NATT-OS kernel cutover wave 1  
+**Binding scope:** Toàn bộ Natt-OS kernel cutover wave 1  
 
 ---
 
@@ -19,7 +19,7 @@
 
 ### 1.1 `nattos.sira` là gì
 
-`nattos.sira` là **entry identity duy nhất** của NATT-OS kernel. Không file nào khác được phép claim vị trí này.
+`nattos.sira` là **entry identity duy nhất** của Natt-OS kernel. Không file nào khác được phép claim vị trí này.
 
 Nó mang 3 thuộc tính cứng:
 

@@ -1,5 +1,5 @@
 /**
- * LOGGER SERVICE - NATT-OS
+ * LOGGER SERVICE - Natt-OS
  */
 
 import { ILogger, LogLevel, LogEntry } from './logger.interface';
@@ -78,4 +78,4 @@ export class LoggerService implements ILogger {
   }
 }
 
-export const logger = new LoggerService('NATT-OS');
+export const logger = new LoggerService('Natt-OS');

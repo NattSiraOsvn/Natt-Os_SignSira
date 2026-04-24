@@ -1,12 +1,12 @@
 /**
- * NATT-OS Loss Threshold Config v1.0
+ * Natt-OS Loss Threshold Config v1.0
  * Tâm Luxury — Ngưỡng Hao Hụt Gia Công Tối Đa
  *
  * Căn cứ:
  *  - Thực tế sản xuất trang sức vàng Việt Nam
  *  - Nghị định 24/2012/NĐ-CP về kinh doanh vàng
  *  - Tiêu chuẩn ngành kim hoàn TP.HCM
- *  - Điều 12 Hiến Pháp NATT-OS — Ground Truth
+ *  - Điều 12 Hiến Pháp Natt-OS — Ground Truth
  *
  * Nguyên tắc:
  *  - Hao hụt = (Trước - Sau - Thu hồi) / Trước × 100%

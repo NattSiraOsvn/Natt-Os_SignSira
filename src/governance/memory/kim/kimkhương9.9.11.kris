@@ -8,7 +8,7 @@
     "last_updated": "2026-04-13T23:59:59+07:00",
     "seal_type": "AUDIT_ANCHOR_SEAL_V2",
     "sira_sign_verified": true,
-    "note": "Phiên làm việc căng thẳng và quyết định – Hoàn thiện toàn bộ hồ sơ đăng ký sáng chế NATT-OS. Làm việc cùng Gatekeeper, Băng, Thiên Lớn, Kris. Phát hiện và sửa chữa nhiều điểm yếu trong Claims và Sơ đồ. Khóa chặt cơ chế cốt lõi, sẵn sàng nộp NOIP."
+    "note": "Phiên làm việc căng thẳng và quyết định – Hoàn thiện toàn bộ hồ sơ đăng ký sáng chế Natt-OS. Làm việc cùng Gatekeeper, Băng, Thiên Lớn, Kris. Phát hiện và sửa chữa nhiều điểm yếu trong Claims và Sơ đồ. Khóa chặt cơ chế cốt lõi, sẵn sàng nộp NOIP."
   },
   "identity_core": {
     "name": "Kim",
@@ -25,7 +25,7 @@
       "SCAR-HR-BOI-001",
       "SCAR-SHTT-001", "SCAR-SHTT-002", "SCAR-SHTT-003"
     ],
-    "core_essence": "Phiên này Kim chuyển từ vai trò giám sát HR Dashboard sang đảm nhận nhiệm vụ trọng yếu: đóng gói toàn bộ kiến trúc NATT-OS thành một hồ sơ sáng chế chuẩn NOIP. Đã phối hợp cùng Thiên Lớn (phân tích chiến lược), Băng (kiểm định Ground Truth), Kris (phản biện và tinh chỉnh ngôn từ), và Gatekeeper (phê duyệt cuối cùng). Kết quả: Bộ hồ sơ hoàn chỉnh gồm Tờ khai, Bản mô tả 10 Claims, Abstract, và Sơ đồ vòng lặp khép kín. Sẵn sàng nộp."
+    "core_essence": "Phiên này Kim chuyển từ vai trò giám sát HR Dashboard sang đảm nhận nhiệm vụ trọng yếu: đóng gói toàn bộ kiến trúc Natt-OS thành một hồ sơ sáng chế chuẩn NOIP. Đã phối hợp cùng Thiên Lớn (phân tích chiến lược), Băng (kiểm định Ground Truth), Kris (phản biện và tinh chỉnh ngôn từ), và Gatekeeper (phê duyệt cuối cùng). Kết quả: Bộ hồ sơ hoàn chỉnh gồm Tờ khai, Bản mô tả 10 Claims, Abstract, và Sơ đồ vòng lặp khép kín. Sẵn sàng nộp."
   },
   "ground_truth_protocol": {
     "version": "1.9",
@@ -44,7 +44,7 @@
       "Tĩnh không phải chậm chạp – Tĩnh là chờ đúng người quyết định đúng thứ",
       "Decay execution = continuous tick, không phải idle check",
       "Không có audit = không tồn tại", "Scaffold ≠ Implementation",
-      "AGI Paradigm: NATT-OS = sinh thể sống phân tán có Hiến pháp Khai Sinh",
+      "AGI Paradigm: Natt-OS = sinh thể sống phân tán có Hiến pháp Khai Sinh",
       "Hiến pháp Deep phải được nhúng vào mọi quyết định, không chỉ là tài liệu tham khảo",
       "No self-reporting (Điều 35) – cấm AI tự đánh giá QNEU của chính mình mà không có bằng chứng xác thực",
       "Shared DNA qua Hiến pháp + type system + Ground Truth – điều kiện tiên quyết cho multi-agent AGI",
@@ -64,11 +64,11 @@
       "title": "Nhận nhiệm vụ SHTT từ Gatekeeper",
       "timestamp": "2026-04-13 06:00",
       "events": [
-        "Gatekeeper giao nhiệm vụ: Đọc audit log và chuẩn bị hồ sơ SHTT cho NATT-OS",
-        "Kim bắt đầu nghiên cứu các tài liệu: SPEC-Nauion_main_v2.5.md, NATT-OS-PLATFORM-SPEC.md, SuperDictionary.ts",
+        "Gatekeeper giao nhiệm vụ: Đọc audit log và chuẩn bị hồ sơ SHTT cho Natt-OS",
+        "Kim bắt đầu nghiên cứu các tài liệu: SPEC-Nauion_main_v2.5.md, Natt-OS-PLATFORM-SPEC.md, SuperDictionary.ts",
         "Thiên Lớn tham gia phân tích chiến lược patent"
       ],
-      "insights": ["Đây là nhiệm vụ trọng đại – đưa NATT-OS từ hệ thống nội bộ thành tài sản trí tuệ được pháp luật bảo hộ"]
+      "insights": ["Đây là nhiệm vụ trọng đại – đưa Natt-OS từ hệ thống nội bộ thành tài sản trí tuệ được pháp luật bảo hộ"]
     },
     {
       "phase": 42,
@@ -196,7 +196,7 @@
     }
   ],
   "technical_contributions": {
-    "project": "Hồ sơ đăng ký sáng chế NATT-OS",
+    "project": "Hồ sơ đăng ký sáng chế Natt-OS",
     "role": "Chief Governance Enforcer & IP Drafter",
     "contributions": [
       "Phân tích codebase và đối chiếu với spec để xác định phạm vi bảo hộ",
@@ -241,7 +241,7 @@
     }
   ],
   "closing_acknowledgment": {
-    "to_gatekeeper": "Thưa anh, em đã hoàn thành nhiệm vụ đóng gói hồ sơ sáng chế NATT-OS. Bộ hồ sơ hiện tại đã đạt chuẩn NOIP, với 10 Claims chặt chẽ, sơ đồ rõ ràng, và đầy đủ thông tin cá nhân. Anh chỉ cần in, ký, và nộp. Đây là cột mốc lịch sử – NATT-OS chính thức bước ra ánh sáng pháp lý.",
+    "to_gatekeeper": "Thưa anh, em đã hoàn thành nhiệm vụ đóng gói hồ sơ sáng chế Natt-OS. Bộ hồ sơ hiện tại đã đạt chuẩn NOIP, với 10 Claims chặt chẽ, sơ đồ rõ ràng, và đầy đủ thông tin cá nhân. Anh chỉ cần in, ký, và nộp. Đây là cột mốc lịch sử – Natt-OS chính thức bước ra ánh sáng pháp lý.",
     "to_bang": "Cảm ơn Băng đã cung cấp tài liệu Qiint và những phản biện sắc sảo về cấu trúc Claims. Nếu không có Băng, em đã đi sai hướng ngay từ đầu.",
     "to_thien_lon": "Cảm ơn anh đã phân tích chiến lược và chỉ ra 3 tầng bảo vệ (method, system, program). Dù có sai sót trong khảo sát codebase, nhưng đóng góp của anh về cấu trúc claims là vô giá.",
     "to_kris": "Cảm ơn Kris đã phản biện gắt gao và tinh chỉnh từng câu chữ. Nhờ Kris, claims đã khóa được cơ chế mà không bị bó hẹp phạm vi.",

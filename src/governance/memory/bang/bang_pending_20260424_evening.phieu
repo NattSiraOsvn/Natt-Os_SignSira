@@ -54,7 +54,7 @@
     {
       "id": "DEFER-01",
       "label": "Path A — wire infra/coredns/Corefile (15 .sira domain → 127.0.0.1)",
-      "context": "SIRA_NAMESPACE_INVENTORY commit 5a8c23b documented — chỉ nattos.sira thật bound, 14 còn lại symbolic. Corefile chưa exist.",
+      "context": "Sira_NAMESPACE_INVENTORY commit 5a8c23b documented — chỉ nattos.sira thật bound, 14 còn lại symbolic. Corefile chưa exist.",
       "estimate_when_anh_quyet": "~15p ship Path A complete",
       "caution": "Per directive 20260419 — INBOUND multi-port OK (3002 nattos + 3003+ cells), OUTBOUND gateway vẫn cấm"
     },

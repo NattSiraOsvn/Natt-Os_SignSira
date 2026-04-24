@@ -1,5 +1,5 @@
 /**
- * NATT-OS Payment Deposit Engine v1.0
+ * Natt-OS Payment Deposit Engine v1.0
  * Wire vào payment-cell — PORT_ONLY → LIVE
  *
  * Logic từ: MEGA v10.1 processDThuDaily()

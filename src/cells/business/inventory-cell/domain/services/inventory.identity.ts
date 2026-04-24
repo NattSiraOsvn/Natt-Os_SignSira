@@ -5,6 +5,6 @@ export const INVENTORY_IDENTITY = {
   wave:        3,
   status:      'ACTIVE',
   description: 'Quản lý tồn kho vảy hàn, vàng, nguyên liệu cuối tháng — IN NGUYÊN LIỆU',
-  owner:       'NATT-OS',
+  owner:       'Natt-OS',
   registeredAt: '2026-03-14',
 } as const;

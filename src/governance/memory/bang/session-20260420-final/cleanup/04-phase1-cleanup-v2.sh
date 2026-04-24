@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════
-# NATT-OS NAUION CLEANUP — PHASE 1 v2 (ROBUST, Bang scope only)
+# Natt-OS NAUION CLEANUP — PHASE 1 v2 (ROBUST, Bang scope only)
 # ─────────────────────────────────────────────────────────────────────────
 # v2 fix (từ feedback anh 2026-04-20):
 #   - Detect tracked vs untracked file → dùng git rm/mv hoặc rm/mv
@@ -55,7 +55,7 @@ smart_mv() {
   fi
 }
 
-log "═══ NATT-OS NAUION CLEANUP — PHASE 1 v2 ═══"
+log "═══ Natt-OS NAUION CLEANUP — PHASE 1 v2 ═══"
 log "Repo: $REPO_ROOT"
 log "Branch: $(git branch --show-current)"
 log "HEAD: $(git rev-parse --short HEAD)"
@@ -114,7 +114,7 @@ gatekeeper_signature: (chờ anh Natt ký nếu duyệt archive path này)
 
 # BẢNG TỔNG HỢP CHỈ ĐẠO CHÍNH THỨC (PRE-WAVE 3) — SUPERSEDED
 
-**Mục tiêu gốc:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1-lệnh Phase A-B-C** cho NATT-OS Pre-Wave 3.
+**Mục tiêu gốc:** Cung cấp cho **Bối Bối** một bảng chỉ đạo duy nhất, rõ ràng, không mâu thuẫn, để **viết code chi tiết** và **triển khai script 1-lệnh Phase A-B-C** cho Natt-OS Pre-Wave 3.
 
 ---
 

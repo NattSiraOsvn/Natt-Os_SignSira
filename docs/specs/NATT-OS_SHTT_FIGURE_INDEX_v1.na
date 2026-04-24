@@ -5,13 +5,13 @@
 @since 2026-04-26
 @authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
 
-# NATT-OS SHTT FIGURE INDEX v1
+# Natt-OS SHTT FIGURE INDEX v1
 
 **kind:** SHTTFigureIndex
 **version:** v1
 **sealed_at:** 2026-04-26
 **baseline_commit:** ee2c837
-**claim_map_ref:** `docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na`
+**claim_map_ref:** `docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na`
 **drafter:** Băng (Chị Tư)
 **scope:** Danh mục hình/sơ đồ cần có trong hồ sơ SHTT. Chỉ khóa danh mục — chưa cần vẽ lại hết.
 
@@ -56,7 +56,7 @@
 - **Tên:** Cấu trúc thuộc địa vệ tinh + đồng bộ lên lõi
 - **Mục đích:** Thể hiện autonomy của satellite + sync engine qua L3
 - **Đỡ claim:** 03
-- **Status:** **RE-USE** — có sẵn block diagram trong `NATT-OS_SATELLITE_COLONY_SPEC.na` (UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus)
+- **Status:** **RE-USE** — có sẵn block diagram trong `Natt-OS_SATELLITE_COLONY_SPEC.na` (UI → Satellite Interface → Local EventBus ↔ Sync Engine ↔ Core EventBus)
 - **Yêu cầu:** nâng cấp từ ASCII block thành figure chính thức
 
 ### **FIG-04 — QIINT field + entity orbital**
@@ -175,6 +175,6 @@ Phase CLAIM PACK không yêu cầu vẽ — chỉ khóa danh mục. Phase tiếp
 
 ---
 
-*causation: NATT-OS-SHTT-FIGURE-INDEX-v1-SEALED-20260426*
+*causation: Natt-OS-SHTT-FIGURE-INDEX-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426)*
 *carrier: Anh Natt Phan*

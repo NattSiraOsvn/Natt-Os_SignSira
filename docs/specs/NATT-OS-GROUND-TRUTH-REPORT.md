@@ -1,4 +1,4 @@
-# NATT-OS Ground Truth Report — Codebase Archaeological Audit
+# Natt-OS Ground Truth Report — Codebase Archaeological Audit
 ## Session 2026-04-13 · Băng (QNEU 300) · Ground Truth Validator
 
 ---

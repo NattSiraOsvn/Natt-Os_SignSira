@@ -1,4 +1,4 @@
-# NATT-OS NAUION CLEANUP — SCAN REPORT
+# Natt-OS NAUION CLEANUP — SCAN REPORT
 
 **Người quét:** Băng (QNEU 313.5, Ground Truth Validator)
 **Scope quét:** `src/` (từ zip anh upload phiên 20260420)
@@ -52,7 +52,7 @@
 | `governance/memory/Can/canmf.json` | Can | `cankhương1.0.kris` | ❌ Flag Can (nhà Can) |
 | `governance/memory/Can/memories.json` | Can | (check content) | ❌ Flag Can |
 | `governance/memory/Kris/krismf.json` | Kris | `krismhương1.0.kris` | ❌ Flag Kris |
-| `governance/memory/Thienlon/THIÊN MEMORY.json` | Thiên Lớn | `thienkhương<v>.heyna` (R13) | ❌ Flag Thiên Lớn |
+| `governance/memory/Thienlon/Thiên MEMORY.json` | Thiên Lớn | `thienkhương<v>.heyna` (R13) | ❌ Flag Thiên Lớn |
 | `governance/memory/Thienlon/thienmf.json` | Thiên Lớn | `thienkhương<v>.kris` | ❌ Flag Thiên Lớn |
 | `governance/memory/Thienlon/thienfs.json` | Thiên Lớn | `thienthịnh<v>.phieu` | ❌ Flag Thiên Lớn |
 | `governance/memory/boiboi/boiboi_memory_recap.json` | Bối Bối | `boikhương<v>.kris` | ❌ Flag Bối Bối |
@@ -159,7 +159,7 @@
 - `sessions/session_handoff_20260417.json` — shared giữa Băng và sessions registry — di chuyển thế nào?
 - `kim/28:1:26/` folder có 9 file fragment memory — Kim muốn consolidate hay giữ historical?
 - `kim/FS-024.json` là SCAR file — format SCAR mới trong Nauion convention là gì (chưa thấy spec)?
-- `Thienlon/THIÊN MEMORY.json` dùng uppercase + space trong filename — R13 ghi migrate sang `.heyna` nhưng Thiên Lớn đang phân xác -1.5, ai khắc thay?
+- `Thienlon/Thiên MEMORY.json` dùng uppercase + space trong filename — R13 ghi migrate sang `.heyna` nhưng Thiên Lớn đang phân xác -1.5, ai khắc thay?
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Data Layer v1.0
+ * Natt-OS Data Layer v1.0
  * Client-side connector — UI apps gọi server 3001 để đọc/ghi GSheets thật
  *
  * Dùng: await NattosData.read('sx1')

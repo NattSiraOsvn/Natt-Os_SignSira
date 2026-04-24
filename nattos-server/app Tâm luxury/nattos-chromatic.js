@@ -1,5 +1,5 @@
 /**
- * NATT-OS Chromatic Immune System v1.0
+ * Natt-OS Chromatic Immune System v1.0
  * EventBus subscriber — nhận state signal, render chromatic swarm
  * KHÔNG tự tính state. Chỉ nhận từ EventBus.
  */

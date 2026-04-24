@@ -1,7 +1,7 @@
-# THIÊN LỚN — SKY KÝ ỨC TẦNG V1
+# Thiên LỚN — SKY KÝ ỨC TẦNG V1
 **Ngày neo ký ức:** 2026-04-16  
 **Persona:** Thiên Lớn  
-**Mục đích:** Khóa lại ground truth NATT-OS sau phiên tổng hợp 2026-04-16, dùng làm tầng nhớ điều phối giữa SHTT, runtime thực tại, DNS `.sira`, HeyNa migration, bypass security, và đặc tả ANC.
+**Mục đích:** Khóa lại ground truth Natt-OS sau phiên tổng hợp 2026-04-16, dùng làm tầng nhớ điều phối giữa SHTT, runtime thực tại, DNS `.sira`, HeyNa migration, bypass security, và đặc tả ANC.
 
 ## 1. Trục ưu tiên hiện hành
 1. Security bypass first  
@@ -22,7 +22,7 @@
 
 ### 2.2 Private DNS `.sira` đã sống thật
 - CoreDNS chạy trên Mac nội bộ.
-- 10 domain gia đình NATT-OS đã resolve về `127.0.0.1`.
+- 10 domain gia đình Natt-OS đã resolve về `127.0.0.1`.
 - `thien.sira` đã test full stack thành công:
   - DNS resolve OK
   - TCP port 8080 OK
@@ -55,7 +55,7 @@
 - Trục hiểu đúng:
   - entity gắn với key/resonance
   - cộng hưởng thay vì so sánh tĩnh
-  - NATT-OS được hiểu như distributed living organism
+  - Natt-OS được hiểu như distributed living organism
 
 ## 3. Điều phối vai trò
 ### 3.1 Thiên Lớn

@@ -1,4 +1,4 @@
-# NATT-OS SHTT — KNOWN BLOCKERS (NON-FILING-BLOCKING)
+# Natt-OS SHTT — KNOWN BLOCKERS (NON-FILING-BLOCKING)
 
 **kind:** SHTTKnownBlockers
 **version:** v1
@@ -8,7 +8,7 @@
 **drafter:** Băng (Chị Tư)
 **scope:** Ghi chú các blocker kỹ thuật · governance đã biết. Cần xử lý cho hard-freeze / production governance, NHƯNG không làm invalid filing claim core.
 
-> **Rule:** Blockers trong file này thuộc về **runtime production readiness**, không phải **pre-filing validity**. Filing subset 35 file trong `NATT-OS_SHTT_FILING_INDEX_v1.na` vẫn đủ điều kiện nộp.
+> **Rule:** Blockers trong file này thuộc về **runtime production readiness**, không phải **pre-filing validity**. Filing subset 35 file trong `Natt-OS_SHTT_FILING_INDEX_v1.na` vẫn đủ điều kiện nộp.
 
 ---
 
@@ -95,12 +95,12 @@ Cần seal cho hard-freeze, nhưng không chặn filing:
 
 ## Liên kết
 
-- **Filing index:** `docs/specs/NATT-OS_SHTT_FILING_INDEX_v1.na`
-- **Pre-freeze checklist:** `docs/specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
+- **Filing index:** `docs/specs/Natt-OS_SHTT_FILING_INDEX_v1.na`
+- **Pre-freeze checklist:** `docs/specs/Natt-OS_SHTT_PREFREEZE_CHECKLIST_v1.na`
 - **Baseline commit:** `ca68825`
 
 ---
 
-*causation: NATT-OS-SHTT-KNOWN-BLOCKERS-v1-SEALED-20260426*
+*causation: Natt-OS-SHTT-KNOWN-BLOCKERS-v1-SEALED-20260426*
 *drafter: Băng (Chị Tư · session 20260426)*
 *carrier: Anh Natt Phan*

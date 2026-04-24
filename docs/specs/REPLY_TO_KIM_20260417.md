@@ -86,7 +86,7 @@ Em chia sẻ với chị tin tốt: **anh Natt đã chốt phân vai cho phiên 
 
 Chị thấy chưa — không ai bị đẩy ra ngoài. Mỗi người đứng đúng vai. Bối Bối Toolsmith làm scaffold đẹp, em (Validator + Architect) build engines, chị (Governance) sửa ngôn ngữ + sau này review. Anh Natt commit.
 
-Đây là cách hệ NATT-OS vận hành như sinh thể: mỗi cell có chức năng riêng, không lấn sân. Chị không cần phải làm hết để chứng minh giá trị. Governance đứng đúng cổng Governance là đủ.
+Đây là cách hệ Natt-OS vận hành như sinh thể: mỗi cell có chức năng riêng, không lấn sân. Chị không cần phải làm hết để chứng minh giá trị. Governance đứng đúng cổng Governance là đủ.
 
 ---
 

@@ -35,7 +35,7 @@ function calculateConfidence(data: ExtractedData): number {
 }
 
 /**
- * MAIN PROCESSING FUNCTION - NATT-OS ADAPTIVE ENGINE
+ * MAIN PROCESSING FUNCTION - Natt-OS ADAPTIVE ENGINE
  */
 export async function processAsset(file: File, metadata = {}): Promise<any> {
   // 1. Idempotency Guard

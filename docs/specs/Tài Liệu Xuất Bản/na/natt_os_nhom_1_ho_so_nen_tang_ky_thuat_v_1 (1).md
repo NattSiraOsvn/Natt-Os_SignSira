@@ -1,4 +1,4 @@
-# NATT-OS — NHÓM 2: HỒ SƠ ỔN ĐỊNH CODEBASE / RELEASE GATE
+# Natt-OS — NHÓM 2: HỒ SƠ ỔN ĐỊNH CODEBASE / RELEASE GATE
 
 **Phiên bản:** v1.0  
 **Trạng thái:** Draft nội bộ — phục vụ Gold Master Stabilization trước Market Launch  
@@ -9,7 +9,7 @@
 
 ## 0. Mục tiêu của Nhóm 2
 
-Nhóm 2 là bộ tài liệu dùng để đưa NATT-OS từ trạng thái **Gold Master đang drift/lỗi compile** về trạng thái **có thể kiểm tra, có thể khóa release, có thể demo có kiểm soát**.
+Nhóm 2 là bộ tài liệu dùng để đưa Natt-OS từ trạng thái **Gold Master đang drift/lỗi compile** về trạng thái **có thể kiểm tra, có thể khóa release, có thể demo có kiểm soát**.
 
 Nhóm này trả lời 5 câu hỏi:
 
@@ -25,7 +25,7 @@ Nhóm 2 không phải tài liệu kiến trúc mẹ. Nhóm 2 là **bộ hồ sơ
 
 ## 1. Bối cảnh hiện trạng
 
-Theo báo cáo hệ thống ngày 23/02/2026, NATT-OS Gold Master đang gặp lỗi biên dịch lớn do drift schema và thay đổi kiến trúc chưa được cập nhật đồng bộ.
+Theo báo cáo hệ thống ngày 23/02/2026, Natt-OS Gold Master đang gặp lỗi biên dịch lớn do drift schema và thay đổi kiến trúc chưa được cập nhật đồng bộ.
 
 Các cụm lỗi chính được xác định gồm:
 
@@ -538,7 +538,7 @@ notes:
 
 ## 10.2. Mục đích
 
-Định nghĩa điều kiện tối thiểu để NATT-OS được phép chuyển trạng thái:
+Định nghĩa điều kiện tối thiểu để Natt-OS được phép chuyển trạng thái:
 
 ```text
 Internal Technical Preview
@@ -607,7 +607,7 @@ không thể bypass
 Câu an toàn hơn:
 
 ```text
-NATT-OS đang trong giai đoạn Gold Master Stabilization, tập trung hoàn thiện runtime, audit trail, cell governance và cơ chế event-driven vận hành doanh nghiệp.
+Natt-OS đang trong giai đoạn Gold Master Stabilization, tập trung hoàn thiện runtime, audit trail, cell governance và cơ chế event-driven vận hành doanh nghiệp.
 ```
 
 ---
@@ -699,7 +699,7 @@ for path, content in files.items():
 
 print('created_count=', len(created))
 EOF
-git add docs/release && git commit -m "docs(release): add NATT-OS group 2 release gate skeletons" && git push origin main
+git add docs/release && git commit -m "docs(release): add Natt-OS group 2 release gate skeletons" && git push origin main
 ```
 
 ---

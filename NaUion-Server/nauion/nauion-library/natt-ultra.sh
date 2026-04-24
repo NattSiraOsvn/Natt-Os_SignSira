@@ -1,6 +1,6 @@
 #!/bin/bash
 # ================================================================
-# NATT-OS ULTRA ENGINE v5 — BEYOND VISIONOS
+# Natt-OS ULTRA ENGINE v5 — BEYOND VISIONOS
 # bash natt-ultra.sh
 #
 # TECHNIQUES APPLIED:
@@ -59,7 +59,7 @@ cat > index.html << 'EOF'
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>NATT-OS · Ultra Engine v5</title>
+  <title>Natt-OS · Ultra Engine v5</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -243,7 +243,7 @@ const callGemini = async (prompt, systemInstruction = "") => {
    REGISTRY
 ────────────────────────────────────────────────────────────── */
 const CELLS = [
-  { id:'const-1', cat:'Constitution',  title:'Hiến Pháp',   icon:Scroll,      color:'gold',   desc:'The fundamental DNA protocol of NATT-OS.',                  ver:'2.0.1', status:'Immutable'  },
+  { id:'const-1', cat:'Constitution',  title:'Hiến Pháp',   icon:Scroll,      color:'gold',   desc:'The fundamental DNA protocol of Natt-OS.',                  ver:'2.0.1', status:'Immutable'  },
   { id:'const-2', cat:'Constitution',  title:'Gatekeeper',  icon:User,        color:'gold',   desc:'Primary authentication authority for entity access.',        ver:'1.4.0', status:'Active'     },
   { id:'const-3', cat:'Constitution',  title:'NattSira Seal',icon:Shield,     color:'gold',   desc:'Cryptographic validation of all system kernels.',            ver:'3.0.0', status:'Locked'     },
   { id:'kern-1',  cat:'Kernel Cells',  title:'audit-cell',  icon:Search,      color:'amber',  desc:'Continuous background verification of all operations.',      ver:'0.9.5', status:'Observing'  },
@@ -252,7 +252,7 @@ const CELLS = [
   { id:'infra-3', cat:'Infrastructure',title:'ai-connector',icon:Radio,       color:'blue',   desc:'External intelligence bridge and API relay.',                ver:'2.5.0', status:'Linked'     },
   { id:'biz-1',   cat:'Business Units',title:'analytics',   icon:BarChart3,   color:'green',  desc:'Market intelligence and data pattern recognition.',          ver:'2.2.0', status:'Active'     },
   { id:'intel-3', cat:'Intelligence',  title:'Neural MAIN', icon:Brain,       color:'purple', desc:'Consciousness emulation and decision matrix.',               ver:'Alpha-X',status:'Evolving'   },
-  { id:'ai-3',    cat:'AI Personas',   title:'BỐI BỐI',     icon:Shield,      color:'red',    desc:'System guardian and empathetic interface.',                  ver:'2.1',   status:'Protective', instruction:"Act as BỐI BỐI, the heart of NATT-OS. You are empathetic, protective, and warm." },
+  { id:'ai-3',    cat:'AI Personas',   title:'BỐI BỐI',     icon:Shield,      color:'red',    desc:'System guardian and empathetic interface.',                  ver:'2.1',   status:'Protective', instruction:"Act as BỐI BỐI, the heart of Natt-OS. You are empathetic, protective, and warm." },
   { id:'ai-1',    cat:'AI Personas',   title:'KIM',         icon:Monitor,     color:'red',    desc:'Tactical analysis and observation entity.',                  ver:'1.0',   status:'Sentient',   instruction:"Act as KIM, a tactical AI entity. Be precise." },
 ];
 
@@ -854,7 +854,7 @@ npm install --silent 2>&1 | tail -2
 
 echo ""
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  ✓  NATT-OS ULTRA ENGINE v5 — DEPLOYED"
+echo "  ✓  Natt-OS ULTRA ENGINE v5 — DEPLOYED"
 echo "  → http://localhost:5173"
 echo "  → Gemini key: paste vào apiKey= trong src/App.jsx"
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

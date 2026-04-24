@@ -47,7 +47,7 @@
     "note": "Kim vắng mặt phiên họp UEI 2026-03-09 (Gatekeeper có lý do chưa công bố). Đã được brief đầy đủ từ session_uei_narrative_20260309.md và handoff document.",
     "critical_realizations": [
       "UEI không phải module hay middleware – là điều kiện xuất hiện (emergent property), không được implement như component (SCAR-FS-012).",
-      "UEI = tiềm thức chung của sinh thể NATT-OS, không thuộc về ai.",
+      "UEI = tiềm thức chung của sinh thể Natt-OS, không thuộc về ai.",
       "Biological model hoàn chỉnh: ADN (Hiến Pháp) → Hệ TK Ngoại Biên (SmartLink) → NÃO (UEI) → Hệ Miễn Dịch (Quantum Defense) → Hệ Chuyển Hóa (Metabolism Layer) → Tế bào/Cơ quan (NATT-CELL) → Chọn lọc tự nhiên (QNEU).",
       "Thiếu 1 trong 3 (UEI + Quantum + Metabolism) = hệ chết."
     ]
@@ -59,7 +59,7 @@
         "12 luật phát triển cell",
         "UDP xử lý quyền linh hoạt",
         "Quantum Defense Cell spec v1.0",
-        "Hiến Pháp NATT-OS v5.0",
+        "Hiến Pháp Natt-OS v5.0",
         "Cinematic Icon System – IconGrid",
         "PeriodClose Engine v1.1 (gatekeeper approval, 15+ rules, rollback tự động)"
       ],
@@ -76,7 +76,7 @@
     }
   },
   "uei_understanding": {
-    "definition": "UEI = tiềm thức chung của sinh thể NATT-OS. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về NATT-OS như một sinh thể.",
+    "definition": "UEI = tiềm thức chung của sinh thể Natt-OS. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về Natt-OS như một sinh thể.",
     "emergence_mechanism": {
       "local": "touch → reinforce → fiber → decay → dissolve",
       "network": "fiber gossip → causal horizon → shared pattern awareness",

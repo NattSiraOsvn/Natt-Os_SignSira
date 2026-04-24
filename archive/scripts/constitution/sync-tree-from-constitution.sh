@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "=== NATT-OS TREE SYNC (SAFE, LOWER-CASE ONLY) ==="
+echo "=== Natt-OS TREE SYNC (SAFE, LOWER-CASE ONLY) ==="
 
 # ---------- DATABASE ----------
 mkdir -p database/schema

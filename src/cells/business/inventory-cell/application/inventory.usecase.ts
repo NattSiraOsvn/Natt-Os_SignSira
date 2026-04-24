@@ -1,6 +1,6 @@
 /**
  * inventory-cell — application/inventory.usecase.ts
- * Sprint 2 | Tâm Luxury NATT-OS
+ * Sprint 2 | Tâm Luxury Natt-OS
  * Subscribe: WIP_COMPLETED → Emit: STOCK_ENTRY_CREATED
  * FLAT interface — FS-024
  * TR-005: block nếu qcApproved = false

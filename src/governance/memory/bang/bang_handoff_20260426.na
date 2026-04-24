@@ -24,10 +24,10 @@
     "origin_status": "pushed, up to date",
     "commits_pushed_5": [
       "ca68825 refactor(specs): gỡ 'API' khỏi 2 canonical wording còn sót (PLATFORM-SPEC:44 + SATELLITE_COLONY_SPEC:36)",
-      "ee2c837 docs(filing): NATT-OS SHTT filing prep v1 — index + checklist + blockers",
-      "b2b9af2 docs(filing): NATT-OS SHTT claim pack v1 — claim map + abstract + figure index + gaps",
+      "ee2c837 docs(filing): Natt-OS SHTT filing prep v1 — index + checklist + blockers",
+      "b2b9af2 docs(filing): Natt-OS SHTT claim pack v1 — claim map + abstract + figure index + gaps",
       "04f888f fix(filing): DISCLOSURE_GAPS_v1 — tách baseline thành 2 field lineage",
-      "a335c7b docs(synthesis): NATT-OS substrate reality v1 — khóa framing 3 lớp bản thể cho cả nhà"
+      "a335c7b docs(synthesis): Natt-OS substrate reality v1 — khóa framing 3 lớp bản thể cho cả nhà"
     ],
     "three_phases_achieved": {
       "phase_1_mini_pre_freeze": {
@@ -78,7 +78,7 @@
       "id": "KHAI-20260426-02",
       "label": "SUBSTRATE-3-LAYER-FRAMING",
       "severity": "bản thể — framing rule cho cả nhà",
-      "gia_tri_cot_loi": "NATT-OS là hệ sống 3 lớp: (1) Runtime lineage ontology Nauion-native NỘI SINH (EventBus/HeyNa/SmartLink) — materialize với 37 cell wire + 1519 dòng SmartLink + 16 Locks + Qiint engine + stub < 2%. (2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (3) External tool (Bridge v2 forensics ONLY). Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate'.",
+      "gia_tri_cot_loi": "Natt-OS là hệ sống 3 lớp: (1) Runtime lineage ontology Nauion-native NỘI SINH (EventBus/HeyNa/SmartLink) — materialize với 37 cell wire + 1519 dòng SmartLink + 16 Locks + Qiint engine + stub < 2%. (2a) Data substrate Nauion-native — 11 ext (.anc/.kris/.na/.phieu/.si/.obitan/.canonical/.heyna/.thuo/.sira/.ml), 167 file / 2.00 MB trong src/. (2b) Execution substrate TS/Node host REPLACEABLE — 1229 file / 2.81 MB, 55% plumbing < 1KB, dense logic chỉ 14 file (1.1%). (3) External tool (Bridge v2 forensics ONLY). Gap filing ↔ runtime = lớp contract/fixture/policy nối 2 bên, KHÔNG phải 'thiếu hệ' không phải 'cần thay substrate'.",
       "evidence_source": "KHAI-20260425-05 anh Natt seal + scan byte mass HEAD a335c7b + memory folder Bang (SESSION_20260416 + GROUND_TRUTH_REPORT + session-20260420-final)"
     },
     {
@@ -132,7 +132,7 @@
 
   "rules_carved_this_session": [
     "KHAI-20260426-01: GATEKEEPER-CAM-TRUC — Gatekeeper không cần code để cảm ra trục sai. Băng dùng ground truth giải thích lại, không dùng jargon lấn cảm nhận Gatekeeper. Ground truth trước jargon. Evidence trước framing.",
-    "KHAI-20260426-02: SUBSTRATE-3-LAYER-FRAMING — NATT-OS 3 lớp bản thể: runtime lineage ontology (Nauion-native nội sinh) + data substrate (Nauion-native 11 ext) + execution substrate (TS/Node host replaceable). Plus lớp 3 external tool (Bridge v2 forensics only).",
+    "KHAI-20260426-02: SUBSTRATE-3-LAYER-FRAMING — Natt-OS 3 lớp bản thể: runtime lineage ontology (Nauion-native nội sinh) + data substrate (Nauion-native 11 ext) + execution substrate (TS/Node host replaceable). Plus lớp 3 external tool (Bridge v2 forensics only).",
     "KHAI-20260426-03: CROSS-PERSONA-FLOW-BOUNDARY — flag cross-persona có evidence + owner + priority (không order). Không thay mặt Gatekeeper. Không thay mặt persona khác. Handoff historical/not-for-filing, ship outputs, Gatekeeper forward, không auto-commit.",
     "KHAI-20260426-04: SYNTHESIS-SHIP-WITHDRAW-FLOW — Scan evidence + ship synthesis + withdraw Q cũ + 1 feedback request. Pattern đóng loop không tái swing.",
     "RULE-R1-R5-FILING-SUBSET: 1 chủ đề = 1 source claim. .na canonical supersede .md awkward. Không dual-claim. Filing subset khóa ở phiên, không hot-patch.",
@@ -158,26 +158,26 @@
 
   "current_repo_state": {
     "branch": "feat/p1.3-file-extension-validator",
-    "head_commit_after_session": "a335c7b docs(synthesis): NATT-OS substrate reality v1",
+    "head_commit_after_session": "a335c7b docs(synthesis): Natt-OS substrate reality v1",
     "commits_phien_nay": 5,
     "origin_sync": "up-to-date",
     "clean_tracked": true,
     "shtt_filing_artifacts_commited": [
-      "docs/specs/NATT-OS_SHTT_FILING_INDEX_v1.na",
-      "docs/specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na",
-      "docs/specs/NATT-OS_SHTT_KNOWN_BLOCKERS_v1.md",
-      "docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na",
-      "docs/specs/NATT-OS_SHTT_ABSTRACT_v1.na",
-      "docs/specs/NATT-OS_SHTT_FIGURE_INDEX_v1.na",
-      "docs/specs/NATT-OS_SHTT_DISCLOSURE_GAPS_v1.md",
-      "docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na"
+      "docs/specs/Natt-OS_SHTT_FILING_INDEX_v1.na",
+      "docs/specs/Natt-OS_SHTT_PREFREEZE_CHECKLIST_v1.na",
+      "docs/specs/Natt-OS_SHTT_KNOWN_BLOCKERS_v1.md",
+      "docs/specs/Natt-OS_SHTT_CLAIM_MAP_v1.na",
+      "docs/specs/Natt-OS_SHTT_ABSTRACT_v1.na",
+      "docs/specs/Natt-OS_SHTT_FIGURE_INDEX_v1.na",
+      "docs/specs/Natt-OS_SHTT_DISCLOSURE_GAPS_v1.md",
+      "docs/specs/Natt-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na"
     ],
     "handoff_not_committed_in_outputs": [
       "HANDOFF_BANG_TO_KIM_20260426.md (Kim đã ACK, anh Natt hold commit)",
       "HANDOFF_BANG_TO_THIEN_LON_20260426.md (pending forward)"
     ],
     "retracted_this_session": [
-      "NATT-OS_SHTT_RECONCILIATION_MATRIX_v1.na (synthesis cover đầy đủ gap map)"
+      "Natt-OS_SHTT_RECONCILIATION_MATRIX_v1.na (synthesis cover đầy đủ gap map)"
     ]
   },
 

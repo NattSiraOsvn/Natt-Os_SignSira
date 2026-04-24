@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "=== NATT-OS CASE-SENSITIVITY FIX (GIT-AWARE) ==="
+echo "=== Natt-OS CASE-SENSITIVITY FIX (GIT-AWARE) ==="
 
 # Danh sách mapping: FILE VIẾT HOA -> file chuẩn lower-case
 # Format: "OLD_PATH|new_path"

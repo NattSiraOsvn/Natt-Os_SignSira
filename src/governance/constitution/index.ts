@@ -1,5 +1,5 @@
 /**
- * NATT-OS Constitution v4.0 — Programmatic Reference
+ * Natt-OS Constitution v4.0 — Programmatic Reference
  * 
  * Hiến pháp là source of truth duy nhất.
  * File này export constants cho enforcement trong code.

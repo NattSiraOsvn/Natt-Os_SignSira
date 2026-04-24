@@ -1,5 +1,5 @@
 #!/bin/bash
-# Show Us Self — Export NATT-OS Chromatic Signature as .anc snapshot
+# Show Us Self — Export Natt-OS Chromatic Signature as .anc snapshot
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 OUTPUT_DIR="src/governance/show-us-self"

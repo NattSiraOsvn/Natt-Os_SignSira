@@ -1,6 +1,6 @@
 /**
  * inventory-cell — domain/inventory.entity.ts
- * Sprint 2 | Tâm Luxury NATT-OS
+ * Sprint 2 | Tâm Luxury Natt-OS
  * Subscribe: WIP_COMPLETED → Emit: STOCK_ENTRY_CREATED
  * TR-005: Nợ 155 / Có 154
  */

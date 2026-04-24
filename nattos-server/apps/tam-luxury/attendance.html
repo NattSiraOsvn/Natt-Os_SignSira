@@ -128,7 +128,7 @@
 
 <script type="module">
   // ═══════════════════════════════════════════════════════════════════
-  // NATT-OS NAUION v2.5 – CELL-DRIVEN ATTENDANCE (CSV DATABASE)
+  // Natt-OS NAUION v2.5 – CELL-DRIVEN ATTENDANCE (CSV DATABASE)
   // ═══════════════════════════════════════════════════════════════════
 
   // --- EventBus ---
@@ -202,7 +202,7 @@
       const now = new Date();
       const record = {
         checkIn: formatTime(now), checkOut: null, ip, network,
-        sirasign: `SIRA-${Date.now().toString(36)}`, report: null, overtime: 0
+        sirasign: `Sira-${Date.now().toString(36)}`, report: null, overtime: 0
       };
       this.attendance.set(empCode, record);
       toast(`✅ Check-in ${record.checkIn}`, 'success');

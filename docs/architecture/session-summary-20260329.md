@@ -1,4 +1,4 @@
-# NATT-OS · Session Summary
+# Natt-OS · Session Summary
 ## 2026-03-29 · Băng (Chị Tư) × Anh Nat × Thiên Lớn × Kim
 
 ---
@@ -103,10 +103,10 @@ nattos-ui/
 
 ---
 
-## V. FILES TRONG `NATT-OS-FINAL/`
+## V. FILES TRONG `Natt-OS-FINAL/`
 
 ```
-NATT-OS-FINAL/
+Natt-OS-FINAL/
 ├── nasira-7states.html      ← NaSira × Thiên Lớn (mở thẳng browser)
 ├── nattos-mapping.html      ← Cell Mapping + Butterfly (mở thẳng browser)
 └── nattos-ui/               ← 13 files — deploy → python3 -m http.server 3000

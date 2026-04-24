@@ -107,7 +107,7 @@ section_32_memory_files() {
 
   # ── Thiên Lớn ──
   check_persona_memory "thien-lon" "$MEM_DIR/Thienlon" \
-    "thienmf*.json THIÊN*MEMORY*.json" \
+    "thienmf*.json Thiên*MEMORY*.json" \
     "thienkhương*.kris thienkhuong*.kris thienkhương*.heyna" \
     "thienfs*.json thienthịnh*.phieu" ""
 

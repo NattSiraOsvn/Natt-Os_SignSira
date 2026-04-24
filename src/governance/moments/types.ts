@@ -1,7 +1,7 @@
 // src/governance/moments/types.ts
 
 /**
- * Moments — canonical vocabulary cho mọi "moment" trong NATT-OS.
+ * Moments — canonical vocabulary cho mọi "moment" trong Natt-OS.
  * KHÔNG dùng generic "event" / "learning" / "insight" — phân loại cứng.
  *
  * Source of truth (canonical ladder):

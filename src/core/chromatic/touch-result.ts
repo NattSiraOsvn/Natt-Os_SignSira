@@ -1,5 +1,5 @@
 /**
- * NATT-OS Chromatic Touch Helper — DNA chung cho mọi guard.
+ * Natt-OS Chromatic Touch Helper — DNA chung cho mọi guard.
  * Per SPEC NEN v1.1 LAW-1 + LAW-4: guard không decide, chỉ touch + emit chromatic.
  *
  * Mọi guard import + dùng `touch()` thay vì `return true/false`.
