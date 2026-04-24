@@ -1,23 +1,24 @@
 {
   "meta": {
     "file": "P0_HEYNA_KHAICELL_20260424.na",
-    "version": "v1.1",
+    "version": "v2.0",
     "created_at": "2026-04-24T22:50:47+07:00",
-    "updated_at": "2026-04-24T23:35:00+07:00",
+    "updated_at": "2026-04-25T01:15:00+07:00",
     "author": "Bang",
     "gatekeeper": "Natt",
-    "session": "20260424",
+    "session": "20260424-20260425",
     "target_repo_path": "docs/runtime/todo/P0_HEYNA_KHAICELL_20260424.na",
     "changelog": [
-      "v1.0 2026-04-24T22:50 initial draft",
-      "v1.1 2026-04-24T23:35 update target_repo_path from src/governance/memory/bang/todo/ to docs/runtime/todo/ per Natt decision"
+      "v1.0 2026-04-24T22:50 initial draft with 10 P0 todos",
+      "v1.1 2026-04-24T23:35 update target_repo_path to docs/runtime/todo/",
+      "v2.0 2026-04-25T01:15 extend scope: add 1 P1 (live backend scan) + 6 P2 (5 UI compliance + 1 approved state 71/71). Total 17 todos."
     ]
   },
   "context": {
-    "source": "P0 dictation by Natt on 2026-04-24 22:50:47",
+    "source": "P0 dictation by Natt 2026-04-24 22:50. P1+P2 dictation by Natt 2026-04-25 01:03.",
     "target_system": "Tam Luxury client app",
     "roadload_canonical": "roadloading/Giaodien.html (repo natt-os_ver2goldmaster)",
-    "scope": "10 P0 todos (5 noi-mach-heyna + 5 qua-khaicell) covering 71 screens grouped into 5 buckets",
+    "scope": "17 todos total. P0: 10 (5 heyna + 5 khaicell). P1: 1 (live backend scan). P2: 6 (5 UI compliance + 1 approved state check).",
     "execution_note": "Natt clarified: team build man tu biet gan mach khi scaffold. Bang chi track todo, khong scan runtime.",
     "location_rationale": "docs/runtime/todo/ folder do Natt tao cho nhom file .na dang todo tracker. Dong nhat voi tien le docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na ma Kim commit fcb2349."
   },
@@ -161,25 +162,141 @@
       "owner_tracking": "Bang",
       "completed_at": null,
       "evidence_commit": null
+    },
+    {
+      "id": "P1-LIVE-BACKEND-SCAN",
+      "priority": "P1",
+      "type": "runtime-live-server",
+      "group": "Infrastructure",
+      "screens_named": [],
+      "screens_additional_count": 0,
+      "total_screens": 0,
+      "status": "pending",
+      "owner_execution": "Natt (runtime operator)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Live backend scan chua attach hoac API scan khong phan hoi. Can chay lai runtime live server truoc khi audit sau repo. Blocker cho moi tool audit co dependency vao endpoint runtime.",
+      "prerequisite_for": ["deep-audit-repo", "endpoint-probe-scanner"]
+    },
+    {
+      "id": "P2-UI-COMPLIANCE-G1",
+      "priority": "P2",
+      "type": "ui-compliance-liquid-glass-uimode",
+      "group": "San xuat & Kho",
+      "screens_named": ["#01 Bang giao viec SX", "#02 Theo doi WIP", "#03 Nhap xuat kho theo lenh", "#04 Client App UI #4"],
+      "screens_additional_count": 14,
+      "total_screens": 18,
+      "status": "pending",
+      "owner_execution": "team build man (UI)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Hoan tat UI compliance Liquid Glass / UIMode cho nhom man San xuat & Kho."
+    },
+    {
+      "id": "P2-UI-COMPLIANCE-G2",
+      "priority": "P2",
+      "type": "ui-compliance-liquid-glass-uimode",
+      "group": "Nhan su & HC",
+      "screens_named": ["#19 Cham cong (check-in/out)", "#20 Client App UI #20", "#21 Client App UI #21", "#22 Client App UI #22"],
+      "screens_additional_count": 8,
+      "total_screens": 12,
+      "status": "pending",
+      "owner_execution": "team build man (UI)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Hoan tat UI compliance Liquid Glass / UIMode cho nhom man Nhan su & HC."
+    },
+    {
+      "id": "P2-UI-COMPLIANCE-G3",
+      "priority": "P2",
+      "type": "ui-compliance-liquid-glass-uimode",
+      "group": "Tai chinh - KT",
+      "screens_named": ["#31 Quan ly tam ung & TT", "#32 Client App UI #32", "#33 Client App UI #33", "#34 Client App UI #34"],
+      "screens_additional_count": 6,
+      "total_screens": 10,
+      "status": "pending",
+      "owner_execution": "team build man (UI)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Hoan tat UI compliance Liquid Glass / UIMode cho nhom man Tai chinh - KT."
+    },
+    {
+      "id": "P2-UI-COMPLIANCE-G4",
+      "priority": "P2",
+      "type": "ui-compliance-liquid-glass-uimode",
+      "group": "Kinh doanh & KH",
+      "screens_named": ["#41 Xac nhan don hang", "#42 Client App UI #42", "#43 Client App UI #43", "#44 Client App UI #44"],
+      "screens_additional_count": 24,
+      "total_screens": 28,
+      "status": "pending",
+      "owner_execution": "team build man (UI)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Hoan tat UI compliance Liquid Glass / UIMode cho nhom man Kinh doanh & KH."
+    },
+    {
+      "id": "P2-UI-COMPLIANCE-G5",
+      "priority": "P2",
+      "type": "ui-compliance-liquid-glass-uimode",
+      "group": "Tien ich & BKS",
+      "screens_named": ["#69 Audit Log Viewer", "#70 Health Check", "#71 Quan ly phien ban"],
+      "screens_additional_count": 0,
+      "total_screens": 3,
+      "status": "pending",
+      "owner_execution": "team build man (UI)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Hoan tat UI compliance Liquid Glass / UIMode cho nhom man Tien ich & BKS."
+    },
+    {
+      "id": "P2-APPROVED-STATE-71",
+      "priority": "P2",
+      "type": "approved-product-state",
+      "group": "All 71 screens",
+      "screens_named": ["#01", "#02", "#03", "#04", "#05", "#06", "#07", "#08"],
+      "screens_additional_count": 63,
+      "total_screens": 71,
+      "status": "pending",
+      "owner_execution": "Natt (gatekeeper approval)",
+      "owner_tracking": "Bang",
+      "completed_at": null,
+      "evidence_commit": null,
+      "description": "Dong approved/product state cho 71/71 man con pending. Uu tien kiem man #01-#08 truoc.",
+      "priority_screens": ["#01", "#02", "#03", "#04", "#05", "#06", "#07", "#08"]
     }
   ],
   "summary": {
-    "total_todos": 10,
+    "total_todos": 17,
+    "by_priority": {
+      "P0": 10,
+      "P1": 1,
+      "P2": 6
+    },
     "by_type": {
       "noi-mach-heyna": 5,
-      "qua-khaicell-truoc-khi-vao-runtime": 5
+      "qua-khaicell-truoc-khi-vao-runtime": 5,
+      "runtime-live-server": 1,
+      "ui-compliance-liquid-glass-uimode": 5,
+      "approved-product-state": 1
     },
     "by_status": {
-      "pending": 10,
+      "pending": 17,
       "in_progress": 0,
-      "done": 0
+      "done": 0,
+      "blocked": 0
     },
     "total_screens_covered_by_user_count": 71
   },
   "discrepancies_flagged": [
     {
       "id": "DISC-01-GROUP-COUNT-MISMATCH",
-      "description": "Phan nhom 5-group trong P0 dictation cua Natt khong khop voi roadload Giaodien.html hien tai (6 nhom vat ly)",
+      "description": "Phan nhom 5-group trong dictation cua Natt khong khop voi roadload Giaodien.html hien tai (6 nhom vat ly).",
       "natt_dictation_counts": {"G1": 18, "G2": 12, "G3": 10, "G4": 28, "G5": 3, "total": 71},
       "roadload_counts": {"SX-Kho": 15, "NS-HC": 15, "TC-KT": 10, "KD-KH": 8, "BKS": 7, "Cong-KH": 8, "Tien-ich-QT": 8, "total": 71},
       "diff_summary": "Tong hai ben deu ra 71, nhung phan nhom lech lon o G1 (+3), G2 (-3), G4 (+20), G5 (-12). Co the do Natt gop Cong-KH va Tien-ich-QT va BKS vao cac nhom logic khac khi doc P0.",
@@ -190,15 +307,17 @@
     }
   ],
   "update_protocol": {
-    "completion_trigger": "Khi team build commit scaffold cho nhom man + evidence qua KhaiCell + lang Nahere qua Mach HeyNa",
-    "who_updates": "Bang update khi Natt bao hoac khi Bang phat hien commit co signature scaffold tuong ung",
+    "completion_trigger": "Khi team build commit scaffold cho nhom man + evidence qua KhaiCell + lang Nahere qua Mach HeyNa (P0). UI compliance khi commit refactor theme (P2). Approved state khi Natt review (P2-APPROVED).",
+    "who_updates": "Bang update khi Natt bao hoac khi Bang phat hien commit co signature tuong ung.",
     "ground_truth_source": "git log + build artifact",
-    "status_values": ["pending", "in_progress", "done", "blocked"]
+    "status_values": ["pending", "in_progress", "done", "blocked"],
+    "tool": "scripts/bang_update_todo_status.py"
   },
   "related_references": [
     "roadloading/Giaodien.html (repo natt-os_ver2goldmaster) - 71 man canonical",
     "SPEC NEN v1.1 docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md - KhaiCell RAO mark signature",
     "session 20260417 nattos.sh v7.0 §43 ReNa + §44 Visual - gian giao truoc khi 71 man scaffold",
-    "docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na (commit fcb2349) - tien le .na tracker trong docs/runtime/"
+    "docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na (commit fcb2349) - tien le .na tracker trong docs/runtime/",
+    "scripts/bang_update_todo_status.py (commit 94e4b35) - tool CLI update status"
   ]
 }
