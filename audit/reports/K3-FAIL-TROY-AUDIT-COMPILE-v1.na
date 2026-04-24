@@ -72,7 +72,7 @@ Top kernel/core implementations:
 |---|---|---|---|
 | `src/core/snapshot/snapshot.engine.ts` | 50 | `Math.imul(h, 0x01000193)` (FNV-1a) | session 20260414 |
 | `src/core/memory/immutable-memory.engine.ts` | 39 | `Math.imul(h, 0x01000193)` (FNV-1a) | session 20260414 |
-| `src/governance/policy/policy-signature.engine.ts` | 43 | `Math.imul(h1 ^ ch, 2654435761)` (Murmurhash) | session 20260414 |
+| `src/governance/policy/policy-signature.engine.na` | 43 | `Math.imul(h1 ^ ch, 2654435761)` (Murmurhash) | session 20260414 |
 
 **Status:** NOT_BYPASS — ready for crypto provider injection
 
@@ -183,7 +183,7 @@ Found 2 references to "bypass" as intentional design feature:
 |---|---|---|
 | `config/sirasign_v2.json` | 18 | `"bypass_protocol": {...}` — designed escape protocol with conditions |
 | `src/cells/kernel/quantum-defense-cell/interface/QuantumDefenseCell.ts` | 37 | `gatekeeperOverride(action: "BYPASS" | "FORCE_LOCK")` — Gatekeeper-only escape with audit |
-| `src/cells/business/casting-cell/domain/casting.boundary.policy.ts` | 16 | `'BYPASS_CONSTITUTION'` enum value for policy violation tracking |
+| `src/cells/business/casting-cell/domain/casting.boundary.policy.na` | 16 | `'BYPASS_CONSTITUTION'` enum value for policy violation tracking |
 
 **Verdict:** Intentional design with audit trail. NOT bypass exploit.
 

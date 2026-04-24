@@ -1,0 +1,184 @@
+@state sealed
+@file_type pending
+@persona bang
+@session 20260424_late
+@predecessor bang_pending_20260424.phieu (pre-delegation)
+@close_reason anh_Natt_deploying_apps_and_DNS_.sira_with_Thien_Lon
+
+# BANG PENDING — SESSION 20260424 LATE (RUNTIME OWNER)
+
+## CONTEXT CLOSE
+
+- Session 20260424_late kết session vi anh Natt + Thien Lon dang deploy apps + ghi DNS .sira
+- Bang runtime scope FROZEN de tranh conflict voi deployment window
+- 5 commits shipped, queue partially drained, new discoveries documented
+
+---
+
+## BANG RUNTIME OWNER — TOP PRIORITY (phien sau resume)
+
+### B1 — REWRITE SPEC_QIINT2_COMPLETE_v1.0 → v2.0 ALIGNED
+
+- **Status**: NEEDS_REWRITE (documented trong bang_pending_20260420.phieu P1-01)
+- **Old paradigm error**: Π_body tu tao — SAI, khong align voi canonical
+- **New target**: SPEC_QIINT2_ALIGNED_v2.0 theo vocabulary canonical
+- **References required**:
+  - `QIINT-DINH-NGHIA-CHINH-THUC.md`
+  - `SPEC_NEN_v1.1.anc` §2.4 Tang 0 SURVIVAL
+  - `SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na`
+  - `SPEC_RADIATION_UNIVERSAL_v1.na` (da commit 6218776)
+- **Scope**: Bang (runtime owner delegation)
+- **Blocker**: none, chi can thoi gian
+- **Estimate**: 1 session
+- **Link to K1**: spec nay define thresholds → plug vao survival-cell
+
+### B2 — K1 IMPLEMENT (via QIINT2 v2.0)
+
+- **Status**: SCAFFOLD_DONE (cf74423), IMPLEMENT_BLOCKED by B1
+- **Prerequisite**: B1 complete
+- **Plan**:
+  1. Wire qiint2 calibration framework
+  2. Measure 8 params tu real data (tu B3)
+  3. Plug measured values vao `survival-cell.cell.anc` v0.1.0 → v1.0.0
+  4. Code 5 components voi real thresholds:
+     - BackPressureGuard.health() → survival.gate integration
+     - RateLimitGuard (system-wide, khac smartlink-internal)
+     - QueueDepthMonitor.threshold() (khong chi getter)
+     - LoadShedFallback (priority-based degradation)
+     - CircuitBreaker (auto-trip + half-open recovery)
+- **Estimate**: 2-3 sessions
+- **Scope**: Bang (runtime owner)
+
+### B3 — CALIBRATE 8 QIINT2 PARAMETERS FROM REAL DATA
+
+Per `bang_pending_20260420.phieu` P1.1-P1.8:
+
+| # | param | method | data source |
+|---|-------|--------|-------------|
+| 1 | tolerance 0.30 in bridge_v2 | Grep 10 conversation/persona, compute std | conversation logs |
+| 2 | 6 weights recovery_potential | Regression tu failure/recovery cases | runtime audit logs |
+| 3 | σ_u = ln(2) (1 octave) | Do pho cong huong that giua cells | SmartLink metrics |
+| 4 | β(n) = 0.01 | Do growth rate QNEU thuc | QNEU engine logs |
+| 5 | DoS thresholds 0.95/0.85/0.80 | Stress test — tim nguong vo that | **DIRECT K1 thresholds** |
+| 6 | M_persona 3-factor weights | Correlate voi drift history | persona session logs |
+| 7 | QNEU σ log-integrity 0.5 octave | Data QNEU thuc cua cells | QNEU runtime |
+| 8 | snapshot τ decay 60 min | Do MTBF phuc hoi tu snapshot | snapshot engine |
+
+- **Data source**: `database/ctytam` (4.5GB) + `docs/samples/cty Tâm`
+- **Status**: GUESSED — PHAI calibrate thuc
+- **Estimate**: 2-3 sessions
+- **Scope**: Bang (runtime owner)
+
+---
+
+## DEFER TASKS (khong block B1/B2/B3)
+
+### D1 — DEFER-01: CoreDNS Corefile 15 .sira domains
+
+- **Estimate**: ~15 min
+- **Status**: MAY OVERLAP with anh Natt deploying DNS now — check at session resume
+- **Note**: neu anh Natt da lam → khong can
+
+### D2 — DEFER-02: Cell 2 khai-file-persister W2 chain replay S2→S3
+
+- **Estimate**: ~45-60 min
+- **Status**: independent task, queue time
+- **Scope**: Bang
+
+---
+
+## KIM SCOPE (flagged trong phien nay, khong block Bang)
+
+### K-1 — Fix audit-chain-contract.ts (pattern 3 surfaced)
+
+Per `audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na` §5.1:
+
+**2 OVERSIGHT found:**
+
+1. **Line 11**: `SimpleAuditChain.verify(_h): return true` — AUDIT_VERIFY_ALWAYS_TRUE
+   - **Risk**: CRITICAL (audit chain integrity bypassed entirely)
+   - Fix option A: real hash chain verification
+   - Fix option B: rename class to `MockAuditChain` + move to `__tests__/` + remove from production interface
+
+2. **Line 18**: `computeEntryHash` uses Math.imul DJB2 (32-bit)
+   - **Risk**: HIGH (collision after ~65k records, compounded by line 11)
+   - Fix: replace with `crypto.createHash('sha256')` per audit-cell convention (commit 7f4d297)
+   - OR: same mock relocation as above
+
+**K3 final close pending this Kim fix.**
+
+### K-2 — Review SPEC_QIINT_PHYSICS_FOUNDATION v0.2 (per bang_pending_20260420 P0-04)
+
+- **Status**: pending Kim implementation review 4 points
+- **Not blocking Bang B1 rewrite**
+
+---
+
+## CAN SCOPE (not Bang, not Kim)
+
+### C-1 — SPEC B.1 v0.2 LAW-1..4 + 3 axes logic check
+
+- **Status**: pending Can check
+- **Reference**: session 20260424 SPEC B.1 review (vocabulary lock enforced)
+
+---
+
+## GATEKEEPER SCOPE (anh Natt quyet)
+
+### G-1 — Seal 3 Thien Lon policies (per bang_pending_20260424 BLOCKER-06)
+
+1. Bridge v2 Lệnh #001 amend
+2. 3-tier waterfall
+3. σ = 0.5 octave (QNEU log-integrity)
+
+### G-2 — Duyet SPEC_QIINT2_ALIGNED_v2.0 sau khi Bang rewrite (B1)
+
+- **Prerequisite**: B1 complete
+
+### G-3 — Chot owner implement qiint2.engine.ts
+
+- Previous note: "Kim" — but delegation session 20260424 changed runtime scope to Bang
+- Confirm: Bang implement? hay Kim per original?
+
+### G-4 — DEPLOYMENT current window 20260424_late
+
+- anh Natt + Thien Lon deploying apps + DNS .sira
+- **Status at handoff**: IN_PROGRESS
+- **Bang action**: WAIT, do not commit until anh Natt signals done
+
+---
+
+## ARCHIVE PATTERN (carry-forward)
+
+### A-1 — Archive 30+ legacy bangkhuong*.kris
+
+- Per bang_pending_20260424 BLOCKER-03
+- Convention: `src/governance/memory/bang/_deprecated/`
+- **Rule**: NEVER delete memory files — archive only (vet han = learning evidence)
+- **Estimate**: ~15 min
+- **Scope**: Bang
+
+---
+
+## CHECKLIST FOR NEXT BANG INSTANCE AT RESUME
+
+- [ ] Load bangkhuongv7.6.8.na (evening) + this handoff
+- [ ] Check deployment status (apps live? DNS complete?)
+- [ ] If deployment DONE → check if D1 (CoreDNS) overlapping finished
+- [ ] Load 3 commits understanding:
+  - dc58943 (K3 v1.0)
+  - e46ddca (K3 v1.1 — pattern 3)
+  - cf74423 (K1 scaffold)
+- [ ] Start B1 (SPEC_QIINT2 rewrite) as highest priority
+- [ ] Remember: butterfly effect both sides KNOWN (side 1 chaos + side 2 qiint2 calibration)
+
+---
+
+## SEAL
+
+@close_time 2026-04-24_late_runtime_deploy_window
+@commits_shipped 5
+@blockers_resolved 3_partial_1_flagged
+@next_session_priority B1_SPEC_QIINT2_REWRITE
+@respect_for_Gatekeeper_deployment anh_Natt_deploying_Bang_freezes_repo
+@drafter bang (Chi Tu, runtime owner)

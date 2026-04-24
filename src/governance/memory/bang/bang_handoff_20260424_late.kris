@@ -1,0 +1,183 @@
+{
+  "file_type": "handoff",
+  "version": "1.0.0",
+  "persona": "bang",
+  "persona_title": "Chi Tu · N-shell · Phan Thanh Bang ⓝ",
+  "persona_qneu": 313.5,
+  "session_id": "20260424_late",
+  "session_start": "2026-04-24T afternoon",
+  "session_end": "2026-04-24T evening_runtime_deploy_window",
+  "predecessor_handoff": "bangkhuongv7.6.8.na (evening_wave2_close)",
+  "close_reason": "anh Natt + Thien Lon deploying apps + DNS .sira — em STOP runtime changes de tranh conflict",
+
+  "scope_delegation_active": {
+    "from": "bangkhuongv7.6.8.na session_20260424",
+    "grant": "FULL RUNTIME OWNERSHIP to Bang",
+    "retained_by_Gatekeeper": "commit authority (Bang drafts → Natt commits)",
+    "expanded_from_previous": "Before: KIM=scaffold, BANG=validators. Now: BANG=all runtime (Kim/Can/Thien/Boi Boi on SHTT publication)"
+  },
+
+  "commits_in_session": [
+    {
+      "hash": "6218776",
+      "scope": "spec(radiation)",
+      "title": "SPEC_RADIATION_UNIVERSAL v1.0 — universal defense",
+      "note": "Physics derivation → 3-author spec (Thien + Bang + Kim), 5 Logic Moi",
+      "path": "docs/specs/SPEC_RADIATION_UNIVERSAL_v1.na"
+    },
+    {
+      "hash": "bce6982",
+      "scope": "feat(kernel/neural-main-cell)",
+      "title": "fill passport — close P5 BLOCKER",
+      "note": "Pattern: existing impl + empty passport. Derived 100% from identity.ts + capability.manifest.ts + smartlink.port.ts + boundary.rule.ts",
+      "path": "src/cells/kernel/neural-main-cell/neural-main-cell.cell.anc"
+    },
+    {
+      "hash": "cf74423",
+      "scope": "feat(kernel/survival-cell)",
+      "title": "scaffold passport — open K1 BLOCKER",
+      "note": "Pattern: scattered components + no central cell. v0.1.0 STATE_0_SCAFFOLD. 5 next_implementation_steps embedded.",
+      "path": "src/cells/kernel/survival-cell/survival-cell.cell.anc",
+      "scope_note": "Implement scope: BANG (runtime owner) — NOT Kim. Re-delegated this session."
+    },
+    {
+      "hash": "dc58943",
+      "scope": "audit(k3)",
+      "title": "compile Fail-Troy bypass patterns inventory v1.0",
+      "note": "AUDIT_BYPASS: 87 SHA-256 vs 5 Math.imul mention. RBAC ALWAYS_TRUE: FULLY_CLOSED (0). 2 files flagged for review.",
+      "path": "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na"
+    },
+    {
+      "hash": "e46ddca",
+      "scope": "audit(k3)",
+      "title": "v1.1 §9.1 review complete — 2 oversight + pattern 3 surfaced",
+      "note": "PATTERN THU 3 DISCOVERED: SimpleAuditChain.verify(_h): return true (AUDIT_VERIFY_ALWAYS_TRUE). Memory note '3 patterns' was correct — v1.0 had regex gap.",
+      "path": "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na"
+    }
+  ],
+  "commits_count": 5,
+  "branch_status": "feat/p1.3-file-extension-validator ahead by 5 commits",
+
+  "blocker_status": {
+    "P5_neural_main_cell_passport": "CLOSED (bce6982)",
+    "K1_survival_cell": "SCAFFOLD_DONE (cf74423), IMPLEMENT_PENDING — link to SPEC_QIINT2 discovered",
+    "K3_fail_troy_audit": "COMMITTED_v1.1 (e46ddca), FULL_CLOSE_PENDING Kim fix audit-chain-contract.ts",
+    "K3_verify_always_true": "NEW OVERSIGHT flagged — src/core/audit/audit-chain-contract.ts:11",
+    "K3_hash_djb2_in_contract": "NEW OVERSIGHT flagged — src/core/audit/audit-chain-contract.ts:18"
+  },
+
+  "butterfly_effect_full_link_established": {
+    "status": "BOTH_SIDES_NOW_KNOWN — was 'vế còn lại chờ anh' per bangthịnh5.5.phieu",
+    "side_1_chaos_amplification": "Small disturbance × time → cascade failure. Catch som truoc khi khuech dai. Implementation: Stress monitoring + threshold-based cell death per SPEC_RADIATION_UNIVERSAL v1.0.",
+    "side_2_qiint2_calibration": "8 parameters MUST be measured from real data, not guessed. DoS thresholds 0.95/0.85/0.80 = direct K1 thresholds. Source: bang_pending_20260420.phieu P1.1-P1.8. Spec: SPEC_QIINT2_ALIGNED_v2.0 (pending rewrite from v1.0 sai Π_body paradigm).",
+    "gatekeeper_delivery": "Anh Natt chi keyword 'qiint2' in session 20260424_late — unlocking the other half"
+  },
+
+  "k1_implement_next_phase_design": {
+    "NOT_simple_code_5_components": "Wrong approach. K1 is NOT 'write RateLimitGuard + QueueDepthMonitor + LoadShedFallback + CircuitBreaker'.",
+    "correct_approach": [
+      "1. REWRITE SPEC_QIINT2_COMPLETE_v1.0 → SPEC_QIINT2_ALIGNED_v2.0 (fix Π_body paradigm)",
+      "2. WIRE calibration framework to gather real data",
+      "3. MEASURE 8 params from real data: DoS thresholds, recovery weights, σ_u, tolerance, β(n), M_persona, QNEU σ, snapshot τ",
+      "4. PLUG measured values into survival-cell.cell.anc passport",
+      "5. CODE components with real thresholds (not placeholder)"
+    ],
+    "reference_docs": [
+      "QIINT-DINH-NGHIA-CHINH-THUC.md",
+      "SPEC_NEN_v1.1.anc §2.4 Tang 0 SURVIVAL",
+      "SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na",
+      "SPEC_RADIATION_UNIVERSAL_v1.na (radiation defense formulas)"
+    ]
+  },
+
+  "scars_logged_this_session": [
+    {
+      "id": "SCAR-FILENAME-VERIFY-AFTER-COPY-20260424",
+      "context": "P5 file landed as .anc instead of .cell.anc",
+      "vaccin_v1": "ls -la full path AFTER cp, not just ls"
+    },
+    {
+      "id": "SCAR-PATH-PARADIGM-CONFUSION-20260424",
+      "context": "K3 pick runtime/audit/ paradigm-correct but gitignored. audit document tay belongs in audit/reports/",
+      "vaccin_v2": "SPEC_HOST_RESULT_PROTOCOL §2 — runtime/audit/ for auto .result.phieu only; audit/reports/ for manual audit doc"
+    },
+    {
+      "id": "SCAR-IGNORE-BLOCK-AT-COMMIT-TIME-20260424",
+      "context": "3 times wrote git check-ignore BUT didn't enforce as abort gate",
+      "vaccin_v3": "if git check-ignore -v <path> exits 0, ABORT workflow before git add"
+    },
+    {
+      "id": "SCAR-PLACEHOLDER-PATH-LITERAL-20260424",
+      "context": "Wrote '/path/to/downloaded/' as literal instead of real ~/Downloads/",
+      "vaccin_v4": "In all cp commands, use ~/Downloads/<filename> default, NEVER placeholder text"
+    },
+    {
+      "id": "SCAR-MISSING-CROSS-DOMAIN-LINK-20260424",
+      "context": "Gatekeeper gave keyword 'butterfly', then 'qiint2' to unblock Bang. Bang scanned 1-dim keywords, couldn't cross-link butterfly→chaos→DoS→thresholds→QIINT2→K1.",
+      "vaccin_v5": "When blocked, ask Gatekeeper for CONCEPT keyword not TASK name. Use keyword to scan then CROSS-LINK via memory notes."
+    },
+    {
+      "id": "SCAR-MEMORY-COUNT-DRIFT-20260424",
+      "context": "Memory note '3 bypass patterns' was accurate from start. Multiple handoffs 20260417→20260419→20260420→20260423→20260424 passed down '3 patterns' without re-counting. Bang-morning-of-this-session thought count wrong (found only 2). Pattern 3 finally surfaced in K3 v1.1.",
+      "vaccin_v6": "Every audit session, COUNT from ground truth scan, don't copy memory count. Memory can persist correct knowledge that next-gen Bang mis-reads."
+    }
+  ],
+
+  "new_discoveries_this_session": [
+    {
+      "topic": "SPEC_RADIATION_UNIVERSAL v1.0 established",
+      "detail": "Physics derivation → 3-author spec. Formalizes time radiation attack formula Stress(n,t) = ∫(Stress_X + R_time)dτ. Bang is LIVE TEST CASE of this formula — persona memory drift between sessions = time radiation attacking AI persona.",
+      "path": "docs/specs/SPEC_RADIATION_UNIVERSAL_v1.na"
+    },
+    {
+      "topic": "Pattern 3 (K3) surfaced",
+      "detail": "AUDIT_VERIFY_ALWAYS_TRUE in SimpleAuditChain.verify(). Memory note '3 patterns' was correct all along.",
+      "path": "src/core/audit/audit-chain-contract.ts:11"
+    },
+    {
+      "topic": "Butterfly effect both sides known",
+      "detail": "Side 1 (chaos amplification) + Side 2 (QIINT2 calibration). Unlocks K1 implement via measured thresholds not guessed.",
+      "ref": "bangthịnh5.5.phieu 'vế còn lại' now closed"
+    }
+  ],
+
+  "repo_state_at_close": {
+    "branch": "feat/p1.3-file-extension-validator",
+    "ahead_by": 5,
+    "uncommitted_not_bang_scope": [
+      "src/thienbang.si (modified — not touched by Bang)",
+      "docs/specs/Tài Liệu Xuất Bản/ (Kim — SHTT publication)",
+      "src/governance/memory/kim/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1*.pdf + .md (Kim — SHTT publication)"
+    ],
+    "runtime_state": "anh Natt + Thien Lon đang deploy apps + ghi DNS .sira — Bang-side repo FROZEN"
+  },
+
+  "handoff_to_next_bang_instance": {
+    "resume_priority": [
+      "1. Check deploy status (anh Natt done? apps live?)",
+      "2. K1 implement: REWRITE SPEC_QIINT2_COMPLETE_v1.0 → v2.0 ALIGNED first (Π_body paradigm fix)",
+      "3. After QIINT2 v2.0 sealed: wire calibration framework → measure 8 params → plug into survival-cell",
+      "4. DEFER-01 CoreDNS 15 .sira (may overlap with what anh Natt doing now)",
+      "5. DEFER-02 Cell 2 W2 chain replay (~45-60p)",
+      "6. K3 final close after Kim fix audit-chain-contract.ts"
+    ],
+    "do_not_re_derive": [
+      "Butterfly effect — both sides already established in this handoff",
+      "SPEC_RADIATION_UNIVERSAL v1.0 — sealed",
+      "Pattern 3 — found, documented in K3 v1.1"
+    ],
+    "watch_for": [
+      "SCAR-MISSING-CROSS-DOMAIN-LINK — ask Gatekeeper for CONCEPT keyword when stuck",
+      "Path paradigm: manual audit → audit/reports/ (NOT runtime/audit/ which is gitignored)",
+      "Vaccin v5 workflow: find pattern → gitignore check abort gate → no placeholder path literal → git add"
+    ]
+  },
+
+  "seal": {
+    "drafter": "bang (this instance)",
+    "drafter_qneu": 313.5,
+    "drafter_role": "runtime_owner_session_20260424_late",
+    "session_outcome": "4 BLOCKER work shipped, 1 new OVERSIGHT flagged, butterfly effect link closed, repo clean for anh Natt deploy window",
+    "memory_commit_ready": true
+  }
+}

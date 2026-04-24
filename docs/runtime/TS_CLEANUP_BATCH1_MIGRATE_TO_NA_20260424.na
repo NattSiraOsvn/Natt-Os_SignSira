@@ -1,0 +1,184 @@
+# TS CLEANUP BATCH 1 — MIGRATE_TO_NA — 20260424
+
+status: PASS
+scope: MIGRATE_TO_NA only
+
+## 1. Rule
+
+Batch này chỉ rename các file đã được inventory phân loại MIGRATE_TO_NA.
+
+Không động KEEP_AS_TYPESCRIPT_FOR_NOW.
+Không động REVIEW_FOR_SIRA.
+
+## 2. Renamed
+
+[
+  {
+    "from": "NaUion-Server/nauion/spec-nauion/use-contextual-ui.ts",
+    "to": "NaUion-Server/nauion/spec-nauion/use-contextual-ui.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "docs/specs/nauion/use-contextual-ui.ts",
+    "to": "docs/specs/nauion/use-contextual-ui.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "nattos-server/app Tâm luxury/finance-service/infrastructure/messaging/retry.policy.ts",
+    "to": "nattos-server/app Tâm luxury/finance-service/infrastructure/messaging/retry.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.ts",
+    "to": "src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/buyback-cell/domain/value-objects/exchange-policy.ts",
+    "to": "src/cells/business/buyback-cell/domain/value-objects/exchange-policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/casting-cell/domain/casting.boundary.policy.ts",
+    "to": "src/cells/business/casting-cell/domain/casting.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/compliance-cell/domain/compliance.boundary.policy.ts",
+    "to": "src/cells/business/compliance-cell/domain/compliance.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/constants-cell/domain/constants.boundary.policy.ts",
+    "to": "src/cells/business/constants-cell/domain/constants.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/customer-cell/domain/customer.boundary.policy.ts",
+    "to": "src/cells/business/customer-cell/domain/customer.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/design-3d-cell/domain/design-3d.boundary.policy.ts",
+    "to": "src/cells/business/design-3d-cell/domain/design-3d.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/dust-recovery-cell/domain/dust-recovery.boundary.policy.ts",
+    "to": "src/cells/business/dust-recovery-cell/domain/dust-recovery.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/finance-cell/messaging/retry-policy.ts",
+    "to": "src/cells/business/finance-cell/messaging/retry-policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/finishing-cell/domain/finishing.boundary.policy.ts",
+    "to": "src/cells/business/finishing-cell/domain/finishing.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/hr-cell/domain/hr.boundary.policy.ts",
+    "to": "src/cells/business/hr-cell/domain/hr.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/inventory-cell/domain/inventory.boundary.policy.ts",
+    "to": "src/cells/business/inventory-cell/domain/inventory.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/order-cell/domain/order.boundary.policy.ts",
+    "to": "src/cells/business/order-cell/domain/order.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/polishing-cell/domain/polishing.boundary.policy.ts",
+    "to": "src/cells/business/polishing-cell/domain/polishing.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.ts",
+    "to": "src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/prdwarranty-cell/domain/prdwarranty.boundary.policy.ts",
+    "to": "src/cells/business/prdwarranty-cell/domain/prdwarranty.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/pricing-cell/domain/pricing.boundary.policy.ts",
+    "to": "src/cells/business/pricing-cell/domain/pricing.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.ts",
+    "to": "src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/stone-cell/domain/stone.boundary.policy.ts",
+    "to": "src/cells/business/stone-cell/domain/stone.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/tax-cell/domain/tax.boundary.policy.ts",
+    "to": "src/cells/business/tax-cell/domain/tax.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.ts",
+    "to": "src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/business/warranty-cell/domain/value-objects/warranty-policy.ts",
+    "to": "src/cells/business/warranty-cell/domain/value-objects/warranty-policy.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/cells/infrastructure/event-bus-cell/domain/services/retry-policy.engine.ts",
+    "to": "src/cells/infrastructure/event-bus-cell/domain/services/retry-policy.engine.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/components/compliance/policy-manager.tsx",
+    "to": "src/components/compliance/policy-manager.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/components/showroom/specification-block.tsx",
+    "to": "src/components/showroom/specification-block.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/governance/policy/dictionary-approval.engine.ts",
+    "to": "src/governance/policy/dictionary-approval.engine.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/governance/policy/dictionary.engine.ts",
+    "to": "src/governance/policy/dictionary.engine.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  },
+  {
+    "from": "src/governance/policy/policy-signature.engine.ts",
+    "to": "src/governance/policy/policy-signature.engine.na",
+    "reason": "documentation/spec/evidence should not stay as TypeScript"
+  }
+]
+
+## 3. Skipped
+
+[]
+
+## 4. Patched References
+
+[
+  "src/governance/business.contracts.lock.si",
+  "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na",
+  "audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na",
+  "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na"
+]

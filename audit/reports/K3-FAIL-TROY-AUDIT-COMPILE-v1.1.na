@@ -67,7 +67,7 @@
 Updated placeholder list:
 - `src/core/snapshot/snapshot.engine.ts` (FNV-1a)
 - `src/core/memory/immutable-memory.engine.ts` (FNV-1a)
-- `src/governance/policy/policy-signature.engine.ts` (Murmurhash)
+- `src/governance/policy/policy-signature.engine.na` (Murmurhash)
 - **`src/core/smartlink/smartlink.nattimer.ts` (FNV-1a) — NEW**
 
 ---
