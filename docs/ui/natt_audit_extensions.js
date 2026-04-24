@@ -5,7 +5,7 @@
   const style = document.createElement("style");
   style.textContent = `
     #nattExtToggle{position:fixed;right:18px;bottom:18px;z-index:99999;background:#2e1065;color:#e9d5ff;border:1px solid #a855f7;border-radius:999px;padding:10px 14px;font:700 11px JetBrains Mono,monospace;box-shadow:0 0 20px rgba(168,85,247,.45)}
-    #nattExtHub{position:fixed;right:18px;bottom:64px;width:460px;height:620px;z-index:99998;background:rgba(2,6,23,.97);border:1px solid rgba(168,85,247,.55);border-radius:16px;box-shadow:0 0 35px rgba(0,0,0,.65);display:none;overflow:hidden;color:#e2e8f0;font-family:Inter,sans-serif}
+    #nattExtHub{position:fixed;right:18px;bottom:64px;width:460px;height:620px;z-index:99998;background:rgba(2,6,23,.97);border:1px solid rgba(168,85,247,.55);border-radius:16px;box-shadow:0 0 35px rgba(0,0,0,.65);display:none;overflow:hidden;color:#e2e8f0;font-family:Inter,sans-serif;user-select:text!important}
     #nattExtHub.open{display:flex;flex-direction:column}
     .nattExtHead{padding:12px 14px;border-bottom:1px solid #1e293b;display:flex;justify-content:space-between;align-items:center;background:#0f172a}
     .nattExtTitle{font:800 12px JetBrains Mono,monospace;color:#c084fc;letter-spacing:.08em}
@@ -15,8 +15,8 @@
     .nattExtBtn:hover{border-color:#a855f7;color:#fff;background:#1e1b4b}
     .nattExtSearch{display:flex;gap:6px}
     .nattExtSearch input{flex:1;background:#020617;border:1px solid #334155;color:#fff;border-radius:8px;padding:8px;font:11px JetBrains Mono,monospace}
-    .nattExtOut{flex:1;min-height:0;background:#000;border:1px solid #1e293b;border-radius:10px;padding:10px;overflow:auto;white-space:pre-wrap;font:10px JetBrains Mono,monospace;color:#94a3b8}
-    .nattExtBadge{font:700 9px JetBrains Mono,monospace;border:1px solid #334155;border-radius:999px;padding:3px 7px;color:#67e8f9}
+    .nattExtOut{flex:1;min-height:0;background:#000;border:1px solid #1e293b;border-radius:10px;padding:10px;overflow:auto;white-space:pre-wrap;font:10px JetBrains Mono,monospace;color:#94a3b8;user-select:text!important;cursor:text}
+    .nattExtBadge{font:700 9px JetBrains Mono,monospace;border:1px solid #334155;border-radius:999px;padding:3px 7px;color:#67e8f9}\n    .nattExtActions{display:flex;gap:6px}\n    .nattExtMiniBtn{background:#020617;border:1px solid #334155;color:#cbd5e1;border-radius:8px;padding:6px 8px;font:700 9px JetBrains Mono,monospace}\n    .nattExtMiniBtn:hover{border-color:#a855f7;color:#fff;background:#1e1b4b}
   `;
   document.head.appendChild(style);
 
@@ -50,7 +50,7 @@
         <input id="nattExtQuery" placeholder="Search repo: EventEnvelope, KhaiCell, localStorage..." />
         <button class="nattExtBtn" data-action="search" style="width:92px;text-align:center">SEARCH</button>
       </div>
-      <pre id="nattExtOut" class="nattExtOut">Runtime Hub ready. Use buttons above.</pre>
+      <div class="nattExtActions">\n        <button id="nattExtCopyOut" class="nattExtMiniBtn">COPY OUTPUT</button>\n        <button id="nattExtSelectOut" class="nattExtMiniBtn">SELECT ALL</button>\n        <button id="nattExtClearOut" class="nattExtMiniBtn">CLEAR</button>\n      </div>\n      <pre id="nattExtOut" class="nattExtOut" tabindex="0">Runtime Hub ready. Use buttons above.</pre>
     </div>
   `;
   document.body.appendChild(hub);
@@ -58,7 +58,38 @@
   toggle.onclick = () => hub.classList.toggle("open");
 
   const out = hub.querySelector("#nattExtOut");
-  function print(label, obj) {
+
+  const copyBtn = hub.querySelector("#nattExtCopyOut");
+  const selectBtn = hub.querySelector("#nattExtSelectOut");
+  const clearBtn = hub.querySelector("#nattExtClearOut");
+
+  function selectOutputText() {
+    const range = document.createRange();
+    range.selectNodeContents(out);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    out.focus();
+  }
+
+  async function copyOutputText() {
+    const text = out.textContent || "";
+    try {
+      await navigator.clipboard.writeText(text);
+      if (typeof window.logTerm === "function") window.logTerm("RuntimeHub: copied output to clipboard", "pass");
+      copyBtn.textContent = "COPIED";
+      setTimeout(() => copyBtn.textContent = "COPY OUTPUT", 900);
+    } catch (e) {
+      selectOutputText();
+      if (typeof window.logTerm === "function") window.logTerm("RuntimeHub: clipboard blocked, selected output manually", "warn");
+    }
+  }
+
+  if (copyBtn) copyBtn.addEventListener("click", copyOutputText);
+  if (selectBtn) selectBtn.addEventListener("click", selectOutputText);
+  if (clearBtn) clearBtn.addEventListener("click", () => { out.textContent = "Output cleared."; });
+
+  out.addEventListener("dblclick", selectOutputText);\n\n  function print(label, obj) {
     const text = typeof obj === "string" ? obj : JSON.stringify(obj, null, 2);
     out.textContent = `[${new Date().toLocaleTimeString()}] ${label}\n\n${text}`;
     if (typeof window.logTerm === "function") window.logTerm(`RuntimeHub: ${label}`, "sys");
