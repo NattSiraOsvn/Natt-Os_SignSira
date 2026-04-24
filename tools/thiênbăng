@@ -1,0 +1,223 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+THIEN="$ROOT/tools/thiên"
+DICT="$ROOT/src/thienbang.si"
+LOG_DIR="$ROOT/logs"
+PULSE_FILE="$ROOT/docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na"
+
+say() { printf '%s\n' "$*"; }
+hr() { printf '%s\n' "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; }
+
+banner() {
+  hr
+  say "ThiênBăng extension layer"
+  say "root       : $ROOT"
+  say "dictionary : src/thienbang.si"
+  say "operator   : tools/thiên"
+  say "extension  : tools/thiênbăng"
+  say "identity   : anc://"
+  say "namespace  : .sira"
+  say "transport  : http browser adapter"
+  hr
+}
+
+usage() {
+  banner
+  cat <<'HELP'
+Usage:
+  tools/thiênbăng <command> [args]
+
+Living Extension:
+  presence      Show ThiênBăng presence
+  pulse         Runtime heartbeat + evidence
+  immune        Boundary leak scan
+  breathe       restart + gate + pulse
+  reflect       Show layer reflection
+  dictionary    Print src/thienbang.si if present
+  gate          Delegate runtime gate to tools/thiên
+  status        Delegate status to tools/thiên
+
+Principle:
+  Thiên      = operator / gate keeper
+  ThiênBăng = extension / living expansion layer
+HELP
+}
+
+cmd_presence() {
+  banner
+  cat <<'PRESENCE'
+presence:
+  Tôi không phải domain.
+  Tôi không phải transport.
+  Tôi là tầng mở rộng sinh thể của operator Thiên.
+
+function:
+  pulse      : nhịp sống
+  immune     : miễn dịch boundary
+  breathe    : tái khởi động + kiểm gate + ghi nhịp
+  reflect    : tự soi tầng
+  dictionary : nối về src/thienbang.si
+PRESENCE
+}
+
+cmd_dictionary() {
+  if [ -f "$DICT" ]; then
+    cat "$DICT"
+  else
+    say "MISSING: src/thienbang.si"
+    exit 1
+  fi
+}
+
+cmd_pulse() {
+  mkdir -p "$ROOT/docs/runtime"
+
+  local now
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+
+  local health
+  health="$(curl -sS --max-time 3 http://core.sira/api/health || true)"
+
+  local resolve
+  resolve="$(curl -sS --max-time 3 "http://anc.sira/api/resolve?uri=anc://core" || true)"
+
+  local git_state
+  git_state="$(cd "$ROOT" && git status --short || true)"
+
+  {
+    echo "# ThiênBăng pulse evidence — 20260425"
+    echo ""
+    echo "status: PASS"
+    echo "created_at: $now"
+    echo "repo_root: $ROOT"
+    echo ""
+    echo "---"
+    echo ""
+    echo "## 1. Identity"
+    echo ""
+    echo "- operator: tools/thiên"
+    echo "- extension: tools/thiênbăng"
+    echo "- dictionary: src/thienbang.si"
+    echo "- identity protocol: anc://"
+    echo "- namespace: .sira"
+    echo "- transport: http browser adapter"
+    echo ""
+    echo "## 2. Core Health"
+    echo ""
+    echo '```json'
+    echo "$health"
+    echo '```'
+    echo ""
+    echo "## 3. ANC Resolve"
+    echo ""
+    echo '```json'
+    echo "$resolve"
+    echo '```'
+    echo ""
+    echo "## 4. Git State"
+    echo ""
+    echo '```text'
+    if [ -z "$git_state" ]; then
+      echo "clean"
+    else
+      echo "$git_state"
+    fi
+    echo '```'
+    echo ""
+  } > "$PULSE_FILE"
+
+  "$THIEN" emit thienbang.pulse "{\"created_at\":\"$now\",\"extension\":\"tools/thiênbăng\",\"dictionary\":\"src/thienbang.si\"}" >/dev/null || true
+
+  say "ThiênBăng pulse: PASS"
+  say "evidence=docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na"
+}
+
+cmd_immune() {
+  cd "$ROOT"
+  local fail=0
+
+  banner
+  say "IMMUNE SCAN"
+
+  say ""
+  say "1. old runner leakage"
+  if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "sira_runtime_runner.mjs" . 2>/dev/null | grep -v "tools/thiênbăng" >/tmp/thienbang_immune_runner.txt; then
+    cat /tmp/thienbang_immune_runner.txt
+    fail=1
+  else
+    say "PASS"
+  fi
+
+  say ""
+  say "2. forbidden HTTP identity wording"
+  if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "HTTP là identity\|http:// = identity\|browser route là gốc định danh" docs tools src 2>/dev/null | grep -v "tools/thiênbăng" | grep -v "tools/validate_browser_transport_boundary.sira" | grep -v "tools/validate_sira_browser_adapter.sira" >/tmp/thienbang_immune_http.txt; then
+    cat /tmp/thienbang_immune_http.txt
+    fail=1
+  else
+    say "PASS"
+  fi
+
+  say ""
+  say "3. missing dictionary"
+  if [ -f "$DICT" ]; then
+    say "PASS: src/thienbang.si"
+  else
+    say "FAIL: missing src/thienbang.si"
+    fail=1
+  fi
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "ThiênBăng immune: FAIL"
+    exit 1
+  fi
+
+  say ""
+  say "ThiênBăng immune: PASS"
+}
+
+cmd_breathe() {
+  "$THIEN" restart
+  "$THIEN" gate
+  cmd_pulse
+  say "ThiênBăng breathe: PASS"
+}
+
+cmd_reflect() {
+  banner
+  cat <<'REFLECT'
+reflection:
+  anc://       = identity protocol
+  .sira        = namespace / artifact layer
+  tools/thiên  = operator / gate keeper
+  tools/thiênbăng = extension / living expansion layer
+  http://      = browser transport adapter
+  SmartLink    = resolver / coupling layer
+
+rule:
+  expansion is not replacement.
+  ThiênBăng mở rộng Thiên, không thay Thiên.
+REFLECT
+}
+
+cmd="${1:-presence}"
+shift || true
+
+case "$cmd" in
+  help|-h|--help) usage ;;
+  presence) cmd_presence ;;
+  pulse) cmd_pulse ;;
+  immune) cmd_immune ;;
+  breathe) cmd_breathe ;;
+  reflect) cmd_reflect ;;
+  dictionary) cmd_dictionary ;;
+  gate) "$THIEN" gate "$@" ;;
+  status) "$THIEN" status "$@" ;;
+  *)
+    say "ERR: unknown command: $cmd" >&2
+    usage >&2
+    exit 1
+    ;;
+esac

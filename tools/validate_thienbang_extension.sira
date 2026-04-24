@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+const tool = path.join(ROOT, "tools", "thiênbăng");
+const thien = path.join(ROOT, "tools", "thiên");
+const dict = path.join(ROOT, "src", "thienbang.si");
+const spec = path.join(ROOT, "docs", "runtime", "THIENBANG_EXTENSION_LAYER_20260425.si");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function read(file) {
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+}
+
+const t = read(tool);
+const s = read(spec);
+
+must(fs.existsSync(tool), "missing tools/thiênbăng");
+must(fs.existsSync(thien), "missing tools/thiên");
+must(fs.existsSync(dict), "missing src/thienbang.si");
+must(fs.existsSync(spec), "missing THIENBANG extension spec");
+
+[
+  "cmd_pulse",
+  "cmd_immune",
+  "cmd_breathe",
+  "cmd_reflect",
+  "tools/thiênbăng",
+  "src/thienbang.si"
+].forEach(token => must(t.includes(token) || s.includes(token), "missing token: " + token));
+
+[
+  "Expansion is not replacement",
+  "ThiênBăng mở rộng Thiên, không thay Thiên",
+  "living expansion layer"
+].forEach(token => must(s.includes(token), "spec missing token: " + token));
+
+if (errors.length) {
+  console.error("THIÊNBĂNG EXTENSION VALIDATION: FAIL");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("THIÊNBĂNG EXTENSION VALIDATION: PASS");
+console.log("operator=tools/thiên");
+console.log("extension=tools/thiênbăng");
+console.log("dictionary=src/thienbang.si");

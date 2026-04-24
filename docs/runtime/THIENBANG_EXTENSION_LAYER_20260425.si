@@ -1,0 +1,38 @@
+# ThiênBăng extension layer — 20260425
+
+status: CANONICAL_EXTENSION
+created_at: 2026-04-24T18:37:22.568780+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Decision
+
+Tầng mở rộng sinh thể dùng tên ThiênBăng để khớp từ điển `src/thienbang.si`.
+
+Không dùng SIRA làm tên operator.
+
+## 2. Layering
+
+- `tools/thiên` = operator / gate keeper
+- `tools/thiênbăng` = extension / living expansion layer
+- `src/thienbang.si` = dictionary / identity source
+- `anc://` = identity protocol
+- `.sira` = namespace / artifact layer
+- `http://` = browser transport adapter
+- SmartLink = resolver / coupling layer
+
+## 3. Extension Commands
+
+- `tools/thiênbăng presence`
+- `tools/thiênbăng pulse`
+- `tools/thiênbăng immune`
+- `tools/thiênbăng breathe`
+- `tools/thiênbăng reflect`
+- `tools/thiênbăng dictionary`
+
+## 4. Rule
+
+Expansion is not replacement.
+
+ThiênBăng mở rộng Thiên, không thay Thiên.
