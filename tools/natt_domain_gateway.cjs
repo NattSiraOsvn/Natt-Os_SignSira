@@ -13,6 +13,23 @@ function exists(p){ try{return fs.existsSync(p)}catch{return false} }
 function read(p){ try{return fs.readFileSync(p,"utf8")}catch{return ""} }
 function esc(s){ return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;") }
 function id(prefix){ return prefix + "_" + crypto.randomBytes(6).toString("hex") }
+
+function routeKeyFromHost(host){
+  const h = String(host || "").toLowerCase().split(":")[0];
+
+  if (h.endsWith(".natt")) return h.replace(".natt", "");
+
+  const first = h.split(".")[0];
+  const allowed = new Set([
+    "audit","tam","nauion","core","runtime","docs","anc",
+    "mach","heyna","gate","sira","khai","bridge"
+  ]);
+
+  if (allowed.has(first)) return first;
+
+  return h;
+}
+
 function now(){ return new Date().toISOString() }
 function excluded(rel){ return rel.split(path.sep).some(x => EXCLUDES.has(x)); }
 
@@ -167,6 +184,7 @@ function indexPage(base,title){
 
 function serveBase(req,res,base,title){
   const u=new URL(req.url,"http://local");
+  const routeKey=routeKeyFromHost(host);
   if(u.pathname==="/api/screens") return sendJson(res,{ok:true,root:base,count:htmlFiles(base).length,screens:htmlFiles(base).map(f=>path.relative(base,f).replaceAll(path.sep,"/"))});
   if(u.pathname==="/__screens"||u.pathname==="/screens"||u.pathname==="/index") return sendHtml(res,indexPage(base,title));
   if(u.pathname==="/"||u.pathname==="/main"||u.pathname==="/v9"){
@@ -200,7 +218,7 @@ http.createServer(async (req,res)=>{
 
   if(u.pathname==="/favicon.ico"){res.writeHead(204);res.end();return}
 
-  if(host==="anc.natt"){
+  if(routeKey==="anc"){
     const ANC_MAP = {
       core: "http://core.natt",
       runtime: "http://runtime.natt",
@@ -296,19 +314,19 @@ ${rows}
     return sendJson(res,{ok:true,event:evt,audit:row});
   }
 
-  if(host==="audit.natt"){
+  if(routeKey==="audit"){
     if(!AUDIT_HTML) return sendJson(res,{ok:false,error:"audit html not found"},404);
     return serveBase(req,res,path.dirname(AUDIT_HTML),"NATT-OS AUDIT UI");
   }
-  if(host==="tam.natt"){
+  if(routeKey==="tam"){
     if(!TAM) return sendJson(res,{ok:false,error:"nattos-server not found"},404);
     return serveBase(req,res,TAM,"TÂM LUXURY APP");
   }
-  if(["nauion.natt","core.natt","runtime.natt","gate.natt","sira.natt","khai.natt","bridge.natt","mach.natt","heyna.natt"].includes(host)){
+  if(["nauion","core","runtime","gate","sira","khai","bridge","mach","heyna"].includes(routeKey)){
     if(!NAUION) return sendJson(res,{ok:false,error:"NaUion-Server not found"},404);
     return serveBase(req,res,NAUION,"NATT-OS / NAUION SERVER");
   }
-  if(host==="docs.natt"){
+  if(routeKey==="docs"){
     const docs=path.join(ROOT,"docs");
     if(!exists(docs)) return sendJson(res,{ok:false,error:"docs not found"},404);
     return serveBase(req,res,docs,"NATT-OS DOCS");
