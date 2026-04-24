@@ -1,0 +1,4809 @@
+# TS CLEANUP BATCH 2F — HARD TRANSLATION SCAN — 20260424
+
+status: SCAN_ONLY
+scope: HARD_TRANSLATION_REQUIRED
+created_at: 2026-04-24T17:26:08.595888+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ quét 84 file hard còn lại.
+
+Không rename.
+Không sửa source.
+Không động app/UI.
+
+## 2. Summary
+
+{
+  "total_hard": 84,
+  "summary": {
+    "LIGHT_HARD_TRANSLATION_CANDIDATE": 1,
+    "PORT_CONTRACT_TRANSLATE_TO_SIRA": 14,
+    "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA": 10,
+    "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA": 16,
+    "ENGINE_TRANSLATE_TO_SIRA": 4,
+    "DEEP_TS_TRANSLATION_REQUIRED": 39
+  },
+  "next_easy_count": 15
+}
+
+## 3. Next Easy Candidates
+
+[
+  {
+    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts",
+    "bytes": 503,
+    "cluster": "LIGHT_HARD_TRANSLATION_CANDIDATE",
+    "effort": 4,
+    "action": "possible next batch after manual diff",
+    "marker_count": 4,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
+    "bytes": 704,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
+    "bytes": 973,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
+    "bytes": 891,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
+    "bytes": 964,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
+    "bytes": 994,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
+    "bytes": 903,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
+    "bytes": 946,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
+    "bytes": 754,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
+    "bytes": 1051,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 7,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+    "bytes": 232,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 5,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+    "bytes": 469,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+    "bytes": 460,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 3,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
+    "bytes": 1786,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
+    "bytes": 311,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  }
+]
+
+## 4. Full Hard Classification
+
+[
+  {
+    "path": "src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts",
+    "bytes": 503,
+    "cluster": "LIGHT_HARD_TRANSLATION_CANDIDATE",
+    "effort": 4,
+    "action": "possible next batch after manual diff",
+    "marker_count": 4,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/comms-cell/ports/comms-smartlink.port.ts",
+    "bytes": 704,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/compliance-cell/ports/compliance-smartlink.port.ts",
+    "bytes": 973,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/noi-vu-cell/ports/noi-vu-smartlink.port.ts",
+    "bytes": 891,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/prdwarranty-cell/ports/prdwarranty-smartlink.port.ts",
+    "bytes": 964,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/production-cell/ports/production-smartlink.port.ts",
+    "bytes": 994,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/promotion-cell/ports/promotion-smartlink.port.ts",
+    "bytes": 903,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-contracts-smartlink.port.ts",
+    "bytes": 946,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts",
+    "bytes": 754,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/event-bus-cell/ports/event-bus.smartlink.port.ts",
+    "bytes": 1051,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 7,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkEventEmitter.ts",
+    "bytes": 232,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 5,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/ports/SmartLinkRepository.ts",
+    "bytes": 469,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell.contract.ts",
+    "bytes": 460,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 3,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/neural-main-cell/smartlink.port.ts",
+    "bytes": 1786,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/quantum-defense-cell/ports/quantum-defense-smartlink.port.ts",
+    "bytes": 311,
+    "cluster": "PORT_CONTRACT_TRANSLATE_TO_SIRA",
+    "effort": 4,
+    "action": "translate interface/type contract into SIRA artifact",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/SyncEventEmitterAdapter.ts",
+    "bytes": 683,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/audit-cell/infrastructure/adapters/AuditEventEmitterAdapter.ts",
+    "bytes": 575,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 6,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/config-cell/infrastructure/adapters/ConfigEventEmitterAdapter.ts",
+    "bytes": 794,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 7,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/MonitorEventEmitterAdapter.ts",
+    "bytes": 626,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 6,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/QuantumDefenseEventEmitterAdapter.ts",
+    "bytes": 778,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 9,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Array<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": Promise",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/RBACEventEmitterAdapter.ts",
+    "bytes": 934,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 4,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/security-cell/infrastructure/adapters/SecurityEventEmitterAdapter.ts",
+    "bytes": 694,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/events/typed-eventbus.ts",
+    "bytes": 1720,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 9,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "<K"
+      ],
+      "annotations": [
+        ": string",
+        ": void",
+        ": any",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts",
+    "bytes": 3590,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 7,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": true,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/memory/bang/_bang_inbox_20260420/heyna-gateway-verify.draft.ts",
+    "bytes": 4123,
+    "cluster": "HEYNA_EVENT_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; transport/event boundary",
+    "marker_count": 7,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": any"
+      ],
+      "react_jsx": [
+        "return ("
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": true,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/application/services/SmartLinkApplicationService.ts",
+    "bytes": 4121,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 7,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/CreateLinkUseCase.ts",
+    "bytes": 775,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/ResolveLinkUseCase.ts",
+    "bytes": 833,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine.ts",
+    "bytes": 272,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 3,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "public "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/entities/SmartLink.ts",
+    "bytes": 1862,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 8,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/entities/index.ts",
+    "bytes": 102,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 2,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/LinkResolver.ts",
+    "bytes": 1124,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smart-link.shim.ts",
+    "bytes": 397,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 6,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink-mapping.engine.ts",
+    "bytes": 1816,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Omit<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
+    "bytes": 8877,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void",
+        ": any"
+      ],
+      "react_jsx": [
+        "return ("
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance.ts",
+    "bytes": 3190,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 6,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
+    "bytes": 4084,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 11,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/SmartLinkEventEmitterAdapter.ts",
+    "bytes": 559,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 4,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": true,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/InMemorySmartLinkRepository.ts",
+    "bytes": 989,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": true,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/khai-cell/smartlink/khai-cell.smartlink.ts",
+    "bytes": 369,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/observation-cell/smartlink/observation-cell.smartlink.ts",
+    "bytes": 427,
+    "cluster": "SMARTLINK_RUNTIME_TRANSLATE_TO_SIRA",
+    "effort": 5,
+    "action": "manual TS-to-SIRA translation; runtime boundary",
+    "marker_count": 5,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts",
+    "bytes": 8772,
+    "cluster": "ENGINE_TRANSLATE_TO_SIRA",
+    "effort": 6,
+    "action": "manual TS-to-SIRA translation; engine boundary",
+    "marker_count": 14,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "public "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<",
+        "<T"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/payment-cell/domain/engines/payment-gateway.engine.ts",
+    "bytes": 1216,
+    "cluster": "ENGINE_TRANSLATE_TO_SIRA",
+    "effort": 6,
+    "action": "manual TS-to-SIRA translation; engine boundary",
+    "marker_count": 8,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/neural-main-cell/core/validator.engine.ts",
+    "bytes": 2843,
+    "cluster": "ENGINE_TRANSLATE_TO_SIRA",
+    "effort": 6,
+    "action": "manual TS-to-SIRA translation; engine boundary",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/SmartLinkEngine.ts",
+    "bytes": 6209,
+    "cluster": "ENGINE_TRANSLATE_TO_SIRA",
+    "effort": 6,
+    "action": "manual TS-to-SIRA translation; engine boundary",
+    "marker_count": 14,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "public ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise",
+        ": void",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": true,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+    "bytes": 11639,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "react_jsx": [
+        "tsx"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "scripts/qiint2-validator.ts",
+    "bytes": 15681,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [
+        "return (",
+        "tsx"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/analytics-cell/ports/analytics-smartlink.port.ts",
+    "bytes": 3665,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/bom3dprd-cell/ports/bom3dprd-smartlink.port.ts",
+    "bytes": 1919,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/buyback-cell/ports/buyback-smartlink.port.ts",
+    "bytes": 3724,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/casting-cell/interface/casting.sheets.adapter.ts",
+    "bytes": 696,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+    "bytes": 3706,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/customs-cell/ports/customs-smartlink.port.ts",
+    "bytes": 3736,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/design-3d-cell/ports/design-3d-smartlink.port.ts",
+    "bytes": 2285,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+    "bytes": 3689,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/finishing-cell/interface/finishing.sheets.adapter.ts",
+    "bytes": 459,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/hr-cell/ports/hr-smartlink.port.ts",
+    "bytes": 3241,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/inventory-cell/interface/inventory.sheets.adapter.ts",
+    "bytes": 573,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/order-cell/interface/order.sheets.adapter.ts",
+    "bytes": 597,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Array<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/payment-cell/ports/payment-smartlink.port.ts",
+    "bytes": 3727,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/period-close-cell/domain/services/preclose.validator.ts",
+    "bytes": 2788,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [
+        "Promise<",
+        "<V"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/polishing-cell/interface/polishing.sheets.adapter.ts",
+    "bytes": 586,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/prdmaterials-cell/interface/prdmaterials.sheets.adapter.ts",
+    "bytes": 556,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 11,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Array<",
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
+    "bytes": 3447,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 8,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Omit<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/pricing-cell/ports/pricing-smartlink.port.ts",
+    "bytes": 3657,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/sales-cell/ports/sales-smartlink.port.ts",
+    "bytes": 3696,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+    "bytes": 3768,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/stone-cell/interface/stone.sheets.adapter.ts",
+    "bytes": 431,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/tax-cell/interface/tax.sheets.adapter.ts",
+    "bytes": 713,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts",
+    "bytes": 5369,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 11,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+    "bytes": 3679,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": false,
+      "is_business": true,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": true
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts",
+    "bytes": 11691,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number"
+      ],
+      "react_jsx": [
+        "tsx"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": true,
+      "is_kernel": true,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/cell-smartlink.component.ts",
+    "bytes": 2941,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/index.ts",
+    "bytes": 2218,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 7,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.competition.ts",
+    "bytes": 10695,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 8,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.nattimer.ts",
+    "bytes": 15750,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 7,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.point.ts",
+    "bytes": 10211,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [
+        "private ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [
+        "Record<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": unknown"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.pressure-field.ts",
+    "bytes": 14065,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/core/smartlink/smartlink.qneu-bridge.ts",
+    "bytes": 1994,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 7,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": []
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
+    "bytes": 25258,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<",
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts",
+    "bytes": 15681,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Array<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [
+        "return (",
+        "tsx"
+      ],
+      "imports_exports": [
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/runtime.ts",
+    "bytes": 11812,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 11,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": void"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/smartlink-impulse-check.ts",
+    "bytes": 2494,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 10,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "class_access": [],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": Promise",
+        ": any"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": true,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  },
+  {
+    "path": "src/governance/validator.ts",
+    "bytes": 3078,
+    "cluster": "DEEP_TS_TRANSLATION_REQUIRED",
+    "effort": 8,
+    "action": "do not auto-rename; requires manual rewrite",
+    "marker_count": 9,
+    "markers": {
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "class_access": [
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "react_jsx": [],
+      "imports_exports": [
+        "import ",
+        "export "
+      ],
+      "satisfies_as": [
+        " as "
+      ]
+    },
+    "flags": {
+      "is_app": false,
+      "is_ui": false,
+      "is_cell": false,
+      "is_kernel": false,
+      "is_business": false,
+      "is_infra": false,
+      "is_smartlink": false,
+      "is_heyna": false,
+      "is_event": false,
+      "is_engine": false,
+      "is_policy": false,
+      "is_port": false
+    },
+    "source_bucket": "HARD_TRANSLATION_REQUIRED",
+    "source_action": "manual translation"
+  }
+]
+
+## 5. Next Gate
+
+- [ ] Batch 2G chỉ xử lý POLICY_DOC_LIKELY_TO_NA nếu nội dung không executable.
+- [ ] Batch 2H xử lý PORT_CONTRACT_TRANSLATE_TO_SIRA bằng dịch interface/type contract.
+- [ ] Giữ KEEP_APP_OR_UI_TS.
+- [ ] Không tự động xử lý DEEP_TS_TRANSLATION_REQUIRED.
