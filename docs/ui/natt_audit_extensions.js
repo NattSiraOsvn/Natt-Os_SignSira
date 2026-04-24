@@ -17,6 +17,8 @@
     .nattExtSearch input{flex:1;background:#020617;border:1px solid #334155;color:#fff;border-radius:8px;padding:8px;font:11px JetBrains Mono,monospace}
     .nattExtOut{flex:1;min-height:0;background:#000;border:1px solid #1e293b;border-radius:10px;padding:10px;overflow:auto;white-space:pre-wrap;font:10px JetBrains Mono,monospace;color:#94a3b8}
     .nattExtBadge{font:700 9px JetBrains Mono,monospace;border:1px solid #334155;border-radius:999px;padding:3px 7px;color:#67e8f9}
+    .nattExtCopy{font:700 9px JetBrains Mono,monospace;border:1px solid #475569;border-radius:999px;padding:4px 8px;color:#d8b4fe;background:#111827;cursor:pointer}
+    .nattExtCopy:hover{border-color:#a855f7;color:#fff;background:#312e81}
   `;
   document.head.appendChild(style);
 
@@ -33,7 +35,7 @@
         <div class="nattExtTitle">NATT-OS RUNTIME EXTENSION HUB</div>
         <div style="font:10px JetBrains Mono,monospace;color:#64748b;margin-top:3px">Live APIs attached to localhost backend</div>
       </div>
-      <span class="nattExtBadge">LOCAL ONLY</span>
+      <div style="display:flex;gap:6px;align-items:center"><button id="nattExtCopy" class="nattExtCopy">COPY OUTPUT</button><span class="nattExtBadge">LOCAL ONLY</span></div>
     </div>
     <div class="nattExtBody">
       <div class="nattExtGrid">
@@ -73,6 +75,42 @@
     const r = await fetch(path, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(body || {}) });
     return await r.json();
   }
+
+
+  async function copyRuntimeOutput() {
+    const text = out ? out.textContent : "";
+    if (!text.trim()) {
+      print("COPY OUTPUT", "No runtime output to copy.");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      if (typeof window.logTerm === "function") window.logTerm("RuntimeHub: copied output to clipboard", "pass");
+      const old = copyBtn ? copyBtn.textContent : "";
+      if (copyBtn) {
+        copyBtn.textContent = "COPIED";
+        setTimeout(() => { copyBtn.textContent = old || "COPY OUTPUT"; }, 900);
+      }
+    } catch (e) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand("copy");
+        if (typeof window.logTerm === "function") window.logTerm("RuntimeHub: copied output by fallback", "pass");
+      } finally {
+        document.body.removeChild(ta);
+      }
+    }
+  }
+
+  const copyBtn = hub.querySelector("#nattExtCopy");
+  if (copyBtn) copyBtn.addEventListener("click", copyRuntimeOutput);
 
   async function action(name) {
     try {
