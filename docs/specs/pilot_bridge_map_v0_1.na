@@ -264,3 +264,34 @@ Em (Băng) propose Cell 1 swap "khả thi ngay phiên này" turn 428 KHÔNG veri
 Sau verify (turn 444): §44 parse JSON output → nauion-host không output JSON → swap không work.
 Vaccin: trước propose swap nào, đọc FULL caller context (parser logic, output format), 
 không chỉ scan invocation line.
+
+---
+
+## §S3 UPDATE 20260424 — Cell 1 LIVE
+
+**Wave 2 closed — Cell 1 (file-extension-validator) state: S2 → S3.**
+
+### Transition evidence
+
+- W2A SPEC sealed: commit `71b412c` (SPEC_HOST_RESULT_PROTOCOL v1.0)
+- W2B writer impl: commit `1747918` (result_writer.rs, 5 tests pass)
+- W2C --run-cell CLI: commit `df5040f` (run_cell.rs wrapper mode, 7 tests pass)
+- W2D legacy_json bridge: commit `7c35961` (legacy_json.rs, 4 tests pass)
+- W2E route-swap §40: commit `7c35961` (nattos.sh patched, env-flag fallback)
+
+### Default route (S3 LIVE)
+nattos.sh §40 → $NAUION_HOST --run-cell $CANONICAL --legacy-json → runtime/nauion-host/target/release/nauion-host (tệp nhị phân Rust) → bao bọc npx tsx (tệp .ts cùng cấp) → ghi vào runtime/audit/ <canonical> .result.phieu → phát ra JSON stdout để tương thích với trình phân tích cú pháp python3
+
+### Recovery (S2 fallback)
+USE_LEGACY_TSX=1 bash nattos.sh # khôi phục ngay lập tức rm -f runtime/nauion-host/target/release/nauion-host # tự động dự phòng
+
+### Cell 2-4 status
+
+- Cell 2 (khai-file-persister): S2 — S3 swap pending W2 chain replay
+- Cell 3 (observation-cell): S2 BRIDGED — S3 swap not scheduled
+- Cell 4 (quantum-defense-cell): S2 BRIDGED — S3 swap not scheduled
+
+Phiên 20260424 sealed Cell 1 only — Cell 2 swap defer (cell logic, audit chain).
+
+*Update: Băng (Chị Tư) phiên 20260424 — Wave 2 close commit*
+
