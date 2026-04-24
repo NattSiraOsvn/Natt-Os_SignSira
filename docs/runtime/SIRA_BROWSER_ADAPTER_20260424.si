@@ -1,0 +1,169 @@
+# SIRA BROWSER ADAPTER — 20260424
+
+status: CANONICAL_DRAFT
+owner: Gatekeeper / Anh Natt
+created_at: 2026-04-24T15:08:20.538644+00:00
+
+---
+
+## 1. Canonical Decision
+
+`tools/natt_domain_gateway.cjs` hiện được xác định là SIRA Browser Adapter.
+
+Không gọi thấp nó là HTTP gateway thuần.
+Không gán quyền định danh cho HTTP layer.
+Không gán quyền định danh gốc cho browser route.
+
+Tên kiến trúc đúng:
+
+SIRA Browser Adapter
+SIRA Browser Transport Adapter
+
+---
+
+## 2. Layer Position
+
+Mô hình hiện hành:
+
+anc://
+  -> NATT ANC Handler
+  -> anc.sira resolver
+  -> SIRA Browser Adapter
+  -> core.sira / audit.sira / tam.sira / nauion.sira
+  -> HTML runtime + injected bridge + audit/event
+
+Trong đó:
+
+- `anc://` là native protocol identity.
+- `.sira` là SIRA Root Namespace.
+- SmartLink là resolver / coupling layer.
+- Browser Adapter là lớp transport/render cho browser hiện tại.
+- `http://` chỉ là adapter để browser render được.
+- `.natt` là compatibility/bootstrap namespace cũ.
+
+---
+
+## 3. Adapter Responsibilities
+
+SIRA Browser Adapter có các trách nhiệm chính:
+
+1. Nhận request từ browser qua host namespace:
+   - core.sira
+   - audit.sira
+   - tam.sira
+   - nauion.sira
+   - anc.sira
+   - docs.sira
+   - mach.sira
+
+2. Phân giải host label thành route key:
+   - core
+   - audit
+   - tam
+   - nauion
+   - anc
+   - docs
+   - mach
+   - heyna
+
+3. Route về đúng runtime/app:
+   - Audit UI
+   - Tâm Luxury app
+   - NaUion v9
+   - Docs
+   - Mach HeyNa SSE
+   - ANC resolver
+
+4. Inject runtime bridge vào HTML:
+   - HEALTH
+   - EMIT VIEW
+   - AUDIT
+   - runtime panel
+
+5. Ghi audit/event:
+   - gateway.boot
+   - event.emit
+   - screen.viewed
+   - anc.protocol.opened
+
+---
+
+## 4. Non-Identity Boundary
+
+Browser Adapter không được tự xưng là identity root.
+
+Identity root là:
+
+anc://
+
+Namespace root là:
+
+.sira
+
+Adapter chỉ có quyền:
+
+- receive browser transport
+- resolve host label
+- serve HTML/app
+- inject runtime bridge
+- emit/audit event
+- expose Mach HeyNa endpoint
+- support compatibility route
+
+Adapter không có quyền:
+
+- đổi `.sira` sang namespace khác
+- tự đặt public domain
+- bypass anc:// identity
+- bỏ audit khỏi runtime event
+- coi HTTP route là canonical identity
+
+---
+
+## 5. Canonical Routes
+
+anc://core    -> http://core.sira
+anc://audit   -> http://audit.sira
+anc://tam     -> http://tam.sira
+anc://nauion  -> http://nauion.sira
+anc://docs    -> http://docs.sira
+anc://mach    -> http://mach.sira/mach/heyna
+anc://heyna   -> http://heyna.sira/mach/heyna
+anc://gate    -> http://gate.sira
+anc://sira    -> http://sira.sira
+anc://khai    -> http://khai.sira
+anc://bridge  -> http://bridge.sira
+
+---
+
+## 6. Current Implementation
+
+Implementation file:
+
+tools/natt_domain_gateway.cjs
+
+Tên file được giữ tạm thời để tránh gãy runtime.
+Tên kiến trúc được khóa bằng spec này.
+
+Nếu sau này rename, route migration phải có:
+
+- backup
+- validator
+- smoke test
+- audit evidence
+- Gatekeeper approval
+
+---
+
+## 7. Acceptance
+
+SIRA Browser Adapter đạt khi:
+
+- Gateway nhận được host `.sira`.
+- ANC resolver trả target `.sira`.
+- Runtime health trả OK.
+- HTML được serve qua adapter.
+- Runtime bridge được inject vào HTML.
+- Event emit ghi audit.
+- Mach HeyNa SSE hoạt động.
+- Validator chống drift PASS.
