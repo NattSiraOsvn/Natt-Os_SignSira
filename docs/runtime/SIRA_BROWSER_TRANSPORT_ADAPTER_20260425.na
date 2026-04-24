@@ -1,0 +1,82 @@
+# SIRA Browser Transport Adapter — 20260425
+
+status: CANONICAL_DRAFT
+created_at: 2026-04-24T18:18:28.311421+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Canonical Decision
+
+`http://` is not identity.
+
+`http://` is only the current browser transport adapter used to render SIRA/NATT-OS runtime surfaces in ordinary browsers.
+
+Canonical layers:
+
+- `anc://` = identity protocol
+- `.sira` = SIRA root namespace / artifact layer
+- `tools/thiên` = operator launcher
+- `http://` = browser transport adapter
+- SmartLink = resolver / coupling layer
+- SIRA Browser Adapter = transport/render bridge
+
+---
+
+## 2. Boundary
+
+Browser transport may:
+
+- receive browser requests
+- render HTML surfaces
+- expose health/audit endpoints
+- expose Mach HeyNa stream endpoints
+- bridge `anc://` targets to browser-readable routes
+- inject runtime audit bridge into HTML
+
+Browser transport may not:
+
+- define identity
+- replace `anc://`
+- replace `.sira`
+- become canonical runtime truth
+- bypass audit
+- bypass SmartLink
+- claim ownership over SIRA namespace
+
+---
+
+## 3. Current Routes
+
+- `anc://core` -> `http://core.sira`
+- `anc://audit` -> `http://audit.sira`
+- `anc://tam` -> `http://tam.sira`
+- `anc://nauion` -> `http://nauion.sira`
+- `anc://apps` -> `http://apps.sira`
+- `anc://mach` -> `http://mach.sira/mach/heyna`
+
+---
+
+## 4. Runtime Implementation
+
+Current implementation:
+
+- `tools/natt_domain_gateway.sira`
+
+Current operator:
+
+- `tools/thiên`
+
+The implementation file may use HTTP internally, but documentation and command layer must describe it as Browser Transport Adapter, not identity.
+
+---
+
+## 5. Gate
+
+Before any browser transport change:
+
+- SIRA namespace validator PASS
+- SIRA browser adapter validator PASS
+- SIRA TS translation adapter validator PASS
+- `core.sira/api/health` PASS
+- commit and push
