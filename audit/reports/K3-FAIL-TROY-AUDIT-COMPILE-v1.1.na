@@ -1,0 +1,197 @@
+@state sealed
+@canonical k3_fail_troy_audit_compile_v1_1
+@substrate audit_compilation
+@bridge none
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+
+# K3 FAIL-TROY AUDIT COMPILE v1.1
+
+**Update reason:** §9.1 review complete. Found 2 NEW oversight + 1 confirmed placeholder. Memory note "3 bypass patterns" CONFIRMED — pattern thứ 3 surfaced.
+
+**Predecessor:** v1.0 (commit dc58943)
+
+**Status:** AUDIT_OPEN_NEW_FINDINGS_REQUIRE_KIM_FIX
+
+**Cross-reference v1.0:**
+- audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na (this file, prev version)
+
+---
+
+## §1. CHANGE FROM v1.0
+
+### §1.1 Resolved (1 file confirmed)
+
+| File | v1.0 status | v1.1 verdict |
+|---|---|---|
+| `src/core/smartlink/smartlink.nattimer.ts:105` | NEEDS_REVIEW | **CONFIRMED_PLACEHOLDER** (NOT_BYPASS) |
+
+### §1.2 NEW Oversight (1 file flagged)
+
+| File | v1.0 status | v1.1 verdict |
+|---|---|---|
+| `src/core/audit/audit-chain-contract.ts:18` | NEEDS_REVIEW | **OVERSIGHT** (production audit chain dung 32-bit Math.imul hash) |
+
+### §1.3 NEW Finding — Pattern thứ 3 surfaced (within audit-chain-contract.ts)
+
+| Discovery | Description |
+|---|---|
+| **AUDIT_VERIFY_ALWAYS_TRUE** | `SimpleAuditChain.verify(_h: string): return true` (line 11) |
+| Memory note context | "3 bypass patterns" — em ban đầu tưởng count loi (chỉ tìm ra AUDIT + RBAC). Lan nay **verify always-true** la pattern thứ 3 thuc su |
+| Status | NEW — chưa ghi nhan trong commit history nao trước |
+
+---
+
+## §2. DEEP REVIEW — smartlink.nattimer.ts (PLACEHOLDER CONFIRM)
+
+### §2.1 Function `_chainId(sequence: string[])` line 96-105
+
+**Algorithm:** FNV-1a (32-bit)
+
+**Purpose:** Generate identifier `NC-XXXXXXXX` for NATTimer temporal chains (e.g., sales→finance→audit).
+
+**Why NOT bypass:**
+
+1. **Function visibility:** `_chainId` (underscore = private helper)
+2. **Prefix `NC-`** indicate identifier role, not hash verification
+3. **8 hex chars (32-bit)** is acceptable for chain identifier in bounded domain
+4. **File header purpose** (lines 1-30): "NATT Temporal Integration Memory" — pattern recognition, not cryptographic verification
+5. **FNV-1a best practice** for non-cryptographic Map key/identifier
+
+**Comparable usage in industry:** React `key` prop, hash maps, database sharding keys.
+
+### §2.2 Verdict
+
+**ADD to placeholder list (alongside 3 files from session 20260414).**
+
+Updated placeholder list:
+- `src/core/snapshot/snapshot.engine.ts` (FNV-1a)
+- `src/core/memory/immutable-memory.engine.ts` (FNV-1a)
+- `src/governance/policy/policy-signature.engine.ts` (Murmurhash)
+- **`src/core/smartlink/smartlink.nattimer.ts` (FNV-1a) — NEW**
+
+---
+
+## §3. DEEP REVIEW — audit-chain-contract.ts (OVERSIGHT FLAG)
+
+### §3.1 Class `SimpleAuditChain implements AuditChainContractI`
+
+**Full interface contract:**
+```typescript
+export interface AuditChainContractI {
+  chainId: string;
+  verify: (hash: string) => Promise<boolean>;
+  getChain: () => unknown[];
+  addBlock: (data: unknown) => string;
+  computeEntryHash: (record: unknown) => Promise<string>;
+}
+```
+
+**Implementation findings:**
+
+#### §3.1.1 OVERSIGHT #1 — `verify(_h): return true` (line 11)
+
+```typescript
+async verify(_h: string): Promise<boolean> { return true; }
+```
+
+**Risk:** ANY hash passed to `verify()` returns `true`. Audit chain integrity check is **completely bypassed**.
+
+**Impact:**
+- Tamper detection broken: modified records pass verification
+- Chain audit untrustworthy
+- This is **AUDIT_VERIFY_BYPASS** — pattern THỨ 3 đã đề cập trong memory note nhưng chưa từng được fix in commit history
+
+**Risk level:** 🔴 CRITICAL (production audit code)
+
+#### §3.1.2 OVERSIGHT #2 — `computeEntryHash` dùng Math.imul DJB2 (line 18)
+
+```typescript
+async computeEntryHash(record: unknown): Promise<string> {
+  const s = JSON.stringify(record ?? '');
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+  return Math.abs(h).toString(16).padStart(8, '0');
+}
+```
+
+**Algorithm:** DJB2 variant (32-bit)
+
+**Why this IS oversight (not placeholder):**
+
+1. **Method nằm trong CONTRACT INTERFACE** — `computeEntryHash` la public API duoc consume by audit-chain users
+2. **No comment** indicating "placeholder" or "TODO"
+3. **No `@deprecated`, no `@beta`, no warning**
+4. **Output 8 hex chars = 32-bit space** — collision after ~65,000 records (birthday paradox √2^32)
+5. **Class name `SimpleAuditChain`** — sounds like default implementation, NOT explicit mock
+
+**Risk:**
+- Audit records collision after ~65k entries
+- Different records produce same hash → tamper detection fails
+- Compounded by §3.1.1 (verify always-true) → no detection at all
+
+**Risk level:** 🔴 HIGH (cryptographic weakness in audit code)
+
+### §3.2 RECOMMENDATION
+
+**File `audit-chain-contract.ts` needs Kim review + fix:**
+
+| Action | Specifics |
+|---|---|
+| Replace `verify(_h): return true` | Real hash chain verification (compare against stored chain) |
+| Replace `Math.imul DJB2` | `crypto.createHash('sha256')` per audit-cell convention (commit 7f4d297) |
+| OR mark class as `@deprecated` + `// PLACEHOLDER for testing only — DO NOT USE IN PRODUCTION` if intentional |
+
+**Alternative if class is test-only:** rename to `MockAuditChain` + move to `__tests__/` folder + remove from production interface contract.
+
+---
+
+## §4. UPDATE EXECUTIVE SUMMARY (replaces §1 of v1.0)
+
+| Pattern | v1.0 status | v1.1 status |
+|---|---|---|
+| AUDIT_BYPASS_HASH (3 conflict) | PARTIAL_CLOSED (3 placeholder + 2 needs review) | **STILL_PARTIAL** — 4 placeholder confirmed + 1 OVERSIGHT (§3.1.2) |
+| RBAC_ALWAYS_TRUE (4 patterns) | FULLY_CLOSED | FULLY_CLOSED (unchanged) |
+| **AUDIT_VERIFY_ALWAYS_TRUE (NEW)** | NOT_DETECTED in v1.0 | **NEW OVERSIGHT** — pattern thứ 3 (§3.1.1) |
+| ESCAPE_HATCH | CLEAN | CLEAN (unchanged) |
+
+**Pattern thứ 3 found:** `AUDIT_VERIFY_ALWAYS_TRUE` in `SimpleAuditChain.verify()` — confirms memory note "3 bypass patterns" was accurate; v1.0 audit had **gap** in regex (only matched `// RBAC` comments, missed plain `verify(_h): return true`).
+
+---
+
+## §5. UPDATED CARRY-FORWARD
+
+### §5.1 BLOCK_K3_CLOSE (Kim required)
+
+**Before K3 marked CLOSED:**
+
+1. **`src/core/audit/audit-chain-contract.ts` line 11** — fix `verify(_h): return true` (or mark deprecated)
+2. **`src/core/audit/audit-chain-contract.ts` line 18** — replace Math.imul with SHA-256 (or mark deprecated)
+3. **Class `SimpleAuditChain`** — decide: production use (refactor) or test-only (rename + relocate)
+
+### §5.2 SCAN GAP TO FIX
+
+v1.0 regex pattern for RBAC_ALWAYS_TRUE was too narrow:
+```
+// missed pattern:  verify(_h): return true  (no // RBAC comment)
+```
+
+**Vaccin for next audit:** add regex `^.*\b(verify|check|validate|isValid|hasPermission)\b.*\bPromise<boolean>\b.*\breturn\s+true\b` to catch unconditional-true returns in security-relevant methods.
+
+### §5.3 NOT_BLOCKING (carry-forward as known debt)
+
+- `auth.service.ts:5` SiraSign resonance auth migration
+- `@ts-nocheck` pragma reduction sprint
+
+---
+
+## §6. SEAL v1.1
+
+@result audit_findings_2_oversight_1_placeholder_confirmed_pattern_3_surfaced
+@confidence high (deep read of both files complete + interface contract analysis)
+@next_action kim_fix_audit-chain-contract.ts_or_mark_deprecated
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@kim_scope_respected true (no code modified, only flagged)
+@predecessor audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na (commit dc58943)
+@delta v1.0 → v1.1: §9.1 reviewed, 2 oversight + 1 placeholder confirmed, pattern thứ 3 named
