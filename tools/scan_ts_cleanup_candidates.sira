@@ -1,0 +1,132 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+
+const EXCLUDE = new Set([
+  ".git", "node_modules", "dist", "logs", "build", ".next", ".nuxt",
+  "coverage", ".cache", ".turbo", "archive"
+]);
+
+function walk(dir, out = []) {
+  let items = [];
+  try { items = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+
+  for (const it of items) {
+    const full = path.join(dir, it.name);
+    const rel = path.relative(ROOT, full);
+    if (rel.split(path.sep).some(x => EXCLUDE.has(x))) continue;
+
+    if (it.isDirectory()) walk(full, out);
+    else out.push(full);
+  }
+  return out;
+}
+
+function read(file) {
+  try { return fs.readFileSync(file, "utf8"); } catch { return ""; }
+}
+
+function classify(file) {
+  const rel = path.relative(ROOT, file).replaceAll(path.sep, "/");
+  const lower = rel.toLowerCase();
+  const code = read(file);
+
+  if (lower.includes("/tools/") || lower.startsWith("tools/")) {
+    return {
+      class: "MIGRATE_TO_SIRA",
+      reason: "tool/runtime executable should use .sira artifact boundary"
+    };
+  }
+
+  if (
+    lower.includes("validator") ||
+    lower.includes("gateway") ||
+    lower.includes("runtime") ||
+    lower.includes("adapter") ||
+    lower.includes("smartlink") ||
+    lower.includes("eventbus") ||
+    lower.includes("mach") ||
+    lower.includes("heyna")
+  ) {
+    return {
+      class: "REVIEW_FOR_SIRA",
+      reason: "runtime-like naming; verify if executable boundary or app source"
+    };
+  }
+
+  if (
+    lower.startsWith("docs/") ||
+    lower.includes("/docs/") ||
+    lower.includes("spec") ||
+    lower.includes("evidence") ||
+    lower.includes("policy")
+  ) {
+    return {
+      class: "MIGRATE_TO_NA",
+      reason: "documentation/spec/evidence should not stay as TypeScript"
+    };
+  }
+
+  if (
+    lower.includes("src/") ||
+    lower.includes("clients/") ||
+    lower.includes("app") ||
+    lower.includes("ui") ||
+    lower.endsWith(".tsx")
+  ) {
+    return {
+      class: "KEEP_AS_TYPESCRIPT_FOR_NOW",
+      reason: "likely application/UI source; do not rename until a .sira/.na compiler/adapter exists"
+    };
+  }
+
+  if (
+    code.includes("import ") ||
+    code.includes("export ") ||
+    code.includes("interface ") ||
+    code.includes("type ")
+  ) {
+    return {
+      class: "KEEP_AS_TYPESCRIPT_FOR_NOW",
+      reason: "contains TypeScript/ES module syntax; preserve build compatibility"
+    };
+  }
+
+  return {
+    class: "REVIEW",
+    reason: "not enough evidence for safe migration"
+  };
+}
+
+const files = walk(ROOT).filter(f => /\.(ts|tsx)$/i.test(f));
+
+const rows = files.map(f => {
+  const rel = path.relative(ROOT, f).replaceAll(path.sep, "/");
+  const stat = fs.statSync(f);
+  const c = classify(f);
+  return {
+    path: rel,
+    ext: path.extname(f),
+    bytes: stat.size,
+    class: c.class,
+    reason: c.reason
+  };
+});
+
+const grouped = {};
+for (const row of rows) {
+  if (!grouped[row.class]) grouped[row.class] = [];
+  grouped[row.class].push(row);
+}
+
+const result = {
+  ok: true,
+  root: ROOT,
+  total_ts_files: rows.length,
+  classes: Object.fromEntries(Object.entries(grouped).map(([k, v]) => [k, v.length])),
+  rows
+};
+
+console.log(JSON.stringify(result, null, 2));
