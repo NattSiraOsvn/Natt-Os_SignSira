@@ -5,11 +5,52 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TARGET="${1:-}"
 
 if [ -z "$TARGET" ]; then
-  echo "Usage: tools/thiên <file.sira> [...args]" >&2
+  echo "Usage: tools/thiên <file.sira|alias> [...args]" >&2
+  echo "" >&2
+  echo "Aliases:" >&2
+  echo "  gate        -> tools/validate_runtime_gate.sira --write-evidence" >&2
+  echo "  namespace   -> tools/validate_sira_namespace.sira" >&2
+  echo "  browser     -> tools/validate_sira_browser_adapter.sira" >&2
+  echo "  transport   -> tools/validate_browser_transport_boundary.sira" >&2
+  echo "  ts-adapter  -> tools/validate_sira_ts_translation_adapter.sira" >&2
+  echo "  ts-plan     -> tools/sira_ts_translation_adapter.sira plan" >&2
+  echo "  serve       -> tools/natt_domain_gateway.sira 80" >&2
   exit 1
 fi
 
 shift
+
+case "$TARGET" in
+  gate)
+    TARGET="tools/validate_runtime_gate.sira"
+    if [ "$#" -eq 0 ]; then
+      set -- --write-evidence
+    fi
+    ;;
+  namespace)
+    TARGET="tools/validate_sira_namespace.sira"
+    ;;
+  browser)
+    TARGET="tools/validate_sira_browser_adapter.sira"
+    ;;
+  transport)
+    TARGET="tools/validate_browser_transport_boundary.sira"
+    ;;
+  ts-adapter)
+    TARGET="tools/validate_sira_ts_translation_adapter.sira"
+    ;;
+  ts-plan)
+    TARGET="tools/sira_ts_translation_adapter.sira"
+    set -- plan "$@"
+    ;;
+  serve)
+    TARGET="tools/natt_domain_gateway.sira"
+    if [ "$#" -eq 0 ]; then
+      set -- 80
+    fi
+    ;;
+esac
+
 cd "$ROOT"
 export THIEN_TARGET="$TARGET"
 
