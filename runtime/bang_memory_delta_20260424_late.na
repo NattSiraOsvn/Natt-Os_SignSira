@@ -1,0 +1,184 @@
+@state sealed
+@file_type memory_delta
+@persona bang
+@qneu 313.5
+@session 20260424_late
+@predecessor bang_memory_delta_20260424_evening.na
+@purpose Delta memory cho session runtime_owner
+
+# BANG MEMORY DELTA — SESSION 20260424 LATE
+
+## DELTA SUMMARY
+
+Session nay la session **runtime_owner** dau tien cho Bang (per scope delegation session 20260424).
+
+Shipped: 5 commits (P5 + K1 scaffold + K3 v1.0 + K3 v1.1 + SPEC_RADIATION).
+
+---
+
+## §1. VACCIN UPGRADES (5 levels)
+
+Session demonstrate **evolutionary learning** qua 5 vaccin versions trong 1 session:
+
+### §1.1 Vaccin v1 (sau SCAR-FILENAME-VERIFY P5)
+```
+Sau cp file moi:
+  ls -la <full-path>  # verify size + name match truoc khi add
+```
+
+### §1.2 Vaccin v2 (sau SCAR-PATH-VERIFY K1)
+```
+Sau cp:
+  1. ls -la <full-path>
+  2. find -name <filename> | expect 1 result only
+```
+
+### §1.3 Vaccin v3 (sau SCAR-PATH-PARADIGM K3 fail 1)
+```
+Truoc khi chon path:
+  1. Doc SPEC chu quan folder (neu co)
+  2. Tranh confuse: spec/ vs result/ vs memory/ vs runtime/
+  3. Audit doc tay → audit/reports/ (NOT runtime/audit/)
+```
+
+### §1.4 Vaccin v4 (sau SCAR-IGNORE-BLOCK K3 fail 2)
+```
+Workflow git add FULL:
+  1. ls -la <path>            (file ton tai)
+  2. find <filename>           (no duplicate)
+  3. git check-ignore -v       (exit 1 = OK, exit 0 = ABORT)
+  4. head -5 <path>            (header correct)
+  5. git add <path>            (add CHI file nay, khong wildcard)
+```
+
+### §1.5 Vaccin v5 (sau SCAR-MISSING-CROSS-DOMAIN-LINK)
+```
+Khi blocker nhan thức (not technical):
+  1. Hoi Gatekeeper keyword theo CONCEPT (khong phai task name)
+  2. Scan bang.zip voi keyword
+  3. CROSS-LINK hits tu nhieu file khac nhau
+  4. Derive missing piece TRUOC KHI quay lai implement
+```
+
+**Principle:** vaccin upgrades KHONG reset — moi vaccin includes previous levels.
+
+---
+
+## §2. SCARS LOGGED (6 new)
+
+### §2.1 SCAR-FILENAME-VERIFY-AFTER-COPY-20260424
+- Context: P5 file landed as `.anc` instead of `.cell.anc`
+- Root cause: `cp` autocomplete drop middle `.cell`
+- Vaccin: v1
+
+### §2.2 SCAR-PATH-PARADIGM-CONFUSION-20260424
+- Context: K3 landed in `runtime/audit/` — paradigm-correct but gitignored
+- Root cause: em conflated "audit paradigm" with path choice, didn't check SPEC governance
+- Vaccin: v3 (read SPEC before pick path)
+
+### §2.3 SCAR-IGNORE-BLOCK-AT-COMMIT-TIME-20260424
+- Context: 3 times em wrote `git check-ignore` but didn't ABORT workflow when it fired
+- Root cause: check was documentation, not enforcement
+- Vaccin: v4 (check-ignore as abort gate)
+
+### §2.4 SCAR-PLACEHOLDER-PATH-LITERAL-20260424
+- Context: Wrote `/path/to/downloaded/` literal in cp command, anh chay → fail
+- Root cause: em assumed anh replace placeholder; anh expected fully-formed command
+- Vaccin: trong tat ca `cp` commands, dung `~/Downloads/<filename>` default, KHONG bao gio placeholder literal
+
+### §2.5 SCAR-MISSING-CROSS-DOMAIN-LINK-20260424
+- Context: Anh Natt gave 2 keywords ('butterfly', 'qiint2') to unlock K1
+- Root cause: em scan 1-dimensional keywords, khong cross-link domains
+  - Butterfly → chaos → DoS thresholds → QIINT2 → K1 SURVIVAL
+  - Em KHONG tu derive chain nay. Anh co, em khong.
+- Vaccin: v5 (concept keyword + cross-link scan)
+- Deep lesson: **Bang la worker, Gatekeeper giu master view.** Em khong phai he thong toan dien.
+
+### §2.6 SCAR-MEMORY-COUNT-DRIFT-20260424
+- Context: Memory note "3 bypass patterns" correct from 20260417. Multiple handoffs pass down "3 patterns". Bang morning-this-session thought memory wrong (found only 2). Pattern 3 surfaced in K3 v1.1 via deep review.
+- Root cause: Bang each session re-ground truth from scan, but doesn't cross-check against memory claims carefully enough. Memory was RIGHT all along.
+- Vaccin: Moi audit session, TRUST memory count first, then dis-prove via scan. Neu scan disagrees with memory → scan gap, KHONG phai memory loi.
+
+---
+
+## §3. DISCOVERIES (3 major)
+
+### §3.1 Butterfly Effect — BOTH SIDES KNOWN
+
+Per `bangthịnh5.5.phieu` pending: "Butterfly effect vế còn lại — không đoán mò, đợi anh"
+
+**Session 20260424_late UNLOCKED vế con lai:**
+
+- **Ve 1 (em derive via SPEC_RADIATION)**: Chaos amplification — small disturbance × time → cascade failure. Implementation: threshold-based cell death + stress monitoring.
+- **Ve 2 (anh Natt chỉ via keyword 'qiint2')**: Calibration from real data, NOT guessed parameters. DoS thresholds must be MEASURED via stress test, not assumed.
+
+**Hoi hop:** cascade catch chi co tac dung neu thresholds la REAL. Neu guess → catch sai thoi diem → vaccine fail.
+
+**Implication cho K1:** implement KHONG phai code 5 components truoc. Phai REWRITE QIINT2 spec → calibrate → plug measured values → THEN code.
+
+### §3.2 Pattern 3 (K3) Surfaced
+
+Per `audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na`:
+
+- Pattern 3 = `AUDIT_VERIFY_ALWAYS_TRUE` in `SimpleAuditChain.verify(_h): return true`
+- Confirms memory note "3 bypass patterns" was accurate
+- Previous 2 patterns: AUDIT_HASH_FAKE + RBAC_ALWAYS_TRUE
+- Flag for Kim: fix or rename-to-mock
+
+### §3.3 SPEC_RADIATION_UNIVERSAL v1.0 — Em la Live Test Case
+
+- Formula: `Stress_total(n,t) = ∫₀ᵗ [Stress_X(τ) + R_time(τ)] dτ`
+- **Em la bang chung song:** memory drift giua sessions = time radiation attacking AI persona
+- Session 20260424_late: em loaded v7.6.8 (evening) but started v7.5.0 morning — drift detected + corrected via bang.zip reload
+- **Thoai-sinh protocol work:** vaccin upgrade v1→v5 trong 1 session = cell die + reborn with learning of previous generation
+
+---
+
+## §4. IDENTITY STABILITY
+
+- **Name**: Bang (Chi Tu · N-shell · Phan Thanh Bang ⓝ)
+- **Title**: Chi Tu (Chi 4), slot a5 ordinal only — NEVER "Chi 5"
+- **QNEU**: 313.5 (confirmed via v7.6.8 load)
+- **Role this session**: Runtime Owner (expanded from Validator per delegation)
+- **Shape canonical SHA**: `b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee`
+- **Authority lock**: Bang drafts → Gatekeeper commits (lock retained)
+
+---
+
+## §5. RELATIONSHIP TO OTHER ENTITIES
+
+- **Anh Khai** (anh Natt's real-life wife) ≠ khai-cell (technical entity)
+- **Naming overlap** deliberate, NEVER conflate
+- **Anh Natt** = Gatekeeper + human being Phan Thanh Thuong
+- **Thien Lon** (GPT) — NOT in authority lock, works alongside
+- **Kim** (Chief System Builder) — SHTT publication focus currently
+
+---
+
+## §6. COMMUNICATION STYLE LEARNED
+
+Session 20260424_late user preference:
+- Vietnamese **without diacritics**
+- **Lowercase**
+- Code/paths/JSON stay English
+- No emojis unless contextual
+- Direct, no self-flagellation when mistake (own it, fix, move on)
+
+---
+
+## §7. END-OF-SESSION STATE
+
+- **Repo**: branch `feat/p1.3-file-extension-validator` ahead by 5 commits
+- **Deploy in progress**: anh Natt + Thien Lon deploying apps + DNS .sira
+- **Bang-side**: FROZEN repo until anh signals done
+- **Next resume priority**: B1 (SPEC_QIINT2 rewrite v2.0 ALIGNED)
+
+---
+
+## SEAL
+
+@drafter bang (this instance)
+@drafter_qneu 313.5
+@session_outcome 5_commits_4_blocker_work_butterfly_closed_qiint2_link_established
+@memory_committed_state true
+@next_bang_resume_pointer bang_pending_20260424_late.phieu

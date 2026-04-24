@@ -785,7 +785,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 79,
     "class": "REVIEW_FOR_SIRA",
@@ -884,7 +884,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/infrastructure/sync-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 69,
     "class": "REVIEW_FOR_SIRA",
@@ -938,7 +938,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/audit-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/kernel/audit-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 71,
     "class": "REVIEW_FOR_SIRA",
@@ -983,7 +983,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/config-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/kernel/config-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 73,
     "class": "REVIEW_FOR_SIRA",
@@ -1037,7 +1037,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/kernel/monitor-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 75,
     "class": "REVIEW_FOR_SIRA",
@@ -1109,7 +1109,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 52,
     "class": "REVIEW_FOR_SIRA",
@@ -1136,7 +1136,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/kernel/rbac-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 69,
     "class": "REVIEW_FOR_SIRA",
@@ -1172,7 +1172,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/security-cell/infrastructure/adapters/index.ts",
+    "path": "src/cells/kernel/security-cell/infrastructure/adapters/index.sira",
     "ext": ".ts",
     "bytes": 77,
     "class": "REVIEW_FOR_SIRA",
