@@ -2216,11 +2216,25 @@ hdr "40" "FILE EXTENSION COMPLIANCE — SPEC v1.3"
 # where $CANONICAL="...file-extension-validator.khai" + Host resolve substrate qua @substrate header.
 # Track: SPEC_HOST_FIRST_RUNTIME_v1.0 §4 W1 + PILOT_BRIDGE_MAP audit-cell/file-extension-validator
 VALIDATOR="src/cells/kernel/audit-cell/scanner/file-extension-validator.ts"
+CANONICAL="src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"
+NAUION_HOST="runtime/nauion-host/target/release/nauion-host"
 
-if [ ! -f "$VALIDATOR" ]; then
-  warn "Validator missing: $VALIDATOR"
+# W2E route-swap (per SPEC_HOST_RESULT_PROTOCOL_v1.0 §8 W2E)
+# Default: Rust binary --run-cell --legacy-json (Cell 1 S2→S3 transition)
+# Fallback: USE_LEGACY_TSX=1 env var OR Rust binary missing → npx tsx
+USE_RUST_HOST=1
+if [ "${USE_LEGACY_TSX:-0}" = "1" ] || [ ! -x "$NAUION_HOST" ]; then
+  USE_RUST_HOST=0
+fi
+
+if [ ! -f "$VALIDATOR" ] && [ ! -f "$CANONICAL" ]; then
+  warn "Validator missing: $VALIDATOR (and canonical $CANONICAL)"
   inc_warn "File extension validator missing"
+elif [ "$USE_RUST_HOST" = "1" ]; then
+  # NEW PATH (W2E S3): Rust binary native
+  EXT_RESULT=$("$NAUION_HOST" --run-cell "$CANONICAL" --legacy-json 2>/dev/null)
 else
+  # LEGACY PATH (S2 fallback): npx tsx
   EXT_RESULT=$(npx tsx "$VALIDATOR" "$ROOT" 2>/dev/null)
   EXT_RC=$?
 

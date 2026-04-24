@@ -41,6 +41,10 @@ impl std::error::Error for RunCellError {}
 pub struct RunCellOutcome {
     pub status: HostResultStatus,
     pub result_path: PathBuf,
+    pub ok: i64,
+    pub warn: i64,
+    pub fail: i64,
+    pub total: i64,
 }
 
 /// Resolve substrate sibling: replace `.khai` extension → `.ts`.
@@ -73,7 +77,7 @@ pub fn classify_status(exit_code: i32, stdout: &str) -> HostResultStatus {
 
 /// Tiny JSON int extractor — avoid serde_json dep cho 2 fields đơn giản.
 /// Pattern `"key"` (with quotes) — không match prefix collision (e.g. "failures").
-fn extract_int(json: &str, key: &str) -> Option<i64> {
+pub fn extract_int(json: &str, key: &str) -> Option<i64> {
     let pat = format!("\"{}\"", key);
     let idx = json.find(&pat)?;
     let after = &json[idx + pat.len()..];
@@ -118,6 +122,10 @@ pub fn execute(
     let exit_code = output.status.code().unwrap_or(-1);
     let stdout = String::from_utf8_lossy(&output.stdout);
     let status = classify_status(exit_code, &stdout);
+    let ok = extract_int(&stdout, "ok").unwrap_or(0);
+    let warn_n = extract_int(&stdout, "warn").unwrap_or(0);
+    let fail_n = extract_int(&stdout, "fail").unwrap_or(0);
+    let total = extract_int(&stdout, "total").unwrap_or(0);
 
     // Compute relative canonical path for result writer
     let canonical_rel = canonical_abs
@@ -147,6 +155,10 @@ pub fn execute(
     Ok(RunCellOutcome {
         status,
         result_path: written,
+        ok,
+        warn: warn_n,
+        fail: fail_n,
+        total,
     })
 }
 

@@ -82,3 +82,6 @@ runtime/*/target/
 
 # W2B/W2C — host-result.phieu runtime artifacts (per SPEC_HOST_RESULT_PROTOCOL §2)
 runtime/audit/
+
+# nattos.sh backups (W2E + earlier)
+nattos.sh.bak-*

@@ -12,6 +12,7 @@ mod phase4;
 mod repo_root;
 mod result_writer;
 mod run_cell;
+mod legacy_json;
 
 use std::process::ExitCode;
 use std::sync::Arc;
@@ -24,6 +25,7 @@ async fn main() -> ExitCode {
     let self_test_mode = args.iter().any(|a| a == "--self-test");
     let no_listen = args.iter().any(|a| a == "--no-listen");
 
+    let legacy_json_mode = args.iter().any(|a| a == "--legacy-json");
     let run_cell_path: Option<std::path::PathBuf> = args.iter()
         .position(|a| a == "--run-cell")
         .and_then(|i| args.get(i + 1))
@@ -35,6 +37,12 @@ async fn main() -> ExitCode {
         let host_version = env!("CARGO_PKG_VERSION");
         match run_cell::execute(&canonical, &repo_root, host_version, self_test_mode) {
             Ok(outcome) => {
+                if legacy_json_mode {
+                    // SPEC §6 legacy bridge — stdout JSON for nattos.sh §40 compat
+                    println!("{}", legacy_json::format_legacy_json(
+                        outcome.ok, outcome.warn, outcome.fail, outcome.total, outcome.status
+                    ));
+                }
                 eprintln!(
                     "[run-cell] status={} result={}",
                     outcome.status.as_str(),
