@@ -215,6 +215,7 @@ async function readBody(req){
 http.createServer(async (req,res)=>{
   const host=(req.headers.host||"").split(":")[0].toLowerCase();
   const u=new URL(req.url,"http://local");
+  const routeKey=routeKeyFromHost(host);
 
   if(u.pathname==="/favicon.ico"){res.writeHead(204);res.end();return}
 
