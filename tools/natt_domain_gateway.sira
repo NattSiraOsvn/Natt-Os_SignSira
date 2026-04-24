@@ -185,7 +185,6 @@ function indexPage(base,title){
 
 function serveBase(req,res,base,title){
   const u=new URL(req.url,"http://local");
-  const routeKey=routeKeyFromHost(host);
   if(u.pathname==="/api/screens") return sendJson(res,{ok:true,root:base,count:htmlFiles(base).length,screens:htmlFiles(base).map(f=>path.relative(base,f).replaceAll(path.sep,"/"))});
   if(u.pathname==="/__screens"||u.pathname==="/screens"||u.pathname==="/index") return sendHtml(res,indexPage(base,title));
   if(u.pathname==="/"||u.pathname==="/main"||u.pathname==="/v9"){
