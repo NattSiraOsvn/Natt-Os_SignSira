@@ -23,13 +23,13 @@ File này ghi evidence cho việc khóa .sira làm SIRA Root Namespace chính.
 
 Validator file:
 
-tools/validate_sira_namespace.cjs
+tools/validate_sira_namespace.sira
 
 ## 4. Evidence
 
 {
   "validator": {
-    "cmd": "node tools/validate_sira_namespace.cjs",
+    "cmd": "node tools/sira_runtime_runner.mjs tools/validate_sira_namespace.sira",
     "exit": 0,
     "stdout": "SIRA NAMESPACE VALIDATION: PASS\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/SIRA gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
     "stderr": ""

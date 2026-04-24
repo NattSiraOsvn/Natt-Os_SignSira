@@ -4,7 +4,7 @@ const path = require("path");
 
 const ROOT = process.cwd();
 
-const gateway = path.join(ROOT, "tools", "natt_domain_gateway.cjs");
+const gateway = path.join(ROOT, "tools", "natt_domain_gateway.sira");
 const handler = path.join(ROOT, "tools", "natt_anc_handler.applescript");
 const spec = path.join(ROOT, "docs", "runtime", "SIRA_ROOT_NAMESPACE_20260424.si");
 

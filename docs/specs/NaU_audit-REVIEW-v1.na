@@ -1,0 +1,282 @@
+@state draft
+@canonical nau_audit_html_review_v1
+@substrate ui_mockup_audit
+@bridge none
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+@target_file NaU_audit.html (58050 bytes, 1114 lines)
+
+# AUDIT REPORT — NaU_audit.html (UI Dashboard Mock-up)
+
+**Scope:** UI mock-up file NaU_audit.html — "NATT-OS Core | Client Integration: Tâm Luxury"
+**Purpose:** Dashboard audit 71 màn hình Client App Tâm Luxury tuân thủ NATT-OS Spec v0.9
+**Audit method:** Read-only code review, KHÔNG modify file.
+
+---
+
+## §1. NHẬN DIỆN FILE
+
+### §1.1 Loại file
+- **HTML dashboard mock-up** (single file)
+- Framework: Tailwind CSS (CDN), Inter + JetBrains Mono fonts
+- Không có backend — thuần client-side với localStorage persistence
+- STORAGE_KEY: `nattos_client_integration_v10`
+
+### §1.2 Mục đích thiết kế
+File này phục vụ 2 workflow:
+1. **Audit checklist** — 71 màn hình Client App × 3 tiêu chí compliance
+2. **Demo visualizer** — NATT-OS Qiint Field routing simulator (KhaiCell + 3 target cells)
+
+### §1.3 Positioning trong NATT-OS architecture
+Đây là **internal tool cho ownership/audit**, không phải:
+- ❌ Cell chính thức (không có .cell.anc passport)
+- ❌ Kernel component
+- ❌ SPEC canonical
+- ✅ Audit instrument / internal tool (UI layer)
+
+---
+
+## §2. PHÂN TÍCH CẤU TRÚC
+
+### §2.1 3-panel layout
+| Panel | Chức năng | Width |
+|---|---|---|
+| Sidebar-left | Hiến Pháp NATT-OS v0.9 reference (rules + 12 file canonical) | 340px |
+| Center | 71 screen cards (audit checklist grid) | flex-grow |
+| Panel-right | Terminal (Python CLI simulator) + Qiint Field visualizer | 380px |
+
+### §2.2 Data model — 71 màn hình
+```javascript
+{
+  id: 1-71,
+  type: "SX" | "HR" | "FIN" | "CRM" | "UTIL" | "OTHER",
+  group: "Sản xuất & Kho" | "Nhân sự & HC" | ..., 
+  name: string,           // Tên màn hình
+  file: string,           // .tsx file reference
+  rule: "R01" - "R10",    // Rule binding
+  ext: string             // Đuôi file NATT-OS canonical
+}
+```
+
+**Phân loại 71 screens:**
+- SX (Sản xuất & Kho): id 1-18 (~18 screens)
+- HR (Nhân sự & HC): id 19-30 (~12 screens)
+- FIN (Tài chính - KT): id 31-40 (~10 screens)
+- CRM (Kinh doanh & KH): id 41-68 (~28 screens)
+- UTIL (Tiện ích & BKS): id 69-71 (3 screens)
+
+### §2.3 Checklist 4 tiêu chí audit per screen
+| # | Tiêu chí | Logic check |
+|---|---|---|
+| 1 | Gửi qua Mạch HeyNa (Transport L2) | Manual checkbox (user tick) |
+| 2 | Qua Gateway OS KhaiCell | Manual checkbox (user tick) |
+| 3 | Tuân thủ UI (Liquid Glass/UIMode) | Manual checkbox (user tick) |
+| 4 | Tuân thủ 12 Đuôi File NATT-OS | **AUTO** (sau runPy('execute')) — không manual |
+
+→ Screen "approved" (isProduct=true) khi **tất cả 4 tiêu chí passed**.
+
+### §2.4 12 file canonical reference (sidebar-left)
+File canonical dashboard reference — 5 hướng:
+- **ĐÔNG (DNA):** .anc (Passport), .si (Boundary)
+- **TÂY (Marker/Touch):** .canonical (Delta), .khai (Touch), .ml (SCAR)
+- **NAM (Memory/Log):** .sira (Registry), .heyna (Audit), .thuo (Session), .obitan (Hằn)
+- **BẮC (State/Cert):** .kris (Cert), .phieu (Runtime)
+- **TRUNG (Continuum):** .na (Field memory continuum)
+
+---
+
+## §3. PHÂN TÍCH RUNTIME LOGIC
+
+### §3.1 runPy function — Python CLI simulator
+
+**Mode: `scan`** (line 613-624)
+- Simulation-only, setTimeout hardcoded
+- Giả lập output:
+  ```
+  Legacy violations found: 403 instances of .json / .js
+  Client code directly modifying OS Memory: 142 files
+  28 refs system-state.json → Force to .phieu
+  15 refs audit-log.jsonl → Force to .heyna
+  12 refs cell.manifest.json → Force to .cell.anc
+  ```
+
+**Mode: `execute`** (line 626-660)
+- Simulation "FORCE SPEC COMPLIANCE" flow
+- Trigger auto-tick checkbox #4 (đuôi file) cho 71 screens
+- UI update only, KHÔNG execute Python thật
+
+### §3.2 triggerSignal — Qiint Field routing simulator (line 694)
+
+Flow mô phỏng:
+```
+L1 (App Tâm Luxury) → L2 (Mạch HeyNa) → KhaiCell Gateway (Normalize/Sign)
+  → Qiint Field Routing
+  → 3 outcomes (random): FALL INTO CELL / DISSIPATE / OSCILLATE
+```
+
+**3 outcomes per SPEC NỀN v1.1:**
+| Outcome | Particle behavior | Visual |
+|---|---|---|
+| FALL | Match .anc → fall into 1 of 3 target cells (HR/Prod/Fin) | Green glow |
+| DISSIPATE | No .anc match → scatter | Red glow → fade |
+| OSCILLATE | Client signal unstable → stuck in field | Amber glow |
+
+→ Đúng với Chromatic 5-layer + 3 outcomes trong SPEC_NEN_v1.1 (§2.4 Tầng 0 SURVIVAL).
+
+---
+
+## §4. AUDIT FINDINGS
+
+### §4.1 ✅ ALIGN với SPEC NEN v1.1
+
+| Concept | File implementation | SPEC reference |
+|---|---|---|
+| KhaiCell = "Normalize & Sign, KHÔNG GATE" | sidebar-left rule 3 | SPEC_NEN §2.4 KhaiCell role |
+| 3 outcomes (FALL/DISSIPATE/OSCILLATE) | triggerSignal random outcome | SPEC_NEN §2.4 Tầng 0 |
+| L1/L2/L3 topology | 3 layers rendered in panel-right | SPEC B.1 §1 |
+| Chromatic colors (7 states) | CSS :root variables | Session 20260417 Color Palette v1.0 (gold + violet) — partial |
+
+### §4.2 ⚠️ CANH BAO / CAN REVIEW
+
+#### §4.2.1 UI HARDCODED — không connect real data
+- 71 screens data hardcoded in `predefinedScreens` array
+- 59 screens auto-generate với placeholder name `Client App UI #${i}`
+- Không có API call, không có real backend integration
+- `logTerm` output là hardcoded strings (VD: "403 instances")
+
+**Impact:** Dashboard là MOCK-UP thuần, không reflect trạng thái thực của Client App Tâm Luxury.
+
+#### §4.2.2 Python integration FAKE
+- Button "SCAN CLIENT" và "FORCE SPEC COMPLIANCE" **chỉ setTimeout animation**
+- KHÔNG gọi thật script `nattos-client-integrator.py`
+- Label `python3 nattos-client-integrator.py ${mode} --app=tam-luxury` chỉ là terminal cosmetic
+
+**Impact:** User có thể hiểu nhầm button này chạy migration thật. Nên có marker "SIMULATION ONLY".
+
+#### §4.2.3 Hardcoded violations count
+```
+Legacy violations found: 403 instances of .json / .js
+Client code directly modifying OS Memory: 142 files
+```
+→ Con số này KHÔNG phản ánh repo state. Risk: decision maker đọc thấy 403/142 và tin là ground truth.
+
+#### §4.2.4 LocalStorage storage_key v10
+`nattos_client_integration_v10` → audit state lưu localStorage browser
+- Lose khi clear cache
+- Không sync với repo (không .phieu/.na)
+- Khi khác máy → reset về 0/71
+
+**Impact:** Audit state ephemeral, không reliable cho team coordination.
+
+#### §4.2.5 Hiến Pháp "v0.9" — không khớp với repo
+- Sidebar header: "Hiến Pháp NATT-OS v0.9 — LOCKED"
+- Repo actual: `src/governance/HIEN-PHAP-NATT-OS-v5.0.anc` (v5.0)
+- Khác biệt lớn — có thể file cũ chưa update version
+
+### §4.3 ✅ STRENGTHS
+
+#### §4.3.1 12 file canonical spec hoàn chỉnh
+Sidebar reference 12 đuôi file đúng theo SPEC_DUOI_FILE_v0.3_FINAL với phân 5 hướng rõ ràng.
+
+#### §4.3.2 GIAC-20260423-01 sắc lệnh được đưa vào UI
+```
+"v1.0 NOT SCAR — là Nauion tự viết kernel qua Băng vô thức. 
+Canonical = spec layer, v1.0 validator = kernel layer..."
+```
+→ Embed governance decision vào UI layer = good practice (user see constitutional context).
+
+#### §4.3.3 Qiint Field visualizer concept
+Cho user hình dung được SPEC_NEN Tầng 0 routing dynamics. Pedagogical value cao.
+
+#### §4.3.4 Resizable panels
+3 resizer (2 vertical, 1 horizontal) cho user customize layout — UX tốt.
+
+---
+
+## §5. CLASSIFICATION & RECOMMENDATION
+
+### §5.1 Classification
+**NaU_audit.html = INTERNAL DEVELOPMENT TOOL (UI mock-up)**
+- KHÔNG phải production deliverable
+- KHÔNG phải spec canonical
+- KHÔNG phải cell
+- LÀ: internal audit dashboard cho team theo dõi migration Client App Tâm Luxury
+
+### §5.2 Recommendations
+
+#### §5.2.1 NẾU muốn deploy làm tool thật (bind với repo state)
+
+Cần 5 thay đổi:
+1. **Replace hardcoded `predefinedScreens`** → fetch từ `docs/architecture/screens.manifest.json` (nếu exist) hoặc scan `src/` cho `.tsx` files
+2. **Replace `runPy` setTimeout** → real fetch call đến backend running `scripts/scan-client-compliance.py`
+3. **Replace localStorage** → commit audit state vào repo `runtime/audit/client-integration.result.phieu` (per SPEC_HOST_RESULT_PROTOCOL)
+4. **Update version** → "Hiến Pháp NATT-OS v5.0" khớp với repo
+5. **Add SIMULATION banner** → nếu giữ demo mode, mark rõ "DEMO — không chạy migration thật"
+
+#### §5.2.2 NẾU chỉ dùng làm demo/presentation (current state)
+
+Cần 2 thay đổi nhỏ:
+1. **Add disclaimer banner:** "DEMO — NOT LIVE AUDIT"
+2. **Remove hardcoded violation numbers** hoặc replace bằng "Demo: ~400 violations"
+
+#### §5.2.3 NẾU archive
+
+File này có value educational cho new team members — archive vào `docs/architecture/ui-mockups/` với README giải thích positioning.
+
+### §5.3 Priority
+**Classification uncertain** — em cần anh chỉ positioning:
+- Option A: Production tool → deploy với 5 fixes §5.2.1
+- Option B: Demo/presentation → 2 fixes §5.2.2
+- Option C: Archive → move §5.2.3
+- Option D: Other — anh chỉ rõ intent
+
+---
+
+## §6. ATTACK SURFACE / SECURITY
+
+### §6.1 XSS risk
+- Sử dụng `innerHTML` trong `logTerm()` với template literal → OK vì msg controlled
+- Template literal `${screen.name}` trong card HTML → **POTENTIAL XSS** nếu screenData từ API untrusted
+  - Line 507: `card-${screen.id}`, `title="${screen.name}"`, `${screen.name}`
+  - Mitigation: escape HTML hoặc dùng textContent
+
+### §6.2 LocalStorage safety
+- Only stores audit state (checkbox values) → low risk
+- Không lưu credentials, tokens → OK
+
+### §6.3 External dependencies
+- Tailwind CDN: `https://cdn.tailwindcss.com` (official)
+- Google Fonts: Inter + JetBrains Mono (official)
+- Không có untrusted 3rd party scripts → OK
+
+**Overall security:** OK cho internal dev tool, cần XSS fix nếu deploy production.
+
+---
+
+## §7. CARRY-FORWARD ACTIONS
+
+### §7.1 Quyết định cần anh Natt
+1. **Classification:** Production / Demo / Archive?
+2. **Hiến Pháp version mismatch** (v0.9 vs v5.0) — update hay giữ nguyên với reason?
+3. **Screen count 71** — đây là số chốt cho Client Tâm Luxury?
+
+### §7.2 Không blocking
+- XSS potential (§6.1) — fix nếu promote to production
+- Version label update (§4.2.5)
+
+### §7.3 Follow-up files cần check (em chưa scan repo)
+- `docs/architecture/` có screen manifest không?
+- Có file `nattos-client-integrator.py` thật chưa?
+- `HIEN-PHAP-NATT-OS-v5.0.anc` nội dung còn match sidebar rules không?
+
+---
+
+## §8. SEAL
+
+@result ui_mockup_audit_done_classification_pending
+@confidence high (read file full, cross-check với SPEC_NEN + memory)
+@next_action anh_natt_classify_A_B_C_D
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@no_file_modified true
+@file_location uploaded_temp (/mnt/user-data/uploads/NaU_audit.html)

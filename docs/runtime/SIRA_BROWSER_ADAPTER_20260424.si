@@ -8,7 +8,7 @@ created_at: 2026-04-24T15:08:20.538644+00:00
 
 ## 1. Canonical Decision
 
-`tools/natt_domain_gateway.cjs` hiện được xác định là SIRA Browser Adapter.
+`tools/natt_domain_gateway.sira` hiện được xác định là SIRA Browser Adapter.
 
 Không gọi thấp nó là HTTP gateway thuần.
 Không gán quyền định danh cho HTTP layer.
@@ -140,7 +140,7 @@ anc://bridge  -> http://bridge.sira
 
 Implementation file:
 
-tools/natt_domain_gateway.cjs
+tools/natt_domain_gateway.sira
 
 Tên file được giữ tạm thời để tránh gãy runtime.
 Tên kiến trúc được khóa bằng spec này.

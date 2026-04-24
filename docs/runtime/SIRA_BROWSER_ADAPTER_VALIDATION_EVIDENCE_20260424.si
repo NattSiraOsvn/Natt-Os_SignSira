@@ -9,7 +9,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 1. Canonical Lock
 
-- tools/natt_domain_gateway.cjs = SIRA Browser Adapter implementation.
+- tools/natt_domain_gateway.sira = SIRA Browser Adapter implementation.
 - anc:// = identity.
 - .sira = root namespace.
 - SmartLink = resolver / coupling layer.
@@ -19,9 +19,9 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 {
   "validator": {
-    "cmd": "node tools/validate_sira_browser_adapter.cjs",
+    "cmd": "node tools/sira_runtime_runner.mjs tools/validate_sira_browser_adapter.sira",
     "exit": 0,
-    "stdout": "SIRA BROWSER ADAPTER VALIDATION: PASS\nimplementation=tools/natt_domain_gateway.cjs\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
+    "stdout": "SIRA BROWSER ADAPTER VALIDATION: PASS\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
     "stderr": ""
   },
   "health_core_sira": {
