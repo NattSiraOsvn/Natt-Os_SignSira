@@ -1,0 +1,208 @@
+# TS CLEANUP BATCH 2J — ENGINE SCAN — 20260424
+
+status: SCAN_ONLY
+scope: ENGINE_TRANSLATE_TO_SIRA
+created_at: 2026-04-24T17:54:04.070651+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ quét nhóm ENGINE_TRANSLATE_TO_SIRA.
+
+Không rename.
+Không sửa source.
+Không động DEEP_TS_TRANSLATION_REQUIRED.
+
+## 2. Summary
+
+{
+  "total_engine": 4,
+  "summary": {
+    "ENGINE_CONTRACT_TRANSLATION_REQUIRED": 1,
+    "ENGINE_CLASS_REWRITE_REQUIRED": 3
+  }
+}
+
+## 3. Full Engine Classification
+
+[
+  {
+    "path": "src/cells/kernel/neural-main-cell/core/validator.engine.ts",
+    "bytes": 2843,
+    "bucket": "ENGINE_CONTRACT_TRANSLATION_REQUIRED",
+    "effort": 6,
+    "action": "translate type contracts before .sira",
+    "marker_count": 12,
+    "markers": {
+      "class": [],
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "access": [],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean"
+      ],
+      "runtime_tokens": [
+        "engine",
+        "audit",
+        "EventBus"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ]
+    },
+    "source_cluster": "ENGINE_TRANSLATE_TO_SIRA"
+  },
+  {
+    "path": "src/cells/business/logistics-cell/domain/engines/logistics-adapter.engine.ts",
+    "bytes": 8772,
+    "bucket": "ENGINE_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access runtime",
+    "marker_count": 16,
+    "markers": {
+      "class": [
+        "class "
+      ],
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [],
+      "enum": [],
+      "access": [
+        "private ",
+        "public "
+      ],
+      "implements": [
+        "implements "
+      ],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": boolean",
+        ": Promise",
+        ": any"
+      ],
+      "runtime_tokens": [
+        "engine",
+        "Engine",
+        "audit"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ]
+    },
+    "source_cluster": "ENGINE_TRANSLATE_TO_SIRA"
+  },
+  {
+    "path": "src/cells/business/payment-cell/domain/engines/payment-gateway.engine.ts",
+    "bytes": 1216,
+    "bucket": "ENGINE_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access runtime",
+    "marker_count": 10,
+    "markers": {
+      "class": [
+        "class "
+      ],
+      "interface": [
+        "interface "
+      ],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "access": [
+        "private "
+      ],
+      "implements": [],
+      "generics": [
+        "Promise<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise"
+      ],
+      "runtime_tokens": [
+        "Engine"
+      ],
+      "imports_exports": [
+        "export "
+      ]
+    },
+    "source_cluster": "ENGINE_TRANSLATE_TO_SIRA"
+  },
+  {
+    "path": "src/core/SmartLinkEngine.ts",
+    "bytes": 6209,
+    "bucket": "ENGINE_CLASS_REWRITE_REQUIRED",
+    "effort": 8,
+    "action": "manual rewrite; class/access runtime",
+    "marker_count": 19,
+    "markers": {
+      "class": [
+        "class "
+      ],
+      "interface": [],
+      "type_alias": [
+        "type "
+      ],
+      "enum": [],
+      "access": [
+        "private ",
+        "public ",
+        "readonly "
+      ],
+      "implements": [],
+      "generics": [
+        "Record<",
+        "Partial<",
+        "Promise<",
+        "Map<"
+      ],
+      "annotations": [
+        ": string",
+        ": number",
+        ": Promise",
+        ": void",
+        ": any"
+      ],
+      "runtime_tokens": [
+        "Engine",
+        "emit",
+        "SmartLink"
+      ],
+      "imports_exports": [
+        "import ",
+        "export "
+      ]
+    },
+    "source_cluster": "ENGINE_TRANSLATE_TO_SIRA"
+  }
+]
+
+## 4. Next Gate
+
+- [ ] ENGINE_LIGHT_TRANSLATION_CANDIDATE có thể xử lý nhỏ.
+- [ ] ENGINE_CONTRACT_TRANSLATION_REQUIRED cần dịch contract trước.
+- [ ] ENGINE_CLASS_REWRITE_REQUIRED không auto rename.
+- [ ] ENGINE_DEEP_TRANSLATION_REQUIRED rewrite thủ công.
