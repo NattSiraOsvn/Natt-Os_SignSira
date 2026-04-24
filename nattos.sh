@@ -2259,7 +2259,66 @@ else
     fi
   fi
 fi
-hdr "41" "SCORECARD"
+# ═══════════════════════════════════════════════════════════════
+# §45 — QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE
+# Per SPEC_QIINT2_COMPLETE_v1.0 + bang_pending_20260424 TASK-D2
+# Adapted: section_header/pass/warn/fail/footer → hdr/ok/warn/inc_warn/inc_ok/inc_fail
+# Validator skip-with-warn pattern (qiint2-validator.ts pending Phase D.1 ratify)
+# ═══════════════════════════════════════════════════════════════
+hdr "45" "QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE"
+
+QIINT2_VALIDATOR="scripts/qiint2-validator.ts"
+QIINT2_AUDIT_DIR="audit/qiint2"
+QIINT2_REPORT="${QIINT2_AUDIT_DIR}/qiint2-report-$(date +%Y%m%d-%H%M%S).json"
+
+if [ ! -f "$QIINT2_VALIDATOR" ]; then
+  warn "QIINT2 validator pending: $QIINT2_VALIDATOR (Phase D.1 — depends BLOCKER-04 Kim review B.1 + BLOCKER-05 Can check + BLOCKER-06 Gatekeeper seal)"
+  inc_warn "QIINT2 validator missing (Phase D.1 pending ratify)"
+elif ! command -v jq >/dev/null 2>&1; then
+  warn "jq not available — cannot parse QIINT2 report"
+  inc_warn "QIINT2 jq missing"
+else
+  mkdir -p "$QIINT2_AUDIT_DIR"
+  QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ --report "$QIINT2_REPORT" 2>&1)
+  QIINT2_RC=$?
+
+  if [ $QIINT2_RC -ne 0 ]; then
+    warn "QIINT2 validator runtime error (rc=$QIINT2_RC)"
+    inc_warn "QIINT2 validator crashed"
+  elif [ -f "$QIINT2_REPORT" ]; then
+    Q2_CELLS=$(jq -r '.totalCells // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_HEALTHY=$(jq -r '.healthyCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_SUBSTRATE=$(jq -r '.substrateFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_MEDIUM=$(jq -r '.mediumFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_BODY_DRIFT=$(jq -r '.bodyDriftCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_REVIVABLE=$(jq -r '.revivableDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_PERMANENT=$(jq -r '.permanentDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+
+    echo "  Cells scanned:     $Q2_CELLS"
+    echo "    Healthy:         $Q2_HEALTHY"
+    echo "    Substrate fail:  $Q2_SUBSTRATE  (migrate-able)"
+    echo "    Medium fail:     $Q2_MEDIUM  (restore-able)"
+    echo "    Body drift:      $Q2_BODY_DRIFT  (re-anchor needed)"
+    echo "    Revivable death: $Q2_REVIVABLE  (has recovery)"
+    echo "    Permanent death: $Q2_PERMANENT  (CRITICAL)"
+
+    if [ "$Q2_PERMANENT" -gt 0 ] 2>/dev/null; then
+      warn "PERMANENT DEATH detected — $Q2_PERMANENT cells lost irrecoverably"
+      inc_fail "QIINT2: $Q2_PERMANENT permanent death cells"
+    elif [ "$Q2_BODY_DRIFT" -ge 3 ] 2>/dev/null; then
+      warn "$Q2_BODY_DRIFT cells in body_drift state — orbital coherence < 0.3"
+      inc_warn "QIINT2: body_drift $Q2_BODY_DRIFT cells"
+    else
+      ok "QIINT2 COMPLIANCE: $Q2_HEALTHY/$Q2_CELLS healthy, 0 permanent death"
+      inc_ok
+    fi
+  else
+    warn "QIINT2 validator ran but no report at $QIINT2_REPORT"
+    inc_warn "QIINT2 report missing"
+  fi
+fi
+
+hdr "46" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
 echo ""
 echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
