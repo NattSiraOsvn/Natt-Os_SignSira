@@ -85,3 +85,6 @@ runtime/audit/
 
 # nattos.sh backups (W2E + earlier)
 nattos.sh.bak-*
+# NATT-OS: ignore generated Rust build artifacts
+**/target/
+docs/runtime/nauion-host/target/
