@@ -221,6 +221,7 @@ http.createServer(async (req,res)=>{
 
   if(routeKey==="anc"){
     const ANC_MAP = {
+      apps: "http://apps.sira",
       core: "http://core.sira",
       runtime: "http://runtime.sira",
       audit: "http://audit.sira",
@@ -314,6 +315,53 @@ ${rows}
     for(const s of SSE){try{s.write("data: "+JSON.stringify({type:evt.event_type,payload:evt})+"\n\n")}catch{}}
     return sendJson(res,{ok:true,event:evt,audit:row});
   }
+
+
+  if(routeKey==="apps"){
+    return sendHtml(res, `<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIRA App Hub</title>
+<style>
+:root{--bg:#020617;--card:#0f172a;--line:#1e293b;--txt:#e2e8f0;--muted:#94a3b8;--cyan:#67e8f9;--violet:#c084fc;--gold:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 8%,rgba(192,132,252,.16),transparent 32%),radial-gradient(circle at 85% 18%,rgba(103,232,249,.12),transparent 30%),var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif}
+header{padding:26px 24px;border-bottom:1px solid var(--line);background:rgba(2,6,23,.86);backdrop-filter:blur(14px)}
+h1{margin:0;color:var(--violet);letter-spacing:.16em;text-transform:uppercase;font-size:17px}
+p{color:var(--muted);font:12px ui-monospace,Menlo,monospace}
+main{padding:24px;max-width:1180px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{display:block;min-height:135px;padding:16px;border-radius:18px;background:rgba(15,23,42,.86);border:1px solid var(--line);text-decoration:none;color:var(--txt);box-shadow:0 0 24px rgba(0,0,0,.2);transition:.16s}
+.card:hover{border-color:var(--violet);transform:translateY(-1px);box-shadow:0 0 30px rgba(192,132,252,.12)}
+.card b{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.card code{display:block;color:var(--cyan);font-size:12px;word-break:break-all;margin-bottom:10px}
+.card span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+.badge{display:inline-block;margin-top:12px;border:1px solid rgba(251,191,36,.45);color:var(--gold);border-radius:999px;padding:4px 8px;font:10px ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<header>
+<h1>SIRA App Hub</h1>
+<p>Root namespace: .sira · Identity: anc:// · Browser Adapter: tools/natt_domain_gateway.sira</p>
+</header>
+<main>
+<div class="grid">
+  <a class="card" href="http://tam.sira"><b>Tâm Luxury App</b><code>anc://tam → http://tam.sira</code><span>App chính Tâm Luxury.</span><i class="badge">APP</i></a>
+  <a class="card" href="http://tam.sira/__screens"><b>Tâm Luxury Screens Hub</b><code>http://tam.sira/__screens</code><span>Màn tổng hợp 70 HTML screens của app Tâm.</span><i class="badge">70 SCREENS</i></a>
+  <a class="card" href="http://audit.sira"><b>Audit UI</b><code>anc://audit → http://audit.sira</code><span>Màn audit/runtime/scan/TODO.</span><i class="badge">AUDIT</i></a>
+  <a class="card" href="http://nauion.sira"><b>NaUion v9</b><code>anc://nauion → http://nauion.sira</code><span>NaUion runtime app.</span><i class="badge">NAUION</i></a>
+  <a class="card" href="http://docs.sira"><b>Docs</b><code>anc://docs → http://docs.sira</code><span>Spec/evidence/runtime docs.</span><i class="badge">DOCS</i></a>
+  <a class="card" href="http://anc.sira"><b>ANC Resolver</b><code>anc://core → http://core.sira</code><span>Resolver chính danh cho anc://.</span><i class="badge">RESOLVER</i></a>
+  <a class="card" href="http://core.sira/api/health"><b>Core Health</b><code>http://core.sira/api/health</code><span>Runtime health endpoint.</span><i class="badge">CORE</i></a>
+  <a class="card" href="http://mach.sira/mach/heyna"><b>Mach HeyNa</b><code>http://mach.sira/mach/heyna</code><span>SSE transport endpoint.</span><i class="badge">SSE</i></a>
+</div>
+</main>
+</body>
+</html>`);
+  }
+
 
   if(routeKey==="audit"){
     if(!AUDIT_HTML) return sendJson(res,{ok:false,error:"audit html not found"},404);
