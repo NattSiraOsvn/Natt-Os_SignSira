@@ -200,6 +200,83 @@ http.createServer(async (req,res)=>{
 
   if(u.pathname==="/favicon.ico"){res.writeHead(204);res.end();return}
 
+  if(host==="anc.natt"){
+    const ANC_MAP = {
+      core: "http://core.natt",
+      runtime: "http://runtime.natt",
+      audit: "http://audit.natt",
+      tam: "http://tam.natt",
+      nauion: "http://nauion.natt",
+      docs: "http://docs.natt",
+      mach: "http://mach.natt/mach/heyna",
+      heyna: "http://heyna.natt/mach/heyna",
+      gate: "http://gate.natt",
+      sira: "http://sira.natt",
+      khai: "http://khai.natt",
+      bridge: "http://bridge.natt"
+    };
+
+    function resolveAncUri(input){
+      let raw = String(input || "").trim();
+      if(!raw) return null;
+      if(raw.startsWith("anc://")) raw = raw.slice("anc://".length);
+      raw = raw.replace(/^\/+/, "").split(/[\/?#]/)[0].toLowerCase();
+      raw = raw.replace(/\.natt$/, "");
+      return ANC_MAP[raw] || null;
+    }
+
+    if(u.pathname==="/api/resolve" || u.pathname==="/resolve"){
+      const uri = u.searchParams.get("uri") || u.searchParams.get("u") || "";
+      const target = resolveAncUri(uri);
+      return sendJson(res, {
+        ok: !!target,
+        uri,
+        target,
+        rule: "anc://<name> -> http://<name>.natt"
+      }, target ? 200 : 404);
+    }
+
+    if(u.pathname.startsWith("/go/")){
+      const key = decodeURIComponent(u.pathname.slice(4));
+      const target = resolveAncUri(key);
+      if(target){
+        res.writeHead(302, {"Location": target});
+        res.end();
+        return;
+      }
+      return sendJson(res, {ok:false,error:"unknown anc uri", key}, 404);
+    }
+
+    if(u.pathname==="/" || u.pathname==="/index"){
+      const rows = Object.entries(ANC_MAP).map(([k,v]) =>
+        `<a style="display:block;margin:8px 0;padding:12px;border:1px solid #334155;border-radius:12px;background:#0f172a;color:#e2e8f0;text-decoration:none" href="/go/${k}">
+          <b style="color:#c084fc">anc://${k}</b><br><code>${v}</code>
+        </a>`
+      ).join("");
+
+      return sendHtml(res, `<!doctype html>
+<html><head><meta charset="utf-8"><title>ANC Resolver</title></head>
+<body style="margin:0;background:#020617;color:#e2e8f0;font-family:Inter,system-ui;padding:24px">
+<h1 style="color:#c084fc">NATT-OS ANC Resolver</h1>
+<p>Canonical namespace: <code>anc://</code>. HTTP remains transport.</p>
+<p><a style="color:#67e8f9" href="/api/resolve?uri=anc://core">/api/resolve?uri=anc://core</a></p>
+${rows}
+</body></html>`);
+    }
+
+    return sendJson(res, {
+      ok: true,
+      host: "anc.natt",
+      resolver: "ANC Resolver",
+      examples: [
+        "http://anc.natt/go/core",
+        "http://anc.natt/go/audit",
+        "http://anc.natt/api/resolve?uri=anc://nauion"
+      ]
+    });
+  }
+
+
   if(u.pathname==="/mach/heyna"){
     res.writeHead(200,{"Content-Type":"text/event-stream; charset=utf-8","Cache-Control":"no-cache","Connection":"keep-alive"});
     SSE.add(res);
