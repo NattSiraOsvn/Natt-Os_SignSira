@@ -164,7 +164,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/casting-cell/ports/casting-smartlink.port.ts",
+    "path": "src/cells/business/casting-cell/ports/casting-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 320,
     "class": "REVIEW_FOR_SIRA",
@@ -191,7 +191,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/constants-cell/ports/constants-smartlink.port.ts",
+    "path": "src/cells/business/constants-cell/ports/constants-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 252,
     "class": "REVIEW_FOR_SIRA",
@@ -227,7 +227,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.ts",
+    "path": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 416,
     "class": "REVIEW_FOR_SIRA",
@@ -254,7 +254,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.ts",
+    "path": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 315,
     "class": "REVIEW_FOR_SIRA",
@@ -281,7 +281,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.ts",
+    "path": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 333,
     "class": "REVIEW_FOR_SIRA",
@@ -290,7 +290,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/it-cell/ports/it-smartlink.port.ts",
+    "path": "src/cells/business/it-cell/ports/it-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 404,
     "class": "REVIEW_FOR_SIRA",
@@ -308,7 +308,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.ts",
+    "path": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 432,
     "class": "REVIEW_FOR_SIRA",
@@ -317,7 +317,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/media-cell/ports/media-smartlink.port.ts",
+    "path": "src/cells/business/media-cell/ports/media-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 406,
     "class": "REVIEW_FOR_SIRA",
@@ -344,7 +344,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/order-cell/ports/order-smartlink.port.ts",
+    "path": "src/cells/business/order-cell/ports/order-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 418,
     "class": "REVIEW_FOR_SIRA",
@@ -380,7 +380,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.ts",
+    "path": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 340,
     "class": "REVIEW_FOR_SIRA",
@@ -389,7 +389,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.ts",
+    "path": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 432,
     "class": "REVIEW_FOR_SIRA",
@@ -407,7 +407,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.ts",
+    "path": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 315,
     "class": "REVIEW_FOR_SIRA",
@@ -425,7 +425,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.ts",
+    "path": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.sira",
     "ext": ".ts",
     "bytes": 346,
     "class": "REVIEW_FOR_SIRA",
@@ -497,7 +497,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.ts",
+    "path": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 269,
     "class": "REVIEW_FOR_SIRA",
@@ -506,7 +506,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/business/shared-contracts-cell/smartlink/index.ts",
+    "path": "src/cells/business/shared-contracts-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 213,
     "class": "REVIEW_FOR_SIRA",
@@ -533,7 +533,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/stone-cell/ports/stone-smartlink.port.ts",
+    "path": "src/cells/business/stone-cell/ports/stone-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 395,
     "class": "REVIEW_FOR_SIRA",
@@ -560,7 +560,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/business/tax-cell/ports/tax-smartlink.port.ts",
+    "path": "src/cells/business/tax-cell/ports/tax-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 339,
     "class": "REVIEW_FOR_SIRA",
@@ -587,7 +587,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.ts",
+    "path": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 526,
     "class": "REVIEW_FOR_SIRA",
@@ -596,7 +596,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/ai-connector-cell/smartlink/index.ts",
+    "path": "src/cells/infrastructure/ai-connector-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -614,7 +614,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/notification-cell/smartlink/index.ts",
+    "path": "src/cells/infrastructure/notification-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -623,7 +623,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.ts",
+    "path": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -641,7 +641,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/services/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/application/services/index.sira",
     "ext": ".ts",
     "bytes": 77,
     "class": "REVIEW_FOR_SIRA",
@@ -668,7 +668,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.sira",
     "ext": ".ts",
     "bytes": 116,
     "class": "REVIEW_FOR_SIRA",
@@ -713,7 +713,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/domain/services/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/domain/services/index.sira",
     "ext": ".ts",
     "bytes": 160,
     "class": "REVIEW_FOR_SIRA",
@@ -767,7 +767,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/index.sira",
     "ext": ".ts",
     "bytes": 128,
     "class": "REVIEW_FOR_SIRA",
@@ -803,7 +803,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.sira",
     "ext": ".ts",
     "bytes": 77,
     "class": "REVIEW_FOR_SIRA",
@@ -821,7 +821,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/interface/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/interface/index.sira",
     "ext": ".ts",
     "bytes": 33,
     "class": "REVIEW_FOR_SIRA",
@@ -848,7 +848,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/index.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/index.sira",
     "ext": ".ts",
     "bytes": 43,
     "class": "REVIEW_FOR_SIRA",
@@ -857,7 +857,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.ts",
+    "path": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 633,
     "class": "REVIEW_FOR_SIRA",
@@ -893,7 +893,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file appears JS-compatible; candidate for .sira"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.ts",
+    "path": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 561,
     "class": "REVIEW_FOR_SIRA",
@@ -902,7 +902,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/infrastructure/sync-cell/smartlink/index.ts",
+    "path": "src/cells/infrastructure/sync-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -911,7 +911,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/ai-connector-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/ai-connector-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -947,7 +947,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file appears JS-compatible; candidate for .sira"
   },
   {
-    "path": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.ts",
+    "path": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 611,
     "class": "REVIEW_FOR_SIRA",
@@ -965,7 +965,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file but contains TypeScript syntax; must translate before .sira executable"
   },
   {
-    "path": "src/cells/kernel/audit-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/audit-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -992,7 +992,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file appears JS-compatible; candidate for .sira"
   },
   {
-    "path": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.ts",
+    "path": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 590,
     "class": "REVIEW_FOR_SIRA",
@@ -1001,7 +1001,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/config-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/config-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -1010,7 +1010,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/khai-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/khai-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 39,
     "class": "REVIEW_FOR_SIRA",
@@ -1046,7 +1046,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file appears JS-compatible; candidate for .sira"
   },
   {
-    "path": "src/cells/kernel/monitor-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/monitor-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -1073,7 +1073,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/notification-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/notification-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -1082,7 +1082,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/observation-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/observation-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 46,
     "class": "REVIEW_FOR_SIRA",
@@ -1145,7 +1145,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file appears JS-compatible; candidate for .sira"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.ts",
+    "path": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 703,
     "class": "REVIEW_FOR_SIRA",
@@ -1154,7 +1154,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/rbac-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/rbac-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -1181,7 +1181,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime-like file appears JS-compatible; candidate for .sira"
   },
   {
-    "path": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.ts",
+    "path": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.sira",
     "ext": ".ts",
     "bytes": 633,
     "class": "REVIEW_FOR_SIRA",
@@ -1190,7 +1190,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/cells/kernel/security-cell/smartlink/index.ts",
+    "path": "src/cells/kernel/security-cell/smartlink/index.sira",
     "ext": ".ts",
     "bytes": 164,
     "class": "REVIEW_FOR_SIRA",
@@ -1253,7 +1253,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/quantum-brain.engine.ts",
+    "path": "src/core/smartlink/quantum-brain.engine.sira",
     "ext": ".ts",
     "bytes": 373,
     "class": "REVIEW_FOR_SIRA",
@@ -1262,7 +1262,7 @@ Các runtime-like file còn nội dung được phân loại để review tiếp
     "batch2_reason": "runtime concept file; requires manual boundary review before migration"
   },
   {
-    "path": "src/core/smartlink/quantum-buffer.engine.ts",
+    "path": "src/core/smartlink/quantum-buffer.engine.sira",
     "ext": ".ts",
     "bytes": 232,
     "class": "REVIEW_FOR_SIRA",

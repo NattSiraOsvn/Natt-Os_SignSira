@@ -1,0 +1,273 @@
+# TS CLEANUP BATCH 2D — EASY TO SIRA — 20260424
+
+status: PASS
+scope: EASY_JS_COMPATIBLE_TO_SIRA only
+created_at: 2026-04-24T16:45:18.180642+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ rename các file đã được Batch 2C phân loại EASY_JS_COMPATIBLE_TO_SIRA.
+
+Không động MEDIUM_LIGHT_TRANSLATION_TO_SIRA.
+Không động HARD_TRANSLATION_REQUIRED.
+Không động KEEP_APP_TS_ADAPTER.
+
+## 2. Summary
+
+{
+  "targets": 46,
+  "renamed": 46,
+  "skipped": 0,
+  "patched_refs": 4
+}
+
+## 3. Renamed
+
+[
+  {
+    "from": "src/cells/business/casting-cell/ports/casting-smartlink.port.ts",
+    "to": "src/cells/business/casting-cell/ports/casting-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/constants-cell/ports/constants-smartlink.port.ts",
+    "to": "src/cells/business/constants-cell/ports/constants-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.ts",
+    "to": "src/cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.ts",
+    "to": "src/cells/business/finishing-cell/ports/finishing-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.ts",
+    "to": "src/cells/business/inventory-cell/ports/inventory-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/it-cell/ports/it-smartlink.port.ts",
+    "to": "src/cells/business/it-cell/ports/it-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.ts",
+    "to": "src/cells/business/logistics-cell/ports/logistics-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/media-cell/ports/media-smartlink.port.ts",
+    "to": "src/cells/business/media-cell/ports/media-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/order-cell/ports/order-smartlink.port.ts",
+    "to": "src/cells/business/order-cell/ports/order-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.ts",
+    "to": "src/cells/business/period-close-cell/ports/period-close-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.ts",
+    "to": "src/cells/business/phap-che-cell/ports/phapche-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.ts",
+    "to": "src/cells/business/polishing-cell/ports/polishing-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.ts",
+    "to": "src/cells/business/prdmaterials-cell/ports/prdmaterials.smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.ts",
+    "to": "src/cells/business/shared-contracts-cell/ports/shared-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/shared-contracts-cell/smartlink/index.ts",
+    "to": "src/cells/business/shared-contracts-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/stone-cell/ports/stone-smartlink.port.ts",
+    "to": "src/cells/business/stone-cell/ports/stone-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/business/tax-cell/ports/tax-smartlink.port.ts",
+    "to": "src/cells/business/tax-cell/ports/tax-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.ts",
+    "to": "src/cells/infrastructure/ai-connector-cell/ports/ai-connector-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/ai-connector-cell/smartlink/index.ts",
+    "to": "src/cells/infrastructure/ai-connector-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/notification-cell/smartlink/index.ts",
+    "to": "src/cells/infrastructure/notification-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.ts",
+    "to": "src/cells/infrastructure/shared-contracts-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/application/services/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/application/services/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/application/use-cases/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/domain/services/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/domain/services/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/infrastructure/repositories/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/interface/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/interface/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/ports/index.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/ports/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.ts",
+    "to": "src/cells/infrastructure/smartlink-cell/ports/smartlink-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.ts",
+    "to": "src/cells/infrastructure/sync-cell/ports/sync-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/sync-cell/smartlink/index.ts",
+    "to": "src/cells/infrastructure/sync-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/ai-connector-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/ai-connector-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.ts",
+    "to": "src/cells/kernel/audit-cell/ports/audit-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/audit-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/audit-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.ts",
+    "to": "src/cells/kernel/config-cell/ports/config-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/config-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/config-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/khai-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/khai-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/monitor-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/monitor-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/notification-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/notification-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/observation-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/observation-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.ts",
+    "to": "src/cells/kernel/rbac-cell/ports/rbac-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/rbac-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/rbac-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.ts",
+    "to": "src/cells/kernel/security-cell/ports/security-cell-smartlink.port.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/cells/kernel/security-cell/smartlink/index.ts",
+    "to": "src/cells/kernel/security-cell/smartlink/index.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/core/smartlink/quantum-brain.engine.ts",
+    "to": "src/core/smartlink/quantum-brain.engine.sira",
+    "reason": "rename .ts -> .sira"
+  },
+  {
+    "from": "src/core/smartlink/quantum-buffer.engine.ts",
+    "to": "src/core/smartlink/quantum-buffer.engine.sira",
+    "reason": "rename .ts -> .sira"
+  }
+]
+
+## 4. Skipped
+
+[]
+
+## 5. Patched Refs
+
+[
+  "src/governance/infrastructure.contracts.lock.si",
+  "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na",
+  "docs/runtime/TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na",
+  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na"
+]
