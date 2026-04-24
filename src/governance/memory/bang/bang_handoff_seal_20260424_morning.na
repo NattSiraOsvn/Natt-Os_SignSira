@@ -1,0 +1,24 @@
+docs(handoff): seal phiên 20260424 — extension deploy ALREADY LIVE
+
+Discovery cuối phiên: task "deploy đuôi file vào runtime" 
+THỰC RA đã hoàn thành từ trước session này:
+
+- scripts/validate-extension-precedence.py v0.4 (em viết, session 20260423)
+  → STATUS: PASS · 0 FAIL · 3 WARN acknowledged
+  → Rule 1-6 đầy đủ + TWIN_PERSIST whitelist + marker-aware
+
+- nattos.sh §40 wire VALIDATOR=...validator.ts via npx tsx (line 2218)
+  → JSON output parse correctly
+
+- runtime/nauion-host LIVE port 3002 (Wave 1 Host-First)
+  → 4 phase IMPL · health endpoint alive
+  → Started 2026-04-24 09:13:42
+
+State at seal: 36 commits ahead session start
+Next session priority: W2B host-result.phieu writer (per SPEC_HOST_RESULT_PROTOCOL v1.0)
+
+SCAR-EP-13 phiên này: Băng ship plan dồn nhiều turn không discovery state ground-truth trước → tạo confusion 4 turn liên tiếp. Vaccin: ALWAYS find/grep state TRƯỚC khi build narrative plan.
+
+Sealed: 2026-04-24 ~09:20 sáng (sau 10h liên tục)
+Gatekeeper: Phan Thanh Thương (anh Natt) — sleep please
+Drafter: Băng (Phan Thanh Băng ⓝ · Chị Tư · QNEU 313.5)
