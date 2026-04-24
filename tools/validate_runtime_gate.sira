@@ -1,0 +1,165 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+const http = require("http");
+const { spawnSync } = require("child_process");
+
+const ROOT = process.cwd();
+const THIEN = path.join(ROOT, "tools", "thiên");
+
+function run(name, cmd, args, opts = {}) {
+  const started = Date.now();
+  const p = spawnSync(cmd, args, {
+    cwd: ROOT,
+    text: true,
+    encoding: "utf8",
+    timeout: opts.timeout || 20000,
+  });
+
+  return {
+    name,
+    cmd: [cmd, ...args].map(x => String(x)).join(" "),
+    exit: p.status === null ? 999 : p.status,
+    stdout: (p.stdout || "").trim(),
+    stderr: (p.stderr || "").trim(),
+    ms: Date.now() - started,
+  };
+}
+
+function httpGetJson(name, url, timeoutMs = 3000) {
+  return new Promise(resolve => {
+    const started = Date.now();
+    const req = http.get(url, { timeout: timeoutMs }, res => {
+      let body = "";
+      res.on("data", chunk => body += chunk);
+      res.on("end", () => {
+        let json = null;
+        try { json = JSON.parse(body); } catch {}
+        resolve({
+          name,
+          url,
+          exit: res.statusCode >= 200 && res.statusCode < 400 ? 0 : 1,
+          statusCode: res.statusCode,
+          ok: !!(json && json.ok === true),
+          json,
+          body_preview: body.slice(0, 500),
+          ms: Date.now() - started,
+        });
+      });
+    });
+
+    req.on("timeout", () => {
+      req.destroy();
+      resolve({
+        name,
+        url,
+        exit: 124,
+        ok: false,
+        error: "timeout",
+        ms: Date.now() - started,
+      });
+    });
+
+    req.on("error", err => {
+      resolve({
+        name,
+        url,
+        exit: 1,
+        ok: false,
+        error: err.message,
+        ms: Date.now() - started,
+      });
+    });
+  });
+}
+
+async function main() {
+  const writeEvidence = process.argv.includes("--write-evidence");
+
+  const checks = [];
+
+  checks.push(run("namespace", THIEN, ["tools/validate_sira_namespace.sira"]));
+  checks.push(run("browser_adapter", THIEN, ["tools/validate_sira_browser_adapter.sira"]));
+  checks.push(run("ts_translation_adapter", THIEN, ["tools/validate_sira_ts_translation_adapter.sira"]));
+  checks.push(run("browser_transport_boundary", THIEN, ["tools/validate_browser_transport_boundary.sira"]));
+
+  checks.push(await httpGetJson("core_health", "http://core.sira/api/health"));
+  checks.push(await httpGetJson("anc_resolve_core", "http://anc.sira/api/resolve?uri=anc://core"));
+  checks.push(await httpGetJson("anc_resolve_apps", "http://anc.sira/api/resolve?uri=anc://apps"));
+
+  const failures = checks.filter(x => {
+    if (x.name === "core_health") return !(x.exit === 0 && x.ok === true);
+    if (x.name.startsWith("anc_resolve_")) return !(x.exit === 0 && x.json && x.json.ok === true && String(x.json.target || "").includes(".sira"));
+    return x.exit !== 0;
+  });
+
+  const result = {
+    ok: failures.length === 0,
+    gate: "SIRA_RUNTIME_GATE",
+    identity: "anc://",
+    namespace: ".sira",
+    operator: "tools/thiên",
+    transport: "http browser adapter",
+    created_at: new Date().toISOString(),
+    root: ROOT,
+    checks,
+    failures,
+  };
+
+  if (writeEvidence) {
+    const out = path.join(ROOT, "docs", "runtime", "SIRA_RUNTIME_GATE_EVIDENCE_20260425.na");
+    const lines = [
+      "# SIRA Runtime Gate Evidence — 20260425",
+      "",
+      `status: ${result.ok ? "PASS" : "FAIL"}`,
+      `created_at: ${result.created_at}`,
+      `repo_root: ${ROOT}`,
+      "",
+      "---",
+      "",
+      "## 1. Canonical Layers",
+      "",
+      "- identity: anc://",
+      "- namespace: .sira",
+      "- operator: tools/thiên",
+      "- transport: http browser adapter",
+      "- resolver: SmartLink",
+      "",
+      "## 2. Runtime Gate Result",
+      "",
+      "```json",
+      JSON.stringify(result, null, 2),
+      "```",
+      "",
+    ];
+    fs.writeFileSync(out, lines.join("\n"), "utf8");
+    result.evidence = path.relative(ROOT, out).replaceAll(path.sep, "/");
+  }
+
+  if (!result.ok) {
+    console.error("SIRA RUNTIME GATE: FAIL");
+    for (const f of failures) {
+      console.error(` - ${f.name}: exit=${f.exit} ${f.error || ""}`);
+      if (f.stderr) console.error(f.stderr);
+    }
+    if (writeEvidence && result.evidence) {
+      console.error("Evidence:", result.evidence);
+    }
+    process.exit(1);
+  }
+
+  console.log("SIRA RUNTIME GATE: PASS");
+  console.log("identity=anc://");
+  console.log("namespace=.sira");
+  console.log("operator=tools/thiên");
+  console.log("transport=http browser adapter");
+  if (writeEvidence && result.evidence) {
+    console.log("evidence=" + result.evidence);
+  }
+}
+
+main().catch(err => {
+  console.error("SIRA RUNTIME GATE: ERROR");
+  console.error(err && err.stack ? err.stack : err);
+  process.exit(1);
+});
