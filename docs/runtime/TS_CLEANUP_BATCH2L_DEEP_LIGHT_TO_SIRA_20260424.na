@@ -1,0 +1,47 @@
+# TS CLEANUP BATCH 2L — DEEP LIGHT TO SIRA — 20260424
+
+status: PASS
+scope: POSSIBLE_MANUAL_LIGHT_TRANSLATION only
+mode: Deep Light Translation
+created_at: 2026-04-24T18:05:41.322407+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ xử lý đúng nhóm POSSIBLE_MANUAL_LIGHT_TRANSLATION từ deep scan.
+
+Không động RUNTIME_CONTRACT_TRANSLATION_REQUIRED.
+Không động RUNTIME_CLASS_REWRITE_REQUIRED.
+Không động KEEP_UI_TS_OR_REACT_ADAPTER.
+Không động DEEP_MANUAL_REWRITE_REQUIRED.
+
+## 2. Summary
+
+{
+  "targets": 1,
+  "renamed": 0,
+  "skipped": 1,
+  "patched_refs": 0
+}
+
+## 3. Renamed
+
+[]
+
+## 4. Skipped
+
+[
+  {
+    "path": "src/cells/business/pricing-cell/application/services/pricing-runtime.service.ts",
+    "reason": "hard markers remain after light translation",
+    "markers": [
+      "interface "
+    ]
+  }
+]
+
+## 5. Patched Refs
+
+[]
