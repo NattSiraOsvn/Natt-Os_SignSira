@@ -1,0 +1,24 @@
+# sira public dns rollout readiness evidence — 20260425
+
+status: readiness-validated
+created_at: 2026-04-25 23:19:30
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- docs/runtime/sira_public_dns_rollout_readiness_20260425.na
+- tools/validate_sira_public_dns_rollout_readiness.sira
+- docs/runtime/sira_dns_zone_manifest_20260425.na
+- tools/natt_domain_gateway.sira
+
+---
+
+## 2. scope
+
+- chuẩn bị public dns rollout.
+- không đổi dns provider trong repo.
+- không public nếu gate matrix fail.
+- deny admin, secret, audit write, render seal.
+- chỉ cho public surface đi qua natt domain gateway.
