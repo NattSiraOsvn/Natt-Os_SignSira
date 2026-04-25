@@ -256,7 +256,29 @@ http.createServer(async (req,res)=>{
     return routePath === rule || routePath.startsWith(rule + "/");
   }
 
-  function siraRouteGate(host, routePath) {
+  
+function siraWriteJson(res, status, payload) {
+  const body = JSON.stringify(payload, null, 2);
+
+  if (res && typeof res.status === "function" && typeof res.json === "function") {
+    return res.status(status).json(payload);
+  }
+
+  if (res && typeof res.writeHead === "function" && typeof res.end === "function") {
+    res.writeHead(status, {
+      "content-type": "application/json; charset=utf-8"
+    });
+    return res.end(body);
+  }
+
+  if (res && typeof res.end === "function") {
+    return res.end(body);
+  }
+
+  throw new Error("sira route gate response adapter unavailable");
+}
+
+function siraRouteGate(host, routePath) {
     const zone = siraRouteZone[host];
 
     if (!host) {
@@ -300,7 +322,7 @@ http.createServer(async (req,res)=>{
         });
       }
     } catch (_) {}
-    return res.status(routeDecision.status).json({
+    return siraWriteJson(res, routeDecision.status, {
       ok: false,
       error: "sira route gate deny",
       host,

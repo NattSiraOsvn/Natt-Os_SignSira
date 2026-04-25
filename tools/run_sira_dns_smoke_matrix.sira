@@ -1,0 +1,308 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+const http = require("http");
+const childProcess = require("child_process");
+
+const root = process.cwd();
+const gatewayFile = path.join(root, "tools", "natt_domain_gateway.sira");
+const evidenceFile = path.join(root, "docs", "runtime", "sira_dns_smoke_runner_evidence_20260425.na");
+const port = Number(process.env.SIRA_SMOKE_PORT || 39991);
+const cases = [
+  [
+    "core.sira",
+    "/api/health",
+    "allow",
+    "core health route"
+  ],
+  [
+    "core.sira",
+    "/admin",
+    "deny",
+    "forbidden admin route"
+  ],
+  [
+    "apps.sira",
+    "/",
+    "allow",
+    "apps root route"
+  ],
+  [
+    "apps.sira",
+    "/api/secret",
+    "deny",
+    "forbidden app secret route"
+  ],
+  [
+    "mach.sira",
+    "/mach/heyna",
+    "allow",
+    "mạch heyna route"
+  ],
+  [
+    "mach.sira",
+    "/identity",
+    "deny",
+    "mach identity forbidden"
+  ],
+  [
+    "audit.sira",
+    "/api/audit",
+    "allow",
+    "audit read route"
+  ],
+  [
+    "audit.sira",
+    "/audit/write-direct",
+    "deny",
+    "audit direct write forbidden"
+  ],
+  [
+    "render.sira",
+    "/render",
+    "allow",
+    "render route"
+  ],
+  [
+    "render.sira",
+    "/render/seal",
+    "deny",
+    "render seal forbidden"
+  ],
+  [
+    "tam.sira",
+    "/health",
+    "allow",
+    "tam health route"
+  ],
+  [
+    "tam.sira",
+    "/finance/secret",
+    "deny",
+    "tam finance secret forbidden"
+  ],
+  [
+    "unknown.sira",
+    "/api/health",
+    "deny",
+    "unknown host deny"
+  ],
+  [
+    "localhost",
+    "/api/health",
+    "deny",
+    "localhost is transport target, not trusted host"
+  ],
+  [
+    "127.0.0.1",
+    "/api/health",
+    "deny",
+    "loopback is transport target, not trusted host"
+  ],
+  [
+    "mail.sira",
+    "/",
+    "deny",
+    "mail host is record layer, not browser route"
+  ],
+  [
+    "smtp.sira",
+    "/",
+    "deny",
+    "smtp host is record layer, not browser route"
+  ],
+  [
+    "imap.sira",
+    "/",
+    "deny",
+    "imap host is record layer, not browser route"
+  ]
+];
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function stripHashbang(src) {
+  return src.replace(/^#!.*\n/, "");
+}
+
+function requestCase(host, routePath) {
+  return new Promise(resolve => {
+    let settled = false;
+
+    function finish(payload) {
+      if (settled) return;
+      settled = true;
+      resolve(payload);
+    }
+
+    const req = http.request({
+      hostname: "127.0.0.1",
+      port,
+      path: routePath,
+      method: "GET",
+      headers: { Host: host },
+      timeout: 2400
+    }, res => {
+      let body = "";
+      res.setEncoding("utf8");
+
+      const streamGuard = setTimeout(() => {
+        let parsed = null;
+        try { parsed = JSON.parse(body); } catch (_) {}
+        finish({
+          ok: true,
+          status: res.statusCode,
+          host,
+          path: routePath,
+          body,
+          parsed,
+          stream_open: true
+        });
+        try { req.destroy(); } catch (_) {}
+      }, 280);
+
+      res.on("data", chunk => body += chunk);
+      res.on("end", () => {
+        clearTimeout(streamGuard);
+        let parsed = null;
+        try { parsed = JSON.parse(body); } catch (_) {}
+        finish({
+          ok: true,
+          status: res.statusCode,
+          host,
+          path: routePath,
+          body,
+          parsed,
+          stream_open: false
+        });
+      });
+    });
+
+    req.on("timeout", () => {
+      if (!settled) req.destroy(new Error("timeout"));
+    });
+
+    req.on("error", err => finish({
+      ok: false,
+      status: 0,
+      host,
+      path: routePath,
+      error: err.message,
+      body: ""
+    }));
+
+    req.end();
+  });
+}
+
+function classify(result) {
+  const parsed = result.parsed || null;
+  const reason = parsed && parsed.reason ? String(parsed.reason) : "";
+  const routeGateDeny = parsed && parsed.ok === false && reason;
+  if (routeGateDeny) return { gate: "deny", reason };
+  if (!result.ok) return { gate: "transport_error", reason: result.error || "request_error" };
+  return { gate: "allow", reason: "not_denied_by_route_gate" };
+}
+
+function row(host, routePath, expected, note, result, observed) {
+  const bodyPreview = String(result.body || result.error || "").slice(0, 160).replace(/\n/g, " ");
+  const status = result.status || 0;
+  const verdict = observed.gate === expected ? "ok" : "mismatch";
+  return `| ${host} | ${routePath} | ${expected} | ${observed.gate} | ${status} | ${observed.reason} | ${verdict} | ${note} | ${bodyPreview} |`;
+}
+
+async function main() {
+  if (!fs.existsSync(gatewayFile)) {
+    throw new Error("missing tools/natt_domain_gateway.sira");
+  }
+
+  const gatewaySource = stripHashbang(fs.readFileSync(gatewayFile, "utf8"));
+  const child = childProcess.spawn(process.execPath, ["--input-type=commonjs"], {
+    cwd: root,
+    env: { ...process.env, PORT: String(port), SIRA_SMOKE: "1" },
+    stdio: ["pipe", "pipe", "pipe"]
+  });
+
+  let stdout = "";
+  let stderr = "";
+  child.stdout.on("data", chunk => stdout += chunk.toString());
+  child.stderr.on("data", chunk => stderr += chunk.toString());
+
+  child.stdin.write(gatewaySource);
+  child.stdin.end();
+
+  await sleep(900);
+
+  const results = [];
+  for (const [host, routePath, expected, note] of cases) {
+    const result = await requestCase(host, routePath);
+    const observed = classify(result);
+    results.push({ host, routePath, expected, note, result, observed });
+  }
+
+  try { child.kill("SIGTERM"); } catch (_) {}
+  await sleep(120);
+
+  const mismatches = results.filter(x => x.observed.gate !== x.expected);
+
+  const lines = [
+    "# sira dns smoke runner evidence — 20260425",
+    "",
+    `status: ${mismatches.length === 0 ? "pass" : "needs-review"}`,
+    `created_at: ${new Date().toISOString()}`,
+    `repo_root: ${root}`,
+    "",
+    "---",
+    "",
+    "## 1. scope",
+    "",
+    "runner này khởi động gateway tạm thời, gọi 127.0.0.1 với host header theo smoke matrix, rồi ghi lại status và reason.",
+    "",
+    "runner này kiểm hành vi route gate, không kiểm siraSign frame validation và không wire mạch heyna.",
+    "",
+    "---",
+    "",
+    "## 2. result table",
+    "",
+    "| host | path | expected | observed | http_status | reason | verdict | note | body_preview |",
+    "|---|---|---|---|---:|---|---|---|---|",
+    ...results.map(x => row(x.host, x.routePath, x.expected, x.note, x.result, x.observed)),
+    "",
+    "---",
+    "",
+    "## 3. child output",
+    "",
+    "```text",
+    stdout.slice(0, 2000),
+    stderr.slice(0, 2000),
+    "```",
+    "",
+    "---",
+    "",
+    "## 4. next",
+    "",
+    mismatches.length === 0 ? "có thể đi tiếp sang hardening route gate hoặc siraSign frame validation." : "cần đọc các dòng mismatch trước khi patch tiếp.",
+    ""
+  ];
+
+  fs.writeFileSync(evidenceFile, lines.join("\n"), "utf8");
+
+  if (mismatches.length) {
+    console.error("sira dns smoke runner: needs-review");
+    for (const m of mismatches) {
+      console.error(` - ${m.host} ${m.routePath} expected=${m.expected} observed=${m.observed.gate} reason=${m.observed.reason}`);
+    }
+    process.exit(1);
+  }
+
+  console.log("sira dns smoke runner: pass");
+  console.log("file=docs/runtime/sira_dns_smoke_runner_evidence_20260425.na");
+}
+
+main().catch(err => {
+  console.error("sira dns smoke runner: error");
+  console.error(err && err.stack ? err.stack : String(err));
+  process.exit(1);
+});

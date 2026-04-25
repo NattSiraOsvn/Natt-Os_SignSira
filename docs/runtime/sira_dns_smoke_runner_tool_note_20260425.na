@@ -1,0 +1,50 @@
+# sira dns smoke runner tool note — 20260425
+
+status: tool-ready
+created_at: 2026-04-25T07:42:55.637612+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. purpose
+
+bộ tool này dùng để chạy smoke test thật cho mặt trận dns / gateway.
+
+nó gọi gateway tạm thời qua `127.0.0.1`, nhưng luôn đặt `Host` header theo từng case trong smoke matrix.
+
+---
+
+## 2. files
+
+```text
+tools/run_sira_dns_smoke_matrix.sira
+tools/validate_sira_dns_smoke_runner.sira
+docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+3. command
+tools/thiên tools/run_sira_dns_smoke_matrix.sira
+tools/thiên tools/validate_sira_dns_smoke_runner.sira
+4. rule
+
+không gọi .sira trực tiếp.
+
+luôn chạy qua tools/thiên.
+
+5. expected
+
+runner pass khi:
+
+unknown.sira deny
+localhost deny
+127.0.0.1 deny
+mail/smtp/imap deny
+forbidden path deny
+allowed path allow
+6. scope
+
+runner này kiểm route gate behavior.
+
+runner này không kiểm siraSign frame validation.
+
+runner này không wire mạch heyna.
+
+runner này không cấu hình dns public thật.
