@@ -1,0 +1,125 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sira_coredns_zone_implementation_plan_20260425.na");
+const zonePlan = path.join(root, "docs", "runtime", "sira_authoritative_zone_plan_20260425.na");
+const sovereign = path.join(root, "docs", "runtime", "sira_sovereign_dns_infrastructure_binding_20260425.na");
+const readiness = path.join(root, "docs", "runtime", "sira_public_dns_rollout_readiness_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function ns() {
+  return "." + "sira";
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+function originLine() {
+  return "$origin " + "sira.";
+}
+
+function zoneRuntimePath() {
+  return "/usr/local/etc/coredns/zones/" + "sira" + ".zone";
+}
+
+function wildcardHost() {
+  return "*." + "sira";
+}
+
+function fqdn(name) {
+  return name + "." + "sira" + ".";
+}
+
+function soaLine() {
+  return "@      soa   " + fqdn("ns") + " " + fqdn("hostmaster") + " (2026042501 60 30 300 60)";
+}
+
+function nsLine() {
+  return "@      ns    " + fqdn("ns");
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing sira coredns zone implementation plan");
+} else {
+  const content = fs.readFileSync(file, "utf8");
+
+  [
+    "sira coredns zone implementation plan",
+    "đây là kế hoạch hiện thực resolver cho sovereign namespace " + ns() + " bằng coredns",
+    "kế hoạch này chưa chỉnh máy thật",
+    "coredns chỉ được phục vụ " + ns() + " từ authoritative zone do hạ tầng natt kiểm soát",
+    "mọi allowed host phải trỏ về natt domain gateway",
+    "unknown host phải nxdomain hoặc deny tương đương",
+    "không wildcard allow",
+    zoneRuntimePath(),
+    "sira:53 {",
+    "file " + zoneRuntimePath(),
+    originLine(),
+    soaLine(),
+    nsLine(),
+    "apps   a     <natt_gateway_ip>",
+    "mach   a     <natt_gateway_ip>",
+    "core   a     <natt_gateway_ip>",
+    "audit  a     <natt_gateway_ip>",
+    "render a     <natt_gateway_ip>",
+    "tam    a     <natt_gateway_ip>",
+    "không khai báo wildcard",
+    "không khai báo mail, smtp, imap",
+    host("apps"),
+    host("mach"),
+    host("core"),
+    host("audit"),
+    host("render"),
+    host("tam"),
+    host("unknown") + " | nxdomain_or_deny",
+    host("mail") + " | nxdomain_or_deny",
+    host("smtp") + " | nxdomain_or_deny",
+    host("imap") + " | nxdomain_or_deny",
+    "dig @127.0.0.1 " + host("apps"),
+    "dig @127.0.0.1 " + host("unknown"),
+    "curl -H 'Host: " + host("apps") + "'",
+    "curl -H 'Host: " + host("unknown") + "'",
+    "restore Corefile backup",
+    "go only if authoritative zone plan, sovereign binding, rollout readiness, resolver smoke, gateway smoke and frame guard matrix all pass",
+    "no-go if wildcard is present",
+    "no-go if unknown host resolves as allow",
+    "no-go if any allowed host bypasses gateway",
+    "no-go if admin, secret, direct audit write or render seal route is reachable",
+  ].forEach(clause => must(content.includes(clause), "missing coredns zone plan clause: " + clause));
+
+  [
+    "root zone required",
+    "icann required",
+    "allow wildcard",
+    "wildcard: allow",
+    "wildcard -> allow",
+    wildcardHost() + " -> allow",
+    "allow admin",
+    "allow secret",
+    "bypass gateway",
+    "production-ready",
+  ].forEach(mark => must(!content.includes(mark), "forbidden coredns plan wording: " + mark));
+}
+
+must(fs.existsSync(zonePlan), "missing sira authoritative zone plan");
+must(fs.existsSync(sovereign), "missing sovereign dns infrastructure binding");
+must(fs.existsSync(readiness), "missing public dns rollout readiness");
+must(fs.existsSync(gateway), "missing natt domain gateway");
+
+if (errors.length) {
+  console.error("sira coredns zone implementation plan validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira coredns zone implementation plan validation: pass");
+console.log("file=docs/runtime/sira_coredns_zone_implementation_plan_20260425.na");

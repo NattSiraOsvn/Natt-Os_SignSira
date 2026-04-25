@@ -1,0 +1,29 @@
+# sira coredns zone implementation plan evidence — 20260425
+
+status: coredns-plan-validated
+created_at: 2026-04-26 00:25:18
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- docs/runtime/sira_coredns_zone_implementation_plan_20260425.na
+- tools/validate_sira_coredns_zone_implementation_plan.sira
+- docs/runtime/sira_authoritative_zone_plan_20260425.na
+- docs/runtime/sira_sovereign_dns_infrastructure_binding_20260425.na
+- docs/runtime/sira_public_dns_rollout_readiness_20260425.na
+- tools/natt_domain_gateway.sira
+
+---
+
+## 2. scope
+
+- khóa coredns corefile shape.
+- khóa sira zone file shape.
+- khóa allowed records về gateway only.
+- khóa denied hosts by omission.
+- khóa resolver smoke commands.
+- khóa gateway smoke commands.
+- khóa rollback steps.
+- chưa chỉnh resolver thật.
