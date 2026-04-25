@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "cell_build_scope_audit_e1d8648_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing cell build scope audit");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  [
+    "cell build scope audit",
+    "e1d8648",
+    "không sinh cell mù",
+    "không bơm gap vào cell nếu chưa map nền",
+    "không tạo contract khi chưa qua threshold",
+    "không để lane cell chen vào lane dns",
+    "risk_flags:",
+    "next decision"
+  ].forEach(clause => must(c.includes(clause), "missing audit clause: " + clause));
+}
+
+if (errors.length) {
+  console.error("cell build scope audit validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("cell build scope audit validation: pass");
+console.log("file=docs/runtime/cell_build_scope_audit_e1d8648_20260425.na");
