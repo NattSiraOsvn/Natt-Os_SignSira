@@ -1,0 +1,52 @@
+<!--
+  RENDER LANGUAGE PILOT — state: biên
+  marker: render_pilot
+  domain: Π_body
+  obitan_layer: n=0
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — biên</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --edge-color: #c00000; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .edge {
+    position: absolute; left: 300px; top: 0;
+    width: 2px; height: 400px;
+    background: var(--edge-color);
+    box-shadow: 0 0 8px 2px rgba(192,0,0,0.5);
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="edge"></div>
+  <div class="label">biên</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'biên', marker:'render_pilot', domain:'Π_body',
+    obitan_layer:'n=0', polarity:'cool-rim',
+    pressure_response:'OSCILLATE', reflection_R:1.0, decay_rate:0,
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!--
+  RENDER LANGUAGE PILOT — state: chốt
+  marker: render_pilot
+  domain: Π_body
+  obitan_layer: n=0
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — chốt</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --lock-color: #c0a0d0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .verdict {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px; height: 20px;
+    background: var(--lock-color);
+    box-shadow: 0 0 30px 10px rgba(192,160,208,0.8);
+    animation: lock-seal 0.5s ease-out forwards;
+  }
+  @keyframes lock-seal {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="verdict"></div>
+  <div class="label">chốt</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'chốt', marker:'render_pilot', domain:'Π_body',
+    obitan_layer:'n=0', polarity:'cool-rim',
+    pressure_response:'FALL', reflection_R:1.0, decay_rate:0,
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>

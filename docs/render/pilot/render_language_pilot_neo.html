@@ -1,0 +1,58 @@
+<!--
+  RENDER LANGUAGE PILOT — state: neo
+  marker: render_pilot
+  domain: Π_body
+  obitan_layer: n=1
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — neo</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --neo-color: #d0a0d0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .pillar {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px; height: 30px;
+    background: var(--neo-color);
+    box-shadow: 0 0 20px 5px rgba(208,160,208,0.6);
+    animation: neo-appear 1.5s ease-out forwards;
+  }
+  @keyframes neo-appear {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="pillar"></div>
+  <div class="label">neo</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'neo', marker:'render_pilot', domain:'Π_body',
+    obitan_layer:'n=1', polarity:'cool-rim',
+    pressure_response:'FALL', reflection_R:0.85, decay_rate:'γ(1)',
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>

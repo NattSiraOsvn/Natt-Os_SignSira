@@ -1,0 +1,57 @@
+<!--
+  RENDER LANGUAGE PILOT — state: về
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=1 → n=0
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — về</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --return-color: #e0c080; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .wanderer {
+    position: absolute; left: 80%; top: 80%;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--return-color);
+    box-shadow: 0 0 12px 4px rgba(224,192,128,0.6);
+    animation: return-home 2s ease-in forwards;
+  }
+  @keyframes return-home {
+    0% { left: 80%; top: 80%; opacity: 0.7; }
+    100% { left: 50%; top: 50%; opacity: 0; }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="wanderer"></div>
+  <div class="label">về</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'về', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=1→n=0', polarity:'warm-core',
+    pressure_response:'FALL', reflection_R:'0.5*(1-progress)', decay_rate:'γ(1)*(1-progress)',
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>
