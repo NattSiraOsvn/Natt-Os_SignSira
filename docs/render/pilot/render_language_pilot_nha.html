@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>render language pilot — nhà</title>
+  <style>
+    :root {
+      --surface-bg: #f8f6ef;
+      --surface-ink: #1f1b16;
+      --surface-gold: #f7c313;
+      --surface-violet: #afa9ec;
+      --surface-line: rgba(31, 27, 22, 0.18);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--surface-bg);
+      color: var(--surface-ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, "segoe ui", sans-serif;
+      display: grid;
+      place-items: center;
+    }
+
+    main {
+      width: min(920px, calc(100vw - 48px));
+      border: 1px solid var(--surface-line);
+      border-radius: 24px;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 80px rgba(31, 27, 22, 0.08);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .surface {
+      position: relative;
+      height: 460px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--surface-line);
+      background:
+        radial-gradient(circle at center, rgba(247, 195, 19, 0.18), transparent 34%),
+        radial-gradient(circle at center, rgba(175, 169, 236, 0.20), transparent 52%),
+        linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+    }
+
+    .origin {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 88px;
+      height: 88px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--surface-gold), var(--surface-violet));
+      box-shadow:
+        0 0 0 16px rgba(247, 195, 19, 0.10),
+        0 0 0 34px rgba(175, 169, 236, 0.08),
+        0 18px 50px rgba(31, 27, 22, 0.14);
+    }
+
+    .origin::after {
+      content: "nhà";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .readout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .card {
+      border: 1px solid var(--surface-line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.52);
+    }
+
+    .label {
+      opacity: 0.62;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <main data-render-pilot="nha" data-status="pilot-draft">
+    <section class="meta">
+      <div>render language pilot</div>
+      <div>state: nhà · scope: pilot only</div>
+    </section>
+
+    <section class="surface" aria-label="render pilot surface for state nhà">
+      <div id="root-surface" class="origin" data-obitan-state="nhà" data-pressure="0.0"></div>
+    </section>
+
+    <section class="readout" aria-label="pilot readout">
+      <div class="card">
+        <div class="label">state</div>
+        <div>nhà</div>
+      </div>
+      <div class="card">
+        <div class="label">domain</div>
+        <div>π_body</div>
+      </div>
+      <div class="card">
+        <div class="label">pressure</div>
+        <div>0.0</div>
+      </div>
+      <div class="card">
+        <div class="label">claim</div>
+        <div>pilot only</div>
+      </div>
+    </section>
+
+    <script>
+      const pilot = {
+        name: "render language pilot — nhà",
+        scope: "pilot only",
+        sample: "docs/render/samples/nha.na",
+        state: "nhà",
+        domain: "π_body",
+        pressure: 0.0,
+        renderEngine: "not production",
+        framework: "none"
+      };
+
+      window.renderLanguagePilot = Object.freeze(pilot);
+    </script>
+  </main>
+</body>
+</html>

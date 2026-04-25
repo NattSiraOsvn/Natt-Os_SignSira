@@ -1,0 +1,27 @@
+# render language pilot evidence — 20260425
+
+status: pilot-draft-validated
+created_at: 2026-04-25T06:33:37.151650+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. pilot
+
+- docs/render/pilot/render_language_pilot_nha.html
+
+## 2. source sample
+
+- docs/render/samples/nha.na
+
+## 3. validator
+
+- tools/validate_render_language_pilot.sira
+
+## 4. scope
+
+pilot html exists and is validator-confirmed.
+this is not production renderer.
+this does not wire Mạch HeyNa.
+this does not wire siraSign frame validation.
+this does not introduce external framework dependency.

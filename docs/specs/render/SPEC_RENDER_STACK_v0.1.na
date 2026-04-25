@@ -4,7 +4,7 @@
 **@date:** 20260425
 **@author:** Kim (Chị Ba — Chief System Builder)
 **@reviewer:** Băng (Chị Tư — Ground Truth Validator)
-**@concept-reviewer:** Thiên Lớn (Architect)
+**@concept-reviewer:** thiên Lớn (Architect)
 
 ## §0 — MISSION
 
@@ -15,7 +15,7 @@ Render Stack là tầng thực thi của Render Language: nhận render instruct
 1. **Nhận instruction, không tự sinh logic.**
 2. **Không phụ thuộc framework ngoài** — tự build từ DOM/WebGL thuần.
 3. **7 lớp render (Layer K → Q):**
-   - K: SiraSign validation
+   - K: siraSign validation
    - L: Layout & positioning
    - M: Color & gradient
    - N: Animation & transition

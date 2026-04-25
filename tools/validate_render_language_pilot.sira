@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const pilot = path.join(root, "docs", "render", "pilot", "render_language_pilot_nha.html");
+const sample = path.join(root, "docs", "render", "samples", "nha.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(pilot)) {
+  errors.push("missing render language pilot html");
+} else {
+  const c = fs.readFileSync(pilot, "utf8");
+  const requiredClauses = [
+  "render language pilot",
+  "data-render-pilot=\"nha\"",
+  "data-status=\"pilot-draft\"",
+  "id=\"root-surface\"",
+  "data-obitan-state=\"nhà\"",
+  "data-pressure=\"0.0\"",
+  "sample: \"docs/render/samples/nha.na\"",
+  "renderEngine: \"not production\"",
+  "framework: \"none\""
+];
+  const forbiddenMarks = [
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "cdn.",
+  "unpkg",
+  "jsdelivr",
+  "production renderer",
+  "siraSign frame validation: wired",
+  "Mạch HeyNa wired",
+  "EventBus",
+  "PASS",
+  "FAIL",
+  "NATT-OS"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing pilot clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden pilot mark: " + mark);
+  }
+
+  must(c.includes("<!doctype html>"), "pilot must be standalone html");
+  must(c.includes("window.renderLanguagePilot"), "pilot missing readout object");
+}
+
+must(fs.existsSync(sample), "missing source sample docs/render/samples/nha.na");
+
+if (fs.existsSync(sample)) {
+  const s = fs.readFileSync(sample, "utf8");
+  must(s.includes("obitan_state nhà"), "nha sample missing obitan_state nhà");
+  must(s.includes("origin_state: nhà"), "nha sample missing origin_state nhà");
+}
+
+if (errors.length) {
+  console.error("render language pilot validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render language pilot validation: pass");
+console.log("file=docs/render/pilot/render_language_pilot_nha.html");
