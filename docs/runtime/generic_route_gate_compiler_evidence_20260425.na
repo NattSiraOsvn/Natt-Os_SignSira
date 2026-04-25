@@ -1,0 +1,55 @@
+# generic route gate compiler evidence — 20260425
+
+status: compiler-validated
+created_at: 2026-04-25T10:46:25.202304+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- src/runtime/route-gate/generic-route-gate.compiler.ts
+- tools/validate_generic_route_gate_compiler.sira
+- src/runtime/manifest/generic-manifest.loader.ts
+- docs/runtime/tenant_fixture_boundary_20260425.na
+- docs/runtime/tam_luxury_screen_manifest_intake_20260425.na
+
+---
+
+## 2. scope
+
+generic route gate compiler thuộc natt-os core.
+
+compiler không hard-code tenant route, role hoặc cell binding.
+
+tenant fixture chỉ dùng để chứng minh compiler xử lý được dữ liệu thật.
+
+compiler chưa compile permission matrix.
+
+compiler chưa scaffold cell.
+
+---
+
+## 3. compile rule
+
+```text
+sirasign required -> gate_required_frame
+sirasign shape -> gate_shape_frame
+sirasign none + audit minimal -> gate_minimal_read
+sirasign none + audit partial/full -> gate_session_read
+```
+
+---
+
+## 4. fixture guard counts
+
+- gate_minimal_read: 6
+- gate_required_frame: 57
+- gate_session_read: 2
+- gate_shape_frame: 6
+
+---
+
+## 5. next
+
+bước tiếp theo là generic permission compiler.

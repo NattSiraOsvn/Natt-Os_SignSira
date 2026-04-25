@@ -1,0 +1,153 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const compiler = path.join(root, "src", "runtime", "route-gate", "generic-route-gate.compiler.ts");
+const loader = path.join(root, "src", "runtime", "manifest", "generic-manifest.loader.ts");
+const boundary = path.join(root, "docs", "runtime", "tenant_fixture_boundary_20260425.na");
+const fixture = path.join(root, "docs", "runtime", "tam_luxury_screen_manifest_intake_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function uniq(xs) {
+  return Array.from(new Set(xs));
+}
+
+function parseFixture(content) {
+  const screens = [];
+  let current = null;
+
+  for (const rawLine of content.split(/\r?\n/)) {
+    const start = rawLine.match(/^\s*-\s+screen_id:\s*(.+?)\s*$/);
+    if (start) {
+      if (current) screens.push(current);
+      current = { screen_id: start[1].trim() };
+      continue;
+    }
+
+    if (!current) continue;
+
+    const item = rawLine.match(/^\s+([A-Za-z_]+):\s*(.+?)\s*$/);
+    if (!item) continue;
+
+    const key = item[1] === "siraSign" ? "sirasign" : item[1];
+    current[key] = item[2].trim();
+  }
+
+  if (current) screens.push(current);
+  return screens;
+}
+
+function guardFor(screen) {
+  if (screen.sirasign === "required") return "gate_required_frame";
+  if (screen.sirasign === "shape") return "gate_shape_frame";
+  if (screen.audit === "minimal") return "gate_minimal_read";
+  return "gate_session_read";
+}
+
+if (!fs.existsSync(compiler)) {
+  errors.push("missing generic route gate compiler");
+} else {
+  const c = fs.readFileSync(compiler, "utf8");
+  const required = [
+  "compile_generic_gate_guard",
+  "compile_generic_route_gate_matrix",
+  "summarize_generic_gate_guards",
+  "gate_required_frame",
+  "gate_shape_frame",
+  "gate_minimal_read",
+  "gate_session_read",
+  "generic_screen_binding_for_gate",
+  "generic_route_gate_entry",
+  "sirasign",
+  "audit",
+  "manifested"
+];
+  const forbidden = [
+  "tam_luxury",
+  "tâm",
+  "Tâm",
+  "sản xuất",
+  "tài chính",
+  "ban kiểm soát",
+  "/inventory",
+  "/finance",
+  "/audit",
+  "PL-001",
+  "PL-071",
+  "71",
+  "production-ready",
+  "permission matrix"
+];
+
+  for (const clause of required) {
+    must(c.includes(clause), "missing compiler clause: " + clause);
+  }
+
+  for (const mark of forbidden) {
+    must(!c.includes(mark), "generic route gate compiler must not contain tenant-specific mark: " + mark);
+  }
+
+  const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+  must(importLines.length === 0, "generic route gate compiler must not import tenant or framework files");
+}
+
+if (!fs.existsSync(loader)) {
+  errors.push("missing generic manifest loader");
+}
+
+if (!fs.existsSync(boundary)) {
+  errors.push("missing tenant fixture boundary");
+}
+
+if (!fs.existsSync(fixture)) {
+  errors.push("missing tenant fixture manifest");
+} else {
+  const screens = parseFixture(fs.readFileSync(fixture, "utf8"));
+
+  must(screens.length === 71, "fixture must expose 71 screens");
+
+  const ids = screens.map(s => s.screen_id);
+  const routes = screens.map(s => s.route);
+  must(uniq(ids).length === 71, "fixture screen ids must be unique");
+  must(uniq(routes).length === 71, "fixture routes must be unique");
+
+  const guards = screens.map(guardFor);
+  must(guards.includes("gate_required_frame"), "fixture must exercise gate_required_frame");
+  must(guards.includes("gate_shape_frame"), "fixture must exercise gate_shape_frame");
+  must(guards.includes("gate_minimal_read"), "fixture must exercise gate_minimal_read");
+
+  for (const screen of screens) {
+    const guard = guardFor(screen);
+
+    if (screen.sirasign === "required") {
+      must(guard === "gate_required_frame", screen.screen_id + " required must compile to gate_required_frame");
+    }
+
+    if (screen.sirasign === "shape") {
+      must(guard === "gate_shape_frame", screen.screen_id + " shape must compile to gate_shape_frame");
+    }
+
+    if (screen.sirasign === "none" && screen.audit === "minimal") {
+      must(guard === "gate_minimal_read", screen.screen_id + " minimal none must compile to gate_minimal_read");
+    }
+
+    if (screen.sirasign === "none" && screen.audit !== "minimal") {
+      must(guard === "gate_session_read", screen.screen_id + " non-minimal none must compile to gate_session_read");
+    }
+  }
+}
+
+if (errors.length) {
+  console.error("generic route gate compiler validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("generic route gate compiler validation: pass");
+console.log("file=src/runtime/route-gate/generic-route-gate.compiler.ts");
+console.log("fixture_screens=71");
