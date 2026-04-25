@@ -1,0 +1,115 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const source = path.join(root, "docs", "runtime", "tam_luxury_screen_manifest_intake_20260425.na");
+const file = path.join(root, "docs", "runtime", "tam_luxury_domain_route_gate_matrix_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function uniq(xs) {
+  return Array.from(new Set(xs));
+}
+
+if (!fs.existsSync(source)) {
+  errors.push("missing source manifest intake");
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing domain route gate matrix");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const requiredClauses = [
+  "tam luxury domain grouping and route gate matrix",
+  "screen binding không phải cell scaffold",
+  "không sinh 71 cell mù",
+  "matrix này chưa phải permission matrix",
+  "## 2. domain grouping",
+  "## 3. route gate matrix",
+  "gate_required_frame",
+  "gate_shape_frame",
+  "gate_minimal_read",
+  "gate_session_read",
+  "PL-001",
+  "PL-071",
+  "/system/overview",
+  "/workspace/event-correlation"
+];
+  const forbiddenMarks = [
+  "mỗi màn hình là một cell",
+  "screen = cell",
+  "status: scaffolded",
+  "status: wired",
+  "siraSign: yes",
+  "siraSign: no",
+  "production-ready"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing matrix clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden matrix wording: " + mark);
+  }
+
+  const routeRows = c.split("\n").filter(line => /^\| PL-\d{3} \|/.test(line));
+  const ids = routeRows.map(line => line.split("|")[1].trim());
+  const domains = routeRows.map(line => line.split("|")[2].trim());
+  const routes = routeRows.map(line => line.split("|")[3].trim());
+  const cells = routeRows.map(line => line.split("|")[4].trim());
+  const audits = routeRows.map(line => line.split("|")[5].trim());
+  const signs = routeRows.map(line => line.split("|")[6].trim());
+  const guards = routeRows.map(line => line.split("|")[7].trim());
+  const statuses = routeRows.map(line => line.split("|")[9].trim());
+
+  must(routeRows.length === 71, "route gate matrix must contain 71 screen rows");
+  must(uniq(ids).length === 71, "screen ids must be unique");
+  must(uniq(routes).length === 71, "routes must be unique");
+  must(uniq(domains).length === 7, "domain grouping must contain 7 domains");
+
+  for (let i = 1; i <= 71; i++) {
+    const expected = "PL-" + String(i).padStart(3, "0");
+    must(ids.includes(expected), "missing screen id " + expected);
+  }
+
+  for (const route of routes) {
+    must(route.startsWith("/"), "route must start with slash: " + route);
+    must(!route.includes(" "), "route must not contain spaces: " + route);
+  }
+
+  for (const cell of cells) {
+    must(cell.startsWith("cell_"), "cell binding must start with cell_: " + cell);
+  }
+
+  for (const audit of audits) {
+    must(["minimal", "partial", "full"].includes(audit), "invalid audit value: " + audit);
+  }
+
+  for (const sign of signs) {
+    must(["none", "shape", "required"].includes(sign), "invalid sirasign value: " + sign);
+  }
+
+  for (const guard of guards) {
+    must(["gate_required_frame", "gate_shape_frame", "gate_minimal_read", "gate_session_read"].includes(guard), "invalid gate guard: " + guard);
+  }
+
+  for (const status of statuses) {
+    must(status === "manifested", "matrix status must remain manifested: " + status);
+  }
+}
+
+if (errors.length) {
+  console.error("tam luxury domain route gate matrix validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("tam luxury domain route gate matrix validation: pass");
+console.log("file=docs/runtime/tam_luxury_domain_route_gate_matrix_20260425.na");
+console.log("screens=71");
+console.log("domains=7");
