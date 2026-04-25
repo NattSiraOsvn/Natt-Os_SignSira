@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sira_dns_smoke_matrix_20260425.na");
+const zone = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const record = path.join(root, "docs", "runtime", "sira_dns_record_manifest_20260425.na");
+const binding = path.join(root, "docs", "runtime", "sira_gateway_route_binding_evidence_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing sira dns smoke matrix");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const requiredClauses = [
+  "sira dns smoke matrix",
+  "matrix này chưa phải network runner",
+  "dns không phải identity",
+  "mail record không phải route gate",
+  "localhost không tự thành trusted host",
+  "unknown .sira phải deny mặc định",
+  "forbidden path phải deny dù host hợp lệ",
+  "core.sira",
+  "unknown.sira",
+  "mail.sira",
+  "smtp.sira",
+  "imap.sira",
+  "tools/natt_domain_gateway.sira",
+  "bước sau là tạo smoke runner thật"
+];
+  const forbiddenMarks = [
+  "dns là identity",
+  "mail là route gate",
+  "localhost là trusted host",
+  "DNS XONG",
+  "PASS",
+  "FAIL"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing smoke clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden smoke wording: " + mark);
+  }
+
+  const expectedHosts = ["core.sira", "apps.sira", "mach.sira", "audit.sira", "render.sira", "tam.sira", "unknown.sira", "localhost", "127.0.0.1", "mail.sira", "smtp.sira", "imap.sira"];
+  for (const host of expectedHosts) {
+    must(c.includes(host), "missing smoke host: " + host);
+  }
+
+  const denyCount = (c.match(/\| deny \|/g) || []).length;
+  const allowCount = (c.match(/\| allow \|/g) || []).length;
+  must(denyCount >= 10, "not enough deny cases");
+  must(allowCount >= 5, "not enough allow cases");
+}
+
+for (const dep of [zone, record, binding, gateway]) {
+  must(fs.existsSync(dep), "missing dependency: " + path.relative(root, dep));
+}
+
+if (errors.length) {
+  console.error("sira dns smoke matrix validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira dns smoke matrix validation: pass");
+console.log("file=docs/runtime/sira_dns_smoke_matrix_20260425.na");

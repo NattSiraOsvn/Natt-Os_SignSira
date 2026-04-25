@@ -1,0 +1,75 @@
+# sira dns smoke matrix — 20260425
+
+status: smoke-matrix-candidate
+created_at: 2026-04-25T07:27:50.403393+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. stance
+
+smoke matrix này khóa hành vi mong đợi cho dns, record, route gate và gateway binding.
+
+matrix này chưa phải network runner.
+
+matrix này là bước trước khi viết smoke runner thật bằng curl hoặc node request.
+
+---
+
+## 2. rules
+
+dns không phải identity.
+
+mail record không phải route gate.
+
+localhost không tự thành trusted host.
+
+unknown .sira phải deny mặc định.
+
+forbidden path phải deny dù host hợp lệ.
+
+allowed path chỉ allow khi host thuộc zone manifest và path thuộc allowed_paths.
+
+---
+
+## 3. smoke cases
+
+| host | path | expected | note |
+|---|---|---|---|
+| core.sira | /api/health | allow | core health route |
+| core.sira | /admin | deny | forbidden admin route |
+| core.sira | /identity | deny | forbidden identity route |
+| apps.sira | / | allow | apps root route |
+| apps.sira | /api/secret | deny | forbidden app secret route |
+| mach.sira | /mach/heyna | allow | mạch heyna route |
+| mach.sira | /identity | deny | mach identity forbidden |
+| audit.sira | /api/audit | allow | audit read route |
+| audit.sira | /audit/write-direct | deny | audit direct write forbidden |
+| render.sira | /render | allow | render route |
+| render.sira | /render/seal | deny | render seal forbidden |
+| tam.sira | /health | allow | tam health route |
+| tam.sira | /finance/secret | deny | tam finance secret forbidden |
+| unknown.sira | /api/health | deny | unknown host deny |
+| localhost | /api/health | deny | localhost is transport target, not trusted host |
+| 127.0.0.1 | /api/health | deny | loopback is transport target, not trusted host |
+| mail.sira | / | deny | mail host is record layer, not browser route |
+| smtp.sira | / | deny | smtp host is record layer, not browser route |
+| imap.sira | / | deny | imap host is record layer, not browser route |
+
+---
+
+## 4. source dependencies
+
+- docs/runtime/sira_dns_zone_manifest_20260425.na
+- docs/runtime/sira_dns_record_manifest_20260425.na
+- docs/runtime/sira_route_gate_evidence_20260425.na
+- docs/runtime/sira_gateway_route_binding_evidence_20260425.na
+- tools/natt_domain_gateway.sira
+
+---
+
+## 5. next
+
+bước sau là tạo smoke runner thật để gọi gateway bằng host header theo matrix này.
+
+smoke runner thật phải chứng minh response status và reason khớp expected.
