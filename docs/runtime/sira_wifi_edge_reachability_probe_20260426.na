@@ -1,0 +1,81 @@
+# sira wifi edge reachability probe — 20260426
+
+status: observed-readonly
+created_at: 2026-04-26 02:06:58
+
+---
+
+## 1. correction
+
+192.168.1.238 là wifi ip của imac.
+
+nhãn đúng là wifi_edge, không gọi là lan wired edge.
+
+---
+
+## 2. interface
+
+### ipconfig getifaddr en0
+```text
+no output
+```
+
+### ifconfig en0
+```text
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+	options=50b<RXCSUM,TXCSUM,VLAN_HWTAGGING,AV,CHANNEL_IO>
+	ether 50:1f:c6:5b:b0:f5
+	nd6 options=201<PERFORMNUD,DAD>
+	media: autoselect (none)
+	status: inactive
+```
+
+### networksetup -getdnsservers Wi-Fi
+```text
+127.0.0.1
+```
+
+### sh -lc lsof -nP -iUDP:53 -iTCP:53 2>/dev/null || true
+```text
+no output
+```
+
+---
+
+## 3. dig via local edge 127.0.0.1
+
+- apps.sira: code=0 out='127.0.0.1' err=''
+- mach.sira: code=0 out='127.0.0.1' err=''
+- core.sira: code=0 out='127.0.0.1' err=''
+- audit.sira: code=0 out='127.0.0.1' err=''
+- render.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @127.0.0.1 render.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- tam.sira: code=0 out='127.0.0.1' err=''
+- unknown.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @127.0.0.1 unknown.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- mail.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @127.0.0.1 mail.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- smtp.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @127.0.0.1 smtp.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- imap.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @127.0.0.1 imap.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+
+---
+
+## 4. dig via wifi edge 192.168.1.238
+
+- apps.sira: code=0 out='127.0.0.1' err=''
+- mach.sira: code=0 out='127.0.0.1' err=''
+- core.sira: code=0 out='127.0.0.1' err=''
+- audit.sira: code=0 out='127.0.0.1' err=''
+- render.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @192.168.1.238 render.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- tam.sira: code=0 out='127.0.0.1' err=''
+- unknown.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @192.168.1.238 unknown.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- mail.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @192.168.1.238 mail.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- smtp.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @192.168.1.238 smtp.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+- imap.sira: code=9 out='; <<>> DiG 9.10.6 <<>> @192.168.1.238 imap.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached' err=''
+
+---
+
+## 5. reading
+
+wifi_edge_probe: fail_or_incomplete
+
+nếu local_edge có trả lời nhưng wifi_edge không trả lời, nguyên nhân nằm ở bind/listen/firewall/router wifi.
+
+chưa được dùng ipad smoke làm bằng chứng pass.
