@@ -1,0 +1,184 @@
+<!--
+  RENDER LANGUAGE PILOT — LAYOUT TEST (4 states)
+  marker: render_pilot
+  domain: Π_medium
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — Layout Test (nhà + neo + tha + biên)</title>
+<style>
+  :root { --surface-bg: #fdf6f0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    font-family: system-ui, -apple-system, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+  }
+  .natt-layout-container {
+    border-radius: 12px;
+    background: rgba(255,255,255,0.5);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+  .natt-element { position: absolute; }
+  @keyframes natt-breathe {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+  }
+  @keyframes natt-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(var(--pulse-scale, 1.2)); opacity: 1; }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+  import { LayoutEngine } from '../../src/cells/render-stack-cell/domain/layout.engine.ts';
+  
+  const layoutEngine = new LayoutEngine();
+  
+  // Tạo 4 render instruction cho 4 state khác nhau
+  const instructions = [
+    // nhà
+    {
+      frame_id: 'layout-nha-001',
+      signals: [
+        { verb: 'APPEAR', element_id: 'root-surface', origin_state: 'nhà', params: { position: 'origin(0,0)' }, pressure: 0.0, degrade_to: null },
+        { verb: 'BREATHE', element_id: 'root-surface', origin_state: 'nhà', params: { cycle_ms: 6000 }, pressure: 0.0, degrade_to: null }
+      ],
+      attention_map: { mode: 'FOCUS', priority: 1.0, target: 'root-surface' },
+      motion_budget: { frame_budget: 100, allocated: 10, remaining: 90 },
+      degrade_level: 'NONE',
+      truth_boundary: { inside: ['root-surface'], at_boundary: [], outside: [] }
+    },
+    // neo
+    {
+      frame_id: 'layout-neo-001',
+      signals: [
+        { verb: 'APPEAR', element_id: 'truth-pillar-01', origin_state: 'neo', params: { position: 'relative_to("root-surface", offset(120, 0))' }, pressure: 0.0, degrade_to: null },
+        { verb: 'RESIZE', element_id: 'truth-pillar-01', origin_state: 'neo', params: { from_scale: 0.8, to_scale: 1.0 }, pressure: 0.0, degrade_to: null }
+      ],
+      attention_map: { mode: 'AMBIENT', priority: 0.7, target: 'truth-pillar-01' },
+      motion_budget: { frame_budget: 100, allocated: 15, remaining: 85 },
+      degrade_level: 'NONE',
+      truth_boundary: { inside: ['truth-pillar-01'], at_boundary: [], outside: [] }
+    },
+    // tha
+    {
+      frame_id: 'layout-tha-001',
+      signals: [
+        { verb: 'APPEAR', element_id: 'embrace-zone', origin_state: 'tha', params: { position: 'relative_to("root-surface", offset(200, 80))' }, pressure: 0.3, degrade_to: null },
+        { verb: 'BREATHE', element_id: 'embrace-zone', origin_state: 'tha', params: { cycle_ms: 4000 }, pressure: 0.3, degrade_to: null }
+      ],
+      attention_map: { mode: 'AMBIENT', priority: 0.5, target: 'embrace-zone' },
+      motion_budget: { frame_budget: 100, allocated: 20, remaining: 80 },
+      degrade_level: 'NONE',
+      truth_boundary: { inside: [], at_boundary: ['embrace-zone'], outside: [] }
+    },
+    // biên
+    {
+      frame_id: 'layout-bien-001',
+      signals: [
+        { verb: 'APPEAR', element_id: 'truth-edge', origin_state: 'biên', params: { position: 'absolute(600, 0)' }, pressure: 1.0, degrade_to: null }
+      ],
+      attention_map: { mode: 'NONE', priority: 0, target: null },
+      motion_budget: { frame_budget: 100, allocated: 5, remaining: 95 },
+      degrade_level: 'NONE',
+      truth_boundary: { inside: [], at_boundary: ['truth-edge'], outside: [] }
+    }
+  ];
+  
+  // Layout với absolute mode
+  const container = layoutEngine.layout(instructions, {
+    mode: 'absolute',
+    containerWidth: 800,
+    containerHeight: 600
+  });
+  
+  // Style các element sau khi render
+  const styleElements = () => {
+    const rootSurface = container.querySelector('#root-surface');
+    if (rootSurface) {
+      rootSurface.style.width = '180px';
+      rootSurface.style.height = '180px';
+      rootSurface.style.left = '50%';
+      rootSurface.style.top = '50%';
+      rootSurface.style.transform = 'translate(-50%, -50%)';
+      rootSurface.style.background = 'radial-gradient(circle at center, #f0c080, #e0a060 60%, transparent 100%)';
+      rootSurface.style.boxShadow = '0 0 60px 20px #fff5e6, 0 0 120px 40px rgba(240,192,128,0.15)';
+      rootSurface.style.borderRadius = '50%';
+    }
+    
+    const pillar = container.querySelector('#truth-pillar-01');
+    if (pillar) {
+      pillar.style.width = '30px';
+      pillar.style.height = '30px';
+      pillar.style.left = 'calc(50% + 120px)';
+      pillar.style.top = '50%';
+      pillar.style.transform = 'translate(-50%, -50%)';
+      pillar.style.background = '#d0a0d0';
+      pillar.style.boxShadow = '0 0 20px 5px rgba(208,160,208,0.6)';
+      pillar.style.borderRadius = '0';
+    }
+    
+    const embrace = container.querySelector('#embrace-zone');
+    if (embrace) {
+      embrace.style.width = '120px';
+      embrace.style.height = '120px';
+      embrace.style.left = 'calc(50% + 200px)';
+      embrace.style.top = 'calc(50% + 80px)';
+      embrace.style.transform = 'translate(-50%, -50%)';
+      embrace.style.background = 'radial-gradient(circle at center, #f0d0b0, #e8b890 70%, transparent 100%)';
+      embrace.style.borderRadius = '50%';
+    }
+    
+    const edge = container.querySelector('#truth-edge');
+    if (edge) {
+      edge.style.left = '600px';
+      edge.style.top = '0';
+      edge.style.width = '2px';
+      edge.style.height = '600px';
+      edge.style.background = '#c00000';
+      edge.style.boxShadow = '0 0 8px 2px rgba(192,0,0,0.5)';
+      edge.style.borderRadius = '0';
+    }
+  };
+  
+  // Đợi DOM sẵn sàng rồi style
+  requestAnimationFrame(() => {
+    styleElements();
+  });
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'layout test: nhà + neo + tha + biên';
+  container.appendChild(label);
+  
+  const renderPilotReadout = {
+    states: ['nhà', 'neo', 'tha', 'biên'],
+    marker: 'render_pilot',
+    layout_mode: 'absolute',
+    domain: 'Π_medium',
+    scope: 'pilot-only',
+    framework: 'none',
+    production: false,
+    engine_version: 'v0.2-pilot',
+    layout_version: 'v0.1-pilot'
+  };
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
+</script>
+</body>
+</html>
