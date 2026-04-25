@@ -1,0 +1,187 @@
+# sira dns zone manifest — 20260425
+
+status: zone-candidate
+created_at: 2026-04-25T05:46:52.085317+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. stance
+
+dns không phải identity.
+
+http không phải identity.
+
+domain gọi được không có nghĩa là được tin.
+
+route tới được không có nghĩa là được phép.
+
+dns chỉ chỉ đường; gateway mới đứng trước cửa; route gate mới quyết định cho vào.
+
+---
+
+## 2. tầng định danh
+
+```text
+anc://        = identity protocol lõi
+.sira         = namespace / artifact layer
+dns .sira     = browser naming layer
+http browser  = transport adapter
+tools/thiên   = operator / gate
+siraSign      = boundary seal
+
+rule:
+
+dns không được claim identity.
+http không được claim identity.
+domain không được claim authority.
+adapter không được claim persona.
+3. zone table
+core.sira
+  purpose: core runtime entry
+  owner: gatekeeper
+  target: local sira gateway
+  allowed_paths:
+    - /api/health
+    - /api/events/emit
+    - /api/audit
+  forbidden_paths:
+    - /admin
+    - /secret
+    - /identity
+  status: active
+
+apps.sira
+  purpose: browser app surface
+  owner: gatekeeper
+  target: local sira gateway
+  allowed_paths:
+    - /
+    - /__screens
+    - /assets
+  forbidden_paths:
+    - /api/secret
+    - /identity
+    - /admin
+  status: active
+
+mach.sira
+  purpose: mạch heyna transport surface
+  owner: gatekeeper
+  target: local sira gateway
+  allowed_paths:
+    - /mach/heyna
+    - /events
+  forbidden_paths:
+    - /identity
+    - /memory
+    - /admin
+  status: active
+
+audit.sira
+  purpose: audit read surface
+  owner: gatekeeper
+  target: local sira gateway
+  allowed_paths:
+    - /api/audit
+    - /audit
+  forbidden_paths:
+    - /audit/write-direct
+    - /identity
+    - /admin
+  status: active
+
+render.sira
+  purpose: render language candidate surface
+  owner: gatekeeper
+  target: local sira gateway
+  allowed_paths:
+    - /render
+    - /render/candidate
+    - /render/spec
+  forbidden_paths:
+    - /render/seal
+    - /identity
+    - /admin
+  status: draft
+
+tam.sira
+  purpose: tam luxury app surface
+  owner: gatekeeper
+  target: local sira gateway
+  allowed_paths:
+    - /
+    - /__screens
+    - /health
+  forbidden_paths:
+    - /finance/secret
+    - /identity
+    - /admin
+  status: draft
+4. unknown host rule
+
+mọi host .sira không nằm trong zone table phải bị từ chối mặc định.
+
+unknown.sira → deny
+spoofed host header → quarantine
+direct localhost bypass → audit + deny nếu route cần zone
+5. route gate rule
+
+route gate phải kiểm theo thứ tự:
+
+host registered
+→ domain status active hoặc draft có gatekeeper scope
+→ path nằm trong allowed_paths
+→ path không nằm trong forbidden_paths
+→ subject hợp lệ
+→ intent hợp lệ
+→ siraSign boundary nếu route chạm memory / identity / seal / field
+→ audit written
+→ allow
+
+không được:
+
+dns resolve được → allow
+host header khớp → allow
+localhost gọi được → allow
+6. anti-spoof rule
+
+các trường hợp phải bị chặn hoặc cách ly:
+
+host không nằm trong zone table
+host header giả sang domain khác
+route nội bộ bị gọi qua localhost bypass
+domain cố claim identity
+http cố claim authority
+adapter cố claim persona
+7. lifecycle
+
+domain có trạng thái:
+
+draft       = có thể test, chưa claim active
+active      = route được gate kiểm và cho phép theo manifest
+quarantine  = bị nghi spoof / lệch route / sai owner
+deprecated  = còn đọc lịch sử, không mở route mới
+revoked     = không được resolve vào gateway tin cậy
+8. boundary with siraSign
+
+dns zone không thay siraSign.
+
+dns zone chỉ xác định cửa nào thuộc nhà.
+
+siraSign xác định một lượt đi qua cửa có giữ đúng nghĩa, đúng vai, đúng biên và đúng trọng trường hay không.
+
+dns zone = bảng cửa
+route gate = ổ khóa
+siraSign = dấu qua biên có nghĩa
+audit = camera cửa
+9. next lane
+
+sau manifest này mới triển khai:
+
+tools/validate_sira_route_gate.sira
+host spoof scan
+direct localhost bypass scan
+gateway route binding
+
+manifest này chưa nối implementation gateway.
