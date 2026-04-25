@@ -213,7 +213,101 @@ async function readBody(req){
 }
 
 http.createServer(async (req,res)=>{
-  const host=(req.headers.host||"").split(":")[0].toLowerCase();
+  // sira route gate binding — 20260425
+  const siraRouteZone = {
+    "core.sira": {
+      status: "active",
+      allowed: ["/api/health", "/api/events/emit", "/api/audit"],
+      forbidden: ["/admin", "/secret", "/identity"]
+    },
+    "apps.sira": {
+      status: "active",
+      allowed: ["/", "/__screens", "/assets"],
+      forbidden: ["/api/secret", "/identity", "/admin"]
+    },
+    "mach.sira": {
+      status: "active",
+      allowed: ["/mach/heyna", "/events"],
+      forbidden: ["/identity", "/memory", "/admin"]
+    },
+    "audit.sira": {
+      status: "active",
+      allowed: ["/api/audit", "/audit"],
+      forbidden: ["/audit/write-direct", "/identity", "/admin"]
+    },
+    "render.sira": {
+      status: "draft",
+      allowed: ["/render", "/render/candidate", "/render/spec"],
+      forbidden: ["/render/seal", "/identity", "/admin"]
+    },
+    "tam.sira": {
+      status: "draft",
+      allowed: ["/", "/__screens", "/health"],
+      forbidden: ["/finance/secret", "/identity", "/admin"]
+    }
+  };
+
+  function normalizeSiraHost(rawHost) {
+    return String(rawHost || "").split(":")[0].trim().toLowerCase();
+  }
+
+  function siraPathMatch(rule, routePath) {
+    if (rule === "/") return routePath === "/" || routePath === "";
+    return routePath === rule || routePath.startsWith(rule + "/");
+  }
+
+  function siraRouteGate(host, routePath) {
+    const zone = siraRouteZone[host];
+
+    if (!host) {
+      return { allow: false, status: 403, result: "deny", reason: "missing_host" };
+    }
+
+    if (host === "localhost" || host === "127.0.0.1") {
+      return { allow: false, status: 403, result: "deny", reason: "direct_localhost_bypass" };
+    }
+
+    if (!zone) {
+      return { allow: false, status: 403, result: "deny", reason: "unknown_host" };
+    }
+
+    if (zone.forbidden.some(rule => siraPathMatch(rule, routePath))) {
+      return { allow: false, status: 403, result: "deny", reason: "forbidden_path" };
+    }
+
+    if (!zone.allowed.some(rule => siraPathMatch(rule, routePath))) {
+      return { allow: false, status: 404, result: "deny", reason: "path_not_allowed" };
+    }
+
+    return { allow: true, status: 200, result: "allow", reason: "route_gate_pass" };
+  }
+
+  const host = normalizeSiraHost(req.headers.host || "");
+  const routePath = (req.path || String(req.url || "/").split("?")[0] || "/");
+  const routeDecision = siraRouteGate(host, routePath);
+
+  if (!routeDecision.allow) {
+    try {
+      if (typeof audit === "function") {
+        audit({
+          action: "sira.route_gate",
+          host,
+          result: routeDecision.result,
+          payload_summary: {
+            path: routePath,
+            reason: routeDecision.reason
+          }
+        });
+      }
+    } catch (_) {}
+    return res.status(routeDecision.status).json({
+      ok: false,
+      error: "sira route gate deny",
+      host,
+      path: routePath,
+      reason: routeDecision.reason
+    });
+  }
   const u=new URL(req.url,"http://local");
   const routeKey=routeKeyFromHost(host);
 

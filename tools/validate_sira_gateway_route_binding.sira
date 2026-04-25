@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "tools", "natt_domain_gateway.sira");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing gateway");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const requiredClauses = [
+  "sira route gate binding — 20260425",
+  "const siraRouteZone",
+  "function normalizeSiraHost",
+  "function siraRouteGate",
+  "direct_localhost_bypass",
+  "unknown_host",
+  "forbidden_path",
+  "path_not_allowed",
+  "sira.route_gate",
+  "sira route gate deny",
+  "core.sira",
+  "apps.sira",
+  "mach.sira",
+  "audit.sira",
+  "render.sira",
+  "tam.sira"
+];
+  const forbiddenMarks = [
+  "resolve được → allow",
+  "host header khớp → allow",
+  "localhost gọi được → allow",
+  "dns là authority",
+  "http là identity",
+  "DNS XONG"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing gateway binding clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden gateway wording: " + mark);
+  }
+}
+
+if (errors.length) {
+  console.error("sira gateway route binding validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira gateway route binding validation: pass");
+console.log("file=tools/natt_domain_gateway.sira");
