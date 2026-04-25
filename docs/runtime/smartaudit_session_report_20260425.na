@@ -1,0 +1,213 @@
+# natt-os smartaudit v7.0 — distributed living organism
+
+status: session-report
+created_at: 2026-04-25T08:32:48.969085+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+branch: feat/p1.3-file-extension-validator
+since: 2026-04-24 00:00:00
+until: now
+
+---
+
+## 1. title bonus
+
+```text
+natt-os smartaudit v7.0
+distributed living organism
+route gate · mạch heyna · smartlink · render-stack · siraSign frame guard
+```
+
+---
+
+## 2. executive summary
+
+- commits counted: 153
+- insertions: 87.924 dòng
+- deletions: 21.439 dòng
+- net lines: 66.485 dòng
+- total changed lines: 109.363 dòng
+
+đây là báo cáo tổng hợp từ git history, không phải ước lượng thủ công.
+
+---
+
+## 3. headline
+
+trong một phiên, hệ đã đi qua hai mặt trận lớn:
+
+- runtime/dns/gateway: từ manifest sang binding, smoke runner thật, hardening matrix và siraSign frame guard matrix.
+- render-stack: từ pilot state sang 15 html pilots, runtime k7, engine v0.2, cell identity, contract và validator hygiene.
+- tooling: tools/thiênbăng bổ sung preflight, audit-validator, heredoc-verify và remind commands.
+
+---
+
+## 4. line table by extension
+
+| extension | insertions | deletions | net |
+|---|---:|---:|---:|
+| `.na` | +44.767 | -6.114 | 38.653 |
+| `.d` | +3.918 | -3.918 | 0 |
+| `.md"` | +6.548 | -331 | 6.217 |
+| `.si` | +4.591 | -1.389 | 3.202 |
+| `.sira` | +4.331 | -380 | 3.951 |
+| `.html` | +3.644 | -895 | 2.749 |
+| `.md` | +2.855 | -1.309 | 1.546 |
+| `.ts` | +1.847 | -957 | 890 |
+| `[no_ext]` | +1.596 | -508 | 1.088 |
+| `.rs` | +1.956 | -110 | 1.846 |
+| `.js` | +1.436 | -555 | 881 |
+| `.kris"` | +993 | -993 | 0 |
+| `.py` | +1.435 | -477 | 958 |
+| `.sh` | +898 | -614 | 284 |
+| `.kris` | +969 | -421 | 548 |
+| `.na"` | +949 | -412 | 537 |
+| `.phieu` | +962 | -329 | 633 |
+| `.lock` | +801 | -0 | 801 |
+| `.json` | +370 | -370 | 0 |
+| `.phieu"` | +322 | -322 | 0 |
+| `.html"` | +525 | -78 | 447 |
+| `.1777029396` | +431 | -0 | 431 |
+| `.timestamp` | +202 | -202 | 0 |
+| `.ml` | +331 | -0 | 331 |
+| `.cjs` | +282 | -28 | 254 |
+| `.tsx` | +124 | -124 | 0 |
+| `.tsx"` | +117 | -117 | 0 |
+| `.txt` | +107 | -107 | 0 |
+
+---
+
+## 5. runtime / dns / gateway milestones
+
+- `d4c957a test(runtime): add siraSign frame guard matrix runner`
+- `646de5b feat(runtime): add siraSign frame guard after route gate`
+- `9cf3e43 test(runtime): add sira gateway hardening matrix runner`
+- `54c3fa7 fix(runtime): harden sira gateway host and path handling`
+- `6b59a0a fix(runtime): support streaming routes in sira dns smoke runner`
+- `fb09f02 test(runtime): add sira dns smoke matrix`
+- `b158ab6 feat(runtime): add sira dns record manifest`
+- `f0385e7 feat(runtime): bind sira route gate to gateway`
+- `5be224c test(runtime): add sira dns host spoof scan`
+- `2e04d7a feat(runtime): add sira route gate validator`
+- `14d62bf feat(runtime): add sira dns zone manifest`
+- `c3a83a6 fix(runtime): define routeKey in domain gateway handler`
+- `08781fa feat(runtime): support public host labels for iMac gateway`
+- `ec3c430 fix(runtime): allow NATT domain gateway LAN/VPN bind`
+- `0609502 fix(runtime): run NATT domain gateway as CommonJS`
+- `3702dd8 feat(runtime): add local NATT domain gateway`
+
+đã có bằng chứng hành vi thật:
+
+- dns smoke runner: response evidence.
+- gateway hardening matrix: reason-level evidence.
+- siraSign frame guard matrix: frame shape evidence sau route gate.
+
+---
+
+## 6. render-stack milestones
+
+- `57cae1a feat(render): upgrade remaining 9 pilot htmls with engine integration`
+- `c40e676 feat(render): upgrade pilot htmls for neo, tha, biên, chốt, về with engine integration`
+- `253fcf5 test(render): harden render-stack-cell validator paths`
+- `34f5f42 test(render): harden render-stack-cell validator paths`
+- `6e1c12e feat(render): implement render-stack engine v0.2 with signal rendering`
+- `1c40346 feat(render): add render-stack-cell identity contract and validator`
+- `60f2e1b feat(render): upgrade runtime to k7 dev server with grammar import and live state cards`
+- `883840f test(render): validate all 15 pilot html files`
+- `208ee70 test(render): validate html pilot bundle`
+- `d99f9f1 feat(render): complete all 15 pilot html files`
+- `296a68d feat(render): add pilot html for neo, tha, biên, chốt, về`
+- `aa1c954 fix(render): restore nha pilot html contract`
+- `729fa7e test(render): validate all-state runtime pilot`
+- `826eadf feat(render): deploy first runtime pilot with all 15 states`
+- `4169d6c feat(render): add render-stack engine stub and types`
+- `20ddec3 feat(render): deploy gắn, bọc, gánh, nhường, khiêm, định, tỉnh, xét, giữ to render language pilot`
+- `79d5bf1 test(render): extend render pilot validator`
+- `22170fc feat(render): scaffold render-stack-cell with identity, contract, and validator`
+
+render hiện giữ đúng biên:
+
+- 15/15 pilot htmls đã engine-integrated.
+- runtime pilot 15 states pass.
+- render-stack-cell có identity, contract, engine, types và validator.
+- production renderer chưa claim.
+- mạch heyna và crypto signature verification chưa claim ở render lane.
+
+---
+
+## 7. tools / operator milestones
+
+- `39923bd feat(thienbang): add preflight, audit-validator, heredoc-verify, remind commands`
+- `828e31f feat(memory): expand thienbang memory states to fifteen`
+- `2679848 style(runtime): lower thienbang extension surface`
+- `d3ccc72 feat(runtime): add ThienBang living extension layer`
+- `a29d638 chore(audit): record thienbang scan state`
+- `7436c85 feat(dictionary): expand thienbang.si MEGA EXPANSION ~500+ terms (8 domains)`
+
+tools/thiênbăng hiện đóng vai phụ trợ kiểm lỗi thao tác:
+
+- preflight.
+- audit-validator.
+- heredoc-verify.
+- remind commands.
+
+---
+
+## 8. latest commits counted
+
+- `abf17d1 chore(runtime): refresh sira runtime gate evidence`
+- `57cae1a feat(render): upgrade remaining 9 pilot htmls with engine integration`
+- `d4c957a test(runtime): add siraSign frame guard matrix runner`
+- `fbba199 chore(runtime): refresh sira runtime gate evidence`
+- `c40e676 feat(render): upgrade pilot htmls for neo, tha, biên, chốt, về with engine integration`
+- `253fcf5 test(render): harden render-stack-cell validator paths`
+- `34f5f42 test(render): harden render-stack-cell validator paths`
+- `646de5b feat(runtime): add siraSign frame guard after route gate`
+- `9cf3e43 test(runtime): add sira gateway hardening matrix runner`
+- `6e1c12e feat(render): implement render-stack engine v0.2 with signal rendering`
+- `54c3fa7 fix(runtime): harden sira gateway host and path handling`
+- `1c40346 feat(render): add render-stack-cell identity contract and validator`
+- `39923bd feat(thienbang): add preflight, audit-validator, heredoc-verify, remind commands`
+- `6b59a0a fix(runtime): support streaming routes in sira dns smoke runner`
+- `a78c04d chore(runtime): refresh sira runtime gate evidence`
+- `60f2e1b feat(render): upgrade runtime to k7 dev server with grammar import and live state cards`
+- `fb09f02 test(runtime): add sira dns smoke matrix`
+- `883840f test(render): validate all 15 pilot html files`
+- `208ee70 test(render): validate html pilot bundle`
+- `d99f9f1 feat(render): complete all 15 pilot html files`
+- `296a68d feat(render): add pilot html for neo, tha, biên, chốt, về`
+- `b158ab6 feat(runtime): add sira dns record manifest`
+- `355a1ec docs(runtime): integrate orbit_load + quy tac mot lenh into boot family map`
+- `aa1c954 fix(render): restore nha pilot html contract`
+- `729fa7e test(render): validate all-state runtime pilot`
+- `826eadf feat(render): deploy first runtime pilot with all 15 states`
+- `c8fa7ab chore(runtime): refresh sira runtime gate evidence`
+- `4169d6c feat(render): add render-stack engine stub and types`
+- `f0385e7 feat(runtime): bind sira route gate to gateway`
+- `d4dbd52 test(runtime): add sira direct localhost bypass scan`
+- `20ddec3 feat(render): deploy gắn, bọc, gánh, nhường, khiêm, định, tỉnh, xét, giữ to render language pilot`
+- `5be224c test(runtime): add sira dns host spoof scan`
+- `79d5bf1 test(render): extend render pilot validator`
+- `22170fc feat(render): scaffold render-stack-cell with identity, contract, and validator`
+- `bdcdd39 test(render): extend render pilot validator`
+- `a9d5a3e feat(render): deploy tha, biên, chốt, về to render language pilot`
+- `a7d343e feat(render): add neo state to render language pilot`
+- `1284490 test(render): add validated render pilot`
+- `8bc2fe5 feat(render): add remaining 9 state samples, draft render stack v0.1`
+- `d933f50 docs(runtime): describe current system state for family`
+
+---
+
+## 9. not-claim boundary
+
+báo cáo này không claim các tầng sau:
+
+- chưa claim crypto signature verification hoàn chỉnh.
+- chưa claim production renderer.
+- chưa claim mạch heyna đã wire đầy đủ vào render runtime.
+- chưa claim dns public thật hoặc mail provider thật.
+
+---
+
+## 10. closing line
+
+đây không phải một đợt gõ nhiều dòng. đây là một phiên có validator, evidence, runner hành vi và gate đi kèm.
