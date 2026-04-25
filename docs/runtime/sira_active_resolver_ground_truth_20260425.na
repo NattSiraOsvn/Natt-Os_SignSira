@@ -1,0 +1,318 @@
+# sira active resolver ground truth — 20260425
+
+status: observed-readonly
+created_at: 2026-04-26 01:03:11
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. purpose
+
+tìm ground truth của coredns/resolver đang thật sự trả lời .sira trên imac production edge node.
+
+không sửa máy.
+
+không restart service.
+
+không kết luận thiếu nếu chưa có evidence.
+
+---
+
+## 2. dns readback
+
+```text
+127.0.0.1
+```
+
+---
+
+## 3. coredns process
+
+```text
+root              9560   0.0  0.1 69240168  28896   ??  Ss   Fri11PM   0:36.28 /usr/local/opt/coredns/bin/coredns -conf /usr/local/etc/coredns/Corefile
+```
+
+---
+
+## 4. listener evidence
+
+```text
+no listener evidence
+```
+
+---
+
+## 5. candidate config files
+
+- /usr/local/etc/Corefile: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /usr/local/etc/coredns/Corefile: exists=True has_sira=True has_render=False has_wildcard=False size=880
+- /usr/local/etc/Corefile: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /usr/local/etc/coredns/Corefile: exists=True has_sira=True has_render=False has_wildcard=False size=880
+- /opt/homebrew/etc/Corefile: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /opt/homebrew/etc/coredns/Corefile: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/Corefile: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /usr/local/etc/coredns/zones/sira.zone: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /usr/local/etc/coredns/zones/sira.zone: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /opt/homebrew/etc/coredns/zones/sira.zone: exists=False has_sira=False has_render=False has_wildcard=False size=0
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/sira.zone: exists=False has_sira=False has_render=False has_wildcard=False size=0
+
+---
+
+## 6. dig summary
+
+- apps.sira: code=0 status=NOERROR answer_count=1 short='127.0.0.1'
+- mach.sira: code=0 status=NOERROR answer_count=1 short='127.0.0.1'
+- core.sira: code=0 status=NOERROR answer_count=1 short='127.0.0.1'
+- audit.sira: code=0 status=NOERROR answer_count=1 short='127.0.0.1'
+- render.sira: code=9 status=unknown answer_count=None short=''
+- tam.sira: code=0 status=NOERROR answer_count=1 short='127.0.0.1'
+- unknown.sira: code=9 status=unknown answer_count=None short=''
+- mail.sira: code=9 status=unknown answer_count=None short=''
+- smtp.sira: code=9 status=unknown answer_count=None short=''
+- imap.sira: code=9 status=unknown answer_count=None short=''
+- example.com: code=0 status=NOERROR answer_count=2 short='172.66.147.243\n104.20.23.154'
+
+---
+
+## 7. raw json
+
+```json
+{
+  "generated_at": "2026-04-26 01:03:11",
+  "repo_root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",
+  "commands": {
+    "brew_prefix": {
+      "cmd": "/usr/local/bin/brew --prefix",
+      "code": 0,
+      "out": "/usr/local",
+      "err": ""
+    },
+    "brew_services_info_coredns": {
+      "cmd": "/usr/local/bin/brew services info coredns",
+      "code": 0,
+      "out": "coredns (homebrew.mxcl.coredns)\nRunning: false\nLoaded: false\nSchedulable: false",
+      "err": ""
+    },
+    "ps_coredns": {
+      "cmd": "sh -lc ps aux | grep '[c]oredns' || true",
+      "code": 0,
+      "out": "root              9560   0.0  0.1 69240168  28896   ??  Ss   Fri11PM   0:36.28 /usr/local/opt/coredns/bin/coredns -conf /usr/local/etc/coredns/Corefile",
+      "err": ""
+    },
+    "launch_agents": {
+      "cmd": "sh -lc ls -la ~/Library/LaunchAgents 2>/dev/null | grep coredns || true",
+      "code": 0,
+      "out": "",
+      "err": ""
+    },
+    "launch_daemons": {
+      "cmd": "sh -lc ls -la /Library/LaunchDaemons 2>/dev/null | grep coredns || true",
+      "code": 0,
+      "out": "-rw-r--r--   1 root  admin   895 Apr 24 23:06 homebrew.mxcl.coredns.plist",
+      "err": ""
+    },
+    "plist_user": {
+      "cmd": "sh -lc plutil -p ~/Library/LaunchAgents/homebrew.mxcl.coredns.plist 2>/dev/null || true",
+      "code": 0,
+      "out": "",
+      "err": ""
+    },
+    "plist_system": {
+      "cmd": "sh -lc plutil -p /Library/LaunchDaemons/homebrew.mxcl.coredns.plist 2>/dev/null || true",
+      "code": 0,
+      "out": "{\n  \"KeepAlive\" => true\n  \"Label\" => \"homebrew.mxcl.coredns\"\n  \"LimitLoadToSessionType\" => [\n    0 => \"Aqua\"\n    1 => \"Background\"\n    2 => \"LoginWindow\"\n    3 => \"StandardIO\"\n    4 => \"System\"\n  ]\n  \"ProgramArguments\" => [\n    0 => \"/usr/local/opt/coredns/bin/coredns\"\n    1 => \"-conf\"\n    2 => \"/usr/local/etc/coredns/Corefile\"\n  ]\n  \"RunAtLoad\" => true\n  \"StandardErrorPath\" => \"/usr/local/var/log/coredns.log\"\n  \"StandardOutPath\" => \"/usr/local/var/log/coredns.log\"\n  \"WorkingDirectory\" => \"/usr/local\"\n}",
+      "err": ""
+    },
+    "lsof_53": {
+      "cmd": "sh -lc lsof -nP -iUDP:53 -iTCP:53 2>/dev/null || true",
+      "code": 0,
+      "out": "",
+      "err": ""
+    },
+    "network_dns_wifi": {
+      "cmd": "networksetup -getdnsservers Wi-Fi",
+      "code": 0,
+      "out": "127.0.0.1",
+      "err": ""
+    }
+  },
+  "candidate_files": [
+    {
+      "path": "/usr/local/etc/Corefile",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/usr/local/etc/coredns/Corefile",
+      "exists": true,
+      "has_sira": true,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 880,
+      "preview": ".:53 {\n    hosts {\n        127.0.0.1 apps.sira\n        127.0.0.1 core.sira\n        127.0.0.1 runtime.sira\n        127.0.0.1 nauion.sira\n        127.0.0.1 mach.sira\n        127.0.0.1 heyna.sira\n        127.0.0.1 audit.sira\n        127.0.0.1 tam.sira\n        127.0.0.1 docs.sira\n        127.0.0.1 gate.sira\n        127.0.0.1 sira.sira\n        127.0.0.1 khai.sira\n        127.0.0.1 bridge.sira\n        127.0.0.1 anc.sira\n        127.0.0.1 core.natt\n        127.0.0.1 runtime.natt\n        127.0.0.1 nauion.natt\n        127.0.0.1 mach.natt\n        127.0.0.1 heyna.natt\n        127.0.0.1 audit.natt\n        127.0.0.1 tam.natt\n        127.0.0.1 docs.natt\n        127.0.0.1 gate.natt\n        127.0.0.1 sira.natt\n        127.0.0.1 khai.natt\n        127.0.0.1 bridge.natt\n        127.0.0.1 anc.natt\n        fallthrough\n    }\n\n    forward . 1.1.1.1 8.8.8.8\n\n    cache 5\n    log\n    errors\n}\n"
+    },
+    {
+      "path": "/usr/local/etc/Corefile",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/usr/local/etc/coredns/Corefile",
+      "exists": true,
+      "has_sira": true,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 880,
+      "preview": ".:53 {\n    hosts {\n        127.0.0.1 apps.sira\n        127.0.0.1 core.sira\n        127.0.0.1 runtime.sira\n        127.0.0.1 nauion.sira\n        127.0.0.1 mach.sira\n        127.0.0.1 heyna.sira\n        127.0.0.1 audit.sira\n        127.0.0.1 tam.sira\n        127.0.0.1 docs.sira\n        127.0.0.1 gate.sira\n        127.0.0.1 sira.sira\n        127.0.0.1 khai.sira\n        127.0.0.1 bridge.sira\n        127.0.0.1 anc.sira\n        127.0.0.1 core.natt\n        127.0.0.1 runtime.natt\n        127.0.0.1 nauion.natt\n        127.0.0.1 mach.natt\n        127.0.0.1 heyna.natt\n        127.0.0.1 audit.natt\n        127.0.0.1 tam.natt\n        127.0.0.1 docs.natt\n        127.0.0.1 gate.natt\n        127.0.0.1 sira.natt\n        127.0.0.1 khai.natt\n        127.0.0.1 bridge.natt\n        127.0.0.1 anc.natt\n        fallthrough\n    }\n\n    forward . 1.1.1.1 8.8.8.8\n\n    cache 5\n    log\n    errors\n}\n"
+    },
+    {
+      "path": "/opt/homebrew/etc/Corefile",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/opt/homebrew/etc/coredns/Corefile",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/Corefile",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/usr/local/etc/coredns/zones/sira.zone",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/usr/local/etc/coredns/zones/sira.zone",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/opt/homebrew/etc/coredns/zones/sira.zone",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/sira.zone",
+      "exists": false,
+      "has_sira": false,
+      "has_render": false,
+      "has_wildcard": false,
+      "size": 0,
+      "preview": ""
+    }
+  ],
+  "dig_summary": {
+    "apps.sira": {
+      "code": 0,
+      "status": "NOERROR",
+      "answer_count": 1,
+      "short": "127.0.0.1"
+    },
+    "mach.sira": {
+      "code": 0,
+      "status": "NOERROR",
+      "answer_count": 1,
+      "short": "127.0.0.1"
+    },
+    "core.sira": {
+      "code": 0,
+      "status": "NOERROR",
+      "answer_count": 1,
+      "short": "127.0.0.1"
+    },
+    "audit.sira": {
+      "code": 0,
+      "status": "NOERROR",
+      "answer_count": 1,
+      "short": "127.0.0.1"
+    },
+    "render.sira": {
+      "code": 9,
+      "status": "unknown",
+      "answer_count": null,
+      "short": ""
+    },
+    "tam.sira": {
+      "code": 0,
+      "status": "NOERROR",
+      "answer_count": 1,
+      "short": "127.0.0.1"
+    },
+    "unknown.sira": {
+      "code": 9,
+      "status": "unknown",
+      "answer_count": null,
+      "short": ""
+    },
+    "mail.sira": {
+      "code": 9,
+      "status": "unknown",
+      "answer_count": null,
+      "short": ""
+    },
+    "smtp.sira": {
+      "code": 9,
+      "status": "unknown",
+      "answer_count": null,
+      "short": ""
+    },
+    "imap.sira": {
+      "code": 9,
+      "status": "unknown",
+      "answer_count": null,
+      "short": ""
+    },
+    "example.com": {
+      "code": 0,
+      "status": "NOERROR",
+      "answer_count": 2,
+      "short": "172.66.147.243\n104.20.23.154"
+    }
+  }
+}
+```
+
+---
+
+## 8. preliminary reading
+
+- nếu allowed host resolve nhưng candidate config không có file tương ứng, active resolver config path chưa được ground.
+- nếu render.sira không resolve, zone hiện hành chưa đủ allowed records.
+- nếu example.com resolve qua 127.0.0.1, local recursion đang bật hoặc đang forward.
+- nếu unknown host timeout, cần phân biệt deny chủ động với resolver timeout.

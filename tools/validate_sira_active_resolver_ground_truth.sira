@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sira_active_resolver_ground_truth_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing active resolver ground truth evidence");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  [
+    "sira active resolver ground truth",
+    "status: observed-readonly",
+    "không sửa máy",
+    "không restart service",
+    "candidate config files",
+    "dig summary",
+    host("apps"),
+    host("mach"),
+    host("core"),
+    host("audit"),
+    host("render"),
+    host("tam"),
+    host("unknown"),
+    "example.com",
+    "active resolver config path chưa được ground",
+    "zone hiện hành chưa đủ allowed records",
+  ].forEach(clause => must(c.includes(clause), "missing active resolver clause: " + clause));
+
+  [
+    "status: applied",
+    "production-ready",
+    "wildcard -> allow",
+    "allow wildcard",
+    "bypass gateway",
+  ].forEach(mark => must(!c.includes(mark), "forbidden active resolver wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("sira active resolver ground truth validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira active resolver ground truth validation: pass");
+console.log("file=docs/runtime/sira_active_resolver_ground_truth_20260425.na");
