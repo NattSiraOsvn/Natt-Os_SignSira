@@ -1,0 +1,102 @@
+# sira dns strict allowlist rebind evidence — 20260426
+
+status: strict-allowlist-rebound
+created_at: 2026-04-26 02:34:08
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. ground truth
+
+active coredns daemon reads /usr/local/etc/coredns/Corefile.
+
+strict allow-list includes anc identity host required by runtime gate.
+
+khai ip remains dns-only.
+
+deny check uses short dns answer only, not server metadata.
+
+---
+
+## 2. active corefile
+
+```text
+sira:53 {
+    hosts {
+        192.168.1.238 anc.sira
+        192.168.1.238 apps.sira
+        192.168.1.238 mach.sira
+        192.168.1.238 core.sira
+        192.168.1.238 audit.sira
+        192.168.1.238 render.sira
+        192.168.1.238 tam.sira
+    }
+    log
+    errors
+}
+
+.:53 {
+    forward . 1.1.1.1 8.8.8.8
+    cache 30
+    log
+    errors
+}
+
+```
+
+---
+
+## 3. dns-only dig smoke
+
+- @127.0.0.1 anc.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 apps.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 mach.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 core.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 audit.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 render.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 tam.sira: allow code=0 value='192.168.1.238' status=pass
+- @127.0.0.1 unknown.sira: deny code=0 value='no_short_answer' status=pass
+- @127.0.0.1 mail.sira: deny code=0 value='no_short_answer' status=pass
+- @127.0.0.1 smtp.sira: deny code=0 value='no_short_answer' status=pass
+- @127.0.0.1 imap.sira: deny code=0 value='no_short_answer' status=pass
+- @192.168.1.238 anc.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 apps.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 mach.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 core.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 audit.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 render.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 tam.sira: allow code=0 value='192.168.1.238' status=pass
+- @192.168.1.238 unknown.sira: deny code=0 value='no_short_answer' status=pass
+- @192.168.1.238 mail.sira: deny code=0 value='no_short_answer' status=pass
+- @192.168.1.238 smtp.sira: deny code=0 value='no_short_answer' status=pass
+- @192.168.1.238 imap.sira: deny code=0 value='no_short_answer' status=pass
+
+---
+
+## 4. process
+
+```text
+72942   ??  Ss     0:00.05 /usr/local/opt/coredns/bin/coredns -conf /usr/local/etc/coredns/Corefile
+
+```
+
+---
+
+## 5. listener
+
+```text
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+coredns 72942 root    6u  IPv6 0xb3dcdb12150c3572      0t0  TCP *:53 (LISTEN)
+coredns 72942 root    7u  IPv6 0x9b746a4d386a5f82      0t0  UDP *:53
+
+```
+
+---
+
+## 6. ipad dns lookup expectation
+
+server: 192.168.1.238
+
+anc.sira / apps.sira / mach.sira / core.sira / audit.sira / render.sira / tam.sira return 192.168.1.238.
+
+unknown.sira / mail.sira / smtp.sira / imap.sira do not return live ip.
