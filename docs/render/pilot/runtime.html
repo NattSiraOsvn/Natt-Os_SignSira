@@ -1,149 +1,130 @@
+<!--
+  K7 RENDER RUNTIME PILOT — DEV SERVER v0.1
+  marker: render_pilot
+  domain: Π_medium
+  scope: pilot only — non production
+  framework: none — standalone html
+  grammar_source: inline (simulate .na import)
+-->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>natt-os Render Language Runtime — Pilot</title>
+<title>K7 Render Runtime — Dev Server</title>
 <style>
-  :root {
-    --surface-bg: #fdf6f0;
-  }
+  :root { --surface-bg: #fdf6f0; --text: #b08060; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--surface-bg);
     font-family: system-ui, -apple-system, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; padding: 20px;
   }
-  .runtime {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    border: 1px solid #e0d0c0;
-    border-radius: 12px;
-    overflow: hidden;
+  h1 { color: var(--text); font-weight: 400; margin-bottom: 20px; }
+  .dashboard { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 900px; }
+  .card {
+    position: relative; width: 160px; height: 120px;
+    border-radius: 12px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: all 0.3s ease; cursor: default;
   }
-  .element {
-    position: absolute;
-    transition: all 0.3s ease;
-  }
-  .label {
-    font-size: 11px;
-    color: #b08060;
-    letter-spacing: 1px;
-  }
+  .card .state { font-size: 14px; letter-spacing: 1px; margin-bottom: 8px; }
+  .card .info { font-size: 10px; text-align: center; line-height: 1.4; opacity: 0.8; }
+  .readout { margin-top: 30px; font-size: 11px; color: var(--text); text-align: center; }
 </style>
 </head>
 <body>
-<div class="runtime" id="surface">
-  <!-- Elements will be injected by runtime script -->
-</div>
+<h1>K7 · 15 trạng thái</h1>
+<div class="dashboard" id="dashboard"></div>
+<div class="readout" id="readout"></div>
 <script>
-  // RENDER LANGUAGE RUNTIME — PILOT v0.1
-  // Domain: Π_medium
-  // Render 15 states with basic DOM elements
-
-  const surface = document.getElementById('surface');
-
-  const stateConfigs = {
-    nhà:   { color: '#f0c080', size: 120, x: 400, y: 300, shape: 'circle', pressure: 0.0, animate: 'breathe' },
-    neo:   { color: '#d0a0d0', size: 30,  x: 520, y: 300, shape: 'rect',   pressure: 0.0, animate: null },
-    tha:   { color: '#f0d0b0', size: 80,  x: 600, y: 380, shape: 'circle', pressure: 0.3, animate: 'breathe' },
-    biên:  { color: '#c00000', size: 2,   x: 700, y: 100, shape: 'line-v', pressure: 1.0, animate: null },
-    chốt:  { color: '#c0a0d0', size: 20,  x: 680, y: 100, shape: 'rect',   pressure: 0.0, animate: null },
-    về:    { color: '#e0c080', size: 15,  x: 400, y: 300, shape: 'dot',    pressure: 0.5, animate: 'return' },
-    gắn:   { color: '#f0d090', size: 10,  x: 480, y: 340, shape: 'dot',    pressure: 0.2, animate: null },
-    bọc:   { color: '#f0e0d0', size: 90,  x: 600, y: 380, shape: 'ring',   pressure: 0.4, animate: null },
-    gánh:  { color: '#d0c0a0', size: 40,  x: 100, y: 500, shape: 'rect',   pressure: 0.8, animate: 'compress' },
-    nhường:{ color: '#e0e0d0', size: 40,  x: 250, y: 400, shape: 'rect',   pressure: 0.3, animate: 'fade' },
-    khiêm: { color: '#d0c0f0', size: 20,  x: 300, y: 420, shape: 'circle', pressure: 0.1, animate: 'shrink' },
-    định:  { color: '#c0c0c0', size: 15,  x: 150, y: 300, shape: 'dot',    pressure: 0.0, animate: 'freeze' },
-    tỉnh:  { color: '#fff5c0', size: 25,  x: 300, y: 350, shape: 'dot',    pressure: 0.7, animate: 'pulse' },
-    xét:   { color: '#f0b0a0', size: 10,  x: 550, y: 150, shape: 'dot',    pressure: 0.6, animate: 'oscillate' },
-    giữ:   { color: '#d0a0c0', size: 28,  x: 680, y: 100, shape: 'ring',   pressure: 0.9, animate: null }
+  // GRAMMAR IMPORT (simulate .na file loading)
+  const grammar = {
+    nhà:   { polarity:'warm-core', n:0, pressure:0, R:0,   decay:0,      shape:'circle', color:'#f0c080', size:80,  animate:'breathe' },
+    gắn:   { polarity:'warm-core', n:1, pressure:0.2, R:0.3, decay:'γ1',  shape:'dot',    color:'#f0d090', size:12,  animate:'drift' },
+    neo:   { polarity:'cool-rim',  n:1, pressure:0, R:0.85,decay:'γ1',  shape:'rect',   color:'#d0a0d0', size:24,  animate:'appear' },
+    bọc:   { polarity:'warm-core', n:2, pressure:0.4, R:0.5, decay:'γ2',  shape:'ring',   color:'#f0e0d0', size:70,  animate:'gradient' },
+    gánh:  { polarity:'cool-rim',  n:2, pressure:0.8, R:0.9, decay:'γ2*1.2', shape:'rect', color:'#d0c0a0', size:40,  animate:'compress' },
+    nhường:{ polarity:'neutral',   n:2, pressure:0.3, R:0.2, decay:'γ2*0.8',shape:'rect', color:'#e0e0d0', size:40,  animate:'fade' },
+    tha:   { polarity:'warm-core', n:1, pressure:0.3, R:0.2, decay:'γ1*(1-bp)', shape:'circle', color:'#f0d0b0', size:90, animate:'breathe' },
+    khiêm: { polarity:'cool-rim',  n:3, pressure:0.1, R:0.1, decay:'γ3',  shape:'circle',color:'#d0c0f0', size:20,  animate:'shrink' },
+    định:  { polarity:'neutral',   n:3, pressure:0, R:0.6,   decay:'γ3*0.5',shape:'dot',  color:'#c0c0c0', size:10,  animate:'freeze' },
+    tỉnh:  { polarity:'warm-core', n:2, pressure:0.7, R:0.1, decay:'γ2*0.8',shape:'dot',  color:'#fff5c0', size:22,  animate:'pulse' },
+    biên:  { polarity:'cool-rim',  n:0, pressure:1, R:1,     decay:0,      shape:'line',  color:'#c00000', size:2,   animate:'none' },
+    xét:   { polarity:'oscillating',n:3,pressure:0.6, R:0.8, decay:'γ3*1.5',shape:'dot',  color:'#f0b0a0', size:10,  animate:'oscillate' },
+    chốt:  { polarity:'cool-rim',  n:0, pressure:0, R:1,     decay:0,      shape:'rect',  color:'#c0a0d0', size:18,  animate:'seal' },
+    giữ:   { polarity:'cool-rim',  n:2, pressure:0.9, R:0.95,decay:'γ2*0.9',shape:'ring', color:'#d0a0c0', size:30,  animate:'steady' },
+    về:    { polarity:'warm-core', n:'1→0', pressure:0.5, R:'0.5*(1-p)', decay:'γ1*(1-p)', shape:'dot', color:'#e0c080', size:12, animate:'return' }
   };
 
-  function createElement(id, config) {
-    const div = document.createElement('div');
-    div.className = 'element';
-    div.id = id;
-    div.style.left = (config.x - config.size/2) + 'px';
-    div.style.top  = (config.y - config.size/2) + 'px';
-    div.style.width  = config.size + 'px';
-    div.style.height = config.size + 'px';
-    div.style.setProperty('--pressure', config.pressure);
+  const dashboard = document.getElementById('dashboard');
 
-    if (config.shape === 'circle') {
-      div.style.borderRadius = '50%';
-      div.style.background = `radial-gradient(circle at center, ${config.color}, transparent 70%)`;
-    } else if (config.shape === 'rect') {
-      div.style.background = config.color;
-      div.style.opacity = '0.8';
-    } else if (config.shape === 'dot') {
-      div.style.borderRadius = '50%';
-      div.style.background = config.color;
-      div.style.boxShadow = `0 0 8px ${config.color}`;
-    } else if (config.shape === 'ring') {
-      div.style.borderRadius = '50%';
-      div.style.border = `2px solid ${config.color}`;
-      div.style.background = 'transparent';
-    } else if (config.shape === 'line-v') {
-      div.style.width = '2px';
-      div.style.height = '400px';
-      div.style.top = '50px';
-      div.style.background = config.color;
-    }
+  function createCard(id, g) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.background = g.shape === 'circle' ? `radial-gradient(circle at center, ${g.color}, transparent 80%)` :
+                           g.shape === 'ring' ? 'transparent' :
+                           g.shape === 'line' ? g.color : g.color;
+    if (g.shape === 'ring') card.style.border = `2px solid ${g.color}`;
+    if (g.shape === 'line') { card.style.width = '2px'; card.style.height = '100px'; }
+    else { card.style.width = g.size + 'px'; card.style.height = g.size + 'px'; }
+    if (g.shape === 'circle' || g.shape === 'dot' || g.shape === 'ring') card.style.borderRadius = '50%';
+    if (g.animate === 'breathe') card.style.animation = 'breathe 4s ease-in-out infinite';
+    else if (g.animate === 'pulse') card.style.animation = 'pulse 1.5s ease-in-out infinite';
+    else if (g.animate === 'oscillate') card.style.animation = 'oscillate 1s linear infinite alternate';
+    else if (g.animate === 'seal') card.style.animation = 'seal 0.5s ease-out forwards';
+    else if (g.animate === 'drift') card.style.animation = 'drift 3s ease-out infinite alternate';
+    else if (g.animate === 'compress') card.style.animation = 'compress 2s ease-in-out infinite alternate';
+    else if (g.animate === 'shrink') card.style.animation = 'shrink 2s ease-out forwards';
+    else if (g.animate === 'fade') card.style.animation = 'fade 2s ease-out forwards';
+    else if (g.animate === 'return') card.style.animation = 'returnHome 2s ease-in forwards';
 
     const label = document.createElement('div');
-    label.className = 'label';
+    label.className = 'state';
     label.textContent = id;
-    label.style.position = 'absolute';
-    label.style.bottom = '-18px';
-    label.style.left = '50%';
-    label.style.transform = 'translateX(-50%)';
-    div.appendChild(label);
+    label.style.color = g.polarity === 'warm-core' ? '#d09050' : g.polarity === 'cool-rim' ? '#9060a0' : '#a0a090';
+    card.appendChild(label);
 
-    if (config.animate === 'breathe') {
-      div.style.animation = 'breathe 4s ease-in-out infinite';
-    } else if (config.animate === 'pulse') {
-      div.style.animation = 'pulse 1s ease-in-out infinite';
-    } else if (config.animate === 'oscillate') {
-      div.style.animation = 'oscillate 0.5s linear infinite';
-    } else if (config.animate === 'return') {
-      div.style.animation = 'returnHome 2s ease-in forwards';
-    }
+    const info = document.createElement('div');
+    info.className = 'info';
+    info.innerHTML = `n=${g.n} | p=${g.pressure} | R=${g.R}<br>decay=${g.decay}`;
+    card.appendChild(info);
 
-    return div;
+    return card;
   }
 
-  for (const [id, config] of Object.entries(stateConfigs)) {
-    surface.appendChild(createElement(id, config));
+  for (const [id, g] of Object.entries(grammar)) {
+    dashboard.appendChild(createCard(id, g));
   }
 
-  // Inject animations
+  // Inject keyframes
   const styleSheet = document.createElement('style');
   styleSheet.textContent = `
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.9; }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.2); opacity: 1; }
-    }
-    @keyframes oscillate {
-      0% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      100% { transform: translateX(-5px); }
-    }
-    @keyframes returnHome {
-      0% { transform: translate(200px, -100px); opacity: 0.5; }
-      100% { transform: translate(0, 0); opacity: 0; }
-    }
+    @keyframes breathe { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.05);opacity:0.9} }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.8} 50%{transform:scale(1.2);opacity:1} }
+    @keyframes oscillate { 0%{transform:translateX(-5px)} 100%{transform:translateX(5px)} }
+    @keyframes seal { 0%{transform:scale(0);opacity:0} 100%{transform:scale(1);opacity:1} }
+    @keyframes drift { 0%{transform:translate(0,0)} 100%{transform:translate(-10px,-5px)} }
+    @keyframes compress { 0%{transform:scaleY(1)} 100%{transform:scaleY(0.9)} }
+    @keyframes shrink { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(0.5);opacity:0.2} }
+    @keyframes fade { 0%{opacity:0.8} 100%{opacity:0.3;transform:scale(0.9)} }
+    @keyframes returnHome { 0%{transform:translate(80px,-40px);opacity:0.7} 100%{transform:translate(0,0);opacity:0} }
   `;
   document.head.appendChild(styleSheet);
+
+  // Readout
+  const readoutDiv = document.getElementById('readout');
+  const renderPilotReadout = {
+    runtime:'K7 Dev Server v0.1',
+    marker:'render_pilot',
+    domain:'Π_medium',
+    scope:'pilot-only',
+    production:false,
+    framework:'none',
+    states: Object.keys(grammar).length,
+    grammar_source:'inline (simulate .na import)'
+  };
+  readoutDiv.textContent = JSON.stringify(renderPilotReadout, null, 2);
 </script>
 </body>
 </html>
