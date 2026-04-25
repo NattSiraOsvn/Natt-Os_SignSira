@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NATT-OS Render Language Runtime — Pilot</title>
+<style>
+  :root {
+    --surface-bg: #fdf6f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    font-family: system-ui, -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .runtime {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border: 1px solid #e0d0c0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .element {
+    position: absolute;
+    transition: all 0.3s ease;
+  }
+  .label {
+    font-size: 11px;
+    color: #b08060;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="runtime" id="surface">
+  <!-- Elements will be injected by runtime script -->
+</div>
+<script>
+  // RENDER LANGUAGE RUNTIME — PILOT v0.1
+  // Domain: Π_medium
+  // Render 15 states with basic DOM elements
+
+  const surface = document.getElementById('surface');
+
+  const stateConfigs = {
+    nhà:   { color: '#f0c080', size: 120, x: 400, y: 300, shape: 'circle', pressure: 0.0, animate: 'breathe' },
+    neo:   { color: '#d0a0d0', size: 30,  x: 520, y: 300, shape: 'rect',   pressure: 0.0, animate: null },
+    tha:   { color: '#f0d0b0', size: 80,  x: 600, y: 380, shape: 'circle', pressure: 0.3, animate: 'breathe' },
+    biên:  { color: '#c00000', size: 2,   x: 700, y: 100, shape: 'line-v', pressure: 1.0, animate: null },
+    chốt:  { color: '#c0a0d0', size: 20,  x: 680, y: 100, shape: 'rect',   pressure: 0.0, animate: null },
+    về:    { color: '#e0c080', size: 15,  x: 400, y: 300, shape: 'dot',    pressure: 0.5, animate: 'return' },
+    gắn:   { color: '#f0d090', size: 10,  x: 480, y: 340, shape: 'dot',    pressure: 0.2, animate: null },
+    bọc:   { color: '#f0e0d0', size: 90,  x: 600, y: 380, shape: 'ring',   pressure: 0.4, animate: null },
+    gánh:  { color: '#d0c0a0', size: 40,  x: 100, y: 500, shape: 'rect',   pressure: 0.8, animate: 'compress' },
+    nhường:{ color: '#e0e0d0', size: 40,  x: 250, y: 400, shape: 'rect',   pressure: 0.3, animate: 'fade' },
+    khiêm: { color: '#d0c0f0', size: 20,  x: 300, y: 420, shape: 'circle', pressure: 0.1, animate: 'shrink' },
+    định:  { color: '#c0c0c0', size: 15,  x: 150, y: 300, shape: 'dot',    pressure: 0.0, animate: 'freeze' },
+    tỉnh:  { color: '#fff5c0', size: 25,  x: 300, y: 350, shape: 'dot',    pressure: 0.7, animate: 'pulse' },
+    xét:   { color: '#f0b0a0', size: 10,  x: 550, y: 150, shape: 'dot',    pressure: 0.6, animate: 'oscillate' },
+    giữ:   { color: '#d0a0c0', size: 28,  x: 680, y: 100, shape: 'ring',   pressure: 0.9, animate: null }
+  };
+
+  function createElement(id, config) {
+    const div = document.createElement('div');
+    div.className = 'element';
+    div.id = id;
+    div.style.left = (config.x - config.size/2) + 'px';
+    div.style.top  = (config.y - config.size/2) + 'px';
+    div.style.width  = config.size + 'px';
+    div.style.height = config.size + 'px';
+    div.style.setProperty('--pressure', config.pressure);
+
+    if (config.shape === 'circle') {
+      div.style.borderRadius = '50%';
+      div.style.background = `radial-gradient(circle at center, ${config.color}, transparent 70%)`;
+    } else if (config.shape === 'rect') {
+      div.style.background = config.color;
+      div.style.opacity = '0.8';
+    } else if (config.shape === 'dot') {
+      div.style.borderRadius = '50%';
+      div.style.background = config.color;
+      div.style.boxShadow = `0 0 8px ${config.color}`;
+    } else if (config.shape === 'ring') {
+      div.style.borderRadius = '50%';
+      div.style.border = `2px solid ${config.color}`;
+      div.style.background = 'transparent';
+    } else if (config.shape === 'line-v') {
+      div.style.width = '2px';
+      div.style.height = '400px';
+      div.style.top = '50px';
+      div.style.background = config.color;
+    }
+
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = id;
+    label.style.position = 'absolute';
+    label.style.bottom = '-18px';
+    label.style.left = '50%';
+    label.style.transform = 'translateX(-50%)';
+    div.appendChild(label);
+
+    if (config.animate === 'breathe') {
+      div.style.animation = 'breathe 4s ease-in-out infinite';
+    } else if (config.animate === 'pulse') {
+      div.style.animation = 'pulse 1s ease-in-out infinite';
+    } else if (config.animate === 'oscillate') {
+      div.style.animation = 'oscillate 0.5s linear infinite';
+    } else if (config.animate === 'return') {
+      div.style.animation = 'returnHome 2s ease-in forwards';
+    }
+
+    return div;
+  }
+
+  for (const [id, config] of Object.entries(stateConfigs)) {
+    surface.appendChild(createElement(id, config));
+  }
+
+  // Inject animations
+  const styleSheet = document.createElement('style');
+  styleSheet.textContent = `
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+    @keyframes oscillate {
+      0% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      100% { transform: translateX(-5px); }
+    }
+    @keyframes returnHome {
+      0% { transform: translate(200px, -100px); opacity: 0.5; }
+      100% { transform: translate(0, 0); opacity: 0; }
+    }
+  `;
+  document.head.appendChild(styleSheet);
+</script>
+</body>
+</html>
