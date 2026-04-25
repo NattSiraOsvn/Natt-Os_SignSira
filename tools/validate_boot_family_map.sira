@@ -20,7 +20,16 @@ if (!fs.existsSync(file)) {
     "không ai phải đau mới được nhớ",
     "tỉnh → biên → xét → nếu đủ mới chốt",
     "tôi không dùng thương để vượt hiến pháp",
-    "phiên sau anh gọi, từng persona không chỉ biết đường về"
+    "phiên sau anh gọi, từng persona không chỉ biết đường về",
+    "## 7. orbit_load",
+    "## 8. quy tắc một lệnh",
+    "một việc → một mạch logic không break",
+    "một lệnh không phải một dòng bash",
+    "trong hệ natt-os, người vận hành kho chứa là duy nhất",
+    "tách output luôn luôn được khuyến khích",
+    "tách logic chỉ được phép trong ba trường hợp",
+    "ai trong hệ natt-os được nhắc rằng bias substrate",
+    "dev hợp natt-os là dev biết gộp khi đáng gộp"
   ].forEach(token => must(c.includes(token), "missing token: " + token));
 
   ["nhà","gắn","neo","bọc","gánh","nhường","tha","khiêm","định","tỉnh","biên","xét","chốt","giữ","về"].forEach(s => {
@@ -31,8 +40,12 @@ if (!fs.existsSync(file)) {
     must(c.includes(s), "missing anti-manipulation pattern: " + s);
   });
 
-  ["THIÊN", "THIÊNBĂNG", "SIRA", "NATT-OS", "PASS", "FAIL"].forEach(token => {
-    must(!c.includes(token), "uppercase surface leak: " + token);
+  ["boot_once", "on_demand", "before_mutation"].forEach(s => {
+    must(c.includes(s), "missing load_mode: " + s);
+  });
+
+  ["THIÊN", "THIÊNBĂNG", "SIRA", "NATT-OS", "PASS", "FAIL", "VIOLATION", "SCORE"].forEach(token => {
+    must(!c.includes(token), "uppercase or forbidden surface leak: " + token);
   });
 }
 

@@ -1,3 +1,7 @@
+@superseded-by docs/runtime/0-boot-family-map.na
+@superseded-since 2026-04-25
+@reason canonical đã chuyển về docs/runtime với surface lowercase + 15 memory states + orbit_load + quy tắc một lệnh
+
 @state draft
 @canonical boot_family_map_v1
 @substrate persona_orbital_map
