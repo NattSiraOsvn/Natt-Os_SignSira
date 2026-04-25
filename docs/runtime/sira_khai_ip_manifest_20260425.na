@@ -1,0 +1,91 @@
+{
+  "khai_ip": {
+    "version": "v1.0",
+    "date": "2026-04-25",
+    "principle": "khai_bao_dia_chi_song_cua_namespace_sira",
+    "namespace": ".sira",
+    "production_edge_node": "imac",
+    "dns_engine": "coredns",
+    "gateway_required": "yes",
+    "route_gate_required": "yes",
+    "sirasign_frame_guard_required": "yes",
+    "edges": {
+      "local_edge": {
+        "scope": "local",
+        "resolver_ip": "127.0.0.1",
+        "gateway_ip": "127.0.0.1",
+        "status": "observed",
+        "evidence": "docs/runtime/sira_khai_ip_preflight_evidence_20260425.na"
+      },
+      "lan_edge": {
+        "scope": "lan",
+        "resolver_ip": "192.168.1.238",
+        "gateway_ip": "192.168.1.238",
+        "status": "declared_pending_external_smoke",
+        "allowed_clients": [
+          "devices on same lan that explicitly use natt resolver"
+        ],
+        "denied_clients": [
+          "unknown external internet clients",
+          "clients not configured to use natt resolver"
+        ],
+        "required_smoke": [
+          "dig @192.168.1.238 apps.sira A +short",
+          "dig @192.168.1.238 mach.sira A +short",
+          "dig @192.168.1.238 unknown.sira A +time=2 +tries=1",
+          "curl -H 'Host: apps.sira' http://192.168.1.238:<gateway_port>/",
+          "curl -H 'Host: unknown.sira' http://192.168.1.238:<gateway_port>/api/health"
+        ]
+      },
+      "vpn_edge": {
+        "scope": "vpn_or_mesh",
+        "resolver_ip": "not_declared",
+        "gateway_ip": "not_declared",
+        "status": "not_declared"
+      },
+      "public_edge": {
+        "scope": "public",
+        "resolver_ip": "not_declared",
+        "gateway_ip": "not_declared",
+        "status": "not_declared"
+      }
+    },
+    "allowed_logical_hosts": [
+      "apps.sira",
+      "mach.sira",
+      "core.sira",
+      "audit.sira",
+      "render.sira",
+      "tam.sira"
+    ],
+    "denied_logical_hosts": [
+      "unknown.sira",
+      "mail.sira",
+      "smtp.sira",
+      "imap.sira",
+      "localhost",
+      "127.0.0.1 public path"
+    ],
+    "policy": [
+      "dns la ten",
+      "khai ip la dia chi song",
+      "gateway la cong kiem",
+      "route gate la luat vao",
+      "sirasign la dau xac thuc frame",
+      "screen khong phai cell",
+      "client data khong phai core",
+      "no wildcard allow",
+      "no admin route exposure",
+      "no secret route exposure",
+      "no direct audit write exposure",
+      "no render seal exposure"
+    ],
+    "rollback": [
+      "set client dns back to previous resolver",
+      "remove lan resolver from client devices",
+      "restore coredns backup if zone changed",
+      "rerun local_edge smoke",
+      "rerun gateway deny smoke"
+    ]
+  }
+}

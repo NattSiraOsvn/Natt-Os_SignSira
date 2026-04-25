@@ -1,0 +1,35 @@
+# sira khai ip manifest evidence — 20260425
+
+status: manifest-validated
+created_at: 2026-04-26 01:09:01
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. declared edges
+
+- local_edge: 127.0.0.1
+- lan_edge: 192.168.1.238
+- vpn_edge: not_declared
+- public_edge: not_declared
+
+---
+
+## 2. policy
+
+- dns là tên.
+- khai ip là địa chỉ sống.
+- gateway là cổng kiểm.
+- route gate là luật vào.
+- sirasign là dấu xác thực frame.
+
+---
+
+## 3. scope
+
+- khai báo lan edge cho imac production edge node.
+- chưa gọi lan edge là pass cho đến khi có external smoke từ thiết bị khác.
+- chưa khai vpn edge.
+- chưa khai public edge.
+- không mở wildcard.
+- không mở admin/secret/audit write/render seal.
