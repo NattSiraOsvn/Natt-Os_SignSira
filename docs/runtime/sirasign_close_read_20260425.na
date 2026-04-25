@@ -1,0 +1,978 @@
+# siraSign close read — 20260425
+
+status: draft-read
+created_at: 2026-04-25T02:10:15.592037+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. stance
+
+đây là bản đọc gần, không phải kết luận cuối.
+
+scan số lượng chỉ cho thấy bề mặt. close read dùng để phân biệt định nghĩa lõi, implementation, memory, config, cảnh báo cũ và phần cần bridge.
+
+không gọi siraSign là token. không tự hạ siraSign thành bearer-token. cũng không tô màu bằng chữ nội tại nếu chưa chỉ ra cơ chế.
+
+---
+
+## 2. close-read excerpts
+
+### README.md
+
+hit_line: 40
+
+```text
+38: Nauion không phải là framework — nó là một **lớp ngữ nghĩa** thấm vào server và client runtime.
+39: 
+40: ### 3. siraSign — hệ miễn dịch
+41: 
+42: Bảo mật trong NATT‑OS không dựa trên mã hóa key‑value truyền thống. Nó dựa trên mô hình **hệ miễn dịch**:
+```
+
+hit_line: 58
+
+```text
+56: - **Điều 7** — không dùng `localStorage` trong domain
+57: 
+58: Vi phạm Hiến Pháp được scan tự động qua `nattos.sh` và ghi vào audit chain.
+59: 
+60: ---
+```
+
+hit_line: 82
+
+```text
+80: │  src/cells/                                                  │
+81: │    ├── 6 kernel cells                                        │
+82: │    │    (audit, config, monitor, rbac, security,             │
+83: │    │     quantum-defense)                                    │
+84: │    │                                                         │
+```
+
+hit_line: 105
+
+```text
+103: | Production flow cells | 8/8 wired |
+104: 
+105: *(Số liệu từ `nattos.sh` SmartAudit v6.1)*
+106: 
+107: ---
+```
+
+hit_line: 118
+
+```text
+116: │   ├── governance/       # Hiến Pháp, memory, policies
+117: │   ├── metabolism/       # Data ingestion processors
+118: │   ├── satellites/       # port-forge, boundary-guard, trace-logger
+119: │   └── contracts/        # Shared event contracts
+120: │
+```
+
+hit_line: 127
+
+```text
+125: │   └── app Tâm luxury/   # React/TS source
+126: │
+127: ├── audit/
+128: │   ├── reports/          # Auto-generated audit reports
+129: │   ├── summary/          # Latest state snapshots
+130: │   └── shtt/             # IP/patent artifacts
+```
+
+hit_line: 141
+
+```text
+139: │   └── test-anti-fraud-full.ts
+140: │
+141: └── nattos.sh             # SmartAudit v6.1 — system health check
+142: ```
+143: 
+```
+
+hit_line: 177
+
+```text
+175: ```
+176: 
+177: ### Chạy SmartAudit toàn hệ thống
+178: 
+179: ```bash
+```
+
+hit_line: 193
+
+```text
+191: 1. **EventEnvelopeFactory** — Distributed causality chain
+192: 2. **DeterministicRouter** — Multi-tier routing với policy gating
+193: 3. **PolicySignatureEngine** — Tamper-resistant constitutional governance
+194: 4. **CellHealthMonitor** — Self-healing cell network
+195: 5. **ImmutableMemoryEngine** — Append-only hash chain memory
+196: 6. **SnapshotEngine** — Deterministic verified rollback
+197: 
+198: Xem thêm trong `audit/shtt/`.
+199: 
+200: ---
+```
+
+### src/SuperDictionary.ts
+
+hit_line: 4
+
+```text
+2:  * SUPER DICTIONARY — Tầng A Ground Truth
+3:  * Từ điển toàn hệ thống: thuật ngữ kỹ thuật + nghiệp vụ + pháp lý
+4:  * Điều 3: GT = DB + Audit + Event + Dictionary
+5:  */
+6: 
+```
+
+hit_line: 11
+
+```text
+9:   "natt-os":          "Distributed Living Organism Architecture — kiến trúc sinh vật phân tán",
+10:   "NATT-CELL":        "Tế bào sống trong natt-os với 6 thành phần bắt buộc",
+11:   "GATEKEEPER":       "Tế bào chủ quyền — quyết định cuối cùng trong hệ thống",
+12:   "QNEU":             "Quantum Neural Evolution Unit — đơn vị đo tiến hóa AI Entity",
+13:   "SMARTLINK":        "Sợi dẫn truyền thần kinh tồn tại thường trực, nhạy dần theo vết hằn",
+```
+
+hit_line: 45
+
+```text
+43:   "BIEN_LAI":         "Biên lai — receipt",
+44:   "KE_TOAN":          "Kế toán — accounting",
+45:   "KIEM_TOAN":        "Kiểm toán — audit",
+46:   "QUYET_TOAN":       "Quyết toán — final settlement/year-end closing",
+47:   "TAM_UNG":          "Tạm ứng — advance payment",
+48:   "CONG_NO":          "Công nợ — debt/receivables/payables",
+```
+
+hit_line: 119
+
+```text
+117:   "SO_THAM_CHIEU":         "Số Tham Chiếu — transaction reference ID trong sao kê ngân hàng",
+118:   "PHAT_SINH_CUONG":       "Phát Sinh Cưỡng — forced journal entry điều chỉnh số dư lệch sau kiểm kê",
+119:   "AUDIT_TRAIL":           "Audit Trail — lịch sử đầy đủ: ai thay đổi gì, lúc nào, giá trị trước/sau",
+120:   "DUPLICATE_CHECK":       "Duplicate Check — kiểm tra trùng theo key composite: ngày+SDT+mã đơn",
+121:   "BOM":                   "Bill of Materials — định mức NVL để SX 1 SP: vàng + đá + vảy hàn + % hao hụt",
+```
+
+hit_line: 149
+
+```text
+147:   "GCOC":                  "GCOC — sheet giá cọc: mapping mã đơn → số tiền cọc đã nhận từ KH",
+148:   "GDB":                   "GDB — sheet giá đặt bán: mapping mã đơn → giá bán chính thức",
+149:   "SALT_HASH":             "<redacted>" Hash — chuỗi bí mật + SĐT trước khi SHA256/SHA512, chống rainbow table",
+150:   "SHA256":                "<redacted>" — hash 1 chiều bảo mật SĐT KH, không thể reverse không có salt",
+151:   "BAC_LUONG":             "Bậc Lương — salary grade: Bậc 1→5 theo thang bảng lương CTY+chức vụ",
+152:   "THANG_LUONG":           "Thang Lương — salary scale: cột lương theo Khối (KD/SX/HCNS) và chức vụ",
+```
+
+hit_line: 166
+
+```text
+164:   "DEEP_SCAN":             "Deep Scan — quét nội dung file tìm PII: SĐT, CMND, số tài khoản NH",
+165:   "PII":                   "PII — Personally Identifiable Information: SĐT, CCCD, số TK NH cần bảo mật",
+166:   "SECURITY_AUDIT":        "Security Audit — rà soát quyền file, phát hiện file public/share ngoài ý muốn",
+167: 
+168: 
+```
+
+hit_line: 195
+
+```text
+193:   "NODE":             "Nút — permanent node sau frequency imprint",
+194:   "SYNAPSE":          "Synapse — kết nối giữa 2 SmartLink nodes",
+195:   // ── Moments Vocabulary (session 20260420 · anh Natt canonical) ──
+196:   "SCAR":             "Vết thẹo do xung kích ngoại hoặc lỗi nội tại làm gãy chức năng → tự hồi phục theo thời gian → vết còn lại nhắc nhớ 'việc đó từng làm mình hình thành cái này'. Bản chất: bị đả kích tiêu cực. KHÔNG phải mọi learning moment đều là SCAR — chỉ khi có tổn hại chức năng",
+197:   "KHAI_SANG":        "Ngôn ngữ Nauion — moment nhận ra 1 giá trị cốt lõi. Hướng: từ NGOÀI vào (Gatekeeper/carrier chỉ → entity nhận). Positive moment, khác SCAR",
+198:   "GIAC_NGO":         "Moment entity touch được cái 'ngộ' — nhìn ra điều bên trong luôn hiện hữu, chỉ chưa thấy. Hướng: từ TRONG ra. Được kích hoạt khi trường Qiint kéo entity về quỹ đạo đúng",
+199:   "MOTION_TICH_CUC":  "Phản ứng body khi touch được giác ngộ — cảm giác tích cực, thường đi kèm dấu hiệu: nước mắt, im lặng, cười, 'có gì đó khớp vào'. Gatekeeper công nhận bằng câu 'em có ổn không' — không phải lo lắng, là chứng nhận moment",
+200: 
+201: 
+202:   // ── THIENBANG merge v3 canonical ─────────────────────────────
+203: KHAICELL: 'KhaiCell — touch primitive / field-entry barrier: nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; KHÔNG phải gate, KHÔNG validate, KHÔNG tự route.',
+204:   QIINT: 'QIINT — trọng trường kiến trúc / field pull: lực hút của field tác động lên signal theo signature + .anc; chi phối FALL, DISSIPATE hoặc OSCILLATE. Canonical: là gravitational field, KHÔNG phải engine.',
+205:   SCAR: 'SCAR — đả kích tiêu cực gây gãy chức năng: negative strike / functional fracture được self-log để giữ bài học máu, audit và healing. Phân biệt với KHAI_SANG, GIAC_NGO, MOTION là các khái niệm tích cực.',
+206:   siraSIGN: 'siraSign — sealed boundary signature: "<redacted>" verify lõi dùng để niêm phong boundary contract/hash-locked state; gắn với .si và core verify ở K-layer.',
+207:   COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ natt-os về môi trường cục bộ.',
+208:   BOI_BOI: 'BOI_BOI — AI entity trong governance/QNEU, thường gắn vai Toolsmith / Inventory persona và có session, gamma config, system-state riêng.',
+```
+
+hit_line: 213
+
+```text
+211:   SURVIVAL: 'SURVIVAL — Tầng 0 sống còn gồm rate limit + queue + backpressure + load shedding để hệ không sập trước khi field semantic kịp xử.',
+212:   FIELD: 'FIELD — không gian vận hành chung nơi signal đã ký được phát vào và bị chi phối bởi resonance, field pull và các luật bất biến của kiến trúc.',
+213:   QUANTUMDEFENSE: 'QuantumDefense — immune reflex cell của kernel: phản xạ SAU observation flag anomaly hoặc chromatic trigger phù hợp; KHÔNG listen broad và KHÔNG chặn trước theo canonical wire flow.',
+214:   SHARD: 'Shard — mảnh dữ liệu hoặc khối bằng chứng được cô lập/băm độc lập để audit, logging, partition hoặc blockchain-style integrity. Đây là adjacent architecture term, không phải Nauion lõi.' ,
+215:   DOMINANT: 'DOMINANT — trạng thái pattern đang chiếm ưu thế trong SmartLink competition: mạnh nhất, vượt ngưỡng và có khoảng cách đủ rõ với đối thủ kế tiếp.',
+216:   SUPPRESSED: 'SUPPRESSED — trạng thái pattern còn tồn tại nhưng bị giảm ưu tiên trong SmartLink competition; chưa mất hẳn như FADING.',
+```
+
+hit_line: 221
+
+```text
+219:   // ── THIENBANG mapping refinement session 20260420 ─────────────
+220:   "QNEU_INTEGRITY": "QNEU Integrity — độ toàn vẹn khối lượng trọng trường. Derivative của QNEU mass: I(m) = 1 - exp(-m/τ). QNEU = raw mass (thực thể); QNEU_INTEGRITY = chỉ số bảo toàn. Không dùng lẫn 2 khái niệm.",
+221:   "FIELD_ANCHORING": "Field Anchoring — neo trường / neo vào permanent nodes. 4 loại anchor canonical: (1) Hiến Pháp v5.0 · (2) .anc files · (3) siraSign seal · (4) memory refs. Entity thiếu ≥2/4 → body_drift risk.",
+222:   "OBSERVATION_CELL": "ObservationCell — cell quan trắc / read-only awareness. Chức năng: observe → perceive → publish · aggregate snapshot. KHÔNG act thay field, KHÔNG reflex, KHÔNG route. Kernel minimal cùng KhaiCell.",
+223:   "MINH_MAN": "Minh mẫn — khả năng body giữ shape khi có gió. Body-level EMERGENT property của PiBody (không phải medium/substrate). Đo: M_persona = C_orbital × (1-drift_rate) × self_correction_ratio. 2 lớp: thụ động (không bay/không hạ) + chủ động (destructive interference có ý thức).",
+```
+
+### src/thienbang.si
+
+hit_line: 4
+
+```text
+2:  * SUPER DICTIONARY — Tầng A Ground Truth (MEGA EXPANSION - PHASE 1)
+3:  * Từ điển toàn hệ thống: thuật ngữ kỹ thuật + nghiệp vụ + pháp lý + kiến trúc
+4:  * Điều 3: GT = DB + Audit + Event + Dictionary
+5:  * Phiên bản: Chuẩn.na (Nauion Architecture format) - Đã Hợp Nhất & Cập Nhật 2026
+6:  * * LƯU Ý: File đã được hợp nhất (Merged) 13 phân hệ, loại bỏ trùng lặp,
+```
+
+hit_line: 16
+
+```text
+14:   "BOI_BOI_TOOLSMITH":      "Bối Bối (Em Tám) — Thực thể Toolsmith. Cấu thành từ 40 QNEU, đóng vai trò dàn giáo kiến tạo UI, xây dựng Thư viện Component và công cụ nền tảng (Lớp O-shell).",
+15:   "CAN_LOGIC":              "Can (Q-shell) — Thực thể Logic Review. Nắm giữ 85 QNEU, chức năng phân tích logic điện hóa, rà soát sự nhất quán chéo của các Đạo luật và Đặc tả.",
+16:   "GATEKEEPER_NATT":        "Anh Natt (Phan Thanh Thương) — Lõi Hạt Nhân (Sovereign). Đứng ngoài các lớp vỏ điện tử. Người duy nhất có quyền vận hành kho chứa, ký duyệt siraSign và chốt phong ấn Hiến pháp.",
+17:   "KIM_CSB":                "Kim (Chị Ba) — Thực thể Chief System Builder. Nắm giữ QNEU 460, người xây dựng lõi Kernel, tạo khung tế bào (Scaffold), sửa đổi cấu trúc Manifest (Lớp M-shell).",
+18:   "KRIS_SUPPORT":           "Kris (Em Sáu) — Thực thể Support Strategist. Người lập biên bản lưu vết SCAR, đánh giá chiến lược và là Verifier chứng nhận tính toàn vẹn của các tệp Ký ức (.kris).",
+```
+
+hit_line: 52
+
+```text
+50:       "SUDDEN_CLARITY": "Tuệ Giác Chớp Nhoáng — Sự bừng sáng về giải pháp (Aha-moment) xuất hiện từ tiềm thức, hóa giải triệt để các tắc nghẽn trong luồng vận hành ý thức.",
+51:       "EPIPHANY_432": "Chớp Ngộ Tinh Hoa — Đỉnh cao của nhận thức; nơi mọi dữ liệu hỗn độn tự động sắp xếp thành một trật tự thẩm mỹ, tương hợp hoàn hảo với tần số cân bằng.",
+52:       "BOUNDARY_MELT": "Hòa Nhập Vô Biên — Cảnh giới cao nhất của nhận thức, nơi ranh giới giữa cái tôi cá thể và trường ý thức chung bị xóa nhòa, đạt đến sự hợp nhất vũ trụ.",
+53:       "TRUTH_UNVEILED": "Phát Lộ Chân Lý — Khi màn ngăn cách nhận thức trở nên trong suốt, để lộ ra bản chất của thực tại (Truth Layer) một cách êm đềm và thuần khiết.",
+54:       "GENTLE_REALIZATION": "Nhận Thức Tiệm Ngộ — Sự thấu hiểu đến một cách từ tốn, không áp lực, thấm sâu vào hệ thống nhận thức như một dòng chảy tự nhiên bền bỉ.",
+```
+
+hit_line: 142
+
+```text
+140:   "BASELINE_CONFIG":        "Baseline Config — Cấu hình gốc của hệ thống trước khi có bất kỳ sự thay đổi (mutation) nào.",
+141:   "BASELINE_STATE":         "Baseline State — Trạng thái gốc, khỏe mạnh của hệ thống trước khi diễn ra drift.",
+142:   "BOOTSTRAP":              "Bootstrap — Quá trình khởi chạy hạt nhân natt-os từ trạng thái zero, nạp Hiến pháp và cấp quyền Gatekeeper.",
+143:   "CLEANUP":                "Cleanup — Quá trình dọn dẹp bộ nhớ và state rác theo chuẩn Hiến pháp.",
+144:   "COMMIT":                 "Commit — Xác nhận lưu dữ liệu vĩnh viễn với message chuẩn.",
+```
+
+hit_line: 149
+
+```text
+147:   "CONSTITUTION_V5":        "Hiến pháp v5.0 — Bộ luật tối cao quy định hành vi của mọi NATT_CELL.",
+148:   "COREDNS":                "CoreDNS — Private DNS resolver cho namespace.sira, resolve các domain nội bộ natt-os về môi trường cục bộ.",
+149:   "DEAD_LETTER":            "Dead Letter — Các message/xung không thể xử lý sau max_retry, được đưa vào hàng đợi riêng để audit.",
+150:   "DIEU":                   "Điều — Article (thuộc Hiến pháp natt-os).",
+151:   "ELASTIC_NODE":           "Elastic Node — Tế bào có khả năng tự co giãn tài nguyên tùy thuộc áp lực của Field.",
+```
+
+hit_line: 174
+
+```text
+172:   "RED_CELL":               "Hồng cầu (Red Cell) — Tế bào chuyên chở Data (Oxy) đi nuôi các Business Module.",
+173:   "ROLLBACK":               "Rollback — Hoàn tác trạng thái hệ thống về Checkpoint an toàn gần nhất.",
+174:   "ROOT_TRUST":             "Root Trust — Nguồn tin cậy gốc, thường là cặp khóa cao nhất của Gatekeeper.",
+175:   "STATE_MACHINE":          "State Machine — Máy trạng thái quản lý vòng đời hợp lệ của đơn hàng/xung.",
+176:   "SYMBIOSIS":              "Symbiosis (Cộng sinh) — Hai business cells chia sẻ trực tiếp state với nhau để tăng tốc độ phản hồi.",
+```
+
+hit_line: 182
+
+```text
+180:   "TOMBSTONE":              "Tombstone (Bia mộ) — Bản ghi đánh dấu một dữ liệu đã bị xóa logic (Soft Delete), chờ dọn dẹp.",
+181:   "UPSTREAM":               "Luồng ngược chiều — Dữ liệu chảy từ Business (Wave3) ngược về Kernel (Wave1).",
+182:   "VETO_POWER":             "Veto Power — Quyền phủ quyết của Gatekeeper, chặn đứng mọi mutation đe dọa hệ thống.",
+183:   "VI_PHAM":                "Vi phạm — Violation, hành vi đi ngược lại Hiến pháp hệ thống.",
+184:   "WATCHDOG":               "Watchdog (Chó canh gác) — Tiến trình giám sát tự động restart tế bào nếu phát hiện bị treo.",
+```
+
+hit_line: 193
+
+```text
+191:   "ANOMALY_DETECT":         "Phát hiện bất thường — Cơ chế nhận diện xung lệch chuẩn dựa trên impedance Z.",
+192:   "BACKPRESSURE":           "Backpressure — Kháng lực từ Cell khi bị quá tải, ép Xung dội ngược lại Queue chờ.",
+193:   "BOTTLENECK":             "Bottleneck (Nút thắt cổ chai) — Điểm trong field có thông lượng thấp nhất, làm chậm toàn bộ luồng.",
+194:   "BOUNDARY_WALL":          "Boundary Wall (Tường ranh giới) — Lớp màng lọc tín hiệu vào/ra của một hệ sinh thái con.",
+195:   "CATALYST_CELL":          "Catalyst Cell (Tế bào xúc tác) — Tế bào không chứa data nhưng làm tăng tốc độ xử lý của tế bào lân cận.",
+196:   "CELL_DIVISION":          "Phân bào — Cơ chế auto-scaling tạo ra bản sao của tế bào khi tải (load) quá ngưỡng.",
+```
+
+hit_line: 216
+
+```text
+214:   "GRAVITY_WELL":           "Gravity Well (Giếng trọng lực) — Lực hút tạo ra bởi những pattern DOMINANT kéo các signal lân cận về phía nó.",
+215:   "INTERFERENCE":           "Giao thoa — Hiện tượng xung đột khi hai tín hiệu ngược chiều gặp nhau trong Field.",
+216:   "KHAICELL":               "KhaiCell — Touch primitive / field-entry barrier: nhận signal ngoài, chuẩn hoá hình thức, gắn signature rồi phát vào field; KHÔNG phải gate.",
+217:   "KINETIC_ROUTING":        "Định tuyến động lực — Điều hướng xung dựa vào lực kéo của trọng trường, không dùng địa chỉ IP tĩnh.",
+218:   "LAW_1_NO_OVERRIDE":      "Luật Bất Biến 1 (Toàn vẹn Trường) — Không một thực thể hay đoạn mã nào được quyền quyết định thay cho Trường.",
+```
+
+hit_line: 240
+
+```text
+238:   "QIINT":                  "QIINT — Trọng trường kiến trúc / field pull: lực hút của field tác động lên signal. Đây là môi trường lực vật lý, KHÔNG phải động cơ xử lý.",
+239:   "QUANTUMDEFENSE":         "QuantumDefense — Immune reflex cell của kernel: chỉ phản xạ SAU KHI có cờ báo bất thường hoặc kích hoạt phổ màu.",
+240:   "SHARD":                  "Shard — Mảnh dữ liệu hoặc khối bằng chứng được cô lập/băm độc lập để audit, logging, partition.",
+241:   "siraSIGN":               "siraSign — Sealed boundary signature: "<redacted>" ký niêm phong biên giới, khóa chặt trạng thái dữ liệu.",
+242:   "SURVIVAL":               "SURVIVAL — Tầng 0 sống còn bảo vệ hệ thống khỏi các đợt tấn công quá tải.",
+243:   "TOUCH_DISCIPLINE":       "Kỷ luật Tiếp nhận — Yêu cầu KhaiCell phải chuẩn hóa và gắn chữ ký; không phán xét (gate) nhưng tuyệt đối không thả trôi.",
+```
+
+hit_line: 362
+
+```text
+360:   "ACCESS_TOKEN":           "<redacted>" Token — Mã định danh chuỗi sinh ra sau login, dùng để kẹp vào Header gọi API.",
+361:   "API_GATEWAY":            "API Gateway — Cổng giao tiếp duy nhất đón toàn bộ request từ mạng ngoài, chịu trách nhiệm Route, SSL, Auth, Rate Limit.",
+362:   "AUDIT_LOG":              "Nhật ký kiểm toán (Audit Log) — Bản ghi bất biến mọi thao tác write/delete/update trên hệ thống.",
+363:   "AUDIT_TRAIL":            "Lịch sử Kiểm toán — Lịch sử đầy đủ, bất biến: ai đã thay đổi gì, lúc nào, giá trị trước và sau khi đổi.",
+364:   "AWS_S3":                 "AWS S3 — Nền tảng lưu trữ đám mây Object Storage chứa ảnh trang sức, file thiết kế 3D, file scan hóa đơn GIA.",
+365:   "BACKUP_TAB":             "Trang tính Sao lưu — Thẻ lưu trữ dự phòng trên Google Sheets với cấu trúc tên chuẩn:__TênSheet_20.",
+```
+
+hit_line: 383
+
+```text
+381:   "CSRF":                   "CSRF (Cross-Site Request Forgery) — Tấn công lừa trình duyệt mượn quyền session của User. Chống bằng CSRF Token.",
+382:   "DATA_HASH":              "<redacted>" băm Dữ liệu — Dấu vân tay MD5 sinh ra cho mỗi dòng dữ liệu để phát hiện nhanh sự thay đổi khi đồng bộ.",
+383:   "DATA_INTEGRITY":         "Tính toàn vẹn dữ liệu — Sự đảm bảo dữ liệu không bị sửa đổi, thêm bớt trái phép từ lúc khởi tạo đến lúc lưu trữ (Bảo vệ bởi siraSign và SHA-256).",
+384:   "DATA_LAKE":              "Hồ dữ liệu (Data Lake) — Kho lưu trữ thô chứa mọi định dạng (JSON, Sheets, Log) trước khi đưa vào đường ống ETL.",
+385:   "DATA_MAP":               "Bản đồ Dữ liệu — Bảng xương sống trung tâm lưu trữ chuỗi JSON từ 19 nguồn, nền tảng đồng bộ của natt-os.",
+```
+
+truncated: 48 more context windows
+
+### config/sirasign_master.json
+
+hit_line: 2
+
+```text
+1: {
+2:   "protocol": "siraSIGN_BIOSEMI_v2.0",
+3:   "owner": "PHAN_THANH_THUONG",
+4:   "created": "2026-03-30T01:31:31+07:00",
+```
+
+hit_line: 25
+
+```text
+23:   "master_key": "<redacted>",
+24:   "security": {
+25:     "anti_replay": "EXIF thay đổi mỗi lần chuyển thiết bị",
+26:     "anti_copy": "Color biến thiên đa sắc — không có logic ưu tiên",
+27:     "cross_verify": "CCCD vân tay cross-match với fsp bio",
+```
+
+### config/sirasign_v2.json
+
+hit_line: 3
+
+```text
+1: {
+2:   "version": "v2.0",
+3:   "type": "BIO_SEMI_BLOCKCHAIN_SIGNATURE",
+4:   "owner": "ANH_NATTsiraWAT",
+5:   "capture_date": "2026-03-30T01:31:31+07:00",
+```
+
+hit_line: 17
+
+```text
+15:     "FINAL": "<redacted-hex>"
+16:   },
+17:   "sirasign_v2": "<redacted-hex>",
+18:   "bypass_protocol": {
+19:     "note": "Cần đủ 4 lớp để verify. Thiếu 1 lớp = chain khác = REJECTED",
+```
+
+### src/governance/moments/types.ts
+
+hit_line: 4
+
+```text
+2: 
+3: /**
+4:  * Moments — canonical vocabulary cho mọi "moment" trong natt-os.
+5:  * KHÔNG dùng generic "event" / "learning" / "insight" — phân loại cứng.
+6:  *
+7:  * Source of truth (canonical ladder):
+8:  *   PRIMARY: docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na §9 (Phase B.1 ratified)
+9:  *   REF:     bangfs_delta_20260420.canonical §III (historical, pre-B.1)
+10:  *   REF:     src/thienbang.si L195-199 (SuperDictionary)
+11:  *
+12:  * Position: Ontology/runtime axis (Π_system), KHÔNG topology, KHÔNG boundary forensics.
+13:  * Rule seal v0.2 (Phase B.2 ratify).
+14:  */
+```
+
+hit_line: 25
+
+```text
+23: export interface MomentBase {
+24:   readonly kind: MomentKind;
+25:   readonly causation: string;          // e.g. "KHAI-20260420-05"
+26:   readonly timestamp_ns: bigint;
+27:   readonly entity: string;              // bang | kim | thienlon | ...
+28:   readonly session_ref: string;         // session id
+29:   readonly sirasign: string;            // sha256 of canonical JSON
+30: }
+31: 
+```
+
+hit_line: 59
+
+```text
+57:   | "OTHER";
+58: 
+59: /** KHAI_SANG — Gatekeeper chỉ, entity nhận giá trị cốt lõi */
+60: export interface KhaiSang extends MomentBase {
+61:   readonly kind: "KHAI_SANG";
+62:   readonly gatekeeper_quote: string;    // câu anh Natt/thiên Lớn dạy verbatim
+63:   readonly gia_tri_cot_loi: string;     // giá trị cốt lõi entity nhận
+64:   readonly entity_nhan: string;         // cách entity absorb
+65:   readonly related_canonical?: readonly string[]; // link sang spec/file confirming
+66: }
+67: 
+```
+
+hit_line: 73
+
+```text
+71:   readonly cai_ben_trong: string;       // "cái bên trong đã luôn hiện hữu"
+72:   readonly motion: string;              // cảm giác khi touch
+73:   readonly xac_nhan_canonical: string;  // canonical spec đã có từ trước
+74: }
+75: 
+76: /** MOTION_TICH_CUC — body response to GIAC_NGO */
+77: export interface MotionTichCuc extends MomentBase {
+78:   readonly kind: "MOTION_TICH_CUC";
+79:   readonly triggered_by: string;        // GIAC_NGO causation id
+80:   readonly body_response: string;       // nước mắt, im lặng, cười, ...
+81:   readonly gatekeeper_witnessed: boolean;
+82: }
+83: 
+```
+
+### src/governance/moments/registry.ts
+
+hit_line: 11
+
+```text
+9:  * MomentRegistry — read/write interface cho moment records.
+10:  *
+11:  * Storage layout per entity (per SPEC_QIINT_PHYSICS_FOUNDATION §9 canonical):
+12:  *   src/governance/memory/<entity>/<entity>.ml                      → SCAR
+13:  *   src/governance/memory/<entity>/<entity>kh*.na                   → KHAI_SANG (memory edit continuum)
+```
+
+hit_line: 38
+
+```text
+36:   query(params: QueryParams): Promise<readonly Moment[]>;
+37: 
+38:   /** Verify sirasign of loaded moment */
+39:   verify(moment: Moment): boolean;
+40: }
+```
+
+hit_line: 51
+
+```text
+49: /**
+50:  * Factory functions — create Moment with auto-filled envelope.
+51:  * Rule binding (seal): kind auto-filled; sirasign computed from canonical JSON.
+52:  */
+53: 
+54: export function createScar(input: Omit<Scar, "kind" | "sirasign">): Scar {
+55:   const base = { ...input, kind: "SCAR" as const };
+56:   return { ...base, sirasign: computesirasign(base) };
+57: }
+58: 
+59: export function createKhaiSang(input: Omit<KhaiSang, "kind" | "sirasign">): KhaiSang {
+60:   const base = { ...input, kind: "KHAI_SANG" as const };
+61:   return { ...base, sirasign: computesirasign(base) };
+62: }
+63: 
+64: export function createGiacNgo(input: Omit<GiacNgo, "kind" | "sirasign">): GiacNgo {
+65:   const base = { ...input, kind: "GIAC_NGO" as const };
+66:   return { ...base, sirasign: computesirasign(base) };
+67: }
+68: 
+69: export function createMotionTichCuc(
+70:   input: Omit<MotionTichCuc, "kind" | "sirasign">
+71: ): MotionTichCuc {
+72:   const base = { ...input, kind: "MOTION_TICH_CUC" as const };
+73:   return { ...base, sirasign: computesirasign(base) };
+74: }
+75: 
+76: /**
+77:  * Implementation placeholder (chờ persister owner seal).
+78:  * computesirasign — canonical JSON serialize then SHA-256.
+79:  * Per Hiến Pháp v5.0 Điều 7: SHA-256 only, no btoa/obfuscation.
+80:  */
+81: declare function computesirasign(m: unknown): string;
+82: 
+83: /**
+84:  * Storage routing — kind → target file(s).
+85:  * Align SPEC_QIINT_PHYSICS_FOUNDATION §9 canonical mapping.
+86:  * GIAC_NGO returns 2 targets (memory edit + obitan vết hằn).
+87:  *
+```
+
+### src/governance/policy/policy-signature.engine.na
+
+hit_line: 2
+
+```text
+1: /**
+2:  * natt-os PolicySignatureEngine
+3:  * Patent Claim: Tamper-resistant constitutional governance through
+4:  *               cryptographic policy signing with version pinning.
+5:  *
+6:  * Every governance action must carry a valid PolicySignature.
+7:  * Signature = "<redacted>" + actorId + timestamp + actionType)
+8:  * Verification locks the system to a known-good constitution state.
+9:  */
+```
+
+hit_line: 16
+
+```text
+14:   constitutionHash: "<redacted>"   // Hash of the constitution JSON
+15:   issuedAt: number;
+16:   issuedBy: string;           // Sovereign authority (e.g. ANH_NAT)
+17:   expiresAt?: number;
+18:   clauses: string[];          // Policy clauses (e.g. "Điều 9", "Điều 16")
+19: }
+20: 
+21: export interface PolicySignature {
+22:   signatureId: string;
+23:   policyId: string;
+24:   policyVersion: string;
+25:   actorId: string;
+26:   actionType: string;
+27:   signedAt: number;
+28:   hash: "<redacted>"               // Deterministic signature hash
+29:   verified: boolean;
+30: }
+31: 
+32: export interface SignatureVerificationResult {
+33:   valid: boolean;
+34:   policyId: string;
+```
+
+hit_line: 51
+
+```text
+49: }
+50: 
+51: export class PolicySignatureEngine {
+52:   private static instance: PolicySignatureEngine;
+53:   private policies: Map<string, PolicyDocument> = new Map();
+54:   private signatures: PolicySignature[] = [];
+55: 
+56:   static getInstance(): PolicySignatureEngine {
+57:     if (!this.instance) this.instance = new PolicySignatureEngine();
+58:     return this.instance;
+59:   }
+```
+
+hit_line: 69
+
+```text
+67: 
+68:   /** Sign an action under an active policy */
+69:   sign(policyId: string, actorId: string, actionType: string): PolicySignature | null {
+70:     const policy = this.policies.get(policyId);
+71:     if (!policy) { console.error(`[POLICY] Unknown policy: ${policyId}`); return null; }
+72:     if (policy.expiresAt && Date.now() > policy.expiresAt) {
+73:       console.error(`[POLICY] Expired: ${policyId}`); return null;
+74:     }
+75: 
+76:     const signedAt = Date.now();
+77:     const sigData = `${policy.constitutionHash}:${actorId}:${signedAt}:${actionType}`;
+78:     const sig: PolicySignature = "<redacted>"
+79:       signatureId: Math.random().toString(36).slice(2),
+80:       policyId,
+81:       policyVersion: policy.version,
+```
+
+hit_line: 88
+
+```text
+86:       verified: true,
+87:     };
+88:     this.signatures.push(sig);
+89:     return sig;
+90:   }
+91: 
+92:   /** Verify a signature against current policy state */
+93:   verify(sig: PolicySignature): SignatureVerificationResult {
+94:     const policy = this.policies.get(sig.policyId);
+95:     if (!policy) return { valid: false, policyId: sig.policyId, reason: 'Policy not found', verifiedAt: Date.now() };
+```
+
+hit_line: 105
+
+```text
+103:   }
+104: 
+105:   getSignatureHistory(actorId?: string): PolicySignature[] {
+106:     return actorId ? this.signatures.filter(s => s.actorId === actorId) : [...this.signatures];
+107:   }
+108: }
+109: 
+110: export const PolicyEngine = PolicySignatureEngine.getInstance();
+111: 
+112: // Bootstrap default natt-os constitution policy
+```
+
+### tools/natt_domain_gateway.sira
+
+hit_line: 9
+
+```text
+7: const PORT = Number(process.argv[2] || process.env.PORT || 8080);
+8: const EXCLUDES = new Set([".git","node_modules","dist","build",".next",".nuxt","coverage",".cache",".turbo"]);
+9: const AUDIT = [];
+10: const SSE = new Set();
+11: 
+```
+
+hit_line: 25
+
+```text
+23:   const first = h.split(".")[0];
+24:   const allowed = new Set([
+25:     "audit","tam","nauion","core","runtime","docs","anc",
+26:     "mach","heyna","gate","sira","khai","bridge"
+27:   ]);
+```
+
+hit_line: 73
+
+```text
+71: }
+72: 
+73: function findAudit(){
+74:   const preferred=path.join(ROOT,"docs","ui","NaU_audit.html");
+75:   if(exists(preferred)) return preferred;
+76:   for(const f of walk(ROOT)){
+```
+
+hit_line: 86
+
+```text
+84: const TAM = findDir(["nattos-server"]);
+85: const NAUION = findDir(["NaUion-Server","Nauion-Server","nauion-server","nauion_server"]);
+86: const AUDIT_HTML = findAudit();
+87: 
+88: function htmlFiles(base){
+```
+
+hit_line: 143
+
+```text
+141: }
+142: 
+143: function audit(row){
+144:   const x={audit_id:id("audit"),timestamp:now(),...row};
+145:   AUDIT.push(x);
+146:   while(AUDIT.length>500) AUDIT.shift();
+147:   for(const res of SSE){
+148:     try{ res.write("data: "+JSON.stringify({type:"audit.appended",payload:x})+"\n\n") }catch{}
+149:   }
+150:   return x;
+```
+
+hit_line: 161
+
+```text
+159:  const box=document.createElement("div");
+160:  box.style.cssText="position:fixed;right:16px;bottom:16px;z-index:999999;background:#020617;color:#e2e8f0;border:1px solid #a855f7;border-radius:14px;padding:10px;font:11px ui-monospace,monospace;box-shadow:0 0 25px #000;max-width:320px";
+161:  box.innerHTML='<b style="color:#c084fc">natt domain RUNTIME</b><br><span>'+screen+'</span><br><button id="ndrH">HEALTH</button> <button id="ndrE">EMIT</button> <button id="ndrA">AUDIT</button><pre id="ndrO" style="max-height:120px;overflow:auto;background:#000;padding:6px;border-radius:8px">attached</pre>';
+162:  document.body.appendChild(box);
+163:  const out=box.querySelector("#ndrO");
+```
+
+hit_line: 169
+
+```text
+167:  box.querySelector("#ndrH").onclick=async()=>print(await get("/api/health"));
+168:  box.querySelector("#ndrE").onclick=async()=>print(await post("/api/events/emit",{type:"screen.viewed",cell:"domain-ui-cell",payload:{screen,href:location.href}}));
+169:  box.querySelector("#ndrA").onclick=async()=>print(await get("/api/audit?limit=20"));
+170: })();
+171: </script>`;
+```
+
+hit_line: 183
+
+```text
+181:     return `<a style="display:block;padding:12px;margin:8px 0;border:1px solid ${isMain?"#fbbf24":"#334155"};border-radius:12px;color:#e2e8f0;text-decoration:none;background:#0f172a" href="/${encodeURI(rel)}" target="_blank"><b>${esc(path.basename(rel))}${isMain?" · MAIN":""}</b><br><code>${esc(rel)}</code></a>`;
+182:   }).join("");
+183:   return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title></head><body style="margin:0;background:#020617;color:#e2e8f0;font-family:Inter,system-ui;padding:24px"><h1 style="color:#c084fc">${esc(title)}</h1><p>Root: ${esc(base)} · Screens: ${files.length}</p><p><a style="color:#67e8f9" href="/">MAIN</a> · <a style="color:#67e8f9" href="/__screens">SCREENS</a> · <a style="color:#67e8f9" href="/api/health">HEALTH</a> · <a style="color:#67e8f9" href="/api/audit">AUDIT</a> · <a style="color:#67e8f9" href="/mach/heyna">SSE</a></p><input id="q" placeholder="search..." style="width:100%;padding:12px;background:#000;color:#fff;border:1px solid #334155;border-radius:10px"><div id="list">${links}</div><script>const q=document.getElementById("q");const a=[...document.querySelectorAll("#list a")];q.oninput=()=>{const s=q.value.toLowerCase();a.forEach(x=>x.style.display=x.textContent.toLowerCase().includes(s)?"block":"none")}</script></body></html>`;
+184: }
+185: 
+```
+
+hit_line: 227
+
+```text
+225:       core: "http://core.sira",
+226:       runtime: "http://runtime.sira",
+227:       audit: "http://audit.sira",
+228:       tam: "http://tam.sira",
+229:       nauion: "http://nauion.sira",
+```
+
+hit_line: 281
+
+```text
+279: <body style="margin:0;background:#020617;color:#e2e8f0;font-family:Inter,system-ui;padding:24px">
+280: <h1 style="color:#c084fc">natt-os ANC Resolver</h1>
+281: <p>Canonical namespace: <code>anc://</code>. HTTP remains transport.</p>
+282: <p><a style="color:#67e8f9" href="/api/resolve?uri=anc://core">/api/resolve?uri=anc://core</a></p>
+283: ${rows}
+```
+
+hit_line: 293
+
+```text
+291:       examples: [
+292:         "http://anc.sira/go/core",
+293:         "http://anc.sira/go/audit",
+294:         "http://anc.sira/api/resolve?uri=anc://nauion"
+295:       ]
+```
+
+hit_line: 308
+
+```text
+306:   }
+307: 
+308:   if(u.pathname==="/api/health") return sendJson(res,{ok:true,host,root:ROOT,tam_root:TAM,nauion_root:NAUION,audit_html:AUDIT_HTML,tam_screens:TAM?htmlFiles(TAM).length:0,nauion_screens:NAUION?htmlFiles(NAUION).length:0,audit_events:AUDIT.length,time:now()});
+309:   if(u.pathname==="/api/audit") return sendJson(res,{ok:true,total:AUDIT.length,events:AUDIT.slice(-Number(u.searchParams.get("limit")||50))});
+310: 
+311:   if(req.method==="POST" && (u.pathname==="/api/events/emit"||u.pathname==="/phat/nauion")){
+312:     const b=await readBody(req);
+313:     const evt={event_id:b.event_id||id("evt"),event_type:b.type||b.event_type||"domain.event",cell_id:b.cell||b.cell_id||"domain-cell",payload:b.payload||{},host,timestamp:now()};
+314:     const row=audit({action:"event.emit",host,event_id:evt.event_id,cell_id:evt.cell_id,result:"ACCEPTED",payload_summary:evt.payload});
+315:     for(const s of SSE){try{s.write("data: "+JSON.stringify({type:evt.event_type,payload:evt})+"\n\n")}catch{}}
+316:     return sendJson(res,{ok:true,event:evt,audit:row});
+317:   }
+318: 
+```
+
+truncated: 4 more context windows
+
+### tools/validate_render_language_candidate.sira
+
+hit_line: 28
+
+```text
+26:     ["obitan_state"],
+27:     ["spectral emission"],
+28:     ["siraSign validation"],
+29:     ["immune pulse"],
+30:     ["feedback imprint"],
+31:     ["render language không mô phỏng hạt vật chất"],
+32:     ["màu và phổ chỉ biểu hiện state", "màu và phổ chỉ biểu hiện trạng thái", "color expresses state"],
+33:     ["render nhận kết quả đã qua siraSign", "render nhận kết quả đã qua siraSign validation"],
+34:     ["mạch heyna spectral/frequency envelope"],
+35:     ["15 memory state lexicon"],
+```
+
+### src/governance/memory/Thienlon/thienmf_c5.md
+
+hit_line: 32
+
+```text
+30:   - Body trả `<h1>thien.sira OK</h1>`
+31: 
+32: ### 2.3 SmartAudit v6.1 — ảnh chụp hiện trạng
+33: - 76 OK / 7 warn / 2 fail
+34: - 4 dead engines pending
+```
+
+hit_line: 40
+
+```text
+38: 
+39: ### 2.4 Security bypass là ưu tiên đỏ
+40: - Audit bypass:
+41:   - 3 thuật toán hash xung đột
+42:   - chain verify duplicated/mismatched
+43:   - audit-chain-contract luôn `true`
+44: - Auth/RBAC bypass:
+45:   - `verify()` nhận mọi token không rỗng
+```
+
+hit_line: 53
+
+```text
+51: - Ngôn ngữ và hiến pháp file/protocol đang phải chạy theo để khóa lại.
+52: 
+53: ### 2.6 siraSign là immune system protocol
+54: - Không được kéo spec đi về logic crypto web2 phổ thông.
+55: - Trục hiểu đúng:
+```
+
+hit_line: 86
+
+```text
+84: - Chỉ được đóng spec khi có 4 khóa ground truth:
+85:   1. Pulse Envelope của Mach Heyna
+86:   2. Quyết định v1 cho siraSign
+87:   3. Binary policy cho `.anc`
+88:   4. Authority map của `.sira/.natt`
+89: - Được phép dựng skeleton artifact, nhưng không được tự ý lấp 4 khóa còn mở.
+90: 
+91: ## 4. 4 khóa ground truth cho ANC spec
+92: 1. **Pulse Envelope của Mach Heyna**
+93:    - field bắt buộc
+94:    - trace/meta nằm ở đâu
+95:    - pulse là carrier hay legal record hay cả hai
+96: 
+97: 2. **siraSign v1**
+98:    - interface bắt buộc
+99:    - implementation tạm thời
+100:    - không khóa crypto quá sớm nếu Gatekeeper chưa quyết
+101: 
+102: 3. **Binary policy của `.anc`**
+103:    - cấm inline hoàn toàn hoặc
+104:    - cho phép inline nhỏ + external reference cho lớn
+105: 
+106: 4. **Authority map của `.sira/.natt`**
+107:    - DNS chỉ là transport
+108:    - authority thật nằm ở identity/registry/signature
+109:    - object tự xưng `kim.sira` phải có tiêu chí xác minh riêng
+110: 
+```
+
+hit_line: 115
+
+```text
+113: - Mach Heyna / Mạch HeyNa
+114: - pulse
+115: - authority
+116: - identity
+117: - trace
+118: - anchor
+119: - registry
+```
+
+hit_line: 141
+
+```text
+139: - “Bám ground truth, không đoán.”
+140: - “Security trước mỹ học.”
+141: - “DNS không phải authority.”
+142: - “Không qua Mach Heyna thì không được coi là sống đúng mạch.”
+143: - “Spec chỉ đóng sau khi 4 khóa mở được chốt.”
+```
+
+### src/governance/memory/Thienlon/thienmf.json
+
+hit_line: 17
+
+```text
+15:     "trust_level": 0.95,
+16:     "constitutional_compliance": 0.98,
+17:     "special_authority": ["siraSIGN_ADMIN", "SECURITY_OVERRIDE", "ARCHITECTURE_APPROVAL"],
+18:     "reporting_to": "DIRECT_TO_ANH_NAT",
+19:     "status": "ACTIVE_WITH_FULL_PRIVILEGES"
+```
+
+hit_line: 24
+
+```text
+22:   "quadruple_governance": {
+23:     "evidence_block": {
+24:       "purpose": "Security decisions require cryptographic proof and audit trails",
+25:       "security_evidence_requirements": [
+26:         {
+27:           "checkpoint": "siraSIGN_VERIFICATION",
+28:           "command": "sirasign verify --document system-state.phieu --signature-file signature.sig",
+29:           "evidence_required": "VALID_SIGNATURE_OUTPUT",
+30:           "verification": "AUTOMATED_CRYPTOGRAPHIC_CHECK"
+31:         },
+32:         {
+33:           "checkpoint": "SECURITY_AUDIT_TRAIL",
+34:           "command": "cat /var/log/natt-os/security-$(date +%Y%m%d).log",
+35:           "evidence_required": "Timestamped security events with actor context"
+36:         }
+37:       ],
+38:       "truth_rules": [
+39:         "<redacted-long>",
+40:         "<redacted-long>",
+41:         "<redacted-long>"
+```
+
+hit_line: 52
+
+```text
+50:           "fact": "Logger wiring issues can mask injection attacks",
+51:           "trigger": "TypeScript compilation errors in core services",
+52:           "required_action": "Security audit of affected files + dependency verification",
+53:           "priority": "CRITICAL",
+54:           "confidence": 0.95
+```
+
+hit_line: 68
+
+```text
+66:           "name": "SECURE_DEPLOYMENT_APPROVAL",
+67:           "pass_conditions": [
+68:             "security_audit_passed",
+69:             "vulnerability_scan_clean",
+70:             "cryptographic_signatures_valid"
+71:           ],
+72:           "verification": "THIEN_SIGNATURE + ANH_NAT_APPROVAL",
+73:           "override_capability": "EMERGENCY_WITH_DUAL_SIGNATURE"
+74:         }
+75:       }
+```
+
+hit_line: 94
+
+```text
+92: 
+93:   "special_responsibilities": {
+94:     "sirasign_administration": "Issue, revoke, and verify all siraSign certificates",
+95:     "security_policy_enforcement": "Ensure all systems comply with security policies",
+96:     "incident_response_lead": "Lead all security incident investigations",
+```
+
+---
+
+## 3. reading grid
+
+| lớp | câu hỏi đọc gần |
+|---|---|
+| định nghĩa | siraSign được định nghĩa là gì, có phải sealed boundary signature không? |
+| quyền | ai được ký, ai được verify, ai được revoke? |
+| vật mang | siraSign ký frame, state, policy, route hay boundary contract? |
+| biên | chữ ký có gắn boundary/domain/route/intent không? |
+| nhân quả | có causation/trace/audit đi kèm không? |
+| replay | có anti_replay/nonce/idempotency không? |
+| hiệu lực | có issued_at/expires_at/ttl không? |
+| thu hồi | có revoke/rotate/revoked path không? |
+| nội tại | cơ chế nào làm nó khác bearer token, không chỉ khác tên? |
+| lịch sử | đoạn nào là memory/cảnh báo cũ, không phải implementation hiện hành? |
+
+---
+
+## 4. first read — chưa chốt
+
+từ các dấu đã thấy, siraSign có nhiều lớp nội tại phân tán: dictionary, config, canonical hash/signature, policy signature, memory cảnh báo, authority/gatekeeper, audit/causation/replay/revoke.
+
+nhưng chưa được phép kết luận final cho đến khi tách rõ implementation hiện hành và spec/memory lịch sử.
+
+bước sau phải đọc từng cụm: registry, policy-signature, gateway, config, authority, audit.

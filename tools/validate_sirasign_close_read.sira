@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sirasign_close_read_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing close read report");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  [
+    "đây là bản đọc gần, không phải kết luận cuối",
+    "không gọi siraSign là token",
+    "sealed boundary signature",
+    "reading grid",
+    "implementation hiện hành và spec/memory lịch sử",
+    "src/SuperDictionary.ts",
+    "src/thienbang.si",
+    "src/governance/moments/registry.ts",
+    "src/governance/policy/policy-signature.engine.na"
+  ].forEach(x => must(c.includes(x), "missing clause: " + x));
+
+  [
+    "private_key",
+    "api_key",
+    "AIza",
+    "sk-"
+  ].forEach(x => must(!c.includes(x), "possible secret leak: " + x));
+}
+
+if (errors.length) {
+  console.error("siraSign close read validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("siraSign close read validation: pass");
+console.log("file=docs/runtime/sirasign_close_read_20260425.na");
