@@ -247,11 +247,52 @@ http.createServer(async (req,res)=>{
     }
   };
 
-  function normalizeSiraHost(rawHost) {
+  
+function siraStrictHostVerdict(rawHost) {
+  const raw = String(rawHost || "");
+  const host = raw.split(":")[0].trim().toLowerCase();
+
+  if (!host) {
+    return { ok: false, host, reason: "missing_host" };
+  }
+
+  if (host !== raw.split(":")[0].toLowerCase()) {
+    return { ok: false, host, reason: "host_requires_normalization" };
+  }
+
+  if (!/^[a-z0-9.-]+$/.test(host)) {
+    return { ok: false, host, reason: "invalid_host_chars" };
+  }
+
+  if (host.includes("..")) {
+    return { ok: false, host, reason: "invalid_host_sequence" };
+  }
+
+  if (host === "localhost" || host === "127.0.0.1") {
+    return { ok: false, host, reason: "direct_localhost_bypass" };
+  }
+
+  if (!host.endsWith(".sira")) {
+    return { ok: false, host, reason: "non_sira_host" };
+  }
+
+  return { ok: true, host, reason: "host_hardened" };
+}
+
+function normalizeSiraHost(rawHost) {
     return String(rawHost || "").split(":")[0].trim().toLowerCase();
   }
 
-  function siraPathMatch(rule, routePath) {
+  
+function siraNormalizeRoutePath(rawPath) {
+  const routePath = String(rawPath || "/").split("?")[0] || "/";
+  if (!routePath.startsWith("/")) {
+    return "/";
+  }
+  return routePath.replace(/\/{2,}/g, "/");
+}
+
+function siraPathMatch(rule, routePath) {
     if (rule === "/") return routePath === "/" || routePath === "";
     return routePath === rule || routePath.startsWith(rule + "/");
   }
@@ -304,8 +345,32 @@ function siraRouteGate(host, routePath) {
     return { allow: true, status: 200, result: "allow", reason: "route_gate_pass" };
   }
 
-  const host = normalizeSiraHost(req.headers.host || "");
-  const routePath = (req.path || String(req.url || "/").split("?")[0] || "/");
+  const hostVerdict = siraStrictHostVerdict(req.headers.host || "");
+const host = hostVerdict.host;
+
+if (!hostVerdict.ok) {
+  try {
+    if (typeof audit === "function") {
+      audit({
+        action: "sira.route_gate",
+        host,
+        result: "deny",
+        payload_summary: {
+          path: String(req.path || req.url || "/").split("?")[0] || "/",
+          reason: hostVerdict.reason
+        }
+      });
+    }
+  } catch (_) {}
+  return siraWriteJson(res, 403, {
+    ok: false,
+    error: "sira route gate deny",
+    host,
+    path: String(req.path || req.url || "/").split("?")[0] || "/",
+    reason: hostVerdict.reason
+  });
+}
+  const routePath = siraNormalizeRoutePath(req.path || req.url || "/");
   const routeDecision = siraRouteGate(host, routePath);
 
   if (!routeDecision.allow) {
