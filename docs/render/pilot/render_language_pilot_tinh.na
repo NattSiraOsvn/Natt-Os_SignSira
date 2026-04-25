@@ -1,0 +1,45 @@
+# PILOT TỈNH — render language pilot
+# @state: tỉnh
+# @status: draft → chờ validator
+
+obitan_state tỉnh {
+  domain: Π_body
+  polarity: warm-core
+  obitan_layer: n=2
+
+  surface_signal: APPEAR {
+    element_id: "awake-beacon"
+    position: relative_to("root-surface", offset(-100, 50))
+    origin_state: tỉnh
+    pressure: 0.7
+  }
+
+  surface_signal: RECOLOR {
+    element_id: "awake-beacon"
+    from_color: rgba(255,240,200,0.9)
+    to_color: rgba(255,255,220,1.0)
+    origin_state: tỉnh
+    pressure: 0.7
+  }
+
+  surface_signal: PULSE {
+    element_id: "awake-beacon"
+    frequency: 2
+    amplitude: 0.3
+    origin_state: tỉnh
+    pressure: 0.7
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [định, biên]
+    decay_rate: γ(2) * 0.8
+    reflection_R: 0.1
+  }
+
+  expression {
+    wavelength_base: 500
+    intensity: pulse(0.8,1.0, freq=2)
+    duration: while aware
+  }
+}
