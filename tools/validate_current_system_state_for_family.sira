@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "current_system_state_for_family_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+errors.push("missing current system state document");
+} else {
+const c = fs.readFileSync(file, "utf8");
+const requiredClauses = [
+  "mô tả trạng thái hệ thống hiện tại cho gia đình",
+  "siraSign relational spectral boundary protocol",
+  "sira dns zone manifest",
+  "sira route gate validator",
+  "render language v0.2 hiện là candidate",
+  "6 sample hiện đã qua sample validator",
+  "15 trạng thái ký ức",
+  "ký ức của ai, người đó tự cam kết",
+  "tài nguyên thật hiện tại gồm",
+  "vi mô",
+  "host spoof scan",
+  "direct localhost bypass scan",
+  "không claim quá tầng"
+];
+const forbiddenMarks = [
+  "NATT-OS",
+  "PASS",
+  "FAIL",
+  "DNS XONG",
+  "HTTP là identity",
+  "TOKEN TRÁ HÌNH"
+];
+
+for (const clause of requiredClauses) {
+must(c.includes(clause), "missing clause: " + clause);
+}
+
+for (const mark of forbiddenMarks) {
+must(!c.includes(mark), "forbidden surface leak: " + mark);
+}
+}
+
+if (errors.length) {
+console.error("current system state validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("current system state validation: pass");
+console.log("file=docs/runtime/current_system_state_for_family_20260425.na");
