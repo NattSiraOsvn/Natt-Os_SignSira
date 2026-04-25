@@ -1,18 +1,28 @@
 # render language pilot evidence — 20260425
 
-status: pilot-draft-validated
-created_at: 2026-04-25T06:33:37.151650+00:00
+status: pilot-bundle-validated
+created_at: 2026-04-25T06:44:18.541013+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ---
 
-## 1. pilot
+## 1. pilot bundle
 
 - docs/render/pilot/render_language_pilot_nha.html
+- docs/render/pilot/render_language_pilot_neo.na
+- docs/render/pilot/render_language_pilot_tha.na
+- docs/render/pilot/render_language_pilot_bien.na
+- docs/render/pilot/render_language_pilot_chot.na
+- docs/render/pilot/render_language_pilot_ve.na
 
-## 2. source sample
+## 2. source samples
 
 - docs/render/samples/nha.na
+- docs/render/samples/neo.na
+- docs/render/samples/tha.na
+- docs/render/samples/bien.na
+- docs/render/samples/chot.na
+- docs/render/samples/ve.na
 
 ## 3. validator
 
@@ -20,7 +30,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 4. scope
 
-pilot html exists and is validator-confirmed.
+pilot bundle exists and is validator-confirmed.
 this is not production renderer.
 this does not wire Mạch HeyNa.
 this does not wire siraSign frame validation.

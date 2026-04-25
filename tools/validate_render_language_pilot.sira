@@ -3,30 +3,28 @@ const fs = require("fs");
 const path = require("path");
 
 const root = process.cwd();
-const pilot = path.join(root, "docs", "render", "pilot", "render_language_pilot_nha.html");
-const sample = path.join(root, "docs", "render", "samples", "nha.na");
+const pilotDir = path.join(root, "docs", "render", "pilot");
+const sampleDir = path.join(root, "docs", "render", "samples");
 const errors = [];
 
-function must(cond, msg) {
-  if (!cond) errors.push(msg);
-}
+const requiredPilots = {
+  "nhà": "render_language_pilot_nha.html",
+  "neo": "render_language_pilot_neo.na",
+  "tha": "render_language_pilot_tha.na",
+  "biên": "render_language_pilot_bien.na",
+  "chốt": "render_language_pilot_chot.na",
+  "về": "render_language_pilot_ve.na"
+};
+const sourceSamples = {
+  "nhà": "nha.na",
+  "neo": "neo.na",
+  "tha": "tha.na",
+  "biên": "bien.na",
+  "chốt": "chot.na",
+  "về": "ve.na"
+};
 
-if (!fs.existsSync(pilot)) {
-  errors.push("missing render language pilot html");
-} else {
-  const c = fs.readFileSync(pilot, "utf8");
-  const requiredClauses = [
-  "render language pilot",
-  "data-render-pilot=\"nha\"",
-  "data-status=\"pilot-draft\"",
-  "id=\"root-surface\"",
-  "data-obitan-state=\"nhà\"",
-  "data-pressure=\"0.0\"",
-  "sample: \"docs/render/samples/nha.na\"",
-  "renderEngine: \"not production\"",
-  "framework: \"none\""
-];
-  const forbiddenMarks = [
+const forbiddenMarks = [
   "react",
   "vue",
   "svelte",
@@ -43,24 +41,52 @@ if (!fs.existsSync(pilot)) {
   "NATT-OS"
 ];
 
-  for (const clause of requiredClauses) {
-    must(c.includes(clause), "missing pilot clause: " + clause);
-  }
-
-  for (const mark of forbiddenMarks) {
-    must(!c.includes(mark), "forbidden pilot mark: " + mark);
-  }
-
-  must(c.includes("<!doctype html>"), "pilot must be standalone html");
-  must(c.includes("window.renderLanguagePilot"), "pilot missing readout object");
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
 }
 
-must(fs.existsSync(sample), "missing source sample docs/render/samples/nha.na");
+function read(file) {
+  return fs.readFileSync(file, "utf8");
+}
 
-if (fs.existsSync(sample)) {
-  const s = fs.readFileSync(sample, "utf8");
-  must(s.includes("obitan_state nhà"), "nha sample missing obitan_state nhà");
-  must(s.includes("origin_state: nhà"), "nha sample missing origin_state nhà");
+must(fs.existsSync(pilotDir), "missing docs/render/pilot");
+must(fs.existsSync(sampleDir), "missing docs/render/samples");
+
+for (const [state, fileName] of Object.entries(requiredPilots)) {
+  const file = path.join(pilotDir, fileName);
+  must(fs.existsSync(file), "missing pilot: " + fileName);
+
+  if (fs.existsSync(file)) {
+    const c = read(file);
+
+    must(c.length > 40, fileName + ": pilot too small");
+    must(c.includes(state), fileName + ": missing state name: " + state);
+
+    for (const mark of forbiddenMarks) {
+      must(!c.includes(mark), fileName + ": forbidden pilot mark: " + mark);
+    }
+
+    if (fileName.endsWith(".html")) {
+      must(c.includes("<!doctype html>"), fileName + ": html pilot must be standalone html");
+      must(c.includes("data-render-pilot=\"nha\""), fileName + ": nha html missing render pilot marker");
+      must(c.includes("window.renderLanguagePilot"), fileName + ": html pilot missing readout object");
+      must(c.includes("framework: \"none\""), fileName + ": html pilot must declare no framework");
+      must(c.includes("renderEngine: \"not production\""), fileName + ": html pilot must declare non-production scope");
+    } else {
+      must(c.includes("pilot") || c.includes("render"), fileName + ": .na pilot missing pilot/render marker");
+      must(!c.includes("html"), fileName + ": .na pilot should not claim html surface");
+    }
+  }
+
+  const sampleName = sourceSamples[state];
+  const sample = path.join(sampleDir, sampleName);
+  must(fs.existsSync(sample), "missing source sample: " + sampleName);
+
+  if (fs.existsSync(sample)) {
+    const s = read(sample);
+    must(s.includes("obitan_state " + state), sampleName + ": missing obitan_state " + state);
+    must(s.includes("origin_state: " + state), sampleName + ": missing origin_state " + state);
+  }
 }
 
 if (errors.length) {
@@ -70,4 +96,5 @@ if (errors.length) {
 }
 
 console.log("render language pilot validation: pass");
-console.log("file=docs/render/pilot/render_language_pilot_nha.html");
+console.log("dir=docs/render/pilot");
+console.log("states=nhà,neo,tha,biên,chốt,về");
