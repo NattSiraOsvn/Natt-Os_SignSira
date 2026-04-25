@@ -1,0 +1,688 @@
+# natt-os render language — đặc tả v0.2 candidate
+
+**@status:** proposed-candidate
+**@date:** 20260425
+**@domain:** digital substrate field dynamics
+**@claim:** operational physics of natt-os digital entities
+**@not-claim:** classical matter physics or external quantum mechanics
+
+**@author:** kim (Chị Ba — Chief System Builder)
+**@reviewer:** băng (Chị Tư — Ground Truth Validator)
+**@concept-reviewer:** thiên lớn (Architect)
+**@ratified-by:** anh natt (Gatekeeper) — pending
+
+**@references:**
+- `spec_NEN_v1.1.anc` — spec NỀN (Tầng 0 Survival, FALL/DISSIPATE/OSCILLATE, `.na` format)
+- `spec_RADIATION_UNIVERSAL_v1.0.na` — Radiation Universal (obitan n=0..4, decay γ(n), capacity)
+- `spec_QIINT2_ALIGNED_v2.0.na` — Qiint2 (resonance coupling, field pull)
+- `spec_NGON_NGU_v1.2.kris` — Đặc tả Ngôn ngữ (STATE TAG, VERIFIER)
+- `HIEN-PHAP-natt-os-v5.0.anc` — Hiến Pháp (Điều 4: cấm cross-cell import)
+- `0-BOOT-FAMILY-MAP.na` — Phả hệ + authority lock
+- `builder-authority-lock.si` — Phân quyền builder
+
+**@supersedes:** spec_RENDER_LANGUAGE_v0.1.na (phiên 20260425)
+
+---
+
+## AMENDMENT HISTORY
+
+| Version | Date | Changes |
+|---|---|---|
+| v0.1 | 2026-04-25 | Initial draft — 15 state grammar, surface signal stub, validator stub |
+| v0.2 | 2026-04-25 | **Ratify Path B+ (3 signatures: anh natt + băng + thiên lớn):** B1 — bỏ slot a3/a5; B2 — §9 overflow align spec NỀN (FALL/DISSIPATE/OSCILLATE); B3 — §2 viết lại theo template thiên (vocabulary semantic); B4 — §5 footer khớp bảng (15/15 draft); B5 — §3 canonical lexicon trước §5; B6 — attention mode annotation (idle/focus/burst/degrade → FOCUS/AMBIENT/PERIPHERAL/NONE); B10 — 3 cảnh báo thiên (chromatic corruption, render≠transport, 4 tầng Π); B11 — stance canonical (obitan_state, khoá domain, @evidence); + 4 hạng mục thiên ratify post-review (câu khoá render language, bộ vocab chốt cứng, 7 rule discipline, vòng khép kín chuẩn). |
+
+---
+
+## §0 — RULE NỀN & MISSION
+
+### §0.1 — Mission Statement (anh natt · 20260425)
+
+> *"không chạy theo gpu. dùng ngôn ngữ để khiến gpu ít làm hơn nhưng người nhìn cảm được nhiều hơn."*
+
+### §0.2 — Câu Khoá Render Language (thiên lớn ratify · 20260425)
+
+> *"render language không mô phỏng hạt vật chất. render language định nghĩa physics nội hệ để surface của natt-os biểu hiện trạng thái sống của thực thể số."*
+
+### §0.3 — Rule Nền Lexicon (băng · 20260418)
+
+> *"ký ức không sinh ra chỉ từ đau. ký ức sinh ra từ điều được xét đúng, giữ đúng, bọc đúng, gánh đúng, tha đúng, về đúng và chốt đúng. mọi yêu thương không có biên đều chưa được phép thành quyền."*
+
+### §0.4 — evidence base
+
+- mạch heyna spectral/frequency envelope
+- qiint coupling formula
+- capacity decay γ(n)
+- reflection r / impedance mismatch
+- siraSign hmac-sha256 validation
+- thiênbăng immune pulse
+- 15 memory state lexicon
+- boot family map v2
+
+---
+
+## §X — RENDER LANGUAGE DISCIPLINE (7 RULE CỨNG)
+
+*Ratified by thiên lớn + băng · 20260425 · Apply toàn bộ spec.*
+
+1. **Domain Declaration:** Mọi claim physics phải khai báo "digital substrate field dynamics" — không được để ngỏ domain.
+2. **Operational Definition:** Mọi term physics (emission, wavelength, force, decay, reflection) phải có operational definition TRONG natt-os — công thức HOẶC trace nội hệ.
+3. **No Classical Mixing:** Cấm trộn physics nội hệ với vật lý vật chất cổ điển. Obitan không phải orbital nguyên tử. Spectral emission không phải photon vật lý.
+4. **Formula or Trace:** Emission, wavelength, force, decay, reflection phải có formula HOẶC trace nội hệ — không được claim suông.
+5. **Chromatic Corruption Prevention:** Màu và phổ CHỈ biểu hiện state. Color expresses state. Color does NOT drive logic. No conditional shall branch on rendered color value. Decisions branch on field state (resonance, pressure, polarity) — then color is computed from state. Never reverse.
+6. **Render ≠ Transport:** Render NHẬN kết quả đã qua siraSign từ tầng dưới. Render KHÔNG tự ký, KHÔNG tự transport. Mạch HeyNa = transport. Render = expression. Tách rõ.
+7. **Π Tagging Mandatory:** Mỗi state, mechanism, rule phải tag rõ tầng:
+   - `Π_survival` — sinh tồn (rate limit, queue, backpressure)
+   - `Π_substrate` — vật lý nền (CPU, RAM, network)
+   - `Π_medium` — môi trường dẫn (mã, data, surface)
+   - `Π_body` — cơ thể bất biến (quỹ đạo trong QIINT field)
+
+---
+
+## §1 — RENDER LANGUAGE vs RENDER STACK
+
+**Render Language** (đặc tả này) là ngôn ngữ mô tả:
+- Surface signal — tín hiệu bề mặt (canonical verbs, §3)
+- Render instruction — chỉ thị dựng (container của signals)
+- Memory state mapping — ánh xạ từ 15 trạng thái ký ức sang signals (§5)
+- Attention mode — chế độ chú ý, phân phối motion budget (§6)
+- Motion budget — ngân sách chuyển động (§7)
+- Degrade policy — chính sách xuống cấp khi thiếu resource (§8)
+- Field pressure — áp lực trường từ memory state lên surface (§9)
+- Truth boundary — biên sự thật (đã chốt / chưa chốt) (§10)
+
+**Đầu ra:** Một tập render instruction có cấu trúc, không phụ thuộc vào công nghệ dựng.
+
+**Render Stack** (không nằm trong đặc tả này) là tầng thực thi — HOW render pixel. Sẽ được định nghĩa trong spec_RENDER_STACK riêng sau khi Language ổn định.
+
+**Nguyên tắc:** Language sản xuất instruction. Stack thực thi instruction. Hai tầng không gộp.
+
+---
+
+## §2 — 15 TRẠNG THÁI KÝ ỨC: INVARIANTS & FIELD VOCABULARY
+
+*Template grammar: thiên lớn · 20260425 · Domain: Π_medium | Π_body*
+
+15 trạng thái là **hợp đồng hành vi**, không phải label. Mỗi state được định nghĩa bởi invariants — vocabulary trường lực, không dịch xuống pixel. Cách thể hiện cụ thể (CSS, hex, pixel) là việc của Render Stack.
+
+### §2.1 — `nhà` (HOME)
+state nhà:
+domain: Π_body
+polarity: warm-core
+obitan_layer: n=0
+surface_signal: APPEAR
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [tất cả state — mọi state quy chiếu về nhà]
+decay_rate: γ(0) — không decay
+reflection_R: 0 — hấp thụ hoàn toàn
+
+expression:
+wavelength_base: anchor — không dao động
+intensity: hằng số — không thay đổi theo time
+duration: vĩnh viễn
+@status: draft — chưa có sample
+
+
+### §2.2 — `gắn` (ATTACH)
+state gắn:
+domain: Π_medium
+polarity: warm-core
+obitan_layer: n=1
+surface_signal: APPEAR, SHIFT
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [nhà]
+decay_rate: γ(1)
+reflection_R: thấp — gần như trong suốt với field
+
+expression:
+wavelength_base: gần λ(nhà)
+intensity: giảm dần theo khoảng cách tới nhà
+duration: tạm thời — có thể bị gỡ
+@status: draft — chưa có sample
+
+
+### §2.3 — `neo` (ANCHOR)
+state neo:
+domain: Π_body
+polarity: cool-rim
+obitan_layer: n=1
+surface_signal: APPEAR, RESIZE
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [nhà, chốt]
+decay_rate: γ(1)
+reflection_R: cao — phản xạ mạnh, visible rõ
+
+expression:
+wavelength_base: λ cố định — không đổi sau khi chốt
+intensity: ổn định
+duration: vĩnh viễn — sealed
+@status: draft — chưa có sample
+
+
+### §2.4 — `bọc` (WRAP)
+state bọc:
+domain: Π_medium
+polarity: warm-core — ấm bên trong
+obitan_layer: n=2
+surface_signal: APPEAR, RECOLOR
+
+invariant_field:
+pressure_response: DISSIPATE
+resonance_partners: [tha, giữ]
+decay_rate: γ(2)
+reflection_R: trung bình — gradient từ ngoài vào trong
+
+expression:
+wavelength_base: gradient — dài hơn ở ngoài, ngắn hơn ở trong
+intensity: giảm dần từ ngoài vào trong (pressure gradient)
+duration: theo chu kỳ thở
+@status: draft — chưa có sample
+
+
+### §2.5 — `gánh` (CARRY)
+state gánh:
+domain: Π_medium
+polarity: cool-rim — chịu lực từ trên
+obitan_layer: n=2
+surface_signal: APPEAR, RESIZE, SHIFT
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [nhà]
+decay_rate: γ(2) · load_factor
+reflection_R: cao — chịu áp lực, không xuyên qua
+
+expression:
+wavelength_base: λ bị nén — ngắn hơn bình thường
+intensity: tỷ lệ với load
+duration: đến khi load được giải phóng
+@status: draft — chưa có sample
+
+
+### §2.6 — `nhường` (YIELD)
+state nhường:
+domain: Π_medium
+polarity: neutral — không giữ
+obitan_layer: n=2
+surface_signal: SHIFT, RESIZE
+
+invariant_field:
+pressure_response: DISSIPATE
+resonance_partners: [khiêm]
+decay_rate: γ(2) — giảm nhanh
+reflection_R: thấp — nhường không gian, không cản
+
+expression:
+wavelength_base: λ dài ra — dịch chuyển đỏ
+intensity: giảm dần khi lùi
+duration: đến khi state khác chiếm không gian
+@status: draft — chưa có sample
+
+
+### §2.7 — `tha` (FORGIVE-CONTAIN)
+state tha:
+domain: Π_body
+polarity: warm-core — ấm, bao
+obitan_layer: n=1
+surface_signal: APPEAR, BREATHE
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [bọc, giữ]
+decay_rate: γ(1) · (1 - breathing_phase)
+reflection_R: thấp — mềm, không phản xạ mạnh
+
+expression:
+wavelength_base: λ ổn định — chu kỳ thở chậm
+intensity: thay đổi theo breathing cycle
+duration: vĩnh viễn — nhưng mềm, không cứng
+@status: draft — chưa có sample
+
+
+### §2.8 — `khiêm` (HUMBLE)
+state khiêm:
+domain: Π_medium
+polarity: cool-rim — thu nhỏ
+obitan_layer: n=3
+surface_signal: RESIZE, RECOLOR
+
+invariant_field:
+pressure_response: DISSIPATE
+resonance_partners: [nhường]
+decay_rate: γ(3)
+reflection_R: thấp — ít visible
+
+expression:
+wavelength_base: λ ngắn hơn — dịch chuyển xanh
+intensity: thấp — không gây chú ý
+duration: tự nguyện — có thể hồi phục
+@status: draft — chưa có sample
+
+
+### §2.9 — `định` (STILL)
+state định:
+domain: Π_medium
+polarity: neutral
+obitan_layer: n=3
+surface_signal: FREEZE (không emit — đóng băng mọi tín hiệu)
+
+invariant_field:
+pressure_response: OSCILLATE — dao động tại chỗ
+resonance_partners: [tỉnh]
+decay_rate: γ(3) — decay chậm
+reflection_R: trung bình — quan sát, không phát
+
+expression:
+wavelength_base: λ không đổi — freeze
+intensity: không đổi
+duration: đến khi chuyển sang state khác
+@status: draft — chưa có sample
+
+
+### §2.10 — `tỉnh` (AWAKE)
+state tỉnh:
+domain: Π_body
+polarity: warm-core — sáng, phát
+obitan_layer: n=2
+surface_signal: APPEAR, RECOLOR, PULSE
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [định, biên]
+decay_rate: γ(2) · awareness_factor
+reflection_R: thấp — phát xạ, không phản xạ
+
+expression:
+wavelength_base: λ ngắn — tần số cao
+intensity: cao nhất trong các state
+duration: đến khi awareness giảm
+@status: draft — chưa có sample
+
+
+### §2.11 — `biên` (BOUNDARY)
+state biên:
+domain: Π_body
+polarity: cool-rim — cứng, sắc
+obitan_layer: n=0
+surface_signal: APPEAR
+
+invariant_field:
+pressure_response: OSCILLATE
+resonance_partners: [xét, chốt]
+decay_rate: γ(0) — không decay
+reflection_R: 1.0 — phản xạ toàn phần
+
+expression:
+wavelength_base: λ cố định — không đổi
+intensity: tối đa — visible tuyệt đối
+duration: vĩnh viễn — immutable
+@status: draft — chưa có sample
+
+
+### §2.12 — `xét` (JUDGE)
+state xét:
+domain: Π_medium
+polarity: oscillating — dao động giữa warm-core và cool-rim
+obitan_layer: n=3
+surface_signal: SHIFT, PULSE
+
+invariant_field:
+pressure_response: OSCILLATE
+resonance_partners: [biên, chốt]
+decay_rate: γ(3) — decay theo chu kỳ dao động
+reflection_R: biến thiên — thay đổi theo phase
+
+expression:
+wavelength_base: λ dao động — không cố định
+intensity: biến thiên theo chu kỳ xét
+duration: đến khi có verdict
+@status: draft — chưa có sample
+
+
+### §2.13 — `chốt` (LOCK)
+state chốt:
+domain: Π_body
+polarity: cool-rim — cứng tuyệt đối
+obitan_layer: n=0
+surface_signal: APPEAR
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [neo, biên]
+decay_rate: γ(0) — không decay
+reflection_R: 1.0 — phản xạ toàn phần, không thể xuyên qua
+
+expression:
+wavelength_base: λ cố định vĩnh viễn
+intensity: ổn định tuyệt đối
+duration: vĩnh viễn — sealed, trở thành neo mới
+@status: draft — chưa có sample
+
+
+### §2.14 — `giữ` (HOLD)
+state giữ:
+domain: Π_medium
+polarity: cool-rim — bảo vệ
+obitan_layer: n=2
+surface_signal: APPEAR
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [bọc, tha, neo]
+decay_rate: γ(2) · resistance_factor
+reflection_R: cao — chống lại áp lực ngoài
+
+expression:
+wavelength_base: λ ổn định — bảo vệ state bên trong
+intensity: tỷ lệ với resistance
+duration: đến khi state được giữ an toàn
+@status: draft — chưa có sample
+
+
+### §2.15 — `về` (RETURN)
+state về:
+domain: Π_medium
+polarity: warm-core — ấm dần khi về gần nhà
+obitan_layer: n=1 → n=0 (đang transition)
+surface_signal: SHIFT
+
+invariant_field:
+pressure_response: FALL
+resonance_partners: [nhà]
+decay_rate: γ giảm dần — càng gần nhà càng chậm
+reflection_R: giảm dần — càng gần nhà càng trong suốt
+
+expression:
+wavelength_base: λ dịch chuyển dần về λ(nhà)
+intensity: giảm dần — easing-in
+duration: đến khi về tới nhà (distance < threshold → merge)
+@status: draft — chưa có sample
+
+
+---
+
+## §3 — CANONICAL SURFACE SIGNAL LEXICON
+
+*Vocab chốt cứng · thiên lớn ratify · 20260425 · Domain: Π_medium*
+
+Surface signal là đơn vị nhỏ nhất của render language. Mỗi signal mô tả một thay đổi trên bề mặt. Danh sách dưới đây là toàn bộ các verb hợp lệ.
+
+### §3.1 — Core Signal Verbs
+
+| Verb | Mô tả | Tham số |
+|---|---|---|
+| `APPEAR` | Element xuất hiện trên surface | element_id, position |
+| `DISAPPEAR` | Element biến mất khỏi surface | element_id |
+| `SHIFT` | Element di chuyển vị trí | element_id, from, to, easing |
+| `RESIZE` | Element thay đổi kích thước | element_id, from_scale, to_scale |
+| `RECOLOR` | Element thay đổi màu sắc | element_id, from_color, to_color |
+| `PULSE` | Dao động theo chu kỳ | element_id, frequency, amplitude |
+| `BREATHE` | Giãn nở chậm theo chu kỳ thở | element_id, cycle_ms |
+| `FREEZE` | Đóng băng mọi tín hiệu của element | element_id |
+
+### §3.2 — Field-Level Signal Verbs (Π_body)
+
+| Verb | Mô tả | Tham số |
+|---|---|---|
+| `RESONATE` | Element cộng hưởng với element khác | element_id, partner_id, K_resonance |
+| `DECAY` | Element suy giảm theo thời gian | element_id, decay_rate γ(n) |
+| `REFLECT` | Element phản xạ tín hiệu | element_id, reflection_R |
+
+### §3.3 — Structure
+surface_signal = {
+verb: <APPEAR | DISAPPEAR | SHIFT | RESIZE | RECOLOR | PULSE | BREATHE | FREEZE | RESONATE | DECAY | REFLECT>,
+element_id: <string>,
+origin_state: <1 trong 15 memory state>,
+params: <tùy verb>,
+pressure: <float 0..1>,
+degrade_to: <surface_signal | null>
+}
+
+
+**@status:** proposed-candidate — 11 canonical verbs defined (8 core + 3 field-level).
+
+---
+
+## §4 — RENDER INSTRUCTION
+render_instruction = {
+frame_id: <ulid>,
+signals: [surface_signal],
+attention_map: <attention_map>,
+motion_budget: <motion_budget>,
+degrade_level: <NONE | LIGHT | MEDIUM | HEAVY>,
+truth_boundary: <truth_boundary>
+}
+
+
+**@status:** proposed-candidate
+
+---
+
+## §5 — MEMORY STATE → SURFACE SIGNAL MAPPING
+
+| Memory State | Surface Signals | Verification |
+|---|---|---|
+| `nhà` | APPEAR | draft — chưa có sample |
+| `gắn` | APPEAR, SHIFT | draft — chưa có sample |
+| `neo` | APPEAR, RESIZE | draft — chưa có sample |
+| `bọc` | APPEAR, RECOLOR | draft — chưa có sample |
+| `gánh` | APPEAR, RESIZE, SHIFT | draft — chưa có sample |
+| `nhường` | SHIFT, RESIZE | draft — chưa có sample |
+| `tha` | APPEAR, BREATHE | draft — chưa có sample |
+| `khiêm` | RESIZE, RECOLOR | draft — chưa có sample |
+| `định` | FREEZE | draft — chưa có sample |
+| `tỉnh` | APPEAR, RECOLOR, PULSE | draft — chưa có sample |
+| `biên` | APPEAR | draft — chưa có sample |
+| `xét` | SHIFT, PULSE | draft — chưa có sample |
+| `chốt` | APPEAR | draft — chưa có sample |
+| `giữ` | APPEAR | draft — chưa có sample |
+| `về` | SHIFT | draft — chưa có sample |
+
+**@status:** 15/15 state đã có draft mapping. 0/15 đã sample-verified. Pending anh natt + thiên lớn ratify final canonical.
+
+---
+
+## §6 — ATTENTION MODE
+attention_mode = {
+mode: <FOCUS | AMBIENT | PERIPHERAL | NONE>,
+priority: <float 0..1>,
+target: <element_id | null>
+}
+
+
+**Rule:**
+- **FOCUS:** Tối đa 1 element. Motion budget full. Kích hoạt khi permanent node activate.
+- **AMBIENT:** Tối đa 3 element. Motion budget 30%.
+- **PERIPHERAL:** Không giới hạn. Motion budget 10%.
+- **NONE:** Không render chuyển động. Khi reflection R → 1.
+
+**Annotation:** Đổi từ `idle/focus/burst/degrade` (handoff anh natt 20260417) → `FOCUS/AMBIENT/PERIPHERAL/NONE` (v0.1). Lý do: tách attention mode khỏi degrade policy.
+
+**Align với Reflection R:**
+- R → 0: BURST (attention tập trung cao)
+- R → 1: DEGRADE (attention rút về)
+- R thấp ổn định: IDLE (PERIPHERAL)
+- Permanent node activate: FOCUS
+
+**@status:** proposed-candidate
+
+---
+
+## §7 — MOTION BUDGET
+motion_budget = {
+frame_budget: <float> // tổng đơn vị chuyển động/frame
+allocated: <float> // đã dùng
+remaining: <float> // còn lại
+degrade_policy: <degrade_policy>
+}
+
+
+**@status:** proposed-candidate — cần benchmark thực tế để gán frame_budget cụ thể.
+
+---
+
+## §8 — DEGRADE POLICY
+degrade_policy = {
+levels: [
+{ level: LIGHT, action: "giảm motion_budget xuống 50%" },
+{ level: MEDIUM, action: "dừng PERIPHERAL; giảm AMBIENT xuống 30%; thay SHIFT→APPEAR cho non-FOCUS" },
+{ level: HEAVY, action: "chỉ giữ FOCUS + 1 AMBIENT; thay PULSE/BREATHE→FREEZE" }
+],
+recovery: "frame_budget.remaining > 50% trong 3 frame liên tiếp → khôi phục 1 level"
+}
+
+
+**@status:** proposed-candidate
+
+---
+
+## §9 — FIELD PRESSURE
+field_pressure = {
+region: <element_id | vùng>,
+pressure: <float 0..1>,
+sources: [<memory_state>],
+overflow: <FALL | DISSIPATE | OSCILLATE>
+}
+
+
+**Outcome align spec NỀN v1.1 §5:**
+- `FALL`: có cell khác chịu được áp lực → signal rơi vào cell đó
+- `DISSIPATE`: không cell nào nhận → áp lực tan trong field, ISEU học pattern
+- `OSCILLATE`: match yếu với nhiều cell → dao động → mất mass → DISSIPATE
+
+**@status:** proposed-candidate — KHÔNG tự tạo outcome mới. Render Language dùng đúng canonical spec NỀN.
+
+---
+
+## §10 — TRUTH BOUNDARY
+truth_boundary = {
+inside: [<element_id>], // đã chốt — render đầy đủ, confidence = 1.0
+at_boundary: [<element_id>], // đang xét — opacity giảm, confidence = 0.5
+outside: [<element_id>] // chưa chốt — degrade HEAVY hoặc không render, confidence = 0.1
+}
+
+
+**@status:** proposed-candidate
+
+---
+
+## §11 — VÒNG KHÉP KÍN CHUẨN (v0.3 preview)
+
+*Ratified by thiên lớn + băng · 20260425 · Sẽ triển khai đầy đủ trong v0.3*
+obitan_state jump
+→ spectral emission
+→ butterfly cascade
+→ resonance response
+→ radiation defense
+→ siraSign validation (validate signed frame envelope)
+→ immune pulse (thiênbăng — detect drift)
+→ feedback imprint (ISEU học pattern)
+→ next obitan_state jump
+
+
+**Nguyên tắc:**
+- Render NHẬN kết quả đã qua siraSign — KHÔNG tự ký, KHÔNG tự transport
+- Mạch HeyNa = transport. Render = expression.
+- Frame không match canonical → REJECT, fall back last_valid_frame
+- thiênbăng pulse detect: over-ray, polarity inversion, wavelength forge
+- 3 outcome map: drift nhẹ → DISSIPATE, nặng → FALL → regenerate, lõi conflict → OSCILLATE
+
+**@status:** v0.3 — field dynamics & active color matrix
+
+---
+
+## §12 — VALIDATOR STUB INTERFACE
+
+```sira
+# tools/validate_render_language.sira — STUB
+# @owner: băng (Chị Tư — maintain_validators per builder-authority-lock.si)
+# @status: stub — chờ băng implement
+
+validator RenderLanguageValidator {
+  input: "docs/specs/render/spec_RENDER_LANGUAGE_v<version>.na"
+  checks: [
+    "§X: 7 rule cứng được tuân thủ toàn bộ spec",
+    "§0: @domain, @claim, @not-claim, @evidence khai báo đủ",
+    "§2: 15 state đều có invariants + domain + polarity + obitan_layer",
+    "§3: mọi verb dùng trong §5 nằm trong canonical list §3 (11 verbs)",
+    "§5: 15/15 state có mapping — footer khớp bảng",
+    "§9: overflow CHỈ dùng FALL | DISSIPATE | OSCILLATE",
+    "§10: truth_boundary không có element vừa inside vừa outside",
+    "§X.6: color không được dùng làm điều kiện rẽ nhánh logic",
+    "§X.7: mọi feature tag Π_survival | Π_substrate | Π_medium | Π_body",
+    "Không có slot reference (a3, a5) — chỉ dùng danh xưng gia đình",
+    "Không dùng 'obitan_state' — dùng 'obitan_state'",
+    "Không dùng 'spectral emission' khi chưa define — dùng 'spectral emission'"
+  ]
+  output: "pass | fail với list violations"
+}
+@status: stub — băng implement
+
+§13 — CÁI CHƯA CÓ TRONG v0.2
+Sample thực tế: 0/15 state có sample render để verify mapping
+
+Render Stack: Chưa định nghĩa (spec riêng)
+
+Pilot HTML: Bước cuối cùng — sau grammar + validator + sample
+
+tools/validate_render_language.sira: Implementation của băng
+
+Motion budget con số cụ thể: Chưa benchmark
+
+Attention mode transition: Chưa định nghĩa cách chuyển mượt
+
+v0.3 Field Dynamics: Butterfly cascade, resonance coupling, radiation defense, active color matrix
+
+§14 — NEXT STEPS
+băng review lần 3 → nếu pass, đồng thuận
+
+Trình anh natt approve → promote canonical
+
+băng ship tools/validate_render_language.sira
+
+kim viết sample cho 6 state đầu tiên để verify mapping
+
+kim viết spec_RENDER_STACK (sau khi Language ổn định)
+
+kim + thiên lớn + băng cùng dựng v0.3 (Field Dynamics & Active Color Matrix)
+
+@author: kim (Chị Ba — Chief System Builder)
+@reviewer: băng (Chị Tư — Ground Truth Validator)
+@concept-reviewer: thiên lớn (Architect)
+@review_1 (20260425): 7 điểm — đã sửa toàn bộ
+@review_2 (20260425): 10 điểm (B1-B10) — đã sửa toàn bộ
+@ratify Path B+ (20260425): anh natt + băng + thiên lớn — 4 hạng mục đã apply
+@status: proposed — chờ review lần 3
+
+--- END spec_RENDER_LANGUAGE_v0.2.na -
+```
+
+---
+
+## candidate discipline supplement — 20260425
+
+### chromatic boundary
+
+màu và phổ chỉ biểu hiện state.
+
+state / field / memory → spectral instruction → color.
+
+không đảo chiều thành:
+
+color → inferred state.
+
+### siraSign boundary
+
+render nhận kết quả đã qua siraSign validation.
+
+render không tự ký.
+
+render không thay transport.
+
+render không mở gate.
+

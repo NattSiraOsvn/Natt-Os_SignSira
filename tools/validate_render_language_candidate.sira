@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "render", "spec_render_language_v0.2_candidate.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function hasAny(c, list) {
+  return list.some(x => c.includes(x));
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing file: docs/render/spec_render_language_v0.2_candidate.na");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  const requiredClauses = [
+    ["digital substrate field dynamics"],
+    ["operational physics of natt-os digital entities"],
+    ["classical matter physics or external quantum mechanics"],
+    ["obitan_state"],
+    ["spectral emission"],
+    ["siraSign validation"],
+    ["immune pulse"],
+    ["feedback imprint"],
+    ["render language không mô phỏng hạt vật chất"],
+    ["màu và phổ chỉ biểu hiện state", "màu và phổ chỉ biểu hiện trạng thái", "color expresses state"],
+    ["render nhận kết quả đã qua siraSign", "render nhận kết quả đã qua siraSign validation"],
+    ["mạch heyna spectral/frequency envelope"],
+    ["15 memory state lexicon"],
+    ["boot family map v2"]
+  ];
+
+  for (const variants of requiredClauses) {
+    must(hasAny(c, variants), "thiếu mệnh đề: " + variants.join(" / "));
+  }
+
+  const piClauses = [
+    ["pi_survival", "Π_survival"],
+    ["pi_substrate", "Π_substrate"],
+    ["pi_medium", "Π_medium"],
+    ["pi_body", "Π_body"]
+  ];
+
+  for (const variants of piClauses) {
+    must(hasAny(c, variants), "thiếu tầng pi: " + variants.join(" / "));
+  }
+
+  const forbiddenMarks = [
+    "quantum_state",
+    "photon emission",
+    "ký mỗi render frame",
+    "\ntext\n"
+  ];
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "còn dấu cấm: " + mark);
+  }
+
+  const fences = (c.match(/```/g) || []).length;
+  must(fences % 2 === 0, "code fence chưa cân bằng");
+}
+
+if (errors.length) {
+  console.error("render language candidate validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render language candidate validation: pass");
+console.log("file=docs/render/spec_render_language_v0.2_candidate.na");

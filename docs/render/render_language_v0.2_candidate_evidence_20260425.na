@@ -1,0 +1,21 @@
+# render language v0.2 candidate evidence — 20260425
+
+status: pass
+created_at: 2026-04-25T01:31:56.521153+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. promoted source
+
+- source: NaUion-Server/renderK7/SPEC_Render_k7_lg.na
+- target: docs/render/spec_render_language_v0.2_candidate.na
+- status: proposed-candidate, not final canonical seal
+
+## 2. guard
+
+render language candidate preserves path b+ while avoiding wording drift:
+
+- obitan_state, not quantum_state
+- spectral emission, not photon emission
+- render validates signed frame envelope, render does not self-sign
