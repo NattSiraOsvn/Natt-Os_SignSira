@@ -256,7 +256,7 @@ function siraStrictHostVerdict(rawHost) {
     return { ok: false, host, reason: "missing_host" };
   }
 
-  if (host !== raw.split(":")[0].toLowerCase()) {
+  if (host !== raw.split(":")[0]) {
     return { ok: false, host, reason: "host_requires_normalization" };
   }
 
