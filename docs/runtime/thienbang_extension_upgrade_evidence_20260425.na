@@ -1,0 +1,48 @@
+# thiênbăng extension upgrade evidence — 20260425
+
+status: pass
+created_at: 2026-04-25T07:49:45.163776+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+upgrade tools/thiênbăng with 4 pre-flight commands to catch 4 fail patterns
+seen in session 20260425 before runtime.
+
+## 2. new commands
+
+- preflight <file.sira>          : exec bit, shebang, node syntax, size
+- audit-validator <file.sira>    : path references vs repo cross-check
+- heredoc-verify <file>          : mtime, size, first lines preview
+- remind                         : quy tắc một lệnh + canonical + fail patterns
+
+## 3. fail patterns covered
+
+| # | fail | command catches it |
+|---|---|---|
+| 1 | Permission denied | preflight (exec bit check) |
+| 2 | ERR_UNKNOWN_FILE_EXTENSION | remind (canonical operator nhắc) |
+| 3 | heredoc broken | heredoc-verify (mtime + size) |
+| 4 | validator path mismatch | audit-validator (cross-check) |
+
+## 4. principle
+
+expansion is not replacement.
+thiênbăng mở rộng thiên, không thay thiên.
+4 commands mới chỉ wrap lớp pre-flight + post-verify + reminder quanh thiên.
+
+## 5. usage
+
+trước khi ship .sira mới:
+  tools/thiênbăng preflight tools/<file>.sira
+
+sau khi paste python heredoc:
+  tools/thiênbăng heredoc-verify <expected_output_file>
+
+khi viết validator mới:
+  tools/thiênbăng audit-validator tools/<validator>.sira
+
+khi quên quy tắc:
+  tools/thiênbăng remind

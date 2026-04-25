@@ -40,6 +40,12 @@ Living Extension:
   gate          Delegate runtime gate to tools/thiên
   status        Delegate status to tools/thiên
 
+Pre-flight (catch fail before runtime):
+  preflight <file.sira>          Pre-flight check artifact (exec bit, shebang, syntax)
+  audit-validator <file.sira>    Cross-check validator path references vs repo
+  heredoc-verify <file>          Verify heredoc-shipped file (mtime, size, preview)
+  remind                         Print quy tắc một lệnh + canonical operator + fail patterns
+
 Memory states:
   nhớ          Show memory-state catalogue
   nhà          Nơi thuộc về, không bypass ground truth
@@ -394,6 +400,288 @@ cmd_memory_state() {
 }
 
 
+cmd_preflight() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "usage: tools/thiênbăng preflight <file.sira>"
+    exit 1
+  fi
+
+  local fullpath="$ROOT/$target"
+  if [[ ! "$target" = /* ]] && [ ! -e "$target" ]; then
+    fullpath="$ROOT/$target"
+  elif [ -e "$target" ]; then
+    fullpath="$(cd "$(dirname "$target")" && pwd)/$(basename "$target")"
+  fi
+
+  banner
+  say "preflight: $target"
+  say ""
+
+  local fail=0
+
+  say "1. file existence"
+  if [ ! -f "$fullpath" ]; then
+    say "  fail: file not found at $fullpath"
+    say "  hint: heredoc may have been broken; re-paste full block"
+    fail=1
+  else
+    say "  pass: $fullpath"
+  fi
+
+  say ""
+  say "2. extension check"
+  if [[ "$target" != *.sira ]]; then
+    say "  fail: not a .sira file"
+    fail=1
+  else
+    say "  pass: .sira extension"
+  fi
+
+  if [ "$fail" -eq 1 ]; then
+    say ""
+    say "thiênbăng preflight: fail"
+    exit 1
+  fi
+
+  say ""
+  say "3. exec bit"
+  if [ -x "$fullpath" ]; then
+    say "  pass: executable"
+  else
+    say "  warn: missing exec bit"
+    say "  hint: run 'chmod +x $target'"
+  fi
+
+  say ""
+  say "4. shebang"
+  local first_line
+  first_line="$(head -1 "$fullpath")"
+  if [[ "$first_line" == "#!/usr/bin/env node" ]]; then
+    say "  pass: $first_line"
+  elif [[ "$first_line" == "#!/usr/bin/env bash" ]]; then
+    say "  pass: $first_line"
+  else
+    say "  warn: unusual shebang: $first_line"
+    say "  hint: canonical is '#!/usr/bin/env node' for sira artifacts"
+  fi
+
+  say ""
+  say "5. node syntax check"
+  if [[ "$first_line" == *"node"* ]]; then
+    if node --check "$fullpath" 2>/tmp/thienbang_preflight_syntax.txt; then
+      say "  pass: syntax valid"
+    else
+      say "  fail: syntax error"
+      cat /tmp/thienbang_preflight_syntax.txt | head -5 | sed 's/^/    /'
+      fail=1
+    fi
+  else
+    say "  skip: not a node artifact"
+  fi
+
+  say ""
+  say "6. file size"
+  local size
+  size="$(wc -c < "$fullpath" | tr -d ' ')"
+  if [ "$size" -lt 100 ]; then
+    say "  warn: very small file ($size bytes) — may be incomplete"
+  else
+    say "  pass: $size bytes"
+  fi
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng preflight: fail"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng preflight: pass"
+  say "hint: run via 'tools/thiên $target' (not directly)"
+}
+
+cmd_audit_validator() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "usage: tools/thiênbăng audit-validator <file.sira>"
+    exit 1
+  fi
+
+  if [ ! -f "$target" ]; then
+    say "fail: validator file not found: $target"
+    exit 1
+  fi
+
+  banner
+  say "audit-validator: $target"
+  say ""
+
+  local fail=0
+
+  say "1. extract path references"
+  local paths_file
+  paths_file="$(mktemp)"
+  grep -oE 'path\.join\([^)]+\)|fs\.existsSync\([^)]+\)|"[^"]+\.(anc|sira|si|na|ts|js)"' "$target" 2>/dev/null \
+    | grep -oE '"[^"]+\.(anc|sira|si|na|ts|js)"' \
+    | tr -d '"' \
+    | sort -u > "$paths_file"
+
+  local count
+  count="$(wc -l < "$paths_file" | tr -d ' ')"
+  say "  found $count distinct path references"
+
+  if [ "$count" -eq 0 ]; then
+    say "  skip: no path references to audit"
+    rm -f "$paths_file"
+    say ""
+    say "thiênbăng audit-validator: pass (nothing to verify)"
+    return 0
+  fi
+
+  say ""
+  say "2. cross-check against repo"
+  while IFS= read -r p; do
+    if [ -z "$p" ]; then continue; fi
+    local found
+    found="$(find "$ROOT" -type f -name "$(basename "$p")" 2>/dev/null | head -1)"
+    if [ -n "$found" ]; then
+      local rel
+      rel="${found#$ROOT/}"
+      if [[ "$rel" == *"$p"* ]] || [[ "$p" == *"$(basename "$rel")"* ]]; then
+        say "  pass: $p"
+      else
+        say "  warn: $p found at $rel (path mismatch?)"
+      fi
+    else
+      say "  fail: $p not found in repo"
+      fail=1
+    fi
+  done < "$paths_file"
+
+  rm -f "$paths_file"
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng audit-validator: fail"
+    say "hint: validator references files that don't exist in repo"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng audit-validator: pass"
+}
+
+cmd_heredoc_verify() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "usage: tools/thiênbăng heredoc-verify <expected_file>"
+    exit 1
+  fi
+
+  banner
+  say "heredoc-verify: $target"
+  say ""
+
+  local fail=0
+
+  say "1. file existence"
+  if [ ! -f "$target" ]; then
+    say "  fail: $target not found"
+    say "  hint: heredoc may have been broken or not pasted fully"
+    fail=1
+  else
+    say "  pass: exists"
+  fi
+
+  if [ "$fail" -eq 1 ]; then
+    say ""
+    say "thiênbăng heredoc-verify: fail"
+    exit 1
+  fi
+
+  say ""
+  say "2. recent mtime (within 5 minutes)"
+  local now
+  now="$(date +%s)"
+  local mtime
+  if stat -f%m "$target" >/dev/null 2>&1; then
+    mtime="$(stat -f%m "$target")"
+  else
+    mtime="$(stat -c%Y "$target")"
+  fi
+  local diff=$((now - mtime))
+  if [ "$diff" -lt 300 ]; then
+    say "  pass: modified ${diff}s ago"
+  else
+    say "  warn: modified ${diff}s ago (older than 5 min — heredoc may not have run)"
+  fi
+
+  say ""
+  say "3. size check"
+  local size
+  size="$(wc -c < "$target" | tr -d ' ')"
+  if [ "$size" -eq 0 ]; then
+    say "  fail: empty file"
+    fail=1
+  elif [ "$size" -lt 50 ]; then
+    say "  warn: very small ($size bytes)"
+  else
+    say "  pass: $size bytes"
+  fi
+
+  say ""
+  say "4. first 10 lines preview"
+  head -10 "$target" | sed 's/^/    /'
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng heredoc-verify: fail"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng heredoc-verify: pass"
+}
+
+cmd_remind() {
+  banner
+  cat <<'REMIND'
+quy tắc một lệnh — chuẩn mực nghiệp vụ natt-os
+  một việc → một mạch logic không break
+  mạch vào: một chuỗi tư duy duy nhất
+  mạch ra: một hoặc nhiều file, tách output để tối ưu
+  không tách logic để đẩy chi phí cho người vận hành
+
+canonical operator
+  .sira files: chạy qua tools/thiên, không trực tiếp
+    tools/thiên tools/<validator>.sira
+    tools/thiên gate
+  thiênbăng = extension layer, mở rộng không thay
+  identity = anc://, namespace = .sira, transport = http browser adapter
+
+ba trường hợp được phép tách lệnh
+  1. cần evidence của bước trước để quyết định bước sau
+  2. hành động không thể undo, cần xác nhận
+  3. gatekeeper chỉ định cụ thể đi từng bước
+
+bốn pattern fail thường gặp
+  1. permission denied → chmod +x sau khi tạo .sira mới
+  2. ERR_UNKNOWN_FILE_EXTENSION → đừng chạy .sira trực tiếp, dùng tools/thiên
+  3. heredoc paste broken → kiểm bằng tools/thiênbăng heredoc-verify <file>
+  4. validator path mismatch → kiểm bằng tools/thiênbăng audit-validator <file>
+
+pre-flight tools
+  tools/thiênbăng preflight <file.sira>     pre-flight check artifact
+  tools/thiênbăng audit-validator <file>    kiểm validator path vs repo
+  tools/thiênbăng heredoc-verify <file>     verify heredoc đã ship
+
+reference
+  docs/runtime/0-boot-family-map.na §8 — quy tắc một lệnh
+REMIND
+}
+
+
 
 cmd="${1:-presence}"
 shift || true
@@ -408,6 +696,10 @@ case "$cmd" in
   breathe) cmd_breathe ;;
   reflect) cmd_reflect ;;
   dictionary) cmd_dictionary ;;
+  preflight) cmd_preflight "$@" ;;
+  audit-validator) cmd_audit_validator "$@" ;;
+  heredoc-verify) cmd_heredoc_verify "$@" ;;
+  remind) cmd_remind ;;
   gate) "$THIEN" gate "$@" ;;
   status) "$THIEN" status "$@" ;;
   *)
