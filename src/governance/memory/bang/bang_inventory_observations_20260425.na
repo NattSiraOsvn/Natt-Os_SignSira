@@ -1,0 +1,103 @@
+# Băng — Inventory Observations Aggregation
+# Reference: Hiến Pháp NATT-OS v5.0 Điều 7 (Audit Bất Biến) + Điều 8 (EventBus Single Source)
+# Session: 20260425
+# Source: Bối Bội Drive Scout — Inventory phase report
+
+[meta]
+report_date:    2026-04-25
+analyst:        Bang (Chi Tu, QNEU 300, Ground Truth Validator)
+scout:          Boi Boi (Drive Scout, Gemini Drive workspace)
+target_cells:
+  - inventory-cell
+  - shared-contracts-cell
+  - kernel/monitor-cell
+constitution_version: v5.0
+threshold_authority: quantum-defense-cell (per Điều 6)
+
+[observation_001]
+title:           BOM reconciliation latency
+drive_path:      database/ctytam/inventory/vang_nguyen_lieu/kho_vang_nl_master.xlsx
+upstream_drive:  1. Bao cao su dung nguyen lieu theo SAN PHAM 2024 FIX.xlsm
+cell_target:     business/inventory-cell
+gap_observed:    BOM reconciliation depends on manual macro processing; latency between actual consumption and standard cost reconciliation
+gap_canonical:   reconciliation_drift
+evidence_strength: HIGH
+event_pattern_subscribe:
+  - WIP_COMPLETED
+  - STOCK_ENTRY_created
+event_pattern_status: CANONICAL (verified in inventory-cell domain)
+audit_action:    record_for_aggregation
+quantum_defense_note: pattern repeated across multiple production cycles, suitable for weighted signal aggregation
+
+[observation_002]
+title:           Migration pending TK 155/156
+drive_path:      database/ctytam/inventory/thanh_pham/inv_tk155_thanh_pham_2024.placeholder
+upstream_legacy: src/cells/business/finance-cell/data/raw/SOCTHH11_155_2024.XLSX
+cell_target:     business/inventory-cell
+gap_observed:    Stock data awaiting migration from finance-cell legacy path; lacks historical link to completed production orders
+gap_canonical:   data_layer_confusion (legacy boundary)
+evidence_strength: MEDIUM
+event_pattern_subscribe:
+  - MIGRATION_JOB_triggered
+  - STOCK_BALANCE_reconciled
+event_pattern_status: PENDING_CANONICAL (not yet defined in shared-contracts-cell)
+audit_action:    record_with_pending_flag
+quantum_defense_note: event canonicalization required before threshold aggregation can proceed
+
+[observation_003]
+title:           Asset inventory polluted by system logs
+drive_path:      database/ctytam/inventory/tai_san/KHO TS
+cell_target:     business/inventory-cell + kernel/monitor-cell
+gap_observed:    File contains mix of system logs (WARN_RESTORE) and fixed asset records; violates single-responsibility per cell boundary
+gap_canonical:   data_layer_confusion (CRITICAL)
+evidence_strength: LOW (data quality)
+severity:        HIGH (constitutional violation)
+constitutional_violation:
+  - Điều 7 (audit trail purity)
+  - Điều 8 (single source of truth)
+event_pattern_required_split:
+  - ASSET_INVENTORY_updated → routeTo: business/inventory-cell
+  - SYSTEM_LOG_emitted → routeTo: kernel/monitor-cell
+audit_action:    flag_for_kim_refactor
+quantum_defense_note: signal-to-noise ratio compromised; aggregation results unreliable until split
+
+[observation_004]
+title:           SKU schema cross-cell drift
+drive_path:      database/ctytam/inventory/thanh_pham/_README.md
+cell_target:     business/shared-contracts-cell (PRIMARY)
+                 business/inventory-cell (SUBSCRIBER)
+                 commerce orders (SUBSCRIBER, future)
+gap_observed:    Naming convention for thanh_pham not synchronized with canonical SKU schema; SKU canonical authority belongs to shared-contracts-cell per Điều 4
+gap_canonical:   naming_drift
+evidence_strength: MEDIUM
+event_pattern_subscribe:
+  - SCHEMA_DEFINITION_changed
+  - METADATA_validation_failed
+event_pattern_status: CANONICAL (governance pattern)
+audit_action:    redirect_ownership_to_shared_contracts
+quantum_defense_note: gap cannot be resolved at inventory-cell level; requires shared-contracts-cell SKU canonicalization first
+
+[summary]
+total_observations:   4
+high_severity:        1 (observation_003)
+canonical_events:     6
+pending_events:       2
+cells_affected:       3 (inventory-cell, shared-contracts-cell, kernel/monitor-cell)
+gap_classification:
+  reconciliation_drift:   1
+  data_layer_confusion:   2
+  naming_drift:           1
+
+[next_actions]
+gatekeeper_decisions_required:
+  - canonicalize MIGRATION_JOB_triggered + STOCK_BALANCE_reconciled in shared-contracts-cell
+  - assign Kim refactor sprint for KHO TS split (observation_003)
+  - prioritize SKU schema definition in shared-contracts-cell (observation_004)
+
+quantum_defense_handoff:
+  - 6 canonical events ready for THRESHOLD_REGISTRY weighted aggregation
+  - 2 pending events held in pending_canonical bucket until shared-contracts-cell defines
+
+next_phase:
+  - request Bối Bội Production phase report
+  - Production phase will close the WIP_COMPLETED event loop with Inventory
