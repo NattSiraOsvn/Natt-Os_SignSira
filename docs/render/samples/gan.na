@@ -1,0 +1,38 @@
+# SAMPLE 7/15 — state: gắn
+# @sample: attach_temporary_anchor
+# @status: draft → chờ validator
+
+obitan_state gắn {
+  domain: Π_medium
+  polarity: warm-core
+  obitan_layer: n=1
+
+  surface_signal: APPEAR {
+    element_id: "temp-anchor"
+    position: relative_to("root-surface", offset(80, 40))
+    origin_state: gắn
+    pressure: 0.2
+  }
+
+  surface_signal: SHIFT {
+    element_id: "temp-anchor"
+    from: position(80,40)
+    to: position(60,30)
+    easing: ease-out
+    origin_state: gắn
+    pressure: 0.2
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [nhà]
+    decay_rate: γ(1)
+    reflection_R: 0.3
+  }
+
+  expression {
+    wavelength_base: 610
+    intensity: fade(0.8, 0.4, distance_to(nhà))
+    duration: temporary
+  }
+}
