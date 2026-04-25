@@ -45,6 +45,7 @@ core.sira
     - /api/health
     - /api/events/emit
     - /api/audit
+    - /field/probe
   forbidden_paths:
     - /admin
     - /secret

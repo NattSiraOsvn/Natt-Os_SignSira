@@ -217,7 +217,7 @@ http.createServer(async (req,res)=>{
   const siraRouteZone = {
     "core.sira": {
       status: "active",
-      allowed: ["/api/health", "/api/events/emit", "/api/audit"],
+      allowed: ["/api/health", "/api/events/emit", "/api/audit", "/field/probe"],
       forbidden: ["/admin", "/secret", "/identity"]
     },
     "apps.sira": {
