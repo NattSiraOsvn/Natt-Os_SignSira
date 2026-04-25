@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(gateway)) {
+  errors.push("missing gateway");
+} else {
+  const c = fs.readFileSync(gateway, "utf8");
+  const requiredClauses = [
+  "function siraSignFrameVerdict",
+  "frame_not_required",
+  "missing_sira_subject",
+  "missing_sira_boundary",
+  "missing_sira_causation",
+  "missing_sira_signature",
+  "sirasign_frame_shape_pass",
+  "const frameDecision = siraSignFrameVerdict",
+  "sira.frame_guard",
+  "siraSign frame guard deny"
+];
+  const forbiddenMarks = [
+  "crypto complete",
+  "signature verified",
+  "mạch heyna wired",
+  "production-ready",
+  "DNS XONG",
+  "PASS",
+  "FAIL"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing frame guard clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden frame guard wording: " + mark);
+  }
+
+  const routeIdx = c.indexOf("const routeDecision = siraRouteGate(host, routePath);");
+  const frameIdx = c.indexOf("const frameDecision = siraSignFrameVerdict(host, routePath, req);");
+  must(routeIdx >= 0, "route decision missing");
+  must(frameIdx > routeIdx, "frame guard must run after route gate");
+}
+
+if (errors.length) {
+  console.error("siraSign frame guard validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("siraSign frame guard validation: pass");
+console.log("file=tools/natt_domain_gateway.sira");

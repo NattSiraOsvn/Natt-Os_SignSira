@@ -319,6 +319,45 @@ function siraWriteJson(res, status, payload) {
   throw new Error("sira route gate response adapter unavailable");
 }
 
+
+function siraSignFrameVerdict(host, routePath, req) {
+  const lowerPath = String(routePath || "/").toLowerCase();
+
+  const sensitive =
+    lowerPath.includes("/identity") ||
+    lowerPath.includes("/memory") ||
+    lowerPath.includes("/seal") ||
+    lowerPath.includes("/field");
+
+  if (!sensitive) {
+    return { allow: true, reason: "frame_not_required" };
+  }
+
+  const headers = req && req.headers ? req.headers : {};
+  const subject = String(headers["x-sira-subject"] || "");
+  const boundary = String(headers["x-sira-boundary"] || "");
+  const causation = String(headers["x-sira-causation"] || "");
+  const signature = String(headers["x-sira-signature"] || "");
+
+  if (!subject) {
+    return { allow: false, reason: "missing_sira_subject" };
+  }
+
+  if (!boundary) {
+    return { allow: false, reason: "missing_sira_boundary" };
+  }
+
+  if (!causation) {
+    return { allow: false, reason: "missing_sira_causation" };
+  }
+
+  if (!signature) {
+    return { allow: false, reason: "missing_sira_signature" };
+  }
+
+  return { allow: true, reason: "sirasign_frame_shape_pass" };
+}
+
 function siraRouteGate(host, routePath) {
     const zone = siraRouteZone[host];
 
@@ -395,6 +434,32 @@ if (!hostVerdict.ok) {
       reason: routeDecision.reason
     });
   }
+
+const frameDecision = siraSignFrameVerdict(host, routePath, req);
+
+if (!frameDecision.allow) {
+  try {
+    if (typeof audit === "function") {
+      audit({
+        action: "sira.frame_guard",
+        host,
+        result: "deny",
+        payload_summary: {
+          path: routePath,
+          reason: frameDecision.reason
+        }
+      });
+    }
+  } catch (_) {}
+  return siraWriteJson(res, 403, {
+    ok: false,
+    error: "siraSign frame guard deny",
+    host,
+    path: routePath,
+    reason: frameDecision.reason
+  });
+}
+
   const u=new URL(req.url,"http://local");
   const routeKey=routeKeyFromHost(host);
 
