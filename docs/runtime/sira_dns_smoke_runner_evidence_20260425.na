@@ -1,7 +1,7 @@
 # sira dns smoke runner evidence — 20260425
 
 status: pass
-created_at: 2026-04-25T16:37:10.816Z
+created_at: 2026-04-25T16:45:41.717Z
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ---
@@ -22,9 +22,9 @@ runner này kiểm hành vi route gate, không kiểm siraSign frame validation 
 | core.sira | /admin | deny | deny | 403 | forbidden_path | ok | forbidden admin route | {   "ok": false,   "error": "sira route gate deny",   "host": "core.sira",   "path": "/admin",   "reason": "forbidden_path" } |
 | apps.sira | / | allow | allow | 200 | not_denied_by_route_gate | ok | apps root route | <!doctype html> <html lang="vi"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <title>sira app hub</title> < |
 | apps.sira | /api/secret | deny | deny | 403 | forbidden_path | ok | forbidden app secret route | {   "ok": false,   "error": "sira route gate deny",   "host": "apps.sira",   "path": "/api/secret",   "reason": "forbidden_path" } |
-| mach.sira | /mach/heyna | allow | allow | 200 | not_denied_by_route_gate | ok | mạch heyna route | data: {"type":"mach.heyna.connected","payload":{"host":"mach.sira","at":"2026-04-25T16:37:10.406Z"}}   |
+| mach.sira | /mach/heyna | allow | allow | 200 | not_denied_by_route_gate | ok | mạch heyna route | data: {"type":"mach.heyna.connected","payload":{"host":"mach.sira","at":"2026-04-25T16:45:41.309Z"}}   |
 | mach.sira | /identity | deny | deny | 403 | forbidden_path | ok | mach identity forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "mach.sira",   "path": "/identity",   "reason": "forbidden_path" } |
-| audit.sira | /api/audit | allow | allow | 200 | not_denied_by_route_gate | ok | audit read route | {   "ok": true,   "total": 4,   "events": [     {       "audit_id": "audit_092bf0a79e10",       "timestamp": "2026-04-25T16:37:09.601Z",       "action": "gatewa |
+| audit.sira | /api/audit | allow | allow | 200 | not_denied_by_route_gate | ok | audit read route | {   "ok": true,   "total": 4,   "events": [     {       "audit_id": "audit_0d73fab05efc",       "timestamp": "2026-04-25T16:45:40.514Z",       "action": "gatewa |
 | audit.sira | /audit/write-direct | deny | deny | 403 | forbidden_path | ok | audit direct write forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "audit.sira",   "path": "/audit/write-direct",   "reason": "forbidden_path" } |
 | render.sira | /render | allow | allow | 200 | not_denied_by_route_gate | ok | render route | {   "ok": true,   "message": "NATT Domain Gateway",   "host": "render.sira",   "routes": [     "audit.natt",     "tam.natt",     "nauion.natt",     "core.natt", |
 | render.sira | /render/seal | deny | deny | 403 | forbidden_path | ok | render seal forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "render.sira",   "path": "/render/seal",   "reason": "forbidden_path" } |
