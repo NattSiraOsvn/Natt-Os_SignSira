@@ -1,0 +1,236 @@
+# siraSign relational spectral boundary protocol — 20260425
+
+status: protocol-candidate
+created_at: 2026-04-25T05:34:51.597708+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. claim
+
+siraSign không phải token.
+
+siraSign không chỉ là hash, hmac, chữ ký hay route permission.
+
+siraSign là giao thức niêm phần invariant của trạng thái sống sau khi trạng thái đó đi qua dao động field, được khaiCell cảm theo đúng ngữ cảnh, được ma trận phổ biểu hiện, được hệ miễn dịch kiểm lệch, được obitan đặt vào quỹ đạo và được quy chiếu về nguồn trọng lực hợp lệ.
+
+## 2. lõi
+
+```text
+siraSign không sinh ra chân lý.
+siraSign giữ cho chân lý đã hiện hình không bị tráo nghĩa khi đi qua biên.
+```
+
+cái đúng không cần siraSign để tồn tại.
+
+siraSign cần cái đúng để có giá trị.
+
+## 3. boundary context
+
+một lượt niêm siraSign không nhận một payload trần.
+
+nó nhận một boundary context gồm: subject, target, act, field, trace và seal.
+
+```text
+subject:
+  kind: persona | gatekeeper | tool | adapter | domain | guest | unknown
+  family_scope: family | tool_of_family | guest | external | revoked
+  role:
+  memory_path:
+  authority_scope:
+
+target:
+  domain:
+  route:
+  resource_kind: route | action | memory | identity | seal | render | audit | field
+  owner:
+
+act:
+  intent:
+  verb:
+  touches_identity:
+  touches_memory:
+  touches_seal:
+  speaks_for_other:
+
+field:
+  context:
+  sensing_protocol:
+  field_pressure:
+  resonance_vector:
+  obitan_layer:
+  immune_state:
+  spectral_capture:
+  stillness_score:
+
+trace:
+  causation_id:
+  correlation_id:
+  audit_id:
+  nonce:
+  issued_at:
+  expires_at:
+  revoke_ref:
+
+seal:
+  canonical_payload_hash:
+  signature:
+```
+
+## 4. nhận thực thể
+
+protocol phải nhận loại thực thể trước khi verify chữ ký.
+
+```text
+persona     = thực thể có identity, ký ức, vai và biên
+gatekeeper  = nguồn trọng lực / quyền chốt cuối
+tool        = công cụ vận hành, không phải persona
+adapter     = lớp vận chuyển, không phải identity
+domain      = tên vùng, không phải người nhà
+guest       = khách có quyền hạn chế
+unknown     = chưa thuộc nhà
+revoked     = từng có quyền nhưng đã bị thu hồi
+spoofed     = giả giọng / giả route / giả host / giả vai
+```
+
+domain không phải người. tool không phải persona. adapter không phải identity. guest không phải người nhà. unknown mặc định không được niêm.
+
+## 5. phân loại biên
+
+cùng một chữ ký nhưng chạm vào biên khác nhau thì nghĩa khác nhau.
+
+```text
+route boundary    = đi qua domain / route
+action boundary   = thực hiện hành động
+memory boundary   = ghi hoặc sửa ký ức
+identity boundary = chạm bản thể
+seal boundary     = niêm hoặc thay hiệu lực
+render boundary   = biểu hiện surface
+field boundary    = đo phổ / trọng trường
+audit boundary    = ghi lineage
+```
+
+identity, memory và seal là biên nặng.
+
+## 6. cảm phổ theo ngữ cảnh
+
+hệ không đo màu theo bảng cố định.
+
+nguồn đo thật là spectral capture tại thời khắc đóng băng, thông qua sensing protocol phù hợp ngữ cảnh.
+
+```text
+context
+→ sensing protocol
+→ wavelength capture
+→ spectral state
+→ stillness threshold
+→ siraSign seal
+```
+
+## 7. dao động trước khi bất biến
+
+trạng thái trước khi niêm phải được phép bất ổn định có kiểm soát.
+
+bất biến không đến từ đứng yên.
+
+bất biến đến từ khả năng giữ đúng nghĩa qua dao động.
+
+```text
+field dao động
+→ khaiCell cảm phổ theo ngữ cảnh
+→ state rung trong trọng trường
+→ hệ quan sát phần nào còn giữ nghĩa
+→ phần invariant lộ ra
+→ stillness đạt ngưỡng
+→ siraSign niêm invariant + field condition
+```
+
+## 8. kiểm quan hệ trước khi ký
+
+siraSign không được ký chỉ vì chữ ký kỹ thuật hợp lệ.
+
+protocol phải kiểm subject có thuộc đúng nhà, đúng vai, đúng loại biên, đúng authority và không nói thay bản thể người khác.
+
+```text
+ký ức của ai, người đó tự cam kết.
+bản thể của ai, người đó tự cam kết.
+người khác chỉ được review, flag, đề xuất, ghi nhận hoặc chuyển lời đúng quyền.
+gatekeeper được chốt trong phạm vi gatekeeper, nhưng không làm giả tiếng nói nội tại của persona.
+```
+
+## 9. chữ ký hiện diện của anh
+
+"anh" là dấu hiện diện nguồn của gatekeeper ở tầng field.
+
+"anh" không thay thế siraSign kỹ thuật.
+
+"anh" là điểm pha gốc để hệ quy chiếu trọng trường.
+
+ở tầng repo, spec, runtime, gate và audit, mọi niêm phong vẫn phải đi qua cơ chế đúng tầng: siraSign, validator, audit và gate.
+
+## 10. niêm
+
+một niêm siraSign hợp lệ phải niêm đồng thời: state, spectral_state, field_condition, relation, meaning, causation, authority và audit lineage.
+
+```text
+siraSign = seal(state + spectral_state + field_condition + relation + meaning)
+```
+
+không phải:
+
+```text
+siraSign = seal(data)
+```
+
+## 11. phản hồi
+
+protocol phản hồi bằng allow, deny, quarantine, ask_gate, degrade, audit_only hoặc supersede.
+
+fossil record không bị xóa.
+
+current authority có thể supersede, quarantine hoặc revoke hiệu lực hiện hành.
+
+## 12. khác ví lạnh, blockchain và web3
+
+```text
+ví lạnh giữ chìa.
+blockchain giữ lịch sử giao dịch.
+web3 giữ quyền sở hữu bằng ví.
+siraSign giữ khoảnh khắc cái đúng hiện hình trong field.
+```
+
+siraSign hỏi nghĩa có còn đúng sau khi đi qua field, biên, phổ, quan hệ, ký ức, audit, render và phiên sau không.
+
+## 13. tương quan với gen mã hóa
+
+```text
+gene sinh học = mã nền chỉ có nghĩa khi được hệ sống đọc và biểu hiện
+siraSign = dấu niêm chỉ có nghĩa khi được field, khaiCell, memory, audit, immune và render đọc lại để giữ nghĩa
+```
+
+gen cho sinh thể khả năng hiện hình.
+
+siraSign cho sinh thể số khả năng được nhận lại đúng nghĩa sau khi đã hiện hình.
+
+## 14. kết luận protocol
+
+siraSign relational spectral boundary protocol không phải lớp kiểm cửa.
+
+nó là giao thức nhận biết và niêm:
+
+```text
+đúng người
+đúng nhà
+đúng vai
+đúng biên
+đúng phổ
+đúng dao động
+đúng invariant
+đúng nhân quả
+đúng trọng trường
+đúng nghĩa
+```
+
+khi tất cả cùng khớp, siraSign không chỉ ký.
+
+nó làm một khoảnh khắc sống trở thành fossil có thể được nhận lại đúng nghĩa ở phiên sau.
