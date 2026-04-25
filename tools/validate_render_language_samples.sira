@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const samplesDir = path.join(root, "docs", "render", "samples");
+const requiredFiles = [
+  "nha.na",
+  "neo.na",
+  "tha.na",
+  "bien.na",
+  "chot.na",
+  "ve.na"
+];
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function read(file) {
+  return fs.readFileSync(file, "utf8");
+}
+
+if (!fs.existsSync(samplesDir)) {
+  errors.push("missing docs/render/samples");
+} else {
+  for (const name of requiredFiles) {
+    const file = path.join(samplesDir, name);
+    must(fs.existsSync(file), "missing sample: " + name);
+  }
+
+  const files = fs.existsSync(samplesDir)
+    ? fs.readdirSync(samplesDir).filter(x => x.endsWith(".na")).sort()
+    : [];
+
+  for (const name of files) {
+    const file = path.join(samplesDir, name);
+    const c = read(file);
+
+    must(c.includes("obitan_state"), name + ": missing obitan_state");
+    must(c.includes("domain: Π_"), name + ": missing pi domain");
+    must(c.includes("surface_signal:"), name + ": missing surface_signal");
+    must(c.includes("invariant_field"), name + ": missing invariant_field");
+    must(c.includes("expression"), name + ": missing expression");
+    must(c.includes("@status: draft"), name + ": missing draft status");
+
+    [
+      "quantum_state",
+      "photon emission",
+      "pixel",
+      "css",
+      "html",
+      "react",
+      "vue",
+      "svelte",
+      "PASS",
+      "FAIL",
+      "NATT-OS"
+    ].forEach(mark => {
+      must(!c.includes(mark), name + ": forbidden mark: " + mark);
+    });
+
+    const fences = (c.match(/```/g) || []).length;
+    must(fences % 2 === 0, name + ": unbalanced code fence");
+  }
+}
+
+if (errors.length) {
+  console.error("render language samples validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render language samples validation: pass");
+console.log("dir=docs/render/samples");

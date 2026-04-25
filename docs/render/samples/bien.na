@@ -1,0 +1,29 @@
+# SAMPLE 4/6 — state: biên
+# @sample: boundary_immutable_total_reflection
+# @status: draft → chờ validator
+
+obitan_state biên {
+  domain: Π_body
+  polarity: cool-rim
+  obitan_layer: n=0
+
+  surface_signal: APPEAR {
+    element_id: "truth-edge"
+    position: absolute(300, 0)
+    origin_state: biên
+    pressure: 1.0
+  }
+
+  invariant_field {
+    pressure_response: OSCILLATE
+    resonance_partners: [xét, chốt]
+    decay_rate: 0
+    reflection_R: 1.0
+  }
+
+  expression {
+    wavelength_base: 700
+    intensity: constant(1.0)
+    duration: infinite
+  }
+}

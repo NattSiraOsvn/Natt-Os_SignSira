@@ -1,0 +1,29 @@
+# SAMPLE 1/6 — state: nhà
+# @sample: home_origin_pressure_zero
+# @status: draft → chờ validator
+
+obitan_state nhà {
+  domain: Π_body
+  polarity: warm-core
+  obitan_layer: n=0
+
+  surface_signal: APPEAR {
+    element_id: "root-surface"
+    position: origin(0, 0)
+    origin_state: nhà
+    pressure: 0.0
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: []
+    decay_rate: 0
+    reflection_R: 0
+  }
+
+  expression {
+    wavelength_base: anchor
+    intensity: constant(1.0)
+    duration: infinite
+  }
+}
