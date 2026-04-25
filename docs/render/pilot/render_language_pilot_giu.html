@@ -20,14 +20,8 @@
     display: flex; align-items: center; justify-content: center;
     min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
   }
-  .surface { position: relative; width: 600px; height: 400px; }
-  .ring {
-    position: absolute; left: 60%; top: 30%;
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 3px solid var(--hold-color);
-    box-shadow: 0 0 15px 5px rgba(208,160,192,0.7);
-    animation: hold-steady 3s ease-in-out infinite;
-  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; border-radius: 50%; }
   @keyframes hold-steady {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -40,18 +34,58 @@
 </style>
 </head>
 <body>
-<div class="surface">
-  <div class="ring"></div>
-  <div class="label">giữ</div>
-</div>
-<script>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-giu-001',
+    signals: [
+      {
+        verb: 'APPEAR',
+        element_id: 'guard-ring',
+        origin_state: 'giữ',
+        params: { position: 'relative_to("verdict-final", offset(0,0))' },
+        pressure: 0.9,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'AMBIENT', priority: 0.8, target: 'guard-ring' },
+    motion_budget: { frame_budget: 100, allocated: 10, remaining: 90 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: ['guard-ring'], at_boundary: [], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#guard-ring');
+  if (el) {
+    el.style.width = '36px';
+    el.style.height = '36px';
+    el.style.left = '60%';
+    el.style.top = '30%';
+    el.style.border = '3px solid var(--hold-color)';
+    el.style.boxShadow = '0 0 15px 5px rgba(208,160,192,0.7)';
+    el.style.background = 'transparent';
+    el.style.animation = 'hold-steady 3s ease-in-out infinite';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'giữ';
+  container.appendChild(label);
+  
   const renderPilotReadout = {
     state:'giữ', marker:'render_pilot', domain:'Π_medium',
     obitan_layer:'n=2', polarity:'cool-rim',
     pressure_response:'FALL', reflection_R:0.95, decay_rate:'γ(2)*0.9',
-    framework:'none', scope:'pilot-only', production:false
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
   };
-  console.log(JSON.stringify(renderPilotReadout,null,2));
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
 </script>
 </body>
 </html>

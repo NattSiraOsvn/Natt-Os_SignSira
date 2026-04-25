@@ -20,15 +20,8 @@
     display: flex; align-items: center; justify-content: center;
     min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
   }
-  .surface { position: relative; width: 600px; height: 400px; }
-  .bearer {
-    position: absolute; left: 20%; top: 80%;
-    transform: translate(-50%, -50%);
-    width: 40px; height: 30px;
-    background: var(--carry-color);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    animation: carry-load 2s ease-in-out infinite alternate;
-  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; }
   @keyframes carry-load {
     0% { transform: translate(-50%, -50%) scaleY(1); }
     100% { transform: translate(-50%, -50%) scaleY(0.9) translateY(2px); }
@@ -41,18 +34,75 @@
 </style>
 </head>
 <body>
-<div class="surface">
-  <div class="bearer"></div>
-  <div class="label">gánh</div>
-</div>
-<script>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-ganh-001',
+    signals: [
+      {
+        verb: 'APPEAR',
+        element_id: 'load-bearer',
+        origin_state: 'gánh',
+        params: { position: 'absolute(100, 200)' },
+        pressure: 0.8,
+        degrade_to: null
+      },
+      {
+        verb: 'RESIZE',
+        element_id: 'load-bearer',
+        origin_state: 'gánh',
+        params: { from_scale: 1.0, to_scale: 0.95 },
+        pressure: 0.8,
+        degrade_to: null
+      },
+      {
+        verb: 'SHIFT',
+        element_id: 'load-bearer',
+        origin_state: 'gánh',
+        params: { from: 'position(100,200)', to: 'position(100,205)', easing: 'ease-in-out' },
+        pressure: 0.8,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'AMBIENT', priority: 0.7, target: 'load-bearer' },
+    motion_budget: { frame_budget: 100, allocated: 20, remaining: 80 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: [], at_boundary: ['load-bearer'], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#load-bearer');
+  if (el) {
+    el.style.width = '40px';
+    el.style.height = '30px';
+    el.style.left = '20%';
+    el.style.top = '80%';
+    el.style.transform = 'translate(-50%, -50%)';
+    el.style.background = 'var(--carry-color)';
+    el.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+    el.style.borderRadius = '0';
+    el.style.animation = 'carry-load 2s ease-in-out infinite alternate';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'gánh';
+  container.appendChild(label);
+  
   const renderPilotReadout = {
     state:'gánh', marker:'render_pilot', domain:'Π_medium',
     obitan_layer:'n=2', polarity:'cool-rim',
     pressure_response:'FALL', reflection_R:0.9, decay_rate:'γ(2)*1.2',
-    framework:'none', scope:'pilot-only', production:false
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
   };
-  console.log(JSON.stringify(renderPilotReadout,null,2));
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
 </script>
 </body>
 </html>

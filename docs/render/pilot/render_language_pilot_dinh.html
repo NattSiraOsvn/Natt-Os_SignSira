@@ -20,14 +20,8 @@
     display: flex; align-items: center; justify-content: center;
     min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
   }
-  .surface { position: relative; width: 600px; height: 400px; }
-  .element {
-    position: absolute; left: 30%; top: 55%;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--still-color);
-    opacity: 0.5;
-    /* no animation – frozen */
-  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; border-radius: 50%; }
   .label {
     position: absolute; bottom: 20px; left: 50%;
     transform: translateX(-50%); font-size: 13px;
@@ -36,18 +30,58 @@
 </style>
 </head>
 <body>
-<div class="surface">
-  <div class="element"></div>
-  <div class="label">định</div>
-</div>
-<script>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-dinh-001',
+    signals: [
+      {
+        verb: 'FREEZE',
+        element_id: 'still-observer',
+        origin_state: 'định',
+        params: {},
+        pressure: 0.0,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'NONE', priority: 0, target: null },
+    motion_budget: { frame_budget: 100, allocated: 0, remaining: 100 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: [], at_boundary: ['still-observer'], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#still-observer');
+  if (el) {
+    el.style.width = '10px';
+    el.style.height = '10px';
+    el.style.left = '30%';
+    el.style.top = '55%';
+    el.style.background = 'var(--still-color)';
+    el.style.opacity = '0.5';
+    el.style.animation = 'none';
+    el.style.transition = 'none';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'định';
+  container.appendChild(label);
+  
   const renderPilotReadout = {
     state:'định', marker:'render_pilot', domain:'Π_medium',
     obitan_layer:'n=3', polarity:'neutral',
     pressure_response:'OSCILLATE', reflection_R:0.6, decay_rate:'γ(3)*0.5',
-    framework:'none', scope:'pilot-only', production:false
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
   };
-  console.log(JSON.stringify(renderPilotReadout,null,2));
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
 </script>
 </body>
 </html>
