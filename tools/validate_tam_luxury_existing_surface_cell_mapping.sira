@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "tam_luxury_existing_surface_cell_mapping_20260425.na");
+const boundary = path.join(root, "docs", "runtime", "tenant_fixture_boundary_20260425.na");
+const living_protocol = path.join(root, "docs", "runtime", "living_cell_evolution_protocol_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function read_json(file_path) {
+  return JSON.parse(fs.readFileSync(file_path, "utf8"));
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing existing surface cell mapping");
+}
+
+if (!fs.existsSync(boundary)) {
+  errors.push("missing tenant fixture boundary");
+}
+
+if (!fs.existsSync(living_protocol)) {
+  errors.push("missing living cell evolution protocol");
+}
+
+if (fs.existsSync(file)) {
+  const data = read_json(file);
+  const intake = data.intake || {};
+
+  must(intake.version === "v1.0-readonly-cell-mapping", "invalid mapping version");
+  must(intake.principle === "read_only_scan_map_to_existing_cells_no_build_no_scaffold", "invalid principle");
+  must(String(intake.core_boundary || "").includes("screen is not cell"), "boundary must state screen is not cell");
+  must(Array.isArray(intake.existing_cells), "existing cells must be array");
+  must(intake.existing_cells.length >= 37, "existing cells must be at least 37");
+
+  const surfaces = intake.surface_inventory || [];
+  const engines = intake.engine_inventory || [];
+  const all_items = surfaces.concat(engines);
+  const breakdown = intake.breakdown || {};
+
+  must(surfaces.length >= 10, "must scan at least 10 existing html surfaces");
+  must(engines.length >= 1, "must scan at least 1 existing js engine");
+  must(intake.total_files_scanned === all_items.length, "total files scanned must match inventory length");
+  must(intake.total_files_scanned === (breakdown.html_surfaces || 0) + (breakdown.js_engines || 0) + (breakdown.css_assets || 0) + (breakdown.other_assets || 0), "breakdown must sum to total files scanned");
+
+  const allowed_transport = ["hybrid", "direct_fetch", "sse", "local_state", "static"];
+  const allowed_sirasign = ["none", "text", "metadata", "frame", "validation"];
+  const allowed_yes_no = ["yes", "no"];
+
+  for (const item of all_items) {
+    const file_name = item.surface_file || item.engine_file || "";
+    must(file_name.length > 0, "item must have file name");
+    must(String(item.source_path || "").length > 0, file_name + " must have source path");
+    must(String(item.route_or_entry || "").startsWith("/"), file_name + " route_or_entry must start with slash");
+    must(allowed_transport.includes(item.transport_hint), file_name + " invalid transport hint");
+    must(allowed_sirasign.includes(item.sirasign_level_observed), file_name + " invalid sirasign level");
+    must(Array.isArray(item.gap_candidates), file_name + " gap candidates must be array");
+    must(item.gap_candidates.length >= 1, file_name + " must have at least one gap candidate");
+    must(intake.existing_cells.includes(item.existing_cell_candidate), file_name + " candidate cell must exist in base cells");
+    must(typeof item.cell_confidence === "number", file_name + " cell confidence must be number");
+    must(item.cell_confidence >= 0 && item.cell_confidence <= 1, file_name + " cell confidence must be within 0..1");
+    must(allowed_yes_no.includes(item.needs_new_cell_seed), file_name + " needs_new_cell_seed must be yes/no");
+    must(allowed_yes_no.includes(item.gap_only_registry), file_name + " gap_only_registry must be yes/no");
+    must(item.needs_new_cell_seed === "no", file_name + " must not auto request new cell seed");
+    must(String(item.do_not_scaffold_reason || "").length > 0, file_name + " must explain do_not_scaffold_reason");
+  }
+
+  const raw = fs.readFileSync(file, "utf8");
+  must(!raw.includes("71 màn hình"), "mapping must not anchor on 71 screens");
+  must(!raw.includes("screen = cell"), "mapping must not say screen equals cell");
+  must(!raw.includes("status: scaffolded"), "mapping must not claim scaffolded status");
+  must(!raw.includes("production-ready"), "mapping must not claim production ready");
+}
+
+if (errors.length) {
+  console.error("tam luxury existing surface cell mapping validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("tam luxury existing surface cell mapping validation: pass");
+console.log("file=docs/runtime/tam_luxury_existing_surface_cell_mapping_20260425.na");

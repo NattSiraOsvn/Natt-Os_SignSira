@@ -1,0 +1,1188 @@
+{
+  "intake": {
+    "version": "v1.0-readonly-cell-mapping",
+    "date": "2026-04-25",
+    "source": "tam-luxury-existing-app-surface",
+    "principle": "read_only_scan_map_to_existing_cells_no_build_no_scaffold",
+    "core_boundary": "tenant fixture is not core; screen is not cell; existing cells absorb observed logic",
+    "existing_cell_count": 39,
+    "existing_cells": [
+      "analytics-cell",
+      "audit-cell",
+      "bom3dprd-cell",
+      "buyback-cell",
+      "casting-cell",
+      "comms-cell",
+      "compliance-cell",
+      "constants-cell",
+      "customer-cell",
+      "customs-cell",
+      "design-3d-cell",
+      "dust-recovery-cell",
+      "finance-cell",
+      "finishing-cell",
+      "hr-cell",
+      "inventory-cell",
+      "it-cell",
+      "logistics-cell",
+      "media-cell",
+      "noi-vu-cell",
+      "order-cell",
+      "payment-cell",
+      "period-close-cell",
+      "phap-che-cell",
+      "polishing-cell",
+      "prdmaterials-cell",
+      "prdwarranty-cell",
+      "pricing-cell",
+      "production-cell",
+      "promotion-cell",
+      "render-stack-cell",
+      "sales-cell",
+      "shared-contracts",
+      "showroom-cell",
+      "stone-cell",
+      "supplier-cell",
+      "tax-cell",
+      "warehouse-cell",
+      "warranty-cell"
+    ],
+    "total_files_scanned": 35,
+    "breakdown": {
+      "html_surfaces": 29,
+      "js_engines": 6,
+      "css_assets": 0,
+      "other_assets": 0
+    },
+    "surface_inventory": [
+      {
+        "surface_file": "production-wallboard.html",
+        "source_path": "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "surface_type": "operational",
+        "route_or_entry": "/production-wallboard",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.88,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "warehouse-ops.html",
+        "source_path": "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "surface_type": "operational",
+        "route_or_entry": "/warehouse-ops",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "warehouse-full.html",
+        "source_path": "nattos-server/apps/tam-luxury/warehouse-full.html",
+        "surface_type": "operational",
+        "route_or_entry": "/warehouse-full",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "payment",
+          "upload",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "order-flow.html",
+        "source_path": "nattos-server/apps/tam-luxury/order-flow.html",
+        "surface_type": "operational",
+        "route_or_entry": "/order-flow",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "payment",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "showroom-sales.html",
+        "source_path": "nattos-server/apps/tam-luxury/showroom-sales.html",
+        "surface_type": "operational",
+        "route_or_entry": "/showroom-sales",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "payment",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "pricing-engine.html",
+        "source_path": "nattos-server/apps/tam-luxury/pricing-engine.html",
+        "surface_type": "config",
+        "route_or_entry": "/pricing-engine",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "payment",
+          "render"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "cfo-dashboard.html",
+        "source_path": "nattos-server/apps/tam-luxury/cfo-dashboard.html",
+        "surface_type": "dashboard",
+        "route_or_entry": "/cfo-dashboard",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "reject",
+          "payment",
+          "render"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "ktt-approval.html",
+        "source_path": "nattos-server/apps/tam-luxury/ktt-approval.html",
+        "surface_type": "operational",
+        "route_or_entry": "/ktt-approval",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "reject",
+          "payment",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.88,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "loss-thresholds.html",
+        "source_path": "nattos-server/apps/tam-luxury/loss-thresholds.html",
+        "surface_type": "config",
+        "route_or_entry": "/loss-thresholds",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "audit_missing",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "nattos-production.html",
+        "source_path": "nattos-server/apps/tam-luxury/nattos-production.html",
+        "surface_type": "operational",
+        "route_or_entry": "/nattos-production",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "frame",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "operations-terminal.html",
+        "source_path": "nattos-server/apps/tam-luxury/operations-terminal.html",
+        "surface_type": "operational",
+        "route_or_entry": "/operations-terminal",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "reject",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "surveillance.html",
+        "source_path": "nattos-server/apps/tam-luxury/surveillance.html",
+        "surface_type": "monitor",
+        "route_or_entry": "/surveillance",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.88,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "hr-admin.html",
+        "source_path": "nattos-server/apps/tam-luxury/hr-admin.html",
+        "surface_type": "operational",
+        "route_or_entry": "/hr-admin",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "payment",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "hr-manager.html",
+        "source_path": "nattos-server/apps/tam-luxury/hr-manager.html",
+        "surface_type": "operational",
+        "route_or_entry": "/hr-manager",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "render"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "hr-dashboard.html",
+        "source_path": "nattos-server/apps/tam-luxury/hr-dashboard.html",
+        "surface_type": "dashboard",
+        "route_or_entry": "/hr-dashboard",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "reject",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "frame",
+        "gap_candidates": [
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "attendance.html",
+        "source_path": "nattos-server/apps/tam-luxury/attendance.html",
+        "surface_type": "operational",
+        "route_or_entry": "/attendance",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "frame",
+        "gap_candidates": [
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "master-dashboard.html",
+        "source_path": "nattos-server/apps/tam-luxury/master-dashboard.html",
+        "surface_type": "dashboard",
+        "route_or_entry": "/master-dashboard",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "payment",
+          "render"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "table.html",
+        "source_path": "nattos-server/apps/tam-luxury/table.html",
+        "surface_type": "shell",
+        "route_or_entry": "/table",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "payment",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "reconciliation_risk",
+          "role_ambiguity",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "personal-profile.html",
+        "source_path": "nattos-server/apps/tam-luxury/personal-profile.html",
+        "surface_type": "operational",
+        "route_or_entry": "/personal-profile",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "personal-profile-v2.html",
+        "source_path": "nattos-server/apps/tam-luxury/personal-profile-v2.html",
+        "surface_type": "operational",
+        "route_or_entry": "/personal-profile-v2",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "chat-rooms.html",
+        "source_path": "nattos-server/apps/tam-luxury/chat-rooms.html",
+        "surface_type": "utility",
+        "route_or_entry": "/chat-rooms",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "render"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "daily-work-app.html",
+        "source_path": "nattos-server/apps/tam-luxury/daily-work-app.html",
+        "surface_type": "shell",
+        "route_or_entry": "/daily-work-app",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "payment",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "audit_missing",
+          "direct_state_trust",
+          "role_ambiguity",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "kris-email-hub.html",
+        "source_path": "nattos-server/apps/tam-luxury/kris-email-hub.html",
+        "surface_type": "utility",
+        "route_or_entry": "/kris-email-hub",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "payment",
+          "upload",
+          "render"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "approval_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "nattos-audit.html",
+        "source_path": "nattos-server/apps/tam-luxury/nattos-audit.html",
+        "surface_type": "monitor",
+        "route_or_entry": "/nattos-audit",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "approve",
+          "payment",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "payment_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "app-psychology.html",
+        "source_path": "nattos-server/apps/tam-luxury/app-psychology.html",
+        "surface_type": "shell",
+        "route_or_entry": "/app-psychology",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "reject",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "role_ambiguity",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "tam-luxury-reposide-v2.5.html",
+        "source_path": "nattos-server/apps/tam-luxury/tam-luxury-reposide-v2.5.html",
+        "surface_type": "operational",
+        "route_or_entry": "/tam-luxury-reposide-v2.5",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "upload",
+          "render",
+          "move_state",
+          "export"
+        ],
+        "state_hint": [
+          "order_state",
+          "approval_state",
+          "hr_state",
+          "risk_state",
+          "render_state"
+        ],
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "tamluxury-v2.html",
+        "source_path": "nattos-server/apps/tam-luxury/tamluxury-v2.html",
+        "surface_type": "operational",
+        "route_or_entry": "/tamluxury-v2",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "payment",
+          "upload",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "tamluxury-v3.html",
+        "source_path": "nattos-server/apps/tam-luxury/tamluxury-v3.html",
+        "surface_type": "operational",
+        "route_or_entry": "/tamluxury-v3",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "payment",
+          "upload",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      },
+      {
+        "surface_file": "tamluxury-v4.html",
+        "source_path": "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "surface_type": "operational",
+        "route_or_entry": "/tamluxury-v4",
+        "role_hint": "tenant_surface_role_observed",
+        "action_hint": [
+          "create",
+          "update",
+          "approve",
+          "payment",
+          "upload",
+          "render",
+          "move_state"
+        ],
+        "state_hint": [
+          "order_state",
+          "stock_state",
+          "payment_state",
+          "approval_state",
+          "hr_state",
+          "render_state"
+        ],
+        "transport_hint": "sse",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing surface event flow -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "map to existing cell foundation; read-only intake; no cell scaffold"
+      }
+    ],
+    "engine_inventory": [
+      {
+        "engine_file": "heyna-client.js",
+        "source_path": "nattos-server/apps/tam-luxury/heyna-client.js",
+        "engine_type": "transport",
+        "route_or_entry": "/heyna-client",
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "validation",
+        "gap_candidates": [
+          "audit_missing",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing engine call -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "engine maps to existing cell foundation or infrastructure; no cell scaffold"
+      },
+      {
+        "engine_file": "nattos-data.js",
+        "source_path": "nattos-server/app Tâm luxury/nattos-data.js",
+        "engine_type": "runtime_helper",
+        "route_or_entry": "/nattos-data",
+        "transport_hint": "direct_fetch",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "audit_missing",
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing engine call -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.8,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "engine maps to existing cell foundation or infrastructure; no cell scaffold"
+      },
+      {
+        "engine_file": "nattos-eod-engine.js",
+        "source_path": "nattos-server/app Tâm luxury/nattos-eod-engine.js",
+        "engine_type": "runtime_helper",
+        "route_or_entry": "/nattos-eod-engine",
+        "transport_hint": "local_state",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "reconciliation_risk",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing engine call -> observation -> gap registry",
+        "existing_cell_candidate": "inventory-cell",
+        "cell_confidence": 0.7,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "engine maps to existing cell foundation or infrastructure; no cell scaffold"
+      },
+      {
+        "engine_file": "nattos-loss-thresholds.js",
+        "source_path": "nattos-server/app Tâm luxury/nattos-loss-thresholds.js",
+        "engine_type": "runtime_helper",
+        "route_or_entry": "/nattos-loss-thresholds",
+        "transport_hint": "static",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "audit_missing",
+          "direct_state_trust"
+        ],
+        "candidate_living_line": "existing engine call -> observation -> gap registry",
+        "existing_cell_candidate": "pricing-cell",
+        "cell_confidence": 0.8,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "engine maps to existing cell foundation or infrastructure; no cell scaffold"
+      },
+      {
+        "engine_file": "nattos-payment.js",
+        "source_path": "nattos-server/app Tâm luxury/nattos-payment.js",
+        "engine_type": "runtime_helper",
+        "route_or_entry": "/nattos-payment",
+        "transport_hint": "static",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "approval_bypass",
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing engine call -> observation -> gap registry",
+        "existing_cell_candidate": "order-cell",
+        "cell_confidence": 0.84,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "engine maps to existing cell foundation or infrastructure; no cell scaffold"
+      },
+      {
+        "engine_file": "nattos-galaxy.js",
+        "source_path": "nattos-server/apps/tam-luxury/nattos-galaxy.js",
+        "engine_type": "runtime_helper",
+        "route_or_entry": "/nattos-galaxy",
+        "transport_hint": "hybrid",
+        "sirasign_level_observed": "none",
+        "gap_candidates": [
+          "audit_missing",
+          "direct_state_trust",
+          "transport_drift"
+        ],
+        "candidate_living_line": "existing engine call -> observation -> gap registry",
+        "existing_cell_candidate": "it-cell",
+        "cell_confidence": 0.88,
+        "needs_new_cell_seed": "no",
+        "gap_only_registry": "no",
+        "do_not_scaffold_reason": "engine maps to existing cell foundation or infrastructure; no cell scaffold"
+      }
+    ],
+    "summary": {
+      "transport_modes": {
+        "direct_fetch": 1,
+        "hybrid": 13,
+        "local_state": 1,
+        "sse": 18,
+        "static": 2
+      },
+      "sirasign_levels": {
+        "frame": 3,
+        "none": 20,
+        "validation": 12
+      },
+      "gap_candidates": {
+        "approval_bypass": 17,
+        "audit_missing": 6,
+        "direct_state_trust": 32,
+        "reconciliation_risk": 15,
+        "role_ambiguity": 3,
+        "transport_drift": 23
+      },
+      "existing_cell_candidate_counts": {
+        "inventory-cell": 13,
+        "it-cell": 1,
+        "order-cell": 20,
+        "pricing-cell": 1
+      }
+    },
+    "rules": [
+      "do not build app",
+      "do not scaffold cell",
+      "do not map screen to new cell without base mapping",
+      "do not promote gap to rule without threshold",
+      "do not treat tenant data as core"
+    ]
+  }
+}
