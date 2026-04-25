@@ -1,0 +1,21 @@
+# sira route gate evidence — 20260425
+
+status: pass
+created_at: 2026-04-25T06:00:57.165123+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. source
+
+- docs/runtime/sira_dns_zone_manifest_20260425.na
+
+## 2. validator
+
+- tools/validate_sira_route_gate.sira
+
+## 3. scope
+
+route gate validator checks domain registration, allowed paths, forbidden paths, lifecycle status, and anti-identity wording.
+
+this task does not mutate gateway implementation.

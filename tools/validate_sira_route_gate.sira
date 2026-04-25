@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const manifest = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+const expectedDomains = [
+  "core.sira",
+  "apps.sira",
+  "mach.sira",
+  "audit.sira",
+  "render.sira",
+  "tam.sira"
+];
+const requiredClauses = [
+  "dns không phải identity",
+  "http không phải identity",
+  "domain gọi được không có nghĩa là được tin",
+  "route tới được không có nghĩa là được phép",
+  "unknown.sira → deny",
+  "spoofed host header → quarantine",
+  "direct localhost bypass",
+  "route gate phải kiểm theo thứ tự",
+  "không được:",
+  "dns zone không thay siraSign",
+  "manifest này chưa nối implementation gateway"
+];
+const forbiddenClauses = [
+  "HTTP là identity",
+  "http:// = identity",
+  "dns là authority",
+  "domain là identity",
+  "DNS XONG",
+  "PASS",
+  "FAIL"
+];
+
+if (!fs.existsSync(manifest)) {
+  errors.push("missing sira dns zone manifest");
+} else {
+  const c = fs.readFileSync(manifest, "utf8");
+
+  for (const domain of expectedDomains) {
+    must(c.includes(domain), "missing domain: " + domain);
+  }
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing route gate clause: " + clause);
+  }
+
+  for (const clause of forbiddenClauses) {
+    must(!c.includes(clause), "forbidden route gate wording: " + clause);
+  }
+
+  for (const domain of expectedDomains) {
+    const idx = c.indexOf(domain);
+    const nextIdx = expectedDomains
+      .map(d => c.indexOf(d, idx + domain.length))
+      .filter(x => x > idx)
+      .sort((a,b) => a-b)[0] || c.length;
+    const block = c.slice(idx, nextIdx);
+
+    must(block.includes("purpose:"), domain + ": missing purpose");
+    must(block.includes("owner:"), domain + ": missing owner");
+    must(block.includes("target:"), domain + ": missing target");
+    must(block.includes("allowed_paths:"), domain + ": missing allowed_paths");
+    must(block.includes("forbidden_paths:"), domain + ": missing forbidden_paths");
+    must(block.includes("status:"), domain + ": missing status");
+  }
+}
+
+if (errors.length) {
+  console.error("sira route gate validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira route gate validation: pass");
+console.log("manifest=docs/runtime/sira_dns_zone_manifest_20260425.na");
