@@ -9,11 +9,11 @@ const errors = [];
 
 const requiredPilots = {
   "nhà": "render_language_pilot_nha.html",
-  "neo": "render_language_pilot_neo.na",
-  "tha": "render_language_pilot_tha.na",
-  "biên": "render_language_pilot_bien.na",
-  "chốt": "render_language_pilot_chot.na",
-  "về": "render_language_pilot_ve.na"
+  "neo": "render_language_pilot_neo.html",
+  "tha": "render_language_pilot_tha.html",
+  "biên": "render_language_pilot_bien.html",
+  "chốt": "render_language_pilot_chot.html",
+  "về": "render_language_pilot_ve.html"
 };
 const sourceSamples = {
   "nhà": "nha.na",
@@ -23,7 +23,6 @@ const sourceSamples = {
   "chốt": "chot.na",
   "về": "ve.na"
 };
-
 const forbiddenMarks = [
   "react",
   "vue",
@@ -33,6 +32,7 @@ const forbiddenMarks = [
   "unpkg",
   "jsdelivr",
   "production renderer",
+  "production-ready",
   "siraSign frame validation: wired",
   "Mạch HeyNa wired",
   "EventBus",
@@ -54,27 +54,19 @@ must(fs.existsSync(sampleDir), "missing docs/render/samples");
 
 for (const [state, fileName] of Object.entries(requiredPilots)) {
   const file = path.join(pilotDir, fileName);
-  must(fs.existsSync(file), "missing pilot: " + fileName);
+  must(fs.existsSync(file), "missing html pilot: " + fileName);
 
   if (fs.existsSync(file)) {
     const c = read(file);
 
-    must(c.length > 40, fileName + ": pilot too small");
+    must(c.includes("<!doctype html>") || c.includes("<!DOCTYPE html>"), fileName + ": html pilot must be standalone html");
+    must(c.includes("</html>"), fileName + ": html pilot must close html");
     must(c.includes(state), fileName + ": missing state name: " + state);
+    must(c.includes("pilot"), fileName + ": missing pilot marker");
+    must(c.includes("pilot only") || c.includes("not production"), fileName + ": missing pilot-only / non-production scope");
 
     for (const mark of forbiddenMarks) {
       must(!c.includes(mark), fileName + ": forbidden pilot mark: " + mark);
-    }
-
-    if (fileName.endsWith(".html")) {
-      must(c.includes("<!doctype html>"), fileName + ": html pilot must be standalone html");
-      must(c.includes("data-render-pilot=\"nha\""), fileName + ": nha html missing render pilot marker");
-      must(c.includes("window.renderLanguagePilot"), fileName + ": html pilot missing readout object");
-      must(c.includes("framework: \"none\""), fileName + ": html pilot must declare no framework");
-      must(c.includes("renderEngine: \"not production\""), fileName + ": html pilot must declare non-production scope");
-    } else {
-      must(c.includes("pilot") || c.includes("render"), fileName + ": .na pilot missing pilot/render marker");
-      must(!c.includes("html"), fileName + ": .na pilot should not claim html surface");
     }
   }
 
@@ -97,4 +89,4 @@ if (errors.length) {
 
 console.log("render language pilot validation: pass");
 console.log("dir=docs/render/pilot");
-console.log("states=nhà,neo,tha,biên,chốt,về");
+console.log("html_states=nhà,neo,tha,biên,chốt,về");
