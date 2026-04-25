@@ -1,0 +1,31 @@
+# tam luxury screen manifest intake evidence — 20260425
+
+status: intake-validated
+created_at: 2026-04-25T10:16:08.607384+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- docs/runtime/tam_luxury_screen_manifest_intake_20260425.na
+- tools/validate_tam_luxury_screen_manifest_intake.sira
+
+---
+
+## 2. validation scope
+
+- đủ 71 screen bindings.
+- screen_id tuần tự từ PL-001 đến PL-071.
+- route không trùng.
+- cell binding không rỗng.
+- audit chỉ nhận minimal, partial, full.
+- siraSign chỉ nhận none, shape, required.
+- status intake chỉ là manifested.
+- không scaffold 71 cell từ manifest này.
+
+---
+
+## 3. next
+
+bước tiếp theo là route gate matrix và permission matrix.

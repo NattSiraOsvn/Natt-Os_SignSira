@@ -1,0 +1,112 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "tam_luxury_screen_manifest_intake_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function uniq(xs) {
+  return Array.from(new Set(xs));
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing tam luxury screen manifest intake");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  const requiredClauses = [
+  "tam luxury screen manifest intake",
+  "screen_binding_not_cell_scaffold",
+  "screen binding không phải cell scaffold",
+  "manifest này là 71 screen bindings, không phải 71 cell",
+  "không sinh 71 cell mù",
+  "total_screens: 71",
+  "allowed_audit: [minimal, partial, full]",
+  "allowed_siraSign: [none, shape, required]",
+  "PL-001",
+  "PL-071",
+  "/system/overview",
+  "/workspace/event-correlation"
+];
+  const forbiddenMarks = [
+  "mỗi màn hình là một cell",
+  "screen = cell",
+  "status: scaffolded",
+  "status: wired",
+  "crypto",
+  "production-ready"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing manifest clause: " + clause);
+  }
+
+  must(c.includes("không sinh 71 cell mù"), "manifest must explicitly deny blind 71-cell scaffolding");
+  must(c.includes("manifest này là 71 screen bindings, không phải 71 cell"), "manifest must distinguish screen bindings from cells");
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden manifest wording: " + mark);
+  }
+
+  const ids = [...c.matchAll(/screen_id:\s*(PL-\d{3})/g)].map(m => m[1]);
+  const routes = [...c.matchAll(/route:\s*(\/[^\n]+)/g)].map(m => m[1].trim());
+  const cells = [...c.matchAll(/cell_binding:\s*([^\n]+)/g)].map(m => m[1].trim());
+  const audits = [...c.matchAll(/audit:\s*([^\n]+)/g)].map(m => m[1].trim());
+  const signs = [...c.matchAll(/siraSign:\s*([^\n]+)/g)].map(m => m[1].trim());
+  const statuses = [...c.matchAll(/status:\s*([^\n]+)/g)].map(m => m[1].trim());
+
+  must(ids.length === 71, "screen_id count must be 71");
+  must(routes.length === 71, "route count must be 71");
+  must(cells.length === 71, "cell_binding count must be 71");
+  must(audits.length >= 71, "audit count must be at least 71");
+  must(signs.length >= 71, "siraSign count must be at least 71");
+
+  must(uniq(ids).length === 71, "screen_id must be unique");
+  must(uniq(routes).length === 71, "route must be unique");
+
+  for (let i = 1; i <= 71; i++) {
+    const expected = "PL-" + String(i).padStart(3, "0");
+    must(ids.includes(expected), "missing sequential screen id " + expected);
+  }
+
+  for (const route of routes) {
+    must(route.startsWith("/"), "route must start with /: " + route);
+    must(!route.includes(" "), "route must not contain spaces: " + route);
+  }
+
+  for (const cell of cells) {
+    must(cell.startsWith("cell_"), "cell_binding must start with cell_: " + cell);
+  }
+
+  for (const audit of audits.slice(-71)) {
+    must(["minimal", "partial", "full"].includes(audit), "invalid audit level: " + audit);
+  }
+
+  const legacysirasign = [...c.matchAll(/^\s*siraSign:\s*(yes|no)\s*$/gmi)].map(m => m[1]);
+  must(legacysirasign.length === 0, "legacy yes/no sirasign values are forbidden");
+
+  for (const sign of signs.slice(-71)) {
+    must(["none", "shape", "required"].includes(sign), "invalid sirasign level: " + sign);
+  }
+
+  for (const status of statuses.slice(-72)) {
+    if (status === "manifested") continue;
+    if (status === "manifested\r") continue;
+    must(false, "invalid status in intake: " + status);
+  }
+}
+
+if (errors.length) {
+  console.error("tam luxury screen manifest intake validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("tam luxury screen manifest intake validation: pass");
+console.log("file=docs/runtime/tam_luxury_screen_manifest_intake_20260425.na");
+console.log("screens=71");
