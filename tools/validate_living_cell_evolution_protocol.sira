@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "living_cell_evolution_protocol_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing living cell evolution protocol");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const required = [
+  "living cell evolution protocol",
+  "natt-os không phải workflow engine tĩnh",
+  "natt-os là sinh thể số biết học từ logic thật của doanh nghiệp",
+  "logic gap sinh logic",
+  "tâm luxury là môi trường nghiệp vụ thật để nuôi cell",
+  "không hard-code tâm luxury vào core",
+  "business flow thật",
+  "gap detection",
+  "evidence",
+  "repeated pattern",
+  "provisional rule",
+  "contract upgrade",
+  "cell memory update",
+  "không đi theo mô hình nhập bảng rồi sinh app",
+  "không sinh 71 cell từ 71 màn hình",
+  "generic compiler chỉ được xem là enzyme kiểm hình",
+  "generic compiler không phải não của hệ",
+  "bước tiếp theo không phải generic permission compiler",
+  "cell learning seed"
+];
+  const forbidden = [
+  "production-ready",
+  "generic compiler là não",
+  "manifest sinh cell",
+  "71 màn hình sinh 71 cell",
+  "permission matrix là luật chết"
+];
+
+  for (const clause of required) {
+    must(c.includes(clause), "missing protocol clause: " + clause);
+  }
+
+  for (const mark of forbidden) {
+    must(!c.includes(mark), "forbidden protocol wording: " + mark);
+  }
+}
+
+if (errors.length) {
+  console.error("living cell evolution protocol validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("living cell evolution protocol validation: pass");
+console.log("file=docs/runtime/living_cell_evolution_protocol_20260425.na");

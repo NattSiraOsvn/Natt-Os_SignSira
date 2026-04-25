@@ -1,0 +1,100 @@
+# living cell evolution protocol — 20260425
+
+status: protocol-manifested
+created_at: 2026-04-25T10:57:41.491532+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. core principle
+
+natt-os không phải workflow engine tĩnh.
+
+natt-os không sinh hệ từ bảng màn hình.
+
+natt-os là sinh thể số biết học từ logic thật của doanh nghiệp.
+
+logic gap sinh logic.
+
+gap nghiệp vụ được ghi lại, kiểm chứng, lặp lại, rồi mới được nâng thành rule.
+
+rule đủ ổn định mới được nâng thành contract của cell.
+
+---
+
+## 2. role of tenant fixture
+
+tâm luxury là môi trường nghiệp vụ thật để nuôi cell.
+
+dữ liệu tâm luxury không phải core.
+
+dữ liệu tâm luxury là dòng sống để ép core học, phát hiện gap và tiến hóa.
+
+không hard-code tâm luxury vào core.
+
+không hard-code role, route hoặc permission của tâm luxury thành chuẩn phổ quát.
+
+---
+
+## 3. cell evolution loop
+
+```text
+business flow thật
+→ observation
+→ gap detection
+→ evidence
+→ repeated pattern
+→ provisional rule
+→ validator
+→ contract upgrade
+→ cell memory update
+→ route / permission / render adjustment
+```
+
+---
+
+## 4. forbidden path
+
+```text
+không đi theo mô hình nhập bảng rồi sinh app
+không biến manifest thành scaffold mù
+không sinh 71 cell từ 71 màn hình
+không biến permission matrix thành luật chết
+không để compiler generic thay vai trò học của cell
+không gọi một rule là ổn định nếu chưa có evidence lặp lại
+```
+
+---
+
+## 5. allowed path
+
+```text
+dùng manifest để định biên quan sát
+dùng route gate để bảo vệ biên
+dùng permission matrix như trạng thái khởi tạo
+dùng cell binding validation để biết vùng cần nuôi cell
+dùng dữ liệu thật để phát hiện gap
+dùng evidence để nuôi ký ức cell
+dùng validator như miễn dịch
+dùng contract như hình thái đã ổn định
+```
+
+---
+
+## 6. compiler boundary
+
+generic compiler chỉ được xem là enzyme kiểm hình.
+
+generic compiler không phải não của hệ.
+
+generic compiler không được quyết định bản thể cell.
+
+cell tiến hóa từ nghiệp vụ thật, không sinh từ compiler.
+
+---
+
+## 7. next
+
+bước tiếp theo không phải generic permission compiler.
+
+bước tiếp theo là cell learning seed cho ba dòng nghiệp vụ thật: sản xuất & kho, tài chính – kt, ban kiểm soát.
