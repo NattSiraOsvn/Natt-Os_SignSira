@@ -1,0 +1,44 @@
+# render-stack-cell contract — 20260425
+
+status: scaffold-contract
+created_at: 2026-04-25T07:54:11.416228+00:00
+
+source scope
+
+contract này bám theo render language v0.2 candidate.
+
+source spec:
+
+docs/render/spec_render_language_v0.2_candidate.na
+responsibility
+
+render-stack-cell chỉ nhận instruction.
+
+render-stack-cell không tự sinh logic render.
+
+render-stack-cell không tự quyết định state.
+
+render-stack-cell không tự sửa memory.
+
+render-stack-cell không tự ký siraSign.
+
+input
+RenderInstruction
+
+input phải đến từ grammar / sample / pilot đã được validator xác nhận.
+
+output
+RenderResult
+
+output chỉ phục vụ pilot / dev surface cho đến khi có runner và contract production riêng.
+
+constitution boundary
+không import trực tiếp cell khác — điều 4 hiến pháp
+không tự sinh logic render — engine chỉ nhận instruction, không tự quyết định
+cell.anc khai báo đúng layer m, direction nam, obitan n=2
+contract.si không chứa điều khoản mâu thuẫn với render language v0.2
+not claim
+không claim production renderer
+không claim mạch heyna đã wire
+không claim siraSign frame validation đã wire
+

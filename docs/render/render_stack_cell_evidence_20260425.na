@@ -1,0 +1,23 @@
+# render-stack-cell evidence — 20260425
+
+status: scaffold-validated
+created_at: 2026-04-25T07:54:11.416429+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+files
+src/cells/render-stack-cell/cell.anc
+src/cells/render-stack-cell/contract.si
+src/cells/render-stack-cell/domain/render-instruction.types.ts
+src/cells/render-stack-cell/domain/render-stack.engine.ts
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira
+scope
+
+render-stack-cell có identity, contract, domain types, engine stub và validator riêng.
+
+đây vẫn là scaffold/runtime-dev layer.
+
+chưa claim production renderer.
+
+chưa wire mạch heyna.
+
+chưa wire siraSign frame validation.
