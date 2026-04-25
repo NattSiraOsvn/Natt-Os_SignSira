@@ -1,0 +1,154 @@
+# sira dns record manifest — 20260425
+
+status: record-candidate
+created_at: 2026-04-25T07:15:35.386273+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. stance
+
+dns record không phải identity.
+
+mail record không phải route gate.
+
+mx record không cấp quyền vào hệ.
+
+txt policy không cấp quyền bản thể.
+
+a / aaaa / cname chỉ giúp tìm đường.
+
+route gate mới quyết định cửa nào được vào.
+
+siraSign mới quyết định lượt qua biên có đúng nghĩa hay không.
+
+---
+
+## 2. record families
+
+```text
+a / aaaa
+  dùng cho browser/local transport target
+
+cname
+  dùng cho alias có kiểm soát
+
+mx
+  dùng cho mail delivery
+
+txt
+  dùng cho policy như spf, dkim, dmarc hoặc verification
+
+srv
+  dùng cho service discovery nếu cần
+
+route
+  dùng cho gateway path policy, không trộn với mx/txt
+3. browser route records
+
+các host này thuộc route/gateway layer và đã có trong zone manifest:
+
+core.sira
+apps.sira
+mach.sira
+audit.sira
+render.sira
+tam.sira
+
+rule:
+
+browser route host phải có allowed_paths và forbidden_paths.
+browser route host phải đi qua route gate.
+browser route host không được tự claim identity.
+4. mail records
+
+mail là record layer riêng, không phải browser route.
+
+mail.sira
+  family: mx-target
+  route_gate: no
+  browser_trusted_host: no
+  status: draft
+
+smtp.sira
+  family: mail-service
+  route_gate: no
+  browser_trusted_host: no
+  status: draft
+
+imap.sira
+  family: mail-service
+  route_gate: no
+  browser_trusted_host: no
+  status: draft
+
+rule:
+
+mail.sira không được tự vào route gate.
+smtp.sira không được tự vào route gate.
+imap.sira không được tự vào route gate.
+5. txt policy records
+
+txt policy chỉ mô tả chính sách, không tạo identity.
+
+_spf.sira
+  family: txt-policy
+  purpose: sender policy placeholder
+  grants_identity: no
+  grants_route: no
+  status: draft
+
+_dmarc.sira
+  family: txt-policy
+  purpose: mail alignment placeholder
+  grants_identity: no
+  grants_route: no
+  status: draft
+
+selector._domainkey.sira
+  family: txt-policy
+  purpose: dkim public key placeholder
+  grants_identity: no
+  grants_route: no
+  status: draft
+
+rule:
+
+txt đúng không có nghĩa là người gọi thuộc nhà.
+mail policy đúng không có nghĩa là route được phép.
+dkim đúng không thay siraSign.
+6. separation rule
+dns zone manifest
+  = browser route / gateway host
+
+dns record manifest
+  = record family: a, aaaa, cname, mx, txt, srv
+
+route gate
+  = allowed path / forbidden path / host trust
+
+siraSign
+  = boundary seal có nghĩa
+
+không trộn mx/txt vào route gate nếu chưa có lý do kỹ thuật riêng.
+
+7. deny by default
+unknown record host → no trust
+unknown route host → deny
+mail host used as app host → deny
+txt policy used as identity proof → deny
+localhost used as trusted host → deny
+8. next
+
+sau record manifest mới làm:
+
+dns smoke matrix
+mail record placeholder validator
+public domain mapping nếu có domain thật
+gateway route smoke runner
+
+manifest này chưa cấu hình dns public thật.
+
+manifest này chưa cấu hình mail provider thật.
+
+manifest này chỉ khóa phân tầng record để không nhầm mail/dns/identity/route.

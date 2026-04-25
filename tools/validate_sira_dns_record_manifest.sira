@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const recordManifest = path.join(root, "docs", "runtime", "sira_dns_record_manifest_20260425.na");
+const zoneManifest = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(recordManifest)) {
+errors.push("missing sira dns record manifest");
+} else {
+const c = fs.readFileSync(recordManifest, "utf8");
+const requiredClauses = [
+  "dns record không phải identity",
+  "mail record không phải route gate",
+  "mx record không cấp quyền vào hệ",
+  "txt policy không cấp quyền bản thể",
+  "core.sira",
+  "apps.sira",
+  "mach.sira",
+  "audit.sira",
+  "render.sira",
+  "tam.sira",
+  "mail.sira",
+  "smtp.sira",
+  "imap.sira",
+  "_spf.sira",
+  "_dmarc.sira",
+  "selector._domainkey.sira",
+  "dkim đúng không thay siraSign",
+  "mail host used as app host → deny",
+  "manifest này chưa cấu hình dns public thật",
+  "manifest này chưa cấu hình mail provider thật"
+];
+const forbiddenMarks = [
+  "dns là identity",
+  "mail là identity",
+  "mx là route gate",
+  "txt là identity",
+  "dkim thay siraSign",
+  "DNS XONG",
+  "PASS",
+  "FAIL"
+];
+
+for (const clause of requiredClauses) {
+must(c.includes(clause), "missing record clause: " + clause);
+}
+
+for (const mark of forbiddenMarks) {
+must(!c.includes(mark), "forbidden record wording: " + mark);
+}
+}
+
+if (!fs.existsSync(zoneManifest)) {
+errors.push("missing sira dns zone manifest");
+} else {
+const z = fs.readFileSync(zoneManifest, "utf8");
+
+["mail.sira", "smtp.sira", "imap.sira"].forEach(host => {
+must(!z.includes(host), "mail host must not be browser route host: " + host);
+});
+
+["core.sira", "apps.sira", "mach.sira", "audit.sira", "render.sira", "tam.sira"].forEach(host => {
+must(z.includes(host), "route host missing from zone manifest: " + host);
+});
+}
+
+if (errors.length) {
+console.error("sira dns record manifest validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sira dns record manifest validation: pass");
+console.log("file=docs/runtime/sira_dns_record_manifest_20260425.na");
