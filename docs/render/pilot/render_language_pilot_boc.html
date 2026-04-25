@@ -1,0 +1,58 @@
+<!--
+  RENDER LANGUAGE PILOT — state: bọc
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=2
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — bọc</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --wrap-inner: #f0e0d0; --wrap-outer: #e8c8b0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .wrap {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle at center, var(--wrap-inner), var(--wrap-outer) 80%, transparent 100%);
+    box-shadow: 0 0 30px 10px rgba(224,200,176,0.3);
+    animation: wrap-gradient 5s ease-in-out infinite;
+  }
+  @keyframes wrap-gradient {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="wrap"></div>
+  <div class="label">bọc</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'bọc', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=2', polarity:'warm-core',
+    pressure_response:'DISSIPATE', reflection_R:0.5, decay_rate:'γ(2)',
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>

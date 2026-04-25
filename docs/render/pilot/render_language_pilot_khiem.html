@@ -1,0 +1,57 @@
+<!--
+  RENDER LANGUAGE PILOT — state: khiêm
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=3
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — khiêm</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --humble-color: #d0c0f0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .element {
+    position: absolute; left: 55%; top: 70%;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--humble-color);
+    opacity: 0.6;
+    animation: humble-shrink 2s ease-out forwards;
+  }
+  @keyframes humble-shrink {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(0.5); opacity: 0.2; }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="element"></div>
+  <div class="label">khiêm</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'khiêm', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=3', polarity:'cool-rim',
+    pressure_response:'DISSIPATE', reflection_R:0.1, decay_rate:'γ(3)',
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!--
+  RENDER LANGUAGE PILOT — state: giữ
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=2
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — giữ</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --hold-color: #d0a0c0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .ring {
+    position: absolute; left: 60%; top: 30%;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 3px solid var(--hold-color);
+    box-shadow: 0 0 15px 5px rgba(208,160,192,0.7);
+    animation: hold-steady 3s ease-in-out infinite;
+  }
+  @keyframes hold-steady {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="ring"></div>
+  <div class="label">giữ</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'giữ', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=2', polarity:'cool-rim',
+    pressure_response:'FALL', reflection_R:0.95, decay_rate:'γ(2)*0.9',
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>

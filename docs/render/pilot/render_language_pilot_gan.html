@@ -1,0 +1,58 @@
+<!--
+  RENDER LANGUAGE PILOT — state: gắn
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=1
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — gắn</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --attach-color: #f0d090; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .surface { position: relative; width: 600px; height: 400px; }
+  .anchor {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--attach-color);
+    box-shadow: 0 0 10px 3px rgba(240,208,144,0.6);
+    animation: attach-drift 3s ease-out infinite alternate;
+  }
+  @keyframes attach-drift {
+    0% { transform: translate(-50%, -50%) translate(0, 0); }
+    100% { transform: translate(-50%, -50%) translate(-20px, -10px); }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="surface">
+  <div class="anchor"></div>
+  <div class="label">gắn</div>
+</div>
+<script>
+  const renderPilotReadout = {
+    state:'gắn', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=1', polarity:'warm-core',
+    pressure_response:'FALL', reflection_R:0.3, decay_rate:'γ(1)',
+    framework:'none', scope:'pilot-only', production:false
+  };
+  console.log(JSON.stringify(renderPilotReadout,null,2));
+</script>
+</body>
+</html>
