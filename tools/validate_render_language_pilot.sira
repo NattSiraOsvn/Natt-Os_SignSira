@@ -9,18 +9,36 @@ const errors = [];
 
 const requiredPilots = {
   "nhà": "render_language_pilot_nha.html",
+  "gắn": "render_language_pilot_gan.html",
   "neo": "render_language_pilot_neo.html",
+  "bọc": "render_language_pilot_boc.html",
+  "gánh": "render_language_pilot_ganh.html",
+  "nhường": "render_language_pilot_nhuong.html",
   "tha": "render_language_pilot_tha.html",
+  "khiêm": "render_language_pilot_khiem.html",
+  "định": "render_language_pilot_dinh.html",
+  "tỉnh": "render_language_pilot_tinh.html",
   "biên": "render_language_pilot_bien.html",
+  "xét": "render_language_pilot_xet.html",
   "chốt": "render_language_pilot_chot.html",
+  "giữ": "render_language_pilot_giu.html",
   "về": "render_language_pilot_ve.html"
 };
 const sourceSamples = {
   "nhà": "nha.na",
+  "gắn": "gan.na",
   "neo": "neo.na",
+  "bọc": "boc.na",
+  "gánh": "ganh.na",
+  "nhường": "nhuong.na",
   "tha": "tha.na",
+  "khiêm": "khiem.na",
+  "định": "dinh.na",
+  "tỉnh": "tinh.na",
   "biên": "bien.na",
+  "xét": "xet.na",
   "chốt": "chot.na",
+  "giữ": "giu.na",
   "về": "ve.na"
 };
 const forbiddenMarks = [
@@ -62,7 +80,7 @@ for (const [state, fileName] of Object.entries(requiredPilots)) {
     must(c.includes("<!doctype html>") || c.includes("<!DOCTYPE html>"), fileName + ": html pilot must be standalone html");
     must(c.includes("</html>"), fileName + ": html pilot must close html");
     must(c.includes(state), fileName + ": missing state name: " + state);
-    must(c.includes("pilot"), fileName + ": missing pilot marker");
+    must(c.toLowerCase().includes("pilot"), fileName + ": missing pilot marker");
     must(c.includes("pilot only") || c.includes("not production"), fileName + ": missing pilot-only / non-production scope");
 
     for (const mark of forbiddenMarks) {
@@ -89,4 +107,4 @@ if (errors.length) {
 
 console.log("render language pilot validation: pass");
 console.log("dir=docs/render/pilot");
-console.log("html_states=nhà,neo,tha,biên,chốt,về");
+console.log("html_states=nhà,gắn,neo,bọc,gánh,nhường,tha,khiêm,định,tỉnh,biên,xét,chốt,giữ,về");

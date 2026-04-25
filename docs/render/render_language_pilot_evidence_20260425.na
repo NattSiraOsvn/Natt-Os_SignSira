@@ -1,7 +1,7 @@
 # render language pilot evidence — 20260425
 
-status: pilot-html-bundle-validated
-created_at: 2026-04-25T07:21:47.798575+00:00
+status: pilot-html-bundle-15-validated
+created_at: 2026-04-25T07:23:43.122100+00:00
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ---
@@ -9,19 +9,37 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 ## 1. html pilot bundle
 
 - docs/render/pilot/render_language_pilot_nha.html
+- docs/render/pilot/render_language_pilot_gan.html
 - docs/render/pilot/render_language_pilot_neo.html
+- docs/render/pilot/render_language_pilot_boc.html
+- docs/render/pilot/render_language_pilot_ganh.html
+- docs/render/pilot/render_language_pilot_nhuong.html
 - docs/render/pilot/render_language_pilot_tha.html
+- docs/render/pilot/render_language_pilot_khiem.html
+- docs/render/pilot/render_language_pilot_dinh.html
+- docs/render/pilot/render_language_pilot_tinh.html
 - docs/render/pilot/render_language_pilot_bien.html
+- docs/render/pilot/render_language_pilot_xet.html
 - docs/render/pilot/render_language_pilot_chot.html
+- docs/render/pilot/render_language_pilot_giu.html
 - docs/render/pilot/render_language_pilot_ve.html
 
 ## 2. source samples
 
 - docs/render/samples/nha.na
+- docs/render/samples/gan.na
 - docs/render/samples/neo.na
+- docs/render/samples/boc.na
+- docs/render/samples/ganh.na
+- docs/render/samples/nhuong.na
 - docs/render/samples/tha.na
+- docs/render/samples/khiem.na
+- docs/render/samples/dinh.na
+- docs/render/samples/tinh.na
 - docs/render/samples/bien.na
+- docs/render/samples/xet.na
 - docs/render/samples/chot.na
+- docs/render/samples/giu.na
 - docs/render/samples/ve.na
 
 ## 3. validator
@@ -30,13 +48,8 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ## 4. scope
 
-html pilot bundle exists and is validator-confirmed.
+html pilot bundle covers all 15 states and is validator-confirmed.
 this is not production renderer.
 this does not wire Mạch HeyNa.
 this does not wire siraSign frame validation.
 this does not introduce external framework dependency.
-
-## 5. note
-
-.na pilot files may remain auxiliary.
-html pilot bundle is now the validator target for the six visible pilot states.
