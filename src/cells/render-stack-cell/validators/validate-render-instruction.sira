@@ -1,0 +1,18 @@
+# VALIDATE RENDER INSTRUCTION
+# @validator: render_instruction contract
+# @status: scaffold
+# @operator: tools/thiên
+
+validator RenderInstructionValidator {
+  input: "render_instruction"
+  checks: [
+    "frame_id không rỗng, đúng format ULID",
+    "signals là array, mỗi signal có verb trong canonical list",
+    "attention_map.mode ∈ {FOCUS, AMBIENT, PERIPHERAL, NONE}",
+    "motion_budget.frame_budget > 0",
+    "motion_budget.allocated <= motion_budget.frame_budget",
+    "degrade_level ∈ {NONE, LIGHT, MEDIUM, HEAVY}",
+    "truth_boundary không có element vừa inside vừa outside"
+  ]
+  output: "PASS | FAIL với list violations"
+}
