@@ -1,0 +1,22 @@
+# tenant fixture boundary evidence — 20260425
+
+status: boundary-validated
+created_at: 2026-04-25T10:40:28.091537+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- docs/runtime/tenant_fixture_boundary_20260425.na
+- tools/validate_tenant_fixture_boundary.sira
+
+---
+
+## 2. validation scope
+
+- xác định natt-os core là hệ lõi.
+- xác định tâm luxury là tenant fixture / proof dataset.
+- cấm hard-code tenant route, role, cell binding vào core.
+- cấm sinh 71 cell mù.
+- buộc bước tiếp theo ưu tiên core.

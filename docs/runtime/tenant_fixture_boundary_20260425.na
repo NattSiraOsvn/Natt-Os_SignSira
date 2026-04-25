@@ -1,0 +1,72 @@
+# tenant fixture boundary — 20260425
+
+status: boundary-manifested
+created_at: 2026-04-25T10:40:28.090734+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. principle
+
+natt-os core là hệ lõi.
+
+tâm luxury là tenant fixture và proof dataset.
+
+dữ liệu tâm luxury được dùng để chạy logic thật, không phải để biến client thành core.
+
+screen manifest, route gate matrix, permission matrix và cell binding validation của tâm luxury là dữ liệu kiểm chứng.
+
+chúng không phải chuẩn phổ quát của natt-os.
+
+---
+
+## 2. boundary
+
+```text
+core = generic runtime, rule, validator, evidence, route gate, frame guard, renderer, transport
+tenant fixture = dữ liệu thật để kiểm tra core có xử lý được nghiệp vụ đời thực hay không
+```
+
+---
+
+## 3. forbidden
+
+```text
+không hard-code route của tâm luxury vào core
+không hard-code role của tâm luxury vào core
+không hard-code cell binding của tâm luxury vào core
+không sinh 71 cell mù
+không xem màn hình là cell
+không để tenant fixture chi phối kiến trúc lõi
+```
+
+---
+
+## 4. allowed
+
+```text
+core được đọc manifest
+core được validate manifest
+core được chạy runner trên dữ liệu tenant
+core được sinh scaffold nếu đã có plan, contract và boundary
+tenant validator được chứng minh case thật
+```
+
+---
+
+## 5. current tenant fixtures
+
+```text
+docs/runtime/tam_luxury_screen_manifest_intake_20260425.na
+docs/runtime/tam_luxury_domain_route_gate_matrix_20260425.na
+docs/runtime/tam_luxury_permission_matrix_20260425.na
+docs/runtime/tam_luxury_cell_binding_validation_20260425.na
+```
+
+---
+
+## 6. next
+
+sau boundary này, mọi bước tiếp theo phải ưu tiên natt-os core.
+
+tenant-specific scaffold chỉ được tạo sau khi có core scaffold protocol.
