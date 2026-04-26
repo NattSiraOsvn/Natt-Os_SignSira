@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "sira_macos_resolver_binding_evidence_20260426.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing macos resolver binding evidence");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  [
+    "sira macos resolver binding evidence",
+    "status: macos-resolver-bound",
+    "getaddrinfo qua macos resolver bị timeout",
+    "domain sira đi qua local coredns",
+    "khai ip remains dns-only",
+    "anc.sira: code=0",
+    "apps.sira: code=0",
+    "192.168.1.199"
+  ].forEach(clause => must(c.includes(clause), "missing macos resolver clause: " + clause));
+
+  [
+    "curl",
+    "safari",
+    "browser adapter",
+    "transport smoke",
+    "runtime smoke",
+    "wildcard -> allow",
+    "allow wildcard",
+    "production-ready"
+  ].forEach(mark => must(!lower.includes(mark), "forbidden macos resolver wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("sira macos resolver binding validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira macos resolver binding validation: pass");
+console.log("file=docs/runtime/sira_macos_resolver_binding_evidence_20260426.na");
