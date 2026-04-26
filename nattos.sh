@@ -10,7 +10,7 @@
 # Output: AI-agent readable + human readable
 # Mọi agent (Băng, thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
 #
-# 9 Groups · 40 Sections · 3-Layer Architecture Aware
+# 9 Groups · 42 Sections · 3-Layer Architecture Aware (v7.1 patched 20260426)
 # ═══════════════════════════════════════════════════════════════
 set -o pipefail
 
@@ -305,9 +305,9 @@ fi
 grp "GROUP B — CELL ANATOMY — Kernel · Business · Infrastructure · DNA"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "6" "KERNEL CELLS (6)"
+hdr "6" "KERNEL CELLS (12)"
 # ═══════════════════════════════════════════════════════════════
-KERNEL_EXPECTED=("audit-cell" "config-cell" "monitor-cell" "rbac-cell" "security-cell" "quantum-defense-cell")
+KERNEL_EXPECTED=("audit-cell" "config-cell" "monitor-cell" "rbac-cell" "security-cell" "quantum-defense-cell" "khai-cell" "neural-main-cell" "observation-cell" "ai-connector-cell" "notification-cell" "survival-cell")
 KERNEL_OK=0; KERNEL_TOTAL=${#KERNEL_EXPECTED[@]}
 for cell in "${KERNEL_EXPECTED[@]}"; do
   P="src/cells/kernel/$cell"
@@ -340,18 +340,18 @@ for cell_dir in src/cells/business/*/; do
   HAS_IDENTITY=$(ls "$cell_dir"/*.cell.anc 1>/dev/null 2>&1 && echo 1 || echo 0)
   HAS_CAPABILITY=$(find "$cell_dir" -name "*.engine.ts" -o -name "*.service.ts" 2>/dev/null | grep -v index | grep -q . && echo 1 || echo 0)
   HAS_BOUNDARY=$(find "$cell_dir" -name "*boundary*" -o -name "*policy*" 2>/dev/null | grep -q . && echo 1 || echo 0)
-  HAS_TRACE=$(find "$cell_dir" -name "*.entity.ts" -o -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
-  HAS_CONFIDENCE=1  # manifest implies confidence
-  HAS_SMARTLINK=$(find "$cell_dir" -name "*SmartLink*" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_TRACE=$(find "$cell_dir" -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_CONFIDENCE=$(find "$cell_dir" -name "*.confidence.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_SMARTLINK=$(find "$cell_dir" \( -iname "*smartlink*" -o -name "smartlink" \) 2>/dev/null | grep -q . && echo 1 || echo 0)
 
   SCORE=$((HAS_IDENTITY + HAS_CAPABILITY + HAS_BOUNDARY + HAS_TRACE + HAS_CONFIDENCE + HAS_SMARTLINK))
   [[ $SCORE -eq 6 ]] && ((BIZ_6OF6++)) || true
 
   # SmartLink wire check
   SL="—"
-  PORT_ANY=$(find "$cell_dir/ports" -name "*SmartLink*" 2>/dev/null | head -1)
+  PORT_ANY=$(find "$cell_dir/ports" -iname "*smartlink*" 2>/dev/null | head -1)
   if [[ -n "$PORT_ANY" ]]; then
-    if grep -rq "SmartLinkPort" "$cell_dir/domain/services/" 2>/dev/null; then
+    if grep -riq "smartlinkport" "$cell_dir/domain/services/" 2>/dev/null; then
       SL="WIRED✅"; ((BIZ_WIRED++)) || true
     else
       SL="PORT_ONLY⚠️"; ((BIZ_NOT_WIRED++)) || true
