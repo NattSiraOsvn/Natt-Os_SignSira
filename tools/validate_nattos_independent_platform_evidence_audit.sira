@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const dir = path.join(process.cwd(), "docs", "runtime");
+const files = fs.readdirSync(dir).filter(f => /^nattos_independent_platform_evidence_audit_\d{8}_\d{6}\.na$/.test(f)).sort();
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!files.length) {
+  errors.push("missing independent platform evidence audit");
+} else {
+  const file = path.join(dir, files[files.length - 1]);
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  [
+    "nattos independent platform evidence audit",
+    "status: observed-audit",
+    "score matrix",
+    "HAL evidence",
+    "ISA evidence",
+    "QoS evidence",
+    "Cell / Event boundary evidence",
+    "Portability evidence",
+    "runtime gate",
+    "gaps to full claim",
+    "final reading",
+    "decision:"
+  ].forEach(clause => must(c.includes(clause), "missing audit clause: " + clause));
+
+  [
+    "production-ready",
+    "allow wildcard",
+    "wildcard -> allow"
+  ].forEach(mark => must(!lower.includes(mark), "forbidden audit wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("nattos independent platform evidence audit validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("nattos independent platform evidence audit validation: pass");
+console.log("file=latest docs/runtime/nattos_independent_platform_evidence_audit_*.na");

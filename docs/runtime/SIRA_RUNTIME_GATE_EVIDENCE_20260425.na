@@ -1,7 +1,7 @@
 # sira runtime gate Evidence — 20260425
 
 status: pass
-created_at: 2026-04-26T08:05:31.250Z
+created_at: 2026-04-26T19:57:20.375Z
 repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
 
 ---
@@ -24,7 +24,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
   "namespace": ".sira",
   "operator": "tools/thiên",
   "transport": "http browser adapter",
-  "created_at": "2026-04-26T08:05:31.250Z",
+  "created_at": "2026-04-26T19:57:20.375Z",
   "root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",
   "checks": [
     {
@@ -33,7 +33,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       "exit": 0,
       "stdout": "sira namespace validation: pass\ncanonical_root=.sira\nprotocol=anc://\nresolver=SmartLink/sira gateway\ncompatibility=.natt allowed only as bootstrap route, not canonical target",
       "stderr": "",
-      "ms": 127
+      "ms": 128
     },
     {
       "name": "browser_adapter",
@@ -49,7 +49,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       "exit": 0,
       "stdout": "sira typescript translation adapter validation: pass\nmode=adapter scaffold\nmutation_policy=no bulk mutation",
       "stderr": "",
-      "ms": 124
+      "ms": 126
     },
     {
       "name": "browser_transport_boundary",
@@ -57,7 +57,7 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
       "exit": 0,
       "stdout": "sira browser transport boundary validation: pass\nidentity=anc://\nnamespace=.sira\noperator=tools/thiên\ntransport=http browser adapter",
       "stderr": "",
-      "ms": 124
+      "ms": 125
     },
     {
       "name": "core_health",
@@ -74,10 +74,10 @@ repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
         "audit_html": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html",
         "tam_screens": 70,
         "nauion_screens": 7,
-        "audit_events": 23,
-        "time": "2026-04-26T08:05:31.245Z"
+        "audit_events": 24,
+        "time": "2026-04-26T19:57:20.370Z"
       },
-      "body_preview": "{\n  \"ok\": true,\n  \"host\": \"core.sira\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 23,\n  \"time\": \"2026-04-26T08:05:31.245Z\"\n}",
+      "body_preview": "{\n  \"ok\": true,\n  \"host\": \"core.sira\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 24,\n  \"time\": \"2026-04-26T19:57:20.370Z\"\n}",
       "ms": 17
     },
     {
