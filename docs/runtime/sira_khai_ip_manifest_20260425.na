@@ -17,26 +17,6 @@
         "status": "observed",
         "evidence": "docs/runtime/sira_khai_ip_preflight_evidence_20260425.na"
       },
-      "lan_edge": {
-        "scope": "lan",
-        "resolver_ip": "192.168.1.238",
-        "gateway_ip": "192.168.1.238",
-        "status": "declared_pending_external_smoke",
-        "allowed_clients": [
-          "devices on same lan that explicitly use natt resolver"
-        ],
-        "denied_clients": [
-          "unknown external internet clients",
-          "clients not configured to use natt resolver"
-        ],
-        "required_smoke": [
-          "dig @192.168.1.238 apps.sira A +short",
-          "dig @192.168.1.238 mach.sira A +short",
-          "dig @192.168.1.238 unknown.sira A +time=2 +tries=1",
-          "curl -H 'Host: apps.sira' http://192.168.1.238:<gateway_port>/",
-          "curl -H 'Host: unknown.sira' http://192.168.1.238:<gateway_port>/api/health"
-        ]
-      },
       "vpn_edge": {
         "scope": "vpn_or_mesh",
         "resolver_ip": "not_declared",
@@ -48,6 +28,24 @@
         "resolver_ip": "not_declared",
         "gateway_ip": "not_declared",
         "status": "not_declared"
+      },
+      "wifi_edge": {
+        "scope": "wifi",
+        "resolver_ip": "192.168.1.238",
+        "gateway_ip": "192.168.1.238",
+        "status": "secondary_edge_declared",
+        "note": "wifi edge is not primary physical server path"
+      },
+      "wired_edge": {
+        "scope": "wired_lan",
+        "resolver_ip": "192.168.1.199",
+        "gateway_ip": "192.168.1.199",
+        "status": "strict_allowlist_applied",
+        "device": "en0",
+        "hardware_port": "Ethernet",
+        "mac_address": "50:1f:c6:5b:b0:f5",
+        "static_ip_policy": "router_dhcp_reservation_preferred",
+        "ipv6_policy": "declare only after stable ula static or dhcpv6 reservation"
       }
     },
     "allowed_logical_hosts": [
@@ -79,7 +77,11 @@
       "no admin route exposure",
       "no secret route exposure",
       "no direct audit write exposure",
-      "no render seal exposure"
+      "no render seal exposure",
+      "wifi edge khong phai wired edge",
+      "wired edge la duong uu tien cho may vat ly server",
+      "ipv4 static policy la router dhcp reservation",
+      "ipv6 chi khai sau khi co dia chi on dinh"
     ],
     "rollback": [
       "set client dns back to previous resolver",

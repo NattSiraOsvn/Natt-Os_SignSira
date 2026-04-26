@@ -1,0 +1,337 @@
+# sira wired edge runtime gate timeout probe — 20260426
+
+status: observed-readonly
+created_at: 2026-04-26 13:54:53
+
+---
+
+## 1. reading
+
+dns/khai ip passed, runtime gate timeout after switching .sira to wired_edge.
+
+probe này không sửa máy và không commit.
+
+---
+
+## 2. dns checks
+
+### dig_anc_local
+```text
+$ dig @127.0.0.1 anc.sira A +time=2 +tries=1 +short
+code=0
+192.168.1.199
+```
+
+### dig_anc_wired
+```text
+$ dig @192.168.1.199 anc.sira A +time=2 +tries=1 +short
+code=0
+192.168.1.199
+```
+
+### network_dns_wifi
+```text
+$ networksetup -getdnsservers Wi-Fi
+code=0
+127.0.0.1
+```
+
+---
+
+## 3. listener checks
+
+### listeners
+```text
+$ sh -lc lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null | grep -E 'node|deno|bun|python|coredns|natt|tsx|ts-node' || true
+code=0
+no listener evidence
+```
+
+### ports_all
+```text
+$ sh -lc lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null | head -80 || true
+code=0
+COMMAND     PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python     6674 thien    3u  IPv4 0x9a7558f28195cf2c      0t0  TCP 127.0.0.1:5177 (LISTEN)
+ControlCe 52894 thien    9u  IPv4 0x406dc6342fc1875d      0t0  TCP *:7000 (LISTEN)
+ControlCe 52894 thien   10u  IPv6  0xde4d7d5426b58f3      0t0  TCP *:7000 (LISTEN)
+ControlCe 52894 thien   11u  IPv4 0x2efc0bdad2094ccf      0t0  TCP *:5000 (LISTEN)
+ControlCe 52894 thien   12u  IPv6 0x3ab5beb733dc825a      0t0  TCP *:5000 (LISTEN)
+rapportd  52915 thien   10u  IPv4 0x16c4411eb143a696      0t0  TCP *:53171 (LISTEN)
+rapportd  52915 thien   11u  IPv6 0x3728902e183726f8      0t0  TCP *:53171 (LISTEN)
+rapportd  52915 thien   18u  IPv6 0xfca5ed2ef13995d8      0t0  TCP *:64952 (LISTEN)
+rapportd  52915 thien   20u  IPv6 0xab72bb7124b8a8ba      0t0  TCP *:64953 (LISTEN)
+ARDAgent  53055 thien    9u  IPv6 0x767252c60445b622      0t0  TCP *:3283 (LISTEN)
+mediashar 53121 thien    6u  IPv4 0x48bbbb1df4eeee7a      0t0  TCP *:3689 (LISTEN)
+mediashar 53121 thien    7u  IPv6 0xdd20d1d4031a539b      0t0  TCP *:3689 (LISTEN)
+```
+
+---
+
+## 4. port reachability
+
+| port | 127.0.0.1 nc exit | wired_edge nc exit |
+|---:|---:|---:|
+| 80 | 0 | 0 |
+| 3000 | 1 | 1 |
+| 3001 | 1 | 1 |
+| 5173 | 1 | 1 |
+| 8080 | 1 | 1 |
+| 8787 | 1 | 1 |
+| 9000 | 1 | 1 |
+
+---
+
+## 5. gateway refs
+
+```text
+tools/scan_engine_runtime_batch2j.sira:const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na");
+tools/scan_engine_runtime_batch2j.sira:if (!fs.existsSync(report)) {
+tools/scan_engine_runtime_batch2j.sira:  console.error("Missing report:", report);
+tools/scan_engine_runtime_batch2j.sira:const content = fs.readFileSync(report, "utf8");
+tools/validate_sira_namespace.sira:  "http://anc.sira",
+tools/validate_sira_namespace.sira:  "http://anc.sira/go/",
+tools/validate_browser_transport_boundary.sira:const spec = path.join(ROOT, "docs", "runtime", "sira_BROWSER_TRANSPORT_ADAPTER_20260425.na");
+tools/validate_browser_transport_boundary.sira:must(fs.existsSync(spec), "missing browser transport adapter spec");
+tools/validate_browser_transport_boundary.sira:  "browser transport adapter",
+tools/validate_browser_transport_boundary.sira:].forEach(token => must(g.includes(token), "gateway missing transport token: " + token));
+tools/validate_browser_transport_boundary.sira:  console.error("sira browser transport boundary validation: fail");
+tools/validate_browser_transport_boundary.sira:console.log("sira browser transport boundary validation: pass");
+tools/validate_browser_transport_boundary.sira:console.log("transport=http browser adapter");
+tools/validate_sira_coredns_zone_implementation_plan.sira:    "dig @127.0.0.1 " + host("apps"),
+tools/validate_sira_coredns_zone_implementation_plan.sira:    "dig @127.0.0.1 " + host("unknown"),
+tools/validate_render_interaction_surface.sira:    const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+tools/validate_render_interaction_surface.sira:    for (const line of importLines) {
+tools/validate_render_interaction_surface.sira:      must(!directOtherCell && !relativeOtherCell, rel + " direct cross-cell import forbidden " + line.trim());
+tools/natt_audit_live_server.py:from pathlib import Path
+tools/natt_audit_live_server.py:from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+tools/natt_audit_live_server.py:import argparse, json, os, socket, subprocess, urllib.parse, urllib.request, time, sys
+tools/natt_audit_live_server.py:    return os.environ.get("NATT_RUNTIME_URL", "http://127.0.0.1:3001").rstrip("/")
+tools/natt_audit_live_server.py:        "W4_transport": ["Mach HeyNa", "HeyNa", "/mach/heyna", "/phat/nauion", "EventEnvelope", "causation_id", "correlation_id", "span_id"],
+tools/natt_audit_live_server.py:def find_port(start=5177, end=5199):
+tools/natt_audit_live_server.py:    for port in range(start, end + 1):
+tools/natt_audit_live_server.py:                s.bind(("127.0.0.1", port))
+tools/natt_audit_live_server.py:                return port
+tools/natt_audit_live_server.py:    raise RuntimeError("No free port 5177-5199")
+tools/natt_audit_live_server.py:    port = find_port()
+tools/natt_audit_live_server.py:    url = f"http://127.0.0.1:{port}/NaU_audit.html"
+tools/natt_audit_live_server.py:        import webbrowser
+tools/natt_audit_live_server.py:    ThreadingHTTPServer(("127.0.0.1", port), Handler).serve_forever()
+tools/validate_render_navigation_layout_surface.sira:    const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+tools/validate_render_navigation_layout_surface.sira:    for (const line of importLines) {
+tools/validate_render_navigation_layout_surface.sira:      must(!directOtherCell && !relativeOtherCell, rel + ": direct cross-cell import forbidden: " + line.trim());
+tools/natt_domain_gateway.sira:const PORT = Number(process.argv[2] || process.env.PORT || 8080);
+tools/natt_domain_gateway.sira:  if (host === "localhost" || host === "127.0.0.1") {
+tools/natt_domain_gateway.sira:    if (host === "localhost" || host === "127.0.0.1") {
+tools/natt_domain_gateway.sira:<p>Canonical namespace: <code>anc://</code>. HTTP remains transport.</p>
+tools/natt_domain_gateway.sira:        "http://anc.sira/go/core",
+tools/natt_domain_gateway.sira:        "http://anc.sira/go/audit",
+tools/natt_domain_gateway.sira:        "http://anc.sira/api/resolve?uri=anc://nauion"
+tools/natt_domain_gateway.sira:<meta name="viewport" content="width=device-width,initial-scale=1">
+tools/natt_domain_gateway.sira:  <a class="card" href="http://anc.sira"><b>ANC Resolver</b><code>anc://core → http://core.sira</code><span>Resolver chính danh cho anc://.</span><i class="badge">RESOLVER</i></a>
+tools/natt_domain_gateway.sira:  <a class="card" href="http://mach.sira/mach/heyna"><b>Mach HeyNa</b><code>http://mach.sira/mach/heyna</code><span>SSE transport endpoint.</span><i class="badge">SSE</i></a>
+tools/natt_domain_gateway.sira:}).listen(PORT,"0.0.0.0",()=>{
+tools/natt_domain_gateway.sira:  audit({action:"gateway.boot",host:"127.0.0.1",result:"BOOTED",payload_summary:{PORT,TAM,NAUION,AUDIT_HTML}});
+tools/natt_domain_gateway.sira:  console.log("PORT       :", PORT);
+tools/natt_domain_gateway.sira:  console.log(`  http://audit.sira:${PORT}`);
+tools/natt_domain_gateway.sira:  console.log(`  http://tam.sira:${PORT}`);
+tools/natt_domain_gateway.sira:  console.log(`  http://nauion.sira:${PORT}`);
+tools/natt_domain_gateway.sira:  console.log(`  http://core.sira:${PORT}`);
+tools/natt_domain_gateway.sira:  console.log(`  http://docs.sira:${PORT}`);
+tools/natt_domain_gateway.sira:  console.log(`  http://mach.sira:${PORT}/mach/heyna`);
+tools/validate_sirasign_frame_guard_matrix.sira:  must(!c.includes("transport_error"), "evidence has transport_error");
+tools/classify_review_for_sira_batch2.sira:const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2_REVIEW_FOR_sira_20260424.na");
+tools/classify_review_for_sira_batch2.sira:if (!fs.existsSync(report)) {
+tools/classify_review_for_sira_batch2.sira:  console.error("Missing Batch 2 report:", report);
+tools/classify_review_for_sira_batch2.sira:const content = fs.readFileSync(report, "utf8");
+tools/deploy_tam_luxury_local.js:  <meta name="viewport" content="width=device-width,initial-scale=1" />
+tools/deploy_tam_luxury_local.js:      if (p > end) return reject(new Error("No free port in range " + start + "-" + end));
+tools/deploy_tam_luxury_local.js:      srv.once("listening", () => srv.close(() => resolve(p)));
+tools/deploy_tam_luxury_local.js:      srv.listen(p, "127.0.0.1");
+tools/deploy_tam_luxury_local.js:  const port = await findPort();
+tools/deploy_tam_luxury_local.js:  server.listen(port, "127.0.0.1", () => {
+tools/deploy_tam_luxury_local.js:    const url = `http://127.0.0.1:${port}/`;
+tools/validate_sira_direct_localhost_bypass_scan.sira:  "localhost hoặc 127.0.0.1 chỉ được dùng làm transport target",
+tools/validate_tam_luxury_existing_surface_cell_mapping.sira:  const allowed_transport = ["hybrid", "direct_fetch", "sse", "local_state", "static"];
+tools/validate_tam_luxury_existing_surface_cell_mapping.sira:    must(allowed_transport.includes(item.transport_hint), file_name + " invalid transport hint");
+tools/natt_anc_handler.applescript:        set targetURL to "http://anc.sira/go/" & ancKey
+tools/validate_sira_dns_strict_allowlist_rebind.sira:    "@127.0.0.1 " + host("anc") + ": allow",
+tools/validate_sira_dns_strict_allowlist_rebind.sira:    "@127.0.0.1 " + host("apps") + ": allow",
+tools/validate_sira_dns_strict_allowlist_rebind.sira:    "@127.0.0.1 " + host("unknown") + ": deny",
+tools/validate_sira_dns_strict_allowlist_rebind.sira:    "transport smoke",
+tools/run_sira_dns_smoke_matrix.sira:const port = Number(process.env.SIRA_SMOKE_PORT || 39991);
+tools/run_sira_dns_smoke_matrix.sira:    "localhost is transport target, not trusted host"
+tools/run_sira_dns_smoke_matrix.sira:    "127.0.0.1",
+tools/run_sira_dns_smoke_matrix.sira:    "loopback is transport target, not trusted host"
+tools/run_sira_dns_smoke_matrix.sira:      hostname: "127.0.0.1",
+tools/run_sira_dns_smoke_matrix.sira:      port,
+tools/run_sira_dns_smoke_matrix.sira:  if (!result.ok) return { gate: "transport_error", reason: result.error || "request_error" };
+tools/run_sira_dns_smoke_matrix.sira:    env: { ...process.env, PORT: String(port), SIRA_SMOKE: "1" },
+tools/run_sira_dns_smoke_matrix.sira:    "runner này khởi động gateway tạm thời, gọi 127.0.0.1 với host header theo smoke matrix, rồi ghi lại status và reason.",
+tools/validate_lowercase_surface.sira:  if (/const |let |var |function |class |interface |type |enum |import |export |process\.env/.test(line)) return true;
+tools/validate_ts_cleanup_batch2g.sira:const evidence = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2G_PORT_CONTRACT_TO_sira_20260424.na");
+tools/validate_ts_cleanup_batch2g.sira:  "PORT_CONTRACT_TRANSLATE_TO_sira",
+tools/validate_ts_cleanup_batch2g.sira:console.log("scope=PORT_CONTRACT + LIGHT_HARD only");
+tools/validate_sirasign_close_read.sira:  errors.push("missing close read report");
+tools/scan_ts_easy_cleanup_batch2c.sira:const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na");
+tools/scan_ts_easy_cleanup_batch2c.sira:if (!fs.existsSync(report)) {
+tools/scan_ts_easy_cleanup_batch2c.sira:  console.error("Missing report:", report);
+tools/scan_ts_easy_cleanup_batch2c.sira:const content = fs.readFileSync(report, "utf8");
+tools/validate_tam_luxury_cell_binding_validation.sira:const reportFile = path.join(root, "docs", "runtime", "tam_luxury_cell_binding_validation_20260425.na");
+tools/validate_tam_luxury_cell_binding_validation.sira:if (!fs.existsSync(reportFile)) {
+tools/validate_tam_luxury_cell_binding_validation.sira:  errors.push("missing cell binding validation report");
+tools/validate_tam_luxury_cell_binding_validation.sira:if (fs.existsSync(reportFile)) {
+tools/validate_tam_luxury_cell_binding_validation.sira:  const c = fs.readFileSync(reportFile, "utf8");
+tools/validate_tam_luxury_cell_binding_validation.sira:if (fs.existsSync(routeMatrix) && fs.existsSync(permissionMatrix) && fs.existsSync(reportFile)) {
+tools/validate_tam_luxury_cell_binding_validation.sira:  const report = fs.readFileSync(reportFile, "utf8");
+tools/validate_tam_luxury_cell_binding_validation.sira:  const cellRows = parseCellRows(report);
+tools/validate_tam_luxury_cell_binding_validation.sira:    must(parsedCells.has(cell), "report missing parsed cell binding row " + cell);
+tools/validate_tam_luxury_cell_binding_validation.sira:  must(uniq(screenCoverage).length === 71, "cell binding report must cover 71 unique screen ids");
+tools/validate_tam_luxury_cell_binding_validation.sira:    must(screenCoverage.includes(id), "cell binding report missing screen id " + id);
+tools/thiên:PORT="${NATT_PORT:-80}"
+tools/thiên:  say "transport : http browser adapter"
+tools/thiên:  say "port      : $PORT"
+tools/thiên:  restart                      Restart SIRA browser adapter on port 80
+tools/thiên:  transport                    Validate browser transport boundary
+tools/thiên:  export THIEN_TARGET="$target"
+tools/thiên:identity  : not namespace, not protocol, not transport
+tools/thiên:law       : ground truth > memory > report > wording
+tools/thiên:2. Tôi không biến transport thành identity.
+tools/thiên:4. Tôi không coi report mạnh hơn ground truth.
+tools/thiên:  say "PORT 80 LISTENER:"
+tools/thiên:  sudo lsof -nP -iTCP:80 -sTCP:LISTEN 2>/dev/null || say "NO LISTENER ON PORT 80"
+tools/thiên:  sudo env NATT_ROOT="$ROOT" NATT_PORT="$PORT" sh -c 'cd "$NATT_ROOT" && nohup ./tools/thiên run tools/natt_domain_gateway.sira "$NATT_PORT" > logs/natt_domain_gateway_80.log 2>&1 & echo $! > logs/natt_domain_gateway_80.pid'
+tools/thiên:  curl -sS --max-time 3 "http://anc.sira/api/resolve?uri=anc://$name"
+tools/thiên:  transport) run_sira tools/validate_browser_transport_boundary.sira "$@" ;;
+tools/validate_sira_dns_smoke_runner.sira:    "localhost is transport target"
+tools/validate_sira_dns_smoke_runner.sira:    "127.0.0.1",
+tools/validate_sira_dns_smoke_runner.sira:  must(!c.includes("transport_error"), "evidence has transport_error");
+tools/validate_runtime_gate.sira:  checks.push(run("browser_transport_boundary", THIEN, ["tools/validate_browser_transport_boundary.sira"]));
+tools/validate_runtime_gate.sira:  checks.push(await httpGetJson("anc_resolve_core", "http://anc.sira/api/resolve?uri=anc://core"));
+tools/validate_runtime_gate.sira:  checks.push(await httpGetJson("anc_resolve_apps", "http://anc.sira/api/resolve?uri=anc://apps"));
+tools/validate_runtime_gate.sira:    transport: "http browser adapter",
+tools/validate_runtime_gate.sira:      "- transport: http browser adapter",
+tools/validate_runtime_gate.sira:  console.log("transport=http browser adapter");
+tools/thiênbăng:  say "transport  : http browser adapter"
+tools/thiênbăng:  Tôi không phải transport.
+tools/thiênbăng:  resolve="$(curl -sS --max-time 3 "http://anc.sira/api/resolve?uri=anc://core" || true)"
+tools/thiênbăng:    echo "- transport: http browser adapter"
+tools/thiênbăng:  if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "HTTP là identity\|http:// = identity\|browser route là gốc định danh" docs tools src 2>/dev/null | grep -v "tools/thiênbăng" | grep -v "tools/validate_browser_transport_boundary.sira" | grep -v "tools/validate_sira_browser_adapter.sira" >/tmp/thienbang_immune_http.txt; then
+tools/thiênbăng:  http://      = browser transport adapter
+tools/thiênbăng:  grep -oE 'path\.join\([^)]+\)|fs\.existsSync\([^)]+\)|"[^"]+\.(anc|sira|si|na|ts|js)"' "$target" 2>/dev/null \
+tools/thiênbăng:    | grep -oE '"[^"]+\.(anc|sira|si|na|ts|js)"' \
+tools/thiênbăng:  identity = anc://, namespace = .sira, transport = http browser adapter
+tools/validate_generic_manifest_loader.sira:  const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+tools/validate_generic_manifest_loader.sira:  must(importLines.length === 0, "generic loader must not import tenant or framework files");
+tools/run_sirasign_frame_guard_matrix.sira:const port = Number(process.env.SIRA_FRAME_PORT || 39993);
+tools/run_sirasign_frame_guard_matrix.sira:      hostname: "127.0.0.1",
+tools/run_sirasign_frame_guard_matrix.sira:      port,
+tools/run_sirasign_frame_guard_matrix.sira:    return { gate: "transport_error", reason: result.error || "request_error" };
+tools/run_sirasign_frame_guard_matrix.sira:    env: { ...process.env, PORT: String(port), SIRA_SMOKE: "1" },
+tools/validate_sira_gateway_hardening_matrix.sira:  must(!c.includes("transport_error"), "evidence has transport_error");
+tools/run_sira_gateway_hardening_matrix.sira:const port = Number(process.env.SIRA_HARDENING_PORT || 39992);
+tools/run_sira_gateway_hardening_matrix.sira:    "localhost is transport target only"
+tools/run_sira_gateway_hardening_matrix.sira:    "127.0.0.1",
+tools/run_sira_gateway_hardening_matrix.sira:    "loopback is transport target only"
+tools/run_sira_gateway_hardening_matrix.sira:      hostname: "127.0.0.1",
+tools/run_sira_gateway_hardening_matrix.sira:      port,
+tools/run_sira_gateway_hardening_matrix.sira:  if (!result.ok) return { gate: "transport_error", reason: result.error || "request_error" };
+tools/run_sira_gateway_hardening_matrix.sira:    env: { ...process.env, PORT: String(port), SIRA_SMOKE: "1" },
+tools/validate_render_heyna_surface.sira:  "heyna_mock_transport": "src/cells/render-stack-cell/domain/heyna-mock-transport.ts",
+tools/validate_render_heyna_surface.sira:  "src/cells/render-stack-cell/domain/heyna-mock-transport.ts": [
+tools/validate_render_heyna_surface.sira:    "transport"
+tools/validate_render_heyna_surface.sira:  "src/cells/render-stack-cell/domain/heyna-mock-transport.ts": [
+tools/validate_render_heyna_surface.sira:    "transport",
+tools/validate_render_heyna_surface.sira:  "real transport complete",
+tools/validate_render_heyna_surface.sira:    const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+tools/validate_render_heyna_surface.sira:    for (const line of importLines) {
+```
+
+---
+
+## 6. scutil dns
+
+```text
+DNS configuration
+
+resolver #1
+  search domain[0] : lan
+  nameserver[0] : 116.97.90.124
+  nameserver[1] : 116.97.90.127
+  if_index : 4 (en0)
+  flags    : Request A records
+  reach    : 0x00000002 (Reachable)
+
+resolver #2
+  domain   : local
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300000
+
+resolver #3
+  domain   : 254.169.in-addr.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300200
+
+resolver #4
+  domain   : 8.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300400
+
+resolver #5
+  domain   : 9.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300600
+
+resolver #6
+  domain   : a.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300800
+
+resolver #7
+  domain   : b.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 301000
+
+DNS configuration (for scoped queries)
+
+resolver #1
+  search domain[0] : lan
+  nameserver[0] : 116.97.90.124
+  nameserver[1] : 116.97.90.127
+  if_index : 4 (en0)
+  flags    : Scoped, Request A records
+  reach    : 0x00000002 (Reachable)
+```
+
+---
+
+## 7. interface en0
+
+```text
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+	options=50b<RXCSUM,TXCSUM,VLAN_HWTAGGING,AV,CHANNEL_IO>
+	ether 50:1f:c6:5b:b0:f5
+	inet6 fe80::1878:967:f77f:cd00%en0 prefixlen 64 secured scopeid 0x4 
+	inet 192.168.1.199 netmask 0xffffff00 broadcast 192.168.1.255
+	nd6 options=201<PERFORMNUD,DAD>
+	media: autoselect (1000baseT <full-duplex,flow-control>)
+	status: active
+```
