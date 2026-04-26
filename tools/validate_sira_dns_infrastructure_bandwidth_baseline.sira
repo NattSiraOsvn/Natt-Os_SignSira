@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "sira_dns_infrastructure_bandwidth_baseline_20260426.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing dns infrastructure bandwidth baseline");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  [
+    "sira dns infrastructure bandwidth baseline",
+    "status: observed-readonly",
+    "wired_edge: 192.168.1.199",
+    "wifi_edge: 192.168.1.238",
+    "primary_edge: wired_edge",
+    "ipv6: deferred until stable address exists",
+    "active coredns corefile",
+    "macos resolver",
+    "dns-only smoke",
+    "dns latency sample",
+    "port listener",
+    "ping stability",
+    "router dhcp reservation"
+  ].forEach(clause => must(c.includes(clause), "missing baseline clause: " + clause));
+
+  [
+    "curl",
+    "safari",
+    "browser adapter",
+    "transport smoke",
+    "runtime smoke",
+    "wildcard -> allow",
+    "allow wildcard",
+    "production-ready"
+  ].forEach(mark => must(!lower.includes(mark), "forbidden baseline wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("sira dns infrastructure bandwidth baseline validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira dns infrastructure bandwidth baseline validation: pass");
+console.log("file=docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na");

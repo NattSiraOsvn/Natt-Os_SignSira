@@ -1,0 +1,378 @@
+# sira dns infrastructure bandwidth baseline — 20260426
+
+status: observed-readonly
+created_at: 2026-04-26 14:48:39
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+- lane này chỉ kiểm dns / khai ip / hạ tầng mạng / băng thông.
+- không đụng nattos.sh.
+- không đụng architecture archive.
+- không sửa máy.
+- không kiểm tầng vận chuyển.
+- không kiểm tầng chạy.
+
+---
+
+## 2. edge map
+
+- wired_edge: 192.168.1.199
+- wifi_edge: 192.168.1.238
+- primary_edge: wired_edge
+- ipv6: deferred until stable address exists
+
+---
+
+## 3. active coredns corefile
+
+```text
+sira:53 {
+    hosts {
+        192.168.1.199 anc.sira
+        192.168.1.199 apps.sira
+        192.168.1.199 mach.sira
+        192.168.1.199 core.sira
+        192.168.1.199 audit.sira
+        192.168.1.199 render.sira
+        192.168.1.199 tam.sira
+    }
+    log
+    errors
+}
+
+.:53 {
+    forward . 1.1.1.1 8.8.8.8
+    cache 30
+    log
+    errors
+}
+```
+
+---
+
+## 4. macos resolver
+
+```text
+nameserver 127.0.0.1
+port 53
+```
+
+```text
+DNS configuration
+
+resolver #1
+  search domain[0] : lan
+  nameserver[0] : 116.97.90.124
+  nameserver[1] : 116.97.90.127
+  if_index : 4 (en0)
+  flags    : Request A records
+  reach    : 0x00000002 (Reachable)
+
+resolver #2
+  domain   : local
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300000
+
+resolver #3
+  domain   : 254.169.in-addr.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300200
+
+resolver #4
+  domain   : 8.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300400
+
+resolver #5
+  domain   : 9.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300600
+
+resolver #6
+  domain   : a.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 300800
+
+resolver #7
+  domain   : b.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  flags    : Request A records
+  reach    : 0x00000000 (Not Reachable)
+  order    : 301000
+
+resolver #8
+  domain   : sira
+  nameserver[0] : 127.0.0.1
+  port     : 53
+  flags    : Request A records, Request AAAA records
+  reach    : 0x00030002 (Reachable,Local Address,Directly Reachable Address)
+
+DNS configuration (for scoped queries)
+
+resolver #1
+  search domain[0] : lan
+  nameserver[0] : 116.97.90.124
+  nameserver[1] : 116.97.90.127
+  if_index : 4 (en0)
+  flags    : Scoped, Request A records
+  reach    : 0x00000002 (Reachable)
+```
+
+---
+
+## 5. interface and service order
+
+```text
+Hardware Port: Ethernet
+Device: en0
+Ethernet Address: 50:1f:c6:5b:b0:f5
+
+Hardware Port: Thunderbolt Bridge
+Device: bridge0
+Ethernet Address: 82:a7:4a:e5:60:00
+
+Hardware Port: Wi-Fi
+Device: en1
+Ethernet Address: 88:66:5a:26:8f:ab
+
+Hardware Port: Thunderbolt 1
+Device: en2
+Ethernet Address: 82:a7:4a:e5:60:00
+
+Hardware Port: Thunderbolt 2
+Device: en3
+Ethernet Address: 82:a7:4a:e5:60:01
+
+VLAN Configurations
+===================
+```
+
+```text
+An asterisk (*) denotes that a network service is disabled.
+(1) Ethernet
+(Hardware Port: Ethernet, Device: en0)
+
+(2) Thunderbolt Bridge
+(Hardware Port: Thunderbolt Bridge, Device: bridge0)
+
+(3) Wi-Fi
+(Hardware Port: Wi-Fi, Device: en1)
+```
+
+```text
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+	options=50b<RXCSUM,TXCSUM,VLAN_HWTAGGING,AV,CHANNEL_IO>
+	ether 50:1f:c6:5b:b0:f5
+	inet6 fe80::1878:967:f77f:cd00%en0 prefixlen 64 secured scopeid 0x4 
+	inet 192.168.1.199 netmask 0xffffff00 broadcast 192.168.1.255
+	nd6 options=201<PERFORMNUD,DAD>
+	media: autoselect (1000baseT <full-duplex,flow-control>)
+	status: active
+```
+
+---
+
+## 6. dns-only smoke
+
+- @127.0.0.1 anc.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 apps.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 mach.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 core.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 audit.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 render.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 tam.sira: code=0 short='192.168.1.199'
+- @127.0.0.1 unknown.sira: code=0 short=''
+- @127.0.0.1 mail.sira: code=0 short=''
+- @127.0.0.1 smtp.sira: code=0 short=''
+- @127.0.0.1 imap.sira: code=0 short=''
+- @192.168.1.199 anc.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 apps.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 mach.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 core.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 audit.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 render.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 tam.sira: code=0 short='192.168.1.199'
+- @192.168.1.199 unknown.sira: code=0 short=''
+- @192.168.1.199 mail.sira: code=0 short=''
+- @192.168.1.199 smtp.sira: code=0 short=''
+- @192.168.1.199 imap.sira: code=0 short=''
+- @192.168.1.238 anc.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 anc.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 apps.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 apps.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 mach.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 mach.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 core.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 core.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 audit.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 audit.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 render.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 render.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 tam.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 tam.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 unknown.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 unknown.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 mail.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 mail.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 smtp.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 smtp.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+- @192.168.1.238 imap.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 imap.sira A +time=2 +tries=1 +short\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached'
+
+---
+
+## 7. dns latency sample
+
+- @127.0.0.1 anc.sira run=1 query_ms=0 code=0
+- @127.0.0.1 anc.sira run=2 query_ms=0 code=0
+- @127.0.0.1 anc.sira run=3 query_ms=0 code=0
+- @127.0.0.1 anc.sira run=4 query_ms=0 code=0
+- @127.0.0.1 anc.sira run=5 query_ms=0 code=0
+- @127.0.0.1 apps.sira run=1 query_ms=0 code=0
+- @127.0.0.1 apps.sira run=2 query_ms=0 code=0
+- @127.0.0.1 apps.sira run=3 query_ms=0 code=0
+- @127.0.0.1 apps.sira run=4 query_ms=0 code=0
+- @127.0.0.1 apps.sira run=5 query_ms=0 code=0
+- @127.0.0.1 render.sira run=1 query_ms=0 code=0
+- @127.0.0.1 render.sira run=2 query_ms=0 code=0
+- @127.0.0.1 render.sira run=3 query_ms=0 code=0
+- @127.0.0.1 render.sira run=4 query_ms=0 code=0
+- @127.0.0.1 render.sira run=5 query_ms=0 code=0
+- @192.168.1.199 anc.sira run=1 query_ms=0 code=0
+- @192.168.1.199 anc.sira run=2 query_ms=0 code=0
+- @192.168.1.199 anc.sira run=3 query_ms=0 code=0
+- @192.168.1.199 anc.sira run=4 query_ms=0 code=0
+- @192.168.1.199 anc.sira run=5 query_ms=0 code=0
+- @192.168.1.199 apps.sira run=1 query_ms=0 code=0
+- @192.168.1.199 apps.sira run=2 query_ms=0 code=0
+- @192.168.1.199 apps.sira run=3 query_ms=0 code=0
+- @192.168.1.199 apps.sira run=4 query_ms=0 code=0
+- @192.168.1.199 apps.sira run=5 query_ms=0 code=0
+- @192.168.1.199 render.sira run=1 query_ms=0 code=0
+- @192.168.1.199 render.sira run=2 query_ms=0 code=0
+- @192.168.1.199 render.sira run=3 query_ms=0 code=0
+- @192.168.1.199 render.sira run=4 query_ms=0 code=0
+- @192.168.1.199 render.sira run=5 query_ms=0 code=0
+
+---
+
+## 8. port listener
+
+```text
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+coredns 79567 root    6u  IPv6 0x3bed00e78df41757      0t0  TCP *:53 (LISTEN)
+coredns 79567 root    7u  IPv6 0x3e88c0ea13faac6a      0t0  UDP *:53
+```
+
+```text
+79567   ??  Ss     0:00.98 /usr/local/opt/coredns/bin/coredns -conf /usr/local/etc/coredns/Corefile
+```
+
+---
+
+## 9. route and bandwidth hints
+
+```text
+route to: default
+destination: default
+       mask: default
+    gateway: 192.168.1.1
+  interface: en0
+      flags: <UP,GATEWAY,DONE,STATIC,PRCLONING,GLOBAL>
+ recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+       0         0         0         0         0         0      1500         0
+```
+
+```text
+Name       Mtu   Network       Address            Ipkts Ierrs     Ibytes    Opkts Oerrs     Obytes  Coll
+lo0        16384 <Link#1>                        780038     0  924765343   780038     0  924765343     0
+lo0        16384 127           127.0.0.1         780038     -  924765343   780038     -  924765343     -
+lo0        16384 ::1/128     ::1                 780038     -  924765343   780038     -  924765343     -
+lo0        16384 fe80::1%lo0 fe80:1::1           780038     -  924765343   780038     -  924765343     -
+gif0*      1280  <Link#2>                             0     0          0        0     0          0     0
+stf0*      1280  <Link#3>                             0     0          0        0     0          0     0
+en0        1500  <Link#4>    50:1f:c6:5b:b0:f5    88805     0   49211841   169166     0  180226047     0
+en0        1500  fe80::1878: fe80:4::1878:967:    88805     -   49211841   169166     -  180226047     -
+en0        1500  192.168.1     192.168.1.199      88805     -   49211841   169166     -  180226047     -
+en4        16000 <Link#5>    ac:de:48:00:11:22 67094817     0 5000159997 28697306     0 5835808505     0
+en4        16000 fe80::aede: fe80:5::aede:48ff 67094817     - 5000159997 28697306     - 5835808505     -
+ap1*       1500  <Link#6>    36:43:86:44:a4:0c        0     0          0        0     0          0     0
+en1        1500  <Link#7>    ae:a6:a6:cf:6f:2b 83510035     0 98324685206 24202250     0 12702741679     0
+awdl0      1500  <Link#8>    86:05:6b:47:86:67   434918     0  458301780   227018     0  144637887     0
+awdl0      1500  fe80::8405: fe80:8::8405:6bff   434918     -  458301780   227018     -  144637887     -
+llw0       1500  <Link#9>    86:05:6b:47:86:67  1261235     0 1444029420   635447     0   70221604     0
+llw0       1500  fe80::8405: fe80:9::8405:6bff  1261235     - 1444029420   635447     -   70221604     -
+en3        1500  <Link#10>   82:a7:4a:e5:60:01        0     0          0        0     0          0     0
+en2        1500  <Link#11>   82:a7:4a:e5:60:00        0     0          0        0     0          0     0
+bridge0    1500  <Link#12>   82:a7:4a:e5:60:00        0     0          0        0     0          0     0
+utun0      1380  <Link#13>                            0     0          0      654     0     120780     0
+utun0      1380  fe80::b63c: fe80:d::b63c:b08d        0     -          0      654     -     120780     -
+utun1      1500  <Link#14>                            0     0          0        1     0         80     0
+utun1      1500  fe80::a5a8: fe80:e::a5a8:aac3        0     -          0        1     -         80     -
+utun2      2000  <Link#15>                            0     0          0      655     0     120840     0
+utun2      2000  fe80::d0e9: fe80:f::d0e9:ac4:        0     -          0      655     -     120840     -
+utun3      1000  <Link#16>                            0     0          0      655     0     120800     0
+utun3      1000  fe80::ce81: fe80:10::ce81:b1c        0     -          0      655     -     120800     -
+utun4      1380  <Link#17>                         4866     0     510656    10826     0    1147172     0
+utun4      1380  fe80::1903: fe80:11::1903:658     4866     -     510656    10826     -    1147172     -
+utun5      1380  <Link#18>                            0     0          0      655     0     120820     0
+utun5      1380  fe80::b45c: fe80:12::b45c:901        0     -          0      655     -     120820     -
+```
+
+---
+
+## 10. ping stability
+
+```text
+PING 192.168.1.199 (192.168.1.199): 56 data bytes
+64 bytes from 192.168.1.199: icmp_seq=0 ttl=64 time=0.041 ms
+64 bytes from 192.168.1.199: icmp_seq=1 ttl=64 time=0.072 ms
+64 bytes from 192.168.1.199: icmp_seq=2 ttl=64 time=0.063 ms
+64 bytes from 192.168.1.199: icmp_seq=3 ttl=64 time=0.141 ms
+64 bytes from 192.168.1.199: icmp_seq=4 ttl=64 time=0.097 ms
+64 bytes from 192.168.1.199: icmp_seq=5 ttl=64 time=0.088 ms
+64 bytes from 192.168.1.199: icmp_seq=6 ttl=64 time=0.093 ms
+64 bytes from 192.168.1.199: icmp_seq=7 ttl=64 time=0.146 ms
+64 bytes from 192.168.1.199: icmp_seq=8 ttl=64 time=0.136 ms
+64 bytes from 192.168.1.199: icmp_seq=9 ttl=64 time=0.081 ms
+
+--- 192.168.1.199 ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.041/0.096/0.146/0.033 ms
+```
+
+```text
+PING 192.168.1.1 (192.168.1.1): 56 data bytes
+64 bytes from 192.168.1.1: icmp_seq=0 ttl=64 time=0.640 ms
+64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=0.524 ms
+64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.656 ms
+64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=0.669 ms
+64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=0.578 ms
+64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=0.515 ms
+64 bytes from 192.168.1.1: icmp_seq=6 ttl=64 time=0.538 ms
+64 bytes from 192.168.1.1: icmp_seq=7 ttl=64 time=0.526 ms
+64 bytes from 192.168.1.1: icmp_seq=8 ttl=64 time=0.516 ms
+64 bytes from 192.168.1.1: icmp_seq=9 ttl=64 time=0.429 ms
+
+--- 192.168.1.1 ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.429/0.559/0.669/0.072 ms
+```
+
+---
+
+## 11. next decisions
+
+- đặt router dhcp reservation cho en0 nếu chưa đặt.
+- giữ wired_edge làm primary edge.
+- giữ wifi_edge làm secondary edge.
+- ipv6 chưa khai vào dns sống cho đến khi có địa chỉ ổn định.
+- sau baseline mới quyết firewall / qos / monitoring.
