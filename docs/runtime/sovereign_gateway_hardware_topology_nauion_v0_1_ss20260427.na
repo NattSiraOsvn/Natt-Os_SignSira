@@ -1,0 +1,252 @@
+@nauion-native v1
+@state runtime-policy
+@name sovereign gateway hardware topology nauion v0.1
+@scope sovereign-gateway hardware router server workstation sensor-iot ket-sira audit
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Sovereign Gateway — Hardware Topology Nauion v0.1
+
+## 1. Định nghĩa
+
+Hardware topology là sơ đồ cứng tối thiểu để triển khai Sovereign Edge Pack.
+
+NATT-OS không chỉ là phần mềm.
+
+NATT-OS triển khai theo gói:
+
+```na
+line_nhà_mạng
+  -> modem_router_nhà_mạng
+  -> NATT_OS_Sovereign_Gateway
+  -> customer_server
+  -> operator_workstation
+  -> workstation_intake
+  -> sensor_iot_layer
+  -> Ket_Sira
+2. Nguyên tắc
+nguyên_tắc:
+  - nhà_mạng_chỉ_cấp_line
+  - NATT_OS_Gateway_giữ_luật
+  - thiết_bị_vật_lý_không_đi_thẳng_vào_lõi
+  - máy_trạm_intake_lọc_trước
+  - máy_chủ_khách_gom_trước
+  - Gateway_chỉ_là_cửa_vào
+  - giao_thức_dịch_là_lớp_bên_trong
+  - audit_full
+3. Các khối phần cứng
+phần_cứng_tối_thiểu:
+  ISP_line:
+    vai_trò: đường_truyền_vật_lý
+    sở_hữu: nhà_mạng
+    ghi_chú: không_giữ_trust_core
+
+  ISP_modem_router:
+    vai_trò: thiết_bị_bàn_giao_line
+    quyền: hạn_chế
+    ghi_chú: không_là_gateway_chủ_quyền
+
+  NATT_OS_Sovereign_Gateway:
+    vai_trò: cổng_chủ_quyền
+    kiểm:
+      - SiraSign
+      - line
+      - quota
+      - route
+      - resolver
+      - audit
+    không_làm:
+      - xử_lý_hết_lõi
+      - thay_Mạch_HeyNa
+      - bỏ_qua_SCR
+
+  customer_server:
+    vai_trò: máy_chủ_khách
+    làm:
+      - gom_dữ_liệu_người_dùng
+      - gom_dữ_liệu_thiết_bị_đã_lọc
+      - giữ_edge_state
+      - chuyển_đến_Gateway
+
+  operator_workstation:
+    vai_trò: máy_trạm_điều_hành
+    làm:
+      - dashboard
+      - Két_Sira_console
+      - audit_view
+      - quyền_quản_trị_theo_SiraSign
+
+  workstation_intake:
+    vai_trò: máy_trạm_lọc_thiết_bị_vật_lý
+    làm:
+      - 432Hz_initialize
+      - raw_filter
+      - normalize
+      - quality_check
+      - temporary_cache
+      - pre_audit
+
+  sensor_iot_layer:
+    vai_trò: thiết_bị_vật_lý
+    gồm:
+      - cam
+      - cân
+      - máy_đo_phổ
+      - lò_điện
+      - sensor
+      - IoT
+      - thiết_bị_công_nghiệp
+
+  Ket_Sira:
+    vai_trò: kính_điều_hành_ảo
+    làm:
+      - digital_twin_tòa_nhà
+      - live_camera_layer
+      - sensor_iot_layer
+      - màn_phụ
+      - điểm_đỏ
+      - vùng_riêng_tư
+      - audit_view
+4. Vùng mạng tối thiểu
+vùng_mạng:
+  zone_wan:
+    gồm:
+      - ISP_line
+      - ISP_modem_router
+
+  zone_gateway:
+    gồm:
+      - NATT_OS_Sovereign_Gateway
+    luật:
+      - chỉ_mở_route_đã_ký
+      - audit_all
+      - deny_by_default
+
+  zone_server:
+    gồm:
+      - customer_server
+    luật:
+      - không_nhận_sensor_raw_trực_tiếp
+      - chỉ_nhận_dữ_liệu_đã_lọc
+
+  zone_workstation:
+    gồm:
+      - operator_workstation
+      - workstation_intake
+    luật:
+      - máy_trạm_intake_lọc_trước
+      - operator_workstation_theo_role
+
+  zone_sensor_iot:
+    gồm:
+      - cam
+      - cân
+      - máy_đo_phổ
+      - lò_điện
+      - sensor_iot
+    luật:
+      - không_đi_thẳng_vào_Gateway
+      - không_đi_thẳng_vào_lõi
+
+  zone_ket_sira:
+    gồm:
+      - Ket_Sira
+    luật:
+      - SiraSign_required
+      - privacy_mask
+      - red_zone_policy
+5. Luồng vật lý chuẩn
+luồng_vật_lý:
+  sensor_iot_layer
+    -> workstation_intake
+    -> customer_server
+    -> NATT_OS_Sovereign_Gateway
+    -> giao_thức_dịch
+    -> Vòng_HeyNa
+    -> Mạch_HeyNa
+    -> Cell_Audit_Lưu_trữ_SmartLink
+6. Luồng người dùng chuẩn
+luồng_người_dùng:
+  client_node
+    -> customer_server
+    -> NATT_OS_Sovereign_Gateway
+    -> SiraSign
+    -> giao_thức_dịch
+    -> Vòng_HeyNa
+    -> Mạch_HeyNa
+7. Luồng Két Sira
+luồng_Ket_Sira:
+  Ket_Sira
+    -> SiraSign
+    -> NATT_OS_Sovereign_Gateway
+    -> digital_twin
+    -> live_camera_layer_theo_quyền
+    -> màn_phụ_công_việc
+    -> audit_view
+8. No bypass
+cấm_bỏ_qua:
+  sensor_iot_to_core: deny
+  sensor_iot_to_gateway_direct: deny
+  client_node_to_core_direct: deny
+  ISP_router_as_trust_core: deny
+  customer_server_to_cell_without_Gateway: deny
+  Gateway_to_Cell_without_HeyNa: deny
+  Ket_Sira_full_live_without_policy: deny
+9. Thiết bị nên cấp kèm
+gói_thiết_bị:
+  - NATT_OS_Sovereign_Gateway
+  - customer_server
+  - operator_workstation
+  - workstation_intake
+  - Ket_Sira
+  - switch_quản_trị
+  - WiFi_doanh_nghiệp
+  - firewall_phụ_nếu_cần
+  - sensor_iot_theo_ngành
+  - dây_cáp_tủ_mạng_nguồn_dự_phòng
+10. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+hardware topology
+gateway/router
+network zone
+line/quota/route
+workstation intake
+sensor/IoT entry
+Két Sira boundary
+no bypass policy
+
+Không chạm nattos.sh.
+
+Không chạm src/thienbang.si.
+
+Không chạm tools/scan_*.sira.
+
+Không xử lý runtime, migration, compiler, adapter, cell execution.
+
+11. Gate 8 pass condition
+
+Gate 8 pass khi có đủ:
+
+line nhà mạng
+router/modem nhà mạng
+NATT-OS Sovereign Gateway
+customer server
+operator workstation
+workstation intake
+sensor/IoT layer
+Két Sira
+network zones
+physical flow
+user flow
+Két Sira flow
+no bypass
+device package
+không chạm nattos.sh
+không chạm src/thienbang.si
+không chạm tools/scan_*.sira

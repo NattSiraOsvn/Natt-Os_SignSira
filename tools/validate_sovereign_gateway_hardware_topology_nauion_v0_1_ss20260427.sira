@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope sovereign-gateway hardware router server workstation sensor-iot ket-sira audit",
+"@runtime_scope excluded",
+"Hardware topology là sơ đồ cứng tối thiểu",
+"line_nhà_mạng",
+"modem_router_nhà_mạng",
+"NATT_OS_Sovereign_Gateway",
+"customer_server",
+"operator_workstation",
+"workstation_intake",
+"sensor_iot_layer",
+"Ket_Sira",
+"432Hz_initialize",
+"zone_wan",
+"zone_gateway",
+"zone_server",
+"zone_workstation",
+"zone_sensor_iot",
+"zone_ket_sira",
+"luồng_vật_lý",
+"luồng_người_dùng",
+"luồng_Ket_Sira",
+"cấm_bỏ_qua",
+"gói_thiết_bị",
+"Không chạm nattos.sh.",
+"Không chạm src/thienbang.si.",
+"Không chạm tools/scan_*.sira.",
+"Gate 8 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sovereign gateway hardware topology validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign gateway hardware topology validation: pass");
+console.log("file=" + file);
