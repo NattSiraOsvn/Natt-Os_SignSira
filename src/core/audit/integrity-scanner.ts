@@ -1,4 +1,5 @@
 import type { AuditRecord } from "@/cells/kernel/audit-cell/domain/entities/audit-record.entity";
+import * as crypto from 'crypto';
 
 export interface ScanResult {
   scannedAt: number;
@@ -38,6 +39,7 @@ export const IntegrityScanner = {
 
   generateFingerprint: (records: AuditRecord[]): string => {
     const concat = records.map(r => r.hash).join("");
-    return btoa(concat).slice(0, 32);
+    // Real SHA-256 — replaces btoa placeholder (Tổng hợp Fail-Troy ss20260427)
+    return crypto.createHash('sha256').update(concat).digest('hex').slice(0, 32);
   },
 };
