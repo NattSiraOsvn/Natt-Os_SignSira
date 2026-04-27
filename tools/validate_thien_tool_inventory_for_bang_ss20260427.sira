@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "thien_tool_inventory_for_bang_ss20260427.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing thien tool inventory for bang");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  [
+    "thien tool inventory for bang ss20260427",
+    "group 1: tools/thiên canonical operator for .sira",
+    "group 2: tools/thiênbăng living extension layer",
+    "tool: tools/thiên",
+    "tool: tools/thiênbăng",
+    "current source",
+    "subcommands observed",
+    "commit 39923bd reference",
+    "audit-validator regex may be too broad",
+    "claim_level: observed"
+  ].forEach(clause => must(c.includes(clause), "missing inventory clause: " + clause));
+
+  [
+    "production-ready",
+    "allow wildcard",
+    "wildcard -> allow"
+  ].forEach(mark => must(!c.toLowerCase().includes(mark), "forbidden inventory wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("thien tool inventory for bang validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("thien tool inventory for bang validation: pass");
+console.log("file=docs/runtime/thien_tool_inventory_for_bang_ss20260427.na");
