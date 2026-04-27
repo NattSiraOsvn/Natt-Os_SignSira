@@ -1,0 +1,17 @@
+@nauion-config v1
+@name access bundle profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+access_bundle:
+bundle_id: nattos.access.customer.001
+includes:
+- resolver_profile
+- gateway_profile
+- trust_root_anc
+- sirasign_public_profile
+- client_policy
+- line_profile
+- quota_profile
+- audit_profile
+public_dns_root: forbidden

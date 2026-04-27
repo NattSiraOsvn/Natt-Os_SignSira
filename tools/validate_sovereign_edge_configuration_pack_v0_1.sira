@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const required = [
+"docs/runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na",
+"configs/sovereign-edge/tenant.default.na",
+"configs/sovereign-edge/line.primary.na",
+"configs/sovereign-edge/gateway.profile.na",
+"configs/sovereign-edge/hardware.max.na",
+"configs/sovereign-edge/sensor-intake.profile.na",
+"configs/sovereign-edge/ket-sira.profile.na",
+"configs/sovereign-edge/access-bundle.profile.na",
+"configs/sovereign-edge/red-zone.policy.na",
+"configs/sovereign-edge/audit.profile.na"
+];
+
+const mustEveryConfig = [
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat"
+];
+
+let errors = [];
+
+for (const file of required) {
+if (!fs.existsSync(file)) {
+errors.push("missing file: " + file);
+continue;
+}
+const text = fs.readFileSync(file, "utf8");
+if (file.startsWith("configs/")) {
+for (const s of mustEveryConfig) {
+if (!text.includes(s)) errors.push(file + " missing: " + s);
+}
+}
+}
+
+const doc = fs.readFileSync("docs/runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na", "utf8");
+const mustDoc = [
+"@scope configuration-pack gateway line quota hardware ket-sira sensor-intake audit",
+"Gate 10 pass condition",
+"không chạm nattos.sh",
+"không chạm src/thienbang.si",
+"không chạm tools/scan_*.sira"
+];
+
+for (const s of mustDoc) {
+if (!doc.includes(s)) errors.push("doc missing: " + s);
+}
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+for (const file of required) {
+if (!fs.existsSync(file)) continue;
+const text = fs.readFileSync(file, "utf8");
+for (const s of forbidden) {
+if (text.includes(s)) errors.push(file + " forbidden: " + s);
+}
+}
+
+if (errors.length) {
+console.error("sovereign edge configuration pack validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign edge configuration pack validation: pass");
+console.log("files=" + required.length);

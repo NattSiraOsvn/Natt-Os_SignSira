@@ -1,0 +1,15 @@
+@nauion-config v1
+@name hardware max option
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+hardware_max:
+customer_server: max_option
+operator_workstation: max_option
+workstation_intake: 2-4
+Ket_Sira: 1
+GPU_node: recommended
+switch: managed
+network: 10G_recommended
+UPS: required
+backup_storage: required_for_full_option

@@ -1,0 +1,22 @@
+@nauion-config v1
+@name sensor intake profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+physical_intake:
+init_profile: nattos.physical.intake.432hz
+workstation_role: physical_intake_gateway
+preprocess:
+- raw_filter
+- normalize
+- quality_check
+- temporary_cache
+- pre_audit
+input_channels:
+- camera
+- scale
+- spectrum_meter
+- furnace
+- sensor
+- IoT
+- industrial_bus

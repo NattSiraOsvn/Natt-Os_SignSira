@@ -1,0 +1,12 @@
+@nauion-config v1
+@name primary line
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+line:
+line_id: line.customer.primary.001
+line_type: primary
+status: active
+backup_line: optional_after_primary_stable
+quota_mode: policy
+audit_required: true

@@ -1,0 +1,15 @@
+@nauion-config v1
+@name red zone policy
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+red_zone:
+default: locked
+data_default: metadata_only
+live_stream: deny_by_default
+personal_area: mask
+require:
+- SiraSign
+- high_authority_role
+- reason_code
+- audit_full

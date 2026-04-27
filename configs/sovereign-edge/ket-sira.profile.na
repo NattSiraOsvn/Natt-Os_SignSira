@@ -1,0 +1,14 @@
+@nauion-config v1
+@name Ket Sira profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+Ket_Sira:
+role: VR_operation_boundary
+digital_twin: enabled
+live_camera_layer: permissioned
+sensor_iot_layer: enabled
+side_panel: enabled
+red_zone_policy: enforced
+privacy_mask: default
+audit_view_required: true

@@ -1,0 +1,17 @@
+@nauion-config v1
+@name audit profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+audit:
+level: full
+required_for:
+- Gateway
+- line
+- route
+- physical_intake
+- Ket_Sira
+- SCR_anchor
+- access_bundle
+- red_zone
+event_policy: append_only

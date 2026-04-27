@@ -1,0 +1,172 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const base = "configs/sovereign-edge";
+fs.mkdirSync(base, { recursive: true });
+
+const files = {
+"tenant.default.na": `@nauion-config v1
+@name tenant default
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+tenant:
+tenant_id: customer.001
+mode: sovereign_edge_pack
+client_nodes: 50-70
+audit: full
+sirasign_required: true
+`,
+
+"line.primary.na": `@nauion-config v1
+@name primary line
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+line:
+line_id: line.customer.primary.001
+line_type: primary
+status: active
+backup_line: optional_after_primary_stable
+quota_mode: policy
+audit_required: true
+`,
+
+"gateway.profile.na": `@nauion-config v1
+@name gateway profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+Gateway:
+external_name: Gateway
+internal_protocol: giao_thức_dịch
+requires:
+- SiraSign
+- .anc_identity
+- .sira_resolver
+- quota_profile
+- audit_profile
+deny_by_default: true
+`,
+
+"hardware.max.na": `@nauion-config v1
+@name hardware max option
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+hardware_max:
+customer_server: max_option
+operator_workstation: max_option
+workstation_intake: 2-4
+Ket_Sira: 1
+GPU_node: recommended
+switch: managed
+network: 10G_recommended
+UPS: required
+backup_storage: required_for_full_option
+`,
+
+"sensor-intake.profile.na": `@nauion-config v1
+@name sensor intake profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+physical_intake:
+init_profile: nattos.physical.intake.432hz
+workstation_role: physical_intake_gateway
+preprocess:
+- raw_filter
+- normalize
+- quality_check
+- temporary_cache
+- pre_audit
+input_channels:
+- camera
+- scale
+- spectrum_meter
+- furnace
+- sensor
+- IoT
+- industrial_bus
+`,
+
+"ket-sira.profile.na": `@nauion-config v1
+@name Ket Sira profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+Ket_Sira:
+role: VR_operation_boundary
+digital_twin: enabled
+live_camera_layer: permissioned
+sensor_iot_layer: enabled
+side_panel: enabled
+red_zone_policy: enforced
+privacy_mask: default
+audit_view_required: true
+`,
+
+"access-bundle.profile.na": `@nauion-config v1
+@name access bundle profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+access_bundle:
+bundle_id: nattos.access.customer.001
+includes:
+- resolver_profile
+- gateway_profile
+- trust_root_anc
+- sirasign_public_profile
+- client_policy
+- line_profile
+- quota_profile
+- audit_profile
+public_dns_root: forbidden
+`,
+
+"red-zone.policy.na": `@nauion-config v1
+@name red zone policy
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+red_zone:
+default: locked
+data_default: metadata_only
+live_stream: deny_by_default
+personal_area: mask
+require:
+- SiraSign
+- high_authority_role
+- reason_code
+- audit_full
+`,
+
+"audit.profile.na": `@nauion-config v1
+@name audit profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+audit:
+level: full
+required_for:
+- Gateway
+- line
+- route
+- physical_intake
+- Ket_Sira
+- SCR_anchor
+- access_bundle
+- red_zone
+event_policy: append_only
+`
+};
+
+for (const [name, content] of Object.entries(files)) {
+const file = path.join(base, name);
+fs.writeFileSync(file, content, "utf8");
+console.log("wrote:", file);
+}
+
+console.log("sovereign edge config pack generated");

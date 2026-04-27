@@ -1,0 +1,15 @@
+@nauion-config v1
+@name gateway profile
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+Gateway:
+external_name: Gateway
+internal_protocol: giao_thức_dịch
+requires:
+- SiraSign
+- .anc_identity
+- .sira_resolver
+- quota_profile
+- audit_profile
+deny_by_default: true

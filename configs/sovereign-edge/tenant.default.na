@@ -1,0 +1,11 @@
+@nauion-config v1
+@name tenant default
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+
+tenant:
+tenant_id: customer.001
+mode: sovereign_edge_pack
+client_nodes: 50-70
+audit: full
+sirasign_required: true
