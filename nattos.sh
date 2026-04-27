@@ -411,9 +411,12 @@ REQUIRED_COMPONENTS = {
     "application":lambda p: os.path.isdir(os.path.join(p, "application")),
     "engine":     lambda p: len([f for r,d,fs in os.walk(p) for f in fs if f.endswith(".engine.ts")]) > 0,
     "SmartLink":  lambda p: any(
-        "SmartLink" in open(os.path.join(r,f), errors="ignore").read()
-        for r,d,fs in os.walk(p) for f in fs if f.endswith(".ts")
-    ),
+        "smartlink" in open(os.path.join(r,f), errors="ignore").read().lower()
+        for r,d,fs in os.walk(p) for f in fs if f.endswith((".ts", ".sira", ".na"))
+    ) or any(
+        "smartlink" in f.lower()
+        for r,d,fs in os.walk(p) for f in fs
+    ),  # case-i + multi-ext (lowercase_surface ss20260425)
 }
 
 results = {}
