@@ -1640,49 +1640,35 @@ fi
 # ═══════════════════════════════════════════════════════════════
 if $JSON_MODE; then
   JSON_FILE="smartaudit_$(date +%Y%m%d_%H%M%S).json"
-  python3 << PYEOF > "$JSON_FILE" 2>/dev/null || echo '{"error":"python3 not available"}' > "$JSON_FILE"
-import json, os, subprocess, datetime
-
-def count_files(path, ext='.ts'):
-    c = 0
-    for r,d,f in os.walk(path):
-        c += sum(1 for x in f if x.endswith(ext))
-    return c
-
-# Cell inventory
-cells = {}
-biz_path = 'src/cells/business'
-if os.path.isdir(biz_path):
-    for cell in sorted(os.listdir(biz_path)):
-        cp = os.path.join(biz_path, cell)
-        if not os.path.isdir(cp): continue
-        has_mf = any(f.endswith(".cell.anc") for f in os.listdir(cp) if os.path.isfile(os.path.join(cp, f)))
-        has_port = any('SmartLink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
-        has_domain = os.path.isdir(os.path.join(cp, 'domain'))
-        fc = count_files(cp)
-        cells[cell] = {
-            'files': fc,
-            'manifest': has_mf,
-            'SmartLink_port': has_port,
-            'domain': has_domain,
-        }
-
-result = {
-    'timestamp': '$TS',
-    'root': os.getcwd(),
-    'scores': {'ok': $TOTAL_OK, 'warn': $TOTAL_warn, 'fail': $TOTAL_fail, 'trash': $TOTAL_TRASH},
-    'git': {'branch': '$BRANCH', 'commits': $COMMITS, 'dirty': $DIRTY, 'remote': '$REMOTE'},
-    'files': {'ts_count': $TS_COUNT, 'ts_lines': $TS_LINES, 'inherited_v2': $V2_FILES, 'inherited_v1': $V1_FILES},
-    'kernel': {'ok': $KERNEL_OK, 'total': $KERNEL_TOTAL},
-    'business': {'total': $BIZ_TOTAL, 'six_of_six': $BIZ_6OF6, 'wired': $BIZ_WIRED, 'not_wired': $BIZ_NOT_WIRED},
-    'metabolism': {'processors': $PROC_COUNT, 'normalizers': $NORM_COUNT, 'healing': $HEAL_COUNT},
-    'bctc_flow': {'ready': $BCTC_OK, 'total': ${#BCTC_CELLS[@]}},
-    'production_flow': {'ready': $PROD_OK, 'total': ${#PROD_CELLS[@]}},
-    'cells': cells,
-    'issues': $(python3 -c "import json; print(json.dumps([$(printf '"%s",' "${ISSUES[@]}')])" 2>/dev/null || echo '[]'),
-}
-print(json.dumps(result, indent=2, ensure_ascii=False))
-PYEOF
+  NATT_TS="$TS" \
+  NATT_TOTAL_OK="$TOTAL_OK" \
+  NATT_TOTAL_WARN="$TOTAL_warn" \
+  NATT_TOTAL_FAIL="$TOTAL_fail" \
+  NATT_TOTAL_TRASH="$TOTAL_TRASH" \
+  NATT_BRANCH="$BRANCH" \
+  NATT_COMMITS="$COMMITS" \
+  NATT_DIRTY="$DIRTY" \
+  NATT_REMOTE="$REMOTE" \
+  NATT_TS_COUNT="$TS_COUNT" \
+  NATT_TS_LINES="$TS_LINES" \
+  NATT_V2_FILES="$V2_FILES" \
+  NATT_V1_FILES="$V1_FILES" \
+  NATT_KERNEL_OK="$KERNEL_OK" \
+  NATT_KERNEL_TOTAL="$KERNEL_TOTAL" \
+  NATT_BIZ_TOTAL="$BIZ_TOTAL" \
+  NATT_BIZ_6OF6="$BIZ_6OF6" \
+  NATT_BIZ_WIRED="$BIZ_WIRED" \
+  NATT_BIZ_NOT_WIRED="$BIZ_NOT_WIRED" \
+  NATT_PROC_COUNT="$PROC_COUNT" \
+  NATT_NORM_COUNT="$NORM_COUNT" \
+  NATT_HEAL_COUNT="$HEAL_COUNT" \
+  NATT_BCTC_OK="$BCTC_OK" \
+  NATT_BCTC_TOTAL="${#BCTC_CELLS[@]}" \
+  NATT_PROD_OK="$PROD_OK" \
+  NATT_PROD_TOTAL="${#PROD_CELLS[@]}" \
+  NATT_ISSUES_JSON="$(printf '%s\n' "${ISSUES[@]}" | python3 -c 'import sys,json; print(json.dumps([l.rstrip() for l in sys.stdin if l.strip()]))')" \
+  python3 tools/scan_scorecard_json.py > "$JSON_FILE" 2>/dev/null \
+    || echo '{"error":"python3 not available"}' > "$JSON_FILE"
 
   echo ""
   ok "JSON saved: $JSON_FILE"
