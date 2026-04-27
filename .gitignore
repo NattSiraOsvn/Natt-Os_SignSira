@@ -88,3 +88,4 @@ nattos.sh.bak-*
 # natt-os: ignore generated Rust build artifacts
 **/target/
 docs/runtime/nauion-host/target/
+audit/reports/*_auto.md
