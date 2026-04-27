@@ -1,0 +1,114 @@
+@nauion-runtime-spec v0.1
+@name first_signal_capture_evidence_pack
+@gate Gate 17
+@session ss20260428
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@scope sovereign_edge_first_signal_capture
+
+# Gate 17 — First Signal Capture Evidence Pack
+
+## 1. Mục đích
+
+Gate 17 định nghĩa bộ chứng cứ bắt buộc cho lần ghi nhận tín hiệu sống đầu tiên của một module vật lý sau khi đã qua Gate 16.
+
+Gate 17 không thay thế Gate 16. Gate 16 xác nhận thiết bị được lắp đúng và đủ điều kiện cấp nguồn. Gate 17 xác nhận thiết bị đã phát sinh tín hiệu đầu tiên có thể kiểm chứng, đối chiếu và truy vết.
+
+## 2. Điều kiện mở Gate 17
+
+Gate 17 chỉ được mở khi thiết bị đã có trạng thái:
+
+FIELD_ACCEPTED
+
+Nếu thiết bị còn ở FIELD_REJECTED, LIVE_TESTED chưa pass, hoặc chưa có BOUNDARY_LOCKED thì không được mở Gate 17.
+
+## 3. Chứng cứ bắt buộc
+
+| Nhóm | Nội dung | Bắt buộc |
+|---|---|---|
+| Device | device_name, model, serial | yes |
+| Field | vị trí lắp, ảnh hiện trường | yes |
+| Power | voltage, current, timestamp cấp nguồn | yes |
+| Signal | raw signal, parsed signal, signal direction | yes |
+| Boundary | L1 / L2 / L3 / substrate / external classification | yes |
+| Runtime | receiver, route, event name, payload hash | yes |
+| Evidence | ảnh, log, checksum, người xác nhận | yes |
+| Decision | accepted / rejected / quarantine | yes |
+
+## 4. Trạng thái Gate 17
+
+1. FIRST_SIGNAL_ARMED
+2. FIRST_SIGNAL_CAPTURED
+3. FIRST_SIGNAL_HASHED
+4. FIRST_SIGNAL_BOUNDARY_VERIFIED
+5. FIRST_SIGNAL_ROUTE_VERIFIED
+6. FIRST_SIGNAL_ACCEPTED
+7. FIRST_SIGNAL_REJECTED
+8. FIRST_SIGNAL_QUARANTINED
+
+## 5. Luồng xử lý chuẩn
+
+FIELD_ACCEPTED
+-> FIRST_SIGNAL_ARMED
+-> FIRST_SIGNAL_CAPTURED
+-> FIRST_SIGNAL_HASHED
+-> FIRST_SIGNAL_BOUNDARY_VERIFIED
+-> FIRST_SIGNAL_ROUTE_VERIFIED
+-> FIRST_SIGNAL_ACCEPTED
+
+Nếu tín hiệu sai định dạng, sai route, sai boundary, mất checksum hoặc không có log thì chuyển sang:
+
+FIRST_SIGNAL_REJECTED
+
+Nếu tín hiệu có dấu hiệu nhiễu, lặp bất thường, không xác định được nguồn hoặc có nguy cơ xuyên boundary thì chuyển sang:
+
+FIRST_SIGNAL_QUARANTINED
+
+## 6. First Signal Record mẫu
+
+```na
+@first_signal_record v0.1
+@gate Gate 17
+@device_name
+@model
+@serial
+@field_location
+@power_voltage
+@power_current
+@signal_raw
+@signal_parsed
+@signal_direction
+@boundary_layer
+@receiver
+@route
+@event_name
+@payload_hash
+@evidence_photo
+@evidence_log
+@verified_by
+@verified_at
+@decision FIRST_SIGNAL_ACCEPTED | FIRST_SIGNAL_REJECTED | FIRST_SIGNAL_QUARANTINED
+@note
+7. Quy tắc reject
+Mã lỗiNội dungHành động
+FS-01Không có raw signalreject
+FS-02Không có parsed signalreject
+FS-03Không có payload hashreject
+FS-04Không có timestampreject
+FS-05Không xác định được receiverreject
+FS-06Route không khớp Gate 16 boundaryreject
+FS-07Tín hiệu vượt boundary chưa được phê chuẩnquarantine
+FS-08Tín hiệu lặp bất thườngquarantine
+FS-09Log không khớp ảnh/chứng cứreject
+FS-10Người nghiệm thu không xác nhậnreject
+8. Quan hệ Gate 16 → Gate 17
+Gate 16 trả lời câu hỏi: thiết bị đã được lắp đúng chưa?
+Gate 17 trả lời câu hỏi: tín hiệu sống đầu tiên có thật, đúng nguồn, đúng route, đúng boundary và có chứng cứ không?
+Một thiết bị có thể pass Gate 16 nhưng fail Gate 17.
+9. Seal
+
+Gate 17 chỉ được seal khi có tối thiểu một First Signal Record đầy đủ và decision là FIRST_SIGNAL_ACCEPTED.
+
+No first signal = No runtime claim.
+No hash = No evidence.
+No boundary verification = No live route acceptance.
