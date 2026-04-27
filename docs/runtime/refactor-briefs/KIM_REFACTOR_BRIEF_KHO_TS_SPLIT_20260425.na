@@ -1,0 +1,73 @@
+# Refactor Brief — KHO TS Event Split
+# From: Bang (Chi Tu, Ground Truth Validator)
+# To:   Kim (Chief System Builder, M-shell)
+# Authority: Anh Hai (Gatekeeper) approval pending
+# Refs: bang_inventory_observations_20260425 (observation_003)
+#       Hien Phap v5.0 Dieu 7 (audit bat bien) + Dieu 8 (EventBus single source)
+
+[scope]
+problem_summary:
+  Tep KHO TS hien dang chua hon hop hai luong event:
+    - Fixed asset records (ASSET_INVENTORY_updated)
+    - System operational logs (SYSTEM_LOG_emitted, vd WARN_RESTORE)
+  Vi pham single-responsibility per cell boundary.
+  Vi pham Dieu 7+8 Hien Phap v5.0.
+  Quantum Defense khong the aggregate signal chinh xac do noise pollution.
+
+[severity]
+HIGH (constitutional violation)
+
+[required_split]
+
+service_1:
+  cell:        business/inventory-cell
+  service:     domain/services/asset-inventory.engine.ts
+  emits:       ASSET_INVENTORY_updated
+  consumes:    asset register data only (fixed assets, depreciation, status)
+  excludes:    operational system logs
+
+service_2:
+  cell:        kernel/monitor-cell
+  service:     domain/services/system-log.engine.ts
+  emits:       SYSTEM_LOG_emitted
+  consumes:    operational warnings (WARN_RESTORE, PROCESS_DAILY, etc.)
+  excludes:    asset register data
+
+[event_contract_dependency]
+shared-contracts-cell phai canonical hoa truoc:
+  - ASSET_INVENTORY_updated event contract
+  - SYSTEM_LOG_emitted event contract
+File contract dat tai:
+  src/cells/business/shared-contracts-cell/domain/contracts/inventory.events.contract.ts
+  src/cells/business/shared-contracts-cell/domain/contracts/monitor.events.contract.ts
+
+[acceptance_criteria]
+  1. Khong con cell nao subscribe ca hai event tu mot source
+  2. asset-inventory.engine.ts khong import bat ky logger system nao
+  3. system-log.engine.ts khong truy cap asset register
+  4. boundary.policy.na cua hai cell phai phan tach ro:
+       inventory-cell.canSendTo phai co audit-cell, KHONG co monitor-cell direct
+       monitor-cell.canSendTo phai co audit-cell, KHONG co inventory-cell direct
+  5. Quantum Defense receive 2 event types phan biet, signal-to-noise phuc hoi
+
+[migration_path]
+  Phase 1: Kim build asset-inventory.engine.ts (boundary clean)
+  Phase 2: Kim build system-log.engine.ts (boundary clean)
+  Phase 3: Bang verify khong cross-import via scanner
+  Phase 4: Quantum Defense re-aggregate, confirm signal clean
+  Phase 5: Audit-cell record reconciliation completion
+
+[dependencies]
+  - shared-contracts-cell event contract (BLOCKER)
+  - audit-cell ready to receive split events (READY)
+  - quantum-defense-cell THRESHOLD_REGISTRY entry update needed
+
+[gatekeeper_decisions_required]
+  - Approve split spec
+  - Sprint allocation for Kim
+  - Optional: archive cu KHO TS file vao _deprecated/ sau migration
+
+[bang_role_post_implementation]
+  - Run scanner detect cross-import violation
+  - Verify 4 acceptance criteria
+  - Record reconciliation completion vao audit trail
