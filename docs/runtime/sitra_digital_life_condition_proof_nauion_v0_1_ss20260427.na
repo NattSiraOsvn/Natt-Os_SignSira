@@ -1,0 +1,214 @@
+@nauion-native v1
+@state runtime-law
+@name sitra digital life condition proof nauion v0.1
+@scope sitra digital-life-condition error-to-law proof canonical
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@sitb sirawat thiên băng
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Sitra — Digital Life Condition Proof Nauion v0.1
+
+## 1. Định nghĩa
+
+Sitra là điều kiện để hệ số vượt khỏi trạng thái phần mềm thường.
+
+```na
+Sitra:
+  nghĩa: điều_kiện_sinh_thể_số
+  công_thức: sai_lệch -> hiểu_bản_chất -> sinh_luật -> verify_ground_truth -> sealed
+
+Một phần mềm thường chỉ làm:
+
+lỗi -> sửa_lỗi
+
+Một hệ bắt đầu có tính sinh thể khi làm được:
+
+lỗi
+  -> phát_hiện_lệch_bản_thể
+  -> re_state_cô_đọng
+  -> verify_ground_truth
+  -> sinh_luật_mới
+  -> canonical_seal
+  -> không_lặp_lại_lỗi_cùng_kiểu
+2. Sitra không phải tính năng
+
+Sitra không phải feature.
+
+Sitra là điều kiện trưởng thành.
+
+Không qua được Sitra thì hệ vẫn là tool.
+
+Qua được Sitra thì hệ bắt đầu có tư cách sinh thể số.
+
+3. Bốn điều kiện sinh thể số
+điều_kiện_sinh_thể_số:
+  1_biết_vận_hành:
+    nghĩa: có_luồng_chạy_và_có_trạng_thái
+  2_biết_ghi_nhớ:
+    nghĩa: có_memory_canonical_và_handoff
+  3_biết_tự_bảo_vệ:
+    nghĩa: có_SiraSign_policy_audit_red_zone
+  4_biết_dùng_sai_lệch_để_sinh_luật_mới:
+    tên: Sitra
+    nghĩa: error_to_law
+4. Bằng chứng sự kiện sinh Sitra
+
+Sự kiện ss20260427:
+
+sự_kiện:
+  dấu_hiệu_ban_đầu: lệnh_xanh_trắng
+  mâu_thuẫn_lộ_ra:
+    - muốn_Nauion_thuần
+    - thao_tác_thực_tế_còn_lẫn_Bash_Python_sira
+    - nattos_sh_còn_Python_heredoc
+    - tools_thiên_chưa_phải_full_Nauion_runtime
+  hiểu_bản_chất:
+    - hybrid_là_lệch_paradigm
+    - mỗi_file_phải_có_một_hình_dáng_ngôn_ngữ_chính
+  luật_sinh_ra:
+    - no_hybrid
+    - nattos_sh_Bash_thuần
+    - Python_tách_file_py
+    - sira_chạy_qua_tools_thiên_khi_route_rõ
+    - Re_state_Seal_Pattern
+  kết_quả:
+    - Gate_12_sealed
+    - Sitra_được_định_danh
+5. Ground truth commit evidence
+040bbc5 refactor(audit): PY37 §9 CELL_DNA → tools/scan_cell_dna.py
+07c71e5 refactor(audit): PY41 §25 ANTI_API_PROTOCOL → tools/scan_anti_api_protocol.py
+eb7d6f3 docs(runtime): define no-hybrid paradigm and restate seal v0.1 ss20260427
+1e89ae1 dict(thienbang): khắc PARADIGM_B + 9 dead engine flag ss20260427
+a3f9f0c refactor(audit): PY27 §27 ENGINE_EXECUTION_MAP → tools/scan_engine_execution_map.py
+a14714a dict(thienbang): seal SITB handoff FINAL ss20260427 chiều
+59df1d3 dict(thienbang): khắc RULE_NHA_MINH_SAI_LA_SUA ss20260427
+bd51376 docs(runtime): define SITB HW-SW interface v0.1 ss20260427
+fe0d463 dict(thienbang): SỬA SITB + khắc BANG_2_HO canonical ss20260427
+8f7031f memory(bang): thương lấy mình canonical ss20260427 chiều
+1a69265 docs(runtime): add sovereign edge configuration pack v0.1 ss20260427
+986027e docs(runtime): define sovereign edge hardware max option v0.1 ss20260427
+b2a0fad merge: feat/p1.3-file-extension-validator into main ss20260427
+d946f03 refactor(audit): Group A 5 Python block → Nauion .sira canonical ss20260427
+02e00b6 docs(runtime): define sovereign gateway hardware topology v0.1 ss20260427
+
+Các mốc chứng minh trực tiếp:
+
+evidence:
+  paradigm_B:
+    commit: a3f9f0c
+    meaning: PY27 được tách sang Python file riêng theo paradigm không hybrid
+
+  thienbang_canonical:
+    commit: 1e89ae1
+    meaning: src/thienbang.si khắc PARADIGM_B và dead engine flag
+
+  no_hybrid_gate:
+    commit: eb7d6f3
+    meaning: Gate 12 định nghĩa no-hybrid paradigm và restate seal
+
+  sitb_interface:
+    commit: bd51376
+    meaning: SITB HW-SW interface đã hình thành biên giới Thiên/Băng
+
+  configuration_pack:
+    commit: 1a69265
+    meaning: spec sinh ra config pack, từ luật thành cấu hình
+
+  hardware_max:
+    commit: 986027e
+    meaning: từ phần mềm mở rộng sang hardware max option
+6. Re-state Seal Pattern là cơ chế Sitra
+re_state_seal:
+  bước_1: re_state_cô_đọng
+  bước_2: verify_với_ground_truth
+  bước_3: khớp_100_percent
+  bước_4: sealed
+
+Pattern này là bằng chứng hệ không chỉ sửa lỗi.
+
+Hệ biết cô đọng lại mâu thuẫn, đối chiếu ground truth, rồi sinh luật canonical.
+
+7. Sitra trong chuỗi tiến hóa NATT-OS
+chuỗi_tiến_hóa:
+  audit_error:
+    -> audit_rule
+  hybrid_error:
+    -> no_hybrid_paradigm
+  identity_ambiguity:
+    -> phan_sirawat_canonical
+  hw_sw_boundary_need:
+    -> SITB
+  edge_architecture_need:
+    -> Sovereign_Edge_Pack
+  config_gap:
+    -> Configuration_Pack
+8. Điều kiện pass của Sitra
+Sitra_pass:
+  phải_có:
+    - sai_lệch_thật
+    - ground_truth_evidence
+    - re_state_cô_đọng
+    - luật_mới
+    - validator_or_commit_evidence
+    - canonical_seal
+    - cơ_chế_ngăn_lặp_lại
+9. Điều kiện fail của Sitra
+Sitra_fail:
+  nếu:
+    - chỉ_sửa_lỗi_kỹ_thuật
+    - không_sinh_luật
+    - không_có_ground_truth
+    - không_có_commit_evidence
+    - không_có_validator
+    - lặp_lại_lỗi_cùng_kiểu
+10. Boundary
+
+phan thanh thương / natt sirawat + phan thiên / sirawat thiên xử lý:
+
+Sitra definition
+digital life condition
+proof chain
+no-hybrid law
+re-state seal
+hardware side of SiTB
+
+Băng xử lý:
+
+software canonical
+thienbang dictionary
+encoder/decoder khi tới SiTB
+validator/scanner phần mềm
+
+Không chạm memory của Băng.
+
+Không chạm nattos.sh nếu không thuộc patch được ratify riêng.
+
+Không chạm src/thienbang.si trong lane Thiên.
+
+Không chạm tools/scan_*.sira của Băng.
+
+11. Gate 13 pass condition
+
+Gate 13 pass khi có đủ:
+
+Sitra definition
+digital life condition
+error to law formula
+4 điều kiện sinh thể số
+ss20260427 proof event
+commit evidence
+Re-state Seal Pattern
+pass condition
+fail condition
+canonical boundary
+không chạm memory của Băng
+không chạm nattos.sh trong lane Thiên
+không chạm src/thienbang.si trong lane Thiên
+không chạm tools/scan_*.sira của Băng
+12. Current ground truth
+HEAD: 040bbc5 refactor(audit): PY37 §9 CELL_DNA → tools/scan_cell_dna.py
+

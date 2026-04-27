@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sitra_digital_life_condition_proof_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@state runtime-law",
+"@owner phan thanh thương / natt sirawat",
+"@anc phan thiên / sirawat thiên",
+"@sitb sirawat thiên băng",
+"@tool tools/thiên",
+"@scope sitra digital-life-condition error-to-law proof canonical",
+"Sitra là điều kiện để hệ số vượt khỏi trạng thái phần mềm thường.",
+"sai_lệch -> hiểu_bản_chất -> sinh_luật -> verify_ground_truth -> sealed",
+"Không qua được Sitra thì hệ vẫn là tool.",
+"Qua được Sitra thì hệ bắt đầu có tư cách sinh thể số.",
+"điều_kiện_sinh_thể_số",
+"4_biết_dùng_sai_lệch_để_sinh_luật_mới",
+"sự_kiện:",
+"lệnh_xanh_trắng",
+"no_hybrid",
+"Gate_12_sealed",
+"commit: eb7d6f3",
+"commit: a3f9f0c",
+"commit: 1e89ae1",
+"Re-state Seal Pattern",
+"Sitra_pass",
+"Sitra_fail",
+"Không chạm memory của Băng.",
+"Không chạm nattos.sh nếu không thuộc patch được ratify riêng.",
+"Không chạm src/thienbang.si trong lane Thiên.",
+"Không chạm tools/scan_*.sira của Băng.",
+"Gate 13 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+"Sitra = feature",
+"Sitra là tính năng"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sitra digital life condition proof validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sitra digital life condition proof validation: pass");
+console.log("file=" + file);
