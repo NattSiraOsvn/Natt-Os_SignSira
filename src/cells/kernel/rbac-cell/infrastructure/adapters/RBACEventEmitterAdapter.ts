@@ -1,5 +1,12 @@
+// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
+// @migrated-from RBACEventEmitterAdapter.ts (commit bf26b24)
+// @kind adapter-event-emitter
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+
 import { RBACEventEmitter } from '../../ports/RBACEventEmitter';
 
+// sira_TYPE_CLASS
 export class RBACEventEmitterAdapter implements RBACEventEmitter {
   async emitRoleAssigned(userId: string, roleId: string, assignedBy: string) {
     console.log('[RBAC-CELL] rbac.role.assigned:', { userId, roleId, assignedBy });
