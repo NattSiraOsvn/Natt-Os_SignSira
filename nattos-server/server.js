@@ -5,6 +5,17 @@ const { exec } = require("child_process");
 
 const APP_ROOT = __dirname;
 
+// ── Mạch HeyNa SSE — module scope state ────────────────────
+const _machClients = new Set();
+
+function broadcastMach(event, payload) {
+  if (_machClients.size === 0) return;
+  const data = "data: " + JSON.stringify({ event: event, payload: payload, ts: Date.now() }) + "\n\n";
+  for (const client of _machClients) {
+    try { client.write(data); } catch (e) { _machClients.delete(client); }
+  }
+}
+
 const EXCLUDES = new Set([
   ".git",
   "node_modules",
@@ -374,6 +385,26 @@ function handler(req, res) {
   if (parsed.pathname === "/favicon.ico") {
     res.writeHead(204);
     res.end();
+    return;
+  }
+
+  // ── Mạch HeyNa SSE endpoint — SPEC v2.4 §12-13 OPT-01R ──
+  if (parsed.pathname === "/mach/heyna") {
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      "Connection": "keep-alive",
+      "Access-Control-Allow-Origin": "*"
+    });
+    res.write("data: " + JSON.stringify({ event: "Nahere", payload: { state: "alive" }, ts: Date.now() }) + "\n\n");
+    _machClients.add(res);
+    const _heartbeat = setInterval(function () {
+      try { res.write(": heartbeat " + Date.now() + "\n\n"); } catch (e) {}
+    }, 30000);
+    req.on("close", function () {
+      clearInterval(_heartbeat);
+      _machClients.delete(res);
+    });
     return;
   }
 
