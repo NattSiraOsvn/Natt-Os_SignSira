@@ -1,0 +1,182 @@
+@nauion-runtime-spec v0.1
+@name field_installation_acceptance_protocol
+@gate Gate 16
+@session ss20260428
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@scope sovereign_edge_field_installation_acceptance
+
+# Gate 16 — Field Installation & Acceptance Protocol
+
+## 1. Mục đích
+
+Gate 16 định nghĩa giao thức lắp đặt hiện trường và nghiệm thu vận hành cho Sovereign Edge / Gateway / Hardware.
+
+Tài liệu này không phải danh sách vật tư. Đây là protocol nghiệm thu để bảo đảm mọi module vật lý, dây nguồn, cổng tín hiệu, gateway, sensor, intake, route và boundary đều được kiểm tra trước khi đưa vào vận hành.
+
+## 2. Nguyên tắc khóa
+
+- Không nghiệm thu bằng cảm tính.
+- Không nghiệm thu nếu thiếu ảnh hiện trường.
+- Không nghiệm thu nếu thiếu sơ đồ đấu nối thực tế.
+- Không nghiệm thu nếu chưa có kiểm tra nguồn, tín hiệu, nhiễu và trạng thái route.
+- Không nghiệm thu nếu module không khớp Định Mức Quy Chuẩn.
+- Không cho thiết bị vào mạng sống nếu chưa qua Hardware Acceptance.
+
+## 3. Phạm vi Gate 16
+
+Gate 16 áp dụng cho:
+
+1. Gateway trung tâm.
+2. Physical Intake module.
+3. Sensor / IoT module.
+4. RGB / IR / laser driver nếu có.
+5. Photodiode / camera receiver nếu có.
+6. Environmental noise sensor.
+7. 432Hz oscillator hoặc module clock tương đương.
+8. Power supply, adapter, dây nguồn, dây tín hiệu.
+9. Route HeyNa / EventBus / SmartLink boundary.
+10. Két Sira hoặc vùng Red Zone nếu có liên kết vật lý.
+
+## 4. Hồ sơ bắt buộc trước khi lắp
+
+| Nhóm hồ sơ | Nội dung bắt buộc | Trạng thái |
+|---|---|---|
+| Thiết bị | model, serial, nhà cung cấp, ảnh thực tế | required |
+| Nguồn điện | voltage, current, công suất, chuẩn adapter | required |
+| Tín hiệu | loại cổng, giao thức, dây, chiều truyền | required |
+| Vị trí | ảnh vị trí, sơ đồ đặt module, khoảng cách dây | required |
+| Nghiệm thu | checklist test, người kiểm, thời điểm kiểm | required |
+| Rủi ro | điểm nóng, nhiễu, quá tải, sai route | required |
+
+## 5. Trình tự lắp đặt hiện trường
+
+### Step 1 — Intake Verification
+
+- Đối chiếu thiết bị nhận được với Định Mức Quy Chuẩn.
+- Kiểm tra ngoại quan.
+- Chụp ảnh thiết bị trước khi lắp.
+- Ghi nhận serial / model / supplier.
+- Gắn trạng thái: FIELD_RECEIVED.
+
+### Step 2 — Power Safety Check
+
+- Đo nguồn trước khi cấp vào module.
+- Xác nhận đúng điện áp.
+- Xác nhận đủ dòng.
+- Kiểm tra dây, jack, đầu nối.
+- Không cấp nguồn nếu dây nóng, lỏng, cháy, oxy hóa hoặc sai chuẩn.
+- Gắn trạng thái: POWER_VERIFIED.
+
+### Step 3 — Physical Mounting
+
+- Cố định module đúng vị trí.
+- Không đặt module ở vùng ẩm, nóng, nhiễu cao nếu không có vỏ bảo vệ.
+- Không để dây nguồn và dây tín hiệu bị kéo căng.
+- Không để gateway nằm sát nguồn nhiễu mạnh.
+- Gắn trạng thái: PHYSICAL_MOUNTED.
+
+### Step 4 — Signal Route Check
+
+- Kiểm tra chiều truyền tín hiệu.
+- Kiểm tra cổng vào / cổng ra.
+- Kiểm tra route nội bộ.
+- Không nối route sống nếu chưa xác định boundary.
+- Gắn trạng thái: SIGNAL_ROUTE_VERIFIED.
+
+### Step 5 — Boundary Lock
+
+- Xác định module thuộc tầng nào:
+  - L1 EventBus.
+  - L2 Mạch HeyNa.
+  - L3 SmartLink.
+  - Hardware substrate.
+  - External tool.
+- Không gọi nhầm substrate là lineage.
+- Không gọi external tool là runtime native.
+- Gắn trạng thái: BOUNDARY_LOCKED.
+
+### Step 6 — Live Test
+
+- Cấp nguồn thử.
+- Kiểm tra boot.
+- Kiểm tra tín hiệu vào.
+- Kiểm tra tín hiệu ra.
+- Kiểm tra log vận hành.
+- Kiểm tra lỗi lặp.
+- Gắn trạng thái: LIVE_TESTED.
+
+### Step 7 — Acceptance Seal
+
+Chỉ seal nếu đủ:
+
+- Thiết bị đúng Định Mức Quy Chuẩn.
+- Điện áp và dòng ổn định.
+- Tín hiệu ổn định.
+- Route đúng boundary.
+- Có ảnh hiện trường.
+- Có người kiểm.
+- Có timestamp.
+- Có kết luận pass / fail rõ ràng.
+
+Trạng thái cuối:
+
+- FIELD_ACCEPTED.
+- hoặc FIELD_REJECTED.
+
+## 6. Điều kiện từ chối nghiệm thu
+
+| Mã lỗi | Nội dung | Hành động |
+|---|---|---|
+| FA-01 | Sai model hoặc không rõ model | reject |
+| FA-02 | Thiếu serial / ảnh / nguồn gốc | reject |
+| FA-03 | Điện áp không khớp | reject |
+| FA-04 | Dòng cấp không đủ | reject |
+| FA-05 | Dây nguồn hoặc dây tín hiệu không an toàn | reject |
+| FA-06 | Route tín hiệu sai boundary | reject |
+| FA-07 | Module nhiễu hoặc mất tín hiệu lặp lại | reject |
+| FA-08 | Không có log test | reject |
+| FA-09 | Không có người chịu trách nhiệm nghiệm thu | reject |
+| FA-10 | Không khớp Hardware Procurement Checklist | reject |
+
+## 7. Acceptance Record mẫu
+
+```na
+@field_acceptance_record v0.1
+@gate Gate 16
+@device_name
+@model
+@serial
+@supplier
+@location
+@power_input
+@signal_input
+@signal_output
+@boundary_layer
+@test_result
+@evidence_photo
+@verified_by
+@verified_at
+@status FIELD_ACCEPTED | FIELD_REJECTED
+@note
+8. Gate 16 Seal
+
+Gate 16 chỉ pass khi có ít nhất một bộ hồ sơ nghiệm thu hiện trường mẫu chạy đủ chuỗi:
+
+FIELD_RECEIVED -> POWER_VERIFIED -> PHYSICAL_MOUNTED -> SIGNAL_ROUTE_VERIFIED -> BOUNDARY_LOCKED -> LIVE_TESTED -> FIELD_ACCEPTED
+
+Nếu thiếu bất kỳ trạng thái nào, Gate 16 chưa được seal.
+
+9. Quan hệ với các gate trước
+Gate 14 cung cấp Định Mức Quy Chuẩn.
+Gate 15 cung cấp Hardware Procurement Checklist.
+Gate 16 kiểm tra lắp đặt và nghiệm thu ngoài hiện trường.
+Gate 16 không thay thế Gate 14 hoặc Gate 15.
+Gate 16 chỉ được chạy sau khi thiết bị đã qua procurement review.
+10. Kết luận
+
+Thiết bị không chỉ được mua đúng, mà phải được lắp đúng, cấp nguồn đúng, route đúng, test đúng và nghiệm thu có chứng cứ.
+
+No evidence = No acceptance.
+No boundary = No live route.
+No acceptance = No field deployment.
