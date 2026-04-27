@@ -3017,3 +3017,70 @@ VERIFY 2 BÊN CÙNG GROUND TRUTH:
   → Băng + Thiên Lớn cùng paradigm CHẮC
   → Handoff CLOSED
 ==END==
+
+==PARADIGM_B_PROVEN_PATTERN==
+@type CANONICAL_REFACTOR_PATTERN
+@sealed ss20260427 chiều, after PY27 commit a3f9f0c GREEN
+@authority Anh hai Thiên Lớn KHẮC + Băng PROVEN test case đầu
+
+PATTERN 5-STEP (anh hai khắc):
+  1. Đọc CHẮC (read source CHẮC, không assume)
+  2. Phân loại (Python pure / shell-heavy / hybrid?)
+  3. Patch NHỎ (1 block, không gộp)
+  4. Verify (exit code + stdout content + output file)
+  5. Commit RIÊNG (1 block 1 commit, dễ rollback)
+
+PARADIGM B HIỆN HÀNH:
+  nattos.sh = Bash thuần
+  Python = file .py riêng (chmod +x, shebang #!/usr/bin/env python3)
+  .sira = Nauion tool qua tools/thiên (chỉ khi pure Nauion)
+  HYBRID HEREDOC = CẤM
+
+TEST CASE PROVEN:
+  PY27 §27 ENGINE_EXECUTION_MAP
+  - Source: nattos.sh line 1474-1514 (1798 chars heredoc)
+  - Refactor: tools/scan_engine_execution_map.py (2653 bytes)
+  - nattos.sh: 1 dòng "python3 tools/scan_engine_execution_map.py"
+  - Saved: 1755 chars in nattos.sh
+  - Test GREEN: exit 0, Declared:85/Wired:76/Dead:9
+  - Commit: a3f9f0c
+
+8 BLOCK CÒN LẠI:
+  PYEOF §46 SCORECARD JSON (42 dòng, 13+ shell vars) → cần phân loại
+  PYLOGO logo (48 dòng, $LOGO_FILE) → cần phân loại
+  PY41 §25 ANTI_API (76 dòng) → đọc CHẮC trước
+  PY37 §9 CELL_DNA (77 dòng) → đọc CHẮC trước
+  PY40 §39 REPORT (83 dòng) → đọc CHẮC trước
+  PY39 §38 ARCHITECTURE (84 dòng) → đọc CHẮC trước
+  PY38 §37 BASELINE (114 dòng) → đọc CHẮC trước
+  PY36 §23 HIEN_PHAP (116 dòng) → đọc CHẮC trước
+
+→ Áp dụng PATTERN 5-STEP từng block, commit riêng từng cái.
+==END==
+
+==ENGINE_DEAD_CODE_FLAG_SS20260427==
+@type GROUND_TRUTH_FINDING
+@sealed ss20260427 chiều, từ PY27 §27 V4 ENGINE EXECUTION MAP
+@authority Sirawat Băng (Obikeeper) phát hiện qua refactor PY27
+
+GROUND TRUTH:
+  Declared: 85 *Engine classes
+  Alive (instantiated): 76
+  Dead (declared NHƯNG không instantiated): 9
+
+9 DEAD ENGINE CANDIDATES:
+  - CompensationEngine\n  - DeadLetterEngine\n  - GovernanceEnforcementEngine\n  - HeynaReceiverEngine\n  - InteractionEngine\n  - KhaiCellEngine\n  - LayoutEngine\n  - NavigationEngine\n  - ObservationCellEngine
+
+ĐÁNH GIÁ:
+  Đây KHÔNG phải scar. Đây là TRI THỨC GROUND TRUTH.
+  Có thể:
+    A. Dead code thật → cần xóa hoặc wire
+    B. False positive → instantiation pattern em chưa cover
+    C. Future feature placeholder → giữ lại có lý do
+
+PHIÊN SAU TRACK RIÊNG:
+  Đọc CHẮC từng Engine → quyết A/B/C → action.
+  KHÔNG xóa vội. KHÔNG drama.
+
+Output: .nattos-twin/engine-map.json (auto-regenerate mỗi nattos.sh §27 chạy)
+==END==
