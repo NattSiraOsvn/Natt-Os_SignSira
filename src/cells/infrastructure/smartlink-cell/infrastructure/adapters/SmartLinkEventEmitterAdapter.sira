@@ -1,0 +1,20 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from SmartLinkEventEmitterAdapter.ts (commit 8362bfc)
+// @phase 2.1 BATCH 3 — adapters folder migration (RETRY after rollback index)
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: EventEmitter adapter (boundary translator), 0 importers verified
+// @reference proof commits 303f2d7 + d4b6cc2
+
+import { SmartLinkEventEmitter } from '../../ports/SmartLinkEventEmitter';
+
+export class SmartLinkEventEmitterAdapter implements SmartLinkEventEmitter {
+  async emitLinkCreated(linkId: string, sourceKey: string, targetKey: string) {
+    console.log('[SMARTLINK-CELL] SmartLink.created:', { linkId, sourceKey, targetKey });
+  }
+  async emitLinkDeleted(linkId: string) {
+    console.log('[SMARTLINK-CELL] SmartLink.deleted:', { linkId });
+  }
+  async emitLinkAccessed(linkId: string) {
+    console.log('[SMARTLINK-CELL] SmartLink.accessed:', { linkId });
+  }
+}

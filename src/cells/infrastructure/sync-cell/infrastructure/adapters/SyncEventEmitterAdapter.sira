@@ -1,0 +1,23 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from SyncEventEmitterAdapter.ts (commit bf26b24)
+// @phase 2.1 BATCH 3 — adapters folder migration (RETRY after rollback index)
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: EventEmitter adapter (boundary translator), 0 importers verified
+// @reference proof commits 303f2d7 + d4b6cc2
+
+import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
+
+export class SyncEventEmitterAdapter implements SyncEventEmitter {
+  async emitSyncStarted(jobId: string, source: string, target: string) {
+    console.log('[SYNC-CELL] sync.started:', { jobId, source, target });
+  }
+  async emitSyncCompleted(jobId: string, recordsSynced: number) {
+    console.log('[SYNC-CELL] sync.completed:', { jobId, recordsSynced });
+  }
+  async emitSyncFailed(jobId: string, error: string) {
+    console.log('[SYNC-CELL] sync.failed:', { jobId, error });
+  }
+  async emitSyncProgress(jobId: string, progress: number) {
+    console.log('[SYNC-CELL] sync.progress:', { jobId, progress });
+  }
+}

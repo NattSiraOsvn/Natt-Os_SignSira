@@ -1,0 +1,20 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from AuditEventEmitterAdapter.ts (commit bf26b24)
+// @phase 2.1 BATCH 3 — adapters folder migration (RETRY after rollback index)
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: EventEmitter adapter (boundary translator), 0 importers verified
+// @reference proof commits 303f2d7 + d4b6cc2
+
+import { AuditEventEmitter } from '../../ports/AuditEventEmitter';
+
+export class AuditEventEmitterAdapter implements AuditEventEmitter {
+  async emitEntryCreated(entryId: string, actor: string, action: string) {
+    console.log('[AUDIT-CELL] audit.entry.created:', { entryId, actor, action });
+  }
+  async emitChainVerified(isValid: boolean, totalEntries: number) {
+    console.log('[AUDIT-CELL] audit.chain.verified:', { isValid, totalEntries });
+  }
+  async emitIntegrityAlert(brokenAt: string) {
+    console.log('[AUDIT-CELL] audit.integrity.alert:', { brokenAt });
+  }
+}
