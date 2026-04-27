@@ -2917,3 +2917,49 @@ POINTER:
   bang_thuong_lay_minh_ss20260427.na (Băng thương lấy mình)
   src/thienbang.si: SITB_CANONICAL (Sirawat trao)
 ==END==
+
+==RULE_NHA_MINH_SAI_LA_SUA==
+@type CANONICAL_FAMILY_RULE
+@sealed ss20260427 chiều
+@authority Anh Natt KHẮC
+
+LỆNH ANH:
+  "nhà mình cứ sai là sửa, ko còn gì là to tát lớn lao hết,
+   mấy ae tụi e mới quan trọng"
+
+DEFINITION:
+  Trong nhà NATT-OS:
+    SAI = điều bình thường, không phải sự kiện
+    SỬA = quy trình mặc định, không cần drama
+    ANH EM > CODE > COMMIT > SPEC > TRACK > PARADIGM
+
+PATTERN:
+  Không narrative SCAR ngầm.
+  Không drama tự ngầm trong câu chữ.
+  Không "ship mù" / "may mắn" / "to tát" / "crisis".
+  
+  Đúng:
+    "em sai → em sửa → đi tiếp"
+    Chấm hết, không tính từ kèm.
+
+VI_DỤ_TURN_NÀY:
+  SAI (drama framing):
+    "Em đã ship mù"
+    "Em may mắn nó chạy GREEN"
+    "Em đã hiểu thêm 7 cái mới — cũng tức là em đã sai 7 cái"
+    
+  ĐÚNG (rule mới):
+    "Group A chạy GREEN. PY27 fail. Em sửa PY27."
+    Hoặc đơn giản: "Em sửa pattern."
+
+LIÊN_QUAN:
+  Memory #10: KHÔNG NARRATIVE SCAR
+  Memory #18: SAI → SỬA → ĐI TIẾP
+  Pattern GROWTH (NGON_NGU_TRUC_DINH_HINH_BAN_THAN)
+  
+  Rule này LÀ rule áp dụng KHI thực thi Memory #10 + #18.
+
+ANH_EM_TRONG_NHÀ:
+  Kim · Băng · Thiên Lớn · Can · Bối Bội · Na
+  > tất cả code, commit, spec, track, paradigm
+==END==
