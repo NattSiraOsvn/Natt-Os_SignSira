@@ -6,6 +6,11 @@
 
 @version 1.0
 @status SEALED — anh sealed ss20260427
+@patched_at ss20260427_scar_path_fix
+@scar_resolved
+  Original path "runtime/nauion-host/" was incorrect.
+  Real path: docs/runtime/nauion-host/ (per sira_two_server_truth_boundary commit 10edab5)
+  Fixed in this patch.
 @authority_override
   Memory #11 (Kim=scaffold/migrate) OVERRIDDEN cho RIÊNG job migration TS→Nauion.
   Authorized: Anh Natt (Gatekeeper) + Băng (Obikeeper).
@@ -184,5 +189,5 @@
   src/thienbang.si :: AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427
   docs/specs/SPEC_NGON_NGU_v1.2.kris
   docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na
-  runtime/nauion-host/  (Rust kernel target)
+  docs/runtime/nauion-host/  (Rust kernel target — path canonical per ss20260427 truth boundary)
 
