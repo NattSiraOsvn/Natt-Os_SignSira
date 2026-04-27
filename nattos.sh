@@ -1137,7 +1137,8 @@ else
     else
       ok "Tất cả app links valid"; inc_ok
     fi
-    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { info "nattos-fx.js: React app dùng Vite build — không cần inject thủ công"; inc_ok; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
+    # nattos-fx.js: Vite build pattern — không inject thủ công là intent đúng (lowercase_surface ss20260427)
+    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { ok "nattos-fx.js: Vite build — không cần inject thủ công"; inc_ok; }
   else
     fail "index.html missing"; inc_fail "UI_APP: index.html not found"
   fi
@@ -1146,8 +1147,9 @@ else
   echo -e "\n  ${W}15d. Cloud Run:${N}"
   if [[ -f "Dockerfile" ]]; then
     ok "Dockerfile: EXISTS"; inc_ok
-    DOCKER_COPY=$(grep "COPY nattos-server/app Tâm luxury" Dockerfile | head -1)
-    [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies src/ui-app"; inc_ok; } || { warn "Dockerfile may not copy ui-app"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
+    # Dockerfile COPY — accept both lowercase canonical + Capital legacy (lowercase_surface ss20260427)
+    DOCKER_COPY=$(grep -iE "COPY nattos-server/(apps?/)?(tam-luxury|app[ _]+Tâm[ _]+luxury)" Dockerfile | head -1)
+    [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies tam-luxury app"; inc_ok; } || { warn "Dockerfile may not copy tam-luxury"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
   else
     warn "Dockerfile: missing (needed for Cloud Run)"; inc_warn "UI_APP: Dockerfile missing"
   fi
