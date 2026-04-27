@@ -3200,6 +3200,16 @@ trạng_thái: canonical
 
 # Gate 16 — Field Installation & Acceptance Protocol
 Field_Installation_Acceptance_Protocol: Gate 16 protocol khóa lắp đặt thực địa, first power-on, first signal, nghiệm thu và bàn giao phần cứng.
+Field_Received: Trạng thái thiết bị đã được tiếp nhận vật lý và kiểm tra ngoại quan.
+Power_Verified: Trạng thái nguồn cấp đã được kiểm tra điện áp, dòng, jack, dây và an toàn cấp nguồn.
+Physical_Mounted: Trạng thái thiết bị đã được cố định đúng vị trí hiện trường.
+Signal_Route_Verified: Trạng thái đường tín hiệu đã được kiểm tra chiều truyền, cổng vào, cổng ra và route nội bộ.
+Boundary_Locked: Trạng thái đã khóa phân loại boundary giữa EventBus, Mạch HeyNa, SmartLink, substrate và external tool.
+Live_Tested: Trạng thái thiết bị đã được cấp nguồn thử, kiểm tra boot, tín hiệu vào, tín hiệu ra và log vận hành.
+Field_Accepted: Trạng thái thiết bị được chấp thuận đưa vào field deployment.
+Field_Rejected: Trạng thái thiết bị bị từ chối đưa vào field deployment.
+No_Evidence_No_Acceptance: Nguyên tắc không có chứng cứ nghiệm thu thì không được chấp nhận.
+No_Boundary_No_Live_Route: Nguyên tắc chưa khóa boundary thì không được nối route sống.
 Field_Intake: Bước ghi nhận thiết bị, model, serial, tình trạng niêm phong và ảnh trước khi lắp.
 Site_Readiness: Điều kiện sẵn sàng của hiện trường trước khi lắp đặt module.
 Physical_Mounting: Kiểm tra cố định vật lý, vị trí, nhãn, tản nhiệt và khả năng tiếp cận module.
