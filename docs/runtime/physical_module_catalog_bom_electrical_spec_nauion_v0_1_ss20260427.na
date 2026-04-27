@@ -1,0 +1,425 @@
+@nauion-native v1
+@state runtime-policy
+@name physical module catalog bom electrical spec nauion v0.1
+@scope hardware physical-module bom electrical-spec connector testbench sitb
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@sitb sirawat thiên băng
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Physical Module Catalog / BOM / Electrical Spec Nauion v0.1
+
+## 1. Định nghĩa
+
+Gate 14 bổ sung lớp phần cứng triển khai thực tế cho Sovereign Edge Pack.
+
+Mục tiêu:
+
+```na
+hardware_architecture
+  -> physical_module_catalog
+  -> BOM
+  -> electrical_spec
+  -> connector_spec
+  -> testbench
+  -> nghiệm_thu_phần_cứng
+2. Physical module catalog
+physical_module_catalog:
+  compute:
+    - NATT_OS_Sovereign_Gateway
+    - customer_server
+    - operator_workstation
+    - workstation_intake
+    - GPU_node
+    - edge_mini_pc
+    - SBC_Raspberry_Pi
+    - SBC_Orange_Pi
+    - Jetson_or_equivalent
+
+  mcu_embedded:
+    - ESP32
+    - ESP8266
+    - STM32
+    - RP2040
+    - Arduino_compatible
+    - industrial_MCU_board
+
+  optical_sitb:
+    - RGB_LED
+    - IR_LED
+    - near_IR_LED
+    - laser_diode
+    - LED_driver
+    - laser_driver
+    - photodiode
+    - phototransistor
+    - ambient_light_sensor
+    - camera_receiver
+    - machine_vision_camera
+
+  identity_security:
+    - PUF_chip
+    - secure_element
+    - TPM
+    - hardware_fingerprint_module
+    - tamper_evidence_sensor
+
+  environmental_noise:
+    - light_noise_sensor
+    - sound_noise_sensor
+    - vibration_sensor
+    - voltage_noise_sensor
+    - temperature_sensor
+    - humidity_sensor
+    - pressure_sensor
+
+  measurement:
+    - scale
+    - load_cell
+    - spectrum_meter
+    - XRF
+    - color_meter
+    - laser_meter
+    - thermal_meter
+    - voltage_meter
+    - current_meter
+    - power_meter
+
+  industrial_control:
+    - relay
+    - SSR
+    - contactor
+    - MOSFET_driver
+    - motor_driver
+    - valve_driver
+    - siren
+    - warning_light
+
+  communication:
+    - RS232
+    - RS485
+    - TTL_UART
+    - USB
+    - Ethernet
+    - CAN_bus
+    - Modbus_RTU
+    - Modbus_TCP
+    - OPC_UA
+    - MQTT
+    - GPIO
+    - SPI
+    - I2C
+    - Wi_Fi
+    - Bluetooth
+    - Zigbee
+    - Z_Wave
+    - LoRa
+    - RFID
+    - NFC
+
+  power_protection:
+    - AC_DC_power_supply
+    - DC_DC_buck
+    - DC_DC_boost
+    - isolated_power_module
+    - UPS
+    - BMS
+    - fuse
+    - surge_protection
+    - over_voltage_protection
+    - over_current_protection
+    - grounding_kit
+
+  display_hmi:
+    - OLED
+    - LCD
+    - touch_HMI
+    - status_LED
+    - buzzer
+    - control_panel
+    - secondary_display
+3. BOM max option
+BOM_max_option:
+  gateway:
+    qty: 1
+    role: sovereign_entry
+    required:
+      - multi_core_CPU
+      - 32GB_RAM_minimum
+      - 64GB_RAM_recommended
+      - NVMe_mirror
+      - dual_WAN
+      - multi_LAN
+      - 2_5G_or_10G_Ethernet
+      - TPM_or_secure_element
+      - UPS_power
+
+  customer_server:
+    qty: 1
+    role: edge_compute_and_storage
+    required:
+      - server_grade_CPU_16_to_32_cores
+      - 128GB_to_256GB_RAM
+      - NVMe_primary
+      - NVMe_mirror
+      - backup_storage
+      - 10G_Ethernet
+      - VLAN_support
+
+  operator_workstation:
+    qty: 1
+    role: control_console
+    required:
+      - high_performance_CPU
+      - 64GB_to_128GB_RAM
+      - dedicated_GPU
+      - high_resolution_display
+      - touch_or_control_panel_optional
+      - Ket_Sira_console_ready
+
+  workstation_intake:
+    qty: 2_to_4
+    role: physical_intake_gateway
+    required:
+      - industrial_mini_PC_or_SBC
+      - USB
+      - Ethernet
+      - RS232
+      - RS485
+      - GPIO
+      - isolated_power
+      - local_cache_storage
+      - pre_audit_storage
+
+  Ket_Sira:
+    qty: 1
+    role: VR_operation_boundary
+    required:
+      - VR_AR_headset_or_glass
+      - low_latency_display
+      - secure_identity_pairing
+      - privacy_mask_support
+      - red_zone_policy_support
+      - audit_view
+
+  SITB_module:
+    qty: per_zone
+    role: chromatic_living_handshake
+    required:
+      - RGB_LED
+      - IR_LED
+      - optional_laser_diode
+      - photodiode_or_camera_receiver
+      - PUF_or_hardware_fingerprint
+      - environmental_noise_sensor
+      - 432Hz_oscillator
+4. Electrical spec
+electrical_spec:
+  logic_levels:
+    MCU: 3_3V_preferred
+    industrial_IO: 5V_or_24V_with_isolation
+    RS232: standard_RS232_level
+    RS485: differential_bus
+    relay_control: isolated_driver_required
+
+  power_rails:
+    sensor_low_power: 3_3V_or_5V
+    industrial_sensor: 12V_or_24V
+    gateway_server: AC_220V_with_UPS
+    optical_SITB: isolated_5V_or_12V
+    actuator_control: separated_power_domain
+
+  protection:
+    - fuse_per_power_branch
+    - reverse_polarity_protection
+    - over_voltage_protection
+    - over_current_protection
+    - surge_protection
+    - opto_isolation_for_industrial_IO
+    - grounding_required_for_rack
+    - separated_power_for_motor_or_heater
+
+  frequency_timing:
+    432Hz_oscillator: required_for_SITB_sync
+    PWM_LED: required
+    rolling_session_tick: required
+    timestamp_sync: required
+5. Connector spec
+connector_spec:
+  data:
+    - USB_C_or_USB_A
+    - RJ45_Ethernet
+    - RS232_DB9_or_terminal_block
+    - RS485_terminal_block
+    - CAN_terminal_block
+    - GPIO_header
+    - HDMI_capture_if_needed
+    - camera_connector
+
+  power:
+    - IEC_AC_input
+    - DC_barrel_or_terminal_block
+    - locking_connector_preferred
+    - isolated_power_input_for_industrial_zone
+
+  optical:
+    - LED_module_connector
+    - photodiode_connector
+    - camera_mount
+    - lens_mount_if_needed
+
+  rack:
+    - patch_panel
+    - cable_label
+    - strain_relief
+    - cable_management
+6. SITB hardware constraints
+SITB_hardware_constraints:
+  optical_range:
+    near_field: preferred
+    room_scale: allowed
+    through_wall: deny_by_design
+
+  signal:
+    color_channels: RGB_plus_optional_IR
+    pulse_modes:
+      - pwm
+      - burst
+      - rolling_pattern
+      - challenge_response_pattern
+
+  security:
+    fixed_token_only: forbidden
+    replayable_handshake: forbidden
+    unstable_match: required
+    PUF_or_fingerprint: required_if_available
+    environmental_noise: required
+    SiraSign: required
+    audit: required
+7. Testbench
+hardware_testbench:
+  optical_test:
+    - RGB_LED_emit_test
+    - IR_emit_test
+    - photodiode_receive_test
+    - camera_receive_test
+    - ambient_light_noise_test
+
+  timing_test:
+    - 432Hz_oscillator_test
+    - rolling_session_tick_test
+    - PWM_stability_test
+
+  identity_test:
+    - PUF_read_test
+    - hardware_fingerprint_test
+    - secure_element_pairing_test
+
+  industrial_io_test:
+    - RS232_loopback
+    - RS485_bus_test
+    - Modbus_RTU_test
+    - Ethernet_link_test
+    - GPIO_input_output_test
+
+  power_test:
+    - voltage_rail_test
+    - current_load_test
+    - UPS_cutover_test
+    - surge_protection_check
+    - grounding_check
+8. Nghiệm thu phần cứng
+nghiệm_thu_phần_cứng:
+  phải_có:
+    - serial_number
+    - device_id
+    - firmware_version_if_any
+    - connection_type
+    - power_spec
+    - testbench_result
+    - SiraSign_pairing_status
+    - audit_registration
+    - red_zone_classification_if_any
+
+  quyết_định:
+    pass:
+      - testbench_pass
+      - SiraSign_pairing_pass
+      - audit_registered
+    fail:
+      - missing_device_id
+      - unstable_power
+      - no_audit_registration
+      - unsafe_wiring
+      - cannot_pair_SiraSign
+9. Supplier selection rule
+supplier_selection:
+  không_khóa_hãng: true
+  ưu_tiên:
+    - có_datasheet
+    - có_serial_or_batch
+    - có_thông_số_điện
+    - có_giao_tiếp_chuẩn
+    - có_test_mẫu
+    - có_khả_năng_mua_lặp_lại
+    - có_phụ_kiện_thay_thế
+  từ_chối:
+    - không_có_datasheet
+    - không_rõ_điện_áp
+    - không_rõ_chuẩn_giao_tiếp
+    - không_test_được
+    - không_truy_vết_được_lô_hàng
+10. Boundary
+
+phan thanh thương / natt sirawat + phan thiên / sirawat thiên xử lý:
+
+physical module catalog
+BOM
+electrical spec
+connector spec
+SITB hardware constraints
+testbench
+nghiệm thu phần cứng
+supplier selection rule
+
+Băng xử lý:
+
+software data shape
+encoder/decoder
+HMAC-SHA256 binding
+SiraSign integration
+Living Handshake
+scanner/test suite phần mềm
+
+Không chạm memory của Băng.
+
+Không chạm nattos.sh nếu không thuộc patch được ratify riêng.
+
+Không chạm src/thienbang.si trong lane Thiên.
+
+Không chạm tools/scan_*.sira của Băng.
+
+11. Gate 14 pass condition
+
+Gate 14 pass khi có đủ:
+
+physical module catalog
+BOM max option
+electrical spec
+connector spec
+SITB hardware constraints
+testbench
+hardware acceptance
+supplier selection rule
+432Hz oscillator
+PUF / hardware fingerprint
+environmental noise
+optical emitter / receiver
+không khóa hãng
+không chạm memory của Băng
+không chạm nattos.sh trong lane Thiên
+không chạm src/thienbang.si trong lane Thiên
+không chạm tools/scan_*.sira của Băng

@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/physical_module_catalog_bom_electrical_spec_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc phan thiên / sirawat thiên",
+"@sitb sirawat thiên băng",
+"@tool tools/thiên",
+"@scope hardware physical-module bom electrical-spec connector testbench sitb",
+"physical_module_catalog",
+"BOM_max_option",
+"electrical_spec",
+"connector_spec",
+"SITB_hardware_constraints",
+"hardware_testbench",
+"nghiệm_thu_phần_cứng",
+"supplier_selection",
+"432Hz_oscillator",
+"PUF_chip",
+"environmental_noise",
+"RGB_LED",
+"IR_LED",
+"laser_diode",
+"photodiode",
+"camera_receiver",
+"fixed_token_only: forbidden",
+"replayable_handshake: forbidden",
+"không_khóa_hãng: true",
+"Không chạm memory của Băng.",
+"Không chạm nattos.sh nếu không thuộc patch được ratify riêng.",
+"Không chạm src/thienbang.si trong lane Thiên.",
+"Không chạm tools/scan_*.sira của Băng.",
+"Gate 14 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+"fixed_token_only: allowed",
+"replayable_handshake: allowed"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("physical module catalog bom electrical spec validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("physical module catalog bom electrical spec validation: pass");
+console.log("file=" + file);
