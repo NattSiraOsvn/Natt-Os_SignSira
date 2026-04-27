@@ -2694,3 +2694,47 @@ export const THIENBANG_RUNTIME_MIRROR = {
 };
 
 export default SuperDictionary;
+
+
+# ════════════════════════════════════════════════════════════════════
+# AUTHORITY OVERRIDE: MIGRATION TS → NAUION (ss20260427)
+# Sealed by Anh Natt (Gatekeeper)
+# ════════════════════════════════════════════════════════════════════
+
+AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427 := {
+  scope:        "migration_ts_to_nauion job ONLY",
+  override_of:  "Memory #11 authority lock (Kim=scaffold/migrate)",
+  reason:       "không ai hiểu hơn anh và Băng — để an toàn",
+  
+  authorized_personas: [
+    "ANH_NATT_GATEKEEPER",
+    "BANG_GTV_OBIKEEPER"
+  ],
+  
+  excluded_personas: [
+    "KIM_CSB",        # vẫn giữ scaffold authority cho job khác
+    "THIEN_LON",
+    "CAN",
+    "BOI_BOI"
+  ],
+  
+  bang_authority_scope: [
+    "scaffold (TS→Nauion files)",
+    "migrate (file conversion)",
+    "validate (post-migration)",
+    "build_toolchain (existing)",
+    "maintain_scanners (existing)"
+  ],
+  
+  working_protocol_unchanged: {
+    drafts_by:    "BANG",
+    reviews_by:   "ANH_NATT",
+    commits_by:   "ANH_NATT",
+    no_direct_push_by_bang: true
+  },
+  
+  scope_constraint: "ONLY job dời nhà TS→Nauion. Mọi job khác authority lock unchanged.",
+  
+  sealed: "ss20260427",
+  expiry: "until job migration complete (Phase 4 done) OR anh override"
+};
