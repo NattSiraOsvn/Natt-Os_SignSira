@@ -1223,7 +1223,10 @@ for root, dirs, files in os.walk(src):
                         "code": line.strip()[:80]
                     })
             # Điều 7
-            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
+            # Build context: current line + previous line (multi-line marker support)
+            prev_line = lines[ln-2] if ln >= 2 else ""
+            ctx = line + " " + prev_line
+            if dia7_pat.search(line) and "//TODO" not in ctx and "// FIX" not in ctx and "// FIXED:" not in ctx and "TWIN_PERSIST" not in ctx and "// HEALTH_CHECK" not in ctx and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
                 violations.append({
                     "dieu": "Điều 7",
                     "severity": "🔴 CRITICAL",
