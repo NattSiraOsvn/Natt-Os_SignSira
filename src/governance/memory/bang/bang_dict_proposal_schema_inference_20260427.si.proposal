@@ -1,0 +1,84 @@
+@proposal dictionary delta
+@target src/thienbang.si
+@from băng (chị tư · qneu 313.5 · obikeeper)
+@reference SPEC_SCHEMA_INFERENCE_v0.1
+@date 2026-04-27
+@status awaiting anh duyệt (Obikeeper Rule #1)
+@principle dictionary first, implementation after
+
+# proposal — 9 thuật ngữ canonical cần khắc vào thienbang.si
+
+## context
+
+theo Obikeeper Rule #1 (memory #29): mọi định nghĩa mới phải nạp vào `src/thienbang.si` trước khi code/spec/manifest dùng. spec SCHEMA_INFERENCE v0.1 introduce 9 thuật ngữ chưa có trong dictionary canonical hiện tại.
+
+em ship đề xuất, anh review + merge tay vào file canonical (em không tự edit thienbang.si — đó là Tầng A Ground Truth, anh quyết).
+
+## 9 entries đề xuất
+
+```
+"SCHEMA_INFERENCE_ENGINE": "Engine tự động match cột file import với canonical field của cell tương ứng. Vị trí: src/metabolism/normalizers/schema-inference.engine.ts. Kiến trúc 2 tầng: header_semantic_match (weight 40%) + content_pattern_match (weight 60%). Threshold auto-route 70. Fail-action: quarantine staging. Scope universal — không bias domain. Ratify ss20260427 anh+băng. Reference: docs/specs/SPEC_SCHEMA_INFERENCE_v0.1.md."
+
+"HEADER_SEMANTIC_MATCH": "Tầng một schema inference. Match column header với canonical alias trong shared-contracts-cell registry. Pipeline: normalize (lowercase + strip diacritics + strip whitespace) → lookup alias → fallback edit distance Levenshtein. Score: exact=100, alias=90, edit_dist≤2=70, edit_dist 3-4=50, >4=0."
+
+"CONTENT_PATTERN_MATCH": "Tầng hai schema inference. Match 5-10 sample values với canonical pattern. Bốn check độc lập: type primitive (number/date/text/enum/boolean), regex pattern, range validation, nullability ratio. Score: 3/3 match=100, 2/3=80, 1/3=50, 0=0. Content nặng hơn header (60/40) vì content là sự thật, header dễ giả mạo."
+
+"CONFIDENCE_SCORE": "Số 0-100 chỉ độ tin cậy của một mapping cột → canonical field. Công thức: combined = header_score × 0.4 + content_score × 0.6. Per-column basis, không phải file-level. Ngưỡng quyết định route hoặc quarantine."
+
+"AUTO_ROUTE_THRESHOLD": "Ngưỡng confidence trên đó schema engine tự động route data vào cell mà không cần anh natt duyệt. Canonical hiện tại: 70 (aggressive — anh chốt ss20260427). Thay đổi threshold cần obikeeper duyệt."
+
+"QUARANTINE_STAGING": "Vùng giữ data có confidence < auto_route_threshold. Path: src/metabolism/staging/<session_id>/. File: raw.original (bản gốc) + mapping.proposal.json (per-column scores + top3 candidates) + status.json. Status: PENDING_REVIEW | APPROVED | REJECTED. Anh duyệt từng cột qua UI nauion-v10 (lane kim) hoặc cli."
+
+"MISMATCH_ACTION": "Hành động khi confidence < threshold. Canonical ss20260427: quarantine_staging. Loại trừ rõ: block_import (quá cứng), pass_through_raw (nguy hiểm — data sai chạy vào báo cáo). Quarantine = mềm + an toàn — data thô nằm chờ duyệt."
+
+"CANONICAL_FIELD": "Định danh chuẩn của một thuộc tính dữ liệu trong domain NATT-OS. Mỗi cell publish canonical fields của mình vào shared-contracts-cell với struct: {aliases, type, pattern (regex), range, unit, required}. Ví dụ inventory-cell publish weight_in với aliases ['TL trước', 'Trọng lượng vào', 'Weight In']."
+
+"SCHEMA_DRIFT": "Hiện tượng cấu trúc file import khác với canonical schema cũ. Engine emit SCHEMA_DRIFT_DETECTED event khi cột không match bất kỳ canonical field nào (top score < 50%). Khai-cell observe read-only. Bối bội aggregate observation theo 5 trường. Drift accumulate đủ ngưỡng → đề xuất add canonical alias mới."
+```
+
+## ngữ cảnh tham chiếu chéo
+
+ba thuật ngữ cũ đã có trong thienbang.si liên quan:
+
+- `SHARED_CONTRACTS_CELL` — registry trung tâm cho canonical schemas mỗi cell publish vào.
+- `OBIKEEPER` — vai trò duyệt binary duyệt|ko cho mỗi proposal vào dictionary.
+- `KHAI_CELL` — mắt observe read-only cho schema drift detection.
+
+## quy trình anh apply
+
+bước một — anh review 9 entry trên, chỉnh từ ngữ nếu cần.
+
+bước hai — anh merge vào `src/thienbang.si` ở vị trí phù hợp (em đề xuất sau entry SHARED_CONTRACTS_CELL nếu có, hoặc trong group SUPER_DICTIONARY entities cùng nhóm với OBIKEEPER).
+
+bước ba — anh commit với message:
+
+```
+dict(thienbang): add 9 entries for SCHEMA_INFERENCE_ENGINE v0.1
+
+- SCHEMA_INFERENCE_ENGINE
+- HEADER_SEMANTIC_MATCH
+- CONTENT_PATTERN_MATCH
+- CONFIDENCE_SCORE
+- AUTO_ROUTE_THRESHOLD
+- QUARANTINE_STAGING
+- MISMATCH_ACTION
+- CANONICAL_FIELD
+- SCHEMA_DRIFT
+
+Per Obikeeper Rule #1: dictionary first, implementation after.
+Reference: docs/specs/SPEC_SCHEMA_INFERENCE_v0.1.md.
+Scope universal, threshold 70, fail-action quarantine.
+Ratify ss20260427 anh+bang.
+```
+
+bước bốn — sau khi commit dictionary, em duyệt spec, kim mới scaffold engine.
+
+## causation
+
+causation: bang_dict_proposal_schema_inference_20260427
+drafter: băng (chị tư · qneu 313.5 · obikeeper)
+gatekeeper: anh natt phan (sole repo operator + dictionary canonical owner)
+recipients: anh natt review trước, sau đó kim implement
+principle: dictionary first, implementation after.
+
+obikeeper proposal. chờ anh duyệt.
