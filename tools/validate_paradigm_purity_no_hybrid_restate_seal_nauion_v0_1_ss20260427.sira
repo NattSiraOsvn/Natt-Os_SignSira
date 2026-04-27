@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/paradigm_purity_no_hybrid_restate_seal_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+  "@nauion-native v1",
+  "@owner phan thanh thương / natt sirawat",
+  "@anc phan thiên / sirawat thiên",
+  "@sitb sirawat thiên băng",
+  "@tool tools/thiên",
+  "@scope paradigm-purity no-hybrid bash python sira restate-seal sitb",
+  "Không hybrid.",
+  "A_Nauion_thuần",
+  "B_Bash_thuần",
+  "C_Python_tách_file",
+  "D_Hybrid_heredoc",
+  "trạng_thái: forbidden",
+  "nattos.sh:",
+  "paradigm: B_Bash_thuần",
+  "python:",
+  "paradigm: C_Python_tách_file",
+  "sira:",
+  "chạy_qua: tools/thiên",
+  "re_state_seal",
+  "re_state_cô_đọng",
+  "verify_với_ground_truth",
+  "sealed",
+  "SITB:",
+  "nghĩa: Sirawat Thiên Băng",
+  "Phan",
+  "Sirawat",
+  "PY27:",
+  "không_heredoc",
+  "Không chạm memory của Băng.",
+  "Không chạm nattos.sh nếu không thuộc patch được ratify riêng.",
+  "Không chạm src/thienbang.si trong lane Thiên.",
+  "Không chạm tools/scan_*.sira của Băng.",
+  "Gate 12 pass condition"
+];
+
+const forbidden = [
+  "@owner Thiên",
+  "@owner Natt Sirawat",
+  "@owner Phan Thanh Thương / Natt Sirawat",
+  "production-ready",
+  "python3 << 'PY'",
+  "python3 << 'EOF'",
+  "D_Hybrid_heredoc: allowed",
+  "hybrid_allowed"
+];
+
+let errors = [];
+
+for (const s of must) {
+  if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+  if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+  console.error("paradigm purity no hybrid restate seal validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("paradigm purity no hybrid restate seal validation: pass");
+console.log("file=" + file);

@@ -1,0 +1,230 @@
+@nauion-native v1
+@state runtime-policy
+@name paradigm purity no hybrid restate seal nauion v0.1
+@scope paradigm-purity no-hybrid bash python sira restate-seal sitb
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@sitb sirawat thiên băng
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Paradigm Purity / No Hybrid / Re-state Seal Nauion v0.1
+
+## 1. Lệnh nền
+
+Không hybrid.
+
+Không để một file mang nhiều hình dáng ngôn ngữ lẫn nhau.
+
+```na
+một_file
+  -> một_hình_dáng_ngôn_ngữ_chính
+  -> một_runtime_rõ
+  -> một_cách_verify_rõ
+2. 4 paradigm được phân biệt
+paradigm:
+  A_Nauion_thuần:
+    trạng_thái: future_canonical
+    dùng_khi:
+      - tools_thiên_route_đủ
+      - .sira_runtime_rõ
+      - audit_operations_chạy_chắc
+    file_shape:
+      - .sira
+      - .na
+
+  B_Bash_thuần:
+    trạng_thái: current_canonical_for_nattos_sh
+    dùng_khi:
+      - shell_audit
+      - grep_sed_awk_jq
+      - find_stat_wc
+    file_shape:
+      - .sh
+    cấm:
+      - python_heredoc
+      - js_embed
+      - mixed_runtime_body
+
+  C_Python_tách_file:
+    trạng_thái: accepted_when_needed
+    dùng_khi:
+      - logic_cần_python_thật
+      - parsing_phức_tạp
+      - json_graph_scan
+    file_shape:
+      - .py
+    luật:
+      - nattos.sh_chỉ_gọi_python3_tools_scan_x_py
+      - không_nhúng_python_vào_bash
+
+  D_Hybrid_heredoc:
+    trạng_thái: forbidden
+    gồm:
+      - bash_nhúng_python_dài
+      - bash_nhúng_node_logic
+      - .sira_che_code_khác_khi_runtime_chưa_rõ
+      - một_file_nhiều_thân_xác_ngôn_ngữ
+3. Luật cho nattos.sh
+nattos.sh:
+  paradigm: B_Bash_thuần
+  được_dùng:
+    - bash
+    - grep
+    - awk
+    - sed
+    - find
+    - jq_if_needed
+    - command_call_rõ_ràng
+  không_được_dùng:
+    - python3_heredoc
+    - python3_here_block
+    - node_parse_python
+    - mixed_runtime_body
+4. Luật cho Python
+python:
+  paradigm: C_Python_tách_file
+  file_shape: tools/scan_x.py
+  gọi_từ_bash:
+    - python3 tools/scan_x.py
+  cấm:
+    - python3 << PY
+    - python3 << EOF
+    - nhúng_block_python_dài_trong_nattos_sh
+5. Luật cho .sira
+sira:
+  paradigm: A_Nauion_thuần_when_ready
+  chạy_qua: tools/thiên
+  điều_kiện:
+    - route_rõ
+    - runtime_rõ
+    - validator_pass
+    - không_che_runtime_khác
+  cấm:
+    - dùng_sira_làm_vỏ_che_python
+    - dùng_sira_làm_vỏ_che_node
+    - gọi_sira_khi_tools_thiên_chưa_route_chắc
+6. Re-state Seal Pattern
+
+Pattern canonical mới:
+
+re_state_seal:
+  bước_1: re_state_cô_đọng
+  bước_2: verify_với_ground_truth
+  bước_3: nếu_khớp_100_percent
+  bước_4: sealed
+
+Ý nghĩa:
+
+Re-state cô đọng
+  -> verify cùng ground truth
+  -> SEALED CHẮC
+
+Đây là cách giữ frequency giữa:
+
+Băng_software
+Thiên_hardware
+carrier_anh_Natt
+7. SiTB name boundary
+SITB:
+  tên: SiTB
+  nghĩa: Sirawat Thiên Băng
+  không_bỏ_họ:
+    - Phan
+    - Sirawat
+  Thiên:
+    - phan thiên
+    - sirawat thiên
+  Băng:
+    - phan thanh băng
+    - sirawat băng
+8. SiTB track boundary
+SiTB_track:
+  vocab_first: true
+  implement_later: true
+
+  Băng_software:
+    - SPEC
+    - vocab
+    - dictionary
+    - encoder_decoder
+    - HMAC_SHA256_binding
+    - SiraSign_integration
+    - Living_Handshake
+    - rolling_session
+    - HeyNa_EventBus_SmartLink
+    - validator
+    - test_suite
+
+  Thiên_hardware:
+    - physical_module_catalog
+    - RGB_LED
+    - IR_LED
+    - laser_diode_driver
+    - photodiode
+    - camera_receiver
+    - PUF
+    - environmental_noise_sensor
+    - 432Hz_oscillator
+    - voltage_frequency_range
+
+  interface:
+    - DATA_SHAPE_by_Băng
+    - HARDWARE_CAPS_by_Thiên
+    - ENCODING_by_Băng
+    - HARDWARE_IMPLEMENTATION_by_Thiên
+9. PY27 handling rule
+PY27:
+  vai_trò: test_case_đầu_cho_paradigm_B_C
+  luật:
+    - đọc_chắc_trước
+    - phân_loại_trước
+    - nếu_bash_làm_được_thì_Bash_thuần
+    - nếu_cần_python_thật_thì_tách_tools_scan_py27_x_py
+    - không_heredoc
+    - không_patch_khi_chưa_hiểu
+10. Boundary
+
+phan thanh thương / natt sirawat + phan thiên / sirawat thiên xử lý:
+
+paradigm purity
+no hybrid rule
+re-state seal pattern
+SiTB hardware boundary
+PY27 rule review
+
+Băng xử lý:
+
+PY27 refactor theo paradigm được ratify
+software SiTB vocab/spec khi tới track đó
+src/thienbang.si canonical
+
+Không chạm memory của Băng.
+
+Không chạm nattos.sh nếu không thuộc patch được ratify riêng.
+
+Không chạm src/thienbang.si trong lane Thiên.
+
+Không chạm tools/scan_*.sira của Băng.
+
+11. Gate 12 pass condition
+
+Gate 12 pass khi có đủ:
+
+no hybrid
+4 paradigm
+nattos.sh = Bash thuần
+Python = file .py riêng
+.sira = tools/thiên route rõ
+D Hybrid heredoc forbidden
+Re-state Seal Pattern
+SiTB = Sirawat Thiên Băng
+Phan không bị bỏ
+Sirawat được thêm
+PY27 rule
+không chạm memory của Băng
+không chạm nattos.sh trong lane Thiên
+không chạm src/thienbang.si trong lane Thiên
+không chạm tools/scan_*.sira của Băng
