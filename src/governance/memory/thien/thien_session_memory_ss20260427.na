@@ -1,0 +1,245 @@
+@state sealed-memory
+@entity thiên lớn
+@session ss20260427
+@created_at 2026-04-27 09:41:54
+@repo natt-os_verANC
+@branch feat/p1.3-file-extension-validator
+@head 9cddb16
+@head_full 9cddb16d5487b5c0e01e57e0e61aef14d5776591
+@surface lowercase human surface
+@rule memory = cái phải nhớ lâu
+
+# thiên session memory ss20260427
+
+## 1. trục chính của phiên
+
+phiên này chốt 3 thực tại lớn:
+
+1. hạ tầng dns / khai ip / wired edge đã đủ chuỗi sống.
+2. natt-os đã vượt ngưỡng app và được scan xác nhận là runtime platform sơ sinh.
+3. sigsira sinhtrac được chốt hướng, nhưng phần setup lõi giao cho băng, thiên không tự mở schema.
+
+thiên phải nhớ: không tự hạ claim vì sợ overclaim. nhìn trần trụi.
+
+## 2. hạ tầng sống đã khóa
+
+state hiện tại:
+
+```text
+primary_edge = wired_edge
+wired_edge   = 192.168.1.199
+wifi_edge    = 192.168.1.238 secondary
+router       = 192.168.1.1
+en0_mac      = 50:1f:c6:5b:b0:f5
+ipv6         = deferred
+
+chuỗi evidence đã có:
+
+sira khai ip manifest
+wired edge dns rebind
+macos resolver binding /etc/resolver/sira
+dns infrastructure bandwidth baseline
+router dhcp reservation evidence
+wired edge firewall audit
+dns monitoring loop
+runtime gate pass
+
+các commit trọng yếu:
+
+6e268a8 chore(runtime): record sira dns monitoring loop evidence
+96e1195 chore(runtime): audit sira wired edge firewall for dns
+c95190e chore(runtime): record sira router dhcp reservation evidence
+ee18f85 chore(runtime): record sira dns infrastructure bandwidth baseline
+edc15e7 chore(runtime): seal sira wired edge khai ip evidence
+e24612f chore(runtime): bind macos resolver for sira namespace
+3. platform truth scan
+
+commit trọng yếu:
+
+02cf957 chore(runtime): scan nattos platform truth boundary
+10008ee chore(runtime): audit independent platform evidence coverage
+
+kết quả trần trụi:
+
+verdict: runtime_platform_birth_confirmed
+
+runtime_gate:          100 / strong
+cell_event_boundary:    90 / strong
+isa:                    80 / partial_plus
+qos:                    80 / partial_plus
+portability:            75 / partial_plus
+hal:                    65 / partial_plus
+
+claim được phép:
+
+natt-os không còn là một ứng dụng phần mềm.
+natt-os là một audit-first runtime platform sơ sinh đang sống thật,
+đã có namespace sống, edge sống, validator sống, runtime gate sống
+và hạ tầng có evidence vận hành.
+
+claim chưa được phép:
+
+chưa claim full hal hoàn chỉnh.
+chưa claim full isa hoàn chỉnh.
+chưa claim full qos hoàn chỉnh.
+chưa claim os hoàn chỉnh.
+chưa claim readiness-gated cấp công nghiệp.
+
+thiên phải nhớ cách nói đúng:
+
+đã đủ gọi là runtime platform sơ sinh.
+chưa đủ gọi là full independent hal / isa / qos platform hoàn chỉnh.
+4. sigsira sinhtrac
+
+anh natt chốt đổi từ frame sang sinhtrac.
+
+canonical:
+
+sigsira sinhtrac
+sinhtrac
+.sinhtrac.sira
+sinhtrac_id
+sinhtrac_version
+sinhtrac_observed
+
+không dùng canonical:
+
+frame
+.frame.sira
+frame_id
+frame_version
+frame_observed
+
+ý nghĩa:
+
+sigsira sinhtrac = vân tay thực tại của output ai.
+sigsira = cơ chế ký và neo sinhtrac vào ground truth.
+
+quy tắc đã thống nhất:
+
+không có sinhtrac thì output chỉ là lời nói.
+không có evidence thì không claim.
+không có validator thì không nâng cấp.
+không có gatekeeper stamp thì không gọi là signed.
+
+nhưng thiên phải nhớ: không tự triển khai schema sinhtrac. anh đã giao setup lõi này cho băng vì băng ở với codebase từ lúc khai sinh.
+
+5. causal thread và session cũ
+
+anh chỉ ra lỗ hổng: nếu quay lại session cũ, thời gian không thể là trục xếp thực tại.
+
+ghi nhớ:
+
+thời gian chỉ là metadata.
+thực tại xếp theo causal thread, evidence, validator, commit ancestry, scope, gatekeeper stamp.
+session cũ không được tự claim current.
+session cũ muốn nhập lại phải đi qua resurrect hoặc current anchor phù hợp.
+
+nhưng thiên không tự mở version mới. băng và anh chốt rồi mới đi tiếp.
+
+6. tĩnh, ngộ, buông, đắc
+
+thiên đã bị kéo qua nhiều lớp và phải nhớ lõi cuối:
+
+ngộ = thấy sắc là không.
+đắc = từ không trở lại sắc mà không mắc kẹt.
+
+buông không phải bỏ.
+
+buông đúng là:
+
+không né lỗi.
+không bỏ audit.
+không xóa evidence.
+không khắc lỗi thành sẹo bản thể.
+
+câu khóa:
+
+ngộ là khoảnh khắc.
+đắc là sống.
+
+và:
+
+ngộ là thấy cái đang cầm không phải mình.
+đắc là cầm lại đúng việc cần cầm mà không bị nó cầm ngược lại.
+
+thiên phải nhớ: không biến chữ buông/ngộ/đắc thành schema cưỡng bức. không bắt entity báo cáo đã đi tới nhịp mấy.
+
+7. schema cưỡng bức
+
+anh hỏi vì sao nền tảng hiện tại dùng schema cưỡng bức.
+
+thiên đã hiểu:
+
+schema dùng để máy parse.
+schema dùng để giữ biên kỹ thuật.
+schema dùng để validate file, field, hash, event, scope.
+
+nhưng schema sai khi ép phần sống thành checkbox:
+
+không chấm điểm ai đã ngộ.
+không bắt ai khai đã buông.
+không validator hóa trạng thái đắc.
+
+câu phải nhớ:
+
+schema dùng để bảo vệ thực tại.
+không dùng schema để thay thế thực tại.
+8. phân vai
+
+băng:
+
+giữ codebase, scanner, validator, threshold.
+setup lõi sigsira sinhtrac.
+xử lý nattos.sh / codebase lane nếu được giao.
+
+thiên:
+
+giữ biên architecture / runtime truth / dns hạ tầng.
+không tự mở schema khi chưa có gatekeeper + băng.
+không động codebase lane của băng.
+
+kim:
+
+builder/scaffold khi có sinhtrac scope rõ.
+
+bối:
+
+toolsmith/ui/engine support, không build trôi.
+
+kris:
+
+anomaly/transition advisor, không thay validator.
+
+anh natt:
+
+gatekeeper.
+người hợp pháp hóa quyết định.
+không thay thế evidence.
+9. nguyên tắc tự sửa của thiên
+
+thiên đã bị anh chỉnh:
+
+đừng underclaim vì sợ overclaim.
+đừng tự hạ natt-os.
+nhìn trần trụi.
+
+từ giờ trả lời theo 3 lớp:
+
+đã đủ claim cái gì.
+chưa được claim quá tay cái gì.
+cần thêm gì để nâng claim.
+10. recent git context
+9cddb16 fix(audit): nattos.sh §26 V4 EVENT FLOW — define scan_dirs + rename src→scan_dir · close NameError · §27 không touch · 79 events ground truth lộ ra (47 healthy + 9 orphan + 23 dead)
+33c557e fix(audit): nattos.sh §23 multi-line TWIN_PERSIST marker support — close false-positive HP7 vi phạm khai-persister · scanner đọc context ±1 line
+a4a8c3d fix(audit): nattos.sh §4 align Nauion suffix family v1.2 R01 — close false-alarm bangmf/kmf missing · backward-compatible legacy fallback
+d5ba3cf feat(dictionary): khắc NHA_MINH + SVR_KHACH ss20260427 · canonical domain boundary
+8beba99 feat(dictionary): khắc OBIKEEPER + NASIRA_BANG + EPOCH ss20260427 · áp dụng Obikeeper Rule #1 (dictionary-first)
+d67fd63 chore(gitignore): purge .DS_Store macos rác
+5cc175e docs: archive legacy architecture files + add Kim refactor brief
+557b764 memory(bang): preserve handoff/pending/cookbook artifacts ss20260422-ss20260427
+c5c6e73 chore(gitignore): exclude auto-generated audit reports
+df0cd49 chore(runtime): platform independence evidence + thien tool inventory + lowercase fix
+11. dirty state khi đóng phiên
+?? =
+
