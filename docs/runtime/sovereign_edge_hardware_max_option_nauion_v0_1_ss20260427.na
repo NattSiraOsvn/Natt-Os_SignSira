@@ -1,0 +1,320 @@
+@nauion-native v1
+@state runtime-policy
+@name sovereign edge hardware max option nauion v0.1
+@scope hardware-max-option server gpu workstation gateway ket-sira sensor-iot audit
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Sovereign Edge Hardware Max Option Nauion v0.1
+
+## 1. Định nghĩa
+
+Hardware Max Option là cấu hình phần cứng cao nhất cho gói Sovereign Edge Pack.
+
+Không khóa ở mức tối thiểu.
+
+Mục tiêu là đạt:
+
+```na
+mượt_như_Apple
+ổn_định_doanh_nghiệp
+audit_full
+sensor_iot_đa_lớp
+Két_Sira_ready
+GPU_ready
+cell_expand_ready
+2. Quy mô triển khai
+quy_mô:
+  client_nodes: 50-70
+  customer_server: 1
+  operator_workstation: 1
+  workstation_intake: 2-4
+  Ket_Sira: 1
+  GPU_node: optional_but_recommended
+  sensor_iot_nodes: many
+  backup_gateway: optional
+  backup_storage: recommended
+3. NATT-OS Sovereign Gateway Max
+NATT_OS_Sovereign_Gateway_Max:
+  vai_trò:
+    - cổng_chủ_quyền
+    - SiraSign_gate
+    - resolver_gate
+    - line_quota_route_gate
+    - audit_edge
+  cấu_hình_khuyến_nghị:
+    CPU: multi_core_server_grade
+    RAM: 32GB_minimum_64GB_recommended
+    storage: NVMe_mirror_recommended
+    network:
+      - dual_WAN
+      - multi_LAN
+      - 2_5G_or_10G_Ethernet
+      - VLAN_support
+      - firewall_support
+    security:
+      - TPM_or_secure_element
+      - secure_boot_if_available
+      - local_key_slot
+      - tamper_evidence_preferred
+  không_làm:
+    - thay_Mạch_HeyNa
+    - xử_lý_hết_lõi
+    - bỏ_qua_SCR
+4. Customer Server Max
+customer_server_max:
+  vai_trò:
+    - gom_dữ_liệu
+    - giữ_edge_state
+    - chạy_dịch_vụ_nội_bộ
+    - audit_storage_local
+    - cache_runtime
+  cấu_hình_khuyến_nghị:
+    CPU: server_grade_16_to_32_cores
+    RAM: 128GB_to_256GB
+    storage:
+      - NVMe_primary
+      - NVMe_mirror
+      - backup_HDD_or_NAS
+    network:
+      - 10G_Ethernet_recommended
+      - VLAN
+      - separated_management_port
+    GPU:
+      - optional_for_AI
+      - recommended_for_dashboard_render
+      - recommended_for_anomaly_detection
+5. GPU Node Max
+gpu_node_max:
+  vai_trò:
+    - AI_analysis
+    - SmartLink_scoring_nặng
+    - anomaly_detection
+    - vector_search
+    - render_3D_Ket_Sira
+    - machine_vision
+  cấu_hình_khuyến_nghị:
+    GPU: NVIDIA_or_equivalent_compute_GPU
+    VRAM: 16GB_minimum_24GB_plus_recommended
+    CPU: 16_cores_plus
+    RAM: 128GB_plus
+    storage: NVMe_high_IOPS
+    network: 10G_Ethernet_recommended
+  lưu_ý:
+    - GPU_không_thay_gateway
+    - GPU_không_thay_audit
+    - GPU_làm_xưởng_tính_toán
+6. Operator Workstation Max
+operator_workstation_max:
+  vai_trò:
+    - dashboard_điều_hành
+    - Két_Sira_console
+    - audit_view
+    - VR_AR_render
+    - cảnh_báo_tức_thì
+  cấu_hình_khuyến_nghị:
+    CPU: high_performance_desktop_or_workstation
+    RAM: 64GB_to_128GB
+    GPU: dedicated_GPU_recommended
+    display:
+      - high_resolution
+      - color_accurate
+      - multi_screen_optional
+    input:
+      - touch_display_optional
+      - control_panel_optional
+      - headset_ready
+7. Workstation Intake Max
+workstation_intake_max:
+  vai_trò:
+    - gateway_cục_bộ_cho_sensor_iot
+    - 432Hz_initialize
+    - lọc_thô
+    - chuẩn_hóa
+    - quality_gate
+    - cache_tạm
+    - audit_sơ_bộ
+  số_lượng:
+    recommended: 2-4
+    theo_khu_vực:
+      - sản_xuất
+      - kho
+      - kiểm_định
+      - an_ninh
+  kết_nối:
+    - USB
+    - Ethernet
+    - RS232
+    - RS485
+    - Modbus
+    - CAN
+    - GPIO
+    - Wi-Fi
+    - Bluetooth
+    - Zigbee
+    - LoRa
+    - RFID
+8. Két Sira Max
+Ket_Sira_Max:
+  vai_trò:
+    - kính_điều_hành_ảo
+    - digital_twin_tòa_nhà
+    - live_camera_layer
+    - sensor_iot_layer
+    - màn_phụ_công_việc
+    - red_zone_view
+    - privacy_mask
+  yêu_cầu:
+    - VR_AR_ready
+    - low_latency_display
+    - secure_identity_pairing
+    - SiraSign_required
+    - audit_view_required
+    - red_zone_policy_enforced
+9. Sensor/IoT Max
+sensor_iot_max:
+  camera:
+    - IP_camera
+    - ONVIF
+    - RTSP
+    - NVR_bridge
+    - thermal_camera
+    - machine_vision_camera
+  đo_lường:
+    - cân_vàng
+    - cân_kim_cương
+    - cân_công_nghiệp
+    - load_cell
+    - RS232_scale
+    - Ethernet_scale
+  kiểm_định:
+    - máy_đo_phổ
+    - XRF
+    - máy_đo_màu
+    - máy_đo_tinh_khiết
+    - laser_meter
+    - thermal_meter
+  sản_xuất:
+    - lò_điện
+    - lò_nung
+    - máy_đúc
+    - CNC
+    - laser
+    - máy_đánh_bóng
+    - máy_hút_bụi_vàng
+    - máy_in_3D
+    - máy_scan_3D
+  môi_trường:
+    - nhiệt_độ
+    - độ_ẩm
+    - khói
+    - bụi
+    - khí
+    - áp_suất
+    - rung
+    - âm_thanh
+    - ánh_sáng
+    - điện_áp
+    - dòng_điện
+    - công_suất
+  an_ninh:
+    - khóa_cửa
+    - thẻ_từ
+    - vân_tay
+    - nhận_diện_khuôn_mặt
+    - QR_checkin
+    - cảm_biến_chuyển_động
+    - cảm_biến_cửa
+    - siren
+10. Network Max
+network_max:
+  switch:
+    - managed_switch
+    - VLAN
+    - QoS
+    - PoE_for_camera_sensor
+    - 10G_uplink_recommended
+  wifi:
+    - enterprise_wifi
+    - segmented_SSID
+    - guest_isolation
+    - device_policy
+  firewall:
+    - deny_by_default
+    - signed_route_only
+    - audit_all
+  power:
+    - UPS
+    - surge_protection
+    - rack_power_management
+  rack:
+    - locked_rack
+    - cable_management
+    - airflow
+    - environment_sensor
+11. Dự phòng
+dự_phòng:
+  backup_gateway: optional_but_recommended
+  backup_line: optional_after_primary_stable
+  backup_storage: required_for_full_option
+  backup_power: UPS_required
+  backup_config: required
+  restore_test: scheduled
+12. Không khóa hãng
+
+Không khóa brand cụ thể ở v0.1.
+
+Chỉ khóa:
+
+tiêu_chí_chức_năng
+thông_số_kỹ_thuật
+khả_năng_tích_hợp
+audit_capability
+SiraSign_pairing
+
+Việc chọn thiết bị Trung Quốc, Việt Nam hoặc nguồn khác sẽ theo checklist kỹ thuật và test thực tế.
+
+13. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+hardware max option
+thiết bị gateway
+server
+GPU node
+operator workstation
+workstation intake
+Két Sira
+sensor/IoT
+network
+redundancy
+tiêu chí chọn thiết bị
+
+Không chạm nattos.sh.
+
+Không chạm src/thienbang.si.
+
+Không chạm tools/scan_*.sira.
+
+14. Gate 9 pass condition
+
+Gate 9 pass khi có đủ:
+
+hardware max option
+50-70 client nodes
+customer server max
+operator workstation max
+workstation intake max
+Két Sira max
+GPU node
+sensor/IoT max
+network max
+redundancy
+không khóa hãng
+không chạm nattos.sh
+không chạm src/thienbang.si
+không chạm tools/scan_*.sira

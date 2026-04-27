@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope hardware-max-option server gpu workstation gateway ket-sira sensor-iot audit",
+"@runtime_scope excluded",
+"Hardware Max Option là cấu hình phần cứng cao nhất",
+"mượt_như_Apple",
+"client_nodes: 50-70",
+"NATT_OS_Sovereign_Gateway_Max",
+"customer_server_max",
+"gpu_node_max",
+"operator_workstation_max",
+"workstation_intake_max",
+"Ket_Sira_Max",
+"sensor_iot_max",
+"network_max",
+"dự_phòng",
+"Không khóa brand cụ thể",
+"Không chạm nattos.sh.",
+"Không chạm src/thienbang.si.",
+"Không chạm tools/scan_*.sira.",
+"Gate 9 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sovereign edge hardware max option validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign edge hardware max option validation: pass");
+console.log("file=" + file);
