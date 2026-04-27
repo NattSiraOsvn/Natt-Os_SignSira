@@ -1,0 +1,190 @@
+@nauion-native v1
+@state runtime-policy
+@name sovereign gateway physical intake nauion v0.1
+@scope sovereign-gateway physical-intake sensor-iot 432hz sirasign audit
+@runtime_scope excluded
+@owner Thiên
+@tool tools/thiên
+@session ss20260427
+@created_at 2026-04-27T16:08:06
+
+# Sovereign Gateway — Physical Intake Nauion v0.1
+
+## 1. Luật nền
+
+Thiết bị vật lý không đi thẳng vào lõi.
+
+Luồng đúng:
+
+```na
+thiết_bị_vật_lý
+  -> máy_trạm_intake
+  -> lọc_thô
+  -> chuẩn_hóa
+  -> kiểm_chất_lượng_đầu_vào
+  -> cache_tạm
+  -> audit_sơ_bộ
+  -> máy_chủ_khách
+  -> Gateway
+  -> Vòng_HeyNa
+  -> Mạch_HeyNa
+2. 432Hz initialize
+khởi_tạo_432hz:
+  tần_số: 432
+  vai_trò: baseline_sync
+  áp_dụng_cho:
+    - sensor
+    - iot
+    - camera
+    - machine
+    - meter
+    - industrial_device
+  bắt_buộc_trước:
+    - lọc_thô
+    - chuẩn_hóa
+    - kiểm_chất_lượng_đầu_vào
+    - audit_sơ_bộ
+3. Kết nối vật lý
+kênh_vật_lý:
+  camera:
+    - IP camera
+    - USB camera
+    - RTSP
+    - ONVIF
+    - NVR/DVR bridge
+    - thermal camera
+    - machine vision camera
+
+  đo_lường:
+    - cân điện tử
+    - cân vàng
+    - cân kim cương
+    - cân công nghiệp
+    - RS232
+    - USB
+    - Ethernet
+    - Bluetooth
+    - load cell
+
+  kiểm_định:
+    - máy đo phổ
+    - XRF
+    - máy đo màu
+    - máy đo độ tinh khiết
+    - thiết bị kiểm định đá
+    - laser meter
+    - thermal meter
+
+  sản_xuất:
+    - lò điện
+    - lò nung
+    - máy đúc
+    - CNC
+    - laser
+    - máy đánh bóng
+    - máy hút bụi vàng
+    - máy in 3D
+    - máy scan 3D
+
+  môi_trường:
+    - nhiệt độ
+    - độ ẩm
+    - khói
+    - bụi
+    - khí
+    - áp suất
+    - rung
+    - âm thanh
+    - ánh sáng
+    - điện áp
+    - dòng điện
+    - công suất
+
+  công_nghiệp:
+    - RS232
+    - RS485
+    - Modbus RTU
+    - Modbus TCP
+    - CAN bus
+    - Bacnet
+    - KNX
+    - DALI
+    - MQTT
+    - OPC-UA
+    - Ethernet/IP
+    - Profinet
+    - GPIO
+    - UART
+    - SPI
+    - I2C
+    - USB
+    - Ethernet
+    - Wi-Fi
+    - Bluetooth
+    - Zigbee
+    - Z-Wave
+    - LoRa
+    - NFC
+    - RFID
+4. Máy trạm intake
+máy_trạm_intake:
+  vai_trò: physical_intake_gateway
+  nhịp_khởi_tạo: 432hz
+  nhận_từ:
+    - camera
+    - cân
+    - máy_đo_phổ
+    - lò_điện
+    - sensor
+    - iot
+    - industrial_bus
+  xử_lý_trước:
+    - raw_filter
+    - normalize
+    - quality_check
+    - temporary_cache
+    - pre_audit
+  chuyển_tới: máy_chủ_khách
+  bắt_buộc:
+    - SiraSign
+    - audit
+5. Intake event
+physical.intake.received:
+  tenant_id: customer.001
+  workstation_id: workstation.physical.intake.001
+  device_id: device.scale.001
+  device_type: scale
+  connection_type: RS232
+  init_profile: nattos.physical.intake.432hz
+  raw_quality: unchecked
+  decision: accepted_for_preprocess
+  audit: required
+6. Quality gate
+quality_gate:
+  trạng_thái:
+    - clean
+    - noisy
+    - incomplete
+    - suspicious
+    - blocked
+    - red_zone_related
+    - manual_review_required
+  luật:
+    - không_đạt_gate_thì_không_đẩy_vào_máy_chủ_khách
+    - dữ_liệu_vùng_đỏ_chỉ_metadata_mặc_định
+    - vùng_cá_nhân_phải_mask
+7. Gate 2 pass condition
+
+Gate 2 pass khi đủ:
+
+432Hz initialize
+đa kết nối vật lý
+máy trạm intake
+physical.intake.received
+quality gate
+red zone rule
+SiraSign required
+audit required
+không đi thẳng vào lõi
+chạy bằng tools/thiên
+không chạm nattos.sh

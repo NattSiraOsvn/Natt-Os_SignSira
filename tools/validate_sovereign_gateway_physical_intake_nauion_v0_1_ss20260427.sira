@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_gateway_physical_intake_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@tool tools/thiên",
+"@scope sovereign-gateway physical-intake sensor-iot 432hz sirasign audit",
+"@runtime_scope excluded",
+"Thiết bị vật lý không đi thẳng vào lõi.",
+"khởi_tạo_432hz",
+"tần_số: 432",
+"máy_trạm_intake",
+"physical.intake.received",
+"quality_gate",
+"red_zone_related",
+"SiraSign",
+"audit",
+"RS232",
+"RS485",
+"Modbus RTU",
+"Modbus TCP",
+"CAN bus",
+"Bacnet",
+"KNX",
+"DALI",
+"MQTT",
+"OPC-UA",
+"GPIO",
+"USB",
+"Ethernet",
+"Wi-Fi",
+"Bluetooth",
+"Zigbee",
+"LoRa",
+"RFID",
+"không chạm nattos.sh"
+];
+
+const forbidden = [
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sovereign gateway physical intake nauion validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign gateway physical intake nauion validation: pass");
+console.log("file=" + file);
