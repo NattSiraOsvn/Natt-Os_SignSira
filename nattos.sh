@@ -491,18 +491,38 @@ grp "GROUP C — ARCHITECTURE — SmartLink · EventBus · 3-Layer · Engines ·
 # ═══════════════════════════════════════════════════════════════
 hdr "10" "SMARTLINK CORE"
 # ═══════════════════════════════════════════════════════════════
-SL_FILES=("SmartLink.point.ts" "SmartLink.qneu-bridge.ts" "quantum-brain.engine.ts" "quantum-buffer.engine.ts")
-for f in "${SL_FILES[@]}"; do
-  if [[ -f "src/core/SmartLink/$f" ]]; then ok "$f"; inc_ok
-  else fail "$f missing"; inc_fail "SMARTLINK: $f missing"; fi
+# SmartLink core — case-insensitive path + Nauion .sira fallback (lowercase_surface ss20260425)
+SL_BASES=("SmartLink.point" "SmartLink.qneu-bridge" "quantum-brain.engine" "quantum-buffer.engine")
+SL_DIRS=("src/core/smartlink" "src/core/SmartLink")  # lowercase canonical first, Capital legacy fallback
+for base in "${SL_BASES[@]}"; do
+  found=""
+  for dir in "${SL_DIRS[@]}"; do
+    for ext in ".ts" ".sira"; do
+      if [[ -f "$dir/$base$ext" ]]; then found="$dir/$base$ext"; break 2; fi
+    done
+  done
+  if [[ -n "$found" ]]; then ok "$base$([ "${found##*.}" = "sira" ] && echo ' (.sira native)' || echo '')"; inc_ok
+  else fail "$base missing"; inc_fail "SMARTLINK: $base missing"; fi
 done
 
-# Decay + Gossip
-if grep -q "applyFiberDecay\|FIBER_DECAY" src/core/SmartLink/SmartLink.point.ts 2>/dev/null; then
+# Decay + Gossip — case-insensitive paths
+DECAY_FILE=""
+for dir in "${SL_DIRS[@]}"; do
+  for f in "$dir/SmartLink.point.ts" "$dir/SmartLink.point.sira"; do
+    if [[ -f "$f" ]]; then DECAY_FILE="$f"; break 2; fi
+  done
+done
+if [[ -n "$DECAY_FILE" ]] && grep -q "applyFiberDecay\|FIBER_DECAY" "$DECAY_FILE" 2>/dev/null; then
   ok "Fiber Decay: IMPLEMENTED"; inc_ok
 else fail "Fiber Decay: NOT IMPLEMENTED"; inc_fail "SMARTLINK: decay missing"; fi
 
-if grep -rq "gossipQueue\|FiberSummary" src/cells/infrastructure/SmartLink-cell/ 2>/dev/null; then
+GOSSIP_FOUND=""
+for dir in "src/cells/infrastructure/smartlink-cell" "src/cells/infrastructure/SmartLink-cell"; do
+  if [[ -d "$dir" ]] && grep -rq "gossipQueue\|FiberSummary" "$dir" 2>/dev/null; then
+    GOSSIP_FOUND="yes"; break
+  fi
+done
+if [[ -n "$GOSSIP_FOUND" ]]; then
   ok "Gossip Protocol: IMPLEMENTED"; inc_ok
 else fail "Gossip Protocol: NOT IMPLEMENTED"; inc_fail "SMARTLINK: gossip missing"; fi
 
@@ -546,7 +566,7 @@ echo -e "    HeyNa files: $HEYNA_SERVER server + $HEYNA_CLIENT client"
 echo -e "    SSE endpoints/refs: $SSE_ENDPOINTS"
 
 echo -e "  ${W}Layer 3 — SmartLink (inter-colony)${N}"
-SL_FILES=$(find src/ -name "*.SmartLink*" -o -name "*SmartLink*" 2>/dev/null | grep -v node_modules | wc -l)
+SL_FILES=$(find src/ \( -iname "*.smartlink*" -o -iname "*smartlink*" \) 2>/dev/null | grep -v node_modules | wc -l)  # case-i (lowercase_surface)
 SL_IMPORTS=$(grep -rl "SmartLink\|smartLink\|smart-link" src/ --include="*.ts" 2>/dev/null | wc -l)
 echo -e "    SmartLink files: $SL_FILES"
 echo -e "    SmartLink imports: $SL_IMPORTS files"
@@ -741,8 +761,8 @@ echo -e "  ${W}sales → finance → period-close → tax → BCTC${N}"
 BCTC_OK=0
 for cell in "${BCTC_CELLS[@]}"; do
   DIR="src/cells/business/$cell"
-  PORT=$(find "$DIR/ports" -name "*SmartLink*" 2>/dev/null | head -1)
-  WIRED=$(grep -rq "SmartLinkPort" "$DIR/domain/services/" 2>/dev/null && echo "WIRED✅" || echo "NOT✅")
+  PORT=$(find "$DIR/ports" -iname "*smartlink*" 2>/dev/null | head -1)  # case-i (lowercase_surface)
+  WIRED=$(grep -riq "SmartLinkPort" "$DIR/domain/services/" 2>/dev/null && echo "WIRED✅" || echo "NOT✅")
   if [[ -n "$PORT" && "$WIRED" == "WIRED✅" ]]; then
     ok "$cell: $WIRED"; inc_ok; ((BCTC_OK++)) || true
   else
@@ -761,7 +781,7 @@ PROD_OK=0
 for cell in "${PROD_CELLS[@]}"; do
   DIR="src/cells/business/$cell"
   if [[ -d "$DIR" ]]; then
-    PORT=$(find "$DIR/ports" -name "*SmartLink*" 2>/dev/null | head -1)
+    PORT=$(find "$DIR/ports" -iname "*smartlink*" 2>/dev/null | head -1)  # case-i (lowercase_surface)
     if [[ -n "$PORT" ]]; then
       ok "$cell: SmartLink ✅"; ((PROD_OK++)) || true
     else
