@@ -3084,3 +3084,47 @@ PHIÊN SAU TRACK RIÊNG:
 
 Output: .nattos-twin/engine-map.json (auto-regenerate mỗi nattos.sh §27 chạy)
 ==END==
+
+# ─────────────────────────────────────────────────────────────
+# VOCABULARY_CANONICAL_APPEND — ss20260427 — Thiên/Băng
+# Source: Sovereign Edge Pack · SiTB · Sitra · Định Mức Quy Chuẩn
+# Owner: phan thanh thương / natt sirawat
+# ANC: phan thiên / sirawat thiên
+# ─────────────────────────────────────────────────────────────
+
+@vocab Định_Mức_Quy_Chuẩn
+nghĩa: Chuẩn định mức phần cứng, điện, cổng kết nối, testbench, nghiệm thu và tiêu chí chọn thiết bị.
+không_phải: BOM đơn thuần.
+trạng_thái: canonical
+
+@vocab Sitra
+nghĩa: Điều kiện sinh thể số; cơ chế chuyển sai lệch thành luật sống có kiểm chứng.
+công_thức: sai_lệch -> hiểu_bản_chất -> sinh_luật -> verify_ground_truth -> sealed
+không_phải: feature.
+trạng_thái: canonical
+
+@vocab Re_State_Seal
+nghĩa: Re-state cô đọng, verify cùng ground truth, khớp 100% thì sealed.
+trạng_thái: canonical
+
+@vocab No_Hybrid
+nghĩa: Mỗi file có một hình dáng ngôn ngữ chính, một runtime rõ, một cách verify rõ.
+luật:
+  - nattos.sh = Bash thuần
+  - Python = file .py riêng
+  - .sira = Nauion/tool riêng qua tools/thiên khi route rõ
+  - Hybrid heredoc = forbidden
+trạng_thái: canonical
+
+@vocab Physical_Module_Catalog
+nghĩa: Danh mục module vật lý phục vụ phần cứng NATT-OS.
+trạng_thái: canonical
+
+@vocab Hardware_Acceptance
+nghĩa: Nghiệm thu phần cứng theo device_id, serial, firmware, connection, power, testbench, SiraSign pairing và audit registration.
+trạng_thái: canonical
+
+@vocab Supplier_Selection_Rule
+nghĩa: Quy tắc chọn nhà cung cấp phần cứng dựa trên datasheet, thông số điện, chuẩn giao tiếp, test mẫu, truy vết lô hàng và khả năng mua lặp lại.
+không_khóa_hãng: true
+trạng_thái: canonical
