@@ -1,0 +1,216 @@
+@nauion-native v1
+@state runtime-policy
+@name hardware procurement checklist dinh muc quy chuan nauion v0.1
+@scope hardware procurement checklist dinh-muc-quy-chuan supplier testbench acceptance
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@sitb sirawat thiên băng
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Hardware Procurement Checklist / Định Mức Quy Chuẩn Nauion v0.1
+
+## 1. Định nghĩa
+
+Gate 15 chuyển Định Mức Quy Chuẩn thành checklist mua hàng, kiểm hàng và đánh giá nhà cung cấp.
+
+Định Mức Quy Chuẩn không phải BOM đơn thuần.
+
+Không khóa hãng. Chỉ khóa tiêu chí kỹ thuật, test mẫu, nghiệm thu và khả năng truy vết.
+
+## 2. Procurement checklist
+
+```na
+procurement_checklist:
+  bắt_buộc:
+    - datasheet
+    - model_number
+    - serial_or_batch
+    - voltage_current_spec
+    - communication_protocol
+    - connector_type
+    - test_sample
+    - repeat_purchase_available
+    - replacement_part_available
+    - warranty_terms
+    - acceptance_test_result
+3. Compute procurement
+compute_procurement:
+  NATT_OS_Sovereign_Gateway:
+    required:
+      - CPU_multi_core
+      - RAM_32GB_minimum
+      - NVMe_mirror_support
+      - dual_WAN
+      - multi_LAN
+      - VLAN_support
+      - firewall_capability
+      - TPM_or_secure_element_preferred
+      - UPS_compatible
+
+  customer_server:
+    required:
+      - server_grade_CPU
+      - RAM_128GB_minimum
+      - NVMe_primary
+      - NVMe_mirror
+      - backup_storage
+      - 10G_Ethernet_preferred
+
+  operator_workstation:
+    required:
+      - high_performance_CPU
+      - dedicated_GPU
+      - RAM_64GB_minimum
+      - high_resolution_display
+      - Ket_Sira_console_ready
+4. Sensor IoT procurement
+sensor_iot_procurement:
+  camera:
+    required:
+      - ONVIF_or_RTSP
+      - resolution_spec
+      - power_spec
+      - network_spec
+
+  scale:
+    required:
+      - accuracy_class
+      - RS232_or_USB_or_Ethernet
+      - stable_reading_test
+      - sample_weight_test
+
+  spectrum_meter:
+    required:
+      - measurement_range
+      - calibration_method
+      - data_export_interface
+      - test_sample
+
+  furnace_or_machine:
+    required:
+      - voltage_current_power
+      - control_interface
+      - safety_cutoff
+      - isolation_requirement
+5. SITB procurement
+SITB_procurement:
+  optical_emitter:
+    required:
+      - RGB_LED_or_IR_LED_or_laser_diode
+      - wavelength_or_color_channel
+      - drive_voltage
+      - drive_current
+      - PWM_support
+
+  optical_receiver:
+    required:
+      - photodiode_or_camera_receiver
+      - spectral_response
+      - sampling_rate
+      - ambient_light_handling
+
+  identity_security:
+    required:
+      - PUF_or_hardware_fingerprint
+      - unique_device_identity
+      - SiraSign_pairing_possible
+
+  oscillator:
+    required:
+      - 432Hz_sync_capability
+      - local_timebase
+      - rolling_session_tick_support
+6. Power protection procurement
+power_protection_procurement:
+  required:
+    - AC_DC_power_supply
+    - isolated_power_module_for_industrial_IO
+    - UPS
+    - fuse
+    - surge_protection
+    - grounding_kit
+7. Network rack procurement
+network_rack_procurement:
+  switch:
+    required:
+      - managed_switch
+      - VLAN
+      - QoS
+      - PoE_if_camera_sensor_need
+      - 10G_uplink_preferred
+  rack:
+    required:
+      - locked_rack
+      - cable_management
+      - patch_panel
+      - airflow
+8. Supplier scoring
+supplier_scoring:
+  score_100:
+    datasheet: 15
+    electrical_spec_clear: 15
+    communication_protocol_clear: 15
+    test_sample_available: 15
+    repeat_purchase_available: 10
+    replacement_part_available: 10
+    warranty_terms_clear: 10
+    traceable_batch_or_serial: 10
+
+  reject_if:
+    - no_datasheet
+    - unclear_voltage
+    - unclear_protocol
+    - cannot_test_sample
+    - cannot_trace_batch
+    - unsafe_power_design
+    - cannot_pair_SiraSign_when_required
+9. Acceptance before purchase
+acceptance_before_purchase:
+  required:
+    - sample_received
+    - electrical_check_pass
+    - protocol_check_pass
+    - connector_check_pass
+    - testbench_pass
+    - SiraSign_pairing_test_if_applicable
+    - audit_registration_test_if_applicable
+    - supplier_score_recorded
+10. Procurement event
+hardware.procurement.checked:
+  item_id: hardware.item.001
+  category: SITB_optical_emitter
+  supplier_id: supplier.001
+  datasheet_status: present
+  electrical_spec_status: pass
+  protocol_status: pass
+  test_sample_status: pass
+  supplier_score: 85
+  decision: approved_for_pilot
+  audit_level: full
+11. Boundary
+
+Không chạm memory của Băng nếu không được ratify riêng.
+Không chạm nattos.sh nếu không thuộc patch được ratify riêng.
+Không chạm tools/scan_*.sira của Băng.
+
+12. Gate 15 pass condition
+
+Gate 15 pass khi có đủ:
+
+Định Mức Quy Chuẩn procurement checklist
+compute procurement
+sensor IoT procurement
+SITB procurement
+power protection procurement
+network rack procurement
+supplier scoring
+acceptance before purchase
+hardware.procurement.checked
+không gọi là BOM đơn thuần
+không khóa hãng
+không chạm memory của Băng
+không chạm nattos.sh trong lane Thiên
+không chạm tools/scan_*.sira của Băng
