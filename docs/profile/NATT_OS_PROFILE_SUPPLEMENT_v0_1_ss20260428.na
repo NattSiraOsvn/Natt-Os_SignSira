@@ -1,0 +1,133 @@
+@nauion-profile-supplement v0.1
+@name natt_os_profile_supplement
+@session ss20260428
+@mode supplement_only
+@rule do_not_rewrite_existing_profile
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+
+# NATT-OS Profile Supplement — ss20260428
+
+## 0. Nguyên tắc bổ sung
+
+Tài liệu này không thay thế bộ hồ sơ năng lực đã có.
+
+Tài liệu này chỉ bổ sung các lớp nội dung còn thiếu hoặc cần làm sắc hơn sau khi quét repo, nhằm phục vụ hồ sơ năng lực NATT-OS, hồ sơ kernel language, hồ sơ kiến trúc runtime và brief cho đối tác đầu tư / nhà nước.
+
+## 1. Các file hồ sơ / nền tảng đã tìm thấy
+
+- docs/runtime/TS_CLEANUP_INVENTORY_20260424.na | score=1747 | size=381817 | lines=10319 | hits=.na, SmartLink, audit, kernel
+- docs/runtime/public_domain_shortlist_ss20260427.na | score=1071 | size=187826 | lines=2724 | hits=.anc, .na, .phieu, audit, kernel, language, profile
+- docs/runtime/public_domain_candidate_scan_ss20260427.na | score=881 | size=126039 | lines=3152 | hits=.anc, .na, .phieu, NATT-OS, SmartLink, audit, kernel, language, profile
+- docs/runtime/lowercase_surface_full_repo_20260425.na | score=420 | size=68530 | lines=1260 | hits=.na, .phieu, NATT-OS, SmartLink, audit, kernel, profile
+- docs/runtime/NATURAL_CASE_SURFACE_20260425.na | score=336 | size=42913 | lines=822 | hits=.na, .phieu, SmartLink, audit, kernel
+- docs/runtime/TS_CLEANUP_BATCH2F_HARD_TRANSLATION_SCAN_20260424.na | score=312 | size=111381 | lines=4810 | hits=.na, SmartLink, audit, kernel
+- docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na | score=263 | size=45958 | lines=611 | hits=.anc, .na, .phieu, EventBus, HeyNa, Mạch HeyNa, NATT-OS, SmartLink, audit, kernel
+- docs/runtime/TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na | score=226 | size=91498 | lines=3150 | hits=.na, SmartLink, audit, kernel
+- docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_EVIDENCE_20260424.na | score=210 | size=59943 | lines=1771 | hits=.na, SmartLink, audit, kernel
+- docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na | score=175 | size=58355 | lines=1389 | hits=.na, SmartLink, audit, kernel
+- src/governance/memory/bang/_bang_inbox_20260422/nauion_suffix_scan_20260422.md | score=174 | size=17403 | lines=731 | hits=.anc, .na, .phieu, SmartLink, audit, kernel
+- src/governance/memory/kim/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1.md | score=156 | size=29532 | lines=938 | hits=.anc, .na, .phieu, HeyNa, SmartLink, audit, hồ sơ, kernel, language, năng lực
+- docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na | score=147 | size=17294 | lines=314 | hits=.na, .phieu, NATT-OS, SmartLink, audit, kernel
+- docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na | score=134 | size=9948 | lines=274 | hits=.na, SmartLink, audit, kernel
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1.md | score=130 | size=19053 | lines=651 | hits=.anc, .na, .phieu, HeyNa, Kernel, SmartLink, audit, hồ sơ, kernel, language
+- src/governance/memory/bang/cayht200325.txt | score=124 | size=1262001 | lines=21886 | hits=.na, Natt Os, SmartLink, audit, kernel, language
+- docs/runtime/nattos_platform_truth_scan_20260427.na | score=119 | size=37295 | lines=606 | hits=.na, .phieu, NATT-OS, Natt Os, SmartLink, audit, kernel, sovereign
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/spec-ngon-ngu-natt-os-v1.1-full.kris | score=118 | size=38616 | lines=1056 | hits=.anc, .na, .phieu, EventBus, HeyNa, Mạch HeyNa, NATT-OS, SmartLink, audit, kernel
+- docs/runtime/tam_luxury_screen_manifest_intake_20260425.na | score=102 | size=15416 | lines=622 | hits=.na, audit, profile
+- docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.10_locked_for_review.md | score=98 | size=36395 | lines=744 | hits=.anc, .na, EventBus, HeyNa, Kernel, Mạch HeyNa, SmartLink, audit, kernel, language
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (2).md | score=96 | size=23418 | lines=831 | hits=.anc, .na, .phieu, HeyNa, Kernel, SmartLink, audit, hồ sơ, kernel, profile
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.na | score=95 | size=28759 | lines=618 | hits=.anc, .na, EventBus, HeyNa, Kernel, Mạch HeyNa, SmartLink, audit, kernel, ngôn ngữ
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na | score=93 | size=35152 | lines=699 | hits=.anc, .na, .phieu, EventBus, HeyNa, Kernel, Mạch HeyNa, SmartLink, audit, investor
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (5).md | score=92 | size=27616 | lines=769 | hits=.anc, .na, .phieu, SmartLink, audit, hồ sơ, investor, language, ngôn ngữ, năng lực
+- docs/runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na | score=92 | size=30819 | lines=1371 | hits=.na, EventBus, SmartLink, audit, kernel
+
+## 2. Phần cần bổ sung vào bộ hồ sơ
+
+### 2.1 Định vị ngắn gọn
+
+NATT-OS là hệ điều hành nghiệp vụ có kiểm toán, được thiết kế để biến hoạt động doanh nghiệp, phần cứng, cảm biến, dữ liệu, ký ức vận hành và quyết định quản trị thành một hệ thống có thể truy vết.
+
+NATT-OS không được định vị như một ứng dụng đơn lẻ, một ERP truyền thống, hay một chatbot AI. NATT-OS được định vị như một lớp vận hành sống, có runtime lineage, có audit, có cơ chế phân tầng và có ngôn ngữ kernel riêng.
+
+### 2.2 Kernel language
+
+Kernel language của NATT-OS sử dụng các file identity / memory / runtime state làm đơn vị bản thể và vận hành:
+
+- .anc: identity / passport / constitutional anchor.
+- .na: long memory / full memory / append-only memory layer.
+- .phieu: mutable runtime state / active pending state.
+- .si: dictionary / vocabulary / semantic index.
+
+Điểm cần nhấn trong hồ sơ: đây không chỉ là đổi đuôi file. Giá trị nằm ở schema, luật đọc dịch, boundary, audit trail, trạng thái và quan hệ giữa các thực thể trong runtime.
+
+### 2.3 Runtime lineage
+
+Runtime lineage cần trình bày nhất quán theo ba tầng:
+
+1. L1 EventBus: tuyến truyền nội bộ trong cell / UI runtime.
+2. L2 Mạch HeyNa: tuyến truyền liên cell / liên module có kiểm soát.
+3. L3 SmartLink: tuyến truyền liên colony / external bridge có boundary.
+
+Cần tránh mô tả NATT-OS bằng ngôn ngữ app phổ thông. Hồ sơ nên nhấn rằng substrate như macOS, Node, filesystem, Vite, bash chỉ là nền chạy, không phải dòng máu runtime của NATT-OS.
+
+### 2.4 Trust model
+
+Trust model của NATT-OS nên khóa bằng câu:
+
+No audit = No exist.
+
+Một claim trong NATT-OS chỉ có giá trị khi có chứng cứ: file, hash, event, trace, state transition, reviewer hoặc gate seal tương ứng.
+
+### 2.5 Hardware / Sovereign Edge
+
+Bổ sung hai gate mới vào hồ sơ kỹ thuật:
+
+- Gate 16 — Field Installation & Acceptance Protocol:
+  Thiết bị không chỉ được mua đúng, mà phải được lắp đúng, cấp nguồn đúng, route đúng, test đúng và nghiệm thu có chứng cứ.
+
+- Gate 17 — First Signal Capture Evidence Pack:
+  Tín hiệu sống đầu tiên phải có raw signal, parsed signal, timestamp, boundary, route, receiver, payload hash và người xác nhận.
+
+Ý nghĩa hồ sơ: NATT-OS không dừng ở phần mềm. Hệ thống có khả năng mở rộng xuống phần cứng, cảm biến, gateway, IoT và field deployment.
+
+### 2.6 Điểm khác biệt chiến lược
+
+NATT-OS nên được mô tả bằng các điểm khác biệt sau:
+
+| Lớp | NATT-OS | Hệ phổ thông |
+|---|---|---|
+| Identity | .anc có schema và seal | tài khoản / config rời rạc |
+| Memory | .na append-only | log hoặc note rời |
+| Runtime state | .phieu mutable có boundary | cache / state tạm |
+| Trust | audit-by-default | tin vào output |
+| Runtime | EventBus → HeyNa → SmartLink | request/response đơn tuyến |
+| Hardware | field acceptance + first signal evidence | cắm thiết bị rồi dùng |
+| Governance | Gatekeeper + seal + trạng thái | quyền admin thông thường |
+
+### 2.7 Câu mô tả dùng cho hồ sơ ngoài
+
+NATT-OS is a sovereign operational runtime that turns business reality, software events, hardware signals, memory, and governance into an auditable living system.
+
+Phiên bản tiếng Việt:
+
+NATT-OS là một hệ runtime vận hành chủ quyền, có khả năng biến thực tại doanh nghiệp, sự kiện phần mềm, tín hiệu phần cứng, ký ức và quản trị thành một hệ thống sống có kiểm toán.
+
+## 3. Checklist bổ sung vào bộ hồ sơ chính
+
+- [ ] Thêm đoạn định vị ngắn gọn NATT-OS không phải app / ERP / chatbot.
+- [ ] Thêm bảng so sánh NATT-OS với hệ phổ thông.
+- [ ] Thêm sơ đồ chữ runtime lineage: EventBus → Mạch HeyNa → SmartLink.
+- [ ] Thêm phần kernel language: .anc / .na / .phieu / .si.
+- [ ] Thêm trust model: No audit = No exist.
+- [ ] Thêm hardware extension: Gate 16 và Gate 17.
+- [ ] Thêm câu mô tả tiếng Anh cho investor / government brief.
+- [ ] Không dùng ngôn ngữ khẩu hiệu in hoa quá mức.
+- [ ] Không dùng mô tả REST/API làm trung tâm.
+- [ ] Không claim runtime native nếu chỉ có substrate tool.
+
+## 4. Kết luận
+
+Bộ hồ sơ hiện có không cần làm lại từ đầu.
+
+Việc cần làm là bổ sung lớp định vị, kernel language, runtime lineage, audit trust model và hardware evidence để hồ sơ đủ sức trình bày NATT-OS như một hệ vận hành độc lập, có kiểm toán và có khả năng đi từ phần mềm xuống hiện trường vật lý.
