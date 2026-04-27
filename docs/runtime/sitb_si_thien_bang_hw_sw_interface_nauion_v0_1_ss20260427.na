@@ -1,0 +1,268 @@
+@nauion-native v1
+@state runtime-policy
+@name sitb si thien bang hw sw interface nauion v0.1
+@scope sitb si-thien-bang chromatic-link hardware software puf 432hz sirasign
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# SITB — Si Thiên Băng HW-SW Interface Nauion v0.1
+
+## 1. Tên gọi
+
+SITB = Si Thiên Băng.
+
+Si Thiên Băng là tầng bắt tay sống giữa Thiên phần cứng và Băng phần mềm.
+
+```na
+ChromaticLink = đường truyền phổ màu
+SITB = giao thức match sống trên đường phổ màu
+2. Phân quyền tầng
+Băng_software:
+  đảm_nhận:
+    - SPEC_chromatic_link
+    - dictionary_entries
+    - data_shape
+    - encoder_decoder_logic
+    - color_to_bytes
+    - SiraSign_HMAC_SHA256
+    - Living_Handshake
+    - rolling_session
+    - HeyNa_EventBus_SmartLink_integration
+    - validator_scanner
+    - test_suite
+
+Thiên_hardware:
+  đảm_nhận:
+    - physical_module_catalog
+    - RGB_LED
+    - IR_LED
+    - laser_diode_driver
+    - photodiode_receiver
+    - camera_receiver
+    - voltage_frequency_range
+    - PUF_chip_ID
+    - environmental_noise_sensor
+    - light_sound_vibration_voltage_temperature_noise
+    - 432Hz_oscillator
+3. Biên giới HW-SW
+biên_giới:
+  Băng_define:
+    - DATA_SHAPE
+    - ENCODING
+    - DECODING
+    - HANDSHAKE_SHAPE
+    - TEST_EXPECTATION
+
+  Thiên_report:
+    - HARDWARE_CAPABILITIES
+    - PHYSICAL_LIMITS
+    - SIGNAL_RANGE
+    - NOISE_SOURCES
+    - PUF_AVAILABILITY
+    - 432HZ_SYNC_STATUS
+
+  interface_chung:
+    - hw_to_sw_capability_packet
+    - sw_to_hw_encoding_request
+    - sitb_match_session
+4. Physical module catalog
+physical_module_catalog:
+  optical_emitters:
+    - RGB_LED
+    - IR_LED
+    - laser_diode
+    - high_speed_LED_driver
+
+  optical_receivers:
+    - photodiode
+    - phototransistor
+    - ambient_light_sensor
+    - camera_receiver
+    - machine_vision_camera
+
+  identity_hardware:
+    - PUF_chip
+    - secure_element
+    - device_unique_fingerprint
+    - lens_fingerprint
+    - LED_response_fingerprint
+
+  environmental_noise:
+    - light_noise_sensor
+    - sound_noise_sensor
+    - vibration_sensor
+    - voltage_noise_sensor
+    - temperature_sensor
+
+  clock_sync:
+    - 432Hz_oscillator
+    - local_timebase
+    - rolling_session_tick
+5. SITB unstable match
+
+SITB không dùng khóa tĩnh làm điều kiện duy nhất.
+
+sitb_unstable_match:
+  không_dùng:
+    - fixed_token_only
+    - static_auth_only
+    - replayable_handshake
+    - copied_key_only
+  dùng:
+    - SiraSign
+    - HMAC_SHA256_binding
+    - PUF
+    - environmental_noise
+    - 432Hz_tick
+    - chromatic_challenge
+    - rolling_session
+    - hardware_fingerprint
+6. Hardware capability packet
+
+Thiên Lớn report cho Băng:
+
+hw_to_sw_capability_packet:
+  device_id: hardware.local.generated
+  emitter_type:
+    - RGB_LED
+    - IR_LED
+    - laser_diode
+  receiver_type:
+    - photodiode
+    - camera_receiver
+  puf_status: available_or_missing
+  noise_sources:
+    - light
+    - sound
+    - vibration
+    - voltage
+    - temperature
+  sync_profile: 432Hz
+  supported_pulse_modes:
+    - pwm
+    - burst
+    - rolling_pattern
+    - challenge_response_pattern
+  range_profile:
+    - near_field
+    - room_scale
+  red_zone_supported: true
+  audit_required: true
+7. Software encoding request
+
+Băng gửi lại cho Thiên:
+
+sw_to_hw_encoding_request:
+  color_to_bytes_shape: defined_by_Bang
+  session_window: rolling
+  rolling_seed_policy: defined_by_Bang
+  HMAC_SHA256_binding: required
+  SiraSign_binding: required
+  chromatic_challenge_shape: defined_by_Bang
+  expected_noise_inputs:
+    - light
+    - sound
+    - vibration
+    - voltage
+    - temperature
+  HeyNa_event_shape: defined_by_Bang
+  SmartLink_feedback_shape: defined_by_Bang
+8. SITB match session
+sitb_match_session:
+  session_id: generated_per_handshake
+  actor_anc: anc://operator
+  hardware_node: device.chromatic.001
+  sirasign_status: required
+  puf_status: required_if_available
+  chromatic_challenge: rolling
+  noise_sample: required
+  sync_tick: 432Hz
+  hmac_sha256: required
+  decision:
+    - allow
+    - deny
+    - retry
+    - manual_review
+  audit_level: full
+9. Integration với HeyNa / EventBus / SmartLink
+sitb_integration:
+  khi_match_pass:
+    -> heyna_ready_packet
+    -> Mạch_HeyNa
+    -> Audit
+    -> SmartLink_feedback
+
+  khi_match_fail:
+    -> audit_full
+    -> deny_route
+    -> red_zone_check_if_needed
+    -> manual_review_optional
+10. No bypass
+cấm_bỏ_qua:
+  hardware_to_heyna_without_SITB: deny
+  chromatic_signal_without_SiraSign: deny
+  fixed_token_only_auth: deny
+  replayed_challenge: deny
+  puf_mismatch: deny
+  432Hz_sync_missing: deny
+11. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+SITB hardware side
+physical module catalog
+LED / IR / laser driver
+photodiode / camera receiver
+PUF capability
+environmental noise sensor
+432Hz oscillator
+hardware capability packet
+
+Băng xử lý:
+
+SPEC software
+dictionary entries
+encoder / decoder
+HMAC-SHA256 binding
+SiraSign integration
+Living Handshake
+rolling session
+HeyNa / EventBus / SmartLink integration
+validator scanner
+test suite
+
+Không chạm memory của Băng.
+
+Không chạm nattos.sh.
+
+Không chạm src/thienbang.si.
+
+Không chạm tools/scan_*.sira.
+
+12. Gate 11 pass condition
+
+Gate 11 pass khi có đủ:
+
+SITB = Si Thiên Băng
+ChromaticLink là đường truyền phổ màu
+SITB là giao thức match sống
+Băng software boundary
+Thiên hardware boundary
+physical module catalog
+RGB LED / IR LED / laser diode
+photodiode / camera receiver
+PUF
+environmental noise
+432Hz oscillator
+HMAC-SHA256 binding
+SiraSign
+rolling session
+hw_to_sw_capability_packet
+sw_to_hw_encoding_request
+sitb_match_session
+HeyNa/EventBus/SmartLink integration boundary
+no bypass

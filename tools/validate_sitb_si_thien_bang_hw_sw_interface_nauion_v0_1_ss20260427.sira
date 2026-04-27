@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope sitb si-thien-bang chromatic-link hardware software puf 432hz sirasign",
+"SITB = Si Thiên Băng.",
+"ChromaticLink = đường truyền phổ màu",
+"SITB = giao thức match sống trên đường phổ màu",
+"Băng_software",
+"Thiên_hardware",
+"physical_module_catalog",
+"RGB_LED",
+"IR_LED",
+"laser_diode",
+"photodiode",
+"camera_receiver",
+"PUF_chip",
+"environmental_noise",
+"432Hz_oscillator",
+"sitb_unstable_match",
+"HMAC_SHA256_binding",
+"SiraSign",
+"rolling_session",
+"hw_to_sw_capability_packet",
+"sw_to_hw_encoding_request",
+"sitb_match_session",
+"sitb_integration",
+"cấm_bỏ_qua",
+"Không chạm memory của Băng.",
+"Không chạm nattos.sh.",
+"Không chạm src/thienbang.si.",
+"Không chạm tools/scan_*.sira.",
+"Gate 11 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+"implement encoder",
+"implement decoder",
+"fixed_token_only_auth: allow",
+"replayed_challenge: allow"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("SITB HW-SW interface validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("SITB HW-SW interface validation: pass");
+console.log("file=" + file);
