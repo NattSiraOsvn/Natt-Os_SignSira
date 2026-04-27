@@ -1,0 +1,156 @@
+@nauion-native v1
+@state runtime-policy
+@name ket sira vr operation boundary nauion v0.1
+@scope ket-sira vr-operation digital-twin camera sensor privacy audit
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Két Sira — VR Operation Boundary Nauion v0.1
+
+## 1. Định nghĩa
+
+Két Sira là kính/không gian điều hành ảo của NATT-OS.
+
+Két Sira không phải camera thường.
+
+Két Sira là:
+
+```na
+digital_twin_tòa_nhà
+  + live_camera_layer
+  + sensor_iot_layer
+  + màn_phụ_công_việc
+  + SiraSign
+  + audit
+  + vùng_riêng_tư
+  + điểm_đỏ
+2. Cách vận hành
+
+Người có quyền vào Két Sira sẽ thấy bản sao ảo của môi trường làm việc.
+
+Két_Sira:
+  vào: bằng_SiraSign
+  thấy:
+    - sơ_đồ_tòa_nhà
+    - vị_trí_phòng_ban
+    - vị_trí_máy_trạm
+    - trạng_thái_sensor_iot
+    - điểm_đỏ
+    - vùng_riêng_tư
+  thao_tác:
+    - đi_trong_không_gian_ảo
+    - click_vị_trí_ngồi
+    - mở_màn_phụ_công_việc
+    - xem_live_theo_quyền
+    - xem_audit_theo_scope
+3. Live layer
+
+Live layer gồm:
+
+live_layer:
+  camera:
+    - live_view
+    - snapshot_theo_quyền
+    - vùng_mask
+    - metadata_only_zone
+  sensor_iot:
+    - trạng_thái_thiết_bị
+    - cảnh_báo
+    - giá_trị_đo
+    - health_signal
+  workstation:
+    - app_công_việc
+    - event_đang_xử_lý
+    - audit_sơ_bộ
+4. Màn phụ
+
+Khi click vào vị trí làm việc, Két Sira mở màn phụ.
+
+màn_phụ:
+  hiển_thị:
+    - workflow_công_việc
+    - event_liên_quan
+    - chứng_từ_theo_quyền
+    - trạng_thái_máy
+    - cảnh_báo
+  không_hiển_thị:
+    - tin_nhắn_cá_nhân
+    - tài_khoản_cá_nhân
+    - nội_dung_ngoài_hợp_đồng
+    - vùng_cá_nhân
+5. Điểm đỏ
+
+Điểm đỏ là vùng nhạy cảm hoặc vùng cần quyền cao.
+
+điểm_đỏ:
+  mặc_định: khóa
+  dữ_liệu_mặc_định: metadata_only
+  full_live: deny_by_default
+  mở_khi:
+    - SiraSign_hợp_lệ
+    - role_cấp_cao
+    - reason_code
+    - audit_full
+6. Vùng riêng tư
+
+Vùng riêng tư không được xâm phạm.
+
+vùng_riêng_tư:
+  default: mask
+  cá_nhân: không_hiển_thị
+  ngoài_hợp_đồng: không_hiển_thị
+  chỉ_cho_phép:
+    - metadata_cần_thiết
+    - cảnh_báo_an_toàn
+    - audit_scope_hợp_lệ
+7. Audit
+
+Mọi hành vi xem trong Két Sira phải ghi audit.
+
+ket_sira.view.checked:
+  actor_anc: anc://operator
+  target_zone: zone.workstation.001
+  target_kind: workstation
+  view_scope: work_panel
+  privacy_mask: applied
+  red_zone: false
+  sirasign_status: pass
+  decision: allow
+  reason: policy_matched
+  audit_level: full
+8. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+Két Sira
+vùng đỏ
+vùng riêng tư
+live camera layer
+sensor/IoT layer
+màn phụ
+audit xem
+SiraSign access
+
+Không chạm nattos.sh.
+
+Không xử lý runtime, migration, compiler, adapter, cell execution.
+
+9. Gate 4 pass condition
+
+Gate 4 pass khi có đủ:
+
+Két Sira là VR/digital twin operation
+live camera layer
+sensor/IoT layer
+màn phụ
+điểm đỏ
+vùng riêng tư
+SiraSign required
+audit required
+privacy mask
+metadata_only default
+không chạm nattos.sh

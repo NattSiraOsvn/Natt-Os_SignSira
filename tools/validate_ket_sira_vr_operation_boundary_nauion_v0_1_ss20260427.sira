@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/ket_sira_vr_operation_boundary_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope ket-sira vr-operation digital-twin camera sensor privacy audit",
+"@runtime_scope excluded",
+"Két Sira là kính/không gian điều hành ảo của NATT-OS.",
+"digital_twin_tòa_nhà",
+"live_camera_layer",
+"sensor_iot_layer",
+"màn_phụ",
+"điểm_đỏ",
+"vùng_riêng_tư",
+"metadata_only",
+"privacy_mask",
+"ket_sira.view.checked",
+"SiraSign",
+"audit",
+"Không chạm nattos.sh.",
+"Gate 4 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("ket sira vr operation boundary validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("ket sira vr operation boundary validation: pass");
+console.log("file=" + file);
