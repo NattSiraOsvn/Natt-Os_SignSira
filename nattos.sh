@@ -237,13 +237,21 @@ for entry in "${GOV_FILES[@]}"; do
 done
 
 # Bang memory
+# Bang memory — check Nauion suffix family v1.2 R01 (align §32)
 BANGMF=$(ls src/governance/memory/bang/bangmf_v*.json 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGMF" ]]; then ok "bangmf: $(basename "$BANGMF")"; inc_ok
-else fail "bangmf: missing"; inc_fail "GOV: bangmf missing"; fi
+BANGKHUONG=$(ls src/governance/memory/bang/bangkhương*.na src/governance/memory/bang/bangkhương*.kris 2>/dev/null | sort -V | tail -1)
+BANGANC=$(ls src/governance/memory/bang/bang.anc src/governance/memory/bang/bang_v*.anc 2>/dev/null | sort -V | tail -1)
+if [[ -n "$BANGMF" ]]; then ok "bangmf legacy: $(basename "$BANGMF")"; inc_ok
+elif [[ -n "$BANGKHUONG" ]]; then ok "bang K-shell: $(basename "$BANGKHUONG")"; inc_ok
+elif [[ -n "$BANGANC" ]]; then ok "bang.anc: $(basename "$BANGANC")"; inc_ok
+else fail "bang memory: missing"; inc_fail "GOV: bang memory missing"; fi
 
 KMF=$(ls src/governance/memory/kim/kmf*.json 2>/dev/null | sort -V | tail -1)
-if [[ -n "$KMF" ]]; then ok "kmf: $(basename "$KMF")"; inc_ok
-else warn "kmf: missing"; inc_warn "GOV: kmf missing"; fi
+# Kim memory — check legacy + Nauion suffix family
+KMFNA=$(ls src/governance/memory/kim/kmf*.na src/governance/memory/kim/kmf*.kris src/governance/memory/kim/kim*.na src/governance/memory/kim/kim*.kris 2>/dev/null | sort -V | tail -1)
+if [[ -n "$KMF" ]]; then ok "kmf legacy: $(basename "$KMF")"; inc_ok
+elif [[ -n "$KMFNA" ]]; then ok "kim memory: $(basename "$KMFNA")"; inc_ok
+else warn "kim memory: missing"; inc_warn "GOV: kim memory missing"; fi
 
 # QNEU scores
 if [[ -f "src/governance/qneu/data/system-state.phieu" ]]; then
