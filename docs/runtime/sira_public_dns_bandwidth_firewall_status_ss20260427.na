@@ -1,0 +1,82 @@
+@state runtime-evidence
+@name sira public dns bandwidth firewall status
+@scope public dns bandwidth firewall policy evidence
+@runtime_scope excluded
+@owner Thiên
+@session ss20260427
+@created_at 2026-04-27T12:18:35
+
+# SIRA public/DNS/bandwidth/firewall status — ss20260427
+
+## 1. Boundary
+
+Không tạo gate mới.
+
+File này chỉ là status/evidence phụ để nối các artifact đã có:
+
+- DNS infrastructure bandwidth baseline
+- wired edge firewall audit
+- platform truth scan
+- mail/ip/bandwidth readiness scan
+- migration roadmap tách Track 2 cho Anh + Thiên
+
+Phần này không xử lý runtime, đọc-dịch, compiler, adapter, cell execution hoặc migration TS → Nauion. Phần runtime thuộc lane Anh + Bối.
+
+## 2. Git ground truth
+
+- branch: feat/p1.3-file-extension-validator
+- head: eda0a1a feat(migration): Phase 2.0 classify 565 TS 'other' files ss20260427
+- dirty_at_generation: clean
+
+## 3. Existing evidence artifacts
+
+- docs/runtime/sira_mail_ip_bandwidth_readiness_latest.na
+- docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na
+- docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+- docs/runtime/nattos_platform_truth_scan_20260427.na
+- docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na
+
+## 4. Latest mail/ip readiness verdict
+
+- claim_ip_internal: PASS
+- claim_mail_provider_mode: PENDING
+- claim_self_host_mail: BLOCKED
+- lan_ready: True
+- public_ip_detected: True
+- public_rdns_detected: True
+- local_mta_listening: False
+- outbound_25_ready: True
+
+## 5. Current claim boundary
+
+Được claim:
+
+- internal IP readiness: PASS
+- public IP detected
+- public rDNS/PTR detected
+- outbound SMTP port 25 ready at scan time
+- DNS/bandwidth/firewall baseline đã có evidence riêng
+
+Chưa được claim:
+
+- mail provider mode production
+- self-host mail production
+- runtime production public exposure
+- domain public DNS-auth hoàn tất
+- local MTA readiness
+
+## 6. Policy interpretation
+
+- `.sira`, `.anc`, `core.sira`, `khai.sira`, `mail.sira` là namespace nội bộ.
+- Mail Internet cần domain public thật.
+- Self-host mail luôn BLOCKED nếu chưa có MTA local listening.
+- Mail provider mode luôn PENDING nếu chưa có MAIL_DOMAIN để kiểm MX/SPF/DKIM/DMARC.
+- Không mở public runtime port khi chưa có gate runtime riêng của Bối.
+
+## 7. Next evidence tasks for Thiên lane
+
+1. Chạy lại bandwidth baseline khi đổi router/ISP/IP.
+2. Chạy lại firewall audit khi mở port mới.
+3. Khi có domain public thật, chạy lại mail/ip scanner với MAIL_DOMAIN.
+4. Nếu triển khai mail provider, chỉ verify MX/SPF/DKIM/DMARC.
+5. Nếu tự host mail, phải bổ sung MTA, TLS, blacklist, queue/log audit.

@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sira_two_server_truth_boundary_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+  "nattos-server",
+  "nauion-host",
+  "localhost:3001",
+  "127.0.0.1:3002",
+  "Node",
+  "Rust",
+  "Mạch HeyNa",
+  "public",
+  "firewall",
+  "DNS",
+  "Bối",
+  "Thiên"
+];
+
+const unsafeClaims = [
+  "Rust đã thay thế Node",
+  "Node đã chết",
+  "self-host mail production đã sẵn sàng",
+  "mail provider production đã sẵn sàng",
+  "public runtime production đã sẵn sàng",
+  "production-ready"
+];
+
+let errors = [];
+
+for (const s of must) {
+  if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of unsafeClaims) {
+  const negated = text.includes("Không được nói " + s) || text.includes("Chưa được claim:\n\n- " + s) || text.includes("- " + s);
+  if (text.includes(s) && !negated) {
+    errors.push("unsafe claim: " + s);
+  }
+}
+
+if (errors.length) {
+  console.error("sira two server truth boundary validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira two server truth boundary validation: pass");
+console.log("file=" + file);

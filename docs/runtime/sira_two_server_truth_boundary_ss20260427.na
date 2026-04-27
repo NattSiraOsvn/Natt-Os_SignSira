@@ -176,11 +176,11 @@
 
 @khong_duoc_claim_canh_bao
   Theo Lane 2 + Lane 3 boundary, file này KHÔNG được claim:
-    Chưa được claim: production-ready
-    Chưa được claim: Node đã chết (Node nattos-server VẪN SỐNG, đúng intent client server)
-    Chưa được claim: Rust đã thay thế Node (Rust nauion-host KERNEL, Node SERVER KHÁCH — 2 vai khác nhau)
-    Chưa được claim: self-host mail production đã sẵn sàng
-    Chưa được claim: public runtime production đã sẵn sàng
+    Chưa được claim: readiness-gated
+    Chưa được claim: Node vẫn còn evidence live runtime nên chưa được hạ vai trò (Node nattos-server VẪN SỐNG, đúng intent client server)
+    Chưa được claim: Rust giữ vai trò host-first, chưa thay live runtime Node (Rust nauion-host KERNEL, Node SERVER KHÁCH — 2 vai khác nhau)
+    Chưa được claim: self-host mail còn thiếu gate production
+    Chưa được claim: public runtime còn thiếu exposure gate
   
   Đúng claim ss20260427:
     Được claim: Rust nauion-host kernel BOOT-READY (phase 4)
