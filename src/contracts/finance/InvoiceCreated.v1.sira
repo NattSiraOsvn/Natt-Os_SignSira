@@ -1,0 +1,38 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from InvoiceCreated.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+
+/**
+ * 📄 InvoiceCreated.v1
+ * Phát hành bởi Finance Service khi hóa đơn (Proforma/Final) được khởi tạo.
+ */
+export interface InvoiceCreatedPayload {
+  [key: string]: unknown;
+  invoice_id: string;
+  order_id: string;
+  type: 'PROFORMA' | 'FINAL';
+  customer: {
+    name: string;
+    tax_id?: string;
+  };
+  amounts: {
+    subtotal: number; // VND - Integer
+    tax: number;
+    total: number;
+  };
+  issued_at: string; // ISO-8601 UTC
+}
+
+export type InvoiceCreatedEvent = EventEnvelope<InvoiceCreatedPayload>;
+
+export const InvoiceCreatedSchema = {
+  event_name: 'finance.invoice.created.v1',
+  producer: 'finance-service',
+  version: 'v1'
+};

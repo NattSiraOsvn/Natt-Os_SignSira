@@ -1,0 +1,16 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from PaymentInitiated.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+/** 💳 PaymentInitiated.v1 */
+export interface PaymentInitiatedPayload {
+  [key: string]: unknown;
+  payment_id: string; order_id: string; invoice_id: string; amount_vnd: number;
+  method: 'BANK_TRANSFER' | 'VNPAY' | 'MOMO' | 'CASH'; initiated_at: string;
+}
+export type PaymentInitiatedEvent = EventEnvelope<PaymentInitiatedPayload>;
+export const PaymentInitiatedSchema = { event_name: 'payment.initiated.v1', producer: 'payment-cell', version: 'v1' };

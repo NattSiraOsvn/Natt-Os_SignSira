@@ -1,0 +1,18 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from EmployeeOnboarded.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+/** 👷 EmployeeOnboarded.v1 */
+export interface EmployeeOnboardedPayload {
+  [key: string]: unknown;
+  employee_id: string; department: 'FACTORY' | 'OFFICE' | 'SHOWROOM';
+  position: string; tk_salary: '622' | '623' | '641' | '642';
+  contract_type: 'FULLTIME' | 'PARTTIME' | 'PROBATION';
+  start_date: string; onboarded_at: string;
+}
+export type EmployeeOnboardedEvent = EventEnvelope<EmployeeOnboardedPayload>;
+export const EmployeeOnboardedSchema = { event_name: 'hr.employee.onboarded.v1', producer: 'hr-cell', version: 'v1' };

@@ -1,0 +1,16 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from CustomsCleared.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+/** ✅ CustomsCleared.v1 */
+export interface CustomsClearedPayload {
+  [key: string]: unknown;
+  declaration_id: string; supplier_order_id: string; clearance_ref: string;
+  import_duty_paid_vnd: number; vat_import_paid_vnd: number; cleared_at: string;
+}
+export type CustomsClearedEvent = EventEnvelope<CustomsClearedPayload>;
+export const CustomsClearedSchema = { event_name: 'customs.cleared.v1', producer: 'customs-cell', version: 'v1' };

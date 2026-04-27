@@ -1,0 +1,16 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from FinishingQCPassed.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+/** 🔍 FinishingQCPassed.v1 */
+export interface FinishingQCPassedPayload {
+  [key: string]: unknown;
+  finishing_order_id: string; order_id: string;
+  qc_inspector: string; qc_notes?: string; passed_at: string;
+}
+export type FinishingQCPassedEvent = EventEnvelope<FinishingQCPassedPayload>;
+export const FinishingQCPassedSchema = { event_name: 'production.finishing.qc_passed.v1', producer: 'finishing-cell', version: 'v1' };

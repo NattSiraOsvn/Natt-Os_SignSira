@@ -1,0 +1,21 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from OrderStatusChanged.v1.ts (commit 8362bfc)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+type OrderStatus = 'PENDING' | 'CONFIRMED' | 'IN_PRODUCTION' | 'ready' | 'DELIVERED' | 'CANCELLED';
+/** 🔄 OrderStatusChanged.v1 */
+export interface OrderStatusChangedPayload {
+  [key: string]: unknown;
+  order_id: string;
+  previous_status: OrderStatus;
+  new_status: OrderStatus;
+  changed_by: string;
+  reason?: string;
+  changed_at: string;
+}
+export type OrderStatusChangedEvent = EventEnvelope<OrderStatusChangedPayload>;
+export const OrderStatusChangedSchema = { event_name: 'order.status_changed.v1', producer: 'order-cell', version: 'v1' };

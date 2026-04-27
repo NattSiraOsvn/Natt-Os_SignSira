@@ -1,0 +1,20 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from OrderCreated.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+/** 🛒 OrderCreated.v1 */
+export interface OrderCreatedPayload {
+  [key: string]: unknown;
+  order_id: string;
+  customer_id: string;
+  channel: 'SHOWROOM' | 'ONLINE' | 'B2B';
+  items: Array<{ sku: string; name: string; quantity: number; unit_price: number }>;
+  total_amount: number;
+  created_at: string;
+}
+export type OrderCreatedEvent = EventEnvelope<OrderCreatedPayload>;
+export const OrderCreatedSchema = { event_name: 'order.created.v1', producer: 'order-cell', version: 'v1' };

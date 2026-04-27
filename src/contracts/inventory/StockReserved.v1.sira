@@ -1,0 +1,16 @@
+// @nauion-native v1 (Wave 1 transitional rename ss20260427)
+// @migrated-from StockReserved.v1.ts (commit 0706907)
+// @phase 2.1 BATCH 2 — scale contracts migration
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @transport: contracts schema (CQRS), không emit, schema-only
+// @reference proof commit 303f2d7 (OrderCompleted.v1.sira)
+
+import { EventEnvelope } from '@/core/events/event-envelope';
+/** 🔒 StockReserved.v1 */
+export interface StockReservedPayload {
+  [key: string]: unknown;
+  reservation_id: string; order_id: string; sku: string;
+  quantity_reserved: number; expires_at?: string; reserved_at: string;
+}
+export type StockReservedEvent = EventEnvelope<StockReservedPayload>;
+export const StockReservedSchema = { event_name: 'inventory.stock.reserved.v1', producer: 'inventory-cell', version: 'v1' };
