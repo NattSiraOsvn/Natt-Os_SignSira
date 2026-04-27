@@ -1,0 +1,141 @@
+@nauion-native v1
+@state runtime-policy
+@name scr anchor red zone policy nauion v0.1
+@scope scr-anchor red-zone privacy route audit sirasign
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# SCR Anchor / Red Zone Policy Nauion v0.1
+
+## 1. Định nghĩa SCR
+
+SCR là điểm neo kiểm soát trong quỹ đạo dữ liệu.
+
+SCR không phải node xử lý nghiệp vụ.
+
+SCR là điểm để:
+
+```na
+neo_quỹ_đạo
+kiểm_route
+kiểm_quyền
+kiểm_vùng_đỏ
+ghi_audit
+phản_hồi_điều_phối
+2. Bộ SCR tối thiểu
+SCR:
+  SCR-1:
+    vị_trí: trước_Gateway
+    vai_trò: kiểm_line_quota_route_trước_khi_vào_hệ
+  SCR-2:
+    vị_trí: giữa_Vòng_HeyNa_và_Mạch_HeyNa
+    vai_trò: kiểm_packet_sau_khi_dịch
+  SCR-3:
+    vị_trí: sau_Mạch_HeyNa_trước_Cell_Audit_Lưu_trữ_SmartLink
+    vai_trò: neo_phân_phối_lõi_và_phản_hồi
+3. Quỹ đạo đi
+quỹ_đạo_đi:
+  máy_trạm_intake
+    -> máy_chủ_khách
+    -> SCR-1
+    -> Gateway
+    -> Vòng_HeyNa
+    -> SCR-2
+    -> Mạch_HeyNa
+    -> SCR-3
+    -> Cell_Audit_Lưu_trữ_SmartLink
+4. Quỹ đạo về
+quỹ_đạo_về:
+  Audit
+    -> SmartLink_feedback
+    -> SCR-3
+    -> Mạch_HeyNa
+    -> SCR-2
+    -> Vòng_HeyNa
+    -> Gateway
+    -> SCR-1
+    -> máy_chủ_khách
+5. Red zone
+
+Red zone là vùng nhạy cảm.
+
+red_zone:
+  default: locked
+  data_default: metadata_only
+  live_stream: deny_by_default
+  personal_area: mask
+  require:
+    - SiraSign
+    - high_authority_role
+    - reason_code
+    - audit_full
+6. SCR event
+scr.anchor.checked:
+  scr_id: SCR-1
+  tenant_id: customer.001
+  actor_anc: anc://customer.user
+  route_id: route.customer.to.heyna
+  red_zone_scope: none
+  sirasign_status: pass
+  decision: allow
+  reason: policy_matched
+  audit_level: full
+7. Red zone event
+red_zone.access.checked:
+  tenant_id: customer.001
+  actor_anc: anc://operator
+  target_zone: zone.red.001
+  requested_scope: live_view
+  default_policy: deny_by_default
+  privacy_mask: applied
+  decision: deny
+  reason: full_live_requires_high_authority_and_reason_code
+  audit_level: full
+8. Luật không vượt SCR
+
+Không tuyến nào được bỏ qua SCR.
+
+no_bypass:
+  device_to_core: deny
+  workstation_to_core: deny
+  customer_server_to_core_without_gateway: deny
+  gateway_to_cell_without_heyna: deny
+  heyna_to_storage_without_scr3: deny
+9. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+SCR anchor
+red zone
+privacy mask
+route audit
+quỹ đạo đi/về
+no bypass policy
+
+Không chạm nattos.sh.
+
+Không xử lý runtime, migration, compiler, adapter, cell execution.
+
+10. Gate 5 pass condition
+
+Gate 5 pass khi có đủ:
+
+SCR-1
+SCR-2
+SCR-3
+quỹ đạo đi
+quỹ đạo về
+red zone
+metadata_only
+deny_by_default
+privacy mask
+scr.anchor.checked
+red_zone.access.checked
+no bypass
+SiraSign required
+audit required
+không chạm nattos.sh
