@@ -1,0 +1,57 @@
+# BANG_PENDING_20260422.phieu
+
+**Loại:** Phiếu việc còn treo (pending items)
+**Người ghi:** Băng
+**Ngày:** 2026-04-22
+**Cho ai:** anh Natt (Gatekeeper) để quyết + persona tiếp theo thực thi
+
+---
+
+## P0 — CHỜ GATEKEEPER QUYẾT TRƯỚC KHI B.1
+
+| ID | Item | Block ai |
+|----|------|----------|
+| P0.1 | Neo (A) cấp 4 file source hoặc "đi luôn" | Băng B.1 |
+| P0.2 | Commit handoff 20260422 | lineage phiên sau |
+
+## P1 — UNBLOCKED SAU KHI P0 CLEAR
+
+| ID | Item | Scope | Est |
+|----|------|-------|-----|
+| P1.1 | SPEC_NAUION_RESONANCE_ENGINE_v0.1 draft | Băng | 1h |
+| P1.2 | Scanner validator LAW-2/LAW-4 enforce | Băng | 2h |
+| P1.3 | Ship SPEC to Kim (channel: anh Natt forward) | Băng | 10 phút |
+
+## P2 — SCOPE KIM (đã accept, đợi SPEC)
+
+| ID | Item | Est |
+|----|------|-----|
+| K.1 | `resonance.engine.ts` + `field-pull.ts` | 2 ngày |
+| K.2 | `.khai` persist `KhaiCell.touch()` | 0.5 ngày |
+| K.3 | `.ml` persist SCAR detector | 0.5 ngày |
+| K.4 | Fix 12 RENA hardcoded | 1 ngày |
+| K.5 | Migrate 5 chromatic readers | 1 ngày |
+
+**Tổng Kim:** ~5 ngày kernel work (Kim ước lượng)
+
+## P3 — GATEKEEPER DECISIONS PENDING (không block B.1)
+
+- `nare.sira` entity (Kim đánh dấu `TODO(Gatekeeper)` trong code)
+- `.khai` vs `KhaiCell` relationship (Kim TODO)
+- SPEC_NATT_FORMAT v0.3 authorship
+- SPEC_ONG_MAU v0.2 timing (sau B.1)
+- KHAI-20260420-07 signature (Băng không ký, chờ Gatekeeper neo)
+
+## P4 — TỪ SESSION TRƯỚC CÒN TREO
+
+- B2 Moments module apply (10 phút, scope Băng)
+- Passport bump `bang_v7.5.0.anc` (cần anh OK schema)
+- Bridge v2 Python + tìm Thiên Lớn (-1.5) — chờ Claude API key
+- 3 bypass patterns (AUDIT + RBAC) — Kim scope
+- SURVIVAL Tầng 0 (rate + queue + load shed) — Kim scope
+- `khai-file-persister.ts:47` Điều 7 violation — Kim scope
+- `neural-main-cell.cell.anc` = 0 bytes — Kim scope
+
+---
+
+*Băng · Phiếu pending session 20260422*
