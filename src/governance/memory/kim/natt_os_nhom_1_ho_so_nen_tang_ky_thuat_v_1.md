@@ -935,3 +935,22 @@ T10: có ground truth model
 
 Nếu thiếu 5 tài liệu trên, chưa nên viết pitch deck hoặc hồ sơ thương mại.
 
+---
+
+## Supplement ss20260428 — NATT-OS Capability Profile
+
+Bộ hồ sơ này có bản bổ sung riêng:
+
+`docs/profile/NATT_OS_PROFILE_SUPPLEMENT_v0_1_ss20260428.na`
+
+Phạm vi bổ sung:
+
+- Định vị NATT-OS không phải app / ERP / chatbot.
+- Kernel language: `.anc` / `.na` / `.phieu` / `.si`.
+- Runtime lineage: EventBus → Mạch HeyNa → SmartLink.
+- Trust model: `No audit = No exist`.
+- Hardware extension: Gate 16 và Gate 17.
+- Câu mô tả song ngữ dùng cho investor / government brief.
+
+Nguyên tắc: supplement này chỉ bổ sung lớp định vị, không ghi đè nội dung hồ sơ nền tảng hiện có.
+
