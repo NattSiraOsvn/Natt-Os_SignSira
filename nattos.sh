@@ -1481,7 +1481,7 @@ if os.environ.get('AUDIT_MODE') == 'quick':
     exit(0)
 import os,re,json
 from collections import defaultdict
-src="src"
+scan_dirs=["src"]
 producers=defaultdict(list); consumers=defaultdict(list)
 emit_pat=re.compile(r"(?:EventBus\.(?:emit|publish)|typedEmit)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
 sub_pat=re.compile(r"EventBus\.(?:on|subscribe)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
@@ -1490,8 +1490,8 @@ def get_cell(p):
     for i,x in enumerate(parts):
         if x in("business","kernel","infrastructure") and i+1<len(parts): return parts[i+1]
     return "core"
-for src in scan_dirs:
-  for root,dirs,files in os.walk(src):
+for scan_dir in scan_dirs:
+  for root,dirs,files in os.walk(scan_dir):
     dirs[:]=[d for d in dirs if d not in("node_modules","baithicuakim")]
     for f in files:
         if not f.endswith(".ts"): continue
