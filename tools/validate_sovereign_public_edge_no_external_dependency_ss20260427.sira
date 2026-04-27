@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_public_edge_no_external_dependency_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+  "@scope sovereign-public-edge dns resolver trust policy",
+  "@runtime_scope excluded",
+  "ICANN / root DNS dependency",
+  "TLD registry dependency",
+  "registrar dependency",
+  "hosting provider dependency",
+  "mail provider dependency",
+  "public Internet domain as mandatory root",
+  "Supersede",
+  "Không dùng `natt-os.com` hoặc `sira.zone` làm root bắt buộc của NATT-OS.",
+  "`.sira` là private/sovereign namespace.",
+  "`.anc` là identity/trust namespace.",
+  "Resolver riêng là điều kiện vào hệ.",
+  "Public nghĩa là:",
+  "Thiên + anh xử lý:",
+  "Bối + anh xử lý:"
+];
+
+const forbidden = [
+  "production-ready",
+  ".com là bắt buộc",
+  ".zone là bắt buộc",
+  "hosting provider là bắt buộc",
+  "mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+  if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+  if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+  console.error("sovereign public edge no external dependency validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sovereign public edge no external dependency validation: pass");
+console.log("file=" + file);
