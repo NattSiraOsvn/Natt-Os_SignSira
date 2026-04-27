@@ -1,0 +1,172 @@
+@nauion-native v1
+@state runtime-policy
+@name sovereign access bundle client join profile nauion v0.1
+@scope access-bundle client-join resolver sirasign anc gateway audit
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Sovereign Access Bundle / Client Join Profile Nauion v0.1
+
+## 1. Định nghĩa
+
+Access Bundle là gói để máy ngoài hệ join vào NATT-OS sovereign server.
+
+Không dùng public DNS truyền thống làm root.
+
+Không bắt buộc `.com`, `.zone`, registrar, hosted DNS, hosting provider hoặc mail provider.
+
+Máy ngoài muốn vào hệ phải có đúng bundle.
+
+## 2. Nội dung Access Bundle
+
+```na id="bundle-01"
+access_bundle:
+  bundle_id: nattos.access.customer.001
+  tenant_id: customer.001
+  owner: phan thanh thương / natt sirawat
+  anc: thiên sirawat
+  gồm:
+    - resolver_profile
+    - gateway_profile
+    - trust_root_anc
+    - sirasign_public_profile
+    - client_policy
+    - line_profile
+    - quota_profile
+    - audit_profile
+3. Resolver profile
+resolver_profile:
+  namespace:
+    - .sira
+    - .anc
+  resolve:
+    khai.sira: gateway.route.khai
+    core.sira: gateway.route.core
+    tam.sira: gateway.route.tam
+    mail.sira: internal_only
+  public_dns_dependency: forbidden_as_core
+4. Gateway profile
+gateway_profile:
+  gateway_name: Gateway
+  gateway_role: sovereign_entry
+  protocol_inside: giao_thức_dịch
+  requires:
+    - SiraSign
+    - .anc_identity
+    - resolver_profile
+    - quota_profile
+  opens:
+    - primary_line
+    - allowed_route
+    - audit_session
+5. Client join flow
+client_join:
+  bước_1: nhận_access_bundle
+  bước_2: import_resolver_profile
+  bước_3: xác_thực_trust_root_anc
+  bước_4: kiểm_SiraSign
+  bước_5: mở_primary_line
+  bước_6: nhận_route_được_phép
+  bước_7: bắt_đầu_audit_session
+  bước_8: vào_Gateway
+  bước_9: đi_qua_giao_thức_dịch
+  bước_10: vào_Vòng_HeyNa
+6. Máy khách con
+
+Máy khách con có thể có nhiều phần mềm.
+
+Nhưng muốn dùng hệ thì phải match:
+
+client_require:
+  - SiraSign
+  - .anc_identity
+  - resolver_profile
+  - gateway_profile
+  - line_profile
+  - quota_profile
+  - audit_profile
+
+Không match thì:
+
+deny:
+  - không_resolve
+  - không_route
+  - không_cấp_line
+  - không_thấy_service
+  - không_vào_Gateway
+7. Server khách
+
+Server khách có thể là edge node cho máy con.
+
+customer_edge:
+  role: edge_node
+  nhận_line: primary_line
+  chia_tiếp: theo_policy
+  allowed_child_nodes: theo_quota
+  relay_user_nodes: allowed_if_signed
+  relay_sensor_iot: allowed_if_signed
+  audit: required
+8. Revoke / rotate
+
+Access Bundle phải có cơ chế thu hồi.
+
+access_control:
+  revoke:
+    - bundle_id
+    - client_node
+    - user_anc
+    - route
+    - line
+  rotate:
+    - SiraSign
+    - resolver_profile
+    - gateway_profile
+    - quota_profile
+9. Audit
+access_bundle.join.checked:
+  tenant_id: customer.001
+  client_node: node.customer.001
+  user_anc: anc://customer.user
+  bundle_id: nattos.access.customer.001
+  sirasign_status: pass
+  resolver_status: pass
+  gateway_profile_status: pass
+  decision: allow
+  audit_level: full
+10. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+Access Bundle
+resolver profile
+gateway profile
+client join
+line/quota/profile
+SiraSign gate
+audit join
+revoke/rotate
+
+Không chạm nattos.sh.
+
+Không xử lý runtime, migration, compiler, adapter, cell execution.
+
+11. Gate 6 pass condition
+
+Gate 6 pass khi có đủ:
+
+Access Bundle
+resolver profile
+gateway profile
+trust root .anc
+SiraSign
+client join flow
+server khách edge node
+revoke
+rotate
+audit join
+không dùng public DNS làm root
+không chạm nattos.sh
