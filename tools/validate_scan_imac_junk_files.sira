@@ -1,0 +1,34 @@
+const fs = require("fs");
+
+const tool = "tools/scan_imac_junk_files.py";
+const doc = "docs/runtime/imac_junk_file_scanner_nauion_v0_1_ss20260427.na";
+const dict = "src/thienbang.si";
+
+let errors = [];
+for (const f of [tool, doc, dict]) {
+  if (!fs.existsSync(f)) errors.push("missing file: " + f);
+}
+
+const toolText = fs.existsSync(tool) ? fs.readFileSync(tool, "utf8") : "";
+for (const s of ["SAFE_SCAN_ONLY_NO_DELETE", "delete_performed", "requires_manual_review", "JUNK_FILE_NAMES", "JUNK_DIR_NAMES", "write_report", "argparse"]) {
+  if (!toolText.includes(s)) errors.push("tool missing: " + s);
+}
+
+const docText = fs.existsSync(doc) ? fs.readFileSync(doc, "utf8") : "";
+for (const s of ["@name imac junk file scanner", "Safe scan only", "không xóa", "không sudo", "manual review", "Gate 16 pass condition"]) {
+  if (!docText.includes(s)) errors.push("doc missing: " + s);
+}
+
+const dictText = fs.existsSync(dict) ? fs.readFileSync(dict, "utf8") : "";
+for (const s of ["@vocab iMac_Junk_File_Scanner", "@vocab Safe_Scan_Only", "@vocab Manual_Review_Before_Delete"]) {
+  if (!dictText.includes(s)) errors.push("dict missing: " + s);
+}
+
+if (errors.length) {
+  console.error("imac junk file scanner validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("imac junk file scanner validation: pass");
+console.log("tool=" + tool);

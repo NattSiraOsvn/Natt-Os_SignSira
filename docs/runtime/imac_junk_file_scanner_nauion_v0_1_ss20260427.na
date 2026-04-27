@@ -1,0 +1,51 @@
+@nauion-native v1
+@state runtime-tool
+@name imac junk file scanner
+@scope imac cleanup safe-scan no-delete manual-review
+@runtime_scope local-tool
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@tool python3 tools/scan_imac_junk_files.py
+@session ss20260427
+@created_at natthome
+
+# iMac Junk File Scanner Nauion v0.1
+
+## 1. Mục tiêu
+
+Tạo công cụ quét file rác / file nặng trên iMac.
+
+Safe scan only.
+
+Không xóa.
+
+Không sudo.
+
+Không follow symlink mặc định.
+
+## 2. Cách chạy
+
+```bash
+python3 tools/scan_imac_junk_files.py --root "$HOME" --max-depth 4 --min-size-mb 1000 --limit 100
+3. Output
+outputs:
+  - docs/runtime/imac_junk_scan_latest.json
+  - docs/runtime/imac_junk_scan_latest.na
+4. Manual review
+
+Mọi kết quả chỉ là candidate.
+
+Phải manual review before delete.
+
+5. Gate 16 pass condition
+
+Gate 16 pass khi có đủ:
+
+tool scan iMac junk files
+Safe scan only
+không xóa
+không sudo
+report json
+report na
+manual review before delete
+dictionary vocabulary

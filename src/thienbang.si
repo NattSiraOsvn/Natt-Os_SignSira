@@ -3185,3 +3185,15 @@ PHIÊN SAU LOAD memory:
   3 sub-pattern (pure/argv/env) cover được mọi case heredoc Python
   Re-state cô đọng = minh mẫn cấp 2 cross-substrate
 ==END==
+
+@vocab iMac_Junk_File_Scanner
+nghĩa: Công cụ quét file rác/file nặng trên iMac theo chế độ safe scan only, không xóa tự động.
+trạng_thái: canonical
+
+@vocab Safe_Scan_Only
+nghĩa: Chế độ chỉ quét và xuất báo cáo; không delete, không sudo, không tác động dữ liệu gốc.
+trạng_thái: canonical
+
+@vocab Manual_Review_Before_Delete
+nghĩa: Mọi file rác/file nặng do tool phát hiện phải được người dùng review trước khi xóa.
+trạng_thái: canonical

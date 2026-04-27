@@ -1,0 +1,614 @@
+@nauion-report v1
+@name imac junk file scan
+@mode SAFE_SCAN_ONLY_NO_DELETE
+
+# iMac Junk File Scan Report
+
+- root: /Users/thien
+- generated_at: 2026-04-27T21:22:26
+- finding_count: 100
+- candidate_size_files_only: 18.55 MB
+- delete_performed: False
+- requires_manual_review: True
+
+## Findings
+
+### 1. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/archive/README.md.accident-20260401.bak
+- type: file
+- size: 7.03 MB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 2. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/audit/README.md.accident-20260401.bak
+- type: file
+- size: 7.03 MB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 3. /Users/thien/Library/Application Support/Google/GoogleUpdater/updater.log.old
+- type: file
+- size: 1.01 MB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 4. /Users/thien/Library/Application Support/Google/GoogleUpdater/updater_history.jsonl.old
+- type: file
+- size: 1.00 MB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 5. /Users/thien/Library/Application Support/Google/GoogleUpdater/updater.log
+- type: file
+- size: 1017.74 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 6. /Users/thien/Library/Application Support/ZaloData/cal/voip.log
+- type: file
+- size: 963.71 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 7. /Users/thien/Desktop/Hồ Sơ SHTT/nattsirawat_bkverr/nattos.sh.v2.bak
+- type: file
+- size: 57.22 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 8. /Users/thien/Library/Application Support/Claude/Session Storage/000030.log
+- type: file
+- size: 39.72 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 9. /Users/thien/Desktop/Robot/chatgpt-unarchive/node_modules/.DS_Store
+- type: file
+- size: 24.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 10. /Users/thien/Desktop/.DS_Store
+- type: file
+- size: 16.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 11. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/.DS_Store
+- type: file
+- size: 14.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 12. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/.DS_Store
+- type: file
+- size: 14.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 13. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/constitution-v4-deploy.log
+- type: file
+- size: 10.78 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 14. /Users/thien/.DS_Store
+- type: file
+- size: 10.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 15. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/src/.DS_Store
+- type: file
+- size: 10.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 16. /Users/thien/Desktop/Hồ Sơ SHTT/.DS_Store
+- type: file
+- size: 10.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 17. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/src/.DS_Store
+- type: file
+- size: 10.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 18. /Users/thien/Library/Application Support/ZaloData/call.log
+- type: file
+- size: 8.31 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 19. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 20. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/archive/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 21. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/src/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 22. /Users/thien/Desktop/Hồ Sơ SHTT/NAI/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 23. /Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 24. /Users/thien/Desktop/Robot/pornsencetest/My project/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 25. /Users/thien/Desktop/GỞI HT/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 26. /Users/thien/Library/.DS_Store
+- type: file
+- size: 8.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 27. /Users/thien/Library/Application Support/ZaloData/cal/scrshot.log
+- type: file
+- size: 6.83 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 28. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 29. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/natt-os/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 30. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/scripts/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 31. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/packages/event-contracts/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 32. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/src/cells/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 33. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/src/ui-prototypes/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 34. /Users/thien/Pictures/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 35. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/dist/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 36. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/scripts/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 37. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 38. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 39. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/natto-anc/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 40. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/roadloading/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 41. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/audit/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 42. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/NaUion-Server/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 43. /Users/thien/Desktop/Hồ Sơ SHTT/NAI/nattos-ui/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 44. /Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/nộp Mỹ/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 45. /Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/nộp Vietnam/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 46. /Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/nộp Châu âu/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 47. /Users/thien/Desktop/Robot/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 48. /Users/thien/Desktop/Robot/pornsencetest/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 49. /Users/thien/Desktop/Robot/chatgpt-unarchive/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 50. /Users/thien/Desktop/GỞI HT/ẢNh Đơn Gom Hàng/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 51. /Users/thien/Desktop/GỞI HT/NGÂN HÀNG/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 52. /Users/thien/Desktop/GỞI HT/Nhà Thầu/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 53. /Users/thien/Library/Translation/Hotfix/280-8/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 54. /Users/thien/Library/Mobile Documents/iCloud~com~pixite~assembly~projects/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 55. /Users/thien/Library/Mobile Documents/iCloud~com~pixite~assembly~projects/Documents/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 56. /Users/thien/Library/Mobile Documents/com~apple~mail/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 57. /Users/thien/Library/Mobile Documents/com~apple~TextEdit/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 58. /Users/thien/Library/Mobile Documents/com~apple~shoebox/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 59. /Users/thien/Library/Mobile Documents/iCloud~com~digitalmasterpieces~Graphite/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 60. /Users/thien/Library/Mobile Documents/com~apple~TextInput/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 61. /Users/thien/Library/Mobile Documents/iCloud~com~apple~iBooks/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 62. /Users/thien/Library/Mobile Documents/iCloud~au~com~savageinteractive~procreate~brushes/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 63. /Users/thien/Library/Mobile Documents/iCloud~au~com~savageinteractive~procreate~brushes/Documents/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 64. /Users/thien/Library/Mobile Documents/iCloud~CollaNote/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 65. /Users/thien/Library/Mobile Documents/iCloud~CollaNote/Documents/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 66. /Users/thien/Library/Mobile Documents/com~apple~Pages/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 67. /Users/thien/Library/Mobile Documents/com~apple~Pages/Documents/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 68. /Users/thien/Library/Mobile Documents/com~apple~Numbers/.DS_Store
+- type: file
+- size: 6.00 KB
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 69. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/server.log
+- type: file
+- size: 5.34 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 70. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/nattos-server/server.log
+- type: file
+- size: 5.34 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 71. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/restructure.log
+- type: file
+- size: 4.32 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 72. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/audit_2026-02-23_221546.log
+- type: file
+- size: 3.08 KB
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 73. /Users/thien/Library/Application Support/Claude/Session Storage/LOG.old
+- type: file
+- size: 1005.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 74. /Users/thien/Library/Application Support/ZaloData/startup.log
+- type: file
+- size: 905.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 75. /Users/thien/Library/Application Support/ZaloData/cal/migrate-log.log
+- type: file
+- size: 683.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 76. /Users/thien/Library/Application Support/UnityHub/Session Storage/000003.log
+- type: file
+- size: 682.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 77. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/logs/natt_domain_gateway_80.log
+- type: file
+- size: 617.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 78. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/after_copy_fix.log
+- type: file
+- size: 565.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 79. /Users/thien/Library/Application Support/ZaloData/Session Storage/000003.log
+- type: file
+- size: 555.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 80. /Users/thien/Library/Application Support/UnityHub/Session Storage/LOG.old
+- type: file
+- size: 307.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 81. /Users/thien/Library/Application Support/ZaloData/Session Storage/LOG.old
+- type: file
+- size: 301.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 82. /Users/thien/Library/Application Support/Docker Desktop/Session Storage/000003.log
+- type: file
+- size: 213.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 83. /Users/thien/Library/Application Support/Claude/shared_proto_db/000003.log
+- type: file
+- size: 148.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 84. /Users/thien/Library/Application Support/UnityHub/shared_proto_db/000003.log
+- type: file
+- size: 76.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 85. /Users/thien/.cache
+- type: dir
+- size: unknown
+- reasons: junk_dir_name
+- action: review_before_delete
+
+### 86. /Users/thien/Music/.localized
+- type: file
+- size: 0.00 B
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 87. /Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/node_modules
+- type: dir
+- size: unknown
+- reasons: junk_dir_name, node_modules_heavy
+- action: review_before_delete
+
+### 88. /Users/thien/Pictures/.localized
+- type: file
+- size: 0.00 B
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 89. /Users/thien/Desktop/.localized
+- type: file
+- size: 0.00 B
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 90. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/dist
+- type: dir
+- size: unknown
+- reasons: junk_dir_name
+- action: review_before_delete
+
+### 91. /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/logs/audit_ui.log
+- type: file
+- size: 0.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 92. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/dist
+- type: dir
+- size: unknown
+- reasons: junk_dir_name
+- action: review_before_delete
+
+### 93. /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/node_modules
+- type: dir
+- size: unknown
+- reasons: junk_dir_name, node_modules_heavy
+- action: review_before_delete
+
+### 94. /Users/thien/Desktop/Robot/chatgpt-unarchive/node_modules
+- type: dir
+- size: unknown
+- reasons: junk_dir_name, node_modules_heavy
+- action: review_before_delete
+
+### 95. /Users/thien/Library/.localized
+- type: file
+- size: 0.00 B
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 96. /Users/thien/Library/Application Support/CallHistoryTransactions/transactions.log
+- type: file
+- size: 0.00 B
+- reasons: junk_suffix
+- action: review_before_delete
+
+### 97. /Users/thien/Library/Unity/cache
+- type: dir
+- size: unknown
+- reasons: junk_dir_name
+- action: review_before_delete
+
+### 98. /Users/thien/Library/Compositions/.localized
+- type: file
+- size: 0.00 B
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 99. /Users/thien/Library/Favorites/.localized
+- type: file
+- size: 0.00 B
+- reasons: junk_file_name
+- action: review_before_delete
+
+### 100. /Users/thien/Library/Biome/tmp
+- type: dir
+- size: unknown
+- reasons: junk_dir_name
+- action: review_before_delete

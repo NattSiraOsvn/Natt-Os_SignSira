@@ -1,0 +1,1019 @@
+{
+  "tool": "scan_imac_junk_files.py",
+  "mode": "SAFE_SCAN_ONLY_NO_DELETE",
+  "root": "/Users/thien",
+  "generated_at": "2026-04-27T21:22:26",
+  "duration_seconds": 1.652,
+  "visited_dirs": 3469,
+  "finding_count": 100,
+  "candidate_size_bytes_files_only": 19451896,
+  "candidate_size_human_files_only": "18.55 MB",
+  "delete_performed": false,
+  "sudo_required": false,
+  "requires_manual_review": true,
+  "findings": [
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/archive/README.md.accident-20260401.bak",
+      "type": "file",
+      "size_bytes": 7368997,
+      "size_human": "7.03 MB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/audit/README.md.accident-20260401.bak",
+      "type": "file",
+      "size_bytes": 7368997,
+      "size_human": "7.03 MB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Google/GoogleUpdater/updater.log.old",
+      "type": "file",
+      "size_bytes": 1054456,
+      "size_human": "1.01 MB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Google/GoogleUpdater/updater_history.jsonl.old",
+      "type": "file",
+      "size_bytes": 1051822,
+      "size_human": "1.00 MB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Google/GoogleUpdater/updater.log",
+      "type": "file",
+      "size_bytes": 1042161,
+      "size_human": "1017.74 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/cal/voip.log",
+      "type": "file",
+      "size_bytes": 986834,
+      "size_human": "963.71 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/nattsirawat_bkverr/nattos.sh.v2.bak",
+      "type": "file",
+      "size_bytes": 58593,
+      "size_human": "57.22 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Claude/Session Storage/000030.log",
+      "type": "file",
+      "size_bytes": 40676,
+      "size_human": "39.72 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Robot/chatgpt-unarchive/node_modules/.DS_Store",
+      "type": "file",
+      "size_bytes": 24580,
+      "size_human": "24.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/.DS_Store",
+      "type": "file",
+      "size_bytes": 16388,
+      "size_human": "16.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/.DS_Store",
+      "type": "file",
+      "size_bytes": 14340,
+      "size_human": "14.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/.DS_Store",
+      "type": "file",
+      "size_bytes": 14340,
+      "size_human": "14.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/constitution-v4-deploy.log",
+      "type": "file",
+      "size_bytes": 11035,
+      "size_human": "10.78 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/.DS_Store",
+      "type": "file",
+      "size_bytes": 10244,
+      "size_human": "10.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/src/.DS_Store",
+      "type": "file",
+      "size_bytes": 10244,
+      "size_human": "10.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/.DS_Store",
+      "type": "file",
+      "size_bytes": 10244,
+      "size_human": "10.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/src/.DS_Store",
+      "type": "file",
+      "size_bytes": 10244,
+      "size_human": "10.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/call.log",
+      "type": "file",
+      "size_bytes": 8512,
+      "size_human": "8.31 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/archive/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/src/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/NAI/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Robot/pornsencetest/My project/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/GỞI HT/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/.DS_Store",
+      "type": "file",
+      "size_bytes": 8196,
+      "size_human": "8.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/cal/scrshot.log",
+      "type": "file",
+      "size_bytes": 6991,
+      "size_human": "6.83 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/natt-os/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/scripts/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/packages/event-contracts/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/src/cells/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/src/ui-prototypes/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Pictures/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/dist/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/scripts/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/natto-anc/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/roadloading/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/audit/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/NaUion-Server/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/NAI/nattos-ui/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/nộp Mỹ/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/nộp Vietnam/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/checklist_shtt/nộp Châu âu/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Robot/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Robot/pornsencetest/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Robot/chatgpt-unarchive/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/GỞI HT/ẢNh Đơn Gom Hàng/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/GỞI HT/NGÂN HÀNG/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/GỞI HT/Nhà Thầu/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Translation/Hotfix/280-8/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~com~pixite~assembly~projects/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~com~pixite~assembly~projects/Documents/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~mail/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~TextEdit/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~shoebox/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~com~digitalmasterpieces~Graphite/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~TextInput/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~com~apple~iBooks/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~au~com~savageinteractive~procreate~brushes/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~au~com~savageinteractive~procreate~brushes/Documents/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~CollaNote/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/iCloud~CollaNote/Documents/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~Pages/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~Pages/Documents/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Mobile Documents/com~apple~Numbers/.DS_Store",
+      "type": "file",
+      "size_bytes": 6148,
+      "size_human": "6.00 KB",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/server.log",
+      "type": "file",
+      "size_bytes": 5464,
+      "size_human": "5.34 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/nattos-server/server.log",
+      "type": "file",
+      "size_bytes": 5464,
+      "size_human": "5.34 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/restructure.log",
+      "type": "file",
+      "size_bytes": 4423,
+      "size_human": "4.32 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/audit_2026-02-23_221546.log",
+      "type": "file",
+      "size_bytes": 3154,
+      "size_human": "3.08 KB",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Claude/Session Storage/LOG.old",
+      "type": "file",
+      "size_bytes": 1005,
+      "size_human": "1005.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/startup.log",
+      "type": "file",
+      "size_bytes": 905,
+      "size_human": "905.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/cal/migrate-log.log",
+      "type": "file",
+      "size_bytes": 683,
+      "size_human": "683.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/UnityHub/Session Storage/000003.log",
+      "type": "file",
+      "size_bytes": 682,
+      "size_human": "682.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/logs/natt_domain_gateway_80.log",
+      "type": "file",
+      "size_bytes": 617,
+      "size_human": "617.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/audit/reports/after_copy_fix.log",
+      "type": "file",
+      "size_bytes": 565,
+      "size_human": "565.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/Session Storage/000003.log",
+      "type": "file",
+      "size_bytes": 555,
+      "size_human": "555.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/UnityHub/Session Storage/LOG.old",
+      "type": "file",
+      "size_bytes": 307,
+      "size_human": "307.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/ZaloData/Session Storage/LOG.old",
+      "type": "file",
+      "size_bytes": 301,
+      "size_human": "301.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Docker Desktop/Session Storage/000003.log",
+      "type": "file",
+      "size_bytes": 213,
+      "size_human": "213.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/Claude/shared_proto_db/000003.log",
+      "type": "file",
+      "size_bytes": 148,
+      "size_human": "148.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/UnityHub/shared_proto_db/000003.log",
+      "type": "file",
+      "size_bytes": 76,
+      "size_human": "76.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/.cache",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Music/.localized",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/hồ sơ SHTTbk/bknatt-os_ver2goldmaster/node_modules",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name",
+        "node_modules_heavy"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Pictures/.localized",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/.localized",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/dist",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/logs/audit_ui.log",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/dist",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster/node_modules",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name",
+        "node_modules_heavy"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Desktop/Robot/chatgpt-unarchive/node_modules",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name",
+        "node_modules_heavy"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/.localized",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Application Support/CallHistoryTransactions/transactions.log",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_suffix"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Unity/cache",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Compositions/.localized",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Favorites/.localized",
+      "type": "file",
+      "size_bytes": 0,
+      "size_human": "0.00 B",
+      "reasons": [
+        "junk_file_name"
+      ],
+      "action": "review_before_delete"
+    },
+    {
+      "path": "/Users/thien/Library/Biome/tmp",
+      "type": "dir",
+      "size_bytes": null,
+      "size_human": "unknown",
+      "reasons": [
+        "junk_dir_name"
+      ],
+      "action": "review_before_delete"
+    }
+  ]
+}
