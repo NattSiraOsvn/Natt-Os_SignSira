@@ -1,0 +1,185 @@
+<!--
+  RENDER LANGUAGE PILOT — MULTI-SCREEN DEMO (3 screens with navigation + interaction)
+  marker: render_pilot
+  domain: Π_medium
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — Multi-Screen Demo</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --text: #b08060; --accent: #d0a0d0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg); font-family: system-ui, -apple-system, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh; padding: 20px;
+  }
+  .nav-bar {
+    display: flex; gap: 10px; margin-bottom: 20px;
+    padding: 10px 20px; background: rgba(255,255,255,0.8);
+    border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .nav-btn {
+    padding: 8px 16px; border: 1px solid var(--accent);
+    background: white; color: var(--text); border-radius: 6px;
+    cursor: pointer; font-size: 14px; transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--accent); color: white; }
+  .nav-btn.back { border-color: #c0c0c0; }
+  .screen-container {
+    width: 800px; height: 500px; position: relative;
+    border-radius: 12px; background: rgba(255,255,255,0.5);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05); overflow: hidden;
+  }
+  .screen {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 20px;
+  }
+  .screen-icon { font-size: 64px; }
+  .screen-title { font-size: 24px; color: var(--text); letter-spacing: 2px; }
+  .screen-desc { font-size: 14px; color: #c0a080; text-align: center; max-width: 400px; }
+  .state-btn {
+    padding: 12px 24px; border: 1px solid var(--accent); background: white;
+    color: var(--text); border-radius: 8px; cursor: pointer; font-size: 16px;
+    transition: all 0.3s; min-width: 200px;
+  }
+  .state-btn:hover { background: var(--accent); color: white; transform: scale(1.05); }
+  .state-btn:active { transform: scale(0.95); }
+  .log {
+    margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.8);
+    border-radius: 8px; font-size: 12px; color: var(--text);
+    width: 800px; max-height: 150px; overflow-y: auto;
+  }
+  .log-entry { margin: 5px 0; font-family: monospace; }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <button id="nav-home" class="nav-btn">🏠 Nhà</button>
+  <button id="nav-neo" class="nav-btn">📌 Neo</button>
+  <button id="nav-tha" class="nav-btn">🤲 Tha</button>
+  <button id="nav-back" class="nav-btn back">← Quay lại</button>
+</div>
+
+<div class="screen-container" id="app"></div>
+
+<div class="log" id="log">
+  <div class="log-entry">⏳ Đợi tương tác...</div>
+</div>
+
+<script type="module">
+  import { NavigationEngine } from '../../src/cells/render-stack-cell/domain/navigation.engine.ts';
+  import { InteractionEngine } from '../../src/cells/render-stack-cell/domain/interaction.engine.ts';
+  
+  const container = document.getElementById('app');
+  const logContainer = document.getElementById('log');
+  const nav = new NavigationEngine(container);
+  const interaction = new InteractionEngine(container);
+  
+  // Helper: tạo màn hình
+  function createScreen(id, icon, title, desc, actions) {
+    const el = document.createElement('div');
+    el.className = 'screen';
+    el.innerHTML = `
+      <div class="screen-icon">${icon}</div>
+      <div class="screen-title">${title}</div>
+      <div class="screen-desc">${desc}</div>
+      ${actions.map((a, i) => `<button id="${id}-btn-${i}" class="state-btn">${a.label}</button>`).join('')}
+    `;
+    
+    // Đăng ký interaction cho từng button
+    actions.forEach((a, i) => {
+      interaction.map({
+        elementId: `${id}-btn-${i}`,
+        interaction: 'click',
+        targetState: a.targetState,
+        handler: () => addLog(`${icon} ${title} → ${a.targetState}: ${a.message}`)
+      });
+    });
+    
+    return el;
+  }
+  
+  // Tạo 3 màn hình
+  const screenHome = createScreen('home', '🏠', 'nhà', 
+    'Neo gốc — nơi mọi ký ức khác quy chiếu về. Áp lực thấp, không phán xét.',
+    [
+      { label: '🌿 Thở sâu', targetState: 'nhà', message: 'về trung tâm, tĩnh tại' },
+      { label: '📌 Đi tới Neo', targetState: 'neo', message: 'chuyển sang điểm tựa' }
+    ]
+  );
+  
+  const screenNeo = createScreen('neo', '📌', 'neo',
+    'Điểm tựa ký ức — đã được xét và chốt. Vị trí ổn định, không di chuyển.',
+    [
+      { label: '🔒 Giữ vững', targetState: 'neo', message: 'giữ nguyên vị trí, không lung lay' },
+      { label: '🏠 Về Nhà', targetState: 'nhà', message: 'trở về neo gốc' }
+    ]
+  );
+  
+  const screenTha = createScreen('tha', '🤲', 'tha',
+    'Vị tha có biên — bao lấy nhau, kín nhưng không chật. Giữ nhưng không nhốt.',
+    [
+      { label: '💫 Thở cùng', targetState: 'tha', message: 'giãn nở theo chu kỳ, mềm mại' },
+      { label: '🏠 Về Nhà', targetState: 'nhà', message: 'trở về neo gốc' }
+    ]
+  );
+  
+  // Đăng ký màn hình
+  nav.register({ id: 'screen-home', title: 'Nhà', layout: screenHome });
+  nav.register({ id: 'screen-neo', title: 'Neo', layout: screenNeo });
+  nav.register({ id: 'screen-tha', title: 'Tha', layout: screenTha });
+  
+  // Bắt đầu ở home
+  nav.navigate('screen-home');
+  
+  // Navigation bar handlers
+  document.getElementById('nav-home').addEventListener('click', () => nav.navigate('screen-home'));
+  document.getElementById('nav-neo').addEventListener('click', () => nav.navigate('screen-neo'));
+  document.getElementById('nav-tha').addEventListener('click', () => nav.navigate('screen-tha'));
+  document.getElementById('nav-back').addEventListener('click', () => nav.back());
+  
+  // Lắng nghe interaction events
+  container.addEventListener('natt-interaction', (e) => {
+    const { elementId, interaction: type, targetState } = e.detail;
+    addLog(`📡 Event: ${elementId} → ${type} → state: ${targetState}`);
+  });
+  
+  // Log helper
+  function addLog(message) {
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    logContainer.appendChild(entry);
+    logContainer.scrollTop = logContainer.scrollHeight;
+    while (logContainer.children.length > 50) {
+      logContainer.removeChild(logContainer.firstChild);
+    }
+  }
+  
+  const renderPilotReadout = {
+    screens: 3,
+    engines: ['navigation', 'interaction'],
+    marker: 'render_pilot',
+    domain: 'Π_medium',
+    scope: 'pilot-only',
+    framework: 'none',
+    production: false
+  };
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
+  
+  addLog('✅ Multi-screen pilot sẵn sàng — 3 màn hình, 6 tương tác');
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+@state runtime-policy
+@name public dns plan natt-os.com and sira.zone
+@scope public-domain dns mail web edge
+@runtime_scope excluded
+@owner Thiên
+@session ss20260427
+@created_at 2026-04-27T12:58:40
+
+# Public DNS plan — natt-os.com + sira.zone — ss20260427
+
+## 1. Boundary
+
+Plan này chỉ xử lý public DNS, mail readiness, web/edge naming.
+
+Không xử lý runtime, đọc-dịch, migration, contract, compiler, adapter hoặc cell execution.
+
+Không đụng file `src/contracts/event-bus-test.sira`.
+
+## 2. Selected public domains
+
+Strong candidates đã shortlist:
+
+- `natt-os.com`
+- `sira.zone`
+
+Quyền sở hữu domain cần anh xác nhận trong registrar/DNS account trước khi khai thật.
+
+## 3. Recommended role split
+
+### 3.1. `natt-os.com`
+
+Dùng làm public root chính:
+
+- website chính
+- mail public chính
+- docs public
+- status public
+- auth public nếu cần giữ chung brand
+
+### 3.2. `sira.zone`
+
+Dùng làm service/zone phụ:
+
+- SiraSign
+- gateway label
+- DNS/service status
+- public edge service label
+- không ưu tiên làm mail chính nếu `natt-os.com` đang sở hữu
+
+## 4. DNS records — `natt-os.com`
+
+### Web
+
+- `A natt-os.com -> <PUBLIC_IP_OR_PROXY>`
+- `CNAME www.natt-os.com -> natt-os.com`
+- `CNAME docs.natt-os.com -> <DOCS_HOST_OR_PROXY>`
+- `CNAME status.natt-os.com -> <STATUS_HOST_OR_PROXY>`
+
+### Mail provider mode
+
+- `MX natt-os.com -> <PROVIDER_MX>`
+- `TXT natt-os.com -> v=spf1 include:<PROVIDER_SPF> -all`
+- `TXT default._domainkey.natt-os.com -> <DKIM_PUBLIC_KEY>`
+- `TXT _dmarc.natt-os.com -> v=DMARC1; p=quarantine; rua=mailto:dmarc@natt-os.com`
+
+### Self-host mail mode
+
+Chỉ dùng nếu sau này có MTA local và Bối/Thiên cùng chốt gate:
+
+- `A mail.natt-os.com -> <PUBLIC_IP>`
+- `MX natt-os.com -> mail.natt-os.com`
+- `TXT natt-os.com -> v=spf1 mx ip4:<PUBLIC_IP> -all`
+- `TXT default._domainkey.natt-os.com -> <DKIM_PUBLIC_KEY>`
+- `TXT _dmarc.natt-os.com -> v=DMARC1; p=quarantine; rua=mailto:dmarc@natt-os.com`
+- `PTR <PUBLIC_IP> -> mail.natt-os.com`
+
+## 5. DNS records — `sira.zone`
+
+### Service labels
+
+- `A sira.zone -> <PUBLIC_IP_OR_PROXY>`
+- `CNAME gate.sira.zone -> sira.zone`
+- `CNAME sign.sira.zone -> sira.zone`
+- `CNAME auth.sira.zone -> sira.zone`
+- `CNAME dns.sira.zone -> sira.zone`
+- `CNAME status.sira.zone -> sira.zone`
+
+### Policy
+
+`sira.zone` không thay thế `.sira` nội bộ.
+
+`.sira` vẫn là private namespace.
+
+`sira.zone` là public service zone nếu anh xác nhận sở hữu domain.
+
+## 6. Claim boundary
+
+Được claim:
+
+- đã có shortlist public domain: `natt-os.com`, `sira.zone`
+- đã có DNS plan public
+- đã có mail DNS readiness checklist
+
+Chưa được claim:
+
+- domain ownership confirmed
+- DNS records deployed
+- MX/SPF/DKIM/DMARC pass
+- mail provider production
+- self-host mail production
+- public runtime exposure
+
+## 7. Next action
+
+Anh xác nhận domain nào đang nằm trong tài khoản quản trị DNS/registrar.
+
+Sau đó Thiên chạy scan thật với:
+
+- `MAIL_DOMAIN=natt-os.com`
+- hoặc `MAIL_DOMAIN=sira.zone`
+
+và ghi evidence mới.

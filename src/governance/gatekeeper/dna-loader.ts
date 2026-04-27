@@ -1,13 +1,13 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * NATT-OS DNA Loader v1.0
+ * natt-os DNA Loader v1.0
  * CAN-01 — Typed constants từ Hiến Pháp v5.0
  *
  * KHÔNG parse markdown. KHÔNG đọc file runtime. KHÔNG dynamic.
  * DNA = compile-time constants — bất biến như Hiến Pháp.
  *
- * Nguồn: src/governance/HIEN-PHAP-NATT-OS-v5.0.anc
+ * Nguồn: src/governance/HIEN-PHAP-natt-os-v5.0.anc
  */
 
 import { TriggerType, ResponseType } from './trigger-types';
@@ -73,7 +73,7 @@ export const DNA_VALID_TRIGGERS = new Set<TriggerType>([
   TriggerType.SC_FLOW_SPIKE,
   // Finance
   TriggerType.CASHFLOW_GAP,
-  TriggerType.INVOICE_MISSING,
+  TriggerType.INVOICE_missing,
   TriggerType.BCTC_MISMATCH,
   TriggerType.TAX_EXPOSURE,
   // Security
@@ -89,7 +89,7 @@ export const DNA_VALID_TRIGGERS = new Set<TriggerType>([
 
 // ── RESPONSES HỢP LỆ — từ ResponseType enum ───────────────
 export const DNA_VALID_RESPONSES = new Set<ResponseType>([
-  ResponseType.EMIT_WARNING,
+  ResponseType.EMIT_warnING,
   ResponseType.EMIT_RISK,
   ResponseType.EMIT_CRITICAL,
   ResponseType.FREEZE_CELL,

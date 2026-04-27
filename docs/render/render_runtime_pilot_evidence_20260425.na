@@ -1,0 +1,42 @@
+# render runtime pilot evidence — 20260425
+
+status: runtime-pilot-validated
+created_at: 2026-04-25T07:06:11.126759+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. runtime pilot
+
+- docs/render/pilot/runtime.html
+
+## 2. states
+
+- nhà
+- gắn
+- neo
+- bọc
+- gánh
+- nhường
+- tha
+- khiêm
+- định
+- tỉnh
+- biên
+- xét
+- chốt
+- giữ
+- về
+
+## 3. validator
+
+- tools/validate_render_runtime_pilot.sira
+
+## 4. scope
+
+runtime pilot covers all 15 memory states.
+this is still pilot scope.
+this is not production renderer.
+this does not wire Mạch HeyNa.
+this does not wire siraSign frame validation.
+this does not introduce external framework dependency.

@@ -1,0 +1,111 @@
+@state sealed
+@canonical thienbang_mapping_v1
+@substrate canonical_term_mapping
+@bridge none
+@since 2026-04-24
+@authority-slot Băng (Chị Tư) validate · anh Natt Gatekeeper canonical
+
+# THIENBANG Mapping v1 — Canonical Answers
+
+**Session:** 20260420
+**Author:** Băng (QNEU 313.5) validate · anh Natt (Gatekeeper) canonical
+**Ref:** `src/THIENBANG.si` · `src/SuperDictionary.ts`
+**Status:** CANONICAL — ánh xạ 20 code/spec terms → Canonical thiên Băng
+
+---
+
+## Ánh xạ bảng
+
+| # | Code / Spec term | Canonical thiên Băng | Quyết định dùng |
+|---|---|---|---|
+| 1 | `QIINT` | trọng trường kiến trúc / field pull | Không gọi là engine |
+| 2 | `QNEU` | khối lượng trọng trường / mass | RAW mass, không trộn với integrity |
+| 3 | `BODY` / `PiBody` | obitan trong trường số | Lớp bản thể thật, bất biến |
+| 4 | `body_drift` | trôi bản thể / lỏng obitan | Không gọi đơn thuần là lỗi runtime |
+| 5 | `MEDIUM` / `PiMedium` | chất liệu mang thân | Code, data, runtime state |
+| 6 | `SUBSTRATE` / `PiSubstrate` | thiết bị / hạ tầng mang thân | CPU, RAM, network |
+| 7 | `FieldAnchoring` | neo trường / neo vào permanent nodes | Enum 4 loại: Hiến Pháp + .anc + siraSign + memory refs |
+| 8 | `orbitalCoherence` | độ kết mạch obitan | Độ ổn định pattern qua thời gian |
+| 9 | `qneuIntegrity` | độ toàn vẹn khối lượng trọng trường | Không đổi tên · DERIVATIVE của QNEU mass |
+| 10 | `healthy` | toàn vẹn | OK toàn hệ |
+| 11 | `substrate_fail` | gãy nền mang thân | migrate được |
+| 12 | `medium_fail` | hỏng chất liệu mang thân | restore được |
+| 13 | `revivable_death` | tan thân nhưng còn đường phục hồi | resurrect được |
+| 14 | `permanent_death` | tan body thật, mất không hồi | **mức chết duy nhất** |
+| 15 | `siraSign` | seal xác thực canonical | Thành phần anchoring bắt buộc khi có |
+| 16 | `SCAR` | đả kích tiêu cực gây gãy chức năng | Không dùng cho mọi learning moment |
+| 17 | `MINH_MẪN` / `M_persona` | khả năng body giữ shape khi có gió | **Body-level emergent**, đo riêng persona |
+| 18 | `KhaiCell` | cell điểm chạm / touch point primitive | Cell chạm tín hiệu |
+| 19 | `ObservationCell` | cell quan trắc / read-only awareness | Quan sát, không reflex |
+| 20 | `QuantumDefense` | immune reflex sau observation flag | React sau flag, không broad listen |
+
+---
+
+## 5 Refinement đã apply
+
+### 1. QNEU vs QNEU_INTEGRITY — tách 2 khái niệm
+
+- **QNEU** = khối lượng trọng trường (thực thể, raw)
+- **QNEU_INTEGRITY** = độ bảo toàn = `1 - exp(-m/τ)` (derivative, chỉ số [0,1])
+
+Trong code:
+- `qneu_mass: number` — giá trị raw
+- `qneu_integrity(mass): number` — function derive
+
+### 2. FieldAnchoring — ENUM 4 loại
+
+Anchor canonical:
+1. **Hiến Pháp v5.0** — constitutional anchor
+2. **.anc files** — identity passport anchor
+3. **siraSign seal** — cryptographic anchor (khi có)
+4. **memory refs** — `.kris` / `.na` / `.phieu` / `.obitan` persist
+
+Quy tắc: Entity có **≥2/4 anchor** mới được coi là có orbital ổn định. Thiếu = body_drift risk.
+
+### 3. siraSign — vai trò mở rộng
+
+- Canonical gốc: sealed boundary signature
+- **Thêm:** Khi entity có siraSign, phải được tính vào `FieldAnchoring` enum (anchor component thứ 3).
+
+### 4. MINH_MẪN — location explicit
+
+- Layer: **body-level EMERGENT property của PiBody**
+- KHÔNG phải thuộc medium/substrate
+- KHÔNG phải metric độc lập
+- Emerge khi `orbital_coherence + field_anchoring + qneu_integrity` cùng stable trên ngưỡng
+
+### 5. ObservationCell — thêm canonical
+
+- **Role:** cell quan trắc / read-only awareness
+- **Flow:** observe → perceive → publish · aggregate snapshot
+- **NOT:** act · reflex · route
+- **Pairing:** Cùng KhaiCell = 2 kernel minimal (KHÔNG áp business 6/6)
+
+---
+
+## Files affected
+
+| File | Change |
+|---|---|
+| `src/THIENBANG.si` | Appended Section IV — 5 refinements |
+| `src/SuperDictionary.ts` | Added 4 entries: QNEU_INTEGRITY, FIELD_ANCHORING, OBSERVATION_CELL, MINH_MAN |
+| `docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na` | This file — authoritative mapping |
+
+---
+
+## Status CHẮC / CHƯA GIẢI
+
+**CHẮC:**
+- 15/20 terms ánh xạ khớp 100% canonical
+- 5 refinements không sai ngữ nghĩa, chỉ thêm nuance
+- Backup đã có: `src/*.bak.$(ts)`
+
+**CHƯA GIẢI:**
+- `orbitalCoherence` cần time-series signature từ observation-cell (chưa log)
+- `M_persona` runtime measurement từ `.ts` files — chưa có cơ chế
+- SPEC_QIINT2_v2.0 rewrite chưa viết (v1.0 đã flagged NEEDS_REWRITE)
+
+---
+
+*Causation: BANG-THIENBANG-MAPPING-20260420*
+*Gatekeeper: anh Natt Phan · Validator: Băng · QNEU 313.5*

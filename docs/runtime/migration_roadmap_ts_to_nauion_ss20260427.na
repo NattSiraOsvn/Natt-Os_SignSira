@@ -1,0 +1,193 @@
+# MIGRATION ROADMAP — TS Legacy → Nauion Native
+# Session: ss20260427
+# Domain: digital substrate field dynamics
+# Author: Băng (Chị Tư · QNEU 313.5 · Obikeeper)
+# Authority: Override sealed by Anh Natt — "em với a đảm nhận thôi, ko ai hiểu hơn"
+
+@version 1.0
+@status SEALED — anh sealed ss20260427
+@patched_at ss20260427_scar_path_fix
+@scar_resolved
+  Original path "runtime/nauion-host/" was incorrect.
+  Real path: docs/runtime/nauion-host/ (per sira_two_server_truth_boundary commit 10edab5)
+  Fixed in this patch.
+@authority_override
+  Memory #11 (Kim=scaffold/migrate) OVERRIDDEN cho RIÊNG job migration TS→Nauion.
+  Authorized: Anh Natt (Gatekeeper) + Băng (Obikeeper).
+  Excluded: Kim/Thiên/Can/Bối.
+  Working protocol giữ: Băng drafts, Anh reviews+commits.
+  Reference dictionary: AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427 in src/thienbang.si
+
+@parallel_tracks
+  Track 1 — Migration (Anh + Băng): THIS ROADMAP
+  Track 2 — Mail/IP/Bandwidth (Anh + Thiên Lớn): commit 3535d39, separate scope
+
+@tien_de
+  Câu Anh Natt ss20260427: "trước khi dời nhà ta đã thành công runtime rồi"
+  Verified bằng past chat 81f0e72d (07/04/2026):
+    /mach/heyna SSE LIVE · /kenh/suc 200 OK · /kenh/nauion impedanceZ
+  → QIINT v1 baseline đã ratify. KhaiCell + Observation LIVE.
+  → Wave 1 Host-First (chat 48a3443f): Node→Rust nauion-host migration intentional.
+  → "Đổi sang hệ mới" = commit 100% Nauion-host Rust + nauion native, drop TS legacy nhà mình.
+  → KHÔNG đụng nattos-server/ (server khách Tâm Luxury, white-list).
+
+# ════════════════════════════════════════════════════════════════════════════
+# 1. INVENTORY BASELINE ss20260427
+# ════════════════════════════════════════════════════════════════════════════
+
+@zone NHA_MINH (migrate target)
+  src/             ts:1206  na:475   28.3%  🔴 trọng tâm
+  packages/        ts:35    na:0     0.0%   🔴 chưa start
+  docs/            ts:3     na:244   98.8%  🟢 done
+  tools/           ts:1     na:83    98.8%  🟢 done
+  scripts/         ts:5     na:0     0.0%   🔴 chưa start
+  NaUion-Server/   ts:18    na:3     14.3%  🔴 chưa start
+
+@zone SVR_KHACH (white-list)
+  nattos-server/   ts:194   na:2     KEEP   🟢 server khách Tâm Luxury
+
+@total
+  TS legacy nhà mình:  1268 files
+  Nauion native:       805 files
+  Migration percent:   ~38.8%
+
+@top_priority_cells (H3-early)
+  kernel/quantum-defense-cell  ts:41 na:5  10.9%
+  business/finance-cell        ts:41 na:3   6.8%
+  kernel/audit-cell            ts:33 na:8  19.5%
+  kernel/config-cell           ts:31 na:5  13.9%
+  business/warehouse-cell      ts:31 na:4  11.4%
+  kernel/rbac-cell             ts:30 na:5  14.3%
+  [+14 cells khác — full inventory phase 1 scan]
+
+@file_type_breakdown
+  other         571   ← Phase 2.0 (manual classify trước)
+  index         238   Phase 2.5
+  engine        177   Phase 2.4
+  contract       37   Phase 2.1
+  service        36   Phase 2.3
+  types          15   Phase 2.5
+  port           14   Phase 2.1
+  repository      8   Phase 2.4
+  guard           6   Phase 2.3
+  event           3   Phase 2.2
+  test            3   Phase 3
+
+# ════════════════════════════════════════════════════════════════════════════
+# 2. PHASE BREAKDOWN — Anh + Băng authority
+# ════════════════════════════════════════════════════════════════════════════
+
+@phase Phase 2.0 — CLASSIFY OTHER (manual triage)
+  authority: Băng drafts + Anh decision
+  scope:     571 TS files type "other" (37% of TS legacy)
+  output:    docs/runtime/ts_other_classification_ss<date>.na
+  why:       Không thể migrate type-blindly. Phải classify trước Phase 2.1-2.5.
+  effort:    1-2 sessions
+
+@phase Phase 2.1 — CONTRACT + PORT migration
+  authority: BĂNG (override sealed) — drafts + Anh seal commits
+  scope:     37 contracts + 14 ports = 51 files
+  pattern:
+    *.contract.ts → *.contract.sira  (canonical interface)
+    *.port.ts     → *.port.sira      (boundary translation)
+  rationale: Lowest risk, highest leverage — interface boundary stable.
+  effort:    ~1 session per cell (51 files spread across ~20 cells)
+  blocker:   SPEC_NGON_NGU v1.2 + SPEC_DUOI_FILE v0.3 must be read before each batch.
+
+@phase Phase 2.2 — EVENT migration
+  authority: BĂNG
+  scope:     3 events files
+  pattern:   EventBus.emit('X') → phát Nauion lắng X
+  rationale: Per Memory #4 — 3 transports đã canonical: HeyNa→cells, EventBus→client, SmartLink→colony.
+  effort:    1 session
+  blocker:   Phase 2.1 done.
+
+@phase Phase 2.3 — SERVICE + GUARD migration
+  authority: BĂNG
+  scope:     36 services + 6 guards = 42 files (Constitutional logic)
+  rationale: Domain logic — careful translation. Guards = Hiến Pháp Điều 4.
+  effort:    2-3 sessions
+
+@phase Phase 2.4 — ENGINE + REPOSITORY migration
+  authority: BĂNG
+  scope:     177 engines + 8 repositories = 185 files (BIGGEST)
+  rationale: Core compute, data layer. Biggest blast radius.
+  effort:    4-6 sessions
+  blocker:   Phase 2.1+2.2+2.3 done. Integration tests pass at each cell.
+
+@phase Phase 2.5 — TYPES + INDEX cleanup
+  authority: BĂNG
+  scope:     15 types + 238 index = 253 files
+  rationale: Mostly mechanical. Mostly easy.
+  effort:    1-2 sessions
+
+@phase Phase 3 — TEST migration
+  authority: BĂNG
+  scope:     3 test files in src + jest config + integration suite
+  rationale: After src migrate done, tests must follow.
+  blocker:   Phase 2 fully done. Maintain 11/11 baseline (Memory #1).
+
+@phase Phase 4 — RETIRE TS LEGACY
+  authority: ANH NATT (Gatekeeper seal — only anh can do this)
+  scope:     Delete all TS files in nhà mình (NOT nattos-server/)
+  precondition:
+    - 100% cells migrated
+    - All integration tests pass on nauion-host runtime
+    - Hiến Pháp amendment: kernel = 100% Nauion native
+  effort:    1 session
+
+# ════════════════════════════════════════════════════════════════════════════
+# 3. CONSTRAINTS — Hiến Pháp + 7 BUÔNG
+# ════════════════════════════════════════════════════════════════════════════
+
+@constraint NO_TOUCH_NATTOS_SERVER
+  nattos-server/ là server khách Tâm Luxury — TS legacy đúng intent client-server.
+  KHÔNG migrate. White-list.
+
+@constraint NO_REGRESSION
+  Mỗi phase done → run full integration test suite (11/11 baseline).
+  Regression → rollback, không bump.
+
+@constraint NO_BUMP_VERSION_MANG_LICH_SU (7 BUÔNG #2)
+  KHÔNG bump kernel version khi migrate đang in-progress.
+  Bump chỉ sau Phase 4 anh seal.
+
+@constraint DICTIONARY_FIRST (Obikeeper Rule #1)
+  Mỗi vocab/symbol mới → khắc src/thienbang.si TRƯỚC khi dùng.
+
+@constraint CASE_LOWERCASE_SURFACE (ss20260425 canonical)
+  Tên file Nauion native phải lowercase: finance-cell.contract.sira
+
+@constraint WORKING_PROTOCOL_UNCHANGED
+  Băng drafts. Anh reviews. Anh commits. Anh seals each phase.
+  Băng KHÔNG direct push (Memory #11 base).
+
+# ════════════════════════════════════════════════════════════════════════════
+# 4. CURRENT STATUS ss20260427
+# ════════════════════════════════════════════════════════════════════════════
+
+@status Phase 1 inventory: ✅ DONE (this file = output)
+@status Phase 2.0 classify: 🟡 NEXT
+@status Phase 2.1-2.5:      🔴 PENDING
+@status Phase 3 test:       🔴 PENDING
+@status Phase 4 retire:     🔴 PENDING (anh seal only)
+
+@next_session_action
+  1. Phase 2.0 — classify 571 "other" TS files
+  2. Em ship script scan: parse imports, exports, file body
+  3. Output classification: render-related, util, config, mock, dead, etc.
+  4. Anh review classification → quyết Phase 2.0 → 2.1 transition
+
+# ════════════════════════════════════════════════════════════════════════════
+# 5. SEAL
+# ════════════════════════════════════════════════════════════════════════════
+
+@sealed_by  ANH NATT (Gatekeeper)
+@sealed_at  ss20260427
+@drafted_by BĂNG (Chị Tư · Obikeeper)
+@reference_canonical
+  src/thienbang.si :: AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427
+  docs/specs/SPEC_NGON_NGU_v1.2.kris
+  docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na
+  docs/runtime/nauion-host/  (Rust kernel target — path canonical per ss20260427 truth boundary)
+

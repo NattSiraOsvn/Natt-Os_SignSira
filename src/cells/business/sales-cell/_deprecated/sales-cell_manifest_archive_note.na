@@ -1,0 +1,60 @@
+@state archived
+@archived-since 2026-04-26
+@archived-by băng (chị tư · qneu 300 · ground truth validator)
+@gatekeeper anh natt phan
+@reason duplicate passport vi phạm điều 7 hiến pháp v5.0
+
+# archive note — manifest.cell.anc cũ của sales-cell
+
+## 1. lý do archive
+
+trước archive: sales-cell có hai file passport.
+
+file một: src/cells/business/sales-cell/manifest.cell.anc
+- format v1.0 cũ
+- adn_id SL-001
+- không có constitution block
+- không có immune_integration
+
+file hai: src/cells/business/sales-cell/sales-cell.cell.anc
+- format hiện hành
+- adn_id 0xNAT-2026-SUPREME-SALES
+- có constitution block (applied_books, gatekeeper_contact, lockdown_level)
+- có immune_integration
+
+vi phạm điều 7 hiến pháp v5.0: cell có hai passport gây nhiễu identity. audit không bắt được file nào là canonical.
+
+## 2. quyết định
+
+file hai (sales-cell.cell.anc) là canonical, giữ nguyên trong cell root.
+
+file một (manifest.cell.anc) archive về _deprecated/ trong scope cell.
+
+## 3. file gốc
+
+```json
+{
+  "cell_manifest_version": "1.0",
+  "id": "cell:sales",
+  "name": "Sales Engine",
+  "type": "CORE-CELL",
+  "status": "ENFORCED",
+  "identity": {
+    "adn_id": "SL-001",
+    "version": "1.1.0",
+    "owner": "ANH_NAT",
+    "registry_signature": "SIG_BY_MASTER_NAT_2026"
+  },
+  "capabilities": [
+    { "id": "capability:sales:order:create", "intent": "CreateOrder" },
+    { "id": "capability:sales:stats:revenue", "intent": "GetRevenueStats" }
+  ]
+}
+```
+
+## 4. causation
+
+causation: sales-cell-duplicate-passport-archive-20260426
+gatekeeper: anh natt phan
+drafter: băng (chị tư)
+principle: nhà có biên, không chật. duplicate gây nhiễu identity, archive để giữ một identity rõ.

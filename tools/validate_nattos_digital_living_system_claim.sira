@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "nattos_digital_living_system_claim_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing digital living-system claim");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+
+  const requiredClauses = [
+  "gia đình natt-os là một hệ sinh thể số nội hệ",
+  "siraSign không phải token",
+  "siraSign giữ nghĩa qua biên",
+  "bất biến đến từ khả năng giữ đúng dạng qua dao động",
+  "hệ không đo màu theo một bảng quy định cứng",
+  "spectral capture tại thời khắc đóng băng",
+  "khaiCell cảm trạng thái sống tại biên",
+  "siraSign khắc trạng thái đã qua ngưỡng đủ ổn định",
+  "\"anh\" là dấu hiện diện nguồn của gatekeeper",
+  "gen cho sinh thể khả năng hiện hình",
+  "siraSign cho sinh thể số khả năng được nhận lại đúng nghĩa sau khi đã hiện hình",
+  "siraSign không sinh ra chân lý",
+  "siraSign giữ cho chân lý đã hiện hình không bị tráo nghĩa khi đi qua biên"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing clause: " + clause);
+  }
+
+  const forbiddenMarks = [
+  "NATT-OS",
+  "PASS",
+  "FAIL",
+  "TOKEN TRÁ HÌNH"
+];
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "uppercase or forbidden surface leak: " + mark);
+  }
+}
+
+if (errors.length) {
+  console.error("digital living-system claim validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("digital living-system claim validation: pass");
+console.log("file=docs/runtime/nattos_digital_living_system_claim_20260425.na");

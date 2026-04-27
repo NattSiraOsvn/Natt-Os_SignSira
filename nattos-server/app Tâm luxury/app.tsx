@@ -71,7 +71,7 @@ export default function App() {
       {/* CỘT TỦY SỐNG (SIDEBAR NAVIGATION) */}
       <div className="w-64 bg-black/50 border-r border-white/10 flex flex-col p-4 space-y-4 z-50 backdrop-blur-xl shrink-0">
         <div className="text-xl font-black tracking-widest text-amber-500 mb-8 border-b border-white/10 pb-4">
-            NATT-OS <span className="text-[10px] text-cyan-400 align-top">v2.4</span>
+            natt-os <span className="text-[10px] text-cyan-400 align-top">v2.4</span>
         </div>
         
         {['DASHBOARD', 'SALES', 'PROD', 'WH', 'FINANCE', 'HR'].map(tab => (

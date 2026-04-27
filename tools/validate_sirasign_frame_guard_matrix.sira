@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const runner = path.join(root, "tools", "run_sirasign_frame_guard_matrix.sira");
+const evidence = path.join(root, "docs", "runtime", "sirasign_frame_guard_matrix_evidence_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+const zone = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(runner)) {
+  errors.push("missing frame guard matrix runner");
+} else {
+  const r = fs.readFileSync(runner, "utf8");
+  [
+    "missing_sira_subject",
+    "missing_sira_boundary",
+    "missing_sira_causation",
+    "missing_sira_signature",
+    "not_denied_by_frame_guard",
+    "/field/probe"
+  ].forEach(clause => must(r.includes(clause), "runner missing clause: " + clause));
+}
+
+if (!fs.existsSync(gateway)) {
+  errors.push("missing gateway");
+} else {
+  const g = fs.readFileSync(gateway, "utf8");
+  must(g.includes("/field/probe"), "gateway must allow /field/probe for frame guard test route");
+  must(g.includes("siraSignFrameVerdict"), "gateway must contain siraSign frame verdict");
+}
+
+if (!fs.existsSync(zone)) {
+  errors.push("missing zone manifest");
+} else {
+  const z = fs.readFileSync(zone, "utf8");
+  must(z.includes("- /field/probe"), "zone manifest must list /field/probe test route");
+}
+
+if (!fs.existsSync(evidence)) {
+  errors.push("missing frame guard matrix evidence");
+} else {
+  const c = fs.readFileSync(evidence, "utf8");
+  [
+    "siraSign frame guard matrix evidence",
+    "status: pass",
+    "missing_sira_subject",
+    "missing_sira_boundary",
+    "missing_sira_causation",
+    "missing_sira_signature",
+    "not_denied_by_frame_guard",
+    "frame guard shape behavior"
+  ].forEach(clause => must(c.includes(clause), "evidence missing clause: " + clause));
+
+  must(!c.includes("| mismatch |"), "evidence has mismatch");
+  must(!c.includes("transport_error"), "evidence has transport_error");
+}
+
+if (errors.length) {
+  console.error("siraSign frame guard matrix validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("siraSign frame guard matrix validation: pass");
+console.log("file=docs/runtime/sirasign_frame_guard_matrix_evidence_20260425.na");

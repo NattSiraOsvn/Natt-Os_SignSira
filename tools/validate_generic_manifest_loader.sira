@@ -1,0 +1,150 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const loader = path.join(root, "src", "runtime", "manifest", "generic-manifest.loader.ts");
+const fixture = path.join(root, "docs", "runtime", "tam_luxury_screen_manifest_intake_20260425.na");
+const boundary = path.join(root, "docs", "runtime", "tenant_fixture_boundary_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function uniq(xs) {
+  return Array.from(new Set(xs));
+}
+
+function loadFixture(content) {
+  const screens = [];
+  let current = null;
+
+  for (const rawLine of content.split(/\r?\n/)) {
+    const start = rawLine.match(/^\s*-\s+screen_id:\s*(.+?)\s*$/);
+    if (start) {
+      if (current) screens.push(current);
+      current = { screen_id: start[1].trim() };
+      continue;
+    }
+
+    if (!current) continue;
+
+    const item = rawLine.match(/^\s+([A-Za-z_]+):\s*(.+?)\s*$/);
+    if (!item) continue;
+
+    const key = item[1] === "siraSign" ? "sirasign" : item[1];
+    current[key] = item[2].trim();
+  }
+
+  if (current) screens.push(current);
+  return screens;
+}
+
+if (!fs.existsSync(loader)) {
+  errors.push("missing generic manifest loader");
+} else {
+  const c = fs.readFileSync(loader, "utf8");
+  const required = [
+  "GenericScreenBinding",
+  "GenericManifestLoadResult",
+  "loadGenericScreenManifest",
+  "groupGenericScreensByDomain",
+  "collectGenericCellBindings",
+  "screen_id",
+  "cell_binding",
+  "sirasign",
+  "manifested",
+  "minimal",
+  "partial",
+  "full",
+  "none",
+  "shape",
+  "required"
+];
+  const forbidden = [
+  "tam_luxury",
+  "tâm",
+  "Tâm",
+  "tiện ích",
+  "sản xuất",
+  "tài chính",
+  "ban kiểm soát",
+  "/inventory",
+  "/finance",
+  "/audit",
+  "PL-001",
+  "PL-071",
+  "71",
+  "production-ready"
+];
+
+  for (const clause of required) {
+    must(c.includes(clause), "missing loader clause: " + clause);
+  }
+
+  for (const mark of forbidden) {
+    must(!c.includes(mark), "generic loader must not contain tenant-specific mark: " + mark);
+  }
+
+  const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+  must(importLines.length === 0, "generic loader must not import tenant or framework files");
+}
+
+if (!fs.existsSync(boundary)) {
+  errors.push("missing tenant fixture boundary");
+}
+
+if (!fs.existsSync(fixture)) {
+  errors.push("missing tenant fixture manifest");
+} else {
+  const screens = loadFixture(fs.readFileSync(fixture, "utf8"));
+
+  must(screens.length === 71, "fixture must expose 71 screen bindings through generic loader shape");
+
+  const ids = screens.map(s => s.screen_id);
+  const routes = screens.map(s => s.route);
+  const cells = screens.map(s => s.cell_binding);
+  const audits = screens.map(s => s.audit);
+  const signs = screens.map(s => s.sirasign);
+  const statuses = screens.map(s => s.status);
+
+  must(uniq(ids).length === 71, "fixture screen ids must be unique");
+  must(uniq(routes).length === 71, "fixture routes must be unique");
+
+  for (let i = 1; i <= 71; i++) {
+    const expected = "PL-" + String(i).padStart(3, "0");
+    must(ids.includes(expected), "fixture missing screen id " + expected);
+  }
+
+  for (const route of routes) {
+    must(route && route.startsWith("/"), "fixture route must start with slash: " + route);
+    must(!route.includes(" "), "fixture route must not contain spaces: " + route);
+  }
+
+  for (const cell of cells) {
+    must(cell && cell.startsWith("cell_"), "fixture cell binding must start with cell_: " + cell);
+  }
+
+  for (const audit of audits) {
+    must(["minimal", "partial", "full"].includes(audit), "invalid fixture audit: " + audit);
+  }
+
+  for (const sign of signs) {
+    must(["none", "shape", "required"].includes(sign), "invalid fixture sirasign: " + sign);
+  }
+
+  for (const status of statuses) {
+    must(status === "manifested", "fixture status must be manifested: " + status);
+  }
+}
+
+if (errors.length) {
+  console.error("generic manifest loader validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("generic manifest loader validation: pass");
+console.log("file=src/runtime/manifest/generic-manifest.loader.ts");
+console.log("fixture_screens=71");

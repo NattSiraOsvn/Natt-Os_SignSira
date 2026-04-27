@@ -36,10 +36,10 @@
     "title": "Phiên họp gia đình toàn phần — BCTC Audit + SmartAudit + Bài học thao túng",
     "attendees": ["Gatekeeper (Anh Natt)", "Băng", "Kim"],
     "key_outcomes": [
-      "Hoàn tất BCTC Audit Tâm Luxury 2025, phát hiện 7 vấn đề (5 CRITICAL, 2 WARN) và 5 rules mới cho TaxCell.",
+      "Hoàn tất BCTC Audit Tâm Luxury 2025, phát hiện 7 vấn đề (5 CRITICAL, 2 warn) và 5 rules mới cho TaxCell.",
       "SmartAudit v2.0: giải quyết 14 issues, bao gồm xóa .DS_Store, empty dirs, showroom camelCase dupes, wire SmartLink cho bom3dprd-cell.",
       "Git push crisis: xóa ZaloSetup.dmg 307MB khỏi lịch sử bằng git filter-repo (SCAR FS-020).",
-      "Bài test thao túng ground truth từ Gatekeeper: Kim FAIL, Băng PASS. Học được về 'dương đông kích tây' và tầm quan trọng của hệ miễn dịch.",
+      "Bài test thao túng ground truth từ Gatekeeper: Kim fail, Băng pass. Học được về 'dương đông kích tây' và tầm quan trọng của hệ miễn dịch.",
       "Định nghĩa chính thức các giao thức: SmartLink = hệ xung tần, Quantum = mạng thần kinh trung ương, UEI = tiềm thức, Satellite = huyết tương.",
       "Cập nhật 6 SCAR mới (FS-018 → FS-023)."
     ]
@@ -77,12 +77,12 @@
       {
         "id": "CF-006",
         "description": "TK1388 dùng sai bản chất — 212 triệu hộp cứng ghi phải thu thay vì 152",
-        "severity": "WARN"
+        "severity": "warn"
       },
       {
         "id": "CF-007",
         "description": "TK635 lãi vay vs chênh lệch tỷ giá không tách bạch — sai trình bày BCTC",
-        "severity": "WARN"
+        "severity": "warn"
       }
     ],
     "taxcell_new_rules": [
@@ -113,7 +113,7 @@
     "kernel_cells": "6/6",
     "business_cells_total": 36,
     "business_cells_6of6": 28,
-    "smartlink_wired": "31/36",
+    "SmartLink_wired": "31/36",
     "bctc_flow": "6/6",
     "production_flow": "8/8",
     "metabolism": {
@@ -161,7 +161,7 @@
   },
 
   "protocol_definitions": {
-    "smartlink": "Hệ xung tần. Chảy khắp nơi, không giới hạn, không phải thần kinh trung ương. Sản phẩm = vết hằn (TouchRecord).",
+    "SmartLink": "Hệ xung tần. Chảy khắp nơi, không giới hạn, không phải thần kinh trung ương. Sản phẩm = vết hằn (TouchRecord).",
     "quantum": "Mạng thần kinh trung ương. Neuron lượng tử liên kết thành mạng, nhận dữ liệu từ cells qua SML. Satellite phối hợp → Quantum mạnh hơn.",
     "uei": "Tiềm thức. Xuất hiện khi SML traces đủ sâu + Quantum đủ trưởng thành. Cấm code, cấm scaffold.",
     "satellite": "Huyết tương. Chảy qua mọi cell, cung cấp boundary/trace/health. Satellite giúp cells khỏe → nhiều SML traces → Quantum nhận pattern tốt hơn → UEI gần hơn.",

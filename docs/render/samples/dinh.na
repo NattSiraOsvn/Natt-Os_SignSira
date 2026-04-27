@@ -1,0 +1,28 @@
+# SAMPLE 12/15 — state: định
+# @sample: still_frozen_observation
+# @status: draft → chờ validator
+
+obitan_state định {
+  domain: Π_medium
+  polarity: neutral
+  obitan_layer: n=3
+
+  surface_signal: FREEZE {
+    element_id: "still-observer"
+    origin_state: định
+    pressure: 0.0
+  }
+
+  invariant_field {
+    pressure_response: OSCILLATE
+    resonance_partners: [tỉnh]
+    decay_rate: γ(3) * 0.5
+    reflection_R: 0.6
+  }
+
+  expression {
+    wavelength_base: 550
+    intensity: constant(0.5)
+    duration: indefinite
+  }
+}

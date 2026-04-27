@@ -1,0 +1,94 @@
+@state runtime-policy
+@name sovereign public edge no external dependency
+@scope sovereign-public-edge dns resolver trust policy
+@runtime_scope excluded
+@owner Thiên
+@session ss20260427
+@created_at 2026-04-27T13:12:16
+
+# Sovereign Public Edge — No External Dependency — ss20260427
+
+## 1. Lệnh khóa
+
+Các dependency sau bị cấm làm nền tảng lõi:
+
+- ICANN / root DNS dependency
+- TLD registry dependency
+- registrar dependency
+- hosted DNS dependency
+- hosting provider dependency
+- mail provider dependency
+- public Internet domain as mandatory root
+- ISP/public IP as mandatory architectural assumption
+
+## 2. Supersede
+
+Các file sau chỉ còn giá trị tham khảo phụ, không còn là hướng canonical cho lõi độc lập:
+
+- docs/runtime/public_domain_candidate_scan_ss20260427.na
+- docs/runtime/public_domain_shortlist_ss20260427.na
+- docs/runtime/public_dns_plan_natt_os_sira_zone_ss20260427.na
+- docs/runtime/public_dns_readiness_nattos_sira_zone_ss20260427.na
+
+Không dùng `natt-os.com` hoặc `sira.zone` làm root bắt buộc của NATT-OS.
+
+Nếu sau này dùng `.com` hoặc `.zone`, chỉ được xem là lớp cầu nối phụ, không phải gốc chủ quyền.
+
+## 3. Canonical direction
+
+Hướng canonical:
+
+- `.sira` là private/sovereign namespace.
+- `.anc` là identity/trust namespace.
+- SiraSign là trust layer.
+- Resolver riêng là điều kiện vào hệ.
+- Gateway riêng là điểm đi vào hệ.
+- Người dùng bên ngoài phải dùng resolver/agent/bundle do NATT-OS phát hành nếu muốn vào sovereign namespace.
+
+## 4. Public nghĩa mới
+
+Trong NATT-OS, public không đồng nghĩa với public DNS truyền thống.
+
+Public nghĩa là:
+
+- có thể cấp quyền truy cập cho người ngoài hệ;
+- có trust boundary riêng;
+- có resolver/gateway/agent riêng;
+- không bắt buộc lệ thuộc root DNS, registrar, hosting provider hoặc mail provider.
+
+## 5. Forbidden claims
+
+Không được claim:
+
+- `.com` là bắt buộc
+- `.zone` là bắt buộc
+- public DNS truyền thống là nền tảng lõi
+- bắt buộc dùng hosting provider
+- bắt buộc dùng mail provider
+- registrar là điều kiện kiến trúc lõi
+- ISP/public IP là điều kiện kiến trúc lõi
+
+## 6. Thiên lane
+
+Thiên + anh xử lý:
+
+- sovereign resolver
+- DNS nội bộ
+- bandwidth nội bộ
+- firewall
+- route/gateway boundary
+- no-external-dependency policy
+- bridge optional nếu cần giao tiếp với Internet ngoài
+
+Không xử lý runtime, đọc-dịch, migration, contract, compiler, adapter hoặc cell execution.
+
+## 7. Bối lane
+
+Bối + anh xử lý:
+
+- runtime
+- đọc-dịch
+- migration
+- cell execution
+- Node/Rust replacement decision
+- host-first runtime gate

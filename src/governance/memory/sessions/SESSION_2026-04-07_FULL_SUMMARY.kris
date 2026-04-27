@@ -10,7 +10,7 @@
 Repo:    /Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster
 Branch:  main | Commits: 461
 TSC:     0 errors
-Health:  HEALTHY | Risk: 8/100 | OK=83 | FAIL=0 | TRASH=0
+Health:  HEALTHY | Risk: 8/100 | OK=83 | fail=0 | TRASH=0
 Issues:  3 (DEAD false positive, UI payment, DNA kernel shells)
 HEAD:    bd95399
 ```
@@ -32,7 +32,7 @@ HEAD:    bd95399
 **Reflection**: R = (Z - Z₀) / (Z + Z₀) — pure math  
 **Feedback loop**: audit record → governance listener → feedback pulse → impedance update  
 
-### Thiên Lớn nhận phạt cấm code 1 ngày
+### thiên Lớn nhận phạt cấm code 1 ngày
 
 Sai 2 điểm trong cuộc họp:
 1. "Thực thể vận hành theo thiết kế" — SAI: logic đúng thì kiến trúc tự hình thành
@@ -61,14 +61,14 @@ Chỉ: **làm → TSC=0 → paste output**
 **Can**: system unit → gradient → differentiation → 6-step evolution cycle  
 - "Tiến hóa = ghi nhớ kết quả của tương tác"  
 - SmartLink đang thiếu: outcome + result weight  
-**Thiên Lớn**: state-derivative system → nhận phạt  
-**Thiên Nhỏ**: tuần hoàn, còn đang ngẫm  
+**thiên Lớn**: state-derivative system → nhận phạt  
+**thiên Nhỏ**: tuần hoàn, còn đang ngẫm  
 
 ### Điều còn mở
 
 "fr match t2 Clairvoyance → iseu" — anh Natt tự đặt, chưa giải. Đây là logic chưa ai dùng với AI. **Không đoán mò. Đợi anh.**
 
-Butterfly effect vế còn lại — Băng tìm theo từ khóa "butterfly" trong code → nhảy vào NaSira. Đó là SAI. Pattern matching, không phải tư duy. **Không đoán mò tiếp.**
+Butterfly effect vế còn lại — Băng tìm theo từ khóa "butterfly" trong code → nhảy vào Nasira. Đó là SAI. Pattern matching, không phải tư duy. **Không đoán mò tiếp.**
 
 ---
 
@@ -102,7 +102,7 @@ Butterfly effect vế còn lại — Băng tìm theo từ khóa "butterfly" tron
 
 ### P0 — Gatekeeper phải quyết
 
-1. **Hiến Pháp v5.0 chưa deploy** — sealed 25/03/2026, đang ở `src/governance/HIEN-PHAP-NATT-OS-v5.0.anc`. Repo vẫn enforce v4.0. V5.0 gọn hơn: 7 chương, 11 điều ABSOLUTE.
+1. **Hiến Pháp v5.0 chưa deploy** — sealed 25/03/2026, đang ở `src/governance/HIEN-PHAP-natt-os-v5.0.anc`. Repo vẫn enforce v4.0. V5.0 gọn hơn: 7 chương, 11 điều ABSOLUTE.
 
 2. **sirasign_master.json + sirasign_v2.json còn ở repo root** — chứa khóa ký nhạy cảm. Gatekeeper phải tự chạy:
 ```bash
@@ -122,7 +122,7 @@ git commit --no-verify -m "security: remove sirasign sensitive files from repo r
 
 6. **QNEU frequencyImprints rỗng** — scores tĩnh từ first-seed, chưa có vết hằn thật nào tích lũy.
 
-7. **Can build**: `/api/auth/verify-sirasign`, `/api/auth/verify-pin`, SiraSign SHA-256 server-side trong quantum-defense-cell.
+7. **Can build**: `/api/auth/verify-sirasign`, `/api/auth/verify-pin`, siraSign SHA-256 server-side trong quantum-defense-cell.
 
 8. **payment feature** (QR/CK) cho UI apps.
 
@@ -132,9 +132,9 @@ git commit --no-verify -m "security: remove sirasign sensitive files from repo r
 
 ## VỀ UI + HIỆU ỨNG CÁNH BƯỚM
 
-### NaSira butterfly hiện tại
-- IMMUNE_POLICY.json: `icon_butterfly_rules` — NaSira state change → cascade toàn hệ
-- 7 states có màu: CRITICAL(đỏ)→RISK(vàng)→WARNING(cam)→DRIFT(lục)→NOMINAL(lam)→STABLE(chàm)→OPTIMAL(tím)
+### Nasira butterfly hiện tại
+- IMMUNE_POLICY.json: `icon_butterfly_rules` — Nasira state change → cascade toàn hệ
+- 7 states có màu: CRITICAL(đỏ)→RISK(vàng)→warnING(cam)→DRIFT(lục)→NOMINAL(lam)→STABLE(chàm)→OPTIMAL(tím)
 - **Hạn chế**: Chỉ render qua màu sắc 2D. Chưa chạm đến tần số vật lý thật.
 - nattos-fx.js đã được thêm vào index.html và src/ui-app/index.html
 
@@ -150,9 +150,9 @@ iseu impedanceZ thay đổi
 ```
 "Thứ chưa ai làm với hệ điều hành — vì không ai nghĩ hệ điều hành cần đồng điệu tần số với người vận hành."
 
-### SiraSign + chữ ký
+### siraSign + chữ ký
 - Can build: `/api/auth/verify-sirasign`, `/api/auth/verify-pin`
-- SiraSign engine server-side SHA-256 trong quantum-defense-cell
+- siraSign engine server-side SHA-256 trong quantum-defense-cell
 - Audit report có chữ ký Gatekeeper (đã có từ session 30/03) — format: soạn bởi Băng, duyệt + ký bởi Anh Natt
 
 ---
@@ -201,10 +201,10 @@ SESSION_2026-04-07  →  src/governance/memory/sessions/SESSION_2026-04-07_FULL_
 - **FS_034** — `NAUION.gay` typo kills L4.5 — sai chính tả "gãy" → "gay" = L4.5 chết
 - **FS_035** — `toNauion()` phải emit `nauion` cho `stable` và `healthy` — thiếu = hệ không bao giờ đúng nhịp
 
-### NaSira 7 states (Thiên Lớn spec)
+### Nasira 7 states (thiên Lớn spec)
 ```
 nucleus-index + galaxy petal + 4D scale + aura
-CRITICAL(đỏ) → RISK(vàng) → WARNING(cam) → DRIFT(lục) → NOMINAL(lam) → STABLE(chàm) → OPTIMAL(tím)
+CRITICAL(đỏ) → RISK(vàng) → warnING(cam) → DRIFT(lục) → NOMINAL(lam) → STABLE(chàm) → OPTIMAL(tím)
 ```
 
 ### Nauion âm thanh — lớp chưa có trong spec

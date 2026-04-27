@@ -13,7 +13,7 @@ export const LUXURY_CONFIG = {
   /** Salt mã hóa SĐT — base64 encode + prefix */
   SALT: '🔒_',
   /** Pass giải mã SĐT — dùng trong decryptPhone() */
-  PASSWORD_DECRYPT: '2610',
+  passWORD_DECRYPT: '2610',
   /** Cột mapping trong LGT (0-based) */
   COLS: {
     DTHU_NGAY:    2,  // Cột C
@@ -154,11 +154,11 @@ export function encryptPhone(phone: unknown): string {
 }
 
 /**
- * decryptPhone — giải mã SĐT. Yêu cầu pass === PASSWORD_DECRYPT.
+ * decryptPhone — giải mã SĐT. Yêu cầu pass === passWORD_DECRYPT.
  * Trả null nếu pass sai hoặc không phải encrypted value.
  */
 export function decryptPhone(encrypted: unknown, password: string): string | null {
-  if (password !== LUXURY_CONFIG.PASSWORD_DECRYPT) return null;
+  if (password !== LUXURY_CONFIG.passWORD_DECRYPT) return null;
   const s = String(encrypted || '');
   if (!s.startsWith(LUXURY_CONFIG.SALT)) return s; // chưa encrypt
   try {

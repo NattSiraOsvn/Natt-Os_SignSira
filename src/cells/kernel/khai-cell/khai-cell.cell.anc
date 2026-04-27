@@ -1,0 +1,31 @@
+{
+  "cell_id": "cell:khai",
+  "cell_name": "khai-cell",
+  "version": "1.1.0",
+  "description": "Touch point primitive — receives external signal, normalizes, attaches signature, emits into field. Optional file persistence for .khai TouchRecord. NOT a gate. Per SPEC NỀN v1.0 §4.1 + SPEC v1.2 §17.2.",
+  "domain": "FIELD_ENTRY",
+  "layer": 0,
+  "layer_name": "KERNEL",
+  "structural_position": {
+    "electron_layer": "Q+",
+    "direction": "TÂY",
+    "obitan": "external_to_field"
+  },
+  "capabilities": ["TOUCH_RECEIVE", "NORMALIZE_FORMAT", "SIGNATURE_ATTACH", "FIELD_EMIT", "TOUCH_PERSIST"],
+  "emits": ["khai.touch.normalized", "khai.touch.signed"],
+  "authoritative_events": ["khai.*"],
+  "subscribes": [],
+  "dependencies": [],
+  "constitutional_state": "STATE_1",
+  "spec_compliance": {
+    "spec_nen_version": "v1.0",
+    "spec_ngon_ngu_version": "v1.2",
+    "law_alignment": ["LAW-1", "LAW-4"],
+    "fail_modes_addressed": ["§13.4 Fake Routing", "§13.5 Memory Poisoning"]
+  },
+  "changelog": {
+    "1.0.0": "Initial touch point — service + ports + entity",
+    "1.1.0": "Add KhaiFilePersister adapter (optional) — persist signature to .khai files"
+  },
+  "approved_by": "GATEKEEPER"
+}

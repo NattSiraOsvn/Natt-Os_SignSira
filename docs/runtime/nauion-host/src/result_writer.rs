@@ -1,0 +1,249 @@
+// runtime/nauion-host/src/result_writer.rs
+// W2B — host-result.phieu writer
+// Per SPEC_HOST_RESULT_PROTOCOL_v1.0 §2 (naming) + §3 (fields) + §4 (status rule)
+// Drafter: Băng (Chị Tư · N-shell · QNEU 313.5 · Phan Thanh Băng ⓝ)
+// Per W2 implementation order: W2B writer FIRST (depends only on §3 schema)
+
+//! Host result `.phieu` writer.
+//!
+//! Writes deterministic per-cell execution results as `.phieu` files
+//! to `runtime/audit/<cell-path>.result.phieu`.
+//!
+//! ## SPEC binding
+//! - §2: file path = `runtime/audit/<cell-canonical-path>.result.phieu`
+//! - §3: 8 required fields (@protocol, @version, @cell, @canonical, @status, @timestamp, @host_version, @self_test_mode)
+//! - §4: status enum `pass | warn | fail` (deterministic, no other values)
+//! - §7: stdout discipline (writer NEVER prints to stdout — only file I/O)
+//! - §S12 micro-note 1: char escaping for path values (`/` kept, quotes escaped)
+
+use chrono::{DateTime, Utc};
+use std::fs;
+use std::io::Write;
+use std::path::{Path, PathBuf};
+
+/// Status rule per SPEC §4 — deterministic 3-state enum.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum HostResultStatus {
+    Pass,
+    Warn,
+    Fail,
+}
+
+impl HostResultStatus {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            HostResultStatus::Pass => "pass",
+            HostResultStatus::Warn => "warn",
+            HostResultStatus::Fail => "fail",
+        }
+    }
+}
+
+/// Required fields per SPEC §3.
+#[derive(Debug, Clone)]
+pub struct HostResult {
+    pub cell: String,
+    pub canonical: PathBuf,
+    pub status: HostResultStatus,
+    pub timestamp: DateTime<Utc>,
+    pub host_version: String,
+    pub self_test_mode: bool,
+}
+
+/// Writer error type.
+#[derive(Debug)]
+pub enum WriterError {
+    Io(std::io::Error),
+    InvalidPath(String),
+}
+
+impl std::fmt::Display for WriterError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            WriterError::Io(e) => write!(f, "I/O error: {}", e),
+            WriterError::InvalidPath(s) => write!(f, "Invalid path: {}", s),
+        }
+    }
+}
+
+impl std::error::Error for WriterError {}
+
+impl From<std::io::Error> for WriterError {
+    fn from(e: std::io::Error) -> Self {
+        WriterError::Io(e)
+    }
+}
+
+/// Writer — owns the audit root path.
+pub struct HostResultWriter {
+    audit_root: PathBuf,
+}
+
+impl HostResultWriter {
+    /// Create writer rooted at `<repo_root>/runtime/audit/`.
+    pub fn new(repo_root: impl Into<PathBuf>) -> Self {
+        Self {
+            audit_root: repo_root.into().join("runtime").join("audit"),
+        }
+    }
+
+    /// Compute output path per SPEC §2.
+    ///
+    /// `runtime/audit/<canonical-relative-path>.result.phieu`
+    ///
+    /// E.g. canonical `src/cells/kernel/audit-cell/scanner/file-extension-validator.khai`
+    /// → `runtime/audit/src/cells/kernel/audit-cell/scanner/file-extension-validator.khai.result.phieu`
+    pub fn output_path(&self, canonical: &Path) -> PathBuf {
+        let mut p = self.audit_root.clone();
+        for comp in canonical.components() {
+            p.push(comp);
+        }
+        let mut s = p.into_os_string();
+        s.push(".result.phieu");
+        PathBuf::from(s)
+    }
+
+    /// Write result atomically: temp file + rename.
+    /// Creates parent directories if missing.
+    pub fn write(&self, result: &HostResult) -> Result<PathBuf, WriterError> {
+        let final_path = self.output_path(&result.canonical);
+
+        // Ensure parent directory exists
+        if let Some(parent) = final_path.parent() {
+            fs::create_dir_all(parent)?;
+        }
+
+        // Build content per SPEC §3 (8 required fields, alphabetical for determinism)
+        let content = self.format_phieu(result);
+
+        // Atomic write: temp + rename (per §S12 atomicity micro-note)
+        let temp_path = final_path.with_extension("phieu.tmp");
+        {
+            let mut f = fs::File::create(&temp_path)?;
+            f.write_all(content.as_bytes())?;
+            f.sync_all()?;
+        }
+        fs::rename(&temp_path, &final_path)?;
+
+        Ok(final_path)
+    }
+
+    /// Format `.phieu` content per SPEC §3.
+    /// Char escaping per §S12 micro-note 1: paths kept raw (`/` allowed),
+    /// quotes/newlines in cell name escaped to backslash form.
+    fn format_phieu(&self, r: &HostResult) -> String {
+        let canonical_str = r.canonical.to_string_lossy().to_string();
+        let cell_safe = escape_field(&r.cell);
+        let canonical_safe = escape_field(&canonical_str);
+
+        format!(
+            "@protocol host-result\n\
+             @version v1.0\n\
+             @cell {cell}\n\
+             @canonical {canonical}\n\
+             @status {status}\n\
+             @timestamp {timestamp}\n\
+             @host_version {host_version}\n\
+             @self_test_mode {self_test_mode}\n\
+             \n\
+             # Generated by nauion-host result_writer (W2B)\n\
+             # Per SPEC_HOST_RESULT_PROTOCOL_v1.0\n",
+            cell = cell_safe,
+            canonical = canonical_safe,
+            status = r.status.as_str(),
+            timestamp = r.timestamp.to_rfc3339(),
+            host_version = r.host_version,
+            self_test_mode = r.self_test_mode,
+        )
+    }
+}
+
+#[allow(dead_code)] // used internally by format_phieu via cell_safe/canonical_safe
+/// Escape field value per §S12 micro-note 1.
+/// Paths kept raw. Newlines/CRs replaced with space (single-line invariant).
+fn escape_field(s: &str) -> String {
+    s.replace('\n', " ").replace('\r', " ")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use chrono::TimeZone;
+
+    #[test]
+    fn output_path_appends_result_phieu_suffix() {
+        let w = HostResultWriter::new("/tmp/repo");
+        let p = w.output_path(Path::new(
+            "src/cells/kernel/audit-cell/scanner/file-extension-validator.khai",
+        ));
+        assert!(p.to_string_lossy().ends_with(".khai.result.phieu"));
+        assert!(p.to_string_lossy().contains("/runtime/audit/"));
+    }
+
+    #[test]
+    fn status_serialization_deterministic() {
+        assert_eq!(HostResultStatus::Pass.as_str(), "pass");
+        assert_eq!(HostResultStatus::Warn.as_str(), "warn");
+        assert_eq!(HostResultStatus::Fail.as_str(), "fail");
+    }
+
+    #[test]
+    fn format_phieu_includes_8_required_fields() {
+        let w = HostResultWriter::new("/tmp/repo");
+        let r = HostResult {
+            cell: "audit-cell/scanner/file-extension-validator".to_string(),
+            canonical: PathBuf::from("src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"),
+            status: HostResultStatus::Pass,
+            timestamp: Utc.with_ymd_and_hms(2026, 4, 24, 9, 30, 0).unwrap(),
+            host_version: "0.1.0".to_string(),
+            self_test_mode: false,
+        };
+        let content = w.format_phieu(&r);
+        assert!(content.contains("@protocol host-result"));
+        assert!(content.contains("@version v1.0"));
+        assert!(content.contains("@cell audit-cell/scanner/file-extension-validator"));
+        assert!(content.contains("@canonical src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"));
+        assert!(content.contains("@status pass"));
+        assert!(content.contains("@timestamp 2026-04-24T09:30:00+00:00"));
+        assert!(content.contains("@host_version 0.1.0"));
+        assert!(content.contains("@self_test_mode false"));
+    }
+
+    #[test]
+    fn write_creates_file_at_expected_path() {
+        let tmp = std::env::temp_dir().join("nauion_host_w2b_test");
+        let _ = fs::remove_dir_all(&tmp);
+        fs::create_dir_all(&tmp).unwrap();
+
+        let w = HostResultWriter::new(&tmp);
+        let r = HostResult {
+            cell: "test-cell".to_string(),
+            canonical: PathBuf::from("src/cells/test/test-cell.khai"),
+            status: HostResultStatus::Warn,
+            timestamp: Utc::now(),
+            host_version: "0.1.0".to_string(),
+            self_test_mode: true,
+        };
+        let written = w.write(&r).expect("write failed");
+        assert!(written.exists());
+        assert!(written.to_string_lossy().ends_with(".khai.result.phieu"));
+
+        let content = fs::read_to_string(&written).unwrap();
+        assert!(content.contains("@status warn"));
+        assert!(content.contains("@self_test_mode true"));
+
+        // No temp file leftover
+        let temp = written.with_extension("phieu.tmp");
+        assert!(!temp.exists());
+
+        // Cleanup
+        let _ = fs::remove_dir_all(&tmp);
+    }
+
+    #[test]
+    fn escape_field_strips_newlines() {
+        assert_eq!(escape_field("foo\nbar"), "foo bar");
+        assert_eq!(escape_field("a\r\nb"), "a  b");
+        assert_eq!(escape_field("safe/path/x.khai"), "safe/path/x.khai");
+    }
+}

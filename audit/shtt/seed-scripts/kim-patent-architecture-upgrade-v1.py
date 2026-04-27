@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS PATENT ARCHITECTURE UPGRADE
+natt-os PATENT ARCHITECTURE UPGRADE
 Run from: natt-os ver2goldmaster/
 Usage: python3 patent_upgrade.py && npx tsc --noEmit
 """
@@ -31,7 +31,7 @@ def patch(rel, old, new):
         print(f'  ⚠ Pattern not found in {rel}')
 
 print('\n══════════════════════════════════════════════')
-print('  NATT-OS PATENT ARCHITECTURE UPGRADE')
+print('  natt-os PATENT ARCHITECTURE UPGRADE')
 print('══════════════════════════════════════════════\n')
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -72,7 +72,7 @@ patch('types.ts',
 
 # Create the canonical EventEnvelope factory
 w('core/events/event-envelope.factory.ts', '''/**
- * NATT-OS EventEnvelopeFactory
+ * natt-os EventEnvelopeFactory
  * Patent Claim: Distributed Causality Chain with Policy-Signed Event Envelopes
  *
  * Every event emitted by any NATT-CELL carries:
@@ -126,7 +126,7 @@ export interface EnvelopeFactoryOptions {
 }
 
 export class EventEnvelopeFactory {
-  private static activePolicy = 'NATT-OS-CONSTITUTION-v4.0';
+  private static activePolicy = 'natt-os-CONSTITUTION-v4.0';
 
   static setActivePolicy(version: string): void {
     this.activePolicy = version;
@@ -182,7 +182,7 @@ export default EventEnvelopeFactory;
 print('\n[2] Deterministic Routing Algorithm — SmartLink...')
 
 w('core/routing/deterministic-router.ts', '''/**
- * NATT-OS DeterministicRouter
+ * natt-os DeterministicRouter
  * Patent Claim: Multi-tier deterministic routing with policy gating and
  *               self-healing fallback for constitutional cell networks.
  *
@@ -336,7 +336,7 @@ export default Router;
 print('\n[3] Policy Signature — Tamper-Resistant Governance...')
 
 w('governance/policy/policy-signature.engine.ts', '''/**
- * NATT-OS PolicySignatureEngine
+ * natt-os PolicySignatureEngine
  * Patent Claim: Tamper-resistant constitutional governance through
  *               cryptographic policy signing with version pinning.
  *
@@ -446,9 +446,9 @@ export class PolicySignatureEngine {
 
 export const PolicyEngine = PolicySignatureEngine.getInstance();
 
-// Bootstrap default NATT-OS constitution policy
+// Bootstrap default natt-os constitution policy
 PolicyEngine.registerPolicy({
-  policyId: 'NATT-OS-CONSTITUTION',
+  policyId: 'natt-os-CONSTITUTION',
   version: 'v4.0',
   constitutionHash: '',
   issuedAt: Date.now(),
@@ -465,7 +465,7 @@ export default PolicyEngine;
 print('\n[4] Self-Healing Cell Network...')
 
 w('core/health/cell-health-monitor.ts', '''/**
- * NATT-OS CellHealthMonitor
+ * natt-os CellHealthMonitor
  * Patent Claim: Autonomous self-healing distributed cell network with
  *               dynamic discovery, heartbeat monitoring, and automatic rerouting.
  *
@@ -633,7 +633,7 @@ export default HealthMonitor;
 print('\n[5] Immutable Enterprise Memory — Append-Only Hash Chain...')
 
 w('core/memory/immutable-memory.engine.ts', '''/**
- * NATT-OS ImmutableMemoryEngine
+ * natt-os ImmutableMemoryEngine
  * Patent Claim: Append-only enterprise memory with cryptographic hash chain
  *               and configurable retention policy for constitutional compliance.
  *
@@ -698,7 +698,7 @@ export class ImmutableMemoryEngine {
     payload: T,
     tenantId: string,
     actorId: string,
-    policyVersion = 'NATT-OS-CONSTITUTION-v4.0'
+    policyVersion = 'natt-os-CONSTITUTION-v4.0'
   ): MemoryRecord<T> {
     const prevRecord = this.chain[this.chain.length - 1];
     const prevHash = prevRecord?.chain_hash ?? this.GENESIS_HASH;
@@ -790,7 +790,7 @@ export default Memory;
 print('\n[6] Deterministic Snapshot — Verified Rollback...')
 
 w('core/snapshot/snapshot.engine.ts', '''/**
- * NATT-OS SnapshotEngine
+ * natt-os SnapshotEngine
  * Patent Claim: Deterministic system snapshot with manifest hash verification
  *               enabling cryptographically verified state restoration.
  *
@@ -911,7 +911,7 @@ export class SnapshotEngine {
       label,
       cellSnapshots,
       chainPosition: this.chainPosition,
-      constitutionVersion: 'NATT-OS-CONSTITUTION-v4.0',
+      constitutionVersion: 'natt-os-CONSTITUTION-v4.0',
       snapshotIntegrity: true,
     };
 
@@ -990,7 +990,7 @@ export default Snapshots;
 print('\n[7] Patent Architecture Index...')
 
 w('core/patent/index.ts', '''/**
- * NATT-OS PATENT ARCHITECTURE
+ * natt-os PATENT ARCHITECTURE
  * ════════════════════════════════════════════════════════════
  *
  * This module exports the 6 patent-critical architectural components:

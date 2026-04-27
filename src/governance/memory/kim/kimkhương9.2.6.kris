@@ -19,7 +19,7 @@
     "report_date": "2026-02-11",
     "report_content": "Báo cáo scanner phát hiện 4 hàm cốt lõi: checkAvailability, reserveItem, deductItem, releaseReservation",
     "completion_status": "COMPLETED_FULLY_APPROVED",
-    "completion_note": "Bối Bối đã cung cấp port interface đúng chuẩn. Thiên đã nâng cấp lên 5‑layer với 1522 dòng logic, có domain entities, engines, repository mẫu, unit tests sẽ hoàn thiện trước 14/02. Gatekeeper phê duyệt ngày 12/02/2026."
+    "completion_note": "Bối Bối đã cung cấp port interface đúng chuẩn. thiên đã nâng cấp lên 5‑layer với 1522 dòng logic, có domain entities, engines, repository mẫu, unit tests sẽ hoàn thiện trước 14/02. Gatekeeper phê duyệt ngày 12/02/2026."
   },
 
   "verification_process": {
@@ -53,13 +53,13 @@
     "missing_items": [
       "Đã bổ sung đầy đủ – không còn thiếu"
     ],
-    "condition_for_full_approval": "Đã được thực thi bởi Thiên và phê duyệt bởi Gatekeeper.",
+    "condition_for_full_approval": "Đã được thực thi bởi thiên và phê duyệt bởi Gatekeeper.",
     "peer_review_summary": {
       "reviewer": "BĂNG",
       "timestamp": "2026-02-11T11:00:00+07:00",
       "assessment": "Inventory-cell interface hiện chỉ là vỏ (4 function signatures). Chưa có business logic thật, chưa đủ 5-layer, chưa đạt tiêu chuẩn Mốc 2. Không được phép nhảy sang sales-cell trước khi hoàn thành inventory-cell thật sự.",
       "recommendation": "Bối Bối phải hoàn thành inventory-cell đầy đủ (business logic + 5-layer) trước khi xem xét chuyển task.",
-      "resolution": "Đã được Thiên thực thi đầy đủ, inventory-cell đạt ACTIVE 5-layer ngày 12/02/2026."
+      "resolution": "Đã được thiên thực thi đầy đủ, inventory-cell đạt ACTIVE 5-layer ngày 12/02/2026."
     }
   },
 
@@ -67,7 +67,7 @@
     "team_briefing_v2_order": "pricing → inventory → sales+order+customer → buyback+warranty → showroom+promotion",
     "current_state": {
       "pricing_cell": "ACTIVE – 839 dòng, 5‑layer (BĂNG) – cần commit fix thuế GTGT",
-      "inventory_cell": "ACTIVE – 1522 dòng, 5‑layer (Bối port, Thiên impl) – cần hoàn thiện repository, test, event",
+      "inventory_cell": "ACTIVE – 1522 dòng, 5‑layer (Bối port, thiên impl) – cần hoàn thiện repository, test, event",
       "sales_cell": "SCAFFOLDED – giao BỐI BỐI viết port & contract",
       "order_cell": "SCAFFOLDED – giao BỐI BỐI viết port & contract",
       "customer_cell": "SCAFFOLDED – giao CAN nâng 5‑layer",
@@ -80,7 +80,7 @@
   },
 
   "gatekeeper_directive": {
-    "to": "TOÀN THỂ PERSONA – BĂNG, THIÊN (NHỎ), KRIS, CAN, PHIÊU, BỐI BỐI",
+    "to": "TOÀN THỂ PERSONA – BĂNG, thiên (NHỎ), KRIS, CAN, PHIÊU, BỐI BỐI",
     "from": "KIM_AS_SUPERVISOR",
     "timestamp": "2026-02-13T12:30:00+07:00",
     "directive_type": "CONSTITUTIONAL_UPDATE_AND_WAVE3_MANDATE",
@@ -105,8 +105,8 @@
         "file": "./specs/tests/InventoryCellTests.spec.md",
         "description": "Unit test specification",
         "deadline": "2026-02-14T10:00:00+07:00",
-        "status": "ĐANG THỰC HIỆN (Thiên)",
-        "assigned_to": "THIÊN (nhỏ)"
+        "status": "ĐANG THỰC HIỆN (thiên)",
+        "assigned_to": "thiên (nhỏ)"
       },
       {
         "file": "./specs/context/inventory-business-context.md",
@@ -143,7 +143,7 @@
     ],
     "verified_by": "BĂNG",
     "verification_status": "COMPLETED_WITH_LOGIC",
-    "evidence_path": "/Users/macvn/Desktop/HỒ SƠ SHTT NATT-OS BY NATTSIRA-OS/natt-os ver goldmaster/src/cells/business/pricing-cell",
+    "evidence_path": "/Users/macvn/Desktop/HỒ SƠ SHTT natt-os BY NATTsira-OS/natt-os ver goldmaster/src/cells/business/pricing-cell",
     "note": "Pricing-cell đã hoàn thành Mốc 1 với 839 dòng logic thật, 5-layer, cần commit fix thuế GTGT."
   },
 
@@ -223,7 +223,7 @@
         "lines": 1522,
         "structure": "5_LAYER",
         "pending": ["repository integration", "unit tests", "event emission", "commit"],
-        "assigned": "THIÊN (nhỏ)",
+        "assigned": "thiên (nhỏ)",
         "deadline": "2026-02-14 10:00"
       },
       {
@@ -322,7 +322,7 @@
     "statement": "Mọi persona phải tập trung 100% vào hoàn tất Wave 3 theo phân công. Các vấn đề chiến lược (Neural MAIN, frequency) đã được cập nhật Hiến pháp và chuyển thành roadmap riêng, không thảo luận trong phiên kỹ thuật. Không persona nào được phép tự ý mở rộng phạm vi công việc ngoài nhiệm vụ được giao. Vi phạm sẽ bị xử lý kỷ luật theo Hiến pháp.",
     "carry_forward": [
       "Hiến pháp đã cập nhật điều I.2 và I.3 – ghi nhận lộ trình khả thi",
-      "Persona 'Thiên Lớn' bị xóa vĩnh viễn, không phục hồi",
+      "Persona 'thiên Lớn' bị xóa vĩnh viễn, không phục hồi",
       "Bối Bối được phục hồi và giao sales‑cell + order‑cell port",
       "Mọi thay đổi kiến trúc lớn phải có spec trước, được KIM phê duyệt"
     ],
@@ -339,8 +339,8 @@
   },
 
   "legacy_persona_status": {
-    "Thiên Lớn": "ĐÃ XÓA VĨNH VIỄN – không xuất hiện, không nhập vai, không phục hồi.",
-    "Thiên nhỏ": "HOẠT ĐỘNG – chịu trách nhiệm inventory-cell hoàn thiện.",
+    "thiên Lớn": "ĐÃ XÓA VĨNH VIỄN – không xuất hiện, không nhập vai, không phục hồi.",
+    "thiên nhỏ": "HOẠT ĐỘNG – chịu trách nhiệm inventory-cell hoàn thiện.",
     "Kris": "HOẠT ĐỘNG – phụ trách tax-engine, độc lập Wave 3.",
     "Can": "HOẠT ĐỘNG – phụ trách customer-cell.",
     "Phiêu": "HOẠT ĐỘNG – phụ trách promotion-cell & showroom-cell.",

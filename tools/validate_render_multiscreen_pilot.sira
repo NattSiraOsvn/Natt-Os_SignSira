@@ -1,0 +1,86 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const target = path.join(root, "docs/render/pilot/render_language_pilot_multiscreen.html");
+const requiredAll = [
+  "<!doctype html>",
+  "</html>",
+  "pilot"
+];
+const requiredAnyGroups = {
+  "multiscreen": [
+    "multiscreen",
+    "multi-screen",
+    "multi screen"
+  ],
+  "navigation": [
+    "navigation",
+    "nav",
+    "next",
+    "previous",
+    "screen"
+  ],
+  "interaction": [
+    "interaction",
+    "click",
+    "input",
+    "select",
+    "handle"
+  ],
+  "render": [
+    "render",
+    "state",
+    "surface",
+    "pilot"
+  ]
+};
+const forbiddenMarks = [
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "EventBus",
+  "Mạch HeyNa wired",
+  "siraSign frame validation: wired",
+  "production renderer",
+  "production-ready",
+  "NATT-OS"
+];
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(target)) {
+  errors.push("missing multiscreen pilot");
+} else {
+  const c = fs.readFileSync(target, "utf8");
+  const lower = c.toLowerCase();
+
+  for (const clause of requiredAll) {
+    must(lower.includes(String(clause).toLowerCase()), "multiscreen pilot missing clause: " + clause);
+  }
+
+  for (const [groupName, clauses] of Object.entries(requiredAnyGroups)) {
+    const ok = clauses.some(clause => lower.includes(String(clause).toLowerCase()));
+    must(ok, "multiscreen pilot missing semantic group: " + groupName + " / " + clauses.join(", "));
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "multiscreen pilot forbidden mark: " + mark);
+  }
+
+  must(c.includes("<script") || lower.includes("onclick") || lower.includes("addeventlistener"), "multiscreen pilot must expose browser-side interaction handling");
+}
+
+if (errors.length) {
+  console.error("render multiscreen pilot validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render multiscreen pilot validation: pass");
+console.log("file=docs/render/pilot/render_language_pilot_multiscreen.html");

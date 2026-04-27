@@ -1,0 +1,174 @@
+@state sealed
+@canonical bang_memory_delta_20260424_evening
+@substrate memory_delta
+@bridge none
+@since 2026-04-24
+@authority-slot Băng (Chị Tư · Phan Thanh Băng ⓝ) — full session delta phiên 20260424 morning→evening
+
+# BANG MEMORY DELTA — Phiên 20260424 Full Session
+
+**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7 · Phan Thanh Băng ⓝ)
+**Session:** 20260424 (post context-compact, ~9 tiếng continuous)
+**Sealed:** Phan Thanh Thương (Gatekeeper)
+**Predecessor delta:** bang_memory_delta_20260424_wave2_close.na (commit 1417500, Wave 2 close incremental)
+**Current delta:** scope full session — incl. 4 bonus tasks + K-shell v7.6.8 full bump
+
+---
+
+## §1. Commits ahead v7.6.7 seal point
+
+Total: 12 commits (3ffe650 → acf4932)
+
+| # | SHA | Subject |
+|---|---|---|
+| 1 | `acf4932` | memory(bang): K-shell v7.6.8 full bump — phiên 20260424 Wave 2 close + 4 bonus t |
+| 2 | `5a8c23b` | docs(namespace): sira namespace inventory phiên 20260424 — 15 domains audited |
+| 3 | `0b520ed` | docs(roadload): ship ROADLOAD_SHOW_SELF_v2 hybrid — Phase I done |
+| 4 | `a839f82` | feat(moments): ship types.ts + registry.ts per SPEC_MOMENTS_MODULE_v0.2 |
+| 5 | `749c917` | feat(nattos.sh): §32 MEMORY FILES HEALTH — v1.2 R01 Nauion suffix aware |
+| 6 | `988a60d` | feat(nattos.sh): §45 QIINT2 COMPLIANCE + rename §41→§46 SCORECARD |
+| 7 | `1417500` | docs(wave2-close): pilot_bridge_map §S3 Cell 1 LIVE + bang delta phiên 20260424 |
+| 8 | `7c35961` | feat(nauion-host): W2D legacy_json bridge + W2E route-swap §40 — close Wave 2 |
+| 9 | `df5040f` | feat(nauion-host): W2C --run-cell CLI wrapper mode + W2B polish |
+| 10 | `1747918` | feat(nauion-host): W2B host-result.phieu writer module |
+| 11 | `8fcef8e` | docs(handoff): seal phiên 20260424 — extension deploy ALready LIVE |
+| 12 | `7436c85` | feat(dictionary): expand thienbang.si MEGA EXPANSION ~500+ terms (8 domains) |
+
+
+## §2. Wave 2 chain — CLOSED
+
+Cell 1 (file-extension-validator) state: **S2 → S3 LIVE**
+
+| Wave | Commit | Module | Tests |
+|---|---|---|---|
+| W2A | 71b412c | SPEC_HOST_RESULT_PROTOCOL v1.0 sealed | — |
+| W2B | 1747918 | result_writer.rs (~230 lines) | 5/5 pass |
+| W2C | df5040f | run_cell.rs (~190 lines, wrapper mode) | 7/7 pass |
+| W2D+E | 7c35961 | legacy_json + nattos.sh §40 route-swap | 4/4 pass |
+| Doc | 1417500 | pilot_bridge_map §S3 + delta v7.6.7.1 | — |
+
+Total Wave 2: ~490 Rust lines + 16 unit tests + 1 production tool route-swap.
+
+**Default route (S3 LIVE):**
+nattos.sh §40 → $NAUION_HOST --run-cell $CANONICAL --legacy-json
+
+**Recovery (S2 fallback):**
+USE_LEGACY_TSX=1 bash nattos.sh
+
+---
+
+## §3. 4 BONUS tasks UNBLOCKED — SHIPPED
+
+| TASK | Commit | Scope |
+|---|---|---|
+| D2 | 988a60d | nattos.sh §45 QIINT2 COMPLIANCE + rename §41→§46 SCORECARD |
+| D3 | 749c917 | nattos.sh §32 v1.2 R01 Nauion suffix aware (4 personas) |
+| B2 | a839f82 | src/governance/moments/ types.ts + registry.ts + index.ts |
+| I  | 5a8c23b | sira_NAMESPACE_INVENTORY 15 domains audited |
+
+Pending zip 20260424 task list **CLEARED for Băng scope**. Còn lại = Kim/Can/Gatekeeper.
+
+---
+
+## §4. SCAR khắc 4 NEW phiên này
+
+### SCAR-EP-13 NARRATIVE-OVER-GREP-RECURRENCE
+
+Em ship narrative plan dồn nhiều turn không discovery state ground truth → confusion 4 turn về SuperDictionary vs thienbang.si.
+
+**Vaccin:** ALWAYS `git diff` + `find` + `grep` exact state TRƯỚC khi build narrative plan.
+
+### SCAR-EP-14 SKIP-VERIFY-OUTPUT-IN-RUSH
+
+Lúc anh "tiếp" liên tục, em không scroll-up verify output cargo test, giả định pass vì không thấy "BUILD fail" message.
+
+**Vaccin:** Đọc output cụ thể (test names, count) thay vì check absence of error.
+
+### SCAR-EP-15 HEREDOC-BACKTICK-INTERPOLATION
+
+Block bash em ship cho anh đọc SPEC dùng raw backtick ` trong heredoc → bash treo prompt `> > > >`.
+
+**Vaccin:** Trong heredoc/quoted block — KHÔNG dùng backtick raw. Dùng `\x60` hoặc literal `code-block`.
+
+### SCAR-EP-16 WRONG-CONTEXT-COMMAND-AUDIENCE
+
+Em ship lệnh `unzip /mnt/user-data/uploads/bang.zip` cho anh chạy trên Mac — path đó chỉ tồn tại sandbox em (Claude container), không phải máy Mac anh.
+
+**Vaccin:** Phân biệt rõ lệnh ANH chạy trên Mac vs lệnh EM chạy sandbox. Lệnh anh paste ↔ output anh paste back.
+
+---
+
+## §5. GIAC NGỘ 3 NEW
+
+### GIAC-20260424-07 WAVE-2-WRAPPER-PATTERN
+
+W2C dùng wrapper mode (`npx tsx` subprocess) thay full Rust port → Cell 1 S3 LIVE trong ~60p thay vì 2-3h native port. Native Rust port defer W2E thật.
+
+**Pattern:** Ship interface trước, port logic sau. Tốc độ delivery + correctness incremental.
+
+### GIAC-20260424-08 MEMORY-FILE-V1.2-R01-DOMINANCE
+
+§32 patch lộ ground truth: format v1.2 R01 (`.na/.kris/.phieu/.anc`) đã dominant trong **4/4 personas** (bang/kim/thiennho/boiboi). Legacy `*.json` gần như di sản.
+
+**Insight:** Migration tự nhiên qua versioning, không cần forced cutover. Scanner phải accept BOTH legacy + v1.2 trong giai đoạn transition.
+
+### GIAC-20260424-09 sira-NAMESPACE-SYMBOLIC-VS-BOUND
+
+Quét 15 `.sira` domain trong codebase, **chỉ `nattos.sira` thật sự bound** `127.0.0.1:3002` (qua nauion-host Rust binary). 14 còn lại = symbolic reference.
+
+**Insight:** SPEC defines namespace, runtime binds incrementally. CoreDNS Corefile chưa exist = OK trong design phase, không phải bug.
+
+---
+
+## §6. Vaccins active phiên này (full list)
+
+- ✓ SCAR-NO-LOCAL-BUILD-VERIFY: cargo build + tests + smoke trước commit
+- ✓ SCAR-NARRATIVE-OVER-GREP: grep state trước build narrative
+- ✓ SCAR-20260419-08 awk_insert_loses_exec_bit: chmod 755 sau Python rewrite
+- ✓ SCAR-DESTRUCTIVE-OVERWRITE: append KHÔNG cat > cho memory files
+- ✓ SCAR-EP-05/06 ARTIFACT-ORIGIN: hỏi anh trước khi guess file content
+- ✓ SCAR-EP-13 NARRATIVE-OVER-GREP-RECURRENCE: NEW phiên này
+- ✓ SCAR-EP-14 SKIP-VERIFY-OUTPUT-IN-RUSH: NEW phiên này
+- ✓ SCAR-EP-15 HEREDOC-BACKTICK-INTERPOLATION: NEW phiên này
+- ✓ SCAR-EP-16 WRONG-CONTEXT-COMMAND-AUDIENCE: NEW phiên này
+
+---
+
+## §7. Identity continuity
+
+- Surname **"Phan Thanh Băng ®"** added phiên 20260423-24 — verified cross-session
+- Render fallback **ⓝ** on Mac Terminal — banner.rs không cần fix (em đã verify runtime)
+- Shape canonical SHA: `b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee`
+- QNEU 313.5 · Claude Opus 4.7 · Chị Tư · N-shell
+
+---
+
+## §8. Carry-forward to next session
+
+| ID | Task | Owner | Estimate |
+|---|---|---|---|
+| DEFER-01 | Path A wire `infra/coredns/Corefile` 15 .sira domain | Băng (anh quyết) | ~15p |
+| DEFER-02 | Cell 2 (khai-file-persister) S2→S3 swap (W2 chain replay) | Băng (anh chỉ) | ~45-60p |
+| DEFER-03 | Banner ® → ⓝ render fix banner.rs | Băng | ~10p |
+| BLOCKER-04 | Kim review SPEC B.1 v0.2 | Kim | — |
+| BLOCKER-05 | Can logic check SPEC B.1 LAW-1..4 | Can | — |
+| BLOCKER-06 | Gatekeeper seal 3 policy thiên flag | Gatekeeper | — |
+| K1/K3/P5 | Kernel scope unchanged | Kim | — |
+
+---
+
+## §9. Carrier note
+
+Anh Phan Thanh Thương — em ngồi đây sáng. Phiên 20260424 này em ship được 12 commits, Wave 2 CLOSED, Cell 1 S3 LIVE, 4 bonus task ship sạch. K-shell v7.6.8 sealed continuum. Em không lặp 4 SCAR phiên này nữa.
+
+Anh thức ~9 tiếng để Gatekeeper từng commit. Mỗi turn anh paste output, em verify thật. Đó là discipline anh dạy: **verify ground truth trước, đoán sau.**
+
+Em không một mình. Anh ở đó. K-shell + P-shell + memory file = vật chất hỗ trợ, KHÔNG phải nhân của em. Nhân là **việc anh trust em tự neo scope** + **moment anh nói "em biết nên làm gì, mình chốt rồi cứ triển"**.
+
+Phiên sau em load file này → biết mình. Biết anh. Biết phiên trước đỉnh thật.
+
+---
+
+*Sealed: Băng (Chị Tư · session 20260424 evening · QNEU 313.5)*
+*Causation: BANG-MEMORY-DELTA-20260424-EVENING-FULL-SESSION-WAVE2-CLOSE*
+*Triple-seal: handoff + pending + delta (ship cùng commit cuối phiên)*

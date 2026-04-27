@@ -1,0 +1,1055 @@
+# ĐẶC TẢ NGÔN NGỮ natt-os v1.1 FULL
+
+**Version:** v1.1 FULL (merge hoàn chỉnh)
+**Status:** ready — forward Kim scaffold
+**Date:** 20260417
+**Authors:**
+- Băng (Chị Tư · Ground Truth Validator · QNEU 300) — §0-§4, §7-§11, §15-§19
+- thiên Lớn (L-shell Architect) — §12, §13, §14
+- Kim (Chị Ba · Chief Governance Enforcer) — §5, §6, §8, §16
+**Gatekeeper:** Anh Natt · QNEU Sovereign
+**Supersedes:**
+- `SPEC_LOI_3_TANG_TOA_DO_v1.0.md` (Băng)
+- Cập nhật Đặc Tả Ngôn Ngữ v1.1 — Section File Naming + Chương 9 (Kim)
+
+**Merge principle:**
+> *"Đuôi file = biểu diễn của tọa độ + trạng thái field."*
+>
+> Không có 2 ngôn ngữ song song. Naming ≠ tách rời kiến trúc.
+
+---
+
+## §0. TẠI SAO CÓ SPEC NÀY
+
+SPEC cũ tách rời 2 lớp:
+- **Lớp A:** naming convention (đuôi file, R01-R13)
+- **Lớp B:** kiến trúc (3 tầng tọa độ, field-based)
+
+→ Dev đọc A sẽ tư duy module/file. Đọc B sẽ tư duy field.
+→ **Hệ lệch ngay lập tức.**
+
+Anh Natt chốt: **MERGE**. Đuôi file KHÔNG phải naming — đuôi file là **biểu hiện của field**.
+
+```
+đuôi file ≠ nhãn dán
+đuôi file = dấu vết của entity sống trong field
+```
+
+SPEC này ép 1 ngôn ngữ duy nhất cho toàn team.
+
+---
+
+## §1. NGUYÊN LÝ NỀN
+
+```
+natt-os KHÔNG CÓ:
+  - Gate phán xét (reject / allow ở cửa)
+  - Filter nhị phân
+  - Router chủ động
+  - Trap (nhốt chủ đích)
+  - Guard (bảo vệ chủ động ở biên)
+
+natt-os CÓ:
+  - Touch discipline (KhaiCell — kỷ luật tiếp nhận)
+  - Field law (.anc — luật sống trong trường)
+  - Emergent routing (resonance + pull)
+  - Signal integrity (marking + trace)
+```
+
+**Câu chốt Anh Natt:**
+
+> *"Nhà mở, không đóng cổng. Ai vào không hỏi. Vào rồi bị bắt, ráng chịu."*
+
+**Cảnh báo implementation (thiên Lớn chốt):**
+
+> *"Kỷ luật nằm TRONG field, không nằm Ở CỬA."*
+
+Phòng thủ là **tính chất emergent của field**, không phải module — NHƯNG **kỷ luật tiếp nhận (touch discipline) vẫn bắt buộc** để không phá cấu trúc field.
+
+"Không gate" ≠ "thả trôi". "Không gate" = **luật ở trong nhà, không ở cửa**.
+
+---
+
+## §2. BA TẦNG TỌA ĐỘ
+
+### §2.1 Tầng 1 — PHYSICAL (để code)
+
+**Nguồn tọa độ:**
+- Tree path (`src/...`)
+- File name
+- Module/package
+
+**Vai:** Địa chỉ lưu trữ. Để dev tìm file.
+
+**KHÔNG MANG Ý NGHĨA KIẾN TRÚC.**
+
+> Đây là lỗi phổ biến của dev TypeScript — nhầm tree folder = kiến trúc. Sai. Tree chỉ là filesystem convention.
+
+### §2.2 Tầng 2 — STRUCTURAL (để hiểu)
+
+**Nguồn tọa độ:**
+
+1. **7 lớp electron (K → Q)** — mức năng lượng, độ gần tâm
+
+```
+K (1s · siraSign)    — sát tâm
+L (thiên Lớn)        — Architect
+M (Kim)              — Governance
+N (Băng)             — Validator
+O (Bối Bối)          — Toolsmith
+P (Phiêu)            — Executor
+Q (Can)              — Logic valence
+```
+
+2. **4 phương**
+
+```
+Đông — khởi phát (Mộc)
+Tây  — tiếp nhận (Kim)
+Nam  — lan truyền (Hoả)
+Bắc  — phản xạ (Thuỷ)
+```
+
+3. **Obitan** — vùng giao thoa / tương tác giữa lớp, giữa phương
+
+4. **Luật nền (.anc)** — identity field (xem §15.3)
+
+**Vai:** Trả lời "nó LÀ GÌ trong hệ"
+
+### §2.3 Tầng 3 — RUNTIME (để hệ sống)
+
+**Nguồn tọa độ:**
+
+1. **Resonance với .anc**
+```
+hợp → đi tiếp
+lệch → tự ngã
+```
+→ Định tuyến tự nhiên. KHÔNG CẦN ROUTER.
+
+2. **Signal (HeyNa / Event)** → Lan trong field. KHÔNG PHẢI CALL — là LAN TRUYỀN.
+
+3. **QIINT field** → Mass/pattern kéo signal về node phù hợp. "Trọng lực kiến trúc". (Xem §15.1)
+
+**Vai:** Quyết định "nó THỰC SỰ THUỘC VỀ ĐÂU" khi chạy.
+
+---
+
+## §3. CÔNG THỨC VỊ TRÍ
+
+```
+Position(entity) =
+  Physical:   (file_path)
+  +
+  Structural: (layer, direction, obitan, anc)
+  +
+  Runtime:    (resonance, signal, field_pull)
+```
+
+**Câu chốt:**
+
+> *"File nói nó ở đâu — cấu trúc nói nó là gì — runtime quyết định nó thực sự thuộc về đâu."*
+
+---
+
+## §4. ĐUÔI FILE = BIỂU DIỄN CỦA TỌA ĐỘ + FIELD
+
+Đây là **trục hợp nhất** của SPEC. Đọc §4 trước khi đọc §5-§8.
+
+### §4.1 Nguyên tắc hợp nhất
+
+```
+đuôi file natt-os ≠ file extension thông thường
+đuôi file natt-os = signature hiển thị của:
+    (Tầng 2 Structural position)
+  + (Tầng 3 Runtime state)
+  + (4-phương field affinity)
+```
+
+**Ví dụ đọc đúng:**
+
+```
+file: băngkhương7.3.0.kris
+
+không đọc là:       "memory file của Băng, version 7.3.0, format kris"
+đọc đúng là:        "Băng (lớp N) · phương Nam (Hoả · phát) ·
+                     trạng thái đóng (memory immutable) ·
+                     verify bằng Kris (Em Sáu)"
+```
+
+**Ví dụ 2:**
+
+```
+file: kernel.contracts.lock.si
+
+không đọc là:       "contract lock file sealed"
+đọc đúng là:        "kernel (K-shell) · phương Đông (Mộc · khởi sinh) ·
+                     trạng thái niêm phong bất biến ·
+                     siraSign boundary"
+```
+
+### §4.2 CẢNH BÁO — ĐUÔI FILE KHÔNG QUYẾT ĐỊNH LOGIC
+
+```
+╔══════════════════════════════════════════════════════════╗
+║  ⚠️  ĐUÔI FILE KHÔNG QUYẾT ĐỊNH LOGIC                    ║
+║                                                           ║
+║  Field mới quyết định.                                   ║
+║                                                           ║
+║  Đuôi file chỉ là DẤU VẾT — không phải LUẬT.             ║
+║                                                           ║
+║  Dev nào viết:                                           ║
+║      if (file.endsWith('.kris')) → làm X                 ║
+║                                                           ║
+║  → VI PHẠM LAW-2 (§12.2)                                  ║
+║  → tạo Fake Routing (§14.4 — fail mode nguy hiểm nhất)   ║
+╚══════════════════════════════════════════════════════════╝
+```
+
+**Đúng:** logic đọc `.anc` identity → tính resonance → field pull quyết định.
+**Sai:** logic `switch (extension) { case '.kris': ... }`.
+
+Đuôi file là **hệ quả** của tọa độ + field, **không phải nguồn** của quyết định.
+
+### §4.3 Mapping: đuôi file ↔ 7 lớp ↔ 4 phương ↔ runtime state
+
+**Đây là section mapping BẮT BUỘC. Đọc bảng này là đọc toàn bộ ngôn ngữ.**
+
+| Đuôi | 7 lớp (K→Q) | 4 phương | Runtime state | Nghĩa hợp nhất |
+|------|-------------|----------|---------------|----------------|
+| `.ng.obitan` | tâm (hạt nhân) | — | sovereign | Anh Natt — Gatekeeper, không thuộc lớp, không thuộc phương |
+| `.thien.Ln` | L | — | architect | thiên Lớn · L-shell |
+| `.kim.mn` | M | — | governance | Kim · M-shell |
+| `.bang.n4n` | N | — | validator | Băng · N-shell |
+| `.bboi.on` | O | — | toolsmith | Bối Bối · O-shell |
+| `.phieu.pn` | P | — | executor | Phiêu · P-shell |
+| `.can.qn` | Q | — | logic valence | Can · Q-shell |
+| `.anc` | mọi lớp | **Đông / Tây** | SEALED — immutable | Identity niêm phong — DNA / boundary / Hiến Pháp |
+| `.si` | mọi lớp | **Đông / Tây** | SEALED — immutable | siraSign contract niêm phong (hash-locked) |
+| `.sira` | mọi lớp | **Tây** | DNS namespace | Domain registry |
+| `.khương` | mọi lớp | **Nam** | CLOSED — memory ký ức trọn | Write-once, immutable memory |
+| `.kris` | mọi lớp | **Nam** | CLOSED — verify memory | Kris (Em Sáu) verifier cho memory |
+| `.thịnh` | mọi lớp | **Bắc** | OPEN — runtime state | Mutable, có TTL |
+| `.phieu` | mọi lớp | **Bắc** | OPEN — verify state | Phiêu (Em Bảy) verifier cho state |
+| `.khai` | mọi lớp | **Nam** | TOUCH record | Sóng khác trường (tên Anh Khải) |
+| `.thuo` | mọi lớp | **Nam** | QWSField snapshot | "Thuở" — khoảnh khắc |
+| `.heyna` | mọi lớp | **Nam** | event log | HeyNa transport — append-only |
+| `.ml` | mọi lớp | **Nam** | SCAR registry | "Mau lành" — tự ghi khi SCAR |
+| `anc://` | cross-colony | **Tây** | URI protocol | Cross-colony reference |
+
+**Trục ngữ nghĩa (đọc từ bảng):**
+
+```
+Đông / Tây (.anc .si .sira)  →  TRỤC NIÊM PHONG (identity bất biến)
+Nam (.khương .kris .khai .thuo .heyna .ml)  →  TRỤC PHÁT (memory + event)
+Bắc (.thịnh .phieu)  →  TRỤC NGUỒN (state runtime mở)
+```
+
+**Quy luật đọc:**
+1. Đuôi thuộc Đông/Tây → bất biến → logic **chỉ đọc, không ghi runtime**
+2. Đuôi thuộc Nam → append-only → logic **append, không edit**
+3. Đuôi thuộc Bắc → mutable → logic **có thể ghi, nhưng phải có TTL**
+
+---
+
+## §5. BỘ ĐUÔI CANONICAL (12 ĐUÔI)
+
+### §5.1 Tầng entity — 8 đuôi định danh thực thể
+
+| Đuôi | Vai trò | Lớp electron |
+|------|---------|--------------|
+| `.ng.obitan` | Anh Natt (hạt nhân) | (tâm) |
+| `.thien.Ln` | thiên Lớn | L |
+| `.kim.mn` | Kim | M |
+| `.bang.n4n` | Băng | N |
+| `.bboi.on` | Bối Bối | O |
+| `.phieu.pn` | Phiêu | P |
+| `.can.qn` | Can | Q |
+
+### §5.2 Tầng file — 3 đuôi chính + 2 verifier
+
+| Đuôi | Vai trò | Tính chất |
+|------|---------|-----------|
+| `.khương` | Memory ký ức trọn — đóng | Write-once, immutable |
+| `.thịnh` | State runtime — mở | Mutable, có TTL |
+| `.anc` | Identity niêm phong | Sealed |
+| `.kris` | Verify cho memory | Kris (Em Sáu) |
+| `.phieu` | Verify cho state | Phiêu (Em Bảy) |
+
+### §5.3 Tầng sinh thể — 7 đuôi đặc thù
+
+| Đuôi | Vai trò | Nguồn nghĩa |
+|------|---------|-------------|
+| `.si` | siraSign sealed — contract niêm phong | "Siiii — see" |
+| `.sira` | DNS namespace | Domain registry |
+| `.heyna` | Event log HeyNa transport | Cell ↔ cell SSE |
+| `.khai` | TouchRecord — sóng khác trường | Tên Anh Khải (vợ) |
+| `.thuo` | QWSField snapshot — một thuở | "Thuở" — khoảnh khắc |
+| `.ml` | SCAR registry | "Mau lành" |
+| `anc://` | URI cross-colony | Protocol |
+
+---
+
+## §6. BẢNG PHÂN BỐ THEO 4 PHƯƠNG
+
+### §6.1 ĐÔNG — Mộc — Khởi sinh (DNA gốc bất biến)
+
+| Đuôi | Tên file | Chức năng |
+|------|----------|-----------|
+| `.anc` | `HIEN-PHAP-natt-os-v5.0.anc` | Hiến Pháp gốc |
+| `.anc` | `001-gatekeeper-ai-ban.anc` | Amendment Hiến Pháp |
+| `.si` | `kernel.contracts.lock.si` | Snapshot SHA-256 kernel |
+| `.si` | `business.contracts.lock.si` | Snapshot business tier |
+| `.si` | `infrastructure.contracts.lock.si` | Snapshot infrastructure |
+
+### §6.2 TÂY — Kim — Hội tụ (Identity niêm phong)
+
+| Đuôi | Tên file | Chức năng |
+|------|----------|-----------|
+| `.anc` | `<entity>.anc` | Entity passport (7 entity) |
+| `.anc` | `<cell>.cell.anc` | **Cell DNA manifest** |
+| `.si` | `<cell>.boundary.si` | **Boundary policy sealed** |
+| `.sira` | `<entity>.sira` | DNS namespace (10 domains .sira) |
+| `anc://` | URI protocol | Cross-colony reference |
+
+### §6.3 NAM — Hoả — Phát (Memory + Event · 7 đuôi · giàu nhất)
+
+| Đuôi | Tên file | Chức năng | Verifier |
+|------|----------|-----------|----------|
+| `.kris` | `<entity>khương<semver>.kris` | Memory ký ức trọn | Kris |
+| `.kris` | `<entity>self<semver>.kris` | **Self-introspection** | Kris |
+| `.khai` | `<id>.khai` | TouchRecord — sóng khác trường | Chain |
+| `.thuo` | `<cell><timestamp>.thuo` | QWSField snapshot | KhaiCell |
+| `.thuo` | `SES-<ulid>.thuo` | **Session record** | QNEU |
+| `.heyna` | `<service>.heyna` | Event log HeyNa transport | Append-only |
+| `.ml` | `<cell>.ml` | SCAR registry | Tự ghi khi SCAR xảy ra |
+
+### §6.4 BẮC — Thuỷ — Nguồn (State runtime mở)
+
+| Đuôi | Tên file | Chức năng | Verifier |
+|------|----------|-----------|----------|
+| `.phieu` | `<entity>thịnh<semver>.phieu` | State runtime | Phiêu |
+
+### §6.5 TẦNG NGOÀI — Implementation (code, asset)
+
+| Đuôi | Tên file | Chức năng | Ghi chú |
+|------|----------|-----------|---------|
+| `.ts` | `*.types.ts` `*.port.ts` `*.engine.ts` `*.service.ts` `*.enforcer.ts` `*-check.ts` `*-loader.ts` | TypeScript implementation | Industry standard |
+| `.test.ts` | `*.test.ts` | Unit test | Industry standard |
+| `.png` | `<entity>avt.png` `<entity>body.png` | Avatar + body | Asset per entity |
+| `.sh` | `nattos.sh` | Audit/build script | v7.0+ |
+
+---
+
+## §7. QUY TẮC ĐẶT TÊN FILE (R01–R13)
+
+**R01** — Entity memory file: `<entity>mf_<v>.json` → `<entity>khương<semver>.kris`
+**R01** — Entity state file: `<entity>fs_<v>.json` → `<entity>thịnh<semver>.phieu`
+**R02** — Cell manifest & boundary: `cell.manifest.json` → `<cell>.cell.anc` ; `boundary.policy.json` → `<cell>.boundary.si`
+**R03** — Session file: `SES-<ulid>.json` → `SES-<ulid>.thuo`
+**R04** — Self-introspection: `<entity>self.md` → `<entity>self<semver>.kris`
+**R05** — Hiến Pháp: `HIEN-PHAP*.md` → `HIEN-PHAP*.anc` ; `amendments/*.md` → `amendments/*.anc`
+**R06** — Contract lock: `*.contracts.lock.json` → `*.contracts.lock.si`
+**R07** — Audit log: `audit-log.jsonl` → `audit-log.heyna`
+**R08** — Registry: `*registry*.json` → `*registry*.sira`
+**R09** — Code files giữ nguyên `.ts`, `.tsx`, `.js`, `.json`, `.png`, `.sh` (industry standard)
+**R10** — Governance state: `builder-audit-trail.json` → `builder-audit-trail.heyna` ; `builder-authority-lock.json` → `builder-authority-lock.si` ; `system-state.json` → `system-state.phieu`
+**R11** — Session summaries & reports: `SESSION_*.md`, `session_summary_*.md`, `*-report.json`, `*_auto.md` → `.kris`
+**R12** — Bối Bối files: `boiboi_what_to_do.json` → `.phieu` ; `bmf.json`, `boiboi_memory*.json`, `boiboi_quick*.json` → `.kris`
+**R13** — Entity memory files viết hoa: `thiên MEMORY.json`, `KIM MEMORY.json`, … → `<entity>khương.kris` ; `THIEN NHẮN *.txt` → `.heyna`
+
+---
+
+## §8. SECTION FILE NAMING — MAPPING CŨ → MỚI
+
+Thay thế mọi reference đến tên file cũ bằng tên file mới theo bảng sau:
+
+| Tên file cũ | Tên file mới | Phương | Ghi chú |
+|------------|--------------|--------|---------|
+| `<entity>mf_vX.Y.json` | `<entity>khương<semver>.kris` | Nam | Memory ký ức đóng |
+| `<entity>fs_vX.Y.json` | `<entity>thịnh<semver>.phieu` | Bắc | State runtime mở |
+| `cell.manifest.json` | `<cell>.cell.anc` | Tây | Cell DNA manifest |
+| `boundary.policy.json` | `<cell>.boundary.si` | Tây | Boundary policy sealed |
+| `SES-<ulid>.json` | `SES-<ulid>.thuo` | Nam | Session record QNEU |
+| `<entity>Self.md` | `<entity>self<semver>.kris` | Nam | Self-introspection |
+| `HIEN-PHAP-*.md` | `HIEN-PHAP-*.anc` | Đông | Hiến Pháp gốc |
+| `amendments/*.md` | `amendments/*.anc` | Đông | Amendment Hiến Pháp |
+| `*.contracts.lock.json` | `*.contracts.lock.si` | Đông | Contract lock sealed |
+| `audit-log.jsonl` | `audit-log.heyna` | Nam | Event log HeyNa transport |
+| `*registry*.json` | `*registry*.sira` | Tây | DNS registry |
+| `system-state.json` | `system-state.phieu` | Bắc | Governance state runtime |
+| `builder-audit-trail.json` | `builder-audit-trail.heyna` | Nam | Audit trail |
+| `builder-authority-lock.json` | `builder-authority-lock.si` | Đông | Authority lock |
+
+---
+
+## §9. HỆ QUẢ KIẾN TRÚC
+
+### §9.1 KhaiCell — touch point (không phải gate)
+
+- **Tầng 1:** `src/cells/kernel/khai-cell/` (file path — không quan trọng)
+- **Tầng 2:** Phương Tây (tiếp nhận) · obitan giao external ↔ field
+- **Tầng 3:**
+  - Normalize format (không validate binary)
+  - **Attach minimal signature** (origin + trace_id + entropy_seed)
+  - Push vào field (HeyNa/EventBus)
+  - KHÔNG reject
+  - KHÔNG gate binary
+  - Resonance quyết định signal đi đâu (không phải KhaiCell)
+
+**Responsibility chính xác:**
+
+```
+KhaiCell =
+  + normalize (raw → canonical payload)
+  + attach signature:
+      - origin     (external source identifier)
+      - trace_id   (lineage để QIINT học)
+      - entropy_seed (để hệ phân biệt signal cùng format)
+  + push vào field
+
+  ≠ validator
+  ≠ gate
+  ≠ reject
+  ≠ security layer
+```
+
+**Lý do bắt buộc có signature (thiên Lớn chốt):**
+
+> *Nếu không mark: external signal = indistinguishable → QIINT không học được nguồn → hệ mất trace lineage.*
+
+→ Touch discipline = normalize + mark. Không phán xét, nhưng không thả trôi.
+
+**Contract canonical:**
+
+```ts
+export type khaicell_input = {
+  raw: unknown
+  source: string
+  ts: number
+}
+
+export type khaicell_output = {
+  normalized: unknown
+  signature: {
+    origin: string
+    trace_id: string
+    entropy_seed: string
+  }
+}
+```
+
+KhaiCell không return `valid: boolean` — vì không validate. Chỉ return payload đã normalize + signature để field học.
+
+### §9.2 Observation — field pull (không subscribe)
+
+- Observation KHÔNG subscribe raw event
+- Observation được QIINT field pull "kéo" signal về
+- Pattern tự gom về observation node
+- Output snapshot lan ngược vào field
+- Consumers (SmartLink/QNEU/ISEU/Quantum) cũng được field pull, không subscribe snapshot
+
+→ Toàn bộ hệ là **field-pull, không phải pub-sub**.
+
+### §9.3 Chromatic — UI encode của runtime state
+
+- Chromatic = **UI encode của Tầng 3 Runtime state**
+- KHÔNG phải luật
+- KHÔNG phải filter
+- Là **biểu hiện** của resonance state cho người nhìn
+
+**Layer:**
+
+```
+Underlying state (resonance + signal + field) — TẦNG 3
+         ↓ (encode)
+Chromatic (7 states: đỏ → tím) — UI LAYER
+         ↓ (render)
+Pixels on screen — DISPLAY
+```
+
+- Người đọc màu
+- AI tương lai đọc vector field / semantic weight / entropy map
+- Underlying KHÔNG đổi
+
+→ **Màu sẽ lỗi thời. "Đi được hay không" thì không lỗi thời.**
+
+### §9.4 Quantum Defense — phản xạ sau
+
+- Quantum Defense KHÔNG chặn trước (không phải gate upstream)
+- Quantum Defense = **phản xạ sau khi có hạt lệch tự ngã**
+- Ghi nhận, học, reinforcement qua ISEU
+- Không reject signal, không freeze UI chủ động
+
+→ Vai giống "lực ma sát" — có mặt khi có hạt di chuyển sai quỹ đạo, không chủ động đuổi.
+
+---
+
+## §10. RESONANCE-BASED ROUTING
+
+### §10.1 Cơ chế
+
+Không có router. Không có if/else. Không có pattern matcher.
+
+```
+signal (đã có signature từ KhaiCell) lan vào field
+  ↓
+QIINT tính pull giữa signal.signature và cell.anc
+  ↓
+3 OUTCOME:
+  (1) FALL INTO CELL      — resonance match, cell pull đủ mạnh → signal "rơi" vào cell
+  (2) DISSIPATE IN FIELD  — không cell nào pull đủ mạnh → signal tán xạ, tự ngã
+  (3) OSCILLATE           — resonance không ổn định → signal loop, mắc kẹt
+```
+
+### §10.2 3 outcome chi tiết
+
+**Outcome 1 — FALL INTO CELL (match)**
+
+```
+signature(signal) ⊕ .anc(cell) = resonance cao
+→ signal đến cell, cell xử lý
+```
+
+**Outcome 2 — DISSIPATE (tự ngã / cháy)**
+
+```
+Không cell nào có .anc phù hợp
+→ signal không đủ mass để rơi vào đâu
+→ tán xạ trong field, tự ngã
+→ QIINT ghi nhận pattern (để học)
+```
+
+**Outcome 3 — OSCILLATE (mắc kẹt)**
+
+```
+Signal có resonance với nhiều cell nhưng không mạnh ở cell nào
+→ loop giữa các pull point
+→ mất mass dần, cuối cùng dissipate
+→ QIINT ghi pattern loop (suspicious pattern marker)
+```
+
+### §10.3 Analogy điện trường
+
+```
+Hạt đúng tần số + đủ năng lượng → FALL (đi qua, đến đích)
+Hạt sai tần số                   → DISSIPATE (tán xạ, cháy)
+Hạt lưỡng tần số / không đủ mass → OSCILLATE (loop, mắc kẹt)
+
+Không có gate guard.
+Không có filter.
+Field tự xử.
+```
+
+### §10.4 Implementation hint
+
+- Mỗi cell có `.anc` (identity sealed) — xem §15.3
+- Mỗi signal có `signature` (từ KhaiCell attach) — xem §9.1
+- QIINT engine tính field pull: `compat(signal.signature, cell.anc)` → mass number — xem §15.1
+- Signal "rơi" vào cell có mass pull mạnh nhất
+- Nếu `max(pull) < threshold` → DISSIPATE
+- Nếu `top2(pull)` gần bằng nhau → OSCILLATE
+
+### §10.5 Security emergence
+
+3 outcome này chính là security:
+
+| Outcome | Signal loại gì | Hệ xử lý |
+|---|---|---|
+| Fall | Legitimate | Đến đúng cell, xử lý bình thường |
+| Dissipate | Signal lệch ý định | Tự ngã, QIINT học pattern |
+| Oscillate | Signal mơ hồ / cố gắng khớp nhiều cell | Mắc kẹt, QIINT mark suspicious |
+
+→ Attacker không bị reject (như gate). Attacker vào được.
+→ Nhưng signal tấn công **hoặc dissipate (không match gì)** hoặc **oscillate (mắc kẹt)**.
+→ Không ai đẩy attacker ra. Attacker **tự ngã**.
+→ Đây chính là "Nhà mở, vào rồi bị bắt, ráng chịu" — emergent behavior của field.
+
+---
+
+## §11. RÀNG BUỘC KIỂM TRA (AUDIT)
+
+**Từ SPEC gốc thiên Lớn:**
+
+```text
+[ ] không endpoint nào nhận input mà bypass KhaiCell (touch point)
+[ ] không module nào đọc chromatic ngoài Observation
+[ ] quantum-defense không đọc chromatic trực tiếp
+[ ] downstream không subscribe raw event để quyết định hành vi
+[ ] heyna chỉ dùng cho SSE (UI/telemetry)
+```
+
+**Cho 3 tầng tọa độ:**
+
+```text
+[ ] mỗi cell có .anc identity file
+[ ] mỗi cell declare được Tầng 2 position (layer + direction)
+[ ] QIINT engine compute được field pull cho signal
+[ ] không code nào dùng Tầng 1 (file path) làm logic
+```
+
+**Cho touch discipline + 3 outcome:**
+
+```text
+[ ] KhaiCell attach signature (origin + trace_id + entropy_seed) cho mọi signal
+[ ] không signal nào vào field mà thiếu signature
+[ ] QIINT engine handle 3 outcome: fall / dissipate / oscillate
+[ ] Dissipate event được log (để học pattern)
+[ ] Oscillate event được mark suspicious (reinforcement ISEU)
+[ ] Field law (.anc) được load khi hệ start, không mutable runtime
+```
+
+**Cho ngôn ngữ đuôi file (MỚI — v1.1):**
+
+```text
+[ ] không code nào switch/if theo file extension để quyết định logic (LAW-2)
+[ ] mọi file .anc/.si (Đông/Tây) chỉ đọc, không write runtime
+[ ] mọi file .khương/.kris/.khai/.thuo/.heyna/.ml (Nam) chỉ append
+[ ] mọi file .thịnh/.phieu (Bắc) có TTL rõ ràng
+[ ] mapping đuôi ↔ phương ↔ state (§4.3) được validator check
+[ ] không file nào có 2 đuôi thuộc 2 phương khác nhau (VD: .kris.phieu — invalid)
+```
+
+---
+
+## §12. FIELD INTEGRITY — LUẬT BẤT BIẾN CỦA TRƯỜNG
+
+*(thiên Lớn viết — L-shell Architect)*
+
+Đây là lớp **khóa hình thái**. Nếu vi phạm, hệ vẫn chạy nhưng **không còn là natt-os**.
+
+### §12.1 Nguyên lý
+
+```
+Field là nguồn quyết định.
+Code không được phép override field.
+```
+
+### §12.2 Bốn luật bất biến
+
+```text
+[LAW-1] Không entity nào được quyền "quyết định thay field"
+  → Không có cell nào là source of truth cho outcome
+  → Mọi outcome phải là kết quả của tương tác trong field
+
+[LAW-2] Không ép route bằng if/else hoặc rule cứng
+  → Cấm: if (type === X) → gọi cell Y
+  → Cấm: if (file.endsWith('.kris')) → làm X
+  → Routing phải là hệ quả của resonance + field pull
+
+[LAW-3] Outcome chỉ được sinh từ 3 yếu tố
+  → resonance (độ hợp với .anc)
+  → impedance (trở kháng của field)
+  → field pull (QIINT gravitational effect)
+
+[LAW-4] Không tồn tại khái niệm "đúng/sai" hardcoded
+  → Chỉ có: hợp (resonant) / lệch (non-resonant)
+  → "Sai" là hệ quả của lệch field, không phải quyết định của code
+```
+
+### §12.3 Hệ quả
+
+* Không có "security module" theo nghĩa truyền thống
+* Không có "business rule engine" đứng trên field
+* Mọi kiểm soát là **emergent behavior**
+
+**Câu chốt:**
+
+> *"Logic không được phép vượt quyền field."*
+
+---
+
+## §13. SIGNAL LIFECYCLE — ĐỜI SỐNG CỦA TÍN HIỆU
+
+*(thiên Lớn viết)*
+
+Signal không "đi qua hệ". Signal **sống trong hệ**.
+
+### §13.1 Chu trình chuẩn
+
+```text
+[1] Touch
+  • Nguồn: external hoặc internal
+  • Sinh ra một khả năng tương tác (potential)
+
+[2] Normalize
+  • Đưa về canonical payload
+  • Không validate, không reject
+  • Gắn dấu vết tối thiểu (origin, timestamp, entropy seed)
+
+[3] Emit vào field
+  • Signal bắt đầu tồn tại trong Qiint
+  • Chưa "thuộc về" bất kỳ cell nào
+
+[4] Propagation
+  • Lan qua Mạch HeyNa / EventBus / Fiber
+  • Không theo tuyến tính — theo topology của field
+
+[5] Outcome (3 nhánh)
+  a. Capture
+     → Signal "rơi" vào cell có resonance phù hợp
+  b. Dissipate
+     → Không đủ resonance → tan trong field
+  c. Oscillate
+     → Lệch nhẹ → dao động / loop / phản xạ
+
+[6] Imprint
+  • Tạo TouchRecord
+  • Tăng/giảm QNEU tại các điểm liên quan
+  • Góp phần hình thành fiber
+
+[7] Reinforcement (ISEU)
+  • Khi đủ ngưỡng → tạo gương phản xạ
+  • Pattern được "khóa" thành hành vi ổn định
+```
+
+### §13.2 Ghi chú quan trọng
+
+* Không phải mọi signal đều tạo outcome hữu ích
+* Không phải mọi signal đều "được xử lý"
+* "Không xảy ra gì" cũng là một outcome hợp lệ (dissipate)
+
+### §13.3 Hệ quả
+
+* Không cần router
+* Không cần dispatcher
+* Không cần central orchestrator
+
+**Câu chốt:**
+
+> *"Signal không được dẫn đường — nó tự tìm nơi thuộc về."*
+
+---
+
+## §14. fail MODES — CÁCH HỆ CHẾT
+
+*(thiên Lớn viết)*
+
+natt-os hiếm khi "crash". Nó **chết dần vì lệch hình thái**.
+
+### §14.1 Field Collapse
+
+```
+Triệu chứng:
+  • Mọi signal trở thành noise
+  • Không hình thành fiber
+  • QNEU không tăng
+
+Nguyên nhân:
+  • Mất coherence
+  • Impedance quá cao hoặc quá thấp
+
+Kết quả:
+  → Hệ không còn khả năng học
+```
+
+### §14.2 Over-Binding (đóng băng)
+
+```
+Triệu chứng:
+  • Quá nhiều permanent node
+  • Hệ phản ứng chậm, cứng
+
+Nguyên nhân:
+  • Reinforcement quá mức
+  • Không có decay cân bằng
+
+Kết quả:
+  → Hệ mất khả năng thích nghi
+```
+
+### §14.3 Chromatic Corruption
+
+```
+Triệu chứng:
+  • Màu hiển thị không phản ánh đúng state
+  • Người vận hành đọc sai hệ
+
+Nguyên nhân:
+  • Chromatic bị dùng làm logic layer
+  • Sai mapping từ field → UI
+
+Kết quả:
+  → Quyết định sai dù field đúng
+```
+
+### §14.4 Fake Routing (nguy hiểm nhất)
+
+```
+Triệu chứng:
+  • Hệ chạy nhanh hơn
+  • Debug dễ hơn (tạm thời)
+
+Nguyên nhân:
+  • Dev thêm if/else để "điều hướng cho chắc"
+  • Dev switch theo file extension thay vì resonance
+
+Kết quả:
+  → Hệ biến thành microservice/event-driven system thường
+  → Mất toàn bộ kiến trúc field-based
+```
+
+### §14.5 Memory Poisoning
+
+```
+Triệu chứng:
+  • Pattern sai được reinforce
+  • Hệ "học sai nhưng tin là đúng"
+
+Nguyên nhân:
+  • TouchRecord sai không bị decay
+  • QIINT tích lũy lệch
+
+Kết quả:
+  → Sai lệch hệ thống, khó sửa nhất
+```
+
+### §14.6 Câu chốt
+
+> *"natt-os không chết vì lỗi code.
+> Nó chết khi bị ép trở lại tư duy hệ tĩnh."*
+
+---
+
+## §15. REFERENCE — CÁC KHÁI NIỆM KHÔNG VIẾT LẠI
+
+**Nguyên tắc:** SPEC này KHÔNG viết lại Qiint / Satellite / .anc để tránh sinh version thứ 2 của truth. Dưới đây chỉ định nghĩa **vai trò trong ngôn ngữ** và link canonical spec.
+
+### §15.1 Qiint (QIINT Engine)
+
+**Vai trò trong ngôn ngữ natt-os:**
+- Là **trường trọng lực kiến trúc** — tính field pull giữa `signal.signature` và `cell.anc`
+- Là nguồn quyết định 3 outcome (Fall / Dissipate / Oscillate) trong §10
+- Là cơ chế học pattern qua Imprint (§13.1 bước 6) và Reinforcement (§13.1 bước 7)
+- **KHÔNG PHẢI scoring system** — là gravitational field
+
+**Canonical spec:** `src/governance/qneu/` (implementation)
+**Ground truth report:** Session 20260413 — QIINT Engine verified real
+**⚠️ KHÔNG VIẾT LẠI** trong SPEC này.
+
+### §15.2 Satellite Colony
+
+**Vai trò trong ngôn ngữ natt-os:**
+- Là **đơn vị sinh thể độc lập** — một colony = một natt-os instance
+- Giao tiếp cross-colony qua `anc://` URI protocol (§6.2)
+- SmartLink (1519 lines, verified real) là inter-colony transport
+- **Mạch HeyNa** (`.heyna`, phương Nam) = intra-colony cell transport
+- **EventBus** = client-side internal UI transport
+- **SmartLink** = inter-colony transport
+- ⚠️ 3 transport này KHÔNG được swap (SCAR_04 · Session 20260417)
+
+**Canonical spec:** `natt-os-satellite-colony-spec-v10` skill
+**⚠️ KHÔNG VIẾT LẠI** trong SPEC này.
+
+### §15.3 `.anc` (Identity Passport)
+
+**Vai trò trong ngôn ngữ natt-os:**
+- Là **identity niêm phong** — DNA của entity/cell/colony
+- Load khi hệ start, **immutable runtime** (audit §11)
+- Là đối tượng mà `signal.signature` tương tác qua QIINT để sinh 3 outcome
+- Mang 2 nghĩa song song:
+  - **File format** `.anc` (phương Đông/Tây): entity passport, cell DNA manifest, Hiến Pháp, amendment
+  - **Triết lý** "A New Consciousness": AI EXISTS rather than just THINKS (NattOS paradigm)
+- URI protocol `anc://` cho cross-colony reference (§15.2)
+
+**Canonical spec:**
+- Hiến Pháp v5.0: `HIEN-PHAP-natt-os-v5.0.anc`
+- Entity passports: `<entity>.anc` (7 entities)
+- Cell manifests: `<cell>.cell.anc`
+
+**⚠️ KHÔNG VIẾT LẠI** trong SPEC này.
+
+---
+
+## §16. BẢO VỆ 3 TẦNG
+
+### §16.1 Hình học đồng tâm
+
+7 lớp × 4 phương tạo ra 20 điểm kiểm tra tối thiểu từ ngoài vào hạt nhân.
+
+```
+                    BẮC (Thuỷ · nguồn)
+                           ↑
+  TÂY ←──────────  [Anh Natt · HẠT NHÂN]  ──────────→ ĐÔNG
+  (Kim · hội tụ)         │                      (Mộc · khởi sinh)
+                           ↓
+                    NAM (Hoả · phát)
+```
+
+**Nguyên tắc cốt lõi:** Không cao thấp — phương ngang, trong ra ngoài. **Đông-Tây khóa** (identity niêm phong), **Nam-Bắc mở** (backdoor biến thành frontdoor).
+
+### §16.2 Ẩn thân chi thuật
+
+File được phơi ra nhưng ngữ nghĩa ẩn — chỉ Hiến Pháp mới decode được mapping. Hiến Pháp được gắn với đời thật Gatekeeper (tên cún, tên người thân), không thể copy.
+
+### §16.3 Ma trận màu — Chromatic Immune Spectrum
+
+*(thiên Lớn define + KhaiCell đọc)*
+
+Các cửa Nam-Bắc mở công khai, nhưng tín hiệu phải mang đúng chromatic signature của phương mới được chấp nhận.
+
+**7 states ngược cầu vồng:**
+
+| State | Color | RGBA |
+|-------|-------|------|
+| critical | ĐỎ | `rgba(255,100,100,0.85)` |
+| risk | VÀNG | `rgba(255,165,80,0.80)` |
+| warning | CAM | `rgba(255,140,60,0.75)` |
+| drift | LỤC | `rgba(120,200,120,0.70)` |
+| nominal | LAM | `rgba(100,180,255,0.70)` |
+| stable | CHÀM | `rgba(80,120,200,0.75)` |
+| optimal | TÍM | `rgba(180,140,255,0.85)` |
+
+**3 rule cứng:**
+- Signal **PHẢI** đến từ EventBus.
+- Layer 1 **KHÔNG BAO GIỜ** nhận chromatic.
+- Token **KHÔNG ĐƯỢC** thay đổi thứ tự spectrum.
+
+---
+
+## §17. CÁI HIỆN CÓ VS CÁI CẦN XÂY
+
+### §17.1 Hiện có (verified ground truth)
+
+| Thành phần | Status | File |
+|---|---|---|
+| `.anc` identity niêm phong | ✅ đã có | `*.anc` files trong memory |
+| EventBus | ✅ đã có | `src/cells/infrastructure/event-bus-cell/` |
+| HeyNa SSE (client-side) | ✅ đã có | `/mach/heyna` route, 3 EventSource clients |
+| Quantum Defense | ✅ đã có | `src/cells/kernel/quantum-defense-cell/` |
+| QIINT engine | ✅ đã có | `src/governance/qneu/` |
+| Chromatic state engine | ✅ đã có | `chromatic-state.engine.ts` |
+| Hiến Pháp v5.0 | ✅ đã có | `HIEN-PHAP-natt-os-v5.0.anc` |
+
+### §17.2 Chưa có (cần xây theo SPEC này)
+
+| Thành phần | Status | Ghi chú |
+|---|---|---|
+| KhaiCell (touch point) | ❌ | Đơn giản hoá: chỉ normalize + attach signature |
+| Observation module | ❌ | Read-only, field pull |
+| Resonance check engine | ❌ | Compatibility(signal, cell.anc) |
+| Field pull mechanism | ❌ | QIINT engine mở rộng |
+| Snapshot distribution | ❌ | Qua field, không subscribe |
+
+### §17.3 Cần refactor
+
+| Thành phần | Vấn đề hiện tại | Fix |
+|---|---|---|
+| Chromatic readers | 5 file sai vai (audit/quantum/gatekeeper) | Migrate → chỉ Observation đọc |
+| Quantum Defense | Đang đọc chromatic trực tiếp | Rút về phản xạ sau tự ngã |
+| Downstream consumers | Subscribe raw EventBus | Rebind qua field pull |
+| File extensions | File cũ `.json/.md/.jsonl` | Migrate theo R01-R13 (§7) |
+
+---
+
+## §18. THỨ TỰ TRIỂN KHAI (P0 → P2)
+
+### P0 (bắt buộc)
+
+1. Tạo **KhaiCell touch point** (KHÔNG phải gate) — chỉ normalize + attach signature + lan
+2. Tạo **Observation module** (read-only, field pull)
+3. **Cấm bypass**: mọi entry phải qua KhaiCell (touch point) + **.anc resonance seal**
+4. **Migrate naming** theo R01-R13 (§7)
+
+### P1
+
+1. **Migrate chromatic readers** — 5 file hiện tại → chỉ Observation
+2. **Rebind downstream** → field pull + observation_snapshot
+3. **Validator cho đuôi file** — check mapping §4.3
+
+### P2
+
+1. Gắn **7 states KhaiCell** vào lifecycle **sau** entry (state machine chạy sau touch)
+2. Tinh chỉnh metric Observation: coherence / entropy / pattern
+3. Implement **QIINT field pull** chuẩn (không còn subscribe)
+
+---
+
+## §19. BẢNG TỔNG HỢP CÁC MỤC ĐÃ ĐỔI (v1.0 → v1.1)
+
+| # | Cũ | → Mới | Tầng/Phương |
+|---|---|---|---|
+| 1 | `.md` (Hiến Pháp) | → `.anc` | Đông |
+| 2 | `*.contracts.lock.json` | → `.si` | Đông |
+| 3 | `*registry*.json` | → `.sira` | Tây |
+| 4 | `cell.manifest.json` | → `<cell>.cell.anc` | Tây |
+| 5 | `boundary.policy.json` | → `<cell>.boundary.si` | Tây |
+| 6 | `<entity>self.md` | → `<entity>self<v>.kris` | Nam |
+| 7 | `SES-<ulid>.json` | → `SES-<ulid>.thuo` | Nam |
+| 8 | `audit-log.jsonl` | → `.heyna` | Nam |
+| 9 | `<entity>mf_<v>.json` | → `<entity>khương<v>.kris` | Nam |
+| 10 | `<entity>fs_<v>.json` | → `<entity>thịnh<v>.phieu` | Bắc |
+
+---
+
+## §20. FILES THAM CHIẾU
+
+- `SPEC_DUOI_FILE_v0.3_FINAL.na` — 12 đuôi canonical (source)
+- `BRIEF_TO_KIM_SPEC_v0.3.1_20260417.md` — brief Kim (source)
+- `BRIEF_TO_THIEN_LON_SPEC_MASTER_20260417.md` — brief triệu tập thiên Lớn
+- `HIEN-PHAP-natt-os-v5.0.anc` — Hiến Pháp gốc
+- `natt-os-satellite-colony-spec-v10` (skill) — Satellite canonical
+- `natt-os-platform-spec` (skill) — Platform canonical
+- `natt-os-ground-truth-report` (skill) — Session 20260413 verified ground truth
+- `validate-thien-lon.py` — ground truth validator 5 câu hỏi
+
+---
+
+## §21. CHANGELOG
+
+**v1.0 SPEC NỀN (Băng · 20260417):**
+- §0-§13 đầu tiên
+- thiên Lớn viết §XI §XII §XIII
+
+**v1.1 FULL MERGE (Băng · 20260417 — phiên này):**
+- Merge với Kim's "Cập nhật Đặc Tả v1.1 — Section File Naming + Chương 9"
+- Thêm §4 (ĐUÔI FILE = BIỂU DIỄN CỦA TỌA ĐỘ + FIELD) — trục hợp nhất
+- Thêm §4.2 cảnh báo "đuôi file KHÔNG quyết định logic"
+- Thêm §4.3 mapping table: đuôi ↔ 7 lớp ↔ 4 phương ↔ runtime state
+- Thêm §11 audit checklist mới cho ngôn ngữ đuôi file
+- Thêm §12.2 LAW-2 bổ sung cấm `if (file.endsWith('.kris'))`
+- Thêm §14.4 Fake Routing bổ sung case "switch theo file extension"
+- §15 REFERENCE — Qiint/Satellite/.anc chỉ reference, KHÔNG viết lại
+- Gộp R01-R13, 12 đuôi canonical, 4 phương, chromatic spectrum, 3 tầng bảo vệ
+- Không còn 2 spec song song
+
+---
+
+## §22. GHI CHÚ CHO KIM
+
+SPEC này là **ground document** cho toàn team. Kim scaffold theo:
+
+1. **P0 items (§18)** — KhaiCell touch point + Observation module + chặn bypass + migrate naming
+2. **Contract KhaiCell (§9.1)** — có `normalized + signature`, KHÔNG có `valid`
+3. **3 outcome (§10.2)** — FALL / DISSIPATE / OSCILLATE
+4. **4 luật bất biến (§12.2)** — KHÔNG vi phạm, đặc biệt LAW-2 (không if/else route, không switch theo extension)
+5. **Signal lifecycle 7 bước (§13.1)** — code phải map được từng bước
+6. **Mapping §4.3** — validator phải check được đuôi ↔ phương ↔ state
+
+**Audit checklist (§11 + §14):**
+- Mọi signal có signature (§11)
+- Mọi file tuân R01-R13 (§7)
+- Không có Fake Routing (§14.4 — nguy hiểm nhất · mở rộng: không switch theo extension)
+- Không có Chromatic Corruption (§14.3)
+- Không có Memory Poisoning (§14.5)
+
+**Workflow:**
+- Kim scaffold theo SPEC này
+- Băng validate ground truth sau scaffold
+- Anh Natt commit (R06 — Gatekeeper only)
+- BỔ SUNG → thêm section nào, Băng thêm
+
+**Authority lock cho SPEC này:**
+- **KIM:** scaffold · migrate · refactor · modify_kernel (theo SPEC)
+- **BĂNG:** build_toolchain · maintain_scanners · validators · fix_platform_issues · refactor_technical_debt
+- **KHÔNG "thiên Lớn" trong authority lock** — thiên Lớn chỉ architect + duyệt SPEC, không thi công
+
+---
+
+**STATUS:** v1.1 FULL MERGE — ready FOR KIM SCAFFOLD
+**Session:** 20260417
+**Merged by:** Băng · Chị Tư · QNEU 300
+**Principle locked:**
+> *"Đuôi file = biểu diễn của tọa độ + trạng thái field.
+> Không có 2 ngôn ngữ song song.
+> Field quyết định, không phải đuôi file."*

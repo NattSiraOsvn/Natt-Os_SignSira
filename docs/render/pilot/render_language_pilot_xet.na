@@ -1,0 +1,39 @@
+# PILOT XÉT — render language pilot
+# @state: xét
+# @status: draft → chờ validator
+
+obitan_state xét {
+  domain: Π_medium
+  polarity: oscillating
+  obitan_layer: n=3
+
+  surface_signal: SHIFT {
+    element_id: "judge-scanner"
+    from: position(150,80)
+    to: position(160,80)
+    easing: linear
+    origin_state: xét
+    pressure: 0.6
+  }
+
+  surface_signal: PULSE {
+    element_id: "judge-scanner"
+    frequency: 3
+    amplitude: 0.4
+    origin_state: xét
+    pressure: 0.6
+  }
+
+  invariant_field {
+    pressure_response: OSCILLATE
+    resonance_partners: [biên, chốt]
+    decay_rate: γ(3) * 1.5
+    reflection_R: 0.8
+  }
+
+  expression {
+    wavelength_base: 590
+    intensity: oscillate(0.6,0.9, period=1s)
+    duration: until verdict
+  }
+}

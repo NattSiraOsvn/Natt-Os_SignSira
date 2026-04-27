@@ -1,0 +1,28 @@
+# sira authoritative zone plan evidence — 20260425
+
+status: zone-plan-validated
+created_at: 2026-04-25 23:45:38
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- docs/runtime/sira_authoritative_zone_plan_20260425.na
+- tools/validate_sira_authoritative_zone_plan.sira
+- docs/runtime/sira_sovereign_dns_infrastructure_binding_20260425.na
+- docs/runtime/sira_public_dns_rollout_readiness_20260425.na
+- docs/runtime/sira_dns_zone_manifest_20260425.na
+- tools/natt_domain_gateway.sira
+
+---
+
+## 2. scope
+
+- khóa authoritative zone plan cho .sira.
+- khóa allowed records về gateway only.
+- khóa denied records cho unknown/mail/smtp/imap/loopback.
+- khóa no wildcard allow.
+- khóa ttl rollback.
+- khóa resolver smoke và gateway smoke.
+- chưa chỉnh resolver thật.

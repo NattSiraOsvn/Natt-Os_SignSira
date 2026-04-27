@@ -8,7 +8,7 @@
   },
   "repo_facts": {
     "path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "branch": "main",
     "head": "23b0a6e",
     "commits": 591
@@ -29,7 +29,7 @@
   "spec_canonical": {
     "ui": "docs/specs/nauion/SPEC-Nauion_main_v2.4.md",
     "finance": "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
-    "protocol": "docs/governance/NATT-OS-WORKING-PROTOCOL.md"
+    "protocol": "docs/governance/natt-os-WORKING-PROTOCOL.md"
   },
   "cells_count": {
     "kernel": 6,
@@ -41,9 +41,9 @@
   "key_event_names": {
     "SALES_ORDER_CONFIRMED": "sales-cell SmartLink port",
     "PAYMENT_PROCESSED": "payment-cell SmartLink port",
-    "INVOICE_CREATED": "finance-cell SmartLink port",
+    "INVOICE_created": "finance-cell SmartLink port",
     "GoodsDispatched": "warehouse-cell EventBus.emit trực tiếp",
-    "ORDER_CREATED": "order-cell"
+    "ORDER_created": "order-cell"
   },
   "bctc_gap": "finance-cell chưa subscribe SALES_ORDER_CONFIRMED + PAYMENT_PROCESSED — PENDING FIX",
   "do_not": [

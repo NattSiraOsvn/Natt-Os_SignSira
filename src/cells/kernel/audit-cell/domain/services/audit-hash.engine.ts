@@ -1,6 +1,6 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 /**
- * NATT-OS Audit Hash Engine v1.0
+ * natt-os Audit Hash Engine v1.0
  * Port từ Doc 5 computeMD5() + Doc 9 logAudit() SHA-256
  * Target: audit-cell/domain/engines/
  */
@@ -9,7 +9,7 @@ export const AUDIT_SIGNATURE_KEY = 'NATT_OS_AUDIT_SIG_2025';
 export const HASH_ALGORITHM: 'SHA-256' | 'SHA-512' = 'SHA-256';
 
 export type AuditAction   = 'CREATE' | 'UPDATE' | 'DELETE' | 'APPROVE' | 'REJECT' | 'LOCK' | 'UNLOCK' | 'OVERRIDE' | 'EXPORT' | 'IMPORT';
-export type AuditSeverity = 'INFO' | 'WARN' | 'CRITICAL';
+export type AuditSeverity = 'INFO' | 'warn' | 'CRITICAL';
 
 export interface AuditLogEntry {
   id:          string;

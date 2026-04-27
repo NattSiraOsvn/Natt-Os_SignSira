@@ -1,0 +1,100 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sira_sovereign_dns_infrastructure_binding_20260425.na");
+const readiness = path.join(root, "docs", "runtime", "sira_public_dns_rollout_readiness_20260425.na");
+const zone = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+function zone_label() {
+  return "authoritative zone " + "." + "sira";
+}
+
+function namespace_label() {
+  return "." + "sira";
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing sira sovereign dns infrastructure binding");
+} else {
+  const content = fs.readFileSync(file, "utf8");
+
+  [
+    "sira sovereign dns infrastructure binding",
+    namespace_label() + " là namespace chủ quyền của natt-os",
+    namespace_label() + " không phụ thuộc root zone toàn cầu",
+    namespace_label() + " được resolve bởi natt resolver",
+    "public trong ngữ cảnh này nghĩa là public theo hạ tầng natt",
+    "client muốn vào " + namespace_label() + " phải dùng resolver do mình cấu hình",
+    "natt resolver",
+    zone_label(),
+    "natt domain gateway",
+    "host guard",
+    "route gate",
+    "sirasign frame guard",
+    host("apps"),
+    host("mach"),
+    host("core"),
+    host("audit"),
+    host("render"),
+    host("tam"),
+    host("unknown") + " -> deny",
+    host("mail") + "    -> deny",
+    host("smtp") + "    -> deny",
+    host("imap") + "    -> deny",
+    "no wildcard allow",
+    "no admin route exposure",
+    "no secret route exposure",
+    "no direct audit write exposure",
+    "no render seal exposure",
+    "no bypass around natt domain gateway",
+    "resolver must answer " + namespace_label() + " only from declared authoritative zone",
+    "resolver must deny unknown host by default",
+    "resolver must point allowed hosts to gateway only",
+    "gateway must validate host before route",
+    "dns smoke matrix must pass before rollout",
+    "go only if resolver smoke, gateway smoke, hardening matrix and frame guard matrix all pass",
+    "no-go if any unknown host resolves as allow",
+  ].forEach(clause => must(content.includes(clause), "missing sovereign dns clause: " + clause));
+
+  [
+    "root zone required",
+    "icann required",
+        "allow admin",
+    "allow secret",
+    "bypass gateway",
+    "production-ready",
+  ].forEach(mark => must(!content.includes(mark), "forbidden sovereign dns wording: " + mark));
+
+  [
+    "allow wildcard",
+    "wildcard: allow",
+    "wildcard -> allow",
+    "*.sira -> allow",
+  ].forEach(mark => must(!content.includes(mark), "forbidden wildcard exposure: " + mark));
+}
+
+must(fs.existsSync(readiness), "missing public dns rollout readiness");
+must(fs.existsSync(zone), "missing sira dns zone manifest");
+must(fs.existsSync(gateway), "missing natt domain gateway");
+
+if (errors.length) {
+  console.error("sira sovereign dns infrastructure binding validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira sovereign dns infrastructure binding validation: pass");
+console.log("file=docs/runtime/sira_sovereign_dns_infrastructure_binding_20260425.na");

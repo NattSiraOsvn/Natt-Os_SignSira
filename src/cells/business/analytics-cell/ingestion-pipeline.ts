@@ -42,7 +42,7 @@ export class IngestionPipeline {
 
       this.processedEventIds.add(event.event_id);
     } catch (err) {
-      console.error(`[INGESTION-ERROR] Failed to process event ${event.event_id}:`, err);
+      console.error(`[INGESTION-error] Failed to process event ${event.event_id}:`, err);
     }
   }
 }

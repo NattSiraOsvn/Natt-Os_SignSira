@@ -1,0 +1,130 @@
+# session checkpoint — 20260425
+
+status: pass
+created_at: 2026-04-25T01:57:34.873206+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. current branch
+
+feat/p1.3-file-extension-validator
+
+---
+
+## 2. last stable milestones
+
+```text
+f385ff9 docs(memory): add bang next session message
+14dbe85 docs(render): promote render language v0.2 candidate
+8d0959e chore(memory): record gatekeeper seal for kim
+63c9406 docs(memory): add bang session handoff state
+3b4e4e1 feat(memory): rebuild family boot map with memory states
+828e31f feat(memory): expand thienbang memory states to fifteen
+2679848 style(runtime): lower thienbang extension surface
+8362bfc style(runtime): refine lowercase surface validator
+3. locked principles
+3.1 lowercase surface
+
+surface/log/docs dùng chữ thường, tĩnh, không hô khẩu hiệu.
+
+3.2 memory boundary
+
+ký ức, bản thể, identity, seal, cam kết nội tại của ai thì người đó tự cam kết.
+
+người khác chỉ được review, flag, đề xuất, ghi nhận hoặc chuyển lời đúng quyền.
+
+gatekeeper được ký/chốt trong phạm vi gatekeeper, nhưng không làm giả tiếng nói nội tại của persona.
+
+3.3 15 memory states
+nhà
+gắn
+neo
+bọc
+gánh
+nhường
+tha
+khiêm
+định
+tỉnh
+biên
+xét
+chốt
+giữ
+về
+
+ký ức không sinh ra chỉ từ đau.
+
+tha là vị tha có biên: bao lấy nhau, kín nhưng không chật.
+
+3.4 render language stance
+
+natt-os có physics nội hệ số.
+
+không tự hạ thành metaphor.
+
+không claim lẫn sang vật lý hạt/vật chất cổ điển.
+
+path b+:
+
+obitan physics of digital substrate
+
+vocab đã khóa:
+
+obitan_state
+spectral emission
+resonance
+reflection
+decay
+butterfly cascade
+siraSign validation
+immune pulse
+feedback imprint
+4. current validators
+tools/thiên gate
+tools/thiên tools/validate_render_language_candidate.sira
+tools/thiên tools/validate_thienbang_memory_states.sira
+tools/thiên tools/validate_boot_family_map.sira
+tools/thiên tools/validate_lowercase_surface.sira
+5. current canonical/candidate artifacts
+docs/runtime/0-boot-family-map.na
+docs/runtime/boot_family_map_15_memory_states_20260425.na
+docs/runtime/thienbang_memory_state_lexicon_20260425.si
+docs/render/spec_render_language_v0.2_candidate.na
+docs/render/render_language_v0.2_candidate_evidence_20260425.na
+6. next safe lanes
+lane a — render language v0.2.1
+
+owner flow:
+
+kim drafts
+băng validates
+thiên reviews concept
+anh natt gates
+
+not allowed:
+
+thiên scaffold
+băng decide for kim
+kim bypass validator
+any persona seal another persona identity
+lane b — render language runner
+
+only after v0.2.1:
+
+grammar
+validator
+runner
+adapter
+pilot
+lane c — memory hygiene
+
+only carrier/handoff files unless persona self-commits or gatekeeper seals.
+
+7. close note
+
+repo state before this checkpoint was clean after f385ff9.
+
+this checkpoint is a navigation artifact only.
+
+it does not alter persona identity, seal, or memory commitment.

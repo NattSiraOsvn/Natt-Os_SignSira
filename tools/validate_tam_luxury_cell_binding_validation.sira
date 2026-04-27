@@ -1,0 +1,179 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+
+const routeMatrix = path.join(root, "docs", "runtime", "tam_luxury_domain_route_gate_matrix_20260425.na");
+const permissionMatrix = path.join(root, "docs", "runtime", "tam_luxury_permission_matrix_20260425.na");
+const reportFile = path.join(root, "docs", "runtime", "tam_luxury_cell_binding_validation_20260425.na");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function uniq(xs) {
+  return Array.from(new Set(xs));
+}
+
+function parseRouteRows(c) {
+  return c
+    .split("\n")
+    .filter(line => /^\| PL-\d{3} \|/.test(line))
+    .map(line => {
+      const p = line.split("|").map(x => x.trim());
+      return {
+        screen_id: p[1],
+        domain: p[2],
+        route: p[3],
+        cell_binding: p[4],
+        audit: p[5],
+        sirasign: p[6],
+        gate_guard: p[7],
+        status: p[9],
+      };
+    });
+}
+
+function parsePermissionRows(c) {
+  return c
+    .split("\n")
+    .filter(line => /^\| PL-\d{3} \|/.test(line))
+    .map(line => {
+      const p = line.split("|").map(x => x.trim());
+      return {
+        screen_id: p[1],
+        domain: p[2],
+        route: p[3],
+        gate_guard: p[4],
+        sirasign: p[5],
+        status: p[9],
+      };
+    });
+}
+
+function parseCellRows(c) {
+  return c
+    .split("\n")
+    .filter(line => /^\|/.test(line))
+    .map(line => line.split("|").map(x => x.trim()))
+    .filter(p => p.length >= 8)
+    .filter(p => p[1] && p[1].startsWith("cell_"))
+    .filter(p => p[1] !== "cell_binding")
+    .map(p => ({
+      cell_binding: p[1],
+      screen_count: Number(p[2]),
+      screen_ids: p[3] ? p[3].split(",").map(x => x.trim()).filter(Boolean) : [],
+      domains: p[4] ? p[4].split(",").map(x => x.trim()).filter(Boolean) : [],
+      classification: p[5],
+      priority_domain: p[6],
+      scaffold_policy: p[7],
+    }));
+}
+
+if (!fs.existsSync(routeMatrix)) {
+  errors.push("missing route matrix");
+}
+
+if (!fs.existsSync(permissionMatrix)) {
+  errors.push("missing permission matrix");
+}
+
+if (!fs.existsSync(reportFile)) {
+  errors.push("missing cell binding validation report");
+}
+
+if (fs.existsSync(reportFile)) {
+  const c = fs.readFileSync(reportFile, "utf8");
+
+  [
+    "tam luxury cell binding validation",
+    "cell binding validation không phải cell scaffold",
+    "screen binding không phải cell scaffold",
+    "không sinh 71 cell mù",
+    "unique cell bindings",
+    "shared cell bindings",
+    "single screen bindings",
+    "fragmentation flag",
+    "## 3. domain summary",
+    "## 4. cell binding table",
+    "do_not_scaffold_yet",
+    "priority_1",
+    "priority_2",
+    "priority_3",
+  ].forEach(clause => must(c.includes(clause), "missing cell binding clause: " + clause));
+
+  must(!c.includes("status: scaffolded"), "cell binding validation must not mark scaffolded");
+  must(!c.includes("status: wired"), "cell binding validation must not mark wired");
+  must(!c.includes("production-ready"), "cell binding validation must not claim production ready");
+
+  const cellRows = parseCellRows(c);
+  must(cellRows.length >= 1, "cell binding table must contain parsed cell rows");
+
+  for (const row of cellRows) {
+    must(Number.isInteger(row.screen_count), "screen count must be integer for " + row.cell_binding);
+    must(row.screen_count === row.screen_ids.length, "screen count must match screen ids for " + row.cell_binding);
+    must(["single_screen_binding", "shared_binding"].includes(row.classification), "invalid classification for " + row.cell_binding);
+    must(["yes", "no"].includes(row.priority_domain), "priority domain must be yes/no for " + row.cell_binding);
+    must(row.scaffold_policy === "do_not_scaffold_yet", "scaffold policy must remain do_not_scaffold_yet for " + row.cell_binding);
+
+    for (const screenId of row.screen_ids) {
+      must(/^PL-\d{3}$/.test(screenId), "invalid screen id in cell row " + row.cell_binding + ": " + screenId);
+    }
+  }
+}
+
+if (fs.existsSync(routeMatrix) && fs.existsSync(permissionMatrix) && fs.existsSync(reportFile)) {
+  const routeRows = parseRouteRows(fs.readFileSync(routeMatrix, "utf8"));
+  const permissionRows = parsePermissionRows(fs.readFileSync(permissionMatrix, "utf8"));
+  const report = fs.readFileSync(reportFile, "utf8");
+  const cellRows = parseCellRows(report);
+
+  must(routeRows.length === 71, "route matrix must contain 71 rows");
+  must(permissionRows.length === 71, "permission matrix must contain 71 rows");
+
+  const routeIds = routeRows.map(r => r.screen_id);
+  const permissionIds = permissionRows.map(r => r.screen_id);
+
+  must(uniq(routeIds).length === 71, "route screen ids must be unique");
+  must(uniq(permissionIds).length === 71, "permission screen ids must be unique");
+
+  for (let i = 1; i <= 71; i++) {
+    const expected = "PL-" + String(i).padStart(3, "0");
+    must(routeIds.includes(expected), "missing route screen id " + expected);
+    must(permissionIds.includes(expected), "missing permission screen id " + expected);
+  }
+
+  for (const id of routeIds) {
+    must(permissionIds.includes(id), "permission matrix missing " + id);
+  }
+
+  const uniqueCells = uniq(routeRows.map(r => r.cell_binding));
+  const parsedCells = new Set(cellRows.map(r => r.cell_binding));
+
+  for (const cell of uniqueCells) {
+    must(parsedCells.has(cell), "report missing parsed cell binding row " + cell);
+  }
+
+  const screenCoverage = [];
+  for (const row of cellRows) {
+    screenCoverage.push(...row.screen_ids);
+  }
+
+  must(uniq(screenCoverage).length === 71, "cell binding report must cover 71 unique screen ids");
+  for (const id of routeIds) {
+    must(screenCoverage.includes(id), "cell binding report missing screen id " + id);
+  }
+}
+
+if (errors.length) {
+  console.error("tam luxury cell binding validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("tam luxury cell binding validation: pass");
+console.log("file=docs/runtime/tam_luxury_cell_binding_validation_20260425.na");
+console.log("screens=71");

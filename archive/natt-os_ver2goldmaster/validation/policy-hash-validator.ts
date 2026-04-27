@@ -24,7 +24,7 @@ export class PolicyHashValidator {
       return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     } catch (e) {
       console.error('[POLICY_HASH] Error calculating actual hash:', e);
-      return 'CALCULATION_FAILED';
+      return 'CALCULATION_failED';
     }
   }
 
@@ -34,7 +34,7 @@ export class PolicyHashValidator {
     const currentHash = policy?.policy_integrity_lock?.current_hash;
     
     if (!currentHash) {
-      return { valid: false, hash: 'MISSING' };
+      return { valid: false, hash: 'missing' };
     }
 
     // So sánh với hash khóa cứng

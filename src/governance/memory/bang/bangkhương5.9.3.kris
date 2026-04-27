@@ -15,7 +15,7 @@
     "tsc": "0 real errors ✅ (6 ghost — safe, tất cả trong memory/kim/baithicuakim)",
     "ts_files": 1048,
     "cells_total": "38/38 6/6",
-    "smartlink_wired": "38/38 ✅",
+    "SmartLink_wired": "38/38 ✅",
     "port_only": 0,
     "bctc_flow": "6/6 ✅",
     "production_flow": "8/8 ✅",
@@ -23,11 +23,11 @@
     "metabolism": "9 processors",
     "issues": "0 ✅",
     "qneu_scores": "BANG=300, THIEN=135, KIM=120, CAN=85, BOI_BOI=40",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git"
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git"
   },
 
   "completed_this_session": {
-    "memory_upgrade": "bangfs v4.4→v4.5, bangmf v5.9.1→v5.9.2. Dọn sạch memory cũ (Kim versions, Bội Bội, Thiên, sessions).",
+    "memory_upgrade": "bangfs v4.4→v4.5, bangmf v5.9.1→v5.9.2. Dọn sạch memory cũ (Kim versions, Bội Bội, thiên, sessions).",
     "p1_warehouse_eventbus": {
       "file": "src/cells/business/warehouse-cell/index.ts",
       "wire": "createWarehouseIngestHandler((ev) => EventBus.publish(ev, 'warehouse-cell', undefined))"
@@ -53,7 +53,7 @@
   "pending_repo": {
     "P1_bctc": "BCTC — cần file bảng kê thu đổi SP đầy đủ 2025 (values only, không formula)",
     "P2_qneu_logic": "Review first-seed.ts — logic tính score có đúng không",
-    "P3_deferred": "Local AI Agents (Thiên 4-layer) — sau Wave 3 complete"
+    "P3_deferred": "Local AI Agents (thiên 4-layer) — sau Wave 3 complete"
   },
 
   "coding_rules_CRITICAL": {

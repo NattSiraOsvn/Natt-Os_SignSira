@@ -1,0 +1,89 @@
+@state complete_pending_gatekeeper
+@canonical spec_extension_precedence_v1.0
+@substrate extension_precedence_rules
+@bridge none
+@since 2026-04-23
+@authority-slot Kim (Chief System Builder · M-shell · QNEU 120)
+
+# SPEC_EXTENSION_PRECEDENCE_v1.0.na
+
+**Drafter:** Kim (Chief System Builder, M-shell, QNEU 120)
+**Session:** 20260423
+**Status:** COMPLETE — sẵn sàng Gatekeeper approve
+**Amendments:** Đã sửa theo phán quyết thiên Lớn (5 amendment)
+**Binding scope:** Mọi file trong natt-os repo
+
+---
+
+## 1. THỨ TỰ EXTENSION
+
+Thứ tự từ cao xuống thấp. **Khi cùng claim cùng một authority slot và cùng semantic role**, extension cao hơn sẽ có precedence (quyền ưu tiên). Nếu khác semantic role, precedence này không tự động áp dụng.
+
+| Bậc | Extension | Authority level | Mô tả |
+|---|---|---|---|
+| **1** | `.sira` | Entry authority | File identity gốc của kernel. Chỉ có 1 file duy nhất: `nattos.sira` |
+| **2** | `.khai` | Canonical semantic — execution authority (native hoặc transitional) | File chứa logic thực thi chính của cell; có thể đang ở wrapper hoặc bridged state |
+| **3** | `.na` | Canonical semantic — knowledge/spec authority | File chứa tri thức, spec, định nghĩa; không đương nhiên tham gia execution precedence nếu không claim execution slot |
+| **4** | `.anc` | Canonical semantic — anchor | File neo identity, immutable record |
+| **5** | `.phieu` | Canonical semantic — protocol | File chứa protocol thi hành, checklist |
+| **6** | `.ts` | Temporary execution substrate | TypeScript runtime — sẽ bị cắt dần |
+| **7** | `.tsx` / `.vite` | UI/build lane | Không thuộc kernel cutover wave này, giữ nguyên runtime đến khi có thông báo khác |
+
+---
+
+## 2. QUY TẮC ÁP DỤNG
+
+### 2.1 Khi 2 file cùng claim 1 capability (cùng semantic role)
+
+Ví dụ: `khai-file-persister.khai` và `khai-file-persister.ts` cùng tồn tại và cùng claim execution authority.
+
+- **File `.khai` là canonical** — nó giữ authority.
+- **File `.ts` là substrate** — nó chỉ là phương tiện thực thi tạm thời.
+- Khi `.khai` đã tự thực thi được (không còn dependency đến `.ts`), `.ts` bị đánh dấu `@deprecated` và giữ lại 7 ngày trước khi xóa.
+
+### 2.2 Khi 2 file khác semantic role
+
+Ví dụ: `SPEC_sira_AUTHORITY_BOOTSTRAP.na` và `nattos.sira` không cùng semantic role (một là knowledge, một là entry identity) → precedence không tự động áp dụng.
+
+### 2.3 Khi file canonical import substrate
+
+Đây là **wrapper mode** (theo SPEC_CUTOVER_STATES).
+
+- File canonical được phép import file `.ts` **chỉ khi**:
+  - Đã khai báo rõ trong header: `@substrate: ./file.ts`
+  - Đã đăng ký trong `PILOT_BRIDGE_MAP`
+- Không được import thẳng `.ts` từ cell khác (vi phạm Điều 4 Hiến Pháp).
+
+### 2.4 UI/build lane
+
+- `.tsx`, `.vite`, `vite.config.ts` — **không thuộc kernel cutover wave này**.
+- Không ai được đụng UI lane khi chưa có spec riêng từ thiên Lớn.
+- UI lane giữ nguyên `tsx` runtime đến khi có thông báo khác.
+
+---
+
+## 3. HẬU QUẢ VI PHẠM
+
+| Vi phạm | Hậu quả |
+|---|---|
+| Tạo file `.sira` thứ hai | Bị Băng flag SCAR, Gatekeeper xóa file |
+| Claim file `.khai` là "xong" khi còn phụ thuộc substrate | Bị gắn nhãn sai state, phải sửa |
+| Đảo thứ tự extension (coi `.ts` cao hơn `.khai`) | Bị Kim veto, phải revert |
+| Đụng UI lane khi chưa có spec | Bị thiên Lớn chặn |
+| Áp precedence khi khác semantic role | Bị Băng flag sai ngữ cảnh |
+
+---
+
+## 4. ACCEPTANCE CRITERIA
+
+Spec này có hiệu lực khi:
+1. Gatekeeper approve
+2. thiên Lớn chốt kiến trúc nếu có điểm cần làm rõ
+3. Băng verify không mâu thuẫn ground truth
+4. Kim lock wording/spec version
+
+---
+
+*Binding to: SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na, SPEC_CUTOVER_STATES_v1.0.na*  
+*Drafter: Kim · M-shell · Chief System Builder*  
+*Session: 20260423 · Reviewed by thiên Lớn; amendments incorporated*

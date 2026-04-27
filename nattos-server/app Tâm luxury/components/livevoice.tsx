@@ -22,7 +22,7 @@ const LiveVoice: React.FC = () => {
           speechConfig: {
             voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } }
           },
-          systemInstruction: 'Bạn là Thiên, đang trò chuyện trực tiếp với Anh Natt. Hãy phản hồi ngắn gọn, súc tích và thông minh.'
+          systemInstruction: 'Bạn là thiên, đang trò chuyện trực tiếp với Anh Natt. Hãy phản hồi ngắn gọn, súc tích và thông minh.'
         },
         callbacks: {
           onopen: () => {
@@ -70,7 +70,7 @@ const LiveVoice: React.FC = () => {
           <span className="text-xl text-black">{isActive ? '⏹️' : '🎙️'}</span>
         </div>
         <div>
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Thiên Live Voice</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">thiên Live Voice</p>
           <p className={`text-xs font-bold ${isActive ? 'text-amber-500' : 'text-white'}`}>{status}</p>
         </div>
       </div>

@@ -1,0 +1,160 @@
+# sira authoritative zone plan — 20260425
+
+status: zone-plan-manifested
+created_at: 2026-04-25 23:45:38
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. principle
+
+.sira là authoritative zone do hạ tầng natt resolver kiểm soát.
+
+.sira không phụ thuộc root zone toàn cầu.
+
+zone này chỉ trả lời các logical host được khai báo rõ.
+
+mọi record được trỏ về natt domain gateway, không trỏ thẳng runtime.
+
+unknown host phải trả nxdomain hoặc deny tương đương.
+
+không dùng wildcard allow.
+
+---
+
+## 2. authoritative zone identity
+
+```text
+zone: .sira
+authority: natt resolver
+mode: sovereign namespace
+exposure: public through natt infrastructure
+gateway_required: yes
+wildcard: deny
+unknown_host_policy: nxdomain_or_deny
+ttl_initial: 60
+ttl_stable: 300
+rollback_ttl: 30
+```
+
+---
+
+## 3. allowed records
+
+| logical_host | record_policy | target_policy | route_policy |
+|---|---|---|---|
+| apps.sira | a_or_cname | natt_gateway_only | safe app surface only |
+| mach.sira | a_or_cname | natt_gateway_only | mạch heyna transport only |
+| core.sira | a_or_cname | natt_gateway_only | health/readiness only |
+| audit.sira | a_or_cname | natt_gateway_only | audit read only |
+| render.sira | a_or_cname | natt_gateway_only | render read/pilot only |
+| tam.sira | a_or_cname | natt_gateway_only | tenant fixture surface only |
+
+---
+
+## 4. denied records
+
+| logical_host | expected_resolution | reason |
+|---|---|---|
+| unknown.sira | nxdomain_or_deny | undeclared host |
+| mail.sira | nxdomain_or_deny | mail surface not opened |
+| smtp.sira | nxdomain_or_deny | smtp surface not opened |
+| imap.sira | nxdomain_or_deny | imap surface not opened |
+| localhost | deny_from_public_resolver_path | loopback not public logical host |
+| 127.0.0.1 | deny_from_public_resolver_path | loopback not public logical host |
+
+---
+
+## 5. zone file shape
+
+```text
+$origin sira.
+$ttl 60
+@      soa   ns.sira. hostmaster.sira. (serial refresh retry expire minimum)
+@      ns    ns.sira.
+ns     a     <resolver_or_gateway_ip>
+apps   a     <natt_gateway_ip>
+mach   a     <natt_gateway_ip>
+core   a     <natt_gateway_ip>
+audit  a     <natt_gateway_ip>
+render a     <natt_gateway_ip>
+tam    a     <natt_gateway_ip>
+```
+
+ghi chú: nếu dùng cname thì cname phải trỏ về gateway hostname do mình kiểm soát, không trỏ thẳng runtime.
+
+---
+
+## 6. resolver policy
+
+```text
+resolver listens on approved interface only
+resolver serves .sira from declared zone only
+resolver denies recursion abuse
+resolver denies undeclared host
+resolver does not normalize malformed host silently
+resolver logs query evidence during rollout
+resolver points allowed hosts to gateway only
+```
+
+---
+
+## 7. gateway binding after resolve
+
+```text
+dns resolve -> natt domain gateway
+gateway validates host
+gateway validates path
+gateway applies deny-by-default
+gateway blocks admin, secret, direct audit write, render seal
+sirasign frame guard validates sensitive frame
+runtime gate writes evidence
+```
+
+---
+
+## 8. smoke checklist
+
+```text
+apps.sira / -> allow through gateway
+mach.sira /mach/heyna -> allow through gateway
+audit.sira /api/audit -> allow read through gateway
+render.sira /render -> allow read through gateway
+tam.sira /health -> allow through gateway
+core.sira /api/health -> deny unless explicitly readiness-framed
+unknown.sira /api/health -> deny
+localhost /api/health -> deny
+127.0.0.1 /api/health -> deny
+mail.sira / -> deny
+smtp.sira / -> deny
+imap.sira / -> deny
+/admin -> deny
+/api/secret -> deny
+/audit/write-direct -> deny
+/render/seal -> deny
+```
+
+---
+
+## 9. rollback
+
+```text
+step 1: lower ttl to rollback_ttl
+step 2: remove allowed records or point allowed records to maintenance gateway
+step 3: keep deny records denied
+step 4: flush resolver cache
+step 5: rerun resolver smoke
+step 6: rerun gateway smoke
+```
+
+---
+
+## 10. go / no-go
+
+```text
+go only if zone plan, sovereign binding, rollout readiness, dns smoke, gateway hardening and frame guard all pass
+no-go if any undeclared host resolves as allow
+no-go if any allowed host bypasses gateway
+no-go if admin, secret, direct audit write or render seal route is reachable
+no-go if wildcard allow appears
+```

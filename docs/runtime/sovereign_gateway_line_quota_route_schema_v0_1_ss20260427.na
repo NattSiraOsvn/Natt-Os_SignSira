@@ -1,0 +1,165 @@
+@state runtime-policy
+@name sovereign gateway line quota route schema v0.1
+@scope sovereign-gateway line quota route sirasign audit
+@runtime_scope excluded
+@owner Thiên
+@session ss20260427
+@created_at 2026-04-27T16:03:38
+
+# Sovereign Gateway — Line / Quota / Route Schema v0.1
+
+## 1. Boundary
+
+File này chỉ định nghĩa schema cho line, quota, route, SiraSign và audit ở tầng gateway/router.
+
+Không xử lý runtime, migration, compiler, adapter, cell execution.
+
+Không chạm `nattos.sh`.
+Không chạm nattos.sh.
+
+## 2. Line model
+
+Mặc định:
+
+- một khách bắt đầu bằng 1 primary line
+- backup line chỉ mở sau khi primary line ổn định
+- multi-line song song chưa mở ở v0.1
+
+Schema tối thiểu:
+
+```json
+{
+  "line_id": "line.customer.primary.001",
+  "tenant_id": "customer.001",
+  "line_type": "primary",
+  "status": "active",
+  "bandwidth_policy": {
+    "mode": "quota",
+    "max_down_mbps": null,
+    "max_up_mbps": null,
+    "burst_allowed": false
+  },
+  "sirasign_required": true,
+  "audit_required": true
+}
+3. Quota model
+
+Quota không chỉ là tốc độ.
+
+Quota gồm:
+
+băng thông
+số phiên
+số máy con
+loại route được mở
+loại sensor/IoT được đẩy dữ liệu
+thời gian truy cập
+quyền xem Két Sira
+
+Schema tối thiểu:
+
+{
+  "quota_id": "quota.customer.default",
+  "tenant_id": "customer.001",
+  "max_client_nodes": 70,
+  "max_sensor_nodes": null,
+  "max_sessions_per_node": 1,
+  "allow_parallel_lines": false,
+  "allow_customer_edge_relay": true,
+  "allow_ket_sira_view": true,
+  "red_zone_access": "deny_by_default"
+}
+4. Route model
+
+Route là đường được phép đi qua gateway.
+
+Không có route thì không vào được hệ.
+
+Schema tối thiểu:
+
+{
+  "route_id": "route.customer.to.heyna",
+  "tenant_id": "customer.001",
+  "from": "customer-edge",
+  "to": "heyna-ingress",
+  "protocol_layer": "translation-protocol",
+  "requires": ["SiraSign", ".anc", "resolver-profile"],
+  "audit_level": "full",
+  "status": "active"
+}
+5. Server khách edge node
+
+Server khách có thể chia tiếp cho máy con, nhưng không được chia tự do.
+
+Phải có:
+
+customer_edge_id
+tenant_id
+line_id
+quota_id
+allowed_child_nodes
+SiraSign
+audit
+
+Schema tối thiểu:
+
+{
+  "customer_edge_id": "edge.customer.001",
+  "tenant_id": "customer.001",
+  "line_id": "line.customer.primary.001",
+  "quota_id": "quota.customer.default",
+  "allowed_child_nodes": 70,
+  "can_relay_sensor_iot": true,
+  "can_relay_user_nodes": true,
+  "sirasign_required": true,
+  "audit_required": true
+}
+6. Máy trạm sensor/IoT
+
+Máy trạm là gateway riêng cho thiết bị.
+
+Thiết bị như cam, cân, máy đo phổ, lò điện, sensor/IoT không đi thẳng vào lõi.
+
+Schema tối thiểu:
+
+{
+  "workstation_id": "workstation.sensor.001",
+  "tenant_id": "customer.001",
+  "parent_edge_id": "edge.customer.001",
+  "role": "sensor_iot_gateway",
+  "input_devices": ["camera", "scale", "spectrum_meter", "electric_furnace", "sensor_iot"],
+  "preprocess": ["raw_filter", "normalize", "quality_check", "temporary_cache", "pre_audit"],
+  "forward_to": "edge.customer.001",
+  "audit_required": true
+}
+7. Audit event
+
+Mọi route phải phát audit event.
+
+Schema tối thiểu:
+
+{
+  "event_type": "gateway.route.checked",
+  "tenant_id": "customer.001",
+  "actor_anc": "anc://customer.user",
+  "node_id": "node.customer.001",
+  "line_id": "line.customer.primary.001",
+  "route_id": "route.customer.to.heyna",
+  "sirasign_status": "pass",
+  "decision": "allow",
+  "reason": "policy_matched",
+  "timestamp": "iso8601"
+}
+8. Gate 1 pass condition
+
+Gate 1 pass khi schema có đủ:
+
+line
+quota
+route
+customer edge node
+workstation sensor/IoT gateway
+audit event
+SiraSign required
+.anc
+resolver profile

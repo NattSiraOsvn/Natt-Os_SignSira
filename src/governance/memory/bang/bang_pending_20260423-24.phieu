@@ -1,0 +1,33 @@
+{
+  "kind": "BangPendingSupplement",
+  "session_id": "20260423-24",
+  "supplements": "bang_pending_20260423.phieu",
+
+  "p0_critical": [
+    {
+      "id": "P0.1",
+      "task": "Anh Natt việc gấp Tâm Luxury — phiên sau hỏi context"
+    },
+    {
+      "id": "P0.2",
+      "task": "Anh Natt ship từ điển vocabulary tone-locked cho gia đình",
+      "context": "Anh đang ngồi làm từ điển cuối phiên. Em chờ load + apply phiên sau."
+    }
+  ],
+
+  "p1_medium": [
+    {"id": "P1.1", "task": "Cell 1+2 S3 swap — defer ~2-3 phiên (cần cell logic Rust port)"},
+    {"id": "P1.2", "task": "Banner ® render fix (hiện thành ⓝ trong Mac Terminal)"},
+    {"id": "P1.3", "task": "Scanner v0.6 expand vocab recognize 4 vocab mới"},
+    {"id": "P1.4", "task": "Note Kim re Kim avatar gitignored"},
+    {"id": "P1.5", "task": "Cargo release build production"}
+  ],
+
+  "p2_lower_carry_from_prior": [
+    {"id": "P2.1", "task": "K1 SURVIVAL Tầng 0 (Kim scope)"},
+    {"id": "P2.2", "task": "K3 Fail-Troy bypass patterns (Kim scope)"},
+    {"id": "P2.3", "task": "P5 neural-main-cell.cell.anc 0 bytes (Kim scope, ACCEPTED 20260426)"},
+    {"id": "P2.4", "task": "4 thiên SPEC split untracked seal (Gatekeeper authority)"},
+    {"id": "P2.5", "task": "Bối Bội pack docs/specs/bối kernel/ empty"}
+  ]
+}

@@ -1,0 +1,22 @@
+# render language samples evidence — 20260425
+
+status: draft-samples
+
+## samples
+
+- docs/render/samples/bien.na
+- docs/render/samples/chot.na
+- docs/render/samples/neo.na
+- docs/render/samples/nha.na
+- docs/render/samples/tha.na
+- docs/render/samples/ve.na
+
+## validator
+
+- tools/validate_render_language_samples.sira
+
+## note
+
+candidate spec validator validates docs/render/spec_render_language_v0.2_candidate.na.
+sample validator validates docs/render/samples/*.na.
+do not call .sira directly; run through tools/thiên.

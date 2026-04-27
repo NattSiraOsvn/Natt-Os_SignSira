@@ -112,10 +112,10 @@ const SalesTaxModule: React.FC<SalesTaxModuleProps> = ({ logAction, metrics, cur
               <div className="ai-panel p-8 bg-blue-500/5 border-blue-500/20">
                  <div className="flex items-center gap-4 mb-6">
                     <AIAvatar personaId={PersonaID.THIEN} size="md" />
-                    <h4 className="ai-sub-headline text-blue-400 italic">Thiên Advisor</h4>
+                    <h4 className="ai-sub-headline text-blue-400 italic">thiên Advisor</h4>
                  </div>
                  <p className="text-[13px] text-gray-400 italic leading-relaxed font-light">
-                    "Dựa trên dòng tiền hiện tại, Thiên dự báo thuế TNDN quý này sẽ tăng 15%. Tuy nhiên, nhờ áp dụng ưu đãi 'Dự án Xã hội', chúng ta đã tiết kiệm được khoảng {(citResult.incentives/1000000).toFixed(0)} triệu đồng. Hãy cân nhắc nộp sớm để tránh phạt chậm nộp."
+                    "Dựa trên dòng tiền hiện tại, thiên dự báo thuế TNDN quý này sẽ tăng 15%. Tuy nhiên, nhờ áp dụng ưu đãi 'Dự án Xã hội', chúng ta đã tiết kiệm được khoảng {(citResult.incentives/1000000).toFixed(0)} triệu đồng. Hãy cân nhắc nộp sớm để tránh phạt chậm nộp."
                  </p>
               </div>
            </div>

@@ -2,7 +2,7 @@
  * SyncJob Entity - Represents a data syncHRonization job
  */
 
-export type SyncStatus = 'PENDING' | 'RUNNING' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
+export type SyncStatus = 'PENDING' | 'RUNNING' | 'COMPLETED' | 'failED' | 'CANCELLED';
 export type SyncDirection = 'PUSH' | 'PULL' | 'BIDIRECTIONAL';
 
 export interface SyncJobProps {
@@ -64,7 +64,7 @@ export class SyncJob {
   fail(error: string): SyncJob {
     return new SyncJob({
       ...this.props,
-      status: 'FAILED',
+      status: 'failED',
       errors: [...this.props.errors, error],
       completedAt: new Date(),
     });

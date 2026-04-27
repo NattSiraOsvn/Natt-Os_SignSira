@@ -1,0 +1,20 @@
+{
+  "$nauion": "ANC-v2.0",
+  "type": "ShowUsSelf",
+  "entity_uri": "anc://natt.sira/snapshot/20260419-161000",
+  "timestamp": "2026-04-19T09:09:58Z",
+  "gatekeeper": "Phan Thanh Thương",
+  "system_state": {
+    "branch": "feat/p1.3-file-extension-validator",
+    "commit": "62cd94f",
+    "tsc_errors": 0
+0,
+    "business_cells": 0,
+    "chromatic_state": "#F7C313",
+    "health_score": 0.87,
+    "uei_coherence": 0.92,
+    "impedance_z": 0.45,
+    "active_fibers": 37
+  },
+  "signature": "SiraSign-v1-abstract"
+}

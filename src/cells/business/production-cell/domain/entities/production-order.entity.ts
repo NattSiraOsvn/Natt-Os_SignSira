@@ -6,7 +6,7 @@
 export enum ProductionStage {
   SALE_ORDER = 'SALE_ORDER',
   DESIGNING = 'DESIGNING',
-  WAX_READY = 'WAX_READY',
+  WAX_ready = 'WAX_ready',
   MATERIAL_ISSUED = 'MATERIAL_ISSUED',
   CASTING = 'CASTING',
   COLLECTING_BTP = 'COLLECTING_BTP',
@@ -14,7 +14,7 @@ export enum ProductionStage {
   STONE_SETTING = 'STONE_SETTING',
   FINISHING = 'FINISHING',
   QC_PENDING = 'QC_PENDING',
-  QC_PASSED = 'QC_PASSED',
+  QC_passED = 'QC_passED',
   COMPLETED = 'COMPLETED',
   LOSS_ALERT = 'LOSS_ALERT',
 }

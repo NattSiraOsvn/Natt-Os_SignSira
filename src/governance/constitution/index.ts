@@ -1,5 +1,5 @@
 /**
- * NATT-OS Constitution v4.0 — Programmatic Reference
+ * natt-os Constitution v4.0 — Programmatic Reference
  * 
  * Hiến pháp là source of truth duy nhất.
  * File này export constants cho enforcement trong code.
@@ -32,7 +32,7 @@ export const CELL_MANDATORY_COMPONENTS = [
 /** Điều 8 — Phân loại NATT-CELL */
 export const CELL_CATEGORIES = {
   KERNEL: ['audit-cell', 'config-cell', 'monitor-cell', 'rbac-cell', 'security-cell'],
-  INFRASTRUCTURE: ['smartlink-cell', 'sync-cell', 'warehouse-cell', 'shared-contracts-cell'],
+  INFRASTRUCTURE: ['SmartLink-cell', 'sync-cell', 'warehouse-cell', 'shared-contracts-cell'],
   BUSINESS: ['pricing-cell', 'inventory-cell', 'sales-cell', 'order-cell', 'customer-cell', 
              'warranty-cell', 'buyback-cell', 'promotion-cell', 'showroom-cell'],
 } as const;
@@ -56,8 +56,8 @@ export const QNEU_FORBIDDEN_SOURCES = [
 
 /** Điều 44 — Work states */
 export const WORK_STATES = [
-  'NOT_READY',
-  'ARCH_READY', 
+  'NOT_ready',
+  'ARCH_ready', 
   'ENFORCED',
   'STABLE',
   'INVISIBLE',

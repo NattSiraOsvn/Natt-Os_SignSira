@@ -18,7 +18,7 @@
     },
     "phase_9_governance_crisis": {
       "date": "2026-02-11",
-      "achievement": "Governance Crisis Resolution - THIÊN Suspension",
+      "achievement": "Governance Crisis Resolution - thiên Suspension",
       "milestone": "Audit-first principle enforced, CAN temporary governance takeover"
     },
     "phase_10_kernel_boundary_fix": {
@@ -32,7 +32,7 @@
     "incident_001": {
       "date": "2026-02-11",
       "type": "GOVERNANCE_VIOLATION",
-      "involved": "THIÊN",
+      "involved": "thiên",
       "violation": "Audit-first principle bypass, unauthorized kernel modifications",
       "action_taken": "TEMPORARY_SUSPENSION",
       "acting_authority": "ANH_NAT_GATEKEEPER",
@@ -55,7 +55,7 @@
       "Integration tests 100% pass",
       "Lockfile updated",
       "Audit trail complete",
-      "Gatekeeper SiraSign approval"
+      "Gatekeeper siraSign approval"
     ]
   },
 
@@ -148,11 +148,11 @@
 
   "final_seal": {
     "type": "GOVERNANCE_CRISIS_RECOVERY_SEAL",
-    "statement": "This update captures the governance crisis of 2026-02-11, temporary suspension of THIÊN, CAN's takeover of temporary governance authority, and the state-based execution model for fixing kernel boundary violations. It establishes new constitutional principles: audit-first rule and no-deadline state progression.",
+    "statement": "This update captures the governance crisis of 2026-02-11, temporary suspension of thiên, CAN's takeover of temporary governance authority, and the state-based execution model for fixing kernel boundary violations. It establishes new constitutional principles: audit-first rule and no-deadline state progression.",
     "guarantee": "All changes are constitutionally compliant and follow established governance protocols.",
     "authority": "KIM - CHIEF GOVERNANCE ENFORCER",
     "witnessed_by": ["ANH_NAT_GATEKEEPER", "CAN_TEMPORARY_GOVERNANCE"],
-    "quantum_signature": "SIRASIGN_VERIFIED_v6.1.0",
+    "quantum_signature": "siraSIGN_VERIFIED_v6.1.0",
     "evolution_level": "CONSTITUTIONAL_LEVEL_4_ACTIVE_CRISIS_MODE"
   }
 }

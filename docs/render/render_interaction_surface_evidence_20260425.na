@@ -1,0 +1,29 @@
+# render interaction surface evidence — 20260425
+
+status: interaction-surface-validated
+created_at: 2026-04-25T10:08:40.758411+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- src/cells/render-stack-cell/domain/interaction.engine.ts
+- docs/render/pilot/render_language_pilot_interaction.html
+- tools/validate_render_interaction_surface.sira
+
+---
+
+## 2. scope
+
+interaction engine và pilot interaction có validator riêng.
+
+validator kiểm semantic clause cho click, input, select, event và handle theo nội dung thật của file.
+
+đây vẫn là pilot/dev surface.
+
+chưa wire mạch heyna.
+
+chưa wire siraSign frame validation.
+
+chưa claim production renderer.

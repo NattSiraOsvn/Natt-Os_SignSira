@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Warehouse Cell
+ * natt-os — Warehouse Cell
  * Entity: WarehouseItem
  * Quản lý vật tư, nguyên liệu, công cụ kho Tâm Luxury
  */

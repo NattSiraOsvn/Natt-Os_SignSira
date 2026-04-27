@@ -14,7 +14,7 @@
  * Gate 8: Chốt đơn                   — TL thực vs định mức, cảnh báo
  * Gate 9: Soát kho kiểm toán         — reconciliation tuần/tháng
  *
- * Source: workflowsx.md + workflowsx1.md (Thiên) + Module_SX.xlsx real data
+ * Source: workflowsx.md + workflowsx1.md (thiên) + Module_SX.xlsx real data
  */
 
 import {
@@ -180,7 +180,7 @@ export class WarehouseGateEngine {
         gate: gateNumber,
         reason: `Phải qua Gate ${order.currentGate + 1} trước`,
       });
-      return { passed: false, missing: [`GATE_${order.currentGate + 1}_NOT_PASSED`], order };
+      return { passed: false, missing: [`GATE_${order.currentGate + 1}_NOT_passED`], order };
     }
 
     // Validate required fields
@@ -219,7 +219,7 @@ export class WarehouseGateEngine {
     order.updatedAt = Date.now();
     order.trangThai = this.gateToTrangThai(gateNumber);
 
-    this.emit(WAREHOUSE_EVENTS.GATE_PASSED, {
+    this.emit(WAREHOUSE_EVENTS.GATE_passED, {
       maDon,
       gate: gateNumber,
       gateName: gateDef.name,

@@ -891,7 +891,7 @@ async function handleProfileFiles(input) {
     // Process via doc engine nếu có
     if (window.NattDocEngine) {
       const result = await NattDocEngine.process(file);
-      profileFiles[idx].status = result.ok ? result.docType : 'ERROR';
+      profileFiles[idx].status = result.ok ? result.docType : 'error';
       profileFiles[idx].result = result;
       if (result.ok && result.extracted) {
         renderDocParseResult(result);
@@ -908,13 +908,13 @@ async function handleProfileFiles(input) {
 }
 
 function renderAttachList() {
-  const typeIcons = { GDB:'📄', INVOICE:'🧾', PRODUCTION:'🏭', CUSTOMS:'🚢', PDF:'📋', IMAGE:'🖼', EXCEL:'📊', UPLOADED:'📎', processing:'⏳', ERROR:'⛔' };
+  const typeIcons = { GDB:'📄', INVOICE:'🧾', PRODUCTION:'🏭', CUSTOMS:'🚢', PDF:'📋', IMAGE:'🖼', EXCEL:'📊', UPLOADED:'📎', processing:'⏳', error:'⛔' };
   document.getElementById('profileAttachList').innerHTML = profileFiles.map((f,i) => `
     <div class="attach-item">
       <span class="attach-icon">${typeIcons[f.status]||'📎'}</span>
       <span class="attach-name">${f.name}</span>
       <span class="attach-size">${(f.size/1024).toFixed(1)}KB</span>
-      <span class="attach-status" style="color:${f.status==='ERROR'?'var(--red)':f.status==='processing'?'var(--amber)':'var(--green)'}">${f.status}</span>
+      <span class="attach-status" style="color:${f.status==='error'?'var(--red)':f.status==='processing'?'var(--amber)':'var(--green)'}">${f.status}</span>
       <button class="attach-del" onclick="profileFiles.splice(${i},1);renderAttachList()">✕</button>
     </div>`).join('');
 }

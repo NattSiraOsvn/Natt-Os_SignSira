@@ -1,4 +1,4 @@
-# NATT-OS FINANCE FLOW SPEC — v1.1
+# natt-os FINANCE FLOW SPEC — v1.1
 ## Closed-Loop Truth System + VPSAS Compliance
 ### Author: Can (P0-P3) + Bang (Nauion integration) · 2026-04-09
 ### Phe duyet: Gatekeeper — Anh Natt
@@ -8,7 +8,7 @@
 
 ## TRIET LY BAT BIEN
 
-Reality → System → Reconciliation → SiraSign → Snapshot → Truth
+Reality → System → Reconciliation → siraSign → Snapshot → Truth
 Truth chi ton tai khi vong duoc khoa bang do luong doc lap + xac nhan chiu trach nhiem.
 
 ---
@@ -24,7 +24,7 @@ Moi ghi nhan phai truy nguoc causality.
 **Reconciliation Domain (BRIDGE):** So sanh Ledger vs Reality.
 Khong co doi soat → khong co Truth.
 
-**Acknowledgement Domain (SiraSign):** Ky vao snapshot da doi soat.
+**Acknowledgement Domain (siraSign):** Ky vao snapshot da doi soat.
 Ky gan trach nhiem + bang chung.
 
 ---
@@ -38,7 +38,7 @@ Ky gan trach nhiem + bang chung.
 ↓ HeyNa kenh /reconcile
 [RECONCILING]         <- Whao so sanh Reality vs Ledger
 ↓
-[MATCHED] → [READY_FOR_SIGN]    <- Nahere: khop
+[MATCHED] → [ready_FOR_SIGN]    <- Nahere: khop
 ↓ lech: mismatch
 [FLAGGED] → [REQUIRE_INTERVENTION]
 ↓ gay: skip → block tiep tuc
@@ -58,16 +58,16 @@ BCTC flow: 6/6 cells ready (audit confirmed 2026-04-09)
 
 Event chain thuc te:
 sales-cell phat Nauion:
-SALES_ORDER_CREATED  { orderId, amount }
+SALES_ORDER_created  { orderId, amount }
 SALES_ORDER_CONFIRMED { orderId }
 order-cell phat Nauion:
-ORDER_CREATED  { orderId, ... }
+ORDER_created  { orderId, ... }
 payment-cell phat Nauion:
 PAYMENT_PROCESSED  { paymentId, amount }
 PAYMENT_RECEIVED   { invoiceId, amount }   ← qua finance-cell port
 FRAUD_DETECTED     { paymentId, score }
 finance-cell phat Nauion:
-INVOICE_CREATED    { invoiceId, amount }
+INVOICE_created    { invoiceId, amount }
 PAYMENT_RECEIVED   { invoiceId, amount }
 REPORT_GENERATED   { reportId, period }
 TAX_FILED          { period, amount }
@@ -100,10 +100,10 @@ Khong sua truc tiep — thay doi = tao version moi.
 
 ---
 
-## §5. SIRASIGN V2 — MO RONG REALITY
+## §5. siraSIGN V2 — MO RONG REALITY
 
 ```ts
-interface SiraSignPayloadV2 {
+interface siraSignPayloadV2 {
   fsp_hash: string; ssp_hash: string; tsp_hash: string; lsp_hash: string;
   reality_hash: string;    // hash Reality records
   variance_hash: string;   // hash variance sau doi soat
@@ -115,7 +115,7 @@ interface SiraSignPayloadV2 {
 ```
 
 Verify pipeline: verifyChain → verifyRealityHash → verifyReconciliation
-→ verifyPolicyVersion → verifyEvidenceRefs → PASS.
+→ verifyPolicyVersion → verifyEvidenceRefs → pass.
 
 ---
 
@@ -125,12 +125,12 @@ SALES_ORDER_CONFIRMED  ← sales-cell
 PAYMENT_PROCESSED      ← payment-cell
 GoodsDispatched        ← warehouse-cell
 ↓ lang Nahere → Policy Engine → State Machine
-↓ phat Nauion: INVOICE_CREATED → finance-cell
+↓ phat Nauion: INVOICE_created → finance-cell
 ↓ Whau: Ledger committed (atomic)
 ↓ HeyNa kenh /reconcile → Reality records (kiem ke kho that)
 ↓ Whao doi soat
-↓ Nahere: matched → READY_FOR_SIGN
-↓ SiraSign V2 → Snapshot → PERIOD_LOCKED → TRUTH
+↓ Nahere: matched → ready_FOR_SIGN
+↓ siraSign V2 → Snapshot → PERIOD_LOCKED → TRUTH
 
 Cell nao xu ly:
 - finance-cell (37 files, WIRED) — INVOICE, PAYMENT, REPORT, TAX
@@ -168,10 +168,10 @@ Authority levels: L1 (he thong) → L2 (noi bo) → L3 (kiem toan) → L4 (nha n
 ## §9. DAILY/MONTHLY CYCLE
 
 Daily: HeyNa /daily-report → Whao generate → user kiem tra
-     → SiraSign → Nahere: LOCK DAY. Signed = true → khong sua duoc.
+     → siraSign → Nahere: LOCK DAY. Signed = true → khong sua duoc.
 
 Monthly: Daily Reports → reality_data → Whao so sanh
-       → lech: settlement → re-audit → PASS → LOCK PERIOD → TRUTH.
+       → lech: settlement → re-audit → pass → LOCK PERIOD → TRUTH.
 
 ---
 
@@ -208,11 +208,11 @@ Khong bu tru tai san va no. Thong tin so sanh ky truoc bat buoc.
 - Khong sua ledger truc tiep
 - Khong bypass reconciliation
 - Khong ky khi lech (mismatch)
-- Khong lock period khi chua PASS audit
+- Khong lock period khi chua pass audit
 - Khong override signature — gay ngay
 - Cells KHONG goi nhau truc tiep — chi qua EventBus (Dieu 4 Hien Phap)
 
 ---
 
-**Natt Sirawat - Phan Thanh Thuong - Gatekeeper**
+**Natt sirawat - Phan Thanh Thuong - Gatekeeper**
 Ngay ban hanh: 2026-04-09 - Hieu luc ngay lap tuc

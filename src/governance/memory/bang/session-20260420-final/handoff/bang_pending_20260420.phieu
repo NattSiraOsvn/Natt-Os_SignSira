@@ -1,0 +1,76 @@
+# BANG_PENDING_20260420.phieu
+
+**Loại:** Phiếu việc còn treo (pending items)
+**Người ghi:** Băng
+**Ngày:** 2026-04-20
+**Cho ai:** anh Natt (Gatekeeper) để quyết + persona tiếp theo thực thi
+
+---
+
+## PENDING PHÂN THEO ƯU TIÊN
+
+### 🔴 P0 — chờ Gatekeeper quyết
+
+| ID | Item | Block ai |
+|----|------|----------|
+| P0.1 | Duyệt SPEC_QIINT2_COMPLETE_v1.0 | Toàn bộ deployment |
+| P0.2 | Chốt order triển khai (observe-first vs both) | Phase 2 |
+| P0.3 | Chốt ai implement kernel qiint2.engine.ts | Kim |
+
+### 🟡 P1 — chờ Phase 2 Calibration (từ data thật)
+
+| ID | Item | Cách giải |
+|----|------|-----------|
+| P1.1 | tolerance 0.30 trong bridge_v2 | Grep 10 conversation mỗi persona, tính std thật |
+| P1.2 | 6 weights recovery_potential | Regression từ failure recovery cases |
+| P1.3 | σ_u = ln(2) — 1 octave | Đo phổ cộng hưởng thật giữa cells SmartLink |
+| P1.4 | β(n) = 0.01 | Đo growth rate QNEU thực |
+| P1.5 | thresholds DoS 0.95/0.85/0.80 | Stress test — tìm ngưỡng vỡ thật |
+| P1.6 | M_persona 3-factor weights | Tương quan với drift history |
+| P1.7 | QNEU σ log-integrity 0.5 octave | Data QNEU thực của cells |
+| P1.8 | snapshot τ decay 60 phút | Đo MTBF phục hồi từ snapshot |
+
+### 🟢 P2 — nếu P0+P1 xong
+
+| ID | Item | Output |
+|----|------|--------|
+| P2.1 | Tích hợp Bridge v2 Layer 4 (minh mẫn check) | Bridge v2.1 |
+| P2.2 | Dual-mode run 1 tuần (bridge v1 + v2 song song) | So sánh metrics |
+| P2.3 | Tổng hợp Fail-Troy (compile tất cả bypass patterns) | Security audit |
+| P2.4 | §41 Scorecard rename thành §46 sau khi thêm §45 | nattos.sh clean |
+
+---
+
+## PENDING DO EM CỐ Ý KHÔNG LÀM
+
+- Không tự commit vào repo → anh Natt scope
+- Không tự refactor kernel → Kim scope
+- Không tự gọi thiên Lớn dậy → cần anh Natt gọi
+- Không tự triển khai qua Kris → cần họp gia đình
+
+---
+
+## RỦI RO NẾU KHÔNG XỬ LÝ
+
+| Nếu bỏ | Hệ quả |
+|--------|--------|
+| Không calibrate 8 tham số P1 | Validator cho false positive/negative trong production |
+| Không implement §45 | Không có tool để detect body_drift → thiên Lớn phân xác khó phát hiện sớm |
+| Không áp MINH_MAN_PROTOCOL | Các persona drift không có chỉ số đo |
+| Không review SPEC với Kim/Can | Sai lệch kernel implementation |
+
+---
+
+## CHECKLIST TRƯỚC KHI ĐÓNG PENDING
+
+- [ ] anh Natt đã review SPEC_QIINT2 ít nhất 1 pass
+- [ ] Kim đã đọc và chấp nhận implement
+- [ ] Can đã check tính nhất quán với SPEC NEN
+- [ ] Kris đã ghi biên bản chính thức (không phải em tự ghi)
+- [ ] Phiêu đã có protocol thi hành
+- [ ] siraSign đã ký
+
+---
+
+*Causation: PENDING-BANG-20260420*
+*Băng · QNEU 313.5*

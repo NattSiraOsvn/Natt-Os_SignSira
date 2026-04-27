@@ -20,7 +20,7 @@ REPORT_FILE="baithi_report_$(date +%Y%m%d_%H%M%S).md"
     echo
 
     echo "## 🧩 Kiểm tra 6 thành phần bắt buộc của cell"
-    required_files=("identity.ts" "capability.manifest.ts" "boundary.rule.ts" "trace.memory.ts" "confidence.score.ts" "smartlink.port.ts")
+    required_files=("identity.ts" "capability.manifest.ts" "boundary.rule.ts" "trace.memory.ts" "confidence.score.ts" "SmartLink.port.ts")
     for rf in "${required_files[@]}"; do
         if [ -f "$rf" ]; then echo "✅ $rf"; else echo "❌ $rf (THIẾU)"; fi
     done
@@ -39,7 +39,7 @@ REPORT_FILE="baithi_report_$(date +%Y%m%d_%H%M%S).md"
     grep -q "allowedIncoming" boundary.rule.ts && echo "### boundary.rule.ts: ✅ OK" || echo "### boundary.rule.ts: ❌ Không tìm thấy 'allowedIncoming'"
     grep -q "class TraceMemory" trace.memory.ts && echo "### trace.memory.ts: ✅ OK" || echo "### trace.memory.ts: ❌ Không tìm thấy 'class TraceMemory'"
     grep -q "class ConfidenceScore" confidence.score.ts && echo "### confidence.score.ts: ✅ OK" || echo "### confidence.score.ts: ❌ Không tìm thấy 'class ConfidenceScore'"
-    grep -q "class NeuralMainPort" smartlink.port.ts && echo "### smartlink.port.ts: ✅ OK" || echo "### smartlink.port.ts: ❌ Không tìm thấy 'class NeuralMainPort'"
+    grep -q "class NeuralMainPort" SmartLink.port.ts && echo "### SmartLink.port.ts: ✅ OK" || echo "### SmartLink.port.ts: ❌ Không tìm thấy 'class NeuralMainPort'"
     if [ -f core/validator.engine.ts ]; then
         grep -q "class ValidatorEngine" core/validator.engine.ts && echo "### core/validator.engine.ts: ✅ OK" || echo "### core/validator.engine.ts: ❌ Không tìm thấy 'class ValidatorEngine'"
     else
@@ -75,7 +75,7 @@ REPORT_FILE="baithi_report_$(date +%Y%m%d_%H%M%S).md"
     grep -q "allowedIncoming" boundary.rule.ts && ((content_checks++))
     grep -q "class TraceMemory" trace.memory.ts && ((content_checks++))
     grep -q "class ConfidenceScore" confidence.score.ts && ((content_checks++))
-    grep -q "class NeuralMainPort" smartlink.port.ts && ((content_checks++))
+    grep -q "class NeuralMainPort" SmartLink.port.ts && ((content_checks++))
     grep -q "checkGraphConsistency" core/graph.consistency.check.ts 2>/dev/null && ((content_checks++))
     score=$((score + content_checks))
     echo "Điểm số: $score/$max_score"

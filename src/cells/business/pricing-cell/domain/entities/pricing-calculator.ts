@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 /**
- * NATT-OS Pricing Cell — Full Price Calculator
+ * natt-os Pricing Cell — Full Price Calculator
  *
  * CÔNG THỨC GIÁ BÁN TRANG SỨC TÂM LUXURY:
  *
@@ -165,7 +165,7 @@ export function calculateFullPrice(input: PricingInput): PricingBreakdown {
     case 'CUSTOM_QUOTE':
       requiresCustomQuote = true;
       break;
-    case 'ERROR':
+    case 'error':
       laborAmountVND = laborResult.fallbackAmount;
       break;
     case 'WAITING':

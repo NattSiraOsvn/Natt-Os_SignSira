@@ -1,0 +1,99 @@
+<!--
+  RENDER LANGUAGE PILOT — state: gắn
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=1
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — gắn</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --attach-color: #f0d090; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; border-radius: 50%; }
+  @keyframes attach-drift {
+    0% { transform: translate(-50%, -50%) translate(0, 0); }
+    100% { transform: translate(-50%, -50%) translate(-20px, -10px); }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-gan-001',
+    signals: [
+      {
+        verb: 'APPEAR',
+        element_id: 'temp-anchor',
+        origin_state: 'gắn',
+        params: { position: 'relative_to("root-surface", offset(80, 40))' },
+        pressure: 0.2,
+        degrade_to: null
+      },
+      {
+        verb: 'SHIFT',
+        element_id: 'temp-anchor',
+        origin_state: 'gắn',
+        params: { from: 'position(80,40)', to: 'position(60,30)', easing: 'ease-out' },
+        pressure: 0.2,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'AMBIENT', priority: 0.5, target: 'temp-anchor' },
+    motion_budget: { frame_budget: 100, allocated: 10, remaining: 90 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: [], at_boundary: ['temp-anchor'], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#temp-anchor');
+  if (el) {
+    el.style.width = '10px';
+    el.style.height = '10px';
+    el.style.left = '50%';
+    el.style.top = '50%';
+    el.style.transform = 'translate(-50%, -50%)';
+    el.style.background = 'var(--attach-color)';
+    el.style.boxShadow = '0 0 10px 3px rgba(240,208,144,0.6)';
+    el.style.animation = 'attach-drift 3s ease-out infinite alternate';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'gắn';
+  container.appendChild(label);
+  
+  const renderPilotReadout = {
+    state:'gắn', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=1', polarity:'warm-core',
+    pressure_response:'FALL', reflection_R:0.3, decay_rate:'γ(1)',
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
+  };
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
+</script>
+</body>
+</html>

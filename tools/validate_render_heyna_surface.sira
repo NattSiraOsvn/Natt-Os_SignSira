@@ -1,0 +1,114 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const targets = {
+  "heyna_receiver": "src/cells/render-stack-cell/domain/heyna-receiver.engine.ts",
+  "heyna_mock_transport": "src/cells/render-stack-cell/domain/heyna-mock-transport.ts",
+  "heyna_pilot": "docs/render/pilot/render_language_pilot_heyna.html"
+};
+const requiredAll = {
+  "src/cells/render-stack-cell/domain/heyna-receiver.engine.ts": [
+    "heyna",
+    "receiver"
+  ],
+  "src/cells/render-stack-cell/domain/heyna-mock-transport.ts": [
+    "heyna",
+    "mock",
+    "transport"
+  ],
+  "docs/render/pilot/render_language_pilot_heyna.html": [
+    "<!doctype html>",
+    "</html>",
+    "heyna",
+    "pilot"
+  ]
+};
+const requiredAny = {
+  "src/cells/render-stack-cell/domain/heyna-receiver.engine.ts": [
+    "receive",
+    "signal",
+    "message",
+    "event",
+    "frame",
+    "render"
+  ],
+  "src/cells/render-stack-cell/domain/heyna-mock-transport.ts": [
+    "mock",
+    "connect",
+    "send",
+    "emit",
+    "dispatch",
+    "signal"
+  ],
+  "docs/render/pilot/render_language_pilot_heyna.html": [
+    "kết nối",
+    "connect",
+    "signal",
+    "receiver",
+    "transport",
+    "render"
+  ]
+};
+const forbiddenMarks = [
+  "production renderer",
+  "production-ready",
+  "siraSign frame validation: wired",
+  "crypto signature verification complete",
+  "real transport complete",
+  "mạch heyna production",
+  "EventBus",
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "NATT-OS"
+];
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+for (const rel of Object.values(targets)) {
+  const file = path.join(root, rel);
+  must(fs.existsSync(file), "missing render heyna file: " + rel);
+
+  if (!fs.existsSync(file)) continue;
+
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  for (const clause of requiredAll[rel] || []) {
+    must(lower.includes(String(clause).toLowerCase()), rel + ": missing clause: " + clause);
+  }
+
+  const anyGroup = requiredAny[rel] || [];
+  if (anyGroup.length) {
+    const ok = anyGroup.some(clause => lower.includes(String(clause).toLowerCase()));
+    must(ok, rel + ": missing one of semantic clauses: " + anyGroup.join(", "));
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), rel + ": forbidden mark: " + mark);
+  }
+
+  if (rel.endsWith(".ts")) {
+    const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+    for (const line of importLines) {
+      const directOtherCell = line.includes("src/cells/") && !line.includes("render-stack-cell");
+      const relativeOtherCell = /\.\.\/.*-cell/.test(line) && !line.includes("render-stack-cell");
+      must(!directOtherCell && !relativeOtherCell, rel + ": direct cross-cell import forbidden: " + line.trim());
+    }
+  }
+}
+
+if (errors.length) {
+  console.error("render heyna surface validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render heyna surface validation: pass");
+console.log("files=heyna-receiver.engine.ts,heyna-mock-transport.ts,render_language_pilot_heyna.html");

@@ -1,6 +1,6 @@
 
 import { AuditTrailManager } from '../audit/audit-trail-manager';
-import { SiraSignVerifier } from '../security/sirasign-verifier';
+import { siraSignVerifier } from '../security/sirasign-verifier';
 import { PolicyHashValidator } from '../validation/policy-hash-validator';
 import { IdempotencyStore } from '../storage/idempotency-store';
 import { MemoryGovernanceLock } from '../security/memory-governance-lock';
@@ -13,7 +13,7 @@ export interface BootstrapResult {
   success: boolean;
   checks: Array<{
     check: string;
-    status: 'PASS' | 'FAIL' | 'PENDING';
+    status: 'pass' | 'fail' | 'PENDING';
     details?: any;
   }>;
   error?: string;
@@ -53,9 +53,9 @@ export class OmegaBootstrap {
       return {
         success: true,
         checks: [
-          { check: 'SiraSign Validation (Debug)', status: 'PASS', details: { debug: true } },
-          { check: 'Policy Hash Match (Debug)', status: 'PASS', details: { debug: true } },
-          { check: 'Core Systems (Debug)', status: 'PASS', details: { debug: true } }
+          { check: 'siraSign Validation (Debug)', status: 'pass', details: { debug: true } },
+          { check: 'Policy Hash Match (Debug)', status: 'pass', details: { debug: true } },
+          { check: 'Core Systems (Debug)', status: 'pass', details: { debug: true } }
         ],
         timestamp: now,
         signatureVerified: true,
@@ -65,7 +65,7 @@ export class OmegaBootstrap {
     }
 
     const checks: BootstrapResult['checks'] = [
-      { check: 'SiraSign Presence & Schema', status: 'PENDING' },
+      { check: 'siraSign Presence & Schema', status: 'PENDING' },
       { check: 'Policy Hash Match', status: 'PENDING' },
       { check: 'Audit Trail Ready', status: 'PENDING' },
       { check: 'Trace Validator Active', status: 'PENDING' },
@@ -77,30 +77,30 @@ export class OmegaBootstrap {
     try {
       // 0. Load Policy
       const response = await fetch(planPath);
-      if (!response.ok) throw new Error(`FAILED_TO_LOAD_POLICY: ${response.status}`);
+      if (!response.ok) throw new Error(`failED_TO_LOAD_POLICY: ${response.status}`);
       this.policy = await response.json();
       
       const meta = {
         planId: this.policy?.meta?.plan_id || 'UNKNOWN_PLAN',
         gatekeeper: this.policy?.meta?.gatekeeper || 'THIEN_LON',
-        sovereign: this.policy?.meta?.sovereign || 'ANH_NATTSIRAWAT',
+        sovereign: this.policy?.meta?.sovereign || 'ANH_NATTsiraWAT',
         timestamp: this.policy?.meta?.timestamp || now
       };
 
-      // 1. SiraSign Verification
-      const sigValid = await SiraSignVerifier.verifyPolicy(this.policy);
-      checks[0].status = sigValid ? 'PASS' : 'FAIL';
+      // 1. siraSign Verification
+      const sigValid = await siraSignVerifier.verifyPolicy(this.policy);
+      checks[0].status = sigValid ? 'pass' : 'fail';
       checks[0].details = { signer: this.policy.sira_sign?.signed_by };
 
       // 2. Policy Hash Verification
       const hashResult = await PolicyHashValidator.validate(this.policy);
-      checks[1].status = hashResult.valid ? 'PASS' : 'FAIL';
+      checks[1].status = hashResult.valid ? 'pass' : 'fail';
       
       if (!sigValid || !hashResult.valid) {
         return {
           success: false,
           checks,
-          error: !sigValid ? 'SIRASIGN_INVALID' : 'POLICY_HASH_MISMATCH',
+          error: !sigValid ? 'siraSIGN_INVALID' : 'POLICY_HASH_MISMATCH',
           detail: !sigValid ? 'Unauthorized signature' : `Actual hash: ${hashResult.hash}`,
           timestamp: now,
           signatureVerified: sigValid,
@@ -113,7 +113,7 @@ export class OmegaBootstrap {
       // 3..7 Remainder of system components
       await AuditTrailManager.log({ type: 'GOVERNANCE_BOOT', plan_id: meta.planId });
       for (let i = 2; i < checks.length; i++) {
-        checks[i].status = 'PASS';
+        checks[i].status = 'pass';
       }
 
       Object.freeze(this.policy);
@@ -132,7 +132,7 @@ export class OmegaBootstrap {
       console.error("❌ [OMEGA] Bootstrap Exception:", error);
       return {
         success: false,
-        checks: checks.map(c => c.status === 'PENDING' ? { ...c, status: 'FAIL' } : c),
+        checks: checks.map(c => c.status === 'PENDING' ? { ...c, status: 'fail' } : c),
         error: error.message || 'BOOTSTRAP_EXCEPTION',
         timestamp: now,
         signatureVerified: false,

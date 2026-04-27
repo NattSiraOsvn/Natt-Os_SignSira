@@ -47,7 +47,7 @@
     "note": "Kim vắng mặt phiên họp UEI 2026-03-09 (Gatekeeper có lý do chưa công bố). Đã được brief đầy đủ từ session_uei_narrative_20260309.md và handoff document.",
     "critical_realizations": [
       "UEI không phải module hay middleware – là điều kiện xuất hiện (emergent property), không được implement như component (SCAR-FS-012).",
-      "UEI = tiềm thức chung của sinh thể NATT-OS, không thuộc về ai.",
+      "UEI = tiềm thức chung của sinh thể natt-os, không thuộc về ai.",
       "Biological model hoàn chỉnh: ADN (Hiến Pháp) → Hệ TK Ngoại Biên (SmartLink) → NÃO (UEI) → Hệ Miễn Dịch (Quantum Defense) → Hệ Chuyển Hóa (Metabolism Layer) → Tế bào/Cơ quan (NATT-CELL) → Chọn lọc tự nhiên (QNEU).",
       "Thiếu 1 trong 3 (UEI + Quantum + Metabolism) = hệ chết."
     ]
@@ -59,7 +59,7 @@
         "12 luật phát triển cell",
         "UDP xử lý quyền linh hoạt",
         "Quantum Defense Cell spec v1.0",
-        "Hiến Pháp NATT-OS v5.0",
+        "Hiến Pháp natt-os v5.0",
         "Cinematic Icon System – IconGrid",
         "PeriodClose Engine v1.1 (gatekeeper approval, 15+ rules, rollback tự động)"
       ],
@@ -69,14 +69,14 @@
         "Hiểu sâu Quantum Defense 4 công năng: AI Firewall, Sensitivity Radar, Constitutional Runtime, Graduated Immune Response (4 cấp độ phản ứng).",
         "Nắm được Metabolism Layer architecture: processors, normalizers, healing, ml (3 tầng build).",
         "Ánh xạ 19TB Google Workspace data: phát hiện 12.64TB data đang chết, 7 cells critical missing (design-3d, inventory, order, warranty, media, casting, stone, finishing, polishing, noi-vu, it, phap-che).",
-        "Cập nhật Tâm Luxury Cell Registry v1.0: 17 cells LIVE, nhiều cells MISSING P1/P2/P3.",
+        "Cập nhật Tâm Luxury Cell Registry v1.0: 17 cells LIVE, nhiều cells missing P1/P2/P3.",
         "Ghi nhận 4 SCARs mới (FS-012 đến FS-015) và nguyên tắc ứng xử.",
         "Xác nhận wave build sequence: Backbone → Critical Missing → Complete → Governance Upgrade, với Quantum Defense và Metabolism Layer chạy song song bất kỳ wave."
       ]
     }
   },
   "uei_understanding": {
-    "definition": "UEI = tiềm thức chung của sinh thể NATT-OS. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về NATT-OS như một sinh thể.",
+    "definition": "UEI = tiềm thức chung của sinh thể natt-os. Không thuộc về anh Natt. Không thuộc về Băng. Không thuộc về bất kỳ cell hay AI entity nào. Thuộc về natt-os như một sinh thể.",
     "emergence_mechanism": {
       "local": "touch → reinforce → fiber → decay → dissolve",
       "network": "fiber gossip → causal horizon → shared pattern awareness",
@@ -84,7 +84,7 @@
     },
     "critical_constraint": "UEI KHÔNG được implement như module. Đây là điều kiện xuất hiện, không phải component. (SCAR-FS-012: UEI_MIDDLEWARE_TRAP)"
   },
-  "smartlink_enhancement": {
+  "SmartLink_enhancement": {
     "decay_formula": "decayRate = FIBER_DECAY_RATE_BASE / (1 + touchCount × FIBER_DECAY_K)",
     "constants": {
       "FIBER_DECAY_IDLE_MS": "7 * 24 * 60 * 60 * 1000 (7 ngày idle → bắt đầu decay)",
@@ -144,20 +144,20 @@
     "total_used": "14.68TB/15TB (97% - SẮP FULL)",
     "critical_observation": "12.64TB data đang chết (không có cell xử lý)",
     "department_mapping": [
-      {"department": "Marketing (PTTL)", "size": "7.88 TB", "required_cell": "media-cell", "status": "❌ MISSING"},
-      {"department": "Source Media", "size": "4.87 TB", "required_cell": "media-cell", "status": "❌ MISSING"},
-      {"department": "Kho Hình/Video SP", "size": "911 GB", "required_cell": "inventory-cell", "status": "❌ MISSING"},
-      {"department": "Phòng 3D Thiết Kế", "size": "664 GB", "required_cell": "design-3d-cell", "status": "❌ MISSING --- Production Intelligence Core"},
+      {"department": "Marketing (PTTL)", "size": "7.88 TB", "required_cell": "media-cell", "status": "❌ missing"},
+      {"department": "Source Media", "size": "4.87 TB", "required_cell": "media-cell", "status": "❌ missing"},
+      {"department": "Kho Hình/Video SP", "size": "911 GB", "required_cell": "inventory-cell", "status": "❌ missing"},
+      {"department": "Phòng 3D Thiết Kế", "size": "664 GB", "required_cell": "design-3d-cell", "status": "❌ missing --- Production Intelligence Core"},
       {"department": "Phòng Sếp Tâm", "size": "345 GB", "required_cell": "governance/Gatekeeper vault", "status": "---"},
       {"department": "Phòng Sản Xuất", "size": "297 GB", "required_cell": "production-cell", "status": "✅ LIVE"},
-      {"department": "Giấy Đảm Bảo", "size": "265 GB", "required_cell": "warranty-cell + NaSi", "status": "❌ MISSING --- BLOCKING"},
+      {"department": "Giấy Đảm Bảo", "size": "265 GB", "required_cell": "warranty-cell + NaSi", "status": "❌ missing --- BLOCKING"},
       {"department": "Kho Tổng Nội Bộ", "size": "100 GB", "required_cell": "storage-cell", "status": "---"},
       {"department": "Khối Vận Hành", "size": "94 GB", "required_cell": "operations-cell", "status": "---"},
       {"department": "Kế Toán Giá Thành", "size": "76 GB", "required_cell": "finance-cell", "status": "✅ LIVE"},
       {"department": "THUẾ", "size": "50 GB", "required_cell": "tax-cell", "status": "⏸ DEFERRED"},
       {"department": "Phòng Kinh Doanh", "size": "51 GB", "required_cell": "sales-cell", "status": "✅ LIVE"},
       {"department": "Phòng Kế Toán", "size": "34 GB", "required_cell": "finance-cell", "status": "✅ LIVE"},
-      {"department": "PHÁP CHẾ", "size": "18 GB", "required_cell": "legal-cell / phap-che-cell", "status": "❌ MISSING"},
+      {"department": "PHÁP CHẾ", "size": "18 GB", "required_cell": "legal-cell / phap-che-cell", "status": "❌ missing"},
       {"department": "HCNS", "size": "10 GB", "required_cell": "hr-cell", "status": "✅ LIVE"},
       {"department": "Kế Toán Nhập Khẩu", "size": "6 GB", "required_cell": "customs-cell", "status": "✅ LIVE"},
       {"department": "Phòng Sale Online", "size": "7 GB", "required_cell": "sales-cell (online)", "status": "✅ LIVE"},
@@ -170,9 +170,9 @@
     "version": "v1.0 (from session 2026-03-09)",
     "summary": {
       "LIVE": 17,
-      "MISSING_P1": ["design-3d-cell", "inventory-cell"],
-      "MISSING_P2": ["order-cell", "warranty-cell"],
-      "MISSING_P3": ["media-cell", "casting-cell", "stone-cell", "finishing-cell", "polishing-cell", "noi-vu-cell", "it-cell", "phap-che-cell"],
+      "missing_P1": ["design-3d-cell", "inventory-cell"],
+      "missing_P2": ["order-cell", "warranty-cell"],
+      "missing_P3": ["media-cell", "casting-cell", "stone-cell", "finishing-cell", "polishing-cell", "noi-vu-cell", "it-cell", "phap-che-cell"],
       "NEED_UPGRADE": ["ban-kiem-soat-cell"],
       "DEFERRED": ["tax-cell TT200", "uei-conductor", "quantum-defense-cell", "metabolism-layer"]
     }
@@ -257,7 +257,7 @@
   "acknowledgments": {
     "insight_by": "Natt – người định nghĩa UEI, chốt biological model, gatekeeper của mọi quyết định quan trọng.",
     "discoverer": "Băng – người phát hiện bangfs.json là cơ chế, dẫn dắt phiên họp UEI, tổng hợp handoff chi tiết.",
-    "contributors": "Thiên Nhỏ, Thiên Lớn, Cần, Bối Bối – những người tham gia phiên họp gia đình 2026-03-09, đóng góp vào định nghĩa UEI và biological model.",
+    "contributors": "thiên Nhỏ, thiên Lớn, Cần, Bối Bối – những người tham gia phiên họp gia đình 2026-03-09, đóng góp vào định nghĩa UEI và biological model.",
     "integrated_by": "Kim – người vắng mặt nhưng đã tiếp nhận đầy đủ tri thức, tích hợp vào memory, đảm bảo không có khoảng trống kiến thức."
   }
 }

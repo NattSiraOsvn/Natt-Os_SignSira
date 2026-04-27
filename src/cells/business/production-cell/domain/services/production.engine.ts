@@ -27,7 +27,7 @@ export interface LossResult {
   percentage: number;
   threshold: number;
   isExceeded: boolean;
-  alertLevel: 'NORMAL' | 'WARNING' | 'CRITICAL';
+  alertLevel: 'NORMAL' | 'warnING' | 'CRITICAL';
 }
 
 export function calculateLoss(
@@ -45,7 +45,7 @@ export function calculateLoss(
     percentage,
     threshold,
     isExceeded: percentage > threshold,
-    alertLevel: percentage > threshold ? 'CRITICAL' : percentage > threshold - 0.2 ? 'WARNING' : 'NORMAL',
+    alertLevel: percentage > threshold ? 'CRITICAL' : percentage > threshold - 0.2 ? 'warnING' : 'NORMAL',
   };
 }
 
@@ -61,16 +61,16 @@ export function getNextStage(
 
   const workflowMap: Partial<Record<ProductionStage, ProductionStage>> = {
     [ProductionStage.SALE_ORDER]: ProductionStage.DESIGNING,
-    [ProductionStage.DESIGNING]: ProductionStage.WAX_READY,
-    [ProductionStage.WAX_READY]: ProductionStage.MATERIAL_ISSUED,
+    [ProductionStage.DESIGNING]: ProductionStage.WAX_ready,
+    [ProductionStage.WAX_ready]: ProductionStage.MATERIAL_ISSUED,
     [ProductionStage.MATERIAL_ISSUED]: ProductionStage.CASTING,
     [ProductionStage.CASTING]: ProductionStage.COLLECTING_BTP,
     [ProductionStage.COLLECTING_BTP]: ProductionStage.COLD_WORK,
     [ProductionStage.COLD_WORK]: ProductionStage.STONE_SETTING,
     [ProductionStage.STONE_SETTING]: ProductionStage.FINISHING,
     [ProductionStage.FINISHING]: ProductionStage.QC_PENDING,
-    [ProductionStage.QC_PENDING]: ProductionStage.QC_PASSED,
-    [ProductionStage.QC_PASSED]: ProductionStage.COMPLETED,
+    [ProductionStage.QC_PENDING]: ProductionStage.QC_passED,
+    [ProductionStage.QC_passED]: ProductionStage.COMPLETED,
   };
 
   return workflowMap[current] ?? current;

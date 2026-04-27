@@ -74,7 +74,7 @@ const ThienCommandCenter: React.FC<ThienCommandCenterProps> = ({ metrics, update
               <div>
                  <h2 className="text-5xl font-serif gold-gradient italic uppercase tracking-tighter leading-none">Trung Tâm Chỉ Huy Omega</h2>
                  <p className="text-gray-400 text-sm mt-2 font-light italic max-w-2xl leading-relaxed">
-                   "Thưa Anh Natt, Thiên đã đồng bộ Shard Authority. Anh hiện đang nắm quyền kiểm soát CORE ({auth.trustScore}% Trust)."
+                   "Thưa Anh Natt, thiên đã đồng bộ Shard Authority. Anh hiện đang nắm quyền kiểm soát CORE ({auth.trustScore}% Trust)."
                  </p>
               </div>
            </div>

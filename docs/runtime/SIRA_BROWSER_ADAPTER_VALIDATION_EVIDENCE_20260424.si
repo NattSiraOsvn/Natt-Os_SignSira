@@ -1,0 +1,70 @@
+# sira browser adapter validation EVIDENCE — 20260424
+
+status: pass
+owner: Gatekeeper / Anh Natt
+created_at: 2026-04-24T15:09:19.131381+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Canonical Lock
+
+- tools/natt_domain_gateway.sira = sira browser adapter implementation.
+- anc:// = identity.
+- .sira = root namespace.
+- SmartLink = resolver / coupling layer.
+- http:// = browser transport adapter.
+
+## 2. Evidence
+
+{
+  "validator": {
+    "cmd": "tools/thiên tools/validate_sira_browser_adapter.sira",
+    "exit": 0,
+    "stdout": "sira browser adapter validation: pass\nimplementation=tools/natt_domain_gateway.sira\nidentity=anc://\nnamespace=.sira\ntransport=http browser adapter",
+    "stderr": ""
+  },
+  "health_core_sira": {
+    "cmd": "curl -sS --max-time 3 http://core.sira/api/health",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"host\": \"core.sira\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 1,\n  \"time\": \"2026-04-24T15:09:19.054Z\"\n}",
+    "stderr": ""
+  },
+  "resolve_core": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://core",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://core\",\n  \"target\": \"http://core.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "resolve_audit": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://audit",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://audit\",\n  \"target\": \"http://audit.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "resolve_tam": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://tam",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://tam\",\n  \"target\": \"http://tam.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "resolve_nauion": {
+    "cmd": "curl -sS --max-time 3 http://anc.sira/api/resolve?uri=anc://nauion",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://nauion\",\n  \"target\": \"http://nauion.sira\",\n  \"rule\": \"anc://<name> -> http://<name>.sira\"\n}",
+    "stderr": ""
+  },
+  "audit_tail": {
+    "cmd": "curl -sS --max-time 3 http://core.sira/api/audit",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"total\": 1,\n  \"events\": [\n    {\n      \"audit_id\": \"audit_81fb01445801\",\n      \"timestamp\": \"2026-04-24T14:16:40.912Z\",\n      \"action\": \"gateway.boot\",\n      \"host\": \"127.0.0.1\",\n      \"result\": \"BOOTED\",\n      \"payload_summary\": {\n        \"PORT\": 80,\n        \"TAM\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n        \"NAUION\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n        \"AUDIT_HTML\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\"\n      }\n    }\n  ]\n}",
+    "stderr": ""
+  }
+}
+
+## 3. Next Gate
+
+- [ ] Gắn Browser Adapter status vào Audit UI Runtime Hub.
+- [ ] Thêm SCAN kiểm tra adapter drift.
+- [ ] Gắn route map .sira vào dashboard.
+- [ ] Bổ sung auth boundary trước public/LAN mở rộng.

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tâm Luxury - Hệ thống 71 màn hình vận hành</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0806;
+            font-family: 'Segoe UI', 'Roboto', 'Playfair Display', Georgia, 'Times New Roman', serif;
+            padding: 40px 24px;
+            color: #e6d5b8;
+        }
+
+        /* Container chính */
+        .report-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #14110d 0%, #1e1915 100%);
+            border-radius: 48px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Header vàng ánh kim */
+        .hero {
+            background: linear-gradient(135deg, #1f1a15 0%, #0d0b08 100%);
+            padding: 48px 48px 32px;
+            border-bottom: 2px solid #d4af37;
+            position: relative;
+        }
+        .hero::after {
+            content: "✦";
+            font-size: 120px;
+            color: rgba(212, 175, 55, 0.08);
+            position: absolute;
+            right: 30px;
+            bottom: 10px;
+            font-family: serif;
+            pointer-events: none;
+        }
+        .title-main {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(120deg, #f9e2a1, #d4af37, #b88d2c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .sub {
+            font-size: 18px;
+            color: #b9a577;
+            margin-top: 12px;
+            border-left: 3px solid #d4af37;
+            padding-left: 20px;
+            letter-spacing: 1px;
+        }
+        .stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            font-weight: 500;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #e6c27a;
+            margin-right: 8px;
+        }
+
+        /* Bảng thiết kế luxury */
+        .table-wrapper {
+            padding: 24px 32px 48px 32px;
+            overflow-x: auto;
+        }
+        .screen-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            font-size: 14px;
+        }
+        .screen-table th {
+            text-align: left;
+            padding: 18px 16px;
+            background: #2a241e;
+            color: #e9d9b1;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 20px 20px 8px 8px;
+            font-size: 15px;
+            border-bottom: 1px solid #d4af37;
+        }
+        .screen-table td {
+            background: #1c1814;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+            vertical-align: top;
+            border: 1px solid #2f2a24;
+        }
+        .screen-table tr:hover td {
+            background: #25201a;
+            border-color: #d4af37;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+        }
+        .badge-group {
+            background: #d4af37;
+            color: #0c0a07;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 12px;
+        }
+        .utility-tag {
+            background: #2d2a24;
+            border-left: 3px solid #d4af37;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-block;
+            margin: 3px 4px;
+            white-space: nowrap;
+            color: #cbbd91;
+        }
+        .role-tag {
+            background: #2c241c;
+            color: #d6bc7a;
+            border-radius: 16px;
+            padding: 4px 10px;
+            font-size: 12px;
+            display: inline-block;
+            margin: 2px;
+        }
+        /* Footer */
+        .footer {
+            background: #0e0c09;
+            padding: 28px 40px;
+            text-align: center;
+            border-top: 1px solid #2a241c;
+            font-size: 13px;
+            color: #927f58;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .report-container {
+                box-shadow: none;
+                border-radius: 0;
+                background: white;
+            }
+            .screen-table td {
+                background: #faf7f0;
+                border: 1px solid #ddd;
+                color: #2e2a24;
+            }
+            .screen-table th {
+                background: #e9e0d0;
+                color: #3a2e1f;
+            }
+            .badge-group, .utility-tag, .role-tag {
+                background: #eee5d8;
+                color: #7a5c2e;
+            }
+            .hero {
+                background: #f4ede3;
+                border-bottom: 2px solid #c9aa4b;
+            }
+            .title-main {
+                background: none;
+                color: #b17f2a;
+            }
+            .stat-card {
+                border: 1px solid #c9aa4b;
+                background: #fef9ef;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="report-container">
+    <div class="hero">
+        <div class="title-main">✦ TÂM LUXURY ✦</div>
+        <div class="sub">Hệ thống 71 màn hình vận hành theo chuẩn natt-os V2.5<br>Lõi hiến pháp & Quản trị sinh thể số</div>
+        <div class="stats">
+            <div class="stat-card"><span class="stat-number">71</span> Màn hình nghiệp vụ</div>
+            <div class="stat-card"><span class="stat-number">123+</span> Tiện ích / Công cụ</div>
+            <div class="stat-card"><span class="stat-number">8</span> Nhóm quyền lực</div>
+            <div class="stat-card"><span class="stat-number">100%</span> Ground Truth & Audit</div>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <table class="screen-table">
+            <thead>
+                <tr><th>STT</th><th>Nhóm</th><th>Màn hình</th><th>Chức năng chính</th><th>Công cụ (utility)</th><th>Đối tượng dùng</th></tr>
+            </thead>
+            <tbody>
+                <!-- 71 dòng đã được tạo dựa trên danh sách trước -->
+                <tr><td>1</td><td>Sản xuất & Kho</td><td>Bảng giao việc sản xuất (Task Board)</td><td>Xem lệnh SX, nhận việc, báo bắt đầu/kết thúc</td><td><span class="utility-tag">My Workbench</span> <span class="utility-tag">SmartLink Map</span></td><td><span class="role-tag">Thợ (Đúc, Hột, Nguội, Nhám)</span></td></tr>
+                <tr><td>2</td><td>Sản xuất & Kho</td><td>Theo dõi WIP</td><td>Xem sản phẩm ở công đoạn nào, ai giữ, thời gian giữ</td><td><span class="utility-tag">Causality Trace</span> <span class="utility-tag">Impact Analysis</span></td><td><span class="role-tag">Tổ trưởng, GĐ SX</span></td></tr>
+                <tr><td>3</td><td>Sản xuất & Kho</td><td>Nhập – xuất kho theo lệnh SX</td><td>Xuất vàng/kim cương theo lệnh, nhập thành phẩm/phế phẩm</td><td><span class="utility-tag">Quick Stocktake</span> <span class="utility-tag">Data Reconciliation</span></td><td><span class="role-tag">Thủ kho, Thợ (xác nhận)</span></td></tr>
+                <tr><td>4</td><td>Sản xuất & Kho</td><td>Báo cáo sản lượng & hao hụt theo ca</td><td>Nhập số lượng thành phẩm, phế phẩm, hao hụt thực tế</td><td><span class="utility-tag">Event Retry Engine</span></td><td><span class="role-tag">Thợ, Tổ trưởng</span></td></tr>
+                <tr><td>5</td><td>Sản xuất & Kho</td><td>Tính lương sản phẩm (piece‑rate)</td><td>Tự động tính lương dựa trên sản lượng, đơn giá công đoạn</td><td><span class="utility-tag">QNEU Dashboard cá nhân</span></td><td><span class="role-tag">Kế toán SX, Thợ</span></td></tr>
+                <tr><td>6</td><td>Sản xuất & Kho</td><td>Kiểm kê kho vàng / kim cương</td><td>Lập biên bản kiểm kê, ghi nhận chênh lệch, xác nhận 2 người</td><td><span class="utility-tag">Data Reconciliation</span> <span class="utility-tag">Anomaly Predictor</span></td><td><span class="role-tag">Thủ kho, Ban kiểm kê</span></td></tr>
+                <tr><td>7</td><td>Sản xuất & Kho</td><td>Đề xuất mua nguyên liệu</td><td>Tạo phiếu đề xuất khi tồn kho dưới ngưỡng, gửi duyệt</td><td><span class="utility-tag">Quick Approval</span></td><td><span class="role-tag">Thủ kho, QL SX</span></td></tr>
+                <tr><td>8</td><td>Sản xuất & Kho</td><td>Đăng ký bảo trì máy móc</td><td>Đăng ký lịch bảo trì, theo dõi trạng thái máy</td><td><span class="utility-tag">Health Check</span> <span class="utility-tag">Theo dõi bảo trì</span></td><td><span class="role-tag">Kỹ thuật, QL xưởng</span></td></tr>
+                <tr><td>9</td><td>Sản xuất & Kho</td><td>Nghiệm thu sản phẩm (KCS)</td><td>Nhập kết quả kiểm tra chất lượng, đạt/không đạt, lý do</td><td><span class="utility-tag">QC Entry</span></td><td><span class="role-tag">QC (KCS)</span></td></tr>
+                <tr><td>10</td><td>Sản xuất & Kho</td><td>Bàn giao sản phẩm giữa các công đoạn</td><td>Xác nhận nhận bàn giao giữa các tổ</td><td><span class="utility-tag">Causality Trace</span></td><td><span class="role-tag">Tổ trưởng các tổ</span></td></tr>
+                <tr><td>11</td><td>Sản xuất & Kho</td><td>Dashboard kho tổng hợp</td><td>Xem tồn kho vàng, kim cương, phụ kiện real-time</td><td><span class="utility-tag">Health Score</span></td><td><span class="role-tag">TGĐ, Kế toán kho</span></td></tr>
+                <tr><td>12</td><td>Sản xuất & Kho</td><td>Cảnh báo hao hụt bất thường</td><td>So sánh hao hụt thực tế vs định mức, phát hiện chênh lệch lớn</td><td><span class="utility-tag">Anomaly Predictor</span></td><td><span class="role-tag">BKS, GĐ SX</span></td></tr>
+                <tr><td>13</td><td>Sản xuất & Kho</td><td>Lịch sử xuất nhập kho theo lệnh</td><td>Tra cứu chi tiết từng lệnh xuất, nhập, hao hụt</td><td><span class="utility-tag">Audit Trail Viewer</span></td><td><span class="role-tag">Thủ kho, BKS</span></td></tr>
+                <tr><td>14</td><td>Sản xuất & Kho</td><td>Cấu hình Định mức & Đơn giá Gia công</td><td>Thiết lập định mức nguyên liệu, đơn giá cho từng công đoạn</td><td><span class="utility-tag">Version & Config Manager</span></td><td><span class="role-tag">Admin, Kế toán SX</span></td></tr>
+                <tr><td>15</td><td>Sản xuất & Kho</td><td>Quản lý Phế phẩm & Tái chế</td><td>Quản lý sản phẩm lỗi, nguyên nhân, trách nhiệm, xử lý tái chế</td><td><span class="utility-tag">Quantum Defense</span></td><td><span class="role-tag">QL SX, BKS</span></td></tr>
+                <tr><td>16</td><td>Nhân sự & HC</td><td>Quản lý hồ sơ nhân viên</td><td>Thêm, sửa, xem, tìm kiếm NV, quản lý CCCD, BHXH, hợp đồng</td><td><span class="utility-tag">HR Dashboard</span> <span class="utility-tag">Profile Viewer</span></td><td><span class="role-tag">HCNS</span></td></tr>
+                <tr><td>17</td><td>Nhân sự & HC</td><td>Quản lý hợp đồng lao động</td><td>Tạo, gia hạn, thanh lý HĐLĐ & phụ lục</td><td><span class="utility-tag">Version & Config Manager</span></td><td><span class="role-tag">HCNS</span></td></tr>
+                <tr><td>18</td><td>Nhân sự & HC</td><td>Quản lý tuyển dụng & định biên</td><td>Đề xuất tuyển dụng, phê duyệt định biên</td><td><span class="utility-tag">Quick Approval</span> <span class="utility-tag">Tuyển dụng Pipeline</span></td><td><span class="role-tag">Trưởng phòng, HCNS, TGĐ</span></td></tr>
+                <tr><td>19</td><td>Nhân sự & HC</td><td>Chấm công (check‑in/out)</td><td>Ghi nhận giờ vào/ra, tăng ca, yêu cầu sửa công sai</td><td><span class="utility-tag">Theo dõi chấm công</span></td><td><span class="role-tag">NV</span></td></tr>
+                <tr><td>20</td><td>Nhân sự & HC</td><td>Duyệt đơn nghỉ phép / tăng ca</td><td>Duyệt/từ chối đơn xin nghỉ, đăng ký làm thêm giờ</td><td><span class="utility-tag">Quick Approval</span></td><td><span class="role-tag">Quản lý trực tiếp</span></td></tr>
+                <tr><td>21</td><td>Nhân sự & HC</td><td>Bảng chấm công tổng hợp</td><td>Theo dõi, chỉnh sửa, tổng hợp công thực tế</td><td><span class="utility-tag">Theo dõi chấm công</span> <span class="utility-tag">Audit Trail Viewer</span></td><td><span class="role-tag">HCNS, Kế toán</span></td></tr>
+                <tr><td>22</td><td>Nhân sự & HC</td><td>Quản lý KPI & đánh giá</td><td>Thiết lập KPI, chấm điểm thử việc/định kỳ</td><td><span class="utility-tag">QNEU Dashboard</span></td><td><span class="role-tag">NV, Quản lý, HCNS</span></td></tr>
+                <tr><td>23</td><td>Nhân sự & HC</td><td>Bảng lương cá nhân</td><td>Xem bảng lương chi tiết (cơ bản, KPI, phụ cấp, khấu trừ)</td><td><span class="utility-tag">QNEU Dashboard cá nhân</span></td><td><span class="role-tag">NV</span></td></tr>
+                <tr><td>24</td><td>Nhân sự & HC</td><td>Xét duyệt tăng lương</td><td>Đề xuất tăng bậc dựa trên thâm niên, hiệu suất</td><td><span class="utility-tag">Quick Approval</span> <span class="utility-tag">Lịch tăng lương</span></td><td><span class="role-tag">HCNS, TGĐ</span></td></tr>
+                <tr><td>25</td><td>Nhân sự & HC</td><td>Sổ tay nhân viên (Wiki)</td><td>Tra cứu nội quy, chế độ phúc lợi, quy trình BHXH</td><td><span class="utility-tag">AI Recommendation Engine</span></td><td><span class="role-tag">Toàn NV</span></td></tr>
+                <tr><td>26</td><td>Nhân sự & HC</td><td>Quản lý khen thưởng & kỷ luật</td><td>Tạo đề xuất khen thưởng, ghi nhận vi phạm, xử lý khung phạt</td><td><span class="utility-tag">Quick Violation Entry</span></td><td><span class="role-tag">Quản lý, BKS</span></td></tr>
+                <tr><td>27</td><td>Nhân sự & HC</td><td>Dashboard nhân sự</td><td>Tổng quan số lượng NV, cơ cấu phòng ban, thâm niên</td><td><span class="utility-tag">Executive Dashboard</span></td><td><span class="role-tag">TGĐ, HCNS</span></td></tr>
+                <tr><td>28</td><td>Nhân sự & HC</td><td>Quản lý Quá trình Thử việc</td><td>Theo dõi danh sách NV thử việc, thời hạn, nhắc nhở đánh giá</td><td><span class="utility-tag">HR Dashboard</span></td><td><span class="role-tag">HCNS</span></td></tr>
+                <tr><td>29</td><td>Nhân sự & HC</td><td>Cấu hình Tham số Lương & Bảo hiểm</td><td>Thiết lập mức đóng BHXH, công thức thuế, phụ cấp</td><td><span class="utility-tag">Version & Config Manager</span></td><td><span class="role-tag">Admin, Kế toán</span></td></tr>
+                <tr><td>30</td><td>Nhân sự & HC</td><td>Đối soát và Khóa Bảng lương</td><td>Xem bảng lương tổng hợp, đối chiếu ngân sách, khóa kỳ lương</td><td><span class="utility-tag">Finance Control Tower</span></td><td><span class="role-tag">Kế toán trưởng</span></td></tr>
+                <tr><td>31</td><td>Tài chính – KT</td><td>Quản lý tạm ứng & thanh toán</td><td>Tạo phiếu đề nghị tạm ứng, thanh toán, hoàn ứng</td><td><span class="utility-tag">Quick Entry</span> <span class="utility-tag">Theo dõi tạm ứng</span></td><td><span class="role-tag">Toàn NV, Kế toán</span></td></tr>
+                <tr><td>32</td><td>Tài chính – KT</td><td>Quản lý thu – chi</td><td>Ghi nhận phiếu thu/chi, đối chiếu chứng từ</td><td><span class="utility-tag">Quick Entry</span></td><td><span class="role-tag">Kế toán</span></td></tr>
+                <tr><td>33</td><td>Tài chính – KT</td><td>Báo cáo tuân thủ tài chính</td><td>Báo cáo định kỳ về tạm ứng quá hạn, thanh toán bất thường</td><td><span class="utility-tag">Compliance Checklist</span></td><td><span class="role-tag">BKS, TGĐ</span></td></tr>
+                <tr><td>34</td><td>Tài chính – KT</td><td>Đối soát lương – KPI – chấm công</td><td>Tự động đối chiếu 3 nguồn, phát hiện sai lệch</td><td><span class="utility-tag">Data Reconciliation</span></td><td><span class="role-tag">Kế toán, BKS</span></td></tr>
+                <tr><td>35</td><td>Tài chính – KT</td><td>Dòng tiền thực tế (Cashflow)</td><td>Theo dõi tiền vào (từ khách), tiền ra (nguyên liệu, lương)</td><td><span class="utility-tag">Executive Dashboard</span></td><td><span class="role-tag">TGĐ, Kế toán trưởng</span></td></tr>
+                <tr><td>36</td><td>Tài chính – KT</td><td>Cảnh báo doanh thu – giá vốn</td><td>Tính tỷ lệ giá vốn/doanh thu, cảnh báo khi vượt ngưỡng 87%</td><td><span class="utility-tag">Anomaly Predictor</span></td><td><span class="role-tag">TGĐ, BKS</span></td></tr>
+                <tr><td>37</td><td>Tài chính – KT</td><td>Bảng cân đối thử</td><td>Xuất bảng cân đối tài khoản theo tháng/quý</td><td><span class="utility-tag">Báo cáo tài chính tức thời</span></td><td><span class="role-tag">Kế toán, BKS</span></td></tr>
+                <tr><td>38</td><td>Tài chính – KT</td><td>Quản lý thuế (xuất hóa đơn, kê khai)</td><td>Tạo hóa đơn điện tử, tổng hợp dữ liệu kê khai thuế</td><td><span class="utility-tag">Báo cáo thuế</span></td><td><span class="role-tag">Kế toán thuế</span></td></tr>
+                <tr><td>39</td><td>Tài chính – KT</td><td>Sổ quỹ tiền mặt & Tiền gửi NH</td><td>Ghi nhận thu/chi tiền mặt và chuyển khoản, theo dõi số dư</td><td><span class="utility-tag">Finance Control Tower</span></td><td><span class="role-tag">Kế toán</span></td></tr>
+                <tr><td>40</td><td>Tài chính – KT</td><td>Đối soát Công nợ Phải trả NCC</td><td>Quản lý công nợ với nhà cung cấp vàng, đá quý</td><td><span class="utility-tag">Đối chiếu công nợ</span></td><td><span class="role-tag">Kế toán công nợ</span></td></tr>
+                <tr><td>41</td><td>Kinh doanh & KH</td><td>Xác nhận đơn hàng & giấy đảm bảo</td><td>Tạo đơn hàng, đính kèm giấy đảm bảo, xác nhận thanh toán</td><td><span class="utility-tag">Tạo đơn hàng nhanh</span></td><td><span class="role-tag">Sale</span></td></tr>
+                <tr><td>42</td><td>Kinh doanh & KH</td><td>Báo cáo doanh thu & hoa hồng</td><td>Tổng hợp doanh thu cá nhân/nhóm, tính hoa hồng</td><td><span class="utility-tag">Sales Performance Dashboard</span></td><td><span class="role-tag">Sale, Kế toán</span></td></tr>
+                <tr><td>43</td><td>Kinh doanh & KH</td><td>Quản lý công nợ khách hàng</td><td>Theo dõi thanh toán, nhắc nợ tự động</td><td><span class="utility-tag">Nhắc nợ tự động</span></td><td><span class="role-tag">Sale, CSKH</span></td></tr>
+                <tr><td>44</td><td>Kinh doanh & KH</td><td>Quản lý phản hồi & khiếu nại KH</td><td>Tiếp nhận, phân công, xử lý khiếu nại đa cấp</td><td><span class="utility-tag">Ticket Management</span></td><td><span class="role-tag">CSKH, Quản lý</span></td></tr>
+                <tr><td>45</td><td>Kinh doanh & KH</td><td>Chăm sóc khách hàng VIP (CRM)</td><td>Phân loại KH, lịch sử mua, sở thích, lịch chăm sóc</td><td><span class="utility-tag">Lịch chăm sóc VIP</span></td><td><span class="role-tag">CSKH, Sale</span></td></tr>
+                <tr><td>46</td><td>Kinh doanh & KH</td><td>Quản lý chiến dịch Marketing</td><td>Đề xuất chiến dịch, phê duyệt ngân sách, theo dõi KPI</td><td><span class="utility-tag">Chiến dịch Tracker</span></td><td><span class="role-tag">Marketing, TGĐ</span></td></tr>
+                <tr><td>47</td><td>Kinh doanh & KH</td><td>Khảo sát hài lòng khách hàng</td><td>Gửi khảo sát định kỳ, tổng hợp kết quả</td><td><span class="utility-tag">Gửi khảo sát tự động</span></td><td><span class="role-tag">Marketing, CSKH</span></td></tr>
+                <tr><td>48</td><td>Kinh doanh & KH</td><td>Dashboard kinh doanh</td><td>Tổng hợp doanh số, top sản phẩm, top sale, chỉ tiêu</td><td><span class="utility-tag">Executive Dashboard</span></td><td><span class="role-tag">TGĐ, Trưởng phòng KD</span></td></tr>
+                <tr><td>49</td><td>Ban Kiểm soát</td><td>Kiểm tra tuân thủ định kỳ</td><td>Tạo phiếu kiểm tra, đánh giá mức độ tuân thủ</td><td><span class="utility-tag">Compliance Checklist</span></td><td><span class="role-tag">BKS</span></td></tr>
+                <tr><td>50</td><td>Ban Kiểm soát</td><td>Xử lý vi phạm & giải trình</td><td>Lập biên bản vi phạm, yêu cầu giải trình, ra quyết định</td><td><span class="utility-tag">Quick Violation Entry</span></td><td><span class="role-tag">BKS</span></td></tr>
+                <tr><td>51</td><td>Ban Kiểm soát</td><td>Kiểm toán nội bộ</td><td>Kiểm toán tài chính, kho, sản xuất. Lập báo cáo kết luận</td><td><span class="utility-tag">Audit Trail Viewer</span></td><td><span class="role-tag">BKS, TGĐ</span></td></tr>
+                <tr><td>52</td><td>Ban Kiểm soát</td><td>Tiếp nhận & xử lý khiếu nại nội bộ</td><td>Kênh tố giác, phản ánh từ nhân viên (ẩn danh)</td><td><span class="utility-tag">Ticket Management</span></td><td><span class="role-tag">Toàn NV, BKS</span></td></tr>
+                <tr><td>53</td><td>Ban Kiểm soát</td><td>Báo cáo tổng hợp rủi ro</td><td>Tổng hợp sai sót, rủi ro theo quý, đề xuất điều chỉnh</td><td><span class="utility-tag">Executive Dashboard</span></td><td><span class="role-tag">BKS, TGĐ</span></td></tr>
+                <tr><td>54</td><td>Ban Kiểm soát</td><td>Sensitivity Radar (Entropy)</td><td>Đo lường biến động vi phạm, kho, chấm công; cảnh báo</td><td><span class="utility-tag">Anomaly Predictor</span></td><td><span class="role-tag">BKS, TGĐ</span></td></tr>
+                <tr><td>55</td><td>Ban Kiểm soát</td><td>Báo cáo Đối chiếu KPI đa chiều</td><td>So sánh KPI từ nhiều nguồn: tự chấm, quản lý chấm, hệ thống</td><td><span class="utility-tag">Data Reconciliation</span></td><td><span class="role-tag">BKS</span></td></tr>
+                <tr><td>56</td><td>Cổng KH</td><td>Tra cứu đơn hàng</td><td>Xem trạng thái đơn hàng (đang SX, đã giao, bảo hành)</td><td><span class="utility-tag">Tra cứu đơn hàng</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>57</td><td>Cổng KH</td><td>Lịch sử mua sắm</td><td>Danh sách sản phẩm đã mua, giá, hình ảnh, chứng từ</td><td><span class="utility-tag">Lịch sử mua hàng</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>58</td><td>Cổng KH</td><td>Bảo hành & sửa chữa</td><td>Đăng ký yêu cầu bảo hành, tra cứu tiến độ</td><td><span class="utility-tag">Đăng ký bảo hành</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>59</td><td>Cổng KH</td><td>Gửi yêu cầu hỗ trợ / khiếu nại</td><td>Form gửi trực tiếp, kèm ảnh, mã đơn hàng</td><td><span class="utility-tag">Chat hỗ trợ trực tuyến</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>60</td><td>Cổng KH</td><td>Đánh giá sản phẩm</td><td>Đánh giá sao, viết nhận xét sau khi nhận hàng</td><td><span class="utility-tag">Đánh giá sản phẩm</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>61</td><td>Cổng KH</td><td>Thông báo khuyến mãi & sự kiện</td><td>Xem các chương trình ưu đãi, lịch sự kiện</td><td><span class="utility-tag">Thông báo ưu đãi sớm</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>62</td><td>Cổng KH</td><td>Hồ sơ VIP</td><td>Lưu sở thích, ngày kỷ niệm, gợi ý sản phẩm</td><td><span class="utility-tag">Hồ sơ VIP cá nhân hóa</span></td><td><span class="role-tag">Khách hàng VIP</span></td></tr>
+                <tr><td>63</td><td>Cổng KH</td><td>Xác thực & đăng nhập</td><td>Đăng nhập bằng SĐT, OTP, quản lý phiên</td><td><span class="utility-tag">User & Role Manager</span></td><td><span class="role-tag">Khách hàng</span></td></tr>
+                <tr><td>64</td><td>Tiện ích & QT</td><td>Personal Dashboard</td><td>Tùy chỉnh layout, widget (chấm công, đơn hàng chờ, KPI)</td><td><span class="utility-tag">My Workbench</span></td><td><span class="role-tag">Toàn NV</span></td></tr>
+                <tr><td>65</td><td>Tiện ích & QT</td><td>Lịch làm việc chung</td><td>Xem lịch nghỉ phép, họp, sự kiện công ty</td><td><span class="utility-tag">Quản lý lịch họp</span></td><td><span class="role-tag">Toàn NV</span></td></tr>
+                <tr><td>66</td><td>Tiện ích & QT</td><td>Thông báo & tin nhắn nội bộ</td><td>Gửi thông báo hệ thống, nhắn tin giữa các phòng ban (có audit)</td><td><span class="utility-tag">Ticket Management</span></td><td><span class="role-tag">Toàn NV</span></td></tr>
+                <tr><td>67</td><td>Tiện ích & QT</td><td>Thư viện tài liệu & biểu mẫu</td><td>Lưu trữ mẫu PL, hướng dẫn, quy trình, nội quy</td><td><span class="utility-tag">AI Recommendation Engine</span></td><td><span class="role-tag">Toàn NV</span></td></tr>
+                <tr><td>68</td><td>Tiện ích & QT</td><td>Công cụ xuất báo cáo nâng cao</td><td>Xuất dữ liệu ra Excel/PDF, tùy chỉnh cột, lọc, lưu mẫu</td><td><span class="utility-tag">Kết xuất báo cáo</span></td><td><span class="role-tag">Kế toán, HCNS, BKS</span></td></tr>
+                <tr><td>69</td><td>Tiện ích & QT</td><td>Audit Log Viewer</td><td>Xem toàn bộ sự kiện hệ thống, lọc theo user/action/entity</td><td><span class="utility-tag">Audit Trail Viewer</span></td><td><span class="role-tag">BKS, Admin</span></td></tr>
+                <tr><td>70</td><td>Tiện ích & QT</td><td>Health Check & Self‑healing</td><td>Hiển thị trạng thái cell, SmartLink, phát hiện lỗi tự động</td><td><span class="utility-tag">System Health Check</span></td><td><span class="role-tag">IT, BKS</span></td></tr>
+                <tr><td>71</td><td>Tiện ích & QT</td><td>Quản lý phiên bản</td><td>Theo dõi lịch sử thay đổi của kmf, specs, configs, quy trình</td><td><span class="utility-tag">Version & Config Manager</span></td><td><span class="role-tag">Admin, BKS</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer">
+        ⚡ Hệ thống dựa trên NattOs NattCell Kernel <br>
+        Mọi thao tác đều có dấu vết kiểm toán (SHA-256). Ban Kiểm soát (BKS) nắm quyền giám sát tối cao.
+    </div>
+</div>
+</body>
+</html>

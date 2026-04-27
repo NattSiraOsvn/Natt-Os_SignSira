@@ -1,0 +1,144 @@
+# tam luxury cell binding validation — 20260425
+
+status: binding-validated
+created_at: 2026-04-25T10:31:41.759602+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+source_route_matrix: docs/runtime/tam_luxury_domain_route_gate_matrix_20260425.na
+source_permission_matrix: docs/runtime/tam_luxury_permission_matrix_20260425.na
+
+---
+
+## 1. principle
+
+cell binding validation không phải cell scaffold.
+
+screen binding không phải cell scaffold.
+
+matrix này chỉ kiểm cell binding đang được route sử dụng thế nào.
+
+không sinh cell từ file này.
+
+không sinh 71 cell mù.
+
+---
+
+## 2. summary
+
+- total screens: 71
+- unique cell bindings: 71
+- shared cell bindings: 0
+- single screen bindings: 71
+- priority scaffold candidate screens: 31
+- fragmentation flag: high_fragmentation_review_required
+
+---
+
+## 3. domain summary
+
+| domain | screens | unique cell bindings | required frame | shape frame | no frame |
+|---|---:|---:|---:|---:|---:|
+| ban kiểm soát | 8 | 8 | 8 | 0 | 0 |
+| cổng kh | 8 | 8 | 4 | 0 | 4 |
+| kinh doanh & kh | 8 | 8 | 7 | 1 | 0 |
+| nhân sự & hc | 15 | 15 | 13 | 1 | 1 |
+| sản xuất & kho | 13 | 13 | 11 | 2 | 0 |
+| tiện ích & qt | 9 | 9 | 5 | 1 | 3 |
+| tài chính – kt | 10 | 10 | 9 | 1 | 0 |
+
+---
+
+## 4. cell binding table
+
+| cell_binding | screen_count | screen_ids | domains | classification | priority_domain | scaffold_policy |
+|---|---:|---|---|---|---|---|
+| cell_audit_compliance | 1 | PL-049 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_internal | 1 | PL-051 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_kpi_crosscheck | 1 | PL-055 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_risk | 1 | PL-053 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_sensitivity | 1 | PL-054 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_system_health | 1 | PL-070 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_violation | 1 | PL-050 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_audit_whistleblow | 1 | PL-052 | ban kiểm soát | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_config_norms | 1 | PL-014 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_config_salary_insurance | 1 | PL-029 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_crm_complaint | 1 | PL-044 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_crm_survey | 1 | PL-047 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_crm_vip | 1 | PL-045 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_auth | 1 | PL-063 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_history | 1 | PL-057 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_order | 1 | PL-056 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_promotions | 1 | PL-061 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_review | 1 | PL-060 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_support | 1 | PL-059 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_vip_profile | 1 | PL-062 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_customer_warranty | 1 | PL-058 | cổng kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_finance_advance | 1 | PL-031 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_cash | 1 | PL-032 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_cashflow | 1 | PL-035 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_compliance | 1 | PL-033 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_gp_alert | 1 | PL-036 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_ledger | 1 | PL-039 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_payables | 1 | PL-040 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_tax | 1 | PL-038 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_finance_trial_balance | 1 | PL-037 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_hr_approval | 1 | PL-020 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_attendance | 1 | PL-019 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_attendance_sheet | 1 | PL-021 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_contracts | 1 | PL-017 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_dashboard | 1 | PL-027 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_handbook | 1 | PL-025 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_kpi | 1 | PL-022 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_payslip | 1 | PL-023 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_probation | 1 | PL-028 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_profiles | 1 | PL-016 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_recruitment | 1 | PL-018 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_reward_discipline | 1 | PL-026 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_hr_salary_increase | 1 | PL-024 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_inventory_audit | 1 | PL-013 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_inventory_count | 1 | PL-006 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_inventory_dashboard | 1 | PL-011 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_inventory_txn | 1 | PL-003 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_maintenance_register | 1 | PL-008 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_marketing_campaign | 1 | PL-046 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_payroll_lock | 1 | PL-030 | nhân sự & hc | single_screen_binding | no | do_not_scaffold_yet |
+| cell_payroll_reconciliation | 1 | PL-034 | tài chính – kt | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_production_anomaly | 1 | PL-012 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_production_handover | 1 | PL-010 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_production_payroll | 1 | PL-005 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_production_report | 1 | PL-004 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_purchase_request | 1 | PL-007 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_qc_entry | 1 | PL-009 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_sales_dashboard | 1 | PL-048 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_sales_debt | 1 | PL-043 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_sales_order | 1 | PL-041 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_sales_performance | 1 | PL-042 | kinh doanh & kh | single_screen_binding | no | do_not_scaffold_yet |
+| cell_system_config | 1 | PL-002 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_system_dashboard | 1 | PL-001 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_waste_management | 1 | PL-015 | sản xuất & kho | single_screen_binding | yes | do_not_scaffold_yet |
+| cell_workspace_audit_viewer | 1 | PL-069 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_workspace_calendar | 1 | PL-065 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_workspace_dashboard | 1 | PL-064 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_workspace_docs | 1 | PL-067 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_workspace_event_corr | 1 | PL-071 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_workspace_export | 1 | PL-068 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+| cell_workspace_messaging | 1 | PL-066 | tiện ích & qt | single_screen_binding | no | do_not_scaffold_yet |
+
+---
+
+## 5. priority scaffold grouping
+
+chỉ sau khi cell binding validation pass mới được xét scaffold nhóm trọng yếu.
+
+| group | domains | policy |
+|---|---|---|
+| priority_1 | sản xuất & kho | scaffold sau khi có contract/domain boundary |
+| priority_2 | tài chính – kt | scaffold sau khi có contract/domain boundary |
+| priority_3 | ban kiểm soát | scaffold sau khi có contract/domain boundary |
+
+---
+
+## 6. next
+
+bước tiếp theo là scaffold plan cho nhóm trọng yếu, không scaffold trực tiếp.
+
+mỗi nhóm scaffold phải có identity, contract, validator và evidence riêng.

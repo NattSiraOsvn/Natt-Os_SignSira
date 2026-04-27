@@ -131,7 +131,7 @@ export class SupplierEngine {
   }
 
   /**
-   * Phân loại toàn diện V2 (Thiên)
+   * Phân loại toàn diện V2 (thiên)
    */
   static analyzeStrategicFit(supplier: Supplier): Partial<Supplier> {
     const nhomHang = this.classifyByProductGroup(supplier);

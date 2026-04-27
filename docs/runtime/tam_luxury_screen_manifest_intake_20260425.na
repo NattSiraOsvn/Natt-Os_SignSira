@@ -1,0 +1,621 @@
+# tam luxury screen manifest intake — 20260425
+
+status: manifested
+created_at: 2026-04-25T10:16:08.606399+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. principle
+
+screen binding không phải cell scaffold.
+
+screen là surface, route, quyền, dữ liệu và audit.
+
+cell là đơn vị nghiệp vụ xử lý phía sau màn hình.
+
+manifest này là 71 screen bindings, không phải 71 cell.
+
+không sinh 71 cell mù từ manifest này.
+
+---
+
+## 2. manifest
+
+```yaml
+manifest:
+  version: "v0.1-intake"
+  date: 2026-04-25
+  total_screens: 71
+  principle: screen_binding_not_cell_scaffold
+  status: manifested
+  allowed_audit: [minimal, partial, full]
+  allowed_siraSign: [none, shape, required]
+  screens:
+
+    - screen_id: PL-001
+      domain: tiện ích & qt
+      route: /system/overview
+      cell_binding: cell_system_dashboard
+      audit: partial
+      siraSign: shape
+      status: manifested
+
+    - screen_id: PL-002
+      domain: tiện ích & qt
+      route: /system/config
+      cell_binding: cell_system_config
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-003
+      domain: sản xuất & kho
+      route: /inventory/stock-movement
+      cell_binding: cell_inventory_txn
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-004
+      domain: sản xuất & kho
+      route: /production/shift-report
+      cell_binding: cell_production_report
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-005
+      domain: sản xuất & kho
+      route: /production/piece-rate-payroll
+      cell_binding: cell_production_payroll
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-006
+      domain: sản xuất & kho
+      route: /inventory/stock-count
+      cell_binding: cell_inventory_count
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-007
+      domain: sản xuất & kho
+      route: /purchase/material-request
+      cell_binding: cell_purchase_request
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-008
+      domain: sản xuất & kho
+      route: /maintenance/machine-register
+      cell_binding: cell_maintenance_register
+      audit: partial
+      siraSign: shape
+      status: manifested
+
+    - screen_id: PL-009
+      domain: sản xuất & kho
+      route: /qc/inspection-result
+      cell_binding: cell_qc_entry
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-010
+      domain: sản xuất & kho
+      route: /production/handover
+      cell_binding: cell_production_handover
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-011
+      domain: sản xuất & kho
+      route: /inventory/dashboard
+      cell_binding: cell_inventory_dashboard
+      audit: partial
+      siraSign: shape
+      status: manifested
+
+    - screen_id: PL-012
+      domain: sản xuất & kho
+      route: /production/loss-alert
+      cell_binding: cell_production_anomaly
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-013
+      domain: sản xuất & kho
+      route: /inventory/audit-trail
+      cell_binding: cell_inventory_audit
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-014
+      domain: sản xuất & kho
+      route: /config/norms-pricing
+      cell_binding: cell_config_norms
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-015
+      domain: sản xuất & kho
+      route: /production/waste-recycle
+      cell_binding: cell_waste_management
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-016
+      domain: nhân sự & hc
+      route: /hr/employee-profiles
+      cell_binding: cell_hr_profiles
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-017
+      domain: nhân sự & hc
+      route: /hr/contracts
+      cell_binding: cell_hr_contracts
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-018
+      domain: nhân sự & hc
+      route: /hr/recruitment
+      cell_binding: cell_hr_recruitment
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-019
+      domain: nhân sự & hc
+      route: /hr/attendance
+      cell_binding: cell_hr_attendance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-020
+      domain: nhân sự & hc
+      route: /hr/leave-overtime-approval
+      cell_binding: cell_hr_approval
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-021
+      domain: nhân sự & hc
+      route: /hr/attendance-sheet
+      cell_binding: cell_hr_attendance_sheet
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-022
+      domain: nhân sự & hc
+      route: /hr/kpi-evaluation
+      cell_binding: cell_hr_kpi
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-023
+      domain: nhân sự & hc
+      route: /hr/personal-payslip
+      cell_binding: cell_hr_payslip
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-024
+      domain: nhân sự & hc
+      route: /hr/salary-increase
+      cell_binding: cell_hr_salary_increase
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-025
+      domain: nhân sự & hc
+      route: /hr/handbook
+      cell_binding: cell_hr_handbook
+      audit: minimal
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-026
+      domain: nhân sự & hc
+      route: /hr/reward-discipline
+      cell_binding: cell_hr_reward_discipline
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-027
+      domain: nhân sự & hc
+      route: /hr/dashboard
+      cell_binding: cell_hr_dashboard
+      audit: partial
+      siraSign: shape
+      status: manifested
+
+    - screen_id: PL-028
+      domain: nhân sự & hc
+      route: /hr/probation
+      cell_binding: cell_hr_probation
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-029
+      domain: nhân sự & hc
+      route: /config/salary-insurance
+      cell_binding: cell_config_salary_insurance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-030
+      domain: nhân sự & hc
+      route: /payroll/reconciliation-lock
+      cell_binding: cell_payroll_lock
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-031
+      domain: tài chính – kt
+      route: /finance/advance-settlement
+      cell_binding: cell_finance_advance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-032
+      domain: tài chính – kt
+      route: /finance/cash-receipt-payment
+      cell_binding: cell_finance_cash
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-033
+      domain: tài chính – kt
+      route: /finance/compliance-report
+      cell_binding: cell_finance_compliance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-034
+      domain: tài chính – kt
+      route: /payroll/reconciliation
+      cell_binding: cell_payroll_reconciliation
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-035
+      domain: tài chính – kt
+      route: /finance/cashflow
+      cell_binding: cell_finance_cashflow
+      audit: partial
+      siraSign: shape
+      status: manifested
+
+    - screen_id: PL-036
+      domain: tài chính – kt
+      route: /finance/gp-alert
+      cell_binding: cell_finance_gp_alert
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-037
+      domain: tài chính – kt
+      route: /finance/trial-balance
+      cell_binding: cell_finance_trial_balance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-038
+      domain: tài chính – kt
+      route: /finance/tax-invoice
+      cell_binding: cell_finance_tax
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-039
+      domain: tài chính – kt
+      route: /finance/cash-bank-ledger
+      cell_binding: cell_finance_ledger
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-040
+      domain: tài chính – kt
+      route: /finance/payables
+      cell_binding: cell_finance_payables
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-041
+      domain: kinh doanh & kh
+      route: /sales/order-confirm
+      cell_binding: cell_sales_order
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-042
+      domain: kinh doanh & kh
+      route: /sales/performance
+      cell_binding: cell_sales_performance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-043
+      domain: kinh doanh & kh
+      route: /sales/customer-debt
+      cell_binding: cell_sales_debt
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-044
+      domain: kinh doanh & kh
+      route: /crm/complaint
+      cell_binding: cell_crm_complaint
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-045
+      domain: kinh doanh & kh
+      route: /crm/vip
+      cell_binding: cell_crm_vip
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-046
+      domain: kinh doanh & kh
+      route: /marketing/campaign
+      cell_binding: cell_marketing_campaign
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-047
+      domain: kinh doanh & kh
+      route: /crm/satisfaction-survey
+      cell_binding: cell_crm_survey
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-048
+      domain: kinh doanh & kh
+      route: /sales/dashboard
+      cell_binding: cell_sales_dashboard
+      audit: partial
+      siraSign: shape
+      status: manifested
+
+    - screen_id: PL-049
+      domain: ban kiểm soát
+      route: /audit/compliance-check
+      cell_binding: cell_audit_compliance
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-050
+      domain: ban kiểm soát
+      route: /audit/violation
+      cell_binding: cell_audit_violation
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-051
+      domain: ban kiểm soát
+      route: /audit/internal-audit
+      cell_binding: cell_audit_internal
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-052
+      domain: ban kiểm soát
+      route: /audit/whistleblow
+      cell_binding: cell_audit_whistleblow
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-053
+      domain: ban kiểm soát
+      route: /audit/risk-report
+      cell_binding: cell_audit_risk
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-054
+      domain: ban kiểm soát
+      route: /audit/sensitivity
+      cell_binding: cell_audit_sensitivity
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-055
+      domain: ban kiểm soát
+      route: /audit/kpi-cross-check
+      cell_binding: cell_audit_kpi_crosscheck
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-056
+      domain: cổng kh
+      route: /customer/order-status
+      cell_binding: cell_customer_order
+      audit: minimal
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-057
+      domain: cổng kh
+      route: /customer/purchase-history
+      cell_binding: cell_customer_history
+      audit: minimal
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-058
+      domain: cổng kh
+      route: /customer/warranty
+      cell_binding: cell_customer_warranty
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-059
+      domain: cổng kh
+      route: /customer/support
+      cell_binding: cell_customer_support
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-060
+      domain: cổng kh
+      route: /customer/product-review
+      cell_binding: cell_customer_review
+      audit: partial
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-061
+      domain: cổng kh
+      route: /customer/promotions
+      cell_binding: cell_customer_promotions
+      audit: minimal
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-062
+      domain: cổng kh
+      route: /customer/vip-profile
+      cell_binding: cell_customer_vip_profile
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-063
+      domain: cổng kh
+      route: /customer/auth
+      cell_binding: cell_customer_auth
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-064
+      domain: tiện ích & qt
+      route: /workspace/my-dashboard
+      cell_binding: cell_workspace_dashboard
+      audit: partial
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-065
+      domain: tiện ích & qt
+      route: /workspace/calendar
+      cell_binding: cell_workspace_calendar
+      audit: minimal
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-066
+      domain: tiện ích & qt
+      route: /workspace/messaging
+      cell_binding: cell_workspace_messaging
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-067
+      domain: tiện ích & qt
+      route: /workspace/docs-library
+      cell_binding: cell_workspace_docs
+      audit: minimal
+      siraSign: none
+      status: manifested
+
+    - screen_id: PL-068
+      domain: tiện ích & qt
+      route: /workspace/report-export
+      cell_binding: cell_workspace_export
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-069
+      domain: tiện ích & qt
+      route: /workspace/audit-log-viewer
+      cell_binding: cell_workspace_audit_viewer
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-070
+      domain: ban kiểm soát
+      route: /audit/system-compliance-health
+      cell_binding: cell_audit_system_health
+      audit: full
+      siraSign: required
+      status: manifested
+
+    - screen_id: PL-071
+      domain: tiện ích & qt
+      route: /workspace/event-correlation
+      cell_binding: cell_workspace_event_corr
+      audit: full
+      siraSign: required
+      status: manifested
+
+```
+
+---
+
+## 3. counts
+
+- total screens: 71
+- domain counts: {'tiện ích & qt': 9, 'sản xuất & kho': 13, 'nhân sự & hc': 15, 'tài chính – kt': 10, 'kinh doanh & kh': 8, 'ban kiểm soát': 8, 'cổng kh': 8}
+- audit counts: {'partial': 8, 'full': 57, 'minimal': 6}
+- siraSign counts: {'shape': 6, 'required': 57, 'none': 8}
+
+---
+
+## 4. next
+
+bước tiếp theo là validate route gate và permission matrix.
+
+không scaffold cell cho đến khi route gate và permission matrix được khóa.

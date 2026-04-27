@@ -1,3 +1,9 @@
+// @nauion-native v1 (Wave 1 ss20260427 — đổi syntax annotation, giữ .ts per R09)
+// @migrated-from production-events.ts (commit 8362bfc)
+// @kind contract
+// @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
+// @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
+
 /**
  * PRODUCTION EVENT CONTRACTS – TÂM LUXURY
  * Source of truth: mọi cell đều import từ đây, không tự định nghĩa event riêng.
@@ -9,9 +15,13 @@
 // SHARED TYPES
 // ─────────────────────────────────────────────
 
+// sira_TYPE_ALIAS
 export type OrderType = 'KD' | 'CT';
+// sira_TYPE_ALIAS
 export type PhoiStatus = 'Đủ CT' | 'Thiếu CT' | 'Đã đúc' | 'HỎNG';
+// sira_TYPE_ALIAS
 export type QcStatus = 'OK' | 'Bể' | 'Mẻ' | 'Bảo hành';
+// sira_TYPE_ALIAS
 export type WipStage =
   | 'NGUOI_1'
   | 'NGUOI_2_RAP'
@@ -23,8 +33,10 @@ export type WipStage =
   | 'DA_CHU'
   | 'MOC_MAY';
 
+// sira_TYPE_ALIAS
 export type WorkerRole = 'SX' | 'SC'; // BẮT BUỘC tách – FS-025
 
+// sira_TYPE_ALIAS
 export type VatTuType =
   | '75CHI'
   | '58.5CHI'
@@ -35,15 +47,17 @@ export type VatTuType =
   | '50GIAC'
   | '75GIAC';
 
-export type DustAlertLevel = 'WARNING' | 'HIGH' | 'CRITICAL';
+// sira_TYPE_ALIAS
+export type DustAlertLevel = 'warnING' | 'HIGH' | 'CRITICAL';
 
 // ─────────────────────────────────────────────
 // SPRINT 1 – ORDER / MATERIALS / CASTING
 // ─────────────────────────────────────────────
 
 /** order-cell → tất cả downstream */
+// sira_TYPE_INTERFACE
 export interface OrderCreatedEvent {
-  eventType: 'ORDER_CREATED';
+  eventType: 'ORDER_created';
   orderId: string;           // PN-KD-26-XXXX hoặc PN-CT-26-XXXX
   orderType: OrderType;
   productCode: string;
@@ -57,6 +71,7 @@ export interface OrderCreatedEvent {
 }
 
 /** prdmaterials-cell → casting-cell */
+// sira_TYPE_INTERFACE
 export interface CastingRequestEvent {
   eventType: 'CASTING_REQUEST';
   lapId: string;             // PN-INFO-26-01-01
@@ -74,6 +89,7 @@ export interface CastingRequestEvent {
 }
 
 /** casting-cell → stone-cell / finishing-cell */
+// sira_TYPE_INTERFACE
 export interface WipPhoiEvent {
   eventType: 'WIP_PHOI';
   lapId: string;
@@ -95,6 +111,7 @@ export interface WipPhoiEvent {
 // ─────────────────────────────────────────────
 
 /** stone-cell → finishing-cell */
+// sira_TYPE_INTERFACE
 export interface WipStoneEvent {
   eventType: 'WIP_STONE';
   orderId: string;
@@ -108,6 +125,7 @@ export interface WipStoneEvent {
 }
 
 /** finishing-cell → dust-recovery-cell (mỗi ca/cuối tuần) */
+// sira_TYPE_INTERFACE
 export interface DustReturnedEvent {
   eventType: 'DUST_RETURNED';
   workerId: string;
@@ -124,6 +142,7 @@ export interface DustReturnedEvent {
 }
 
 /** finishing-cell emit mỗi công đoạn nguội */
+// sira_TYPE_INTERFACE
 export interface WipInProgressEvent {
   eventType: 'WIP_IN_PROGRESS';
   orderId: string;
@@ -144,6 +163,7 @@ export interface WipInProgressEvent {
 // ─────────────────────────────────────────────
 
 /** dust-recovery-cell emit sau khi tính quy đổi */
+// sira_TYPE_INTERFACE
 export interface DustRecoveredEvent {
   eventType: 'DUST_RECOVERED';
   workerId: string;
@@ -156,6 +176,7 @@ export interface DustRecoveredEvent {
 }
 
 /** dust-recovery-cell emit khi phát hiện bất thường */
+// sira_TYPE_INTERFACE
 export interface DustAlertEvent {
   eventType: 'DUST_ALERT';
   workerId: string;
@@ -171,6 +192,7 @@ export interface DustAlertEvent {
 }
 
 /** dust-recovery-cell đề xuất điều chỉnh carry-forward – chờ Gatekeeper approve */
+// sira_TYPE_INTERFACE
 export interface CarryForwardProposalEvent {
   eventType: 'CARRY_FORWARD_PROPOSAL';
   proposalId: string;
@@ -188,6 +210,7 @@ export interface CarryForwardProposalEvent {
 }
 
 /** Gatekeeper emit sau khi xem xét proposal */
+// sira_TYPE_INTERFACE
 export interface CarryForwardApprovedEvent {
   eventType: 'CARRY_FORWARD_APPROVED';
   proposalId: string;
@@ -195,6 +218,7 @@ export interface CarryForwardApprovedEvent {
   approvedAt: Date;
 }
 
+// sira_TYPE_INTERFACE
 export interface CarryForwardRejectedEvent {
   eventType: 'CARRY_FORWARD_REJECTED';
   proposalId: string;
@@ -207,6 +231,7 @@ export interface CarryForwardRejectedEvent {
  * TR-006: dust-recovery-cell phải emit event này TRƯỚC khi period-close-cell chạy.
  * period-close-cell BLOCK nếu chưa nhận được DUST_CLOSE_REPORT với status='APPROVED'.
  */
+// sira_TYPE_INTERFACE
 export interface DustCloseReportEvent {
   eventType: 'DUST_CLOSE_REPORT';
   periodId: string;
@@ -224,6 +249,7 @@ export interface DustCloseReportEvent {
 // ─────────────────────────────────────────────
 
 /** polishing-cell → inventory-cell */
+// sira_TYPE_INTERFACE
 export interface WipCompletedEvent {
   eventType: 'WIP_COMPLETED';
   orderId: string;
@@ -238,8 +264,9 @@ export interface WipCompletedEvent {
 }
 
 /** inventory-cell emit sau khi ghi nhập kho */
+// sira_TYPE_INTERFACE
 export interface StockEntryCreatedEvent {
-  eventType: 'STOCK_ENTRY_CREATED';
+  eventType: 'STOCK_ENTRY_created';
   entryId: string;
   orderId: string;
   lapId: string;

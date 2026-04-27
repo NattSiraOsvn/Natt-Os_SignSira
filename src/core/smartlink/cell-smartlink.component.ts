@@ -1,15 +1,15 @@
 /**
- * NATT-OS CellSmartLinkComponent
+ * natt-os CellSmartLinkComponent
  *
  * Đây là thành phần SmartLink bắt buộc trong mỗi NATT-CELL (Điều 8).
  * Mỗi cell khởi tạo component này khi sinh ra (constitutional birth).
  *
  * Cách dùng trong cell:
  *   class SalesCell {
- *     private smartlink = new CellSmartLinkComponent('sales-cell');
+ *     private SmartLink = new CellSmartLinkComponent('sales-cell');
  *
  *     async onSalesOrderCreated(order: SalesOrder) {
- *       await this.smartlink.emit('finance-cell', {
+ *       await this.SmartLink.emit('finance-cell', {
  *         signal: { type: 'sales.order.created', orderId: order.id },
  *         context: { causation_id: order.id, tenant_id: this.tenantId, policy_version: 'v4.0' },
  *         state: this.currentState,
@@ -19,10 +19,10 @@
  *   }
  */
 
-import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
-import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
-import type { ImpulsePayload, ImpulseResult } from '@/core/smartlink/smartlink.point';
-import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
+import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
+import { QneuBridge } from '@/core/SmartLink/SmartLink.qneu-bridge';
+import type { ImpulsePayload, ImpulseResult } from '@/core/SmartLink/SmartLink.point';
+import { NATTimer } from '@/core/SmartLink/SmartLink.nattimer';
 
 export class CellSmartLinkComponent {
   private readonly cellId: string;

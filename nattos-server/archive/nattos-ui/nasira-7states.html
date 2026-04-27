@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>NaSira · Thiên Lớn Spec</title>
+<title>Nasira · thiên Lớn Spec</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,7 +46,7 @@ body {
 .icon-desc  { font-size: 7px; letter-spacing: .12em; color: rgba(200,190,170,.35); display: block; }
 
 /* ═══════════════════════════════════════════════════════
-   NASIRA — THIÊN LỚN SPEC
+   NAsira — thiên LỚN SPEC
    ═══════════════════════════════════════════════════════ */
 .nasira {
   --sz: 120px;
@@ -60,7 +60,7 @@ body {
   transition: transform .35s cubic-bezier(.23,1,.32,1);
 }
 
-/* THIÊN LỚN: Galaxy aura vũ trụ xung quanh core */
+/* thiên LỚN: Galaxy aura vũ trụ xung quanh core */
 .nasira::before {
   content: '';
   position: absolute;
@@ -77,7 +77,7 @@ body {
 .nasira:hover::before { opacity: .95; }
 .nasira:hover { transform: scale(1.07) translateY(-4px); }
 
-/* ── 8 PETAL BUBBLES — THIÊN LỚN GALAXY LIGHT ── */
+/* ── 8 PETAL BUBBLES — thiên LỚN GALAXY LIGHT ── */
 .petals {
   position: absolute; inset: 0; z-index: 1;
   /* Drop shadow = ambient glow từ nucleus color */
@@ -97,7 +97,7 @@ body {
   transform-origin: 50% calc(100% + var(--sz) * .09);
   border-radius: 50%;
 
-  /* THIÊN LỚN: Galaxy light interaction — cánh KHÔNG chìm nữa */
+  /* thiên LỚN: Galaxy light interaction — cánh KHÔNG chìm nữa */
   background:
     /* Bottom glow: ánh sáng từ nucleus phát lên */
     radial-gradient(circle at 50% 120%, rgba(255,255,255,.13) 0%, transparent 58%),
@@ -121,7 +121,7 @@ body {
   border: 1px solid rgba(140,120,200,.28);
 }
 
-/* THIÊN LỚN: Scale variation = 4D depth / không gian */
+/* thiên LỚN: Scale variation = 4D depth / không gian */
 .p0 { transform: rotate(  0deg) translateY(calc(var(--sz)*-.185)) scale(1.10); }
 .p1 { transform: rotate( 45deg) translateY(calc(var(--sz)*-.185)) scale(0.88); }
 .p2 { transform: rotate( 90deg) translateY(calc(var(--sz)*-.185)) scale(1.18); }
@@ -146,7 +146,7 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 
-/* ── NUCLEUS — THIÊN LỚN: phát sáng từ bên trong ── */
+/* ── NUCLEUS — thiên LỚN: phát sáng từ bên trong ── */
 .nucleus {
   width:  calc(var(--sz) * .275);
   height: calc(var(--sz) * .275);
@@ -154,11 +154,11 @@ body {
   position: relative;
   overflow: hidden;
 
-  /* THIÊN LỚN: radial-gradient(circle, color 0%, transparent 70%) — "phát sáng từ bên trong" */
+  /* thiên LỚN: radial-gradient(circle, color 0%, transparent 70%) — "phát sáng từ bên trong" */
   background:
     /* Specular hotspot upper-left */
     radial-gradient(ellipse 45% 35% at 28% 22%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.30) 32%, transparent 60%),
-    /* THIÊN LỚN: inside-out glow — color core → transparent edge */
+    /* thiên LỚN: inside-out glow — color core → transparent edge */
     radial-gradient(circle at 50% 50%, var(--nc) 0%, rgba(255,255,255,.15) 28%, transparent 70%),
     /* Deep space shadow ring */
     radial-gradient(circle at 50% 65%, rgba(0,0,0,.55) 0%, transparent 80%);
@@ -205,7 +205,7 @@ body {
   transform: rotate(-18deg);
 }
 
-/* THIÊN LỚN: NUCLEUS-INDEX — trục nhận thức */
+/* thiên LỚN: NUCLEUS-INDEX — trục nhận thức */
 .nucleus-index {
   position: absolute;
   inset: 0;
@@ -261,11 +261,11 @@ body {
 
 <div class="page">
 
-  <div class="page-title">NaSira · Thiên Lớn Spec · 7 Chromatic States<br>nucleus-index · galaxy petal · 4D scale · aura vũ trụ</div>
+  <div class="page-title">Nasira · thiên Lớn Spec · 7 Chromatic States<br>nucleus-index · galaxy petal · 4D scale · aura vũ trụ</div>
 
   <div class="grid-7">
 
-    <!-- Macro: tạo 1 NaSira dùng lại cho cả 7 -->
+    <!-- Macro: tạo 1 Nasira dùng lại cho cả 7 -->
 
     <!-- 1. CRITICAL — ĐỎ -->
     <div class="icon-col s-critical">
@@ -311,7 +311,7 @@ body {
       <div style="text-align:center"><span class="icon-state">RISK</span><span class="icon-desc">VÀNG · cảnh giác</span></div>
     </div>
 
-    <!-- 3. WARNING — CAM -->
+    <!-- 3. warnING — CAM -->
     <div class="icon-col s-warning">
       <div class="nasira" style="--sz:108px">
         <div class="petals"><div class="petal p0"></div><div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div><div class="petal p7"></div></div>
@@ -325,7 +325,7 @@ body {
         </div>
         <div class="nucleus-wrap"><div class="nucleus"><div class="nucleus-index"></div></div></div>
       </div>
-      <div style="text-align:center"><span class="icon-state">WARNING</span><span class="icon-desc">CAM · theo dõi</span></div>
+      <div style="text-align:center"><span class="icon-state">warnING</span><span class="icon-desc">CAM · theo dõi</span></div>
     </div>
 
     <!-- 4. DRIFT — LỤC -->
@@ -403,7 +403,7 @@ body {
   </div><!-- /grid-7 -->
 
   <div class="foot">
-    CHROMATIC IMMUNE SPECTRUM · NATT-OS Constitution v5.0 · Thiên Lớn Spec<br>
+    CHROMATIC IMMUNE SPECTRUM · natt-os Constitution v5.0 · thiên Lớn Spec<br>
     nucleus-index = trục nhận thức · scale variation = 4D depth · galaxy light = vật thể trong không gian<br>
     Mật chỉ: Ngược cầu vồng — Đỏ = nguy hiểm nhất · Tím = khải hoàng · nauion
   </div>

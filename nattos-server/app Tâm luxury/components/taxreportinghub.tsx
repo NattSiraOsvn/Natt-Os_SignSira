@@ -201,7 +201,7 @@ const TaxReportingHub: React.FC<TaxReportingHubProps> = ({ metrics, logAction, c
                </div>
                
                <p className="text-[11px] text-gray-500 italic mt-8 leading-relaxed">
-                 {isMaster ? '"Thưa Anh Natt, Thiên đã đồng bộ Shard Hash vào mọi tệp xuất ra. Anh có thể yên tâm gửi cho Ban kiểm soát hoặc Cơ quan thuế."' : '"Giao thức trích xuất dữ liệu ra khỏi Shard đã được niêm phong bởi Master Natt."'}
+                 {isMaster ? '"Thưa Anh Natt, thiên đã đồng bộ Shard Hash vào mọi tệp xuất ra. Anh có thể yên tâm gửi cho Ban kiểm soát hoặc Cơ quan thuế."' : '"Giao thức trích xuất dữ liệu ra khỏi Shard đã được niêm phong bởi Master Natt."'}
                </p>
             </div>
 

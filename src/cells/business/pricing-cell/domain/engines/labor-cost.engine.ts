@@ -1,5 +1,5 @@
 /**
- * NATT-OS Pricing Cell — Labor Cost Calculation Engine
+ * natt-os Pricing Cell — Labor Cost Calculation Engine
  * Source: Bảng Giá 2025, extracted from Excel formula (4,049 chars)
  *
  * This is the HEART of Tâm Luxury pricing.
@@ -30,7 +30,7 @@ export type LaborCostResult =
   | { type: 'CUSTOM_QUOTE'; reason: string }
   | { type: 'WAITING'; reason: string }
   | { type: 'ZERO' }
-  | { type: 'ERROR'; fallbackAmount: number; reason: string };
+  | { type: 'error'; fallbackAmount: number; reason: string };
 
 // ═══ Custom Quote Check ═══
 
@@ -67,7 +67,7 @@ function calcBongTai(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): Labor
     return { type: 'CUSTOM_QUOTE', reason: 'Bông tai đôi ngoài bảng giá' };
   }
 
-  return { type: 'ERROR', fallbackAmount: 3_000_000, reason: 'Sai kiểu bông — đơn vị không hợp lệ' };
+  return { type: 'error', fallbackAmount: 3_000_000, reason: 'Sai kiểu bông — đơn vị không hợp lệ' };
 }
 
 /** 2. DÂY CHUYỀN — Scale Type 1: Base × (1 + MAX(0, N/T - 1) × 0.4) */
@@ -287,9 +287,9 @@ export function calculateLaborCost(input: LaborCostInput): LaborCostResult {
       case 'NHAN_NU':    return calcNhanNu(E, N, H);
       case 'PHU_KIEN':   return calcPhuKien(E, N, H);
       default:
-        return { type: 'ERROR', fallbackAmount: 3_000_000, reason: `Unknown category: ${category}` };
+        return { type: 'error', fallbackAmount: 3_000_000, reason: `Unknown category: ${category}` };
     }
   } catch (err) {
-    return { type: 'ERROR', fallbackAmount: 3_000_000, reason: `Calculation error: ${String(err)}` };
+    return { type: 'error', fallbackAmount: 3_000_000, reason: `Calculation error: ${String(err)}` };
   }
 }

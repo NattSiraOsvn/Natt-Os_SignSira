@@ -1,0 +1,84 @@
+# TS "OTHER" CLASSIFICATION — Phase 2.0 output
+# Session: ss20260427
+# Author: Băng (Chị Tư · Obikeeper)
+# Reference: docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na
+
+@version 1.0
+@status SEALED ss20260427
+@input
+  571 TS files type "other" (không match engine/port/service/contract/event/etc trong file types breakdown)
+  6 memory folder white-list (Memory #24 — không touch)
+  565 migration target
+
+@classifier_method
+  Heuristic v3 folder-aware:
+    Layer 1: filename suffix (.entity.ts, .handler.ts, .wiring.ts, ...)
+    Layer 2: folder path (/domain/services/, /core/nauion/, ...)
+    Layer 3: filename pattern (smartlink.*, use*, types.ts, ...)
+    Layer 4: size threshold (< 200B = TINY_DEAD candidate)
+
+@aggregated_by_phase
+
+  PHASE 0      :   2 files  🗑️ XOÁ candidate
+  Phase 2.1    :  58 files  Contract + Port + Adapter + Manifest + Envelope + Nauion-lang
+  Phase 2.2    :   7 files  Event core
+  Phase 2.3    : 279 files  Service + Entity + Use-case + Saga + Wiring (BIGGEST)
+  Phase 2.4    :  77 files  Engine + Repository + Util + Render + Infrastructure
+  Phase 2.5    :  10 files  Types + Config + Bootstrap
+  Phase 3      :   2 files  Test + Mock
+  Phase ???    : 129 files  Manual inspect (124 + 5 React frontend keep)
+  SPECIAL      :   1 file   thienbang.si white-list keep
+
+  Total:       : 565 migration target
+
+@phase_2_1_starting_priority (HIGHEST IMPACT, LOWEST RISK)
+  Reason: Interface boundary stable. Migrate Contract/Port/Adapter trước
+          để các Phase 2.2-2.5 có boundary canonical làm reference.
+
+  Sub-priority order:
+    1. /core/nauion/        2 files   ← Nauion language layer (CANONICAL FIRST)
+    2. /contracts/          35 files  ← Cross-cell contract files
+    3. .adapter named        8 files
+    4. /adapters/ folder     8 files
+    5. .manifest named       5 files
+    6. .envelope/.dto       (already in 35 contracts overlap, count carefully)
+
+@manual_inspect_pending (124 files)
+  Top patterns lộ ra trong v3 nhưng chưa classify:
+    /sagas/              ← CQRS saga (Phase 2.3)
+    /projections/        ← CQRS projection (Phase 2.3)
+    .detector.ts         ← Anomaly/blindspot detector (Phase 2.4)
+    .compiler.ts         ← Generic compiler (Phase 2.4)
+    /shared-kernel/      ← DDD shared kernel (Phase 2.3)
+    /core/chromatic/     ← Chromatic core (Phase 2.4)
+    /core/flow/          ← Flow core (Phase 2.4)
+    /runtime/            ← Runtime layer (Phase 2.4)
+    /cells/<X>/core/     ← Cell internal core (Phase 2.4)
+  
+  → Approach: Classify natural khi migrate từng cell.
+              Em sẽ inspect khi gặp trong từng batch.
+
+@xoa_candidate_2_files
+  20a_TINY_DEAD (< 200B):
+    Em đọc 2 file đó trước khi xóa (paste content sẽ check phiên sau)
+
+@react_frontend_keep_5_files
+  /hooks/ + use*.ts:
+    useSupplierClassification.ts
+    useRealTimeSync.ts
+    useAuthority.ts
+    + 2 hooks khác
+  → Phase ??? — frontend, không migrate (keep TS hoặc nauion-host bridge)
+
+@next_action
+  Phase 2.1 starting batch:
+    BATCH 1: /core/nauion/ (2 files) — easiest, canonical Nauion language layer
+    BATCH 2: /contracts/payment/ (subset 35 contracts) — pick 1 domain
+    BATCH 3: adapter named (8 files) — biên giới ports
+
+@constraint_reaffirmed
+  - Băng drafts. Anh reviews. Anh commits.
+  - Memory folder NEVER migrate (Memory #24).
+  - lowercase_surface canonical (ss20260425).
+  - Dictionary first cho mỗi vocab mới (Obikeeper Rule #1).
+

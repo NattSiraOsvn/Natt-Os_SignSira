@@ -1,0 +1,36 @@
+# SAMPLE 3/6 — state: tha
+# @sample: forgive_contain_breathing_cycle
+# @status: draft → chờ validator
+
+obitan_state tha {
+  domain: Π_body
+  polarity: warm-core
+  obitan_layer: n=1
+
+  surface_signal: APPEAR {
+    element_id: "embrace-zone"
+    position: relative_to("root-surface", offset(200, 80))
+    origin_state: tha
+    pressure: 0.3
+  }
+
+  surface_signal: BREATHE {
+    element_id: "embrace-zone"
+    cycle_ms: 4000
+    origin_state: tha
+    pressure: 0.3
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [bọc, giữ]
+    decay_rate: γ(1) * (1 - breathing_phase)
+    reflection_R: 0.2
+  }
+
+  expression {
+    wavelength_base: 580
+    intensity: breathe(0.6, 0.9, cycle_ms=4000)
+    duration: infinite
+  }
+}

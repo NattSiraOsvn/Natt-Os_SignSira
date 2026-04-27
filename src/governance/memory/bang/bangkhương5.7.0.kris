@@ -19,7 +19,7 @@
 
     "lesson_2_ground_truth_is_4_so": {
       "title": "Ground Truth trong kế toán = 4 sổ gốc, không phải BCTC",
-      "detail": "BCTC là output cuối cùng, đã bị bóp méo. GT phải bắt đầu từ: Sổ cái → CDPS → cross-check 4 sổ → rồi mới so BCTC. Giống nguyên tắc GT = DB + Audit + Event trong NATT-OS.",
+      "detail": "BCTC là output cuối cùng, đã bị bóp méo. GT phải bắt đầu từ: Sổ cái → CDPS → cross-check 4 sổ → rồi mới so BCTC. Giống nguyên tắc GT = DB + Audit + Event trong natt-os.",
       "four_ledgers": {
         "so_1": "111-112-131-1388-331-334-335-338-3387-341-333 — Tiền & Công nợ",
         "so_2": "152-153-154-155-156-632 — NVL, SX, HTK, Giá vốn",
@@ -86,7 +86,7 @@
   },
 
   "system_rebuild_when_ready": {
-    "title": "Khi NATT-OS vững → tự chạy đúng dựa trên 6 nguồn gốc",
+    "title": "Khi natt-os vững → tự chạy đúng dựa trên 6 nguồn gốc",
     "six_sources": {
       "1_bang_ke_BR_MV": "Bảng kê hàng bán ra + mua vào — source of truth cho DT và đầu vào",
       "2_chung_tu_goc": "Hóa đơn, phiếu xuất/nhập kho, phiếu thu/chi — chứng từ gốc xác nhận nghiệp vụ",

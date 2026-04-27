@@ -85,7 +85,7 @@ EventBus.on('wip:phoi' as string, (env: EventEnv) => {
 EventBus.on('ViolationDetected' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('constitutional.violation', {
-    trigger: p?.rule ?? 'UNKNOWN', level: 'WARNING',
+    trigger: p?.rule ?? 'UNKNOWN', level: 'warnING',
     source_cell: p?.cell ?? 'unknown', reason: p?.reason ?? '',
     timestamp: new Date().toISOString(),
   }, 'ViolationDetected');
@@ -107,7 +107,7 @@ EventBus.on('AuditLogged' as string, (env: EventEnv) => {
 EventBus.on('ViolationDetected' as string, (env: EventEnv) => {
   const p = env?.payload ?? env;
   EventBus.emit('constitutional.violation', {
-    trigger: p?.rule ?? 'UNKNOWN', level: 'WARNING',
+    trigger: p?.rule ?? 'UNKNOWN', level: 'warnING',
     source_cell: p?.cell ?? 'unknown', reason: p?.reason ?? '',
     timestamp: new Date().toISOString(),
   }, 'ViolationDetected');

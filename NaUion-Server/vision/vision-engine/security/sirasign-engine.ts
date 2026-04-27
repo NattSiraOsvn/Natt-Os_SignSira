@@ -1,7 +1,7 @@
 // src/vision-engine/security/sirasign-engine.ts
 // Anti-replay nonce + timestamp window ±5 phút
 
-export interface SiraSignPayload {
+export interface siraSignPayload {
   fsp_hash: string
   ssp_hash: string
   tsp_hash: string
@@ -13,25 +13,25 @@ export interface SiraSignPayload {
 const USED_NONCES = new Set<string>()
 const WINDOW_MS = 5 * 60 * 1000
 
-export class SiraSignEngine {
-  verifyChain(payload: SiraSignPayload): { valid: boolean; level: string; reason?: string } {
+export class siraSignEngine {
+  verifyChain(payload: siraSignPayload): { valid: boolean; level: string; reason?: string } {
     const { fsp_hash, ssp_hash, tsp_hash, lsp_hash, nonce, timestamp } = payload
 
     // 1. Timestamp window
     const age = Math.abs(Date.now() - timestamp)
     if (age > WINDOW_MS) {
-      return { valid: false, level: 'FAILED', reason: 'timestamp_expired' }
+      return { valid: false, level: 'failED', reason: 'timestamp_expired' }
     }
 
     // 2. Nonce chống replay
     if (USED_NONCES.has(nonce)) {
-      return { valid: false, level: 'FAILED', reason: 'nonce_replayed' }
+      return { valid: false, level: 'failED', reason: 'nonce_replayed' }
     }
 
     // 3. Hash chain
     const recomputed = this.hashChain(fsp_hash, ssp_hash, tsp_hash)
     if (recomputed !== lsp_hash) {
-      return { valid: false, level: 'FAILED', reason: 'chain_mismatch' }
+      return { valid: false, level: 'failED', reason: 'chain_mismatch' }
     }
 
     // 4. Nonce consumed
@@ -57,7 +57,7 @@ export class SiraSignEngine {
   }
 
   // Helper tạo payload chuẩn để gửi
-  static createPayload(fsp: string, ssp: string, tsp: string, lsp: string): SiraSignPayload {
+  static createPayload(fsp: string, ssp: string, tsp: string, lsp: string): siraSignPayload {
     return {
       fsp_hash: fsp,
       ssp_hash: ssp,
@@ -69,4 +69,4 @@ export class SiraSignEngine {
   }
 }
 
-export const siraSignEngine = new SiraSignEngine()
+export const siraSignEngine = new siraSignEngine()

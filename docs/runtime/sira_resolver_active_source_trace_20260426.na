@@ -1,0 +1,493 @@
+# sira resolver active source trace — 20260426
+
+status: observed-readonly
+created_at: 2026-04-26 02:11:05
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. reason
+
+zone file vừa ghi yêu cầu apps.sira trả 192.168.1.238.
+
+nhưng active resolver vẫn trả apps.sira là 127.0.0.1.
+
+kết luận: active resolver source chưa khớp file vừa ghi.
+
+không commit evidence apply khi chưa tìm được process/config thật.
+
+---
+
+## 2. commands
+
+### brew_prefix
+
+```text
+$ /usr/local/bin/brew --prefix
+code=0
+/usr/local
+```
+
+### brew_services_info_coredns
+
+```text
+$ /usr/local/bin/brew services info coredns
+code=0
+coredns (homebrew.mxcl.coredns)
+Running: false
+Loaded: false
+Schedulable: false
+```
+
+### ps_coredns
+
+```text
+$ sh -lc ps axww | grep '[c]oredns' || true
+code=0
+72102   ??  Ss     0:00.08 /usr/local/opt/coredns/bin/coredns -conf /usr/local/etc/coredns/Corefile
+```
+
+### lsof_53_sudo
+
+```text
+$ sh -lc sudo lsof -nP -iUDP:53 -iTCP:53 2>/dev/null || true
+code=0
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+coredns 72102 root    6u  IPv6 0xf3aef9b3f40f99cc      0t0  TCP *:53 (LISTEN)
+coredns 72102 root    7u  IPv6 0x95c230156a88a712      0t0  UDP *:53
+coredns 72102 root    8u  IPv4 0x9a903fdfa2383e5c      0t0  UDP 192.168.1.238:51035->1.1.1.1:53
+coredns 72102 root    9u  IPv4 0x54b7ca831981dd45      0t0  UDP 192.168.1.238:55254->8.8.8.8:53
+coredns 72102 root   10u  IPv4 0x258dc2d9934b7b08      0t0  UDP 192.168.1.238:56359->1.1.1.1:53
+coredns 72102 root   11u  IPv4 0x41e2828295e0d147      0t0  UDP 192.168.1.238:57472->1.1.1.1:53
+coredns 72102 root   12u  IPv4 0x43f4ef559fe5172b      0t0  UDP 192.168.1.238:62694->1.1.1.1:53
+coredns 72102 root   13u  IPv4 0x3bff7baa0329343b      0t0  UDP 192.168.1.238:60428->1.1.1.1:53
+coredns 72102 root   14u  IPv4 0xffc9dc7959583677      0t0  UDP 192.168.1.238:62978->8.8.8.8:53
+coredns 72102 root   15u  IPv4 0x6e22cf409c5266b1      0t0  UDP 192.168.1.238:54069->1.1.1.1:53
+coredns 72102 root   16u  IPv4 0x29a6bae0650443fc      0t0  UDP 192.168.1.238:53511->1.1.1.1:53
+coredns 72102 root   17u  IPv4 0x433a41af78c2a143      0t0  UDP 192.168.1.238:56913->8.8.8.8:53
+coredns 72102 root   18u  IPv4  0xef10b6a2f651dfc      0t0  UDP 192.168.1.238:52377->1.1.1.1:53
+coredns 72102 root   19u  IPv4 0xafac3d7e208a9ee4      0t0  UDP 192.168.1.238:58278->1.1.1.1:53
+coredns 72102 root   20u  IPv4 0x35dc19260c64b134      0t0  UDP 192.168.1.238:54028->1.1.1.1:53
+coredns 72102 root   21u  IPv4 0x321d0a382d99d110      0t0  UDP 192.168.1.238:65241->1.1.1.1:53
+coredns 72102 root   22u  IPv4 0xb7ae612fed8d09d1      0t0  UDP 192.168.1.238:54131->8.8.8.8:53
+coredns 72102 root   23u  IPv4 0xabfc434e34072f11      0t0  UDP 192.168.1.238:53699->8.8.8.8:53
+```
+
+### launchctl_user
+
+```text
+$ sh -lc launchctl print gui/$(id -u)/homebrew.mxcl.coredns 2>/dev/null || true
+code=0
+no output
+```
+
+### launchctl_system
+
+```text
+$ sh -lc sudo launchctl print system/homebrew.mxcl.coredns 2>/dev/null || true
+code=0
+system/homebrew.mxcl.coredns = {
+	active count = 1
+	path = /Library/LaunchDaemons/homebrew.mxcl.coredns.plist
+	type = LaunchDaemon
+	state = running
+
+	program = /usr/local/opt/coredns/bin/coredns
+	arguments = {
+		/usr/local/opt/coredns/bin/coredns
+		-conf
+		/usr/local/etc/coredns/Corefile
+	}
+
+	working directory = /usr/local
+
+	stdout path = /usr/local/var/log/coredns.log
+	stderr path = /usr/local/var/log/coredns.log
+	default environment = {
+		PATH => /usr/bin:/bin:/usr/sbin:/sbin
+	}
+
+	environment = {
+		OSLogRateLimit => 64
+		XPC_SERVICE_NAME => homebrew.mxcl.coredns
+	}
+
+	domain = system
+	minimum runtime = 10
+	exit timeout = 5
+	runs = 1
+	pid = 72102
+	immediate reason = speculative
+	forks = 1
+	execs = 1
+	initialized = 1
+	trampolined = 1
+	started suspended = 0
+	proxy started suspended = 0
+	checked allocations = 0 (queried = 1)
+	checked allocations reason = no host
+	checked allocations flags = 0x0
+	last exit code = (never exited)
+
+	resource coalition = {
+		ID = 118774
+		type = resource
+		state = active
+		active count = 1
+		name = homebrew.mxcl.coredns
+	}
+
+	jetsam coalition = {
+		ID = 118775
+		type = jetsam
+		state = active
+		active count = 1
+		name = homebrew.mxcl.coredns
+	}
+
+	spawn type = daemon (3)
+	jetsam priority = 40
+	jetsam memory limit (active) = (unlimited)
+	jetsam memory limit (inactive) = (unlimited)
+	jetsamproperties category = daemon
+	jetsam thread limit = 32
+	cpumon = default
+
+	properties = keepalive | runatload | inferred program
+}
+```
+
+### plist_user
+
+```text
+$ sh -lc plutil -p ~/Library/LaunchAgents/homebrew.mxcl.coredns.plist 2>/dev/null || true
+code=0
+no output
+```
+
+### plist_system
+
+```text
+$ sh -lc sudo plutil -p /Library/LaunchDaemons/homebrew.mxcl.coredns.plist 2>/dev/null || true
+code=0
+{
+  "KeepAlive" => true
+  "Label" => "homebrew.mxcl.coredns"
+  "LimitLoadToSessionType" => [
+    0 => "Aqua"
+    1 => "Background"
+    2 => "LoginWindow"
+    3 => "StandardIO"
+    4 => "System"
+  ]
+  "ProgramArguments" => [
+    0 => "/usr/local/opt/coredns/bin/coredns"
+    1 => "-conf"
+    2 => "/usr/local/etc/coredns/Corefile"
+  ]
+  "RunAtLoad" => true
+  "StandardErrorPath" => "/usr/local/var/log/coredns.log"
+  "StandardOutPath" => "/usr/local/var/log/coredns.log"
+  "WorkingDirectory" => "/usr/local"
+}
+```
+
+### grep_usr_local
+
+```text
+$ sh -lc sudo grep -R "apps\|sira.zone\|127.0.0.1\|192.168.1.238" /usr/local/etc /opt/homebrew/etc 2>/dev/null | head -200 || true
+code=0
+/usr/local/etc/Corefile:    file /usr/local/etc/coredns/zones/sira.zone
+/usr/local/etc/openssl@3/misc/CA.pl:# Generated by Makefile from apps/CA.pl.in
+/usr/local/etc/openssl@3/openssl.cnf.dist:out_trusted = apps/insta.ca.crt # does not include keyUsage digitalSignature
+/usr/local/etc/openssl@3/openssl.cnf.dist:trusted = $insta::out_trusted # apps/insta.ca.crt
+/usr/local/etc/openssl@3/openssl.cnf:out_trusted = apps/insta.ca.crt # does not include keyUsage digitalSignature
+/usr/local/etc/openssl@3/openssl.cnf:trusted = $insta::out_trusted # apps/insta.ca.crt
+/usr/local/etc/redis-sentinel.conf:sentinel monitor mymaster 127.0.0.1 6379 2
+/usr/local/etc/redis.conf:# bind 127.0.0.1 ::1              # listens on loopback IPv4 and IPv6
+/usr/local/etc/redis.conf:bind 127.0.0.1 ::1
+/usr/local/etc/redis.conf:# only accepts local connections from the IPv4 address (127.0.0.1), IPv6 address
+/usr/local/etc/redis.conf:#         IPv4 address (127.0.0.1), IPv6 address (::1) or Unix domain sockets.
+/usr/local/etc/coredns/zones/sira.zone:ns     IN A     192.168.1.238
+/usr/local/etc/coredns/zones/sira.zone:apps   IN A     192.168.1.238
+/usr/local/etc/coredns/zones/sira.zone:mach   IN A     192.168.1.238
+/usr/local/etc/coredns/zones/sira.zone:core   IN A     192.168.1.238
+/usr/local/etc/coredns/zones/sira.zone:audit  IN A     192.168.1.238
+/usr/local/etc/coredns/zones/sira.zone:render IN A     192.168.1.238
+/usr/local/etc/coredns/zones/sira.zone:tam    IN A     192.168.1.238
+/usr/local/etc/coredns/Corefile:        127.0.0.1 apps.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 core.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 runtime.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 nauion.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 mach.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 heyna.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 audit.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 tam.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 docs.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 gate.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 sira.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 khai.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 bridge.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 anc.sira
+/usr/local/etc/coredns/Corefile:        127.0.0.1 core.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 runtime.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 nauion.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 mach.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 heyna.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 audit.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 tam.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 docs.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 gate.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 sira.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 khai.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 bridge.natt
+/usr/local/etc/coredns/Corefile:        127.0.0.1 anc.natt
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 nare.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 bang.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 kim.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 khuong.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 thinh.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 boi.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 thien.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 sira.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 natt.sira
+/usr/local/etc/coredns/natt.hosts:127.0.0.1 khai.sira
+```
+
+### dig_apps_127
+
+```text
+$ dig @127.0.0.1 apps.sira A +time=2 +tries=1
+code=0
+; <<>> DiG 9.10.6 <<>> @127.0.0.1 apps.sira A +time=2 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21299
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;apps.sira.			IN	A
+
+;; ANSWER SECTION:
+apps.sira.		5	IN	A	127.0.0.1
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Sun Apr 26 02:11:05 +07 2026
+;; MSG SIZE  rcvd: 63
+```
+
+### dig_apps_wifi
+
+```text
+$ dig @192.168.1.238 apps.sira A +time=2 +tries=1
+code=0
+; <<>> DiG 9.10.6 <<>> @192.168.1.238 apps.sira A +time=2 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 19115
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;apps.sira.			IN	A
+
+;; ANSWER SECTION:
+apps.sira.		5	IN	A	127.0.0.1
+
+;; Query time: 0 msec
+;; SERVER: 192.168.1.238#53(192.168.1.238)
+;; WHEN: Sun Apr 26 02:11:05 +07 2026
+;; MSG SIZE  rcvd: 63
+```
+
+### dig_chaos
+
+```text
+$ dig @127.0.0.1 version.bind CHAOS TXT +time=2 +tries=1
+code=0
+; <<>> DiG 9.10.6 <<>> @127.0.0.1 version.bind CHAOS TXT +time=2 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOTIMP, id: 3786
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;version.bind.			CH	TXT
+
+;; Query time: 2 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Sun Apr 26 02:11:05 +07 2026
+;; MSG SIZE  rcvd: 41
+```
+
+---
+
+## 3. candidate config snapshots
+
+### /usr/local/etc/Corefile
+
+- exists: True
+- size: 151
+- has_127: False
+- has_wifi_ip: False
+- has_render: False
+
+```text
+sira:53 {
+    file /usr/local/etc/coredns/zones/sira.zone
+    log
+    errors
+}
+
+.:53 {
+    forward . 1.1.1.1 8.8.8.8
+    cache 30
+    log
+    errors
+}
+
+```
+
+### /usr/local/etc/coredns/Corefile
+
+- exists: True
+- size: 880
+- has_127: True
+- has_wifi_ip: False
+- has_render: False
+
+```text
+.:53 {
+    hosts {
+        127.0.0.1 apps.sira
+        127.0.0.1 core.sira
+        127.0.0.1 runtime.sira
+        127.0.0.1 nauion.sira
+        127.0.0.1 mach.sira
+        127.0.0.1 heyna.sira
+        127.0.0.1 audit.sira
+        127.0.0.1 tam.sira
+        127.0.0.1 docs.sira
+        127.0.0.1 gate.sira
+        127.0.0.1 sira.sira
+        127.0.0.1 khai.sira
+        127.0.0.1 bridge.sira
+        127.0.0.1 anc.sira
+        127.0.0.1 core.natt
+        127.0.0.1 runtime.natt
+        127.0.0.1 nauion.natt
+        127.0.0.1 mach.natt
+        127.0.0.1 heyna.natt
+        127.0.0.1 audit.natt
+        127.0.0.1 tam.natt
+        127.0.0.1 docs.natt
+        127.0.0.1 gate.natt
+        127.0.0.1 sira.natt
+        127.0.0.1 khai.natt
+        127.0.0.1 bridge.natt
+        127.0.0.1 anc.natt
+        fallthrough
+    }
+
+    forward . 1.1.1.1 8.8.8.8
+
+    cache 5
+    log
+    errors
+}
+
+```
+
+### /usr/local/etc/coredns/zones/sira.zone
+
+- exists: True
+- size: 325
+- has_127: False
+- has_wifi_ip: True
+- has_render: True
+
+```text
+$ORIGIN sira.
+$TTL 60
+@      IN SOA   ns.sira. hostmaster.sira. (2026042602 60 30 300 60)
+@      IN NS    ns.sira.
+ns     IN A     192.168.1.238
+apps   IN A     192.168.1.238
+mach   IN A     192.168.1.238
+core   IN A     192.168.1.238
+audit  IN A     192.168.1.238
+render IN A     192.168.1.238
+tam    IN A     192.168.1.238
+
+```
+
+### /opt/homebrew/etc/Corefile
+
+- exists: False
+- size: 0
+- has_127: False
+- has_wifi_ip: False
+- has_render: False
+
+```text
+no file content
+```
+
+### /opt/homebrew/etc/coredns/Corefile
+
+- exists: False
+- size: 0
+- has_127: False
+- has_wifi_ip: False
+- has_render: False
+
+```text
+no file content
+```
+
+### /opt/homebrew/etc/coredns/zones/sira.zone
+
+- exists: False
+- size: 0
+- has_127: False
+- has_wifi_ip: False
+- has_render: False
+
+```text
+no file content
+```
+
+### /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/Corefile
+
+- exists: False
+- size: 0
+- has_127: False
+- has_wifi_ip: False
+- has_render: False
+
+```text
+no file content
+```
+
+### /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/sira.zone
+
+- exists: False
+- size: 0
+- has_127: False
+- has_wifi_ip: False
+- has_render: False
+
+```text
+no file content
+```

@@ -5,7 +5,7 @@ import { OperationRecord, Checkpoint } from '@/types';
 export type { OperationRecord, Checkpoint };
 
 /**
- * NATT-OS RECOVERY ENGINE v5.0
+ * natt-os RECOVERY ENGINE v5.0
  * Kế thừa logic xử lý lỗi và phục hồi trạng thái từ kiến trúc Shard.
  */
 class RecoveryEngine {
@@ -53,7 +53,7 @@ class RecoveryEngine {
     if (!op) return;
 
     console.error(`[Recovery] Operation ${id} failed:`, error);
-    op.status = 'FAILED';
+    op.status = 'failED';
     op.error = error.message || String(error);
 
     if (strategy === 'RETRY') {

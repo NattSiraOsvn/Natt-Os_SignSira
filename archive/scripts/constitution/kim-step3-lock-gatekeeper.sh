@@ -97,7 +97,7 @@ fi
 
 # 3.2 Inject call near the return stateManager.validateTransition(...) line
 if ! grep -q "GatekeeperCore" "$CELL_FILE" | true; then
-  echo "WARNING: GatekeeperCore not found in $CELL_FILE after import patch; check file manually."
+  echo "warnING: GatekeeperCore not found in $CELL_FILE after import patch; check file manually."
 fi
 
 # We will not auto-rewrite logic because file structures vary.

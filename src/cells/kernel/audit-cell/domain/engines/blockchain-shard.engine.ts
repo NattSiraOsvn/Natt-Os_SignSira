@@ -2,7 +2,7 @@
 import { BlockShard, AuditTrailEntry, UserRole } from '@/types';
 
 /**
- * NATT-OS BLOCKCHAIN ISOLATION SERVICE
+ * natt-os BLOCKCHAIN ISOLATION SERVICE
  * Chuyên trách việc băm (hashing) và cô lập shard dữ liệu.
  */
 export class BlockchainShardingService {

@@ -7,7 +7,7 @@
 
   "filesystem_snapshot": {
     "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "head_commit": "chore(audit): SmartAudit v5.3 — Architecture Map, Report Generator",
     "commits": 426,
     "ts_files": 1309,
@@ -15,7 +15,7 @@
   },
 
   "key_files": {
-    "constitution": "src/governance/HIEN-PHAP-NATT-OS-v4.0.anc",
+    "constitution": "src/governance/HIEN-PHAP-natt-os-v4.0.anc",
     "bangmf": "src/governance/memory/bang/bangkhương6.1.0.kris",
     "bangfs": "src/governance/memory/bang/bangthịnh5.4.phieu",
     "smartaudit": "nattos.sh (v5.3, 2074 lines)",
@@ -32,7 +32,7 @@
     "infrastructure_cells": 3,
     "total": 47,
     "all_6_6": true,
-    "smartlink_wired": 38,
+    "SmartLink_wired": 38,
     "port_only": 0,
     "note": "38/38 wired — upgrade từ 30 wired ở v5.1"
   },
@@ -108,7 +108,7 @@
     ],
     "auto_log": "audit/log/YYYY-MM-DD_HH-MM-SS.log (keep 90)",
     "danger_file": "audit/log/YYYY-MM-DD_HH-MM-SS.DANGER (keep 31)",
-    "danger_trigger": "FAIL or SECURITY/HIEN_PHAP in issues"
+    "danger_trigger": "fail or SECURITY/HIEN_PHAP in issues"
   },
 
   "immune_policy": {
@@ -118,7 +118,7 @@
     "threat_signatures": 7,
     "behavioral_patterns": 3,
     "nasira_whitelist_kernel": ["audit-cell","config-cell","monitor-cell","rbac-cell","security-cell","quantum-defense-cell"],
-    "nasira_whitelist_infra": ["smartlink-cell","sync-cell"],
+    "nasira_whitelist_infra": ["SmartLink-cell","sync-cell"],
     "base_random_scan_rate": 0.05
   },
 

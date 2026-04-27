@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>NATT-OS · NaUion v10 — Liquid Glass + Butterfly Colony</title>
+<title>natt-os · NaUion v10 — Liquid Glass + Butterfly Colony</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════════
@@ -303,7 +303,7 @@ function renderDashboard(container) {
   const medalCells = [
     { id:'gatekeeper', name:'GATEKEEPER', cat:'KERNEL', qneu:0.99, color:'#F7E7CE', scar:false, icon:'👑' },
     { id:'quantum', name:'QUANTUM CORE', cat:'INFRA', qneu:0.92, color:'#E0FFFF', scar:false, icon:'⚛️' },
-    { id:'sira-sign', name:'SIRASIGN', cat:'SECURITY', qneu:0.88, color:'#FFDAB9', scar:true, icon:'🔒' },
+    { id:'sira-sign', name:'siraSIGN', cat:'SECURITY', qneu:0.88, color:'#FFDAB9', scar:true, icon:'🔒' },
     { id:'iseu', name:'ISEU ENGINE', cat:'EVOLUTION', qneu:0.76, color:'#E0FFE0', scar:false, icon:'🧬' },
     { id:'butterfly', name:'BUTTERFLY', cat:'PROPAGATION', qneu:0.81, color:'#E6E6FA', scar:false, icon:'🦋' }
   ];
@@ -319,7 +319,7 @@ function renderDashboard(container) {
       <span class="badge">LIVE COLONY</span>
     </div>
     <div class="kpi-group">
-      ${kpis.map(k => `<div class="kpi-card"><div class="kpi-value">${k.value}</div><div class="kpi-label">${k.label}</div><div class="${k.trend === 'up' ? 'trend-up' : 'trend-down'}" style="font-size:7px;">${k.trend === 'up' ? '↑ STABLE' : '↓ WARNING'}</div></div>`).join('')}
+      ${kpis.map(k => `<div class="kpi-card"><div class="kpi-value">${k.value}</div><div class="kpi-label">${k.label}</div><div class="${k.trend === 'up' ? 'trend-up' : 'trend-down'}" style="font-size:7px;">${k.trend === 'up' ? '↑ STABLE' : '↓ warnING'}</div></div>`).join('')}
     </div>
     <div style="font-size:9px; font-weight:800; letter-spacing:0.2em; margin-bottom:14px;">⚡ NATT-CELL MEDAL (Top 5 Evolution)</div>
     <div class="medal-grid">

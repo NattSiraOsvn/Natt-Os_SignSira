@@ -1,0 +1,23 @@
+// Điều 9 §3 — Boundary
+export const finishingBoundaryPolicy = {
+  cellId: 'finishing-cell',
+  allowedCallers: [
+    'finance-cell',
+    'warehouse-cell',
+    'audit-cell',
+    'gatekeeper',
+  ],
+  allowedTargets: [
+    'SmartLink-cell',
+    'audit-cell',
+  ],
+  prohibitedActions: [
+    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
+    'BYpass_CONSTITUTION',
+    'EXTERNAL_API_WITHOUT_GATEKEEPER', // LỆNH_001
+  ],
+  requiresGatekeeperApproval: [
+    'PERIOD_CLOSE',
+    'BULK_DELETE',
+  ],
+} as const;

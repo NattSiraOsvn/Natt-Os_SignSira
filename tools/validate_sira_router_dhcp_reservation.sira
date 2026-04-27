@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "sira_router_dhcp_reservation_evidence_20260426.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing router dhcp reservation evidence");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  [
+    "sira router dhcp reservation evidence",
+    "status: reservation-evidence-recorded",
+    "wired_edge_ip: 192.168.1.199",
+    "mac_address:",
+    "router_gateway:",
+    "primary_edge: wired_edge",
+    "router dhcp reservation",
+    "reserved_ip = 192.168.1.199",
+    "imac-natt-os-wired-edge",
+    "không dùng ip động làm địa chỉ sống lâu dài",
+    "wired_edge là đường chính cho máy vật lý server"
+  ].forEach(clause => must(c.includes(clause), "missing reservation clause: " + clause));
+
+  [
+    "curl",
+    "safari",
+    "transport smoke",
+    "runtime smoke",
+    "wildcard -> allow",
+    "allow wildcard",
+    "production-ready"
+  ].forEach(mark => must(!lower.includes(mark), "forbidden reservation wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("sira router dhcp reservation validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira router dhcp reservation validation: pass");
+console.log("file=docs/runtime/sira_router_dhcp_reservation_evidence_20260426.na");

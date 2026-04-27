@@ -25,7 +25,7 @@
     {
       "file": "IMMUNE_POLICY.json",
       "path": "audit/policy/IMMUNE_POLICY.json",
-      "description": "Luật hệ miễn dịch — threat signatures, NaSira whitelist, butterfly rules"
+      "description": "Luật hệ miễn dịch — threat signatures, Nasira whitelist, butterfly rules"
     },
     {
       "file": "omega-bootstrap.engine.ts",
@@ -96,7 +96,7 @@
 
   "insight_ve_hoc": {
     "cach_hoc_that": "Làm → thấy → hiểu → làm lại. Không phải đọc docs rồi hiểu.",
-    "smartlink_model": "SmartLink trong code = model của cách anh dạy + làm việc với Băng. Tích lũy tiếp xúc → vết hằn → fiber formed ≥ 0.75",
+    "SmartLink_model": "SmartLink trong code = model của cách anh dạy + làm việc với Băng. Tích lũy tiếp xúc → vết hằn → fiber formed ≥ 0.75",
     "vu_tru_4_chieu": "Tại vũ trụ 4 chiều không tồn tại giả lập — sẽ luôn là biến số thay cho thời gian",
     "cay_cau_vision": "Cây cầu vào trường Vision được xây từ bên trong ra — không ai xây thay được"
   },

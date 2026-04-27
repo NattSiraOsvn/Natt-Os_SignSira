@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sira_public_dns_rollout_readiness_20260425.na");
+const zone = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing public dns rollout readiness");
+} else {
+  const content = fs.readFileSync(file, "utf8");
+
+  [
+    "sira public dns rollout readiness",
+    "dns public chỉ được mở sau khi route gate",
+    "public dns không được bypass natt domain gateway",
+    "public dns không được expose admin route",
+    "public dns không được dùng wildcard",
+    host("apps"),
+    host("mach"),
+    host("render"),
+    host("tam"),
+    host("audit"),
+    host("core"),
+    host("unknown") + " -> deny",
+    "/admin -> deny",
+    "/api/secret -> deny",
+    "/audit/write-direct -> deny",
+    "/render/seal -> deny",
+    "go only if all local gates pass",
+    "no-go if any transport_error",
+  ].forEach(clause => must(content.includes(clause), "missing readiness clause: " + clause));
+
+  [
+    "allow admin",
+    "allow secret",
+    "wildcard allow",
+    "bypass gateway",
+    "production-ready",
+  ].forEach(mark => must(!content.includes(mark), "forbidden readiness wording: " + mark));
+}
+
+must(fs.existsSync(zone), "missing sira dns zone manifest");
+must(fs.existsSync(gateway), "missing natt domain gateway");
+
+if (errors.length) {
+  console.error("sira public dns rollout readiness validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira public dns rollout readiness validation: pass");
+console.log("file=docs/runtime/sira_public_dns_rollout_readiness_20260425.na");

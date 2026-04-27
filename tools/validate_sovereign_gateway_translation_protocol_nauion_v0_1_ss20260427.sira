@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_gateway_translation_protocol_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope sovereign-gateway translation-protocol heyna sirasign audit smartlink",
+"@runtime_scope excluded",
+"Tên bên ngoài vẫn gọi là Gateway.",
+"Gateway không phải gateway truyền thống.",
+"Không dồn hết vào Gateway",
+"giao_thức_dịch",
+"heyna_ready_packet",
+"Vòng_HeyNa",
+"Mạch_HeyNa",
+"SmartLink",
+"gateway.translation.checked",
+"red_zone_translation",
+"metadata_only",
+"SiraSign",
+"audit",
+"Không chạm nattos.sh.",
+"Gate 3 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sovereign gateway translation protocol validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign gateway translation protocol validation: pass");
+console.log("file=" + file);

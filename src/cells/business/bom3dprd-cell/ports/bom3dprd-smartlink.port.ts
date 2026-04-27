@@ -1,8 +1,8 @@
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+import type { TouchRecord } from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
 import { EventBus } from "../../../../core/events/event-bus";
 
 export interface Bom3dPrdSignal {
-  type: "BOM_CREATED" | "BOM_UPDATED" | "BOM_VALIDATED" | "BOM_REJECTED";
+  type: "BOM_created" | "BOM_UPDATED" | "BOM_VALIDATED" | "BOM_REJECTED";
   payload: Record<string, unknown>;
   timestamp: number;
 }
@@ -10,7 +10,7 @@ export interface Bom3dPrdSignal {
 const _touchHistory: TouchRecord[] = [];
 
 const _SIGNAL_EVENT_MAP: Record<string, string> = {
-  "BOM_CREATED": "BomCreated",
+  "BOM_created": "BomCreated",
   "BOM_UPDATED": "BomUpdated",
   "BOM_VALIDATED": "BomValidated",
   "BOM_REJECTED": "BomRejected",
@@ -37,7 +37,7 @@ export const Bom3dPrdSmartLinkPort = {
 
   notifyBomCreated: (bomId: string, productCode: string): void =>
     Bom3dPrdSmartLinkPort.emit({
-      type: "BOM_CREATED",
+      type: "BOM_created",
       payload: { bomId, productCode },
       timestamp: Date.now()
     }),
@@ -52,7 +52,7 @@ export const Bom3dPrdSmartLinkPort = {
 
 function _routeSignal(type: Bom3dPrdSignal["type"]): string {
   const routes: Record<string, string> = {
-    "BOM_CREATED": "production-cell",
+    "BOM_created": "production-cell",
     "BOM_UPDATED": "design-3d-cell",
     "BOM_VALIDATED": "inventory-cell",
     "BOM_REJECTED": "design-3d-cell",

@@ -1,5 +1,5 @@
 /**
- * NATT-OS FX Engine v1.0
+ * natt-os FX Engine v1.0
  * Canvas stars + nebula + scanline + ticker
  * Tách từ NaUion v9 — dùng chung cho 16 apps
  *

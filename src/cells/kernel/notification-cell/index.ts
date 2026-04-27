@@ -2,7 +2,7 @@
 export * from './application/index';
 export * from './ports/index';
 export * from './domain/engines/notification.engine';
-export * from './smartlink/index';
+export * from './SmartLink/index';
 
 import { EventBus } from '../../../core/events/event-bus';
 

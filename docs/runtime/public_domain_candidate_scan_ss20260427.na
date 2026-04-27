@@ -1,0 +1,3151 @@
+@state runtime-evidence
+@name public domain candidate scan
+@scope public-domain dns mail web
+@private_namespace excluded
+@owner Thiên
+@session ss20260427
+@created_at 2026-04-27T12:40:32
+
+# Public domain candidate scan — ss20260427
+
+## 1. Boundary
+
+Scan này chỉ liệt kê domain public thật đã xuất hiện trong repo.
+
+Loại khỏi danh sách chọn public:
+
+- `.sira`
+- `.anc`
+- `localhost`
+- `127.0.0.1`
+- private/local/test namespace
+
+Không kết luận quyền sở hữu domain. Anh sẽ xác nhận domain nào đang có sẵn trong tài khoản quản trị DNS/registrar.
+
+## 2. Git ground truth
+
+- branch: feat/p1.3-file-extension-validator
+- head: 10edab5 docs(runtime): seal public edge status and two server boundary ss20260427
+- dirty_at_generation: clean
+
+## 3. Brand-related public domain candidates
+
+1. `nattos.sh` — hits: 349
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/specs/pilot_bridge_map_v0_1.na
+   - docs/specs/pilot_bridge_map_v0_1.na
+   - docs/specs/pilot_bridge_map_v0_1.na
+   - docs/specs/pilot_bridge_map_v0_1.na
+2. `nattos-migrate.py` — hits: 31
+   - docs/specs/nattos-migrate.py
+   - docs/specs/nattos-migrate.py
+   - docs/specs/nattos-migrate.py
+   - docs/specs/nattos-migrate.py
+   - docs/specs/nattos-migrate.py
+3. `sira.zone` — hits: 26
+   - docs/runtime/sira_khai_ip_preflight_evidence_20260425.na
+   - docs/runtime/sira_khai_ip_preflight_evidence_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+4. `natt.hosts` — hits: 25
+   - docs/specs/SPEC_NGON_NGU_v1.2.kris
+   - docs/specs/COLOR_SIRASIGN.na
+   - docs/specs/COLOR_SIRASIGN.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+5. `e.timestamp` — hits: 22
+   - src/components/AuditVisualizer.tsx
+   - src/governance/audit-bridge.ts
+   - src/governance/audit-bridge.ts
+   - src/governance/persistence.ts
+   - src/governance/persistence.ts
+6. `signal.timestamp` — hits: 22
+   - src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts
+   - src/cells/business/finance-cell/ports/finance-smartlink.port.ts
+   - src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts
+   - src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira
+   - src/cells/business/customer-cell/ports/customer-smartlink.port.ts
+7. `natt.os` — hits: 20
+   - docs/archive/NaUion.md
+   - docs/archive/natt-v8.md
+   - docs/archive/specnauiontmp.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.3.md
+8. `log.timestamp` — hits: 17
+   - src/components/Dashboard.tsx
+   - src/components/DataSyncEngine.tsx
+   - src/components/ProductionSalesFlowView.tsx
+   - src/components/AuditTrailModule.tsx
+   - src/components/AuditTrailModule.tsx
+9. `nattos-server.cjs` — hits: 16
+   - docs/specs/SPEC_NEN_v1.1.anc
+   - docs/specs/SPEC_NEN_v1.1.anc
+   - docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na
+   - docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+10. `core.natt` — hits: 16
+   - docs/runtime/SIRA_ROOT_NAMESPACE_20260424.si
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+11. `nattos-migrate-phase2.py` — hits: 13
+   - docs/specs/nattos-migrate-phase2.py
+   - docs/specs/nattos-migrate-phase2.py
+   - docs/specs/nattos-migrate-phase2.py
+   - docs/specs/nattos-migrate-phase2.py
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+12. `nattos-sh-section45.sh` — hits: 13
+   - docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+   - docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+   - docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+   - docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+   - docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+13. `anc.natt` — hits: 13
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+14. `b.timestamp` — hits: 12
+   - src/components/NotificationHub.tsx
+   - src/governance/qneu/qiint.engine.ts
+   - src/governance/memory/bang/baithicuabmf270226/stability-validator.ts
+   - src/core/ingestion/ingestion.service.ts
+   - src/core/conflict/conflict-resolver.engine.ts
+15. `a.timestamp` — hits: 12
+   - src/components/NotificationHub.tsx
+   - src/governance/qneu/qiint.engine.ts
+   - src/governance/memory/bang/baithicuabmf270226/stability-validator.ts
+   - src/core/ingestion/ingestion.service.ts
+   - src/core/conflict/conflict-resolver.engine.ts
+16. `screen.sirasign` — hits: 12
+   - src/runtime/manifest/generic-manifest.loader.ts
+   - src/runtime/manifest/generic-manifest.loader.ts
+   - src/runtime/manifest/generic-manifest.loader.ts
+   - src/runtime/route-gate/generic-route-gate.compiler.ts
+   - src/runtime/route-gate/generic-route-gate.compiler.ts
+17. `nattos.eventbus` — hits: 12
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/index.html
+18. `sira-loader.mjs` — hits: 10
+   - docs/specs/spec_sira_authority_bootstrap_v1.0.na
+   - docs/specs/spec_sira_authority_bootstrap_v1.0.na
+   - docs/specs/spec_sira_authority_bootstrap_v1.0.na
+   - docs/specs/spec_sira_authority_bootstrap_v1.0.na
+   - docs/specs/spec_sira_authority_bootstrap_v1.0.na
+19. `nattimer.predict` — hits: 9
+   - docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md
+   - docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md
+   - src/__tests__/integration/emergent-behavior.proof.ts
+   - src/__tests__/integration/emergent-behavior.proof.ts
+   - src/__tests__/integration/emergent-behavior.proof.ts
+20. `nattimer.record` — hits: 9
+   - docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md
+   - src/governance/memory/sessions/SESSION_20260413_FULL_SUMMARY.kris
+   - src/governance/memory/bang/bangthịnh6.0.2.phieu
+   - src/governance/memory/bang/bangkhương7.0.0.kris
+   - src/__tests__/integration/emergent-behavior.proof.ts
+21. `nauion.natt` — hits: 9
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+22. `audit.natt` — hits: 9
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+23. `tam.natt` — hits: 9
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+24. `natt-os-file-map.txt` — hits: 9
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+25. `natt-os.com` — hits: 9
+   - src/components/Layout.tsx
+   - src/components/Layout.tsx
+   - src/components/ErrorBoundary.tsx
+   - src/components/ErrorBoundary.tsx
+   - nattos-server/app Tâm luxury/components/layout.tsx
+26. `nattos-migration.log` — hits: 8
+   - docs/specs/nattos-migrate.py
+   - docs/specs/nattos-migrate.py
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/nattos-migrate.py
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/nattos-migrate.py
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na
+27. `nattos-sh-section-45-draft.sh` — hits: 8
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+   - src/governance/memory/bang/bang_pending_20260424.phieu
+   - src/governance/memory/bang/README.md
+   - src/governance/memory/bang/bangthịnhv6.6.0.phieu
+28. `anattos.sh` — hits: 8
+   - src/governance/memory/bang/bangthịnh4.5.phieu
+   - src/governance/memory/bang/bangthịnh4.5.phieu
+   - src/governance/memory/bang/bangthịnh4.5.phieu
+   - src/governance/memory/bang/cayht200325.txt
+   - src/governance/memory/bang/bangkhương5.9.2.kris
+29. `entry.timestamp` — hits: 8
+   - src/core/logger/logger.service.ts
+   - src/cells/infrastructure/sync-cell/domain/services/sync.engine.ts
+   - nattos-server/apps/tam-luxury/tamluxury-v4.html
+   - nattos-server/apps/tam-luxury/tamluxury-v2.html
+   - nattos-server/apps/tam-luxury/tamluxury-v3.html
+30. `nattos-client-integrator.py` — hits: 7
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/specs/NaU_audit-REVIEW-v1.na
+   - docs/specs/NaU_audit-REVIEW-v1.na
+   - docs/specs/NaU_audit-REVIEW-v1.na
+31. `nattos-rename-execute.py` — hits: 7
+   - docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/bangthinhv6.5.1.phieu
+   - src/governance/memory/bang/bangthinhv6.5.0.phieu
+32. `hien-phap-natt-os-v4.0-bang-tieng-viet.docx` — hits: 7
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/architecture_archive_dirty_state_audit_20260426.na
+   - docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+33. `imprint.timestamp` — hits: 7
+   - src/governance/runtime.ts
+   - src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts
+   - src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts
+   - src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts
+   - src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts
+34. `tamluxury.vn` — hits: 7
+   - nattos-server/apps/tam-luxury/kris-email-hub.html
+   - nattos-server/apps/tam-luxury/kris-email-hub.html
+   - nattos-server/apps/tam-luxury/kris-email-hub.html
+   - nattos-server/app Tâm luxury/layerold/kris-email-hub.html
+   - nattos-server/app Tâm luxury/layerold/kris-email-hub.html
+35. `mach.natt` — hits: 6
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+36. `docs.natt` — hits: 6
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+37. `this.keystamps.length` — hits: 6
+   - src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts
+   - src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts
+   - src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts
+   - nattos-server/app Tâm luxury/services/threatdetectionservice.ts
+   - nattos-server/app Tâm luxury/services/threatdetectionservice.ts
+38. `nattospayment.switchtab` — hits: 6
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/nattos-payment.js
+39. `en.timestamp` — hits: 6
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+40. `runtime.natt` — hits: 5
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+41. `heyna.natt` — hits: 5
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+42. `gate.natt` — hits: 5
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+43. `sira.natt` — hits: 5
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+44. `khai.natt` — hits: 5
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+45. `bridge.natt` — hits: 5
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/sira_resolver_active_source_trace_20260426.na
+   - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+46. `natt-full.sh` — hits: 5
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+   - NaUion-Server/nauion/spec-nauion/natt-ky-thuat-ui.sh
+   - NaUion-Server/nauion/nauion-library/natt-full.sh
+47. `r.timestamp` — hits: 5
+   - docs/runtime/nauion-host/src/result_writer.rs
+   - src/core/memory/immutable-memory.engine.ts
+   - nattos-server/app Tâm luxury/nattos-smart-get-data.js
+   - nattos-server/app Tâm luxury/nattos-smart-get-data.js
+   - nattos-server/app Tâm luxury/components/governancemodule.tsx
+48. `lxrtam.net` — hits: 5
+   - src/components/HRManagement.tsx
+   - src/governance/memory/bang/bangkhương5.9.6.kris
+   - src/cells/business/hr-cell/domain/engines/hr-email.engine.ts
+   - src/cells/business/hr-cell/domain/engines/hr-email.engine.ts
+   - nattos-server/app Tâm luxury/components/hrmanagement.tsx
+49. `window.nattdocengine` — hits: 5
+   - nattos-server/app Tâm luxury/nattos-doc-engine.js
+   - nattos-server/apps/tam-luxury/tamluxury-v4.html
+   - nattos-server/apps/tam-luxury/personal-profile-v2.html
+   - nattos-server/app Tâm luxury/layerold/tamluxury-v4.html
+   - nattos-server/app Tâm luxury/layerold/personal-profile-v2.html
+50. `nattos-migration-phase2.log` — hits: 4
+   - docs/specs/nattos-migrate-phase2.py
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+   - scripts/nattos-migrate-phase2.py
+51. `pack.natt` — hits: 4
+   - docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na
+   - docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na
+   - docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na
+   - docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na
+52. `natt-v1.sh` — hits: 4
+   - docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+53. `natt-v4.sh` — hits: 4
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+   - NaUion-Server/nauion/nauion-library/natt-v4.sh
+54. `natt-visual.sh` — hits: 4
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+   - NaUion-Server/nauion/nauion-library/natt-visual.sh
+55. `natt-ultra.sh` — hits: 4
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+   - NaUion-Server/nauion/nauion-library/natt-ultra.sh
+56. `natt-v3.sh` — hits: 4
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+   - NaUion-Server/nauion/nauion-library/natt-v3.sh
+57. `nattos-sim-v2-4tang-thienbang-align.png` — hits: 4
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+   - src/governance/memory/bang/sim_v2_thienbang.py
+   - scripts/bang-scope-completion-scanner.sh
+58. `nauiondictionarypatchv2.sirasign` — hits: 4
+   - src/thienbang.si
+   - src/thienbang.si
+   - src/thienbang.si
+   - src/thienbang.si
+59. `api.tamluxury.com` — hits: 4
+   - src/components/ApiPortal.tsx
+   - src/components/ApiPortal.tsx
+   - nattos-server/app Tâm luxury/components/apiportal.tsx
+   - nattos-server/app Tâm luxury/components/apiportal.tsx
+60. `nattos-manager.sh` — hits: 4
+   - src/governance/memory/bang/bangthịnh4.4.phieu
+   - src/governance/memory/bang/bangkhương5.9.1.kris
+   - src/governance/memory/bang/bangkhương5.9.1.kris
+   - src/governance/memory/bang/bangkhương5.9.6.kris
+61. `eventtimestamps.length` — hits: 4
+   - src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts
+   - src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts
+   - src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts
+   - src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts
+62. `this.clickstamps.length` — hits: 4
+   - src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts
+   - src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts
+   - nattos-server/app Tâm luxury/services/threatdetectionservice.ts
+   - nattos-server/app Tâm luxury/services/threatdetectionservice.ts
+63. `item.vatamount` — hits: 4
+   - src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts
+   - src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts
+   - nattos-server/app Tâm luxury/services/customsservice.ts
+   - nattos-server/app Tâm luxury/services/customsservice.ts
+64. `nattospayment.show` — hits: 4
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/order-flow.html
+   - nattos-server/app Tâm luxury/layerold/order-flow.html
+65. `nattospayment.close` — hits: 4
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/nattos-payment.js
+66. `nattdocengine.process` — hits: 4
+   - nattos-server/apps/tam-luxury/tamluxury-v4.html
+   - nattos-server/apps/tam-luxury/personal-profile-v2.html
+   - nattos-server/app Tâm luxury/layerold/tamluxury-v4.html
+   - nattos-server/app Tâm luxury/layerold/personal-profile-v2.html
+67. `nattos.iseu.reinforce` — hits: 4
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/nattos-production.html
+   - nattos-server/apps/tam-luxury/nattos-production.html
+   - nattos-server/apps/tam-luxury/app-psychology.html
+68. `nattos.galaxy` — hits: 4
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/index.html
+   - nattos-server/apps/tam-luxury/app-psychology.html
+   - nattos-server/apps/tam-luxury/app-psychology.html
+69. `q.discountamt` — hits: 4
+   - nattos-server/apps/tam-luxury/pricing-engine.html
+   - nattos-server/apps/tam-luxury/pricing-engine.html
+   - nattos-server/app Tâm luxury/layerold/pricing-engine.html
+   - nattos-server/app Tâm luxury/layerold/pricing-engine.html
+70. `q.vatamt` — hits: 4
+   - nattos-server/apps/tam-luxury/pricing-engine.html
+   - nattos-server/apps/tam-luxury/pricing-engine.html
+   - nattos-server/app Tâm luxury/layerold/pricing-engine.html
+   - nattos-server/app Tâm luxury/layerold/pricing-engine.html
+71. `nattos.v4.sh` — hits: 3
+   - docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+72. `nattos.v3.sh` — hits: 3
+   - docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+73. `nattos-rename-dryrun-v8.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+74. `nattos-rename-dryrun-v7.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+75. `nattos-rename-dryrun-v3.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+76. `nattos-rename-dryrun-v6.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+77. `nattos-rename-dryrun-v10.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+78. `nattos-rename-dryrun-v5.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+79. `nattos-rename-dryrun-v4.py` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md
+80. `natt-v5.sh` — hits: 3
+   - docs/runtime/lowercase_surface_full_repo_20260425.na
+   - docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   - src/governance/memory/bang/cayht200325.txt
+
+## 4. Other public domains found
+
+1. `document.getelementbyid` — hits: 2723
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+2. `date.now` — hits: 1289
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+3. `math.random` — hits: 891
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+4. `console.log` — hits: 701
+   - docs/archive/NATT-OS-PLATFORM-SPEC.md
+   - docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md
+   - docs/specs/NATT-OS-PLATFORM-SPEC.anc
+5. `math.round` — hits: 357
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/NaU_audit.html
+6. `eventbus.emit` — hits: 339
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/archive/NATT-OS-PLATFORM-SPEC.md
+7. `document.createelement` — hits: 313
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+8. `console.error` — hits: 311
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+9. `math.min` — hits: 308
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+   - docs/specs/uei_runtime_spec_20260309.na
+10. `style.display` — hits: 273
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+11. `registry.npmjs.org` — hits: 253
+   - package.json
+   - package.json
+   - package.json
+12. `json.stringify` — hits: 250
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+13. `errors.push` — hits: 250
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na
+14. `math.max` — hits: 222
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/natt_audit_extensions.js
+15. `index.mjs` — hits: 209
+   - docs/specs/roadloading/mapptre.md
+   - docs/specs/roadloading/mapptre.md
+   - docs/specs/roadloading/mapptre.md
+16. `cell.metric` — hits: 203
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/archive/NATT-OS-PLATFORM-SPEC.md
+17. `path.join` — hits: 201
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+18. `fs.existssync` — hits: 182
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+19. `eventbus.on` — hits: 180
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/archive/NATT-OS-PLATFORM-SPEC.md
+20. `window.addeventlistener` — hits: 180
+   - docs/archive/natt-v8.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+21. `react.fc` — hits: 173
+   - src/contexts/mapping-context.tsx
+   - src/contexts/QuantumUIContext.tsx
+   - src/contexts/accounting-context.tsx
+22. `math.floor` — hits: 172
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/specs/uei_runtime_spec_20260309.na
+23. `array.from` — hits: 169
+   - src/thienbang.si
+   - src/thienbang.si
+   - src/core/SmartLinkEngine.ts
+24. `document.queryselectorall` — hits: 160
+   - docs/ui/NaU_audit.html
+   - docs/runtime/sirasign_close_read_20260425.na
+   - docs/specs/nauion/SPEC-Nauion_main_v2.5.md
+25. `thienbang.si` — hits: 157
+   - docs/specs/SPEC_MOMENTS_MODULE_v0.1.na
+   - docs/specs/SPEC_MOMENTS_MODULE_v0.1.na
+   - docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na
+26. `math.abs` — hits: 152
+   - docs/archive/NaUion.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.3.md
+27. `math.pi` — hits: 151
+   - docs/archive/NaUion.md
+   - docs/archive/natt-v8.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.5.md
+28. `this.state.mode` — hits: 135
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+   - docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+29. `index.d.mts` — hits: 129
+   - docs/specs/roadloading/mapptre.md
+   - docs/specs/roadloading/mapptre.md
+   - docs/specs/roadloading/mapptre.md
+30. `e.target.value` — hits: 125
+   - docs/ui/NaU_audit.html
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html
+   - src/components/AdminConfigHub.tsx
+31. `object.entries` — hits: 123
+   - docs/ui/NaU_audit.html
+   - docs/render/pilot/runtime.html
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts
+32. `cell.id` — hits: 122
+   - docs/archive/natt-v8.md
+   - docs/archive/natt-v8.md
+   - docs/specs/Vision/VISION_ENGINE_SPEC_FINAL.na
+33. `c.includes` — hits: 120
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+34. `process.exit` — hits: 120
+   - docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+   - docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+   - docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+35. `fs.readfilesync` — hits: 117
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   - docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+36. `cell.sc` — hits: 113
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+37. `value.trim` — hits: 113
+   - src/cells/kernel/config-cell/domain/value-objects/ConfigKey.ts
+   - src/cells/kernel/config-cell/domain/value-objects/ConfigKey.ts
+   - src/cells/business/warehouse-cell/domain/services/accountability.engine.ts
+38. `t.jsx` — hits: 109
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+39. `permission.view` — hits: 106
+   - src/components/GovernanceWorkspace.tsx
+   - src/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine.ts
+   - src/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine.ts
+40. `e.key` — hits: 102
+   - src/components/CollaborationRooms.tsx
+   - src/components/ChatConsultant.tsx
+   - src/cells/kernel/config-cell/infrastructure/repositories/InMemoryConfigRepository.ts
+41. `t.flags` — hits: 102
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+42. `window.innerwidth` — hits: 101
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/NaU_audit.html
+   - docs/archive/NaUion.md
+43. `console.warn` — hits: 96
+   - docs/archive/NATT-OS-PLATFORM-SPEC.md
+   - docs/specs/NATT-OS-PLATFORM-SPEC.anc
+   - src/core/kernel-boot.ts
+44. `process.cwd` — hits: 96
+   - docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts
+   - src/__tests__/integration/emergent-behavior.proof.ts
+45. `classlist.add` — hits: 95
+   - src/governance/memory/Can/memories.json
+   - nattos-server/apps/tam-luxury/warehouse-ops.html
+   - nattos-server/apps/tam-luxury/warehouse-ops.html
+46. `m.id` — hits: 94
+   - src/components/AdminConfigHub.tsx
+   - src/components/AdminConfigHub.tsx
+   - src/components/SystemMonitor.tsx
+47. `userrole.master` — hits: 94
+   - src/components/app.tsx
+   - src/components/app.tsx
+   - src/components/GovernanceWorkspace.tsx
+48. `e.preventdefault` — hits: 93
+   - src/components/DevPortal.tsx
+   - src/components/SecurityOverlay.tsx
+   - src/components/CollaborationRooms.tsx
+49. `o.id` — hits: 93
+   - src/components/ProductCatalog.tsx
+   - src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts
+   - src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts
+50. `name.includes` — hits: 93
+   - src/cells/business/supplier-cell/domain/engines/supplier-classify.engine.ts
+   - src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts
+   - src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts
+51. `errors.length` — hits: 91
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts
+   - src/core/moduleHelpers.ts
+52. `audit.record` — hits: 89
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   - docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+53. `window.innerheight` — hits: 87
+   - docs/ui/natt_audit_extensions.js
+   - docs/archive/NaUion.md
+   - src/components/Medal.tsx
+54. `personaid.thien` — hits: 86
+   - src/constants.ts
+   - src/constants.ts
+   - src/constants.ts
+55. `item.id` — hits: 84
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html
+56. `e.type` — hits: 84
+   - docs/specs/finance/SPECFlowNattOs.md
+   - docs/specs/finance/SPECFlowNattOs.md
+   - src/components/QuantumFlowOrchestrator.tsx
+57. `json.parse` — hits: 83
+   - docs/ui/natt_audit_extensions.js
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+58. `schemas.openxmlformats.org` — hits: 81
+   - docs/textlaw/300.TC.NSNN.doc
+   - docs/textlaw/300.TC.NSNN.doc
+   - docs/textlaw/300.TC.NSNN.doc
+59. `math.sin` — hits: 80
+   - src/components/QuantumFlowOrchestrator.tsx
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+60. `p.orderid` — hits: 79
+   - src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts
+   - src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts
+   - src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts
+61. `images.unsplash.com` — hits: 78
+   - src/constants.tsx
+   - src/constants.tsx
+   - src/components/WarehouseManagement.tsx
+62. `t.memoizedstate` — hits: 76
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+63. `document.addeventlistener` — hits: 74
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+64. `t.child` — hits: 74
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+65. `object.keys` — hits: 73
+   - docs/render/pilot/runtime.html
+   - src/SuperDictionary.ts
+   - src/SuperDictionary.ts
+66. `el.innerhtml` — hits: 72
+   - docs/render/pilot/render_language_pilot_multiscreen.html
+   - nattos-server/app Tâm luxury/nattos-payment.js
+   - nattos-server/apps/tam-luxury/warehouse-ops.html
+67. `index.js.map` — hits: 72
+   - src/governance/memory/bang/cayht200325.txt
+   - src/governance/memory/bang/cayht200325.txt
+   - src/governance/memory/bang/cayht200325.txt
+68. `o.stage` — hits: 72
+   - nattos-server/apps/tam-luxury/production-wallboard.html
+   - nattos-server/apps/tam-luxury/production-wallboard.html
+   - nattos-server/apps/tam-luxury/production-wallboard.html
+69. `bang.shape.svg` — hits: 71
+   - docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na
+   - docs/specs/SPEC_ONG_MAU_v0.1.na
+   - docs/specs/SPEC_ONG_MAU_v0.1.na
+70. `signal.type` — hits: 71
+   - src/metabolism/healing/anomaly-detector.ts
+   - src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts
+   - src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts
+71. `eventbus.publish` — hits: 70
+   - docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md
+   - docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na
+   - docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na
+72. `t.status` — hits: 69
+   - src/components/OperationsTerminal.tsx
+   - src/components/SalesTaxModule.tsx
+   - src/components/SalesTaxModule.tsx
+73. `purl.org` — hits: 68
+   - docs/textlaw/300.TC.NSNN.doc
+   - docs/textlaw/300.TC.NSNN.doc
+   - docs/textlaw/300.TC.NSNN.doc
+74. `x.id` — hits: 67
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+75. `cell.tc` — hits: 67
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+   - src/governance/memory/Can/memories.json
+76. `user.code` — hits: 66
+   - nattos-server/apps/tam-luxury/warehouse-ops.html
+   - nattos-server/apps/tam-luxury/tamluxury-v4.html
+   - nattos-server/apps/tam-luxury/warehouse-full.html
+77. `e.clientx` — hits: 65
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/archive/natt-v8.md
+78. `ctx.beginpath` — hits: 65
+   - src/components/QuantumFlowOrchestrator.tsx
+   - src/components/QuantumFlowOrchestrator.tsx
+   - src/governance/memory/Can/memories.json
+79. `e.memoizedstate` — hits: 65
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+   - NaUion-Server/vision/assets/index-DQO7vMIv.js
+80. `s.id` — hits: 64
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+   - docs/ui/NaU_audit.html
+
+## 5. Third-party domains ignored for ownership decision
+
+1. `www.w3.org` — hits: 151
+2. `schemas.microsoft.com` — hits: 135
+3. `github.com` — hits: 86
+4. `fonts.googleapis.com` — hits: 83
+5. `generativelanguage.googleapis.com` — hits: 15
+6. `cdnjs.cloudflare.com` — hits: 8
+7. `gmail-smtp-in.l.google.com` — hits: 5
+8. `vision.googleapis.com` — hits: 3
+9. `json-schema.org` — hits: 2
+10. `bigquery.googleapis.com` — hits: 2
+11. `monitoring.googleapis.com` — hits: 2
+12. `react.dev` — hits: 2
+13. `www.apple.com` — hits: 1
+14. `storage.googleapis.com` — hits: 1
+15. `fonts.gstatic.com` — hits: 1
+
+## 6. Public email domains found
+
+1. `gmail.com` — email hits: 42
+2. `github.com` — email hits: 29
+3. `natt-os.com` — email hits: 8
+4. `sys-84301997471976129074482048.iam.gserviceaccount.com` — email hits: 7
+5. `tamluxury.vn` — email hits: 6
+6. `worldgems.hk` — email hits: 5
+7. `lxrtam.net` — email hits: 4
+8. `luxurytam.com` — email hits: 2
+9. `sjc.vn` — email hits: 2
+10. `print.vn` — email hits: 2
+11. `showtrans.vn` — email hits: 2
+12. `vietinbank.com.vn` — email hits: 2
+13. `logistics.vn` — email hits: 2
+14. `zalopay.vn` — email hits: 2
+15. `zenintl.com` — email hits: 2
+16. `phanlocdiamond.com` — email hits: 2
+17. `gdt.gov.vn` — email hits: 2
+18. `gia.edu` — email hits: 2
+19. `zf.ha` — email hits: 1
+20. `openai.com` — email hits: 1
+21. `natt-os.dev` — email hits: 1
+22. `vinhan.com` — email hits: 1
+
+## 7. Recommendation rule
+
+Để khai public mail/web, chỉ chọn domain mà anh xác nhận đang sở hữu và có quyền chỉnh DNS zone.
+
+Mail public cần tối thiểu:
+
+- A/AAAA hoặc CNAME theo hạ tầng
+- MX
+- SPF
+- DKIM
+- DMARC
+- PTR/rDNS nếu tự host mail
+
+## 8. JSON summary
+
+```json
+{
+  "brand_candidates": [
+    {
+      "domain": "nattos.sh",
+      "count": 349,
+      "sources": [
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/specs/pilot_bridge_map_v0_1.na",
+        "docs/specs/pilot_bridge_map_v0_1.na",
+        "docs/specs/pilot_bridge_map_v0_1.na",
+        "docs/specs/pilot_bridge_map_v0_1.na",
+        "docs/specs/pilot_bridge_map_v0_1.na",
+        "docs/specs/pilot_bridge_map_v0_1.na",
+        "docs/specs/pilot_bridge_map_v0_1.na"
+      ]
+    },
+    {
+      "domain": "nattos-migrate.py",
+      "count": 31,
+      "sources": [
+        "docs/specs/nattos-migrate.py",
+        "docs/specs/nattos-migrate.py",
+        "docs/specs/nattos-migrate.py",
+        "docs/specs/nattos-migrate.py",
+        "docs/specs/nattos-migrate.py",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na"
+      ]
+    },
+    {
+      "domain": "sira.zone",
+      "count": 26,
+      "sources": [
+        "docs/runtime/sira_khai_ip_preflight_evidence_20260425.na",
+        "docs/runtime/sira_khai_ip_preflight_evidence_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na"
+      ]
+    },
+    {
+      "domain": "natt.hosts",
+      "count": 25,
+      "sources": [
+        "docs/specs/SPEC_NGON_NGU_v1.2.kris",
+        "docs/specs/COLOR_SIRASIGN.na",
+        "docs/specs/COLOR_SIRASIGN.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na"
+      ]
+    },
+    {
+      "domain": "e.timestamp",
+      "count": 22,
+      "sources": [
+        "src/components/AuditVisualizer.tsx",
+        "src/governance/audit-bridge.ts",
+        "src/governance/audit-bridge.ts",
+        "src/governance/persistence.ts",
+        "src/governance/persistence.ts",
+        "src/governance/memory/sessions/NATT-OS_SATELLITE_COLONY_SPEC.md",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts",
+        "src/cells/kernel/audit-cell/domain/services/audit-hash.engine.ts"
+      ]
+    },
+    {
+      "domain": "signal.timestamp",
+      "count": 22,
+      "sources": [
+        "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+        "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+        "src/cells/business/warranty-cell/ports/warranty-smartlink.port.ts",
+        "src/cells/business/compliance-cell/ports/compliance-smartlink.port.sira",
+        "src/cells/business/customer-cell/ports/customer-smartlink.port.ts",
+        "src/cells/business/promotion-cell/ports/promotion-smartlink.port.sira",
+        "src/cells/business/comms-cell/ports/comms-smartlink.port.sira",
+        "src/cells/business/supplier-cell/ports/supplier-smartlink.port.sira"
+      ]
+    },
+    {
+      "domain": "natt.os",
+      "count": 20,
+      "sources": [
+        "docs/archive/NaUion.md",
+        "docs/archive/natt-v8.md",
+        "docs/archive/specnauiontmp.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.4.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.1.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.5.md"
+      ]
+    },
+    {
+      "domain": "log.timestamp",
+      "count": 17,
+      "sources": [
+        "src/components/Dashboard.tsx",
+        "src/components/DataSyncEngine.tsx",
+        "src/components/ProductionSalesFlowView.tsx",
+        "src/components/AuditTrailModule.tsx",
+        "src/components/AuditTrailModule.tsx",
+        "src/components/AuditTrailModule.tsx",
+        "src/components/MasterDashboard.tsx",
+        "src/components/audit/audit-engine.tsx"
+      ]
+    },
+    {
+      "domain": "nattos-server.cjs",
+      "count": 16,
+      "sources": [
+        "docs/specs/SPEC_NEN_v1.1.anc",
+        "docs/specs/SPEC_NEN_v1.1.anc",
+        "docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na",
+        "docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "docs/specs/roadloading/mapptre.md",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na"
+      ]
+    },
+    {
+      "domain": "core.natt",
+      "count": 16,
+      "sources": [
+        "docs/runtime/SIRA_ROOT_NAMESPACE_20260424.si",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_dns_smoke_runner_evidence_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "nattos-migrate-phase2.py",
+      "count": 13,
+      "sources": [
+        "docs/specs/nattos-migrate-phase2.py",
+        "docs/specs/nattos-migrate-phase2.py",
+        "docs/specs/nattos-migrate-phase2.py",
+        "docs/specs/nattos-migrate-phase2.py",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na"
+      ]
+    },
+    {
+      "domain": "nattos-sh-section45.sh",
+      "count": 13,
+      "sources": [
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na"
+      ]
+    },
+    {
+      "domain": "anc.natt",
+      "count": 13,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "b.timestamp",
+      "count": 12,
+      "sources": [
+        "src/components/NotificationHub.tsx",
+        "src/governance/qneu/qiint.engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
+        "src/core/ingestion/ingestion.service.ts",
+        "src/core/conflict/conflict-resolver.engine.ts",
+        "src/core/audit/integrity-scanner.ts",
+        "src/cells/kernel/audit-cell/domain/services/auditchainservice.ts",
+        "src/cells/kernel/audit-cell/domain/services/auditchainservice.ts"
+      ]
+    },
+    {
+      "domain": "a.timestamp",
+      "count": 12,
+      "sources": [
+        "src/components/NotificationHub.tsx",
+        "src/governance/qneu/qiint.engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/stability-validator.ts",
+        "src/core/ingestion/ingestion.service.ts",
+        "src/core/conflict/conflict-resolver.engine.ts",
+        "src/core/audit/integrity-scanner.ts",
+        "src/cells/kernel/audit-cell/domain/services/auditchainservice.ts",
+        "src/cells/kernel/audit-cell/domain/services/auditchainservice.ts"
+      ]
+    },
+    {
+      "domain": "screen.sirasign",
+      "count": 12,
+      "sources": [
+        "src/runtime/manifest/generic-manifest.loader.ts",
+        "src/runtime/manifest/generic-manifest.loader.ts",
+        "src/runtime/manifest/generic-manifest.loader.ts",
+        "src/runtime/route-gate/generic-route-gate.compiler.ts",
+        "src/runtime/route-gate/generic-route-gate.compiler.ts",
+        "src/runtime/route-gate/generic-route-gate.compiler.ts",
+        "tools/validate_generic_route_gate_compiler.sira",
+        "tools/validate_generic_route_gate_compiler.sira"
+      ]
+    },
+    {
+      "domain": "nattos.eventbus",
+      "count": 12,
+      "sources": [
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/hr-dashboard.html",
+        "nattos-server/apps/tam-luxury/app-psychology.html"
+      ]
+    },
+    {
+      "domain": "sira-loader.mjs",
+      "count": 10,
+      "sources": [
+        "docs/specs/spec_sira_authority_bootstrap_v1.0.na",
+        "docs/specs/spec_sira_authority_bootstrap_v1.0.na",
+        "docs/specs/spec_sira_authority_bootstrap_v1.0.na",
+        "docs/specs/spec_sira_authority_bootstrap_v1.0.na",
+        "docs/specs/spec_sira_authority_bootstrap_v1.0.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na"
+      ]
+    },
+    {
+      "domain": "nattimer.predict",
+      "count": 9,
+      "sources": [
+        "docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md",
+        "docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts"
+      ]
+    },
+    {
+      "domain": "nattimer.record",
+      "count": 9,
+      "sources": [
+        "docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md",
+        "src/governance/memory/sessions/SESSION_20260413_FULL_SUMMARY.kris",
+        "src/governance/memory/bang/bangthịnh6.0.2.phieu",
+        "src/governance/memory/bang/bangkhương7.0.0.kris",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/core/smartlink/cell-smartlink.component.ts",
+        "src/core/smartlink/smartlink.nattimer.ts"
+      ]
+    },
+    {
+      "domain": "nauion.natt",
+      "count": 9,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_dns_smoke_runner_evidence_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "audit.natt",
+      "count": 9,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_dns_smoke_runner_evidence_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "tam.natt",
+      "count": 9,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_dns_smoke_runner_evidence_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "natt-os-file-map.txt",
+      "count": 9,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/runtime/nattos_platform_truth_scan_20260427.na"
+      ]
+    },
+    {
+      "domain": "natt-os.com",
+      "count": 9,
+      "sources": [
+        "src/components/Layout.tsx",
+        "src/components/Layout.tsx",
+        "src/components/ErrorBoundary.tsx",
+        "src/components/ErrorBoundary.tsx",
+        "nattos-server/app Tâm luxury/components/layout.tsx",
+        "nattos-server/app Tâm luxury/components/layout.tsx",
+        "nattos-server/app Tâm luxury/components/errorboundary.tsx",
+        "nattos-server/app Tâm luxury/components/errorboundary.tsx"
+      ]
+    },
+    {
+      "domain": "nattos-migration.log",
+      "count": 8,
+      "sources": [
+        "docs/specs/nattos-migrate.py",
+        "docs/specs/nattos-migrate.py",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/nattos-migrate.py",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/nattos-migrate.py",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md",
+        "scripts/nattos-migrate.py",
+        "scripts/nattos-migrate.py"
+      ]
+    },
+    {
+      "domain": "nattos-sh-section-45-draft.sh",
+      "count": 8,
+      "sources": [
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na",
+        "src/governance/memory/bang/bang_pending_20260424.phieu",
+        "src/governance/memory/bang/README.md",
+        "src/governance/memory/bang/bangthịnhv6.6.0.phieu",
+        "src/governance/memory/bang/_deprecated/bangkhương7.6.0.kris.SUPERSEDED-format-mismatch-06",
+        "src/governance/memory/bang/session-20260420-final/README.md",
+        "src/governance/memory/bang/session-20260420-final/qiint2/README.md"
+      ]
+    },
+    {
+      "domain": "anattos.sh",
+      "count": 8,
+      "sources": [
+        "src/governance/memory/bang/bangthịnh4.5.phieu",
+        "src/governance/memory/bang/bangthịnh4.5.phieu",
+        "src/governance/memory/bang/bangthịnh4.5.phieu",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/bangkhương5.9.2.kris",
+        "src/governance/memory/bang/bangkhương5.9.2.kris",
+        "src/governance/memory/bang/bangkhương5.9.2.kris",
+        "src/governance/memory/bang/bangkhương5.9.1.kris"
+      ]
+    },
+    {
+      "domain": "entry.timestamp",
+      "count": 8,
+      "sources": [
+        "src/core/logger/logger.service.ts",
+        "src/cells/infrastructure/sync-cell/domain/services/sync.engine.ts",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v2.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v3.html",
+        "nattos-server/app Tâm luxury/layerold/tamluxury-v4.html",
+        "nattos-server/app Tâm luxury/layerold/tamluxury-v2.html",
+        "nattos-server/app Tâm luxury/layerold/tamluxury-v3.html"
+      ]
+    },
+    {
+      "domain": "nattos-client-integrator.py",
+      "count": 7,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/NaU_audit-REVIEW-v1.na",
+        "docs/specs/NaU_audit-REVIEW-v1.na",
+        "docs/specs/NaU_audit-REVIEW-v1.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html"
+      ]
+    },
+    {
+      "domain": "nattos-rename-execute.py",
+      "count": 7,
+      "sources": [
+        "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/bangthinhv6.5.1.phieu",
+        "src/governance/memory/bang/bangthinhv6.5.0.phieu",
+        "src/governance/memory/bang/bangthinhv6.4.0.phieu",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "hien-phap-natt-os-v4.0-bang-tieng-viet.docx",
+      "count": 7,
+      "sources": [
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/architecture_archive_dirty_state_audit_20260426.na",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/runtime/nattos_platform_truth_scan_20260427.na",
+        "src/governance/memory/bang/cayht200325.txt"
+      ]
+    },
+    {
+      "domain": "imprint.timestamp",
+      "count": 7,
+      "sources": [
+        "src/governance/runtime.ts",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts",
+        "src/governance/memory/bang/baithicuabmf270226/imprint-engine.ts"
+      ]
+    },
+    {
+      "domain": "tamluxury.vn",
+      "count": 7,
+      "sources": [
+        "nattos-server/apps/tam-luxury/kris-email-hub.html",
+        "nattos-server/apps/tam-luxury/kris-email-hub.html",
+        "nattos-server/apps/tam-luxury/kris-email-hub.html",
+        "nattos-server/app Tâm luxury/layerold/kris-email-hub.html",
+        "nattos-server/app Tâm luxury/layerold/kris-email-hub.html",
+        "nattos-server/app Tâm luxury/layerold/kris-email-hub.html",
+        "scripts/bang_scan_hethong.py"
+      ]
+    },
+    {
+      "domain": "mach.natt",
+      "count": 6,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "tools/natt_domain_gateway.sira"
+      ]
+    },
+    {
+      "domain": "docs.natt",
+      "count": 6,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na",
+        "tools/natt_domain_gateway.sira"
+      ]
+    },
+    {
+      "domain": "this.keystamps.length",
+      "count": 6,
+      "sources": [
+        "src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts",
+        "src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts",
+        "src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts",
+        "nattos-server/app Tâm luxury/services/threatdetectionservice.ts",
+        "nattos-server/app Tâm luxury/services/threatdetectionservice.ts",
+        "nattos-server/app Tâm luxury/services/threatdetectionservice.ts"
+      ]
+    },
+    {
+      "domain": "nattospayment.switchtab",
+      "count": 6,
+      "sources": [
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/nattos-payment.js"
+      ]
+    },
+    {
+      "domain": "en.timestamp",
+      "count": 6,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "runtime.natt",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "heyna.natt",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "gate.natt",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "sira.natt",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "khai.natt",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "bridge.natt",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_active_resolver_ground_truth_20260425.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/sira_resolver_active_source_trace_20260426.na",
+        "docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na"
+      ]
+    },
+    {
+      "domain": "natt-full.sh",
+      "count": 5,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt",
+        "NaUion-Server/nauion/spec-nauion/natt-ky-thuat-ui.sh",
+        "NaUion-Server/nauion/nauion-library/natt-full.sh"
+      ]
+    },
+    {
+      "domain": "r.timestamp",
+      "count": 5,
+      "sources": [
+        "docs/runtime/nauion-host/src/result_writer.rs",
+        "src/core/memory/immutable-memory.engine.ts",
+        "nattos-server/app Tâm luxury/nattos-smart-get-data.js",
+        "nattos-server/app Tâm luxury/nattos-smart-get-data.js",
+        "nattos-server/app Tâm luxury/components/governancemodule.tsx"
+      ]
+    },
+    {
+      "domain": "lxrtam.net",
+      "count": 5,
+      "sources": [
+        "src/components/HRManagement.tsx",
+        "src/governance/memory/bang/bangkhương5.9.6.kris",
+        "src/cells/business/hr-cell/domain/engines/hr-email.engine.ts",
+        "src/cells/business/hr-cell/domain/engines/hr-email.engine.ts",
+        "nattos-server/app Tâm luxury/components/hrmanagement.tsx"
+      ]
+    },
+    {
+      "domain": "window.nattdocengine",
+      "count": 5,
+      "sources": [
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/personal-profile-v2.html",
+        "nattos-server/app Tâm luxury/layerold/tamluxury-v4.html",
+        "nattos-server/app Tâm luxury/layerold/personal-profile-v2.html"
+      ]
+    },
+    {
+      "domain": "nattos-migration-phase2.log",
+      "count": 4,
+      "sources": [
+        "docs/specs/nattos-migrate-phase2.py",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md",
+        "scripts/nattos-migrate-phase2.py"
+      ]
+    },
+    {
+      "domain": "pack.natt",
+      "count": 4,
+      "sources": [
+        "docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na",
+        "docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na",
+        "docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na",
+        "docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na"
+      ]
+    },
+    {
+      "domain": "natt-v1.sh",
+      "count": 4,
+      "sources": [
+        "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt"
+      ]
+    },
+    {
+      "domain": "natt-v4.sh",
+      "count": 4,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt",
+        "NaUion-Server/nauion/nauion-library/natt-v4.sh"
+      ]
+    },
+    {
+      "domain": "natt-visual.sh",
+      "count": 4,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt",
+        "NaUion-Server/nauion/nauion-library/natt-visual.sh"
+      ]
+    },
+    {
+      "domain": "natt-ultra.sh",
+      "count": 4,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt",
+        "NaUion-Server/nauion/nauion-library/natt-ultra.sh"
+      ]
+    },
+    {
+      "domain": "natt-v3.sh",
+      "count": 4,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt",
+        "NaUion-Server/nauion/nauion-library/natt-v3.sh"
+      ]
+    },
+    {
+      "domain": "nattos-sim-v2-4tang-thienbang-align.png",
+      "count": 4,
+      "sources": [
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na",
+        "src/governance/memory/bang/sim_v2_thienbang.py",
+        "scripts/bang-scope-completion-scanner.sh"
+      ]
+    },
+    {
+      "domain": "nauiondictionarypatchv2.sirasign",
+      "count": 4,
+      "sources": [
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/thienbang.si"
+      ]
+    },
+    {
+      "domain": "api.tamluxury.com",
+      "count": 4,
+      "sources": [
+        "src/components/ApiPortal.tsx",
+        "src/components/ApiPortal.tsx",
+        "nattos-server/app Tâm luxury/components/apiportal.tsx",
+        "nattos-server/app Tâm luxury/components/apiportal.tsx"
+      ]
+    },
+    {
+      "domain": "nattos-manager.sh",
+      "count": 4,
+      "sources": [
+        "src/governance/memory/bang/bangthịnh4.4.phieu",
+        "src/governance/memory/bang/bangkhương5.9.1.kris",
+        "src/governance/memory/bang/bangkhương5.9.1.kris",
+        "src/governance/memory/bang/bangkhương5.9.6.kris"
+      ]
+    },
+    {
+      "domain": "eventtimestamps.length",
+      "count": 4,
+      "sources": [
+        "src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts",
+        "src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts",
+        "src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts",
+        "src/cells/kernel/neural-main-cell/domain/services/impedance.engine.ts"
+      ]
+    },
+    {
+      "domain": "this.clickstamps.length",
+      "count": 4,
+      "sources": [
+        "src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts",
+        "src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts",
+        "nattos-server/app Tâm luxury/services/threatdetectionservice.ts",
+        "nattos-server/app Tâm luxury/services/threatdetectionservice.ts"
+      ]
+    },
+    {
+      "domain": "item.vatamount",
+      "count": 4,
+      "sources": [
+        "src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts",
+        "src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts",
+        "nattos-server/app Tâm luxury/services/customsservice.ts",
+        "nattos-server/app Tâm luxury/services/customsservice.ts"
+      ]
+    },
+    {
+      "domain": "nattospayment.show",
+      "count": 4,
+      "sources": [
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/order-flow.html",
+        "nattos-server/app Tâm luxury/layerold/order-flow.html"
+      ]
+    },
+    {
+      "domain": "nattospayment.close",
+      "count": 4,
+      "sources": [
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/nattos-payment.js"
+      ]
+    },
+    {
+      "domain": "nattdocengine.process",
+      "count": 4,
+      "sources": [
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/personal-profile-v2.html",
+        "nattos-server/app Tâm luxury/layerold/tamluxury-v4.html",
+        "nattos-server/app Tâm luxury/layerold/personal-profile-v2.html"
+      ]
+    },
+    {
+      "domain": "nattos.iseu.reinforce",
+      "count": 4,
+      "sources": [
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/nattos-production.html",
+        "nattos-server/apps/tam-luxury/nattos-production.html",
+        "nattos-server/apps/tam-luxury/app-psychology.html"
+      ]
+    },
+    {
+      "domain": "nattos.galaxy",
+      "count": 4,
+      "sources": [
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "nattos-server/apps/tam-luxury/app-psychology.html",
+        "nattos-server/apps/tam-luxury/app-psychology.html"
+      ]
+    },
+    {
+      "domain": "q.discountamt",
+      "count": 4,
+      "sources": [
+        "nattos-server/apps/tam-luxury/pricing-engine.html",
+        "nattos-server/apps/tam-luxury/pricing-engine.html",
+        "nattos-server/app Tâm luxury/layerold/pricing-engine.html",
+        "nattos-server/app Tâm luxury/layerold/pricing-engine.html"
+      ]
+    },
+    {
+      "domain": "q.vatamt",
+      "count": 4,
+      "sources": [
+        "nattos-server/apps/tam-luxury/pricing-engine.html",
+        "nattos-server/apps/tam-luxury/pricing-engine.html",
+        "nattos-server/app Tâm luxury/layerold/pricing-engine.html",
+        "nattos-server/app Tâm luxury/layerold/pricing-engine.html"
+      ]
+    },
+    {
+      "domain": "nattos.v4.sh",
+      "count": 3,
+      "sources": [
+        "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na"
+      ]
+    },
+    {
+      "domain": "nattos.v3.sh",
+      "count": 3,
+      "sources": [
+        "docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na",
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v8.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v7.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v3.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v6.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v10.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v5.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "nattos-rename-dryrun-v4.py",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/_bang_inbox_20260421/repo_snapshot_20260421_morning.md"
+      ]
+    },
+    {
+      "domain": "natt-v5.sh",
+      "count": 3,
+      "sources": [
+        "docs/runtime/lowercase_surface_full_repo_20260425.na",
+        "docs/runtime/NATURAL_CASE_SURFACE_20260425.na",
+        "src/governance/memory/bang/cayht200325.txt"
+      ]
+    }
+  ],
+  "other_public": [
+    {
+      "domain": "document.getelementbyid",
+      "count": 2723,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html"
+      ]
+    },
+    {
+      "domain": "date.now",
+      "count": 1289,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/uei_runtime_spec_20260309.na",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na"
+      ]
+    },
+    {
+      "domain": "math.random",
+      "count": 891,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/archive/natt-v8.md",
+        "docs/archive/natt-v8.md",
+        "docs/archive/natt-v8.md",
+        "docs/archive/natt-v8.md"
+      ]
+    },
+    {
+      "domain": "console.log",
+      "count": 701,
+      "sources": [
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na"
+      ]
+    },
+    {
+      "domain": "math.round",
+      "count": 357,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/uei_runtime_spec_20260309.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/hr-payroll-engine.ts",
+        "src/hr-payroll-engine.ts",
+        "src/hr-payroll-engine.ts"
+      ]
+    },
+    {
+      "domain": "eventbus.emit",
+      "count": 339,
+      "sources": [
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/COLOR_SIRASIGN.na",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md",
+        "docs/specs/SPEC_ONG_MAU_v0.1.na"
+      ]
+    },
+    {
+      "domain": "document.createelement",
+      "count": 313,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/runtime/sirasign_close_read_20260425.na"
+      ]
+    },
+    {
+      "domain": "console.error",
+      "count": 311,
+      "sources": [
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/sirasign_close_read_20260425.na",
+        "docs/runtime/sirasign_close_read_20260425.na",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na"
+      ]
+    },
+    {
+      "domain": "math.min",
+      "count": 308,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/specs/uei_runtime_spec_20260309.na",
+        "docs/specs/uei_runtime_spec_20260309.na",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md"
+      ]
+    },
+    {
+      "domain": "style.display",
+      "count": 273,
+      "sources": [
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "nattos-server/app Tâm luxury/nattos-eod-engine.js",
+        "nattos-server/app Tâm luxury/nattos-eod-engine.js",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html"
+      ]
+    },
+    {
+      "domain": "registry.npmjs.org",
+      "count": 253,
+      "sources": [
+        "package.json",
+        "package.json",
+        "package.json",
+        "package.json",
+        "package.json",
+        "package.json",
+        "package.json",
+        "package.json"
+      ]
+    },
+    {
+      "domain": "json.stringify",
+      "count": 250,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/archive/natt-v8.md",
+        "docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md"
+      ]
+    },
+    {
+      "domain": "errors.push",
+      "count": 250,
+      "sources": [
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/nattos_platform_truth_scan_20260427.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "src/core/moduleHelpers.ts",
+        "src/core/moduleHelpers.ts"
+      ]
+    },
+    {
+      "domain": "math.max",
+      "count": 222,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/natt_audit_extensions.js",
+        "docs/archive/NaUion.md",
+        "docs/specs/uei_runtime_spec_20260309.na",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md"
+      ]
+    },
+    {
+      "domain": "index.mjs",
+      "count": 209,
+      "sources": [
+        "docs/specs/roadloading/mapptre.md",
+        "docs/specs/roadloading/mapptre.md",
+        "docs/specs/roadloading/mapptre.md",
+        "docs/specs/roadloading/mapptre.md",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt"
+      ]
+    },
+    {
+      "domain": "cell.metric",
+      "count": 203,
+      "sources": [
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/audit/K1-IMPLEMENT-PLAN-v1.na",
+        "docs/runtime/audit/K1-IMPLEMENT-PLAN-v1.na",
+        "src/governance/memory/sessions/bangmf-session-20260407.kris"
+      ]
+    },
+    {
+      "domain": "path.join",
+      "count": 201,
+      "sources": [
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/sirasign_close_read_20260425.na"
+      ]
+    },
+    {
+      "domain": "fs.existssync",
+      "count": 182,
+      "sources": [
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na"
+      ]
+    },
+    {
+      "domain": "eventbus.on",
+      "count": 180,
+      "sources": [
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/COLOR_SIRASIGN.na",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md",
+        "docs/specs/MACH_HEYNA_FULL_20260416.md"
+      ]
+    },
+    {
+      "domain": "window.addeventlistener",
+      "count": 180,
+      "sources": [
+        "docs/archive/natt-v8.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.4.md"
+      ]
+    },
+    {
+      "domain": "react.fc",
+      "count": 173,
+      "sources": [
+        "src/contexts/mapping-context.tsx",
+        "src/contexts/QuantumUIContext.tsx",
+        "src/contexts/accounting-context.tsx",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/WarehouseManagement.tsx",
+        "src/components/app.tsx",
+        "src/components/app.tsx",
+        "src/components/GovernanceWorkspace.tsx"
+      ]
+    },
+    {
+      "domain": "math.floor",
+      "count": 172,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/uei_runtime_spec_20260309.na",
+        "docs/runtime/nattos_platform_truth_scan_20260427.na",
+        "docs/render/pilot/render_language_pilot_heyna.html",
+        "docs/render/pilot/render_language_pilot_heyna.html",
+        "docs/patent-evidence/claim-06-quantum-defense/test_entropy_detection.js",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html"
+      ]
+    },
+    {
+      "domain": "array.from",
+      "count": 169,
+      "sources": [
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/core/SmartLinkEngine.ts",
+        "src/components/ProductionWallboard.tsx",
+        "src/components/SellerTerminal.tsx",
+        "src/components/SystemMonitor.tsx",
+        "src/components/LearningHub.tsx",
+        "src/components/LearningHub.tsx"
+      ]
+    },
+    {
+      "domain": "document.queryselectorall",
+      "count": 160,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/runtime/sirasign_close_read_20260425.na",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "nattos-server/server.js"
+      ]
+    },
+    {
+      "domain": "thienbang.si",
+      "count": 157,
+      "sources": [
+        "docs/specs/SPEC_MOMENTS_MODULE_v0.1.na",
+        "docs/specs/SPEC_MOMENTS_MODULE_v0.1.na",
+        "docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na",
+        "docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na",
+        "docs/specs/SPEC_MOMENTS_MODULE_v0.1_to_v0.2_delta.na",
+        "docs/specs/SPEC_MOMENTS_MODULE_v0.1_to_v0.2_delta.na",
+        "docs/specs/0-BOOT-FAMILY-MAP.na",
+        "docs/specs/0-BOOT-FAMILY-MAP.na"
+      ]
+    },
+    {
+      "domain": "math.abs",
+      "count": 152,
+      "sources": [
+        "docs/archive/NaUion.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.4.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.1.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
+        "docs/specs/finance/SPECFlowNattOs.md",
+        "docs/specs/finance/SPECFlowNattOs.md"
+      ]
+    },
+    {
+      "domain": "math.pi",
+      "count": 151,
+      "sources": [
+        "docs/archive/NaUion.md",
+        "docs/archive/natt-v8.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.5.md",
+        "src/components/QuantumFlowOrchestrator.tsx",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json"
+      ]
+    },
+    {
+      "domain": "this.state.mode",
+      "count": 135,
+      "sources": [
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md"
+      ]
+    },
+    {
+      "domain": "index.d.mts",
+      "count": 129,
+      "sources": [
+        "docs/specs/roadloading/mapptre.md",
+        "docs/specs/roadloading/mapptre.md",
+        "docs/specs/roadloading/mapptre.md",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt"
+      ]
+    },
+    {
+      "domain": "e.target.value",
+      "count": 125,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/KrisEmailHub.tsx",
+        "src/components/ProductDetailModal.tsx"
+      ]
+    },
+    {
+      "domain": "object.entries",
+      "count": 123,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/render/pilot/runtime.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/SuperDictionary.ts",
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/thienbang.si"
+      ]
+    },
+    {
+      "domain": "cell.id",
+      "count": 122,
+      "sources": [
+        "docs/archive/natt-v8.md",
+        "docs/archive/natt-v8.md",
+        "docs/specs/Vision/VISION_ENGINE_SPEC_FINAL.na",
+        "src/components/Medal.tsx",
+        "src/components/Medal.tsx",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json"
+      ]
+    },
+    {
+      "domain": "c.includes",
+      "count": 120,
+      "sources": [
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "tools/validate_sira_dns_zone_manifest.sira",
+        "tools/validate_sira_dns_zone_manifest.sira",
+        "tools/validate_sira_dns_monitoring_loop.sira",
+        "tools/validate_boot_family_map.sira",
+        "tools/validate_boot_family_map.sira"
+      ]
+    },
+    {
+      "domain": "process.exit",
+      "count": 120,
+      "sources": [
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/patent-evidence/claim-06-quantum-defense/test_entropy_detection.js",
+        "src/governance/qneu.test.ts",
+        "src/governance/memory/bang/session-20260413/archive/test_iseu_flow.js",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts"
+      ]
+    },
+    {
+      "domain": "fs.readfilesync",
+      "count": 117,
+      "sources": [
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "src/__tests__/pho-guard.real-data.test.ts",
+        "src/governance/persistence.ts"
+      ]
+    },
+    {
+      "domain": "cell.sc",
+      "count": 113,
+      "sources": [
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json"
+      ]
+    },
+    {
+      "domain": "value.trim",
+      "count": 113,
+      "sources": [
+        "src/cells/kernel/config-cell/domain/value-objects/ConfigKey.ts",
+        "src/cells/kernel/config-cell/domain/value-objects/ConfigKey.ts",
+        "src/cells/business/warehouse-cell/domain/services/accountability.engine.ts",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/hr-admin.html"
+      ]
+    },
+    {
+      "domain": "t.jsx",
+      "count": 109,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "permission.view",
+      "count": 106,
+      "sources": [
+        "src/components/GovernanceWorkspace.tsx",
+        "src/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine.ts",
+        "src/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine.ts",
+        "src/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine.ts",
+        "src/cells/kernel/rbac-cell/domain/engines/rbac-authority.engine.ts",
+        "src/cells/kernel/rbac-cell/domain/engines/auth.engine.ts",
+        "src/cells/kernel/rbac-cell/domain/engines/auth.engine.ts",
+        "src/cells/kernel/rbac-cell/domain/engines/auth.engine.ts"
+      ]
+    },
+    {
+      "domain": "e.key",
+      "count": 102,
+      "sources": [
+        "src/components/CollaborationRooms.tsx",
+        "src/components/ChatConsultant.tsx",
+        "src/cells/kernel/config-cell/infrastructure/repositories/InMemoryConfigRepository.ts",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/hr-admin.html"
+      ]
+    },
+    {
+      "domain": "t.flags",
+      "count": 102,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "window.innerwidth",
+      "count": 101,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/NaU_audit.html",
+        "docs/archive/NaUion.md",
+        "docs/archive/NaUion.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.4.md",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html"
+      ]
+    },
+    {
+      "domain": "console.warn",
+      "count": 96,
+      "sources": [
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "src/core/kernel-boot.ts",
+        "src/satellites/port-forge.ts",
+        "src/satellites/lifecycle.ts",
+        "src/satellites/trace-logger.ts",
+        "src/satellites/boundary-guard.ts",
+        "src/satellites/boundary-guard.ts"
+      ]
+    },
+    {
+      "domain": "process.cwd",
+      "count": 96,
+      "sources": [
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "src/__tests__/integration/emergent-behavior.proof.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/audit-cell/scanner/file-extension-validator.khai",
+        "src/cells/kernel/audit-cell/scanner/file-extension-validator.ts",
+        "src/cells/render-stack-cell/validators/validate-render-stack-cell.sira",
+        "tools/scan_engine_runtime_batch2j.sira"
+      ]
+    },
+    {
+      "domain": "classlist.add",
+      "count": 95,
+      "sources": [
+        "src/governance/memory/Can/memories.json",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/hr-admin.html"
+      ]
+    },
+    {
+      "domain": "m.id",
+      "count": 94,
+      "sources": [
+        "src/components/AdminConfigHub.tsx",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/SystemMonitor.tsx",
+        "src/components/SystemMonitor.tsx",
+        "src/components/SystemMonitor.tsx",
+        "src/components/CollaborationRooms.tsx",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json"
+      ]
+    },
+    {
+      "domain": "userrole.master",
+      "count": 94,
+      "sources": [
+        "src/components/app.tsx",
+        "src/components/app.tsx",
+        "src/components/GovernanceWorkspace.tsx",
+        "src/components/TaxReportingHub.tsx",
+        "src/components/Dashboard.tsx",
+        "src/components/DynamicModuleRenderer.tsx",
+        "src/components/AppShell.tsx",
+        "src/components/AppShell.tsx"
+      ]
+    },
+    {
+      "domain": "e.preventdefault",
+      "count": 93,
+      "sources": [
+        "src/components/DevPortal.tsx",
+        "src/components/SecurityOverlay.tsx",
+        "src/components/CollaborationRooms.tsx",
+        "src/components/ChatConsultant.tsx",
+        "src/governance/memory/bang/NaU_audit.html",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html"
+      ]
+    },
+    {
+      "domain": "o.id",
+      "count": 93,
+      "sources": [
+        "src/components/ProductCatalog.tsx",
+        "src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts",
+        "src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts",
+        "src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts",
+        "src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts",
+        "src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts",
+        "src/cells/business/warehouse-cell/domain/services/logistics.engine.ts",
+        "src/cells/business/warehouse-cell/domain/services/logistics.engine.ts"
+      ]
+    },
+    {
+      "domain": "name.includes",
+      "count": 93,
+      "sources": [
+        "src/cells/business/supplier-cell/domain/engines/supplier-classify.engine.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts",
+        "src/cells/business/supplier-cell/domain/engines/supplier-classifier.util.ts"
+      ]
+    },
+    {
+      "domain": "errors.length",
+      "count": 91,
+      "sources": [
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts",
+        "src/core/moduleHelpers.ts",
+        "src/metabolism/processors/base.processor.ts",
+        "src/runtime/manifest/generic-manifest.loader.ts",
+        "src/runtime/route-gate/generic-route-gate.compiler.ts",
+        "src/cells/kernel/config-cell/domain/services/ConfigValidationService.ts",
+        "src/cells/kernel/config-cell/domain/services/ConfigValidationService.ts"
+      ]
+    },
+    {
+      "domain": "audit.record",
+      "count": 89,
+      "sources": [
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md",
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na",
+        "docs/specs/NATT-OS-GROUND-TRUTH-REPORT.md",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.4.md"
+      ]
+    },
+    {
+      "domain": "window.innerheight",
+      "count": 87,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/archive/NaUion.md",
+        "src/components/Medal.tsx",
+        "src/governance/memory/Can/memories.json",
+        "nattos-server/app Tâm luxury/nattos-fx.js",
+        "nattos-server/apps/tam-luxury/index3.html",
+        "nattos-server/apps/tam-luxury/index3.html",
+        "nattos-server/apps/tam-luxury/index3.html"
+      ]
+    },
+    {
+      "domain": "personaid.thien",
+      "count": 86,
+      "sources": [
+        "src/constants.ts",
+        "src/constants.ts",
+        "src/constants.ts",
+        "src/constants.tsx",
+        "src/constants.tsx",
+        "src/components/AdminConfigHub.tsx",
+        "src/components/WarehouseManagement.tsx",
+        "src/components/app.tsx"
+      ]
+    },
+    {
+      "domain": "item.id",
+      "count": 84,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/components/WarehouseManagement.tsx",
+        "src/components/AppShell.tsx",
+        "src/components/AppShell.tsx",
+        "src/components/AppShell.tsx"
+      ]
+    },
+    {
+      "domain": "e.type",
+      "count": 84,
+      "sources": [
+        "docs/specs/finance/SPECFlowNattOs.md",
+        "docs/specs/finance/SPECFlowNattOs.md",
+        "src/components/QuantumFlowOrchestrator.tsx",
+        "src/components/AuditVisualizer.tsx",
+        "src/components/AuditVisualizer.tsx",
+        "src/components/SecurityOverlay.tsx",
+        "src/cells/kernel/quantum-defense-cell/domain/services/sensitivity-radar.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/services/sensitivity-radar.engine.ts"
+      ]
+    },
+    {
+      "domain": "json.parse",
+      "count": 83,
+      "sources": [
+        "docs/ui/natt_audit_extensions.js",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "docs/runtime/thien_tool_inventory_for_bang_ss20260427.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html"
+      ]
+    },
+    {
+      "domain": "schemas.openxmlformats.org",
+      "count": 81,
+      "sources": [
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc"
+      ]
+    },
+    {
+      "domain": "math.sin",
+      "count": 80,
+      "sources": [
+        "src/components/QuantumFlowOrchestrator.tsx",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/core/quantum/quantum-flow.engine.ts",
+        "nattos-server/app Tâm luxury/nattos-fx.js",
+        "nattos-server/app Tâm luxury/nattos-fx.js",
+        "nattos-server/apps/tam-luxury/index3.html",
+        "nattos-server/apps/tam-luxury/index3.html"
+      ]
+    },
+    {
+      "domain": "p.orderid",
+      "count": 79,
+      "sources": [
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts",
+        "src/cells/kernel/quantum-defense-cell/domain/engines/self-healing.engine.ts"
+      ]
+    },
+    {
+      "domain": "images.unsplash.com",
+      "count": 78,
+      "sources": [
+        "src/constants.tsx",
+        "src/constants.tsx",
+        "src/components/WarehouseManagement.tsx",
+        "src/components/PersonalSphere.tsx",
+        "src/components/ProductCatalog.tsx",
+        "src/components/ProductCatalog.tsx",
+        "src/components/ProductCatalog.tsx",
+        "src/components/ProductCatalog.tsx"
+      ]
+    },
+    {
+      "domain": "t.memoizedstate",
+      "count": 76,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "document.addeventlistener",
+      "count": 74,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.2.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.3.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.4.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.1.md",
+        "docs/specs/nauion/SPEC-Nauion_main_v2.5.md"
+      ]
+    },
+    {
+      "domain": "t.child",
+      "count": 74,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "object.keys",
+      "count": 73,
+      "sources": [
+        "docs/render/pilot/runtime.html",
+        "src/SuperDictionary.ts",
+        "src/SuperDictionary.ts",
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/thienbang.si",
+        "src/thienbang.si"
+      ]
+    },
+    {
+      "domain": "el.innerhtml",
+      "count": 72,
+      "sources": [
+        "docs/render/pilot/render_language_pilot_multiscreen.html",
+        "nattos-server/app Tâm luxury/nattos-payment.js",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/hr-admin.html",
+        "nattos-server/apps/tam-luxury/kris-email-hub.html",
+        "nattos-server/apps/tam-luxury/warehouse-full.html",
+        "nattos-server/apps/tam-luxury/warehouse-full.html"
+      ]
+    },
+    {
+      "domain": "index.js.map",
+      "count": 72,
+      "sources": [
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt",
+        "src/governance/memory/bang/cayht200325.txt"
+      ]
+    },
+    {
+      "domain": "o.stage",
+      "count": 72,
+      "sources": [
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html",
+        "nattos-server/apps/tam-luxury/production-wallboard.html"
+      ]
+    },
+    {
+      "domain": "bang.shape.svg",
+      "count": 71,
+      "sources": [
+        "docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na",
+        "docs/specs/SPEC_ONG_MAU_v0.1.na",
+        "docs/specs/SPEC_ONG_MAU_v0.1.na",
+        "docs/specs/fixtures/capabilities/worked-example-hibernate.na",
+        "docs/specs/fixtures/capabilities/worked-example-resurrect.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na"
+      ]
+    },
+    {
+      "domain": "signal.type",
+      "count": 71,
+      "sources": [
+        "src/metabolism/healing/anomaly-detector.ts",
+        "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+        "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+        "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+        "src/cells/business/showroom-cell/ports/showroom-smartlink.port.ts",
+        "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+        "src/cells/business/finance-cell/ports/finance-smartlink.port.ts",
+        "src/cells/business/finance-cell/ports/finance-smartlink.port.ts"
+      ]
+    },
+    {
+      "domain": "eventbus.publish",
+      "count": 70,
+      "sources": [
+        "docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na",
+        "src/metabolism/index.ts",
+        "src/metabolism/index.ts",
+        "src/satellites/port-forge.ts",
+        "src/components/DataArchiveVault.tsx",
+        "src/governance/memory/sessions/NATT-OS_SATELLITE_COLONY_SPEC.md"
+      ]
+    },
+    {
+      "domain": "t.status",
+      "count": 69,
+      "sources": [
+        "src/components/OperationsTerminal.tsx",
+        "src/components/SalesTaxModule.tsx",
+        "src/components/SalesTaxModule.tsx",
+        "src/components/ProductionManager.tsx",
+        "src/components/ProductionManager.tsx",
+        "src/core/approval/approval-workflow.service.ts",
+        "src/core/approval/approval-workflow.service.ts",
+        "src/core/approval/approval-workflow.service.ts"
+      ]
+    },
+    {
+      "domain": "purl.org",
+      "count": 68,
+      "sources": [
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc"
+      ]
+    },
+    {
+      "domain": "x.id",
+      "count": 67,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/components/DataSyncEngine.tsx",
+        "src/components/DataSyncEngine.tsx"
+      ]
+    },
+    {
+      "domain": "cell.tc",
+      "count": 67,
+      "sources": [
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "nattos-server/apps/tam-luxury/table.html"
+      ]
+    },
+    {
+      "domain": "user.code",
+      "count": 66,
+      "sources": [
+        "nattos-server/apps/tam-luxury/warehouse-ops.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v4.html",
+        "nattos-server/apps/tam-luxury/warehouse-full.html",
+        "nattos-server/apps/tam-luxury/warehouse-full.html",
+        "nattos-server/apps/tam-luxury/showroom-sales.html",
+        "nattos-server/apps/tam-luxury/showroom-sales.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v2.html",
+        "nattos-server/apps/tam-luxury/tamluxury-v3.html"
+      ]
+    },
+    {
+      "domain": "e.clientx",
+      "count": 65,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/archive/natt-v8.md",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/bang/NaU_audit.html",
+        "src/governance/memory/bang/NaU_audit.html"
+      ]
+    },
+    {
+      "domain": "ctx.beginpath",
+      "count": 65,
+      "sources": [
+        "src/components/QuantumFlowOrchestrator.tsx",
+        "src/components/QuantumFlowOrchestrator.tsx",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/Can/memories.json"
+      ]
+    },
+    {
+      "domain": "e.memoizedstate",
+      "count": 65,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "s.id",
+      "count": 64,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/ui/NaU_audit.html",
+        "docs/archive/natt-v8.md",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html"
+      ]
+    }
+  ],
+  "third_party_ignored": [
+    {
+      "domain": "www.w3.org",
+      "count": 151,
+      "sources": [
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc",
+        "docs/textlaw/119.2005.TT.BTC.doc"
+      ]
+    },
+    {
+      "domain": "schemas.microsoft.com",
+      "count": 135,
+      "sources": [
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc",
+        "docs/textlaw/300.TC.NSNN.doc"
+      ]
+    },
+    {
+      "domain": "github.com",
+      "count": 86,
+      "sources": [
+        "docs/archive/NATT-OS-PLATFORM-SPEC.md",
+        "docs/specs/NATT-OS-PLATFORM-SPEC.anc",
+        "src/components/TechnicalDocs.tsx",
+        "src/governance/memory/bang/bangkhương5.9.9.kris",
+        "src/governance/memory/bang/bangthịnh5.5.phieu",
+        "src/governance/memory/bang/bangthịnh5.1.phieu",
+        "src/governance/memory/bang/bangthịnh4.5.phieu",
+        "src/governance/memory/bang/bangthịnh4.7.phieu"
+      ]
+    },
+    {
+      "domain": "fonts.googleapis.com",
+      "count": 83,
+      "sources": [
+        "docs/ui/NaU_audit.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/openai-color-taxonomy.html",
+        "docs/specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html",
+        "src/governance/memory/Can/memories.json",
+        "src/governance/memory/bang/NaU_audit.html",
+        "nattos-server/app Tâm luxury/index.css",
+        "nattos-server/app Tâm luxury/nattos-ui-theme.css",
+        "nattos-server/apps/tam-luxury/warehouse-ops.html"
+      ]
+    },
+    {
+      "domain": "generativelanguage.googleapis.com",
+      "count": 15,
+      "sources": [
+        "docs/archive/natt-v8.md",
+        "src/governance/memory/boiboi/boikhương3.4.0.kris",
+        "src/governance/memory/bang/NaU_audit.html",
+        "nattos-server/apps/tam-luxury/index.html",
+        "NaUion-Server/nauion/nauion-deploy.sh",
+        "NaUion-Server/nauion/spec-nauion/natt-ky-thuat-ui.sh",
+        "NaUion-Server/nauion/nauion-library/natt-full.sh",
+        "NaUion-Server/nauion/nauion-library/natt-v4.sh"
+      ]
+    },
+    {
+      "domain": "cdnjs.cloudflare.com",
+      "count": 8,
+      "sources": [
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/app Tâm luxury/nattos-doc-engine.js",
+        "nattos-server/apps/tam-luxury/nattos-production.html"
+      ]
+    },
+    {
+      "domain": "gmail-smtp-in.l.google.com",
+      "count": 5,
+      "sources": [
+        "docs/runtime/sira_mail_ip_bandwidth_readiness_latest.na",
+        "docs/runtime/sira_mail_ip_bandwidth_readiness_latest.na",
+        "docs/runtime/sira_mail_ip_bandwidth_readiness_20260427_113553.na",
+        "docs/runtime/sira_mail_ip_bandwidth_readiness_20260427_113553.na",
+        "tools/scan_sira_mail_ip_bandwidth_readiness.sira"
+      ]
+    },
+    {
+      "domain": "vision.googleapis.com",
+      "count": 3,
+      "sources": [
+        "src/components/TechnicalDocs.tsx",
+        "src/cells/business/pricing-cell/domain/engines/gold-price.engine.ts",
+        "nattos-server/app Tâm luxury/components/technicaldocs.tsx"
+      ]
+    },
+    {
+      "domain": "json-schema.org",
+      "count": 2,
+      "sources": [
+        "docs/archive/CELL_MANIFEST_SCHEMA.json",
+        "NaUion-Server/khai-cell-spec/nattos-visual-rebuild-spec.schema.json"
+      ]
+    },
+    {
+      "domain": "bigquery.googleapis.com",
+      "count": 2,
+      "sources": [
+        "src/components/TechnicalDocs.tsx",
+        "nattos-server/app Tâm luxury/components/technicaldocs.tsx"
+      ]
+    },
+    {
+      "domain": "monitoring.googleapis.com",
+      "count": 2,
+      "sources": [
+        "src/components/TechnicalDocs.tsx",
+        "nattos-server/app Tâm luxury/components/technicaldocs.tsx"
+      ]
+    },
+    {
+      "domain": "react.dev",
+      "count": 2,
+      "sources": [
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js",
+        "NaUion-Server/vision/assets/index-DQO7vMIv.js"
+      ]
+    },
+    {
+      "domain": "www.apple.com",
+      "count": 1,
+      "sources": [
+        "docs/specs/Vision/log4c.numbers"
+      ]
+    },
+    {
+      "domain": "storage.googleapis.com",
+      "count": 1,
+      "sources": [
+        "nattos-server/app Tâm luxury/sw.js"
+      ]
+    },
+    {
+      "domain": "fonts.gstatic.com",
+      "count": 1,
+      "sources": [
+        "NaUion-Server/nauion/nauion-library/natt-ultra.sh"
+      ]
+    }
+  ],
+  "email_domains": {
+    "git@github.com": 29,
+    "nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com": 7,
+    "admin@natt-os.com": 4,
+    "support@natt-os.com": 4,
+    "kt@tamluxury.vn": 4,
+    "sales@worldgems.hk": 3,
+    "natt@luxurytam.com": 2,
+    "info@sjc.vn": 2,
+    "vinhkhang@print.vn": 2,
+    "ops@showtrans.vn": 2,
+    "huy.voquoc@lxrtam.net": 2,
+    "email@tamluxury.vn": 2,
+    "statement@vietinbank.com.vn": 2,
+    "customs@logistics.vn": 2,
+    "invoice@worldgems.hk": 2,
+    "payment@zalopay.vn": 2,
+    "sales@zenintl.com": 2,
+    "contract@phanlocdiamond.com": 2,
+    "tax@gdt.gov.vn": 2,
+    "gia@gia.edu": 2,
+    "g@zf.ha": 1,
+    "support@openai.com": 1,
+    "bang@natt-os.dev": 1,
+    "firstname.middlelast@lxrtam.net": 1,
+    "user@gmail.com": 1,
+    "phatbanh1304@gmail.com": 1,
+    "tuanbht.388@gmail.com": 1,
+    "quynhchi.angela@gmail.com": 1,
+    "tamluxury2222@gmail.com": 1,
+    "tphat4199@gmail.com": 1,
+    "tinidoan68@gmail.com": 1,
+    "phatdt0308@gmail.com": 1,
+    "quoctrong1990@gmail.com": 1,
+    "ducdan27032003@gmail.com": 1,
+    "lamtonhi810@gmail.com": 1,
+    "tienleis495@gmail.com": 1,
+    "lqthinh1512@gmail.com": 1,
+    "lethinh.26082000@gmail.com": 1,
+    "ltk17111996@gmail.com": 1,
+    "lethin10092k@gmail.com": 1,
+    "luuloc888888886@gmail.com": 1,
+    "lyquangvinh1@gmail.com": 1,
+    "lytieulong19081999@gmail.com": 1,
+    "mtthinh@gmail.com": 1,
+    "ngobichngoc6987@gmail.com": 1,
+    "nguyenanhkhoact@gmail.com": 1,
+    "nguyencuong.ncc206@gmail.com": 1,
+    "nguyenduykhanh7777@gmail.com": 1,
+    "mayduy2001@gmail.com": 1,
+    "minhhb1998@gmail.com": 1,
+    "thanhnam.vt203@gmail.com": 1,
+    "thanhdatdiamond@gmail.com": 1,
+    "nguyentrongnghia361996@gmail.com": 1,
+    "dcphat2000@gmail.com": 1,
+    "vanchungbmt70@gmail.com": 1,
+    "nguyenvanchuong20112001@gmail.com": 1,
+    "phucdiamondtlx@gmail.com": 1,
+    "locn3387@gmail.com": 1,
+    "phamduchuy07@gmail.com": 1,
+    "quachhuuloi2811@gmail.com": 1,
+    "nhatphuongtranhuynh@gmail.com": 1,
+    "tpt28032002@gmail.com": 1,
+    "tranthithanhphuong9950@gmail.com": 1,
+    "uyenvang1979@gmail.com": 1,
+    "vohuy2505@gmail.com": 1,
+    "vqvquocviet@gmail.com": 1,
+    "an.nguyenvan@lxrtam.net": 1,
+    "inbox@vinhan.com": 1
+  }
+}
+```

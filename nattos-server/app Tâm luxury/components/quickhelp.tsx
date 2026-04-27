@@ -11,7 +11,7 @@ const QuickHelp: React.FC<QuickHelpProps> = ({ onClose }) => {
   const [activeTab, setActiveTab] = useState<'FAQ' | 'GUIDES' | 'CHECKLIST' | 'ASSISTANT'>('FAQ');
   const [chatInput, setChatInput] = useState('');
   const [chatHistory, setChatHistory] = useState<{role: 'user' | 'ai', content: string}[]>([
-    { role: 'ai', content: 'Chào Anh Natt, Thiên có thể hỗ trợ gì về thủ tục Hải quan hôm nay?' }
+    { role: 'ai', content: 'Chào Anh Natt, thiên có thể hỗ trợ gì về thủ tục Hải quan hôm nay?' }
   ]);
 
   const faqs = [
@@ -49,9 +49,9 @@ const QuickHelp: React.FC<QuickHelpProps> = ({ onClose }) => {
     
     // Simulate AI thinking and response
     setTimeout(() => {
-      let response = "Thiên đang tra cứu quy định mới nhất...";
+      let response = "thiên đang tra cứu quy định mới nhất...";
       if (chatInput.toLowerCase().includes('thuế')) response = "Thuế nhập khẩu vàng nguyên liệu là 0%, VAT 10%. Trang sức thành phẩm chịu thuế NK 25%.";
-      else if (chatInput.toLowerCase().includes('hs')) response = "Vui lòng cung cấp mô tả chi tiết hàng hóa để Thiên tra mã HS chính xác.";
+      else if (chatInput.toLowerCase().includes('hs')) response = "Vui lòng cung cấp mô tả chi tiết hàng hóa để thiên tra mã HS chính xác.";
       else response = `Đã ghi nhận câu hỏi: "${chatInput}". Đang kết nối tới cơ sở dữ liệu luật...`;
 
       setChatHistory(prev => [...prev, { role: 'ai', content: response }]);

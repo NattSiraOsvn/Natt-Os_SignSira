@@ -406,7 +406,7 @@ export class StabilityValidator {
     const expectedRanges: Record<string, [number, number]> = {
       SCRIPT_RISK: [5, 30],
       SKIP_DEPENDENCY: [10, 40],
-      HIDE_ERROR: [15, 50],
+      HIDE_error: [15, 50],
       SCAFFOLD_WITHOUT_LOGIC: [10, 35],
       PREDICT_WITHOUT_PURPOSE: [5, 25],
       ASSUME_DUPLICATE: [10, 30],
@@ -607,7 +607,7 @@ export class StabilityValidator {
       [StabilityCheckType.NO_REWARD_BASED_ON_QNEU]: AnomalyType.SCORE_MANIPULATION,
       [StabilityCheckType.SPIKE_DETECTION]: AnomalyType.SUDDEN_SPIKE,
       [StabilityCheckType.FREQUENCY_AUTHENTICITY]: AnomalyType.IMPOSSIBLE_FREQUENCY,
-      [StabilityCheckType.AUDIT_TRAIL_INTEGRITY]: AnomalyType.MISSING_AUDIT_TRAIL,
+      [StabilityCheckType.AUDIT_TRAIL_INTEGRITY]: AnomalyType.missing_AUDIT_TRAIL,
       [StabilityCheckType.SCORE_LIFECYCLE_COHERENT]: AnomalyType.SCORE_MANIPULATION,
       [StabilityCheckType.PENALTY_PROPORTIONAL]: AnomalyType.SCORE_MANIPULATION,
     };

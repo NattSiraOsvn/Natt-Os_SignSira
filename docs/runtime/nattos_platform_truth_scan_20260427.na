@@ -1,0 +1,605 @@
+# nattos platform truth scan — 20260427
+
+status: observed-truth-scan
+created_at: 2026-04-27 03:01:45
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. anchor
+
+- branch: feat/p1.3-file-extension-validator
+- head: 10008ee
+- head_full: 10008ee4b696df0ab86dad12bc4b3937361b8225
+- primary_edge: wired_edge
+- wired_edge_ip: 192.168.1.199
+- wifi_edge_ip: 192.168.1.238
+
+---
+
+## 2. naked verdict
+
+verdict: runtime_platform_birth_confirmed
+
+reading: nattos has crossed the application threshold.
+reading: nattos is a living audit-first runtime platform in early formation.
+reading: hal / isa / qos foundations exist as evidence-bearing layers, but are not yet complete industrial-grade layers.
+
+---
+
+## 3. score matrix
+
+```json
+{
+  "runtime_gate": {
+    "score": 100,
+    "level": "strong"
+  },
+  "hal": {
+    "score": 65,
+    "level": "partial_plus"
+  },
+  "isa": {
+    "score": 80,
+    "level": "partial_plus"
+  },
+  "qos": {
+    "score": 80,
+    "level": "partial_plus"
+  },
+  "cell_event_boundary": {
+    "score": 90,
+    "level": "strong"
+  },
+  "portability": {
+    "score": 75,
+    "level": "partial_plus"
+  }
+}
+```
+
+---
+
+## 4. evidence counts
+
+- runtime_docs_count: 100
+- spec_docs_count: 47
+- tool_validators_count: 79
+- cell_files_count: 1037
+- runtime_files_count: 2
+- dns_evidence_count: 7
+
+---
+
+## 5. runtime gate
+
+### tools_thien_gate
+
+```text
+$ tools/thiên gate
+code=0
+sira runtime gate: pass
+identity=anc://
+namespace=.sira
+operator=tools/thiên
+transport=http browser adapter
+evidence=docs/runtime/SIRA_RUNTIME_GATE_EVIDENCE_20260425.na
+```
+
+---
+
+## 6. mandatory validator chain
+
+### tools/validate_sira_dns_monitoring_loop.sira
+
+```text
+$ tools/thiên tools/validate_sira_dns_monitoring_loop.sira
+code=0
+sira dns monitoring loop validation: pass
+file=docs/runtime/sira_dns_monitoring_loop_evidence_20260426.na
+```
+
+### tools/validate_sira_wired_edge_firewall_audit.sira
+
+```text
+$ tools/thiên tools/validate_sira_wired_edge_firewall_audit.sira
+code=0
+sira wired edge firewall audit validation: pass
+file=docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+```
+
+### tools/validate_sira_router_dhcp_reservation.sira
+
+```text
+$ tools/thiên tools/validate_sira_router_dhcp_reservation.sira
+code=0
+sira router dhcp reservation validation: pass
+file=docs/runtime/sira_router_dhcp_reservation_evidence_20260426.na
+```
+
+### tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira
+
+```text
+$ tools/thiên tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira
+code=0
+sira dns infrastructure bandwidth baseline validation: pass
+file=docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na
+```
+
+### tools/validate_sira_wired_edge_dns_rebind.sira
+
+```text
+$ tools/thiên tools/validate_sira_wired_edge_dns_rebind.sira
+code=0
+sira wired edge dns rebind validation: pass
+file=docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+```
+
+### tools/validate_sira_macos_resolver_binding.sira
+
+```text
+$ tools/thiên tools/validate_sira_macos_resolver_binding.sira
+code=0
+sira macos resolver binding validation: pass
+file=docs/runtime/sira_macos_resolver_binding_evidence_20260426.na
+```
+
+### tools/validate_sira_khai_ip_manifest.sira
+
+```text
+$ tools/thiên tools/validate_sira_khai_ip_manifest.sira
+code=0
+sira khai ip manifest validation: pass
+file=docs/runtime/sira_khai_ip_manifest_20260425.na
+```
+
+### tools/validate_lowercase_surface.sira
+
+```text
+$ tools/thiên tools/validate_lowercase_surface.sira
+code=0
+lowercase surface validation: pass
+rule=lowercase human surface; technical identifiers and archive evidence allowed
+```
+
+---
+
+## 7. hal scan
+
+- dns_edge_evidence: 7
+- adapter_dirs: 0
+- hal_validators: 18
+- hardware_refs_in_runtime_scope: 71
+
+### dns edge evidence
+```text
+docs/runtime/sira_dns_monitoring_loop_evidence_20260426.na
+docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+docs/runtime/sira_router_dhcp_reservation_evidence_20260426.na
+docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na
+docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+docs/runtime/sira_macos_resolver_binding_evidence_20260426.na
+docs/runtime/sira_khai_ip_manifest_20260425.na
+```
+
+### adapter dirs
+```text
+none
+```
+
+### hal validators
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/run_sira_dns_smoke_matrix.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_active_resolver_ground_truth.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_coredns_zone_implementation_plan.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_host_spoof_scan.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_monitoring_loop.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_record_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_smoke_matrix.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_smoke_runner.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_strict_allowlist_rebind.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_zone_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_khai_ip_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_macos_resolver_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_public_dns_rollout_readiness.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_router_dhcp_reservation.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_sovereign_dns_infrastructure_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_wired_edge_dns_rebind.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_wired_edge_firewall_audit.sira
+```
+
+### hardware ref sample
+```text
+src/SuperDictionary.ts:207: COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ natt-os về môi trường cục bộ.',
+src/thienbang.si:148: "COREDNS":                "CoreDNS — Private DNS resolver cho namespace.sira, resolve các domain nội bộ natt-os về môi trường cục bộ.",
+src/thienbang.si:1276: CoreDNS:        { loai: 'Private DNS Resolver',    nghia: SUPER_DICTIONARY,         tuCu: 'phân giải DNS cục bộ', vi: 'CoreDNS phân giải các tên miền.sira về máy chủ 127.0.0.1.' },
+src/thienbang.si:1294: COREDNS:        SUPER_DICTIONARY,
+src/thienbang.si:1312: CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/thienbang.si:1327: CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/thienbang.si:1491: "COREDNS":                "CoreDNS — Private DNS resolver cho namespace.sira, resolve các domain nội bộ natt-os về môi trường cục bộ.",
+src/thienbang.si:2619: CoreDNS:        { loai: 'Private DNS Resolver',    nghia: SUPER_DICTIONARY,         tuCu: 'phân giải DNS cục bộ', vi: 'CoreDNS phân giải các tên miền.sira về máy chủ 127.0.0.1.' },
+src/thienbang.si:2637: COREDNS:        SUPER_DICTIONARY,
+src/thienbang.si:2655: CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/thienbang.si:2670: CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/governance/memory/Thienlon/thienfs.json:25: "CoreDNS running locally",
+src/governance/memory/Thienlon/thienmf_c5.md:24: - CoreDNS chạy trên Mac nội bộ.
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:41: CoreDNS 1.14.2 đã cài + config + chạy trên Mac.
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:58: - `/usr/local/etc/coredns/Corefile` — forward to 8.8.8.8/8.8.4.4
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:59: - `/usr/local/etc/coredns/natt.hosts` — 10 domains → 127.0.0.1
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:60: - DNS trỏ: `sudo networksetup -setdnsservers Wi-Fi 127.0.0.1`
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:63: Thêm domain mới: edit natt.hosts → `sudo brew services restart coredns`
+src/governance/memory/bang/bangkhươngv7.6.8.na:161: "tldr": "Quét 15 .sira domain trong code, chỉ 1 (nattos.sira) thật sự bound 127.0.0.1:3002. 14 còn lại = symbolic reference. CoreDNS Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
+src/governance/memory/bang/bangkhươngv7.6.8.na:165: "Path A: ship infra/coredns/Corefile wire 15 .sira domain → 127.0.0.1 (defer per anh decision)",
+src/governance/memory/bang/bangkhươngv7.6.8.na:177: "5. Pending: Path A Corefile wire HOẶC K3 audit Kim scope HOẶC Cell 2 S3 swap"
+src/governance/memory/bang/bang_memory_delta_20260424_evening.na:119: **Insight:** SPEC defines namespace, runtime binds incrementally. CoreDNS Corefile chưa exist = OK trong design phase, không phải bug.
+src/governance/memory/bang/bang_memory_delta_20260424_evening.na:150: | DEFER-01 | Path A wire `infra/coredns/Corefile` 15 .sira domain | Băng (anh quyết) | ~15p |
+src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:82: ## P1-04 — 2 thuật ngữ Shard + CoreDNS
+src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:86: - CoreDNS: "Private DNS Resolver cho namespace .sira"
+src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:158: - P1-04: Shard + CoreDNS verify
+src/governance/memory/bang/bang_handoff_20260424_late.kris:160: "4. DEFER-01 CoreDNS 15 .sira (may overlap with what anh Natt doing now)",
+src/governance/memory/bang/bangthịnh6.3.0.phieu:183: "config": "CoreDNS 1.14.2 on Mac"
+src/governance/memory/bang/bang_pending_20260424_late.phieu:76: ### D1 — DEFER-01: CoreDNS Corefile 15 .sira domains
+src/governance/memory/bang/bang_pending_20260424_late.phieu:167: - [ ] If deployment DONE → check if D1 (CoreDNS) overlapping finished
+src/governance/memory/bang/bangkhươngv7.5.1.na:135: "CoreDNS": "private DNS resolver cho namespace .sira",
+src/governance/memory/bang/bangkhương7.1.0.kris:67: "Private DNS .sira: 10 domains live on CoreDNS",
+src/governance/memory/bang/bangkhương7.1.0.kris:91: "coredns_version": "1.14.2",
+src/governance/memory/bang/bangkhương7.1.0.kris:92: "corefile": "/usr/local/etc/coredns/Corefile",
+src/governance/memory/bang/bangkhương7.1.0.kris:93: "hosts": "/usr/local/etc/coredns/natt.hosts",
+src/governance/memory/bang/bangkhương7.1.0.kris:106: "restart_cmd": "sudo brew services restart coredns",
+src/governance/memory/bang/bang_handoff_20260424_evening.na:95: "tldr": "Quét 15 .sira domain — chỉ nattos.sira thật bound 127.0.0.1:3002. 14 còn lại = symbolic. Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
+src/governance/memory/bang/bang_pending_20260424_evening.phieu:56: "label": "Path A — wire infra/coredns/Corefile (15 .sira domain → 127.0.0.1)",
+src/governance/memory/bang/bang_pending_20260424_evening.phieu:57: "context": "sira_NAMESPACE_INVENTORY commit 5a8c23b documented — chỉ nattos.sira thật bound, 14 còn lại symbolic. Corefile chưa exist.",
+src/governance/memory/bang/_deprecated/bangkhương7.6.0.kris.SUPERSEDED-format-mismatch-06:98: "cai_ben_trong": "nattos.sira (root, commit 2c4fa81 · 2026-04-18 23:16) = KERNEL ENTRY INBOUND, listen 127.0.0.1:3002. Bootstrap observation-cell + quantum-defense-cell. Domain natt.sira (CoreDNS resolved). KHÔNG vi phạm directive session 20260419 'KHÔNG tạo gateway mới port 3002' — directive đó về OUTBOUND gateway, nattos.sira INBOUND kernel. 2 purpose KHÁC NHAU. Symbolic naming .sira = bước đầu rời extension Microsoft, đặt theo Nauion. Băng-phiên-sau đừng flag lại.",
+tools/validate_sira_dns_monitoring_loop.sira:21: "wired_edge: 192.168.1.199",
+tools/validate_sira_dns_monitoring_loop.sira:22: "wifi_edge: 192.168.1.238",
+tools/validate_sira_coredns_zone_implementation_plan.sira:6: const file = path.join(root, "docs", "runtime", "sira_coredns_zone_implementation_plan_20260425.na");
+tools/validate_sira_coredns_zone_implementation_plan.sira:31: return "/usr/local/etc/coredns/zones/" + "sira" + ".zone";
+tools/validate_sira_coredns_zone_implementation_plan.sira:51: errors.push("missing sira coredns zone implementation plan");
+tools/validate_sira_coredns_zone_implementation_plan.sira:56: "sira coredns zone implementation plan",
+tools/validate_sira_coredns_zone_implementation_plan.sira:57: "đây là kế hoạch hiện thực resolver cho sovereign namespace " + ns() + " bằng coredns",
+tools/validate_sira_coredns_zone_implementation_plan.sira:59: "coredns chỉ được phục vụ " + ns() + " từ authoritative zone do hạ tầng natt kiểm soát",
+tools/validate_sira_coredns_zone_implementation_plan.sira:91: "restore Corefile backup",
+tools/validate_sira_coredns_zone_implementation_plan.sira:97: ].forEach(clause => must(content.includes(clause), "missing coredns zone plan clause: " + clause));
+tools/validate_sira_coredns_zone_implementation_plan.sira:110: ].forEach(mark => must(!content.includes(mark), "forbidden coredns plan wording: " + mark));
+tools/validate_sira_coredns_zone_implementation_plan.sira:119: console.error("sira coredns zone implementation plan validation: fail");
+tools/validate_sira_coredns_zone_implementation_plan.sira:124: console.log("sira coredns zone implementation plan validation: pass");
+tools/validate_sira_coredns_zone_implementation_plan.sira:125: console.log("file=docs/runtime/sira_coredns_zone_implementation_plan_20260425.na");
+tools/validate_sira_dns_strict_allowlist_rebind.sira:17: return "192.168.1.238";
+tools/validate_sira_dns_strict_allowlist_rebind.sira:33: "active coredns daemon reads /usr/local/etc/coredns/Corefile",
+tools/validate_sira_dns_strict_allowlist_rebind.sira:45: "@192.168.1.238 " + host("anc") + ": allow",
+tools/validate_sira_dns_strict_allowlist_rebind.sira:47: "@192.168.1.238 " + host("apps") + ": allow",
+tools/validate_sira_dns_strict_allowlist_rebind.sira:49: "@192.168.1.238 " + host("unknown") + ": deny",
+tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira:21: "wired_edge: 192.168.1.199",
+tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira:22: "wifi_edge: 192.168.1.238",
+tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira:25: "active coredns corefile",
+tools/validate_sira_wired_edge_firewall_audit.sira:21: "wired_edge_ip: 192.168.1.199",
+tools/validate_sira_wired_edge_firewall_audit.sira:23: "dns_engine: coredns",
+tools/validate_sira_wired_edge_firewall_audit.sira:31: "router reservation must keep 192.168.1.199 mapped to en0 mac"
+tools/validate_sira_macos_resolver_binding.sira:22: "domain sira đi qua local coredns",
+tools/validate_sira_macos_resolver_binding.sira:26: "192.168.1.199"
+tools/validate_sira_khai_ip_manifest.sira:45: must(k.dns_engine === "coredns", "dns engine must be coredns");
+tools/validate_sira_khai_ip_manifest.sira:49: must(wifi.resolver_ip === "192.168.1.238", "wifi edge must keep observed wifi ip");
+tools/validate_sira_router_dhcp_reservation.sira:21: "wired_edge_ip: 192.168.1.199",
+tools/validate_sira_router_dhcp_reservation.sira:26: "reserved_ip = 192.168.1.199",
+```
+
+---
+
+## 8. isa scan
+
+- isa_runtime_candidates: 2
+- isa_specs: 2
+- isa_validators: 10
+- isa_conformance: 0
+
+### runtime candidates
+```text
+src/runtime/manifest/generic-manifest.loader.ts
+src/runtime/route-gate/generic-route-gate.compiler.ts
+```
+
+### spec candidates
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/specs/SPEC_Nauion_Render_Stack_v0.1.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/specs/boi_surface_delta_scripts_kernel_v1.0.na
+```
+
+### validator candidates
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_generic_manifest_loader.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_generic_route_gate_compiler.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_record_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_zone_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_gateway_route_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_khai_ip_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_route_gate.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_router_dhcp_reservation.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_tam_luxury_domain_route_gate_matrix.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_tam_luxury_screen_manifest_intake.sira
+```
+
+---
+
+## 9. qos scan
+
+- qos_docs: 18
+- qos_dirs: 0
+- qos_validators: 15
+- qos_keyword_hits: 120
+
+### qos docs
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_coredns_zone_implementation_plan_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_coredns_zone_implementation_plan_evidence_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_host_spoof_scan_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_monitoring_loop_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_record_manifest_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_smoke_matrix_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_smoke_runner_tool_note_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_strict_allowlist_rebind_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_dns_zone_manifest_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_public_dns_rollout_readiness_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_public_dns_rollout_readiness_evidence_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_router_dhcp_reservation_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_sovereign_dns_infrastructure_binding_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_sovereign_dns_infrastructure_binding_evidence_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+```
+
+### qos dirs
+```text
+none
+```
+
+### qos validators
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/run_sira_dns_smoke_matrix.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_coredns_zone_implementation_plan.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_host_spoof_scan.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_monitoring_loop.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_record_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_smoke_matrix.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_smoke_runner.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_strict_allowlist_rebind.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_zone_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_public_dns_rollout_readiness.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_router_dhcp_reservation.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_sovereign_dns_infrastructure_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_wired_edge_dns_rebind.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_wired_edge_firewall_audit.sira
+```
+
+### qos sample
+```text
+src/SuperDictionary.ts:178: "IMPEDANCE_Z":        "Impedance Z — trạng thái nén của hệ, derived từ event_rate + error_ratio + latency + anomaly",
+src/SuperDictionary.ts:192: "LATENCY":          "Độ trễ — signal latency",
+src/SuperDictionary.ts:211: SURVIVAL: 'SURVIVAL — Tầng 0 sống còn gồm rate limit + queue + backpressure + load shedding để hệ không sập trước khi field semantic kịp xử.',
+src/SuperDictionary.ts:230: max_retry: 3,
+src/types.ts:235: PRIORITY_BASED = 'priority_based',
+src/types.ts:307: priority?: 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT' | 'CRITICAL';
+src/types.ts:324: priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+src/types.ts:596: priority: 'URGENT' | 'HIGH' | 'NORMAL' | 'LOW';
+src/types.ts:755: priority?: 'URGENT' | 'NORMAL';
+src/types.ts:780: priority: 'CAO' | 'TRUNG BÌNH' | 'THẤP';
+src/types.ts:892: priority: string;
+src/types.ts:1377: priorityModule?: string;
+src/types.ts:1398: priority: string;
+src/types.ts:1449: priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+src/types.ts:1467: priority: number;
+src/types.ts:1481: priority: number;
+src/types.ts:1507: retryCount?: number;
+src/thienbang.si:149: "DEAD_LETTER":            "Dead Letter — Các message/xung không thể xử lý sau max_retry, được đưa vào hàng đợi riêng để audit.",
+src/thienbang.si:192: "BACKPRESSURE":           "Backpressure — Kháng lực từ Cell khi bị quá tải, ép Xung dội ngược lại Queue chờ.",
+src/thienbang.si:198: "CELL_MEMBRANE":          "Màng tế bào — Rào chắn bảo mật API (CORS, Auth, Rate Limit) của mỗi Cell.",
+src/thienbang.si:262: "FLOW_STATE":             "Trạng thái dòng chảy — Khi hệ thống đạt mức Impedance Z = 1.0, mọi xung mượt mà, latency ~ 0.",
+src/thienbang.si:269: "HARMONIC_SYNC":          "Harmonic Sync (Đồng bộ hài hòa) — Khi nhiều tế bào dao động cùng pha, triệt tiêu Latency.",
+src/thienbang.si:273: "IMPEDANCE_Z":            "Impedance Z — Trạng thái nén của hệ, derived từ event_rate + error_ratio + latency + anomaly.",
+src/thienbang.si:309: "BANDWIDTH":              "Băng thông thần kinh — Lượng Impulse tối đa có thể chạy qua Synapse trong 1 tick.",
+src/thienbang.si:331: "LATENCY":                "Độ trễ — Thời gian một tín hiệu mất để di chuyển từ đầu đến cuối đường truyền (Signal latency).",
+src/thienbang.si:351: "SYNAPTIC_CLEFT":         "Khe Synapse (Synaptic Cleft) — Khoảng trống giữa 2 Microservices, tương đương với Network Latency.",
+src/thienbang.si:361: "API_GATEWAY":            "API Gateway — Cổng giao tiếp duy nhất đón toàn bộ request từ mạng ngoài, chịu trách nhiệm Route, SSL, Auth, Rate Limit.",
+src/thienbang.si:368: "BRUTE_FORCE":            "Brute Force — Tấn công dò tìm mật khẩu/OTP, natt-os chống bằng Rate Limit & Quarantine IP.",
+src/thienbang.si:375: "CIRCUIT_BREAKER":        "Circuit Breaker (Cầu dao tự động) — Pattern ngắt kết nối đến dịch vụ bên thứ 3 nếu nó bị sập, tránh sập dây chuyền.",
+src/thienbang.si:433: "RATE_LIMITER":           "Rate Limiter — Trạm gác thuật toán bóp cổ băng thông nếu 1 User/IP gửi request quá nhanh (VD: 5req/giây).",
+src/thienbang.si:437: "REDIS_CACHE":            "Redis Cache — Cơ sở dữ liệu In-Memory lưu key-value tốc độ ánh sáng, lý tưởng cho giá vàng và Rate Limit.",
+src/thienbang.si:475: "RENDER_DEGRADED":        "Chế độ Thoái hóa Đồ họa — Tự động tắt hạt, giảm FPS để cứu hệ thống không bị lag khi Trở kháng Z vọt lên > 1.3.",
+src/thienbang.si:1066: max_retry: 3,
+src/thienbang.si:1092: SALES: { dataType: 'SALES_ORDER', threshold: 0.2, defaultMethod: 'priority_based', fallbackMethod: 'timestamp_based' },
+src/thienbang.si:1093: INVENTORY: { dataType: 'STOCK_LEVEL', threshold: 0.1, defaultMethod: 'priority_based', fallbackMethod: 'manual_review' },
+src/thienbang.si:1094: FINANCE: { dataType: 'ACCOUNTING_ENTRY', threshold: 0.05, defaultMethod: 'manual_review', fallbackMethod: 'priority_based' }
+src/thienbang.si:1240: max_retry: 3,
+src/thienbang.si:1492: "DEAD_LETTER":            "Dead Letter — Các message/xung không thể xử lý sau max_retry, được đưa vào hàng đợi riêng để audit.",
+src/thienbang.si:1535: "BACKPRESSURE":           "Backpressure — Kháng lực từ Cell khi bị quá tải, ép Xung dội ngược lại Queue chờ.",
+src/thienbang.si:1541: "CELL_MEMBRANE":          "Màng tế bào — Rào chắn bảo mật API (CORS, Auth, Rate Limit) của mỗi Cell.",
+src/thienbang.si:1605: "FLOW_STATE":             "Trạng thái dòng chảy — Khi hệ thống đạt mức Impedance Z = 1.0, mọi xung mượt mà, latency ~ 0.",
+src/thienbang.si:1612: "HARMONIC_SYNC":          "Harmonic Sync (Đồng bộ hài hòa) — Khi nhiều tế bào dao động cùng pha, triệt tiêu Latency.",
+src/thienbang.si:1616: "IMPEDANCE_Z":            "Impedance Z — Trạng thái nén của hệ, derived từ event_rate + error_ratio + latency + anomaly.",
+src/thienbang.si:1652: "BANDWIDTH":              "Băng thông thần kinh — Lượng Impulse tối đa có thể chạy qua Synapse trong 1 tick.",
+src/thienbang.si:1674: "LATENCY":                "Độ trễ — Thời gian một tín hiệu mất để di chuyển từ đầu đến cuối đường truyền (Signal latency).",
+src/thienbang.si:1694: "SYNAPTIC_CLEFT":         "Khe Synapse (Synaptic Cleft) — Khoảng trống giữa 2 Microservices, tương đương với Network Latency.",
+src/thienbang.si:1704: "API_GATEWAY":            "API Gateway — Cổng giao tiếp duy nhất đón toàn bộ request từ mạng ngoài, chịu trách nhiệm Route, SSL, Auth, Rate Limit.",
+src/thienbang.si:1711: "BRUTE_FORCE":            "Brute Force — Tấn công dò tìm mật khẩu/OTP, natt-os chống bằng Rate Limit & Quarantine IP.",
+src/thienbang.si:1718: "CIRCUIT_BREAKER":        "Circuit Breaker (Cầu dao tự động) — Pattern ngắt kết nối đến dịch vụ bên thứ 3 nếu nó bị sập, tránh sập dây chuyền.",
+src/thienbang.si:1776: "RATE_LIMITER":           "Rate Limiter — Trạm gác thuật toán bóp cổ băng thông nếu 1 User/IP gửi request quá nhanh (VD: 5req/giây).",
+src/thienbang.si:1780: "REDIS_CACHE":            "Redis Cache — Cơ sở dữ liệu In-Memory lưu key-value tốc độ ánh sáng, lý tưởng cho giá vàng và Rate Limit.",
+src/thienbang.si:1818: "RENDER_DEGRADED":        "Chế độ Thoái hóa Đồ họa — Tự động tắt hạt, giảm FPS để cứu hệ thống không bị lag khi Trở kháng Z vọt lên > 1.3.",
+src/thienbang.si:2409: max_retry: 3,
+src/thienbang.si:2435: SALES: { dataType: 'SALES_ORDER', threshold: 0.2, defaultMethod: 'priority_based', fallbackMethod: 'timestamp_based' },
+src/thienbang.si:2436: INVENTORY: { dataType: 'STOCK_LEVEL', threshold: 0.1, defaultMethod: 'priority_based', fallbackMethod: 'manual_review' },
+src/thienbang.si:2437: FINANCE: { dataType: 'ACCOUNTING_ENTRY', threshold: 0.05, defaultMethod: 'manual_review', fallbackMethod: 'priority_based' }
+src/thienbang.si:2583: max_retry: 3,
+src/types/accounting.types.ts:13: retryCount?: number;
+src/types/accounting.types.ts:43: priority: number;
+src/types/accounting.types.ts:110: status: 'IDLE' | 'SYNCING' | 'SUCCESS' | 'error' | 'RETRYING';
+src/types/accounting.types.ts:137: priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+src/core/SmartLinkEngine.ts:81: priority: 1,
+src/satellites/health-beacon.ts:8: status: "HEALTHY" | "DEGRADED" | "CRITICAL";
+src/satellites/health-beacon.ts:18: const failCount = Object.values(checks).filter(v => !v).length;
+src/satellites/health-beacon.ts:19: const status = failCount === 0 ? "HEALTHY" : failCount <= 1 ? "DEGRADED" : "CRITICAL";
+src/satellites/lifecycle.ts:1: type CellState = "DORMANT" | "INITIALIZING" | "ACTIVE" | "DEGRADED" | "ELIMINATED";
+src/satellites/lifecycle.ts:17: ACTIVE: ["DEGRADED", "ELIMINATED"],
+src/satellites/lifecycle.ts:18: DEGRADED: ["ACTIVE", "ELIMINATED"],
+src/components/app.tsx:90: if (noti.priority === 'HIGH') setShowNotiHub(true);
+src/components/SystemMonitor.tsx:18: latency: number;
+src/components/SystemMonitor.tsx:42: latency: Math.floor(Math.random() * 50) + 10,
+src/components/SystemMonitor.tsx:113: errorMsg = 'LATENCY_SPIKE: Độ trễ vượt ngưỡng 500ms';
+src/components/SystemMonitor.tsx:132: priority: 'HIGH'
+src/components/SystemMonitor.tsx:238: <p className="text-[7px] font-mono text-gray-600">{m.latency}ms</p>
+src/components/SystemMonitor.tsx:253: { name: 'Node Phân Phối HCM', status: 'ACTIVE', latency: '45ms' },
+src/components/SystemMonitor.tsx:254: { name: 'Node In sáp 4K', status: 'ACTIVE', latency: '12ms' },
+src/components/SystemMonitor.tsx:255: { name: 'Cổng Thuế Direct API', status: 'STABLE', latency: '110ms' },
+src/components/SystemMonitor.tsx:256: { name: 'Shard Kế Toán 2024', status: crashedCount > 0 ? 'CORRUPTED' : 'NOMINAL', latency: '0ms' }
+src/components/NotificationHub.tsx:16: priority: 'HIGH' | 'MEDIUM' | 'LOW';
+src/components/NotificationHub.tsx:29: // Sorting: RISK > HIGH Priority > Unread > Timestamp
+```
+
+---
+
+## 10. cell event boundary scan
+
+- cell_files: 1037
+- cell_docs: 31
+- cell_validators: 22
+- event_hits: 120
+- direct_cell_import_hits: 2
+
+### cell validators
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/scan_smartlink_runtime_batch2i.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_architecture_archive_dirty_state_audit.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_cell_build_scope_audit_e1d8648.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_generic_manifest_loader.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_generic_route_gate_compiler.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_living_cell_evolution_protocol.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_nattos_independent_platform_evidence_audit.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_render_heyna_surface.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_record_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_dns_zone_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_gateway_route_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_khai_ip_manifest.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_macos_resolver_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_route_gate.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_router_dhcp_reservation.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_sovereign_dns_infrastructure_binding.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_sira_wired_edge_firewall_audit.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_smartaudit_session_report_20260425.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_tam_luxury_cell_binding_validation.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_tam_luxury_domain_route_gate_matrix.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_tam_luxury_existing_surface_cell_mapping.sira
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/tools/validate_tam_luxury_screen_manifest_intake.sira
+```
+
+### direct cell import sample
+```text
+src/cells/kernel/khai-cell/ports/khai-cell.contract.ts:11: import type { KhaiCellSignature } from "../domain/entities/KhaiCellSignature";
+src/cells/kernel/khai-cell/domain/services/khai-cell.service.ts:28: } from "../entities/KhaiCellSignature";
+```
+
+---
+
+## 11. portability scan
+
+- portability_docs: 10
+- portability_assets: 2
+- portability_validators: 6
+
+### portability docs
+```text
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_20260424.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_EVIDENCE_20260424.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_macos_resolver_binding_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wifi_edge_reachability_probe_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wired_edge_manifest_evidence_20260426.na
+/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+```
+
+### portability assets
+```text
+Dockerfile
+docs/runtime/sira_khai_ip_manifest_20260425.na
+```
+
+---
+
+## 12. git status
+
+```text
+D docs/architecture/CELL_MANIFEST_SCHEMA.json
+ D docs/architecture/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
+ D docs/architecture/NATT-OS-PLATFORM-SPEC.md
+ D docs/architecture/NATT-OS_Blueprint_ChuanHP.docx
+ D docs/architecture/NATT-OS_CayHT_MoveGuide.docx
+ D docs/architecture/NATT-OS_CayHeThong_Chuan.docx
+ D docs/architecture/NATT-OS_SATELLITE_COLONY_SPEC.md
+ D docs/architecture/NATT_OS_Complete_Architecture_Roadmap.docx
+ D docs/architecture/NaUion.md
+ D "docs/architecture/Natt Os STS.rtf"
+ D docs/architecture/SPEC-Finance-Flow_v1.0.md
+ D docs/architecture/TaxCell_Specification_v1.docx
+ D docs/architecture/natt-os-file-map.txt
+ D docs/architecture/natt-v8.md
+ D docs/architecture/natt-v9.md
+ D docs/architecture/session-summary-20260329.md
+ D docs/architecture/specnauiontmp.md
+?? audit/reports/2026-04-26_13-52-35_auto.md
+?? audit/reports/2026-04-26_13-54-41_auto.md
+?? audit/reports/2026-04-26_14-18-34_auto.md
+?? audit/reports/2026-04-26_14-35-01_auto.md
+?? audit/reports/2026-04-26_14-45-41_auto.md
+?? audit/reports/2026-04-26_14-56-07_auto.md
+?? audit/reports/2026-04-26_16-30-00_auto.md
+?? docs/archive/
+?? docs/runtime/refactor-briefs/
+?? src/governance/memory/bang/bang_an_than_tu_11_4.json
+?? src/governance/memory/bang/cookbook_6_remaining_vs_nattos_20260427.json
+```
+
+---
+
+## 13. recent commits
+
+```text
+10008ee chore(runtime): audit independent platform evidence coverage
+49de8f9 docs(internal): add NATT-OS group 8 governance skeletons
+6e268a8 chore(runtime): record sira dns monitoring loop evidence
+96e1195 chore(runtime): audit sira wired edge firewall for dns
+c95190e chore(runtime): record sira router dhcp reservation evidence
+3d912e7 feat(cells): build trace + confidence cho 12 cell partial + boot family delta
+ee18f85 chore(runtime): record sira dns infrastructure bandwidth baseline
+5ee7225 fix(audit): nattos.sh v7.1 patched - kernel 12 cells, smartlink case-insensitive, confidence real check
+8b4541d chore(runtime): audit architecture archive dirty state
+edc15e7 chore(runtime): seal sira wired edge khai ip evidence
+```
+
+---
+
+## 14. gaps
+
+- hal: cần adapter boundary rõ hơn nếu muốn claim full hal.
+- isa: cần grammar / instruction set / conformance runner rõ hơn nếu muốn claim full isa.
+- qos: cần policy engine cho degrade / priority / retry / backpressure nếu muốn claim full qos.
+- portability: cần chứng minh qua môi trường thứ hai hoặc runner tương đương.
+
+---
+
+## 15. claim boundary
+
+claim_allowed:
+- nattos is no longer merely an application.
+- nattos is a living audit-first runtime platform in early formation.
+- nattos has live namespace, live edge, live validators, live runtime gate and evidence-bearing infrastructure.
+
+claim_blocked:
+- do not claim full hal complete.
+- do not claim full isa complete.
+- do not claim full qos complete.
+- do not claim complete operating system.

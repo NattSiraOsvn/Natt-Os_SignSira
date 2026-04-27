@@ -1,0 +1,38 @@
+# PILOT KHIÊM — render language pilot
+# @state: khiêm
+# @status: draft → chờ validator
+
+obitan_state khiêm {
+  domain: Π_medium
+  polarity: cool-rim
+  obitan_layer: n=3
+
+  surface_signal: RESIZE {
+    element_id: "humble-element"
+    from_scale: 1.0
+    to_scale: 0.6
+    origin_state: khiêm
+    pressure: 0.1
+  }
+
+  surface_signal: RECOLOR {
+    element_id: "humble-element"
+    from_color: rgba(180,140,255,0.8)
+    to_color: rgba(180,140,255,0.3)
+    origin_state: khiêm
+    pressure: 0.1
+  }
+
+  invariant_field {
+    pressure_response: DISSIPATE
+    resonance_partners: [nhường]
+    decay_rate: γ(3)
+    reflection_R: 0.1
+  }
+
+  expression {
+    wavelength_base: 400
+    intensity: low_constant(0.4)
+    duration: until recalled
+  }
+}

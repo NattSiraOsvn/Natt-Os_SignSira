@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+// @nauion-scanner v1
+// @state runtime-policy excluded-from-production
+// @name sovereign @nauion flow simulator v0.1
+// @scope sovereign-audit-flow-trace
+// @runtime_scope excluded
+// @owner natt sirawat / phan thanh thương
+// @anc băng sirawat
+// @tool scan_flow_simulator
+// @session ss20260427
+// @created_at natthome
+
+// scan_flow_simulator.sira — V4 Flow Simulator
+// Refactor from nattos.sh §29 Python PY29 → Nauion JS native ss20260427
+// Per SCANNER_NAUION_PATTERN canonical (thienbang.si)
+
+const fs = require("fs");
+
+const GREEN = "\x1b[0;32m";
+const YELLOW = "\x1b[0;33m";
+const RESET = "\x1b[0m";
+
+const gf = ".nattos-twin/event-graph.json";
+
+if (!fs.existsSync(gf)) {
+  console.log("  ℹ  Run S26 first");
+  process.exit(0);
+}
+
+const graph = JSON.parse(fs.readFileSync(gf, "utf8"));
+const healthy = new Set(graph.healthy || []);
+const orphan = new Set(graph.orphan || []);
+
+const candidates = ["cell.metric", "audit.record", "constitutional.violation", "threshold.evaluated"];
+let entry_pts = candidates.filter(e => healthy.has(e) || orphan.has(e));
+
+if (entry_pts.length === 0) {
+  entry_pts = Array.from(healthy).slice(0, 3);
+}
+
+console.log(`  ℹ  Tracing ${entry_pts.length} entry points`);
+
+for (const ep of entry_pts.slice(0, 4)) {
+  const status = healthy.has(ep)
+    ? `${GREEN}✅ FLOWS${RESET}`
+    : `${YELLOW}⚠️ ORPHAN${RESET}`;
+  console.log(`  ${status} '${ep}'`);
+}

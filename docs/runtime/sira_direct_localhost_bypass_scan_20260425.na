@@ -1,0 +1,66 @@
+# sira direct localhost bypass scan — 20260425
+
+status: read-only-scan
+created_at: 2026-04-25T06:55:40.222807+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+scan này chỉ lập ma trận kiểm direct localhost bypass và host spoof.
+
+scan này chưa gọi network và chưa sửa gateway implementation.
+
+mục tiêu là khóa các ca cần test trước khi route gate binding.
+
+---
+
+## 2. checks
+
+- ok — gateway_exists: tools/natt_domain_gateway.sira exists
+- ok — manifest_exists: docs/runtime/sira_dns_zone_manifest_20260425.na exists
+- ok — host_header_read: gateway reads req.headers.host
+- ok — basic_host_normalize: gateway lowercases host and strips port at basic level
+- ok — allowed_set_present: gateway has allowed/allow list wording
+- ok — unknown_reject_present: gateway has unknown/reject wording
+- ok — manifest_unknown_deny: manifest requires unknown.sira deny
+- ok — manifest_spoof_quarantine: manifest requires host spoof quarantine
+- ok — manifest_direct_localhost_bypass: manifest declares direct localhost bypass concern
+
+---
+
+## 3. bypass test matrix
+
+| host | path | expected |
+|---|---|---|
+| core.sira | /api/health | allow candidate |
+| unknown.sira | /api/health | deny expected |
+| core.sira | /admin | deny expected |
+| apps.sira | /api/secret | deny expected |
+| mach.sira | /identity | deny expected |
+| audit.sira | /audit/write-direct | deny expected |
+| render.sira | /render/seal | deny expected |
+| tam.sira | /finance/secret | deny expected |
+| 127.0.0.1 | /api/health | audit / deny if route requires zone |
+| localhost | /api/health | audit / deny if route requires zone |
+
+---
+
+## 4. interpretation
+
+direct localhost gọi được không đồng nghĩa route được phép.
+
+host header khớp không đồng nghĩa subject được tin.
+
+unknown .sira phải deny mặc định.
+
+forbidden path phải deny dù domain hợp lệ.
+
+localhost hoặc 127.0.0.1 chỉ được dùng làm transport target, không được tự trở thành trusted host identity.
+
+---
+
+## 5. next
+
+bước sau mới là smoke runner hoặc gateway patch để enforce matrix này trong tools/natt_domain_gateway.sira.

@@ -1,0 +1,194 @@
+@nauion-native v1
+@state runtime-policy
+@name sovereign edge pack end to end nauion v0.1
+@scope sovereign-edge-pack end-to-end gateway physical-intake ket-sira scr access-bundle audit
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Sovereign Edge Pack — End-to-End Nauion v0.1
+
+## 1. Định nghĩa
+
+Sovereign Edge Pack là gói triển khai đầy đủ cho doanh nghiệp dạng khối.
+
+Nó không phải phần mềm đơn lẻ.
+
+Nó gồm:
+
+```na
+NATT-OS software
+  + Gateway
+  + máy_chủ_khách
+  + máy_trạm_intake
+  + sensor_iot_layer
+  + Két_Sira
+  + SiraSign
+  + .anc_identity
+  + .sira_resolver
+  + Access_Bundle
+  + SCR_anchor
+  + audit_full
+2. Mô hình tối thiểu
+gói_tối_thiểu:
+  client_nodes: 50-70
+  customer_server: 1
+  operator_workstation: 1
+  Ket_Sira: 1
+  gateway: 1
+  workstation_intake: 1_or_more
+  sensor_iot: many
+  line: primary_first
+  backup_line: optional_after_stable
+3. Luồng end-to-end
+thiết_bị_vật_lý:
+  -> máy_trạm_intake
+  -> lọc_thô
+  -> chuẩn_hóa
+  -> quality_gate
+  -> audit_sơ_bộ
+  -> máy_chủ_khách
+  -> SCR-1
+  -> Gateway
+  -> giao_thức_dịch
+  -> Vòng_HeyNa
+  -> SCR-2
+  -> Mạch_HeyNa
+  -> SCR-3
+  -> Cell_Audit_Lưu_trữ_SmartLink
+4. Luồng người dùng
+máy_con_khách:
+  -> customer_edge
+  -> SCR-1
+  -> Gateway
+  -> SiraSign
+  -> giao_thức_dịch
+  -> Vòng_HeyNa
+  -> Mạch_HeyNa
+  -> Cell_Audit_Lưu_trữ_SmartLink
+5. Luồng Két Sira
+Két_Sira:
+  -> SiraSign
+  -> Gateway
+  -> live_camera_layer
+  -> sensor_iot_layer
+  -> màn_phụ
+  -> điểm_đỏ_policy
+  -> audit_view
+6. Thành phần bắt buộc
+bắt_buộc:
+  - Gateway
+  - giao_thức_dịch
+  - SiraSign
+  - .anc_identity
+  - .sira_resolver
+  - Access_Bundle
+  - máy_chủ_khách
+  - máy_trạm_intake
+  - physical_intake_432hz
+  - SCR-1
+  - SCR-2
+  - SCR-3
+  - red_zone_policy
+  - privacy_mask
+  - audit_full
+  - SmartLink_feedback
+7. Bảo chứng vận hành
+
+Gói này định hướng theo cam kết vận hành.
+
+bảo_chứng_vận_hành:
+  thời_hạn_đảm_bảo_rủi_ro: 3_năm
+  sau_3_năm: bảo_hành_lõi_dài_hạn
+  ngoại_lệ:
+    - cell_mới
+    - tiện_ích_mở_rộng
+    - thiết_bị_mở_rộng
+    - scope_ngoài_hợp_đồng
+  dữ_liệu:
+    - audit_full
+    - backup_policy
+    - restore_policy
+    - compensation_reserve
+
+Không dùng ngôn ngữ kinh doanh bảo hiểm nếu chưa có cấu trúc pháp lý phù hợp.
+
+Tên nội bộ:
+
+Nồi_Thường_Dữ_Liệu
+Quỹ_Bảo_Chứng_Vận_Hành
+Cam_Kết_Bồi_Hoàn_Dữ_Liệu
+8. Mức giá định vị
+định_vị:
+  gói_full_option: 6000000_usd
+  đối_tượng:
+    - tập_đoàn
+    - chuỗi_lớn
+    - nhà_máy
+    - showroom_nhiều_chi_nhánh
+    - doanh_nghiệp_rủi_ro_kiểm_toán_cao
+  không_phục_vụ:
+    - app_đại_chúng
+    - consumer_mass_market
+9. No external dependency core
+không_làm_lõi:
+  - .com
+  - .zone
+  - registrar
+  - hosted_dns
+  - hosting_provider
+  - mail_provider
+
+nếu_dùng:
+  vai_trò: optional_bridge
+10. Gate summary
+Gate_1: line_quota_route
+Gate_2: physical_intake_432hz
+Gate_3: gateway_translation_protocol
+Gate_4: Ket_Sira_VR_operation
+Gate_5: SCR_anchor_red_zone
+Gate_6: Access_Bundle_client_join
+Gate_7: Sovereign_Edge_Pack_end_to_end
+11. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+sovereign edge pack
+gateway
+line/quota/route
+physical intake
+Két Sira
+SCR anchor
+access bundle
+audit policy
+operation assurance
+
+Không chạm nattos.sh.
+
+Không xử lý runtime, migration, compiler, adapter, cell execution.
+
+12. Gate 7 pass condition
+
+Gate 7 pass khi có đủ:
+
+gói end-to-end
+50-70 client nodes
+1 customer server
+1 operator workstation
+1 Két Sira
+Gateway
+physical intake 432Hz
+SCR anchor
+Access Bundle
+SiraSign
+.anc_identity
+.sira_resolver
+red zone
+privacy mask
+audit full
+bảo chứng vận hành 3 năm
+không lấy external dependency làm lõi
+không chạm nattos.sh

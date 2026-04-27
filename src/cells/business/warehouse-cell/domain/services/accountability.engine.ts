@@ -23,7 +23,7 @@
 import { AccountabilityChain, CongDoan, WAREHOUSE_EVENTS } from '../types/warehouse.types';
 
 export interface AccountabilityViolation {
-  type:     'SELF_ASSIGN' | 'SELF_INSPECT' | 'MISSING_ROLE' | 'DUPLICATE_IDENTITY';
+  type:     'SELF_ASSIGN' | 'SELF_INSPECT' | 'missing_ROLE' | 'DUPLICATE_IDENTITY';
   message:  string;
   roles:    Partial<AccountabilityChain>;
   maDon:    string;
@@ -59,7 +59,7 @@ export class AccountabilityEngine {
       const value = chain[role];
       if (!value || (typeof value === 'string' && value.trim() === '')) {
         violations.push({
-          type: 'MISSING_ROLE',
+          type: 'missing_ROLE',
           message: `${role} không được để trống tại ${chain.congDoan}`,
           roles: chain,
           maDon,

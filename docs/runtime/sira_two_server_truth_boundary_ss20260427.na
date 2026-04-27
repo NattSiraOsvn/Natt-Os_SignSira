@@ -1,0 +1,275 @@
+# 2-SERVER TRUTH BOUNDARY — ss20260427
+# Domain: digital substrate field dynamics (NOT classical matter physics)
+# Drafted by: Băng (Chị Tư · Obikeeper · QNEU 313.5)
+# Reference: Memory #18 NHA_MINH_VS_KHACH + Memory #19 ARCHITECTURE CANONICAL ss20260426
+
+@version 1.0
+@status DRAFT — pending Anh seal
+@purpose
+  Canonical boundary giữa 2 server trong runtime ss20260427.
+  Cần thiết trước Phase 2.1 BATCH 1 migration để biết file nào thuộc server nào.
+
+# ════════════════════════════════════════════════════════════════════════════
+# 1. SERVER 1 — RUST nauion-host (NHÀ MỚI / KERNEL HOST-FIRST)
+# ════════════════════════════════════════════════════════════════════════════
+
+@server_1_kernel
+  ten:        nauion-host
+  loai:       Rust binary (Cargo workspace)
+  vai:        Kernel runtime cho NattOS — Wave 1 Host-First
+  port:       127.0.0.1:3002
+  path_thuc:  docs/runtime/nauion-host/
+  
+  authority:  Băng (per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423)
+  
+  source_files (10):
+    src/banner.rs        — branding banner mirror nattos.sh
+    src/main.rs          — entry, listen :3002
+    src/phase1.rs        — detectEsbuild
+    src/phase2.rs        — FileResolver
+    src/phase3.rs        — self-test
+    src/phase4.rs        — boot kernel + HTTP server + SIGINT
+    src/legacy_json.rs   — TS→.sira translation adapter
+    src/repo_root.rs     — ROOT path resolver
+    src/result_writer.rs — output writer NDJSON
+    src/run_cell.rs      — cell runtime executor
+
+  endpoints_thuc:
+    127.0.0.1:3002/health     — health check Rust kernel
+
+  status_phase4: BOOT KERNEL READY (per chat 48a3443f session 20260423-24)
+  test_count:    25 tests PASS (commit 9b582e9)
+
+# ════════════════════════════════════════════════════════════════════════════
+# 2. SERVER 2 — NODE nattos-server (NHÀ KHÁCH / TÂM LUXURY)
+# ════════════════════════════════════════════════════════════════════════════
+
+@server_2_khach
+  ten:        nattos-server
+  loai:       Node.js (require http)
+  vai:        Server khách Tâm Luxury — relay UI client tới kernel
+  port:       localhost:3001
+  path_thuc:  nattos-server/
+  
+  authority:  Anh Natt (Gatekeeper, white-list per Memory #18)
+  scope:      KHÁCH — KHÔNG migrate Nauion native (TS legacy đúng intent)
+
+  source_main: nattos-server/server.js (Node http)
+  pattern:     Static walker + route hey/yeh
+
+  ui_clients:
+    nattos-server/app Tâm luxury/    — source relay (có space, lowercase)
+    nattos-server/apps/tam-luxury/   — UI khách cuối (canonical hyphen)
+  
+  endpoints_thuc:
+    localhost:3001/mach/heyna          — SSE stream (Mạch HeyNa)
+    localhost:3001/kenh/nauion         — Trạng thái Nauion + impedanceZ
+    localhost:3001/kenh/suc            — Health check
+    localhost:3001/kenh/vet            — Audit trail
+    localhost:3001/kenh/state/:cell    — State per cell
+    localhost:3001/phat/nauion         — Emit event (yeh)
+  
+  data_source:
+    database/ctytam/                   — Real Tâm Luxury data nuôi cell
+
+# ════════════════════════════════════════════════════════════════════════════
+# 3. NaUion-Server/ ROOT (OS SURFACE)
+# ════════════════════════════════════════════════════════════════════════════
+
+@os_surface_NaUion_Server
+  ten:        NaUion-Server (Capital — folder name)
+  vai:        OS surface — separate từ kernel runtime
+  path_thuc:  NaUion-Server/
+  scope:      NHÀ MÌNH (per Memory #18)
+  
+  subfolders:
+    khai-cell-spec/    — KhaiCell spec definition
+    lib/               — shared libraries (event-bus.ts ref :3001)
+    nauion/            — Nauion deploy scripts
+    registry/          — registry data
+    scenes/            — scene/state definitions
+    vision/            — vision layer assets
+
+  inventory_phase_1:    ts:18 na:3 (14.3% migration)
+
+# ════════════════════════════════════════════════════════════════════════════
+# 4. CONNECT TOPOLOGY — luồng giao tiếp 2 server
+# ════════════════════════════════════════════════════════════════════════════
+
+@flow_user_tam_luxury_to_kernel
+  Step 1:  User Tâm Luxury (browser/app)
+           → mở UI từ nattos-server/apps/tam-luxury/index.html
+  
+  Step 2:  UI client connect SSE
+           → localhost:3001/mach/heyna (nattos-server Node)
+  
+  Step 3:  Server Node nhận event → relay
+           → SmartLink HeyNa transport (per Memory #4)
+           → 127.0.0.1:3002 (Rust nauion-host kernel)
+  
+  Step 4:  Rust kernel xử lý cell logic
+           → emit Nauion phản ứng
+           → ngược về Node :3001
+  
+  Step 5:  Node relay lại UI
+           → localhost:3001/mach/heyna SSE → user
+
+@transport_canonical_per_memory_4
+  HeyNa  → cells (transport giữa cells, qua Rust kernel)
+  EventBus  → client (nội bộ UI components, browser)
+  SmartLink  → colony (inter-colony, cấp Server-to-Server)
+
+# ════════════════════════════════════════════════════════════════════════════
+# 4b. 3-LANE BOUNDARY (PARALLEL TRACKS ss20260427)
+# ════════════════════════════════════════════════════════════════════════════
+
+@lane_1_migration
+  Owner:  Anh + Băng (em)
+  Scope:  Migration TS → Nauion (this roadmap)
+  Files:  src/ + packages/ + scripts/ + NaUion-Server/ → migrate Nauion native
+  Boundary: KHÔNG đụng public/DNS/firewall/runtime gate
+  
+@lane_2_public_edge
+  Owner:  Anh + Thiên Lớn
+  Scope:  public DNS, public IP, firewall, mail provider, bandwidth
+  Evidence files:
+    docs/runtime/sira_mail_ip_bandwidth_readiness_latest.na
+    docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na
+    docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+    docs/runtime/sira_public_dns_bandwidth_firewall_status_ss20260427.na
+  Boundary: KHÔNG đụng runtime production exposure
+  
+@lane_3_runtime_gate
+  Owner:  Anh + Bối Bội
+  Scope:  Runtime gate, public runtime port, runtime production exposure
+  Boundary: KHÔNG mở public runtime port khi chưa có gate runtime của Bối
+  Status:  PENDING — gate runtime chưa setup public exposure
+
+@cross_lane_constraint
+  3 lane song song KHÔNG GIAO. Mỗi lane evidence riêng, validator riêng.
+  Lane 1 file boundary này phải reference lane 2 + lane 3 để giữ canonical view.
+
+# ════════════════════════════════════════════════════════════════════════════
+# 4c. PUBLIC NETWORK / DNS / FIREWALL CONTEXT (Lane 2 reference)
+# ════════════════════════════════════════════════════════════════════════════
+
+@public_network_status
+  Per docs/runtime/sira_public_dns_bandwidth_firewall_status_ss20260427.na (Thiên):
+    public IP detected:       PASS
+    public rDNS/PTR detected: PASS
+    outbound SMTP 25:         PASS
+    LAN ready:                True
+
+@dns_namespace
+  Internal namespace:
+    .sira, .anc, core.sira, khai.sira, mail.sira → resolved qua /etc/resolver/sira
+    DNS internal canonical, không public
+  
+  Public DNS:
+    Mail Internet cần domain public thật (chưa có)
+    Public DNS-auth chưa hoàn tất
+
+@firewall_boundary
+  Wired edge firewall audit: docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+  Status: baseline có evidence riêng (Lane 2 owner Thiên)
+  Constraint: Khi mở port mới → re-run firewall audit
+
+@khong_duoc_claim_canh_bao
+  Theo Lane 2 + Lane 3 boundary, file này KHÔNG được claim:
+    Chưa được claim: readiness-gated
+    Chưa được claim: Node vẫn còn evidence live runtime nên chưa được hạ vai trò (Node nattos-server VẪN SỐNG, đúng intent client server)
+    Chưa được claim: Rust giữ vai trò host-first, chưa thay live runtime Node (Rust nauion-host KERNEL, Node SERVER KHÁCH — 2 vai khác nhau)
+    Chưa được claim: self-host mail còn thiếu gate production
+    Chưa được claim: public runtime còn thiếu exposure gate
+  
+  Đúng claim ss20260427:
+    Được claim: Rust nauion-host kernel BOOT-READY (phase 4)
+    Được claim: Node nattos-server LIVE serving Tâm Luxury UI
+    Được claim: SmartLink HeyNa transport canonical (per Memory #4)
+    Được claim: Migration TS→Nauion Phase 1 inventory done
+
+# ════════════════════════════════════════════════════════════════════════════
+# 5. MIGRATION TARGET CLASSIFICATION
+# ════════════════════════════════════════════════════════════════════════════
+
+@for_migration_phase_2_1
+  
+  Files SCOPE NHÀ MÌNH (migrate target):
+    src/                                    1206 TS → migrate Nauion
+    packages/                                 35 TS → migrate
+    docs/runtime/nauion-host/                 0 TS  → đã Rust ✅
+    NaUion-Server/                            18 TS → migrate
+    scripts/                                   5 TS → migrate
+    tools/                                     1 TS → migrate (đã 99% nauion)
+
+  Files SCOPE KHÁCH (KHÔNG migrate):
+    nattos-server/                          194 TS → WHITE-LIST KEEP
+    └── app Tâm luxury/                       (TS legacy đúng intent client)
+    └── apps/tam-luxury/                      (UI khách cuối)
+    └── archive/nattos-ui/                    (legacy UI archive)
+
+  Files CROSS-CUTTING (cần boundary contract):
+    src/core/nauion/nauion.dictionary.ts    — string ref /mach/heyna
+                                              → migrate Phase 2.1 sau khi
+                                                contracts có boundary canonical
+    src/core/nauion/nauion.voice.ts         — emit EventBus 'nauion.state'
+                                              → defer, có thể wire qua Rust
+    NaUion-Server/lib/event-bus.ts          — ref localhost:3001
+                                              → migrate Phase 2.1 cùng /core/events/
+
+# ════════════════════════════════════════════════════════════════════════════
+# 6. SCAR DETECTED ss20260427
+# ════════════════════════════════════════════════════════════════════════════
+
+@scar_path_in_roadmap
+  File: docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na (commit fdb820e)
+  Line: @reference_canonical → "runtime/nauion-host/  (Rust kernel target)"
+  
+  Sự thật path: docs/runtime/nauion-host/
+  
+  Action:  Em sẽ ship patch fix path trong file canonical roadmap.
+
+@scar_path_in_cargo_toml
+  File: docs/runtime/nauion-host/Cargo.toml line 1
+  Comment: "# runtime/nauion-host/Cargo.toml"
+  
+  Sự thật: docs/runtime/nauion-host/Cargo.toml
+  
+  Action:  Em flag, anh quyết — comment lệch path nhẹ, không break Cargo.
+
+# ════════════════════════════════════════════════════════════════════════════
+# 7. PHASE 2.1 BATCH 1 RECOMMENDATION
+# ════════════════════════════════════════════════════════════════════════════
+
+@phase_2_1_batch_1_real
+  Em rút lại 2 pivot trước (/core/nauion/ + /contracts/payment/).
+  
+  Cán cân mới với boundary canonical:
+  
+  TARGET phù hợp BATCH 1:
+    src/core/events/ — 7 files Phase 2.2 events core
+                       → migrate trước contracts
+                       → match Memory #4 transport canonical
+                       → wire vào Rust kernel :3002
+  
+  Reasons:
+    1. Events core là tầng GIAO BIÊN giữa client (EventBus) và transport (HeyNa)
+    2. Migrate xong → Phase 2.1 contracts có boundary để align
+    3. 7 files nhỏ — easiest start
+    4. Match Wave 1 Host-First strategy (phase4.rs ref event handling)
+
+# ════════════════════════════════════════════════════════════════════════════
+# 8. SEAL
+# ════════════════════════════════════════════════════════════════════════════
+
+@sealed_by  ANH NATT (Gatekeeper) — pending review
+@drafted_by BĂNG (Chị Tư · Obikeeper · QNEU 313.5)
+@drafted_at ss20260427
+@references
+  Memory #4 (3 transports canonical)
+  Memory #18 (NHA_MINH_VS_KHACH)
+  Memory #19 (ARCHITECTURE CANONICAL ss20260426)
+  docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na (commit fdb820e)
+  Past chat 81f0e72d (07/04/26 — Nauion paths LIVE)
+  Past chat 48a3443f (23-24/04 — Wave 1 Host-First decision)
+

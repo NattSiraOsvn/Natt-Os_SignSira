@@ -1,0 +1,252 @@
+@state sealed
+@canonical k3_fail_troy_audit_compile_v1
+@substrate audit_compilation
+@bridge none
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+
+# K3 fail-TROY AUDIT COMPILE v1.0
+
+**Scope:** Tong hop bypass patterns toan he natt-os theo P3.3 (pending tu handoff 20260417)
+
+**Audit method:** Read-only scan via regex. KHONG modify code (per memory: "Kim scope, em audit only").
+
+**Status:** AUDIT_DONE_PARTIAL_FOLLOWUP_REQUIRED
+
+**Cross-reference:**
+- session 20260417 commit 7f4d297 (Audit Bypass fix: fake hash to SHA-256)
+- session 20260417 commit 045d8c5 (RBAC Bypass fix: HMAC-SHA256 tokens 5 levels)
+- session 20260414 deep scan (snapshot/immutable-memory/policy-signature placeholder confirm)
+- bang_pending_20260424.phieu K3 entry (Kim scope)
+- 0-BOOT-FAMILY-MAP.na L74 K3 entry
+
+---
+
+## §1. EXECUTIVE SUMMARY
+
+| Pattern | Memory note | Ground truth scan | Verdict |
+|---|---|---|---|
+| AUDIT BYpass (3 hash conflict) | "Math.imul-fake + SHA-256 + btoa" | 13 mention; 5 in CORE; 3/5 confirmed placeholder | PARTIAL_CLOSED |
+| RBAC ALWAYS_TRUE (4 patterns) | "4 always-true" | 0 found; RBAC real impl present | FULLY_CLOSED |
+| ESCAPE HATCH (NO_AUTH, SKIP) | (not in note) | 0 found | CLEAN |
+| @ts-nocheck pragma | (not in note) | ~115 files | TECHNICAL_DEBT_NOT_SECURITY |
+| TODO security | (not in note) | 1 file (auth.service.ts) | KNOWN_DEBT |
+
+**Overall:** 1 of 2 documented bypass patterns FULLY closed. 1 partially closed with 2 files needing follow-up confirm.
+
+---
+
+## §2. AUDIT BYpass — 3 HASH CONFLICT (PARTIAL_CLOSED)
+
+### §2.1 Original threat (per session 20260417)
+
+3 conflicting hash algorithms used cross codebase:
+- Math.imul (placeholder, not cryptographic)
+- SHA-256 (real)
+- btoa (base64 encoding, not hash)
+
+Risk: audit chain integrity unverifiable when validators disagree on hash algo.
+
+### §2.2 Fix applied
+
+Commit 7f4d297 (session 20260417): standardize to SHA-256 via crypto.createHash('sha256').
+
+### §2.3 Ground truth post-fix (scan 2026-04-24)
+
+**SHA-256 real implementation: 87 files**
+
+Top kernel/core implementations:
+- `src/core/ingestion/utils.ts` — `crypto.subtle.digest('SHA-256', msgBuffer)`
+- `src/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine.ts` — `createHash("sha256").update(str).digest("hex")`
+- `src/cells/kernel/audit-cell/domain/services/auditchainservice.ts` — `createHash("sha256")`
+- `src/cells/kernel/audit-cell/domain/services/audit-writer.service.ts` — Web Crypto API real
+- `src/governance/moments/registry.ts` — `computesirasign — canonical JSON serialize then SHA-256`
+
+### §2.4 Math.imul mentions remaining (13 files, deep review)
+
+#### §2.4.1 CONFIRMED PLACEHOLDER (per session 20260414 deep scan)
+
+3 files documented as REAL ARCHITECTURE with placeholder hash, ready for crypto provider swap:
+
+| File | Line | Pattern | Memory ref |
+|---|---|---|---|
+| `src/core/snapshot/snapshot.engine.ts` | 50 | `Math.imul(h, 0x01000193)` (FNV-1a) | session 20260414 |
+| `src/core/memory/immutable-memory.engine.ts` | 39 | `Math.imul(h, 0x01000193)` (FNV-1a) | session 20260414 |
+| `src/governance/policy/policy-signature.engine.na` | 43 | `Math.imul(h1 ^ ch, 2654435761)` (Murmurhash) | session 20260414 |
+
+**Status:** NOT_BYpass — ready for crypto provider injection
+
+#### §2.4.2 NEEDS FOLLOW-UP CONFIRM (NOT in 20260414 deep scan)
+
+2 files with Math.imul that have NOT been documented as confirmed-placeholder:
+
+| File | Line | Pattern | Action |
+|---|---|---|---|
+| `src/core/audit/audit-chain-contract.ts` | 18 | `Math.imul(31, h) + s.charCodeAt(i) | 0` (DJB2 variant) | NEEDS_REVIEW |
+| `src/core/SmartLink/SmartLink.nattimer.ts` | 105 | `Math.imul(h, 0x01000193)` (FNV-1a) | NEEDS_REVIEW |
+
+**Recommendation:** Manual review required. If placeholder per architecture decision: add comment + add to 20260414 placeholder list. If oversight: replace with crypto.createHash('sha256').
+
+#### §2.4.3 FALSE POSITIVES (excluded)
+
+| File | Reason |
+|---|---|
+| `config/repo.json:13190` | Mentions `imurmurhash` as npm package name only |
+| `nattos-server/app Tâm luxury/services/security.service.ts:215` | Decoy folder per ARCHITECTURE CANONICAL 20260423 |
+| `audit/summary/rena-alerts.json:3` | Alert text logging, not code |
+
+#### §2.4.4 GOVERNANCE/SPEC MENTIONS (informational only)
+
+- `src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:132` — historical note
+- `src/governance/memory/bang/bangthịnh6.3.0.phieu:110` — `audit_fake_hash: CLOSED — 7f4d297`
+- `src/governance/memory/bang/bangthinhv6.5.0.phieu:134` — historical note
+- `docs/specs/0-BOOT-FAMILY-MAP.na:74` — K3 entry pointer
+- `docs/specs/COLOR_siraSIGN.na:174` — checklist entry
+
+---
+
+## §3. RBAC ALWAYS_TRUE — 4 PATTERNS (FULLY_CLOSED)
+
+### §3.1 Original threat (per session 20260417)
+
+4 functions in RBAC layer returning `true` unconditionally, bypassing role checks. Risk: any user gains admin privileges.
+
+### §3.2 Fix applied
+
+Commit 045d8c5 (session 20260417): real HMAC-SHA256 tokens with 5 role levels.
+
+### §3.3 Ground truth post-fix (scan 2026-04-24)
+
+**RBAC real check: 14 files**
+
+Kernel implementations:
+- `src/cells/kernel/rbac-cell/application/services/RBACApplicationService.ts` — `hasRole: (userId, role) => _repo.hasRole(userId, role)`
+- `src/cells/kernel/rbac-cell/infrastructure/repositories/InMemoryRBACRepository.ts` — `hasRole(userId, role): _store.some(x => x.userId===userId && x.role===role && x.active)`
+- `src/cells/kernel/rbac-cell/ports/RBACRepository.ts` — interface contract
+
+Business cell:
+- `src/cells/business/hr-cell/domain/engines/hr-validation.engine.ts` — `static checkPermission(role: UserRole, field: string): boolean`
+
+**Always-true patterns found: 0**
+
+### §3.4 Verdict
+
+K3 RBAC component: FULLY_CLOSED. Memory note "4 always-true" reflects pre-7f4d297 state, no longer present.
+
+---
+
+## §4. ESCAPE HATCH — NOT_FOUND
+
+Scan for: `__SKIP_VALIDATION__`, `SKIP_AUDIT`, `NO_AUTH`, `DEV_MODE.*skip`
+
+**Found: 0 files**
+
+**Verdict:** No backdoor escape hatches detected. CLEAN.
+
+---
+
+## §5. PRAGMA SUPPRESSION — TECHNICAL DEBT (NOT_SECURITY)
+
+### §5.1 @ts-nocheck pragma usage
+
+Scan found ~115 files with `// @ts-nocheck — TODO: fix type errors, remove this pragma`.
+
+**Distribution:**
+- Cells: 115 files
+- Core: 2 files (`module-registry.ts`, `event-envelope.factory.ts`)
+- Kernel cells: ~10 files
+- Other src: 5 files
+
+### §5.2 Verdict
+
+`@ts-nocheck` is **TypeScript type checking suppression**, NOT security bypass. Per session 20260408-09, count was reduced from 164 to 105. Current count consistent with that trajectory.
+
+**Action:** NOT a K3 concern. Track as separate technical debt under "TypeScript hardening" sprint.
+
+---
+
+## §6. TODO SECURITY — 1 FILE KNOWN DEBT
+
+| File | Line | TODO |
+|---|---|---|
+| `src/cells/kernel/rbac-cell/domain/services/auth.service.ts` | 5 | "Replace with siraSign resonance auth when ready" |
+
+**Status:** Documented technical debt waiting for siraSign full activation. Tracked separately from K3 bypass concerns.
+
+---
+
+## §7. SPEC/CONFIG INTENTIONAL BYpass NOTATION
+
+Found 2 references to "bypass" as intentional design feature:
+
+| File | Line | Context |
+|---|---|---|
+| `config/sirasign_v2.json` | 18 | `"bypass_protocol": {...}` — designed escape protocol with conditions |
+| `src/cells/kernel/quantum-defense-cell/interface/QuantumDefenseCell.ts` | 37 | `gatekeeperOverride(action: "BYpass" | "FORCE_LOCK")` — Gatekeeper-only escape with audit |
+| `src/cells/business/casting-cell/domain/casting.boundary.policy.na` | 16 | `'BYpass_CONSTITUTION'` enum value for policy violation tracking |
+
+**Verdict:** Intentional design with audit trail. NOT bypass exploit.
+
+---
+
+## §8. K3 PATTERN THIRD (memory-undefined)
+
+Memory note: "3 bypass patterns: AUDIT 3 hash conflict + RBAC 4 always-true"
+
+That sums to 2 categories, not 3. Memory may have implied a third category that was never named.
+
+Scan did not surface a third category meeting bypass-pattern threshold beyond AUDIT and RBAC. Possible candidates considered and dismissed:
+
+- ESCAPE HATCH: 0 found, dismissed
+- @ts-nocheck: technical debt, not security
+- TODO security: 1 file, documented debt
+- Intentional bypass enums: 3 files, designed escape with audit
+
+**Recommendation:** Treat memory's "3 patterns" as approximate. Concrete bypass categories = 2 (AUDIT + RBAC), both addressed.
+
+---
+
+## §9. CARRY-FORWARD ACTIONS
+
+### §9.1 BLOCK_K3_CLOSE
+
+Before K3 marked CLOSED, 2 files need confirm:
+- `src/core/audit/audit-chain-contract.ts:18`
+- `src/core/SmartLink/SmartLink.nattimer.ts:105`
+
+For each: review whether Math.imul usage is intentional placeholder (add to architecture doc) or oversight (replace with SHA-256).
+
+### §9.2 OPEN_FOLLOWUPS (not blocking K3)
+
+- `auth.service.ts:5` siraSign resonance auth migration when ready
+- `@ts-nocheck` pragma reduction (separate sprint, not K3)
+
+### §9.3 K3 STATUS RECOMMENDATION
+
+After 2 file review in §9.1:
+- If both confirmed placeholder: K3 CLOSED
+- If either is oversight: open mini-task to fix, then close K3
+
+---
+
+## §10. AUDIT TRAIL
+
+| Step | Action | Method |
+|---|---|---|
+| 1 | Scan codebase for bypass patterns | regex over .ts/.js/.rs/.na/.anc/.md/.json/.phieu |
+| 2 | Cross-reference memory notes | bang_pending_20260424.phieu, bangthịnh6.3.0.phieu, 20260414 placeholder list |
+| 3 | Classify hits: real_impl / placeholder / oversight / false_positive | manual review |
+| 4 | Compile findings into this document | this file |
+
+**No code modified during this audit.** Read-only operation per Kim-scope boundary.
+
+---
+
+## §11. SEAL
+
+@result audit_partial_close_with_2_file_followup
+@confidence high (87 SHA-256 vs 5 placeholder mention; RBAC fully real)
+@next_action manual_review_2_files_in_section_9.1
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@kim_scope_respected true (no code modified)

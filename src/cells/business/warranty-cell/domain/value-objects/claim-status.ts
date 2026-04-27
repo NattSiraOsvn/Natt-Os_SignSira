@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Warranty Cell
+ * natt-os — Warranty Cell
  * Value Object: Claim Status & Transitions
  */
 

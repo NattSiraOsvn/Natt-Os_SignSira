@@ -12,7 +12,7 @@
  *
  * Hacker tấn công client:
  *   - SSE stream: read-only, không inject được
- *   - POST endpoint: gateway verify SiraSign trước khi cho vào EventBus
+ *   - POST endpoint: gateway verify siraSign trước khi cho vào EventBus
  *   - EventBus: invisible, không biết cells nào tồn tại
  *
  * Usage in app HTML:
@@ -173,7 +173,7 @@
       sessionId: self._sessionId,
       timestamp: new Date().toISOString(),
       traceId: _generateId('tr'),
-      // SiraSign placeholder — gateway will verify
+      // siraSign placeholder — gateway will verify
       signature: opts.signature || null,
     };
 
@@ -290,7 +290,7 @@
         return result;
       })
       .catch(function (err) {
-        self._log('error', '→ ' + envelope.action + ' FAILED: ' + err.message);
+        self._log('error', '→ ' + envelope.action + ' failED: ' + err.message);
         self._emit('_heyna.error', { action: envelope.action, error: err.message });
         throw err;
       });

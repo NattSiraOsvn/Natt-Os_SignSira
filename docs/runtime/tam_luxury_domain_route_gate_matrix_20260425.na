@@ -1,0 +1,139 @@
+# tam luxury domain grouping and route gate matrix — 20260425
+
+status: matrix-manifested
+created_at: 2026-04-25T10:24:16.590594+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+source: docs/runtime/tam_luxury_screen_manifest_intake_20260425.na
+
+---
+
+## 1. principle
+
+đây là domain grouping và route gate matrix cho 71 screen bindings.
+
+screen binding không phải cell scaffold.
+
+không sinh 71 cell mù từ matrix này.
+
+matrix này chưa phải permission matrix.
+
+---
+
+## 2. domain grouping
+
+| domain | screens | full audit | partial audit | minimal audit | required frame | shape frame | no frame |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| tiện ích & qt | 9 | 5 | 2 | 2 | 5 | 1 | 3 |
+| sản xuất & kho | 13 | 11 | 2 | 0 | 11 | 2 | 0 |
+| nhân sự & hc | 15 | 13 | 1 | 1 | 13 | 1 | 1 |
+| tài chính – kt | 10 | 9 | 1 | 0 | 9 | 1 | 0 |
+| kinh doanh & kh | 8 | 7 | 1 | 0 | 7 | 1 | 0 |
+| ban kiểm soát | 8 | 8 | 0 | 0 | 8 | 0 | 0 |
+| cổng kh | 8 | 4 | 1 | 3 | 4 | 0 | 4 |
+
+---
+
+## 3. route gate matrix
+
+| screen_id | domain | route | cell_binding | audit | sirasign | gate_guard | cell_shared | status |
+|---|---|---|---|---|---|---|---|---|
+| PL-001 | tiện ích & qt | /system/overview | cell_system_dashboard | partial | shape | gate_shape_frame | no | manifested |
+| PL-002 | tiện ích & qt | /system/config | cell_system_config | full | required | gate_required_frame | no | manifested |
+| PL-003 | sản xuất & kho | /inventory/stock-movement | cell_inventory_txn | full | required | gate_required_frame | no | manifested |
+| PL-004 | sản xuất & kho | /production/shift-report | cell_production_report | full | required | gate_required_frame | no | manifested |
+| PL-005 | sản xuất & kho | /production/piece-rate-payroll | cell_production_payroll | full | required | gate_required_frame | no | manifested |
+| PL-006 | sản xuất & kho | /inventory/stock-count | cell_inventory_count | full | required | gate_required_frame | no | manifested |
+| PL-007 | sản xuất & kho | /purchase/material-request | cell_purchase_request | full | required | gate_required_frame | no | manifested |
+| PL-008 | sản xuất & kho | /maintenance/machine-register | cell_maintenance_register | partial | shape | gate_shape_frame | no | manifested |
+| PL-009 | sản xuất & kho | /qc/inspection-result | cell_qc_entry | full | required | gate_required_frame | no | manifested |
+| PL-010 | sản xuất & kho | /production/handover | cell_production_handover | full | required | gate_required_frame | no | manifested |
+| PL-011 | sản xuất & kho | /inventory/dashboard | cell_inventory_dashboard | partial | shape | gate_shape_frame | no | manifested |
+| PL-012 | sản xuất & kho | /production/loss-alert | cell_production_anomaly | full | required | gate_required_frame | no | manifested |
+| PL-013 | sản xuất & kho | /inventory/audit-trail | cell_inventory_audit | full | required | gate_required_frame | no | manifested |
+| PL-014 | sản xuất & kho | /config/norms-pricing | cell_config_norms | full | required | gate_required_frame | no | manifested |
+| PL-015 | sản xuất & kho | /production/waste-recycle | cell_waste_management | full | required | gate_required_frame | no | manifested |
+| PL-016 | nhân sự & hc | /hr/employee-profiles | cell_hr_profiles | full | required | gate_required_frame | no | manifested |
+| PL-017 | nhân sự & hc | /hr/contracts | cell_hr_contracts | full | required | gate_required_frame | no | manifested |
+| PL-018 | nhân sự & hc | /hr/recruitment | cell_hr_recruitment | full | required | gate_required_frame | no | manifested |
+| PL-019 | nhân sự & hc | /hr/attendance | cell_hr_attendance | full | required | gate_required_frame | no | manifested |
+| PL-020 | nhân sự & hc | /hr/leave-overtime-approval | cell_hr_approval | full | required | gate_required_frame | no | manifested |
+| PL-021 | nhân sự & hc | /hr/attendance-sheet | cell_hr_attendance_sheet | full | required | gate_required_frame | no | manifested |
+| PL-022 | nhân sự & hc | /hr/kpi-evaluation | cell_hr_kpi | full | required | gate_required_frame | no | manifested |
+| PL-023 | nhân sự & hc | /hr/personal-payslip | cell_hr_payslip | full | required | gate_required_frame | no | manifested |
+| PL-024 | nhân sự & hc | /hr/salary-increase | cell_hr_salary_increase | full | required | gate_required_frame | no | manifested |
+| PL-025 | nhân sự & hc | /hr/handbook | cell_hr_handbook | minimal | none | gate_minimal_read | no | manifested |
+| PL-026 | nhân sự & hc | /hr/reward-discipline | cell_hr_reward_discipline | full | required | gate_required_frame | no | manifested |
+| PL-027 | nhân sự & hc | /hr/dashboard | cell_hr_dashboard | partial | shape | gate_shape_frame | no | manifested |
+| PL-028 | nhân sự & hc | /hr/probation | cell_hr_probation | full | required | gate_required_frame | no | manifested |
+| PL-029 | nhân sự & hc | /config/salary-insurance | cell_config_salary_insurance | full | required | gate_required_frame | no | manifested |
+| PL-030 | nhân sự & hc | /payroll/reconciliation-lock | cell_payroll_lock | full | required | gate_required_frame | no | manifested |
+| PL-031 | tài chính – kt | /finance/advance-settlement | cell_finance_advance | full | required | gate_required_frame | no | manifested |
+| PL-032 | tài chính – kt | /finance/cash-receipt-payment | cell_finance_cash | full | required | gate_required_frame | no | manifested |
+| PL-033 | tài chính – kt | /finance/compliance-report | cell_finance_compliance | full | required | gate_required_frame | no | manifested |
+| PL-034 | tài chính – kt | /payroll/reconciliation | cell_payroll_reconciliation | full | required | gate_required_frame | no | manifested |
+| PL-035 | tài chính – kt | /finance/cashflow | cell_finance_cashflow | partial | shape | gate_shape_frame | no | manifested |
+| PL-036 | tài chính – kt | /finance/gp-alert | cell_finance_gp_alert | full | required | gate_required_frame | no | manifested |
+| PL-037 | tài chính – kt | /finance/trial-balance | cell_finance_trial_balance | full | required | gate_required_frame | no | manifested |
+| PL-038 | tài chính – kt | /finance/tax-invoice | cell_finance_tax | full | required | gate_required_frame | no | manifested |
+| PL-039 | tài chính – kt | /finance/cash-bank-ledger | cell_finance_ledger | full | required | gate_required_frame | no | manifested |
+| PL-040 | tài chính – kt | /finance/payables | cell_finance_payables | full | required | gate_required_frame | no | manifested |
+| PL-041 | kinh doanh & kh | /sales/order-confirm | cell_sales_order | full | required | gate_required_frame | no | manifested |
+| PL-042 | kinh doanh & kh | /sales/performance | cell_sales_performance | full | required | gate_required_frame | no | manifested |
+| PL-043 | kinh doanh & kh | /sales/customer-debt | cell_sales_debt | full | required | gate_required_frame | no | manifested |
+| PL-044 | kinh doanh & kh | /crm/complaint | cell_crm_complaint | full | required | gate_required_frame | no | manifested |
+| PL-045 | kinh doanh & kh | /crm/vip | cell_crm_vip | full | required | gate_required_frame | no | manifested |
+| PL-046 | kinh doanh & kh | /marketing/campaign | cell_marketing_campaign | full | required | gate_required_frame | no | manifested |
+| PL-047 | kinh doanh & kh | /crm/satisfaction-survey | cell_crm_survey | full | required | gate_required_frame | no | manifested |
+| PL-048 | kinh doanh & kh | /sales/dashboard | cell_sales_dashboard | partial | shape | gate_shape_frame | no | manifested |
+| PL-049 | ban kiểm soát | /audit/compliance-check | cell_audit_compliance | full | required | gate_required_frame | no | manifested |
+| PL-050 | ban kiểm soát | /audit/violation | cell_audit_violation | full | required | gate_required_frame | no | manifested |
+| PL-051 | ban kiểm soát | /audit/internal-audit | cell_audit_internal | full | required | gate_required_frame | no | manifested |
+| PL-052 | ban kiểm soát | /audit/whistleblow | cell_audit_whistleblow | full | required | gate_required_frame | no | manifested |
+| PL-053 | ban kiểm soát | /audit/risk-report | cell_audit_risk | full | required | gate_required_frame | no | manifested |
+| PL-054 | ban kiểm soát | /audit/sensitivity | cell_audit_sensitivity | full | required | gate_required_frame | no | manifested |
+| PL-055 | ban kiểm soát | /audit/kpi-cross-check | cell_audit_kpi_crosscheck | full | required | gate_required_frame | no | manifested |
+| PL-056 | cổng kh | /customer/order-status | cell_customer_order | minimal | none | gate_minimal_read | no | manifested |
+| PL-057 | cổng kh | /customer/purchase-history | cell_customer_history | minimal | none | gate_minimal_read | no | manifested |
+| PL-058 | cổng kh | /customer/warranty | cell_customer_warranty | full | required | gate_required_frame | no | manifested |
+| PL-059 | cổng kh | /customer/support | cell_customer_support | full | required | gate_required_frame | no | manifested |
+| PL-060 | cổng kh | /customer/product-review | cell_customer_review | partial | none | gate_session_read | no | manifested |
+| PL-061 | cổng kh | /customer/promotions | cell_customer_promotions | minimal | none | gate_minimal_read | no | manifested |
+| PL-062 | cổng kh | /customer/vip-profile | cell_customer_vip_profile | full | required | gate_required_frame | no | manifested |
+| PL-063 | cổng kh | /customer/auth | cell_customer_auth | full | required | gate_required_frame | no | manifested |
+| PL-064 | tiện ích & qt | /workspace/my-dashboard | cell_workspace_dashboard | partial | none | gate_session_read | no | manifested |
+| PL-065 | tiện ích & qt | /workspace/calendar | cell_workspace_calendar | minimal | none | gate_minimal_read | no | manifested |
+| PL-066 | tiện ích & qt | /workspace/messaging | cell_workspace_messaging | full | required | gate_required_frame | no | manifested |
+| PL-067 | tiện ích & qt | /workspace/docs-library | cell_workspace_docs | minimal | none | gate_minimal_read | no | manifested |
+| PL-068 | tiện ích & qt | /workspace/report-export | cell_workspace_export | full | required | gate_required_frame | no | manifested |
+| PL-069 | tiện ích & qt | /workspace/audit-log-viewer | cell_workspace_audit_viewer | full | required | gate_required_frame | no | manifested |
+| PL-070 | ban kiểm soát | /audit/system-compliance-health | cell_audit_system_health | full | required | gate_required_frame | no | manifested |
+| PL-071 | tiện ích & qt | /workspace/event-correlation | cell_workspace_event_corr | full | required | gate_required_frame | no | manifested |
+
+---
+
+## 4. gate guard definitions
+
+| gate_guard | meaning |
+|---|---|
+| gate_required_frame | route gate cho qua nhưng ghi/sửa/duyệt phải có sirasign required frame |
+| gate_shape_frame | route gate cho qua nhưng cần frame shape ở tầng nhạy vừa |
+| gate_minimal_read | route đọc tối thiểu, không cần frame |
+| gate_session_read | route đọc theo phiên hoặc role, chưa bắt frame |
+
+---
+
+## 5. counts
+
+- total screens: 71
+- total domains: 7
+- unique routes: 71
+- unique cell bindings: 71
+- shared cells: 0
+
+---
+
+## 6. next
+
+bước tiếp theo là permission matrix: role x screen x route.
+
+sau permission matrix mới scaffold nhóm trọng yếu.

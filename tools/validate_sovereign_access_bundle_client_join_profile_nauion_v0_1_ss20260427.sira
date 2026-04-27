@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_access_bundle_client_join_profile_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope access-bundle client-join resolver sirasign anc gateway audit",
+"@runtime_scope excluded",
+"Access Bundle là gói để máy ngoài hệ join vào NATT-OS sovereign server.",
+"Không dùng public DNS truyền thống làm root.",
+"resolver_profile",
+"gateway_profile",
+"trust_root_anc",
+"sirasign_public_profile",
+"client_join",
+"customer_edge",
+"revoke",
+"rotate",
+"access_bundle.join.checked",
+"SiraSign",
+".anc_identity",
+"không_resolve",
+"không_route",
+"không_cấp_line",
+"Không chạm nattos.sh.",
+"Gate 6 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sovereign access bundle client join profile validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign access bundle client join profile validation: pass");
+console.log("file=" + file);

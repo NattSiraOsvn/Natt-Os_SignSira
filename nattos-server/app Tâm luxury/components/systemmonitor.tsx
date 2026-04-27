@@ -14,7 +14,7 @@ interface SystemMonitorProps {
 interface ModuleStatus {
   id: string;
   name: string;
-  status: 'OPTIMAL' | 'WARNING' | 'CRITICAL' | 'OFFLINE';
+  status: 'OPTIMAL' | 'warnING' | 'CRITICAL' | 'OFFLINE';
   latency: number;
   uptime: number;
   lastError?: string;
@@ -74,7 +74,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
     return names[index] || `Sub-Node ${index + 1}`;
   };
 
-  const addLog = (msg: string, type: 'INFO' | 'WARN' | 'ERR' | 'SUCCESS' = 'INFO') => {
+  const addLog = (msg: string, type: 'INFO' | 'warn' | 'ERR' | 'SUCCESS' = 'INFO') => {
     const time = new Date().toLocaleTimeString();
     setScanLogs(prev => [...prev, `[${time}] [${type}] ${msg}`]);
   };
@@ -109,9 +109,9 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
         // Đưa vào Recovery Engine thực tế
         RecoverySystem.recordOperation('REPAIR_NODE', mod.name, { nodeId: mod.id });
       } else if (rand > 0.88) {
-        newStatus = 'WARNING';
+        newStatus = 'warnING';
         errorMsg = 'LATENCY_SPIKE: Độ trễ vượt ngưỡng 500ms';
-        addLog(`Cảnh báo tại ${mod.name}: Hiệu suất suy giảm`, "WARN");
+        addLog(`Cảnh báo tại ${mod.name}: Hiệu suất suy giảm`, "warn");
       } else {
         addLog(`Xác thực ${mod.name}: OK`, "INFO");
       }
@@ -136,7 +136,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
 
   const handleFixAll = async () => {
     window.dispatchEvent(new CustomEvent('NAUION_PULSE', { detail: { type: 'system.heal', source: 'SystemMonitor' } }));
-    addLog("KÍCH HOẠT GIAO THỨC AUTO-FIX TOÀN HỆ THỐNG...", "WARN");
+    addLog("KÍCH HOẠT GIAO THỨC AUTO-FIX TOÀN HỆ THỐNG...", "warn");
     setIsScanning(true);
     
     const crashed = modules.filter(m => m.status === 'CRITICAL');
@@ -196,7 +196,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
                 {scanLogs.map((log, i) => (
                     <p key={i} className={`${
                         log.includes('[ERR]') ? 'text-red-500 font-bold bg-red-500/10' : 
-                        log.includes('[WARN]') ? 'text-amber-500' : 
+                        log.includes('[warn]') ? 'text-amber-500' : 
                         log.includes('[SUCCESS]') ? 'text-green-400 font-black' : 'text-gray-400'
                     }`}>
                         {log}
@@ -227,7 +227,7 @@ const SystemMonitor: React.FC<SystemMonitorProps> = () => {
                     {modules.map((m) => (
                     <div key={m.id} className={`p-4 rounded-2xl border transition-all flex flex-col items-center text-center gap-2 group relative overflow-hidden ${
                         m.status === 'CRITICAL' ? 'border-red-500 bg-red-500/10 shadow-[0_0_20px_rgba(239,68,68,0.2)] animate-pulse' :
-                        m.status === 'WARNING' ? 'border-amber-500/50 bg-amber-500/5' :
+                        m.status === 'warnING' ? 'border-amber-500/50 bg-amber-500/5' :
                         'border-white/5 bg-white/[0.02] hover:border-cyan-500/30'
                     }`}>
                         <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${

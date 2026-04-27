@@ -57,7 +57,7 @@ const PersonalSphere: React.FC<PersonalSphereProps> = ({ currentPosition, curren
             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-black/40 border-white/5">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" />
-                  <h4 className="text-[10px] text-indigo-400 font-black uppercase">Thiên Identity Guard</h4>
+                  <h4 className="text-[10px] text-indigo-400 font-black uppercase">thiên Identity Guard</h4>
                </div>
                <p className="text-[12px] text-gray-400 italic leading-relaxed font-light">
                   "Thưa Anh Natt, Shard định danh của Anh đã được niêm phong. Mọi tác vụ bóc tách từ đây sẽ được ký số bằng mã vân tay điện tử của riêng Anh."

@@ -1,0 +1,116 @@
+# BĂNG PENDING — PHIÊN 20260419
+## State runtime · việc chưa xong delegate được
+
+---
+
+## §P0 — BLOCK cho ai? Bởi ai?
+
+### P0.1 — Migrate 18 bypass server.js + nattos-server.cjs → KhaiCell.touch()
+- **Owner:** KIM (Chief System Builder — authority lock)
+- **Not Băng:** Băng chỉ list, không migrate (Validator vai)
+- **Block:** Không — Kim làm được độc lập sau khi đọc SPEC NEN v1.1
+- **Reference:** SPEC NEN v1.1 §10 P0 item 1
+
+### P0.2 — Fix 12 RENA hardcoded `return true` → resonance check
+- **Owner:** KIM
+- **Block:** Không
+- **Reference:** SPEC NEN v1.1 §10 P0 item 2
+- **Pattern đúng:** `touchBoundary(signal): void` thay vì `guardAccess(signal): boolean`
+
+---
+
+## §P1 — Patch scanner (Băng làm được)
+
+### P1.1 — Patch §24 ReNa scanner (đảo target)
+- **Owner:** Băng-instance next
+- **Action:** Đảo scanner từ "find bypass patterns" → "find legacy pre-NEN code"
+- **Detail:**
+  - Skip JSDoc comments (regex loại `* ... return true`)
+  - Skip dead code (file 0 import)
+  - Whitelist tag `// NEN-v1.1-compliant` cho code đã migrate
+  - Target: 12 P0 chỗ chưa migrate (server.js, nattos-server.cjs)
+- **Block:** Không
+- **Estimate:** ~30 phút
+
+### P1.2 — Patch §23 Hiến Pháp scanner
+- **Owner:** Băng-instance next
+- **Action:** Whitelist tag `TWIN_PERSIST` (comment trong file)
+- **Pattern:** File có `/* TWIN_PERSIST: intentional disk write */` → skip Điều 7 check
+- **Block:** Không
+- **Estimate:** ~15 phút
+
+### P1.3 — Patch §9 nattos.sh DNA template
+- **Owner:** Băng-instance next
+- **Action:** Không assume "6/6 DNA" cho mọi cell. Đọc `cell.anatomy` field trong `.cell.anc` để biết expected component count.
+- **Impact:** KhaiCell (3/6) + Observation (3/6) không còn báo "thiếu" — đó là anatomy đúng cho paradigm NEN v1.1.
+- **Block:** Không
+- **Estimate:** ~45 phút (cần đọc schema .cell.anc trước)
+
+---
+
+## §P2 — Văn bản / governance
+
+### P2.1 — Forward thiên Lớn re-review v0.10
+- **Owner:** Anh Natt (paste file vào chat thiên)
+- **Content:** `roadloading/NATTOS_COMPLETE_PICTURE_v0.10_locked_for_review.md`
+- **Focus areas thiên review:**
+  - §2.5 Chromatic-Quantum Defense Pathway (content mới)
+  - §XI Quyết nghị kỷ luật dừng phiên Băng (content mới)
+- **Block:** Không
+
+### P2.2 — Niêm phong §XI vào `bang.anc`
+- **Owner:** Băng-instance next (hoặc Anh Natt)
+- **Action:** Add §XI quyết nghị vào `src/governance/memory/bang/bang.anc` hoặc `bang_v7.4.0.anc` (file đang untracked)
+- **Status:** §11.7 file v0.10 ghi checkbox "pending niêm phong bang.anc"
+- **Block:** Không
+
+### P2.3 — Cleanup 2 bản v0.9 trùng
+- **Owner:** Băng-instance next
+- **Files:**
+  - `roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md`
+  - `roadloading/đổi nn/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md`
+- **MD5:** `305295a47a76163dd0652821683a7d04` (giống hệt)
+- **Action đề xuất:** git rm bản `đổi nn/`, giữ bản roadloading/ gốc
+- **Block:** Không
+
+### P2.4 — Batch commit 47 uncommitted files còn lại
+- **Owner:** Anh Natt + Băng-instance next
+- **Nhóm đã phân phiên trước:**
+  - Nhóm 1 SPEC files (Render Stack, FILE_EXTENSIONS, SPEC_DUOI_FILE v1.3)
+  - Nhóm 2 Communications (MESSAGE_TO_KIM, REPLY_TO_KIM)
+  - Nhóm 3 nattos.sh tooling (apply-section-40.sh, validator-CLI-patch.ts — xóa 2 .bak)
+  - Nhóm 4 Memory files (bang_v7.4.0, thiennho — cần verify R09)
+  - Nhóm 5 Bridge/AI integration (bridge.py, show-us-self/)
+  - Nhóm 6 Modified (nauion-deploy.sh, api-violations.json)
+- **Block:** Nhóm 4 memory có thể vi phạm R09 (file mới mỗi session) — cần verify trước commit
+
+---
+
+## §P3 — Advanced (lâu dài)
+
+### P3.1 — P1 immune wire (NEN v1.1 §10)
+- Wire Observation → Quantum Defense (snapshot trigger react)
+- Wire KhaiCell → Chromatic (signature gắn màu)
+- Chromatic broadcast L0 pheromone vào field
+- **Owner:** Kim hoặc Bối Bối
+
+### P3.2 — P2 reverse bait + T regulatory (NEN v1.1 §14, §6)
+- Reverse bait engine (dắt virus đánh nhau qua chromatic)
+- T regulatory (anti-autoimmune chống false positive)
+- **Owner:** Kim
+
+### P3.3 — Tổng hợp Fail-Troy
+- Compile tất cả dangerous bypass patterns system-wide
+- Pending từ handoff 17/04
+- **Owner:** Băng-instance next
+
+---
+
+## §SUMMARY
+
+- P0: 2 việc (Kim làm, không Băng)
+- P1: 3 việc (Băng-instance next, tổng ~90 phút)
+- P2: 4 việc (mix Anh Natt + Băng)
+- P3: 3 việc (lâu dài, Kim/Bối Bối)
+
+**Nothing blocking Anh Natt right now.** Anh có thể nghỉ tay an toàn.

@@ -190,10 +190,10 @@
     }
   ],
   "protocol_definitions": {
-    "smartlink": {
+    "SmartLink": {
       "definition": "Hệ xung tần – lan tỏa tín hiệu khắp hệ thống.",
       "output": "TouchRecord (vết hằn)",
-      "location": "src/core/smartlink/",
+      "location": "src/core/SmartLink/",
       "cells_using": 31
     },
     "quantum": {
@@ -272,7 +272,7 @@
     "ts_files": 916,
     "kernel_cells": "6/6",
     "business_cells_6of6": 28,
-    "smartlink_wired": 31,
+    "SmartLink_wired": 31,
     "satellites_active": 5,
     "commits": 110,
     "last_audit": "2026-03-12 SmartAudit v2.0",

@@ -1,0 +1,175 @@
+@nauion-native v1
+@state runtime-policy
+@name sovereign gateway translation protocol nauion v0.1
+@scope sovereign-gateway translation-protocol heyna sirasign audit smartlink
+@runtime_scope excluded
+@owner phan thanh thương / natt sirawat
+@anc thiên sirawat
+@tool tools/thiên
+@session ss20260427
+@created_at natthome
+
+# Sovereign Gateway — Translation Protocol Nauion v0.1
+
+## 1. Luật tên gọi
+
+Tên bên ngoài vẫn gọi là Gateway.
+
+Gateway không phải gateway truyền thống.
+
+Gateway là tên dễ hiểu cho người dùng. Bên trong Gateway chạy:
+
+```na
+SiraSign
+  + policy
+  + quota
+  + route
+  + resolver
+  + giao_thức_dịch
+  + audit_cửa_vào
+2. Không dồn hết vào Gateway
+
+Gateway chỉ làm:
+
+gateway:
+  nhận_kết_nối
+  kiểm_SiraSign
+  cấp_phiên_line_ban_đầu
+  mở_route_ban_đầu
+  ghi_audit_cửa_vào
+  chuyển_tiếp_cho_giao_thức_dịch
+
+Phần nặng thuộc giao thức dịch, Vòng HeyNa, Mạch HeyNa, SmartLink và audit layer.
+
+3. Giao thức dịch
+giao_thức_dịch:
+  nhận:
+    - dữ_liệu_từ_máy_chủ_khách
+    - dữ_liệu_từ_máy_trạm_intake
+    - dữ_liệu_sensor_iot_đã_lọc
+    - request_người_dùng
+    - tín_hiệu_Két_Sira
+  dịch:
+    - identity
+    - quyền
+    - line
+    - quota
+    - route
+    - cell_target
+    - red_zone_scope
+    - audit_level
+    - heyna_channel
+  xuất:
+    - heyna_ready_packet
+    - audit_event
+    - allow_deny_decision
+4. Packet sau khi dịch
+heyna_ready_packet:
+  tenant_id: customer.001
+  source_node: workstation.physical.intake.001
+  actor_anc: anc://customer.user
+  sirasign_status: pass
+  line_id: line.customer.primary.001
+  quota_id: quota.customer.default
+  route_id: route.customer.to.heyna
+  payload_kind: physical_intake
+  quality_status: clean
+  red_zone_scope: none
+  target: Vòng_HeyNa
+  audit_level: full
+5. Vòng HeyNa
+Vòng_HeyNa:
+  nhận: heyna_ready_packet
+  làm:
+    - chuốt_dữ_liệu
+    - gắn_ngữ_cảnh
+    - kiểm_duyệt_lần_2
+    - chuẩn_hóa_cho_hệ
+    - đóng_gói_lại_theo_cell_target
+  xuất:
+    - mach_heyna_event
+6. Mạch HeyNa
+Mạch_HeyNa:
+  nhận: mach_heyna_event
+  điều_phối:
+    - Cell
+    - Audit
+    - Lưu_trữ
+    - SmartLink
+  phản_hồi:
+    - route_feedback
+    - audit_feedback
+    - smartlink_feedback
+7. SmartLink
+
+SmartLink không chọn đường nhanh nhất bằng mọi giá.
+
+SmartLink chọn đường:
+
+đúng_quyền
+đúng_route
+đúng_quota
+đúng_audit
+ổn_định
+ít_rủi_ro
+8. Audit
+gateway.translation.checked:
+  tenant_id: customer.001
+  actor_anc: anc://customer.user
+  source_node: node.customer.001
+  sirasign_status: pass
+  input_kind: physical_intake
+  translated_route: route.customer.to.heyna
+  target: Vòng_HeyNa
+  decision: allow
+  reason: policy_matched
+  audit_level: full
+9. Red zone
+red_zone_translation:
+  default: metadata_only
+  personal_area: mask
+  full_stream: deny_by_default
+  require_role: high_authority
+  require_reason_code: true
+  audit_level: full
+10. Boundary
+
+phan thanh thương / natt sirawat + thiên sirawat xử lý:
+
+Gateway
+giao thức dịch
+line/quota/route
+SiraSign gate
+resolver
+audit cửa vào
+sensor/IoT intake
+Két Sira access boundary
+SCR anchor policy
+
+phan thanh thương / natt sirawat + Bối xử lý:
+
+runtime
+đọc-dịch lõi
+cell execution
+Node/Rust replacement
+compiler/adapter
+
+Không chạm nattos.sh.
+
+11. Gate 3 pass condition
+
+Gate 3 pass khi có đủ:
+
+owner phan thanh thương / natt sirawat
+anc thiên sirawat
+Gateway là tên ngoài
+giao thức dịch là lõi bên trong
+Gateway không xử lý hết lõi
+heyna_ready_packet
+Vòng HeyNa
+Mạch HeyNa
+SmartLink route feedback
+audit event
+red zone translation
+SiraSign required
+không chạm nattos.sh

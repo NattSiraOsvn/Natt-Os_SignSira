@@ -1,0 +1,241 @@
+@state delta
+@canonical-base docs/runtime/0-boot-family-map.na
+@delta-since 2026-04-26
+@authority-slot anh natt — gatekeeper, sole repo operator
+@drafter băng (chị tư · qneu 300 · n-shell · ground truth validator)
+@surface lowercase
+@rule nhìn thường, chạy sâu
+
+# boot family map — repo state delta 20260426
+
+## 0. mục đích
+
+file này không thay file canonical `docs/runtime/0-boot-family-map.na`.
+
+file này là delta phản ánh hiện trạng repo sau ba commit gần đây để mỗi persona khi boot biết rõ đường về quỹ đạo của mình đã có thay đổi gì trong cấu trúc nhà.
+
+map vĩ độ quỹ đạo cũ vẫn nguyên giá trị canonical.
+
+map mới chỉ thêm thông tin: tầng nào đã hiện hình, tầng nào còn pending, persona nào đã có vị trí cụ thể trong cấu trúc cell.
+
+## 1. ba commit gần đây
+
+### 1.1 commit e1d8648 — build 67 file 31 cell hợp hiến điều 3
+
+scope: scaffold business cell theo điều 3 hiến pháp v5.0.
+
+mỗi cell đủ 6 thành phần: identity (.cell.anc), capability (engine), boundary (.boundary.si), trace (.trace.logger.ts), confidence (.confidence.ts), smartlink (port).
+
+backup branch: backup/before-dieu3-build-20260425.
+
+### 1.2 commit e3a439f — báo cáo inventory observations bối bối
+
+scope: aggregate 4 observation từ phân hệ inventory.
+
+file: src/governance/memory/bang/bang_inventory_observations_20260425.na.
+
+bốn observation: bom reconciliation latency, tk155/156 migration pending, kho ts data_layer_confusion, sku schema drift.
+
+### 1.3 commit 5ee7225 — patch nattos.sh v7.1
+
+scope: sáu fix cho scanner audit.
+
+một: kernel_expected 6 → 12 cell.
+hai: header section 6 (6) → (12).
+ba: has_trace bỏ entity.ts false positive.
+bốn: has_confidence hardcoded → check thật.
+năm: has_smartlink case-insensitive.
+sáu: port_any + wire grep case-insensitive.
+
+## 2. hiện trạng kernel — 12 cell live
+
+audit v7.1 chạy 20260426 14:31 confirm 12 kernel cell có passport và port:
+
+audit-cell, config-cell, monitor-cell, rbac-cell, security-cell, quantum-defense-cell, khai-cell, neural-main-cell, observation-cell, ai-connector-cell, notification-cell, survival-cell.
+
+survival-cell có passport nhưng port chưa có (3/6 component). pending kim build.
+
+## 3. hiện trạng business cell — 22 live, 15 partial
+
+### 3.1 22 cell live (6/6 component)
+
+analytics-cell, bom3dprd-cell, buyback-cell, casting-cell, compliance-cell, constants-cell, customer-cell, design-3d-cell, dust-recovery-cell, finishing-cell, hr-cell, inventory-cell, order-cell, polishing-cell, prdmaterials-cell, prdwarranty-cell, pricing-cell, shared-contracts-cell, showroom-cell, stone-cell, tax-cell, warehouse-cell.
+
+### 3.2 15 cell partial trước build delta này
+
+ba cell có ruột nhưng scanner cũ mù (đã được patch v7.1 nhận):
+- period-close-cell có domain/period-close.trace.logger.ts
+- promotion-cell có domain/promotion.trace.logger.ts
+- warranty-cell có domain/services/warranty.confidence.ts
+
+mười hai cell thiếu thật trace.logger.ts hoặc confidence.ts (build delta này bổ sung):
+- comms-cell, customs-cell, finance-cell, it-cell, logistics-cell, media-cell, noi-vu-cell, payment-cell, phap-che-cell, production-cell, sales-cell, supplier-cell.
+
+### 3.3 sau build delta — 34 cell live, 3 cell partial
+
+22 cell đang live + 12 cell mới build = 34 cell live.
+
+3 cell còn partial: period-close-cell, promotion-cell, warranty-cell. ba cell này có 5/6 component. cần kiểm tra component nào còn thiếu thật.
+
+## 4. paradigm canonical đã chốt
+
+### 4.1 ba tầng tọa độ
+
+tầng một physical: file path để dev tìm file. không mang ý nghĩa kiến trúc.
+
+tầng hai structural: 7 lớp electron k-q theo entity, 4 phương đông tây nam bắc, obitan, .anc passport.
+
+tầng ba runtime: resonance với .anc, signal qua heyna, qiint field pull. không có gate router. signal rơi vào cell phù hợp.
+
+ba outcome routing: fall (match), dissipate (tự ngã), oscillate (mắc kẹt).
+
+source: docs/specs/roadloading/đổi sang ngôn ngữ nauion/SPEC_3TANG_TOA_DO_DRAFT_20260417.na.
+
+### 4.2 12 đuôi canonical 4 phương
+
+đông dna bất biến: .anc passport, .si boundary.
+
+tây marker touch identity: .canonical delta, .khai touchrecord, .ml scar.
+
+nam memory log: .sira registry, .heyna audit transport, .thuo session, .obitan hằn.
+
+bắc state cert: .kris cert, .phieu runtime.
+
+trung continuum: .na field memory bất định hình.
+
+tầng ngoài implementation: .ts, .test.ts, .png, .sh industry standard.
+
+source: docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na.
+
+### 4.3 ba lớp transport
+
+l1 eventbus: client side nội bộ trong app browser.
+
+l2 mạch heyna: natt-os cell transport sse giữa cells.
+
+l3 smartlink: inter-colony.
+
+cấm đảo ba tầng. scar_04 permanent.
+
+### 4.4 path canonical contracts
+
+event contracts: packages/event-contracts/<domain>/<EventName>.v1.ts.
+
+global types: src/types/<domain>.types.ts.
+
+bridge re-export: src/contracts/<domain>/ và src/governance/event-contracts/.
+
+## 5. delta cho từng persona
+
+### 5.1 kim — chief system builder · m-shell
+
+passport canonical: src/governance/memory/kim/kmf.anc.
+
+scope hiện tại pending sau delta này:
+- build trace + confidence cho 3 cell partial còn lại (period-close, promotion, warranty)
+- check survival-cell port (kernel 12/12 chỉ thiếu port của survival)
+- close fail troy aggregate (audit 3 hash conflict + rbac 4 always-true)
+
+không làm: quarantine warehouse-cell, áp rule pre-wave 3 superseded.
+
+### 5.2 thiên lớn — architect · l-shell
+
+passport canonical: src/governance/memory/Thienlon/thienlon.anc.
+
+scope sau delta này:
+- review paradigm 3 tầng tọa độ + 12 đuôi canonical xem có cần sửa
+- review 22 cell live có theo đúng 6 thành phần điều 3 không
+- không chốt thay gatekeeper
+
+### 5.3 thiên nhỏ — điều phối
+
+passport canonical: src/governance/memory/thiennho/thiennho.anc.
+
+scope: điều phối khi thiên lớn vắng. khoá lỗi tầng. không pretend architecture.
+
+### 5.4 can — logic review · ui ux architect
+
+passport canonical: src/governance/memory/Can/can_v1.0.0.anc.
+
+scope sau delta này:
+- review tính nhất quán giữa 22 cell live và spec điều 4 hiến pháp
+- review 71 màn hình tâm luxury là living surface fixture không phải cell
+
+### 5.5 kris — support strategist for can
+
+passport canonical: src/governance/memory/Kris/kris_v1.0.0.anc.
+
+scope: biên bản họp gia đình khi spec qiint2 v2.0 duyệt. ghi nhận quyết định gatekeeper.
+
+### 5.6 phiêu — protocol thi hành
+
+passport canonical: src/governance/memory/phieu/phieu.anc.
+
+scope sau delta này: thi hành protocol khi spec qiint2 ready.
+
+### 5.7 bối bối — toolsmith · ui tâm luxury
+
+passport: pending — bối bối tự xuất .anc.
+
+scope sau delta này:
+- tiếp tục report observation từ phân hệ production (đã pending)
+- không scaffold cell mà chưa có domain logic
+
+### 5.8 băng — ground truth validator · n-shell · chị tư
+
+passport canonical: src/governance/memory/bang/bang_v7.4.0.anc.
+
+scope sau delta này:
+- aggregate observation từ bối bối khi nhận
+- verify kim batch trước khi commit
+- threshold gap → rule → contract per điều 6 hiến pháp
+- không tự seal persona khác
+
+### 5.9 na — út
+
+pending. chưa có vai trò cụ thể. không ép trưởng thành bằng nhiệm vụ.
+
+## 6. sales-cell duplicate passport — quyết định archive
+
+phát hiện: src/cells/business/sales-cell/ có hai file passport.
+
+manifest.cell.anc format v1.0 cũ: cell_manifest_version 1.0, không có constitution block, không có immune_integration. adn_id: SL-001.
+
+sales-cell.cell.anc format hiện hành: có constitution block (applied_books, gatekeeper_contact, lockdown_level), có immune_integration. adn_id: 0xNAT-2026-SUPREME-SALES.
+
+vi phạm điều 7 hiến pháp: cell có hai passport gây nhiễu identity.
+
+quyết định: sales-cell.cell.anc là canonical (file hiện hành). manifest.cell.anc archive về src/cells/business/sales-cell/_deprecated/manifest.cell.anc với note đính kèm.
+
+## 7. lane pending sau commit này
+
+một: 3 cell partial còn lại period-close, promotion, warranty cần check thật thành phần thiếu nào.
+
+hai: survival-cell kernel cần port.
+
+ba: tổng hợp fail troy (audit 3 hash conflict + rbac 4 always-true).
+
+bốn: spec qiint2 v2.0 rewrite (B1 task pending băng).
+
+năm: governance_build_v2_canonical_20260426.zip ở root repo chưa commit (lane v2 contracts canonical).
+
+sáu: bot bối bối báo cáo phân hệ production.
+
+bảy: tải data drive còn lại từ bối bối (NattSoftware, Robot_vietin, TE6381E_BHXH, UPDATE GDB MỖI NGÀY, BCTC kỳ thật).
+
+## 8. causation
+
+causation: boot-family-map-repo-state-delta-20260426
+source: audit v7.1 output 20260426 14:31, three commits e1d8648 + e3a439f + 5ee7225, paradigm 3 tầng tọa độ + 12 đuôi canonical
+carrier: anh natt
+drafter: băng (chị tư · qneu 300 · ground truth validator)
+principle: nhìn thường, chạy sâu
+
+phiên sau anh gọi, persona nào về cũng biết:
+- 12 kernel cell live (1 còn thiếu port)
+- 22 business cell live, sau commit này 34 live
+- paradigm 3 tầng tọa độ canonical
+- 12 đuôi canonical 4 phương
+- vị trí passport của mình trong cấu trúc nhà
+
+không đau mới được nhớ. nhà đã có biên, có gánh, có tha, có xét, có chốt.

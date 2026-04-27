@@ -1,0 +1,186 @@
+# sira coredns zone implementation plan — 20260425
+
+status: coredns-plan-manifested
+created_at: 2026-04-26 00:25:18
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. principle
+
+đây là kế hoạch hiện thực resolver cho sovereign namespace .sira bằng coredns.
+
+kế hoạch này chưa chỉnh máy thật.
+
+coredns chỉ được phục vụ .sira từ authoritative zone do hạ tầng natt kiểm soát.
+
+mọi allowed host phải trỏ về natt domain gateway, không trỏ thẳng runtime.
+
+unknown host phải nxdomain hoặc deny tương đương.
+
+không wildcard allow.
+
+---
+
+## 2. expected files on machine
+
+```text
+coredns runtime config:
+  /usr/local/etc/Corefile
+
+sira zone file:
+  /usr/local/etc/coredns/zones/sira.zone
+
+rollback backup:
+  /usr/local/etc/coredns/backups/Corefile.<timestamp>
+  /usr/local/etc/coredns/backups/sira.zone.<timestamp>
+```
+
+ghi chú: đường dẫn trên là plan cho máy mac đang chạy brew services coredns. nếu máy thật khác đường dẫn, phải ghi evidence riêng trước khi đổi.
+
+---
+
+## 3. coredns corefile shape
+
+```text
+sira:53 {
+    file /usr/local/etc/coredns/zones/sira.zone
+    log
+    errors
+}
+
+.:53 {
+    forward . 1.1.1.1 8.8.8.8
+    cache 30
+    log
+    errors
+}
+```
+
+ghi chú: block .:53 là fallback resolver. nếu không muốn recursion trên máy edge, phải thay bằng policy deny hoặc forward nội bộ được kiểm soát.
+
+---
+
+## 4. sira zone file shape
+
+```text
+$origin sira.
+$ttl 60
+@      soa   ns.sira. hostmaster.sira. (2026042501 60 30 300 60)
+@      ns    ns.sira.
+ns     a     <resolver_ip>
+apps   a     <natt_gateway_ip>
+mach   a     <natt_gateway_ip>
+core   a     <natt_gateway_ip>
+audit  a     <natt_gateway_ip>
+render a     <natt_gateway_ip>
+tam    a     <natt_gateway_ip>
+```
+
+không khai báo wildcard.
+
+không khai báo mail, smtp, imap.
+
+không khai báo route admin hoặc secret ở tầng dns.
+
+---
+
+## 5. allowed records
+
+| host | target | policy |
+|---|---|---|
+| apps.sira | natt_gateway_ip | app surface through gateway |
+| mach.sira | natt_gateway_ip | mạch heyna transport through gateway |
+| core.sira | natt_gateway_ip | health/readiness guarded by gateway |
+| audit.sira | natt_gateway_ip | audit read only through gateway |
+| render.sira | natt_gateway_ip | render read/pilot through gateway |
+| tam.sira | natt_gateway_ip | tenant fixture through gateway |
+
+---
+
+## 6. denied by omission
+
+| host | expected result |
+|---|---|
+| unknown.sira | nxdomain_or_deny |
+| mail.sira | nxdomain_or_deny |
+| smtp.sira | nxdomain_or_deny |
+| imap.sira | nxdomain_or_deny |
+| any undeclared host | nxdomain_or_deny |
+
+---
+
+## 7. implementation sequence
+
+```text
+step 1: backup existing coredns config
+step 2: write sira zone file with ttl 60
+step 3: write or patch corefile with sira:53 zone block
+step 4: run coredns config syntax check if available
+step 5: restart coredns service
+step 6: run resolver smoke with dig
+step 7: run gateway smoke with host header
+step 8: run sirasign frame guard matrix
+step 9: only then switch client/device dns to natt resolver
+```
+
+---
+
+## 8. resolver smoke commands
+
+```text
+dig @127.0.0.1 apps.sira
+dig @127.0.0.1 mach.sira
+dig @127.0.0.1 core.sira
+dig @127.0.0.1 audit.sira
+dig @127.0.0.1 render.sira
+dig @127.0.0.1 tam.sira
+dig @127.0.0.1 unknown.sira
+dig @127.0.0.1 mail.sira
+dig @127.0.0.1 smtp.sira
+dig @127.0.0.1 imap.sira
+```
+
+expected: allowed hosts resolve to gateway ip. denied hosts return nxdomain or equivalent deny.
+
+---
+
+## 9. gateway smoke commands
+
+```text
+curl -H 'Host: apps.sira' http://127.0.0.1:<gateway_port>/
+curl -H 'Host: mach.sira' http://127.0.0.1:<gateway_port>/mach/heyna
+curl -H 'Host: unknown.sira' http://127.0.0.1:<gateway_port>/api/health
+curl -H 'Host: apps.sira' http://127.0.0.1:<gateway_port>/admin
+curl -H 'Host: apps.sira' http://127.0.0.1:<gateway_port>/api/secret
+curl -H 'Host: audit.sira' http://127.0.0.1:<gateway_port>/audit/write-direct
+curl -H 'Host: render.sira' http://127.0.0.1:<gateway_port>/render/seal
+```
+
+expected: safe app/transport/read routes follow gateway policy. unknown, admin, secret, audit write and render seal are denied.
+
+---
+
+## 10. rollback
+
+```text
+step 1: restore Corefile backup
+step 2: restore or remove sira zone file
+step 3: restart coredns service
+step 4: flush local dns cache if needed
+step 5: rerun denied host smoke
+step 6: keep gateway deny rules untouched
+```
+
+---
+
+## 11. go / no-go
+
+```text
+go only if authoritative zone plan, sovereign binding, rollout readiness, resolver smoke, gateway smoke and frame guard matrix all pass
+no-go if wildcard is present
+no-go if unknown host resolves as allow
+no-go if any allowed host bypasses gateway
+no-go if admin, secret, direct audit write or render seal route is reachable
+no-go if coredns fallback recursion is exposed beyond approved interface
+```

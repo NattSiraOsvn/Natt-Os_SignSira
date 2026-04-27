@@ -1,0 +1,46 @@
+# NATT-OS RENDER STACK — ĐẶC TẢ v0.1
+
+**@status:** draft
+**@date:** 20260425
+**@author:** Kim (Chị Ba — Chief System Builder)
+**@reviewer:** Băng (Chị Tư — Ground Truth Validator)
+**@concept-reviewer:** thiên Lớn (Architect)
+
+## §0 — MISSION
+
+Render Stack là tầng thực thi của Render Language: nhận render instruction, dịch ra pixel. Trả lời câu hỏi HOW.
+
+## §1 — NGUYÊN LÝ
+
+1. **Nhận instruction, không tự sinh logic.**
+2. **Không phụ thuộc framework ngoài** — tự build từ DOM/WebGL thuần.
+3. **7 lớp render (Layer K → Q):**
+   - K: siraSign validation
+   - L: Layout & positioning
+   - M: Color & gradient
+   - N: Animation & transition
+   - O: Filter & blend
+   - P: Interaction proxy
+   - Q: Output (DOM element)
+4. **Mỗi surface_signal map vào một hành động cụ thể:**
+   - APPEAR → tạo element
+   - DISAPPEAR → xóa
+   - SHIFT → translate
+   - RESIZE → scale
+   - RECOLOR → style.background / CSS transition
+   - BREATHE → CSS animation (pulse)
+   - PULSE → animation
+   - FREEZE → pause animation
+5. **Tôn trọng biên sự thật:** chỉ render những gì đã qua siraSign.
+
+## §2 — KIẾN TRÚC SƠ BỘ
+
+- `render-stack-cell/` (NATT-CELL mới)
+   - `render-stack.engine.ts` — nhận render_instruction, điều phối các layer
+   - `layers/` — mỗi layer một module
+   - `scheduler.ts` — frame loop, tích hợp motion budget & degrade policy
+
+## §3 — NEXT STEPS
+
+- Chi tiết hóa từng layer sau khi Language v0.3 ổn định.
+- Dựng prototype với HTML/CSS để kiểm tra 6 sample đầu tiên.

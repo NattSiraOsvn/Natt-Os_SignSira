@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+const { spawnSync } = require("child_process");
+const path = require("path");
+
+const ROOT = process.cwd();
+const validator = path.join(ROOT, "tools", "validate_lowercase_surface.sira");
+
+const p = spawnSync(path.join(ROOT, "tools", "thiên"), [validator], {
+  cwd: ROOT,
+  text: true,
+  encoding: "utf8",
+  stdio: "inherit",
+});
+
+if ((p.status ?? 1) !== 0) {
+  process.exit(p.status ?? 1);
+}
+
+console.log("natural case surface validation: pass");
+console.log("delegated_to=lowercase surface validator");

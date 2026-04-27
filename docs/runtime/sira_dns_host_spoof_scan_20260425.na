@@ -1,0 +1,83 @@
+# sira dns host spoof scan — 20260425
+
+status: read-only-scan
+created_at: 2026-04-25T06:51:52.090758+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+scan này chỉ đọc gateway và manifest.
+
+scan này chưa sửa gateway implementation.
+
+mục tiêu là nhận diện host spoof, unknown .sira, host header trust và direct localhost bypass trước khi binding route gate.
+
+---
+
+## 2. source
+
+- tools/natt_domain_gateway.sira
+- docs/runtime/sira_dns_zone_manifest_20260425.na
+
+---
+
+## 3. checks
+
+- ok — gateway_exists: tools/natt_domain_gateway.sira exists
+- ok — manifest_exists: docs/runtime/sira_dns_zone_manifest_20260425.na exists
+- ok — manifest_domain_core.sira: core.sira declared in zone manifest
+- ok — manifest_domain_apps.sira: apps.sira declared in zone manifest
+- ok — manifest_domain_mach.sira: mach.sira declared in zone manifest
+- ok — manifest_domain_audit.sira: audit.sira declared in zone manifest
+- ok — manifest_domain_render.sira: render.sira declared in zone manifest
+- ok — manifest_domain_tam.sira: tam.sira declared in zone manifest
+- ok — gateway_has_host_route_key: gateway appears to parse host / route key
+- ok — gateway_mentions_allowed_set: gateway appears to maintain an allow list
+- ok — gateway_mentions_unknown_rejection: gateway appears to reject or flag unknown host
+- ok — gateway_mentions_host_header: gateway appears to inspect host header
+- ok — manifest_has_unknown_rule: manifest declares unknown host deny
+- ok — manifest_has_spoof_rule: manifest declares host spoof quarantine
+- ok — manifest_has_localhost_bypass_rule: manifest declares direct localhost bypass concern
+
+---
+
+## 4. possible risk patterns
+
+### wildcard_sira
+
+- line 329: *{box-sizing:border-box}
+
+### trusts_raw_host_without_normalize
+
+- line 216: const host=(req.headers.host||"").split(":")[0].toLowerCase();
+
+### x_forwarded_host
+
+no direct hit
+
+### localhost_route
+
+- line 386: audit({action:"gateway.boot",host:"127.0.0.1",result:"BOOTED",payload_summary:{PORT,TAM,NAUION,AUDIT_HTML}});
+
+### direct_allow_wording
+
+no direct hit
+
+
+---
+
+## 5. reading rule
+
+ok trong scan không có nghĩa là implementation đã an toàn tuyệt đối.
+
+gap trong scan không có nghĩa là lỗi runtime đã xảy ra.
+
+scan này chỉ cho biết gateway hiện có đủ dấu để bước sang route binding hay cần vá thêm.
+
+---
+
+## 6. next
+
+nếu scan cho thấy gateway chưa có reject unknown host, chưa normalize host, hoặc còn direct localhost bypass, bước sau mới patch gateway.

@@ -7,7 +7,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 import { AuditApplicationService } from '@/cells/kernel/audit-cell/application/services/AuditApplicationService';
 
-export type RehabStatus = 'PENDING' | 'PHASE_1' | 'PHASE_2' | 'PHASE_3' | 'RESTORED' | 'FAILED';
+export type RehabStatus = 'PENDING' | 'PHASE_1' | 'PHASE_2' | 'PHASE_3' | 'RESTORED' | 'failED';
 
 interface RehabRecord {
   aiId: string;
@@ -47,9 +47,9 @@ export async function rehabilitate(aiId: string): Promise<{ success: boolean; st
 
     return { success: true, status: 'RESTORED' };
   } catch (e) {
-    record.status = 'FAILED';
+    record.status = 'failED';
     EventBus.emit('quantum.rehab_failed', { aiId, ts: Date.now() } as any);
-    return { success: false, status: 'FAILED' };
+    return { success: false, status: 'failED' };
   }
 }
 

@@ -6,7 +6,7 @@ export interface Bom3dprdTraceEvent {
   actor:     string;
   timestamp: string;
   payload?:  Record<string, unknown>;
-  result:    'SUCCESS' | 'FAILURE' | 'PENDING';
+  result:    'SUCCESS' | 'failURE' | 'PENDING';
 }
 
 export function traceBom3dprd(

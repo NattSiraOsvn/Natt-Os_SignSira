@@ -1,5 +1,5 @@
 /**
- * LOGGER SERVICE - NATT-OS
+ * LOGGER SERVICE - natt-os
  */
 
 import { ILogger, LogLevel, LogEntry } from './logger.interface';
@@ -33,11 +33,11 @@ export class LoggerService implements ILogger {
   }
   
   warn(message: string, data?: Record<string, unknown>): void {
-    this.log('WARN', message, data);
+    this.log('warn', message, data);
   }
   
   error(message: string, error?: Error, data?: Record<string, unknown>): void {
-    this.log('ERROR', message, { ...data, error: error?.message, stack: error?.stack });
+    this.log('error', message, { ...data, error: error?.message, stack: error?.stack });
   }
   
   fatal(message: string, error?: Error, data?: Record<string, unknown>): void {
@@ -67,10 +67,10 @@ export class LoggerService implements ILogger {
       case 'INFO':
         console.info(output, data || '');
         break;
-      case 'WARN':
+      case 'warn':
         console.warn(output, data || '');
         break;
-      case 'ERROR':
+      case 'error':
       case 'FATAL':
         console.error(output, data || '');
         break;
@@ -78,4 +78,4 @@ export class LoggerService implements ILogger {
   }
 }
 
-export const logger = new LoggerService('NATT-OS');
+export const logger = new LoggerService('natt-os');

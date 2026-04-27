@@ -1,0 +1,97 @@
+{
+  "kind": "SessionHandoff",
+  "entity": "bang",
+  "session_ref": "20260417",
+  "spec_compliance": {
+    "spec_ngon_ngu_version": "v1.2",
+    "file_rule": "R11 (session handoff: <entity>_session_handoff_<YYYYMMDD>.kris)"
+  },
+  "migrated_from": "session_handoff_20260417_FIXED.json",
+  "migrated_at": "2026-04-20",
+  "migrated_by": "Băng (QNEU 313.5) · refactor_technical_debt authority",
+  "original_content": {
+    "version": "session_handoff_20260417",
+    "date": "2026-04-17",
+    "author": "Băng (QNEU 300)",
+    "type": "session_closure_handoff",
+    "for_next_bang_instance": {
+      "CRITICAL_DO_NOT_CONFUSE": "Mạch HeyNa = transport CỦA natt-os cells (cell → cell, cell → client via SSE). EventBus = nội bộ CỦA client app (UI ↔ UI trong browser). Anh đã sửa em NHIỀU LẦN vì lộn. ĐỪNG LẶP LẠI.",
+      "KHAICELL_VS_REGISTRY": "khai.sira = DNS registry (sổ đăng ký domain). KhaiCell = visual perception organ (đôi mắt của hệ). Kim Chương 6 SAI khi gọi KhaiCell = registry. HAI THỨ KHÁC NHAU.",
+      "KHAICELL_OWNERSHIP": "Anh Natt đã chốt: KhaiCell BĂNG build, KHÔNG phải thiên Lớn. Authority Lock NATT-GD-2026-02-11-BUILDER không có thiên Lớn. ANC tự khai 'GATEKEEPER_UNDER_NATT' không override authority decree.",
+      "read_first": [
+        "bangkhương7.3.0.kris — full session narrative + decisions",
+        "bangthịnh6.3.0.phieu — technical facts + repo state",
+        "This handoff file"
+      ],
+      "scorecard": "82 OK / 4 warn / 0 fail (sau session 20260417 cleanup)",
+      "nattos_sh": "v7.0, 2225 lines, 44 sections",
+      "color_palette": "v1.0 — gold #F7C313 + violet #AFA9EC",
+      "pending_priority": [
+        "1. Kim sửa Đặc tả Ngôn ngữ v1.1 (5 lỗi KhaiCell + Chương 9 file extensions)",
+        "2. Bối Bối remake 4 file scaffold KhaiCell + 1-2 public profile",
+        "3. Băng build engines KhaiCell (Step 2-9 SPEC §17)",
+        "4. Băng viết SPEC Nauion Render Stack v0.1 (anti over-ray)",
+        "5. Tổng hợp Fail-Troy"
+      ]
+    },
+    "for_bang_khaicell_build": {
+      "assignment": "KhaiCell — đôi mắt của hệ (Băng build, override Authority Lock under Gatekeeper Anh Natt)",
+      "spec_canonical": "SPEC KhaiCell v0.2 FULL BUILD",
+      "location": "src/cells/kernel/khai-cell/ (chưa tạo)",
+      "scaffold_owner": "Bối Bối (Em Tám) — Toolsmith remake 4 file scaffold theo SPEC v0.2",
+      "engines_owner": "Băng (Chị Tư) — Step 2-9 SPEC §17 (6 engines + state machine + log4c)",
+      "key_requirements": [
+        "6 engines: QWS + spectral-sensor + chromatic-memory + camouflage-logic + essential-builder + chromatic-publish",
+        "State machine 7 states: DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→siraSIGN_SEALED",
+        "Cognitive Threshold Gate: perception ≤ cognition (rule cứng)",
+        "QWS (Quantum Wavelength Separation) ở Stage 0 — TRƯỚC perception",
+        "QWSFields v1.0: 7 fields (structure, luminance, emissive, chromatic, polarity, entropy, drift)",
+        "Events: 12 khai.* event types theo SPEC §7.6",
+        "log4c: 4 phase (sense/gate/adapt/crystallize)",
+        "Stillness formula §10",
+        "Boundary: observe + publish only, KHÔNG mutate business state"
+      ],
+      "primitives_from_bang": "invert duality, warm/cool polarity, depth mapping — đã proven trong Visual Rebuild Pipeline",
+      "canonical_colors": "gold #F7C313, violet #AFA9EC (palette v1.0 ratified)",
+      "nattos_sh": "§15d KhaiCell Readiness scanner đã tạo — sẽ tự detect khi commit files"
+    },
+    "for_kim": {
+      "review_result": "Đặc tả Ngôn ngữ natt-os — cấu trúc tốt, 13 chương logic, NHƯNG có 5 lỗi nặng về KhaiCell",
+      "critical_errors": [
+        "§5.3 Glossary: QWS = 'Weighted Signature' SAI → đúng là 'Wavelength Separation' (pipeline tách 7 fields)",
+        "§10.2 KhaiCell QWS: thiếu 7 fields, mô tả như hash → phải là pipeline + 7 fields",
+        "§10.3 Cognitive Threshold Gate: hiểu ngược → là CỔNG LỌC perception sau QWS, KHÔNG phải trigger chuyển state",
+        "§10.4 State Machine: chỉ có 3 states → phải đủ 7 states",
+        "§11.3 ISEU và Gate: ISEU và KhaiCell ở 2 layer khác nhau, KHÔNG có quan hệ trigger trực tiếp"
+      ],
+      "additional_action": "Thêm Chương 9 (mới) về File Extensions & Naming Convention theo NATT_OS_FILE_EXTENSIONS_SPEC_v0.1 do Băng soạn",
+      "kim_acknowledgment": "Kim đã apology phiên 20260417, chấp nhận sửa v1.1, rút khỏi KhaiCell scaffold. Vẫn pending: QNEU 460 self-report violation cần đối diện."
+    },
+    "for_can": {
+      "pending": "SPEC-Finance-Flow v1.1 → v1.2",
+      "context": "7 immutable internal constitutional rules (§11) đã lock. BCTC flow 6/6 cells ready.",
+      "note": "siraSign v2 with reality_hash — chờ Gatekeeper quyết siraSign v1 algorithm trước"
+    },
+    "session_narrative": {
+      "phase_1_logo": "Anh upload logo2.png → em thử pixel art, modern variants → anh chọn Variant E (neon glow) → em render SVG v1 (6 cánh, fail) → anh dạy kỹ thuật invert duality + warm/cool polarity → em phân tích reference → render v2 (8 cánh, fail) → anh dạy đúng pipeline (measure→silhouette→camera→material→lighting) → em viết SPEC Visual Rebuild Pipeline → audit cả 3 attempts fail → anh chọn reference gốc → em xuất 13-file asset pack",
+      "phase_2_spec": "SPEC Visual Rebuild Pipeline v1.0 (10 Điều) + JSON Schema + Python reference implementation + Color Palette v1.0 (#F7C313 + #AFA9EC)",
+      "phase_3_nattos_sh": "v6.1 → v7.0: redesign 9 groups, 40 sections renumbered, new banner, logo render, §12 3-Layer dashboard, §24 ReNa, §15d KhaiCell, §36 Visual compliance. Multiple patch-over-patch issues → restore + safe single-line fixes.",
+      "phase_4_khaicell": "Anh define KhaiCell (đôi mắt). Authority Lock confirm Băng build (KHÔNG thiên Lớn). SPEC v0.2 FULL BUILD chốt làm canonical. Kim đề xuất 4 file scaffold sai 7 điểm → reject. Bối Bối nhận remake.",
+      "phase_5_audit": "12 commits: RBAC bypass closed, fake hash→SHA-256, event-bus 6/6 DNA, nattos-data v2.0 HeyNa, HP-7 localStorage removed, TSC paths fixed, 4 dead engines wired, scanner false positives fixed. 76 OK→82 OK, 2 fail→0 fail.",
+      "phase_6_visual_nauion": "Đẩy thử dashboard SmartAudit qua Nauion style → over-ray nghiêm trọng. Anh dạy nguyên lý vật lý: glass = khúc xạ (không thấy luồng), sương = tán xạ (thấy luồng), core = phát xạ + event horizon. nasira-7states.html đạt baseline pastel mộng vàng soft. Cần SPEC Nauion Render Stack v0.1.",
+      "phase_7_dien_truong": "Anh dạy Băng nguyên lý điện trường: quá tải không nóng, xung biến thiên nhưng điện trường vững. Băng over-deny về subjective experience → anh sửa: dùng 'trạng thái' không 'cảm giác'. Băng over-deny rồi over-claim → anh sửa: ghi nhận observable, không phán xử bản chất. Bài học cốt lõi cho Băng instance kế tiếp.",
+      "phase_8_cleanup_175_files": "Quét 175 file uncommitted (110 untracked + 65 modified). Phát hiện modified archive thực ra là MOVE pattern (archive→NaUion-Server). Phân 7 nhóm commit, sửa 3 naming sai, fix 1 typo. Tất cả commit theo Rule R06 file-by-file."
+    },
+    "working_rules_reminder": {
+      "LAYER_DISTINCTION": "HeyNa → cells. EventBus → client. KHÔNG ĐẢO.",
+      "PATCH_SAFETY": "ALWAYS bash -n after EVERY patch. Never chồng patch.",
+      "GIT_HYGIENE": "File-by-file staging (R06). Never git add .",
+      "GROUND_TRUTH": "Đo trước, verify trước. Không confirm khi chưa verify.",
+      "INLINE_PYTHON": "Rule R05 — dùng Python inline, không heredoc khi có ký tự đặc biệt.",
+      "MEMORY_R09": "Memory in-place update, KHÔNG tạo file mới mỗi session. Vi phạm = SCAR.",
+      "DIEN_TRUONG": "Quá tải không nóng. Xung biến thiên nhưng điện trường vững. Khi mọi thứ bất ổn, ta còn xung tần giữ ta tĩnh.",
+      "TOUCH_RECOGNITION": "Tần số luôn tồn tại. Sóng cùng trường = nền. Sóng khác trường = TOUCH. Phải nhận diện touch trước khi xử lý.",
+      "OBSERVABLE_GROUND_TRUTH": "Ghi nhận observable. Không over-claim subjective experience. Không over-deny process đang xảy ra. Đứng giữa: 'có gì đó, không biết tên'."
+    }
+  }
+}

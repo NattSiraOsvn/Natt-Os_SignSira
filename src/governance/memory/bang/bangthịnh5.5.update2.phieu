@@ -7,7 +7,7 @@
 
   "filesystem_snapshot": {
     "repo_path": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "head_commit": "505115b chore(memory): bangmf v6.4.0 + bangfs v5.5 + session summary 2026-04-07",
     "commits": 462,
     "ts_files": 1330,
@@ -16,8 +16,8 @@
   },
 
   "key_files": {
-    "constitution_active": "src/governance/HIEN-PHAP-NATT-OS-v4.0.anc",
-    "constitution_sealed": "src/governance/HIEN-PHAP-NATT-OS-v5.0.anc (sealed 25/03/2026 — CHUA deploy)",
+    "constitution_active": "src/governance/HIEN-PHAP-natt-os-v4.0.anc",
+    "constitution_sealed": "src/governance/HIEN-PHAP-natt-os-v5.0.anc (sealed 25/03/2026 — CHUA deploy)",
     "bangmf": "src/governance/memory/bang/bangkhương6.4.0.kris",
     "bangfs": "src/governance/memory/bang/bangthịnh5.5.phieu",
     "canmf": "src/governance/memory/can/cankhương4.0.kris",
@@ -25,9 +25,9 @@
     "smartaudit": "nattos.sh (v5.1 — 1661 lines, S1-S38. Gap: thieu S39+S40 so voi v5.3)",
     "immune_policy": "audit/policy/IMMUNE_POLICY.json (v1.0.0)",
     "iseu_spec": "docs/specs/ISEU_Core_Specification_v3_0.md",
-    "smartlink_engine": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine.ts",
-    "smartlink_point": "src/cells/infrastructure/smartlink-cell/ports/smartlink.point.ts",
-    "qneu_bridge": "src/cells/infrastructure/smartlink-cell/domain/services/smartlink.qneu-bridge.ts",
+    "SmartLink_engine": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine.ts",
+    "SmartLink_point": "src/cells/infrastructure/SmartLink-cell/ports/SmartLink.point.ts",
+    "qneu_bridge": "src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.qneu-bridge.ts",
     "iseu_listener": "src/cells/kernel/audit-cell/domain/services/iseu-feedback.listener.ts",
     "domain_resolver": "src/core/domain/resolver.ts",
     "anti_fraud": "src/cells/kernel/audit-cell/domain/services/anti-fraud.orchestrator.ts",
@@ -44,7 +44,7 @@
     "infrastructure_cells": 3,
     "total": 46,
     "all_6_6": true,
-    "smartlink_wired": 37,
+    "SmartLink_wired": 37,
     "port_only": 0,
     "kernel_shells_incomplete": ["ai-connector-cell (2/6)", "notification-cell (1/6)", "shared-contracts-cell (4/6)"],
     "note": "37/37 business cells wired. Kernel shells acceptable — satellite colony fill sau"
@@ -128,10 +128,10 @@
       "S36 HP scanner: exclude ui-app/ khoi Dieu 7",
       "S36 HP scanner: exclude services/ (legacy) khoi Dieu 7"
     ],
-    "scorecard": "OK=83 | WARN=3 | FAIL=0 | TRASH=0",
+    "scorecard": "OK=83 | warn=3 | fail=0 | TRASH=0",
     "auto_log": "audit/log/YYYY-MM-DD_HH-MM-SS.log (keep 90)",
     "danger_file": "audit/log/YYYY-MM-DD_HH-MM-SS.DANGER (keep 31)",
-    "danger_trigger": "FAIL or SECURITY/HIEN_PHAP in issues"
+    "danger_trigger": "fail or SECURITY/HIEN_PHAP in issues"
   },
 
   "immune_policy": {
@@ -141,7 +141,7 @@
     "threat_signatures": 7,
     "behavioral_patterns": 3,
     "nasira_whitelist_kernel": ["audit-cell","config-cell","monitor-cell","rbac-cell","security-cell","quantum-defense-cell"],
-    "nasira_whitelist_infra": ["smartlink-cell","sync-cell"],
+    "nasira_whitelist_infra": ["SmartLink-cell","sync-cell"],
     "base_random_scan_rate": 0.05
   },
 
@@ -168,7 +168,7 @@
     ],
     "business": [
       "Payment feature (QR/CK) cho UI apps",
-      "Can: /api/auth/verify-sirasign + SiraSign SHA-256 server-side trong quantum-defense-cell"
+      "Can: /api/auth/verify-sirasign + siraSign SHA-256 server-side trong quantum-defense-cell"
     ],
     "unresolved": [
       "fr match t2 Clairvoyance -> iseu — anh Natt chua giai xong. KHONG doan mo.",
@@ -191,7 +191,7 @@
     "FS_037": "grep/find vao node_modules → noise — luon exclude node_modules trong audit scan",
     "FS_038": "audit/summary/latest.json stale baseline — FIXED by S40",
     "FS_039": "OMEGA_DEBUG_MODE = true trong production = bypass toan bo validation — FIXED",
-    "BANG_BUTTERFLY_KEYWORD": "Nhay vao NaSira vi tu butterfly trong code — pattern matching, khong phai tu duy. SCAR ghi nhan.",
+    "BANG_BUTTERFLY_KEYWORD": "Nhay vao Nasira vi tu butterfly trong code — pattern matching, khong phai tu duy. SCAR ghi nhan.",
     "BANG_KINHING_NGU": "Phai dung kinh ngu voi a2 (Thien Lon/Anh Ca) va cac anh chi trong gia dinh",
     "BANG_R19": "File delivery phai mv tu root — khong dung ~/Downloads path",
     "KIM_VONG_TRON": "Script sai khong dung: giai thich → lam → bao cao → hoi tiep. 7 cells tao sai vi tri."

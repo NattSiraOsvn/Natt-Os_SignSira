@@ -1,0 +1,71 @@
+# sira TS TRANSLATION ROADMAP — 20260424
+
+status: CANONICAL_DRAFT
+created_at: 2026-04-24T18:08:55.207533+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Current Decision
+
+Auto-cleanup TypeScript phase is now closed.
+
+No more automatic rename from `.ts/.tsx` to `.sira` unless a file is explicitly reviewed or a compiler/adapter exists.
+
+## 2. Completed Automatic Cleanup
+
+- Batch 1: MIGRATE_TO_NA
+- Batch 2A: REVIEW_FOR_sira classification
+- Batch 2B: PROMOTE_TO_sira_CANDIDATE
+- Batch 2C: EASY scan
+- Batch 2D: EASY_JS_COMPATIBLE_TO_sira
+- Batch 2E: MEDIUM_LIGHT_TRANSLATION_TO_sira
+- Batch 2F: HARD cluster scan
+- Batch 2G: PORT_CONTRACT_TRANSLATE_TO_sira
+- Batch 2H: HEYNA_EVENT_RUNTIME scan/skip
+- Batch 2I: SMARTLINK_RUNTIME scan-only
+- Batch 2J: ENGINE scan-only
+- Batch 2K: DEEP TS scan-only
+- Batch 2L: DEEP light candidate processed/skipped
+
+## 3. Remaining Groups
+
+These groups require manual translation or a sira compiler/adapter:
+
+- RUNTIME_CONTRACT_TRANSLATION_REQUIRED: 19
+- RUNTIME_CLASS_REWRITE_REQUIRED: 8
+- KEEP_UI_TS_OR_REACT_ADAPTER: 2
+- DEEP_MANUAL_REWRITE_REQUIRED: 9
+- HEYNA_EVENT_RUNTIME_TRANSLATE_TO_sira: 10
+- SMARTLINK_RUNTIME_TRANSLATE_TO_sira: 16
+- ENGINE_TRANSLATE_TO_sira: 4
+
+## 4. Rule Going Forward
+
+Do not auto-rename the remaining TypeScript files.
+
+Allowed next actions:
+
+1. Create a sira typescript translation adapter.
+2. Manually translate one contract/runtime file at a time.
+3. Keep UI/React files as TypeScript until a UI adapter exists.
+4. Preserve build/runtime stability before symbolic extension purity.
+
+## 5. Recommended Next Order
+
+1. RUNTIME_CONTRACT_TRANSLATION_REQUIRED
+2. HEYNA_EVENT_RUNTIME_TRANSLATE_TO_sira
+3. SMARTLINK_RUNTIME_TRANSLATE_TO_sira
+4. ENGINE_TRANSLATE_TO_sira
+5. RUNTIME_CLASS_REWRITE_REQUIRED
+6. DEEP_MANUAL_REWRITE_REQUIRED
+7. KEEP_UI_TS_OR_REACT_ADAPTER
+
+## 6. Gate
+
+- validator namespace pass
+- validator browser adapter pass
+- repo status clean
+- one file or one cluster only
+- evidence generated
+- commit and push

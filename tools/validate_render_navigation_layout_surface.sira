@@ -1,0 +1,113 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const targets = {
+  "navigation_engine": "src/cells/render-stack-cell/domain/navigation.engine.ts",
+  "layout_engine": "src/cells/render-stack-cell/domain/layout.engine.ts",
+  "navigation_pilot": "docs/render/pilot/render_language_pilot_navigation.html",
+  "layout_pilot": "docs/render/pilot/render_language_pilot_layout.html"
+};
+const requiredAll = {
+  "src/cells/render-stack-cell/domain/navigation.engine.ts": [
+    "navigation"
+  ],
+  "src/cells/render-stack-cell/domain/layout.engine.ts": [
+    "layout"
+  ],
+  "docs/render/pilot/render_language_pilot_navigation.html": [
+    "<!doctype html>",
+    "</html>",
+    "navigation",
+    "pilot"
+  ],
+  "docs/render/pilot/render_language_pilot_layout.html": [
+    "<!doctype html>",
+    "</html>",
+    "layout",
+    "pilot"
+  ]
+};
+const requiredAny = {
+  "src/cells/render-stack-cell/domain/navigation.engine.ts": [
+    "state",
+    "render",
+    "screen",
+    "nav",
+    "nhà",
+    "neo",
+    "chốt",
+    "về"
+  ],
+  "src/cells/render-stack-cell/domain/layout.engine.ts": [
+    "state",
+    "render",
+    "screen",
+    "layout",
+    "surface",
+    "nhà",
+    "neo",
+    "chốt",
+    "về"
+  ]
+};
+const forbiddenMarks = [
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "EventBus",
+  "Mạch HeyNa wired",
+  "siraSign frame validation: wired",
+  "production renderer",
+  "production-ready",
+  "NATT-OS"
+];
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+for (const rel of Object.values(targets)) {
+  const file = path.join(root, rel);
+  must(fs.existsSync(file), "missing render navigation/layout file: " + rel);
+
+  if (!fs.existsSync(file)) continue;
+
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  for (const clause of requiredAll[rel] || []) {
+    must(lower.includes(clause.toLowerCase()), rel + ": missing clause: " + clause);
+  }
+
+  const anyGroup = requiredAny[rel] || [];
+  if (anyGroup.length) {
+    const ok = anyGroup.some(clause => lower.includes(String(clause).toLowerCase()));
+    must(ok, rel + ": missing one of semantic clauses: " + anyGroup.join(", "));
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), rel + ": forbidden mark: " + mark);
+  }
+
+  if (rel.endsWith(".ts")) {
+    const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+    for (const line of importLines) {
+      const directOtherCell = line.includes("src/cells/") && !line.includes("render-stack-cell");
+      const relativeOtherCell = /\.\.\/.*-cell/.test(line) && !line.includes("render-stack-cell");
+      must(!directOtherCell && !relativeOtherCell, rel + ": direct cross-cell import forbidden: " + line.trim());
+    }
+  }
+}
+
+if (errors.length) {
+  console.error("render navigation/layout surface validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render navigation/layout surface validation: pass");
+console.log("files=navigation.engine.ts,layout.engine.ts,navigation.html,layout.html");

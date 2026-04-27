@@ -3,7 +3,7 @@ import { SUPER_DICTIONARY, SUPER_DICTIONARY_CONTROL } from '../SuperDictionary';
 import { StagingStore } from './staging/EventStagingLayer'; // Import ESL
 
 // --- TYPES DEFINITIONS ---
-export type IngestStatus = 'AUTO_COMMITTED' | 'PENDING_APPROVAL' | 'CONFLICT_HALTED' | 'DATA_ERROR' | 'DUPLICATE_IGNORED';
+export type IngestStatus = 'AUTO_COMMITTED' | 'PENDING_APPROVAL' | 'CONFLICT_HALTED' | 'DATA_error' | 'DUPLICATE_IGNORED';
 export type DataTier = 'CRITICAL' | 'OPERATIONAL' | 'PREDICTIVE' | 'COLD_STORAGE';
 export type DetectedContext = 'PRODUCTION' | 'SALES' | 'MARKETING' | 'LOGISTICS' | 'HR' | 'FINANCE' | 'LEGAL' | 'AMBIGUOUS';
 

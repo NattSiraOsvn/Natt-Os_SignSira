@@ -1,0 +1,397 @@
+/**
+ * nattos.sira — Kernel entry point of natt-os colony.
+ *
+ * Per SPEC NEN v1.1 + SPEC NGON NGU v1.2:
+ *   §5.1 — .sira = registry namespace (CoreDNS resolved)
+ *   §6   — He mien dich da tang (kernel-M wire active)
+ *   §9.2 — Observation read-only awareness online
+ *   §9.4 — Quantum Defense react chromatic
+ *
+ * Vai: bootstrap kernel cells trong nha natt-os.
+ *      Khong an com server.js cu — an com nha minh.
+ *
+ * NAUION AUTHORITY LOADER nhúng trực tiếp.
+ * Không .mjs. Không ts-node. Không tsconfig-paths.
+ *
+ * Listen: 127.0.0.1:3002 (port riêng của kernel)
+ * Domain: natt.sira (CoreDNS resolved 127.0.0.1)
+ *
+ * Chạy: ./kernel
+ *   hoặc: node --no-warnings --input-type=module nattos.sira
+ * Self-test: ./kernel --self-test
+ *
+ * Gatekeeper: Phan Thanh Thương
+ * Author: Băng (QNEU 300) — hardened build
+ */
+
+// ═══════════════════════════════════════════════════════════
+// PHASE 0 — Environment detection
+// ═══════════════════════════════════════════════════════════
+
+import { readFileSync, existsSync } from 'node:fs';
+import { dirname, resolve as pathResolve, extname, join } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createRequire } from 'node:module';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const SRC_ROOT = join(__dirname, 'src');
+const SELF_TEST = process.argv.includes('--self-test');
+
+const _require = createRequire(import.meta.url);
+
+// ═══════════════════════════════════════════════════════════
+// PHASE 1 — esbuild detection (TS transform engine)
+// ═══════════════════════════════════════════════════════════
+
+let _transform = null;
+let _esbuildSource = 'NONE';
+
+function detectEsbuild() {
+  // Strategy 1: direct esbuild package
+  try {
+    const eb = _require('esbuild');
+    if (eb.transformSync) { _transform = eb.transformSync; _esbuildSource = 'esbuild'; return; }
+  } catch {}
+
+  // Strategy 2: esbuild bundled inside tsx
+  try {
+    const tsxPkg = _require.resolve('tsx');
+    const ebPath = join(dirname(tsxPkg), '..', 'esbuild', 'lib', 'main.js');
+    const eb = _require(ebPath);
+    if (eb.transformSync) { _transform = eb.transformSync; _esbuildSource = 'tsx/esbuild'; return; }
+  } catch {}
+
+  // Strategy 3: esbuild-wasm fallback
+  try {
+    const eb = _require('esbuild-wasm');
+    if (eb.transformSync) { _transform = eb.transformSync; _esbuildSource = 'esbuild-wasm'; return; }
+  } catch {}
+}
+
+detectEsbuild();
+
+function transformTS(source, filename) {
+  if (!_transform) {
+    throw new Error(
+      `[nattos.sira] FATAL: No TS transform engine found.\n` +
+      `  Install esbuild: npm install esbuild\n` +
+      `  Or ensure tsx is installed (it bundles esbuild).`
+    );
+  }
+  const loader = filename.endsWith('.tsx') ? 'tsx' : 'ts';
+  return _transform(source, {
+    loader,
+    format: 'esm',
+    target: 'node22',
+    sourcemap: 'inline',
+    sourcefile: filename,
+  }).code;
+}
+
+// ═══════════════════════════════════════════════════════════
+// PHASE 2 — Register Nauion loader hooks
+// ═══════════════════════════════════════════════════════════
+
+const PRECEDENCE = ['.khai', '.na', '.ts', '.tsx', '.js', '.mjs'];
+let _native = 0, _bridged = 0, _legacy = 0;
+
+function findFile(basePath) {
+  // Try exact path first
+  if (existsSync(basePath)) {
+    const ext = extname(basePath);
+    if (ext === '.khai') {
+      const ts = basePath.replace(/\.khai$/, '.ts');
+      if (existsSync(ts)) return { file: ts, mode: 'BRIDGED' };
+      return { file: basePath, mode: 'NATIVE' };
+    }
+    return { file: basePath, mode: ext === '.na' ? 'NATIVE' : 'LEGACY' };
+  }
+
+  // Try precedence extensions
+  const base = extname(basePath) ? basePath.replace(extname(basePath), '') : basePath;
+  for (const ext of PRECEDENCE) {
+    const candidate = base + ext;
+    if (!existsSync(candidate)) continue;
+    if (ext === '.khai') {
+      const ts = base + '.ts';
+      return existsSync(ts) ? { file: ts, mode: 'BRIDGED' } : { file: candidate, mode: 'NATIVE' };
+    }
+    if (ext === '.na') return { file: candidate, mode: 'NATIVE' };
+    return { file: candidate, mode: 'LEGACY' };
+  }
+
+  // Try index files
+  for (const ext of ['.ts', '.tsx', '.js']) {
+    const idx = join(basePath, 'index' + ext);
+    if (existsSync(idx)) return { file: idx, mode: 'LEGACY' };
+  }
+
+  return null;
+}
+
+function expandSpecifier(specifier, parentDir) {
+  if (specifier.startsWith('@/')) {
+    return join(SRC_ROOT, specifier.slice(2));
+  }
+  if (specifier.startsWith('./') || specifier.startsWith('../')) {
+    return pathResolve(parentDir, specifier);
+  }
+  return null;
+}
+
+// ── Register hooks ────────────────────────────────────────
+
+let _hooksRegistered = false;
+
+async function registerNauionHooks() {
+  // Detect which API is available
+  const mod = await import('node:module');
+
+  // Strategy 1: registerHooks (Node v23.5+, synchronous, preferred)
+  if (typeof mod.registerHooks === 'function') {
+    mod.registerHooks({
+      resolve(specifier, context, nextResolve) {
+        return nauionResolve(specifier, context, nextResolve);
+      },
+      load(url, context, nextLoad) {
+        return nauionLoad(url, context, nextLoad);
+      },
+    });
+    _hooksRegistered = true;
+    return 'registerHooks';
+  }
+
+  // Strategy 2: register() with data URL (Node v20+, async/worker)
+  if (typeof mod.register === 'function') {
+    const hookCode = `
+      export async function resolve(specifier, context, nextResolve) {
+        // Minimal: handle @/ alias only, rest delegated
+        if (specifier.startsWith('@/')) {
+          const expanded = specifier.replace('@/', './src/');
+          return nextResolve(expanded, context);
+        }
+        return nextResolve(specifier, context);
+      }
+      export async function load(url, context, nextLoad) {
+        return nextLoad(url, context);
+      }
+    `;
+    mod.register(`data:text/javascript,${encodeURIComponent(hookCode)}`, import.meta.url);
+    _hooksRegistered = true;
+    return 'register(data-url)';
+  }
+
+  return 'NONE';
+}
+
+// ── Hook implementations ──────────────────────────────────
+
+function nauionResolve(specifier, context, nextResolve) {
+  // Builtins + node_modules → pass through
+  if (specifier.startsWith('node:')) return nextResolve(specifier, context);
+  if (!specifier.startsWith('.') && !specifier.startsWith('@/') && !specifier.startsWith('/')) {
+    return nextResolve(specifier, context);
+  }
+
+  const parentDir = context.parentURL
+    ? dirname(fileURLToPath(context.parentURL))
+    : __dirname;
+
+  const expanded = expandSpecifier(specifier, parentDir);
+  if (!expanded) return nextResolve(specifier, context);
+
+  const result = findFile(expanded);
+  if (result) {
+    if (result.mode === 'NATIVE') _native++;
+    else if (result.mode === 'BRIDGED') _bridged++;
+    else _legacy++;
+    return { url: pathToFileURL(result.file).href, format: 'module', shortCircuit: true };
+  }
+
+  // File not found via Nauion — let Node try
+  return nextResolve(specifier, context);
+}
+
+function nauionLoad(url, context, nextLoad) {
+  const filePath = fileURLToPath(url);
+  const ext = extname(filePath);
+
+  if (ext === '.ts' || ext === '.tsx' || ext === '.sira') {
+    try {
+      const source = readFileSync(filePath, 'utf-8');
+      const code = transformTS(source, filePath);
+      return { format: 'module', source: code, shortCircuit: true };
+    } catch (err) {
+      console.error(`[nattos.sira] TRANSFORM failED: ${filePath}`);
+      console.error(`  ${err.message}`);
+      throw err;
+    }
+  }
+
+  return nextLoad(url, context);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PHASE 3 — Self-test (--self-test flag)
+// ═══════════════════════════════════════════════════════════
+
+if (SELF_TEST) {
+  console.log('');
+  console.log('═══ natt-os Kernel Self-Test ═══');
+  console.log('');
+
+  // Test 1: esbuild
+  const t1 = _transform !== null;
+  console.log(`  ${t1 ? '✅' : '❌'} esbuild: ${_esbuildSource}`);
+
+  // Test 2: registerHooks
+  const hookMethod = await registerNauionHooks();
+  const t2 = _hooksRegistered;
+  console.log(`  ${t2 ? '✅' : '❌'} hooks: ${hookMethod}`);
+
+  // Test 3: TS transform
+  let t3 = false;
+  try {
+    const testCode = 'const x: number = 42; export default x;';
+    const result = transformTS(testCode, 'test.ts');
+    t3 = result.includes('42') && !result.includes(': number');
+    console.log(`  ${t3 ? '✅' : '❌'} transform: TS → ESM${t3 ? '' : ' (types not stripped)'}`);
+  } catch (err) {
+    console.log(`  ❌ transform: ${err.message}`);
+  }
+
+  // Test 4: resolve @/ alias
+  let t4 = false;
+  const testPath = join(SRC_ROOT, 'core', 'events', 'event-bus');
+  const testResult = findFile(testPath);
+  t4 = testResult !== null;
+  console.log(`  ${t4 ? '✅' : '❌'} resolve @/core/events/event-bus → ${testResult?.file ? 'FOUND' : 'NOT FOUND'} (${testResult?.mode ?? 'N/A'})`);
+
+  // Test 5: resolve observation-cell
+  let t5 = false;
+  const obsPath = join(SRC_ROOT, 'cells', 'kernel', 'observation-cell');
+  const obsResult = findFile(obsPath);
+  t5 = obsResult !== null;
+  console.log(`  ${t5 ? '✅' : '❌'} resolve observation-cell → ${obsResult?.file ? 'FOUND' : 'NOT FOUND'} (${obsResult?.mode ?? 'N/A'})`);
+
+  // Test 6: resolve quantum-defense-cell/bootstrap
+  let t6 = false;
+  const qdPath = join(SRC_ROOT, 'cells', 'kernel', 'quantum-defense-cell', 'bootstrap');
+  const qdResult = findFile(qdPath);
+  t6 = qdResult !== null;
+  console.log(`  ${t6 ? '✅' : '❌'} resolve quantum-defense-cell/bootstrap → ${qdResult?.file ? 'FOUND' : 'NOT FOUND'} (${qdResult?.mode ?? 'N/A'})`);
+
+  // Test 7: .khai bridge
+  let t7 = false;
+  const khaiPath = join(SRC_ROOT, 'cells', 'kernel', 'khai-cell', 'infrastructure', 'khai-file-persister');
+  const khaiResult = findFile(khaiPath);
+  t7 = khaiResult?.mode === 'BRIDGED';
+  console.log(`  ${t7 ? '✅' : '❌'} .khai bridge khai-file-persister → ${khaiResult?.mode ?? 'NOT FOUND'}`);
+
+  const passed = [t1, t2, t3, t4, t5, t6, t7].filter(Boolean).length;
+  console.log('');
+  console.log(`  Result: ${passed}/7 passed`);
+
+  if (passed === 7) {
+    console.log('  🔥 All systems ready — kernel can boot without ts-node');
+  } else if (passed >= 5) {
+    console.log('  ⚠️  Partial — kernel may boot with warnings');
+  } else {
+    console.log('  ❌ Not ready — fix failures above before booting');
+  }
+
+  console.log('');
+  process.exit(passed >= 5 ? 0 : 1);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PHASE 4 — Register hooks + Boot kernel
+// ═══════════════════════════════════════════════════════════
+
+const hookMethod = await registerNauionHooks();
+
+if (!_hooksRegistered) {
+  console.error('[nattos.sira] warnING: Could not register Nauion hooks.');
+  console.error('  Falling back to Node default resolution.');
+  console.error('  @/* aliases and .khai bridges will not work.');
+  console.error('  Run: ./kernel --self-test to diagnose.');
+}
+
+const KERNEL_PORT = 3002;
+const KERNEL_HOST = "127.0.0.1";
+
+console.log("");
+console.log("╔════════════════════════════════════════════════════════════╗");
+console.log("║  natt-os Kernel — nattos.sira                            ║");
+console.log(`║  Nauion Authority: ${hookMethod.padEnd(20)} esbuild: ${_esbuildSource.padEnd(14)}║`);
+console.log("║  Không .mjs — Không ts-node — Không tsconfig-paths       ║");
+console.log("╚════════════════════════════════════════════════════════════╝");
+console.log("");
+
+// ── Dynamic imports (hooks apply to these) ────────────────
+let observation, quantum;
+
+try {
+  const obsModule = await import('./src/cells/kernel/observation-cell');
+  observation = obsModule.bootstrapObservationCell();
+  console.log('[nattos.sira] ✅ observation-cell bootstrapped');
+} catch (err) {
+  console.error('[nattos.sira] ❌ observation-cell failED:', err.message);
+  if (err.code === 'ERR_MODULE_NOT_FOUND') {
+    console.error('  Hint: check @/* alias resolution — run ./kernel --self-test');
+  }
+  process.exit(1);
+}
+
+try {
+  const qdModule = await import('./src/cells/kernel/quantum-defense-cell/bootstrap');
+  quantum = qdModule.bootstrapQuantumDefenseCell();
+  console.log('[nattos.sira] ✅ quantum-defense-cell bootstrapped');
+} catch (err) {
+  console.error('[nattos.sira] ❌ quantum-defense-cell failED:', err.message);
+  process.exit(1);
+}
+
+// ── Health probe ──────────────────────────────────────────
+const http = await import('node:http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/health") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({
+      status: "alive",
+      loader: { method: hookMethod, esbuild: _esbuildSource },
+      cells: ["observation-cell", "quantum-defense-cell"],
+      resolution: { native: _native, bridged: _bridged, legacy: _legacy },
+      chromatic_wire: "active",
+      timestamp: new Date().toISOString(),
+    }));
+    return;
+  }
+  res.writeHead(404);
+  res.end();
+});
+
+server.listen(KERNEL_PORT, KERNEL_HOST, () => {
+  console.log("");
+  console.log(`[nattos.sira] http://natt.sira:${KERNEL_PORT}`);
+  console.log(`[nattos.sira] health → http://${KERNEL_HOST}:${KERNEL_PORT}/health`);
+  console.log("");
+  console.log("─────────────────────────────────────────────────────────────");
+  console.log(`  Nauion Loader: ${_native} native, ${_bridged} bridged, ${_legacy} legacy`);
+  console.log("  He mien dich natt-os dang song that.");
+  console.log("  Observation snapshot → chromatic → Quantum Defense react.");
+  console.log("─────────────────────────────────────────────────────────────");
+  console.log("");
+});
+
+// Graceful shutdown
+process.on("SIGINT", () => {
+  console.log("\n[nattos.sira] shutting down kernel...");
+  try { observation.stop(); } catch {}
+  server.close(() => {
+    console.log("[nattos.sira] kernel offline");
+    process.exit(0);
+  });
+});

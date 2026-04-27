@@ -1,0 +1,87 @@
+# TS CLEANUP BATCH 2B — PROMOTE_TO_sira_CANDIDATE — 20260424
+
+status: pass
+scope: PROMOTE_TO_sira_CANDIDATE only
+created_at: 2026-04-24T16:09:53.823282+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Rule
+
+Batch này chỉ xử lý nhóm candidate đã được Batch 2A phân loại là PROMOTE_TO_sira_CANDIDATE.
+
+Không động NEEDS_TRANSLATION_TO_sira.
+Không động KEEP_APP_TS_RUNTIME_ADAPTER.
+Không động REVIEW_MANUAL.
+
+## 2. Summary
+
+{
+  "targets": 8,
+  "renamed": 8,
+  "skipped": 0,
+  "patched_refs": 2
+}
+
+## 3. Renamed
+
+[
+  {
+    "from": "src/cells/infrastructure/SmartLink-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/infrastructure/SmartLink-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/infrastructure/sync-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/infrastructure/sync-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/kernel/audit-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/kernel/audit-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/kernel/config-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/kernel/config-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/kernel/monitor-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/kernel/monitor-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/kernel/quantum-defense-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/kernel/rbac-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/kernel/rbac-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  },
+  {
+    "from": "src/cells/kernel/security-cell/infrastructure/adapters/index.ts",
+    "to": "src/cells/kernel/security-cell/infrastructure/adapters/index.sira",
+    "reason": "runtime-like file appears JS-compatible; candidate for .sira"
+  }
+]
+
+## 4. Skipped
+
+[]
+
+## 5. Patched References
+
+[
+  "docs/runtime/TS_CLEANUP_INVENTORY_20260424.na",
+  "docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_sira_20260424.na"
+]
+
+## 6. Next Gate
+
+- [ ] Review NEEDS_TRANSLATION_TO_sira theo từng nhóm nhỏ.
+- [ ] Không rename app/UI source khi chưa có compiler/adapter.
+- [ ] Cập nhật audit UI scan để nhận .sira candidate.

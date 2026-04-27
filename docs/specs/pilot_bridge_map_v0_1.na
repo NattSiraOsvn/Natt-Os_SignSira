@@ -1,0 +1,297 @@
+# PILOT_BRIDGE_MAP_v0.1.na
+
+**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5)
+**Session:** 20260423
+**Status:** v0.1 — 4/4 kernel cells S1→S2 DONE (phiên 20260423). W3 scope per SPEC_HOST_FIRST §4 D7 → now W2 per SPEC v1.1 align thiên
+**Binding to:**
+- SPEC_HOST_FIRST_RUNTIME_v1.0.na (§4 W3 · §8 pending)
+- SPEC_CUTOVER_STATES_v1.0.na (Kim — state labels + transition rules)
+- SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na (Kim — bridge authority)
+- SPEC_EXTENSION_PRECEDENCE_v1.0.na (Kim — canonical vs substrate)
+
+**Commit path target (per KHAI-20260427-08 note):** `docs/specs/pilot_bridge_map_v0_1.na`
+**Path may flatten in commit pipeline — Gatekeeper decide final landing.**
+
+---
+
+## 0. Scope
+
+Map 4 kernel cells trong provisional order W3 (SPEC_HOST_FIRST §4 D7). Mỗi cell:
+- Current state (S1/S2/S3/S4)
+- `@state` / `@canonical` / `@substrate` / `@bridge` / `@since` header bắt buộc (Kim SPEC_CUTOVER_STATES §3)
+- Transition target + điều kiện chuyển (Kim SPEC §2.2)
+- Rollback plan (lùi 1 state, Kim SPEC §2.3)
+- Evidence path (file tồn tại thực trong repo)
+
+**KHÔNG mở business cells.** Sales/BCTC/Finance/HR để wave sau.
+
+---
+
+## 1. Cell 1 — audit-cell / file-extension-validator
+
+**Priority:** 1 (first to migrate — scope hẹp, no business coupling)
+
+### Current state: **S2** `transitional-canonical-wrapper`
+
+Evidence:
+- `src/cells/kernel/audit-cell/scanner/file-extension-validator.khai` (canonical)
+- `src/cells/kernel/audit-cell/scanner/file-extension-validator.ts` (substrate)
+- `src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.khai` + `.ts`
+- `nattos.sh §40` gọi `npx tsx` vào `.ts` directly (bypass canonical — per RUNTIME_DEPENDENCY_CENSUS §2.1)
+
+### Required header (apply vào `.khai` file):
+
+```
+@state sealed
+@canonical pilot_bridge_map_v0.1
+@substrate planning_artifact
+@bridge none
+@since 2026-04-23
+@authority-slot Băng (Chị Tư) — pilot scope ground truth
+@canonical: src/cells/kernel/audit-cell/scanner/file-extension-validator.khai
+@substrate: src/cells/kernel/audit-cell/scanner/file-extension-validator.ts
+@since: 2026-04-23
+```
+
+### Transition S2 → S3 conditions (Kim SPEC §2.2):
+
+1. Substrate cell-hóa: audit-cell đã có boundary guard (`src/cells/kernel/audit-cell/audit-cell.boundary.si` — **evidence: exists**)
+2. Canonical gọi qua EventBus L2 Mạch HeyNa, không import `.ts` trực tiếp
+3. `nattos.sh §40` patch: bỏ `npx tsx` direct call, route qua Host
+4. Audit trail ghi nhận quá trình tách (audit-chain contract Kim existing)
+
+### @bridge target (post-S3):
+
+`@bridge: audit-cell::file-extension-validator`
+
+### Rollback: `rbf_s2_wrapper` — giữ nguyên S2 behavior, restore `npx tsx` call
+
+---
+
+## 2. Cell 2 — khai-cell / file-persister
+
+**Priority:** 2
+
+### Current state: **S2** `transitional-canonical-wrapper`
+
+Evidence:
+- `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai` (canonical)
+- `src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts` (substrate)
+- K2 RESOLVED (phiên 20260423 grep): `khai-file-persister.ts:47` `fs.writeFileSync` có TWIN_PERSIST annotation pre-existing (line 55 substrate + line 18 canonical JSDoc). QIINT lineage adapter per SPEC_NEN_v1.1 §17.2 — infrastructure legitimate, không Điều 7 violation. Ref: bang_handoff_20260419.kris §A.1.
+
+### Required header:
+
+```
+@state sealed
+@canonical pilot_bridge_map_v0.1
+@substrate planning_artifact
+@bridge none
+@since 2026-04-23
+@authority-slot Băng (Chị Tư) — pilot scope ground truth
+@canonical: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.khai
+@substrate: src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts
+@since: 2026-04-23
+```
+
+### Transition S2 → S3 conditions:
+
+1. K2 Điều 7 **RESOLVED** (phiên 20260423) — TWIN_PERSIST annotation pre-existing, QIINT lineage legitimate. Không block Cell 2 S2 → S3 migration.
+2. Khai-cell boundary guard: `src/cells/kernel/khai-cell/khai-cell.boundary.si` — **evidence: exists**
+3. Canonical route qua Mạch HeyNa L2 → warehouse-cell::file-persister (Kim SPEC §3 ví dụ)
+4. TWIN_PERSIST tag compliance verified
+
+### @bridge target (post-S3):
+
+`@bridge: warehouse-cell::file-persister`
+
+### Rollback: `rbf_s2_wrapper`
+
+---
+
+## 3. Cell 3 — observation-cell
+
+**Priority:** 3
+
+### Current state: **S2** `transitional-canonical-wrapper` (ship phiên 20260423)
+
+Evidence:
+- `src/cells/kernel/observation-cell/bootstrap.ts` (substrate, reference trong `nattos.sira` PHASE 4 per RUNTIME_DEPENDENCY_CENSUS §1.1)
+- `.khai` canonical sibling ĐÃ SHIP phiên 20260423 (bootstrap.khai @state S2)
+- `src/cells/kernel/observation-cell/observation-cell.boundary.si` exists (boundary ready)
+- `src/cells/kernel/observation-cell/observation-cell.cell.anc` exists (manifest ready)
+
+### Transition S1 → S2 conditions (Kim SPEC §2.2):
+
+1. **Tạo file `.khai` canonical:** `src/cells/kernel/observation-cell/observation-cell.khai`
+2. Header `@substrate: bootstrap.ts` declare rõ
+3. Đăng ký trong PILOT_BRIDGE_MAP (**file này**)
+4. thiên Lớn approve về kiến trúc (observation-cell đã bootstrap `nattos.sira` PHASE 4 — architecture baseline đã có)
+
+### Required header (apply khi tạo `.khai`):
+
+```
+@state: S2
+@canonical: src/cells/kernel/observation-cell/observation-cell.khai
+@substrate: src/cells/kernel/observation-cell/bootstrap.ts
+@since: 2026-04-23
+```
+
+### Transition S2 → S3 later:
+
+`@bridge: observation-cell::bootstrap` routing qua Mạch HeyNa L2.
+
+### Rollback: N/A ở S1 — chỉ rollback từ S2 lùi S1 bằng xóa `.khai` (nhưng **cấm xóa `.ts` substrate khi canonical S2** per Kim SPEC §4).
+
+---
+
+## 4. Cell 4 — quantum-defense-cell
+
+**Priority:** 4
+
+### Current state: **S2** `transitional-canonical-wrapper` (ship phiên 20260423)
+
+Evidence:
+- `src/cells/kernel/quantum-defense-cell/bootstrap.ts` (substrate, `nattos.sira` PHASE 4)
+- `.khai` canonical ĐÃ SHIP phiên 20260423 (bootstrap.khai @state S2)
+- `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.boundary.si` exists
+- `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.cell.anc` exists
+- 13 engines trong `domain/engines/` (ai-behavior, anomaly-flow, cell-purity, chromatic-state, drive-backup, governance-enforcement, kill-switch, pii-detector, rehabilitation, self-healing, threshold, quantum-defense.engine, ai-lockdown)
+
+### Transition S1 → S2 conditions:
+
+1. Tạo `src/cells/kernel/quantum-defense-cell/quantum-defense-cell.khai`
+2. Header `@substrate: bootstrap.ts`
+3. Đăng ký PILOT_BRIDGE_MAP
+4. thiên approve (đã bootstrap baseline)
+
+**Note:** quantum-defense-cell coupling cao với immune response + threat detection + kill-switch. Migrate CẨN THẬN. Parity test 100% trước S2 → S3.
+
+### Required header (S2):
+
+```
+@state: S2
+@canonical: src/cells/kernel/quantum-defense-cell/quantum-defense-cell.khai
+@substrate: src/cells/kernel/quantum-defense-cell/bootstrap.ts
+@since: 2026-04-23
+```
+
+### Rollback: N/A ở S1
+
+---
+
+## 5. Summary matrix
+
+| # | Cell | Current | Target W3 | Priority | Blocker |
+|---|---|---|---|---|---|
+| 1 | audit-cell/file-extension-validator | S2 | S3 | 1 | `nattos.sh §40` bypass patch |
+| 2 | khai-cell/file-persister | S2 | S3 | 2 | K2 RESOLVED (TWIN_PERSIST pre-existing) — unblock S2→S3 |
+| 3 | observation-cell | **S2** | S3 | 3 | W2 bridged Mạch HeyNa L2 (W1 launcher prerequisite) |
+| 4 | quantum-defense-cell | **S2** | S3 | 4 | Paradigm P1 rebind — substrate subscribe("*") → field pull observation_snapshot |
+
+**Total path W3:** 2 cells S2→S3 + 2 cells S1→S2. W3 KHÔNG target S4.
+
+W3 → W4 sẽ scope riêng sau khi 4 cells đạt S3 stable (minimum 3 phiên evaluate).
+
+---
+
+## 6. Compliance gates
+
+Trước khi Gatekeeper seal từng transition:
+
+1. **Băng verify** ground truth (state cũ/mới + evidence + rollback khả thi) per Kim SPEC_CUTOVER_STATES §5.1
+2. **thiên Lớn** chốt kiến trúc (S2 → S3 + S3 → S4 cần architecture review)
+3. **Gatekeeper** approve cuối cùng + commit
+4. Rollback plan khả thi (test rollback trước merge forward)
+
+---
+
+## 7. Open items (out of scope v0.1)
+
+- **Business cells migration (37 cells)** — wave sau v1.0 W3 complete
+- **S3 → S4** detailed plan — sau 3 phiên S3 stable evaluate
+- **W4 Node retire** — depends W3 complete + all cells S4
+- **Extension `.sira/.khai/.na/.anc/.phieu` parser full implementation** — Nauion grammar deep-read prerequisite
+
+---
+
+*Binding to: SPEC_HOST_FIRST_RUNTIME_v1.0, SPEC_CUTOVER_STATES_v1.0, SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0, SPEC_EXTENSION_PRECEDENCE_v1.0*
+*Drafter: Băng · Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7*
+*Session: 20260423 · Gatekeeper: Phan Thanh Thương*
+*Commit path designed: `docs/specs/pilot_bridge_map_v0_1.na` (Gatekeeper final landing)*
+
+
+---
+
+## §S3 SWAP STATUS — Verify phiên 20260423
+
+**Ground truth verify trước khi defer:**
+
+### Cell 1 — file-extension-validator
+- ✅ `.khai` exists (12KB, ship 23/04 22:10)
+- ✅ `.ts` exists (11KB, ship 19/04)
+- ❌ S3 swap NOT FEASIBLE phiên này
+
+**Lý do defer:**
+- §44 nattos.sh expect JSON output `{ok, warn, fail, total}` từ validator
+- nauion-host hiện scaffold (PHASE 0-4): banner + esbuild + FileResolver + self-test + HTTP server
+- nauion-host KHÔNG có cell execution engine — chỉ resolve path, không execute logic
+- Cần: (1) port file-extension-validator.ts → Rust, (2) add `--run-cell <path>` CLI flag, (3) wire JSON output
+
+### Cell 2 — khai-file-persister
+- ✅ `.khai` exists (2KB, ship 23/04)
+- ✅ `.ts` exists (1.7KB, ship 23/04)
+- ❌ S3 swap NOT FEASIBLE phiên này
+
+**Lý do defer:**
+- Cell 2 là TypeScript module imported bởi siblings (`index.ts`), không phải CLI
+- Để swap Cell 2 cần observation-cell + quantum-defense-cell có Rust port chạy trong nauion-host runtime
+- PHASE 4 hiện chỉ "would bootstrap" (skeleton log), real bootstrap = phiên sau
+
+### Path tới S3 — phiên sau
+
+**Yêu cầu prerequisite:**
+1. nauion-host PHASE 4 bootstrap real (load + execute cell)
+2. Cell 1 logic port Rust (file-extension-validator.rs)
+3. Cell 2 logic port Rust (khai-file-persister.rs)
+4. CLI flag `--run-cell <path>` + JSON output compat §44
+
+**Estimated scope:** 2-3 phiên thật.
+
+### SCAR khắc phiên 20260423
+
+**SCAR-EM-OVERESTIMATE-CELL-1-SWAP-FEASIBILITY:**
+Em (Băng) propose Cell 1 swap "khả thi ngay phiên này" turn 428 KHÔNG verify §44 đầy đủ.
+Sau verify (turn 444): §44 parse JSON output → nauion-host không output JSON → swap không work.
+Vaccin: trước propose swap nào, đọc FULL caller context (parser logic, output format), 
+không chỉ scan invocation line.
+
+---
+
+## §S3 UPDATE 20260424 — Cell 1 LIVE
+
+**Wave 2 closed — Cell 1 (file-extension-validator) state: S2 → S3.**
+
+### Transition evidence
+
+- W2A SPEC sealed: commit `71b412c` (SPEC_HOST_RESULT_PROTOCOL v1.0)
+- W2B writer impl: commit `1747918` (result_writer.rs, 5 tests pass)
+- W2C --run-cell CLI: commit `df5040f` (run_cell.rs wrapper mode, 7 tests pass)
+- W2D legacy_json bridge: commit `7c35961` (legacy_json.rs, 4 tests pass)
+- W2E route-swap §40: commit `7c35961` (nattos.sh patched, env-flag fallback)
+
+### Default route (S3 LIVE)
+nattos.sh §40 → $NAUION_HOST --run-cell $CANONICAL --legacy-json → runtime/nauion-host/target/release/nauion-host (tệp nhị phân Rust) → bao bọc npx tsx (tệp .ts cùng cấp) → ghi vào runtime/audit/ <canonical> .result.phieu → phát ra JSON stdout để tương thích với trình phân tích cú pháp python3
+
+### Recovery (S2 fallback)
+USE_LEGACY_TSX=1 bash nattos.sh # khôi phục ngay lập tức rm -f runtime/nauion-host/target/release/nauion-host # tự động dự phòng
+
+### Cell 2-4 status
+
+- Cell 2 (khai-file-persister): S2 — S3 swap pending W2 chain replay
+- Cell 3 (observation-cell): S2 BRIDGED — S3 swap not scheduled
+- Cell 4 (quantum-defense-cell): S2 BRIDGED — S3 swap not scheduled
+
+Phiên 20260424 sealed Cell 1 only — Cell 2 swap defer (cell logic, audit chain).
+
+*Update: Băng (Chị Tư) phiên 20260424 — Wave 2 close commit*
+

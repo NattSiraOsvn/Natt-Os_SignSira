@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na");
+
+if (!fs.existsSync(report)) {
+  console.error("Missing report:", report);
+  process.exit(1);
+}
+
+const content = fs.readFileSync(report, "utf8");
+
+const required = [
+  "SMARTLINK_RUNTIME_TRANSLATE_TO_sira",
+  "SCAN_ONLY",
+  "Full SmartLink Runtime Classification",
+  "Next Possible Candidates"
+];
+
+const missing = required.filter(x => !content.includes(x));
+
+if (missing.length) {
+  console.error("TS CLEANUP BATCH2I SMARTLINK SCAN validation: fail");
+  for (const x of missing) console.error(" - missing " + x);
+  process.exit(1);
+}
+
+console.log("TS CLEANUP BATCH2I SMARTLINK SCAN validation: pass");
+console.log("scope=SMARTLINK_RUNTIME_TRANSLATE_TO_sira scan only");
+console.log("mode=no rename, no source mutation");

@@ -1,4 +1,4 @@
-// ===== NATT-OS Phase 2.5 Sandbox =====
+// ===== natt-os Phase 2.5 Sandbox =====
 // Ground truth selectors từ daily-work-app.html
 
 const sandboxMap = [
@@ -19,5 +19,5 @@ sandboxMap.forEach(item => {
   });
 });
 
-console.log("[NATT-OS Sandbox] Injected:", 
+console.log("[natt-os Sandbox] Injected:", 
   sandboxMap.map(i => `${i.selector}(L${i.layer})`).join(", "));

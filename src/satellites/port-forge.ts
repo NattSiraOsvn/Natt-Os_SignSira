@@ -1,4 +1,4 @@
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+import type { TouchRecord } from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
 import { EventBus } from "@/core/events/event-bus";
 
 interface SignalConfig {

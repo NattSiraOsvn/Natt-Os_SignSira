@@ -1,0 +1,113 @@
+# architecture archive dirty state audit — 20260426
+
+status: observed
+created_at: 2026-04-26 14:25:42
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. rule
+
+- dns/khai ip lane đã seal, không gom chung architecture cleanup.
+- không commit delete architecture nếu chưa có archive/refactor evidence.
+- không restore hoặc commit bừa khi chưa nhìn đủ mapping.
+
+---
+
+## 2. dirty summary
+
+- deleted_total: 17
+- architecture_deleted: 15
+- untracked_total: 5
+- archive_untracked: 1
+- refactor_brief_untracked: 1
+- audit_report_untracked: 3
+- modified_total: 0
+
+---
+
+## 3. deleted architecture files
+
+- docs/architecture/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
+- docs/architecture/NATT-OS-PLATFORM-SPEC.md
+- docs/architecture/NATT-OS_Blueprint_ChuanHP.docx
+- docs/architecture/NATT-OS_CayHT_MoveGuide.docx
+- docs/architecture/NATT-OS_CayHeThong_Chuan.docx
+- docs/architecture/NATT-OS_SATELLITE_COLONY_SPEC.md
+- docs/architecture/NATT_OS_Complete_Architecture_Roadmap.docx
+- docs/architecture/NaUion.md
+- docs/architecture/SPEC-Finance-Flow_v1.0.md
+- docs/architecture/TaxCell_Specification_v1.docx
+- docs/architecture/natt-os-file-map.txt
+- docs/architecture/natt-v8.md
+- docs/architecture/natt-v9.md
+- docs/architecture/session-summary-20260329.md
+- docs/architecture/specnauiontmp.md
+
+---
+
+## 4. archive/refactor candidates
+
+- docs/archive/NATT-OS_CayHeThong_Chuan.docx
+- docs/archive/NATT_OS_Complete_Architecture_Roadmap.docx
+- docs/archive/SPEC-Finance-Flow_v1.0.md
+- docs/archive/NaUion.md
+- docs/archive/NATT-OS-PLATFORM-SPEC.md
+- docs/archive/CELL_MANIFEST_SCHEMA.json
+- docs/archive/NATT-OS_Blueprint_ChuanHP.docx
+- docs/archive/NATT-OS_CayHT_MoveGuide.docx
+- docs/archive/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
+- docs/archive/TaxCell_Specification_v1.docx
+- docs/archive/NATT-OS_SATELLITE_COLONY_SPEC.md
+- docs/archive/natt-v9.md
+- docs/archive/natt-v8.md
+- docs/archive/session-summary-20260329.md
+- docs/archive/natt-os-file-map.txt
+- docs/archive/Natt Os STS.rtf
+- docs/archive/specnauiontmp.md
+- docs/runtime/refactor-briefs/KIM_REFACTOR_BRIEF_KHO_TS_SPLIT_20260425.na
+
+---
+
+## 5. basename mapping
+
+- matched: docs/architecture/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
+  - candidate: docs/archive/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
+- matched: docs/architecture/NATT-OS-PLATFORM-SPEC.md
+  - candidate: docs/archive/NATT-OS-PLATFORM-SPEC.md
+- matched: docs/architecture/NATT-OS_Blueprint_ChuanHP.docx
+  - candidate: docs/archive/NATT-OS_Blueprint_ChuanHP.docx
+- matched: docs/architecture/NATT-OS_CayHT_MoveGuide.docx
+  - candidate: docs/archive/NATT-OS_CayHT_MoveGuide.docx
+- matched: docs/architecture/NATT-OS_CayHeThong_Chuan.docx
+  - candidate: docs/archive/NATT-OS_CayHeThong_Chuan.docx
+- matched: docs/architecture/NATT-OS_SATELLITE_COLONY_SPEC.md
+  - candidate: docs/archive/NATT-OS_SATELLITE_COLONY_SPEC.md
+- matched: docs/architecture/NATT_OS_Complete_Architecture_Roadmap.docx
+  - candidate: docs/archive/NATT_OS_Complete_Architecture_Roadmap.docx
+- matched: docs/architecture/NaUion.md
+  - candidate: docs/archive/NaUion.md
+- matched: docs/architecture/SPEC-Finance-Flow_v1.0.md
+  - candidate: docs/archive/SPEC-Finance-Flow_v1.0.md
+- matched: docs/architecture/TaxCell_Specification_v1.docx
+  - candidate: docs/archive/TaxCell_Specification_v1.docx
+- matched: docs/architecture/natt-os-file-map.txt
+  - candidate: docs/archive/natt-os-file-map.txt
+- matched: docs/architecture/natt-v8.md
+  - candidate: docs/archive/natt-v8.md
+- matched: docs/architecture/natt-v9.md
+  - candidate: docs/archive/natt-v9.md
+- matched: docs/architecture/session-summary-20260329.md
+  - candidate: docs/archive/session-summary-20260329.md
+- matched: docs/architecture/specnauiontmp.md
+  - candidate: docs/archive/specnauiontmp.md
+
+---
+
+## 6. decision
+
+decision: ready-for-architecture-archive-review
+
+reason: tất cả deleted architecture files đều có archive/refactor candidate theo basename.
+
+next: có thể chạy mũi commit archive sau khi review nội dung.

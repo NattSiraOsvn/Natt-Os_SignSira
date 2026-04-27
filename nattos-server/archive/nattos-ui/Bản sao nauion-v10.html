@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>NATT-OS · NaUion v10</title>
+<title>natt-os · NaUion v10</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -372,11 +372,11 @@ body{
       <span class="ti ti-gold" id="t1">SJC: đang tải...</span>
       <span class="ti">·</span><span class="ti ti-gold" id="t2">9999: —</span>
       <span class="ti">·</span><span class="ti ti-gold" id="t3">18K: —</span>
-      <span class="ti">·</span><span class="ti" id="t4">NATT-OS · HEALTHY</span>
+      <span class="ti">·</span><span class="ti" id="t4">natt-os · HEALTHY</span>
       <span class="ti">·</span><span class="ti ti-gold" id="t5">SJC: đang tải...</span>
       <span class="ti">·</span><span class="ti ti-gold" id="t6">9999: —</span>
       <span class="ti">·</span><span class="ti ti-gold" id="t7">18K: —</span>
-      <span class="ti">·</span><span class="ti" id="t8">NATT-OS · HEALTHY</span>
+      <span class="ti">·</span><span class="ti" id="t8">natt-os · HEALTHY</span>
     </div>
   </div>
 </div>
@@ -475,7 +475,7 @@ const RENDERERS = {
   dashboard: (el) => {
     const kpis = [
       {v:'38/38', l:'CELLS WIRED',     t:'up'},
-      {v:'0',     l:'TSC ERRORS',      t:'up'},
+      {v:'0',     l:'TSC errorS',      t:'up'},
       {v:ST.Z.toFixed(3), l:'IMPEDANCE Z', t:ST.Z<2?'up':'dn'},
       {v:ST.systemState,  l:'STATE',       t:'up'},
       {v:ST.commits,      l:'COMMITS',     t:'ok'},
@@ -486,13 +486,13 @@ const RENDERERS = {
     el.innerHTML = `<div class="card">
       <div class="ch"><span class="ch-icon">🏠</span>
         <div><div class="ch-title">TỔNG QUAN MASTER</div>
-        <div class="ch-sub">NATT-OS · Real-time UIState Mirror</div></div>
+        <div class="ch-sub">natt-os · Real-time UIState Mirror</div></div>
         <div class="ch-r"><span class="badge-ok">LIVE</span></div>
       </div>
       <div class="g4">${kpis.map(k=>`<div class="kpi">
         <div class="kv">${k.v}</div>
         <div class="kl">${k.l}</div>
-        <div class="kt ${k.t}">${k.t==='up'?'↑ UP':k.t==='dn'?'↓ WARN':'→'}</div>
+        <div class="kt ${k.t}">${k.t==='up'?'↑ UP':k.t==='dn'?'↓ warn':'→'}</div>
       </div>`).join('')}</div>
     </div>
     <div class="card">
@@ -639,7 +639,7 @@ function updateTicker() {
   const g = ST.giaVang;
   const items = [`🏆 SJC MUA ${fmt(g.sjc_buy)}`,`BÁN ${fmt(g.sjc_sell)}`,
     `💎 9999 ${fmt(g.gold9999)}`,`✨ 18K ${fmt(g.gold18k)}`,
-    `📡 NATT-OS ${ST.systemState} Z=${ST.Z.toFixed(2)}`];
+    `📡 natt-os ${ST.systemState} Z=${ST.Z.toFixed(2)}`];
   for (let i=1;i<=8;i++) {
     const el = document.getElementById('t'+i);
     if (el) el.textContent = items[(i-1)%items.length];

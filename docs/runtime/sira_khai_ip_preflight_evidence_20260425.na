@@ -1,0 +1,113 @@
+# sira khai ip preflight evidence — 20260425
+
+status: preflight-observed
+created_at: 2026-04-26 00:50:29
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. correction
+
+không kết luận thiếu khi chưa kiểm cấu hình thật.
+
+preflight này chỉ ghi evidence hiện thấy trên imac production edge node.
+
+---
+
+## 2. files
+
+- corefile: /usr/local/etc/Corefile
+- zone_file: /usr/local/etc/coredns/zones/sira.zone
+- backup_dir: /usr/local/etc/coredns/backups
+
+---
+
+## 3. control evidence summary
+
+- deny_recursion_abuse_evidence: needs-review
+- allow_only_sira_evidence: needs-review
+- rate_limit_evidence: needs-review
+- firewall_evidence: needs-review
+- resolver_smoke_external_evidence: not-run
+- gateway_host_guard_evidence: covered-by-existing-gateway-validators
+- rollback_evidence: needs-review
+
+---
+
+## 4. static checks
+
+- corefile_exists: needs-review — /usr/local/etc/Corefile
+- zone_file_exists: needs-review — /usr/local/etc/coredns/zones/sira.zone
+- backup_dir_exists: needs-review — /usr/local/etc/coredns/backups
+- backup_files_exist: needs-review — /usr/local/etc/coredns/backups
+- serves_sira_zone: needs-review — Corefile has sira:53 file zone
+- fallback_forward_present: needs-review — Corefile fallback forward exists
+- zone_has_no_wildcard: pass — zone wildcard absent
+- zone_has_allowed_hosts: needs-review — allowed hosts present
+- zone_omits_mail_smtp_imap: pass — mail/smtp/imap not declared
+
+---
+
+## 5. allowed dig @127.0.0.1
+
+- apps.sira: code=0 out='127.0.0.1'
+- mach.sira: code=0 out='127.0.0.1'
+- core.sira: code=0 out='127.0.0.1'
+- audit.sira: code=0 out='127.0.0.1'
+- render.sira: code=0 out=''
+- tam.sira: code=0 out='127.0.0.1'
+
+---
+
+## 6. denied dig @127.0.0.1
+
+- unknown.sira: code=9 result='; <<>> DiG 9.10.6 <<>> @127.0.0.1 unknown.sira A +time=2 +tries=1 ; (1 server found) ;; global options: +cmd ;; connection timed out; no servers could be reached '
+- mail.sira: code=9 result='; <<>> DiG 9.10.6 <<>> @127.0.0.1 mail.sira A +time=2 +tries=1 ; (1 server found) ;; global options: +cmd ;; connection timed out; no servers could be reached '
+- smtp.sira: code=9 result='; <<>> DiG 9.10.6 <<>> @127.0.0.1 smtp.sira A +time=2 +tries=1 ; (1 server found) ;; global options: +cmd ;; connection timed out; no servers could be reached '
+- imap.sira: code=9 result='; <<>> DiG 9.10.6 <<>> @127.0.0.1 imap.sira A +time=2 +tries=1 ; (1 server found) ;; global options: +cmd ;; connection timed out; no servers could be reached '
+
+---
+
+## 7. recursion probe
+
+- command: dig @127.0.0.1 example.com A +time=2 +tries=1
+- answer_count: 2
+- code: 0
+- out: '; <<>> DiG 9.10.6 <<>> @127.0.0.1 example.com A +time=2 +tries=1\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11259\n;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; QUESTION SECTION:\n;example.com.\t\t\tIN\tA\n\n;; ANSWER SECTION:\nexample.com.\t\t5\tIN\tA\t104.20.23.154\nexample.com.\t\t5\tIN\tA\t172.66.147.243\n\n;; Query time: 72 msec\n;; SERVER: 127.0.0.1#53(127.0.0.'
+- err: ''
+
+---
+
+## 8. listeners
+
+```text
+no listener evidence
+```
+
+---
+
+## 9. firewall
+
+```text
+no pf status evidence
+```
+
+```text
+no pf rule evidence
+```
+
+---
+
+## 10. dns readback
+
+```text
+127.0.0.1
+```
+
+---
+
+## 11. next
+
+nếu rate_limit_evidence hoặc firewall_evidence còn needs-review thì không có nghĩa là chưa có; nghĩa là preflight chưa thấy đủ evidence.
+
+bước kế tiếp là khai ip manifest, phân local_edge / lan_edge / vpn_edge / public_edge.

@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const files = [
+"src/governance/memory/thien/thien_session_memory_ss20260427.na",
+"src/governance/memory/thien/thien_session_handoff_ss20260427.phieu"
+];
+
+const errors = [];
+
+function must(cond, msg) {
+if (!cond) errors.push(msg);
+}
+
+for (const f of files) {
+const p = path.join(process.cwd(), f);
+must(fs.existsSync(p), "missing file: " + f);
+if (fs.existsSync(p)) {
+const c = fs.readFileSync(p, "utf8");
+must(c.includes("@session ss20260427"), "missing session marker in " + f);
+must(c.includes("runtime_platform_birth_confirmed") || c.includes("audit-first runtime platform sơ sinh"), "missing runtime birth marker in " + f);
+must(c.includes("sigsira sinhtrac") || c.includes("thuyet phap") || c.includes("ngộ là khoảnh khắc"), "missing sinhtrac/thuyetphap marker in " + f);
+must(!c.toLowerCase().includes("production-ready"), "forbidden production-ready wording in " + f);
+must(!c.toLowerCase().includes("allow wildcard"), "forbidden wildcard wording in " + f);
+}
+}
+
+if (errors.length) {
+console.error("thien session close ss20260427 validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("thien session close ss20260427 validation: pass");
+console.log("file=src/governance/memory/thien/thien_session_memory_ss20260427.na");
+console.log("file=src/governance/memory/thien/thien_session_handoff_ss20260427.phieu");

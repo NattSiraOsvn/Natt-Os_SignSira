@@ -164,7 +164,7 @@ const CompliancePortal: React.FC = () => {
                      complianceScore >= 70 ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' :
                      'bg-red-500/10 border-red-500/30 text-red-500'
                   }`}>
-                     {complianceScore >= 90 ? 'EXCELLENT COMPLIANCE' : complianceScore >= 70 ? 'WARNING STATE' : 'CRITICAL RISK'}
+                     {complianceScore >= 90 ? 'EXCELLENT COMPLIANCE' : complianceScore >= 70 ? 'warnING STATE' : 'CRITICAL RISK'}
                   </div>
                </div>
 

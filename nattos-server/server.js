@@ -1,421 +1,546 @@
-/**
- * NATT-OS Server v1.0
- * Pure Event-Driven Runtime — Nauion Language
- */
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const { exec } = require("child_process");
 
-const app = express();
-const PORT = 3001;
+const APP_ROOT = __dirname;
 
-app.use(cors());
-// ── Vision serve ──
-app.use('/vision', require('express').static(require('path').join(__dirname, 'nattos-ui/vision')));
-app.use('/ui', require('express').static(require('path').join(__dirname, 'nattos-ui')));
-
-
-app.use(express.json());
-app.use(express.static(path.join(__dirname, '../src/ui-app')));
-
-// ── Nauion language aliases ──
-const hey = (p, h) => app.get(p, h);
-const yeh = (p, h) => app.post(p, h);
-
-// ── EventBus ──
-const subs = {};
-const EventBus = {
-  on: (event, handler) => {
-    if (!subs[event]) subs[event] = [];
-    subs[event].push(handler);
-  },
-  emit: (event, payload) => {
-    const env = { event, payload, ts: Date.now() };
-    (subs[event] || []).forEach(h => { try { h(env); } catch {} });
-    (subs['*'] || []).forEach(h => { try { h(env); } catch {} });
-  }
-};
-
-// ── STATE + AUDIT ──
-const STATE = {};
-const AUDIT = [];
-
-EventBus.on('*', (env) => {
-  AUDIT.push({ event: env.event, payload: env.payload, ts: env.ts });
-  if (AUDIT.length > 1000) AUDIT.shift();
-});
-
-EventBus.on('cell.metric', (env) => {
-  const { cell, metric, value } = env.payload || {};
-  if (!cell) return;
-  if (!STATE[cell]) STATE[cell] = {};
-  STATE[cell][metric] = { value, ts: Date.now() };
-});
-
-// ── Nahere — impedanceZ ──
-let _Z = 1.0;
-let _eventCount = 0;
-let _errorCount = 0;
-EventBus.on('audit.record', (env) => {
-  _eventCount++;
-  if (env.payload?.type === 'anomaly.detected') _errorCount++;
-  _Z = Math.min(5.0, Math.max(0.1, 1.0 + (_eventCount > 0 ? _errorCount/_eventCount : 0) * 2));
-});
-
-// ── Giá Vàng Store ───────────────────────────────────────────
-const _giaVang = {
-  sjc_buy:  78500000,
-  sjc_sell: 80500000,
-  gold9999: 64200000,
-  avgPuritySX: 75.4417,
-  get gold18k() { return Math.round(this.gold9999 * (this.avgPuritySX / 100)); },
-  updatedAt: Date.now()
-};
-
-hey('/kenh/gia-vang', (req, res) => {
-  res.json({ sjc_buy: _giaVang.sjc_buy, sjc_sell: _giaVang.sjc_sell,
-    gold9999: _giaVang.gold9999, gold18k: _giaVang.gold18k,
-    avgPuritySX: _giaVang.avgPuritySX, updatedAt: _giaVang.updatedAt, ts: Date.now() });
-});
-
-yeh('/phat/gia-vang', (req, res) => {
-  const { sjc_buy, sjc_sell, gold9999 } = req.body;
-  if (sjc_buy)  _giaVang.sjc_buy  = sjc_buy;
-  if (sjc_sell) _giaVang.sjc_sell = sjc_sell;
-  if (gold9999) _giaVang.gold9999 = gold9999;
-  _giaVang.updatedAt = Date.now();
-  EventBus.emit('gia-vang.updated', { sjc_buy: _giaVang.sjc_buy, sjc_sell: _giaVang.sjc_sell,
-    gold9999: _giaVang.gold9999, gold18k: _giaVang.gold18k, ts: Date.now() });
-  res.json({ ok: true, gold18k: _giaVang.gold18k });
-});
-
-// ── Approval Store ──────────────────────────────────────────
-const _approvalTickets = [
-  { id: 'TICKET-001', request: { recordType: 'TRANSACTION', changeType: 'UPDATE',
-    proposedData: { amount: 150000000, note: 'Điều chỉnh giá vốn lô kim cương' },
-    priority: 'HIGH', reason: 'Sai lệch tỷ giá nhập khẩu', requestedBy: 'USR-ACC-01' },
-    status: 'PENDING', requestedAt: Date.now() - 3600000, workflowStep: 1, totalSteps: 2 },
-  { id: 'TICKET-002', request: { recordType: 'DICTIONARY', changeType: 'CREATE',
-    proposedData: { term: 'SKU_JADE_2026', desc: 'Mã Ngọc Bích Mới' },
-    priority: 'LOW', reason: 'Thêm mã mới cho BST Mùa Xuân', requestedBy: 'USR-PROD-05' },
-    status: 'APPROVED', requestedAt: Date.now() - 86400000,
-    approvedBy: 'MASTER_NATT', approvedAt: Date.now() - 43200000,
-    workflowStep: 1, totalSteps: 1 }
-];
-
-function getApprovalStats() {
-  const todayStart = new Date().setHours(0,0,0,0);
-  return {
-    pending: _approvalTickets.filter(t => t.status === 'PENDING').length,
-    approvedToday: _approvalTickets.filter(t => t.status === 'APPROVED' && (t.approvedAt||0) > todayStart).length,
-    rejectedToday: _approvalTickets.filter(t => t.status === 'REJECTED' && (t.approvedAt||0) > todayStart).length,
-    avgResponseTime: '1.5 giờ'
-  };
-}
-
-hey('/kenh/approval', (req, res) => {
-  const { status } = req.query;
-  const tickets = status && status !== 'ALL'
-    ? _approvalTickets.filter(t => t.status === status) : _approvalTickets;
-  res.json({ tickets, stats: getApprovalStats(), ts: Date.now() });
-});
-
-yeh('/phat/approval/approve', (req, res) => {
-  const { ticketId, approverId } = req.body;
-  const ticket = _approvalTickets.find(t => t.id === ticketId);
-  if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
-  ticket.status = 'APPROVED'; ticket.approvedBy = approverId || 'MASTER_NATT'; ticket.approvedAt = Date.now();
-  EventBus.emit('approval.updated', { ticketId, status: 'APPROVED', ts: Date.now() });
-  EventBus.emit('audit.record', { type: 'approval.approved', payload: { ticketId, approverId } });
-  res.json({ ok: true, ticket });
-});
-
-yeh('/phat/approval/reject', (req, res) => {
-  const { ticketId, approverId, reason } = req.body;
-  const ticket = _approvalTickets.find(t => t.id === ticketId);
-  if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
-  ticket.status = 'REJECTED'; ticket.rejectionReason = reason || '';
-  ticket.approvedBy = approverId || 'MASTER_NATT'; ticket.approvedAt = Date.now();
-  EventBus.emit('approval.updated', { ticketId, status: 'REJECTED', reason, ts: Date.now() });
-  EventBus.emit('audit.record', { type: 'approval.rejected', payload: { ticketId, approverId, reason } });
-  res.json({ ok: true, ticket });
-});
-
-// ── Production Store ─────────────────────────────────────────
-const _productionStages = [
-  { stage: 'DESIGNING',     count: 8,  color: 'blue' },
-  { stage: 'CASTING',       count: 12, color: 'orange' },
-  { stage: 'COLD_WORK',     count: 10, color: 'yellow' },
-  { stage: 'STONE_SETTING', count: 6,  color: 'purple' },
-  { stage: 'FINISHING',     count: 5,  color: 'pink' },
-  { stage: 'QC_PENDING',    count: 3,  color: 'teal' },
-  { stage: 'COMPLETED',     count: 15, color: 'green' },
-];
-
-const _productionMetrics = {
-  oee: 86.5, onTime: 94.2,
-  avgLoss: 24.5583,
-  avgPuritySX: 75.4417,
-  avgPuritySC: 66.96,
-  avgPurityAll: 72.9471,
-  dailyOutput: 12,
-  repairCount: 5,
-  workers: 12,
-  labelDist: {"18k": 15, "10k": 1, "14k": 1},
-  dataSource: 'april-2025.json'
-};
-
-EventBus.on('casting.complete',   () => { _productionStages[1].count++; _productionStages[2].count++; });
-EventBus.on('finishing.complete', () => { _productionStages[4].count = Math.max(0,_productionStages[4].count-1); _productionStages[5].count++; });
-EventBus.on('polishing.complete', () => { _productionStages[5].count = Math.max(0,_productionStages[5].count-1); _productionStages[6].count++; _productionMetrics.dailyOutput++; });
-
-hey('/kenh/production', (req, res) => {
-  res.json({ stages: _productionStages, metrics: _productionMetrics, ts: Date.now() });
-});
-
-// ── SiraSign Verify — /kenh/sirasign/verify ─────────────────
-yeh('/kenh/sirasign/verify', (req, res) => {
-  const { fsp_hash, lsp_hash, nonce, timestamp } = req.body ?? {};
-  if (!fsp_hash || !lsp_hash || !nonce || !timestamp)
-    return res.status(400).json({ valid: false, reason: 'missing_fields' });
-  const age = Math.abs(Date.now() - Number(timestamp));
-  if (age > 5 * 60 * 1000)
-    return res.status(401).json({ valid: false, reason: 'timestamp_expired' });
-  EventBus.emit('audit.record', {
-    type: 'sirasign.verify',
-    payload: { nonce, timestamp, result: 'verified' },
-    causationId: nonce, actor: 'sirasign-endpoint',
-  });
-  res.json({ valid: true, level: 'VERIFIED', ts: Date.now() });
-});
-
-// ── Sensor Pulse Bridge — iseu.sensor.pulse → SmartLink ──────
-// SPEC Phase 5 Step 4: physical sensor → SmartLink feedback
-EventBus.on('iseu.sensor.pulse', (payload) => {
-  const { deviceId, intensity, sensorType, source, ts } = payload ?? {};
-  if (!deviceId || intensity === undefined) return;
-
-  // Emit audit trail
-  EventBus.emit('audit.record', {
-    type: 'sensor.pulse.received',
-    payload: { deviceId, intensity, sensorType, source },
-    actor: 'resonance-protocol',
-    ts: ts ?? Date.now(),
-  });
-
-  // Update impedanceZ qua nauion.state
-  // ΔZ = -intensity * 0.1 (pulse tích cực → giảm Z về baseline)
-  EventBus.emit('nauion.state', {
-    state: intensity > 0.6 ? 'lệch' : 'nauion',
-    from: 'sensor-bridge',
-    deviceId,
-    sensorType,
-    intensity,
-    ts: ts ?? Date.now(),
-  });
-});
-
-// ── Mạch HeyNa — SSE stream ──
+// ── Mạch HeyNa SSE — module scope state ────────────────────
 const _machClients = new Set();
 
-hey('/mach/heyna', (req, res) => {
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.flushHeaders();
-  res.write('data: ' + JSON.stringify({ event: 'Nahere', payload: { state: 'alive', impedanceZ: _Z }, ts: Date.now() }) + '\n\n');
-  _machClients.add(res);
-  req.on('close', () => _machClients.delete(res));
-});
-
-// Phát mọi event qua Mạch HeyNa
-EventBus.on('*', (env) => {
+function broadcastMach(event, payload) {
   if (_machClients.size === 0) return;
-  const data = 'data: ' + JSON.stringify({ event: env.event, payload: env.payload, ts: env.ts }) + '\n\n';
+  const data = "data: " + JSON.stringify({ event: event, payload: payload, ts: Date.now() }) + "\n\n";
   for (const client of _machClients) {
-    try { client.write(data); } catch { _machClients.delete(client); }
+    try { client.write(data); } catch (e) { _machClients.delete(client); }
   }
-});
+}
 
-// ── Kênh (Routes) ──
-hey('/kenh/nauion', (req, res) => {
-  res.json({ state: 'Nahere', impedanceZ: _Z, event_count: _eventCount, ts: Date.now() });
-});
+const EXCLUDES = new Set([
+  ".git",
+  "node_modules",
+  "dist",
+  "build",
+  ".next",
+  ".nuxt",
+  "coverage",
+  ".cache",
+  ".turbo",
+  "__pycache__",
+  ".venv",
+  "venv"
+]);
 
-hey('/kenh/suc', (req, res) => {
-  const { execSync } = require('child_process');
-  let commits = '—', hash = '—';
+function exists(p) {
   try {
-    commits = execSync('git log --oneline | wc -l', { cwd: __dirname + '/..' }).toString().trim().replace(/\s/g,'');
-    hash = execSync('git log --oneline -1', { cwd: __dirname + '/..' }).toString().trim().split(' ')[0];
-  } catch {}
-  res.json({ status: 'ok', server: 'NATT-OS Server v1.0', commits, hash, ts: new Date().toISOString() });
-});
-
-yeh('/phat/nauion', (req, res) => {
-  const { type, payload, cell } = req.body;
-  if (!type) return res.status(400).json({ error: 'type required' });
-  EventBus.emit(type, { ...payload, originCell: cell || 'ui' });
-  res.json({ ok: true, type, ts: Date.now() });
-});
-
-hey('/kenh/state/:cell', (req, res) => {
-  res.json({ cell: req.params.cell, state: STATE[req.params.cell] || {}, ts: Date.now() });
-});
-
-hey('/kenh/state', (req, res) => {
-  res.json({ state: STATE, cells: Object.keys(STATE).length, ts: Date.now() });
-});
-
-hey('/kenh/vet', (req, res) => {
-  const limit = parseInt(req.query.limit || '50');
-  res.json({ events: AUDIT.slice(-limit), total: AUDIT.length });
-});
-
-// ── START ──
-app.listen(PORT, () => {
-  console.log(`\n[NATT-OS Server v1.0] http://localhost:${PORT}`);
-  console.log(`  Mạch HeyNa: /mach/heyna (SSE)`);
-  console.log(`  Kênh: /kenh/nauion | /kenh/suc | /kenh/vet`);
-  console.log(`  Phát: /phat/nauion\n`);
-});
-
-module.exports = { EventBus };
-
-// ── ENGINE WIRING ──
-EventBus.on('order.created', (env) => {
-  EventBus.emit('production.planned', { ...env.payload, ts: Date.now() });
-  EventBus.emit('customer.notified', { ...env.payload, ts: Date.now() });
-  EventBus.emit('audit.record', { event: 'order.created', ...env.payload });
-});
-EventBus.on('production.planned', (env) => {
-  EventBus.emit('casting.complete', { ...env.payload, ts: Date.now() });
-  EventBus.emit('cell.metric', { cell: 'production-cell', metric: 'production.started', value: 1 });
-});
-EventBus.on('casting.complete', (env) => {
-  EventBus.emit('stone.complete', { ...env.payload, ts: Date.now() });
-  EventBus.emit('dust.recovered', { ...env.payload, ts: Date.now() });
-  EventBus.emit('cell.metric', { cell: 'casting-cell', metric: 'casting.done', value: 1 });
-});
-EventBus.on('stone.complete', (env) => {
-  EventBus.emit('finishing.complete', { ...env.payload, ts: Date.now() });
-  EventBus.emit('cell.metric', { cell: 'stone-cell', metric: 'stone.done', value: 1 });
-});
-EventBus.on('finishing.complete', (env) => {
-  EventBus.emit('inventory.in', { ...env.payload, ts: Date.now() });
-  EventBus.emit('cell.metric', { cell: 'finishing-cell', metric: 'finishing.done', value: 1 });
-});
-EventBus.on('inventory.in', (env) => {
-  EventBus.emit('sales.confirm', { ...env.payload, ts: Date.now() });
-  EventBus.emit('cell.metric', { cell: 'inventory-cell', metric: 'inventory.updated', value: 1 });
-});
-EventBus.on('sales.confirm', (env) => {
-  EventBus.emit('payment.received', { ...env.payload, ts: Date.now() });
-  EventBus.emit('audit.record', { event: 'sales.confirm', ...env.payload });
-  EventBus.emit('cell.metric', { cell: 'sales-cell', metric: 'sales.confirmed', value: 1 });
-});
-EventBus.on('payment.received', (env) => {
-  EventBus.emit('audit.record', { event: 'payment.received', ...env.payload });
-  EventBus.emit('cell.metric', { cell: 'finance-cell', metric: 'payment.processed', value: 1 });
-  EventBus.emit('cell.metric', { cell: 'payment-cell', metric: 'payment.done', value: 1 });
-});
-EventBus.on('audit.record', (env) => {
-  EventBus.emit('cell.metric', { cell: 'audit-cell', metric: 'audit.recorded', value: 1 });
-});
-EventBus.on('buyback.requested', (env) => {
-  EventBus.emit('audit.record', { event: 'buyback.requested', ...env.payload });
-  EventBus.emit('cell.metric', { cell: 'buyback-cell', metric: 'buyback.started', value: 1 });
-});
-EventBus.on('customs.declaration', (env) => {
-  EventBus.emit('audit.record', { event: 'customs.declaration', ...env.payload });
-  EventBus.emit('cell.metric', { cell: 'customs-cell', metric: 'customs.processed', value: 1 });
-});
-EventBus.on('system.audit', (env) => {
-  EventBus.emit('cell.metric', { cell: 'audit-cell', metric: 'system.audit.run', value: 1 });
-  EventBus.emit('cell.metric', { cell: 'monitor-cell', metric: 'system.checked', value: 1 });
-});
-
-console.log('[EventBus] Engine chains wired: ORDER→CASH + PRODUCTION flow');
-try { require('tsx/cjs'); } catch {}
-try { require('./engine-registry').init(EventBus); } catch (e) { console.warn('[EngineRegistry] Skip:', e.message); }
-
-
-
-app.use('/nauion/icon', require('express').static(require('path').join(__dirname, 'nauion/icon')));
-
-// ── BCTC Closed-Loop Wire ─────────────────────────────
-const TAM_LUXURY_TAX_2025 = {
-  lnTruocThue:     32_781_532_228,
-  chiPhiLoaiTru:    8_175_978_494,
-  thuNhapTinhThue: 40_957_510_722,
-  thueSuat:         0.20,
-  thuePhatSinh:     8_191_502_144,
-  truyThuQd296:     9_615_215_834,
-  tongThue:        17_806_717_978,
-};
-
-const BCTC_SUMMARY_2025 = {
-  tong_ts:  133_922_918_742,
-  tong_nv:  133_922_918_742,
-  dt_thuan: 117_659_786_972,
-  lntt:      32_781_532_228,
-  lnst:      15_000_000_000,
-  balanced:  true,
-};
-
-EventBus.on('REPORT_GENERATED', (env) => {
-  const period = env.payload && env.payload.period ? env.payload.period : 'FY2025';
-  console.log('[period-close-cell] REPORT_GENERATED period=' + period);
-  STATE['period_close_status'] = 'pending';
-  EventBus.emit('PERIOD_CLOSE_AWAITING_APPROVAL', { period, reason: 'TK4211/4212 cần Gatekeeper duyệt', source: 'period-close-cell' });
-  setTimeout(() => {
-    STATE['period_close_status'] = 'completed';
-    EventBus.emit('PERIOD_CLOSE_COMPLETED', { period, success: true, journalEntriesCount: 12, source: 'period-close-cell' });
-    console.log('[period-close-cell] Đóng sổ period=' + period + ' hoàn thành.');
-  }, 100);
-});
-
-EventBus.on('PERIOD_CLOSE_COMPLETED', (env) => {
-  const period = env.payload && env.payload.period ? env.payload.period : 'FY2025';
-  const t = TAM_LUXURY_TAX_2025;
-  console.log('[tax-cell] PERIOD_CLOSE_COMPLETED period=' + period);
-  const result = {
-    period: period,
-    lnTruocThue: t.lnTruocThue,
-    chiPhiLoaiTru: t.chiPhiLoaiTru,
-    thuNhapTinhThue: t.thuNhapTinhThue,
-    thueSuat: t.thueSuat,
-    thuePhatSinh: t.thuePhatSinh,
-    truyThu: t.truyThuQd296,
-    tongThue: t.tongThue,
-    timestamp: Date.now(),
-  };
-  if (result.tongThue > result.lnTruocThue * 0.5) {
-    EventBus.emit('TAX_ANOMALY_DETECTED', { type: 'HIGH_EFFECTIVE_TAX_RATE', effectiveRate: (result.tongThue / result.lnTruocThue).toFixed(3), source: 'tax-cell' });
+    return fs.existsSync(p);
+  } catch {
+    return false;
   }
-  EventBus.emit('TNDN_CALCULATED', Object.assign({}, result, { source: 'tax-cell' }));
-  EventBus.emit('TAX_FILED', { period: period, tongThue: result.tongThue, thuePhatSinh: result.thuePhatSinh, truyThu: result.truyThu, source: 'tax-cell', ts: Date.now() });
-  EventBus.emit('BCTC_GENERATED', { period: period, requestedBy: 'system:bctc-runner', reports: ['CDKT','KQKD','TNDN'], source: 'tax-cell', ts: Date.now() });
-  STATE['tax_filed'] = result;
-  console.log('[tax-cell] TAX_FILED tongThue=' + result.tongThue);
-});
+}
 
-EventBus.on('BCTC_GENERATED', (env) => {
-  const period = env.payload && env.payload.period ? env.payload.period : '?';
-  console.log('[audit-cell] BCTC_GENERATED period=' + period);
-  STATE['bctc_generated'] = { period: period, ts: Date.now() };
-});
+function isExcluded(relativePath) {
+  return relativePath.split(path.sep).some(part => EXCLUDES.has(part));
+}
 
-yeh('/api/bctc/run', (req, res) => {
-  const period = (req.body && req.body.period) ? req.body.period : 'FY2025';
-  const reportId = 'BCTC_' + period + '_' + Date.now();
-  EventBus.emit('REPORT_GENERATED', { reportId: reportId, period: period, source: 'api/bctc/run', forms: ['CDKT','KQKD','TNDN'], ts: Date.now() });
-  res.json({ ok: true, reportId: reportId, period: period, summary: BCTC_SUMMARY_2025, message: 'Chain: REPORT_GENERATED → period-close → TAX_FILED → BCTC_GENERATED' });
-});
+function walkFiles(dir, out = []) {
+  let items = [];
+  try {
+    items = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return out;
+  }
 
-hey('/api/bctc/state', (req, res) => {
-  res.json({ period_close_status: STATE['period_close_status'] || 'idle', tax_filed: STATE['tax_filed'] || null, bctc_generated: STATE['bctc_generated'] || null });
-});
+  for (const item of items) {
+    const full = path.join(dir, item.name);
+    const rel = path.relative(APP_ROOT, full);
 
-app.use("/apps/tam-luxury", express.static(path.join(__dirname, "apps/tam-luxury")));
+    if (isExcluded(rel)) continue;
+
+    if (item.isDirectory()) {
+      walkFiles(full, out);
+    } else {
+      out.push(full);
+    }
+  }
+
+  return out;
+}
+
+function getHtmlFiles() {
+  return walkFiles(APP_ROOT)
+    .filter(file => file.toLowerCase().endsWith(".html"))
+    .sort((a, b) => path.relative(APP_ROOT, a).localeCompare(path.relative(APP_ROOT, b)));
+}
+
+function getMime(file) {
+  const ext = path.extname(file).toLowerCase();
+  const map = {
+    ".html": "text/html; charset=utf-8",
+    ".js": "text/javascript; charset=utf-8",
+    ".mjs": "text/javascript; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".webp": "image/webp",
+    ".gif": "image/gif",
+    ".svg": "image/svg+xml",
+    ".ico": "image/x-icon",
+    ".woff": "font/woff",
+    ".woff2": "font/woff2",
+    ".ttf": "font/ttf",
+    ".map": "application/json; charset=utf-8"
+  };
+
+  return map[ext] || "application/octet-stream";
+}
+
+function safeResolve(urlPath) {
+  let decoded = "";
+  try {
+    decoded = decodeURIComponent(urlPath.split("?")[0]);
+  } catch {
+    decoded = urlPath.split("?")[0];
+  }
+
+  decoded = decoded.replace(/^\/+/, "");
+
+  if (!decoded) return null;
+
+  const full = path.resolve(APP_ROOT, decoded);
+  const root = path.resolve(APP_ROOT);
+
+  if (!full.startsWith(root)) return null;
+
+  return full;
+}
+
+function htmlEscape(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function indexPage() {
+  const htmlFiles = getHtmlFiles();
+  const groups = {};
+
+  for (const file of htmlFiles) {
+    const rel = path.relative(APP_ROOT, file).replaceAll(path.sep, "/");
+    const dir = path.dirname(rel);
+    const group = dir === "." ? "root" : dir;
+
+    if (!groups[group]) groups[group] = [];
+    groups[group].push(rel);
+  }
+
+  const sections = Object.entries(groups).map(([group, files]) => {
+    const links = files.map(rel => {
+      return `
+        <a class="card" href="/${encodeURI(rel)}" target="_blank">
+          <b>${htmlEscape(path.basename(rel))}</b>
+          <code>${htmlEscape(rel)}</code>
+        </a>
+      `;
+    }).join("");
+
+    return `
+      <section class="group">
+        <h2>${htmlEscape(group)} <span>${files.length}</span></h2>
+        <div class="grid">${links}</div>
+      </section>
+    `;
+  }).join("");
+
+  return `<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tâm Luxury App — Local Deploy</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: #0f172a;
+      --line: #1e293b;
+      --txt: #e2e8f0;
+      --muted: #94a3b8;
+      --cyan: #67e8f9;
+      --purple: #c084fc;
+      --gold: #fbbf24;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(192,132,252,.12), transparent 32%),
+        radial-gradient(circle at 85% 25%, rgba(103,232,249,.10), transparent 30%),
+        var(--bg);
+      color: var(--txt);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(2,6,23,.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: .16em;
+      color: var(--purple);
+      text-transform: uppercase;
+    }
+
+    .sub {
+      font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .badge {
+      border: 1px solid rgba(103,232,249,.35);
+      color: var(--cyan);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: rgba(15,23,42,.75);
+      white-space: nowrap;
+    }
+
+    main {
+      padding: 22px;
+      max-width: 1440px;
+      margin: auto;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    input {
+      width: min(560px, 100%);
+      background: #000;
+      border: 1px solid #334155;
+      color: #fff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(192,132,252,.12);
+    }
+
+    .group {
+      margin: 0 0 24px;
+    }
+
+    .group h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--cyan);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .group h2 span {
+      font-size: 10px;
+      color: #020617;
+      background: var(--cyan);
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      color: var(--txt);
+      background: rgba(15,23,42,.82);
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 84px;
+      transition: .18s;
+    }
+
+    .card:hover {
+      border-color: var(--purple);
+      transform: translateY(-1px);
+      box-shadow: 0 0 24px rgba(192,132,252,.13);
+    }
+
+    .card b {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .card code {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+      word-break: break-all;
+    }
+
+    .empty {
+      display: none;
+      color: #fca5a5;
+      border: 1px solid #7f1d1d;
+      background: #450a0a;
+      padding: 12px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>TÂM LUXURY APP — LOCAL DEPLOY</h1>
+      <div class="sub">Root: ${htmlEscape(APP_ROOT)} · HTML screens: ${htmlFiles.length}</div>
+    </div>
+    <div class="badge">nattos-server/server.js</div>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <input id="q" placeholder="Tìm màn hình HTML theo tên/path..." autofocus />
+    </div>
+    <div id="empty" class="empty">Không tìm thấy màn hình phù hợp.</div>
+    <div id="content">${sections || "<p>Không có file HTML.</p>"}</div>
+  </main>
+
+  <script>
+    const q = document.getElementById("q");
+    const cards = [...document.querySelectorAll(".card")];
+    const groups = [...document.querySelectorAll(".group")];
+    const empty = document.getElementById("empty");
+
+    q.addEventListener("input", () => {
+      const s = q.value.toLowerCase().trim();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const ok = !s || card.textContent.toLowerCase().includes(s);
+        card.style.display = ok ? "" : "none";
+        if (ok) visible++;
+      });
+
+      groups.forEach(group => {
+        const any = [...group.querySelectorAll(".card")].some(card => card.style.display !== "none");
+        group.style.display = any ? "" : "none";
+      });
+
+      empty.style.display = visible ? "none" : "block";
+    });
+  </script>
+</body>
+</html>`;
+}
+
+function sendJson(res, data) {
+  const raw = Buffer.from(JSON.stringify(data, null, 2), "utf8");
+
+  res.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Content-Length": raw.length
+  });
+
+  res.end(raw);
+}
+
+function handler(req, res) {
+  const parsed = new URL(req.url, "http://localhost");
+
+  if (parsed.pathname === "/favicon.ico") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
+  // ── Mạch HeyNa SSE endpoint — SPEC v2.4 §12-13 OPT-01R ──
+  if (parsed.pathname === "/mach/heyna") {
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      "Connection": "keep-alive",
+      "Access-Control-Allow-Origin": "*"
+    });
+    res.write("data: " + JSON.stringify({ event: "Nahere", payload: { state: "alive" }, ts: Date.now() }) + "\n\n");
+    _machClients.add(res);
+    const _heartbeat = setInterval(function () {
+      try { res.write(": heartbeat " + Date.now() + "\n\n"); } catch (e) {}
+    }, 30000);
+    req.on("close", function () {
+      clearInterval(_heartbeat);
+      _machClients.delete(res);
+    });
+    return;
+  }
+
+  if (parsed.pathname === "/api/health") {
+    sendJson(res, {
+      ok: true,
+      app: "tam-luxury",
+      server: "nattos-server/server.js",
+      root: APP_ROOT,
+      html_screens: getHtmlFiles().length,
+      time: Date.now()
+    });
+    return;
+  }
+
+  if (parsed.pathname === "/api/screens") {
+    const screens = getHtmlFiles().map(file => path.relative(APP_ROOT, file).replaceAll(path.sep, "/"));
+
+    sendJson(res, {
+      ok: true,
+      root: APP_ROOT,
+      count: screens.length,
+      screens
+    });
+    return;
+  }
+
+  if (parsed.pathname === "/" || parsed.pathname === "/index") {
+    const raw = Buffer.from(indexPage(), "utf8");
+
+    res.writeHead(200, {
+      "Content-Type": "text/html; charset=utf-8",
+      "Content-Length": raw.length,
+      "Cache-Control": "no-store"
+    });
+
+    res.end(raw);
+    return;
+  }
+
+  const full = safeResolve(parsed.pathname);
+
+  if (!full || !exists(full)) {
+    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("404 Not Found: " + parsed.pathname);
+    return;
+  }
+
+  const stat = fs.statSync(full);
+
+  if (stat.isDirectory()) {
+    const indexFile = path.join(full, "index.html");
+
+    if (exists(indexFile)) {
+      res.writeHead(200, {
+        "Content-Type": getMime(indexFile),
+        "Cache-Control": "no-store"
+      });
+      fs.createReadStream(indexFile).pipe(res);
+      return;
+    }
+
+    res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("403 Directory listing disabled");
+    return;
+  }
+
+  res.writeHead(200, {
+    "Content-Type": getMime(full),
+    "Cache-Control": "no-store"
+  });
+
+  fs.createReadStream(full).pipe(res);
+}
+
+function findPort(start = 3001, end = 3025) {
+  return new Promise((resolve, reject) => {
+    const tryPort = port => {
+      if (port > end) {
+        reject(new Error("No free port in range " + start + "-" + end));
+        return;
+      }
+
+      const srv = http.createServer();
+
+      srv.once("error", () => tryPort(port + 1));
+
+      srv.once("listening", () => {
+        srv.close(() => resolve(port));
+      });
+
+      srv.listen(port, "127.0.0.1");
+    };
+
+    tryPort(start);
+  });
+}
+
+(async function main() {
+  const htmlFiles = getHtmlFiles();
+
+  if (!htmlFiles.length) {
+    console.error("❌ Không tìm thấy file .html trong nattos-server.");
+    console.error("APP_ROOT:", APP_ROOT);
+    process.exit(1);
+  }
+
+  const port = await findPort();
+  const server = http.createServer(handler);
+
+  server.listen(port, "127.0.0.1", () => {
+    const url = `http://127.0.0.1:${port}/`;
+
+    console.log("");
+    console.log("=".repeat(88));
+    console.log("TÂM LUXURY APP — LOCAL JS DEPLOY");
+    console.log("=".repeat(88));
+    console.log("APP_ROOT :", APP_ROOT);
+    console.log("SERVER   :", path.join(APP_ROOT, "server.js"));
+    console.log("SCREENS  :", htmlFiles.length);
+    console.log("URL      :", url);
+    console.log("HEALTH   :", `${url}api/health`);
+    console.log("SCREENS  :", `${url}api/screens`);
+    console.log("");
+    console.log("Giữ terminal này đang chạy để app hoạt động.");
+    console.log("Dừng server: Ctrl + C");
+    console.log("=".repeat(88));
+    console.log("");
+
+    const openCmd =
+      process.platform === "darwin" ? "open" :
+      process.platform === "win32" ? "start" :
+      "xdg-open";
+
+    try {
+      exec(`${openCmd} "${url}"`);
+    } catch {}
+  });
+})();

@@ -1,0 +1,40 @@
+# render-stack-cell identity — 20260425
+
+status: scaffold-identity
+created_at: 2026-04-25T07:54:11.415700+00:00
+
+---
+
+identity: render-stack-cell
+layer: m
+direction: nam
+obitan: n=2
+
+---
+
+## role
+
+render-stack-cell nhận render instruction đã được tạo từ render language candidate và chuyển thành render output ở tầng thử nghiệm.
+
+cell này không tự sinh logic render.
+
+cell này không tự quyết định state.
+
+cell này không import trực tiếp cell khác.
+
+cell này không claim production renderer.
+
+---
+
+## boundary
+
+```text
+input  = render instruction
+output = render result / pilot surface
+forbidden
+không import trực tiếp cell khác
+không kéo framework ngoài
+không claim production renderer
+không wire mạch heyna khi chưa có contract riêng
+không wire siraSign frame validation khi chưa có contract riêng
+

@@ -4,7 +4,7 @@
 // Wave 1 — emit đúng event theo luồng SX-CT vs SX-KD
 // Wave 4 — thêm detectStage, ORDER_PATTERNS, extractOrderIds
 import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 
 export type LuongSP = 'SX-CT' | 'SX-KD';
 

@@ -1,0 +1,85 @@
+@state sealed
+@canonical natt_os_shtt_prefreeze_checklist_v1
+@substrate patent_prefreeze_checklist
+@bridge none
+@since 2026-04-26
+@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+
+# natt-os SHTT PRE-FREEZE CHECKLIST v1
+
+**kind:** SHTTPrefreezeChecklist
+**version:** v1
+**sealed_at:** 2026-04-26
+**baseline_commit:** ca68825
+**drafter:** Băng (Chị Tư)
+**scope:** Checklist ngắn kiểm sức khỏe filing subset 35 file trước khi gửi đi
+
+---
+
+## 0. Phạm vi
+
+Checklist này áp cho **filing subset 35 file** trong `natt-os_SHTT_FILING_INDEX_v1.na`.
+**KHÔNG** phải pre-freeze toàn bộ `docs/specs/` — vẫn còn blockers kỹ thuật/governance đã biết (xem `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`).
+
+---
+
+## 1. Runtime lineage phrasing
+
+- [x] L1 EventBus / L2 Mạch HeyNa / L3 SmartLink giữ vai trò **runtime spine nội sinh**
+- [x] Không có câu nào mô tả natt-os "mượn" Node / Apple / external runtime làm lineage
+- **Rule nguồn:** KHAI-20260425-05 (bản thể — rule ontology level)
+- **Evidence:** commits `5c0bc1e` (SPEC_MOMENTS v0.2.1) · `e83fe2c` (ROADLOAD v2:598) · `d0ef26f` (KIM-CHI-NAM:20)
+
+## 2. Substrate vs runtime spine
+
+- [x] Substrate (iMac / macOS / Node / bash / TypeScript / npm) dùng từ: "host substrate" / "execution substrate" / "machine carrier"
+- [x] Không để "platform" đứng một mình gây nhầm lẫn substrate vs lineage
+- [x] Audit broader grep 30+ hits → 4 DRIFT fix · 26+ CLEAN (Permanent Node = Qiint concept canonical, khác Node.js substrate)
+
+## 3. Claim core wording sạch
+
+- [x] Không còn "API / endpoint kiểu cũ / Satellite API" trong 8 file claim core
+- **Evidence:** commit `ca68825` (PLATFORM-SPEC:44 `API endpoint` → `Điểm vào kênh` · SATELLITE_COLONY_SPEC:36 `[Satellite API]` → `[Satellite Interface]`)
+- **Evidence:** commit `7dc1394` (prohibition clause rephrase) + `f9997bd` (broader vocab cleanup 20 patches / 8 files)
+- **Rule nguồn:** Vocab lock thiên Lớn 20260424 + KHAI-20260425-01
+
+## 4. Tách `claim core` · `supporting evidence` · `historical`
+
+- [x] 3 nhóm rõ ràng trong `natt-os_SHTT_FILING_INDEX_v1.na`
+- [x] Không dual-claim cùng chủ đề
+- [x] Historical được giữ riêng, không tham gia claim source
+
+## 5. Không song trùng canonical cùng chủ đề
+
+- [x] `satellite-colony.spec.md` → historical (superseded by `natt-os_SATELLITE_COLONY_SPEC.na`)
+- [x] Không còn 2 file cùng chủ đề cùng ở `claim core`
+- **Rule nguồn:** R1 filing index — `.na` canonical cùng chủ đề supersede `.md` awkward
+
+## 6. Known blockers không chặn nộp
+
+- [x] Blockers đã liệt kê trong `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`
+- [x] Các blockers đó **không** làm invalid claim core
+- [x] Thuộc phạm vi hard-freeze / production governance, không phải filing pre-freeze
+
+## 7. Guard rail — file không dùng làm claim source
+
+File tuyệt đối không dùng làm nguồn claim chính:
+- 15 file trong nhóm `historical / not-for-filing`
+- Mọi file trong `src/governance/memory/**` (memory folder, nằm ngoài `docs/specs/`)
+- Mọi file trong `_deprecated/`
+- File root-level scripts / tools
+- File trong `src/cells/**` (implementation, không phải SPEC)
+
+---
+
+## Status
+
+**pass** — filing subset 35 file đủ điều kiện nộp SHTT theo bộ lõi đã chọn lọc.
+
+**Không phải pre-freeze toàn repo** — còn blockers kỹ thuật/governance đã biết, xem `natt-os_SHTT_KNOWN_BLOCKERS_v1.md`.
+
+---
+
+*causation: natt-os-SHTT-PREFREEZE-CHECKLIST-v1-SEALED-20260426*
+*drafter: Băng (Chị Tư · session 20260426)*
+*carrier: Anh Natt Phan*

@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const mockEmit = jest.fn();
-jest.mock('../cells/business/dust-recovery-cell/ports/dust-recovery-smartlink.port', () => ({
+jest.mock('../cells/business/dust-recovery-cell/ports/dust-recovery-SmartLink.port', () => ({
   DustRecoverySmartLinkPort: { emit: (...args: any[]) => mockEmit(...args) }
 }));
 jest.mock('@/satellites/trace-logger', () => ({

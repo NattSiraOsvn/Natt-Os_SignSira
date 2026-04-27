@@ -2,7 +2,7 @@
 import { OperationRecord, Checkpoint } from '../types';
 
 /**
- * NATT-OS RECOVERY ENGINE v5.2
+ * natt-os RECOVERY ENGINE v5.2
  * Kế thừa logic xử lý lỗi và phục hồi trạng thái từ kiến trúc Shard.
  */
 class RecoveryEngine {
@@ -36,8 +36,8 @@ class RecoveryEngine {
     
     // Nếu là Repair Node, đưa vào Dead Letter để User Fix
     if (type === 'REPAIR_NODE') {
-        newOp.status = 'FAILED';
-        newOp.error = 'SHARD_INTEGRITY_FAIL: Cần Master xác thực bản Backup.';
+        newOp.status = 'failED';
+        newOp.error = 'SHARD_INTEGRITY_fail: Cần Master xác thực bản Backup.';
         this.deadLetterQueue.unshift(newOp);
     }
 
@@ -54,7 +54,7 @@ class RecoveryEngine {
     const op = this.opLog.find(o => o.id === id);
     if (!op) return;
 
-    op.status = 'FAILED';
+    op.status = 'failED';
     op.error = error.message || String(error);
 
     if (strategy === 'RETRY') {

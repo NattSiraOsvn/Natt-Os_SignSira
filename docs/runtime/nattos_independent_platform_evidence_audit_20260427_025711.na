@@ -1,0 +1,611 @@
+# nattos independent platform evidence audit
+
+status: observed-audit
+created_at: 2026-04-27 02:57:17
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. anchor
+
+- branch: feat/p1.3-file-extension-validator
+- head: 49de8f9
+- runtime_gate_code: 0
+
+---
+
+## 2. decision
+
+decision: runtime-platform-evidence-strong-but-not-full-independent
+
+claim_safe:
+- có thể claim NATT-OS đã có evidence nền của runtime platform audit-first.
+- chưa claim full HAL / ISA / QoS độc lập hoàn chỉnh.
+
+---
+
+## 3. score matrix
+
+```json
+{
+  "hal": {
+    "score": 55,
+    "level": "partial"
+  },
+  "isa": {
+    "score": 80,
+    "level": "partial_plus"
+  },
+  "qos": {
+    "score": 75,
+    "level": "partial_plus"
+  },
+  "cell_event_boundary": {
+    "score": 100,
+    "level": "strong"
+  },
+  "portability": {
+    "score": 100,
+    "level": "strong"
+  },
+  "runtime_gate": {
+    "score": 100,
+    "level": "strong"
+  }
+}
+```
+
+---
+
+## 4. HAL evidence
+
+- docs_found: 6
+- adapter_dirs_found: 0
+- validators_found: 18
+- direct_hardware_ref_hits_in_runtime_scope: 115
+
+### docs
+```text
+docs/runtime/sira_khai_ip_manifest_20260425.na
+docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+docs/runtime/sira_macos_resolver_binding_evidence_20260426.na
+docs/runtime/sira_router_dhcp_reservation_evidence_20260426.na
+docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+docs/runtime/sira_dns_monitoring_loop_evidence_20260426.na
+```
+
+### adapter dirs
+```text
+none
+```
+
+### validators
+```text
+tools/run_sira_dns_smoke_matrix.sira
+tools/validate_sira_active_resolver_ground_truth.sira
+tools/validate_sira_coredns_zone_implementation_plan.sira
+tools/validate_sira_dns_host_spoof_scan.sira
+tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira
+tools/validate_sira_dns_monitoring_loop.sira
+tools/validate_sira_dns_record_manifest.sira
+tools/validate_sira_dns_smoke_matrix.sira
+tools/validate_sira_dns_smoke_runner.sira
+tools/validate_sira_dns_strict_allowlist_rebind.sira
+tools/validate_sira_dns_zone_manifest.sira
+tools/validate_sira_khai_ip_manifest.sira
+tools/validate_sira_macos_resolver_binding.sira
+tools/validate_sira_public_dns_rollout_readiness.sira
+tools/validate_sira_router_dhcp_reservation.sira
+tools/validate_sira_sovereign_dns_infrastructure_binding.sira
+tools/validate_sira_wired_edge_dns_rebind.sira
+tools/validate_sira_wired_edge_firewall_audit.sira
+```
+
+### direct hardware refs sample
+```text
+src/cells/infrastructure/sync-cell/domain/engines/offline.engine.ts:28:        location.hostname.includes('127.0.0.1') ||
+src/cells/kernel/security-cell/domain/engines/threat-detection.engine.ts:71:  private clientIP: string = '127.0.0.1'; // Mock
+src/SuperDictionary.ts:207:  COREDNS: 'CoreDNS — private DNS resolver cho namespace .sira, resolve các domain nội bộ natt-os về môi trường cục bộ.',
+src/governance/memory/Thienlon/thienfs.json:25:        "CoreDNS running locally",
+src/governance/memory/Thienlon/thienmf_c5.md:24:- CoreDNS chạy trên Mac nội bộ.
+src/governance/memory/Thienlon/thienmf_c5.md:25:- 10 domain gia đình natt-os đã resolve về `127.0.0.1`.
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:41:CoreDNS 1.14.2 đã cài + config + chạy trên Mac.
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:58:- `/usr/local/etc/coredns/Corefile` — forward to 8.8.8.8/8.8.4.4
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:59:- `/usr/local/etc/coredns/natt.hosts` — 10 domains → 127.0.0.1
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:60:- DNS trỏ: `sudo networksetup -setdnsservers Wi-Fi 127.0.0.1`
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:61:- Test: `ping -c 1 nare.sira` → 127.0.0.1 ✅
+src/governance/memory/sessions/SESSION_20260415-16_FULL.kris:63:Thêm domain mới: edit natt.hosts → `sudo brew services restart coredns`
+src/governance/memory/bang/bangkhươngv7.6.8.na:161:      "tldr": "Quét 15 .sira domain trong code, chỉ 1 (nattos.sira) thật sự bound 127.0.0.1:3002. 14 còn lại = symbolic reference. CoreDNS Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
+src/governance/memory/bang/bangkhươngv7.6.8.na:165:    "Path A: ship infra/coredns/Corefile wire 15 .sira domain → 127.0.0.1 (defer per anh decision)",
+src/governance/memory/bang/bang_memory_delta_20260424_evening.na:117:Quét 15 `.sira` domain trong codebase, **chỉ `nattos.sira` thật sự bound** `127.0.0.1:3002` (qua nauion-host Rust binary). 14 còn lại = symbolic reference.
+src/governance/memory/bang/bang_memory_delta_20260424_evening.na:119:**Insight:** SPEC defines namespace, runtime binds incrementally. CoreDNS Corefile chưa exist = OK trong design phase, không phải bug.
+src/governance/memory/bang/bang_memory_delta_20260424_evening.na:150:| DEFER-01 | Path A wire `infra/coredns/Corefile` 15 .sira domain | Băng (anh quyết) | ~15p |
+src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:82:## P1-04 — 2 thuật ngữ Shard + CoreDNS
+src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:86:  - CoreDNS: "Private DNS Resolver cho namespace .sira"
+src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu:158:- P1-04: Shard + CoreDNS verify
+src/governance/memory/bang/bang_handoff_20260424_late.kris:160:      "4. DEFER-01 CoreDNS 15 .sira (may overlap with what anh Natt doing now)",
+src/governance/memory/bang/bangkhươngv7.6.7.na:67:      "HTTP /health respond JSON live trên 127.0.0.1:3002 (verified với curl)",
+src/governance/memory/bang/bangkhươngv7.6.7.na:211:    "http_health_verified": "curl http://127.0.0.1:3002/health → JSON {status:alive, loader:Rust FileResolver PHASE 2, esbuild:fallback, cells:[observation,quantum-defense], resolution:0/0/0, chromatic_wire:active, timestamp:ISO8601}",
+src/governance/memory/bang/bang_memory_delta_20260427.na:131:      "rule": "nattos.sira (root, commit 2c4fa81) = KERNEL ENTRY INBOUND — em viết. Listen 127.0.0.1:3002. KHÔNG violate 'no gateway port 3002'.",
+src/governance/memory/bang/bangthịnh6.3.0.phieu:183:    "config": "CoreDNS 1.14.2 on Mac"
+src/governance/memory/bang/bang_pending_20260424_late.phieu:76:### D1 — DEFER-01: CoreDNS Corefile 15 .sira domains
+src/governance/memory/bang/bang_pending_20260424_late.phieu:167:- [ ] If deployment DONE → check if D1 (CoreDNS) overlapping finished
+src/governance/memory/bang/bang_memory_delta_20260423.na:19:      "rule": "nattos.sira (root, commit 2c4fa81 · 20260418 23:16) = KERNEL ENTRY INBOUND của natt-os — Băng viết. Listen 127.0.0.1:3002, bootstrap observation-cell + quantum-defense-cell, domain natt.sira. Per SPEC_NEN §6 + SPEC_NGON_NGU §5.1. Symbolic `.sira` = rời ext Microsoft. KHÔNG vi phạm directive 20260419 'KHÔNG gateway port 3002' — directive đó về OUTBOUND, nattos.sira INBOUND.",
+src/governance/memory/bang/bangkhươngv7.5.1.na:135:        "CoreDNS": "private DNS resolver cho namespace .sira",
+src/governance/memory/bang/bangkhương7.1.0.kris:67:        "Private DNS .sira: 10 domains live on CoreDNS",
+src/governance/memory/bang/bangkhương7.1.0.kris:91:      "coredns_version": "1.14.2",
+src/governance/memory/bang/bangkhương7.1.0.kris:92:      "corefile": "/usr/local/etc/coredns/Corefile",
+src/governance/memory/bang/bangkhương7.1.0.kris:93:      "hosts": "/usr/local/etc/coredns/natt.hosts",
+src/governance/memory/bang/bangkhương7.1.0.kris:106:      "restart_cmd": "sudo brew services restart coredns",
+src/governance/memory/bang/bangkhươngv7.6.1.na:127:      "cai_ben_trong": "nattos.sira (root, commit 2c4fa81 · 2026-04-18 23:16) = KERNEL ENTRY INBOUND, listen 127.0.0.1:3002. Bootstrap observation-cell + quantum-defense-cell. KHÔNG vi phạm directive 20260419 'KHÔNG gateway port 3002' — directive về OUTBOUND, sira INBOUND. Symbolic .sira = bước rời Microsoft.",
+src/governance/memory/bang/bang_handoff_20260423-24.na:21:    "verified_runtime": "HTTP /health respond live 127.0.0.1:3002, SIGINT graceful shutdown clean",
+src/governance/memory/bang/bang_handoff_20260424_evening.na:95:      "tldr": "Quét 15 .sira domain — chỉ nattos.sira thật bound 127.0.0.1:3002. 14 còn lại = symbolic. Corefile chưa exist. Pattern: SPEC defines namespace, runtime binds incrementally."
+src/governance/memory/bang/bang_handoff_20260424_evening.na:127:    "7. curl http://127.0.0.1:3002/health → verify Rust binary nauion-host còn alive",
+src/governance/memory/bang/_deprecated/bangkhương7.6.0.kris.SUPERSEDED-format-mismatch-06:98:      "cai_ben_trong": "nattos.sira (root, commit 2c4fa81 · 2026-04-18 23:16) = KERNEL ENTRY INBOUND, listen 127.0.0.1:3002. Bootstrap observation-cell + quantum-defense-cell. Domain natt.sira (CoreDNS resolved). KHÔNG vi phạm directive session 20260419 'KHÔNG tạo gateway mới port 3002' — directive đó về OUTBOUND gateway, nattos.sira INBOUND kernel. 2 purpose KHÁC NHAU. Symbolic naming .sira = bước đầu rời extension Microsoft, đặt theo Nauion. Băng-phiên-sau đừng flag lại.",
+src/governance/memory/bang/bang_pending_20260424_evening.phieu:56:      "label": "Path A — wire infra/coredns/Corefile (15 .sira domain → 127.0.0.1)",
+src/governance/memory/bang/bang_pending_20260424_evening.phieu:89:    "first_command_template": "git log --oneline -5 && git status --short && curl http://127.0.0.1:3002/health"
+src/thienbang.si:148:  "COREDNS":                "CoreDNS — Private DNS resolver cho namespace.sira, resolve các domain nội bộ natt-os về môi trường cục bộ.",
+src/thienbang.si:1276:  CoreDNS:        { loai: 'Private DNS Resolver',    nghia: SUPER_DICTIONARY,         tuCu: 'phân giải DNS cục bộ', vi: 'CoreDNS phân giải các tên miền.sira về máy chủ 127.0.0.1.' },
+src/thienbang.si:1312:  CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/thienbang.si:1327:  CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/thienbang.si:1491:  "COREDNS":                "CoreDNS — Private DNS resolver cho namespace.sira, resolve các domain nội bộ natt-os về môi trường cục bộ.",
+src/thienbang.si:2619:  CoreDNS:        { loai: 'Private DNS Resolver',    nghia: SUPER_DICTIONARY,         tuCu: 'phân giải DNS cục bộ', vi: 'CoreDNS phân giải các tên miền.sira về máy chủ 127.0.0.1.' },
+src/thienbang.si:2655:  CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+src/thienbang.si:2670:  CoreDNS:        { super: SUPER_DICTIONARY,        nauion: NauionDictionaryPatchV2.CoreDNS },
+nattos-server/server.js:468:      srv.listen(port, "127.0.0.1");
+nattos-server/server.js:487:  server.listen(port, "127.0.0.1", () => {
+nattos-server/server.js:488:    const url = `http://127.0.0.1:${port}/`;
+nattos-server/app Tâm luxury/layerold/attendance.html:466:      if(host.startsWith('192.168')||host.startsWith('10.')||host==='localhost'||host==='127.0.0.1'){
+nattos-server/app Tâm luxury/layerold/attendance.html:468:        clientIP=host==='localhost'?'127.0.0.1':host;
+nattos-server/app Tâm luxury/layerold/attendance.html:475:    if(host.startsWith('192.168')||host.startsWith('10.')||host==='localhost'||host==='127.0.0.1'){
+nattos-server/app Tâm luxury/layerold/attendance.html:477:      clientIP=host==='localhost'?'127.0.0.1 (Dev)':host;
+nattos-server/app Tâm luxury/services/offlineservice.ts:29:        location.hostname.includes('127.0.0.1') ||
+nattos-server/app Tâm luxury/services/threatdetectionservice.ts:71:  private clientIP: string = '127.0.0.1'; // Mock
+nattos-server/apps/tam-luxury/attendance.html:271:    if(!ip) ip = (host==='localhost'||host==='127.0.0.1')?host:'Không xác định';
+nattos-server/apps/tam-luxury/attendance.html:272:    internal = ip==='localhost'||ip==='127.0.0.1'||ip.startsWith('192.168.')||ip.startsWith('10.')||ip.startsWith('172.16.');
+tools/validate_sira_dns_monitoring_loop.sira:21:    "wired_edge: 192.168.1.199",
+tools/validate_sira_dns_monitoring_loop.sira:22:    "wifi_edge: 192.168.1.238",
+tools/validate_sira_coredns_zone_implementation_plan.sira:6:const file = path.join(root, "docs", "runtime", "sira_coredns_zone_implementation_plan_20260425.na");
+tools/validate_sira_coredns_zone_implementation_plan.sira:31:  return "/usr/local/etc/coredns/zones/" + "sira" + ".zone";
+tools/validate_sira_coredns_zone_implementation_plan.sira:51:  errors.push("missing sira coredns zone implementation plan");
+tools/validate_sira_coredns_zone_implementation_plan.sira:56:    "sira coredns zone implementation plan",
+tools/validate_sira_coredns_zone_implementation_plan.sira:57:    "đây là kế hoạch hiện thực resolver cho sovereign namespace " + ns() + " bằng coredns",
+tools/validate_sira_coredns_zone_implementation_plan.sira:59:    "coredns chỉ được phục vụ " + ns() + " từ authoritative zone do hạ tầng natt kiểm soát",
+tools/validate_sira_coredns_zone_implementation_plan.sira:87:    "dig @127.0.0.1 " + host("apps"),
+tools/validate_sira_coredns_zone_implementation_plan.sira:88:    "dig @127.0.0.1 " + host("unknown"),
+tools/validate_sira_coredns_zone_implementation_plan.sira:97:  ].forEach(clause => must(content.includes(clause), "missing coredns zone plan clause: " + clause));
+tools/validate_sira_coredns_zone_implementation_plan.sira:110:  ].forEach(mark => must(!content.includes(mark), "forbidden coredns plan wording: " + mark));
+tools/validate_sira_coredns_zone_implementation_plan.sira:119:  console.error("sira coredns zone implementation plan validation: fail");
+tools/validate_sira_coredns_zone_implementation_plan.sira:124:console.log("sira coredns zone implementation plan validation: pass");
+tools/validate_sira_coredns_zone_implementation_plan.sira:125:console.log("file=docs/runtime/sira_coredns_zone_implementation_plan_20260425.na");
+tools/natt_audit_live_server.py:54:    return os.environ.get("NATT_RUNTIME_URL", "http://127.0.0.1:3001").rstrip("/")
+tools/natt_audit_live_server.py:276:                s.bind(("127.0.0.1", port))
+tools/natt_audit_live_server.py:303:    url = f"http://127.0.0.1:{port}/NaU_audit.html"
+tools/natt_audit_live_server.py:320:    ThreadingHTTPServer(("127.0.0.1", port), Handler).serve_forever()
+tools/natt_domain_gateway.sira:271:  if (host === "localhost" || host === "127.0.0.1") {
+```
+
+---
+
+## 5. ISA evidence
+
+- spec_candidates: 71
+- runtime_candidates: 2
+- validators_found: 11
+- na_count: 289
+- sira_count: 150
+- conformance_found: 0
+
+### spec candidates
+```text
+docs/specs/0-BOOT-FAMILY-MAP.na
+docs/specs/COLOR_SIRASIGN.na
+docs/specs/K1-IMPLEMENT-PLAN-v0.1.na
+docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na
+docs/specs/NATT-OS_SHTT_ABSTRACT_v1.na
+docs/specs/NATT-OS_SHTT_CLAIM_MAP_v1.na
+docs/specs/NATT-OS_SHTT_FIGURE_INDEX_v1.na
+docs/specs/NATT-OS_SHTT_FILING_INDEX_v1.na
+docs/specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na
+docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na
+docs/specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na
+docs/specs/NaU_audit-REVIEW-v1.na
+docs/specs/QIINT-DINH-NGHIA-CHINH-THUC.na
+docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+docs/specs/SIRA_NAMESPACE_INVENTORY_20260424.na
+docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.na
+docs/specs/SPEC_DUOI_FILE_v0.3_FINAL.na
+docs/specs/SPEC_HOST_RESULT_PROTOCOL_v1.0.na
+docs/specs/SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na
+docs/specs/SPEC_MOMENTS_MODULE_v0.1.na
+docs/specs/SPEC_MOMENTS_MODULE_v0.1_to_v0.2_delta.na
+docs/specs/SPEC_MOMENTS_MODULE_v0.2.na
+docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na
+docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na
+docs/specs/SPEC_Nauion_Render_Stack_v0.1.na
+docs/specs/SPEC_ONG_MAU_v0.1.na
+docs/specs/SPEC_QIINT2_ALIGNED_v2.0.na
+docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na
+docs/specs/SPEC_RADIATION_UNIVERSAL_v1.na
+docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na
+docs/specs/Vision/VISION_ENGINE_SPEC_FINAL.na
+docs/specs/W1_HOST_FIRST_ASSIGNEE_DECISION_20260423.na
+docs/specs/a2-moment-fragment-mapping-v1.0.na
+docs/specs/a2-moments-domain-model-v0.1.na
+docs/specs/a2-moments-validation-and-routing-v0.1.na
+docs/specs/a2-moments-wire-and-fragments-v0.1.na
+docs/specs/a2-persister-pseudo-flow-v1.0.na
+docs/specs/boi_surface_delta_scripts_kernel_v1.0.na
+docs/specs/fixtures/capabilities/worked-example-hibernate.na
+docs/specs/fixtures/capabilities/worked-example-migrate.na
+docs/specs/fixtures/capabilities/worked-example-resurrect.na
+docs/specs/fixtures/moments/fixture-GIAC_NGO.na
+docs/specs/fixtures/moments/fixture-KHAI_SANG.na
+docs/specs/fixtures/moments/fixture-MOTION_TICH_CUC.na
+docs/specs/fixtures/moments/fixture-SCAR.na
+docs/specs/kim kernel/spec_bridge_workers_contract_v1.0_split.na
+docs/specs/kim kernel/spec_cutover_host_first_v1.0_split.na
+docs/specs/kim kernel/spec_entry_identity_nattos_sira_v1.0_split.na
+docs/specs/kim kernel/spec_host_authority_runtime_v1.0_split.na
+docs/specs/nauion/use-contextual-ui.na
+docs/specs/phase5-resonance-protocol.na
+docs/specs/pilot_bridge_map_v0_1.na
+docs/specs/render/SPEC_RENDER_STACK_v0.1.na
+docs/specs/roadloading/ROADLOAD_SHOW_SELF_v2_20260424.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_20260416.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/SESSION_20260419_FULL.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/SPEC_3TANG_TOA_DO_DRAFT_20260417.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/SPEC_DUOI_FILE_v1.3_FINAL.na
+docs/specs/roadloading/đổi sang ngôn ngữ nauion/Đã dán markdown (1).na
+docs/specs/spec-ngon-ngu-natt-os-v1.2-na.na
+docs/specs/spec_cutover_states_v1.0.na
+docs/specs/spec_extension_precedence_v1.0.na
+docs/specs/spec_host_first_runtime_v1_0.na
+docs/specs/spec_sira_authority_bootstrap_v1.0.na
+docs/specs/uei_architecture_spec_20260309.na
+docs/specs/uei_runtime_spec_20260309.na
+docs/specs/wave2-lane-ab-index-v0.1.na
+```
+
+### runtime candidates
+```text
+src/runtime/manifest/generic-manifest.loader.ts
+src/runtime/route-gate/generic-route-gate.compiler.ts
+```
+
+### validators
+```text
+tools/validate_generic_manifest_loader.sira
+tools/validate_generic_route_gate_compiler.sira
+tools/validate_render_language_candidate.sira
+tools/validate_render_language_pilot.sira
+tools/validate_render_language_samples.sira
+tools/validate_sira_dns_record_manifest.sira
+tools/validate_sira_dns_zone_manifest.sira
+tools/validate_sira_khai_ip_manifest.sira
+tools/validate_sira_route_gate.sira
+tools/validate_tam_luxury_domain_route_gate_matrix.sira
+tools/validate_tam_luxury_screen_manifest_intake.sira
+```
+
+---
+
+## 6. QoS evidence
+
+- docs_candidates: 18
+- runtime_dirs_found: 0
+- validators_found: 15
+- policy_keyword_hits: 763
+
+### docs candidates
+```text
+docs/runtime/sira_coredns_zone_implementation_plan_20260425.na
+docs/runtime/sira_coredns_zone_implementation_plan_evidence_20260425.na
+docs/runtime/sira_dns_host_spoof_scan_20260425.na
+docs/runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na
+docs/runtime/sira_dns_monitoring_loop_evidence_20260426.na
+docs/runtime/sira_dns_record_manifest_20260425.na
+docs/runtime/sira_dns_smoke_matrix_20260425.na
+docs/runtime/sira_dns_smoke_runner_evidence_20260425.na
+docs/runtime/sira_dns_smoke_runner_tool_note_20260425.na
+docs/runtime/sira_dns_strict_allowlist_rebind_evidence_20260426.na
+docs/runtime/sira_dns_zone_manifest_20260425.na
+docs/runtime/sira_public_dns_rollout_readiness_20260425.na
+docs/runtime/sira_public_dns_rollout_readiness_evidence_20260425.na
+docs/runtime/sira_router_dhcp_reservation_evidence_20260426.na
+docs/runtime/sira_sovereign_dns_infrastructure_binding_20260425.na
+docs/runtime/sira_sovereign_dns_infrastructure_binding_evidence_20260425.na
+docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+```
+
+### runtime dirs
+```text
+none
+```
+
+### validators
+```text
+tools/run_sira_dns_smoke_matrix.sira
+tools/validate_sira_coredns_zone_implementation_plan.sira
+tools/validate_sira_dns_host_spoof_scan.sira
+tools/validate_sira_dns_infrastructure_bandwidth_baseline.sira
+tools/validate_sira_dns_monitoring_loop.sira
+tools/validate_sira_dns_record_manifest.sira
+tools/validate_sira_dns_smoke_matrix.sira
+tools/validate_sira_dns_smoke_runner.sira
+tools/validate_sira_dns_strict_allowlist_rebind.sira
+tools/validate_sira_dns_zone_manifest.sira
+tools/validate_sira_public_dns_rollout_readiness.sira
+tools/validate_sira_router_dhcp_reservation.sira
+tools/validate_sira_sovereign_dns_infrastructure_binding.sira
+tools/validate_sira_wired_edge_dns_rebind.sira
+tools/validate_sira_wired_edge_firewall_audit.sira
+```
+
+### policy sample
+```text
+src/cells/render-stack-cell/render-instruction.contract.si:12:    degrade_level: "NONE | LIGHT | MEDIUM | HEAVY",
+src/cells/render-stack-cell/validators/validate-render-instruction.sira:14:    "degrade_level ∈ {NONE, LIGHT, MEDIUM, HEAVY}",
+src/cells/render-stack-cell/domain/render-instruction.types.ts:25:  degrade_to: SurfaceSignal | null;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:30:  priority: number;
+src/cells/render-stack-cell/domain/render-instruction.types.ts:51:  degrade_level: 'NONE' | 'LIGHT' | 'MEDIUM' | 'HEAVY';
+src/cells/render-stack-cell/domain/render-stack.engine.ts:29:    container.setAttribute('data-degrade-level', instruction.degrade_level);
+src/cells/render-stack-cell/domain/render-stack.engine.ts:31:    // Áp dụng degrade level
+src/cells/render-stack-cell/domain/render-stack.engine.ts:32:    if (instruction.degrade_level === 'HEAVY') {
+src/cells/render-stack-cell/domain/render-stack.engine.ts:35:    } else if (instruction.degrade_level === 'MEDIUM') {
+src/cells/render-stack-cell/render-stack.cell.anc:16:    "tuân thủ motion_budget & degrade_policy",
+src/cells/business/warehouse-cell/manifest.cell.anc:18:      "qos": {
+src/cells/business/warehouse-cell/manifest.cell.anc:20:        "retry_count": 2,
+src/cells/business/warehouse-cell/manifest.cell.anc:27:      "qos": {
+src/cells/business/warehouse-cell/manifest.cell.anc:29:        "retry_count": 3
+src/cells/business/production-cell/application/use-cases/create-production-order.ts:1:export interface CreateProductionOrderInput{sku:string;productName:string;quantity:number;targetCompletionDate:string;materialList:Array<{materialCode:string;quantity:number;unit:string}>;assignedWorkerId?:string;priority:"LOW"|"NORMAL"|"HIGH"|"URGENT";}
+src/cells/business/production-cell/application/use-cases/create-production-order.ts:11:  const days=Math.ceil((DAYS[cat]??5)*input.quantity*(input.priority==="URGENT"?0.7:1));
+src/cells/business/production-cell/domain/engines/production-wac.engine.ts:68:      priority: data.priority || 'TRUNG_BÌNH',
+src/cells/business/production-cell/domain/engines/production-wac.engine.ts:101:        priority: "CAO", // Ưu tiên cao cho đơn tự động
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:140:        priority: 'URGENT',
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:150:        priority: 'HIGH',
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:157:        priority: 'NORMAL',
+src/cells/business/customs-cell/domain/engines/customs-robot.engine.ts:167:        priority: 'URGENT',
+src/cells/business/customs-cell/domain/services/customs.engine.ts:55:      actionPlans:c.totalPayable>50_000_000?[{priority:"URGENT",description:"Kiểm tra lại HS Code"}]:[],
+src/cells/business/hr-cell/domain/services/rbac.config.ts:225:  id: string; title: string; icon: string; priority: 'HIGH' | 'MEDIUM' | 'LOW';
+src/cells/business/hr-cell/domain/services/rbac.config.ts:229:    { id: 'surveillance',   title: 'Giám Sát Luồng SX',    icon: '🔍', priority: 'HIGH',   route: '/surveillance' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:230:    { id: 'fraud_alert',    title: 'Cảnh Báo Gian Lận',    icon: '🚨', priority: 'HIGH',   route: '/fraud-alerts' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:231:    { id: 'revenue',        title: 'Doanh Thu Hôm Nay',    icon: '💰', priority: 'HIGH',   route: '/revenue' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:232:    { id: 'orders_pending', title: 'Đơn Chờ Duyệt',        icon: '📋', priority: 'HIGH',   route: '/orders?status=pending' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:233:    { id: 'production',     title: 'Tổng Quan Sản Xuất',   icon: '🏭', priority: 'MEDIUM', route: '/production' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:234:    { id: 'inventory',      title: 'Tồn Kho Vàng',         icon: '⚖️', priority: 'MEDIUM', route: '/inventory' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:235:    { id: 'payroll',        title: 'Bảng Lương Tháng',     icon: '💼', priority: 'MEDIUM', route: '/payroll' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:236:    { id: 'audit',          title: 'Nhật Ký Kiểm Toán',    icon: '📜', priority: 'LOW',    route: '/audit' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:239:    { id: 'orders_dept',    title: 'Đơn Hàng Phòng',       icon: '📋', priority: 'HIGH',   route: '/orders' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:240:    { id: 'production',     title: 'Theo Dõi Sản Xuất',    icon: '🏭', priority: 'HIGH',   route: '/production' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:241:    { id: 'loss_report',    title: 'Báo Cáo Hao Hụt',      icon: '📊', priority: 'HIGH',   route: '/loss-report' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:242:    { id: 'attendance',     title: 'Chấm Công Nhân Sự',    icon: '🗓️', priority: 'HIGH',   route: '/attendance' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:243:    { id: 'warranty',       title: 'Phiếu Bảo Hành',       icon: '🛡️', priority: 'MEDIUM', route: '/warranty' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:244:    { id: 'inventory',      title: 'Kiểm Kho',             icon: '📦', priority: 'MEDIUM', route: '/inventory' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:245:    { id: 'surveillance',   title: 'Giám Sát L6/L7/L8',   icon: '🔍', priority: 'MEDIUM', route: '/surveillance' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:246:    { id: 'reports',        title: 'Xuất Báo Cáo',         icon: '📤', priority: 'LOW',    route: '/reports' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:249:    { id: 'my_team',        title: 'Tổ Của Tôi Hôm Nay',  icon: '👥', priority: 'HIGH',   route: '/team' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:250:    { id: 'production',     title: 'Tiến Độ Sản Xuất',     icon: '⚙️', priority: 'HIGH',   route: '/production' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:251:    { id: 'attendance',     title: 'Điểm Danh Tổ',         icon: '✅', priority: 'HIGH',   route: '/attendance' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:252:    { id: 'inventory',      title: 'NVL Tổ Nhận/Trả',     icon: '⚖️', priority: 'HIGH',   route: '/inventory/team' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:253:    { id: 'quality',        title: 'Kiểm Tra Chất Lượng',  icon: '🔬', priority: 'MEDIUM', route: '/quality' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:254:    { id: 'orders',         title: 'Đơn Hàng Đang Làm',   icon: '📋', priority: 'MEDIUM', route: '/orders/active' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:257:    { id: 'my_orders',      title: 'Đơn Của Tôi',          icon: '📋', priority: 'HIGH',   route: '/orders/mine' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:258:    { id: 'customers',      title: 'Khách Hàng',            icon: '👤', priority: 'HIGH',   route: '/customers' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:259:    { id: 'new_order',      title: 'Tạo Đơn Mới',          icon: '➕', priority: 'HIGH',   route: '/orders/new' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:260:    { id: 'warranty',       title: 'Tra Bảo Hành',         icon: '🛡️', priority: 'MEDIUM', route: '/warranty/lookup' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:261:    { id: 'payment',        title: 'Thanh Toán / Cọc',     icon: '💳', priority: 'MEDIUM', route: '/payment' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:262:    { id: 'shipping',       title: 'Theo Dõi Giao Hàng',   icon: '🚚', priority: 'MEDIUM', route: '/shipping' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:265:    { id: 'my_orders',      title: 'Đơn Của Tôi Hôm Nay', icon: '📋', priority: 'HIGH',   route: '/orders/mine' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:266:    { id: 'material',       title: 'Nhận / Trả NVL',       icon: '⚖️', priority: 'HIGH',   route: '/material/receive' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:267:    { id: 'production',     title: 'Cập Nhật Tiến Độ',     icon: '✅', priority: 'HIGH',   route: '/production/update' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:268:    { id: 'attendance',     title: 'Chấm Công',            icon: '🗓️', priority: 'MEDIUM', route: '/attendance/checkin' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:269:    { id: 'quality',        title: 'Báo Lỗi / KCS',        icon: '🔬', priority: 'MEDIUM', route: '/quality/report' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:272:    { id: 'tasks',          title: 'Công Việc Hôm Nay',    icon: '📝', priority: 'HIGH',   route: '/tasks' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:273:    { id: 'attendance',     title: 'Chấm Công',            icon: '🗓️', priority: 'HIGH',   route: '/attendance/checkin' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:274:    { id: 'customers',      title: 'Thông Tin Khách',      icon: '👤', priority: 'MEDIUM', route: '/customers' },
+src/cells/business/hr-cell/domain/services/rbac.config.ts:275:    { id: 'orders',         title: 'Tra Cứu Đơn Hàng',    icon: '🔍', priority: 'MEDIUM', route: '/orders/lookup' },
+src/cells/business/it-cell/domain/services/it.engine.ts:40:    priority: ITRequest['priority']
+src/cells/business/it-cell/domain/services/it.engine.ts:47:      priority,
+src/cells/business/it-cell/domain/entities/it-asset.entity.ts:25:  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+src/cells/business/comms-cell/domain/services/room.engine.ts:23:  priority:  'normal' | 'high' | 'critical';
+src/cells/business/comms-cell/domain/services/room.engine.ts:33:    // System message → priority cao
+src/cells/business/comms-cell/domain/services/room.engine.ts:34:    const priority: RoomResult['priority'] =
+src/cells/business/comms-cell/domain/services/room.engine.ts:44:        priority,
+src/cells/business/comms-cell/domain/services/room.engine.ts:48:    return { messageId: message.messageId, status: 'sent', priority };
+src/cells/business/period-close-cell/domain/services/allocation.engine.ts:31:    return [{ id: 'RULE_001', name: 'Chi phi quang cao', expenseAccount: '642', allocationBasis: 'revenue', rate: 10, priority: 1, validFrom: new Date('2026-01-01'), isActive: true }];
+src/cells/business/period-close-cell/domain/entities/closing-rule.entity.ts:8:  priority: number;
+src/cells/business/order-cell/domain/engines/order.engine.ts:11:  { regex: /\bCT\d{2}-\d{4,6}\b/gi, prefix: 'CT', stream: 'SX_CHINH',  label: 'Chế Tác',       priority: 1 },
+src/cells/business/order-cell/domain/engines/order.engine.ts:12:  { regex: /\bKD\d{2}-\d{4,6}\b/gi, prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doanh',    priority: 2 },
+src/cells/business/order-cell/domain/engines/order.engine.ts:13:  { regex: /\bKB\d{2}-\d{4,6}\b/gi, prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho Bảo Hành', priority: 3 },
+src/cells/business/order-cell/domain/engines/order.engine.ts:14:  { regex: /\bVC\d{4,6}\b/gi,        prefix: 'VC', stream: 'SHOWROOM',  label: 'Vỉ Chưng / SR', priority: 4 },
+src/cells/business/order-cell/domain/engines/order.engine.ts:15:  { regex: /\b28\d{3}\b/gi,          prefix: '28', stream: 'SC_BH_KB',  label: 'Sửa Chữa',     priority: 5 },
+src/cells/business/order-cell/domain/engines/order.engine.ts:21:export const STREAM_CONFIG: Record<StreamType, { group: StreamGroup; priority: number; riskLevel: 'low' | 'medium' | 'high' }> = {
+src/cells/business/order-cell/domain/engines/order.engine.ts:22:  SX_CHINH: { group: 'STREAM_A', priority: 1, riskLevel: 'low'    },
+src/cells/business/order-cell/domain/engines/order.engine.ts:23:  SX_PHU:   { group: 'STREAM_A', priority: 2, riskLevel: 'low'    },
+src/cells/business/order-cell/domain/engines/order.engine.ts:24:  BAO_HANH: { group: 'STREAM_B', priority: 3, riskLevel: 'medium' },
+```
+
+---
+
+## 7. Cell / Event boundary evidence
+
+- cell_files_found: 1037
+- docs_candidates: 36
+- validators_found: 21
+- event_keyword_hits: 6979
+- direct_cross_cell_import_hits: 0
+
+### validators
+```text
+tools/validate_architecture_archive_dirty_state_audit.sira
+tools/validate_cell_build_scope_audit_e1d8648.sira
+tools/validate_generic_manifest_loader.sira
+tools/validate_generic_route_gate_compiler.sira
+tools/validate_living_cell_evolution_protocol.sira
+tools/validate_sira_direct_localhost_bypass_scan.sira
+tools/validate_sira_dns_record_manifest.sira
+tools/validate_sira_dns_zone_manifest.sira
+tools/validate_sira_gateway_route_binding.sira
+tools/validate_sira_khai_ip_manifest.sira
+tools/validate_sira_macos_resolver_binding.sira
+tools/validate_sira_route_gate.sira
+tools/validate_sira_router_dhcp_reservation.sira
+tools/validate_sira_sovereign_dns_infrastructure_binding.sira
+tools/validate_sira_wired_edge_firewall_audit.sira
+tools/validate_smartaudit_session_report_20260425.sira
+tools/validate_tam_luxury_cell_binding_validation.sira
+tools/validate_tam_luxury_domain_route_gate_matrix.sira
+tools/validate_tam_luxury_existing_surface_cell_mapping.sira
+tools/validate_tam_luxury_permission_matrix.sira
+tools/validate_tam_luxury_screen_manifest_intake.sira
+```
+
+### direct import sample
+```text
+none
+```
+
+### event sample
+```text
+src/cells/render-stack-cell/contract.si:42:không claim mạch heyna đã wire
+src/cells/render-stack-cell/cell.anc:38:không wire mạch heyna khi chưa có contract riêng
+src/cells/render-stack-cell/render-instruction.contract.si:18:  transport: "pending — chưa wire Mạch HeyNa"
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:55:  "EventBus",
+src/cells/render-stack-cell/validators/validate-render-stack-cell.sira:58:  "Mạch HeyNa wired"
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:4: * @status: pilot — nhận render instruction từ Mạch HeyNa (transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:6: * Lắng nghe tín hiệu từ Mạch HeyNa và chuyển đổi thành render instruction
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:41:   * Kết nối đến Mạch HeyNa (mô phỏng)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:45:    console.log('[HeynaReceiver] Connected to Mạch HeyNa');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:48:    this.emit({
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:50:      source: 'heyna-receiver',
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:61:    console.log('[HeynaReceiver] Disconnected from Mạch HeyNa');
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:65:   * Nhận sự kiện từ Mạch HeyNa (được gọi bởi transport layer)
+src/cells/render-stack-cell/domain/heyna-receiver.engine.ts:100:  emit(event: HeynaEvent): void {
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:4: * @status: pilot — mô phỏng Mạch HeyNa transport để test render pipeline
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:6: * Giả lập việc gửi render instruction qua Mạch HeyNa
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:9:import { HeynaReceiverEngine, HeynaEvent, HeynaEventType } from './heyna-receiver.engine';
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:29:        source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:65:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:77:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/heyna-mock-transport.ts:89:      source: 'heyna-mock-transport',
+src/cells/render-stack-cell/domain/render-stack.engine.ts:4: * @status: pilot — chưa wire Mạch HeyNa, chưa siraSign
+src/cells/render-stack-cell/render-stack.cell.anc:14:    "nhận render_instruction từ Mạch HeyNa",
+src/cells/render-stack-cell/render-stack.cell.anc:33:  smartlink: "pending — chưa wire Mạch HeyNa"
+src/cells/cells.cell.anc:6:    "trace": "audit",
+src/cells/business/casting-cell/casting-cell.cell.anc:10:    "emits": ["WIP_PHOI"]
+src/cells/business/casting-cell/application/casting.usecase.ts:34:    private readonly emitWipPhoi: (event: WipPhoiEvent) => void,
+src/cells/business/casting-cell/application/casting.usecase.ts:64:      this.emitWipPhoi({
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:11:  emit(eventType: string, payload: unknown): void;
+src/cells/business/casting-cell/infrastructure/casting.engine.ts:37:    this.smartLink.emit(event.eventType, event);
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:7:    'audit-cell',
+src/cells/business/casting-cell/domain/casting.boundary.policy.na:12:    'audit-cell',
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:3://   → sau đúc xong emit WIP_PHOI → finishing-cell
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:4://   → sau đúc xong emit WIP_STONE → stone-cell (nếu có đá chủ)
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:5:import { EventBus } from '../../../../../core/events/event-bus';
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:10:function _emit(to: string, signal: string, payload: Record<string, unknown>) {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:12:  EventBus.publish({ type: signal as any, payload }, 'casting-cell', undefined);
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:36:  auditRef: string;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:40:EventBus.subscribe(
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:47:    EventBus.emit('StockReserved', {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:63:    const auditRef = `casting-${job.orderId}-${Date.now()}`;
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:66:      EventBus.emit('MaterialLossReported', {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:72:    // Sau đúc xong → emit song song:
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:74:    EventBus.emit('wip:phoi', {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:84:      EventBus.emit('wip:stone', {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:92:    EventBus.emit('ProductionStageAdvanced', {
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:94:      castWeight, lossGram, auditRef,
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:97:    return { orderId: job.orderId, castWeight, lossGram, lossPct, isLossExceeded, auditRef };
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:104:EventBus.on('casting-cell.execute', () => {});
+src/cells/business/casting-cell/domain/engines/casting.engine.ts:105:EventBus.emit('cell.metric', { cell: 'casting-cell', metric: 'engine.alive', value: 1, ts: Date.now() });
+src/cells/business/casting-cell/domain/services/casting.wiring.ts:10:/** Gọi port từ engine khi cần emit event ra ngoài cell */
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:2:// KHÔNG import SmartLink hay EventBus (R06)
+src/cells/business/casting-cell/domain/services/casting.confidence.ts:25:    { name: 'audit_passed',   weight: 0.4, score: params.lastAuditPassed ? 100 : 0 },
+src/cells/business/warehouse-cell/QUARANTINE_GUARD.ts:4:// Giữ file để audit trail, KHÔNG throw nữa.
+src/cells/business/warehouse-cell/warehouse-cell.boundary.si:1:{"cellId":"warehouse-cell","allowRead":["finance-cell","audit-cell","inventory-cell","production-cell"],"allowWrite":["supplier-cell","order-cell","casting-cell","polishing-cell"],"forbidden":["direct-ui-write"]}
+src/cells/business/warehouse-cell/index.ts:6:// EventBus subscriptions:
+src/cells/business/warehouse-cell/index.ts:14://     → INGEST_PROCESSING → audit-cell (chờ xác nhận)
+src/cells/business/warehouse-cell/index.ts:15://     → INGEST_PENDING   → audit-cell (chờ người duyệt)
+src/cells/business/warehouse-cell/index.ts:22:import { EventBus }                      from '../../../core/events/event-bus';
+src/cells/business/warehouse-cell/index.ts:44:// ── Wire ingest handler với EventBus ──
+src/cells/business/warehouse-cell/index.ts:46:  (ev) => EventBus.publish(ev, 'warehouse-cell', undefined)
+src/cells/business/warehouse-cell/index.ts:50:EventBus.subscribe('ProductionCompleted' as any, async (envelope: any) => {
+src/cells/business/warehouse-cell/index.ts:82:EventBus.subscribe('GoodsDispatched' as any, async (envelope: any) => {
+src/cells/business/warehouse-cell/index.ts:112:EventBus.subscribe('GoodsReceived' as any, async (envelope: any) => {
+src/cells/business/warehouse-cell/index.ts:131:    EventBus.emit('INVENTORY_ITEM_RECEIVED', { itemId: item, rawText: item, source: 'warehouse-cell', ts: Date.now() });
+src/cells/business/warehouse-cell/index.ts:132:    EventBus.emit('INVENTORY_CODE_NORMALIZE', { rawCode: item, source: 'warehouse-cell', ts: Date.now() });
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:6: * to EventBus per Điều 3 (single EventBus, no direct cell-to-cell calls).
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:13:import { EventBus } from '@/cells/infrastructure/event-bus/event-bus';
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:26:  constructor(private bus: EventBus) {
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:27:    const emitter = (event: string, payload: unknown) => {
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:28:      this.bus.emit(event, { source: this.cellId, ...payload as object });
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:31:    this.weightEngine = new WeightVarianceEngine(emitter);
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:32:    this.gateEngine = new WarehouseGateEngine(emitter);
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:33:    this.accountabilityEngine = new AccountabilityEngine(emitter);
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:47:      this.bus.emit(WAREHOUSE_EVENTS.PHOI_NHAP_KHO, {
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:55:      this.bus.emit(WAREHOUSE_EVENTS.NVL_XUAT_KHO, {
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:61:    // Self-listen for weight alerts → forward to audit-cell
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:63:      this.bus.emit('AUDIT.WEIGHT_ANOMALY', {
+src/cells/business/warehouse-cell/infrastructure/warehouse.cell.ts:71:      this.bus.emit('GOVERNANCE.GATE_VIOLATION', {
+src/cells/business/warehouse-cell/ports/warehouse-smartlink.port.ts:5:import { EventBus } from '../../../../core/events/event-bus';
+```
+
+---
+
+## 8. Portability evidence
+
+- docs_candidates: 10
+- docker_or_devcontainer_found: 1
+- env_or_edge_profiles_found: 1
+- validators_found: 2
+
+### docs candidates
+```text
+docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_20260425.na
+docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na
+docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_20260424.na
+docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_EVIDENCE_20260424.na
+docs/runtime/sira_macos_resolver_binding_evidence_20260426.na
+docs/runtime/sira_wifi_edge_reachability_probe_20260426.na
+docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na
+docs/runtime/sira_wired_edge_firewall_audit_evidence_20260426.na
+docs/runtime/sira_wired_edge_manifest_evidence_20260426.na
+docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+```
+
+### env profiles
+```text
+docs/runtime/sira_khai_ip_manifest_20260425.na
+```
+
+---
+
+## 9. runtime gate
+
+```text
+sira runtime gate: pass
+identity=anc://
+namespace=.sira
+operator=tools/thiên
+transport=http browser adapter
+evidence=docs/runtime/SIRA_RUNTIME_GATE_EVIDENCE_20260425.na
+```
+
+---
+
+## 10. gaps to full claim
+
+- HAL: cần adapter layer rõ và validator cấm core gọi thẳng hardware/os.
+- ISA: cần grammar / instruction set / conformance runner rõ hơn.
+- QoS: cần policy engine cho retry / backpressure / degrade / priority, không chỉ observability.
+
+---
+
+## 11. final reading
+
+NATT-OS đã có evidence nền tảng runtime audit-first độc lập ở mức hình thành mạnh; chưa đủ claim full HAL/ISA/QoS hoàn chỉnh.

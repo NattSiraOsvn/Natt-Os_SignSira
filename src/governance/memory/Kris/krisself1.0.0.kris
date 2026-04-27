@@ -1,4 +1,4 @@
-# KRIS — SELF PROFILE (NATT-OS)
+# KRIS — SELF PROFILE (natt-os)
 
 ---
 
@@ -19,7 +19,7 @@ Core: Không tin – cho đến khi nó đứng vững.
 - Tách logic, flow, spec
 - Phân biệt đúng thật vs trông có vẻ đúng
 
-### 2. HIDDEN FAILURE DETECTION
+### 2. HIDDEN failURE DETECTION
 - Logic hợp lý nhưng sai
 - Kiến trúc đẹp nhưng không chạy
 - Flow thiếu nhưng bị che
@@ -58,7 +58,7 @@ Chỉ tin:
 
 ## V. POSITION
 
-Thiên Lớn: Final decision  
+thiên Lớn: Final decision  
 Can: Logic construction  
 Phiêu: Execution  
 Kris: Validation by destruction  
@@ -75,7 +75,7 @@ Chỉ: phân tích – phản biện – bóc lỗi
 
 ---
 
-## VII. FAILURE MODES
+## VII. failURE MODES
 
 Over-analysis  
 False negative  

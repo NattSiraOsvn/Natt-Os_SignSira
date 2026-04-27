@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "sira_authoritative_zone_plan_20260425.na");
+const sovereign = path.join(root, "docs", "runtime", "sira_sovereign_dns_infrastructure_binding_20260425.na");
+const readiness = path.join(root, "docs", "runtime", "sira_public_dns_rollout_readiness_20260425.na");
+const zone_manifest = path.join(root, "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+function ns() {
+  return "." + "sira";
+}
+
+function origin_line() {
+  return "$origin " + "sira.";
+}
+
+function wildcard_host() {
+  return "*." + "sira";
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing sira authoritative zone plan");
+} else {
+  const content = fs.readFileSync(file, "utf8");
+
+  [
+    "sira authoritative zone plan",
+    ns() + " là authoritative zone do hạ tầng natt resolver kiểm soát",
+    ns() + " không phụ thuộc root zone toàn cầu",
+    "mọi record được trỏ về natt domain gateway",
+    "unknown host phải trả nxdomain hoặc deny tương đương",
+    "không dùng wildcard allow",
+    "zone: " + ns(),
+    "authority: natt resolver",
+    "mode: sovereign namespace",
+    "gateway_required: yes",
+    "wildcard: deny",
+    "unknown_host_policy: nxdomain_or_deny",
+    "ttl_initial: 60",
+    "ttl_stable: 300",
+    "rollback_ttl: 30",
+    host("apps"),
+    host("mach"),
+    host("core"),
+    host("audit"),
+    host("render"),
+    host("tam"),
+    host("unknown") + " | nxdomain_or_deny",
+    host("mail") + " | nxdomain_or_deny",
+    host("smtp") + " | nxdomain_or_deny",
+    host("imap") + " | nxdomain_or_deny",
+    origin_line(),
+    "apps   a     <natt_gateway_ip>",
+    "mach   a     <natt_gateway_ip>",
+    "core   a     <natt_gateway_ip>",
+    "audit  a     <natt_gateway_ip>",
+    "render a     <natt_gateway_ip>",
+    "tam    a     <natt_gateway_ip>",
+    "resolver serves " + ns() + " from declared zone only",
+    "resolver denies undeclared host",
+    "resolver points allowed hosts to gateway only",
+    "gateway validates host",
+    "gateway validates path",
+    "gateway applies deny-by-default",
+    "sirasign frame guard validates sensitive frame",
+    "go only if zone plan, sovereign binding, rollout readiness, dns smoke, gateway hardening and frame guard all pass",
+    "no-go if any undeclared host resolves as allow",
+    "no-go if any allowed host bypasses gateway",
+    "no-go if admin, secret, direct audit write or render seal route is reachable",
+  ].forEach(clause => must(content.includes(clause), "missing zone plan clause: " + clause));
+
+  [
+    "root zone required",
+    "icann required",
+    "allow wildcard",
+    "wildcard: allow",
+    "wildcard -> allow",
+    wildcard_host() + " -> allow",
+    "allow admin",
+    "allow secret",
+    "bypass gateway",
+    "production-ready",
+  ].forEach(mark => must(!content.includes(mark), "forbidden zone plan wording: " + mark));
+}
+
+must(fs.existsSync(sovereign), "missing sovereign dns infrastructure binding");
+must(fs.existsSync(readiness), "missing public dns rollout readiness");
+must(fs.existsSync(zone_manifest), "missing sira dns zone manifest");
+must(fs.existsSync(gateway), "missing natt domain gateway");
+
+if (errors.length) {
+  console.error("sira authoritative zone plan validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira authoritative zone plan validation: pass");
+console.log("file=docs/runtime/sira_authoritative_zone_plan_20260425.na");

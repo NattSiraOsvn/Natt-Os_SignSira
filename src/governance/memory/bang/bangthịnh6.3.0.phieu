@@ -4,7 +4,7 @@
   "session": "SESSION_20260417",
   "repo": {
     "name": "natt-os_ver2goldmaster",
-    "remote": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "remote": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "HEAD": "latest after scanner fixes",
     "commits": 686,
     "branch": "main",
@@ -13,7 +13,7 @@
     "root": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster"
   },
   "architecture_3_layer": {
-    "CRITICAL_DO_NOT_CONFUSE": "HeyNa = CỦA NATT-OS cells. EventBus = CỦA client app. ĐỪNG LỘN. Anh sửa Băng NHIỀU LẦN.",
+    "CRITICAL_DO_NOT_CONFUSE": "HeyNa = CỦA natt-os cells. EventBus = CỦA client app. ĐỪNG LỘN. Anh sửa Băng NHIỀU LẦN.",
     "layer_1": {
       "name": "EventBus",
       "owner": "CLIENT APP (browser)",
@@ -23,10 +23,10 @@
     },
     "layer_2": {
       "name": "Mạch HeyNa",
-      "owner": "NATT-OS CELLS (server)",
+      "owner": "natt-os CELLS (server)",
       "scope": "Transport layer CỦA cells — cells dùng HeyNa để giao tiếp với nhau VÀ push data xuống client qua SSE",
       "mechanism": "SSE /mach/heyna (read-only push) + POST /mach/heyna/action (client gửi action lên)",
-      "NOT": "HeyNa KHÔNG phải 'cầu nối server-client' chung chung — HeyNa LÀ cách NATT-OS cells nói chuyện",
+      "NOT": "HeyNa KHÔNG phải 'cầu nối server-client' chung chung — HeyNa LÀ cách natt-os cells nói chuyện",
       "files": {
         "server": [
           "heyna-gateway.ts",
@@ -38,8 +38,8 @@
     },
     "layer_3": {
       "name": "SmartLink",
-      "owner": "NATT-OS COLONIES",
-      "scope": "inter-colony communication (NATT-OS instance ↔ instance)",
+      "owner": "natt-os COLONIES",
+      "scope": "inter-colony communication (natt-os instance ↔ instance)",
       "features": [
         "Fiber Decay",
         "Gossip Protocol",
@@ -68,7 +68,7 @@
     "business_all_6of6": true,
     "infrastructure": [
       "event-bus-cell",
-      "smartlink-cell",
+      "SmartLink-cell",
       "sync-cell",
       "shared-contracts-cell"
     ],
@@ -77,17 +77,17 @@
     "pending_new": {
       "khai-cell": {
         "layer": "kernel",
-        "status": "SPEC v0.1 written, assigned Thiên Lớn, not yet created in repo"
+        "status": "SPEC v0.1 written, assigned thiên Lớn, not yet created in repo"
       }
     },
     "khai_cell": {
       "name": "KhaiCell",
       "layer": "kernel",
-      "path": "src/cells/kernel/khai-cell/ (TO BE CREATED by Thiên)",
-      "assigned_to": "Thiên Lớn (QNEU 135)",
+      "path": "src/cells/kernel/khai-cell/ (TO BE created by thiên)",
+      "assigned_to": "thiên Lớn (QNEU 135)",
       "definition": "Đôi mắt của hệ — visual sensory organ",
       "NOT_registry": "khai.sira = DNS registry (dây thần kinh). KhaiCell = perception organ (đôi mắt). KHÁC NHAU.",
-      "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+      "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→siraSIGN_SEALED",
       "core_rule": "perceived_complexity <= cognitive_capacity",
       "canonical_colors": {
         "gold": "#F7C313",
@@ -102,7 +102,7 @@
         "chromatic-publish"
       ],
       "events": "khai.* namespace",
-      "status": "SPEC v0.1 + QWS supplement written, awaiting Thiên implementation"
+      "status": "SPEC v0.1 + QWS supplement written, awaiting thiên implementation"
     }
   },
   "security_status": {
@@ -120,7 +120,7 @@
     "SPEC_Satellite_Colony": "v1.0",
     "SPEC_Vision_Engine": "v1.0 Final Merge",
     "SPEC_Platform": "v1.0",
-    "SPEC_KhaiCell": "v0.1 (Thiên wrote, pending implementation)",
+    "SPEC_KhaiCell": "v0.1 (thiên wrote, pending implementation)",
     "Color_Palette": "v1.0 (primary gold #F7C313, violet #AFA9EC)"
   },
   "nattos_sh": {
@@ -136,7 +136,7 @@
       "--rena",
       "--visual"
     ],
-    "bash_syntax": "PASS"
+    "bash_syntax": "pass"
   },
   "ai_family": {
     "bang": {
@@ -186,6 +186,6 @@
     "canonical": "logo2.png (AI-generated, 1536×1024) — reference image chosen over all rebuilds",
     "asset_pack": "nattos-logo-final/ — 13 files (original, banner 1920×720, transparent, icons 512-32, favicons)",
     "committed": "5970e31",
-    "rebuild_attempts": "V1 SVG (IoU 0.235), V2 SVG (IoU 0.222), V3 PIL (IoU 0.187) — all FAIL. Anh chose reference."
+    "rebuild_attempts": "V1 SVG (IoU 0.235), V2 SVG (IoU 0.222), V3 PIL (IoU 0.187) — all fail. Anh chose reference."
   }
 }

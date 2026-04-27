@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope sovereign-edge-pack end-to-end gateway physical-intake ket-sira scr access-bundle audit",
+"@runtime_scope excluded",
+"Sovereign Edge Pack là gói triển khai đầy đủ cho doanh nghiệp dạng khối.",
+"client_nodes: 50-70",
+"customer_server: 1",
+"operator_workstation: 1",
+"Ket_Sira: 1",
+"physical_intake_432hz",
+"SCR-1",
+"SCR-2",
+"SCR-3",
+"Access_Bundle",
+"SiraSign",
+".anc_identity",
+".sira_resolver",
+"red_zone_policy",
+"privacy_mask",
+"audit_full",
+"thời_hạn_đảm_bảo_rủi_ro: 3_năm",
+"Nồi_Thường_Dữ_Liệu",
+"gói_full_option: 6000000_usd",
+"không_làm_lõi",
+"optional_bridge",
+"Gate_7: Sovereign_Edge_Pack_end_to_end",
+"Không chạm nattos.sh.",
+"Gate 7 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc",
+"sản phẩm bảo hiểm"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("sovereign edge pack end to end validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sovereign edge pack end to end validation: pass");
+console.log("file=" + file);

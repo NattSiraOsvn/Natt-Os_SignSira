@@ -1,0 +1,32 @@
+# render navigation/layout surface evidence — 20260425
+
+status: navigation-layout-surface-validated
+created_at: 2026-04-25T09:45:52.504839+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- src/cells/render-stack-cell/domain/navigation.engine.ts
+- src/cells/render-stack-cell/domain/layout.engine.ts
+- docs/render/pilot/render_language_pilot_navigation.html
+- docs/render/pilot/render_language_pilot_layout.html
+
+---
+
+## 2. scope
+
+navigation engine và layout engine đã có validator riêng.
+
+validator kiểm semantic clause mềm: không bắt buộc literal state nếu engine dùng render, screen, nav, surface hoặc tên trạng thái.
+
+navigation pilot và layout pilot đã có surface html riêng.
+
+đây vẫn là pilot/dev surface.
+
+chưa wire mạch heyna.
+
+chưa wire siraSign frame validation.
+
+chưa claim production renderer.

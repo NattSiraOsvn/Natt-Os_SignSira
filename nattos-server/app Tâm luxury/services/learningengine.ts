@@ -52,7 +52,7 @@ export class LearningEngine {
     `;
 
     const prompt = `
-      Bạn là THIÊN - Tổng tham mưu trưởng AI. 
+      Bạn là thiên - Tổng tham mưu trưởng AI. 
       NHIỆM VỤ: Phân tích cấu trúc dữ liệu, xác định loại tài liệu và trích xuất dữ liệu sản xuất (nếu có) để TỰ ĐỘNG HÓA QUY TRÌNH.
 
       ${rbacInstruction}

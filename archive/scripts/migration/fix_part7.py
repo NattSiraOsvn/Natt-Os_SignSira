@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NATT-OS — Fix Part 7 (12 errors — truly final)"""
+"""natt-os — Fix Part 7 (12 errors — truly final)"""
 import os, re
 
 ROOT = os.getcwd()
@@ -9,13 +9,13 @@ def save(p, c):
     with open(os.path.join(ROOT, p), 'w', encoding='utf-8') as f: f.write(c)
 def patch(path, old, new, req=True):
     if not os.path.exists(os.path.join(ROOT, path)):
-        print(f"⚠️  MISSING: {path}"); return
+        print(f"⚠️  missing: {path}"); return
     c = read(path)
     if old in c: save(path, c.replace(old, new, 1)); print(f"✅ {path}")
     elif req: print(f"⚠️  not found: {path}")
 
 print("=" * 50)
-print("NATT-OS Fix Part 7 — 12 final errors")
+print("natt-os Fix Part 7 — 12 final errors")
 print("=" * 50)
 
 # ── 1. SalaryRule duplicate type/name/amount ──────────

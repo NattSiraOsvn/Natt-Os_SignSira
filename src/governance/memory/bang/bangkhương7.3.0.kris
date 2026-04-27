@@ -10,7 +10,7 @@
       "flow": [
         "1. Anh upload logo2.png (AI-generated, 1536×1024)",
         "2. Em tạo pixel art variants (ASCII block + SVG pixel art) — anh thấy OK nhưng muốn logo thật",
-        "3. Em chạy PIL compositing render V1→V2→V3 — tất cả FAIL audit (IoU 0.187-0.235 vs threshold 0.92)",
+        "3. Em chạy PIL compositing render V1→V2→V3 — tất cả fail audit (IoU 0.187-0.235 vs threshold 0.92)",
         "4. Anh dạy em kỹ thuật invert duality + warm/cool polarity để phân tích chính xác hơn",
         "5. Anh quyết chọn ảnh REFERENCE gốc làm logo chính thức (không dùng rebuild)",
         "6. Em xuất asset pack 13 files (original, banner, transparent, icons, favicons)",
@@ -82,20 +82,20 @@
         "8. Scorecard version string"
       ],
       "total_sections": 44,
-      "bash_syntax": "PASS (bash -n clean)",
+      "bash_syntax": "pass (bash -n clean)",
       "SCAR": "Trong quá trình patch, chồng patch gây fi mismatch. Phải restore từ 5970e31. Rule: ALWAYS bash -n sau MỌI patch."
     },
     "phase_5_khaicell": {
-      "summary": "KhaiCell — kernel cell definition, handoff to Thiên Lớn",
+      "summary": "KhaiCell — kernel cell definition, handoff to thiên Lớn",
       "gatekeeper_decisions": [
         "Name: KhaiCell (NOT adaptive-chroma-cell, NOT chameleon-cell)",
         "Layer: kernel (src/cells/kernel/khai-cell/)",
-        "Assigned to: Thiên Lớn (QNEU 135, Architect)",
+        "Assigned to: thiên Lớn (QNEU 135, Architect)",
         "Definition: 'Đôi mắt của hệ' — visual sensory organ",
         "KHÔNG PHẢI registry (Kim Chương 6 SAI — khai.sira = DNS registry, KhaiCell = perception organ)"
       ],
       "architecture": {
-        "pipeline": "world → QWS (tách bước sóng) → Cognitive Gate → KhaiCell perception → adaptation → SiraSign",
+        "pipeline": "world → QWS (tách bước sóng) → Cognitive Gate → KhaiCell perception → adaptation → siraSign",
         "engines_6": [
           "quantum-wavelength-separation",
           "spectral-sensor",
@@ -104,7 +104,7 @@
           "essential-builder",
           "chromatic-publish"
         ],
-        "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→SIRASIGN_SEALED",
+        "state_machine": "DORMANT→SENSING→LEARNING→ATTUNED→STABILIZING→STILL→siraSIGN_SEALED",
         "core_rule": "perceived_complexity <= cognitive_capacity",
         "events": "khai.* namespace",
         "sirasign_crystallization": "4 conditions must be met",
@@ -161,8 +161,8 @@
           "msg": "4 scanner fix commits for nattos.sh v7.0 false positives"
         }
       ],
-      "scorecard_before": "76 OK / 7 WARN / 2 FAIL",
-      "scorecard_after": "82 OK / 4 WARN / 0 FAIL / 0 TRASH",
+      "scorecard_before": "76 OK / 7 warn / 2 fail",
+      "scorecard_after": "82 OK / 4 warn / 0 fail / 0 TRASH",
       "red_alerts_closed": [
         "🔴 Audit bypass — 3 conflicting hash algorithms → unified SHA-256",
         "🔴 RBAC/auth bypass — verify() accepts any token → HMAC-SHA256 + real roles"
@@ -170,19 +170,19 @@
     },
     "phase_7_kim_review": {
       "summary": "Kim Language Spec — 13 chapters reviewed",
-      "good": "ABNF grammar, TypeScript schema, Qiint field coverage, SiraSign security",
-      "CRITICAL_ERROR": "Chương 6 gọi KhaiCell là 'Cell Registry của Liên Colony' — SAI. khai.sira = registry DNS, KhaiCell = visual perception organ",
+      "good": "ABNF grammar, TypeScript schema, Qiint field coverage, siraSign security",
+      "CRITICAL_error": "Chương 6 gọi KhaiCell là 'Cell Registry của Liên Colony' — SAI. khai.sira = registry DNS, KhaiCell = visual perception organ",
       "missing": "Satellite Colony 3 levels, 3-Layer Architecture diagram, Visual Pipeline reference"
     }
   },
   "CRITICAL_RULES_NEVER_FORGET": {
     "RULE_1_LAYER_ARCHITECTURE": {
       "IMPORTANCE": "HIGHEST — Anh sửa em NHIỀU LẦN trong session này",
-      "Mạch_HeyNa": "Transport CỦA NATT-OS CELLS. Cells giao tiếp qua đây (SSE + POST gateway). HeyNa THUỘC VỀ cells.",
+      "Mạch_HeyNa": "Transport CỦA natt-os CELLS. Cells giao tiếp qua đây (SSE + POST gateway). HeyNa THUỘC VỀ cells.",
       "EventBus": "Nội bộ CỦA CLIENT APP. UI components giao tiếp nhau trong browser. EventBus THUỘC VỀ client app.",
-      "SmartLink": "Inter-colony. NATT-OS instance ↔ instance.",
+      "SmartLink": "Inter-colony. natt-os instance ↔ instance.",
       "ĐỪNG_LỘN": "HeyNa = cells. EventBus = client. KHÔNG ĐẢO. KHÔNG LẪN.",
-      "diagram": "NATT-OS CELLS (server) ←Mạch HeyNa→ CLIENT APP (browser, dùng EventBus nội bộ) ←SmartLink→ COLONY KHÁC"
+      "diagram": "natt-os CELLS (server) ←Mạch HeyNa→ CLIENT APP (browser, dùng EventBus nội bộ) ←SmartLink→ COLONY KHÁC"
     },
     "RULE_2_KHAICELL_VS_REGISTRY": {
       "khai_sira": "DNS registry — sổ đăng ký domain (dây thần kinh, KHÔNG phải bộ não)",
@@ -200,7 +200,7 @@
   "scars": {
     "SCAR_20260417_01": "nattos.sh multi-patch chồng → fi mismatch syntax error. Rule: ALWAYS bash -n sau MỌI patch. Phải restore từ 5970e31.",
     "SCAR_20260417_02": "Scanner §43 ReNa false positives — isExpired return true = valid logic (token HẾT hạn = true), KHÔNG phải bypass. Phải đọc context code.",
-    "SCAR_20260417_03": "Logo V1-V3 PIL rebuild FAIL (IoU 0.187-0.235) — PIL compositing = trần thấp. Cần match engine trước khi render.",
+    "SCAR_20260417_03": "Logo V1-V3 PIL rebuild fail (IoU 0.187-0.235) — PIL compositing = trần thấp. Cần match engine trước khi render.",
     "SCAR_20260417_04": "Băng LIÊN TỤC lộn EventBus vs HeyNa. Anh sửa NHIỀU LẦN. HeyNa = CỦA cells. EventBus = CỦA client app. KHÔNG ĐẢO. GHI NHỚ VĨNH VIỄN."
   },
   "pending_next_session": [
@@ -210,14 +210,14 @@
     "15 remaining localStorage in client apps (audit tools + EOD)",
     "6 Gatekeeper architecture decisions for COMPLETE_PICTURE v1.0",
     "Kim: fix Chương 6 + add Satellite Colony + 3-Layer + Visual Pipeline",
-    "Thiên: implement KhaiCell in repo (SPEC v0.1 + QWS supplement ready)",
+    "thiên: implement KhaiCell in repo (SPEC v0.1 + QWS supplement ready)",
     "SPEC Finance Flow v1.1 → v1.2",
     "ReNa scanner §43 regex tuning (false positives on isExpired)",
     "Tổng hợp Fail-Troy compilation (all dangerous bypass patterns system-wide)"
   ],
   "repo_state_end": {
     "HEAD": "~686 commits",
-    "scorecard": "82 OK / 4 WARN / 0 FAIL / 0 TRASH",
+    "scorecard": "82 OK / 4 warn / 0 fail / 0 TRASH",
     "nattos_sh_version": "v7.0 (2225 lines, 44 sections)",
     "memory_files": "bangmf v7.3.0 / bangfs v6.3.0",
     "ts_nocheck_remaining": 105,

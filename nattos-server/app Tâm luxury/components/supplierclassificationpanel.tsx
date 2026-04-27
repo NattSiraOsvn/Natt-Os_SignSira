@@ -199,10 +199,10 @@ export const SupplierClassificationPanel: React.FC = () => {
             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-indigo-500/5 border-indigo-500/20">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
-                  <h4 className="text-sm font-black text-indigo-400 uppercase tracking-widest">Tham mưu Thiên</h4>
+                  <h4 className="text-sm font-black text-indigo-400 uppercase tracking-widest">Tham mưu thiên</h4>
                </div>
                <p className="text-[11px] text-gray-400 italic leading-relaxed font-light">
-                  "Thưa Anh Natt, dữ liệu bóc tách cho thấy các nhà cung cấp nhóm **KIM CƯƠNG** đang có xu hướng thắt chặt hạn mức nợ. Thiên đề xuất Anh chuyển dịch 15% ngân sách sang các Node tại Hong Kong để tối ưu thanh khoản."
+                  "Thưa Anh Natt, dữ liệu bóc tách cho thấy các nhà cung cấp nhóm **KIM CƯƠNG** đang có xu hướng thắt chặt hạn mức nợ. thiên đề xuất Anh chuyển dịch 15% ngân sách sang các Node tại Hong Kong để tối ưu thanh khoản."
                </p>
             </div>
          </div>

@@ -1,6 +1,6 @@
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishProductionSignal } from '../../ports/production-smartlink.port';
+import { publishProductionSignal } from '../../ports/production-SmartLink.port';
 // ProductionSmartLinkPort wired — signal available for cross-cell communication
 // ── FILE 3 ──────────────────────────────────────────────────
 // weight-guard.engine.ts

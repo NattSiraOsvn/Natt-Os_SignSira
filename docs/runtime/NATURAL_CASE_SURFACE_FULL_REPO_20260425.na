@@ -1,0 +1,313 @@
+# Natural case surface full repo — 20260425
+
+status: pass
+created_at: 2026-04-24T18:47:50.188684+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Patched files
+
+- nattos.sira
+- .gitignore
+- nattos-rename-execute.py
+- nattos.sh
+- tools/validate_sira_namespace.sira
+- tools/validate_browser_transport_boundary.sira
+- tools/natt_audit_live_server.py
+- tools/validate_thienbang_extension.sira
+- tools/validate_sira_ts_translation_adapter.sira
+- tools/validate_runtime_gate.sira
+- tools/validate_sira_browser_adapter.sira
+- scripts/audit-spec-governance.py
+- scripts/validate-spec-compliance.py
+- scripts/sweep-spec-md-to-na.sh
+- scripts/validate-capability-invariant.py
+- scripts/nattos-sh-section45.sh
+- scripts/bang-scan-heyna-wiring.sh
+- scripts/bang-scope-completion-scanner.sh
+- scripts/validate-state-labels.py
+- scripts/validate-moments-schema.sh
+- scripts/validate-khaicell-bypass.py
+- scripts/scan_wave2_repo_state.py
+- scripts/validate-extension-precedence.py
+- scripts/validate-khai-3tests.py
+- src/types.ts
+- src/thienbang.si
+- src/types/fiscal_contracts.ts
+- src/components/DevPortal.tsx
+- src/components/ApiPortal.tsx
+- src/governance/uei-compliance-check.ts
+- src/governance/qneu.test.ts
+- src/governance/memory/Can/cankhương5.0.kris
+- src/governance/memory/Thienlon/thienmf_c5.md
+- src/governance/memory/Thienlon/thienkhương4.0.kris
+- src/governance/memory/Thienlon/bảng_tổng_hợp_chỉ_dạo_kim_bang_thien_lớn_pre_wave_3.md
+- src/governance/memory/Thienlon/thienmf.json
+- src/governance/memory/phieu/phieukhương2.0.kris
+- src/governance/memory/boiboi/boikhương4.0.kris
+- src/governance/memory/sessions/session_handoff_20260417.json
+- src/governance/memory/sessions/SESSION_2026-04-07_FULL_SUMMARY.kris
+- src/governance/memory/sessions/bangmf-session-20260407.kris
+- src/governance/memory/sessions/session-2026-04-08-bang.md
+- src/governance/memory/sessions/SESSION_20260413_FULL_SUMMARY.kris
+- src/governance/memory/sessions/SESSION_20260415-16_FULL.kris
+- src/governance/memory/thiennho/thiennhokhương4.0.kris
+- src/governance/memory/bang/bangkhương6.9.0.kris
+- src/governance/memory/bang/bangthịnh6.0.2.phieu
+- src/governance/memory/bang/bangkhươngv7.6.8.na
+- src/governance/memory/bang/bangkhương6.7.0.kris
+- src/governance/memory/bang/bang_memory_delta_20260424_evening.na
+- src/governance/memory/bang/bangthịnh6.1.0.phieu
+- src/governance/memory/bang/bangkhương6.9.0.full.kris
+- src/governance/memory/bang/bang_pending_20260420_CLOSE.phieu
+- src/governance/memory/bang/bang_handoff_20260424_late.kris
+- src/governance/memory/bang/bangkhươngv7.6.7.na
+- src/governance/memory/bang/session_handoff_20260417.kris
+- src/governance/memory/bang/bang_memory_delta_20260424_wave2_close.na
+- src/governance/memory/bang/bang_handoff_seal_20260424_morning.na
+- src/governance/memory/bang/bang_memory_delta_20260423-24.na
+- src/governance/memory/bang/bangthịnh5.4.phieu
+- src/governance/memory/bang/bang_memory_delta_20260427.na
+- src/governance/memory/bang/bangkhương7.3.0.kris
+- src/governance/memory/bang/bangkhương6.3.0.kris
+- src/governance/memory/bang/bangthịnh6.3.0.phieu
+- src/governance/memory/bang/bangthịnh5.6.phieu
+- src/governance/memory/bang/bang_pending_20260424_late.phieu
+- src/governance/memory/bang/bang_handoff_20260419.kris
+- src/governance/memory/bang/bang_pending_20260427.phieu
+- src/governance/memory/bang/bangthịnh5.5.update2.phieu
+- src/governance/memory/bang/bang_handoff_20260426.na
+- src/governance/memory/bang/bangkhươngv7.6.6.na
+- src/governance/memory/bang/bangkhương7.1.0.kris
+- src/governance/memory/bang/bangkhươngv7.4.0.na
+- src/governance/memory/bang/bangkhương6.8.0.kris
+- src/governance/memory/bang/bangthịnhv6.6.1.phieu
+- src/governance/memory/bang/bang_handoff_20260423-24.na
+- src/governance/memory/bang/bangkhương6.4.0.kris
+- src/governance/memory/bang/bang_memory_delta_20260424_late.na
+- src/governance/memory/bang/bang_handoff_20260425.na
+- src/governance/memory/bang/bangthịnhv6.6.3.phieu
+- src/governance/memory/bang/bangkhươngv7.6.5.na
+- src/governance/memory/bang/bangkhương0.kris
+- src/governance/memory/bang/bangkhươngv7.6.4.na
+- src/governance/memory/bang/bangthịnh5.5.update.phieu
+- src/governance/memory/bang/sim_v2_thienbang.py
+- src/governance/memory/bang/bang_handoff_20260424_evening.na
+- src/governance/memory/bang/bangthịnhv6.6.2.phieu
+- src/governance/memory/bang/bangthinhv6.5.0.phieu
+- src/governance/memory/bang/NaU_audit.html
+- src/governance/memory/bang/bangkhương7.0.0.kris
+- src/governance/memory/bang/bangthinhv6.4.0.phieu
+- src/governance/memory/Kris/kriskhương4.0.kris
+- src/governance/memory/Kris/krisself1.0.0.kris
+- src/governance/memory/kim/kimkhương9.8.2.kris
+- src/governance/memory/kim/kimkhương9.8.2a.kris
+- src/governance/memory/kim/kfm.json
+- src/governance/memory/kim/kimkhương9.3.7.kris
+- src/governance/memory/kim/kimkhương9.2.0.kris
+- src/governance/memory/kim/KIM HUONG DAN BOIBOI.sh
+- src/governance/memory/kim/28:1:26/kimopenmind.json
+- src/governance/memory/bang/_deprecated/2026-04-20_pre_wave3_dry_audit_SUPERSEDED_RULE.py
+- src/governance/memory/bang/_bang_inbox_20260420/heyna-gateway-verify.draft.ts
+- src/governance/memory/bang/_bang_inbox_20260420/heyna-envelope-v2.types.ts
+- src/governance/memory/bang/session-20260420-final/bridge_v2/BRIDGE_V2_REPORT.md
+- src/governance/memory/bang/session-20260420-final/bridge_v2/test_bridge_v2.py
+- src/governance/memory/bang/session-20260420-final/bridge_v2/SPEC_BRIDGE_V2.md
+- src/governance/memory/bang/session-20260420-final/bridge_v2/bridge_v2.py
+- src/governance/memory/bang/session-20260420-final/cleanup/09-thienlon-audit-feedback.md
+- src/governance/memory/bang/session-20260420-final/cleanup/05-phase2-scanner-patch.md
+- src/__tests__/integration/emergent-behavior.proof.ts
+- src/components/gatekeeper/production-gate.tsx
+- src/core/ingestion/document-parser.engine.ts
+- src/core/staging/event-staging.engine.ts
+- src/cells/kernel/neural-main-cell/trace.memory.ts
+- src/cells/kernel/neural-main-cell/index.ts
+- src/cells/kernel/quantum-defense-cell/interface/QuantumDefenseCell.ts
+- src/cells/kernel/quantum-defense-cell/ports/quantum-defense-cell.contract.ts
+- src/cells/kernel/quantum-defense-cell/domain/engines/rehabilitation.engine.ts
+- src/cells/kernel/monitor-cell/domain/engines/recovery.engine.ts
+- src/cells/infrastructure/sync-cell/ports/sync-cell-SmartLink.port.sira
+- src/cells/infrastructure/sync-cell/domain/engines/sync-retry.engine.ts
+- src/cells/infrastructure/sync-cell/domain/entities/SyncJob.ts
+- src/cells/infrastructure/SmartLink-cell/ports/SmartLink-cell-SmartLink.port.sira
+- src/cells/business/analytics-cell/saga-health-projection.ts
+- src/cells/business/period-close-cell/index.ts
+- src/cells/business/tax-cell/domain/tax.trace.logger.ts
+- src/cells/business/tax-cell/domain/tax.boundary.policy.na
+- src/cells/business/showroom-cell/ports/showroom-SmartLink.port.ts
+- src/cells/business/dust-recovery-cell/domain/dust-recovery.boundary.policy.na
+- src/cells/business/finance-cell/audit/audit-logger.ts
+- src/cells/business/finance-cell/ports/finance-SmartLink.port.ts
+- src/cells/business/finance-cell/handlers/payment-failed-handler.ts
+- src/cells/business/finance-cell/domain/engines/einvoice.engine.ts
+- src/cells/business/order-cell/domain/order.trace.logger.ts
+- src/cells/business/order-cell/domain/order.boundary.policy.na
+- src/cells/business/finishing-cell/domain/finishing.boundary.policy.na
+- src/cells/business/finishing-cell/domain/finishing.trace.logger.ts
+- src/cells/business/finishing-cell/domain/engines/finishing.engine.ts
+- src/cells/business/logistics-cell/domain/entities/shipment.entity.ts
+- src/cells/business/warranty-cell/ports/warranty-SmartLink.port.ts
+- src/cells/business/compliance-cell/domain/compliance.boundary.policy.na
+- src/cells/business/inventory-cell/domain/inventory.boundary.policy.na
+- src/cells/business/customer-cell/ports/customer-SmartLink.port.ts
+- src/cells/business/customer-cell/domain/customer.boundary.policy.na
+- src/cells/business/payment-cell/ports/payment-SmartLink.port.ts
+- src/cells/business/payment-cell/domain/engines/payment-deposit.engine.ts
+- src/cells/business/payment-cell/domain/services/payment.engine.ts
+- src/cells/business/payment-cell/domain/entities/payment.entity.ts
+- src/cells/business/pricing-cell/ports/pricing-SmartLink.port.ts
+- src/cells/business/pricing-cell/domain/pricing.boundary.policy.na
+- src/cells/business/sales-cell/ports/sales-SmartLink.port.ts
+- src/cells/business/sales-cell/domain/engines/luxury-mapping.engine.ts
+- src/cells/business/prdwarranty-cell/domain/prdwarranty.trace.logger.ts
+- src/cells/business/prdwarranty-cell/domain/prdwarranty.boundary.policy.na
+- src/cells/business/design-3d-cell/domain/design-3d.boundary.policy.na
+- src/cells/business/buyback-cell/ports/buyback-SmartLink.port.ts
+- src/cells/business/hr-cell/ports/hr-SmartLink.port.ts
+- src/cells/business/hr-cell/domain/hr.boundary.policy.na
+- src/cells/business/customs-cell/ports/customs-SmartLink.port.ts
+- src/cells/business/stone-cell/domain/stone.boundary.policy.na
+- src/cells/business/stone-cell/domain/stone.trace.logger.ts
+- src/cells/business/polishing-cell/domain/polishing.boundary.policy.na
+- src/cells/business/polishing-cell/domain/polishing.entity.ts
+- src/cells/business/polishing-cell/domain/polishing.trace.logger.ts
+- src/cells/business/production-cell/domain/engines/production-loss.engine.ts
+- src/cells/business/production-cell/domain/services/production.engine.ts
+- src/cells/business/production-cell/domain/entities/production-order.entity.ts
+- src/cells/business/prdmaterials-cell/domain/prdmaterials.boundary.policy.na
+- src/cells/business/analytics-cell/ports/analytics-SmartLink.port.ts
+- src/cells/business/bom3dprd-cell/domain/bom3dprd.trace.logger.ts
+- src/cells/business/bom3dprd-cell/domain/bom3dprd.boundary.policy.na
+- src/cells/business/bom3dprd-cell/domain/engines/bom3dprd.engine.ts
+- src/cells/business/constants-cell/domain/constants.boundary.policy.na
+- src/cells/business/constants-cell/domain/constants.trace.logger.ts
+- src/cells/business/shared-contracts-cell/domain/shared-contracts.trace.logger.ts
+- src/cells/business/shared-contracts-cell/domain/shared-contracts.boundary.policy.na
+- src/cells/business/warehouse-cell/domain/warehouse.boundary.policy.na
+- src/cells/business/warehouse-cell/domain/types/warehouse.types.ts
+- src/cells/business/warehouse-cell/domain/services/warehouse-gate.engine.ts
+- src/cells/business/casting-cell/domain/casting.trace.logger.ts
+- src/cells/business/casting-cell/domain/casting.boundary.policy.na
+- NaUion-Server/nauion/nauion-deploy.sh
+- NaUion-Server/khai-cell-spec/visual_rebuild_pipeline.py
+- NaUion-Server/khai-cell-spec/front-audit/AUDIT-REPORT.md
+- NaUion-Server/khai-cell-spec/front-audit/audit-report.kris
+- NaUion-Server/vision/assets/index-DQO7vMIv.js
+- NaUion-Server/vision/vision-engine/security/sirasign-engine.ts
+- NaUion-Server/nauion/nauion-library/natt-v1.sh
+- nattos-server/app Tâm luxury/types.ts
+- nattos-server/apps/tam-luxury/nattos-audit.html
+- nattos-server/apps/tam-luxury/heyna-client.js
+- nattos-server/app Tâm luxury/components/devportal.tsx
+- nattos-server/app Tâm luxury/components/apiportal.tsx
+- nattos-server/app Tâm luxury/services/productionengine.ts
+- nattos-server/app Tâm luxury/services/einvoiceengine.ts
+- nattos-server/app Tâm luxury/services/recoveryengine.ts
+- nattos-server/app Tâm luxury/services/staging/eventstaginglayer.ts
+- nattos-server/app Tâm luxury/services/parser/documentparserlayer.ts
+- nattos-server/app Tâm luxury/finance-service/infrastructure/messaging/retry.policy.na
+- nattos-server/app Tâm luxury/core/processing/ai/aicoreprocessor.ts
+- audit/bootstrap/omega-bootstrap.ts
+- audit/summary/rena-alerts.json
+- audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.na
+- audit/reports/event_graph_truth.json
+- audit/reports/K3-fail-TROY-AUDIT-COMPILE-v1.1.na
+- docs/specs/NATT-OS_SATELLITE_COLONY_SPEC.na
+- docs/specs/README_BANG_SCANNERS_W1.md
+- docs/specs/SPEC_NGON_NGU_v1.2.kris
+- docs/specs/SPEC_Nauion_Render_Stack_v0.1.na
+- docs/specs/spec-ngon-ngu-natt-os-v1.2-na.na
+- docs/specs/SIRA_NAMESPACE_INVENTORY_20260424.na
+- docs/specs/COLOR_SIRASIGN.na
+- docs/specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na
+- docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na
+- docs/specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na
+- docs/specs/SPEC_NATT_FORMAT_v0.3_FINAL.na
+- docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md
+- docs/specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md
+- docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md
+- docs/specs/a2-persister-pseudo-flow-v1.0.na
+- docs/specs/session_handoff_20260417_FIXED.json
+- docs/specs/SPEC_ONG_MAU_v0.1.na
+- docs/runtime/SIRA_TS_TRANSLATION_ROADMAP_20260424.na
+- docs/runtime/THIENBANG_EXTENSION_EVIDENCE_20260425.na
+- docs/runtime/TS_CLEANUP_BATCH1_MIGRATE_TO_NA_20260424.na
+- docs/runtime/SIRA_BROWSER_ADAPTER_20260424.si
+- docs/runtime/bang_handoff_20260424_late.kris
+- docs/runtime/SIRA_NAMESPACE_VALIDATION_EVIDENCE_20260424.si
+- docs/runtime/TS_CLEANUP_BATCH2B_PROMOTE_TO_SIRA_20260424.na
+- docs/runtime/bang_pending_20260424_late.phieu
+- docs/runtime/THIEN_OPERATOR_IDENTITY_20260425.si
+- docs/runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na
+- docs/runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na
+- docs/runtime/THIEN_OPERATOR_LAUNCHER_20260425.na
+- docs/runtime/SIRA_RUNTIME_GATE_EVIDENCE_20260425.na
+- docs/runtime/bang_memory_delta_20260424_late.na
+- docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_20260424.na
+- docs/runtime/TS_CLEANUP_BATCH2G_PORT_CONTRACT_TO_SIRA_20260424.na
+- docs/runtime/THIEN_OPERATOR_IDENTITY_EVIDENCE_20260425.na
+- docs/runtime/TS_CLEANUP_BATCH2E_MEDIUM_TO_SIRA_20260424.na
+- docs/runtime/SIRA_RUNTIME_GATE_20260425.na
+- docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na
+- docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na
+- docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na
+- docs/runtime/SIRA_BROWSER_ADAPTER_VALIDATION_EVIDENCE_20260424.si
+- docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+- docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+- docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_EVIDENCE_20260424.na
+- docs/runtime/TS_CLEANUP_BATCH2L_DEEP_LIGHT_TO_SIRA_20260424.na
+- docs/runtime/THIEN_OPERATOR_CONSOLE_20260425.na
+- docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_20260425.na
+- docs/runtime/THIEN_OPERATOR_ALIAS_20260425.na
+- docs/architecture/SPEC-Finance-Flow_v1.0.md
+- docs/architecture/CELL_MANIFEST_SCHEMA.json
+- docs/runtime/nauion-host/src/phase4.rs
+- docs/runtime/nauion-host/src/banner.rs
+- docs/runtime/nauion-host/src/phase3.rs
+- docs/runtime/nauion-host/src/main.rs
+- docs/patent-evidence/claim-06-quantum-defense/test_entropy_detection.js
+- docs/patent-evidence/claim-06-quantum-defense/README.md
+- docs/specs/nauion/SPEC-Nauion_main_v2.2.md
+- docs/specs/nauion/SPEC-Nauion_main_v2.3.md
+- docs/specs/nauion/SPEC-Nauion_main_v2.4.md
+- docs/specs/nauion/SPEC-Nauion_main_v2.1.md
+- docs/specs/nauion/SPEC-Nauion_main_v2.5.md
+- docs/specs/roadloading/ROADLOAD_SHOW_SELF_v2_20260424.na
+- docs/specs/Vision/VISION_ENGINE_SPEC_FINAL.na
+- docs/specs/finance/SPEC-Finance-Flow_v1.1.md
+- docs/specs/finance/SPECFlowNattOs.md
+- docs/specs/fixtures/moments/fixture-MOTION_TICH_CUC.na
+- docs/specs/fixtures/moments/fixture-GIAC_NGO.na
+- docs/specs/fixtures/moments/fixture-KHAI_SANG.na
+- docs/specs/fixtures/moments/fixture-SCAR.na
+- docs/specs/fixtures/capabilities/worked-example-hibernate.na
+- docs/specs/fixtures/capabilities/worked-example-migrate.na
+- docs/specs/fixtures/capabilities/worked-example-resurrect.na
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (6).md
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (7).md
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (3).md
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (2).md
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (1).md
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/nattos-sh-section45.sh
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/spec-ngon-ngu-natt-os-v1.1-full.kris
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+- docs/specs/roadloading/đổi sang ngôn ngữ nauion/SESSION_20260419_FULL.na
+- archive/apps/tam-luxury/assets/index-DXymm8SL.js
+- archive/apps/tam-luxury/assets/index-CYkn00u4.js
+- archive/scripts/one-shot/supreme-purge-v8.1.sh
+- archive/scripts/one-shot/ironclad-casing-v7.1.sh
+- archive/scripts/deploy/validate-deployment.sh
+- archive/scripts/audit-lineage/nattos.v4.sh
+- archive/scripts/audit-lineage/nattos.v3.sh
+- archive/scripts/migration/fix_all_errors.py
+- archive/scripts/migration/fix_part3.py
+- archive/scripts/migration/fix_part4.py
+- archive/natt-os_ver2goldmaster/security/ai-kill-switch.ts
+- archive/natt-os_ver2goldmaster/validation/policy-hash-validator.ts
+
+## 2. Constitution
+
+- docs/runtime/NATURAL_CASE_CONSTITUTION_20260425.si
+- tools/validate_natural_case_surface.sira

@@ -1,5 +1,5 @@
 /**
- * NATT-OS RBAC Config v1.0
+ * natt-os RBAC Config v1.0
  * Phân quyền theo roles thực tế từ employees_raw.json (122 NV, 33 roles)
  * Target: src/cells/business/hr-cell/domain/services/rbac.config.ts
  */

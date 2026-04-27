@@ -9,7 +9,7 @@ import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockc
 /**
  * ☠️ DEAD LETTER HANDLER
  * Nơi chứa các Event "chết" không thể xử lý tự động. 
- * Chỉ có Thiên Lớn (Gatekeeper) mới có quyền quyết định Replay hoặc Purge.
+ * Chỉ có thiên Lớn (Gatekeeper) mới có quyền quyết định Replay hoặc Purge.
  */
 export class DeadLetterHandler {
   

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Pricing Cell — Product Categories
+ * natt-os Pricing Cell — Product Categories
  * Source: Bảng Giá 2025 — 10 hạng mục sản phẩm Tâm Luxury
  *
  * Mỗi hạng mục có công thức tính công thợ riêng.

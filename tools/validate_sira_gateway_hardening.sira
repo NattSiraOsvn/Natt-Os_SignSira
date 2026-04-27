@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(gateway)) {
+  errors.push("missing gateway");
+} else {
+  const c = fs.readFileSync(gateway, "utf8");
+  const requiredClauses = [
+  "function siraStrictHostVerdict",
+  "host_requires_normalization",
+  "invalid_host_chars",
+  "invalid_host_sequence",
+  "direct_localhost_bypass",
+  "non_sira_host",
+  "function siraNormalizeRoutePath",
+  "siraNormalizeRoutePath(req.path || req.url ||",
+  "const hostVerdict = siraStrictHostVerdict",
+  "siraWriteJson(res, 403",
+  "sira.route_gate"
+];
+  const forbiddenMarks = [
+  "resolve được → allow",
+  "host header khớp → allow",
+  "localhost gọi được → allow",
+  "dns là authority",
+  "http là identity",
+  "DNS XONG"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing hardening clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden hardening wording: " + mark);
+  }
+}
+
+if (errors.length) {
+  console.error("sira gateway hardening validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira gateway hardening validation: pass");
+console.log("file=tools/natt_domain_gateway.sira");

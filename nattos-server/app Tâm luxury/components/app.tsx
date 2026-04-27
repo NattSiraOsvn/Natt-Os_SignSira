@@ -69,7 +69,7 @@ const QuantumAppWrapper: React.FC = () => {
        NotifyBus.push({
           type: 'NEWS',
           title: 'Hệ thống đã Sẵn Sàng',
-          content: 'Chào Anh Natt, Thiên đã đồng bộ hóa 100% các Shard dữ liệu. Hệ thống đang ở trạng thái bảo mật OMEGA.',
+          content: 'Chào Anh Natt, thiên đã đồng bộ hóa 100% các Shard dữ liệu. Hệ thống đang ở trạng thái bảo mật OMEGA.',
           persona: PersonaID.THIEN
        });
     }, 1500);

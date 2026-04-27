@@ -34,8 +34,8 @@ export class QuantumDefenseCell implements IQuantumDefenseCell {
     }
   }
 
-  async gatekeeperOverride(action: "BYPASS" | "FORCE_LOCK"): Promise<void> {
+  async gatekeeperOverride(action: "BYpass" | "FORCE_LOCK"): Promise<void> {
     if (action === "FORCE_LOCK") await this.forceOmegaLock("gatekeeper-override")
-    else console.info("[quantum-defense-cell] BYPASS granted by Gatekeeper")
+    else console.info("[quantum-defense-cell] BYpass granted by Gatekeeper")
   }
 }

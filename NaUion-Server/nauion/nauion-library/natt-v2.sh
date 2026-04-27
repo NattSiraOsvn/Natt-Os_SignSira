@@ -168,7 +168,7 @@ const FULL_REGISTRY = [
   { id: 'c-2', category: 'Constitution', title: 'Gatekeeper', icon: User, color: 'gold', desc: 'Quyền tối thượng - Người giám hộ hệ thống.' },
   { id: 'k-1', category: 'Kernel Cells', title: 'audit-cell', icon: Search, color: 'amber', desc: 'Kiểm toán và truy vết vận hành.' },
   { id: 'k-5', category: 'Kernel Cells', title: 'security-cell', icon: ShieldAlert, color: 'red', desc: 'Bảo mật và phát hiện xâm nhập.' },
-  { id: 'i-1', category: 'Infrastructure', title: 'smartlink-cell', icon: Zap, color: 'blue', desc: 'Hệ thần kinh kết nối liên tế bào.' },
+  { id: 'i-1', category: 'Infrastructure', title: 'SmartLink-cell', icon: Zap, color: 'blue', desc: 'Hệ thần kinh kết nối liên tế bào.' },
   { id: 'b-6', category: 'Business Units', title: 'finance', icon: Landmark, color: 'green', desc: 'Quản trị tài chính lượng tử.' },
   { id: 'e-1', category: 'Executive', title: 'UEI Logic', icon: Cpu, color: 'purple', desc: 'Não bộ điều phối tập trung.' },
   { id: 'ai-3', category: 'AI Entities', title: 'BỐI BỐI', icon: Workflow, color: 'red', desc: 'Constitutional Guardian.' },
@@ -205,7 +205,7 @@ export default function App() {
       <div className="max-w-[1600px] mx-auto px-10 py-24 relative z-10">
         <header className="mb-40 flex flex-col items-center text-center space-y-10">
           <div className="px-8 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-[11px] font-mono tracking-[1em] uppercase animate-pulse">
-            NATT-OS CYBON INTERFACE v6.0
+            natt-os CYBON INTERFACE v6.0
           </div>
           
           <div className="relative">

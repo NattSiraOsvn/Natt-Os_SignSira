@@ -1,0 +1,129 @@
+# nattos platform independence evidence ss20260427
+
+status: observed
+created_at: 2026-04-27 08:04:04
+branch: feat/p1.3-file-extension-validator
+head: 02cf957
+
+---
+
+## 1. anchor
+
+requested by anh natt: evidence that natt os is an independent platform
+through 4 architectural pillars HAL ISA QoS API microservices.
+
+scope filesystem and git tree only. no runtime probe.
+claim level observed only no claim of completeness.
+
+---
+
+## 2. evidence type HAL — hardware abstraction layer
+
+rationale platform independence at hardware tier. natt os abstracts
+host substrate through cell based runtime entry decoupling kernel
+from underlying hardware.
+
+observed
+- nattos.sira kernel entry: 15866 B
+- src/cells/kernel/ files: 315
+- src/core/ files: 68
+- observation-cell references: 56 files
+- audit-cell references: 254 files
+
+interpretation
+- nattos sira is inbound kernel entry listens 127.0.0.1:3002 regardless
+  of host OS verified ss20260418 commit 2c4fa81
+- src cells kernel contains kernel tier abstractions
+- observation cell + audit cell sit at boundary isolating substrate
+  from upper layers
+
+---
+
+## 3. evidence type ISA — instruction set architecture
+
+rationale natt os defines its own instruction set through Nauion
+language. HeyNa primitives nha neo tha bien chot ve and the SUPER
+DICTIONARY constitute a kernel level ISA similar in role to
+WebAssembly Bytecode.
+
+observed
+- SPEC_NGON_NGU files: 2
+- src/thienbang.si SUPER DICTIONARY: 2686 lines
+- Nauion references: 158 files
+- HeyNa references: 193 files
+- Nahere references: 67 files
+- render samples pipeline: 4 files
+
+interpretation
+- src thienbang si is canonical tang A ground truth dictionary
+- SPEC_NGON_NGU files define Nauion as kernel programming language
+  not vocabulary overlay
+- 6 render samples nha neo tha bien chot ve pass via canonical
+  pipeline ss20260425 commit 9a52c0d render layer 15 of 15
+
+---
+
+## 4. evidence type QoS — quality of service
+
+rationale natt os handles signal degradation and capacity through
+its own digital substrate field dynamics not classical bandwidth
+allocation. Capacity decay Reflection R Fresnel Qiint coupling
+are internal QoS primitives.
+
+observed
+- QIINT references: 137 files
+- Qiint references: 45 files
+- Capacity references: 16 files
+- Reflection references: 18 files
+- chromatic references: 97 files
+- threshold references: 208 files
+
+interpretation
+- chromatic 5 layer per SPEC NEN v1.1 governs signal stratification
+- threshold gating KhaiCell RAO mark observation gating controls
+  perception within cognition
+- 3 outcomes per substrate field FALL DISSIPATE OSCILLATE
+
+---
+
+## 5. evidence type API — microservices via cell pattern
+
+rationale cells are autonomous microservices. 3 transport layers
+provide protocol agnostic communication HeyNa cells EventBus
+client app SmartLink inter colony. external boundary Giao The.
+
+observed
+- src/cells/ total files: 1222
+- src/cells/ subdirs depth 2: 64
+- EventBus references: 430 files
+- SmartLink references: 620 files
+- mach/heyna SSE references: 88 files
+- KhaiCell references: 83 files
+
+interpretation
+- cells communicate via mach heyna SSE not direct calls
+- 3 transports do not mix transport layer rule canonical ss20260425
+- Giao The Thien vocab lock ss20260424 replaces API as primary
+  architecture term for cross boundary
+
+---
+
+## 6. open flag
+
+flag thienbang audit validator regex may be too broad
+- inherited from ss20260425 seal
+- not fixed in this evidence file
+- evidence file claims observed only
+
+---
+
+## 7. claim boundary
+
+claim_level: observed
+
+this file records filesystem and git tree state.
+it does not modify source code.
+it does not assert production readiness.
+it does not claim completeness only what is currently observable.
+
+---

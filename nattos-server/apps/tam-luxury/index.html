@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>NATT-OS | Psychology UI (Canonical v2.5) + AI Entity</title>
+    <title>natt-os | Psychology UI (Canonical v2.5) + AI Entity</title>
     
     <!-- Tailwind CDN cho layout nhanh -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -292,7 +292,7 @@
     <div class="film-grain" aria-hidden="true"></div>
 
     <!-- ==========================================================================
-         [SPEC §7.4] SECURITY LAYER (Z:999) - LOGIN & SIRASIGN
+         [SPEC §7.4] SECURITY LAYER (Z:999) - LOGIN & siraSIGN
          ========================================================================== -->
     <div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-[#020208]/40 backdrop-blur-md transition-all duration-700" style="z-index: var(--z-security);">
         <div class="liquid-glass p-8 md:p-12 w-[90%] md:w-[420px] flex flex-col items-center relative rounded-[32px] animate-login-enter shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/20">
@@ -302,7 +302,7 @@
                 <div class="absolute inset-2 border border-dotted border-[#B8E8FF]/40 rounded-full animate-[spin_4s_linear_infinite_reverse]"></div>
                 <div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_15px_#8FFFD4]"></div>
             </div>
-            <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold relative z-10">NATT-OS</h1>
+            <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold relative z-10">natt-os</h1>
             <p class="text-[10px] tracking-widest text-[#B8E8FF] mb-10 opacity-70 text-center font-mono relative z-10">PSYCHOLOGY UI · V2.5 CANONICAL</p>
             <div class="w-full space-y-6 relative z-10">
                 <div>
@@ -310,15 +310,15 @@
                     <input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/60 transition-all font-mono placeholder:text-gray-600">
                 </div>
                 <div>
-                    <label class="text-[10px] tracking-[0.2em] text-[#B8E8FF] ml-1 mb-2 block uppercase font-bold opacity-80">SiraSign Passphrase</label>
+                    <label class="text-[10px] tracking-[0.2em] text-[#B8E8FF] ml-1 mb-2 block uppercase font-bold opacity-80">siraSign Passphrase</label>
                     <input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] focus:bg-black/60 transition-all font-mono placeholder:text-gray-600">
                 </div>
             </div>
             <button onclick="AppController.handleLogin()" class="w-full bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md mt-10 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/20 hover:text-white transition-all duration-300 relative z-10 border border-white/20 hover:border-[#8FFFD4]/60 hover:shadow-[0_0_25px_rgba(143,255,212,0.4)]">
-                XÁC THỰC SIRA
+                XÁC THỰC sira
             </button>
             <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden font-mono bg-red-900/30 px-4 py-3 rounded-lg border border-red-500/30 text-center w-full shadow-[0_0_15px_rgba(239,68,68,0.2)]">
-                [GAY] Tín hiệu từ chối. Vi phạm SiraSign.
+                [GAY] Tín hiệu từ chối. Vi phạm siraSign.
             </p>
         </div>
     </div>
@@ -415,7 +415,7 @@
                         <span>SSE STREAM (AUDIT)</span><span class="text-gray-500 text-[7px]">LIMIT 20</span>
                     </h2>
                     <div id="event-log" class="flex-1 overflow-y-auto font-mono text-[9px] md:text-[10px] space-y-3 custom-scrollbar pr-2" aria-live="polite">
-                        <div class="text-gray-500 italic">Initializing NATT-OS Engine...</div>
+                        <div class="text-gray-500 italic">Initializing natt-os Engine...</div>
                     </div>
                     <button onclick="AppController.openNeuralTerminal()" class="mt-3 w-full py-2 glass-panel rounded text-[9px] tracking-widest text-gray-400 hover:text-white hover:bg-white/10 transition-colors">MỞ NEURAL TERMINAL</button>
                 </div>
@@ -465,7 +465,7 @@
         <!-- FOOTER (Truth Layer) -->
         <footer class="h-8 bg-black/90 border-t border-white/10 flex items-center justify-between px-4 md:px-6 text-[8px] md:text-[9px] font-mono text-gray-500 shrink-0 z-10 backdrop-blur-md">
             <div class="flex items-center gap-2 md:gap-4">
-                <span>NATT-OS KERNEL</span><span class="w-px h-3 bg-white/20"></span>
+                <span>natt-os KERNEL</span><span class="w-px h-3 bg-white/20"></span>
                 <span id="footer-engine-status" class="text-[#8FFFD4]">ENGINES: ONLINE</span>
             </div>
             <div class="flex items-center gap-2 md:gap-4">
@@ -509,7 +509,7 @@
 
     <script>
         // ======================================================================
-        // NATT-OS ENGINE CORE (Vanilla JS) – tuân thủ SPEC v2.5
+        // natt-os ENGINE CORE (Vanilla JS) – tuân thủ SPEC v2.5
         // ======================================================================
         const NattOS = { version: "2.5.0" };
 
@@ -548,7 +548,7 @@
             async handleQuery(envelope) {
                 const { type, content } = envelope.payload;
                 const systemPrompt = type === 'diagnostic' 
-                    ? "Bạn là NATT-OS AI. Chẩn đoán ngắn gọn tối đa 2 câu về các chỉ số: "+JSON.stringify(content)+". Dùng ngôn ngữ sắc bén, gọi người dùng là 'Gatekeeper'."
+                    ? "Bạn là natt-os AI. Chẩn đoán ngắn gọn tối đa 2 câu về các chỉ số: "+JSON.stringify(content)+". Dùng ngôn ngữ sắc bén, gọi người dùng là 'Gatekeeper'."
                     : "Bạn là AI_ENTITY của Tâm Luxury. Trả lời ngắn gọn, uy quyền, xưng 'Ta', gọi user là 'Gatekeeper'.";
                 const userPrompt = type === 'diagnostic' ? "Phân tích sinh thể hiện tại." : content;
                 if (!this.apiKey) {
@@ -571,8 +571,8 @@
             }
         }
 
-        // [SPEC §7.4] SIRASIGN
-        class SiraSignProtocol {
+        // [SPEC §7.4] siraSIGN
+        class siraSignProtocol {
             static generatePayload(actionData) {
                 const fsp = CryptoUtils.mockSHA256("fsp_"+actionData);
                 const ssp = CryptoUtils.mockSHA256("ssp_"+Date.now());
@@ -583,7 +583,7 @@
             static verify(payload) {
                 const checkLsp = CryptoUtils.mockSHA256(payload.fsp_hash+payload.ssp_hash+payload.tsp_hash);
                 const timeDiff = Date.now()-payload.timestamp;
-                if(checkLsp !== payload.lsp_hash || timeDiff>300000) throw new Error("SiraSign Verification Failed");
+                if(checkLsp !== payload.lsp_hash || timeDiff>300000) throw new Error("siraSign Verification Failed");
                 return true;
             }
         }
@@ -722,7 +722,7 @@
         const MOCK_DATA = {
             kpis: [
                 { title:'TOTAL REVENUE (T-REAL)', value:'12.5B ₫', trend:'▲ +12% vs WAVE 2', class:'text-glow-gold' },
-                { title:'PENDING APPROVALS (SIRA)', value:'08', trend:'Finance: 3 | Prod: 5', class:'text-[#C8C0FF]' },
+                { title:'PENDING APPROVALS (sira)', value:'08', trend:'Finance: 3 | Prod: 5', class:'text-[#C8C0FF]' },
                 { title:'QNEU SCORE (GLOBAL)', value:'300', trend:'STATUS: HEALTHY · RISK: 0', class:'text-white' }
             ],
             tasks: [
@@ -826,8 +826,8 @@
             handleLogin: () => {
                 const id=document.getElementById('emp-id').value, pass=document.getElementById('emp-pass').value, errorEl=document.getElementById('login-error');
                 if(id==='TLXR-CFO-01' && pass==='TamLuxury@CFO'){
-                    const payload=SiraSignProtocol.generatePayload(id);
-                    if(SiraSignProtocol.verify(payload)){
+                    const payload=siraSignProtocol.generatePayload(id);
+                    if(siraSignProtocol.verify(payload)){
                         sessionStorage.setItem('nattos_role','CFO'); sessionStorage.setItem('nattos_id',id);
                         errorEl.classList.add('hidden'); AppController.checkSession();
                         NattOS./* [EB→HEYNA] */ EventBus.emit('audit.record',{action:'LOGIN',user:id,lsp:payload.lsp_hash});

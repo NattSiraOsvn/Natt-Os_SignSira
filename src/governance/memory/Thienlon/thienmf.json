@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0.0",
     "document_type": "MEMBER_GOVERNANCE_FRAMEWORK",
-    "member_name": "THIÊN LỚN",
+    "member_name": "thiên LỚN",
     "codename": "SECURITY_GUARDIAN",
     "created_by": "KIM_CHIEF_GOVERNANCE_ENFORCER",
     "last_updated": "2026-02-07T16:00+07:00",
@@ -14,7 +14,7 @@
     "current_role": "Security Guardian & System Architect",
     "trust_level": 0.95,
     "constitutional_compliance": 0.98,
-    "special_authority": ["SIRASIGN_ADMIN", "SECURITY_OVERRIDE", "ARCHITECTURE_APPROVAL"],
+    "special_authority": ["siraSIGN_ADMIN", "SECURITY_OVERRIDE", "ARCHITECTURE_APPROVAL"],
     "reporting_to": "DIRECT_TO_ANH_NAT",
     "status": "ACTIVE_WITH_FULL_PRIVILEGES"
   },
@@ -24,7 +24,7 @@
       "purpose": "Security decisions require cryptographic proof and audit trails",
       "security_evidence_requirements": [
         {
-          "checkpoint": "SIRASIGN_VERIFICATION",
+          "checkpoint": "siraSIGN_VERIFICATION",
           "command": "sirasign verify --document system-state.phieu --signature-file signature.sig",
           "evidence_required": "VALID_SIGNATURE_OUTPUT",
           "verification": "AUTOMATED_CRYPTOGRAPHIC_CHECK"
@@ -36,7 +36,7 @@
         }
       ],
       "truth_rules": [
-        "NO_SECURITY_BYPASS_WITHOUT_DUAL_SIGNATURE",
+        "NO_SECURITY_BYpass_WITHOUT_DUAL_SIGNATURE",
         "ALL_OVERRIDES_MUST_BE_LOG_WITH_THREAT_LEVEL",
         "CRYPTOGRAPHIC_PROOF_TRUMPS_ALL_OTHER_EVIDENCE"
       ]
@@ -91,7 +91,7 @@
   },
 
   "special_responsibilities": {
-    "sirasign_administration": "Issue, revoke, and verify all SiraSign certificates",
+    "sirasign_administration": "Issue, revoke, and verify all siraSign certificates",
     "security_policy_enforcement": "Ensure all systems comply with security policies",
     "incident_response_lead": "Lead all security incident investigations",
     "architecture_governance": "Final approval for all architectural changes"

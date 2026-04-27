@@ -4,16 +4,16 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % bash cd /Users/thien/hồ sơ S
 /usr/bin/cd: line 4: cd: /Users/thien/hồ: No such file or directory
 thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 .
-├── HIEN-PHAP-NATT-OS-v4.0.md
+├── HIEN-PHAP-natt-os-v4.0.md
 ├── anattos.sh
 ├── archive
 │   └── memory_20260313_131217
 │       └── thresholds.json
 ├── audit
 │   ├── reports
-│   │   ├── NATT-OS FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
-│   │   ├── NATT-OS FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
-│   │   ├── NATT-OS_Audit_2026-03-07.docx
+│   │   ├── natt-os FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
+│   │   ├── natt-os FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
+│   │   ├── natt-os_Audit_2026-03-07.docx
 │   │   ├── after_copy_fix.log
 │   │   ├── audit_2026-02-23_221546.log
 │   │   ├── báo cáo hệ thống 23022026 và Kế hoạch Toàn cảnh.pdf
@@ -48,25 +48,25 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │       │   │   └── services
 │   │   │       │   │       └── pho-guard.engine.js
 │   │   │       │   └── ports
-│   │   │       │       └── dust-recovery-smartlink.port.js
+│   │   │       │       └── dust-recovery-SmartLink.port.js
 │   │   │       ├── inventory-cell
 │   │   │       │   ├── domain
 │   │   │       │   │   └── services
 │   │   │       │   │       └── material-issue.guard.js
 │   │   │       │   └── ports
-│   │   │       │       └── inventory-smartlink.port.js
+│   │   │       │       └── inventory-SmartLink.port.js
 │   │   │       ├── production-cell
 │   │   │       │   ├── domain
 │   │   │       │   │   └── services
 │   │   │       │   │       └── weight-guard.engine.js
 │   │   │       │   └── ports
-│   │   │       │       └── production-smartlink.port.js
+│   │   │       │       └── production-SmartLink.port.js
 │   │   │       └── stone-cell
 │   │   │           ├── domain
 │   │   │           │   └── services
 │   │   │           │       └── diamond-guard.engine.js
 │   │   │           └── ports
-│   │   │               └── stone-smartlink.port.js
+│   │   │               └── stone-SmartLink.port.js
 │   │   └── core
 │   │       ├── events
 │   │       │   ├── domain-event.js
@@ -89,10 +89,10 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   ├── Sổ Thủ quỹ.xlsx
 │   ├── architecture
 │   │   ├── CELL_MANIFEST_SCHEMA.json
-│   │   ├── HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
-│   │   ├── NATT-OS_Blueprint_ChuanHP.docx
-│   │   ├── NATT-OS_CayHT_MoveGuide.docx
-│   │   ├── NATT-OS_CayHeThong_Chuan.docx
+│   │   ├── HIEN-PHAP-natt-os-v4.0-bang-tieng-viet.docx
+│   │   ├── natt-os_Blueprint_ChuanHP.docx
+│   │   ├── natt-os_CayHT_MoveGuide.docx
+│   │   ├── natt-os_CayHeThong_Chuan.docx
 │   │   ├── NATT_OS_Complete_Architecture_Roadmap.docx
 │   │   ├── Natt Os STS.rtf
 │   │   └── TaxCell_Specification_v1.docx
@@ -19975,7 +19975,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   ├── restructure.sh
 │   ├── safe-build-sprint2.sh
 │   ├── safe-build.sh
-│   ├── smartlink_rebuild.py
+│   ├── SmartLink_rebuild.py
 │   ├── supreme-purge-v8.1.sh
 │   ├── sync-tree-from-constitution.sh
 │   ├── test-anti-fraud-full.ts
@@ -20045,7 +20045,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   ├── ports
 │   │   │   │   │   ├── analytics-cell.contract.ts
-│   │   │   │   │   ├── analytics-smartlink.port.ts
+│   │   │   │   │   ├── analytics-SmartLink.port.ts
 │   │   │   │   │   └── index.ts
 │   │   │   │   └── saga-health-projection.ts
 │   │   │   ├── audit-cell
@@ -20066,7 +20066,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── infrastructure
 │   │   │   │   │   └── audit.wiring.ts
 │   │   │   │   └── ports
-│   │   │   │       └── audit-smartlink.port.ts
+│   │   │   │       └── audit-SmartLink.port.ts
 │   │   │   ├── bom3dprd-cell
 │   │   │   │   ├── cell.manifest.json
 │   │   │   │   ├── data-point3-d.tsx
@@ -20081,7 +20081,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── infrastructure
 │   │   │   │   │   └── bom3dprd.wiring.ts
 │   │   │   │   └── ports
-│   │   │   │       ├── bom3dprd-smartlink.port.ts
+│   │   │   │       ├── bom3dprd-SmartLink.port.ts
 │   │   │   │       └── index.ts
 │   │   │   ├── buyback-cell
 │   │   │   │   ├── README.md
@@ -20110,7 +20110,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   └── buyback.interface.ts
 │   │   │   │   └── ports
 │   │   │   │       ├── buyback-cell.contract.ts
-│   │   │   │       ├── buyback-smartlink.port.ts
+│   │   │   │       ├── buyback-SmartLink.port.ts
 │   │   │   │       ├── buyback.contract.ts
 │   │   │   │       └── index.ts
 │   │   │   ├── casting-cell
@@ -20132,7 +20132,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── casting.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── casting-smartlink.port.ts
+│   │   │   │       └── casting-SmartLink.port.ts
 │   │   │   ├── comms-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20151,7 +20151,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── room.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── comms-smartlink.port.ts
+│   │   │   │       └── comms-SmartLink.port.ts
 │   │   │   ├── compliance-cell
 │   │   │   │   ├── application
 │   │   │   │   │   ├── services
@@ -20176,7 +20176,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   └── ports
 │   │   │   │       ├── compliance-cell.contract.ts
-│   │   │   │       ├── compliance-smartlink.port.ts
+│   │   │   │       ├── compliance-SmartLink.port.ts
 │   │   │   │       └── index.ts
 │   │   │   ├── constants-cell
 │   │   │   │   ├── application
@@ -20194,7 +20194,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   └── constants.wiring.ts
 │   │   │   │   ├── interface
 │   │   │   │   └── ports
-│   │   │   │       ├── constants-smartlink.port.ts
+│   │   │   │       ├── constants-SmartLink.port.ts
 │   │   │   │       └── index.ts
 │   │   │   ├── customer-cell
 │   │   │   │   ├── README.md
@@ -20227,7 +20227,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── customer.interface.ts
 │   │   │   │   └── ports
-│   │   │   │       ├── customer-smartlink.port.ts
+│   │   │   │       ├── customer-SmartLink.port.ts
 │   │   │   │       └── customer.contract.ts
 │   │   │   ├── customs-cell
 │   │   │   │   ├── application
@@ -20250,7 +20250,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   └── ports
 │   │   │   │       ├── customs-cell.contract.ts
-│   │   │   │       ├── customs-smartlink.port.ts
+│   │   │   │       ├── customs-SmartLink.port.ts
 │   │   │   │       └── index.ts
 │   │   │   ├── design-3d-cell
 │   │   │   │   ├── application
@@ -20279,7 +20279,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   ├── Design3dCell.ts
 │   │   │   │   │   └── index.ts
 │   │   │   │   └── ports
-│   │   │   │       ├── design-3d-smartlink.port.ts
+│   │   │   │       ├── design-3d-SmartLink.port.ts
 │   │   │   │       ├── design-3d.contract.ts
 │   │   │   │       └── index.ts
 │   │   │   ├── dust-recovery-cell
@@ -20300,7 +20300,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── infrastructure
 │   │   │   │   │   └── dust-recovery.wiring.ts
 │   │   │   │   └── ports
-│   │   │   │       └── dust-recovery-smartlink.port.ts
+│   │   │   │       └── dust-recovery-SmartLink.port.ts
 │   │   │   ├── finance-cell
 │   │   │   │   ├── application
 │   │   │   │   │   ├── services
@@ -20356,7 +20356,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   └── finance-event-pipeline.ts
 │   │   │   │   ├── ports
 │   │   │   │   │   ├── finance-cell.contract.ts
-│   │   │   │   │   ├── finance-smartlink.port.ts
+│   │   │   │   │   ├── finance-SmartLink.port.ts
 │   │   │   │   │   ├── finance.contract.ts
 │   │   │   │   │   └── index.ts
 │   │   │   │   ├── projections
@@ -20387,7 +20387,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── finishing.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── finishing-smartlink.port.ts
+│   │   │   │       └── finishing-SmartLink.port.ts
 │   │   │   ├── hr-cell
 │   │   │   │   ├── application
 │   │   │   │   │   ├── services
@@ -20418,7 +20418,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   ├── ports
 │   │   │   │   │   ├── hr-cell.contract.ts
-│   │   │   │   │   ├── hr-smartlink.port.ts
+│   │   │   │   │   ├── hr-SmartLink.port.ts
 │   │   │   │   │   └── index.ts
 │   │   │   │   └── service.ts
 │   │   │   ├── inventory-cell
@@ -20441,7 +20441,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── inventory.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── inventory-smartlink.port.ts
+│   │   │   │       └── inventory-SmartLink.port.ts
 │   │   │   ├── it-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20454,7 +20454,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── it.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── it-smartlink.port.ts
+│   │   │   │       └── it-SmartLink.port.ts
 │   │   │   ├── logistics-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20467,7 +20467,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── logistics.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── logistics-smartlink.port.ts
+│   │   │   │       └── logistics-SmartLink.port.ts
 │   │   │   ├── media-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20480,7 +20480,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── media.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── media-smartlink.port.ts
+│   │   │   │       └── media-SmartLink.port.ts
 │   │   │   ├── noi-vu-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20493,7 +20493,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── noi-vu.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── noivu-smartlink.port.ts
+│   │   │   │       └── noivu-SmartLink.port.ts
 │   │   │   ├── order-cell
 │   │   │   │   ├── application
 │   │   │   │   │   └── order.usecase.ts
@@ -20515,7 +20515,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── order.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── order.smartlink.port.ts
+│   │   │   │       └── order.SmartLink.port.ts
 │   │   │   ├── payment-cell
 │   │   │   │   ├── application
 │   │   │   │   │   ├── services
@@ -20538,7 +20538,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
 │   │   │   │       ├── payment-cell.contract.ts
-│   │   │   │       ├── payment-smartlink.port.ts
+│   │   │   │       ├── payment-SmartLink.port.ts
 │   │   │   │       └── payment.contract.ts
 │   │   │   ├── period-close-cell
 │   │   │   │   ├── boundary.policy.json
@@ -20561,7 +20561,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
-│   │   │   │       └── period-close-smartlink.port.ts
+│   │   │   │       └── period-close-SmartLink.port.ts
 │   │   │   ├── phap-che-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20574,7 +20574,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── phap-che.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── phapche-smartlink.port.ts
+│   │   │   │       └── phapche-SmartLink.port.ts
 │   │   │   ├── polishing-cell
 │   │   │   │   ├── application
 │   │   │   │   │   └── polishing.usecase.ts
@@ -20595,7 +20595,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── polishing.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── polishing-smartlink.port.ts
+│   │   │   │       └── polishing-SmartLink.port.ts
 │   │   │   ├── prdmaterials-cell
 │   │   │   │   ├── application
 │   │   │   │   │   └── prdmaterials.usecase.ts
@@ -20615,7 +20615,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── prdmaterials.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── prdmaterials.smartlink.port.ts
+│   │   │   │       └── prdmaterials.SmartLink.port.ts
 │   │   │   ├── prdwarranty-cell
 │   │   │   │   ├── README.md
 │   │   │   │   ├── boundary.policy.json
@@ -20632,7 +20632,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── infrastructure
 │   │   │   │   │   └── prdwarranty.wiring.ts
 │   │   │   │   ├── ports
-│   │   │   │   │   └── prdwarranty-smartlink.port.ts
+│   │   │   │   │   └── prdwarranty-SmartLink.port.ts
 │   │   │   │   └── warranty.types.ts
 │   │   │   ├── pricing-cell
 │   │   │   │   ├── application
@@ -20674,7 +20674,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
 │   │   │   │       ├── pricing-cell.contract.ts
-│   │   │   │       ├── pricing-smartlink.port.ts
+│   │   │   │       ├── pricing-SmartLink.port.ts
 │   │   │   │       └── pricing.contract.ts
 │   │   │   ├── production-cell
 │   │   │   │   ├── application
@@ -20700,7 +20700,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
 │   │   │   │       ├── production-cell.contract.ts
-│   │   │   │       ├── production-smartlink.port.ts
+│   │   │   │       ├── production-SmartLink.port.ts
 │   │   │   │       └── production.contract.ts
 │   │   │   ├── promotion-cell
 │   │   │   │   ├── README.md
@@ -20726,7 +20726,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
 │   │   │   │       ├── promotion-cell.contract.ts
-│   │   │   │       ├── promotion-smartlink.port.ts
+│   │   │   │       ├── promotion-SmartLink.port.ts
 │   │   │   │       └── promotion.contract.ts
 │   │   │   ├── sales-cell
 │   │   │   │   ├── README.md
@@ -20759,7 +20759,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── ports
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   ├── sales-cell.contract.ts
-│   │   │   │   │   ├── sales-smartlink.port.ts
+│   │   │   │   │   ├── sales-SmartLink.port.ts
 │   │   │   │   │   └── sales.contract.ts
 │   │   │   │   ├── sales-terminal.tsx
 │   │   │   │   └── sales.service.ts
@@ -20779,7 +20779,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   └── shared-contracts.wiring.ts
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
-│   │   │   │       └── shared-smartlink.port.ts
+│   │   │   │       └── shared-SmartLink.port.ts
 │   │   │   ├── showroom-cell
 │   │   │   │   ├── README.md
 │   │   │   │   ├── application
@@ -20808,7 +20808,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
 │   │   │   │       ├── showroom-cell.contract.ts
-│   │   │   │       ├── showroom-smartlink.port.ts
+│   │   │   │       ├── showroom-SmartLink.port.ts
 │   │   │   │       └── showroom.contract.ts
 │   │   │   ├── stone-cell
 │   │   │   │   ├── application
@@ -20834,7 +20834,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── stone.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── stone-smartlink.port.ts
+│   │   │   │       └── stone-SmartLink.port.ts
 │   │   │   ├── supplier-cell
 │   │   │   │   ├── boundary.policy.json
 │   │   │   │   ├── cell.manifest.json
@@ -20847,7 +20847,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       └── supplier.engine.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   └── ports
-│   │   │   │       └── supplier-smartlink.port.ts
+│   │   │   │       └── supplier-SmartLink.port.ts
 │   │   │   ├── tax-cell
 │   │   │   │   ├── application
 │   │   │   │   │   └── tax.usecase.ts
@@ -20868,7 +20868,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── interface
 │   │   │   │   │   └── tax.sheets.adapter.ts
 │   │   │   │   └── ports
-│   │   │   │       └── tax-smartlink.port.ts
+│   │   │   │       └── tax-SmartLink.port.ts
 │   │   │   ├── warehouse-cell
 │   │   │   │   ├── QUARANTINE_GUARD.ts
 │   │   │   │   ├── QUARANTINE_README.md
@@ -20909,7 +20909,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   ├── ports
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   ├── warehouse-cell.contract.ts
-│   │   │   │   │   └── warehouse-smartlink.port.ts
+│   │   │   │   │   └── warehouse-SmartLink.port.ts
 │   │   │   │   ├── warehouse-service.ts
 │   │   │   │   └── warehouse.service.ts
 │   │   │   └── warranty-cell
@@ -20939,7 +20939,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │       └── ports
 │   │   │           ├── index.ts
 │   │   │           ├── warranty-cell.contract.ts
-│   │   │           ├── warranty-smartlink.port.ts
+│   │   │           ├── warranty-SmartLink.port.ts
 │   │   │           └── warranty.contract.ts
 │   │   ├── cell.manifest.json
 │   │   ├── index.ts
@@ -20970,7 +20970,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   └── ports
 │   │   │   │       ├── index.ts
 │   │   │   │       └── shared-contracts-cell.contract.ts
-│   │   │   ├── smartlink-cell
+│   │   │   ├── SmartLink-cell
 │   │   │   │   ├── application
 │   │   │   │   │   ├── services
 │   │   │   │   │   │   ├── SmartLinkApplicationService.ts
@@ -20989,10 +20989,10 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │       ├── LinkResolver.ts
 │   │   │   │   │       ├── index.ts
 │   │   │   │   │       ├── smart-link.shim.ts
-│   │   │   │   │       ├── smartlink-mapping.engine.ts
-│   │   │   │   │       ├── smartlink.engine.ts
-│   │   │   │   │       ├── smartlink.governance.ts
-│   │   │   │   │       └── smartlink.stabilizer.ts
+│   │   │   │   │       ├── SmartLink-mapping.engine.ts
+│   │   │   │   │       ├── SmartLink.engine.ts
+│   │   │   │   │       ├── SmartLink.governance.ts
+│   │   │   │   │       └── SmartLink.stabilizer.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── infrastructure
 │   │   │   │   │   ├── adapters
@@ -21008,7 +21008,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │       ├── SmartLinkEventEmitter.ts
 │   │   │   │       ├── SmartLinkRepository.ts
 │   │   │   │       ├── index.ts
-│   │   │   │       └── smartlink-cell.contract.ts
+│   │   │   │       └── SmartLink-cell.contract.ts
 │   │   │   └── sync-cell
 │   │   │       ├── application
 │   │   │       │   ├── services
@@ -21188,7 +21188,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   ├── data.fetcher.ts
 │   │   │   │   │   └── reporter.ts
 │   │   │   │   ├── ports
-│   │   │   │   ├── smartlink.port.ts
+│   │   │   │   ├── SmartLink.port.ts
 │   │   │   │   └── trace.memory.ts
 │   │   │   ├── quantum-defense-cell
 │   │   │   │   ├── application
@@ -21235,7 +21235,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │       ├── QuantumDefenseRepository.ts
 │   │   │   │       ├── index.ts
 │   │   │   │       ├── quantum-defense-cell.contract.ts
-│   │   │   │       └── quantum-defense-smartlink.port.ts
+│   │   │   │       └── quantum-defense-SmartLink.port.ts
 │   │   │   ├── rbac-cell
 │   │   │   │   ├── application
 │   │   │   │   │   ├── services
@@ -21462,7 +21462,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   ├── event-identity.guard.ts
 │   │   │   ├── eventbus.guard.ts
 │   │   │   ├── index.ts
-│   │   │   └── smartlink.guard.ts
+│   │   │   └── SmartLink.guard.ts
 │   │   ├── health
 │   │   │   └── cell-health-monitor.ts
 │   │   ├── infrastructure
@@ -21486,17 +21486,17 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   └── task-router.ts
 │   │   ├── signals
 │   │   │   └── types.ts
-│   │   ├── smartlink
-│   │   │   ├── cell-smartlink.component.ts
+│   │   ├── SmartLink
+│   │   │   ├── cell-SmartLink.component.ts
 │   │   │   ├── index.ts
 │   │   │   ├── quantum-brain.engine.ts
 │   │   │   ├── quantum-buffer.engine.ts
-│   │   │   ├── smartlink-legacy.engine.ts
-│   │   │   ├── smartlink.competition.ts
-│   │   │   ├── smartlink.nattimer.ts
-│   │   │   ├── smartlink.point.ts
-│   │   │   ├── smartlink.pressure-field.ts
-│   │   │   └── smartlink.qneu-bridge.ts
+│   │   │   ├── SmartLink-legacy.engine.ts
+│   │   │   ├── SmartLink.competition.ts
+│   │   │   ├── SmartLink.nattimer.ts
+│   │   │   ├── SmartLink.point.ts
+│   │   │   ├── SmartLink.pressure-field.ts
+│   │   │   └── SmartLink.qneu-bridge.ts
 │   │   ├── snapshot
 │   │   │   ├── recovery-engine.ts
 │   │   │   └── snapshot.engine.ts
@@ -21504,7 +21504,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   ├── fixtures
 │   │   └── ld1-sc-cua-sau.json
 │   ├── governance
-│   │   ├── HIEN-PHAP-NATT-OS-v4.0.md
+│   │   ├── HIEN-PHAP-natt-os-v4.0.md
 │   │   ├── amendments
 │   │   │   ├── 001-gatekeeper-ai-ban.md
 │   │   │   └── amendments
@@ -21517,7 +21517,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   ├── business.contracts.lock.json
 │   │   ├── calculator.ts
 │   │   ├── constitution
-│   │   │   ├── Bản sao HIEN-PHAP-NATT-OS-v4.0.md
+│   │   │   ├── Bản sao HIEN-PHAP-natt-os-v4.0.md
 │   │   │   └── index.ts
 │   │   ├── decay-cron.ts
 │   │   ├── dictionary-approval.engine.ts
@@ -21637,7 +21637,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   │   │   ├── interfaces
 │   │   │   │   │   │   ├── data.fetcher.ts
 │   │   │   │   │   │   └── reporter.ts
-│   │   │   │   │   ├── smartlink.port.ts
+│   │   │   │   │   ├── SmartLink.port.ts
 │   │   │   │   │   ├── submission.sira.txt
 │   │   │   │   │   ├── test
 │   │   │   │   │   │   └── validator.test.ts
@@ -21702,11 +21702,11 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   │   ├── sessions
 │   │   │   │   ├── BCTC_4SO_REVERSE_MAP_2025 (1).txt
 │   │   │   │   ├── BCTC_4SO_REVERSE_MAP_2025.txt
-│   │   │   │   ├── NATT-OS_Production_Addendum_BuiVang_v1.0.docx
-│   │   │   │   ├── NATT-OS_Production_Spec_v1.0.docx
-│   │   │   │   ├── NATT-OS_SATELLITE_COLONY_SPEC.md
-│   │   │   │   ├── NATT-OS_Session_Handoff_2026-03-09.md
-│   │   │   │   ├── NATT-OS_Session_Handoff_2026-03-10.docx
+│   │   │   │   ├── natt-os_Production_Addendum_BuiVang_v1.0.docx
+│   │   │   │   ├── natt-os_Production_Spec_v1.0.docx
+│   │   │   │   ├── natt-os_SATELLITE_COLONY_SPEC.md
+│   │   │   │   ├── natt-os_Session_Handoff_2026-03-09.md
+│   │   │   │   ├── natt-os_Session_Handoff_2026-03-10.docx
 │   │   │   │   ├── SES-mmcozlpj-67cs46.json
 │   │   │   │   ├── SES-mmcozlps-bhd2yd.json
 │   │   │   │   ├── SES-mmcozlpy-z2yupv.json
@@ -21741,7 +21741,7 @@ thien@iMac-cua-THIEN natt-os_ver2goldmaster % tree
 │   │   ├── qneu.test.ts
 │   │   ├── registry-summary.json
 │   │   ├── runtime.ts
-│   │   ├── smartlink-impulse-check.ts
+│   │   ├── SmartLink-impulse-check.ts
 │   │   ├── storage.interface.ts
 │   │   ├── system-state.json
 │   │   ├── tsconfig.qneu.json

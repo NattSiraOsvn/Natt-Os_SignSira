@@ -1,0 +1,26 @@
+# siraSign frame guard evidence — 20260425
+
+status: frame-guard-candidate
+created_at: 2026-04-25T08:10:49.147065+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+frame guard này chạy sau route gate.
+
+low route không cần frame.
+
+sensitive route gồm identity, memory, seal, field thì phải có subject, boundary, causation và signature header.
+
+đây là frame shape guard, chưa phải crypto signature verification.
+
+đây không wire mạch heyna.
+
+---
+
+## 2. files
+
+- tools/natt_domain_gateway.sira
+- tools/validate_sirasign_frame_guard.sira

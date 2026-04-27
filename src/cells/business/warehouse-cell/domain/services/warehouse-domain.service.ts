@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Warehouse Cell
+ * natt-os — Warehouse Cell
  * Domain Service: WarehouseDomainService
  */
 

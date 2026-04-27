@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import datetime, json, os, re, subprocess
+
+ROOT = Path.cwd()
+TS = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+OUT = ROOT / "docs" / "runtime"
+OUT.mkdir(parents=True, exist_ok=True)
+
+EXPECTED_LAN_IP = os.environ.get("EXPECTED_LAN_IP", "192.168.1.199")
+EXPECTED_ROUTER = os.environ.get("EXPECTED_ROUTER", "192.168.1.1")
+MAIL_DOMAIN = os.environ.get("MAIL_DOMAIN", "").strip()
+
+def sh(cmd, timeout=12):
+    try:
+        p = subprocess.run(cmd, shell=True, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
+        return p.returncode, p.stdout.strip()
+    except subprocess.TimeoutExpired:
+        return 124, "TIMEOUT"
+    except Exception as e:
+        return 1, f"EXCEPTION: {e}"
+
+def has(cmd):
+    return sh(f"command -v {cmd}", 5)[0] == 0
+
+def one(s):
+    return (s.splitlines() or [""])[0].strip()
+
+def ping(host):
+    rc, out = sh(f"ping -c 3 -W 1000 {host}", 10)
+    loss = None
+    avg = None
+    m = re.search(r"(\d+(?:\.\d+)?)% packet loss", out)
+    if m:
+        loss = float(m.group(1))
+    m = re.search(r"round-trip min/avg/max/stddev = [\d.]+/([\d.]+)/", out)
+    if m:
+        avg = float(m.group(1))
+    return {"ok": rc == 0, "loss_percent": loss, "avg_ms": avg, "raw": out[-700:]}
+
+def dig(q, typ=""):
+    if not has("dig"):
+        return ""
+    t = f" {typ}" if typ else ""
+    rc, out = sh(f"dig +time=3 +tries=1 +short{t} {q}", 8)
+    return out if rc == 0 else ""
+
+def public_ip():
+    if has("dig"):
+        rc, out = sh("dig +time=3 +tries=1 +short myip.opendns.com @resolver1.opendns.com", 8)
+        ip = one(out)
+        if rc == 0 and re.match(r"^\d+\.\d+\.\d+\.\d+$", ip):
+            return ip
+    if has("curl"):
+        rc, out = sh("curl -4 -s --max-time 8 https://ifconfig.me", 10)
+        ip = one(out)
+        if rc == 0 and re.match(r"^\d+\.\d+\.\d+\.\d+$", ip):
+            return ip
+    return ""
+
+def port_local(p):
+    if has("lsof"):
+        rc, out = sh(f"lsof -nP -iTCP:{p} -sTCP:LISTEN", 6)
+        return {"port": p, "open": rc == 0 and bool(out), "raw": out[-400:]}
+    return {"port": p, "open": None, "raw": "lsof missing"}
+
+def port_out(host, p):
+    if has("nc"):
+        rc, out = sh(f"nc -vz -w 5 {host} {p}", 8)
+        return {"host": host, "port": p, "ok": rc == 0, "raw": out[-500:]}
+    return {"host": host, "port": p, "ok": None, "raw": "nc missing"}
+
+def bandwidth():
+    if has("networkQuality"):
+        rc, out = sh("networkQuality", 45)
+        dl = ul = None
+        md = re.search(r"Download capacity:\s*([\d.]+)\s*([KMGT]?bps)", out, re.I)
+        mu = re.search(r"Upload capacity:\s*([\d.]+)\s*([KMGT]?bps)", out, re.I)
+        def mbps(v, u):
+            return round(float(v) * {"Kbps":0.001,"Mbps":1,"Gbps":1000,"Tbps":1000000}.get(u,1), 3)
+        if md:
+            dl = mbps(md.group(1), md.group(2))
+        if mu:
+            ul = mbps(mu.group(1), mu.group(2))
+        return {"tool": "networkQuality", "download_mbps": dl, "upload_mbps": ul, "raw": out[-3000:]}
+    return {"tool": "missing", "download_mbps": None, "upload_mbps": None, "raw": "networkQuality missing"}
+
+def mail_dns(domain):
+    if not domain:
+        return {"checked": False, "domain": "", "reason": "MAIL_DOMAIN not set"}
+    mx = dig(domain, "MX")
+    txt = dig(domain, "TXT")
+    dmarc = dig("_dmarc." + domain, "TXT")
+    dkim_hits = []
+    for sel in ["default", "google", "selector1", "mail", "sira", "natt"]:
+        v = dig(sel + "._domainkey." + domain, "TXT")
+        if "v=DKIM1" in v.upper() or "p=" in v:
+            dkim_hits.append(sel)
+    return {
+        "checked": True,
+        "domain": domain,
+        "mx_present": bool(mx),
+        "spf_present": "v=spf1" in txt.lower(),
+        "dkim_selectors": dkim_hits,
+        "dmarc_present": "v=dmarc1" in dmarc.lower(),
+        "raw_mx": mx,
+        "raw_txt": txt,
+        "raw_dmarc": dmarc,
+    }
+
+branch = one(sh("git branch --show-current", 5)[1])
+head = one(sh("git log --oneline -1", 5)[1])
+dirty = sh("git status --short", 5)[1]
+
+en0 = one(sh("ipconfig getifaddr en0", 5)[1])
+en1 = one(sh("ipconfig getifaddr en1", 5)[1])
+route = sh("route -n get default 2>/dev/null | egrep 'gateway|interface|ifscope' || true", 5)[1]
+
+pub = public_ip()
+rdns = dig("-x " + pub) if pub else ""
+
+resolver = Path("/etc/resolver/sira")
+resolver_text = resolver.read_text("utf-8", errors="ignore") if resolver.exists() else ""
+
+dns_local = {
+    "resolver_sira_exists": resolver.exists(),
+    "resolver_sira": resolver_text,
+    "core_sira": sh("dig +time=2 +tries=1 +short @127.0.0.1 core.sira 2>/dev/null || true", 6)[1],
+    "khai_sira": sh("dig +time=2 +tries=1 +short @127.0.0.1 khai.sira 2>/dev/null || true", 6)[1],
+    "mail_sira": sh("dig +time=2 +tries=1 +short @127.0.0.1 mail.sira 2>/dev/null || true", 6)[1],
+}
+
+reach = {
+    "router": ping(EXPECTED_ROUTER),
+    "cloudflare": ping("1.1.1.1"),
+    "google_dns": ping("8.8.8.8"),
+}
+
+ports = {
+    "local": [port_local(p) for p in [25, 465, 587, 993, 80, 443, 3000, 3001, 8080, 8443]],
+    "outbound_25_google": port_out("gmail-smtp-in.l.google.com", 25),
+    "outbound_587_google": port_out("smtp.gmail.com", 587),
+}
+
+bw = bandwidth()
+mail = mail_dns(MAIL_DOMAIN)
+
+lan_ready = EXPECTED_LAN_IP in [en0, en1] and reach["router"]["ok"] and reach["cloudflare"]["ok"]
+mail_provider_ready = bool(mail.get("checked")) and mail.get("mx_present") and mail.get("spf_present") and mail.get("dmarc_present") and bool(mail.get("dkim_selectors"))
+local_mta = any(x["port"] in [25,465,587] and x["open"] for x in ports["local"])
+self_host_ready = lan_ready and bool(pub) and bool(rdns) and mail_provider_ready and ports["outbound_25_google"]["ok"] and local_mta
+
+verdict = {
+    "claim_ip_internal": "PASS" if lan_ready else "BLOCKED",
+    "claim_mail_provider_mode": "PASS" if mail_provider_ready else "PENDING",
+    "claim_self_host_mail": "PASS" if self_host_ready else "BLOCKED",
+    "lan_ready": lan_ready,
+    "public_ip_detected": bool(pub),
+    "public_rdns_detected": bool(rdns),
+    "local_mta_listening": local_mta,
+    "outbound_25_ready": ports["outbound_25_google"]["ok"],
+}
+
+payload = {
+    "created_at": datetime.datetime.now().isoformat(timespec="seconds"),
+    "repo": str(ROOT),
+    "branch": branch,
+    "head": head,
+    "dirty_count": len([x for x in dirty.splitlines() if x.strip()]),
+    "expected": {"lan_ip": EXPECTED_LAN_IP, "router": EXPECTED_ROUTER, "mail_domain": MAIL_DOMAIN or None},
+    "local_ip": {"en0": en0, "en1": en1, "default_route": route},
+    "public_ip": {"ip": pub, "rdns": rdns},
+    "dns_local": dns_local,
+    "reachability": reach,
+    "bandwidth": bw,
+    "ports": ports,
+    "mail_dns": mail,
+    "verdict": verdict,
+}
+
+report = OUT / f"sira_mail_ip_bandwidth_readiness_{TS}.na"
+latest = OUT / "sira_mail_ip_bandwidth_readiness_latest.na"
+
+lines = []
+lines.append("@state runtime-evidence")
+lines.append("@name sira mail ip bandwidth readiness")
+lines.append("@created_at " + payload["created_at"])
+lines.append("@branch " + branch)
+lines.append("@head " + head)
+lines.append("")
+lines.append("# SIRA mail/ip/bandwidth readiness")
+lines.append("")
+lines.append("## 1. verdict")
+for k, v in verdict.items():
+    lines.append(f"- {k}: {v}")
+lines.append("")
+lines.append("## 2. ground truth")
+lines.append(f"- expected_lan_ip: {EXPECTED_LAN_IP}")
+lines.append(f"- en0: {en0 or 'missing'}")
+lines.append(f"- en1: {en1 or 'missing'}")
+lines.append(f"- public_ip: {pub or 'missing'}")
+lines.append(f"- public_rdns: {rdns or 'missing'}")
+lines.append(f"- mail_domain: {MAIL_DOMAIN or 'not-set'}")
+lines.append("")
+lines.append("## 3. raw json")
+lines.append("```json")
+lines.append(json.dumps(payload, ensure_ascii=False, indent=2))
+lines.append("```")
+lines.append("")
+
+text = "\n".join(lines)
+report.write_text(text, "utf-8")
+latest.write_text(text, "utf-8")
+
+print("SCAN DONE")
+print("report:", report)
+print("latest:", latest)
+print(json.dumps(verdict, ensure_ascii=False, indent=2))

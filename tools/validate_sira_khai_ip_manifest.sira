@@ -1,0 +1,95 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "sira_khai_ip_manifest_20260425.na");
+const preflight = path.join(process.cwd(), "docs", "runtime", "sira_khai_ip_preflight_evidence_20260425.na");
+const activeResolver = path.join(process.cwd(), "docs", "runtime", "sira_active_resolver_ground_truth_20260425.na");
+const wiredRebind = path.join(process.cwd(), "docs", "runtime", "sira_wired_edge_dns_rebind_evidence_20260426.na");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+function ns() {
+  return "." + "sira";
+}
+
+function isPrivateV4(ip) {
+  return /^192\.168\.\d{1,3}\.\d{1,3}$/.test(ip) ||
+         /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(ip) ||
+         /^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(ip);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing sira khai ip manifest");
+} else {
+  const raw = fs.readFileSync(file, "utf8");
+  const data = JSON.parse(raw);
+  const k = data.khai_ip || {};
+  const edges = k.edges || {};
+  const local = edges.local_edge || {};
+  const wifi = edges.wifi_edge || {};
+  const wired = edges.wired_edge || {};
+  const vpn = edges.vpn_edge || {};
+  const pub = edges.public_edge || {};
+
+  must(k.namespace === ns(), "namespace mismatch");
+  must(k.production_edge_node === "imac", "production edge node must be imac");
+  must(k.dns_engine === "coredns", "dns engine must be coredns");
+
+  must(!edges.lan_edge, "lan_edge label must not be used for wifi ip");
+  must(local.resolver_ip === "127.0.0.1", "local resolver ip must be loopback");
+  must(wifi.resolver_ip === "192.168.1.238", "wifi edge must keep observed wifi ip");
+  must(wifi.scope === "wifi", "wifi edge scope mismatch");
+  must(isPrivateV4(wired.resolver_ip), "wired edge resolver must be private ipv4");
+  must(wired.resolver_ip === wired.gateway_ip, "wired resolver and gateway must match");
+  must(["declared_pending_dns_only_smoke", "strict_allowlist_applied"].includes(wired.status), "wired edge status invalid");
+  if (wired.status === "strict_allowlist_applied") {
+    must(fs.existsSync(wiredRebind), "missing wired edge dns rebind evidence");
+  }
+  must(vpn.status === "not_declared", "vpn edge must not be declared yet");
+  must(pub.status === "not_declared", "public edge must not be declared yet");
+
+  [host("anc"), host("apps"), host("mach"), host("core"), host("audit"), host("render"), host("tam")].forEach(h => {
+    must((k.allowed_logical_hosts || []).includes(h), "missing allowed logical host: " + h);
+  });
+
+  [host("unknown"), host("mail"), host("smtp"), host("imap")].forEach(h => {
+    must((k.denied_logical_hosts || []).includes(h), "missing denied logical host: " + h);
+  });
+
+  [
+    "wifi edge khong phai wired edge",
+    "wired edge la duong uu tien cho may vat ly server",
+    "ipv4 static policy la router dhcp reservation",
+    "ipv6 chi khai sau khi co dia chi on dinh",
+    "no wildcard allow",
+  ].forEach(rule => must((k.policy || []).includes(rule), "missing khai ip policy: " + rule));
+
+  [
+    "status: applied",
+    "production-ready",
+    "wildcard -> allow",
+    "allow wildcard",
+    "public_edge_enabled"
+  ].forEach(mark => must(!raw.includes(mark), "forbidden khai ip wording: " + mark));
+}
+
+must(fs.existsSync(preflight), "missing khai ip preflight evidence");
+must(fs.existsSync(activeResolver), "missing active resolver ground truth");
+
+if (errors.length) {
+  console.error("sira khai ip manifest validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira khai ip manifest validation: pass");
+console.log("file=docs/runtime/sira_khai_ip_manifest_20260425.na");

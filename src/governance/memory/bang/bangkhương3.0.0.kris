@@ -28,7 +28,7 @@
     "latest_commit": "0349570",
     "cells": {
       "business_9": "ACTIVE — warranty, buyback, customer, orders, promotions, sales, showroom, pricing, inventory",
-      "infrastructure_4": "ACTIVE — shared-contracts, smartlink, sync, warehouse-cell v2.1.0",
+      "infrastructure_4": "ACTIVE — shared-contracts, SmartLink, sync, warehouse-cell v2.1.0",
       "kernel_5": "ACTIVE — audit, config, monitor, rbac, security"
     },
     "errors_remaining_by_scope": {
@@ -45,7 +45,7 @@
       "warehouse-cell: QUARANTINED → ACTIVE v2.1.0, open registry protocol",
       "Revert Kim auto-fix script (incident: 460 → 477 errors)",
       "Kernel 5 cells: export type pattern fix",
-      "smartlink + sync cells: isolatedModules export type",
+      "SmartLink + sync cells: isolatedModules export type",
       "ConstitutionalState.ACTIVE → STATE_2 (wrong enum source)",
       "types.ts: duplicate module/details, Product fields, Domain, PersonaMetadata",
       "governance: GatekeeperCore types, RBACCore paths + Permission fix",
@@ -64,7 +64,7 @@
     "FLAG-001": {
       "description": "Contract kernel cells: event naming chưa chuẩn hóa",
       "status": "OPEN",
-      "owner": "Thiên Nhỏ"
+      "owner": "thiên Nhỏ"
     },
     "FLAG-002": {
       "description": "shared-contracts index.ts bị override",
@@ -79,7 +79,7 @@
     "FLAG-004": {
       "description": "warehouse-cell stress test",
       "status": "OPEN — cell ACTIVE nhưng chưa unit test",
-      "owner": "Thiên Nhỏ & Bối Bối"
+      "owner": "thiên Nhỏ & Bối Bối"
     },
     "FLAG-005": {
       "description": "Type-check toàn repo = 0 errors",

@@ -1,7 +1,7 @@
 
 #!/usr/bin/env bash
 # ============================================================
-# ⚔️ NATT-OS PURGE PROTOCOL v6.1 (ULTIMATE ENFORCEMENT)
+# ⚔️ natt-os PURGE PROTOCOL v6.1 (ULTIMATE ENFORCEMENT)
 # Authored by: ANH_NAT (Supreme Sovereign)
 # Status: SIGNED_BY_MASTER
 # ============================================================

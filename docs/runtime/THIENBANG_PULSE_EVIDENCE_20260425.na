@@ -1,0 +1,52 @@
+# thiênbăng pulse evidence — 20260425
+
+status: pass
+created_at: 2026-04-24T18:58:05Z
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Identity
+
+- operator: tools/thiên
+- extension: tools/thiênbăng
+- dictionary: src/thienbang.si
+- identity protocol: anc://
+- namespace: .sira
+- transport: http browser adapter
+
+## 2. Core Health
+
+```json
+{
+  "ok": true,
+  "host": "core.sira",
+  "root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",
+  "tam_root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server",
+  "nauion_root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server",
+  "audit_html": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html",
+  "tam_screens": 70,
+  "nauion_screens": 7,
+  "audit_events": 4,
+  "time": "2026-04-24T18:58:05.224Z"
+}
+```
+
+## 3. ANC Resolve
+
+```json
+{
+  "ok": true,
+  "uri": "anc://core",
+  "target": "http://core.sira",
+  "rule": "anc://<name> -> http://<name>.sira"
+}
+```
+
+## 4. Git State
+
+```text
+ M docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na
+ M "tools/thi\303\252nb\304\203ng"
+```
+

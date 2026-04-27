@@ -99,10 +99,10 @@ const HRCompliance: React.FC<HRComplianceProps> = () => {
       <div className="glass p-10 rounded-[3rem] border border-blue-500/20 bg-blue-500/5">
          <h4 className="text-[10px] text-blue-400 font-black uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
             <span className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></span>
-            Tham mưu Kế toán Lương (Thiên)
+            Tham mưu Kế toán Lương (thiên)
          </h4>
          <p className="text-sm text-gray-400 italic leading-relaxed font-light">
-           "Thưa Anh Natt, Thiên đã thiết lập công thức tính thưởng `1 KPI = 1,000 VND`. Mọi thao tác hoàn thành đơn hàng tại Xưởng (Daily Report) hoặc Phê duyệt Master (Governance) đều được cộng dồn vào quỹ thưởng cuối tháng của nhân sự. Điều này giúp tối ưu hóa 100% chi phí dựa trên hiệu quả thực tế."
+           "Thưa Anh Natt, thiên đã thiết lập công thức tính thưởng `1 KPI = 1,000 VND`. Mọi thao tác hoàn thành đơn hàng tại Xưởng (Daily Report) hoặc Phê duyệt Master (Governance) đều được cộng dồn vào quỹ thưởng cuối tháng của nhân sự. Điều này giúp tối ưu hóa 100% chi phí dựa trên hiệu quả thực tế."
          </p>
       </div>
     </div>

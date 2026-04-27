@@ -1,0 +1,100 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+
+const targets = {
+  "interaction_engine": "src/cells/render-stack-cell/domain/interaction.engine.ts",
+  "interaction_pilot": "docs/render/pilot/render_language_pilot_interaction.html"
+};
+const requiredAll = {
+  "src/cells/render-stack-cell/domain/interaction.engine.ts": [
+    "interaction"
+  ],
+  "docs/render/pilot/render_language_pilot_interaction.html": [
+    "<!doctype html>",
+    "</html>",
+    "interaction",
+    "pilot"
+  ]
+};
+const requiredAny = {
+  "src/cells/render-stack-cell/domain/interaction.engine.ts": [
+    "click",
+    "input",
+    "select",
+    "state",
+    "render",
+    "event",
+    "handle"
+  ],
+  "docs/render/pilot/render_language_pilot_interaction.html": [
+    "click",
+    "input",
+    "select",
+    "button",
+    "state",
+    "render"
+  ]
+};
+const forbiddenMarks = [
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "EventBus",
+  "Mạch HeyNa wired",
+  "siraSign frame validation: wired",
+  "production renderer",
+  "production-ready",
+  "NATT-OS"
+];
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+for (const rel of Object.values(targets)) {
+  const file = path.join(root, rel);
+  must(fs.existsSync(file), "missing file " + rel);
+
+  if (!fs.existsSync(file)) continue;
+
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  for (const clause of requiredAll[rel] || []) {
+    must(lower.includes(String(clause).toLowerCase()), rel + " missing clause " + clause);
+  }
+
+  const anyGroup = requiredAny[rel] || [];
+  if (anyGroup.length) {
+    const ok = anyGroup.some(clause => lower.includes(String(clause).toLowerCase()));
+    must(ok, rel + " missing one semantic clause from " + anyGroup.join(", "));
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), rel + " forbidden mark " + mark);
+  }
+
+  if (rel.endsWith(".ts")) {
+    const importLines = c.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+    for (const line of importLines) {
+      const directOtherCell = line.includes("src/cells/") && !line.includes("render-stack-cell");
+      const relativeOtherCell = /\.\.\/.*-cell/.test(line) && !line.includes("render-stack-cell");
+      must(!directOtherCell && !relativeOtherCell, rel + " direct cross-cell import forbidden " + line.trim());
+    }
+  }
+}
+
+if (errors.length) {
+  console.error("render interaction surface validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render interaction surface validation: pass");
+console.log("files=src/cells/render-stack-cell/domain/interaction.engine.ts,docs/render/pilot/render_language_pilot_interaction.html");

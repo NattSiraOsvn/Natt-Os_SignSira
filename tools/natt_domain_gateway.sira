@@ -1,0 +1,654 @@
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+
+const ROOT = process.cwd();
+const PORT = Number(process.argv[2] || process.env.PORT || 8080);
+const EXCLUDES = new Set([".git","node_modules","dist","build",".next",".nuxt","coverage",".cache",".turbo"]);
+const AUDIT = [];
+const SSE = new Set();
+
+function exists(p){ try{return fs.existsSync(p)}catch{return false} }
+function read(p){ try{return fs.readFileSync(p,"utf8")}catch{return ""} }
+function esc(s){ return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;") }
+function id(prefix){ return prefix + "_" + crypto.randomBytes(6).toString("hex") }
+
+function routeKeyFromHost(host){
+  const h = String(host || "").toLowerCase().split(":")[0];
+
+  if (h.endsWith(".sira")) return h.replace(".sira", "");
+  if (h.endsWith(".natt")) return h.replace(".natt", "");
+
+  const first = h.split(".")[0];
+  const allowed = new Set([
+    "audit","tam","nauion","core","runtime","docs","anc",
+    "mach","heyna","gate","sira","khai","bridge"
+  ]);
+
+  if (allowed.has(first)) return first;
+
+  return h;
+}
+
+function now(){ return new Date().toISOString() }
+function excluded(rel){ return rel.split(path.sep).some(x => EXCLUDES.has(x)); }
+
+function walk(dir,out=[]){
+  let items=[];
+  try{ items=fs.readdirSync(dir,{withFileTypes:true}) }catch{ return out }
+  for(const it of items){
+    const full=path.join(dir,it.name);
+    const rel=path.relative(ROOT,full);
+    if(excluded(rel)) continue;
+    if(it.isDirectory()) walk(full,out);
+    else out.push(full);
+  }
+  return out;
+}
+
+function walkDirs(dir,out=[],depth=0){
+  if(depth>6) return out;
+  let items=[];
+  try{ items=fs.readdirSync(dir,{withFileTypes:true}) }catch{ return out }
+  for(const it of items){
+    if(!it.isDirectory() || EXCLUDES.has(it.name)) continue;
+    const full=path.join(dir,it.name);
+    out.push(full);
+    walkDirs(full,out,depth+1);
+  }
+  return out;
+}
+
+function findDir(names){
+  for(const name of names){
+    const p=path.join(ROOT,name);
+    if(exists(p) && fs.statSync(p).isDirectory()) return p;
+  }
+  const all=walkDirs(ROOT).filter(d=>names.includes(path.basename(d)));
+  all.sort((a,b)=>a.length-b.length);
+  return all[0] || null;
+}
+
+function findAudit(){
+  const preferred=path.join(ROOT,"docs","ui","NaU_audit.html");
+  if(exists(preferred)) return preferred;
+  for(const f of walk(ROOT)){
+    if(!f.toLowerCase().endsWith(".html")) continue;
+    const c=read(f);
+    if(c.includes("SCAN CLIENT") && c.includes("FORCE SPEC COMPLIANCE")) return f;
+  }
+  return null;
+}
+
+const TAM = findDir(["nattos-server"]);
+const NAUION = findDir(["NaUion-Server","Nauion-Server","nauion-server","nauion_server"]);
+const AUDIT_HTML = findAudit();
+
+function htmlFiles(base){
+  if(!base) return [];
+  return walk(base).filter(f=>f.toLowerCase().endsWith(".html")).sort();
+}
+
+function scoreMain(base,f){
+  const rel=path.relative(base,f).replaceAll(path.sep,"/").toLowerCase();
+  const name=path.basename(rel);
+  let s=0;
+  if(name.includes("v9")) s+=1000;
+  if(name.includes("nauion")) s+=200;
+  if(name.includes("index")) s+=100;
+  return s;
+}
+
+function mainHtml(base){
+  const files=htmlFiles(base);
+  if(!files.length) return null;
+  return files.map(f=>({f,s:scoreMain(base,f)})).sort((a,b)=>b.s-a.s || a.f.localeCompare(b.f))[0].f;
+}
+
+function mime(f){
+  const e=path.extname(f).toLowerCase();
+  return {
+    ".html":"text/html; charset=utf-8",
+    ".js":"text/javascript; charset=utf-8",
+    ".css":"text/css; charset=utf-8",
+    ".json":"application/json; charset=utf-8",
+    ".png":"image/png",".jpg":"image/jpeg",".jpeg":"image/jpeg",".webp":"image/webp",
+    ".svg":"image/svg+xml",".ico":"image/x-icon"
+  }[e] || "application/octet-stream";
+}
+
+function safe(base,urlPath){
+  let d="";
+  try{ d=decodeURIComponent(urlPath.split("?")[0]) }catch{ d=urlPath.split("?")[0] }
+  d=d.replace(/^\/+/,"");
+  if(!d) return null;
+  const full=path.resolve(base,d);
+  if(!full.startsWith(path.resolve(base))) return null;
+  return full;
+}
+
+function sendJson(res,obj,code=200){
+  const raw=Buffer.from(JSON.stringify(obj,null,2),"utf8");
+  res.writeHead(code,{"Content-Type":"application/json; charset=utf-8","Content-Length":raw.length,"Cache-Control":"no-store"});
+  res.end(raw);
+}
+
+function sendHtml(res,html){
+  const raw=Buffer.from(html,"utf8");
+  res.writeHead(200,{"Content-Type":"text/html; charset=utf-8","Content-Length":raw.length,"Cache-Control":"no-store"});
+  res.end(raw);
+}
+
+function audit(row){
+  const x={audit_id:id("audit"),timestamp:now(),...row};
+  AUDIT.push(x);
+  while(AUDIT.length>500) AUDIT.shift();
+  for(const res of SSE){
+    try{ res.write("data: "+JSON.stringify({type:"audit.appended",payload:x})+"\n\n") }catch{}
+  }
+  return x;
+}
+
+function inject(html,screen){
+  if(html.includes("__NATT_DOMAIN_RUNTIME__")) return html;
+  const inj = `<script>
+(function(){
+ if(window.__NATT_DOMAIN_RUNTIME__) return; window.__NATT_DOMAIN_RUNTIME__=true;
+ const screen=${JSON.stringify(screen)};
+ const box=document.createElement("div");
+ box.style.cssText="position:fixed;right:16px;bottom:16px;z-index:999999;background:#020617;color:#e2e8f0;border:1px solid #a855f7;border-radius:14px;padding:10px;font:11px ui-monospace,monospace;box-shadow:0 0 25px #000;max-width:320px";
+ box.innerHTML='<b style="color:#c084fc">natt domain RUNTIME</b><br><span>'+screen+'</span><br><button id="ndrH">HEALTH</button> <button id="ndrE">EMIT</button> <button id="ndrA">AUDIT</button><pre id="ndrO" style="max-height:120px;overflow:auto;background:#000;padding:6px;border-radius:8px">attached</pre>';
+ document.body.appendChild(box);
+ const out=box.querySelector("#ndrO");
+ async function get(p){const r=await fetch(p,{cache:"no-store"});return await r.json()}
+ async function post(p,b){const r=await fetch(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});return await r.json()}
+ function print(x){out.textContent=JSON.stringify(x,null,2)}
+ box.querySelector("#ndrH").onclick=async()=>print(await get("/api/health"));
+ box.querySelector("#ndrE").onclick=async()=>print(await post("/api/events/emit",{type:"screen.viewed",cell:"domain-ui-cell",payload:{screen,href:location.href}}));
+ box.querySelector("#ndrA").onclick=async()=>print(await get("/api/audit?limit=20"));
+})();
+</script>`;
+  return html.includes("</body>") ? html.replace("</body>", inj+"\n</body>") : html+inj;
+}
+
+function indexPage(base,title){
+  const files=htmlFiles(base);
+  const main=mainHtml(base);
+  const links=files.map(f=>{
+    const rel=path.relative(base,f).replaceAll(path.sep,"/");
+    const isMain=main===f;
+    return `<a style="display:block;padding:12px;margin:8px 0;border:1px solid ${isMain?"#fbbf24":"#334155"};border-radius:12px;color:#e2e8f0;text-decoration:none;background:#0f172a" href="/${encodeURI(rel)}" target="_blank"><b>${esc(path.basename(rel))}${isMain?" · MAIN":""}</b><br><code>${esc(rel)}</code></a>`;
+  }).join("");
+  return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title></head><body style="margin:0;background:#020617;color:#e2e8f0;font-family:Inter,system-ui;padding:24px"><h1 style="color:#c084fc">${esc(title)}</h1><p>Root: ${esc(base)} · Screens: ${files.length}</p><p><a style="color:#67e8f9" href="/">MAIN</a> · <a style="color:#67e8f9" href="/__screens">SCREENS</a> · <a style="color:#67e8f9" href="/api/health">HEALTH</a> · <a style="color:#67e8f9" href="/api/audit">AUDIT</a> · <a style="color:#67e8f9" href="/mach/heyna">SSE</a></p><input id="q" placeholder="search..." style="width:100%;padding:12px;background:#000;color:#fff;border:1px solid #334155;border-radius:10px"><div id="list">${links}</div><script>const q=document.getElementById("q");const a=[...document.querySelectorAll("#list a")];q.oninput=()=>{const s=q.value.toLowerCase();a.forEach(x=>x.style.display=x.textContent.toLowerCase().includes(s)?"block":"none")}</script></body></html>`;
+}
+
+function serveBase(req,res,base,title){
+  const u=new URL(req.url,"http://local");
+  if(u.pathname==="/api/screens") return sendJson(res,{ok:true,root:base,count:htmlFiles(base).length,screens:htmlFiles(base).map(f=>path.relative(base,f).replaceAll(path.sep,"/"))});
+  if(u.pathname==="/__screens"||u.pathname==="/screens"||u.pathname==="/index") return sendHtml(res,indexPage(base,title));
+  if(u.pathname==="/"||u.pathname==="/main"||u.pathname==="/v9"){
+    const m=mainHtml(base);
+    if(!m) return sendJson(res,{ok:false,error:"no html"},404);
+    return sendHtml(res,inject(read(m),path.relative(base,m).replaceAll(path.sep,"/")));
+  }
+  const f=safe(base,u.pathname);
+  if(!f||!exists(f)) return sendJson(res,{ok:false,error:"not found",path:u.pathname},404);
+  if(fs.statSync(f).isDirectory()){
+    const idx=path.join(f,"index.html");
+    if(exists(idx)) return sendHtml(res,inject(read(idx),path.relative(base,idx).replaceAll(path.sep,"/")));
+    return sendJson(res,{ok:false,error:"directory disabled"},403);
+  }
+  if(f.toLowerCase().endsWith(".html")) return sendHtml(res,inject(read(f),path.relative(base,f).replaceAll(path.sep,"/")));
+  res.writeHead(200,{"Content-Type":mime(f),"Cache-Control":"no-store"});
+  fs.createReadStream(f).pipe(res);
+}
+
+async function readBody(req){
+  return new Promise(resolve=>{
+    let s="";
+    req.on("data",c=>s+=c);
+    req.on("end",()=>{try{resolve(JSON.parse(s||"{}"))}catch{resolve({})}});
+  });
+}
+
+http.createServer(async (req,res)=>{
+  // sira route gate binding — 20260425
+  const siraRouteZone = {
+    "core.sira": {
+      status: "active",
+      allowed: ["/api/health", "/api/events/emit", "/api/audit", "/field/probe"],
+      forbidden: ["/admin", "/secret", "/identity"]
+    },
+    "apps.sira": {
+      status: "active",
+      allowed: ["/", "/__screens", "/assets"],
+      forbidden: ["/api/secret", "/identity", "/admin"]
+    },
+    "mach.sira": {
+      status: "active",
+      allowed: ["/mach/heyna", "/events"],
+      forbidden: ["/identity", "/memory", "/admin"]
+    },
+    "audit.sira": {
+      status: "active",
+      allowed: ["/api/audit", "/audit"],
+      forbidden: ["/audit/write-direct", "/identity", "/admin"]
+    },
+    "render.sira": {
+      status: "draft",
+      allowed: ["/render", "/render/candidate", "/render/spec"],
+      forbidden: ["/render/seal", "/identity", "/admin"]
+    },
+    "tam.sira": {
+      status: "draft",
+      allowed: ["/", "/__screens", "/health"],
+      forbidden: ["/finance/secret", "/identity", "/admin"]
+    }
+  };
+
+  
+function siraStrictHostVerdict(rawHost) {
+  const raw = String(rawHost || "");
+  const host = raw.split(":")[0].trim().toLowerCase();
+
+  if (!host) {
+    return { ok: false, host, reason: "missing_host" };
+  }
+
+  if (host !== raw.split(":")[0]) {
+    return { ok: false, host, reason: "host_requires_normalization" };
+  }
+
+  if (!/^[a-z0-9.-]+$/.test(host)) {
+    return { ok: false, host, reason: "invalid_host_chars" };
+  }
+
+  if (host.includes("..")) {
+    return { ok: false, host, reason: "invalid_host_sequence" };
+  }
+
+  if (host === "localhost" || host === "127.0.0.1") {
+    return { ok: false, host, reason: "direct_localhost_bypass" };
+  }
+
+  if (!host.endsWith(".sira")) {
+    return { ok: false, host, reason: "non_sira_host" };
+  }
+
+  return { ok: true, host, reason: "host_hardened" };
+}
+
+function normalizeSiraHost(rawHost) {
+    return String(rawHost || "").split(":")[0].trim().toLowerCase();
+  }
+
+  
+function siraNormalizeRoutePath(rawPath) {
+  const routePath = String(rawPath || "/").split("?")[0] || "/";
+  if (!routePath.startsWith("/")) {
+    return "/";
+  }
+  return routePath.replace(/\/{2,}/g, "/");
+}
+
+function siraPathMatch(rule, routePath) {
+    if (rule === "/") return routePath === "/" || routePath === "";
+    return routePath === rule || routePath.startsWith(rule + "/");
+  }
+
+  
+function siraWriteJson(res, status, payload) {
+  const body = JSON.stringify(payload, null, 2);
+
+  if (res && typeof res.status === "function" && typeof res.json === "function") {
+    return res.status(status).json(payload);
+  }
+
+  if (res && typeof res.writeHead === "function" && typeof res.end === "function") {
+    res.writeHead(status, {
+      "content-type": "application/json; charset=utf-8"
+    });
+    return res.end(body);
+  }
+
+  if (res && typeof res.end === "function") {
+    return res.end(body);
+  }
+
+  throw new Error("sira route gate response adapter unavailable");
+}
+
+
+function siraSignFrameVerdict(host, routePath, req) {
+  const lowerPath = String(routePath || "/").toLowerCase();
+
+  const sensitive =
+    lowerPath.includes("/identity") ||
+    lowerPath.includes("/memory") ||
+    lowerPath.includes("/seal") ||
+    lowerPath.includes("/field");
+
+  if (!sensitive) {
+    return { allow: true, reason: "frame_not_required" };
+  }
+
+  const headers = req && req.headers ? req.headers : {};
+  const subject = String(headers["x-sira-subject"] || "");
+  const boundary = String(headers["x-sira-boundary"] || "");
+  const causation = String(headers["x-sira-causation"] || "");
+  const signature = String(headers["x-sira-signature"] || "");
+
+  if (!subject) {
+    return { allow: false, reason: "missing_sira_subject" };
+  }
+
+  if (!boundary) {
+    return { allow: false, reason: "missing_sira_boundary" };
+  }
+
+  if (!causation) {
+    return { allow: false, reason: "missing_sira_causation" };
+  }
+
+  if (!signature) {
+    return { allow: false, reason: "missing_sira_signature" };
+  }
+
+  return { allow: true, reason: "sirasign_frame_shape_pass" };
+}
+
+function siraRouteGate(host, routePath) {
+    const zone = siraRouteZone[host];
+
+    if (!host) {
+      return { allow: false, status: 403, result: "deny", reason: "missing_host" };
+    }
+
+    if (host === "localhost" || host === "127.0.0.1") {
+      return { allow: false, status: 403, result: "deny", reason: "direct_localhost_bypass" };
+    }
+
+    if (!zone) {
+      return { allow: false, status: 403, result: "deny", reason: "unknown_host" };
+    }
+
+    if (zone.forbidden.some(rule => siraPathMatch(rule, routePath))) {
+      return { allow: false, status: 403, result: "deny", reason: "forbidden_path" };
+    }
+
+    if (!zone.allowed.some(rule => siraPathMatch(rule, routePath))) {
+      return { allow: false, status: 404, result: "deny", reason: "path_not_allowed" };
+    }
+
+    return { allow: true, status: 200, result: "allow", reason: "route_gate_pass" };
+  }
+
+  const hostVerdict = siraStrictHostVerdict(req.headers.host || "");
+const host = hostVerdict.host;
+
+if (!hostVerdict.ok) {
+  try {
+    if (typeof audit === "function") {
+      audit({
+        action: "sira.route_gate",
+        host,
+        result: "deny",
+        payload_summary: {
+          path: String(req.path || req.url || "/").split("?")[0] || "/",
+          reason: hostVerdict.reason
+        }
+      });
+    }
+  } catch (_) {}
+  return siraWriteJson(res, 403, {
+    ok: false,
+    error: "sira route gate deny",
+    host,
+    path: String(req.path || req.url || "/").split("?")[0] || "/",
+    reason: hostVerdict.reason
+  });
+}
+  const routePath = siraNormalizeRoutePath(req.path || req.url || "/");
+  const routeDecision = siraRouteGate(host, routePath);
+
+  if (!routeDecision.allow) {
+    try {
+      if (typeof audit === "function") {
+        audit({
+          action: "sira.route_gate",
+          host,
+          result: routeDecision.result,
+          payload_summary: {
+            path: routePath,
+            reason: routeDecision.reason
+          }
+        });
+      }
+    } catch (_) {}
+    return siraWriteJson(res, routeDecision.status, {
+      ok: false,
+      error: "sira route gate deny",
+      host,
+      path: routePath,
+      reason: routeDecision.reason
+    });
+  }
+
+const frameDecision = siraSignFrameVerdict(host, routePath, req);
+
+if (!frameDecision.allow) {
+  try {
+    if (typeof audit === "function") {
+      audit({
+        action: "sira.frame_guard",
+        host,
+        result: "deny",
+        payload_summary: {
+          path: routePath,
+          reason: frameDecision.reason
+        }
+      });
+    }
+  } catch (_) {}
+  return siraWriteJson(res, 403, {
+    ok: false,
+    error: "siraSign frame guard deny",
+    host,
+    path: routePath,
+    reason: frameDecision.reason
+  });
+}
+
+  const u=new URL(req.url,"http://local");
+  const routeKey=routeKeyFromHost(host);
+
+  if(u.pathname==="/favicon.ico"){res.writeHead(204);res.end();return}
+
+  if(routeKey==="anc"){
+    const ANC_MAP = {
+      apps: "http://apps.sira",
+      core: "http://core.sira",
+      runtime: "http://runtime.sira",
+      audit: "http://audit.sira",
+      tam: "http://tam.sira",
+      nauion: "http://nauion.sira",
+      docs: "http://docs.sira",
+      mach: "http://mach.sira/mach/heyna",
+      heyna: "http://heyna.sira/mach/heyna",
+      gate: "http://gate.sira",
+      sira: "http://sira.sira",
+      khai: "http://khai.sira",
+      bridge: "http://bridge.sira"
+    };
+
+    function resolveAncUri(input){
+      let raw = String(input || "").trim();
+      if(!raw) return null;
+      if(raw.startsWith("anc://")) raw = raw.slice("anc://".length);
+      raw = raw.replace(/^\/+/, "").split(/[\/?#]/)[0].toLowerCase();
+      raw = raw.replace(/\.natt$/, "");
+      return ANC_MAP[raw] || null;
+    }
+
+    if(u.pathname==="/api/resolve" || u.pathname==="/resolve"){
+      const uri = u.searchParams.get("uri") || u.searchParams.get("u") || "";
+      const target = resolveAncUri(uri);
+      return sendJson(res, {
+        ok: !!target,
+        uri,
+        target,
+        rule: "anc://<name> -> http://<name>.sira"
+      }, target ? 200 : 404);
+    }
+
+    if(u.pathname.startsWith("/go/")){
+      const key = decodeURIComponent(u.pathname.slice(4));
+      const target = resolveAncUri(key);
+      if(target){
+        res.writeHead(302, {"Location": target});
+        res.end();
+        return;
+      }
+      return sendJson(res, {ok:false,error:"unknown anc uri", key}, 404);
+    }
+
+    if(u.pathname==="/" || u.pathname==="/index"){
+      const rows = Object.entries(ANC_MAP).map(([k,v]) =>
+        `<a style="display:block;margin:8px 0;padding:12px;border:1px solid #334155;border-radius:12px;background:#0f172a;color:#e2e8f0;text-decoration:none" href="/go/${k}">
+          <b style="color:#c084fc">anc://${k}</b><br><code>${v}</code>
+        </a>`
+      ).join("");
+
+      return sendHtml(res, `<!doctype html>
+<html><head><meta charset="utf-8"><title>ANC Resolver</title></head>
+<body style="margin:0;background:#020617;color:#e2e8f0;font-family:Inter,system-ui;padding:24px">
+<h1 style="color:#c084fc">natt-os ANC Resolver</h1>
+<p>Canonical namespace: <code>anc://</code>. HTTP remains transport.</p>
+<p><a style="color:#67e8f9" href="/api/resolve?uri=anc://core">/api/resolve?uri=anc://core</a></p>
+${rows}
+</body></html>`);
+    }
+
+    return sendJson(res, {
+      ok: true,
+      host: "anc.natt",
+      resolver: "ANC Resolver",
+      examples: [
+        "http://anc.sira/go/core",
+        "http://anc.sira/go/audit",
+        "http://anc.sira/api/resolve?uri=anc://nauion"
+      ]
+    });
+  }
+
+
+  if(u.pathname==="/mach/heyna"){
+    res.writeHead(200,{"Content-Type":"text/event-stream; charset=utf-8","Cache-Control":"no-cache","Connection":"keep-alive"});
+    SSE.add(res);
+    res.write("data: "+JSON.stringify({type:"mach.heyna.connected",payload:{host,at:now()}})+"\n\n");
+    req.on("close",()=>SSE.delete(res));
+    return;
+  }
+
+  if(u.pathname==="/api/health") return sendJson(res,{ok:true,host,root:ROOT,tam_root:TAM,nauion_root:NAUION,audit_html:AUDIT_HTML,tam_screens:TAM?htmlFiles(TAM).length:0,nauion_screens:NAUION?htmlFiles(NAUION).length:0,audit_events:AUDIT.length,time:now()});
+  if(u.pathname==="/api/audit") return sendJson(res,{ok:true,total:AUDIT.length,events:AUDIT.slice(-Number(u.searchParams.get("limit")||50))});
+
+  if(req.method==="POST" && (u.pathname==="/api/events/emit"||u.pathname==="/phat/nauion")){
+    const b=await readBody(req);
+    const evt={event_id:b.event_id||id("evt"),event_type:b.type||b.event_type||"domain.event",cell_id:b.cell||b.cell_id||"domain-cell",payload:b.payload||{},host,timestamp:now()};
+    const row=audit({action:"event.emit",host,event_id:evt.event_id,cell_id:evt.cell_id,result:"ACCEPTED",payload_summary:evt.payload});
+    for(const s of SSE){try{s.write("data: "+JSON.stringify({type:evt.event_type,payload:evt})+"\n\n")}catch{}}
+    return sendJson(res,{ok:true,event:evt,audit:row});
+  }
+
+
+  if(routeKey==="apps"){
+    return sendHtml(res, `<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>sira app hub</title>
+<style>
+:root{--bg:#020617;--card:#0f172a;--line:#1e293b;--txt:#e2e8f0;--muted:#94a3b8;--cyan:#67e8f9;--violet:#c084fc;--gold:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 8%,rgba(192,132,252,.16),transparent 32%),radial-gradient(circle at 85% 18%,rgba(103,232,249,.12),transparent 30%),var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif}
+header{padding:26px 24px;border-bottom:1px solid var(--line);background:rgba(2,6,23,.86);backdrop-filter:blur(14px)}
+h1{margin:0;color:var(--violet);letter-spacing:.16em;text-transform:uppercase;font-size:17px}
+p{color:var(--muted);font:12px ui-monospace,Menlo,monospace}
+main{padding:24px;max-width:1180px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{display:block;min-height:135px;padding:16px;border-radius:18px;background:rgba(15,23,42,.86);border:1px solid var(--line);text-decoration:none;color:var(--txt);box-shadow:0 0 24px rgba(0,0,0,.2);transition:.16s}
+.card:hover{border-color:var(--violet);transform:translateY(-1px);box-shadow:0 0 30px rgba(192,132,252,.12)}
+.card b{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.card code{display:block;color:var(--cyan);font-size:12px;word-break:break-all;margin-bottom:10px}
+.card span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+.badge{display:inline-block;margin-top:12px;border:1px solid rgba(251,191,36,.45);color:var(--gold);border-radius:999px;padding:4px 8px;font:10px ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<header>
+<h1>sira app hub</h1>
+<p>Root namespace: .sira · Identity: anc:// · Browser Adapter: tools/natt_domain_gateway.sira</p>
+</header>
+<main>
+<div class="grid">
+  <a class="card" href="http://tam.sira"><b>Tâm Luxury App</b><code>anc://tam → http://tam.sira</code><span>App chính Tâm Luxury.</span><i class="badge">APP</i></a>
+  <a class="card" href="http://tam.sira/__screens"><b>Tâm Luxury Screens Hub</b><code>http://tam.sira/__screens</code><span>Màn tổng hợp 70 HTML screens của app Tâm.</span><i class="badge">70 SCREENS</i></a>
+  <a class="card" href="http://audit.sira"><b>Audit UI</b><code>anc://audit → http://audit.sira</code><span>Màn audit/runtime/scan/TODO.</span><i class="badge">AUDIT</i></a>
+  <a class="card" href="http://nauion.sira"><b>NaUion v9</b><code>anc://nauion → http://nauion.sira</code><span>NaUion runtime app.</span><i class="badge">NAUION</i></a>
+  <a class="card" href="http://docs.sira"><b>Docs</b><code>anc://docs → http://docs.sira</code><span>Spec/evidence/runtime docs.</span><i class="badge">DOCS</i></a>
+  <a class="card" href="http://anc.sira"><b>ANC Resolver</b><code>anc://core → http://core.sira</code><span>Resolver chính danh cho anc://.</span><i class="badge">RESOLVER</i></a>
+  <a class="card" href="http://core.sira/api/health"><b>Core Health</b><code>http://core.sira/api/health</code><span>Runtime health endpoint.</span><i class="badge">CORE</i></a>
+  <a class="card" href="http://mach.sira/mach/heyna"><b>Mach HeyNa</b><code>http://mach.sira/mach/heyna</code><span>SSE transport endpoint.</span><i class="badge">SSE</i></a>
+</div>
+</main>
+</body>
+</html>`);
+  }
+
+
+  if(routeKey==="audit"){
+    if(!AUDIT_HTML) return sendJson(res,{ok:false,error:"audit html not found"},404);
+    return serveBase(req,res,path.dirname(AUDIT_HTML),"natt-os AUDIT UI");
+  }
+  if(routeKey==="tam"){
+    if(!TAM) return sendJson(res,{ok:false,error:"nattos-server not found"},404);
+    return serveBase(req,res,TAM,"TÂM LUXURY APP");
+  }
+  if(["nauion","core","runtime","gate","sira","khai","bridge","mach","heyna"].includes(routeKey)){
+    if(!NAUION) return sendJson(res,{ok:false,error:"NaUion-Server not found"},404);
+    return serveBase(req,res,NAUION,"natt-os / NAUION SERVER");
+  }
+  if(routeKey==="docs"){
+    const docs=path.join(ROOT,"docs");
+    if(!exists(docs)) return sendJson(res,{ok:false,error:"docs not found"},404);
+    return serveBase(req,res,docs,"natt-os DOCS");
+  }
+
+  return sendJson(res,{ok:true,message:"NATT Domain Gateway",host,routes:["audit.natt","tam.natt","nauion.natt","core.natt","docs.natt","mach.natt/mach/heyna"]});
+}).listen(PORT,"0.0.0.0",()=>{
+  audit({action:"gateway.boot",host:"127.0.0.1",result:"BOOTED",payload_summary:{PORT,TAM,NAUION,AUDIT_HTML}});
+  console.log("");
+  console.log("========================================================================================");
+  console.log("natt domain gateway — local routing");
+  console.log("========================================================================================");
+  console.log("ROOT       :", ROOT);
+  console.log("PORT       :", PORT);
+  console.log("AUDIT HTML :", AUDIT_HTML);
+  console.log("TAM ROOT   :", TAM);
+  console.log("NAUION ROOT:", NAUION);
+  console.log("");
+  console.log("OPEN:");
+  console.log(`  http://audit.sira:${PORT}`);
+  console.log(`  http://tam.sira:${PORT}`);
+  console.log(`  http://nauion.sira:${PORT}`);
+  console.log(`  http://core.sira:${PORT}`);
+  console.log(`  http://docs.sira:${PORT}`);
+  console.log(`  http://mach.sira:${PORT}/mach/heyna`);
+  console.log("");
+  console.log("Stop: Ctrl + C");
+  console.log("========================================================================================");
+  console.log("");
+});

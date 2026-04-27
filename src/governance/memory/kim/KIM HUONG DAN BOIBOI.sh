@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==============================================================================
-# NATT-OS PRE-WAVE3 MASTER CLEANUP SCRIPT
+# natt-os PRE-WAVE3 MASTER CLEANUP SCRIPT
 # Version: 1.0.0
 # Author: KIM - Chief Governance Enforcer
 # Date: 2026-02-07
@@ -34,7 +34,7 @@ NC='\033[0m' # No Color
 # CONSTITUTIONAL CONSTANTS
 # ==============================================================================
 declare -a KERNEL_CELLS=("config-cell" "rbac-cell" "audit-cell" "security-cell" "monitor-cell")
-declare -a INFRA_CELLS=("sync-cell" "smartlink-cell" "warehouse-cell")
+declare -a INFRA_CELLS=("sync-cell" "SmartLink-cell" "warehouse-cell")
 declare -a LEGACY_CELLS=("hr-cell" "event-cell" "sales-cell" "showroom-cell" "constants-cell")
 declare -a EDA_CONTRACTS=("Event" "Command" "Query" "DomainEvent" "IntegrationEvent" "ValueObject" "Entity" "Aggregate" "Repository" "Service" "Factory" "Specification" "Policy" "Handler")
 
@@ -50,11 +50,11 @@ log_success() {
 }
 
 log_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+    echo -e "${YELLOW}[warnING]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+    echo -e "${RED}[error]${NC} $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
 }
 
 log_constitutional() {
@@ -71,11 +71,11 @@ log_phase() {
 # VALIDATION FUNCTIONS
 # ==============================================================================
 validate_natt_os_root() {
-    log_info "Validating NATT-OS Gold Master root..."
+    log_info "Validating natt-os Gold Master root..."
     
     if [[ ! -d "src/cells" ]]; then
-        log_error "Not in NATT-OS root directory. 'src/cells' not found."
-        log_error "Please run this script from NATT-OS Gold Master root directory."
+        log_error "Not in natt-os root directory. 'src/cells' not found."
+        log_error "Please run this script from natt-os Gold Master root directory."
         exit 1
     fi
     
@@ -83,7 +83,7 @@ validate_natt_os_root() {
         log_warning "Constitution file not found. Continuing but governance checks limited."
     fi
     
-    log_success "Validated NATT-OS Gold Master root at: $ROOT_DIR"
+    log_success "Validated natt-os Gold Master root at: $ROOT_DIR"
 }
 
 check_git_status() {
@@ -186,7 +186,7 @@ phase_a() {
     "boundary": "no-business-logic, types-only",
     "trace": "version-tracked",
     "confidence": "validated-by-compiler",
-    "smartlink": "imported-by-all-cells",
+    "SmartLink": "imported-by-all-cells",
     "lifecycle": "stable"
   },
   "restrictions": [
@@ -231,7 +231,7 @@ EOF
     "boundary": "isolated",
     "trace": "migrated-from-root",
     "confidence": "low",
-    "smartlink": "none",
+    "SmartLink": "none",
     "lifecycle": "frozen"
   },
   "restrictions": [
@@ -346,7 +346,7 @@ EOF
     "boundary": "strictly-isolated",
     "trace": "audit-logged",
     "confidence": "very-low",
-    "smartlink": "disabled",
+    "SmartLink": "disabled",
     "lifecycle": "construction"
   },
   "restrictions": [
@@ -393,7 +393,7 @@ phase_c() {
 {
   "auditId": "wave2-pre-wave3-cleanup",
   "timestamp": "$(date -Iseconds)",
-  "system": "NATT-OS Gold Master",
+  "system": "natt-os Gold Master",
   "performedBy": "BỐI BỐI via cleanup script",
   "constitutionalVersion": "v3.1",
   
@@ -418,10 +418,10 @@ phase_c() {
     "wave2": {
       "status": "$([ -d "src/cells/infrastructure" ] && echo "IN_PROGRESS" || echo "NOT_STARTED")",
       "cells": {
-        "sync-cell": "$([ -d "src/cells/infrastructure/sync-cell" ] && echo "PRESENT" || echo "MISSING")",
-        "smartlink-cell": "$([ -d "src/cells/infrastructure/smartlink-cell" ] && echo "PRESENT" || echo "MISSING")",
-        "warehouse-cell": "$([ -d "src/cells/infrastructure/warehouse-cell" ] && echo "PRESENT_QUARANTINED" || echo "MISSING")",
-        "shared-contracts-cell": "$([ -d "src/cells/infrastructure/shared-contracts-cell" ] && echo "PRESENT" || echo "MISSING")"
+        "sync-cell": "$([ -d "src/cells/infrastructure/sync-cell" ] && echo "PRESENT" || echo "missing")",
+        "SmartLink-cell": "$([ -d "src/cells/infrastructure/SmartLink-cell" ] && echo "PRESENT" || echo "missing")",
+        "warehouse-cell": "$([ -d "src/cells/infrastructure/warehouse-cell" ] && echo "PRESENT_QUARANTINED" || echo "missing")",
+        "shared-contracts-cell": "$([ -d "src/cells/infrastructure/shared-contracts-cell" ] && echo "PRESENT" || echo "missing")"
       },
       "verified": false
     },
@@ -471,7 +471,7 @@ EOF
     echo "{" > "$hash_file"
     echo '  "registryVersion": "1.0",' >> "$hash_file"
     echo '  "created": "'$(date -Iseconds)'",' >> "$hash_file"
-    echo '  "purpose": "Baseline hash registry for NATT-OS cells",' >> "$hash_file"
+    echo '  "purpose": "Baseline hash registry for natt-os cells",' >> "$hash_file"
     echo '  "constitutionalNote": "Hash created at Phase C after structure stabilization",' >> "$hash_file"
     echo '  "cells": {' >> "$hash_file"
     
@@ -545,7 +545,7 @@ EOF
     done
     
     # Summary
-    echo "VALIDATION SUMMARY" >> "$validation_log"
+    echo "validation SUMMARY" >> "$validation_log"
     echo "==================" >> "$validation_log"
     echo "Total manifests: $total_count" >> "$validation_log"
     echo "Valid manifests: $valid_count" >> "$validation_log"
@@ -553,7 +553,7 @@ EOF
     
     if [ ${#errors[@]} -gt 0 ]; then
         echo "" >> "$validation_log"
-        echo "ERRORS NEEDING ATTENTION:" >> "$validation_log"
+        echo "errorS NEEDING ATTENTION:" >> "$validation_log"
         for error in "${errors[@]}"; do
             echo "  - $error" >> "$validation_log"
         done
@@ -581,7 +581,7 @@ final_summary() {
     log_phase "COMPLETE" "PRE-WAVE3 CLEANUP FINISHED"
     
     echo ""
-    echo "🎉 ${GREEN}NATT-OS PRE-WAVE3 CLEANUP COMPLETED SUCCESSFULLY${NC}"
+    echo "🎉 ${GREEN}natt-os PRE-WAVE3 CLEANUP COMPLETED SUCCESSFULLY${NC}"
     echo ""
     
     echo "${CYAN}📊 CLEANUP SUMMARY:${NC}"
@@ -593,7 +593,7 @@ final_summary() {
     echo "  ✅ Manifest validation dry-run completed"
     echo ""
     
-    echo "${YELLOW}📝 FILES CREATED:${NC}"
+    echo "${YELLOW}📝 FILES created:${NC}"
     find . -maxdepth 2 -name "*audit*" -o -name "*validation*" -o -name "*registry*" 2>/dev/null | while read file; do
         echo "  📄 $(basename "$file")"
     done
@@ -623,7 +623,7 @@ final_summary() {
     cat > "${ROOT_DIR}/PRE_WAVE3_CHECKLIST_COMPLETE.md" << EOF
 # PRE-WAVE 3 CLEANUP CHECKLIST - COMPLETED ✅
 
-## Verification Items (All PASS)
+## Verification Items (All pass)
 
 ### MANDATORY ITEMS
 - [x] 5 kernel cells with 5-layer structure
@@ -723,7 +723,7 @@ EOF
     # Confirm execution
     if [ "$dry_run" = false ] && [ "$force" = false ]; then
         echo ""
-        log_warning "This script will perform significant changes to NATT-OS structure."
+        log_warning "This script will perform significant changes to natt-os structure."
         echo "It will:"
         echo "  1. Backup current state"
         echo "  2. Remove duplicate cell directories"

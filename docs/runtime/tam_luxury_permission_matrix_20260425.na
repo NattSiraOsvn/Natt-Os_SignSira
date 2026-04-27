@@ -1,0 +1,120 @@
+# tam luxury permission matrix — 20260425
+
+status: matrix-manifested
+created_at: 2026-04-25T10:27:01.433752+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+source: docs/runtime/tam_luxury_domain_route_gate_matrix_20260425.na
+
+---
+
+## 1. principle
+
+permission matrix là role x screen x route.
+
+matrix này không scaffold cell.
+
+matrix này không thay đổi route gate.
+
+screen binding không phải cell scaffold.
+
+---
+
+## 2. role universe
+
+```text
+admin,tgd,bks,ql_sx,thu_kho,ke_toan_kho,ke_toan_sx,tho,to_truong,ky_thuat,qc,hcns,ke_toan,ke_toan_truong,ke_toan_thue,nv,quan_ly,sale,cskh,marketing,truong_phong_kd,khach_hang,khach_hang_vip,all_nv
+```
+
+---
+
+## 3. permission matrix
+
+| screen_id | domain | route | gate_guard | sirasign | read_roles | write_roles | approve_roles | status |
+|---|---|---|---|---|---|---|---|---|
+| PL-001 | tiện ích & qt | /system/overview | gate_shape_frame | shape | tgd,bks,admin | bks,admin | admin | manifested |
+| PL-002 | tiện ích & qt | /system/config | gate_required_frame | required | admin | admin | admin | manifested |
+| PL-003 | sản xuất & kho | /inventory/stock-movement | gate_required_frame | required | thu_kho,ke_toan_kho,ql_sx,bks,tgd | thu_kho,ke_toan_kho,ql_sx | ql_sx,bks,tgd | manifested |
+| PL-004 | sản xuất & kho | /production/shift-report | gate_required_frame | required | ql_sx,to_truong,tho,bks,tgd | ql_sx,to_truong,tho | ql_sx,bks,tgd | manifested |
+| PL-005 | sản xuất & kho | /production/piece-rate-payroll | gate_required_frame | required | ql_sx,to_truong,tho,bks,tgd,ke_toan_sx,ke_toan | ql_sx,to_truong,tho,ke_toan_sx | ql_sx,bks,tgd | manifested |
+| PL-006 | sản xuất & kho | /inventory/stock-count | gate_required_frame | required | thu_kho,ke_toan_kho,ql_sx,bks,tgd | thu_kho,ke_toan_kho,ql_sx | ql_sx,bks,tgd | manifested |
+| PL-007 | sản xuất & kho | /purchase/material-request | gate_required_frame | required | thu_kho,ql_sx,ke_toan_kho,tgd | thu_kho,ql_sx,ke_toan_kho | ql_sx,tgd | manifested |
+| PL-008 | sản xuất & kho | /maintenance/machine-register | gate_shape_frame | shape | ky_thuat,ql_sx,tgd | ky_thuat,ql_sx | - | manifested |
+| PL-009 | sản xuất & kho | /qc/inspection-result | gate_required_frame | required | qc,ql_sx,bks | qc,ql_sx,bks | ql_sx,bks | manifested |
+| PL-010 | sản xuất & kho | /production/handover | gate_required_frame | required | ql_sx,to_truong,tho,bks,tgd | ql_sx,to_truong,tho | ql_sx,bks,tgd | manifested |
+| PL-011 | sản xuất & kho | /inventory/dashboard | gate_shape_frame | shape | thu_kho,ke_toan_kho,ql_sx,bks,tgd | thu_kho,ke_toan_kho,ql_sx | ql_sx,bks,tgd | manifested |
+| PL-012 | sản xuất & kho | /production/loss-alert | gate_required_frame | required | ql_sx,to_truong,tho,bks,tgd | ql_sx,to_truong,tho | ql_sx,bks,tgd | manifested |
+| PL-013 | sản xuất & kho | /inventory/audit-trail | gate_required_frame | required | thu_kho,ke_toan_kho,ql_sx,bks,tgd | thu_kho,ke_toan_kho,ql_sx | ql_sx,bks,tgd | manifested |
+| PL-014 | sản xuất & kho | /config/norms-pricing | gate_required_frame | required | admin,ke_toan_sx,ql_sx,bks | admin,ke_toan_sx,ql_sx,bks | - | manifested |
+| PL-015 | sản xuất & kho | /production/waste-recycle | gate_required_frame | required | ql_sx,to_truong,tho,bks,tgd | ql_sx,to_truong,tho | ql_sx,bks,tgd | manifested |
+| PL-016 | nhân sự & hc | /hr/employee-profiles | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-017 | nhân sự & hc | /hr/contracts | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-018 | nhân sự & hc | /hr/recruitment | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-019 | nhân sự & hc | /hr/attendance | gate_required_frame | required | nv,hcns,ke_toan,quan_ly | nv,hcns,quan_ly | quan_ly,hcns | manifested |
+| PL-020 | nhân sự & hc | /hr/leave-overtime-approval | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-021 | nhân sự & hc | /hr/attendance-sheet | gate_required_frame | required | nv,hcns,ke_toan,quan_ly | nv,hcns,quan_ly | quan_ly,hcns | manifested |
+| PL-022 | nhân sự & hc | /hr/kpi-evaluation | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-023 | nhân sự & hc | /hr/personal-payslip | gate_required_frame | required | nv,hcns,ke_toan,quan_ly | nv,hcns,quan_ly | quan_ly,hcns | manifested |
+| PL-024 | nhân sự & hc | /hr/salary-increase | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-025 | nhân sự & hc | /hr/handbook | gate_minimal_read | none | all_nv,hcns | hcns,admin | - | manifested |
+| PL-026 | nhân sự & hc | /hr/reward-discipline | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-027 | nhân sự & hc | /hr/dashboard | gate_shape_frame | shape | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-028 | nhân sự & hc | /hr/probation | gate_required_frame | required | hcns,quan_ly,tgd,bks | hcns,quan_ly | quan_ly,hcns,tgd,bks | manifested |
+| PL-029 | nhân sự & hc | /config/salary-insurance | gate_required_frame | required | admin,ke_toan,hcns,bks | admin,ke_toan,hcns,bks | - | manifested |
+| PL-030 | nhân sự & hc | /payroll/reconciliation-lock | gate_required_frame | required | ke_toan,ke_toan_truong,hcns,bks,tgd | ke_toan,ke_toan_truong,hcns | ke_toan_truong,bks,tgd | manifested |
+| PL-031 | tài chính – kt | /finance/advance-settlement | gate_required_frame | required | nv,ke_toan,ke_toan_truong,bks | ke_toan,ke_toan_truong | ke_toan_truong,bks | manifested |
+| PL-032 | tài chính – kt | /finance/cash-receipt-payment | gate_required_frame | required | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-033 | tài chính – kt | /finance/compliance-report | gate_required_frame | required | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-034 | tài chính – kt | /payroll/reconciliation | gate_required_frame | required | ke_toan,ke_toan_truong,hcns,bks,tgd | ke_toan,ke_toan_truong,hcns | ke_toan_truong,bks,tgd | manifested |
+| PL-035 | tài chính – kt | /finance/cashflow | gate_shape_frame | shape | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-036 | tài chính – kt | /finance/gp-alert | gate_required_frame | required | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-037 | tài chính – kt | /finance/trial-balance | gate_required_frame | required | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-038 | tài chính – kt | /finance/tax-invoice | gate_required_frame | required | ke_toan_thue,ke_toan_truong,bks,tgd | ke_toan_thue,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-039 | tài chính – kt | /finance/cash-bank-ledger | gate_required_frame | required | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-040 | tài chính – kt | /finance/payables | gate_required_frame | required | ke_toan,ke_toan_truong,bks,tgd | ke_toan,ke_toan_truong | ke_toan_truong,bks,tgd | manifested |
+| PL-041 | kinh doanh & kh | /sales/order-confirm | gate_required_frame | required | sale,ke_toan,truong_phong_kd,tgd | sale,ke_toan,truong_phong_kd | truong_phong_kd,tgd | manifested |
+| PL-042 | kinh doanh & kh | /sales/performance | gate_required_frame | required | sale,ke_toan,truong_phong_kd,tgd | sale,ke_toan,truong_phong_kd | truong_phong_kd,tgd | manifested |
+| PL-043 | kinh doanh & kh | /sales/customer-debt | gate_required_frame | required | sale,ke_toan,truong_phong_kd,tgd | sale,ke_toan,truong_phong_kd | truong_phong_kd,tgd | manifested |
+| PL-044 | kinh doanh & kh | /crm/complaint | gate_required_frame | required | cskh,sale,quan_ly,marketing | cskh,sale,quan_ly | quan_ly | manifested |
+| PL-045 | kinh doanh & kh | /crm/vip | gate_required_frame | required | cskh,sale,quan_ly,marketing | cskh,sale,quan_ly | quan_ly | manifested |
+| PL-046 | kinh doanh & kh | /marketing/campaign | gate_required_frame | required | marketing,tgd | marketing | tgd | manifested |
+| PL-047 | kinh doanh & kh | /crm/satisfaction-survey | gate_required_frame | required | cskh,sale,quan_ly,marketing | cskh,sale,quan_ly | quan_ly | manifested |
+| PL-048 | kinh doanh & kh | /sales/dashboard | gate_shape_frame | shape | tgd,truong_phong_kd,sale | truong_phong_kd,sale | truong_phong_kd,tgd | manifested |
+| PL-049 | ban kiểm soát | /audit/compliance-check | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-050 | ban kiểm soát | /audit/violation | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-051 | ban kiểm soát | /audit/internal-audit | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-052 | ban kiểm soát | /audit/whistleblow | gate_required_frame | required | all_nv,bks | bks | bks | manifested |
+| PL-053 | ban kiểm soát | /audit/risk-report | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-054 | ban kiểm soát | /audit/sensitivity | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-055 | ban kiểm soát | /audit/kpi-cross-check | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-056 | cổng kh | /customer/order-status | gate_minimal_read | none | khach_hang,cskh | - | - | manifested |
+| PL-057 | cổng kh | /customer/purchase-history | gate_minimal_read | none | khach_hang,cskh | - | - | manifested |
+| PL-058 | cổng kh | /customer/warranty | gate_required_frame | required | khach_hang,cskh | khach_hang,cskh | cskh | manifested |
+| PL-059 | cổng kh | /customer/support | gate_required_frame | required | khach_hang,cskh | khach_hang,cskh | cskh | manifested |
+| PL-060 | cổng kh | /customer/product-review | gate_session_read | none | khach_hang,cskh | - | - | manifested |
+| PL-061 | cổng kh | /customer/promotions | gate_minimal_read | none | khach_hang,cskh | - | - | manifested |
+| PL-062 | cổng kh | /customer/vip-profile | gate_required_frame | required | khach_hang_vip,cskh | khach_hang_vip,cskh | cskh | manifested |
+| PL-063 | cổng kh | /customer/auth | gate_required_frame | required | khach_hang,cskh | khach_hang,cskh | cskh | manifested |
+| PL-064 | tiện ích & qt | /workspace/my-dashboard | gate_session_read | none | all_nv | - | - | manifested |
+| PL-065 | tiện ích & qt | /workspace/calendar | gate_minimal_read | none | all_nv,hcns | hcns,admin | - | manifested |
+| PL-066 | tiện ích & qt | /workspace/messaging | gate_required_frame | required | all_nv,admin | all_nv,admin | admin | manifested |
+| PL-067 | tiện ích & qt | /workspace/docs-library | gate_minimal_read | none | all_nv,hcns,admin | hcns,admin | - | manifested |
+| PL-068 | tiện ích & qt | /workspace/report-export | gate_required_frame | required | ke_toan,hcns,bks | ke_toan,hcns,bks | bks | manifested |
+| PL-069 | tiện ích & qt | /workspace/audit-log-viewer | gate_required_frame | required | bks,admin | bks,admin | admin,bks | manifested |
+| PL-070 | ban kiểm soát | /audit/system-compliance-health | gate_required_frame | required | bks,tgd,admin | bks | bks | manifested |
+| PL-071 | tiện ích & qt | /workspace/event-correlation | gate_required_frame | required | bks,admin | bks,admin | admin,bks | manifested |
+
+---
+
+## 4. counts
+
+- total screens: 71
+- total roles: 24
+- role coverage: {'tgd': 43, 'bks': 44, 'admin': 15, 'thu_kho': 5, 'ke_toan_kho': 5, 'ql_sx': 13, 'to_truong': 5, 'tho': 5, 'ke_toan_sx': 2, 'ke_toan': 19, 'ky_thuat': 1, 'qc': 1, 'hcns': 19, 'quan_ly': 15, 'nv': 4, 'all_nv': 6, 'ke_toan_truong': 11, 'ke_toan_thue': 1, 'sale': 7, 'truong_phong_kd': 4, 'cskh': 11, 'marketing': 4, 'khach_hang': 7, 'khach_hang_vip': 1}
+
+---
+
+## 5. next
+
+bước tiếp theo là cell binding validation.
+
+sau cell binding validation mới scaffold nhóm trọng yếu.

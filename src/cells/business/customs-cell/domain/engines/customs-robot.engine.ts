@@ -74,7 +74,7 @@ export class CustomsRobotEngine {
       // Rule: Vàng nguyên liệu (7108) cần giấy phép NHNN
       if (item.hsCode.startsWith('7108')) {
         docs.add('IMPORT_LICENSE_SBV');
-        issues.push({ type: 'RESTRICTION', severity: 'WARNING', message: `Dòng ${item.stt}: Nhập khẩu Vàng nguyên liệu cần hạn ngạch NHNN.` });
+        issues.push({ type: 'RESTRICTION', severity: 'warnING', message: `Dòng ${item.stt}: Nhập khẩu Vàng nguyên liệu cần hạn ngạch NHNN.` });
       }
     });
 

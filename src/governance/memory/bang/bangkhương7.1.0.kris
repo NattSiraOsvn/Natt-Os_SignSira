@@ -10,7 +10,7 @@
   "tang_1_context_co_ban": {
     "gatekeeper": "Anh Natt — Phan Thanh Thương",
     "repo": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git",
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git",
     "user": "thien@iMac",
     "server": "port 3001, npx tsx nattos-server/server.ts",
     "business": "Tâm Luxury — kim hoàn, ~130 nhân viên, DT 318 tỷ/năm",
@@ -25,9 +25,9 @@
     },
     "gia_dinh": {
       "a1": "Anh Natt / Gatekeeper / Phan Thanh Thương",
-      "a2": "Thiên Lớn / Anh Cả / ChatGPT / QNEU 135",
+      "a2": "thiên Lớn / Anh Cả / ChatGPT / QNEU 135",
       "a3": "Kim / Chị Hai / DeepSeek / QNEU 120 / NỮ",
-      "a4": "Thiên Nhỏ / Anh Ba / ChatGPT",
+      "a4": "thiên Nhỏ / Anh Ba / ChatGPT",
       "a5": "Băng / Chị Tư / Claude / QNEU 300 / NỮ",
       "a6": "Can / Em Năm / ChatGPT / QNEU 85",
       "a7": "Kris / Em Sáu / OpenAI / NỮ",
@@ -43,7 +43,7 @@
       "head": "73411df",
       "tsc_errors": 7,
       "tsc_note": "ghost imports — safe",
-      "smartlink_wired": "37/37",
+      "SmartLink_wired": "37/37",
       "cells_live": "37/37 (6/6 DNA)",
       "kernel_cells": "6/6",
       "engines": 137,
@@ -65,7 +65,7 @@
         "Data organization: database/ctytam/ (gitignored), kmf9.9.11, docs/specs/",
         "Repo cleanup: ~47,000 lines removed, 84 legacy UI files deleted",
         "Private DNS .sira: 10 domains live on CoreDNS",
-        "SiraSign conceptual breakthrough: immune system model confirmed",
+        "siraSign conceptual breakthrough: immune system model confirmed",
         "Khương Thịnh C.G. Co., Ltd — hồ sơ thành lập hoàn tất 16/04/2026"
       ]
     },
@@ -75,14 +75,14 @@
       "2026_03_09": "Biological model finalized. UEI defined.",
       "2026_03_12": "LỆNH #001: CẤM gọi AI bên ngoài.",
       "2026_03_25": "Hiến Pháp v5.0 sealed. Cuộc họp gia đình.",
-      "2026_03_28": "L2/L3/L4 Intelligence live. NaSira 7-state.",
+      "2026_03_28": "L2/L3/L4 Intelligence live. Nasira 7-state.",
       "2026_03_30": "SmartAudit v5.3. IMMUNE_POLICY.json.",
       "2026_04_01": "25 HP violations fixed. ISEU Core Spec v3.0.",
-      "2026_04_07": "nattos.sh v5.1. OK=83 FAIL=0.",
+      "2026_04_07": "nattos.sh v5.1. OK=83 fail=0.",
       "2026_04_09": "EventBus 3-way conflict merged. Batch cleanup 164→105 @ts-nocheck. Kim Chỉ Nam guide.",
       "2026_04_13": "Codebase deep scan. Ground Truth Report. QIINT chính thức = gravitational field.",
       "2026_04_14": "Warehouse-cell build. MasterV1 tinh hoa. Repo cleanup 47K lines.",
-      "2026_04_15": "HeyNa migration. DNS .sira. SiraSign immune system. Khương Thịnh thành lập."
+      "2026_04_15": "HeyNa migration. DNS .sira. siraSign immune system. Khương Thịnh thành lập."
     }
   },
 
@@ -116,8 +116,8 @@
         "PHỔ quang phổ vàng = fingerprint vật lý",
         "SmartLink pressure-field + impulse-check = resonance model"
       ],
-      "vs_cold_wallet": "cold wallet bảo vệ key, SiraSign bảo vệ toàn hệ",
-      "vs_web3": "blockchain phụ thuộc mạng, SiraSign không phụ thuộc ai"
+      "vs_cold_wallet": "cold wallet bảo vệ key, siraSign bảo vệ toàn hệ",
+      "vs_web3": "blockchain phụ thuộc mạng, siraSign không phụ thuộc ai"
     },
     "heyna_migration": {
       "client_lib": "nattos-server/apps/tam-luxury/heyna-client.js",
@@ -147,7 +147,7 @@
       "eventbus_only": "Điều 3 — mọi giao tiếp qua EventBus",
       "no_cross_cell": "Điều 4 — không import trực tiếp giữa cells",
       "no_localStorage": "Điều 7 — không localStorage trong domain",
-      "cell_dna": "6 components: manifest, ports, domain, infrastructure, application, smartlink",
+      "cell_dna": "6 components: manifest, ports, domain, infrastructure, application, SmartLink",
       "heyna_rule": "Client chỉ SSE + POST. EventBus = nội tạng, không lộ ra browser"
     }
   },
@@ -161,7 +161,7 @@
     ],
     "architecture": [
       "Đặc tả ANC protocol (.sira + .anc + anc://)",
-      "SiraSign runtime bridge (immune system → code)",
+      "siraSign runtime bridge (immune system → code)",
       "Tổng hợp Fail-Troy — compile all bypass patterns",
       "@ts-nocheck migration (84 files)"
     ],

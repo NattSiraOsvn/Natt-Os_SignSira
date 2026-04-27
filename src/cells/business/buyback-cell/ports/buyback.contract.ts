@@ -1,5 +1,5 @@
 /**
- * NATT-OS — Buyback Cell
+ * natt-os — Buyback Cell
  * EDA Event Contracts v2.1.0
  * Thu mua & Thu đổi Tâm Luxury
  */

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Sync Retry Engine v1.0
+ * natt-os Sync Retry Engine v1.0
  * Port từ Doc 12 — mergeFullDiverseFilesFromFolderOptimized()
  * Target: sync-cell/domain/engines/
  *
@@ -161,7 +161,7 @@ export interface MergeFileInfo {
 }
 
 // ── MERGE SESSION ──────────────────────────────────────────────────────────
-export type MergeFileStatus = 'SUCCESS' | 'SKIPPED' | 'FAILED' | 'PENDING';
+export type MergeFileStatus = 'SUCCESS' | 'SKIPPED' | 'failED' | 'PENDING';
 
 export interface MergeFileLog {
   fileId:      string;
@@ -277,7 +277,7 @@ export function buildMergeSummary(session: MergeSession): string {
     `Files: ${session.totalFiles} total | ${session.succeeded} ok | ${session.failed} failed | ${session.skipped} skipped`,
     `Rows: ${session.totalRows}`,
     session.failed > 0
-      ? `Failed: ${session.fileLogs.filter(f => f.status === 'FAILED').map(f => f.fileName).join(', ')}`
+      ? `Failed: ${session.fileLogs.filter(f => f.status === 'failED').map(f => f.fileName).join(', ')}`
       : 'All files processed OK',
   ].join('\n');
 }

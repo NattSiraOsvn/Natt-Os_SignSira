@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "nattos_platform_truth_scan_20260427.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing nattos platform truth scan");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  [
+    "nattos platform truth scan",
+    "status: observed-truth-scan",
+    "naked verdict",
+    "score matrix",
+    "runtime gate",
+    "mandatory validator chain",
+    "hal scan",
+    "isa scan",
+    "qos scan",
+    "cell event boundary scan",
+    "portability scan",
+    "claim_allowed",
+    "claim_blocked"
+  ].forEach(clause => must(c.includes(clause), "missing truth scan clause: " + clause));
+
+  [
+    "production-ready",
+    "allow wildcard",
+    "wildcard -> allow"
+  ].forEach(mark => must(!lower.includes(mark), "forbidden truth scan wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("nattos platform truth scan validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("nattos platform truth scan validation: pass");
+console.log("file=docs/runtime/nattos_platform_truth_scan_20260427.na");

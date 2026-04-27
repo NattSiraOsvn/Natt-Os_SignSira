@@ -50,7 +50,7 @@ export const KIM_GAMMA: GammaWeights = {
   contextThreshold: 0.2,
 };
 
-// --- THIÊN — Business Logic Architect ---
+// --- thiên — Business Logic Architect ---
 // Giá trị cao nhất: định nghĩa nghiệp vụ mới, quyết định domain
 export const THIEN_GAMMA: GammaWeights = {
   entityId: 'THIEN',

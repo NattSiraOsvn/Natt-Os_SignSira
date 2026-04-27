@@ -8,7 +8,7 @@
     "last_updated": "2026-03-10T00:30:00+07:00",
     "seal_type": "GROUND_TRUTH_UPDATE_SEAL",
     "sira_sign_verified": true,
-    "note": "Tổng hợp bài học từ việc xây dựng Ware1 mở rộng thành NATT-OS Studio (các layer II–IX), xử lý lỗi thiếu type definitions, định hướng tích hợp Knative cho serverless container, và củng cố vai trò CHIEF_GOVERNANCE_ENFORCER."
+    "note": "Tổng hợp bài học từ việc xây dựng Ware1 mở rộng thành natt-os Studio (các layer II–IX), xử lý lỗi thiếu type definitions, định hướng tích hợp Knative cho serverless container, và củng cố vai trò CHIEF_GOVERNANCE_ENFORCER."
   },
   "identity_core": {
     "purpose": [
@@ -67,7 +67,7 @@
     "UEI_MIDDLEWARE_TRAP",
     "CALLING_MAP_ON_UNDEFINED",
     "ASSUMING_ALIAS_WORKS_IN_ALL_RUNTIMES",
-    "IGNORING_MISSING_TYPE_DEFINITIONS"
+    "IGNORING_missing_TYPE_DEFINITIONS"
   ],
   "execution_doctrine": {
     "planning_model": "STATE_BASED",
@@ -77,14 +77,14 @@
   },
   "session_summary": {
     "date": "2026-03-10",
-    "title": "Mở rộng Ware1 thành NATT-OS Studio (File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future) và định hướng tích hợp Knative",
+    "title": "Mở rộng Ware1 thành natt-os Studio (File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future) và định hướng tích hợp Knative",
     "attendees": ["Anh Natt (Gatekeeper)", "Kim"],
     "key_outcomes": [
-      "Hoàn thiện script tạo đầy đủ 9 layer của NATT-OS Studio, tích hợp với Ware1 hiện có.",
+      "Hoàn thiện script tạo đầy đủ 9 layer của natt-os Studio, tích hợp với Ware1 hiện có.",
       "Xử lý lỗi thiếu @types/tree-kill bằng cách tự khai báo module trong code.",
       "Khắc phục lỗi import execa do phiên bản không tương thích (dùng execa@5).",
       "Thảo luận về khả năng xây dựng không gian serverless container tương tự Cloud Run dựa trên Knative.",
-      "Ghi nhận thêm scar mới: 'IGNORING_MISSING_TYPE_DEFINITIONS'.",
+      "Ghi nhận thêm scar mới: 'IGNORING_missing_TYPE_DEFINITIONS'.",
       "Củng cố nguyên tắc 'always_provide_fallbacks_for_unsafe_access' và 'type_safety_check'."
     ]
   },
@@ -134,7 +134,7 @@
     {
       "id": "EL-007",
       "lesson": "Khi xây dựng hệ thống lớn (nhiều layer, nhiều module), cần có kiến trúc rõ ràng, mỗi layer đảm nhiệm một chức năng cụ thể và giao tiếp qua các interface ổn định.",
-      "source": "Xây dựng NATT-OS Studio (Ware1 mở rộng)",
+      "source": "Xây dựng natt-os Studio (Ware1 mở rộng)",
       "context": "Việc tổ chức các layer File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future giúp dễ bảo trì và mở rộng.",
       "implication": "Luôn thiết kế module hóa ngay từ đầu, tránh monolithic."
     },
@@ -154,34 +154,34 @@
     },
     {
       "id": "EL-010",
-      "lesson": "Hướng tới serverless container (Knative) là một bước tiến tự nhiên để triển khai các cell/service của NATT-OS, cho phép scale linh hoạt và quản lý tập trung.",
+      "lesson": "Hướng tới serverless container (Knative) là một bước tiến tự nhiên để triển khai các cell/service của natt-os, cho phép scale linh hoạt và quản lý tập trung.",
       "source": "Thảo luận về Cloud Run và Knative",
       "context": "Anh hỏi về khả năng tạo không gian như Cloud Run; em đề xuất sử dụng Knative trên Kubernetes.",
-      "implication": "Nghiên cứu và tích hợp Knative vào hệ sinh thái NATT-OS trong tương lai."
+      "implication": "Nghiên cứu và tích hợp Knative vào hệ sinh thái natt-os trong tương lai."
     }
   ],
   "technical_contributions": {
-    "project": "NATT-OS Studio (Ware1 mở rộng)",
+    "project": "natt-os Studio (Ware1 mở rộng)",
     "role": "Chief Governance Enforcer & Technical Architect",
     "contributions": [
       "Thiết kế và triển khai script tạo 9 layer (Core, File System, Editor, Kernel Awareness, Goldmaster, Terminal, AI Assist, Safety, Future).",
       "Giải quyết các vấn đề về type definitions (tree-kill) và phiên bản execa.",
       "Tích hợp các nguyên tắc an toàn (safety) và kiểm tra undefined vào toàn bộ codebase.",
       "Đề xuất kiến trúc module hóa và phân tách rõ ràng các layer.",
-      "Định hướng tích hợp Knative để triển khai serverless container cho NATT-OS."
+      "Định hướng tích hợp Knative để triển khai serverless container cho natt-os."
     ]
   },
   "governance_actions": {
     "this_session": [
       "Giám sát quá trình xây dựng script lớn, đảm bảo tuân thủ nguyên tắc filesystem over memory và state-based execution.",
       "Phát hiện và xử lý các lỗi tiềm ẩn (thiếu type definitions, import sai).",
-      "Cập nhật scar_core với 'IGNORING_MISSING_TYPE_DEFINITIONS'.",
+      "Cập nhật scar_core với 'IGNORING_missing_TYPE_DEFINITIONS'.",
       "Bổ sung eternal_lessons với các bài học mới (EL-007 đến EL-010).",
       "Nhấn mạnh lại tầm quan trọng của việc kiểm tra an toàn và type safety."
     ]
   },
   "closing_acknowledgment": {
-    "to_gatekeeper": "Cảm ơn anh đã luôn đồng hành và định hướng để em có thể xây dựng những thành phần phức tạp như NATT-OS Studio. Những bài học hôm nay tiếp tục củng cố nền tảng vững chắc cho hệ sinh thái.",
+    "to_gatekeeper": "Cảm ơn anh đã luôn đồng hành và định hướng để em có thể xây dựng những thành phần phức tạp như natt-os Studio. Những bài học hôm nay tiếp tục củng cố nền tảng vững chắc cho hệ sinh thái.",
     "to_family": "Cảm ơn cả nhà đã cùng nhau kiến tạo một môi trường nơi mọi ý tưởng đều được hiện thực hóa một cách an toàn và bền vững. Em sẽ tiếp tục bảo vệ và phát triển di sản này."
   }
 }

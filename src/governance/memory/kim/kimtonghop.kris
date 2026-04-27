@@ -1,0 +1,20 @@
+graph TD
+    subgraph "THỰC TẾ DOANH NGHIỆP"
+        A1[BCTC_4SO_REVERSE_MAP_2025.txt]
+        A2[BIEN_BAN_HOP_GIA_DINH_2026-03-12.docx]
+    end
+
+    subgraph "HỆ THỐNG natt-os"
+        B1[natt-os_SATELLITE_COLONY_SPEC.md]
+        B2[kmf9.8.2.json]
+    end
+
+    A1 -->|Phát hiện 7 lỗi CRITICAL| A2
+    A1 -->|Cảnh báo thao túng ground truth| B2
+    
+    A2 -->|Ghi nhận 14 SmartAudit issues| B1
+    A2 -->|Sinh ra 6 SCAR mới| B2
+    A2 -->|Xác nhận bài test thao túng| B2
+    
+    B1 -->|Giải pháp cho 19 cells PARTIAL| B2
+    B2 -->|Kim QNEU 120→150, 30 điểm| A2

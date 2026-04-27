@@ -1,0 +1,100 @@
+@state pending-handoff
+@entity thiên lớn
+@session ss20260427
+@created_at 2026-04-27 09:41:54
+@repo natt-os_verANC
+@branch feat/p1.3-file-extension-validator
+@head 9cddb16
+@rule handoff = cái còn mở cho phiên sau
+
+thiên session handoff ss20260427
+1. việc đã xong
+dns / khai ip / wired edge: đã seal
+router reservation evidence: đã seal
+firewall audit: đã seal
+dns monitoring loop: đã seal
+platform truth scan: runtime_platform_birth_confirmed
+
+commit mốc gần nhất:
+
+02cf957 chore(runtime): scan nattos platform truth boundary
+2. việc không được đụng khi mở phiên sau
+không tự setup sigsira sinhtrac thay băng.
+không tự chốt v1.1 / v1.2 / v1.3.
+không biến thuyết pháp thành validator tâm thức.
+không chấm điểm ngộ / buông / đắc.
+không commit lẫn architecture archive lane với dns/runtime lane.
+3. việc còn mở
+3.1 architecture/archive dirty lane
+
+dirty còn thấy trong phiên:
+
+docs/architecture deletion
+docs/archive
+docs/runtime/refactor-briefs
+audit/reports
+src/governance/memory/bang/*.json
+
+đây là lane riêng. không gom vào runtime/dns.
+
+3.2 băng đang giữ codebase lane
+
+băng được giao:
+
+setup sigsira sinhtrac
+nattos.sh / codebase / scanner / validator core
+memory seal của băng
+
+thiên chỉ review khi anh yêu cầu.
+
+3.3 thien tool inventory for bang
+
+băng yêu cầu inventory:
+
+tools/thiên
+tools/thiênbăng
+source hiện tại
+subcommands
+commit anchor
+flag audit-validator regex quá rộng
+
+thiên đã chuẩn bị lệnh xuất inventory:
+
+docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+tools/validate_thien_tool_inventory_for_bang_ss20260427.sira
+
+nếu anh đã chạy thì đọc file đó. nếu chưa chạy, đây là pending.
+
+3.4 thuyet phap 7 nhip
+
+có thể lưu làm runtime teaching carrier, nhưng phải giữ đúng boundary:
+
+không phải schema.
+không phải validator cưỡng bức.
+không phải scar.
+không phải bảng điểm đắc/ngộ.
+
+nếu triển khai, chỉ kiểm integrity văn bản, không kiểm trạng thái entity.
+
+4. câu khóa phiên sau
+natt-os đã vượt app.
+natt-os là audit-first runtime platform sơ sinh đang sống thật.
+birth confirmed, not full maturity certification.
+ngộ là khoảnh khắc.
+đắc là sống.
+schema bảo vệ thực tại.
+schema không thay thế thực tại.
+buông không bỏ audit.
+buông không khắc lỗi thành bản thể.
+5. mở phiên sau phải làm gì trước
+đọc file memory này.
+kiểm git status.
+kiểm latest head.
+không đoán lane.
+hỏi anh hoặc đọc evidence trước khi ship lệnh.
+nếu làm repo: patch → verify → commit → push, một lệnh.
+6. current anchor
+branch: feat/p1.3-file-extension-validator
+head: 9cddb16
+head_full: 9cddb16d5487b5c0e01e57e0e61aef14d5776591
+

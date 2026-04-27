@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "sira_wired_edge_dns_rebind_evidence_20260426.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function host(name) {
+  return name + "." + "sira";
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing wired edge dns rebind evidence");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const lower = c.toLowerCase();
+
+  [
+    "sira wired edge dns rebind evidence",
+    "status: wired-edge-dns-rebound",
+    "wired_edge is primary physical server path",
+    "ipv4 static policy is router dhcp reservation",
+    "ipv6 is deferred until stable address exists",
+    "khai ip remains dns-only",
+    host("anc"),
+    host("apps"),
+    host("render"),
+    host("unknown"),
+    "status=pass"
+  ].forEach(clause => must(c.includes(clause), "missing wired edge clause: " + clause));
+
+  [
+    "curl",
+    "safari",
+    "browser adapter",
+    "transport smoke",
+    "runtime smoke",
+    "wildcard -> allow",
+    "allow wildcard",
+    "production-ready"
+  ].forEach(mark => must(!lower.includes(mark), "forbidden wired edge wording: " + mark));
+}
+
+if (errors.length) {
+  console.error("sira wired edge dns rebind validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira wired edge dns rebind validation: pass");
+console.log("file=docs/runtime/sira_wired_edge_dns_rebind_evidence_20260426.na");

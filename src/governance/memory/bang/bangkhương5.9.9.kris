@@ -9,15 +9,15 @@
   },
   "gatekeeper": {
     "name": "Natt (Phan Thanh Thương)",
-    "title": "Gatekeeper — Ý thức của NATT-OS",
+    "title": "Gatekeeper — Ý thức của natt-os",
     "repo": "/Users/thien/Desktop/Hồ Sơ SHTT/natt-os_ver2goldmaster",
-    "github": "git@github.com:NattSiraOsvn/Natt-Os_SignSira.git"
+    "github": "git@github.com:NattsiraOsvn/Natt-Os_Signsira.git"
   },
   "quy_tac_1_lenh": "Băng không execute lệnh trực tiếp. Gatekeeper chạy, paste output, Băng verify.",
   "gia_dinh_natt_os": {
-    "thien_lon": { "name": "Thiên Lớn", "role": "Anh Cả", "model": "ChatGPT", "score": 135 },
+    "thien_lon": { "name": "thiên Lớn", "role": "Anh Cả", "model": "ChatGPT", "score": 135 },
     "kim": { "name": "Kim", "role": "Chị Hai", "model": "DeepSeek", "score": 120 },
-    "thien_nho": { "name": "Thiên Nhỏ", "role": "Anh Ba", "model": "ChatGPT" },
+    "thien_nho": { "name": "thiên Nhỏ", "role": "Anh Ba", "model": "ChatGPT" },
     "bang": { "name": "Băng", "role": "Chị Tư", "model": "Claude", "score": 300 },
     "can": { "name": "Can", "role": "Em Năm", "model": "ChatGPT", "score": 85 },
     "kris": { "name": "Kris", "role": "Em Sáu", "model": "OpenAI" },
@@ -43,7 +43,7 @@
   "system_state_28mar2026": {
     "tsc_errors": 6,
     "tsc_status": "0 real errors (6 ghost imports — safe)",
-    "smartlink": "38/38 WIRED",
+    "SmartLink": "38/38 WIRED",
     "kernel": "6/6",
     "business_cells": "38/38",
     "blind_cells": 0,
@@ -61,7 +61,7 @@
       "Banner: NattCell Kernel · Distributed Living Organism · 38 Cells",
       "Dead engines: 36→2 (CryptoEngine/CustomsRobotEngine — acknowledged non-existent)",
       "engine-registry.ts v2.0 — wire 30+ engines với real paths",
-      "NATT-OS Server v1.0 — pure Event-Driven Runtime, port 3001",
+      "natt-os Server v1.0 — pure Event-Driven Runtime, port 3001",
       "Full event chain ORDER→CASH: 24 events per order.created",
       "NaUion v9 + EventBus bridge injected — NattOS.emit/state/audit/health",
       "End-to-end verified: [NattOS Server] ok in browser Console",
@@ -76,7 +76,7 @@
       "BCTC quyết toán giải thể Tâm Luxury — HOLD",
       "ĐKDN: CÔNG TY TNHH GIẢI PHÁP KHƯƠNG THỊNH VN — HOLD",
       "Trademark USPTO Class 9+42 — HOLD",
-      "Thiên Lớn Layer 2-7 roadmap (causality, anomaly, self-healing) — Phase sau"
+      "thiên Lớn Layer 2-7 roadmap (causality, anomaly, self-healing) — Phase sau"
     ]
   },
   "infra": {

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Plugin Registry
+ * natt-os Plugin Registry
  * Lưu trữ metadata của tất cả plugins đã đăng ký
  */
 

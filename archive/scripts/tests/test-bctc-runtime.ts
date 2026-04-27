@@ -37,5 +37,5 @@ try {
 
   console.log('\n✅ Runtime OK');
 } catch(err) {
-  console.error('🔴 RUNTIME ERROR:', err);
+  console.error('🔴 RUNTIME error:', err);
 }

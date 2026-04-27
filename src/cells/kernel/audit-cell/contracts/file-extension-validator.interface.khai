@@ -1,0 +1,25 @@
+/**
+ * @state: S2
+ * @canonical: src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.khai
+ * @substrate: src/cells/kernel/audit-cell/contracts/file-extension-validator.interface.ts
+ * @since: 2026-04-23
+ *
+ * P1.3 — FILE EXTENSION VALIDATOR INTERFACE
+ * SPEC v1.3 FINAL §4.3
+ * Tầng 2 (Structural/Manifest) — Kim scaffold
+ *
+ * STATUS: transitional canonical wrapper for Khai ownership.
+ * TypeScript remains the temporary execution substrate until
+ * native .khai bridge is sealed (loader + resolver + build rule
+ * + IDE association).
+ */
+
+import { ValidationResult, ExtensionRule } from '../types/validation-result.types';
+
+export interface IFileExtensionValidator {
+  validate(filePath: string): ValidationResult;
+  validateBatch(filePaths: string[]): Map<string, ValidationResult>;
+  getRule(extension: string): ExtensionRule | null;
+  getAllRules(): ExtensionRule[];
+  getCanonicalExtensions(): string[];
+}

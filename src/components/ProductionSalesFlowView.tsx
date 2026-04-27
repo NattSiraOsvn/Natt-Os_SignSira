@@ -159,7 +159,7 @@ const ProductionSalesFlowView: React.FC = () => {
                   <div key={i} className="flex gap-4 animate-in slide-in-from-left-4 border-l border-white/10 pl-4 py-1 hover:border-amber-500 transition-colors">
                      <span className="text-gray-500 shrink-0">{new Date(log.timestamp).toLocaleTimeString()}</span>
                      <span className={`font-black w-24 shrink-0 uppercase ${
-                        (log.step as any) === 'ERROR' ? 'text-red-500' :
+                        (log.step as any) === 'error' ? 'text-red-500' :
                         (log.step as any) === 'FINANCE' ? 'text-amber-500' :
                         'text-cyan-400'
                      }`}>{log.step}</span>

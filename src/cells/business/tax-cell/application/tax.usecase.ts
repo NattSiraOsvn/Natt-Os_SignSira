@@ -1,6 +1,6 @@
 /**
  * tax-cell — application/tax.usecase.ts
- * Sprint 3 | Tâm Luxury NATT-OS
+ * Sprint 3 | Tâm Luxury natt-os
  *
  * Enforce: TR-001, TR-002, TR-005
  * FLAT interface — FS-024
@@ -78,7 +78,7 @@ export class RecordDustRecoveryUseCase {
 }
 
 // ─── UseCase: CloseToInventoryUseCase ─────────────────────────────────────────
-// Khi nhận STOCK_ENTRY_CREATED: kết chuyển TK154 → TK155
+// Khi nhận STOCK_ENTRY_created: kết chuyển TK154 → TK155
 
 export class CloseToInventoryUseCase {
   constructor(private repo: ITaxRepository) {}

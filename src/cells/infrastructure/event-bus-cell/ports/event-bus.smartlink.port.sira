@@ -1,0 +1,24 @@
+// ═══════════════════════════════════════════════════════════════
+// EVENT-BUS-CELL — SmartLink Port
+// Điều 4: no direct cell-to-cell calls, all through EventBus
+// ═══════════════════════════════════════════════════════════════
+
+// sira_CONTRACT_INTERFACE EventBusSmartLinkPort
+const EventBusSmartLinkPort = {
+  /** Route event to all subscribers */
+  route(event, payload);
+
+  /** Register subscriber for event pattern */
+  subscribe(pattern, handler: (payload) => void): () => void;
+
+  /** Get dead letter queue entries */
+  getDeadLetters();
+
+  /** Get routing metrics */
+  getMetrics(): {
+    totalRouted;
+    totalDeadLetters;
+    totalRetries;
+    activeSubscribers;
+  };
+}

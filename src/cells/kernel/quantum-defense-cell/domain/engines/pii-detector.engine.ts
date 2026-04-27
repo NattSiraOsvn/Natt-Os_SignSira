@@ -1,5 +1,5 @@
 /**
- * NATT-OS PII Detector Engine v1.0
+ * natt-os PII Detector Engine v1.0
  * Port từ Doc 26 — ULTRA_CONFIG.TARGET_PATTERNS
  * Target: quantum-defense-cell/domain/engines/
  *

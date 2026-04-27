@@ -1,0 +1,39 @@
+# SAMPLE 10/15 — state: nhường
+# @sample: yield_space_easing
+# @status: draft → chờ validator
+
+obitan_state nhường {
+  domain: Π_medium
+  polarity: neutral
+  obitan_layer: n=2
+
+  surface_signal: SHIFT {
+    element_id: "yielding-element"
+    from: position(200,100)
+    to: position(250,100)
+    easing: ease-out
+    origin_state: nhường
+    pressure: 0.3
+  }
+
+  surface_signal: RESIZE {
+    element_id: "yielding-element"
+    from_scale: 1.0
+    to_scale: 0.9
+    origin_state: nhường
+    pressure: 0.3
+  }
+
+  invariant_field {
+    pressure_response: DISSIPATE
+    resonance_partners: [khiêm]
+    decay_rate: γ(2) * 0.8
+    reflection_R: 0.2
+  }
+
+  expression {
+    wavelength_base: 620
+    intensity: fade(0.7, 0.3)
+    duration: momentary
+  }
+}

@@ -1,4 +1,4 @@
-# AUDIT REPORT — NATT-OS Logo Rebuild Attempts
+# AUDIT REPORT — natt-os Logo Rebuild Attempts
 
 **Audit framework:** SPEC-NaUion-Visual-Rebuild-Pipeline v1.0
 **Reference:** `logo2.png` (1536 × 1024)
@@ -12,8 +12,8 @@
 
 | Version | Verdict | Score | Anti-patterns | Ghi chú |
 |---------|---------|-------|---------------|---------|
-| **V1** (session trước, 6 cánh pixel) | 🚨 **FAIL** | 1/5 | 4 vi phạm | Vẽ từ trí tưởng tượng, không measurement |
-| **V2** (session hôm nay, 8 cánh) | 🚨 **FAIL** | 1/5 | 2 vi phạm | Anti-patterns giảm 50%, nhưng metrics vẫn fail |
+| **V1** (session trước, 6 cánh pixel) | 🚨 **fail** | 1/5 | 4 vi phạm | Vẽ từ trí tưởng tượng, không measurement |
+| **V2** (session hôm nay, 8 cánh) | 🚨 **fail** | 1/5 | 2 vi phạm | Anti-patterns giảm 50%, nhưng metrics vẫn fail |
 
 **Kết luận:** Cả 2 đều chưa đạt ngưỡng. V2 tiến bộ về **phương pháp** (clean hơn về Điều 3, 4, 10) nhưng **metrics tuyệt đối không khá hơn** V1 — thậm chí center offset còn tệ hơn (47px vs 27px).
 
@@ -102,7 +102,7 @@ Petal count:        ❌ 2       ❌ 4       = 7     (V2 closer)
 
 Anti-patterns:      ❌ 4/4     ⚠ 2/6     = 0     (V2 cleaner method)
 
-OVERALL:            1/5 FAIL   1/5 FAIL
+OVERALL:            1/5 fail   1/5 fail
 ```
 
 ---
@@ -111,7 +111,7 @@ OVERALL:            1/5 FAIL   1/5 FAIL
 
 Theo Điều 6: **Rebuild với Gap vượt ngưỡng phải re-enter Stage 1.**
 
-### Short-term (để PASS audit)
+### Short-term (để pass audit)
 
 1. **Chuyển engine** theo Điều 7 priority order:
    - Option 1: **Blender Cycles** — em viết Python script từ spec JSON, anh chạy ở máy
@@ -145,7 +145,7 @@ SPEC v1.0 vừa tự chứng minh:
 - ✅ Nó lộ ra engine mismatch (cả V1 + V2 fail vì SVG không đủ)
 - ✅ Nó cho metrics định lượng có thể so sánh qua thời gian
 
-**V2 không "FAIL" — V2 là đại diện cho một class cả giới hạn của SVG engine.** Muốn PASS cần đổi engine, không phải sửa code SVG thêm.
+**V2 không "fail" — V2 là đại diện cho một class cả giới hạn của SVG engine.** Muốn pass cần đổi engine, không phải sửa code SVG thêm.
 
 ---
 

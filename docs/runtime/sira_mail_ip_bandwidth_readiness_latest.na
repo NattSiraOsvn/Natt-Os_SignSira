@@ -1,0 +1,164 @@
+@state runtime-evidence
+@name sira mail ip bandwidth readiness
+@created_at 2026-04-27T11:36:16
+@branch feat/p1.3-file-extension-validator
+@head e45c3f5 fix(audit): nattos.sh §22 nattos-fx.js Vite build + Dockerfile COPY case-insensitive · close 2 false-positive · §22 ALL GREEN · apply lowercase_surface ss20260427 canonical
+
+# SIRA mail/ip/bandwidth readiness
+
+## 1. verdict
+- claim_ip_internal: PASS
+- claim_mail_provider_mode: PENDING
+- claim_self_host_mail: BLOCKED
+- lan_ready: True
+- public_ip_detected: True
+- public_rdns_detected: True
+- local_mta_listening: False
+- outbound_25_ready: True
+
+## 2. ground truth
+- expected_lan_ip: 192.168.1.199
+- en0: 192.168.1.199
+- en1: 192.168.1.208
+- public_ip: 171.243.49.219
+- public_rdns: dynamic-ip-adsl.viettel.vn.
+- mail_domain: not-set
+
+## 3. raw json
+```json
+{
+  "created_at": "2026-04-27T11:36:16",
+  "repo": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",
+  "branch": "feat/p1.3-file-extension-validator",
+  "head": "e45c3f5 fix(audit): nattos.sh §22 nattos-fx.js Vite build + Dockerfile COPY case-insensitive · close 2 false-positive · §22 ALL GREEN · apply lowercase_surface ss20260427 canonical",
+  "dirty_count": 5,
+  "expected": {
+    "lan_ip": "192.168.1.199",
+    "router": "192.168.1.1",
+    "mail_domain": null
+  },
+  "local_ip": {
+    "en0": "192.168.1.199",
+    "en1": "192.168.1.208",
+    "default_route": "gateway: 192.168.1.1\n  interface: en0"
+  },
+  "public_ip": {
+    "ip": "171.243.49.219",
+    "rdns": "dynamic-ip-adsl.viettel.vn."
+  },
+  "dns_local": {
+    "resolver_sira_exists": true,
+    "resolver_sira": "nameserver 127.0.0.1\nport 53\n",
+    "core_sira": "192.168.1.199",
+    "khai_sira": "",
+    "mail_sira": ""
+  },
+  "reachability": {
+    "router": {
+      "ok": true,
+      "loss_percent": 0.0,
+      "avg_ms": 0.535,
+      "raw": "PING 192.168.1.1 (192.168.1.1): 56 data bytes\n64 bytes from 192.168.1.1: icmp_seq=0 ttl=64 time=0.564 ms\n64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=0.579 ms\n64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.461 ms\n\n--- 192.168.1.1 ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss\nround-trip min/avg/max/stddev = 0.461/0.535/0.579/0.052 ms"
+    },
+    "cloudflare": {
+      "ok": true,
+      "loss_percent": 0.0,
+      "avg_ms": 43.902,
+      "raw": "PING 1.1.1.1 (1.1.1.1): 56 data bytes\n64 bytes from 1.1.1.1: icmp_seq=0 ttl=54 time=43.802 ms\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=54 time=44.313 ms\n64 bytes from 1.1.1.1: icmp_seq=2 ttl=54 time=43.591 ms\n\n--- 1.1.1.1 ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss\nround-trip min/avg/max/stddev = 43.591/43.902/44.313/0.303 ms"
+    },
+    "google_dns": {
+      "ok": true,
+      "loss_percent": 0.0,
+      "avg_ms": 29.013,
+      "raw": "PING 8.8.8.8 (8.8.8.8): 56 data bytes\n64 bytes from 8.8.8.8: icmp_seq=0 ttl=116 time=28.968 ms\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=116 time=28.968 ms\n64 bytes from 8.8.8.8: icmp_seq=2 ttl=116 time=29.104 ms\n\n--- 8.8.8.8 ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss\nround-trip min/avg/max/stddev = 28.968/29.013/29.104/0.064 ms"
+    }
+  },
+  "bandwidth": {
+    "tool": "networkQuality",
+    "download_mbps": null,
+    "upload_mbps": null,
+    "raw": "==== SUMMARY ====\nUplink capacity: 736.450 Mbps\nDownlink capacity: 751.976 Mbps\nResponsiveness: Medium (63.336 milliseconds | 947 RPM)\nIdle Latency: 34.686 milliseconds | 1729 RPM"
+  },
+  "ports": {
+    "local": [
+      {
+        "port": 25,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 465,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 587,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 993,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 80,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 443,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 3000,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 3001,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 8080,
+        "open": false,
+        "raw": ""
+      },
+      {
+        "port": 8443,
+        "open": false,
+        "raw": ""
+      }
+    ],
+    "outbound_25_google": {
+      "host": "gmail-smtp-in.l.google.com",
+      "port": 25,
+      "ok": true,
+      "raw": "Connection to gmail-smtp-in.l.google.com port 25 [tcp/smtp] succeeded!"
+    },
+    "outbound_587_google": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "ok": true,
+      "raw": "Connection to smtp.gmail.com port 587 [tcp/submission] succeeded!"
+    }
+  },
+  "mail_dns": {
+    "checked": false,
+    "domain": "",
+    "reason": "MAIL_DOMAIN not set"
+  },
+  "verdict": {
+    "claim_ip_internal": "PASS",
+    "claim_mail_provider_mode": "PENDING",
+    "claim_self_host_mail": "BLOCKED",
+    "lan_ready": true,
+    "public_ip_detected": true,
+    "public_rdns_detected": true,
+    "local_mta_listening": false,
+    "outbound_25_ready": true
+  }
+}
+```

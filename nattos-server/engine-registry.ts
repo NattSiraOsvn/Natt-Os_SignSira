@@ -1,5 +1,5 @@
 /**
- * NATT-OS Engine Registry v3.0 — SERVER SIDE
+ * natt-os Engine Registry v3.0 — SERVER SIDE
  * Location: nattos-server/engine-registry.ts
  *
  * DÙNG TRONG server.js (2 dòng):

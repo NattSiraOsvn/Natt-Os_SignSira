@@ -1,0 +1,60 @@
+# sira TS Translation Adapter — 20260424
+
+status: CANONICAL_DRAFT
+created_at: 2026-04-24T18:10:42.351837+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. Purpose
+
+Adapter này là cầu dịch có kiểm soát từ TypeScript còn lại sang sira runtime artifact.
+
+Quan trọng: no bulk mutation.
+
+Adapter chỉ hỗ trợ:
+
+- plan
+- classify <file.ts>
+- preview <file.ts>
+- write-preview <file.ts> <out.sira.preview>
+
+Không tự rename source.
+Không tự xóa file gốc.
+Không tự migrate nhiều file một lượt.
+
+## 2. Boundary
+
+Allowed:
+
+- single-file preview
+- manual translation evidence
+- contract/type classification
+- class/runtime rewrite classification
+
+Forbidden:
+
+- auto rename remaining `.ts/.tsx`
+- bulk mutation
+- UI/React migration without UI adapter
+- class runtime rewrite without manual review
+
+## 3. Classification
+
+- SIRA_CONTRACT_TRANSLATION_REQUIRED
+- SIRA_CLASS_REWRITE_REQUIRED
+- KEEP_TS_UI_ADAPTER_REQUIRED
+- BROWSER_ADAPTER_BOUNDARY_REVIEW
+- LIGHT_TRANSLATION_CANDIDATE
+- POSSIBLE_sira_RUNTIME_ARTIFACT
+
+## 4. Command
+
+`tools/thiên tools/sira_ts_translation_adapter.sira plan`
+
+## 5. Gate
+
+- sira namespace validator pass
+- sira browser adapter validator pass
+- sira TS translation adapter validator pass
+- repo clean before any single-file translation

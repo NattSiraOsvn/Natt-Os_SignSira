@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "architecture_archive_dirty_state_audit_20260426.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing architecture archive dirty state audit");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  [
+    "architecture archive dirty state audit",
+    "dns/khai ip lane đã seal",
+    "không gom chung architecture cleanup",
+    "dirty summary",
+    "deleted architecture files",
+    "archive/refactor candidates",
+    "basename mapping",
+    "decision:"
+  ].forEach(clause => must(c.includes(clause), "missing audit clause: " + clause));
+}
+
+if (errors.length) {
+  console.error("architecture archive dirty state audit validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("architecture archive dirty state audit validation: pass");
+console.log("file=docs/runtime/architecture_archive_dirty_state_audit_20260426.na");

@@ -1,0 +1,280 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+const http = require("http");
+const childProcess = require("child_process");
+
+const root = process.cwd();
+const gatewayFile = path.join(root, "tools", "natt_domain_gateway.sira");
+const evidenceFile = path.join(root, "docs", "runtime", "sirasign_frame_guard_matrix_evidence_20260425.na");
+const port = Number(process.env.SIRA_FRAME_PORT || 39993);
+const cases = [
+  {
+    "name": "low_route_no_frame",
+    "host": "core.sira",
+    "path": "/api/health",
+    "headers": {},
+    "expected_gate": "allow",
+    "expected_reason": "not_denied_by_frame_guard"
+  },
+  {
+    "name": "missing_subject",
+    "host": "core.sira",
+    "path": "/field/probe",
+    "headers": {},
+    "expected_gate": "deny",
+    "expected_reason": "missing_sira_subject"
+  },
+  {
+    "name": "missing_boundary",
+    "host": "core.sira",
+    "path": "/field/probe",
+    "headers": {
+      "x-sira-subject": "tester"
+    },
+    "expected_gate": "deny",
+    "expected_reason": "missing_sira_boundary"
+  },
+  {
+    "name": "missing_causation",
+    "host": "core.sira",
+    "path": "/field/probe",
+    "headers": {
+      "x-sira-subject": "tester",
+      "x-sira-boundary": "field"
+    },
+    "expected_gate": "deny",
+    "expected_reason": "missing_sira_causation"
+  },
+  {
+    "name": "missing_signature",
+    "host": "core.sira",
+    "path": "/field/probe",
+    "headers": {
+      "x-sira-subject": "tester",
+      "x-sira-boundary": "field",
+      "x-sira-causation": "probe-20260425"
+    },
+    "expected_gate": "deny",
+    "expected_reason": "missing_sira_signature"
+  },
+  {
+    "name": "frame_shape_pass",
+    "host": "core.sira",
+    "path": "/field/probe",
+    "headers": {
+      "x-sira-subject": "tester",
+      "x-sira-boundary": "field",
+      "x-sira-causation": "probe-20260425",
+      "x-sira-signature": "shape-only-placeholder"
+    },
+    "expected_gate": "allow",
+    "expected_reason": "not_denied_by_frame_guard"
+  }
+];
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function stripHashbang(src) {
+  return src.replace(/^#!.*\n/, "");
+}
+
+function requestCase(testCase) {
+  return new Promise(resolve => {
+    let settled = false;
+
+    function finish(payload) {
+      if (settled) return;
+      settled = true;
+      resolve(payload);
+    }
+
+    const headers = Object.assign({ Host: testCase.host }, testCase.headers || {});
+
+    const req = http.request({
+      hostname: "127.0.0.1",
+      port,
+      path: testCase.path,
+      method: "GET",
+      headers,
+      timeout: 2400
+    }, res => {
+      let body = "";
+      res.setEncoding("utf8");
+
+      const streamGuard = setTimeout(() => {
+        let parsed = null;
+        try { parsed = JSON.parse(body); } catch (_) {}
+        finish({
+          ok: true,
+          status: res.statusCode,
+          host: testCase.host,
+          path: testCase.path,
+          body,
+          parsed,
+          stream_open: true
+        });
+        try { req.destroy(); } catch (_) {}
+      }, 280);
+
+      res.on("data", chunk => body += chunk);
+      res.on("end", () => {
+        clearTimeout(streamGuard);
+        let parsed = null;
+        try { parsed = JSON.parse(body); } catch (_) {}
+        finish({
+          ok: true,
+          status: res.statusCode,
+          host: testCase.host,
+          path: testCase.path,
+          body,
+          parsed,
+          stream_open: false
+        });
+      });
+    });
+
+    req.on("timeout", () => {
+      if (!settled) req.destroy(new Error("timeout"));
+    });
+
+    req.on("error", err => finish({
+      ok: false,
+      status: 0,
+      host: testCase.host,
+      path: testCase.path,
+      error: err.message,
+      body: ""
+    }));
+
+    req.end();
+  });
+}
+
+function classify(result) {
+  const parsed = result.parsed || null;
+  const reason = parsed && parsed.reason ? String(parsed.reason) : "";
+
+  if (parsed && parsed.ok === false && parsed.error === "siraSign frame guard deny" && reason) {
+    return { gate: "deny", reason };
+  }
+
+  if (parsed && parsed.ok === false && reason) {
+    return { gate: "deny", reason };
+  }
+
+  if (!result.ok) {
+    return { gate: "transport_error", reason: result.error || "request_error" };
+  }
+
+  return { gate: "allow", reason: "not_denied_by_frame_guard" };
+}
+
+function row(item) {
+  const tc = item.testCase;
+  const bodyPreview = String(item.result.body || item.result.error || "").slice(0, 160).replace(/\n/g, " ");
+  const verdict = item.observed.gate === tc.expected_gate && item.observed.reason === tc.expected_reason ? "ok" : "mismatch";
+  return `| ${tc.name} | ${tc.host} | ${tc.path} | ${tc.expected_gate} | ${tc.expected_reason} | ${item.observed.gate} | ${item.observed.reason} | ${item.result.status || 0} | ${verdict} | ${bodyPreview} |`;
+}
+
+async function main() {
+  if (!fs.existsSync(gatewayFile)) {
+    throw new Error("missing tools/natt_domain_gateway.sira");
+  }
+
+  const gatewaySource = stripHashbang(fs.readFileSync(gatewayFile, "utf8"));
+  const child = childProcess.spawn(process.execPath, ["--input-type=commonjs"], {
+    cwd: root,
+    env: { ...process.env, PORT: String(port), SIRA_SMOKE: "1" },
+    stdio: ["pipe", "pipe", "pipe"]
+  });
+
+  let stdout = "";
+  let stderr = "";
+  child.stdout.on("data", chunk => stdout += chunk.toString());
+  child.stderr.on("data", chunk => stderr += chunk.toString());
+
+  child.stdin.write(gatewaySource);
+  child.stdin.end();
+
+  await sleep(900);
+
+  const results = [];
+  for (const testCase of cases) {
+    const result = await requestCase(testCase);
+    const observed = classify(result);
+    results.push({ testCase, result, observed });
+  }
+
+  try { child.kill("SIGTERM"); } catch (_) {}
+  await sleep(120);
+
+  const mismatches = results.filter(item => (
+    item.observed.gate !== item.testCase.expected_gate ||
+    item.observed.reason !== item.testCase.expected_reason
+  ));
+
+  const lines = [
+    "# siraSign frame guard matrix evidence — 20260425",
+    "",
+    `status: ${mismatches.length === 0 ? "pass" : "needs-review"}`,
+    `created_at: ${new Date().toISOString()}`,
+    `repo_root: ${root}`,
+    "",
+    "---",
+    "",
+    "## 1. scope",
+    "",
+    "runner này kiểm response thật của frame guard sau route gate.",
+    "",
+    "đây là frame shape guard, chưa phải crypto signature verification.",
+    "",
+    "runner này không wire mạch heyna.",
+    "",
+    "---",
+    "",
+    "## 2. result table",
+    "",
+    "| case | host | path | expected_gate | expected_reason | observed_gate | observed_reason | http_status | verdict | body_preview |",
+    "|---|---|---|---|---|---|---|---:|---|---|",
+    ...results.map(row),
+    "",
+    "---",
+    "",
+    "## 3. child output",
+    "",
+    "```text",
+    stdout.slice(0, 2000),
+    stderr.slice(0, 2000),
+    "```",
+    "",
+    "---",
+    "",
+    "## 4. next",
+    "",
+    mismatches.length === 0 ? "frame guard shape behavior đã có response evidence." : "cần đọc mismatch trước khi patch tiếp.",
+    ""
+  ];
+
+  fs.writeFileSync(evidenceFile, lines.join("\n"), "utf8");
+
+  if (mismatches.length) {
+    console.error("siraSign frame guard matrix: needs-review");
+    for (const item of mismatches) {
+      const tc = item.testCase;
+      console.error(` - ${tc.name} expected=${tc.expected_gate}/${tc.expected_reason} observed=${item.observed.gate}/${item.observed.reason}`);
+    }
+    process.exit(1);
+  }
+
+  console.log("siraSign frame guard matrix: pass");
+  console.log("file=docs/runtime/sirasign_frame_guard_matrix_evidence_20260425.na");
+}
+
+main().catch(err => {
+  console.error("siraSign frame guard matrix: error");
+  console.error(err && err.stack ? err.stack : String(err));
+  process.exit(1);
+});

@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/scr_anchor_red_zone_policy_nauion_v0_1_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+"@nauion-native v1",
+"@owner phan thanh thương / natt sirawat",
+"@anc thiên sirawat",
+"@tool tools/thiên",
+"@scope scr-anchor red-zone privacy route audit sirasign",
+"@runtime_scope excluded",
+"SCR là điểm neo kiểm soát trong quỹ đạo dữ liệu.",
+"SCR-1",
+"SCR-2",
+"SCR-3",
+"quỹ_đạo_đi",
+"quỹ_đạo_về",
+"red_zone",
+"metadata_only",
+"deny_by_default",
+"personal_area: mask",
+"scr.anchor.checked",
+"red_zone.access.checked",
+"no_bypass",
+"SiraSign",
+"audit",
+"Không chạm nattos.sh.",
+"Gate 5 pass condition"
+];
+
+const forbidden = [
+"@owner Thiên",
+"@owner Natt Sirawat",
+"@owner Phan Thanh Thương / Natt Sirawat",
+"production-ready",
+".com là lõi bắt buộc",
+".zone là lõi bắt buộc",
+"hosting provider là bắt buộc",
+"mail provider là bắt buộc"
+];
+
+let errors = [];
+
+for (const s of must) {
+if (!text.includes(s)) errors.push("missing required fragment: " + s);
+}
+
+for (const s of forbidden) {
+if (text.includes(s)) errors.push("forbidden wording: " + s);
+}
+
+if (errors.length) {
+console.error("scr anchor red zone policy validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("scr anchor red zone policy validation: pass");
+console.log("file=" + file);

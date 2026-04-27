@@ -15,7 +15,7 @@
     "risk": 0,
     "state": "HEALTHY",
     "cells": "51 total · 37 business · 6 kernel · infra complete",
-    "smartlink": "44/44 — all cells have port",
+    "SmartLink": "44/44 — all cells have port",
     "eventbus": "UNIFIED — EventBridge file DELETED, all refs migrated",
     "bctc_chain": "LIVE + VERIFIED FY2025",
     "ts_nocheck": 85,
@@ -68,7 +68,7 @@
       "to_cells_infra": {
         "notification-cell": ["notificationService→notification.service", "realTimeNotificationService→realtime-notify.engine"],
         "sync-cell": ["offlineService→offline.engine"],
-        "smartlink-cell": ["SmartLinkMappingEngine→smartlink-mapping.engine"]
+        "SmartLink-cell": ["SmartLinkMappingEngine→SmartLink-mapping.engine"]
       },
       "to_core": {
         "core/": ["moduleHelpers.ts"],
@@ -126,7 +126,7 @@
     }
   },
   "parallel_work": {
-    "kim_boiboi": "HR Dashboard — SiraSign master key integrated, CSV mapping fix in progress",
+    "kim_boiboi": "HR Dashboard — siraSign master key integrated, CSV mapping fix in progress",
     "kim_thienlon": "SHTT (sở hữu trí tuệ) specs — core/patent/ giữ nguyên",
     "roadloading": "Giaodien.html + 71 màn hình PDF — committed"
   },

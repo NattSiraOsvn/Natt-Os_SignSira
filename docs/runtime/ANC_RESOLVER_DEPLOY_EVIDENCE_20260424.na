@@ -1,0 +1,125 @@
+# ANC RESOLVER DEPLOY EVIDENCE — 20260424
+
+status: pass
+owner: Gatekeeper / Anh Natt
+runtime_scope: local DNS + local domain gateway + ANC resolver
+created_at: 2026-04-24T13:42:36.970168+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+branch: feat/p1.3-file-extension-validator
+head: 9b2b541
+
+---
+
+## 1. Purpose
+
+File này ghi bằng chứng triển khai lớp định danh anc:// cho natt-os local runtime.
+
+Mô hình:
+- DNS layer      : *.natt
+- ANC resolver   : anc.natt
+- Runtime ID     : anc://*
+- HTTP transport : http://*.natt
+- Gateway        : port 80
+
+## 2. Canonical Routes
+
+{
+  "anc://core": "http://core.natt",
+  "anc://runtime": "http://runtime.natt",
+  "anc://audit": "http://audit.natt",
+  "anc://tam": "http://tam.natt",
+  "anc://nauion": "http://nauion.natt",
+  "anc://docs": "http://docs.natt",
+  "anc://mach": "http://mach.natt/mach/heyna",
+  "anc://heyna": "http://heyna.natt/mach/heyna",
+  "anc://gate": "http://gate.natt",
+  "anc://sira": "http://sira.natt",
+  "anc://khai": "http://khai.natt",
+  "anc://bridge": "http://bridge.natt"
+}
+
+## 3. Verified Results
+
+- anc://core resolved thành http://core.natt
+- anc://audit resolved thành http://audit.natt
+- anc://tam resolved thành http://tam.natt
+- anc://nauion resolved thành http://nauion.natt
+- Gateway đang nghe port 80
+- Runtime health trả OK
+- Audit trail có gateway.boot và event emit evidence
+
+## 4. Evidence JSON
+
+{
+  "dns_anc": {
+    "cmd": "dscacheutil -q host -a name anc.natt",
+    "exit": 0,
+    "stdout": "name: anc.natt\nip_address: 127.0.0.1",
+    "stderr": ""
+  },
+  "dns_core": {
+    "cmd": "dscacheutil -q host -a name core.natt",
+    "exit": 0,
+    "stdout": "name: core.natt\nip_address: 127.0.0.1",
+    "stderr": ""
+  },
+  "port_80_listener": {
+    "cmd": "lsof -nP -iTCP:80 -sTCP:LISTEN",
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "health_core": {
+    "cmd": "curl -s http://core.natt/api/health",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"host\": \"core.natt\",\n  \"root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC\",\n  \"tam_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n  \"nauion_root\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n  \"audit_html\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\",\n  \"tam_screens\": 70,\n  \"nauion_screens\": 7,\n  \"audit_events\": 1,\n  \"time\": \"2026-04-24T13:42:36.890Z\"\n}",
+    "stderr": ""
+  },
+  "resolve_core": {
+    "cmd": "curl -s http://anc.natt/api/resolve?uri=anc://core",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://core\",\n  \"target\": \"http://core.natt\",\n  \"rule\": \"anc://<name> -> http://<name>.natt\"\n}",
+    "stderr": ""
+  },
+  "resolve_audit": {
+    "cmd": "curl -s http://anc.natt/api/resolve?uri=anc://audit",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://audit\",\n  \"target\": \"http://audit.natt\",\n  \"rule\": \"anc://<name> -> http://<name>.natt\"\n}",
+    "stderr": ""
+  },
+  "resolve_tam": {
+    "cmd": "curl -s http://anc.natt/api/resolve?uri=anc://tam",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://tam\",\n  \"target\": \"http://tam.natt\",\n  \"rule\": \"anc://<name> -> http://<name>.natt\"\n}",
+    "stderr": ""
+  },
+  "resolve_nauion": {
+    "cmd": "curl -s http://anc.natt/api/resolve?uri=anc://nauion",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"uri\": \"anc://nauion\",\n  \"target\": \"http://nauion.natt\",\n  \"rule\": \"anc://<name> -> http://<name>.natt\"\n}",
+    "stderr": ""
+  },
+  "audit_tail": {
+    "cmd": "curl -s http://core.natt/api/audit",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"total\": 1,\n  \"events\": [\n    {\n      \"audit_id\": \"audit_0dd2ff3c9c07\",\n      \"timestamp\": \"2026-04-24T13:39:20.436Z\",\n      \"action\": \"gateway.boot\",\n      \"host\": \"127.0.0.1\",\n      \"result\": \"BOOTED\",\n      \"payload_summary\": {\n        \"PORT\": 80,\n        \"TAM\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server\",\n        \"NAUION\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server\",\n        \"AUDIT_HTML\": \"/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html\"\n      }\n    }\n  ]\n}",
+    "stderr": ""
+  }
+}
+
+## 5. Boundary
+
+- anc:// là định danh nội bộ/canonical namespace.
+- http://*.natt là transport cho browser/runtime local.
+- DNS *.natt hiện đang local/private.
+- Không claim public internet-ready.
+- Không claim security-certified.
+- Không mở public khi chưa có auth/rate-limit/data boundary.
+
+## 6. Next Gate
+
+- [ ] Gắn resolver vào UI Runtime Hub
+- [ ] Thêm route anc:// trong docs/specs
+- [ ] Tạo validator kiểm tra ANC_MAP
+- [ ] Tách ACL/auth trước khi mở LAN/VPN/public
+- [ ] Ghi SCAR nếu có route drift giữa anc:// và *.natt

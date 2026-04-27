@@ -113,7 +113,7 @@ const SmartLinkMapper: React.FC<SmartLinkMapperProps> = ({ currentRole, logActio
             <div className="flex items-center gap-6 mb-8 relative z-10">
                <AIAvatar personaId={PersonaID.THIEN} size="md" isThinking={isProcessing} />
                <div>
-                  <h3 className="text-xl font-bold text-white uppercase italic tracking-widest">Thiên Strategic Core</h3>
+                  <h3 className="text-xl font-bold text-white uppercase italic tracking-widest">thiên Strategic Core</h3>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-1">
                      {isProcessing ? 'ĐANG TÁCH BÚT TOÁN DOANH THU/GIÁ VỐN...' : 'HỆ THỐNG ĐÃ PHÂN LOẠI & ĐỊNH KHOẢN'}
                   </p>

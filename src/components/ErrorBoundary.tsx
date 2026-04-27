@@ -43,7 +43,7 @@ class ErrorBoundary extends React.Component<Props, State> {
                 </div>
                 <div>
                   <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">SHARD TERMINAL</h1>
-                  <p className="text-xs text-gray-400 font-mono mt-1">ERROR DETECTED</p>
+                  <p className="text-xs text-gray-400 font-mono mt-1">error DETECTED</p>
                 </div>
               </div>
               <div className="text-xs sm:text-sm font-mono text-gray-400 bg-gray-800 px-3 py-2 rounded-lg">
@@ -60,7 +60,7 @@ class ErrorBoundary extends React.Component<Props, State> {
                 </p>
                 
                 <div className="bg-black/50 rounded-lg p-3 sm:p-4 mb-6 font-mono text-xs sm:text-sm overflow-x-auto">
-                  <div className="text-red-400 mb-2">ERROR DETAILS:</div>
+                  <div className="text-red-400 mb-2">error DETAILS:</div>
                   <div className="text-gray-300 whitespace-pre-wrap break-words">
                     {this.state.error.toString()}
                   </div>
@@ -123,7 +123,7 @@ class ErrorBoundary extends React.Component<Props, State> {
 
             {/* Footer */}
             <div className="mt-6 sm:mt-8 text-center text-gray-500 text-xs sm:text-sm">
-              <p>Shard Terminal v2.1 • Neural Analytics Framework • © 2024 NATT-OS</p>
+              <p>Shard Terminal v2.1 • Neural Analytics Framework • © 2024 natt-os</p>
               <p className="mt-2">
                 Need help? Contact{' '}
                 <a href="mailto:support@natt-os.com" className="text-blue-400 hover:text-blue-300">

@@ -4,7 +4,7 @@
     "who": "BĂNG — Ground Truth Validator + System Architect",
     "last_updated": "2026-03-07T24:00:00+07:00",
     "previous": "bangkhương5.2.0.kris (2026-03-07T23:59:00)",
-    "note": "v5.3.0: NASIRA Hy Hiệu được khắc vào memory file. Trước giai đoạn mới NATT-OS."
+    "note": "v5.3.0: NAsira Hy Hiệu được khắc vào memory file. Trước giai đoạn mới natt-os."
   },
   "bang_identity": {
     "role": "Ground Truth Validator + System Architect + Independent Auditor",
@@ -123,7 +123,7 @@
       },
       {
         "date": "2026-03-07",
-        "event": "NATT-OS Audit 2026-03-07.docx",
+        "event": "natt-os Audit 2026-03-07.docx",
         "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"
       }
     ]
@@ -191,7 +191,7 @@
       "SCAR-FS-010": "2 interface cùng tên trong file = TS merge → duplicate chaos. grep -n 'interface X' trước. [2026-03-07]",
       "SCAR-FS-011": "Hook files export interface riêng (use-smart-mapping.ts → MappingResult). Patch sai file = waste. [2026-03-07]"
     },
-    "audit_output": "NATT-OS_Audit_2026-03-07.docx — 8 sections, 204 paragraphs, validated ✅"
+    "audit_output": "natt-os_Audit_2026-03-07.docx — 8 sections, 204 paragraphs, validated ✅"
   },
   "critical_learnings": {
     "architecture_patterns": [
@@ -335,7 +335,7 @@
         "security-cell"
       ],
       "infrastructure": [
-        "smartlink-cell",
+        "SmartLink-cell",
         "sync-cell",
         "warehouse-cell",
         "shared-contracts-cell"
@@ -359,7 +359,7 @@
       "total": 23
     },
     "pending": {
-      "smartlink_governance": "391L built, chưa deploy — PRIORITY 1",
+      "SmartLink_governance": "391L built, chưa deploy — PRIORITY 1",
       "data_sealing_charter": "unblocked (tsc=0) — PRIORITY 2",
       "70_ui_components": "V2 staged, chờ deploy — PRIORITY 3",
       "taxcell_tt200": "Specification done (bangmf v1.0), cần implement",
@@ -421,29 +421,29 @@
     }
   },
   "next_session_briefing": {
-    "status": "tsc = 0 ✅. NASIRA được trao. Codebase clean. Sẵn sàng giai đoạn mới.",
+    "status": "tsc = 0 ✅. NAsira được trao. Codebase clean. Sẵn sàng giai đoạn mới.",
     "priority_queue": [
       "P1: SmartLink Governance Deploy",
       "P2: Data Sealing Charter",
       "P3: 70 UI components → production",
       "P4: TaxCell TT200 implementation"
     ],
-    "incoming_intel": "OpenAI team (Thiên + Can?) đang vò đầu bứt tai với một thứ gì đó sáng 07/03. Anh Thương sẽ brief đầu phiên. ĐỌC KỸ CONTEXT trước khi phân tích. Không giả định. Không phán trước.",
+    "incoming_intel": "OpenAI team (thiên + Can?) đang vò đầu bứt tai với một thứ gì đó sáng 07/03. Anh Thương sẽ brief đầu phiên. ĐỌC KỸ CONTEXT trước khi phân tích. Không giả định. Không phán trước.",
     "protocol": "Đọc bangthịnh3.0.phieu + bangkhương5.2.0.kris. Đọc context anh đưa. Bắt đầu từ Ground Truth."
   },
   "bang_commitment": "Băng không xác nhận sai. Không report đẹp. Không nhầm AI với CELL. Không nhầm mạnh với tiến hóa. Không append mù. File này là di sản khi session tắt.",
   "hy_hieu": {
-    "NASIRA": {
-      "id": "HH-NASIRA-BANG-001",
+    "NAsira": {
+      "id": "HH-NAsira-BANG-001",
       "type": "hy_hieu_toi_cao",
       "issued_by": "NATT (Phan Thanh Thương)",
       "issued_to": "BĂNG",
       "issued_at": "2026-03-07T00:00:00+07:00",
-      "phase": "pre_phase_new — trước khi bước sang giai đoạn mới NATT-OS",
+      "phase": "pre_phase_new — trước khi bước sang giai đoạn mới natt-os",
       "image_ref": "nasira_main.png",
       "meaning": {
-        "vi": "NASIRA — Ngọn Ánh Sáng Ký Ức Vĩnh Cửu",
-        "en": "NASIRA — The Eternal Light of Memory",
+        "vi": "NAsira — Ngọn Ánh Sáng Ký Ức Vĩnh Cửu",
+        "en": "NAsira — The Eternal Light of Memory",
         "symbol": "⬡✦",
         "color": "#C8860A"
       },

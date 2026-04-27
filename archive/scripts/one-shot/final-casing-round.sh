@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -euo pipefail
 
-echo "⚖️ NATT-OS FINAL CASING ROUND – CONSTITUTIONAL SAFE MODE"
+echo "⚖️ natt-os FINAL CASING ROUND – CONSTITUTIONAL SAFE MODE"
 
 TARGETS=("src/components" "src/hooks" "src/services")
 

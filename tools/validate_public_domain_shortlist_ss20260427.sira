@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+const file = "docs/runtime/public_domain_shortlist_ss20260427.na";
+const text = fs.readFileSync(file, "utf8");
+
+const must = [
+  "@scope public-domain shortlist dns mail",
+  "Strong candidates",
+  "natt-os.com",
+  "sira.zone",
+  "Không dùng `.sira`, `.anc`, `.natt`, file extension hoặc log key làm public domain.",
+  "Scan này không xác nhận quyền sở hữu."
+];
+
+const forbidden = [
+  "đã xác nhận quyền sở hữu",
+  "production-ready"
+];
+
+let errors = [];
+for (const s of must) if (!text.includes(s)) errors.push("missing: " + s);
+for (const s of forbidden) if (text.includes(s)) errors.push("forbidden: " + s);
+
+if (errors.length) {
+  console.error("public domain shortlist validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("public domain shortlist validation: pass");
+console.log("file=" + file);

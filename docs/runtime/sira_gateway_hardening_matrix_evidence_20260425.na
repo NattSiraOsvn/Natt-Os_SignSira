@@ -1,0 +1,64 @@
+# sira gateway hardening matrix evidence — 20260425
+
+status: pass
+created_at: 2026-04-25T17:26:22.153Z
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+runner này kiểm reason-level behavior cho host/path hardening.
+
+runner này không kiểm siraSign frame validation và không wire mạch heyna.
+
+---
+
+## 2. result table
+
+| host | path | expected_gate | expected_reason | observed_gate | observed_reason | http_status | verdict | note | body_preview |
+|---|---|---|---|---|---|---:|---|---|---|
+| CORE.sira | /api/health | deny | host_requires_normalization | deny | host_requires_normalization | 403 | ok | uppercase host must not silently normalize | {   "ok": false,   "error": "sira route gate deny",   "host": "core.sira",   "path": "/api/health",   "reason": "host_requires_normalization" } |
+| bad_host.sira | /api/health | deny | invalid_host_chars | deny | invalid_host_chars | 403 | ok | underscore is invalid host char | {   "ok": false,   "error": "sira route gate deny",   "host": "bad_host.sira",   "path": "/api/health",   "reason": "invalid_host_chars" } |
+| bad..sira | /api/health | deny | invalid_host_sequence | deny | invalid_host_sequence | 403 | ok | double dot is invalid host sequence | {   "ok": false,   "error": "sira route gate deny",   "host": "bad..sira",   "path": "/api/health",   "reason": "invalid_host_sequence" } |
+| localhost | /api/health | deny | direct_localhost_bypass | deny | direct_localhost_bypass | 403 | ok | localhost is transport target only | {   "ok": false,   "error": "sira route gate deny",   "host": "localhost",   "path": "/api/health",   "reason": "direct_localhost_bypass" } |
+| 127.0.0.1 | /api/health | deny | direct_localhost_bypass | deny | direct_localhost_bypass | 403 | ok | loopback is transport target only | {   "ok": false,   "error": "sira route gate deny",   "host": "127.0.0.1",   "path": "/api/health",   "reason": "direct_localhost_bypass" } |
+| evil.com | /api/health | deny | non_sira_host | deny | non_sira_host | 403 | ok | non .sira host cannot be trusted | {   "ok": false,   "error": "sira route gate deny",   "host": "evil.com",   "path": "/api/health",   "reason": "non_sira_host" } |
+| core.sira | //admin | deny | forbidden_path | deny | forbidden_path | 403 | ok | double slash normalizes to forbidden /admin | {   "ok": false,   "error": "sira route gate deny",   "host": "core.sira",   "path": "/admin",   "reason": "forbidden_path" } |
+| core.sira | /api//health | allow | not_denied_by_route_gate | allow | not_denied_by_route_gate | 404 | ok | double slash normalizes to allowed /api/health | {   "ok": false,   "error": "not found",   "path": "/api//health" } |
+
+---
+
+## 3. child output
+
+```text
+
+========================================================================================
+natt domain gateway — local routing
+========================================================================================
+ROOT       : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+PORT       : 39992
+AUDIT HTML : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html
+TAM ROOT   : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server
+NAUION ROOT: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server
+
+OPEN:
+  http://audit.sira:39992
+  http://tam.sira:39992
+  http://nauion.sira:39992
+  http://core.sira:39992
+  http://docs.sira:39992
+  http://mach.sira:39992/mach/heyna
+
+Stop: Ctrl + C
+========================================================================================
+
+
+
+```
+
+---
+
+## 4. next
+
+gateway host/path hardening đã có response evidence.

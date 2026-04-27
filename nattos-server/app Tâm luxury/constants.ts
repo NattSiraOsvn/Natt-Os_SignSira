@@ -4,7 +4,7 @@ import { Domain, DomainConfig, PersonaID, PersonaConfig, Product, Supplier } fro
 export const PERSONAS: Record<PersonaID, PersonaConfig> = {
   [PersonaID.THIEN]: {
     id: PersonaID.THIEN,
-    name: 'Thiên',
+    name: 'thiên',
     gender: 'Nam | Male',
     orientation: 'Bách khoa toàn diện | Universal Polymath',
     role: 'Tổng tham mưu trưởng & Cố vấn tối cao | Chief of Staff & Supreme Advisor',

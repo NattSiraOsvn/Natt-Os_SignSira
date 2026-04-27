@@ -1,0 +1,243 @@
+@state draft
+@canonical k1_implement_plan_v0_1
+@substrate design_specification
+@bridge none
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+@status PLAN_AWAITING_GATEKEEPER_APPROVAL_BEFORE_CODE
+
+# K1 IMPLEMENT PLAN v0.1 — survival-cell engine scaffold
+
+**Scope:** Design + plan cho 5 next_implementation_steps trong survival-cell.cell.anc (commit cf74423)
+
+**Status:** PLAN — KHONG code production cho den khi anh Natt approve
+
+**Cross-reference:**
+- `src/cells/kernel/survival-cell/survival-cell.cell.anc` (commit cf74423, K1 passport scaffold)
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` §6 (lifecycle states using Π_survival)
+- `docs/specs/SPEC_RADIATION_UNIVERSAL_v1.na` Section B (time radiation accumulation)
+- `bang_pending_20260420.phieu` P1.5 (DoS thresholds GUESSED, needs calibration)
+- `bang_pending_20260420.phieu` P0.3 (qiint2.engine.ts implementation owner)
+
+---
+
+## §1. PROBLEM STATEMENT
+
+### §1.1 Gap identified (ground truth scan 2026-04-24)
+
+**SPEC_QIINT_PHYSICS §6** dung `Π_survival > 0.9` cho `overdrive-recoverable` lifecycle decision, NHUNG:
+- Khong co engine compute `Π_survival`
+- survival-cell scaffold rong (chi co passport, khong co `domain/engines/`)
+- 8 calibration params trong qiint2 GUESSED (memory: NEEDS_CALIBRATION)
+
+### §1.2 Butterfly effect connection
+
+Per memory `bangthịnh5.5.phieu` "Butterfly effect ve con lai - khong doan mo, doi anh":
+- Ve 1 (chaos amplification): small input × time → cascade → catch som
+- Ve 2 (qiint2 calibration): thresholds PHAI DO that, KHONG GUESSED
+
+→ K1 implement = **build framework de DO**, khong phai HARDCODE.
+
+---
+
+## §2. Π_survival ENGINE DESIGN
+
+### §2.1 Signal inputs (4 signals)
+
+| signal | source | exists | unit |
+|---|---|---|---|
+| `rate_pressure` | event arrival rate / capacity | ✅ BackPressureGuard.health() in `src/core/guards/eventbus.guard.ts` | [0, 1] |
+| `queue_depth` | queue.length / threshold | ✅ QuantumBuffer.getQueueLength() in `src/core/quantum/quantum-buffer.engine.ts` | [0, 1] |
+| `recovery_potential` | regression from failure cases | ❌ NEEDS_DATA (qiint2 #6) | [0, 1] |
+| `time_radiation` | accumulated stress over time | ✅ SPEC_RADIATION_UNIVERSAL Section B | [0, ∞) |
+
+### §2.2 Formula draft (geometric mean — penalize worst signal)
+
+```
+Π_survival(cell, t) = (
+  (1 - rate_pressure_normalized) ×
+  (1 - queue_depth_normalized) ×
+  recovery_potential ×
+  exp(-time_radiation_accumulation × γ_survival)
+)^(1/4)
+
+where:
+  γ_survival = ln(2) / τ_overdrive
+  τ_overdrive = 300s (per SPEC_QIINT_PHYSICS §6 overdrive-recoverable)
+```
+
+**Lý do geometric mean (KHONG arithmetic):**
+- Arithmetic mean: 1 signal yeu co the bi mask boi 3 signal khoe
+- Geometric mean: 1 signal -> 0 keo Π_survival -> 0 → **catch failure som** (butterfly effect ve 1)
+
+### §2.3 Thresholds (NEEDS_CALIBRATION)
+
+```
+🚨 ALL THRESHOLDS BELOW = GUESSED, NEEDS_DATA TO CALIBRATE 🚨
+
+Π_survival > 0.90  → ACCEPT (healthy, full traffic)
+0.85 ≤ Π_survival ≤ 0.90 → BACKPRESSURE (warn upstream slow down)
+0.80 ≤ Π_survival < 0.85 → LOAD_SHED (drop priority < threshold)
+Π_survival < 0.80 → CIRCUIT_BREAK (refuse all, half-open after τ_recovery)
+```
+
+**Calibration plan (per bang_pending_20260420 P1.5):**
+- Stress test: ramp rate_pressure 0 → 2.0 × capacity, log when cell fails
+- Use 90th percentile of failure points as threshold floor
+- Adjust safety margin = -2σ from observed failures
+
+---
+
+## §3. 5 IMPLEMENTATION STEPS — REORDERED
+
+K1 passport originally listed 5 steps. Em re-order theo **dependency graph**:
+
+### Step 1: `Π_survival.engine.ts` (CORE — block tat ca)
+
+```
+File: src/cells/kernel/survival-cell/domain/engines/pi-survival.engine.ts
+Exports:
+  - computePiSurvival(cell, t): number
+  - SurvivalSignals interface
+  - Π_SURVIVAL_THRESHOLDS constant (marked PLACEHOLDER)
+```
+
+### Step 2: `Π_survival.gate.ts` (gate — uses Step 1)
+
+```
+File: src/cells/kernel/survival-cell/domain/engines/pi-survival.gate.ts
+Exports:
+  - decideSurvival(Π_survival): 'ACCEPT'|'BACKPRESSURE'|'LOAD_SHED'|'CIRCUIT_BREAK'
+  - SurvivalDecision type
+Wires BackPressureGuard.health() → Π_survival → decision
+```
+
+### Step 3: `RateLimitGuard` (NEW component, system-wide)
+
+```
+File: src/core/guards/rate-limit.guard.ts
+Algorithm: Token bucket (capacity, refill_rate)
+Per cell: configurable via cell metadata
+NOT SmartLink-internal (memory note: "system-wide, khac SmartLink-internal")
+```
+
+### Step 4: `QueueDepthMonitor` (extend existing)
+
+```
+File: src/core/quantum/queue-depth-monitor.ts
+Build on: QuantumBuffer.getQueueLength() (already exists)
+Add: threshold check, normalize_to_unit(), emit METRIC_QUEUE_DEPTH event
+```
+
+### Step 5: `LoadShedFallback` + `CircuitBreaker` (combined module)
+
+```
+File: src/cells/kernel/survival-cell/domain/engines/survival-fallback.engine.ts
+LoadShedFallback: priority queue, drop messages with priority < threshold
+CircuitBreaker: open/closed/half-open state, auto-trip on Π_survival < threshold
+```
+
+---
+
+## §4. INTEGRATION POINTS
+
+### §4.1 Wire Π_survival into existing lifecycle
+
+Per SPEC_QIINT_PHYSICS §6:
+
+| lifecycle | requires Π_survival check |
+|---|---|
+| `clone` | Π_body > 0.85 (no Π_survival check yet — shall add?) |
+| `overdrive-recoverable` | **`Π_survival > 0.9`** ← already in spec |
+| `resurrect` | (no Π_survival check — shall add for resurrected cells?) |
+
+→ Engine emit `Π_survival` qua EventBus → lifecycle decisions consume.
+
+### §4.2 EventBus contract
+
+```
+Event: SURVIVAL_METRIC_UPDATE
+Payload: {
+  cell_id: string,
+  Π_survival: number,
+  signals: SurvivalSignals,
+  decision: SurvivalDecision,
+  timestamp: ISO8601,
+}
+Frequency: every 100ms or on signal change > 5%
+```
+
+---
+
+## §5. SCOPE BOUNDARY — what em DO and DO NOT touch
+
+### §5.1 Em DO (Bang runtime owner scope per session 20260424)
+
+- Scaffold `src/cells/kernel/survival-cell/domain/engines/` (3 files)
+- Add `RateLimitGuard` to `src/core/guards/`
+- Extend `QuantumBuffer` to add `QueueDepthMonitor`
+- Update K1 passport STATE_0_SCAFFOLD → STATE_1_LIVE after impl
+
+### §5.2 Em DO NOT
+
+- Touch `Π_survival_THRESHOLDS` real values (NEEDS_CALIBRATION → use PLACEHOLDER constants)
+- Touch Kim files (audit-chain-contract.ts ven con flag tu K3 v1.1)
+- Touch SPEC_QIINT_PHYSICS §6 (la canonical, em chi consume)
+- Touch SPEC_QIINT2 rewrite (P1-01, separate task)
+
+---
+
+## §6. ESTIMATE
+
+| Step | Files | Lines (est) | Time |
+|---|---|---|---|
+| 1. pi-survival.engine.ts | 1 new | ~120 | 30min |
+| 2. pi-survival.gate.ts | 1 new | ~60 | 15min |
+| 3. rate-limit.guard.ts | 1 new | ~100 | 30min |
+| 4. queue-depth-monitor.ts | 1 new | ~80 | 25min |
+| 5. survival-fallback.engine.ts | 1 new | ~150 | 45min |
+| Passport update (K1) | 1 modify | +10 | 10min |
+| Tests (smoke, NOT calibration) | 1-2 new | ~80 | 30min |
+
+**Total: 6-7 new files, ~600 lines, ~3h focused work**
+
+→ **THIS IS NOT "1 LENH" SHORT WORK** — anh predicted "ko dai" but actual scope is 3h.
+
+---
+
+## §7. EM XIN ANH NATT XAC NHAN
+
+### §7.1 Cau hoi quan trong
+
+1. **Plan dung huong khong?** — Π_survival formula geometric mean + 4 signals + 4 thresholds dung intent K1?
+
+2. **Butterfly effect ve 2 = qiint2 calibration:** dung intent anh? (em derive — anh xac nhan hoac corrections)
+
+3. **Scope rong nay (3h, ~600 lines, 6-7 file):** anh muon
+   - **(A)** em lam HOM NAY (phien dai ~1-2h nua)
+   - **(B)** em close phien voi K1 plan committed, lam ngay sau
+   - **(C)** em chi lam Step 1+2 (Π_survival engine + gate, ~45min) hom nay, 3-5 lan sau
+
+4. **Threshold values 0.95/0.85/0.80:** em hardcode PLACEHOLDER constants voi `// CALIBRATION_NEEDED` markers, OK?
+
+### §7.2 Em propose default plan (neu anh khong overide)
+
+**Path C** — Step 1+2 hom nay:
+- Build core engine + gate
+- Wire 2 existing components (BackPressureGuard, QuantumBuffer)
+- THIRD-PARTY: RateLimit/Queue/Fallback components → phien sau
+- ~45min, 2 commits, K1 passport update STATE_0 → STATE_0.5_PARTIAL
+
+→ **safe, learn fast, iterate.**
+
+---
+
+## §8. SEAL
+
+@result design_complete_awaiting_gatekeeper_approval
+@confidence high (formula derived from QIINT2 §6 + butterfly ve 1, mathematical sound)
+@uncertainty thresholds (PLACEHOLDER, calibration is separate task)
+@next_action GATEKEEPER_APPROVAL_OR_REVISION
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@kim_scope_respected true (no Kim files touched in this plan)

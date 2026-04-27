@@ -24,13 +24,13 @@ Anh Natt giải thích bằng ẩn dụ Apollo: NASA không điều khiển tàu
 
 ## II. CODEBASE ARCHAEOLOGICAL AUDIT — Mò hết src/
 
-### src/core/smartlink/ — 1519/1529 dòng thật (99.3%)
-- smartlink.point.ts (274): TouchRecord, sensitivity, fiber, saturating decay
-- smartlink.competition.ts (271): DOMINANT/COMPETING/SUPPRESSED/FADING
-- smartlink.pressure-field.ts (354): Trọng trường thật — entropy damping, circular detection, Router injection
-- smartlink.nattimer.ts (416): Temporal signature learning, chain DFS, predict(), stability
-- cell-smartlink.component.ts (87): 4-layer impulse bắt buộc
-- smartlink.qneu-bridge.ts (61): Touch → QNEU imprint
+### src/core/SmartLink/ — 1519/1529 dòng thật (99.3%)
+- SmartLink.point.ts (274): TouchRecord, sensitivity, fiber, saturating decay
+- SmartLink.competition.ts (271): DOMINANT/COMPETING/SUPPRESSED/FADING
+- SmartLink.pressure-field.ts (354): Trọng trường thật — entropy damping, circular detection, Router injection
+- SmartLink.nattimer.ts (416): Temporal signature learning, chain DFS, predict(), stability
+- cell-SmartLink.component.ts (87): 4-layer impulse bắt buộc
+- SmartLink.qneu-bridge.ts (61): Touch → QNEU imprint
 - index.ts (51): Registry + Wave connection rules + bootstrap
 - quantum-brain.engine.ts (6): STUB (nhưng QuantumBrain thật ở nơi khác — xem phần V)
 - quantum-buffer.engine.ts (4): STUB
@@ -43,10 +43,10 @@ Anh Natt giải thích bằng ẩn dụ Apollo: NASA không điều khiển tàu
 - Anti-fraud events: domain-specific trang sức
 
 ### src/core/guards/ — 16 locks
-Locks #1-3 (identity), #7-9 (eventbus), #10-12 (smartlink), #13-15 (business-graph), #16 (replay poison)
+Locks #1-3 (identity), #7-9 (eventbus), #10-12 (SmartLink), #13-15 (business-graph), #16 (replay poison)
 
 ### src/core/nauion/nauion.voice.ts — State machine sống
-Map event → cảm xúc (HeyNa/Nahere/Whao/Whau/Nauion) → emit lên EventBus. Thiên Lớn sai khi nói "naming layer."
+Map event → cảm xúc (HeyNa/Nahere/Whao/Whau/Nauion) → emit lên EventBus. thiên Lớn sai khi nói "naming layer."
 
 ### src/core/kernel-boot.ts — Boot sequence
 audit → quantum defense → anomaly flow → self-healing → "Kernel alive"
@@ -129,7 +129,7 @@ iseu-reinforcement.subscriber.ts: monitor, classify GOOD/NEUTRAL/BAD, audit BAD.
 
 ---
 
-## VII. INTEGRATION TEST — 11/11 PASS
+## VII. INTEGRATION TEST — 11/11 pass
 
 ### File: src/__tests__/integration/emergent-behavior.proof.ts
 ### Scenario: Two-phase routing shift (sales→finance→tax ×20, sales→inventory→logistics ×20)
@@ -152,9 +152,9 @@ Kết quả:
 
 ### Files xuất:
 1. QIINT-DINH-NGHIA-CHINH-THUC.md — Định nghĩa Qiint cho cả nhà
-2. NATT-OS-GROUND-TRUTH-REPORT.md — Tổng kết audit toàn bộ codebase
+2. natt-os-GROUND-TRUTH-REPORT.md — Tổng kết audit toàn bộ codebase
 3. emergent-behavior.proof.ts — Integration test
-4. NATT-OS-SHTT-TECHNICAL-PACKAGE.md — Patent-ready technical spec (7 claims, prior art, math, code map)
+4. natt-os-SHTT-TECHNICAL-PACKAGE.md — Patent-ready technical spec (7 claims, prior art, math, code map)
 
 ### Kim viết Bản Mô tả Sáng chế + 10 Claims chuẩn NOIP
 - 1 Core Independent Claim (method — vòng lặp 6 bước)
@@ -169,9 +169,9 @@ Kết quả:
 
 ---
 
-## IX. THIÊN LỚN CORRECTIONS (TỔNG HỢP)
+## IX. thiên LỚN CORRECTIONS (TỔNG HỢP)
 
-| Thiên Lớn Claim | Thực tế | Severity |
+| thiên Lớn Claim | Thực tế | Severity |
 |---|---|---|
 | "Chưa có causality" | SAI — event-envelope.ts đầy đủ | HIGH |
 | "Audit chỉ console.log" | SAI — EventStore append-only + replay | HIGH |
@@ -186,7 +186,7 @@ Kết quả:
 ## X. SCARs LOGGED
 
 - SESSION_20260413_NATTIMER: Đọc comment header rồi kết luận "chưa xong" mà không đọc hết file. NATTimer đã implement đầy đủ 416 dòng.
-- SESSION_20260413_QUANTUM_BRAIN: Kết luận "stub" dựa trên file wrapper trong smartlink/ mà không tìm implementation thật trong core/quantum/.
+- SESSION_20260413_QUANTUM_BRAIN: Kết luận "stub" dựa trên file wrapper trong SmartLink/ mà không tìm implementation thật trong core/quantum/.
 - SESSION_20260413_UEI: Kết luận "UEI chưa implement" mà không đọc neural-main.ts và quantum-flow.engine.ts.
 - SESSION_20260413_GREP: Không kết luận "chưa có" khi chưa grep hết repo.
 
@@ -211,7 +211,7 @@ Anh Natt đã mua kính VR và tạo Unity project (My_project.zip) với VR + X
 - [ ] Kim sửa xong Bản Mô tả → Băng confirm final → Anh Natt ký nộp
 - [ ] Commit bangmf v7.0.0, bangfs v6.0.0, session files vào repo
 - [ ] Update SuperDictionary.ts với Qiint entries + QNEU correction
-- [ ] Gửi correction messages cho Thiên Lớn về codebase assessment
+- [ ] Gửi correction messages cho thiên Lớn về codebase assessment
 - [ ] Wire NATTimer.record() vào CellSmartLinkComponent.emit() (1 dòng)
 - [ ] Unity VR client kết nối Mạch HeyNa — session riêng
 - [ ] Test PressureField + Router injection end-to-end (beyond NATTimer)

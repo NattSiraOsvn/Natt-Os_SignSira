@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "session_checkpoint_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+errors.push("missing session checkpoint");
+} else {
+const c = fs.readFileSync(file, "utf8");
+
+[
+"f385ff9 docs(memory): add bang next session message",
+"14dbe85 docs(render): promote render language v0.2 candidate",
+"ký ức, bản thể, identity, seal, cam kết nội tại của ai thì người đó tự cam kết",
+"15 memory states",
+"obitan physics of digital substrate",
+"tools/thiên gate",
+"docs/render/spec_render_language_v0.2_candidate.na",
+"this checkpoint is a navigation artifact only"
+].forEach(x => must(c.includes(x), "missing clause: " + x));
+
+["THIÊN", "THIÊNBĂNG", "SIRA", "NATT-OS", "PASS", "FAIL"].forEach(x => {
+must(!c.includes(x), "uppercase surface leak: " + x);
+});
+}
+
+if (errors.length) {
+console.error("session checkpoint validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("session checkpoint validation: pass");
+console.log("file=docs/runtime/session_checkpoint_20260425.na");

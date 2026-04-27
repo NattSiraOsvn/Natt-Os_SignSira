@@ -1,0 +1,21 @@
+import { EventBus } from "../../../../core/events/event-bus";
+// ── shared-contracts-SmartLink.port.ts ──────────────────────
+// sira_CONTRACT_INTERFACE ContractSignal
+const ContractSignal = {
+  type: "CONTRACT_created" | "CONTRACT_BREACHED" | "CONTRACT_COMPLETED" | "PAYMENT_DUE";
+  payload;
+  timestamp;
+}
+
+const CONTRACT_MAP = {
+  "CONTRACT_created":   "ContractCreated",
+  "CONTRACT_BREACHED":  "ContractBreached",
+  "CONTRACT_COMPLETED": "ContractCompleted",
+  "PAYMENT_DUE":        "PaymentDue",
+};
+
+export function publishContractSignal(signal: ContractSignal) {
+  EventBus.emit(CONTRACT_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
+}
+
+// ────────────────────────────────────────────────────────────

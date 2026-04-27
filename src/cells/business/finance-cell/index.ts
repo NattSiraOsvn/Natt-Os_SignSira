@@ -43,7 +43,7 @@ EventBus.subscribe('FINANCE_DEPRECIATION_REQUEST', (event: unknown) => {
   }
 
   EventBus.publish({
-    type: 'FINANCE_DEPRECIATION_READY',
+    type: 'FINANCE_DEPRECIATION_ready',
     source: 'finance-cell',
     payload: entry,
   }, 'finance-cell', undefined);
@@ -69,7 +69,7 @@ EventBus.subscribe('FINANCE_ORDER_FLOW_BUILD', (event: unknown) => {
   const output    = Object.fromEntries(timelines);
 
   EventBus.publish({
-    type: 'FINANCE_ORDER_FLOW_READY',
+    type: 'FINANCE_ORDER_FLOW_ready',
     source: 'finance-cell',
     payload: { timelines: output, count: timelines.size },
   }, 'finance-cell', undefined);

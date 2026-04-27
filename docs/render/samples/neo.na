@@ -1,0 +1,37 @@
+# SAMPLE 2/6 — state: neo
+# @sample: anchor_sealed_after_lock
+# @status: draft → chờ validator
+
+obitan_state neo {
+  domain: Π_body
+  polarity: cool-rim
+  obitan_layer: n=1
+
+  surface_signal: APPEAR {
+    element_id: "truth-pillar-01"
+    position: relative_to("root-surface", offset(120, 0))
+    origin_state: neo
+    pressure: 0.0
+  }
+
+  surface_signal: RESIZE {
+    element_id: "truth-pillar-01"
+    from_scale: 0.8
+    to_scale: 1.0
+    origin_state: neo
+    pressure: 0.0
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [nhà, chốt]
+    decay_rate: γ(1)
+    reflection_R: 0.85
+  }
+
+  expression {
+    wavelength_base: 640
+    intensity: stable(0.9)
+    duration: infinite
+  }
+}

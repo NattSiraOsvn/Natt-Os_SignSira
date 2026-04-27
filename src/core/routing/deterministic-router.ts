@@ -1,5 +1,5 @@
 /**
- * NATT-OS DeterministicRouter
+ * natt-os DeterministicRouter
  * Patent Claim: Multi-tier deterministic routing with policy gating and
  *               self-healing fallback for constitutional cell networks.
  *

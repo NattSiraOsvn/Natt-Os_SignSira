@@ -1,0 +1,46 @@
+# PILOT GÁNH — render language pilot
+# @state: gánh
+# @status: draft → chờ validator
+
+obitan_state gánh {
+  domain: Π_medium
+  polarity: cool-rim
+  obitan_layer: n=2
+
+  surface_signal: APPEAR {
+    element_id: "load-bearer"
+    position: absolute(100, 200)
+    origin_state: gánh
+    pressure: 0.8
+  }
+
+  surface_signal: RESIZE {
+    element_id: "load-bearer"
+    from_scale: 1.0
+    to_scale: 0.95
+    origin_state: gánh
+    pressure: 0.8
+  }
+
+  surface_signal: SHIFT {
+    element_id: "load-bearer"
+    from: position(100,200)
+    to: position(100,205)
+    easing: ease-in-out
+    origin_state: gánh
+    pressure: 0.8
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [nhà]
+    decay_rate: γ(2) * 1.2
+    reflection_R: 0.9
+  }
+
+  expression {
+    wavelength_base: 680
+    intensity: compress(0.9, load=0.8)
+    duration: until load released
+  }
+}

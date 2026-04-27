@@ -1,0 +1,98 @@
+<!--
+  RENDER LANGUAGE PILOT — state: xét
+  marker: render_pilot
+  domain: Π_medium
+  obitan_layer: n=3
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — xét</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --judge-color: #f0b0a0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; border-radius: 50%; }
+  @keyframes judge-scan {
+    0% { transform: translateX(-10px); }
+    100% { transform: translateX(10px); }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-xet-001',
+    signals: [
+      {
+        verb: 'SHIFT',
+        element_id: 'judge-scanner',
+        origin_state: 'xét',
+        params: { from: 'position(150,80)', to: 'position(160,80)', easing: 'linear' },
+        pressure: 0.6,
+        degrade_to: null
+      },
+      {
+        verb: 'PULSE',
+        element_id: 'judge-scanner',
+        origin_state: 'xét',
+        params: { frequency: 3, amplitude: 0.4 },
+        pressure: 0.6,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'FOCUS', priority: 0.9, target: 'judge-scanner' },
+    motion_budget: { frame_budget: 100, allocated: 30, remaining: 70 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: [], at_boundary: ['judge-scanner'], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#judge-scanner');
+  if (el) {
+    el.style.width = '8px';
+    el.style.height = '8px';
+    el.style.left = '55%';
+    el.style.top = '40%';
+    el.style.background = 'var(--judge-color)';
+    el.style.boxShadow = '0 0 12px 4px rgba(240,176,160,0.7)';
+    el.style.animation = 'judge-scan 1s linear infinite alternate';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'xét';
+  container.appendChild(label);
+  
+  const renderPilotReadout = {
+    state:'xét', marker:'render_pilot', domain:'Π_medium',
+    obitan_layer:'n=3', polarity:'oscillating',
+    pressure_response:'OSCILLATE', reflection_R:0.8, decay_rate:'γ(3)*1.5',
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
+  };
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
+</script>
+</body>
+</html>

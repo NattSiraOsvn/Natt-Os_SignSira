@@ -1,0 +1,63 @@
+#!/usr/bin/env node
+// @nauion-scanner v1
+// @state runtime-policy excluded-from-production
+// @name sovereign @nauion system state v0.1
+// @scope sovereign-audit-system-inference
+// @runtime_scope excluded
+// @owner natt sirawat / phan thanh thương
+// @anc băng sirawat
+// @tool scan_system_state
+// @session ss20260427
+// @created_at natthome
+
+// scan_system_state.sira — V4 System State Inference
+// Refactor from nattos.sh §30 PY30 → Nauion JS native ss20260427
+
+const fs = require("fs");
+
+function load(f) {
+  const p = `.nattos-twin/${f}`;
+  if (!fs.existsSync(p)) return {};
+  try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return {}; }
+}
+
+const eg = load("event-graph.json");
+const em = load("engine-map.json");
+const sm = load("signal-map.json");
+
+let risk = 0;
+const issues = [];
+const strengths = [];
+
+const orphan = (eg.orphan || []).length;
+const dead = (em.dead || []).length;
+const blind = (sm.blind || []).length;
+const healthy = (eg.healthy || []).length;
+
+if (orphan > 10) { issues.push(`EVENT_LEAK: ${orphan} orphan events`); risk += 20; }
+else if (orphan > 3) { issues.push(`MINOR_LEAK: ${orphan} orphan events`); risk += 8; }
+else strengths.push(`Event coverage clean (${orphan} orphans)`);
+
+if (dead > 10) { issues.push(`DEAD_WEIGHT: ${dead} unused engines`); risk += 15; }
+else if (dead > 3) { issues.push(`ENGINE_WASTE: ${dead} unused`); risk += 5; }
+else strengths.push(`Engine wiring healthy (${dead} unused)`);
+
+if (blind > 10) { issues.push(`SENSORY_DEFICIT: ${blind} blind cells`); risk += 20; }
+else if (blind > 5) { issues.push(`PARTIAL_BLINDNESS: ${blind} blind`); risk += 10; }
+else strengths.push(`Signal coverage: ${(sm.wired || []).length} cells wired`);
+
+if (healthy > 20) strengths.push(`Event flows: ${healthy} healthy chains`);
+else if (healthy > 10) strengths.push(`Event flows: ${healthy} adequate`);
+else { issues.push(`FLOW_DEFICIT: only ${healthy} healthy chains`); risk += 15; }
+
+const state = risk >= 50 ? "CRITICAL" : risk >= 25 ? "FRAGMENTED" : risk >= 10 ? "STABLE" : "HEALTHY";
+const colors = { HEALTHY: "\x1b[0;32m", STABLE: "\x1b[0;36m", FRAGMENTED: "\x1b[0;33m", CRITICAL: "\x1b[0;31m" };
+const c = colors[state] || "\x1b[0m";
+const N = "\x1b[0m";
+
+console.log(`  ${c}SYSTEM STATE: ${state} (risk: ${risk}/100)${N}`);
+for (const s of strengths) console.log(`  \x1b[0;32m  ✅\x1b[0m ${s}`);
+for (const i of issues) console.log(`  \x1b[0;33m  ⚠️\x1b[0m  ${i}`);
+
+fs.mkdirSync(".nattos-twin", { recursive: true });
+fs.writeFileSync(".nattos-twin/inference.json", JSON.stringify({ state, risk, strengths, issues }, null, 2));

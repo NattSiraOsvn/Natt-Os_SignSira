@@ -1,0 +1,136 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const routeMatrix = path.join(root, "docs", "runtime", "tam_luxury_domain_route_gate_matrix_20260425.na");
+const file = path.join(root, "docs", "runtime", "tam_luxury_permission_matrix_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function uniq(xs) {
+  return Array.from(new Set(xs));
+}
+
+function splitRoles(v) {
+  if (!v || v === "-") return [];
+  return v.split(",").map(x => x.trim()).filter(Boolean);
+}
+
+if (!fs.existsSync(routeMatrix)) {
+  errors.push("missing domain route gate matrix");
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing permission matrix");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const requiredClauses = [
+  "tam luxury permission matrix",
+  "permission matrix là role x screen x route",
+  "matrix này không scaffold cell",
+  "screen binding không phải cell scaffold",
+  "## 3. permission matrix",
+  "PL-001",
+  "PL-071",
+  "/system/overview",
+  "/workspace/event-correlation",
+  "gate_required_frame",
+  "gate_shape_frame",
+  "gate_minimal_read",
+  "gate_session_read"
+];
+  const forbiddenMarks = [
+  "mỗi màn hình là một cell",
+  "screen = cell",
+  "status: scaffolded",
+  "status: wired",
+  "public",
+  "production-ready"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing permission clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden permission wording: " + mark);
+  }
+
+  const rows = c.split("\n").filter(line => /^\| PL-\d{3} \|/.test(line));
+
+  must(rows.length === 71, "permission matrix must contain 71 screen rows");
+
+  const ids = [];
+  const routes = [];
+  const rolesSeen = new Set();
+
+  for (const line of rows) {
+    const parts = line.split("|").map(x => x.trim());
+    const screenId = parts[1];
+    const domain = parts[2];
+    const route = parts[3];
+    const guard = parts[4];
+    const sign = parts[5];
+    const readRoles = splitRoles(parts[6]);
+    const writeRoles = splitRoles(parts[7]);
+    const approveRoles = splitRoles(parts[8]);
+    const status = parts[9];
+
+    ids.push(screenId);
+    routes.push(route);
+
+    must(domain.length > 0, screenId + " domain must not be empty");
+    must(route.startsWith("/"), screenId + " route must start with slash");
+    must(readRoles.length > 0, screenId + " read roles must not be empty");
+    must(["none", "shape", "required"].includes(sign), screenId + " invalid sirasign: " + sign);
+    must(["gate_required_frame", "gate_shape_frame", "gate_minimal_read", "gate_session_read"].includes(guard), screenId + " invalid gate guard: " + guard);
+    must(status === "manifested", screenId + " status must remain manifested");
+
+    for (const r of readRoles.concat(writeRoles).concat(approveRoles)) {
+      rolesSeen.add(r);
+      must(!r.includes(" "), screenId + " role must not contain spaces: " + r);
+    }
+
+    must(!writeRoles.includes("public"), screenId + " public write is forbidden");
+
+    if (readRoles.includes("khach_hang") || readRoles.includes("khach_hang_vip") || writeRoles.includes("khach_hang") || writeRoles.includes("khach_hang_vip")) {
+      must(route.startsWith("/customer/"), screenId + " customer role must stay under customer route");
+    }
+
+    if (route.startsWith("/audit/") || route.startsWith("/system/")) {
+      must(readRoles.includes("bks") || readRoles.includes("admin") || readRoles.includes("tgd"), screenId + " audit/system route must include bks/admin/tgd");
+    }
+
+    if (sign === "required") {
+      must(guard === "gate_required_frame", screenId + " required sirasign must use gate_required_frame");
+    }
+
+    if (sign === "shape") {
+      must(guard === "gate_shape_frame", screenId + " shape sirasign must use gate_shape_frame");
+    }
+  }
+
+  must(uniq(ids).length === 71, "screen ids must be unique");
+  must(uniq(routes).length === 71, "routes must be unique");
+
+  for (let i = 1; i <= 71; i++) {
+    const expected = "PL-" + String(i).padStart(3, "0");
+    must(ids.includes(expected), "missing screen id " + expected);
+  }
+
+  must(rolesSeen.size >= 15, "permission matrix should cover at least 15 roles");
+}
+
+if (errors.length) {
+  console.error("tam luxury permission matrix validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("tam luxury permission matrix validation: pass");
+console.log("file=docs/runtime/tam_luxury_permission_matrix_20260425.na");
+console.log("screens=71");

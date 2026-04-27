@@ -1,0 +1,31 @@
+# PILOT VỀ — render language pilot
+# @state: về
+# @status: draft → chờ validator
+
+obitan_state về {
+  domain: Π_medium
+  polarity: warm-core
+  obitan_layer: n=1 → n=0
+
+  surface_signal: SHIFT {
+    element_id: "wandering-thought"
+    from: position(400, 300)
+    to: origin(0, 0)
+    easing: ease-in
+    origin_state: về
+    pressure: 0.5
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [nhà]
+    decay_rate: γ(1) * (1 - progress)
+    reflection_R: 0.5 * (1 - progress)
+  }
+
+  expression {
+    wavelength_base: 600 → 580
+    intensity: fade(0.7, 0.3, easing=ease-in)
+    duration: until distance < threshold
+  }
+}

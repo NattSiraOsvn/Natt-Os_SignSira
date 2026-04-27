@@ -51,7 +51,7 @@ sirasign*.json
 .DS_Store
 repo.json
 
-# NATT-OS runtime
+# natt-os runtime
 .nattos-twin/
 audit/summary/
 audit/log/
@@ -64,3 +64,30 @@ docs/vision/log 4c.xlsx
 docs/vision/log4a.pdf
 docs/vision/log4b.pdf
 docs/vision/log4c.numbers
+
+# natt-os rename tools (scratch)
+nattos-rename-dryrun-v*.py
+nattos-rename-execute.py
+rename-preview-v*.txt
+nattos-rename-*.log
+
+# Bang drafts archive — lineage files, local only
+archive/bang-drafts-*/
+scripts/__pycache__/
+__pycache__/
+
+# Rust build artifacts
+runtime/*/target/
+**/*.rs.bk
+
+# W2B/W2C — host-result.phieu runtime artifacts (per SPEC_HOST_RESULT_PROTOCOL §2)
+runtime/audit/
+
+# nattos.sh backups (W2E + earlier)
+nattos.sh.bak-*
+# natt-os: ignore generated Rust build artifacts
+**/target/
+docs/runtime/nauion-host/target/
+audit/reports/*_auto.md
+.DS_Store
+**/.DS_Store

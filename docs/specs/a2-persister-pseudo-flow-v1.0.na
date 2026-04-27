@@ -1,0 +1,476 @@
+@state draft
+@canonical a2_persister_pseudo_flow_v1.0
+@substrate persister_flow
+@bridge none
+@since 2026-04-25
+@authority-slot Phan Thanh Thương Giao Băng (Chị Tư) — 20260423
+
+# A.2 — MOMENT PERSISTER PSEUDO-FLOW
+
+kind: SpecSupportDocument
+track: Wave 2 / Lane A / A.2
+title: Pseudo-flow for MomentPersister.persist()
+version: v1.0
+status: draft-for-review
+owner: thiên Lớn
+requested_by: Kim (for Gatekeeper)
+date: 2026-04-23
+causation: A2-PERSISTER-FLOW-20260423-THIEN-DRAFT-01
+
+## 1. PURPOSE
+Tài liệu này mô tả pseudo-flow chi tiết cho `MomentPersister.persist()`.
+Mục tiêu là để Kim review logic tuần tự trước khi đi xuống TypeScript thật.
+
+Phạm vi của tài liệu này:
+
+- validate input moment;
+- route sang `StorageTarget[]`;
+- serialize sang `PersistedMomentDocument`;
+- xử lý từng `StorageTarget.mode`;
+- xử lý riêng case `GIAC_NGO` dual-target;
+- gom kết quả và trả `PersistResult`.
+
+Tài liệu này **không** tự đưa ra 2-phase commit, rollback policy, hay constitutional storage path mới.
+
+## 2. ASSUMED TYPES (PSEUDO)
+
+```ts
+type PersistMode = 'append' | 'edit_continuum' | 'delta'
+
+type StorageTarget = {
+  path: string
+  mode: PersistMode
+  targetKind?: string
+  targetLabel?: string
+}
+
+type PersistedMomentDocument = {
+  momentId: string
+  kind: MomentKind
+  fragments: Record<string, unknown>
+  sirasign?: string
+  policy_state?: string
+  serializedAt: string
+}
+
+type PersistTargetResult = {
+  path: string
+  mode: PersistMode
+  status: 'written' | 'patched' | 'skipped' | 'pending-policy' | 'failed'
+  documentsirasign?: string
+  note?: string
+}
+
+type PersistResult = {
+  ok: boolean
+  momentId: string
+  kind: MomentKind
+  targets: PersistTargetResult[]
+  documentsirasign?: string
+  policy_state?: string
+  issues: string[]
+}
+```
+
+## 3. HIGH-LEVEL FLOW
+
+```ts
+function persist(moment: Moment): PersistResult
+```
+
+Trình tự tổng thể:
+
+1. validate input ở mức shape + required fragments + causation rules;
+2. resolve `StorageTarget[]` bằng router;
+3. serialize `Moment` thành `PersistedMomentDocument`;
+4. iterate từng target và ghi theo `mode`;
+5. nếu gặp `GIAC_NGO` dual-target thì giữ `policy_state = "dual-target-pending-policy"`;
+6. collect results;
+7. derive `documentsirasign`;
+8. trả `PersistResult`.
+
+## 4. DETAILED PSEUDO-FLOW
+
+```ts
+function persist(moment: Moment): PersistResult {
+  const issues: string[] = []
+
+  // STEP 1 — basic input guard
+  if (!moment) {
+    return failResult('UNKNOWN', 'UNKNOWN', ['moment is required'])
+  }
+
+  if (!moment.kind) {
+    return failResult(moment.id ?? 'UNKNOWN', 'UNKNOWN', ['moment.kind is required'])
+  }
+
+  // STEP 2 — validate against A.2 mapping
+  const validation = validateMomentForPersistence(moment)
+  if (!validation.ok) {
+    return {
+      ok: false,
+      momentId: moment.id,
+      kind: moment.kind,
+      targets: [],
+      issues: validation.issues
+    }
+  }
+
+  // STEP 3 — route to storage targets
+  const targets = MomentPathRouter.storagePathsFor(moment)
+
+  if (!targets || targets.length === 0) {
+    return {
+      ok: false,
+      momentId: moment.id,
+      kind: moment.kind,
+      targets: [],
+      issues: ['no storage targets resolved']
+    }
+  }
+
+  // STEP 4 — serialize moment once
+  const baseDocument = MomentSerializer.toPersistedDocument(moment)
+
+  // STEP 5 — pre-check policy-sensitive cases
+  const dualTargetPendingPolicy =
+    moment.kind === 'GIAC_NGO' && targets.length > 1
+
+  const documentForWrite: PersistedMomentDocument = dualTargetPendingPolicy
+    ? {
+        ...baseDocument,
+        policy_state: 'dual-target-pending-policy'
+      }
+    : baseDocument
+
+  // STEP 6 — write/patch/create per target
+  const targetResults: PersistTargetResult[] = []
+
+  for (const target of targets) {
+    try {
+      if (target.mode === 'append') {
+        const r = appendDocument(target, documentForWrite)
+        targetResults.push(r)
+        continue
+      }
+
+      if (target.mode === 'edit_continuum') {
+        const r = patchContinuum(target, documentForWrite)
+        targetResults.push(r)
+        continue
+      }
+
+      if (target.mode === 'delta') {
+        const r = writeDelta(target, documentForWrite)
+        targetResults.push(r)
+        continue
+      }
+
+      targetResults.push({
+        path: target.path,
+        mode: target.mode,
+        status: 'failed',
+        note: `unsupported persist mode: ${target.mode}`
+      })
+      issues.push(`unsupported persist mode: ${target.mode}`)
+    } catch (err) {
+      targetResults.push({
+        path: target.path,
+        mode: target.mode,
+        status: dualTargetPendingPolicy ? 'pending-policy' : 'failed',
+        note: errorMessage(err)
+      })
+      issues.push(`persist failure at ${target.path}: ${errorMessage(err)}`)
+    }
+  }
+
+  // STEP 7 — derive documentsirasign
+  const documentsirasign = deriveDocumentsirasign(documentForWrite, targetResults)
+
+  // STEP 8 — finalize result
+  return {
+    ok: issues.length === 0,
+    momentId: moment.id,
+    kind: moment.kind,
+    targets: targetResults,
+    documentsirasign,
+    policy_state: documentForWrite.policy_state,
+    issues
+  }
+}
+```
+
+## 5. HELPER FLOW — validation
+
+```ts
+function validateMomentForPersistence(moment: Moment): {
+  ok: boolean
+  issues: string[]
+} {
+  const issues: string[] = []
+
+  // 5.1 validate kind
+  if (!isSupportedMomentKind(moment.kind)) {
+    issues.push(`unsupported moment kind: ${moment.kind}`)
+    return { ok: false, issues }
+  }
+
+  // 5.2 validate required fragments
+  const required = requiredFragmentsFor(moment.kind)
+  for (const fragmentName of required) {
+    if (!hasFragment(moment, fragmentName)) {
+      issues.push(`missing required fragment: ${fragmentName}`)
+    }
+  }
+
+  // 5.3 validate causation chain if present / required
+  const chainRule = causationChainRuleFor(moment.kind)
+
+  if (chainRule.required && !hasFragment(moment, 'CAUSATION_CHAIN')) {
+    issues.push('missing required fragment: CAUSATION_CHAIN')
+  }
+
+  if (hasFragment(moment, 'CAUSATION_CHAIN')) {
+    const chain = getFragment(moment, 'CAUSATION_CHAIN')
+
+    if (chainRule.allowedLinkTypes.length > 0 &&
+        !chainRule.allowedLinkTypes.includes(chain.link_type)) {
+      issues.push(`invalid CAUSATION_CHAIN.link_type for ${moment.kind}`)
+    }
+
+    if (chainRule.requiredTargetKind &&
+        chain.target_kind !== chainRule.requiredTargetKind) {
+      issues.push(`invalid CAUSATION_CHAIN.target_kind for ${moment.kind}`)
+    }
+  }
+
+  return {
+    ok: issues.length === 0,
+    issues
+  }
+}
+```
+
+## 6. HELPER FLOW — ROUTING
+
+```ts
+function storagePathsFor(moment: Moment): StorageTarget[] {
+  // delegated to MomentPathRouter.storagePathsFor(moment)
+}
+```
+
+Router chỉ có 3 trách nhiệm ở pseudo-flow này:
+
+1. resolve đúng `StorageTarget[]`;
+2. mỗi target phải có `path` + `mode`;
+3. không tự áp policy ngoài scope.
+
+`OPEN`:
+- canonical storage root/path vẫn chờ Gatekeeper neo;
+- pseudo-flow này chỉ phụ thuộc vào contract của router, không đóng path policy thay router.
+
+## 7. HELPER FLOW — SERIALIZATION
+
+```ts
+function toPersistedDocument(moment: Moment): PersistedMomentDocument {
+  return {
+    momentId: moment.id,
+    kind: moment.kind,
+    fragments: normalizeFragments(moment),
+    sirasign: moment.sirasign,
+    serializedAt: nowIso()
+  }
+}
+```
+
+Yêu cầu tối thiểu của serializer trong flow này:
+
+- không làm mất fragment names;
+- preserve `moment.sirasign` nếu đã có;
+- có thể thêm `policy_state` ở tầng persister nếu cần;
+- không tự mutate semantic content của moment.
+
+## 8. MODE-SPECIFIC WRITE FLOW
+
+### 8.1 `append`
+
+```ts
+function appendDocument(
+  target: StorageTarget,
+  doc: PersistedMomentDocument
+): PersistTargetResult {
+  // open/create target file
+  // append serialized doc as new entry to .na stream / ledger-like continuum
+  // return status = 'written'
+}
+```
+
+Diễn giải:
+
+- dùng khi target là log/stream/append-only continuum;
+- không patch entry cũ;
+- mỗi persist tạo thêm một unit mới trong file đích.
+
+### 8.2 `edit_continuum`
+
+```ts
+function patchContinuum(
+  target: StorageTarget,
+  doc: PersistedMomentDocument
+): PersistTargetResult {
+  // open existing continuum doc
+  // locate editable region / fragment slot
+  // patch fragments allowed by rule
+  // write back updated document
+  // return status = 'patched'
+}
+```
+
+Diễn giải:
+
+- dùng khi moment phải cập nhật liên tục một tài liệu đang sống;
+- patch theo fragment-level hoặc section-level;
+- không được biến thành overwrite mù toàn file nếu spec patch rule chưa rõ.
+
+`OPEN`:
+- exact patch granularity;
+- conflict rule khi target chưa tồn tại;
+- fragment merge precedence.
+
+### 8.3 `delta`
+
+```ts
+function writeDelta(
+  target: StorageTarget,
+  doc: PersistedMomentDocument
+): PersistTargetResult {
+  // generate delta artifact
+  // write as standalone delta file
+  // keep reference back to source moment / source continuum if available
+  // return status = 'written'
+}
+```
+
+Diễn giải:
+
+- dùng khi muốn lưu biến động độc lập;
+- không sửa file chính;
+- delta file phải còn trace được ngược về moment nguồn.
+
+## 9. GIAC_NGO DUAL-TARGET HANDLING
+
+```ts
+const dualTargetPendingPolicy =
+  moment.kind === 'GIAC_NGO' && targets.length > 1
+```
+
+Nếu điều kiện này đúng, persister:
+
+1. **không** tự chọn target ưu tiên;
+2. **không** tự rollback;
+3. **không** dựng 2-phase commit;
+4. gắn `policy_state = "dual-target-pending-policy"` lên document/result;
+5. tiếp tục ghi kết quả từng target ở mức có thể, nhưng trả trạng thái rõ ràng là còn chờ policy.
+
+Pseudo-interpretation an toàn:
+
+```ts
+if (dualTargetPendingPolicy) {
+  document.policy_state = 'dual-target-pending-policy'
+}
+```
+
+Nếu một target fail còn target khác pass, result vẫn phải nói thật bằng `targets[]` + `issues[]`, không “che” thất bại bằng một cờ `ok = true` mơ hồ.
+
+## 10. DOCUMENT siraSIGN
+
+```ts
+function deriveDocumentsirasign(
+  doc: PersistedMomentDocument,
+  targets: PersistTargetResult[]
+): string | undefined {
+  if (doc.sirasign) return `stub-from-moment:${doc.sirasign}`
+
+  // fallback stub if moment does not bring sirasign
+  return `stub-derived:${doc.kind}:${doc.momentId}:${targets.length}`
+}
+```
+
+Intent hiện tại:
+
+- ưu tiên dùng `sirasign` của moment nếu đã có;
+- nếu chưa có thì trả stub derivation đủ để result có trace;
+- không claim đây là final constitutional signing algorithm.
+
+## 11. failURE / RESULT SHAPE
+
+### 11.1 Hard fail trước write
+Trường hợp fail ngay từ validation/router:
+
+- `ok = false`
+- `targets = []`
+- `issues[]` phải chỉ ra lý do cụ thể
+
+### 11.2 Partial write
+Nếu có nhiều target:
+
+- từng target phải có `status` riêng;
+- `issues[]` phải chứa lỗi cụ thể theo path;
+- không collapse partial state thành một boolean mơ hồ.
+
+### 11.3 Suggested result examples
+
+```ts
+{
+  ok: false,
+  momentId: 'M-001',
+  kind: 'MOTION_TICH_CUC',
+  targets: [],
+  issues: ['missing required fragment: BODY_RESPONSE']
+}
+```
+
+```ts
+{
+  ok: false,
+  momentId: 'M-002',
+  kind: 'GIAC_NGO',
+  targets: [
+    {
+      path: '.../target-a.na',
+      mode: 'append',
+      status: 'written'
+    },
+    {
+      path: '.../target-b.na',
+      mode: 'edit_continuum',
+      status: 'pending-policy',
+      note: 'dual target unresolved'
+    }
+  ],
+  documentsirasign: 'stub-from-moment:sira-XYZ',
+  policy_state: 'dual-target-pending-policy',
+  issues: ['persist failure at .../target-b.na: dual target unresolved']
+}
+```
+
+## 12. OPEN ITEMS CHO BĂNG / KIM
+
+- `OPEN-01`: `edit_continuum` patch rule đang cần seal rõ hơn: patch theo fragment, block, hay logical slot?
+- `OPEN-02`: conflict rule nếu `edit_continuum` target chưa tồn tại.
+- `OPEN-03`: canonical structure của `.na` append stream và delta file còn cần đối chiếu với fixture thật.
+- `OPEN-04`: `documentsirasign` cuối cùng là passthrough, aggregate hash, hay signing step tách riêng?
+- `OPEN-05`: dual-target policy cho `GIAC_NGO` có cho phép `ok = true with pending-policy` hay bắt buộc `ok = false` khi chưa fully settled? Pseudo-flow hiện đang chọn trung thực theo `issues.length`.
+
+## 13. REVIEW NOTE
+Đây là pseudo-flow để Kim review logic.
+Nó cố ý:
+
+- giữ syntax dễ đọc, gần TypeScript;
+- không ràng buộc implementation detail quá sớm;
+- không lấy scaffold hiện tại làm nguồn chân lý;
+- không lấn sang policy chưa được seal.
+
+---
+writer: thiên Lớn
+status_note: pseudo only; not implementation code

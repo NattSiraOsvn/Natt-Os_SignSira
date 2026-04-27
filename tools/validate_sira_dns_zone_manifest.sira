@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const file = path.join(process.cwd(), "docs", "runtime", "sira_dns_zone_manifest_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+errors.push("missing sira dns zone manifest");
+} else {
+const c = fs.readFileSync(file, "utf8");
+const requiredClauses = [
+  "dns không phải identity",
+  "http không phải identity",
+  "domain gọi được không có nghĩa là được tin",
+  "anc://",
+    "identity protocol lõi",
+  "core.sira",
+  "apps.sira",
+  "mach.sira",
+  "audit.sira",
+  "render.sira",
+  "tam.sira",
+  "unknown.sira → deny",
+  "spoofed host header → quarantine",
+  "direct localhost bypass",
+  "route gate phải kiểm theo thứ tự",
+  "dns zone không thay siraSign",
+  "manifest này chưa nối implementation gateway"
+];
+const forbiddenMarks = [
+  "DNS XONG",
+  "HTTP là identity",
+  "dns là authority",
+  "http:// = identity",
+  "PASS",
+  "FAIL"
+];
+
+for (const clause of requiredClauses) {
+must(c.includes(clause), "missing clause: " + clause);
+}
+
+for (const mark of forbiddenMarks) {
+must(!c.includes(mark), "forbidden surface leak: " + mark);
+}
+}
+
+if (errors.length) {
+console.error("sira dns zone manifest validation: fail");
+for (const e of errors) console.error(" - " + e);
+process.exit(1);
+}
+
+console.log("sira dns zone manifest validation: pass");
+console.log("file=docs/runtime/sira_dns_zone_manifest_20260425.na");

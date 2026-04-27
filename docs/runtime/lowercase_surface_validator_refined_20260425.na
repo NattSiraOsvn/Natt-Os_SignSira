@@ -1,0 +1,30 @@
+# lowercase surface validator refined — 20260425
+
+status: pass
+created_at: 2026-04-24T18:53:53.770268+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. rule
+
+toàn repo surface dùng lowercase.
+
+không ép technical identifier, enum, code token, archive evidence.
+
+## 2. patched files
+
+- src/governance/memory/kim/KIM HUONG DAN BOIBOI.sh
+- docs/specs/a2-moments-validation-and-routing-v0.1.na
+- docs/specs/a2-moment-fragment-mapping-v1.0.na
+- docs/specs/NaU_audit-REVIEW-v1.na
+- docs/specs/a2-persister-pseudo-flow-v1.0.na
+- docs/specs/K1-IMPLEMENT-PLAN-v0.1.na
+- docs/specs/SPEC_ONG_MAU_v0.1.na
+- docs/runtime/lowercase_surface_full_repo_20260425.na
+- docs/runtime/audit/K1-IMPLEMENT-PLAN-v0.1.na
+- docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (1).md
+
+## 3. validator
+
+- tools/validate_lowercase_surface.sira

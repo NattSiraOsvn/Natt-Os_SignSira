@@ -25,7 +25,7 @@ export class ProductionEngine {
       percentage,
       threshold,
       isExceeded: percentage > threshold,
-      alertLevel: percentage > threshold ? 'CRITICAL' : (percentage > threshold - 0.2 ? 'WARNING' : 'NORMAL')
+      alertLevel: percentage > threshold ? 'CRITICAL' : (percentage > threshold - 0.2 ? 'warnING' : 'NORMAL')
     };
   }
 
@@ -42,16 +42,16 @@ export class ProductionEngine {
 
     const workflowMap: Partial<Record<OrderStatus, OrderStatus>> = {
       [OrderStatus.SALE_ORDER]: OrderStatus.DESIGNING,
-      [OrderStatus.DESIGNING]: OrderStatus.WAX_READY,
-      [OrderStatus.WAX_READY]: OrderStatus.MATERIAL_ISSUED,
+      [OrderStatus.DESIGNING]: OrderStatus.WAX_ready,
+      [OrderStatus.WAX_ready]: OrderStatus.MATERIAL_ISSUED,
       [OrderStatus.MATERIAL_ISSUED]: OrderStatus.CASTING,
       [OrderStatus.CASTING]: OrderStatus.COLLECTING_BTP,
       [OrderStatus.COLLECTING_BTP]: OrderStatus.COLD_WORK,
       [OrderStatus.COLD_WORK]: OrderStatus.STONE_SETTING,
       [OrderStatus.STONE_SETTING]: OrderStatus.FINISHING,
       [OrderStatus.FINISHING]: OrderStatus.QC_PENDING,
-      [OrderStatus.QC_PENDING]: OrderStatus.QC_PASSED,
-      [OrderStatus.QC_PASSED]: OrderStatus.COMPLETED
+      [OrderStatus.QC_PENDING]: OrderStatus.QC_passED,
+      [OrderStatus.QC_passED]: OrderStatus.COMPLETED
     };
 
     return workflowMap[current] || current;

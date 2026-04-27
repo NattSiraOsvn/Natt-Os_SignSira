@@ -21,7 +21,7 @@ interface UATTestCase {
   category: 'LEGAL_ENGINE' | 'DATA_SECURITY' | 'LOGISTICS_CORE';
   name: string;
   criteria: string;
-  status: 'IDLE' | 'RUNNING' | 'PASSED' | 'FAILED';
+  status: 'IDLE' | 'RUNNING' | 'passED' | 'failED';
   log: string;
   impact: string; // Patent Impact
 }
@@ -39,14 +39,14 @@ interface AuditFinding {
 }
 
 const patentCommands = [
-  { id: 'IPC', label: '1. Phân loại IPC', prompt: 'Phân loại sáng chế cho NATT-OS theo IPC classification (International Patent Classification) và CPC, giải thích lý do chọn các mã đó dựa trên tính năng Blockchain Sharding và AI OCR.' },
-  { id: 'ABSTRACT', label: '2. Viết Abstract', prompt: 'Viết abstract (tóm tắt) cho bằng sáng chế NATT-OS (khoảng 150 từ), mô tả ngắn gọn về hệ thống quản trị doanh nghiệp đa lõi tích hợp AI và Blockchain cô lập, nhấn mạnh vào tính mới.' },
-  { id: 'CLAIMS', label: '3. Soạn 10 Claims', prompt: 'Viết 10 claims (yêu cầu bảo hộ) chi tiết cho hệ thống NATT-OS. Bao gồm 1 claim độc lập và 9 claims phụ thuộc. Tập trung vào phương pháp xác thực toàn vẹn dữ liệu, cơ chế dual-key signing, và logic phát hiện xung đột tự động.' },
+  { id: 'IPC', label: '1. Phân loại IPC', prompt: 'Phân loại sáng chế cho natt-os theo IPC classification (International Patent Classification) và CPC, giải thích lý do chọn các mã đó dựa trên tính năng Blockchain Sharding và AI OCR.' },
+  { id: 'ABSTRACT', label: '2. Viết Abstract', prompt: 'Viết abstract (tóm tắt) cho bằng sáng chế natt-os (khoảng 150 từ), mô tả ngắn gọn về hệ thống quản trị doanh nghiệp đa lõi tích hợp AI và Blockchain cô lập, nhấn mạnh vào tính mới.' },
+  { id: 'CLAIMS', label: '3. Soạn 10 Claims', prompt: 'Viết 10 claims (yêu cầu bảo hộ) chi tiết cho hệ thống natt-os. Bao gồm 1 claim độc lập và 9 claims phụ thuộc. Tập trung vào phương pháp xác thực toàn vẹn dữ liệu, cơ chế dual-key signing, và logic phát hiện xung đột tự động.' },
   { id: 'PRIOR_ART', label: '4. Tìm Prior Art', prompt: 'Liệt kê các từ khóa và chiến lược tìm kiếm Prior Art (nghệ thuật ưu tiên) liên quan đến "Document integrity verification on blockchain" và "Enterprise Resource Planning with isolated sharding". Đề xuất các bằng sáng chế tương tự của SAP, Oracle để tham chiếu.' },
-  { id: 'COMPETITOR', label: '5. So sánh Đối thủ', prompt: 'Phân tích điểm khác biệt kỹ thuật và pháp lý của NATT-OS so với DocuSign và Adobe Sign. Tập trung vào tính năng Blockchain Sharding (Cô lập dữ liệu) và AI Advisor (Cố vấn thời gian thực) mà các đối thủ chưa tối ưu.' },
-  { id: 'DRAFT_APP', label: '6. Viết Draft Đơn', prompt: 'Viết dự thảo chi tiết phần "Mô tả sáng chế" (Description) cho NATT-OS, bao gồm: Lĩnh vực kỹ thuật, Tình trạng kỹ thuật của sáng chế, Bản chất kỹ thuật của sáng chế, và Mô tả vắn tắt hình vẽ.' },
-  { id: 'DIAGRAM_DESC', label: '7. Mô tả Diagram', prompt: 'Viết mô tả chi tiết cho các hình vẽ kỹ thuật (Technical Diagrams) của NATT-OS: Hình 1: Sơ đồ kiến trúc Hub & Spoke. Hình 2: Lưu đồ thuật toán đồng thuận PoB. Hình 3: Sơ đồ luồng dữ liệu Dual-Key Signing.' },
-  { id: 'SEARCH_QUERY', label: '8. Query Tìm kiếm', prompt: 'Tạo danh sách các truy vấn tìm kiếm (Search Queries) Boolean complex để tra cứu trên Google Patents, ESPACENET và WIPO cho công nghệ của NATT-OS. Ví dụ: (blockchain OR DLT) AND (sharding OR isolation) AND ("document integrity").' }
+  { id: 'COMPETITOR', label: '5. So sánh Đối thủ', prompt: 'Phân tích điểm khác biệt kỹ thuật và pháp lý của natt-os so với DocuSign và Adobe Sign. Tập trung vào tính năng Blockchain Sharding (Cô lập dữ liệu) và AI Advisor (Cố vấn thời gian thực) mà các đối thủ chưa tối ưu.' },
+  { id: 'DRAFT_APP', label: '6. Viết Draft Đơn', prompt: 'Viết dự thảo chi tiết phần "Mô tả sáng chế" (Description) cho natt-os, bao gồm: Lĩnh vực kỹ thuật, Tình trạng kỹ thuật của sáng chế, Bản chất kỹ thuật của sáng chế, và Mô tả vắn tắt hình vẽ.' },
+  { id: 'DIAGRAM_DESC', label: '7. Mô tả Diagram', prompt: 'Viết mô tả chi tiết cho các hình vẽ kỹ thuật (Technical Diagrams) của natt-os: Hình 1: Sơ đồ kiến trúc Hub & Spoke. Hình 2: Lưu đồ thuật toán đồng thuận PoB. Hình 3: Sơ đồ luồng dữ liệu Dual-Key Signing.' },
+  { id: 'SEARCH_QUERY', label: '8. Query Tìm kiếm', prompt: 'Tạo danh sách các truy vấn tìm kiếm (Search Queries) Boolean complex để tra cứu trên Google Patents, ESPACENET và WIPO cho công nghệ của natt-os. Ví dụ: (blockchain OR DLT) AND (sharding OR isolation) AND ("document integrity").' }
 ];
 
 const DevPortal: React.FC<DevPortalProps> = () => {
@@ -397,7 +397,7 @@ const DevPortal: React.FC<DevPortalProps> = () => {
                       <div>
                           <h3 className="text-4xl font-serif gold-gradient italic uppercase tracking-tighter mb-4 print:text-black">Patent Eligibility Check</h3>
                           <p className="text-gray-400 text-sm max-w-2xl leading-relaxed italic print:text-black">
-                            "Thưa Anh Natt, đây là phòng thí nghiệm lõi. Nơi Thiên chứng minh tính 'Mới' (Novelty) và 'Sáng tạo' (Inventive Step) của hệ thống trước Hội đồng thẩm định sở hữu trí tuệ."
+                            "Thưa Anh Natt, đây là phòng thí nghiệm lõi. Nơi thiên chứng minh tính 'Mới' (Novelty) và 'Sáng tạo' (Inventive Step) của hệ thống trước Hội đồng thẩm định sở hữu trí tuệ."
                           </p>
                       </div>
                    </div>

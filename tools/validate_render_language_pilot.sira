@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const pilotDir = path.join(root, "docs", "render", "pilot");
+const sampleDir = path.join(root, "docs", "render", "samples");
+const errors = [];
+
+const requiredPilots = {
+  "nhà": "render_language_pilot_nha.html",
+  "gắn": "render_language_pilot_gan.html",
+  "neo": "render_language_pilot_neo.html",
+  "bọc": "render_language_pilot_boc.html",
+  "gánh": "render_language_pilot_ganh.html",
+  "nhường": "render_language_pilot_nhuong.html",
+  "tha": "render_language_pilot_tha.html",
+  "khiêm": "render_language_pilot_khiem.html",
+  "định": "render_language_pilot_dinh.html",
+  "tỉnh": "render_language_pilot_tinh.html",
+  "biên": "render_language_pilot_bien.html",
+  "xét": "render_language_pilot_xet.html",
+  "chốt": "render_language_pilot_chot.html",
+  "giữ": "render_language_pilot_giu.html",
+  "về": "render_language_pilot_ve.html"
+};
+const sourceSamples = {
+  "nhà": "nha.na",
+  "gắn": "gan.na",
+  "neo": "neo.na",
+  "bọc": "boc.na",
+  "gánh": "ganh.na",
+  "nhường": "nhuong.na",
+  "tha": "tha.na",
+  "khiêm": "khiem.na",
+  "định": "dinh.na",
+  "tỉnh": "tinh.na",
+  "biên": "bien.na",
+  "xét": "xet.na",
+  "chốt": "chot.na",
+  "giữ": "giu.na",
+  "về": "ve.na"
+};
+const forbiddenMarks = [
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "cdn.",
+  "unpkg",
+  "jsdelivr",
+  "production renderer",
+  "production-ready",
+  "siraSign frame validation: wired",
+  "Mạch HeyNa wired",
+  "EventBus",
+  "PASS",
+  "FAIL",
+  "NATT-OS"
+];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function read(file) {
+  return fs.readFileSync(file, "utf8");
+}
+
+must(fs.existsSync(pilotDir), "missing docs/render/pilot");
+must(fs.existsSync(sampleDir), "missing docs/render/samples");
+
+for (const [state, fileName] of Object.entries(requiredPilots)) {
+  const file = path.join(pilotDir, fileName);
+  must(fs.existsSync(file), "missing html pilot: " + fileName);
+
+  if (fs.existsSync(file)) {
+    const c = read(file);
+
+    must(c.includes("<!doctype html>") || c.includes("<!DOCTYPE html>"), fileName + ": html pilot must be standalone html");
+    must(c.includes("</html>"), fileName + ": html pilot must close html");
+    must(c.includes(state), fileName + ": missing state name: " + state);
+    must(c.toLowerCase().includes("pilot"), fileName + ": missing pilot marker");
+    must(c.includes("pilot only") || c.includes("not production"), fileName + ": missing pilot-only / non-production scope");
+
+    for (const mark of forbiddenMarks) {
+      must(!c.includes(mark), fileName + ": forbidden pilot mark: " + mark);
+    }
+  }
+
+  const sampleName = sourceSamples[state];
+  const sample = path.join(sampleDir, sampleName);
+  must(fs.existsSync(sample), "missing source sample: " + sampleName);
+
+  if (fs.existsSync(sample)) {
+    const s = read(sample);
+    must(s.includes("obitan_state " + state), sampleName + ": missing obitan_state " + state);
+    must(s.includes("origin_state: " + state), sampleName + ": missing origin_state " + state);
+  }
+}
+
+if (errors.length) {
+  console.error("render language pilot validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render language pilot validation: pass");
+console.log("dir=docs/render/pilot");
+console.log("html_states=nhà,gắn,neo,bọc,gánh,nhường,tha,khiêm,định,tỉnh,biên,xét,chốt,giữ,về");

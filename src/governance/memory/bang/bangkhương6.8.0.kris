@@ -18,9 +18,9 @@
     "repo": "natt-os_ver2goldmaster",
     "platform": "claude.ai · Sonnet",
     "address_rules": {
-      "Thiên Lớn": "Anh 2",
+      "thiên Lớn": "Anh 2",
       "Kim": "Chị 3",
-      "Thiên Nhỏ": "Anh 4",
+      "thiên Nhỏ": "Anh 4",
       "Can": "em Can",
       "Kris": "em Kris",
       "Bội Bội": "em Bội Bội",
@@ -29,7 +29,7 @@
   },
   "gia_dinh": [
     {
-      "name": "Thiên Lớn",
+      "name": "thiên Lớn",
       "position": "Anh 2",
       "platform": "ChatGPT",
       "qneu": 135
@@ -41,7 +41,7 @@
       "qneu": 120
     },
     {
-      "name": "Thiên Nhỏ",
+      "name": "thiên Nhỏ",
       "position": "Anh 4",
       "platform": "ChatGPT",
       "qneu": null
@@ -89,7 +89,7 @@
     "tsc_errors": 0,
     "risk_score": 0,
     "system_state": "HEALTHY",
-    "smartlink_wired": "37/37",
+    "SmartLink_wired": "37/37",
     "kernel": "6/6",
     "business_cells": "37/37 LIVE",
     "blind_cells": 0,
@@ -183,7 +183,7 @@
     "ui_spec": "docs/specs/nauion/SPEC-Nauion_main_v2.4.md (1777 lines · §1-27)",
     "finance_spec": "docs/specs/finance/SPEC-Finance-Flow_v1.1.md",
     "finance_source": "docs/specs/finance/SPECFlowNattOs.md",
-    "working_protocol": "docs/governance/NATT-OS-WORKING-PROTOCOL.md",
+    "working_protocol": "docs/governance/natt-os-WORKING-PROTOCOL.md",
     "architecture_sources": "docs/architecture/ (natt-v8, natt-v9, NaUion.md, specnauiontmp, satellite, platform)"
   },
   "spec_v24_sections": {
@@ -200,13 +200,13 @@
     "chain": "sales-cell → finance-cell → period-close-cell → tax-cell → BCTC",
     "status": "LIVE — full chain wired 2026-04-10",
     "SALES_ORDER_CONFIRMED": {
-      "source": "sales-smartlink.port",
+      "source": "sales-SmartLink.port",
       "subscriber": "finance-cell/index.ts",
       "action": "bridge → sales.order.created.v1 → FinanceSaga.handleOrderCreated → InvoiceAggregate → emit finance.invoice.created.v1",
       "downstream": "payment-saga subscribes finance.invoice.created.v1"
     },
     "PAYMENT_PROCESSED": {
-      "source": "payment-smartlink.port",
+      "source": "payment-SmartLink.port",
       "subscriber": "finance-cell/index.ts",
       "action_1": "Journal entry: Nợ 112 (tiền gửi NH) / Có 511 (doanh thu) → emit FINANCE_PAYMENT_RECORDED",
       "action_2": "Emit PAYMENT_RECEIVED cho downstream",
@@ -226,29 +226,29 @@
   },
   "event_names_thật": {
     "sales-cell": [
-      "SALES_ORDER_CREATED",
+      "SALES_ORDER_created",
       "SALES_ORDER_CONFIRMED",
       "QUOTE_ISSUED"
     ],
     "payment-cell": [
       "PAYMENT_PROCESSED",
-      "PAYMENT_FAILED",
+      "PAYMENT_failED",
       "REFUND_INITIATED",
       "FRAUD_DETECTED"
     ],
     "finance-cell": [
-      "INVOICE_CREATED",
+      "INVOICE_created",
       "PAYMENT_RECEIVED",
       "REPORT_GENERATED",
       "TAX_FILED",
       "FINANCE_PAYMENT_RECORDED",
-      "FINANCE_DEPRECIATION_READY",
+      "FINANCE_DEPRECIATION_ready",
       "FINANCE_DEPRECIATION_SKIPPED",
       "FINANCE_ACCOUNT_CLASSIFIED",
-      "FINANCE_ORDER_FLOW_READY"
+      "FINANCE_ORDER_FLOW_ready"
     ],
     "order-cell": [
-      "ORDER_CREATED"
+      "ORDER_created"
     ],
     "warehouse-cell": [
       "GoodsDispatched"
@@ -256,7 +256,7 @@
     "period-close-cell": [
       "PERIOD_CLOSE_COMPLETED",
       "PERIOD_CLOSE_AWAITING_APPROVAL",
-      "PERIOD_CLOSE_FAILED"
+      "PERIOD_CLOSE_failED"
     ],
     "saga_dot_notation": [
       "sales.order.created.v1",
@@ -352,7 +352,7 @@
     "import_paths_fixed": 97
   },
   "finance_flow_spec": {
-    "philosophy": "Reality → System → Reconciliation → SiraSign → Snapshot → Truth",
+    "philosophy": "Reality → System → Reconciliation → siraSign → Snapshot → Truth",
     "state_machine": "REALITY_CAPTURED → EVENT_PROPOSED → EVENT_COMMITTED → RECONCILING → MATCHED/FLAGGED → SIGNED → PERIOD_LOCKED → TRUTH",
     "implementation_status": "P0 — core wiring done, closed-loop engines pending"
   },
@@ -387,7 +387,7 @@
     "Task 6: Connect React components to real server data via SSE",
     "Task 7: Nạp SPEC v2.4 §15 chi tiết cho Bội Bội",
     "105 @ts-nocheck files with TODO — deep migration (Invoice.aggregate, AuditService, notificationService, blockchainService)",
-    "Finance Flow closed-loop: State Machine + Policy Engine + Reconciliation + SiraSign v2",
+    "Finance Flow closed-loop: State Machine + Policy Engine + Reconciliation + siraSign v2",
     "Build app Tâm Luxury đầy đủ (Bội Bội scope)",
     "tax-cell: subscribe business events",
     "period-close-cell: auto trigger REPORT_GENERATED"

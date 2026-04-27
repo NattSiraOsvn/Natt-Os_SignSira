@@ -4,7 +4,7 @@
     "boi_boi": {
       "write_access": [],
       "read_access": [
-        "cells/shared-kernel/smartlink.registry.ts",
+        "cells/shared-kernel/SmartLink.registry.ts",
         "natt-os/constitution/"
       ],
       "execution": "frozen",

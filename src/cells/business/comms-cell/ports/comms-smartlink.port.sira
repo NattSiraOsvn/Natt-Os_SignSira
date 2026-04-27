@@ -1,0 +1,18 @@
+import { EventBus } from "../../../../core/events/event-bus";
+// ── comms-SmartLink.port.ts ──────────────────────────────────
+// sira_CONTRACT_INTERFACE CommsSignal
+const CommsSignal = {
+  type: "MESSAGE_SENT" | "ALERT_RAISED" | "SYSTEM_NOTIFICATION";
+  payload;
+  timestamp;
+}
+
+const COMMS_MAP = {
+  "MESSAGE_SENT":        "MessageSent",
+  "ALERT_RAISED":        "AlertRaised",
+  "SYSTEM_NOTIFICATION": "SystemNotification",
+};
+
+export function publishCommsSignal(signal: CommsSignal) {
+  EventBus.emit(COMMS_MAP[signal.type] ?? signal.type, { ...signal.payload, timestamp: signal.timestamp });
+}

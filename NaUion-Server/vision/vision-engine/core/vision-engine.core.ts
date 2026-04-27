@@ -1,5 +1,5 @@
 // src/vision-engine/core/vision-engine.core.ts
-// FIX: EventBus thật, caused_by, secureAction với SiraSign
+// FIX: EventBus thật, caused_by, secureAction với siraSign
 
 import { EventBus, createEvent } from '../../lib/event-bus'
 import { siraSignEngine } from '../security/sirasign-engine'
@@ -38,7 +38,7 @@ class VisionEngine {
     ))
   }
 
-  // Hành động cần bảo mật — yêu cầu SiraSign
+  // Hành động cần bảo mật — yêu cầu siraSign
   secureAction(action: () => void, sirasign?: any) {
     if (!sirasign) {
       EventBus.emit(createEvent('security.failed', { reason: 'missing_sirasign' }))
@@ -57,7 +57,7 @@ class VisionEngine {
   }
 
   navigate(scene: SceneId, sirasign?: any) {
-    // Navigation công khai không cần SiraSign
+    // Navigation công khai không cần siraSign
     // Chỉ các action nhạy cảm mới cần
     this.setState({ currentScene: scene })
   }

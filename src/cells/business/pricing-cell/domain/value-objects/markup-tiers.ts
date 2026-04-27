@@ -1,5 +1,5 @@
 /**
- * NATT-OS Pricing Cell — Markup Tiers
+ * natt-os Pricing Cell — Markup Tiers
  * Source: Bảng Giá 2025, Tâm Luxury
  *
  * Từ SaleTerminal v2 review (Băng đánh giá 7.25/10):

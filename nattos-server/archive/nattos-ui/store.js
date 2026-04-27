@@ -1,4 +1,4 @@
-// core/store.js — NATT-OS State Store
+// core/store.js — natt-os State Store
 // Source of truth: /kenh/vet + /kenh/intel
 
 export const store = {

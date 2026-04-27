@@ -1,5 +1,5 @@
 /**
- * NATT-OS Smart Get Data Engine v1.0
+ * natt-os Smart Get Data Engine v1.0
  * Tâm Luxury — Phát Hiện Thao Túng Luồng Sản Xuất
  *
  * 5 lớp bảo vệ:
@@ -111,7 +111,7 @@ function crossValidate(sheetRows) {
       if (fromVal > 0 && toVal > 0 && Math.abs(fromVal - toVal) > 0.005) {
         const diff = fromVal - toVal;
         issues.push({
-          orderId, level: diff > 0.05 ? 'CRITICAL' : 'WARNING',
+          orderId, level: diff > 0.05 ? 'CRITICAL' : 'warnING',
           type: 'HANDOFF_MISMATCH',
           message: `${fromName} (${fromVal}chi) ≠ ${toName} (${toVal}chi) — chênh ${diff.toFixed(3)}chi`,
           stage: toName, diff,
@@ -133,7 +133,7 @@ function crossValidate(sheetRows) {
         });
       } else if (totalLoss > BASELINE.TOTAL.max) {
         issues.push({
-          orderId, level: 'WARNING',
+          orderId, level: 'warnING',
           type: 'TOTAL_LOSS_EXCEED',
           message: `Hao hụt tổng ${totalLoss.toFixed(2)}% vượt định mức ${BASELINE.TOTAL.max}%`,
           loss: totalLoss,
@@ -190,7 +190,7 @@ function detectAnomalies(sheetRows, history = []) {
     .filter(v => v > 0);
   if (ANOMALY_PATTERNS.TOO_CONSISTENT(lossPcts)) {
     flags.push({
-      orderId: 'BATCH', level: 'WARNING', type: 'TOO_CONSISTENT',
+      orderId: 'BATCH', level: 'warnING', type: 'TOO_CONSISTENT',
       message: `Hao hụt Tổ Đúc quá đều qua ${lossPcts.length} đơn — có thể nhập tay cố định`,
       values: lossPcts.slice(0,5),
     });
@@ -199,7 +199,7 @@ function detectAnomalies(sheetRows, history = []) {
   // Check frozen data
   if (history.length > 2 && ANOMALY_PATTERNS.FROZEN_DATA(history)) {
     flags.push({
-      orderId: 'ALL', level: 'WARNING', type: 'FROZEN_DATA',
+      orderId: 'ALL', level: 'warnING', type: 'FROZEN_DATA',
       message: `Dữ liệu không thay đổi qua ${history.length} lần sync — có thể sheet bị đóng băng`,
     });
   }
@@ -227,7 +227,7 @@ function auditTimestamps(rows) {
 
     if (ANOMALY_PATTERNS.BATCH_ENTRY(timestamps)) {
       flags.push({
-        level: 'WARNING', type: 'BATCH_ENTRY',
+        level: 'warnING', type: 'BATCH_ENTRY',
         message: `Phát hiện nhiều dòng được nhập trong < 1 phút — có thể copy-paste dàn dựng`,
         timestamps: timestamps.slice(0, 5),
       });
@@ -335,7 +335,7 @@ function compareBaseline(rows) {
         report.criticals.push({ ...entry, level: 'CRITICAL',
           message: `${name}: ${lossPct.toFixed(2)}% > critical ${baseline.critical}%` });
       } else if (lossPct > baseline.max) {
-        report.warnings.push({ ...entry, level: 'WARNING',
+        report.warnings.push({ ...entry, level: 'warnING',
           message: `${name}: ${lossPct.toFixed(2)}% > định mức ${baseline.max}%` });
       } else if (lossPct < 0.1 && recv > 0.5) {
         // Hao hụt quá thấp cũng đáng ngờ (= không khai đủ)
@@ -372,7 +372,7 @@ function analyze(rawRows, options = {}) {
   ];
 
   const criticals  = allIssues.filter(i => i.level === 'CRITICAL');
-  const warnings   = allIssues.filter(i => i.level === 'WARNING');
+  const warnings   = allIssues.filter(i => i.level === 'warnING');
   const suspicious = allIssues.filter(i => i.level === 'SUSPICIOUS');
 
   // Risk score 0-100
@@ -701,7 +701,7 @@ return { analyze, crossValidate, detectAnomalies, auditTimestamps, analyzeDelta,
 if (typeof module !== 'undefined') module.exports = SmartGetData;
 if (typeof window !== 'undefined') window.SmartGetData = SmartGetData;
 /**
- * NATT-OS Smart Get Data — L6/L7/L8 Extension
+ * natt-os Smart Get Data — L6/L7/L8 Extension
  * Append vào cuối nattos-smart-get-data.js
  *
  * L6 — PHỔ Monitor:   PHỔ SX vs SC per thợ → flag thợ SC% cao
@@ -875,7 +875,7 @@ function analyzeScWeightIncrease(giao_nhan_rows, xnDailyRows = []) {
         diff:  +diff.toFixed(3),
         diffPct: +diffPct.toFixed(2),
         hasKimCuong: hasXN,
-        severity: diff > 0.05 ? 'CRITICAL' : 'WARNING',
+        severity: diff > 0.05 ? 'CRITICAL' : 'warnING',
         note: `TL ra lớn hơn TL vào ${diff.toFixed(3)}chi (${diffPct.toFixed(1)}%) — nghi ngờ thêm vàng lậu`,
       });
     }
@@ -898,7 +898,7 @@ if (typeof window !== 'undefined') {
   window.SmartGetData.L8 = { analyzeScWeightIncrease };
 }
 
-// ── NATT-OS EVENT INTEGRATION ──────────────────────────────────────────────────
+// ── natt-os EVENT INTEGRATION ──────────────────────────────────────────────────
 // Gọi từ surveillance.html sau khi load data
 function runL678Analysis(serverData) {
   const results = {};

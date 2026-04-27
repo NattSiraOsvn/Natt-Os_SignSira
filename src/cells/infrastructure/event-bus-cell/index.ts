@@ -1,10 +1,10 @@
 // ═══════════════════════════════════════════════════════════════
 // EVENT-BUS-CELL — Entry Point
-// Infrastructure cell: central event routing for NATT-OS
+// Infrastructure cell: central event routing for natt-os
 // ═══════════════════════════════════════════════════════════════
 
 export { EventBusApplication } from "./application/event-bus.application";
-export type { EventBusSmartLinkPort } from "./ports/event-bus.smartlink.port";
+export type { EventBusSmartLinkPort } from "./ports/event-bus.SmartLink.port";
 
 // Engines — wired (no longer dead)
 export { CompensationEngine } from "./domain/services/compensation.engine";

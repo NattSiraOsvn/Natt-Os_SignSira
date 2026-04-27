@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+
+const spec = path.join(ROOT, "docs", "runtime", "sira_BROWSER_TRANSPORT_ADAPTER_20260425.na");
+const gateway = path.join(ROOT, "tools", "natt_domain_gateway.sira");
+const launcher = path.join(ROOT, "tools", "thiên");
+
+function read(file) {
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+}
+
+const s = read(spec);
+const g = read(gateway);
+
+const errors = [];
+
+function must(condition, msg) {
+  if (!condition) errors.push(msg);
+}
+
+must(fs.existsSync(spec), "missing browser transport adapter spec");
+must(fs.existsSync(gateway), "missing sira browser adapter implementation");
+must(fs.existsSync(launcher), "missing tools/thiên launcher");
+
+[
+  "http://` is not identity",
+  "browser transport adapter",
+  "anc://` = identity protocol",
+  ".sira` = sira root namespace",
+  "tools/thiên` = operator launcher",
+  "SmartLink = resolver / coupling layer"
+].forEach(token => must(s.includes(token), "spec missing canonical token: " + token));
+
+[
+  "core.sira",
+  "audit.sira",
+  "tam.sira",
+  "nauion.sira",
+  "anc://<name> -> http://<name>.sira"
+].forEach(token => must(g.includes(token), "gateway missing transport token: " + token));
+
+const forbiddenIdentityClaims = [
+  "http:// = identity",
+  "HTTP identity",
+  "HTTP là identity",
+  "browser route là gốc định danh"
+];
+
+for (const token of forbiddenIdentityClaims) {
+  must(!s.includes(token), "spec contains forbidden identity wording: " + token);
+}
+
+if (errors.length) {
+  console.error("sira browser transport boundary validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira browser transport boundary validation: pass");
+console.log("identity=anc://");
+console.log("namespace=.sira");
+console.log("operator=tools/thiên");
+console.log("transport=http browser adapter");

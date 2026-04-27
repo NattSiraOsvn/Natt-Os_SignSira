@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Tâm Luxury · NATT-OS</title>
+<title>Tâm Luxury · natt-os</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* ══ TÂM LUXURY DESIGN SYSTEM ══ */
@@ -247,7 +247,7 @@ body{font-family:var(--sans);color:var(--text);background:#04030E}
   <header id="header">
     <div>
       <div class="logo">TÂM LUXURY</div>
-      <div class="logo-sub">NATT-OS · Hệ Điều Hành Doanh Nghiệp</div>
+      <div class="logo-sub">natt-os · Hệ Điều Hành Doanh Nghiệp</div>
     </div>
     <div class="h-sep"></div>
     <div class="nav-tabs" id="nav-tabs"></div>
@@ -335,7 +335,7 @@ const ST = {
 const wm = document.getElementById('wm');
 for(let i=0;i<30;i++) {
   const s=document.createElement('span');
-  s.textContent='TÂM LUXURY · NATT-OS · BẢO MẬT · ';
+  s.textContent='TÂM LUXURY · natt-os · BẢO MẬT · ';
   wm.appendChild(s);
 }
 
@@ -400,7 +400,7 @@ R.dashboard = () => {
     <div class="card-hdr">
       <span class="card-icon">🏠</span>
       <div><div class="card-title">Tổng Quan · Tâm Luxury</div>
-      <div class="card-sub">NATT-OS · Real-time State Mirror · Chi Nhánh HCM-01</div></div>
+      <div class="card-sub">natt-os · Real-time State Mirror · Chi Nhánh HCM-01</div></div>
       <div class="card-r"><span class="st st-ok">● LIVE</span></div>
     </div>
     <div class="g4">${kpis.map(k=>`<div class="kpi">
@@ -555,7 +555,7 @@ R.audit_trail = () => `<div class="card">
 R.monitoring = () => `<div class="card">
   <div class="card-hdr">
     <span class="card-icon">📡</span>
-    <div><div class="card-title">System Pulse · NATT-OS</div>
+    <div><div class="card-title">System Pulse · natt-os</div>
     <div class="card-sub">Z = ${ST.Z.toFixed(3)} · ${ST.systemState}</div></div>
   </div>
   <div class="g4" style="margin-bottom:16px">
@@ -643,7 +643,7 @@ function updateGold() {
   const items=[
     `🏆 SJC MUA ${fmt(g.sjc_buy)}`,`BÁN ${fmt(g.sjc_sell)}`,
     `💎 9999 ${fmt(g.gold9999)}`,`✨ 18K ${fmt(g.gold18k)}`,
-    `🏭 NATT-OS ${ST.systemState} · Z=${ST.Z.toFixed(2)}`,
+    `🏭 natt-os ${ST.systemState} · Z=${ST.Z.toFixed(2)}`,
     `🏢 TÂM LUXURY · HCM-01 · VAT 10%`,
     `🏆 SJC MUA ${fmt(g.sjc_buy)}`,`BÁN ${fmt(g.sjc_sell)}`,
     `💎 9999 ${fmt(g.gold9999)}`,`✨ 18K ${fmt(g.gold18k)}`,
@@ -722,7 +722,7 @@ document.addEventListener('mousemove',e=>{
 document.addEventListener('DOMContentLoaded',()=>{
   renderNav();renderSidebar();renderContent();
   startMach();loadData();
-  console.log('[Tâm Luxury] NATT-OS app booted — HCM-01');
+  console.log('[Tâm Luxury] natt-os app booted — HCM-01');
 });
 </script>
 <script src="heyna-client.js"></script>

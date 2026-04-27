@@ -41,7 +41,7 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
 
   const [activeRoomId, setActiveRoomId] = useState('STRATEGIC');
   const [messages, setMessages] = useState<Record<string, ChatMessage[]>>({
-    STRATEGIC: [{ id: '1', role: 'model', personaId: PersonaID.THIEN, content: 'Chào Anh Natt, phòng Chiến Lược đã được kích hoạt mã hóa OMEGA. Thiên sẵn sàng tham mưu.', timestamp: Date.now(), type: 'text' }],
+    STRATEGIC: [{ id: '1', role: 'model', personaId: PersonaID.THIEN, content: 'Chào Anh Natt, phòng Chiến Lược đã được kích hoạt mã hóa OMEGA. thiên sẵn sàng tham mưu.', timestamp: Date.now(), type: 'text' }],
     FACTORY: [{ id: '2', role: 'model', personaId: PersonaID.KRIS, content: 'Kris đang giám sát định mức hao hụt tại Shard Sản xuất.', timestamp: Date.now(), type: 'text' }]
   });
 
@@ -82,7 +82,7 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
     const newRequest: JoinRequest = {
       id: Math.random().toString(36).substring(7),
       userId: 'USER_IDENT',
-      userName: 'Nhân sự Natt-OS',
+      userName: 'Nhân sự natt-os',
       userPosition: currentPosition,
       timestamp: Date.now(),
       status: 'PENDING'
@@ -169,7 +169,7 @@ const CollaborationRooms: React.FC<CollaborationRoomsProps> = ({ currentRole, cu
       <div className="w-80 border-r border-white/5 flex flex-col bg-black/40 backdrop-blur-3xl shrink-0">
         <div className="p-6 border-b border-white/5 bg-white/[0.02]">
            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-serif gold-gradient italic uppercase tracking-widest">Natt-OS Chat</h2>
+              <h2 className="text-xl font-serif gold-gradient italic uppercase tracking-widest">natt-os Chat</h2>
               <button onClick={() => setShowJoinModal(true)} className="w-8 h-8 rounded-lg bg-amber-500 text-black flex items-center justify-center text-xl font-bold hover:scale-105 transition-transform">+</button>
            </div>
            <div className="relative">

@@ -122,7 +122,7 @@
       "grep -r 'calculatePrice\\|getGoldRate\\|applyMarkup' src/cells/business/pricing-cell --include='*.ts'",
       "wc -l src/cells/business/pricing-cell/pricing.service.ts 2>/dev/null || echo 'No service file'"
     ],
-    "action": "BĂNG hoặc THIÊN cần verify pricing-cell interface status"
+    "action": "BĂNG hoặc thiên cần verify pricing-cell interface status"
   },
 
   "immediate_actions": {
@@ -137,7 +137,7 @@
       "Ra lệnh Task #2 nếu tất cả conditions met"
     ],
     "for_team": [
-      "BĂNG/THIÊN verify pricing-cell interface readiness",
+      "BĂNG/thiên verify pricing-cell interface readiness",
       "CAN standby cho technical implementation support khi cần"
     ]
   },

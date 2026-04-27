@@ -1,5 +1,5 @@
 /**
- * NATT-OS Payment Deposit Engine v1.0
+ * natt-os Payment Deposit Engine v1.0
  * Wire vào payment-cell — PORT_ONLY → LIVE
  *
  * Logic từ: MEGA v10.1 processDThuDaily()
@@ -130,7 +130,7 @@ export interface PaymentConfirmation {
   ref:       string;
   paidAt:    Date;
   operator:  string;
-  status:    'CONFIRMED' | 'PENDING' | 'FAILED';
+  status:    'CONFIRMED' | 'PENDING' | 'failED';
 }
 
 export function createPaymentConfirmation(params: Omit<PaymentConfirmation, 'paidAt' | 'status'>): PaymentConfirmation {

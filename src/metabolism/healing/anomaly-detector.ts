@@ -1,5 +1,5 @@
 /**
- * NATT-OS Anomaly Detector v1.0
+ * natt-os Anomaly Detector v1.0
  * CAN-07 — "Cảm giác đau nhẹ" của Metabolism Layer
  *
  * Vai trò trong hệ:

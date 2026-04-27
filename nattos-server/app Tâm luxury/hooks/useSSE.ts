@@ -1,26 +1,25 @@
-import { useEffect, useState } from 'react';
+// [SPEC v2.4 §12-13 OPT-01R] Hook listen NAUION_PULSE — KHÔNG tự open SSE
+// Mục đích: Component subscribe event type cụ thể từ Mạch HeyNa trung ương
+// Bên trong: window.addEventListener('NAUION_PULSE', filter, dispatch)
+// Refactor ss20260427 — fix BUG mỗi render = 1 EventSource mới
+
+import { useEffect } from 'react';
 
 export function useSSE<T = any>(eventType: string, handler: (data: T) => void) {
   useEffect(() => {
-    const eventSource = new EventSource('/mach/heyna');
-
-    const listener = (e: MessageEvent) => {
-      try {
-        const event = JSON.parse(e.data);
-        if (event.event_type === eventType) {
-          handler(event.payload);
+    const listener = (e: Event) => {
+      const ce = e as CustomEvent;
+      if (!ce.detail) return;
+      // Filter: only fire if event type khớp
+      if (ce.detail.type === eventType) {
+        try {
+          handler(ce.detail.payload as T);
+        } catch (err) {
+          console.error('[useSSE] handler error for', eventType, err);
         }
-      } catch (err) {
-        console.error('SSE parse error', err);
       }
     };
-
-    eventSource.addEventListener('message', listener);
-    // Có thể cần lắng nghe các event cụ thể nếu server gửi theo từng type riêng
-
-    return () => {
-      eventSource.removeEventListener('message', listener);
-      eventSource.close();
-    };
+    window.addEventListener('NAUION_PULSE', listener);
+    return () => window.removeEventListener('NAUION_PULSE', listener);
   }, [eventType, handler]);
 }

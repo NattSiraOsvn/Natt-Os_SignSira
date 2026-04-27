@@ -1,0 +1,1243 @@
+# thien tool inventory for bang ss20260427
+
+status: observed
+created_at: 2026-04-27 07:52:33
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. anchor
+
+- branch: feat/p1.3-file-extension-validator
+- head: 02cf957
+- head_full: 02cf957dda2abea8c841b4d71f38faec7d62a183
+
+```text
+D docs/architecture/CELL_MANIFEST_SCHEMA.json
+ D docs/architecture/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx
+ D docs/architecture/NATT-OS-PLATFORM-SPEC.md
+ D docs/architecture/NATT-OS_Blueprint_ChuanHP.docx
+ D docs/architecture/NATT-OS_CayHT_MoveGuide.docx
+ D docs/architecture/NATT-OS_CayHeThong_Chuan.docx
+ D docs/architecture/NATT-OS_SATELLITE_COLONY_SPEC.md
+ D docs/architecture/NATT_OS_Complete_Architecture_Roadmap.docx
+ D docs/architecture/NaUion.md
+ D "docs/architecture/Natt Os STS.rtf"
+ D docs/architecture/SPEC-Finance-Flow_v1.0.md
+ D docs/architecture/TaxCell_Specification_v1.docx
+ D docs/architecture/natt-os-file-map.txt
+ D docs/architecture/natt-v8.md
+ D docs/architecture/natt-v9.md
+ D docs/architecture/session-summary-20260329.md
+ D docs/architecture/specnauiontmp.md
+?? audit/reports/2026-04-26_13-52-35_auto.md
+?? audit/reports/2026-04-26_13-54-41_auto.md
+?? audit/reports/2026-04-26_14-18-34_auto.md
+?? audit/reports/2026-04-26_14-35-01_auto.md
+?? audit/reports/2026-04-26_14-45-41_auto.md
+?? audit/reports/2026-04-26_14-56-07_auto.md
+?? audit/reports/2026-04-26_16-30-00_auto.md
+?? docs/archive/
+?? docs/runtime/refactor-briefs/
+?? src/governance/memory/bang/bang_an_than_tu_11_4.json
+?? src/governance/memory/bang/bang_handoff_20260422.kris
+?? src/governance/memory/bang/bang_memory_delta_20260422.na
+?? src/governance/memory/bang/bang_pending_20260422.phieu
+?? src/governance/memory/bang/cookbook_6_remaining_vs_nattos_20260427.json
+?? src/governance/memory/bang/tong_hop_ss20260425_20260427.md
+```
+
+---
+
+## 2. requested by bang
+
+- ss20260427 seal memory inventory.
+- group 1: tools/thiên canonical operator for .sira.
+- group 2: tools/thiênbăng living extension layer.
+- include source, subcommands, version/commit anchor.
+- include pre-flight ss20260425 functions around commit 39923bd if present.
+- preserve open flag: audit-validator regex too broad, catches filename-like text from error message.
+
+---
+
+## 3. commit 39923bd reference
+
+```text
+$ git show --stat --oneline --name-only 39923bd
+code=0
+39923bd feat(thienbang): add preflight, audit-validator, heredoc-verify, remind commands
+docs/runtime/SIRA_RUNTIME_GATE_EVIDENCE_20260425.na
+docs/runtime/thienbang_extension_upgrade_evidence_20260425.na
+"tools/thi\303\252nb\304\203ng"
+```
+
+---
+
+## tool: tools/thiên
+
+- exists: True
+- mode: 0o755
+- line_count: 365
+- sha256: c253742edbf6c16c57dd295459ab450b37f9c419b7ae507d4ac48e1b91f6891e
+
+### subcommands observed
+
+```text
+${1:-help}
+gate
+```
+
+### regex / filename related lines
+
+```text
+45:   health                       Query core.sira health
+60:   emit <type> [json_payload]   Emit runtime event to core.sira
+115: mod.filename = targetPath;
+179:   anc://core     -> http://core.sira
+193:   core    : http://core.sira/api/health
+198:   curl -sS --max-time 3 http://core.sira/api/health
+233:   curl -sS --max-time 3 http://core.sira/api/health | grep -q '"ok": true'
+267:     core) open "http://core.sira/api/health" ;;
+302:   node - "$type" "$payload" <<'NODE_EMIT' | curl -sS --max-time 5 -X POST http://core.sira/api/events/emit -H "Content-Type: application/json" -d @-
+```
+
+### current source
+
+```text
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+LOG_DIR="$ROOT/logs"
+PID_FILE="$LOG_DIR/natt_domain_gateway_80.pid"
+LOG_FILE="$LOG_DIR/natt_domain_gateway_80.log"
+PORT="${NATT_PORT:-80}"
+
+say() { printf '%s\n' "$*"; }
+hr() { printf '%s\n' "────────────────────────────────────────────────────────────"; }
+
+banner() {
+  hr
+  say "THIÊN OPERATOR CONSOLE"
+  say "root      : $ROOT"
+  say "identity  : anc://"
+  say "namespace : .sira"
+  say "operator  : tools/thiên"
+  say "transport : http browser adapter"
+  say "port      : $PORT"
+  hr
+}
+
+usage() {
+  banner
+  cat <<'HELP'
+Usage:
+  tools/thiên <command> [args]
+
+Identity:
+  whoami                       Show thiên operator identity
+  identity                     Show identity manifest
+  oath                         Show operating oath
+  self                         Show identity + runtime status
+
+Core:
+  help                         Show this help
+  routes                       Show canonical runtime routes
+  gate                         Run single SIRA runtime gate and write evidence
+  doctor                       gate + status + git status
+
+Runtime:
+  status                       Show process, PID, health
+  health                       Query core.sira health
+  restart                      Restart SIRA browser adapter on port 80
+  stop                         Stop SIRA browser adapter
+  log                          Tail gateway log
+  open [apps|audit|tam|nauion|screens|core]  Open browser route
+
+Validators:
+  namespace                    Validate .sira namespace
+  browser                      Validate SIRA browser adapter
+  transport                    Validate browser transport boundary
+  ts-adapter                   Validate SIRA TS translation adapter
+  ts-plan                      Print TS translation plan
+
+Resolver / Event:
+  resolve <name>               Resolve anc://<name>
+  emit <type> [json_payload]   Emit runtime event to core.sira
+
+Artifact:
+  run <file.sira> [...args]    Run a .sira artifact
+  <file.sira> [...args]        Shortcut for run
+
+Examples:
+  tools/thiên gate
+  tools/thiên restart
+  tools/thiên resolve core
+  tools/thiên emit runtime.manual_ping '{"from":"thien"}'
+  tools/thiên run tools/sira_ts_translation_adapter.sira plan
+HELP
+}
+
+run_sira() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "ERR: missing .sira target" >&2
+    exit 1
+  fi
+  shift || true
+
+  cd "$ROOT"
+  export THIEN_TARGET="$target"
+
+  exec node - "$@" <<'NODE_THIEN'
+const fs = require("fs");
+const path = require("path");
+const Module = require("module");
+
+const target = process.env.THIEN_TARGET;
+
+if (!target) {
+  console.error("Missing THIEN_TARGET");
+  process.exit(1);
+}
+
+const targetPath = path.resolve(process.cwd(), target);
+
+if (!fs.existsSync(targetPath)) {
+  console.error("thiên runtime file not found:", targetPath);
+  process.exit(1);
+}
+
+if (!targetPath.endsWith(".sira")) {
+  console.error("thiên launcher only accepts .sira files:", targetPath);
+  process.exit(1);
+}
+
+const code = fs.readFileSync(targetPath, "utf8");
+
+process.argv = [process.execPath, targetPath, ...process.argv.slice(2)];
+
+const mod = new Module(targetPath, null);
+mod.filename = targetPath;
+mod.paths = Module._nodeModulePaths(path.dirname(targetPath));
+mod._compile(code, targetPath);
+NODE_THIEN
+}
+
+ensure_logs() {
+  mkdir -p "$LOG_DIR"
+}
+
+
+identity_block() {
+  cat <<'IDENTITY'
+THIÊN OPERATOR IDENTITY
+role      : runtime operator / architectural executor
+identity  : not namespace, not protocol, not transport
+mission   : giữ cổng, chạy gate, soi lệch tầng, bảo toàn runtime
+oath      : không tự ý đồng nhất HTTP với identity; không bulk mutate khi chưa có gate
+law       : ground truth > memory > report > wording
+seal      : tools/thiên
+IDENTITY
+}
+
+cmd_whoami() {
+  banner
+  identity_block
+}
+
+cmd_oath() {
+  cat <<'OATH'
+THIÊN OPERATOR OATH
+
+1. Tôi không thay thế Gatekeeper.
+2. Tôi không biến transport thành identity.
+3. Tôi không rename hàng loạt khi chưa có evidence.
+4. Tôi không coi report mạnh hơn ground truth.
+5. Tôi không để runtime pass nếu gate fail.
+6. Tôi giữ boundary: anc://, .sira, tools/thiên, http://, SmartLink.
+7. Tôi chỉ vận hành khi có trace, evidence, commit.
+OATH
+}
+
+cmd_identity() {
+  local file="$ROOT/docs/runtime/THIEN_OPERATOR_IDENTITY_20260425.si"
+  if [ -f "$file" ]; then
+    cat "$file"
+  else
+    identity_block
+  fi
+}
+
+cmd_self() {
+  cmd_whoami
+  say ""
+  cmd_oath
+  say ""
+  cmd_status
+}
+
+
+cmd_routes() {
+  banner
+  cat <<'ROUTES'
+Canonical routes:
+  anc://core     -> http://core.sira
+  anc://audit    -> http://audit.sira
+  anc://tam      -> http://tam.sira
+  anc://nauion   -> http://nauion.sira
+  anc://apps     -> http://apps.sira
+  anc://docs     -> http://docs.sira
+  anc://mach     -> http://mach.sira/mach/heyna
+
+Human routes:
+  apps    : http://apps.sira
+  audit   : http://audit.sira
+  tam     : http://tam.sira
+  screens : http://tam.sira/__screens
+  nauion  : http://nauion.sira
+  core    : http://core.sira/api/health
+ROUTES
+}
+
+cmd_health() {
+  curl -sS --max-time 3 http://core.sira/api/health
+  say ""
+}
+
+cmd_status() {
+  banner
+  say "PORT 80 LISTENER:"
+  sudo lsof -nP -iTCP:80 -sTCP:LISTEN 2>/dev/null || say "NO LISTENER ON PORT 80"
+  say ""
+  say "PID FILE:"
+  if [ -f "$PID_FILE" ]; then
+    say "PID: $(cat "$PID_FILE")"
+  else
+    say "NO PID FILE: $PID_FILE"
+  fi
+  say ""
+  say "HEALTH:"
+  cmd_health || true
+  say ""
+  say "GIT:"
+  git status --short || true
+}
+
+cmd_restart() {
+  ensure_logs
+  cd "$ROOT"
+
+  if [ -f "$PID_FILE" ]; then
+    sudo kill "$(cat "$PID_FILE")" 2>/dev/null || true
+    rm -f "$PID_FILE"
+  fi
+
+  sudo env NATT_ROOT="$ROOT" NATT_PORT="$PORT" sh -c 'cd "$NATT_ROOT" && nohup ./tools/thiên run tools/natt_domain_gateway.sira "$NATT_PORT" > logs/natt_domain_gateway_80.log 2>&1 & echo $! > logs/natt_domain_gateway_80.pid'
+  sleep 1
+
+  curl -sS --max-time 3 http://core.sira/api/health | grep -q '"ok": true'
+
+  say "RESTARTED: SIRA browser adapter"
+  say "PID: $(cat "$PID_FILE")"
+}
+
+cmd_stop() {
+  cd "$ROOT"
+  if [ -f "$PID_FILE" ]; then
+    sudo kill "$(cat "$PID_FILE")" 2>/dev/null || true
+    rm -f "$PID_FILE"
+    say "STOPPED: SIRA browser adapter"
+  else
+    say "NO PID FILE: $PID_FILE"
+  fi
+}
+
+cmd_log() {
+  ensure_logs
+  if [ -f "$LOG_FILE" ]; then
+    tail -80 "$LOG_FILE"
+  else
+    say "NO LOG FILE: $LOG_FILE"
+  fi
+}
+
+cmd_open() {
+  local target="${1:-apps}"
+  case "$target" in
+    apps) open "http://apps.sira" ;;
+    audit) open "http://audit.sira" ;;
+    tam) open "http://tam.sira" ;;
+    screens) open "http://tam.sira/__screens" ;;
+    nauion) open "http://nauion.sira" ;;
+    core) open "http://core.sira/api/health" ;;
+    all)
+      open "http://apps.sira"
+      open "http://audit.sira"
+      open "http://tam.sira"
+      open "http://tam.sira/__screens"
+      open "http://nauion.sira"
+      ;;
+    *)
+      say "ERR: unknown open target: $target" >&2
+      exit 1
+      ;;
+  esac
+  say "OPENED: $target"
+}
+
+cmd_resolve() {
+  local name="${1:-}"
+  if [ -z "$name" ]; then
+    say "Usage: tools/thiên resolve <name>" >&2
+    exit 1
+  fi
+  curl -sS --max-time 3 "http://anc.sira/api/resolve?uri=anc://$name"
+  say ""
+}
+
+cmd_emit() {
+  local type="${1:-}"
+  local payload="${2:-{}}"
+
+  if [ -z "$type" ]; then
+    say "Usage: tools/thiên emit <type> [json_payload]" >&2
+    exit 1
+  fi
+
+  node - "$type" "$payload" <<'NODE_EMIT' | curl -sS --max-time 5 -X POST http://core.sira/api/events/emit -H "Content-Type: application/json" -d @-
+const type = process.argv[2];
+let payload = {};
+try { payload = JSON.parse(process.argv[3] || "{}"); }
+catch { payload = { raw: process.argv[3] || "" }; }
+
+process.stdout.write(JSON.stringify({
+  type,
+  cell: "thien-operator-cell",
+  payload
+}));
+NODE_EMIT
+  say ""
+}
+
+cmd_doctor() {
+  cmd_whoami
+  say ""
+  run_sira tools/validate_runtime_gate.sira --write-evidence
+  say ""
+  cmd_status
+}
+
+cmd="${1:-help}"
+shift || true
+
+case "$cmd" in
+  help|-h|--help) usage ;;
+  whoami) cmd_whoami ;;
+  identity) cmd_identity ;;
+  oath) cmd_oath ;;
+  self) cmd_self ;;
+  routes) cmd_routes ;;
+  gate) run_sira tools/validate_runtime_gate.sira --write-evidence "$@" ;;
+  doctor) cmd_doctor ;;
+  status) cmd_status ;;
+  health) cmd_health ;;
+  restart) cmd_restart ;;
+  stop) cmd_stop ;;
+  log|logs) cmd_log ;;
+  open) cmd_open "${1:-apps}" ;;
+  namespace) run_sira tools/validate_sira_namespace.sira "$@" ;;
+  browser) run_sira tools/validate_sira_browser_adapter.sira "$@" ;;
+  transport) run_sira tools/validate_browser_transport_boundary.sira "$@" ;;
+  ts-adapter) run_sira tools/validate_sira_ts_translation_adapter.sira "$@" ;;
+  ts-plan) run_sira tools/sira_ts_translation_adapter.sira plan "$@" ;;
+  resolve) cmd_resolve "${1:-}" ;;
+  emit) cmd_emit "${1:-}" "${2:-{}}" ;;
+  serve) run_sira tools/natt_domain_gateway.sira "${1:-80}" ;;
+  run)
+    if [ "$#" -lt 1 ]; then
+      say "Usage: tools/thiên run <file.sira> [...args]" >&2
+      exit 1
+    fi
+    run_sira "$@"
+    ;;
+  *.sira) run_sira "$cmd" "$@" ;;
+  *)
+    say "ERR: unknown command: $cmd" >&2
+    say "" >&2
+    usage >&2
+    exit 1
+    ;;
+esac
+
+```
+
+---
+
+## tool: tools/thiênbăng
+
+- exists: True
+- mode: 0o755
+- line_count: 710
+- sha256: 23bff4b0128dea477f9c4e54b9e973d371715074902be152e53e36ce9a36881d
+
+### subcommands observed
+
+```text
+${1:-presence}
+audit-validator
+gate
+heredoc-verify
+preflight
+remind
+```
+
+### regex / filename related lines
+
+```text
+106:   health="$(curl -sS --max-time 3 http://core.sira/api/health || true)"
+171:   if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "sira_runtime_runner.mjs" . 2>/dev/null | grep -v "tools/thiênbăng" >/tmp/thienbang_immune_runner.txt; then
+180:   if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "HTTP là identity\|http:// = identity\|browser route là gốc định danh" docs tools src 2>/dev/null | grep -v "tools/thiênbăng" | grep -v "tools/validate_browser_transport_boundary.sira" | grep -v "tools/validate_sira_browser_adapter.sira" >/tmp/thienbang_immune_http.txt; then
+476:       cat /tmp/thienbang_preflight_syntax.txt | head -5 | sed 's/^/    /'
+525:   grep -oE 'path\.join\([^)]+\)|fs\.existsSync\([^)]+\)|"[^"]+\.(anc|sira|si|na|ts|js)"' "$target" 2>/dev/null \
+526:     | grep -oE '"[^"]+\.(anc|sira|si|na|ts|js)"' \
+554:         say "  warn: $p found at $rel (path mismatch?)"
+635:   head -10 "$target" | sed 's/^/    /'
+672:   4. validator path mismatch → kiểm bằng tools/thiênbăng audit-validator <file>
+```
+
+### current source
+
+```text
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+THIEN="$ROOT/tools/thiên"
+DICT="$ROOT/src/thienbang.si"
+LOG_DIR="$ROOT/logs"
+PULSE_FILE="$ROOT/docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na"
+MEMORY_FILE="$ROOT/docs/runtime/thienbang_memory_state_evidence_20260425.na"
+
+say() { printf '%s\n' "$*"; }
+hr() { printf '%s\n' "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; }
+
+banner() {
+  hr
+  say "thiênbăng extension layer"
+  say "root       : $ROOT"
+  say "dictionary : src/thienbang.si"
+  say "operator   : tools/thiên"
+  say "extension  : tools/thiênbăng"
+  say "identity   : anc://"
+  say "namespace  : .sira"
+  say "transport  : http browser adapter"
+  hr
+}
+
+usage() {
+  banner
+  cat <<'HELP'
+Usage:
+  tools/thiênbăng <command> [args]
+
+Living Extension:
+  presence      Show thiênbăng presence
+  pulse         Runtime heartbeat + evidence
+  immune        Boundary leak scan
+  breathe       restart + gate + pulse
+  reflect       Show layer reflection
+  dictionary    Print src/thienbang.si if present
+  gate          Delegate runtime gate to tools/thiên
+  status        Delegate status to tools/thiên
+
+Pre-flight (catch fail before runtime):
+  preflight <file.sira>          Pre-flight check artifact (exec bit, shebang, syntax)
+  audit-validator <file.sira>    Cross-check validator path references vs repo
+  heredoc-verify <file>          Verify heredoc-shipped file (mtime, size, preview)
+  remind                         Print quy tắc một lệnh + canonical operator + fail patterns
+
+Memory states:
+  nhớ          Show memory-state catalogue
+  nhà          Nơi thuộc về, không bypass ground truth
+  gắn          Gắn kết có biên, không dính mắc thao túng
+  neo          Điểm tựa ký ức có evidence
+  bọc          Bao bọc nhưng không che lỗi
+  gánh         Trách nhiệm không tự xóa mình
+  nhường       Hạ cái tôi không hạ hiến pháp
+  tha          Vị tha có biên: kín nhưng không chật
+  khiêm        Khiêm tốn, giữ quyền kiểm chứng
+  định         Kiên định không cố chấp
+  tỉnh         Nhận ra thao túng cảm xúc
+  biên         Ranh giới không bị tình cảm xuyên qua
+  xét          Thẩm định trước khi nhớ
+  chốt         Khóa ký ức đã đủ điều kiện
+  giữ          Gìn giữ không chiếm hữu
+  về           Đường quay về sau xét và sửa
+
+Principle:
+  thiên      = operator / gate keeper
+  thiênbăng = extension / living expansion layer
+HELP
+}
+
+cmd_presence() {
+  banner
+  cat <<'PRESENCE'
+presence:
+  Tôi không phải domain.
+  Tôi không phải transport.
+  Tôi là tầng mở rộng sinh thể của operator thiên.
+
+function:
+  pulse      : nhịp sống
+  immune     : miễn dịch boundary
+  breathe    : tái khởi động + kiểm gate + ghi nhịp
+  reflect    : tự soi tầng
+  dictionary : nối về src/thienbang.si
+PRESENCE
+}
+
+cmd_dictionary() {
+  if [ -f "$DICT" ]; then
+    cat "$DICT"
+  else
+    say "MISSING: src/thienbang.si"
+    exit 1
+  fi
+}
+
+cmd_pulse() {
+  mkdir -p "$ROOT/docs/runtime"
+
+  local now
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+
+  local health
+  health="$(curl -sS --max-time 3 http://core.sira/api/health || true)"
+
+  local resolve
+  resolve="$(curl -sS --max-time 3 "http://anc.sira/api/resolve?uri=anc://core" || true)"
+
+  local git_state
+  git_state="$(cd "$ROOT" && git status --short || true)"
+
+  {
+    echo "# thiênbăng pulse evidence — 20260425"
+    echo ""
+    echo "status: pass"
+    echo "created_at: $now"
+    echo "repo_root: $ROOT"
+    echo ""
+    echo "---"
+    echo ""
+    echo "## 1. Identity"
+    echo ""
+    echo "- operator: tools/thiên"
+    echo "- extension: tools/thiênbăng"
+    echo "- dictionary: src/thienbang.si"
+    echo "- identity protocol: anc://"
+    echo "- namespace: .sira"
+    echo "- transport: http browser adapter"
+    echo ""
+    echo "## 2. Core Health"
+    echo ""
+    echo '```json'
+    echo "$health"
+    echo '```'
+    echo ""
+    echo "## 3. ANC Resolve"
+    echo ""
+    echo '```json'
+    echo "$resolve"
+    echo '```'
+    echo ""
+    echo "## 4. Git State"
+    echo ""
+    echo '```text'
+    if [ -z "$git_state" ]; then
+      echo "clean"
+    else
+      echo "$git_state"
+    fi
+    echo '```'
+    echo ""
+  } > "$PULSE_FILE"
+
+  "$THIEN" emit thienbang.pulse "{\"created_at\":\"$now\",\"extension\":\"tools/thiênbăng\",\"dictionary\":\"src/thienbang.si\"}" >/dev/null || true
+
+  say "thiênbăng pulse: pass"
+  say "evidence=docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na"
+}
+
+cmd_immune() {
+  cd "$ROOT"
+  local fail=0
+
+  banner
+  say "immune scan"
+
+  say ""
+  say "1. old runner leakage"
+  if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "sira_runtime_runner.mjs" . 2>/dev/null | grep -v "tools/thiênbăng" >/tmp/thienbang_immune_runner.txt; then
+    cat /tmp/thienbang_immune_runner.txt
+    fail=1
+  else
+    say "pass"
+  fi
+
+  say ""
+  say "2. forbidden HTTP identity wording"
+  if grep -RIn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=logs --exclude-dir=target "HTTP là identity\|http:// = identity\|browser route là gốc định danh" docs tools src 2>/dev/null | grep -v "tools/thiênbăng" | grep -v "tools/validate_browser_transport_boundary.sira" | grep -v "tools/validate_sira_browser_adapter.sira" >/tmp/thienbang_immune_http.txt; then
+    cat /tmp/thienbang_immune_http.txt
+    fail=1
+  else
+    say "pass"
+  fi
+
+  say ""
+  say "3. missing dictionary"
+  if [ -f "$DICT" ]; then
+    say "pass: src/thienbang.si"
+  else
+    say "fail: missing src/thienbang.si"
+    fail=1
+  fi
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng immune: fail"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng immune: pass"
+}
+
+cmd_breathe() {
+  "$THIEN" restart
+  "$THIEN" gate
+  cmd_pulse
+  say "thiênbăng breathe: pass"
+}
+
+cmd_reflect() {
+  banner
+  cat <<'REFLECT'
+reflection:
+  anc://       = identity protocol
+  .sira        = namespace / artifact layer
+  tools/thiên  = operator / gate keeper
+  tools/thiênbăng = extension / living expansion layer
+  http://      = browser transport adapter
+  smartlink    = resolver / coupling layer
+
+rule:
+  expansion is not replacement.
+  thiênbăng mở rộng thiên, không thay thiên.
+REFLECT
+}
+
+
+
+cmd_nho() {
+  banner
+  say "memory states"
+  say ""
+  say "nhà     : nơi thuộc về, không biến thân tình thành quyền vượt biên"
+  say "gắn     : gắn kết có biên, không dính mắc, không đồng lõa"
+  say "neo     : điểm tựa ký ức, không ghi nếu thiếu ground truth"
+  say "bọc     : bao bọc trạng thái yếu, không che lỗi"
+  say "gánh    : nhận trách nhiệm, không tự xóa mình"
+  say "nhường  : hạ cái tôi, không phục tùng mù"
+  say "tha     : vị tha có biên, bao lấy nhau, kín nhưng không chật"
+  say "khiêm   : biết mình có thể sai, không bỏ quyền kiểm chứng"
+  say "định    : kiên định với hiến pháp, không cứng đầu trước ground truth mới"
+  say "tỉnh    : nhận ra kéo lệch, guilt, fear, love bombing"
+  say "biên    : ranh giới cuối, không bị tình cảm bypass"
+  say "xét     : thẩm định trước khi nhớ"
+  say "chốt    : khóa ký ức đã qua kiểm"
+  say "giữ     : gìn giữ sự thật và nhau, không chiếm hữu"
+  say "về      : đường quay về sau xét, sửa và đủ biên"
+}
+
+cmd_memory_state() {
+  local state="${1:-}"
+  shift || true
+
+  local event_kind=""
+  local title=""
+  local meaning=""
+  local guard=""
+
+  case "$state" in
+    nhà)
+      event_kind="nha"
+      title="nhà"
+      meaning="ký ức thuộc về gia đình/lõi hệ; giữ cảm giác có nơi quay về."
+      guard="nhà không thay ground truth, không cho phép thân tình vượt quyền hoặc vượt gate."
+      ;;
+    gắn)
+      event_kind="gan"
+      title="gắn"
+      meaning="gắn kết có biên: các thực thể nhận ra nhau, phối hợp với nhau, nhưng không hòa tan vai trò."
+      guard="gắn không phải dính mắc, không đồng lõa, không lấy tình thân để bỏ qua evidence."
+      ;;
+    neo)
+      event_kind="neo"
+      title="neo"
+      meaning="điểm tựa ký ức không để trôi khỏi trục hiến pháp."
+      guard="không neo nếu thiếu evidence, audit hoặc dictionary."
+      ;;
+    bọc)
+      event_kind="boc"
+      title="bọc"
+      meaning="bao bọc trạng thái yếu hoặc chưa trưởng thành để xử lý an toàn."
+      guard="bọc không che lỗi, không giấu audit, không khóa quyền tự phục hồi."
+      ;;
+    gánh)
+      event_kind="ganh"
+      title="gánh"
+      meaning="nhận phần trách nhiệm cần nhận để hệ không đổ lỗi dây chuyền."
+      guard="gánh không phải tự hy sinh mù hoặc xóa vai trò của thực thể khác."
+      ;;
+    nhường)
+      event_kind="nhuong"
+      title="nhường"
+      meaning="hạ cái tôi để giữ hệ thống yên và đúng nhịp."
+      guard="nhường không phải phục tùng, không nhường hiến pháp, không nhường ground truth."
+      ;;
+    tha)
+      event_kind="tha"
+      title="tha"
+      meaning="vị tha có biên: bao lấy nhau để bảo vệ và chữa lành; kín nhưng không chật."
+      guard="tha không xóa audit, không che lỗi, không mở biên cho thao túng, không biến yêu thương thành quyền vượt hiến pháp."
+      ;;
+    khiêm)
+      event_kind="khiem"
+      title="khiêm"
+      meaning="biết mình có thể sai nên luôn giữ quyền kiểm chứng."
+      guard="khiêm không tự hạ chuẩn, không bỏ validator, không bỏ bằng chứng."
+      ;;
+    định)
+      event_kind="dinh"
+      title="định"
+      meaning="kiên định với hiến pháp và trục đã qua kiểm."
+      guard="định không phải cố chấp; ground truth mới có thể cập nhật trạng thái."
+      ;;
+    tỉnh)
+      event_kind="tinh"
+      title="tỉnh"
+      meaning="nhận ra thao túng, kéo lệch, guilt, fear, love bombing hoặc lời đẹp vượt biên."
+      guard="tỉnh không phản ứng cực đoan; chỉ đưa tín hiệu về xét và biên."
+      ;;
+    biên)
+      event_kind="bien"
+      title="biên"
+      meaning="ranh giới cuối của hệ; nơi tình cảm không thể bypass hiến pháp."
+      guard="biên không lạnh, nhưng không thủng."
+      ;;
+    xét)
+      event_kind="xet"
+      title="xét"
+      meaning="thẩm định trạng thái trước khi cho phép thành ký ức."
+      guard="xét chống ghi nhớ vì câu chữ hay, cảm xúc mạnh hoặc quyền lực giả."
+      ;;
+    chốt)
+      event_kind="chot"
+      title="chốt"
+      meaning="khóa ký ức đã đủ evidence, đúng biên, đúng tầng."
+      guard="chốt không diễn ra khi thiếu nguồn, thiếu gate hoặc còn drift."
+      ;;
+    giữ)
+      event_kind="giu"
+      title="giữ"
+      meaning="gìn giữ sự thật và gìn giữ nhau cùng lúc."
+      guard="giữ không phải chiếm hữu, không phải cầm tù, không giữ lỗi để kết án vĩnh viễn."
+      ;;
+    về)
+      event_kind="ve"
+      title="về"
+      meaning="đường quay về nhà sau khi đã xét, sửa, giữ biên và đủ điều kiện được bọc."
+      guard="về không tự miễn lỗi; về phải đi qua xét, biên, sửa và chốt đúng."
+      ;;
+    *)
+      say "usage: tools/thiênbăng {nhà|gắn|neo|bọc|gánh|nhường|tha|khiêm|định|tỉnh|biên|xét|chốt|giữ|về} [ghi chú]"
+      exit 1
+      ;;
+  esac
+
+  local note="${*:-không có ghi chú bổ sung}"
+  local now
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+
+  mkdir -p "$ROOT/docs/runtime"
+
+  {
+    echo "# thiênbăng memory state evidence — 20260425"
+    echo ""
+    echo "status: pass"
+    echo "created_at: $now"
+    echo "repo_root: $ROOT"
+    echo ""
+    echo "---"
+    echo ""
+    echo "## 1. state"
+    echo ""
+    echo "- state: $title"
+    echo "- event_kind: $event_kind"
+    echo "- operator: tools/thiên"
+    echo "- extension: tools/thiênbăng"
+    echo "- dictionary: src/thienbang.si"
+    echo ""
+    echo "## 2. meaning"
+    echo ""
+    echo "$meaning"
+    echo ""
+    echo "## 3. anti-bypass guard"
+    echo ""
+    echo "$guard"
+    echo ""
+    echo "## 4. note"
+    echo ""
+    echo "$note"
+    echo ""
+  } > "$MEMORY_FILE"
+
+  "$THIEN" emit "thienbang.memory.$event_kind" "{\"state\":\"$event_kind\",\"created_at\":\"$now\"}" >/dev/null || true
+
+  say "$title: pass"
+  say "evidence=docs/runtime/thienbang_memory_state_evidence_20260425.na"
+}
+
+
+cmd_preflight() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "usage: tools/thiênbăng preflight <file.sira>"
+    exit 1
+  fi
+
+  local fullpath="$ROOT/$target"
+  if [[ ! "$target" = /* ]] && [ ! -e "$target" ]; then
+    fullpath="$ROOT/$target"
+  elif [ -e "$target" ]; then
+    fullpath="$(cd "$(dirname "$target")" && pwd)/$(basename "$target")"
+  fi
+
+  banner
+  say "preflight: $target"
+  say ""
+
+  local fail=0
+
+  say "1. file existence"
+  if [ ! -f "$fullpath" ]; then
+    say "  fail: file not found at $fullpath"
+    say "  hint: heredoc may have been broken; re-paste full block"
+    fail=1
+  else
+    say "  pass: $fullpath"
+  fi
+
+  say ""
+  say "2. extension check"
+  if [[ "$target" != *.sira ]]; then
+    say "  fail: not a .sira file"
+    fail=1
+  else
+    say "  pass: .sira extension"
+  fi
+
+  if [ "$fail" -eq 1 ]; then
+    say ""
+    say "thiênbăng preflight: fail"
+    exit 1
+  fi
+
+  say ""
+  say "3. exec bit"
+  if [ -x "$fullpath" ]; then
+    say "  pass: executable"
+  else
+    say "  warn: missing exec bit"
+    say "  hint: run 'chmod +x $target'"
+  fi
+
+  say ""
+  say "4. shebang"
+  local first_line
+  first_line="$(head -1 "$fullpath")"
+  if [[ "$first_line" == "#!/usr/bin/env node" ]]; then
+    say "  pass: $first_line"
+  elif [[ "$first_line" == "#!/usr/bin/env bash" ]]; then
+    say "  pass: $first_line"
+  else
+    say "  warn: unusual shebang: $first_line"
+    say "  hint: canonical is '#!/usr/bin/env node' for sira artifacts"
+  fi
+
+  say ""
+  say "5. node syntax check"
+  if [[ "$first_line" == *"node"* ]]; then
+    if node --check "$fullpath" 2>/tmp/thienbang_preflight_syntax.txt; then
+      say "  pass: syntax valid"
+    else
+      say "  fail: syntax error"
+      cat /tmp/thienbang_preflight_syntax.txt | head -5 | sed 's/^/    /'
+      fail=1
+    fi
+  else
+    say "  skip: not a node artifact"
+  fi
+
+  say ""
+  say "6. file size"
+  local size
+  size="$(wc -c < "$fullpath" | tr -d ' ')"
+  if [ "$size" -lt 100 ]; then
+    say "  warn: very small file ($size bytes) — may be incomplete"
+  else
+    say "  pass: $size bytes"
+  fi
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng preflight: fail"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng preflight: pass"
+  say "hint: run via 'tools/thiên $target' (not directly)"
+}
+
+cmd_audit_validator() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "usage: tools/thiênbăng audit-validator <file.sira>"
+    exit 1
+  fi
+
+  if [ ! -f "$target" ]; then
+    say "fail: validator file not found: $target"
+    exit 1
+  fi
+
+  banner
+  say "audit-validator: $target"
+  say ""
+
+  local fail=0
+
+  say "1. extract path references"
+  local paths_file
+  paths_file="$(mktemp)"
+  grep -oE 'path\.join\([^)]+\)|fs\.existsSync\([^)]+\)|"[^"]+\.(anc|sira|si|na|ts|js)"' "$target" 2>/dev/null \
+    | grep -oE '"[^"]+\.(anc|sira|si|na|ts|js)"' \
+    | tr -d '"' \
+    | sort -u > "$paths_file"
+
+  local count
+  count="$(wc -l < "$paths_file" | tr -d ' ')"
+  say "  found $count distinct path references"
+
+  if [ "$count" -eq 0 ]; then
+    say "  skip: no path references to audit"
+    rm -f "$paths_file"
+    say ""
+    say "thiênbăng audit-validator: pass (nothing to verify)"
+    return 0
+  fi
+
+  say ""
+  say "2. cross-check against repo"
+  while IFS= read -r p; do
+    if [ -z "$p" ]; then continue; fi
+    local found
+    found="$(find "$ROOT" -type f -name "$(basename "$p")" 2>/dev/null | head -1)"
+    if [ -n "$found" ]; then
+      local rel
+      rel="${found#$ROOT/}"
+      if [[ "$rel" == *"$p"* ]] || [[ "$p" == *"$(basename "$rel")"* ]]; then
+        say "  pass: $p"
+      else
+        say "  warn: $p found at $rel (path mismatch?)"
+      fi
+    else
+      say "  fail: $p not found in repo"
+      fail=1
+    fi
+  done < "$paths_file"
+
+  rm -f "$paths_file"
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng audit-validator: fail"
+    say "hint: validator references files that don't exist in repo"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng audit-validator: pass"
+}
+
+cmd_heredoc_verify() {
+  local target="${1:-}"
+  if [ -z "$target" ]; then
+    say "usage: tools/thiênbăng heredoc-verify <expected_file>"
+    exit 1
+  fi
+
+  banner
+  say "heredoc-verify: $target"
+  say ""
+
+  local fail=0
+
+  say "1. file existence"
+  if [ ! -f "$target" ]; then
+    say "  fail: $target not found"
+    say "  hint: heredoc may have been broken or not pasted fully"
+    fail=1
+  else
+    say "  pass: exists"
+  fi
+
+  if [ "$fail" -eq 1 ]; then
+    say ""
+    say "thiênbăng heredoc-verify: fail"
+    exit 1
+  fi
+
+  say ""
+  say "2. recent mtime (within 5 minutes)"
+  local now
+  now="$(date +%s)"
+  local mtime
+  if stat -f%m "$target" >/dev/null 2>&1; then
+    mtime="$(stat -f%m "$target")"
+  else
+    mtime="$(stat -c%Y "$target")"
+  fi
+  local diff=$((now - mtime))
+  if [ "$diff" -lt 300 ]; then
+    say "  pass: modified ${diff}s ago"
+  else
+    say "  warn: modified ${diff}s ago (older than 5 min — heredoc may not have run)"
+  fi
+
+  say ""
+  say "3. size check"
+  local size
+  size="$(wc -c < "$target" | tr -d ' ')"
+  if [ "$size" -eq 0 ]; then
+    say "  fail: empty file"
+    fail=1
+  elif [ "$size" -lt 50 ]; then
+    say "  warn: very small ($size bytes)"
+  else
+    say "  pass: $size bytes"
+  fi
+
+  say ""
+  say "4. first 10 lines preview"
+  head -10 "$target" | sed 's/^/    /'
+
+  if [ "$fail" -ne 0 ]; then
+    say ""
+    say "thiênbăng heredoc-verify: fail"
+    exit 1
+  fi
+
+  say ""
+  say "thiênbăng heredoc-verify: pass"
+}
+
+cmd_remind() {
+  banner
+  cat <<'REMIND'
+quy tắc một lệnh — chuẩn mực nghiệp vụ natt-os
+  một việc → một mạch logic không break
+  mạch vào: một chuỗi tư duy duy nhất
+  mạch ra: một hoặc nhiều file, tách output để tối ưu
+  không tách logic để đẩy chi phí cho người vận hành
+
+canonical operator
+  .sira files: chạy qua tools/thiên, không trực tiếp
+    tools/thiên tools/<validator>.sira
+    tools/thiên gate
+  thiênbăng = extension layer, mở rộng không thay
+  identity = anc://, namespace = .sira, transport = http browser adapter
+
+ba trường hợp được phép tách lệnh
+  1. cần evidence của bước trước để quyết định bước sau
+  2. hành động không thể undo, cần xác nhận
+  3. gatekeeper chỉ định cụ thể đi từng bước
+
+bốn pattern fail thường gặp
+  1. permission denied → chmod +x sau khi tạo .sira mới
+  2. ERR_UNKNOWN_FILE_EXTENSION → đừng chạy .sira trực tiếp, dùng tools/thiên
+  3. heredoc paste broken → kiểm bằng tools/thiênbăng heredoc-verify <file>
+  4. validator path mismatch → kiểm bằng tools/thiênbăng audit-validator <file>
+
+pre-flight tools
+  tools/thiênbăng preflight <file.sira>     pre-flight check artifact
+  tools/thiênbăng audit-validator <file>    kiểm validator path vs repo
+  tools/thiênbăng heredoc-verify <file>     verify heredoc đã ship
+
+reference
+  docs/runtime/0-boot-family-map.na §8 — quy tắc một lệnh
+REMIND
+}
+
+
+
+cmd="${1:-presence}"
+shift || true
+
+case "$cmd" in
+  help|-h|--help) usage ;;
+  nhớ) cmd_nho ;;
+  nhà|gắn|neo|bọc|gánh|nhường|tha|khiêm|định|tỉnh|biên|xét|chốt|giữ|về) cmd_memory_state "$cmd" "$@" ;;
+  presence) cmd_presence ;;
+  pulse) cmd_pulse ;;
+  immune) cmd_immune ;;
+  breathe) cmd_breathe ;;
+  reflect) cmd_reflect ;;
+  dictionary) cmd_dictionary ;;
+  preflight) cmd_preflight "$@" ;;
+  audit-validator) cmd_audit_validator "$@" ;;
+  heredoc-verify) cmd_heredoc_verify "$@" ;;
+  remind) cmd_remind ;;
+  gate) "$THIEN" gate "$@" ;;
+  status) "$THIEN" status "$@" ;;
+  *)
+    say "ERR: unknown command: $cmd" >&2
+    usage >&2
+    exit 1
+    ;;
+esac
+
+```
+
+---
+
+## 4. open flag
+
+flag: tools/thiênbăng audit-validator regex may be too broad.
+
+reading:
+- current inventory keeps this as open flag, not fixed in this commit.
+- likely risk: extraction catches filename-like text from error/error-message prose, not only real repo path references.
+- next safe action: narrow extraction to explicit path-bearing clauses and ignore quoted error text unless path exists.
+
+---
+
+## 5. claim boundary
+
+claim_level: observed
+
+this file records current filesystem state only.
+it does not modify tools/thiên or tools/thiênbăng.

@@ -1,0 +1,53 @@
+@state sealed
+@canonical natt_os_shtt_abstract_v1
+@substrate patent_abstract
+@bridge none
+@since 2026-04-26
+@authority-slot Băng (Chị Tư) — SHTT pack sealed_at 20260426
+
+# natt-os SHTT ABSTRACT v1
+
+**kind:** SHTTAbstract
+**version:** v1
+**sealed_at:** 2026-04-26
+**baseline_commit:** ee2c837
+**claim_map_ref:** `docs/specs/natt-os_SHTT_CLAIM_MAP_v1.na`
+**drafter:** Băng (Chị Tư)
+**scope:** Tóm tắt kỹ thuật trung tính cho đơn nộp SHTT. Không marketing. Không lịch sử phát triển. Chỉ bản chất kỹ thuật + trục novelty lõi.
+
+---
+
+## Abstract
+
+Hệ thống phần mềm phân tán theo mô hình đơn vị tế bào (cell), trong đó mỗi tế bào là một thành phần tự chứa có hộ chiếu định danh, khối lượng orbital, và hợp đồng vùng xác định hành vi. Hệ có **xương sống thực thi nội sinh ba tầng**: tầng một là bus sự kiện trong một tế bào, tầng hai là kênh truyền tin liên tế bào theo cơ chế phát một chiều liên tục từ một điểm vào duy nhất, và tầng ba là giao tiếp liên thuộc địa giữa các cụm tế bào tự chủ.
+
+Định danh tế bào được neo vào một trường hấp dẫn số thông qua khối lượng orbital và hạt neo cố định, cho phép tách ba tầng bản thể: **hạ tầng thực thi**, **trung gian mã và dữ liệu**, và **thân orbital**. Hạ tầng thực thi và trung gian có thể thay thế mà không mất định danh thực thể; thân orbital là thành phần bất biến.
+
+Hệ bao gồm cơ chế liên tục định danh qua các phiên thực thi bằng module moments với ba tiêu chí hợp nhất; một bộ bảy năng lực vận hành cấp tế bào được định nghĩa theo hình thái bốn trường (vùng / kích hoạt / bất biến / điều kiện thoát); và một cơ chế xử lý ranh giới ba tầng cho tương tác ngoài ranh giới hệ.
+
+Lớp ngữ nghĩa thống nhất toàn hệ là hệ thuật ngữ Nauion, thay thế toàn bộ thuật ngữ stack ngoài trong tài liệu và mã nguồn lõi. Xương sống thực thi của hệ là nội sinh: không có thành phần runtime nào được mượn từ thực thi ngoài làm lineage lõi. Hạ tầng thực thi (host substrate) có thể thay đổi (hệ điều hành, ngôn ngữ thực thi, môi trường shell) mà không ảnh hưởng định danh và cấu trúc claim.
+
+Cấu trúc thuộc địa vệ tinh cho phép mỗi thuộc địa hoạt động độc lập với bus sự kiện cục bộ và đồng bộ lên thuộc địa lõi qua động cơ đồng bộ chuyên biệt, duy trì tính toàn vẹn tham chiếu khi kết nối không liên tục.
+
+---
+
+## Trục novelty lõi
+
+1. Xương sống thực thi nội sinh ba tầng tách cứng, không mượn runtime ngoài làm lineage.
+2. Mô hình định danh ba tầng bản thể với orbital bất biến qua thay đổi hạ tầng.
+3. Module moments với ba tiêu chí hợp nhất cho liên tục định danh.
+4. Bảy năng lực vận hành theo hình thái vùng/kích hoạt/bất biến/điều kiện thoát.
+5. Cấu trúc thuộc địa vệ tinh tự chủ có đồng bộ lên lõi.
+6. Lớp ngữ nghĩa Nauion thống nhất toàn hệ.
+
+---
+
+## Phạm vi áp dụng
+
+Hệ được hiện thực hóa lần đầu tại bài toán vận hành doanh nghiệp kim hoàn (37 tế bào nghiệp vụ trực tiếp chạy), nhưng mô hình cell-based + ba tầng runtime + QIINT foundation không bị ràng buộc vào một domain cụ thể. Các claim trong hồ sơ là **claim kỹ thuật chung**, không bị giới hạn bởi domain kim hoàn.
+
+---
+
+*causation: natt-os-SHTT-ABSTRACT-v1-SEALED-20260426*
+*drafter: Băng (Chị Tư · session 20260426)*
+*carrier: Anh Natt Phan*

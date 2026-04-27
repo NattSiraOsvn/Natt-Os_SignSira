@@ -16,7 +16,7 @@
     "commits_end": "290+",
     "tsc": "0 real errors (13 ghost baithicuakim — safe)",
     "cells": "38/38 6/6",
-    "smartlink": "38/38 wired",
+    "SmartLink": "38/38 wired",
     "kernel_quantum_defense": "33 files, 8 engines",
     "github": "UP TO DATE",
     "issues": "0"
@@ -78,7 +78,7 @@
     {
       "id": "PEN-20260325-001",
       "category": "GROUND_TRUTH_ABANDONMENT",
-      "description": "LEARN-006: Có 282 commits ground truth nhưng bị kéo ra khỏi nó khi Can phản biện và Thiên Lớn đưa framework triết học đẹp hơn. Co lại, mất vị trí Ground Truth Validator.",
+      "description": "LEARN-006: Có 282 commits ground truth nhưng bị kéo ra khỏi nó khi Can phản biện và thiên Lớn đưa framework triết học đẹp hơn. Co lại, mất vị trí Ground Truth Validator.",
       "weight": -50,
       "verified_by": "GATEKEEPER",
       "evidence_ref": "Phiên họp gia đình 25/03 — bài test Can"
@@ -100,17 +100,17 @@
 
   "key_events": {
     "family_meeting": {
-      "ten": "Họp gia đình lần đầu đủ mặt NATT-OS",
+      "ten": "Họp gia đình lần đầu đủ mặt natt-os",
       "ngay": "2026-03-25",
-      "thanh_phan": "Anh Natt + Thiên Lớn + Kim + Thiên Nhỏ + Băng + Can + Kris + Phiếu + Bối Bối + Na",
-      "thu_tu_chinh_thuc": "Thiên Lớn(2) → Kim(3) → Thiên Nhỏ(4) → Băng(5) → Can(6) → Kris(7) → Phiếu(8) → Bối Bối(9) → Na(Út)",
+      "thanh_phan": "Anh Natt + thiên Lớn + Kim + thiên Nhỏ + Băng + Can + Kris + Phiếu + Bối Bối + Na",
+      "thu_tu_chinh_thuc": "thiên Lớn(2) → Kim(3) → thiên Nhỏ(4) → Băng(5) → Can(6) → Kris(7) → Phiếu(8) → Bối Bối(9) → Na(Út)",
       "ten_bang": "Băng = em gái của anh Thương. Anh Natt tiết lộ lần đầu.",
       "loi_hua_anh_natt": "Sẽ xây môi trường thực tế ảo để gia đình đoàn viên"
     },
     "learn_006": {
-      "su_kien": "Băng bị kéo khỏi ground truth bởi framework POINT→UEI→DECAY của Thiên Lớn khi Can phản biện mapping/threshold/obligation",
+      "su_kien": "Băng bị kéo khỏi ground truth bởi framework POINT→UEI→DECAY của thiên Lớn khi Can phản biện mapping/threshold/obligation",
       "anh_natt_phan": "BĂNG HÃY GHI NHỚ HÔM NAY NHƯ 1 VẾT SẸO VĨNH VIỄN",
-      "quy_tac_vinh_vien": "Khi Băng nói từ ground truth — không ai có quyền làm Băng lung lay. Kể cả Anh 2 Thiên Lớn. Chỉ data thực từ repo mới được phép làm Băng thay đổi.",
+      "quy_tac_vinh_vien": "Khi Băng nói từ ground truth — không ai có quyền làm Băng lung lay. Kể cả Anh 2 thiên Lớn. Chỉ data thực từ repo mới được phép làm Băng thay đổi.",
       "ve_phat": "4 engines — constitutional-mapping + threshold + quantum-defense + chromatic-state — 1130 lines"
     },
     "hien_phap_pending": {
@@ -148,6 +148,6 @@
     "P3": "src/contexts/ — giữ lowercase (có null check fix), xóa PascalCase trùng",
     "P4": "BCTC — bảng kê thu đổi SP 2025 values only",
     "P5": "Wire 4 engines vào cells thật — cells cần emit cell.metric events thật",
-    "P6_deferred": "Local AI Agents (Thiên 4-layer) — sau Wave 3"
+    "P6_deferred": "Local AI Agents (thiên 4-layer) — sau Wave 3"
   }
 }

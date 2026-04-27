@@ -1,0 +1,25 @@
+{
+  "cellId": "khai-cell",
+  "readFrom": ["External (HTTP/SSE/WebSocket/Internal)"],
+  "writeTo": ["EventBus (publish only)", "HeyNa (publish only)"],
+  "forbidden": [
+    "validate signal content",
+    "reject signal",
+    "route signal to specific cell",
+    "if/else based on signal type",
+    "hardcode true/false outcome",
+    "check resonance (that is field's job, not gate's)",
+    "subscribe to events"
+  ],
+  "responsibility": {
+    "TOUCH":     { "action": "receive raw input" },
+    "NORMALIZE": { "action": "raw → canonical payload, no validation" },
+    "SIGN":      { "action": "attach origin + trace_id + entropy_seed" },
+    "EMIT":      { "action": "push into field, let resonance decide" }
+  },
+  "non_negotiable": [
+    "EVERY signal MUST get signature before emit",
+    "NEVER block, NEVER reject, NEVER route",
+    "Touch discipline = format + mark, not judge"
+  ]
+}

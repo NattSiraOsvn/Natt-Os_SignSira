@@ -2,7 +2,7 @@
 // Wave A — Load casting_batches_raw.json → populate batch history
 // 200 lô đúc gần nhất, 5091 đơn trong lô
 
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 
 interface RawBatch {
   thang:        string;

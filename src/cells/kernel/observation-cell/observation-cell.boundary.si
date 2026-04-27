@@ -1,0 +1,27 @@
+{
+  "cellId": "observation-cell",
+  "readFrom": ["EventBus (subscribe only)", "HeyNa (subscribe only)", "Chromatic state engine"],
+  "writeTo": ["observation_snapshot (in-memory)"],
+  "forbidden": [
+    "emit action events (only snapshot publish allowed)",
+    "mutate any cell state",
+    "alter control flow",
+    "if/else route by signal type",
+    "hardcode true/false outcome",
+    "block signal propagation",
+    "decide outcome (only field decides)"
+  ],
+  "responsibility": {
+    "READ":     { "action": "subscribe to signal stream, read-only" },
+    "MEASURE":  { "action": "compute coherence + entropy" },
+    "DETECT":   { "action": "extract patterns from stream" },
+    "FLAG":     { "action": "mark anomaly without acting on it" },
+    "PUBLISH":  { "action": "snapshot in-memory for consumers via field pull" }
+  },
+  "non_negotiable": [
+    "Pure function — NO side effects on system state",
+    "Snapshot in-memory only, NEVER persisted as decision",
+    "Consumers PULL via field, observation never PUSHES decisions",
+    "If signal lacks signature (no KhaiCell touch) — drop silently, don't validate"
+  ]
+}

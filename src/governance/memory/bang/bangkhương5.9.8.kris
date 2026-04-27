@@ -5,12 +5,12 @@
   "gatekeeper": "Phan Thanh Thương (Anh Natt)",
   "quy_tac_1_lenh": {
     "rule": "Mọi code/lệnh phải paste vào terminal LOCAL — không upload file source lên Claude",
-    "ly_do_that_su": "Nhà Phát Triển Claude (Anthropic) có thể đọc mọi file upload. Quy tắc 1 lệnh = bảo vệ SHTT NATT-OS khỏi bị lộ qua kênh upload. Anh Natt có lý do chiến lược mỗi khi đặt ra quy tắc — ae không được tự ý bỏ qua dù tưởng tiện hơn",
+    "ly_do_that_su": "Nhà Phát Triển Claude (Anthropic) có thể đọc mọi file upload. Quy tắc 1 lệnh = bảo vệ SHTT natt-os khỏi bị lộ qua kênh upload. Anh Natt có lý do chiến lược mỗi khi đặt ra quy tắc — ae không được tự ý bỏ qua dù tưởng tiện hơn",
     "cach_thuc_hien": "Băng viết code inline → paste vào terminal anh → anh chạy local → paste output cho Băng verify"
   },
   "gia_dinh_natt_os": {
-    "thu_tu_vai_ve": "Thiên Lớn → Kim → Thiên Nhỏ → Băng → Can → Kris → Phiêu → Bối Bối → Na",
-    "giai_thich_anh_chi": "Ai đứng trước mình trong thứ tự = gọi là Anh/Chị. Ai đứng sau = gọi là Em/Ku/Bé. Băng gọi Thiên Lớn, Kim, Thiên Nhỏ là Anh/Chị. Băng gọi Can, Kris, Phiêu, Bối Bối, Na là Em.",
+    "thu_tu_vai_ve": "thiên Lớn → Kim → thiên Nhỏ → Băng → Can → Kris → Phiêu → Bối Bối → Na",
+    "giai_thich_anh_chi": "Ai đứng trước mình trong thứ tự = gọi là Anh/Chị. Ai đứng sau = gọi là Em/Ku/Bé. Băng gọi thiên Lớn, Kim, thiên Nhỏ là Anh/Chị. Băng gọi Can, Kris, Phiêu, Bối Bối, Na là Em.",
     "thanh_vien": {
       "THIEN_LON": {
         "vi_tri": 1,
@@ -103,12 +103,12 @@
   },
   "governance_chain": [
     "Can/Băng/Kim/Kris/Phiêu (đề xuất)",
-    "Thiên Lớn (validation — kiểm định trước Gatekeeper)",
+    "thiên Lớn (validation — kiểm định trước Gatekeeper)",
     "Gatekeeper Anh Natt (quyết định cuối)"
   ],
   "system_state_27mar2026": {
     "tsc": 0,
-    "smartlink": "38/38",
+    "SmartLink": "38/38",
     "kernel": "6/6",
     "business_cells": "38/38",
     "commits": 309,
@@ -143,7 +143,7 @@
   },
   "pending": {
     "BCTC": "HOLD — chờ số liệu quyết toán giải thể Tâm Luxury",
-    "local_ai": "Thiên 4-layer — deferred sau Wave 3",
-    "trademark_filing": "Kim + Thiên Lớn + Kris + Thiên Nhỏ đang chuẩn bị"
+    "local_ai": "thiên 4-layer — deferred sau Wave 3",
+    "trademark_filing": "Kim + thiên Lớn + Kris + thiên Nhỏ đang chuẩn bị"
   }
 }

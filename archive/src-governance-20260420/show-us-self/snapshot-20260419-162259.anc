@@ -1,0 +1,27 @@
+{
+  "$nauion": "ANC-v2.0",
+  "type": "ShowUsSelf",
+  "entity_uri": "anc://natt.sira/snapshot/20260419-162259",
+  "timestamp": "2026-04-19T09:22:59Z",
+  "gatekeeper": "Phan Thanh Thương",
+  "system_state": {
+    "branch": "feat/p1.3-file-extension-validator",
+    "commit": "62cd94f",
+    "tsc_errors": 0,
+    "business_cells": 40,
+    "kernel_cells": 12,
+    "ts_files": 1110,
+    "commits_total": 713,
+    "chromatic_state": "#F7C313",
+    "chromatic_label": "healthy"
+  },
+  "metrics_pending": {
+    "health_score": null,
+    "uei_coherence": null,
+    "impedance_z": null,
+    "active_fibers": null,
+    "_note": "these metrics require runtime probes not yet wired — do not treat as ground truth"
+  },
+  "signature": null,
+  "signature_note": "SiraSign integration pending — use policy-signature.engine.ts when crypto provider ready"
+}

@@ -52,11 +52,11 @@ const AdvancedAnalytics: React.FC = () => {
         const ai = null /* LỆNH #001 */;
         const response = await ai.models.generateContent({
           model: 'DISABLED_LỆNH_001',
-          contents: `Phân tích dữ liệu: Lệch sổ sách 2024 (Kim cương tấm -227), Kịch bản 2026 (${scenario}). THIÊN tư vấn chiến lược.`
+          contents: `Phân tích dữ liệu: Lệch sổ sách 2024 (Kim cương tấm -227), Kịch bản 2026 (${scenario}). thiên tư vấn chiến lược.`
         });
         setAiAnalysis(response.text || '');
       } catch (e) {
-        setAiAnalysis('Thiên đang băm Shard dữ liệu đối soát...');
+        setAiAnalysis('thiên đang băm Shard dữ liệu đối soát...');
       } finally {
         setIsThinking(false);
       }
@@ -135,9 +135,9 @@ const AdvancedAnalytics: React.FC = () => {
       <div className="mt-12 p-10 glass rounded-[3rem] border border-blue-500/20 bg-blue-500/5 flex items-center gap-10">
          <AIAvatar personaId={PersonaID.THIEN} size="md" isThinking={isThinking} />
          <div className="flex-1">
-            <h4 className="text-sm font-black text-blue-400 uppercase tracking-widest mb-2">Thiên Strategic Advisor</h4>
+            <h4 className="text-sm font-black text-blue-400 uppercase tracking-widest mb-2">thiên Strategic Advisor</h4>
             <p className="text-sm text-gray-400 italic leading-relaxed font-light">
-               {aiAnalysis || "Thiên đang bóc tách Shard dữ liệu đối soát..."}
+               {aiAnalysis || "thiên đang bóc tách Shard dữ liệu đối soát..."}
             </p>
          </div>
       </div>

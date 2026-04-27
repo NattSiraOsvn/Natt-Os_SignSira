@@ -1,6 +1,6 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 /**
- * NATT-OS Sync Engine v1.1
+ * natt-os Sync Engine v1.1
  * Port từ JustU v9.0 — toàn bộ pipeline đồng bộ 19TB
  *
  * Wave 4: cleanNumber() thay thế extractPrice() — parser số VN robust hơn

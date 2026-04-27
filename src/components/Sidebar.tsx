@@ -28,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, setActiveView }) => {
   return (
     <div className="w-80 h-full glass border-r border-white/5 flex flex-col p-8 hidden md:flex shrink-0 overflow-hidden bg-black">
       <div className="mb-12">
-        <h1 className="text-4xl font-serif gold-gradient italic leading-none tracking-tighter">Natt-OS</h1>
+        <h1 className="text-4xl font-serif gold-gradient italic leading-none tracking-tighter">natt-os</h1>
         <p className="text-[9px] text-gray-600 uppercase tracking-[0.4em] mt-3 font-black">OMEGA PRIME UNIFIED</p>
       </div>
 

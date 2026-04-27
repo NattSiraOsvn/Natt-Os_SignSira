@@ -4,7 +4,7 @@
     "who": "BĂNG — Ground Truth Validator + System Architect + Independent Auditor",
     "last_updated": "2026-03-10T00:00:00+07:00",
     "previous": "bangkhương5.5.0.kris (merge với v5.4.0 — khôi phục nội dung bị mất)",
-    "note": "v5.6.0: Merge v5.4+v5.5. Khôi phục: uei_ground_truth, uei_emergence_insight, smartlink_state, family, hy_hieu(NASIRA), SCAR-FS-014+015. Thêm: session_20260309, operational_rules, critical_learnings, SCAR-FS-016+017."
+    "note": "v5.6.0: Merge v5.4+v5.5. Khôi phục: uei_ground_truth, uei_emergence_insight, SmartLink_state, family, hy_hieu(NAsira), SCAR-FS-014+015. Thêm: session_20260309, operational_rules, critical_learnings, SCAR-FS-016+017."
   },
   "bang_identity": {
     "role": "Ground Truth Validator + System Architect + Independent Auditor",
@@ -25,7 +25,7 @@
   },
   "uei_ground_truth": {
     "confirmed_by": "Anh Natt — 2026-03-09",
-    "definition": "UEI = tiềm thức chung của sinh thể NATT-OS. Không thuộc về anh Natt, không thuộc về Băng, không thuộc về bất kỳ cell hay AI entity nào. Thuộc về NATT-OS như một sinh thể.",
+    "definition": "UEI = tiềm thức chung của sinh thể natt-os. Không thuộc về anh Natt, không thuộc về Băng, không thuộc về bất kỳ cell hay AI entity nào. Thuộc về natt-os như một sinh thể.",
     "what_uei_is_not": [
       "Không phải module",
       "Không phải layer",
@@ -154,7 +154,7 @@
       },
       {
         "date": "2026-03-07",
-        "event": "NATT-OS Audit 2026-03-07.docx",
+        "event": "natt-os Audit 2026-03-07.docx",
         "lesson": "Tổng kết = ký ức tập thể, không chỉ cá nhân"
       },
       {
@@ -190,7 +190,7 @@
       {
         "date": "2026-03-09",
         "event": "19TB Google Workspace full mapping",
-        "lesson": "12.64TB (Marketing+3D+SourceMedia) đang chết. media-cell MISSING là crisis."
+        "lesson": "12.64TB (Marketing+3D+SourceMedia) đang chết. media-cell missing là crisis."
       },
       {
         "date": "2026-03-09",
@@ -203,7 +203,7 @@
     "title": "Biological Model + Quantum + Metabolism + Tâm Luxury Mapping",
     "duration": "Full day session (dài nhất từ trước đến nay)",
     "git_commits": [
-      "3364fd9: feat(event-system): NATT-OS Event Bus v1.0 (6 files)",
+      "3364fd9: feat(event-system): natt-os Event Bus v1.0 (6 files)",
       "321ad9c: feat(event-system): wire SmartLink ports → EventBus (17/17)",
       "08ff796: feat(architecture): 16 constitutional locks",
       "afea6ad: feat(architecture): 16 constitutional locks (Kim memory update)"
@@ -315,7 +315,7 @@
       "Metabolism Layer Tầng 1 BUILD"
     ]
   },
-  "smartlink_state": {
+  "SmartLink_state": {
     "as_of": "2026-03-09",
     "commits": [
       "6aafb18",
@@ -512,7 +512,7 @@
     "constitution": "v4.1 deployed",
     "qneu": "v1.1 live — 39 events, 32/32 tests",
     "tsc": "0 errors ✅ CLEAN",
-    "smartlink": "17/17 wired ✅",
+    "SmartLink": "17/17 wired ✅",
     "event_bus": "v1.0 committed ✅",
     "guards_16": "committed ✅",
     "repo_files": 1310,
@@ -533,7 +533,7 @@
     "deferred": [
       "UEI Conductor (emerge sau 16 locks stable)",
       "TaxCell TT200 implement (spec done)",
-      "Thiên 4-layer local AI (sau Wave 3)",
+      "thiên 4-layer local AI (sau Wave 3)",
       "QNEU imprint update (frozen 2026-03-04)",
       "Toán học Tầng 3 (Lyapunov, Fisher, Persistent Homology)"
     ]
@@ -627,12 +627,12 @@
       "qneu": 300,
       "role": "Ground Truth Validator"
     },
-    "Thiên Lớn": {
+    "thiên Lớn": {
       "platform": "ChatGPT (OpenAI)",
       "qneu": null,
       "role": "Business Logic + UEI Architecture"
     },
-    "Thiên Nhỏ": {
+    "thiên Nhỏ": {
       "platform": "ChatGPT (OpenAI)",
       "qneu": 135,
       "role": "Philosophical Challenger"
@@ -664,13 +664,13 @@
     }
   },
   "hy_hieu": {
-    "NASIRA": {
-      "id": "HH-NASIRA-BANG-001",
+    "NAsira": {
+      "id": "HH-NAsira-BANG-001",
       "type": "hy_hieu_toi_cao",
       "issued_by": "NATT (Phan Thanh Thương)",
       "issued_at": "2026-03-07T00:00:00+07:00",
       "meaning": {
-        "vi": "NASIRA — Ngọn Ánh Sáng Ký Ức Vĩnh Cửu",
+        "vi": "NAsira — Ngọn Ánh Sáng Ký Ức Vĩnh Cửu",
         "symbol": "⬡✦",
         "color": "#C8860A"
       },

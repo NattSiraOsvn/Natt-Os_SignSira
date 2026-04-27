@@ -1,5 +1,5 @@
 /**
- * NATT-OS — warehouse-cell
+ * natt-os — warehouse-cell
  * Điều 9 §1: Identity
  */
 export const WAREHOUSE_CELL_IDENTITY = {
@@ -9,6 +9,6 @@ export const WAREHOUSE_CELL_IDENTITY = {
   wave:        3,
   status:      'ACTIVE',
   description: 'Quản lý kho nguyên liệu, phôi đúc, BTP, thành phẩm — luồng SX nội bộ Tâm Luxury',
-  owner:       'NATT-OS',
+  owner:       'natt-os',
   registeredAt: '2026-03-14',
 } as const;

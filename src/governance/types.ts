@@ -61,7 +61,7 @@ export type PenaltyCategory =
   | 'AUDIT_SKIP'
   | 'WAVE_SKIP'
   | 'CASING_VIOLATION'
-  | 'HIDE_ERROR'
+  | 'HIDE_error'
   | 'DEFENSIVE_CONTRACTION';
 
 export interface Impact {
@@ -148,14 +148,14 @@ export type QNEUEventType =
   | 'IMPACT_RECORDED'
   | 'PENALTY_APPLIED'
   | 'SCORE_CALCULATED'
-  | 'IMPRINT_CREATED'
+  | 'IMPRINT_created'
   | 'IMPRINT_REINFORCED'
   | 'NODE_PROMOTED'
   | 'NODE_REINFORCED'
   | 'NODE_DECAYED'
-  | 'NODE_REMOVED'
+  | 'NODE_removed'
   | 'GAMING_DETECTED'
-  | 'SESSION_OPENED'
+  | 'SESSION_opened'
   | 'SESSION_CLOSED';
 
 export interface QNEUAuditEvent {

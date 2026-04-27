@@ -50,7 +50,7 @@ export class GovernanceEnforcementEngine {
 
     // Layer 1: Command must have ID
     if (!command.commandId) {
-      return { ...base, allowed: false, reason: 'MISSING_COMMAND_ID' };
+      return { ...base, allowed: false, reason: 'missing_COMMAND_ID' };
     }
 
     // Layer 2: AI must be registered
@@ -66,7 +66,7 @@ export class GovernanceEnforcementEngine {
 
     // Layer 4: Trace requirements — must have traceId and correlationId
     if (!command.traceId || !command.correlationId) {
-      return { ...base, allowed: false, reason: 'MISSING_TRACE_FIELDS' };
+      return { ...base, allowed: false, reason: 'missing_TRACE_FIELDS' };
     }
 
     // Layer 5: Constitutional rules — DELETE requires explicit authorization

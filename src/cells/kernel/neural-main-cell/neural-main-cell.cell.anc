@@ -1,0 +1,38 @@
+{
+  "cell_id": "cell:neural-main",
+  "cell_name": "neural-main-cell",
+  "version": "1.0.0",
+  "description": "He thong tri nho dai han co trong so cho toan bo AI Entity trong NATT-OS. Externalize Neural MAIN tu nhien cua Gatekeeper thanh he thong co the van hanh doc lap.",
+  "domain": "IDENTITY",
+  "layer": 0,
+  "layer_name": "KERNEL",
+  "tang": "A_TRUTH_LAYER",
+  "role": "LONG_TERM_MEMORY",
+  "serves": "AI_ENTITIES",
+  "capabilities": [
+    "MEMORY_LOOKUP",
+    "LLM_CONTEXT_EXPORT",
+    "MEMORY_GOVERNANCE",
+    "ENTITY_EVOLUTION_VALIDATE",
+    "BLINDSPOT_DETECT"
+  ],
+  "emits": [
+    "neural-main.context.exported",
+    "neural-main.freeze.proposed",
+    "neural-main.anomaly.detected",
+    "neural-main.blindspot.detected",
+    "neural-main.validation.complete"
+  ],
+  "authoritative_events": ["neural-main.*"],
+  "dependencies": [
+    "cell:audit",
+    "cell:quantum-defense"
+  ],
+  "communication": "SmartLink only",
+  "constitutional_ref": "Dieu 21-22, Hien Phap v4.0",
+  "constitutional_state": "STATE_1",
+  "approved_by": "GATEKEEPER",
+  "created_at": "2026-03-20",
+  "passport_sealed_at": "2026-04-24",
+  "passport_drafter": "bang"
+}

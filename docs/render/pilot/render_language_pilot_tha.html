@@ -1,0 +1,97 @@
+<!--
+  RENDER LANGUAGE PILOT — state: tha
+  marker: render_pilot
+  domain: Π_body
+  obitan_layer: n=1
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — tha</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --tha-inner: #f0d0b0; --tha-outer: #e8b890; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; border-radius: 50%; }
+  @keyframes natt-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.08); opacity: 1; }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-tha-001',
+    signals: [
+      {
+        verb: 'APPEAR',
+        element_id: 'embrace-zone',
+        origin_state: 'tha',
+        params: { position: 'relative_to("root-surface", offset(200, 80))' },
+        pressure: 0.3,
+        degrade_to: null
+      },
+      {
+        verb: 'BREATHE',
+        element_id: 'embrace-zone',
+        origin_state: 'tha',
+        params: { cycle_ms: 4000 },
+        pressure: 0.3,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'AMBIENT', priority: 0.8, target: 'embrace-zone' },
+    motion_budget: { frame_budget: 100, allocated: 20, remaining: 80 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: [], at_boundary: ['embrace-zone'], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#embrace-zone');
+  if (el) {
+    el.style.width = '120px';
+    el.style.height = '120px';
+    el.style.left = '50%';
+    el.style.top = '50%';
+    el.style.transform = 'translate(-50%, -50%)';
+    el.style.background = 'radial-gradient(circle at center, var(--tha-inner), var(--tha-outer) 70%, transparent 100%)';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'tha';
+  container.appendChild(label);
+  
+  const renderPilotReadout = {
+    state:'tha', marker:'render_pilot', domain:'Π_body',
+    obitan_layer:'n=1', polarity:'warm-core',
+    pressure_response:'FALL', reflection_R:0.2, decay_rate:'γ(1)*(1-breathing_phase)',
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
+  };
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
+</script>
+</body>
+</html>

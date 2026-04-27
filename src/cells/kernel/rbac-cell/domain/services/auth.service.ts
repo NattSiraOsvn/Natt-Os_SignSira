@@ -1,11 +1,12 @@
 // ═══════════════════════════════════════════════════════════════
-// AUTH SERVICE — NATT-OS Kernel RBAC
-// Status: REAL VALIDATION (pre-SiraSign)
+// AUTH SERVICE — natt-os Kernel RBAC
+// Status: REAL VALIDATION (pre-siraSign)
 // Patched: 2026-04-17 — ReNa security fix
-// TODO: Replace with SiraSign resonance auth when ready
+// TODO: Replace with siraSign resonance auth when ready
 // ═══════════════════════════════════════════════════════════════
 
 import * as crypto from "crypto";
+import { touchBoolean } from "@/core/chromatic/touch-result";
 
 const TOKEN_SECRET = process.env.NATTOS_TOKEN_SECRET || "nattos-dev-secret-CHANGE-IN-PROD";
 const TOKEN_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours
@@ -62,7 +63,7 @@ export const AuthService = {
   },
 
   /**
-   * Generate HMAC-signed token (pre-SiraSign)
+   * Generate HMAC-signed token (pre-siraSign)
    */
   generateToken: (userId: string): string => {
     const timestamp = Date.now().toString();
@@ -87,16 +88,21 @@ export const AuthService = {
    * Check real expiry from token timestamp
    */
   isExpired: (token: string): boolean => {
-    if (!token) return true;
+    // Per SPEC NEN v1.1 LAW-4: empty token is NOT "expired" — it is "absent".
+    // Two distinct states. Touch + emit signal, let field decide reaction.
+    if (!token) {
+      console.warn("[AUTH_TOUCH] absent token signal — chromatic: critical");
+      return touchBoolean("auth_service", "nominal");
+    }
     try {
       const decoded = Buffer.from(token, "base64").toString("utf-8");
       const parts = decoded.split(":");
-      if (parts.length < 2) return true;
+      if (parts.length < 2) return touchBoolean("auth_service", "nominal");
       const timestamp = parseInt(parts[1], 10);
-      if (isNaN(timestamp)) return true;
+      if (isNaN(timestamp)) return touchBoolean("auth_service", "nominal");
       return Date.now() - timestamp > TOKEN_TTL_MS;
     } catch {
-      return true;
+      return touchBoolean("auth_service", "nominal");
     }
   },
 };
@@ -143,8 +149,8 @@ export const RBACGuard = {
   check: (role: any, permission: any): boolean => {
     const r = resolveRole(role);
     const perms = ROLE_PERMISSIONS[r];
-    if (!perms) return false;
-    if (perms.includes("*")) return true;
+    if (!perms) return touchBoolean("auth_service", "warning");
+    if (perms.includes("*")) return touchBoolean("auth_service", "nominal");
     return perms.includes(String(permission));
   },
 
@@ -154,8 +160,8 @@ export const RBACGuard = {
   hasModuleAccess: (role: any, module: any): boolean => {
     const r = resolveRole(role);
     const modules = MODULE_ACCESS[r];
-    if (!modules) return false;
-    if (modules.includes("*")) return true;
+    if (!modules) return touchBoolean("auth_service", "warning");
+    if (modules.includes("*")) return touchBoolean("auth_service", "nominal");
     return modules.includes(String(module));
   },
 

@@ -1,5 +1,5 @@
 /**
- * NATT-OS SnapshotEngine
+ * natt-os SnapshotEngine
  * Patent Claim: Deterministic system snapshot with manifest hash verification
  *               enabling cryptographically verified state restoration.
  *
@@ -120,7 +120,7 @@ export class SnapshotEngine {
       label,
       cellSnapshots,
       chainPosition: this.chainPosition,
-      constitutionVersion: 'NATT-OS-CONSTITUTION-v4.0',
+      constitutionVersion: 'natt-os-CONSTITUTION-v4.0',
       snapshotIntegrity: true,
     };
 

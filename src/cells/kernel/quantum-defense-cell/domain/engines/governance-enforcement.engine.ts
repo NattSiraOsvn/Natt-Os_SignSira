@@ -69,8 +69,8 @@ export async function validateAICommand(cmd: AICommand): Promise<ValidationResul
   // 5. Trace requirements — Điều 7
   for (const field of REQUIRED_TRACE_FIELDS) {
     if (!cmd[field]) {
-      await _recordViolation(cmd, 'TRACE_MISSING');
-      return { allowed: false, reason: 'TRACE_MISSING', detail: { missing: field } };
+      await _recordViolation(cmd, 'TRACE_missing');
+      return { allowed: false, reason: 'TRACE_missing', detail: { missing: field } };
     }
   }
 

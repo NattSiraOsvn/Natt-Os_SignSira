@@ -64,7 +64,7 @@ curl -X POST 'https://api.tamluxury.com/v1/auth' \\
   -H 'Content-Type: application/json' \\
   -d '{
     "username": "natt_ops",
-    "password": "YOUR_ENCRYPTED_PASSWORD"
+    "password": "YOUR_ENCRYPTED_passWORD"
   }'
 
 # cURL Advanced OCR

@@ -32,7 +32,7 @@ const DataSyncEngine: React.FC = () => {
   const [logs, setLogs] = useState<SyncLog[]>([]);
   const logContainerRef = useRef<HTMLDivElement>(null);
 
-  const addLog = (message: string, level: 'INFO' | 'WARNING' | 'ERROR' | 'SECURE' | 'SUCCESS' = 'INFO') => {
+  const addLog = (message: string, level: 'INFO' | 'warnING' | 'error' | 'SECURE' | 'SUCCESS' = 'INFO') => {
     const newLog: SyncLog = { id: Math.random().toString(36), timestamp: Date.now(), level, message };
     setLogs(prev => [newLog, ...prev].slice(0, 100));
   };
@@ -44,7 +44,7 @@ const DataSyncEngine: React.FC = () => {
       wsInterval = setInterval(async () => {
         const rand = Math.random();
         if (rand > 0.9) {
-          addLog('⚠️ Phát hiện xung đột tiềm tàng tại Shard Kế Toán. Đang kích hoạt CRP...', 'WARNING');
+          addLog('⚠️ Phát hiện xung đột tiềm tàng tại Shard Kế Toán. Đang kích hoạt CRP...', 'warnING');
           
           // Giả lập 2 điểm dữ liệu xung đột
           const p1: DataPoint = { id: 'D1', source: 'DIRECT_API', payload: { val: 100 }, confidence: 0.98, timestamp: Date.now() - 5000 };
@@ -95,7 +95,7 @@ const DataSyncEngine: React.FC = () => {
 
   const startManualSync = async () => {
     if (!isConnected) {
-      addLog('❌ Cannot start sync while OFFLINE.', 'ERROR');
+      addLog('❌ Cannot start sync while OFFLINE.', 'error');
       return;
     }
     setJob(prev => ({ ...prev, status: 'RUNNING', progress: 0, processedRows: 0, totalRows: 2000 }));
@@ -203,7 +203,7 @@ const DataSyncEngine: React.FC = () => {
                  {logs.map((log) => (
                     <div key={log.id} className="flex gap-3 animate-in slide-in-from-left-2">
                        <span className="text-gray-600">[{new Date(log.timestamp).toLocaleTimeString()}]</span>
-                       <span className={log.level === 'SECURE' ? 'text-green-400' : log.level === 'SUCCESS' ? 'text-green-500' : log.level === 'WARNING' ? 'text-amber-500' : log.level === 'ERROR' ? 'text-red-500' : 'text-gray-300'}>
+                       <span className={log.level === 'SECURE' ? 'text-green-400' : log.level === 'SUCCESS' ? 'text-green-500' : log.level === 'warnING' ? 'text-amber-500' : log.level === 'error' ? 'text-red-500' : 'text-gray-300'}>
                           {log.message}
                        </span>
                     </div>

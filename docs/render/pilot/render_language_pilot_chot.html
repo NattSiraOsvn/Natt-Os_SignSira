@@ -1,0 +1,91 @@
+<!--
+  RENDER LANGUAGE PILOT — state: chốt
+  marker: render_pilot
+  domain: Π_body
+  obitan_layer: n=0
+  scope: pilot only — non production
+  framework: none — standalone html
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Render Pilot — chốt</title>
+<style>
+  :root { --surface-bg: #fdf6f0; --lock-color: #c0a0d0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface-bg);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;
+  }
+  .natt-render-frame { position: relative; width: 600px; height: 400px; }
+  .natt-element { position: absolute; border-radius: 50%; }
+  @keyframes lock-seal {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+  }
+  .label {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%); font-size: 13px;
+    color: #b08060; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+  import { RenderStackEngine } from '../../src/cells/render-stack-cell/domain/render-stack.engine.ts';
+  
+  const engine = new RenderStackEngine();
+  
+  const instruction = {
+    frame_id: 'test-chot-001',
+    signals: [
+      {
+        verb: 'APPEAR',
+        element_id: 'verdict-final',
+        origin_state: 'chốt',
+        params: { position: 'relative_to("truth-edge", offset(-80, 0))' },
+        pressure: 0.0,
+        degrade_to: null
+      }
+    ],
+    attention_map: { mode: 'FOCUS', priority: 1.0, target: 'verdict-final' },
+    motion_budget: { frame_budget: 100, allocated: 10, remaining: 90 },
+    degrade_level: 'NONE',
+    truth_boundary: { inside: ['verdict-final'], at_boundary: [], outside: [] }
+  };
+  
+  const container = engine.execute(instruction);
+  
+  const el = container.querySelector('#verdict-final');
+  if (el) {
+    el.style.width = '20px';
+    el.style.height = '20px';
+    el.style.left = '50%';
+    el.style.top = '50%';
+    el.style.transform = 'translate(-50%, -50%) scale(0)';
+    el.style.background = 'var(--lock-color)';
+    el.style.boxShadow = '0 0 30px 10px rgba(192,160,208,0.8)';
+    el.style.animation = 'lock-seal 0.5s ease-out forwards';
+  }
+  
+  document.getElementById('app').appendChild(container);
+  
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = 'chốt';
+  container.appendChild(label);
+  
+  const renderPilotReadout = {
+    state:'chốt', marker:'render_pilot', domain:'Π_body',
+    obitan_layer:'n=0', polarity:'cool-rim',
+    pressure_response:'FALL', reflection_R:1.0, decay_rate:0,
+    framework:'none', scope:'pilot-only', production:false, engine_version:'v0.2-pilot'
+  };
+  console.log(JSON.stringify(renderPilotReadout, null, 2));
+</script>
+</body>
+</html>

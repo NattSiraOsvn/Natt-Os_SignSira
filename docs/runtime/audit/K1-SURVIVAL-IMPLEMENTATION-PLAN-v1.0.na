@@ -1,0 +1,256 @@
+@state sealed
+@canonical k1_survival_implementation_plan_v1
+@substrate implementation_spec
+@bridge qiint2_validator
+@since 2026-04-24
+@authority-slot bang (Chi Tu, runtime owner per session 20260424)
+
+# K1 SURVIVAL IMPLEMENTATION PLAN v1.0
+
+**Purpose:** Bridge survival-cell.cell.anc passport (cf74423) to qiint2-validator existing logic. Close butterfly effect ve thu 2 (resonance amplification) per memory note "butterfly effect ve con lai — khong doan mo, doi anh" (bangthịnh5.5.phieu).
+
+**Drafter:** bang (runtime owner)
+**Predecessor commits:**
+- cf74423 (survival-cell.cell.anc scaffold)
+- dc58943 (K3 audit v1.0)
+- e46ddca (K3 audit v1.1)
+
+**Status:** SPEC_COMPLETE_PENDING_CALIBRATION
+
+**Cross-reference:**
+- `docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` §2.1, §3, §5 (ground truth)
+- `src/cells/kernel/survival-cell/survival-cell.cell.anc` (passport)
+- `src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts` (existing impl)
+- `bangthịnh5.5.phieu` (butterfly effect ve 1 + ve 2 split)
+- `bang_pending_20260420_CLOSE.phieu` P1-01/P1-02 (qiint2 calibration pending)
+
+---
+
+## §1. BUTTERFLY EFFECT — GIAI VE THU 2
+
+### §1.1 Ve thu 1 (TIME axis — em da spec trong SPEC_RADIATION_UNIVERSAL_v1.0)
+
+```
+Stress_total(n, t) = ∫₀ᵗ [Stress_X(τ) + R_time(τ)] dτ
+Cell chet khi: Stress_total > Capacity(n, t) = n × e^(-γ₀(n+1)t)
+```
+
+**Co che:** small input × infinite time = catastrophe. Catch bang thoai-sinh co chu ky.
+
+### §1.2 Ve thu 2 (RESONANCE axis — QIINT2 co che)
+
+```
+T(Z_E, Z_C) = exp(-((Z_E - Z_C) / σ_u)² / 2)
+Outcome:
+  T > 0.75  →  FALL (cell match, tao TouchRecord)
+  T < 0.20  →  DISSIPATE (tan trong field)
+  0.20 ≤ T ≤ 0.75  →  OSCILLATE (loop → ISEU mark suspicious)
+```
+
+**Co che:** small frequency match × impedance overlap = cascade into cell. Catch bang Z₀ baseline + transmission bell curve.
+
+### §1.3 Butterfly effect INTEGRATED
+
+**2 ve hop nhat trong survival-cell:**
+
+| axis | mechanism | catch |
+|---|---|---|
+| TIME | Stress_total accumulate | thoai-sinh at t_critical |
+| RESONANCE | Z_E vs Z_C match | filter at Z₀ gate |
+
+**Survival-cell = gate cho CA 2 axis truoc khi signal vao field semantic.**
+
+---
+
+## §2. SURVIVAL-CELL Z₀ BASELINE
+
+Per SPEC_QIINT_PHYSICS_FOUNDATION §5.1 cell baseline pattern:
+
+| Cell | Z₀ | Role |
+|------|-----|------|
+| quantum-defense | 0.5 | strict nhat (filter nhieu) |
+| gatekeeper | 0.8 | enforce policy |
+| khai-cell | 1.0 | sensor neutral |
+| finance-cell | 1.1 | conservative |
+| sales-cell | 1.2 | permissive |
+| **survival-cell** | **0.3** | **THAP NHAT — gate TRUOC tat ca** |
+
+**Rationale Z₀ = 0.3:**
+- Tang 0 phai catch signal TRUOC khi vao tang 1-4
+- Z₀ thap = chi accept signal co Z_E gan 0.3 (resource-friendly)
+- Signal co Z_E > 0.3 (resource-heavy) → reflect (R > 0) → NOT accepted
+- Parameter σ_u = ln(2) (DRAFT per §5.3, pending calibration P1-03)
+
+---
+
+## §3. QIINT2-VALIDATOR API REUSE
+
+### §3.1 Functions da exist (session-20260420-final/qiint2/qiint2-validator.ts)
+
+| Function | Input | Output | K1 use |
+|---|---|---|---|
+| `computePiBody()` | BodyMetrics | number | cell body health check |
+| `computePiMedium()` | MediumMetrics | number | cell medium health check |
+| `computePiSubstrate()` | SubstrateMetrics | number | cell substrate health check |
+| `computeRecoveryPotential()` | RecoveryCapabilities | number | thoai-sinh capability score |
+| `classifyVerdict()` | (piBody, piMedium, piSubstrate, recovery) | Verdict | 6-class verdict |
+| `tempToNauionState()` | temp | 7-state | chromatic state output |
+| `validateCell()` | input | CellReport | full cycle |
+| `batchReport()` | reports[] | BatchReport | system-wide state |
+
+### §3.2 Verdict → K1 Output Contract Mapping
+
+SPEC_QIINT_PHYSICS_FOUNDATION §2.1 quy dinh K1 output:
+```
+ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK
+```
+
+qiint2-validator classifyVerdict() cho 6 verdict. Map:
+
+| qiint2 verdict | K1 output | Action |
+|---|---|---|
+| `healthy` | ACCEPT | signal pass through |
+| `substrate_fail` | BACKPRESSURE | degrade substrate load |
+| `medium_fail` | BACKPRESSURE | restore snapshot + degrade |
+| `body_drift` | BACKPRESSURE | re-anchor orbital + degrade |
+| `revivable_death` | LOAD_SHED | priority-based shed + thoai-sinh trigger |
+| `permanent_death` | CIRCUIT_BREAK | auto-trip + half-open recovery |
+
+---
+
+## §4. IMPLEMENTATION STEPS (REVISED)
+
+v1.0 passport ghi 5 steps. After QIINT2 discovery, revised to 3:
+
+### §4.1 Step 1 — Wire qiint2-validator
+
+**Action:**
+```
+1. Copy qiint2-validator.ts tu session-20260420-final/qiint2/
+   → src/cells/kernel/survival-cell/domain/engines/
+2. Rename class to SurvivalValidator (qiint2 la chi rieng)
+3. Add Z₀ = 0.3 field to survival-cell context
+4. Import computeRecoveryPotential, classifyVerdict (reuse 80% logic)
+```
+
+**Authority:** Bang (runtime owner) — KHONG Kim.
+
+**Note:** qiint2-validator v1.0 paradigm sai ("Π_body tu tao") per memory. Khi wire, **ONLY reuse computation functions**, NOT Π_body tu-tao logic. SPEC_QIINT_PHYSICS §2.4 dung paradigm (Π_body = QIINT_pull × anchor_mass × snapshot_coherence).
+
+### §4.2 Step 2 — Implement verdict-to-output mapper
+
+**Action:**
+```typescript
+// src/cells/kernel/survival-cell/domain/services/survival-gate.service.ts
+export const SurvivalGate = {
+  evaluate(request): 'ACCEPT' | 'BACKPRESSURE' | 'LOAD_SHED' | 'CIRCUIT_BREAK' {
+    const verdict = SurvivalValidator.classify(request);
+    return mapVerdictToOutput(verdict);
+  }
+}
+```
+
+**Authority:** Bang (runtime owner).
+
+### §4.3 Step 3 — Wire SurvivalGate vao EventBus
+
+**Action:**
+```
+1. Hook survival-gate.service vao src/core/events/event-bus.ts
+   (sau IdempotencyGuard, truoc publish dispatch)
+2. Emit signal:
+   - ACCEPT → tiep tuc publish
+   - BACKPRESSURE → emit 'survival.gate.backpressure', delay
+   - LOAD_SHED → emit 'survival.gate.load_shed', reject
+   - CIRCUIT_BREAK → emit 'survival.gate.circuit_break', block
+3. Leverage existing BackPressureGuard.recordLatency() for metric
+```
+
+**Authority:** Bang (runtime owner).
+
+---
+
+## §5. PENDING CALIBRATION (NOT blocking implementation)
+
+### §5.1 8 parameters tu bang_pending_20260420
+
+Per P1-02 calibration list:
+
+| # | Param | Current | Source for calibration |
+|---|---|---|---|
+| 1 | tolerance 0.30 bridge_v2 | GUESSED | 10 conversation/persona std |
+| 2 | 6 weights recovery_potential | GUESSED | failure/recovery regression |
+| 3 | σ_u = ln(2) (1 octave) | DRAFT | SmartLink resonance real measure |
+| 4 | β(n) = 0.01 | DRAFT | QNEU growth rate |
+| 5 | DoS thresholds 0.95/0.85/0.80 | GUESSED | stress test vo that |
+| 6 | M_persona 3-factor weights | DRAFT | drift history correlation |
+| 7 | QNEU σ log-integrity 0.5 octave | DRAFT | QNEU real data (BLOCKER-06c) |
+| 8 | snapshot τ decay 60 phut | DRAFT | MTBF phuc hoi measure |
+
+**Calibration la separate phase** — implementation (Step 1-3) co the ship voi DRAFT values truoc.
+
+### §5.2 Calibration phase sequencing
+
+```
+Phase A (now): Implement with DRAFT values (Step 1-3)
+Phase B (later): Wire calibration infrastructure (8 params measurement)
+Phase C (later): Replace DRAFT → measured values
+Phase D (later): Re-verify survival-cell behavior
+```
+
+---
+
+## §6. CONTRACT GUARANTEES
+
+### §6.1 Butterfly effect coverage
+
+After implementation:
+- TIME axis: SPEC_RADIATION_UNIVERSAL_v1.0 Stress_total protocol (v1.0 ship)
+- RESONANCE axis: survival-gate verdict protocol (this spec)
+
+**Ket qua:** butterfly effect ve 1 + ve 2 **CLOSED** — cell khong bi chaos amplify qua bat ky axis nao ma survival-cell khong catch.
+
+### §6.2 K1 BLOCKER resolution
+
+Pre-spec state (bang_pending_20260424.phieu):
+```
+K1: SURVIVAL Tang 0: 3 co che ZERO (chi backpressure partial)
+Owner: Kim
+Status: OPEN
+```
+
+Post-spec state:
+```
+K1: SURVIVAL Tang 0:
+  - Passport scaffold: DONE (commit cf74423)
+  - Implementation plan: DONE (this spec)
+  - Wire qiint2-validator: PENDING_IMPLEMENT (Step 1)
+  - Verdict mapper: PENDING_IMPLEMENT (Step 2)
+  - EventBus integration: PENDING_IMPLEMENT (Step 3)
+  - Calibration: PENDING_DATA (Phase B-D)
+Owner: Bang (runtime owner per session 20260424)
+Status: SPEC_COMPLETE_ready_TO_IMPLEMENT
+```
+
+### §6.3 Pattern stand-on-shoulders
+
+This spec reuse:
+- qiint2-validator computation (80% logic already exists)
+- BackPressureGuard latency tracking (existing)
+- SPEC_QIINT_PHYSICS_FOUNDATION §2.1 output contract (existing)
+- SPEC_NEN_v1.1 §2.4 Tang 0 definition (existing)
+
+NO parallel structure. NO invent-from-scratch. Per SCAR-PARALLEL-STRUCTURE-RADIATION-20260424 vaccin.
+
+---
+
+## §7. SEAL
+
+@result k1_implementation_spec_complete
+@butterfly_effect both_ve_resolved (time + resonance)
+@next_action implement_step_1_wire_qiint2_validator
+@drafter bang
+@drafter_role runtime_owner_session_20260424
+@kim_scope_note qiint2-validator reuse, khong invent moi
+@authority_lock_observance runtime work scope per anh Natt session 20260424
+@calibration_decouple spec ship voi DRAFT, calibration separate phase

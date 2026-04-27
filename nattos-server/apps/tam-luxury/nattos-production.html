@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>NATT-OS | Production Phase 2B | Kanban + Timeline</title>
+    <title>natt-os | Production Phase 2B | Kanban + Timeline</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Dragula CDN cho drag & drop nhẹ (có thể thay bằng HTML5 native) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
@@ -99,14 +99,14 @@
 <div id="login-gate" class="fixed inset-0 flex items-center justify-center bg-[#020208]/40 backdrop-blur-md transition-all duration-700" style="z-index: 999;">
     <div class="liquid-glass p-8 md:p-12 w-[90%] md:w-[420px] flex flex-col items-center relative rounded-[32px] animate-login-enter shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/20">
         <div class="w-16 h-16 rounded-full border border-white/10 mb-8 flex items-center justify-center relative"><div class="absolute inset-0 border-2 border-t-[#8FFFD4] border-transparent rounded-full animate-spin"></div><div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_15px_#8FFFD4]"></div></div>
-        <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold">NATT-OS</h1>
+        <h1 class="text-3xl font-black tracking-[0.4em] text-white mb-1 text-glow-gold">natt-os</h1>
         <p class="text-[10px] tracking-widest text-[#B8E8FF] mb-10 opacity-70">PRODUCTION PHASE 2B</p>
         <div class="w-full space-y-6">
             <input type="text" id="emp-id" placeholder="TLXR-CFO-01" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] font-mono">
             <input type="password" id="emp-pass" placeholder="••••••••" class="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-[#8FFFD4] font-mono">
         </div>
-        <button onclick="AppController.handleLogin()" class="w-full bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md mt-10 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/20 transition-all border border-white/20">XÁC THỰC SIRA</button>
-        <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden">[GAY] Vi phạm SiraSign.</p>
+        <button onclick="AppController.handleLogin()" class="w-full bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md mt-10 py-4 rounded-xl font-black tracking-[0.3em] text-[#F5E2C0] hover:bg-white/20 transition-all border border-white/20">XÁC THỰC sira</button>
+        <p id="login-error" class="text-red-400 text-[11px] mt-6 hidden">[GAY] Vi phạm siraSign.</p>
     </div>
 </div>
 
@@ -116,7 +116,7 @@
     <header class="h-auto md:h-20 py-4 md:py-0 liquid-glass mx-4 md:mx-6 mt-4 md:mt-6 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between rounded-xl md:rounded-[24px] shrink-0 gap-4 md:gap-0 relative z-50">
         <div class="flex items-center gap-4">
             <div class="relative w-10 h-10"><div class="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]"></div><div class="absolute inset-2 border border-dotted border-[#8FFFD4]/50 rounded-full animate-[spin_5s_linear_infinite_reverse]"></div><div class="w-2 h-2 bg-[#8FFFD4] rounded-full shadow-[0_0_10px_#8FFFD4] absolute top-1/2 left-1/2 -translate-1/2"></div></div>
-            <div><div class="font-black tracking-[0.2em] text-lg text-white">NATT-OS<span class="text-[#C8C0FF]">_PROD</span></div><div class="text-[9px] font-mono text-gray-400"><span id="user-role-badge">PENDING</span><span class="ml-2" id="ui-mode-badge">MODE: WORK</span></div></div>
+            <div><div class="font-black tracking-[0.2em] text-lg text-white">natt-os<span class="text-[#C8C0FF]">_PROD</span></div><div class="text-[9px] font-mono text-gray-400"><span id="user-role-badge">PENDING</span><span class="ml-2" id="ui-mode-badge">MODE: WORK</span></div></div>
         </div>
         <div class="flex items-center gap-4"><div class="text-right"><div class="text-[8px] text-gray-500">RENDER MODE</div><div id="render-mode-display" class="text-xs font-black text-[#B8E8FF]">ACTIVE</div></div><div class="text-right"><div class="text-[8px] text-gray-500">MẠCH HEYNA</div><div id="heyna-status" class="text-xs font-black text-glow-mint">AWAITING</div></div><button onclick="AppController.handleLogout()" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center">🚪</button></div>
     </header>
@@ -192,7 +192,7 @@
         <button onclick="AppController.openChatUplink()" class="flex flex-col items-center"><span class="text-xl text-glow-ice">💬</span><span class="text-[8px]">UPLINK</span></button>
         <button onclick="AppController.triggerOmegaLockdown()" class="flex flex-col items-center"><span class="text-xl text-glow-red">☢️</span><span class="text-[8px]">LOCKDOWN</span></button>
     </div>
-    <footer class="h-8 bg-black/90 border-t border-white/10 flex items-center justify-between px-4 text-[8px] font-mono text-gray-500"><span>NATT-OS KERNEL</span><span id="footer-engine-status" class="text-[#8FFFD4]">ENGINES: ONLINE</span></footer>
+    <footer class="h-8 bg-black/90 border-t border-white/10 flex items-center justify-between px-4 text-[8px] font-mono text-gray-500"><span>natt-os KERNEL</span><span id="footer-engine-status" class="text-[#8FFFD4]">ENGINES: ONLINE</span></footer>
 </div>
 
 <!-- MODALS (Neural Terminal & Chat) -->
@@ -324,7 +324,7 @@
             console.log(`[BUTTERFLY] ${level} - ${eventType}`);
         }
     };
-    // ==================== NATT-OS CORE (tối giản) ====================
+    // ==================== natt-os CORE (tối giản) ====================
     const NattOS = { version:"2.5", EventBus, ISEU: { reinforce: (type, outcome, weight)=>{ console.log(`ISEU: ${type} ${outcome}`); } } };
     // ==================== APP CONTROLLER ====================
     const AppController = {

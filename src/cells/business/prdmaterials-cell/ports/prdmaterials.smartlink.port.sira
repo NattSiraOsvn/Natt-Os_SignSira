@@ -1,0 +1,8 @@
+import { forgeSmartLinkPort } from '@/satellites/port-forge';
+export const PrdMaterialsSmartLinkPort = forgeSmartLinkPort({
+  cellId: 'prdmaterials-cell',
+  signals: {
+    ORDER_created:    { eventType: 'order:created',    routeTo: 'prdmaterials-cell' },
+    CASTING_REQUEST:  { eventType: 'casting:request',  routeTo: 'casting-cell' },
+  },
+});

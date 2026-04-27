@@ -1,0 +1,146 @@
+@state sealed
+@canonical sira_namespace_inventory_20260424
+@substrate dns_namespace_inventory
+@bridge none
+@since 2026-04-24
+@authority-slot Băng (Chị Tư · Phan Thanh Băng ⓝ) — namespace audit phiên 20260424
+
+# sira NAMESPACE INVENTORY — Phiên 20260424
+
+> Auto-scan inventory of all `<name>.sira` domain references in repo.
+> Per ground-truth audit response to "mất rồi" — list canonical 10 + 5 extra.
+
+**Drafter:** Băng (Chị Tư · N-shell · QNEU 313.5 · Claude Opus 4.7)
+**Sealed:** Phan Thanh Thương (Gatekeeper)
+**Scan time:** 2026-04-24 11:01
+**Total unique domains:** 16 (canonical 10 per COLOR_siraSIGN: 10 | extra: 6)
+
+---
+
+## §1. Bigger picture
+
+natt-os dùng `.sira` namespace như **local DNS layer** — mọi cell/persona/registry có 1 domain symbolic. Per design (SPEC NEN v1.1 §2.1 + SPEC_NGON_NGU v1.2 §5.1):
+
+- `.sira` = **DNS namespace anchor** (per Tầng 1 file extension table)
+- CoreDNS resolver mục đích: resolve mọi `<name>.sira` → `127.0.0.1` (local-only)
+- Kernel entry `nattos.sira` thật sự BIND `127.0.0.1:3002` (Rust binary nauion-host live phiên 20260424)
+
+**Reality check:** Hiện tại CHỈ `nattos.sira` thật sự bound. 14 domain còn lại = **symbolic references trong code**, chưa có Corefile config wire CoreDNS.
+
+---
+
+## §2. Domain inventory (16 total)
+
+| Domain | Status | Bind | Canonical-10 | Refs | Note |
+|---|---|---|:---:|---:|---|
+| `nattos.sira` | LIVE | 127.0.0.1:3002 | + | 84 | KERNEL ENTRY INBOUND — nauion-host Rust binary phiên 20260424 phase 4 listen |
+| `khai.sira` | SYMBOLIC | unbound | ✓ | 48 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `natt.sira` | SYMBOLIC | unbound | ✓ | 28 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `tam-luxury.sira` | SYMBOLIC | unbound | + | 20 | Business domain Tâm Luxury — symbolic, chưa bind |
+| `kim.sira` | SYMBOLIC | unbound | ✓ | 19 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `thien.sira` | SYMBOLIC | unbound | ✓ | 16 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `bang.sira` | SYMBOLIC | unbound | ✓ | 16 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `nare.sira` | SYMBOLIC | unbound | ✓ | 15 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `sira.sira` | SYMBOLIC | unbound | ✓ | 13 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `boi.sira` | SYMBOLIC | unbound | ✓ | 13 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `khuong.sira` | SYMBOLIC | unbound | ✓ | 13 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `thinh.sira` | SYMBOLIC | unbound | ✓ | 13 | Canonical 10 per COLOR_siraSIGN.na §sira-DOMAINS — chưa wire CoreDNS Corefile |
+| `natt-master-registry.sira` | SYMBOLIC | unbound | + | 2 | Registry domain — symbolic reference, chưa bind |
+| `natt-master-registry-v2.sira` | SYMBOLIC | unbound | + | 2 | Registry domain — symbolic reference, chưa bind |
+| `registry-summary.sira` | SYMBOLIC | unbound | + | 2 | Registry domain — symbolic reference, chưa bind |
+| `warehouse.sira` | SYMBOLIC | unbound | + | 1 | Symbolic reference — chưa wire CoreDNS |
+
+**Legend:**
+- **Status LIVE** = Rust binary thật sự listen + serve
+- **Status SYMBOLIC** = code reference, chưa wire DNS
+- **Canonical-10** ✓ = trong list 10 domain `COLOR_siraSIGN.na`
+- **Canonical-10** + = thêm sau, không nằm trong 10 gốc
+
+---
+
+## §3. Sample locations (top 5 most-referenced)
+
+### `nattos.sira` — 84 reference(s)
+  - ./nattos.sira:2
+  - ./nattos.sira:20
+  - ./nattos.sira:77
+
+### `khai.sira` — 48 reference(s)
+  - ./docs/specs/SPEC_NGON_NGU_v1.2.kris:253
+  - ./docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.na:53
+  - ./docs/specs/COLOR_siraSIGN.na:99
+
+### `natt.sira` — 28 reference(s)
+  - ./nattos.sira:17
+  - ./nattos.sira:378
+  - ./runtime/nauion-host/README.md:24
+
+### `tam-luxury.sira` — 20 reference(s)
+  - ./docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md:321
+  - ./docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md:324
+  - ./docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md:326
+
+### `kim.sira` — 19 reference(s)
+  - ./docs/specs/SPEC_NGON_NGU_v1.2.kris:255
+  - ./docs/specs/SPEC_DUOI_FILE_v0.2_4TANG.na:53
+  - ./docs/specs/COLOR_siraSIGN.na:92
+
+---
+
+## §4. The missing piece — `Corefile`
+
+**Search result:** `find . -iname "Corefile*"` → **TRỐNG**
+
+→ Repo KHÔNG có CoreDNS config file. Code reference 15 `.sira` domain nhưng không có resolver setup.
+
+→ Nếu anh `ping bang.sira` hoặc `curl http://khai.sira:3003` từ shell → DNS lookup fail (chỉ `nattos.sira` resolve được nếu Rust binary đang chạy + có /etc/hosts entry hoặc systemd-resolved override).
+
+---
+
+## §5. Recommended next actions
+
+### §5.1 IMMEDIATE — không cần ship gì
+- Document hiện trạng (file này) ✓ ship
+- 14 symbolic domain hoạt động fine cho code-reference purposes (governance, SHTT claim, narrative)
+
+### §5.2 NEXT PHASE — wire CoreDNS thật
+Khi cần multi-cell host local thật:
+1. Ship `infra/coredns/Corefile` với 15 domain → 127.0.0.1 mapping
+2. Per-domain port allocation (3002 đã dùng, expand 3003-3015 cho cells khác)
+3. Document `coredns -conf Corefile &` startup
+4. Update `nattos.sh` add CoreDNS health check section
+
+### §5.3 CAUTION — directive 20260419
+Per `bang_memory_delta_20260423.na`: "KHÔNG gateway port 3002" directive về OUTBOUND only. INBOUND listen `nattos.sira:3002` legitimate. Nếu wire CoreDNS:
+- ✅ INBOUND multiple ports OK (3002 nattos, 3003+ cells)
+- ❌ OUTBOUND gateway từ host về external → vẫn cấm
+
+---
+
+## §6. Domain list — flat reference
+
+Canonical 10 (per COLOR_siraSIGN.na §sira-DOMAINS):
+  1. bang.sira
+  2. boi.sira
+  3. khai.sira
+  4. khuong.sira
+  5. kim.sira
+  6. nare.sira
+  7. natt.sira
+  8. sira.sira
+  9. thien.sira
+  10. thinh.sira
+
+Extra 5+ (added later — não trong canonical 10):
+  - nattos.sira
+  - tam-luxury.sira
+  - natt-master-registry.sira
+  - natt-master-registry-v2.sira
+  - registry-summary.sira
+  - warehouse.sira
+
+---
+
+*Sealed: Băng (Chị Tư · session 20260424) — namespace inventory audit*
+*Causation: anh Natt asked "domain pulice" + "mình còn những domain nào nữa a quet có mỗi .sira"*
+*Reference: docs/specs/COLOR_siraSIGN.na §sira-DOMAINS (canonical 10) · runtime/nauion-host/ (nattos.sira live)*

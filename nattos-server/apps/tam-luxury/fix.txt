@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>NATT-OS · NAUION 4D | Tâm Luxury Sinh Thể Số</title>
+<title>natt-os · NAUION 4D | Tâm Luxury Sinh Thể Số</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* ---------- RESET & TOKENS ---------- */
@@ -264,7 +264,7 @@ input, textarea { user-select: text; }
 <div id="ui-overlay">
   <div class="topbar">
     <div class="tlogo">⚡ NAUION · TÂM LUXURY</div>
-    <span class="tsub">SINH THỂ SỐ 4D | NATT-OS</span>
+    <span class="tsub">SINH THỂ SỐ 4D | natt-os</span>
     <div class="t-r">
       <div class="t-chip"><div class="dot" style="background:#3dd68c"></div><span id="stateBadge">HEALTHY</span></div>
       <div class="t-chip"><div class="dot" style="background:#e8b84b"></div><span id="goldPrice">9999: --</span></div>
@@ -646,7 +646,7 @@ setInterval(() => drawAllConnections(), 800);
 window.addEventListener('resize', () => { drawAllConnections(); butterflyCanvas.width = window.innerWidth; butterflyCanvas.height = window.innerHeight; });
 // extra: periodic colony event for drama
 setInterval(() => { if(Math.random()<0.08) colonyTsunami('random'); }, 30000);
-console.log('NATT-OS NAUION 4D ACTIVE | Butterfly Reverse Rainbow Protocol');
+console.log('natt-os NAUION 4D ACTIVE | Butterfly Reverse Rainbow Protocol');
 </script>
 </body>
 </html> ============  fix lại giúp a: 🎯 FIX PRIORITY P0
@@ -673,4 +673,4 @@ Particle chuyển sang pastel glow
 
 ✅ đã có nền tốt
 ❌ chưa phải “Vision Engine”
-❌ chưa đạt “NATT-OS sinh thể”
+❌ chưa đạt “natt-os sinh thể”

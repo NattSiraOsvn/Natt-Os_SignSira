@@ -6,7 +6,7 @@ export interface ConstantsTraceEvent {
   actor:     string;
   timestamp: string;
   payload?:  Record<string, unknown>;
-  result:    'SUCCESS' | 'FAILURE' | 'PENDING';
+  result:    'SUCCESS' | 'failURE' | 'PENDING';
 }
 
 export function traceConstants(

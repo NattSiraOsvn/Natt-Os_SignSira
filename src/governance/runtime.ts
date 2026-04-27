@@ -97,7 +97,7 @@ export function openSession(entityId: AIEntityId, platform: AIPlatform): string 
 
   activeSessions.set(entityId, { session, traceId, impacts: [], penalties: [] });
 
-  emitAudit('SESSION_OPENED', entityId, traceId, {
+  emitAudit('SESSION_opened', entityId, traceId, {
     session_id: sessionId,
     platform,
     score_before: state.current_score,
@@ -344,7 +344,7 @@ export function runDecayCycle(): { decayed: number; removed: number } {
       totalRemoved += removedNodeIds.length;
 
       for (const nodeId of removedNodeIds) {
-        emitAudit('NODE_REMOVED', entityId, generateTraceId(), { node_id: nodeId, reason: 'decay_below_minimum' });
+        emitAudit('NODE_removed', entityId, generateTraceId(), { node_id: nodeId, reason: 'decay_below_minimum' });
       }
     }
 
@@ -365,7 +365,7 @@ export function runDecayCycle(): { decayed: number; removed: number } {
 // SmartLink patterns ghi vào audit để UEI field đọc được
 // ═══════════════════════════════════════════
 
-import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
+import { QneuBridge } from '@/core/SmartLink/SmartLink.qneu-bridge';
 
 QneuBridge.onImprint((imprint) => {
   appendAuditEvent({

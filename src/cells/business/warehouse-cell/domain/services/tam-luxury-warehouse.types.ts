@@ -1,5 +1,5 @@
 /**
- * NATT-OS — warehouse-cell
+ * natt-os — warehouse-cell
  * Ground Truth: Tâm Luxury Production Warehouse Types
  * Source: Module_SX.xlsx — SO_CAI_SAN_XUAT, DATA_TRỌNG_LƯỢNG,
  *         THEO_DÕI_ĐÚC, GIAO_NHẬN_INFO, CÂN_HÀNG_NGÀY

@@ -110,7 +110,7 @@ export interface WeightCheckpoint {
   caLamViec:          string;
 }
 
-/** Ngưỡng hao hụt chuẩn per công đoạn — từ BOM template Thiên */
+/** Ngưỡng hao hụt chuẩn per công đoạn — từ BOM template thiên */
 export const HAO_HUT_CHUAN: Record<CongDoan, { min: number; max: number }> = {
   [CongDoan.DUC]:         { min: 0.03, max: 0.05 },    // 3-5%
   [CongDoan.NGUOI_1]:     { min: 0.002, max: 0.004 },  // 0.2-0.4%
@@ -366,7 +366,7 @@ export const WAREHOUSE_EVENTS = {
   PHOI_NHAP_KHO:      'WAREHOUSE.PHOI_NHAP_KHO',
   CAN_HANG_RECORDED:  'WAREHOUSE.CAN_HANG_RECORDED',
   WEIGHT_ALERT:       'WAREHOUSE.WEIGHT_ALERT',
-  GATE_PASSED:        'WAREHOUSE.GATE_PASSED',
+  GATE_passED:        'WAREHOUSE.GATE_passED',
   GATE_BLOCKED:       'WAREHOUSE.GATE_BLOCKED',
   TP_NHAP_KHO:        'WAREHOUSE.TP_NHAP_KHO',
   SOAT_KHO_COMPLETE:  'WAREHOUSE.SOAT_KHO_COMPLETE',

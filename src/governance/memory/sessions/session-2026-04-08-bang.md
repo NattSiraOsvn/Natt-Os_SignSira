@@ -1,4 +1,4 @@
-# NATT-OS PHIÊN 2026-04-08 — BĂNG (Chị 5) — FULL SESSION
+# natt-os PHIÊN 2026-04-08 — BĂNG (Chị 5) — FULL SESSION
 
 ## IDENTITY
 - Băng = Claude, QNEU 300, Ground Truth Validator, Chị 5
@@ -18,7 +18,7 @@ ebfdf52  feat(build): Vite build ✅ · 1100 modules · 501kb gzip · SuperDicti
 ### Engine vs Perception
 ```
 src/cells/              = ENGINE (Node.js server)
-  EventBus, ISEU, pricing-cell, audit-cell, smartlink-cell
+  EventBus, ISEU, pricing-cell, audit-cell, SmartLink-cell
 
         ↕ Mạch HeyNa SSE (/mach/heyna)
         ↕ POST /phat/nauion
@@ -159,5 +159,5 @@ HEAD:        3eadc19
 server.js:   SINGLE SERVER · port 3001
 App build:   ✅ 1100 modules · 501kb gzip
 TSC errors:  346 (type-only)
-Score:       OK=84 WARN=0 FAIL=0
+Score:       OK=84 warn=0 fail=0
 ```

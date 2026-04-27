@@ -1,0 +1,278 @@
+# sira dns monitoring loop evidence — 20260426
+
+status: monitoring-loop-observed
+created_at: 2026-04-26 15:05:28
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+- theo dõi dns latency và fail count cho namespace sira.
+- primary_edge là wired_edge.
+- wifi_edge chỉ ghi nhận phụ.
+- không sửa máy.
+- không kiểm tầng vận chuyển.
+- không kiểm tầng chạy.
+
+---
+
+## 2. edge map
+
+- wired_edge: 192.168.1.199
+- wifi_edge: 192.168.1.238
+- primary_edge: wired_edge
+
+---
+
+## 3. summary
+
+- sample_rounds: 10
+- primary_fail_count: 0
+- allow_latency_min_ms: 0
+- allow_latency_avg_ms: 0
+- allow_latency_max_ms: 0
+
+---
+
+## 4. primary samples
+
+- round=1 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=1 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=1 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=2 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=2 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=3 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=3 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=4 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=4 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=5 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=5 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=6 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=6 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=7 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=7 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=8 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=8 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=9 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=9 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @127.0.0.1 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @127.0.0.1 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @127.0.0.1 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @127.0.0.1 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @127.0.0.1 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @192.168.1.199 anc.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 apps.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 mach.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 core.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 audit.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 render.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 tam.sira mode=allow ok=True code=0 short='192.168.1.199' query_ms=0
+- round=10 @192.168.1.199 unknown.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @192.168.1.199 mail.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @192.168.1.199 smtp.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+- round=10 @192.168.1.199 imap.sira mode=deny ok=True code=0 short='no_short_answer' query_ms=0
+
+---
+
+## 5. secondary wifi observation
+
+- @192.168.1.238 anc.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 anc.sira A +time=2 +tries=1 +short,; (1 server found),;; global options: +cmd,;; connection timed out; no servers could be reached'
+- @192.168.1.238 apps.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 apps.sira A +time=2 +tries=1 +short,; (1 server found),;; global options: +cmd,;; connection timed out; no servers could be reached'
+- @192.168.1.238 render.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 render.sira A +time=2 +tries=1 +short,; (1 server found),;; global options: +cmd,;; connection timed out; no servers could be reached'
+- @192.168.1.238 unknown.sira: code=9 short='; <<>> DiG 9.10.6 <<>> @192.168.1.238 unknown.sira A +time=2 +tries=1 +short,; (1 server found),;; global options: +cmd,;; connection timed out; no servers could be reached'
+
+---
+
+## 6. decision
+
+decision: dns-monitoring-loop-pass
+
+reason: primary wired_edge dns returned expected records and denied unsafe names.
+
+next: nếu cần theo dõi dài hạn, đưa loop này vào scheduled local monitor riêng.

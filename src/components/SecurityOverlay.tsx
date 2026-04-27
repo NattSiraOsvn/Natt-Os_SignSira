@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import ThreatDetectionService, { SecurityThreat } from '@/cells/kernel/security-cell/domain/services/ThreatDetectionService';
 import QuantumPulse from './QuantumPulse';
-import { QuantumBuffer } from '@/core/smartlink/quantum-buffer.engine';
+import { QuantumBuffer } from '@/core/SmartLink/quantum-buffer.engine';
 
 interface SecurityOverlayProps {
   children: React.ReactNode;
@@ -143,7 +143,7 @@ const SecurityOverlay: React.FC<SecurityOverlayProps> = ({
         items.push({
           top: `${(i * 100) / rows}%`,
           left: `${(j * 100) / cols}%`,
-          text: `NATT-OS • SECURE • AES-256`
+          text: `natt-os • SECURE • AES-256`
         });
       }
     }

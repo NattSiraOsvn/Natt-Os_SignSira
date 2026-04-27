@@ -5913,6 +5913,8 @@
   },
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "kernel": "node --no-warnings --loader ./sira-loader.mjs --loader ts-node/esm nattos.sira",
+    "kernel:health": "curl -s http://127.0.0.1:3002/health | python3 -m json.tool"
   }
 }

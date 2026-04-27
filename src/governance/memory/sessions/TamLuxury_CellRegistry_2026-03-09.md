@@ -1,5 +1,5 @@
 # TÂM LUXURY — CELL REGISTRY v1.0
-**Source of Truth cho NATT-OS mapping**  
+**Source of Truth cho natt-os mapping**  
 **Date:** 2026-03-09 | **Validated by:** Băng (từ _So___Lu_o_ng.xlsx)
 
 ---
@@ -19,7 +19,7 @@
 |---|---|---|---|
 | Ngoại Giao | Tổng Quản Lý (42M–59.5M) | ban-kiem-soat-cell | 🔨 cần build proper |
 | Ngoại Giao | Chuyên Viên (21M–38.5M) | ban-kiem-soat-cell | 🔨 |
-| Pháp Chế | Pháp Chế Viên | phap-che-cell | ❌ MISSING |
+| Pháp Chế | Pháp Chế Viên | phap-che-cell | ❌ missing |
 
 ---
 
@@ -35,14 +35,14 @@
 | | Kế toán trưởng | finance-cell | ✅ |
 | | Giám sát viên | finance-cell | ✅ |
 | | Thủ quỹ kho kim tấm | payment-cell | ✅ |
-| **IT** | Trưởng phòng / Helpdesk | it-cell | ❌ MISSING |
-| | IT Training AI | it-cell | ❌ MISSING |
-| | IT App Code | it-cell | ❌ MISSING |
+| **IT** | Trưởng phòng / Helpdesk | it-cell | ❌ missing |
+| | IT Training AI | it-cell | ❌ missing |
+| | IT App Code | it-cell | ❌ missing |
 | **HCNS** | HR | hr-cell | ✅ |
-| **NỘI VỤ** | Nhân viên hậu cần | noi-vu-cell | ❌ MISSING |
-| | Tài xế giám đốc / giao hàng | noi-vu-cell | ❌ MISSING |
-| | Tạp vụ | noi-vu-cell | ❌ MISSING |
-| | NV gói hàng SP để vận chuyển | noi-vu-cell | ❌ MISSING |
+| **NỘI VỤ** | Nhân viên hậu cần | noi-vu-cell | ❌ missing |
+| | Tài xế giám đốc / giao hàng | noi-vu-cell | ❌ missing |
+| | Tạp vụ | noi-vu-cell | ❌ missing |
+| | NV gói hàng SP để vận chuyển | noi-vu-cell | ❌ missing |
 
 ---
 
@@ -55,37 +55,37 @@
 | | CSKH | sales-cell | ✅ |
 | | CTV bán hàng | sales-cell | ✅ |
 | | Sale Online | sales-cell | ✅ |
-| **PHÒNG MEDIA** | Trưởng phòng Media | media-cell | ❌ MISSING |
-| | Nhân viên Media | media-cell | ❌ MISSING |
-| | Nhân viên Media Content | media-cell | ❌ MISSING |
-| **SOCIAL MEDIA** | Quay dựng (x2) | media-cell | ❌ MISSING |
-| | Digital Marketing | media-cell | ❌ MISSING |
-| **PHÒNG VẬN HÀNH ĐƠN** | Quản lý đơn hàng | order-cell | ❌ MISSING |
-| | Tiếp nhận đơn hàng | order-cell | ❌ MISSING |
-| | **NV làm giấy đảm bảo** | **warranty-cell** | ❌ **MISSING (NaSi anchor)** |
-| | NV kho kim tấm | inventory-cell | ❌ MISSING |
+| **PHÒNG MEDIA** | Trưởng phòng Media | media-cell | ❌ missing |
+| | Nhân viên Media | media-cell | ❌ missing |
+| | Nhân viên Media Content | media-cell | ❌ missing |
+| **SOCIAL MEDIA** | Quay dựng (x2) | media-cell | ❌ missing |
+| | Digital Marketing | media-cell | ❌ missing |
+| **PHÒNG VẬN HÀNH ĐƠN** | Quản lý đơn hàng | order-cell | ❌ missing |
+| | Tiếp nhận đơn hàng | order-cell | ❌ missing |
+| | **NV làm giấy đảm bảo** | **warranty-cell** | ❌ **missing (NaSi anchor)** |
+| | NV kho kim tấm | inventory-cell | ❌ missing |
 | | KT nhập liệu kho vàng | inventory-cell / finance-cell | ❌ |
 | | NV số liệu SX – KPIs khối | production-cell | ✅ |
-| | Hậu cần | order-cell | ❌ MISSING |
+| | Hậu cần | order-cell | ❌ missing |
 
 ---
 
 ### KHỐI SẢN XUẤT ← Core Manufacturing
 | Phòng | Chức vụ thực tế | NATT-CELL | Status |
 |---|---|---|---|
-| **PHÒNG THIẾT KẾ 3D** | Trưởng phòng | design-3d-cell | ❌ MISSING |
+| **PHÒNG THIẾT KẾ 3D** | Trưởng phòng | design-3d-cell | ❌ missing |
 | *(Production Intelligence Core)* | Tổ phó | design-3d-cell | ❌ |
 | | Jewelry Designer | design-3d-cell | ❌ |
 | | Thiết kế viên 3D | design-3d-cell | ❌ |
 | | NV Resin | design-3d-cell | ❌ |
-| **PHÒNG ĐÚC** | Trưởng phòng | casting-cell | ❌ MISSING |
+| **PHÒNG ĐÚC** | Trưởng phòng | casting-cell | ❌ missing |
 | | Thợ khâu đúc | casting-cell | ❌ |
-| **PHÒNG HỘT** | Trưởng phòng | stone-cell | ❌ MISSING |
+| **PHÒNG HỘT** | Trưởng phòng | stone-cell | ❌ missing |
 | | Thợ hột | stone-cell | ❌ |
-| **PHÒNG NGUỘI** | Trưởng phòng | finishing-cell | ❌ MISSING |
+| **PHÒNG NGUỘI** | Trưởng phòng | finishing-cell | ❌ missing |
 | | QL kỹ thuật khâu nguội | finishing-cell | ❌ |
 | | Thợ nguội | finishing-cell | ❌ |
-| **PHÒNG NHÁM BÓNG** | Trưởng phòng | polishing-cell | ❌ MISSING |
+| **PHÒNG NHÁM BÓNG** | Trưởng phòng | polishing-cell | ❌ missing |
 | | Thợ nhám bóng | polishing-cell | ❌ |
 | **PHÒNG VẬN HÀNH** | Giám đốc SX (21M–37.8M) | production-cell | ✅ |
 | *(execution layer)* | Phó giám đốc SX (19.6M–35M) | production-cell | ✅ |
@@ -107,7 +107,7 @@
   payment-cell, customs-cell, tax-cell (spec), inventory-partial,
   + SmartLink wired 17/17
 
-❌ MISSING (13 cells cần build):
+❌ missing (13 cells cần build):
   design-3d-cell     ← PRIORITY 1 (blocking audit chain)
   inventory-cell     ← PRIORITY 1 (blocking production + warranty)
   order-cell         ← PRIORITY 2
@@ -187,6 +187,6 @@ Thợ kim hoàn:        theo bậc khối SX
 
 ---
 
-*File này = Source of Truth cho NATT-OS Cell Registry*  
+*File này = Source of Truth cho natt-os Cell Registry*  
 *Cập nhật lần tiếp khi anh confirm mapping + runlifecycle bắt đầu*  
 **— Băng, 2026-03-09**

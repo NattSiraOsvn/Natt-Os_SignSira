@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "tenant_fixture_boundary_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing tenant fixture boundary");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const requiredClauses = [
+  "tenant fixture boundary",
+  "natt-os core là hệ lõi",
+  "tâm luxury là tenant fixture và proof dataset",
+  "dữ liệu tâm luxury được dùng để chạy logic thật",
+  "không hard-code route của tâm luxury vào core",
+  "không hard-code role của tâm luxury vào core",
+  "không hard-code cell binding của tâm luxury vào core",
+  "không sinh 71 cell mù",
+  "không xem màn hình là cell",
+  "core được đọc manifest",
+  "core được validate manifest",
+  "core được chạy runner trên dữ liệu tenant",
+  "sau boundary này, mọi bước tiếp theo phải ưu tiên natt-os core"
+];
+  const forbiddenMarks = [
+  "client là core",
+  "tâm luxury là core",
+  "route tâm luxury là chuẩn phổ quát",
+  "role tâm luxury là chuẩn phổ quát",
+  "production-ready"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing boundary clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden boundary wording: " + mark);
+  }
+
+  must(c.includes("docs/runtime/tam_luxury_screen_manifest_intake_20260425.na"), "boundary must reference tenant intake");
+  must(c.includes("docs/runtime/tam_luxury_permission_matrix_20260425.na"), "boundary must reference tenant permission matrix");
+}
+
+if (errors.length) {
+  console.error("tenant fixture boundary validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("tenant fixture boundary validation: pass");
+console.log("file=docs/runtime/tenant_fixture_boundary_20260425.na");

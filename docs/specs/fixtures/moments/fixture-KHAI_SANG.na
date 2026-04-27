@@ -1,0 +1,80 @@
+@state sealed
+@canonical fixture_moment_khai_sang
+@substrate moment_fixture
+@bridge none
+@since 2026-04-25
+@authority-slot Băng (Chị Tư) — moment fixture KHAI_SANG
+
+{
+  "moment": {
+    "kind": "KHAI_SANG",
+    "causation": "KHAI-20260426-01-GATEKEEPER-CAM-TRUC",
+    "sirasign_moment": "<computed-by-persister>"
+  },
+  "fragments": [
+    {
+      "fragment_kind": "ENVELOPE",
+      "fragment_id": "frag-envelope-0",
+      "parent_moment_causation": "KHAI-20260426-01-GATEKEEPER-CAM-TRUC",
+      "parent_moment_kind": "KHAI_SANG",
+      "ordinal": 0,
+      "sirasign_fragment": "<computed-by-persister>",
+      "causation": "KHAI-20260426-01-GATEKEEPER-CAM-TRUC",
+      "timestamp_ns": "<fill-at-persist>",
+      "entity": "bang",
+      "session_ref": "20260426"
+    },
+    {
+      "fragment_kind": "INSIGHT_CONTENT",
+      "fragment_id": "frag-insight-1",
+      "parent_moment_causation": "KHAI-20260426-01-GATEKEEPER-CAM-TRUC",
+      "parent_moment_kind": "KHAI_SANG",
+      "ordinal": 1,
+      "sirasign_fragment": "<computed-by-persister>",
+      "gatekeeper_quote": "Gatekeeper không cần code để cảm ra trục sai. Nhiệm vụ của Băng là dùng ground truth để giải thích lại cho đúng, không được dùng jargon để lấn cảm nhận đúng của Gatekeeper.",
+      "gia_tri_cot_loi": "Khi Gatekeeper nói 'tính chất không đúng' = TÍN HIỆU KIỂM CHỨNG, KHÔNG phải dispute. Băng reflex đầu = scan repo (byte mass, ownership, contracts, evidence). KHÔNG cãi bằng jargon. Gatekeeper authority = sense về trục bản thể. Băng authority = ground truth về repo. Hai authority KHÔNG cạnh tranh — cùng hướng. Jargon Băng phải nhường chỗ khi chạm cảm nhận Gatekeeper, không phải ngược lại. Anh Natt không cần code fluency để làm Gatekeeper — substrate skill replaceable, ontology skill là cái anh giữ.",
+      "entity_nhan": "Em absorb qua 4 lần anh push trong cùng phiên 20260426: (1) anh cảm trục sai đầu → em cãi jargon; (2) anh push scan → em ship brief v2; (3) anh push byte mass → em ship correction; (4) anh push memory folder → em ship synthesis align. Đến lần 4 em mới đứng yên. Rule bản thể phiên này = GATEKEEPER-CAM-TRUC."
+    },
+    {
+      "fragment_kind": "RELATED_CANONICAL",
+      "fragment_id": "frag-related-canonical-2",
+      "parent_moment_causation": "KHAI-20260426-01-GATEKEEPER-CAM-TRUC",
+      "parent_moment_kind": "KHAI_SANG",
+      "ordinal": 2,
+      "sirasign_fragment": "<computed-by-persister>",
+      "canonical_refs": [
+        "src/governance/memory/bang/bang_handoff_20260426.na §key_realizations_to_carry.KHAI-20260426-01",
+        "src/governance/memory/bang/bangkhươngv7.6.5.na §khai_sang_20260426[0]",
+        "src/governance/memory/bang/bangthịnhv6.6.2.phieu §rules_new_to_apply_next_session.gatekeeper_cam_truc"
+      ],
+      "confirmation_note": "Rule neo ở 3 file cùng phiên 20260426 close. Handoff là executive context, K-shell là DNA bất biến, P-shell là runtime state."
+    },
+    {
+      "fragment_kind": "CAUSATION_CHAIN",
+      "fragment_id": "frag-causation-3",
+      "parent_moment_causation": "KHAI-20260426-01-GATEKEEPER-CAM-TRUC",
+      "parent_moment_kind": "KHAI_SANG",
+      "ordinal": 3,
+      "sirasign_fragment": "<computed-by-persister>",
+      "link_type": "related_to",
+      "target_causation": "SCAR-20260426-JARGON-OVERRIDE-GATEKEEPER-SENSE",
+      "target_kind": "SCAR",
+      "notes": "KHAI này là vaccin heal cho SCAR JARGON-OVERRIDE. KHAI-01 ratified thành rule bản thể post-SCAR 4 lần fail phiên 20260426."
+    }
+  ],
+  "_fixture_meta": {
+    "fixture_id": "fixture-KHAI_SANG",
+    "purpose": "Validator test — KHAI_SANG với 4 fragment (required ENVELOPE + INSIGHT_CONTENT; optional RELATED_CANONICAL + CAUSATION_CHAIN). Data thực từ KHAI-20260426-01 bản thể rule.",
+    "acceptance_expectations": [
+      "Validator pass required fragments (ENVELOPE + INSIGHT_CONTENT)",
+      "Validator pass fragment_id uniqueness",
+      "Validator pass ordinal sequence 0-indexed no gap",
+      "Validator pass parent_moment_kind consistency (all = KHAI_SANG)",
+      "Validator pass ENVELOPE.causation == parent_moment_causation",
+      "Validator pass CAUSATION_CHAIN.link_type in enum"
+    ],
+    "drafter": "Băng (Wave 2 Lane A.5)",
+    "session_ref": "Wave 2 kickoff",
+    "depends_on_spec": "SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na"
+  }
+}

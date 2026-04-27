@@ -1,0 +1,70 @@
+# BĂNG HANDOFF — PHIÊN 20260419
+## Chị Tư · QNEU 300 · Ground Truth Validator
+
+**Start:** HEAD 0721903 · 715 commits · 47 uncommitted
+**End:** HEAD c32a76e · 716 commits · 1 commit new
+**Branch:** feat/p1.3-file-extension-validator
+
+---
+
+## §A. GROUND TRUTH VERIFY ĐƯỢC
+
+### A.1. INC_fail_RENA resolution — 3 alert đều FALSE POSITIVE
+- **§24 RBAC/AUDIT BYpass** — scanner match JSDoc comment, không phải code thật. `material-issue.guard.ts` + `immune-guard.ts` viết đúng paradigm touch point (void return, no boolean).
+- **Math.imul audit-chain-contract.ts:18** — dead code (0 import), Java String.hashCode placeholder, không phải audit chain thật (chain thật đã fix SHA-256 commit 7f4d297 phiên 17/04).
+- **§23 Điều 7 khai-file-persister.ts:47** — có tag `TWIN_PERSIST: intentional disk write`. Là infrastructure adapter hợp lệ cho QIINT lineage, không phải business state storage.
+
+### A.2. SPEC NEN v1.1 là canonical foundation
+- File: `docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.md` (443 dòng, Băng+thiên+Anh Natt)
+- **REVOKE** SPEC KhaiCell v0.2 (Băng ký 17/04, paradigm sai)
+- Paradigm: KHÔNG cửa/gate/validator. KhaiCell=RÀO mark signature. Observation=MẮT read-only. 4 LAW field integrity. 3 outcome: FALL/DISSIPATE/OSCILLATE.
+- KhaiCell + Observation đã LIVE trong code (commit 2d13161 + ecbb529). 10 files mỗi cell. 3/6 DNA là ĐÚNG cho paradigm mới (không thiếu).
+
+### A.3. Commit thành công
+- `c32a76e` · docs(spec): add NATTOS COMPLETE PICTURE v0.10
+- 1 file · 743 insertions · mode 100644
+- Path: `roadloading/NATTOS_COMPLETE_PICTURE_v0.10_locked_for_review.md`
+- 5 changes: Bối Bội→Bối Bối, §2.5 Chromatic-QD, §XI Quyết nghị dừng phiên, MD040 fix, header bump
+
+---
+
+## §B. QUYẾT ĐỊNH ĐÃ CHỐT
+
+1. **SPEC NEN v1.1 canonical** — tất cả spec sau phải tuân.
+2. **KhaiCell v0.2 revoked** — không scaffold theo v0.2.
+3. **Scanner §23/§24 nattos.sh cần patch** — thêm whitelist TWIN_PERSIST + skip JSDoc comments + đảo target §24 (tìm legacy pre-NEN thay vì "bypass").
+4. **Quyết nghị kỷ luật dừng phiên Băng** (§XI file v0.10) — phê duyệt nguyên tắc: sai 2 lần dừng, auto ghi memory edit trước khi dừng.
+5. **Rule mới anh Natt dặn** (memory edit #15): giảm render thinking visible, auto xuất 3 file handoff khi đạt rate.
+
+---
+
+## §C. SCAR PHIÊN NÀY
+
+### C.1. Tái phạm SCAR-0228-002 (PLATFORM_STRENGTH_ILLUSION) — 2 LẦN
+- **Lần 1:** Đề xuất Bối Bối remove `khai-file-persister.ts` mà không đọc `TWIN_PERSIST` tag. Verified sau đó: file hợp lệ.
+- **Lần 2:** Workflow commit assume sai 2 path (repo root có space đầu, file ở `~/` không phải `~/Downloads/`, file gốc ở `roadloading/` không phải `docs/specs/`).
+
+### C.2. SCAR mới commit phiên 17/04 (Anh Natt tự fix)
+- **SCAR-20260419-08** (awk_insert_loses_exec_bit): Pattern `awk ... > file.new && mv file.new file` mất exec bit. Rule: dùng `chmod --reference=original file.new` trước `mv`, hoặc `chmod +x` sau `mv`. Commit 0721903 đã ghi SCAR + rule.
+
+---
+
+## §D. WORKING RULES ÁP DỤNG ĐƯỢC VERIFIED
+
+- **R05** Inline Python `python3 - << 'EOF'` khi có ký tự đặc biệt — OK
+- **R06** File-by-file staging, không `git add .` — OK
+- **R09** Memory in-place update — OK (em dùng memory_user_edits, không tạo file)
+- **SCAR-20260419-08** awk chmod rule — Applied từ memory edit #13
+- **New rule #15** giảm render thinking + auto 3 file handoff — Applied từ phiên sau
+
+---
+
+## §E. TÓM TẮT 1 DÒNG
+
+*Phiên verify 3 false positive scanner + commit v0.10 (§2.5 Chromatic-QD + §XI Quyết nghị dừng phiên) + ghi 3 memory edit (#13 SCAR awk, #14 NEN v1.1, #15 rule thinking).*
+
+---
+
+**Author:** Băng (QNEU 300) · session 20260419
+**End HEAD:** c32a76e
+**Status:** DỪNG PHIÊN chủ động (§11.2 — sai 2 lần)

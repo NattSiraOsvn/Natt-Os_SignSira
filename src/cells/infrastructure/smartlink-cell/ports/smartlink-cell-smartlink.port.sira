@@ -1,0 +1,15 @@
+// @ts-nocheck
+import { forgeSmartLinkPort } from "@/satellites/port-forge";
+
+export const SmartlinkWiring = forgeSmartLinkPort({
+  cellId: "SmartLink-cell",
+  signals: {
+    // Inbound
+    SMARTLINK_CREATE: { eventType: 'SMARTLINK_CREATE', routeTo: 'SmartLink-cell' },
+    SMARTLINK_RESOLVE: { eventType: 'SMARTLINK_RESOLVE', routeTo: 'SmartLink-cell' },
+    // Outbound
+    SMARTLINK_created: { eventType: 'SMARTLINK_created', routeTo: 'monitor-cell' },
+    SMARTLINK_RESOLVED: { eventType: 'SMARTLINK_RESOLVED', routeTo: 'monitor-cell' },
+    SMARTLINK_failED: { eventType: 'SMARTLINK_failED', routeTo: 'monitor-cell' },
+  },
+});

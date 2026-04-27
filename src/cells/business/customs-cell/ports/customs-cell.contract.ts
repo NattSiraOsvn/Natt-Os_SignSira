@@ -1,6 +1,6 @@
 // customs-cell contracts
 export const EVENTS_CUSTOMS = {
-  CREATED: "customs.created",
+  created: "customs.created",
   UPDATED: "customs.updated",
   DELETED: "customs.deleted",
 } as const;

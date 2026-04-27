@@ -8,10 +8,10 @@
 
 | STT | Nguyên tắc | Nội dung bắt buộc | Người xác nhận |
 |---|---|---|---|
-| 1 | FILESYSTEM > MEMORY | Mọi kết luận phải dựa trên cây thư mục + git history, không dựa suy đoán | Thiên Lớn |
+| 1 | FILESYSTEM > MEMORY | Mọi kết luận phải dựa trên cây thư mục + git history, không dựa suy đoán | thiên Lớn |
 | 2 | Correct > Fast | Ưu tiên đúng Hiến pháp, chậm cũng được | Kim |
 | 3 | Standardize → Automate → Monitor → Improve | Phase A–B là chuẩn hoá, Phase C mới hash & monitor | Băng |
-| 4 | Separation of Powers | Script không tự ý quyết định nghiệp vụ | Thiên Lớn |
+| 4 | Separation of Powers | Script không tự ý quyết định nghiệp vụ | thiên Lớn |
 | 5 | No Silent Fix | Mọi thay đổi phải có log, audit, commit | Kim |
 
 ---
@@ -21,8 +21,8 @@
 | Hạng mục | Quy ước chính thức | Người chốt |
 |---|---|---|
 | 5‑layer folder | domain / application / interface / infrastructure / ports | Băng |
-| 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | Thiên Lớn |
-| Quan hệ 5‑layer ↔ 7‑ADN | 5‑layer = implementation anatomy, 7‑ADN = metadata (manifest) | Thiên Lớn |
+| 7 lớp ADN | Identity, Capability, Boundary, Trace, Confidence, SmartLink, Lifecycle | thiên Lớn |
+| Quan hệ 5‑layer ↔ 7‑ADN | 5‑layer = implementation anatomy, 7‑ADN = metadata (manifest) | thiên Lớn |
 | Vị trí 7‑ADN | **CHỈ** nằm trong `neural-main-cell.cell.anc`, KHÔNG tạo folder | Kim |
 
 ---
@@ -46,11 +46,11 @@
 |---|---|---|
 | Vị trí | `src/cells/infrastructure/warehouse‑cell` | Băng |
 | Trạng thái | **QUARANTINED** | Kim |
-| Lý do | Chưa hoàn chỉnh domain logic | Thiên Lớn |
+| Lý do | Chưa hoàn chỉnh domain logic | thiên Lớn |
 | 5‑layer | Có đủ 5 layer (có thể là scaffold) | Băng |
 | Import | ❌ Không cell nào được import | Kim |
 | Deploy | ❌ Không được deploy | Kim |
-| Guard kỹ thuật | Bắt buộc có `throw Error` hoặc `__QUARANTINED__` | Thiên Lớn |
+| Guard kỹ thuật | Bắt buộc có `throw Error` hoặc `__QUARANTINED__` | thiên Lớn |
 
 ---
 
@@ -58,12 +58,12 @@
 
 | Hạng mục | Chỉ đạo | Người chốt |
 |---|---|---|
-| Registry | Sinh từ filesystem, không hardcode | Thiên Lớn |
+| Registry | Sinh từ filesystem, không hardcode | thiên Lớn |
 | api‑cell | Ghi rõ `NEVER_EXISTED` nếu FS + git không có | Kim |
 | Hash | **CHỈ** tạo ở Phase C | Băng |
 | Hash scope | Hash sau khi structure ổn định | Băng |
 | Validation | Manifest validation có **dry‑run** | Kim |
-| Audit | Có PASS / FAIL rõ ràng | Thiên Lớn |
+| Audit | Có pass / fail rõ ràng | thiên Lớn |
 
 ---
 
@@ -84,10 +84,10 @@
 
 | Cấm | Lý do | Người chốt |
 |---|---|---|
-| Tạo folder cho 7‑ADN | Sai Hiến pháp | Thiên Lớn |
+| Tạo folder cho 7‑ADN | Sai Hiến pháp | thiên Lớn |
 | Hash ở Phase A | Hash rác | Băng |
 | Dùng warehouse‑cell | Vi phạm quarantine | Kim |
-| Đoán cell tồn tại | Phải dựa FS | Thiên Lớn |
+| Đoán cell tồn tại | Phải dựa FS | thiên Lớn |
 | Silent fix | Mất audit | Kim |
 
 ---
@@ -96,7 +96,7 @@
 
 - Kim: ✅ Đồng ý
 - Băng: ✅ Đồng ý
-- Thiên Lớn: ✅ Xác nhận Hiến pháp
+- thiên Lớn: ✅ Xác nhận Hiến pháp
 
 **=> Bối Bối được phép viết code chi tiết theo bảng này, KHÔNG cần suy diễn thêm.**
 

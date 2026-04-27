@@ -1,0 +1,19 @@
+# RENDER INSTRUCTION CONTRACT
+# @contract: render_instruction
+# @version: v0.1
+# @status: scaffold
+
+contract render_instruction {
+  fields: {
+    frame_id: "ULID — duy nhất mỗi frame",
+    signals: "[surface_signal] — danh sách tín hiệu cần render",
+    attention_map: "attention_mode — FOCUS | AMBIENT | PERIPHERAL | NONE",
+    motion_budget: "motion_budget — frame_budget, allocated, remaining",
+    degrade_level: "NONE | LIGHT | MEDIUM | HEAVY",
+    truth_boundary: "truth_boundary — inside, at_boundary, outside"
+  }
+
+  validator: "src/cells/render-stack-cell/validators/validate-render-instruction.sira"
+  signature: "pending — chưa có siraSign pipe"
+  transport: "pending — chưa wire Mạch HeyNa"
+}

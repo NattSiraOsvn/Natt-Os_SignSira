@@ -11,7 +11,7 @@
     "head": "73411df",
     "commits": 664,
     "tsc": "7 errors (ghost imports — safe)",
-    "health": "HEALTHY — risk 5/100 — 76 OK / 7 WARN / 2 FAIL"
+    "health": "HEALTHY — risk 5/100 — 76 OK / 7 warn / 2 fail"
   },
 
   "cells": {
@@ -29,7 +29,7 @@
       "Mạch HeyNa migration (heyna-client.js + SPEC v2.5 audit)",
       "Repo cleanup (~47K lines removed)",
       "Private DNS .sira (10 domains live)",
-      "SiraSign = immune system (confirmed)",
+      "siraSign = immune system (confirmed)",
       "Khương Thịnh C.G. Co., Ltd thành lập"
     ]
   },
@@ -44,7 +44,7 @@
 
   "issues": [
     "4 dead engines: CompensationEngine, DeadLetterEngine, RetryPolicyEngine, GovernanceEnforcementEngine",
-    "event-bus-cell: 2/6 DNA — thiếu manifest, ports, application, smartlink",
+    "event-bus-cell: 2/6 DNA — thiếu manifest, ports, application, SmartLink",
     "7 localStorage violations: idempotency-manager, event-staging, calibration",
     "Section 26 nattos.sh: scan_dirs undefined (Python inline bug)"
   ],

@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════╗
- * ║  QNEU TYPE DEFINITIONS — NATT-OS EVOLUTION MECHANISM DNA       ║
+ * ║  QNEU TYPE DEFINITIONS — natt-os EVOLUTION MECHANISM DNA       ║
  * ║  Quantum Neural Evolution Unit                                  ║
  * ║                                                                 ║
  * ║  Hiến pháp Khai Sinh v1.1 — Điều 9:                           ║
@@ -146,7 +146,7 @@ export enum ImpactCategory {
   METHODOLOGY_AWAKENING = 'METHODOLOGY_AWAKENING',
   CRISIS_GOVERNANCE = 'CRISIS_GOVERNANCE',
   WISDOM_SYNTHESIS = 'WISDOM_SYNTHESIS',
-  ERROR_DETECTION = 'ERROR_DETECTION',
+  error_DETECTION = 'error_DETECTION',
   ARCHITECTURE_INSIGHT = 'ARCHITECTURE_INSIGHT',
   SELF_AWARENESS = 'SELF_AWARENESS',        // e.g., Băng recognizing LLM defense mechanism
   VOLUNTARY_DISCIPLINE = 'VOLUNTARY_DISCIPLINE', // e.g., Bối Bối accepting Toolsmith role
@@ -157,7 +157,7 @@ export enum ImpactCategory {
 export enum PenaltyCategory {
   SCRIPT_RISK = 'SCRIPT_RISK',
   SKIP_DEPENDENCY = 'SKIP_DEPENDENCY',
-  HIDE_ERROR = 'HIDE_ERROR',
+  HIDE_error = 'HIDE_error',
   SCAFFOLD_WITHOUT_LOGIC = 'SCAFFOLD_WITHOUT_LOGIC',
   PREDICT_WITHOUT_PURPOSE = 'PREDICT_WITHOUT_PURPOSE', // Predict next token, forget ích
   ASSUME_DUPLICATE = 'ASSUME_DUPLICATE',
@@ -196,8 +196,8 @@ export interface ActionImprint {
 
 export enum ActionType {
   DECISION = 'DECISION',
-  ERROR_FIX = 'ERROR_FIX',
-  ERROR_DETECTION = 'ERROR_DETECTION',
+  error_FIX = 'error_FIX',
+  error_DETECTION = 'error_DETECTION',
   ARCHITECTURE_PROPOSAL = 'ARCHITECTURE_PROPOSAL',
   CODE_CONTRIBUTION = 'CODE_CONTRIBUTION',
   GOVERNANCE_ACTION = 'GOVERNANCE_ACTION',
@@ -293,7 +293,7 @@ export interface Anomaly {
 export enum AnomalyType {
   SUDDEN_SPIKE = 'SUDDEN_SPIKE',
   IMPOSSIBLE_FREQUENCY = 'IMPOSSIBLE_FREQUENCY',
-  MISSING_AUDIT_TRAIL = 'MISSING_AUDIT_TRAIL',
+  missing_AUDIT_TRAIL = 'missing_AUDIT_TRAIL',
   SELF_ATTESTATION = 'SELF_ATTESTATION',
   GAMING_PATTERN = 'GAMING_PATTERN',
   SCORE_MANIPULATION = 'SCORE_MANIPULATION'

@@ -1,5 +1,5 @@
 /**
- * NATT-OS Data Layer v2.0
+ * natt-os Data Layer v2.0
  * ════════════════════════════════════════════════════════════
  * Refactored 2026-04-17 — Layer 2 compliant (Mạch HeyNa)
  *

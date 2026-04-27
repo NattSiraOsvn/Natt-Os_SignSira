@@ -1,0 +1,102 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const runtime = path.join(root, "docs", "render", "pilot", "runtime.html");
+const sampleDir = path.join(root, "docs", "render", "samples");
+const errors = [];
+
+const states = [
+  "nhà",
+  "gắn",
+  "neo",
+  "bọc",
+  "gánh",
+  "nhường",
+  "tha",
+  "khiêm",
+  "định",
+  "tỉnh",
+  "biên",
+  "xét",
+  "chốt",
+  "giữ",
+  "về"
+];
+const forbiddenMarks = [
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "cdn.",
+  "unpkg",
+  "jsdelivr",
+  "production renderer",
+  "production-ready",
+  "EventBus",
+  "siraSign frame validation: wired",
+  "Mạch HeyNa wired",
+  "PASS",
+  "FAIL",
+  "NATT-OS"
+];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(runtime)) {
+  errors.push("missing docs/render/pilot/runtime.html");
+} else {
+  const c = fs.readFileSync(runtime, "utf8");
+
+  must(c.includes("<!doctype html>") || c.includes("<!DOCTYPE html>"), "runtime pilot must be standalone html");
+  must(c.includes("</html>"), "runtime pilot html not closed");
+  must(c.toLowerCase().includes("pilot") || c.toLowerCase().includes("runtime"), "runtime pilot missing pilot/runtime marker");
+
+  for (const state of states) {
+    must(c.includes(state), "runtime pilot missing state: " + state);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "runtime pilot forbidden mark: " + mark);
+  }
+}
+
+must(fs.existsSync(sampleDir), "missing docs/render/samples");
+
+if (fs.existsSync(sampleDir)) {
+  const sampleMap = {
+    "nhà": "nha.na",
+    "gắn": "gan.na",
+    "neo": "neo.na",
+    "bọc": "boc.na",
+    "gánh": "ganh.na",
+    "nhường": "nhuong.na",
+    "tha": "tha.na",
+    "khiêm": "khiem.na",
+    "định": "dinh.na",
+    "tỉnh": "tinh.na",
+    "biên": "bien.na",
+    "xét": "xet.na",
+    "chốt": "chot.na",
+    "giữ": "giu.na",
+    "về": "ve.na"
+  };
+
+  for (const [state, fileName] of Object.entries(sampleMap)) {
+    const file = path.join(sampleDir, fileName);
+    must(fs.existsSync(file), "missing source sample for state " + state + ": " + fileName);
+  }
+}
+
+if (errors.length) {
+  console.error("render runtime pilot validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render runtime pilot validation: pass");
+console.log("file=docs/render/pilot/runtime.html");
+console.log("states=nhà,gắn,neo,bọc,gánh,nhường,tha,khiêm,định,tỉnh,biên,xét,chốt,giữ,về");

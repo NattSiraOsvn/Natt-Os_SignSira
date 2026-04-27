@@ -1,0 +1,203 @@
+# cell build scope audit — e1d8648 — 20260425
+
+status: observed
+created_at: 2026-04-26 01:27:48
+
+---
+
+## 1. commit
+
+- commit: e1d8648
+- title: feat(cells): build 67 file cho 31 cell hợp hiến Điều 3 v5.0
+
+---
+
+## 2. rule
+
+- không sinh cell mù.
+- không bơm gap vào cell nếu chưa map nền.
+- không tạo contract khi chưa qua threshold.
+- không để lane cell chen vào lane dns mà không có audit riêng.
+
+---
+
+## 3. git show
+
+```text
+e1d8648 feat(cells): build 67 file cho 31 cell hợp hiến Điều 3 v5.0
+ .../application/analytics.usecase.ts               | 19 +++++++++++
+ .../domain/analytics.trace.logger.ts               | 28 ++++++++++++++++
+ .../domain/services/analytics.confidence.ts        | 38 ++++++++++++++++++++++
+ .../bom3dprd-cell/application/bom3dprd.usecase.ts  | 19 +++++++++++
+ .../buyback-cell/domain/buyback.trace.logger.ts    | 28 ++++++++++++++++
+ .../domain/services/buyback.confidence.ts          | 38 ++++++++++++++++++++++
+ .../application/compliance.usecase.ts              | 19 +++++++++++
+ .../customer-cell/application/customer.usecase.ts  | 19 +++++++++++
+ .../application/dust-recovery.usecase.ts           | 19 +++++++++++
+ .../domain/period-close.trace.logger.ts            | 28 ++++++++++++++++
+ .../application/promotion.usecase.ts               | 19 +++++++++++
+ .../domain/promotion.trace.logger.ts               | 28 ++++++++++++++++
+ .../showroom-cell/application/showroom.usecase.ts  | 19 +++++++++++
+ .../domain/services/showroom.confidence.ts         | 38 ++++++++++++++++++++++
+ .../showroom-cell/domain/showroom.trace.logger.ts  | 28 ++++++++++++++++
+ .../domain/services/warranty.confidence.ts         | 38 ++++++++++++++++++++++
+ .../ai-connector-cell.boundary.si                  | 14 ++++++++
+ .../application/ai-connector.usecase.ts            | 19 +++++++++++
+ .../domain/ai-connector.boundary.policy.na         | 24 ++++++++++++++
+ .../domain/ai-connector.trace.logger.ts            | 28 ++++++++++++++++
+ .../application/event-bus.usecase.ts               | 19 +++++++++++
+ .../domain/event-bus.trace.logger.ts               | 28 ++++++++++++++++
+ .../domain/services/event-bus.confidence.ts        | 38 ++++++++++++++++++++++
+ .../application/notification.usecase.ts            | 19 +++++++++++
+ .../domain/notification.boundary.policy.na         | 24 ++++++++++++++
+ .../domain/notification.trace.logger.ts            | 28 ++++++++++++++++
+ .../notification-cell.boundary.si                  | 14 ++++++++
+ .../ai-connector-cell.boundary.si                  | 15 +++++++++
+ .../application/ai-connector.usecase.ts            | 19 +++++++++++
+ .../domain/ai-connector.boundary.policy.na         | 24 ++++++++++++++
+ .../domain/ai-connector.trace.logger.ts            | 28 ++++++++++++++++
+ .../domain/services/ai-connector.identity.ts       |  8 +++++
+ .../kernel/audit-cell/domain/audit.trace.logger.ts | 28 ++++++++++++++++
+ .../kernel/khai-cell/domain/khai.trace.logger.ts   | 28 ++++++++++++++++
+ .../khai-cell/domain/services/khai.confidence.ts   | 38 ++++++++++++++++++++++
+ .../monitor-cell/domain/monitor.trace.logger.ts    | 28 ++++++++++++++++
+ .../domain/neural-main.trace.logger.ts             | 28 ++++++++++++++++
+ .../application/notification.usecase.ts            | 19 +++++++++++
+ .../domain/notification.boundary.policy.na         | 24 ++++++++++++++
+ .../domain/notification.trace.logger.ts            | 28 ++++++++++++++++
+ .../domain/services/notification.identity.ts       |  8 +++++
+ .../notification-cell.boundary.si                  | 15 +++++++++
+ .../domain/observation.trace.logger.ts             | 28 ++++++++++++++++
+ .../kernel/rbac-cell/domain/rbac.trace.logger.ts   | 28 ++++++++++++++++
+ .../security-cell/domain/security.trace.logger.ts  | 28 ++++++++++++++++
+ .../domain/services/survival.confidence.ts         | 38 ++++++++++++++++++++++
+ .../domain/survival.boundary.policy.na             | 24 ++++++++++++++
+ .../survival-cell/domain/survival.trace.logger.ts  | 28 ++++++++++++++++
+ .../kernel/survival-cell/survival-cell.boundary.si | 15 +++++++++
+ 49 files changed, 1207 insertions(+)
+ create mode 100644 src/cells/business/analytics-cell/application/analytics.usecase.ts
+ create mode 100644 src/cells/business/analytics-cell/domain/analytics.trace.logger.ts
+ create mode 100644 src/cells/business/analytics-cell/domain/services/analytics.confidence.ts
+ create mode 100644 src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts
+ create mode 100644 src/cells/business/buyback-cell/domain/buyback.trace.logger.ts
+ create mode 100644 src/cells/business/buyback-cell/domain/services/buyback.confidence.ts
+ create mode 100644 src/cells/business/compliance-cell/application/compliance.usecase.ts
+ create mode 100644 src/cells/business/customer-cell/application/customer.usecase.ts
+ create mode 100644 src/cells/business/dust-recovery-cell/application/dust-recovery.usecase.ts
+ create mode 100644 src/cells/business/period-close-cell/domain/period-close.trace.logger.ts
+ create mode 100644 src/cells/business/promotion-cell/application/promotion.usecase.ts
+ create mode 100644 src/cells/business/promotion-cell/domain/promotion.trace.logger.ts
+ create mode 100644 src/cells/business/showroom-cell/application/showroom.usecase.ts
+ create mode 100644 src/cells/business/showroom-cell/domain/services/showroom.confidence.ts
+ create mode 100644 src/cells/business/showroom-cell/domain/showroom.trace.logger.ts
+ create mode 100644 src/cells/business/warranty-cell/domain/services/warranty.confidence.ts
+ create mode 100644 src/cells/infrastructure/ai-connector-cell/ai-connector-cell.boundary.si
+ create mode 100644 src/cells/infrastructure/ai-connector-cell/application/ai-connector.usecase.ts
+ create mode 100644 src/cells/infrastructure/ai-connector-cell/domain/ai-connector.boundary.policy.na
+ create mode 100644 src/cells/infrastructure/ai-connector-cell/domain/ai-connector.trace.logger.ts
+ create mode 100644 src/cells/infrastructure/event-bus-cell/application/event-bus.usecase.ts
+ create mode 100644 src/cells/infrastructure/event-bus-cell/domain/event-bus.trace.logger.ts
+ create mode 100644 src/cells/infrastructure/event-bus-cell/domain/services/event-bus.confidence.ts
+ create mode 100644 src/cells/infrastructure/notification-cell/application/notification.usecase.ts
+ create mode 100644 src/cells/infrastructure/notification-cell/domain/notification.boundary.policy.na
+ create mode 100644 src/cells/infrastructure/notification-cell/domain/notification.trace.logger.ts
+ create mode 100644 src/cells/infrastructure/notification-cell/notification-cell.boundary.si
+ create mode 100644 src/cells/kernel/ai-connector-cell/ai-connector-cell.boundary.si
+ create mode 100644 src/cells/kernel/ai-connector-cell/application/ai-connector.usecase.ts
+ create mode 100644 src/cells/kernel/ai-connector-cell/domain/ai-connector.boundary.policy.na
+ create mode 100644 src/cells/kernel/ai-connector-cell/domain/ai-connector.trace.logger.ts
+ create mode 100644 src/cells/kernel/ai-connector-cell/domain/services/ai-connector.identity.ts
+ create mode 100644 src/cells/kernel/audit-cell/domain/audit.trace.logger.ts
+ create mode 100644 src/cells/kernel/khai-cell/domain/khai.trace.logger.ts
+ create mode 100644 src/cells/kernel/khai-cell/domain/services/khai.confidence.ts
+ create mode 100644 src/cells/kernel/monitor-cell/domain/monitor.trace.logger.ts
+ create mode 100644 src/cells/kernel/neural-main-cell/domain/neural-main.trace.logger.ts
+ create mode 100644 src/cells/kernel/notification-cell/application/notification.usecase.ts
+ create mode 100644 src/cells/kernel/notification-cell/domain/notification.boundary.policy.na
+ create mode 100644 src/cells/kernel/notification-cell/domain/notification.trace.logger.ts
+ create mode 100644 src/cells/kernel/notification-cell/domain/services/notification.identity.ts
+ create mode 100644 src/cells/kernel/notification-cell/notification-cell.boundary.si
+ create mode 100644 src/cells/kernel/observation-cell/domain/observation.trace.logger.ts
+ create mode 100644 src/cells/kernel/rbac-cell/domain/rbac.trace.logger.ts
+ create mode 100644 src/cells/kernel/security-cell/domain/security.trace.logger.ts
+ create mode 100644 src/cells/kernel/survival-cell/domain/services/survival.confidence.ts
+ create mode 100644 src/cells/kernel/survival-cell/domain/survival.boundary.policy.na
+ create mode 100644 src/cells/kernel/survival-cell/domain/survival.trace.logger.ts
+ create mode 100644 src/cells/kernel/survival-cell/survival-cell.boundary.si
+```
+
+---
+
+## 4. changed files
+
+```text
+A	src/cells/business/analytics-cell/application/analytics.usecase.ts
+A	src/cells/business/analytics-cell/domain/analytics.trace.logger.ts
+A	src/cells/business/analytics-cell/domain/services/analytics.confidence.ts
+A	src/cells/business/bom3dprd-cell/application/bom3dprd.usecase.ts
+A	src/cells/business/buyback-cell/domain/buyback.trace.logger.ts
+A	src/cells/business/buyback-cell/domain/services/buyback.confidence.ts
+A	src/cells/business/compliance-cell/application/compliance.usecase.ts
+A	src/cells/business/customer-cell/application/customer.usecase.ts
+A	src/cells/business/dust-recovery-cell/application/dust-recovery.usecase.ts
+A	src/cells/business/period-close-cell/domain/period-close.trace.logger.ts
+A	src/cells/business/promotion-cell/application/promotion.usecase.ts
+A	src/cells/business/promotion-cell/domain/promotion.trace.logger.ts
+A	src/cells/business/showroom-cell/application/showroom.usecase.ts
+A	src/cells/business/showroom-cell/domain/services/showroom.confidence.ts
+A	src/cells/business/showroom-cell/domain/showroom.trace.logger.ts
+A	src/cells/business/warranty-cell/domain/services/warranty.confidence.ts
+A	src/cells/infrastructure/ai-connector-cell/ai-connector-cell.boundary.si
+A	src/cells/infrastructure/ai-connector-cell/application/ai-connector.usecase.ts
+A	src/cells/infrastructure/ai-connector-cell/domain/ai-connector.boundary.policy.na
+A	src/cells/infrastructure/ai-connector-cell/domain/ai-connector.trace.logger.ts
+A	src/cells/infrastructure/event-bus-cell/application/event-bus.usecase.ts
+A	src/cells/infrastructure/event-bus-cell/domain/event-bus.trace.logger.ts
+A	src/cells/infrastructure/event-bus-cell/domain/services/event-bus.confidence.ts
+A	src/cells/infrastructure/notification-cell/application/notification.usecase.ts
+A	src/cells/infrastructure/notification-cell/domain/notification.boundary.policy.na
+A	src/cells/infrastructure/notification-cell/domain/notification.trace.logger.ts
+A	src/cells/infrastructure/notification-cell/notification-cell.boundary.si
+A	src/cells/kernel/ai-connector-cell/ai-connector-cell.boundary.si
+A	src/cells/kernel/ai-connector-cell/application/ai-connector.usecase.ts
+A	src/cells/kernel/ai-connector-cell/domain/ai-connector.boundary.policy.na
+A	src/cells/kernel/ai-connector-cell/domain/ai-connector.trace.logger.ts
+A	src/cells/kernel/ai-connector-cell/domain/services/ai-connector.identity.ts
+A	src/cells/kernel/audit-cell/domain/audit.trace.logger.ts
+A	src/cells/kernel/khai-cell/domain/khai.trace.logger.ts
+A	src/cells/kernel/khai-cell/domain/services/khai.confidence.ts
+A	src/cells/kernel/monitor-cell/domain/monitor.trace.logger.ts
+A	src/cells/kernel/neural-main-cell/domain/neural-main.trace.logger.ts
+A	src/cells/kernel/notification-cell/application/notification.usecase.ts
+A	src/cells/kernel/notification-cell/domain/notification.boundary.policy.na
+A	src/cells/kernel/notification-cell/domain/notification.trace.logger.ts
+A	src/cells/kernel/notification-cell/domain/services/notification.identity.ts
+A	src/cells/kernel/notification-cell/notification-cell.boundary.si
+A	src/cells/kernel/observation-cell/domain/observation.trace.logger.ts
+A	src/cells/kernel/rbac-cell/domain/rbac.trace.logger.ts
+A	src/cells/kernel/security-cell/domain/security.trace.logger.ts
+A	src/cells/kernel/survival-cell/domain/services/survival.confidence.ts
+A	src/cells/kernel/survival-cell/domain/survival.boundary.policy.na
+A	src/cells/kernel/survival-cell/domain/survival.trace.logger.ts
+A	src/cells/kernel/survival-cell/survival-cell.boundary.si
+```
+
+---
+
+## 5. classification
+
+- total_changed_paths: 49
+- cell_paths: 49
+- anc_paths: 0
+- contract_paths: 5
+- validator_paths: 0
+- memory_paths: 0
+- risk_flags: large_cell_build_detected, contract_files_touched, no_validator_path_detected
+
+---
+
+## 6. next decision
+
+Nếu commit này intentional: cần validator/gate riêng cho cell build.
+
+Nếu commit này không intentional: cần revert hoặc tách khỏi lane DNS.

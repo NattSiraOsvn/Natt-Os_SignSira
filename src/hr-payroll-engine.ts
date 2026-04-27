@@ -1,5 +1,5 @@
 /**
- * NATT-OS HR Payroll Engine v1.0
+ * natt-os HR Payroll Engine v1.0
  * Port từ Doc 12 — Quản Trị Nhân Sự Tâm Luxury
  *
  * 3 modules: bậc lương + tính lương full + thâm niên

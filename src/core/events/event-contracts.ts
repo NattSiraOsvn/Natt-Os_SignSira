@@ -1,6 +1,6 @@
 /**
  * event-contracts.ts — L3 Type-aware Event System
- * Thiên Lớn spec: overlay layer, không đụng EventBus core
+ * thiên Lớn spec: overlay layer, không đụng EventBus core
  *
  * Nguyên tắc:
  * - KHÔNG thay thế EventBus

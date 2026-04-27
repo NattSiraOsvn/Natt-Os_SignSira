@@ -35,7 +35,7 @@ export type VatTuType =
   | '50GIAC'
   | '75GIAC';
 
-export type DustAlertLevel = 'WARNING' | 'HIGH' | 'CRITICAL';
+export type DustAlertLevel = 'warnING' | 'HIGH' | 'CRITICAL';
 
 // ─────────────────────────────────────────────
 // SPRINT 1 – ORDER / MATERIALS / CASTING
@@ -43,7 +43,7 @@ export type DustAlertLevel = 'WARNING' | 'HIGH' | 'CRITICAL';
 
 /** order-cell → tất cả downstream */
 export interface OrderCreatedEvent {
-  eventType: 'ORDER_CREATED';
+  eventType: 'ORDER_created';
   orderId: string;           // PN-KD-26-XXXX hoặc PN-CT-26-XXXX
   orderType: OrderType;
   productCode: string;
@@ -239,7 +239,7 @@ export interface WipCompletedEvent {
 
 /** inventory-cell emit sau khi ghi nhập kho */
 export interface StockEntryCreatedEvent {
-  eventType: 'STOCK_ENTRY_CREATED';
+  eventType: 'STOCK_ENTRY_created';
   entryId: string;
   orderId: string;
   lapId: string;

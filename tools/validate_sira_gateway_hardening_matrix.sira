@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const runner = path.join(root, "tools", "run_sira_gateway_hardening_matrix.sira");
+const evidence = path.join(root, "docs", "runtime", "sira_gateway_hardening_matrix_evidence_20260425.na");
+const gateway = path.join(root, "tools", "natt_domain_gateway.sira");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(runner)) {
+  errors.push("missing hardening matrix runner");
+} else {
+  const r = fs.readFileSync(runner, "utf8");
+  [
+    "host_requires_normalization",
+    "invalid_host_chars",
+    "invalid_host_sequence",
+    "direct_localhost_bypass",
+    "non_sira_host",
+    "not_denied_by_route_gate"
+  ].forEach(clause => must(r.includes(clause), "runner missing clause: " + clause));
+}
+
+if (!fs.existsSync(gateway)) {
+  errors.push("missing gateway");
+} else {
+  const g = fs.readFileSync(gateway, "utf8");
+  must(g.includes("if (host !== raw.split(\":\")[0])"), "gateway must deny host requiring normalization");
+}
+
+if (!fs.existsSync(evidence)) {
+  errors.push("missing hardening matrix evidence");
+} else {
+  const c = fs.readFileSync(evidence, "utf8");
+  [
+    "sira gateway hardening matrix evidence",
+    "status: pass",
+    "host_requires_normalization",
+    "invalid_host_chars",
+    "invalid_host_sequence",
+    "direct_localhost_bypass",
+    "non_sira_host",
+    "not_denied_by_route_gate"
+  ].forEach(clause => must(c.includes(clause), "evidence missing clause: " + clause));
+
+  must(!c.includes("| mismatch |"), "evidence has mismatch");
+  must(!c.includes("transport_error"), "evidence has transport_error");
+}
+
+if (errors.length) {
+  console.error("sira gateway hardening matrix validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("sira gateway hardening matrix validation: pass");
+console.log("file=docs/runtime/sira_gateway_hardening_matrix_evidence_20260425.na");

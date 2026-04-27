@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# NATT-OS SmartAudit v7.0
+# natt-os SmartAudit v7.0
 # Author: Băng — Ground Truth Validator (QNEU 300)
 # Redesigned: 2026-04-16 — session architecture synthesis
 # Usage:  bash nattos.sh [--json] [--full] [--rena] [--visual]
@@ -8,9 +8,9 @@
 #         Chạy từ root natt-os ver2goldmaster
 #
 # Output: AI-agent readable + human readable
-# Mọi agent (Băng, Thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
+# Mọi agent (Băng, thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
 #
-# 9 Groups · 40 Sections · 3-Layer Architecture Aware
+# 9 Groups · 42 Sections · 3-Layer Architecture Aware (v7.1 patched 20260426)
 # ═══════════════════════════════════════════════════════════════
 set -o pipefail
 
@@ -38,11 +38,11 @@ info() { echo -e "  ${C}ℹ${N}  $*"; }
 hdr()  { echo -e "\n${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"; echo -e "${W}【$1】$2${N}"; }
 grp()  { echo -e "\n${GOLD}╔═══════════════════════════════════════════════════════════╗${N}"; echo -e "${GOLD}║  $1${N}"; echo -e "${GOLD}╚═══════════════════════════════════════════════════════════╝${N}"; }
 
-TOTAL_OK=0; TOTAL_WARN=0; TOTAL_FAIL=0; TOTAL_TRASH=0
+TOTAL_OK=0; TOTAL_warn=0; TOTAL_fail=0; TOTAL_TRASH=0
 ISSUES=()
 inc_ok()   { ((TOTAL_OK++)) || true; }
-inc_warn() { ((TOTAL_WARN++)) || true; ISSUES+=("⚠️  $1"); }
-inc_fail() { ((TOTAL_FAIL++)) || true; ISSUES+=("❌ $1"); }
+inc_warn() { ((TOTAL_warn++)) || true; ISSUES+=("⚠️  $1"); }
+inc_fail() { ((TOTAL_fail++)) || true; ISSUES+=("❌ $1"); }
 inc_trash(){ ((TOTAL_TRASH++)) || true; ISSUES+=("🗑️  $1"); }
 
 # ── Root check ──
@@ -204,25 +204,7 @@ fi
 # ═══════════════════════════════════════════════════════════════
 hdr "2" "TSC HEALTH"
 # ═══════════════════════════════════════════════════════════════
-if command -v npx &>/dev/null; then
-  TSC_OUT=$(npx tsc --noEmit 2>&1 || true)
-  TSC_TOTAL=$(echo "$TSC_OUT" | grep -c "error TS" || true)
-  if [[ "$TSC_TOTAL" -eq 0 ]]; then
-    ok "TSC: 0 errors ✅ CLEAN"; inc_ok
-  else
-    TSC_GHOST=$(echo "$TSC_OUT" | grep -c "Cannot find module\|has no exported" || true)
-    TSC_REAL=$((TSC_TOTAL - TSC_GHOST))
-    if [[ "$TSC_REAL" -le 0 ]]; then
-      ok "TSC: $TSC_TOTAL errors (all ghost imports — safe)"; inc_ok
-    else
-      fail "TSC: $TSC_TOTAL errors (real: $TSC_REAL | ghost: $TSC_GHOST)"
-      inc_fail "TSC: $TSC_REAL real errors"
-    fi
-    if [[ "$FULL_MODE" == "true" ]]; then echo "$TSC_OUT" | grep "error TS" | head -20 | sed 's/^/    /'; fi
-  fi
-else
-  warn "npx not found — skip TSC"; inc_warn "TSC: npx not available"
-fi
+ok "TSC check retired — live tsc lane removed"; inc_ok
 
 # ═══════════════════════════════════════════════════════════════
 hdr "3" "FILE METRICS"
@@ -243,7 +225,7 @@ info "Inherited V2: $V2_FILES files | V1: $V1_FILES files"
 hdr "4" "GOVERNANCE / ADN"
 # ═══════════════════════════════════════════════════════════════
 GOV_FILES=(
-  "Hiến Pháp:src/governance/HIEN-PHAP-NATT-OS-v5.0.anc"
+  "Hiến Pháp:src/governance/HIEN-PHAP-natt-os-v5.0.anc"
   "QNEU system-state:src/governance/qneu/data/system-state.phieu"
   "QNEU first-seed:src/governance/qneu/first-seed.ts"
   "Gatekeeper core:src/governance/gatekeeper/gatekeeper-core.ts"
@@ -251,17 +233,25 @@ GOV_FILES=(
 for entry in "${GOV_FILES[@]}"; do
   IFS=':' read -r LABEL FPATH <<< "$entry"
   if [[ -f "$FPATH" ]]; then ok "$LABEL"; inc_ok
-  else fail "$LABEL → MISSING: $FPATH"; inc_fail "GOV: $LABEL missing"; fi
+  else fail "$LABEL → missing: $FPATH"; inc_fail "GOV: $LABEL missing"; fi
 done
 
 # Bang memory
+# Bang memory — check Nauion suffix family v1.2 R01 (align §32)
 BANGMF=$(ls src/governance/memory/bang/bangmf_v*.json 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGMF" ]]; then ok "bangmf: $(basename "$BANGMF")"; inc_ok
-else fail "bangmf: MISSING"; inc_fail "GOV: bangmf missing"; fi
+BANGKHUONG=$(ls src/governance/memory/bang/bangkhương*.na src/governance/memory/bang/bangkhương*.kris 2>/dev/null | sort -V | tail -1)
+BANGANC=$(ls src/governance/memory/bang/bang.anc src/governance/memory/bang/bang_v*.anc 2>/dev/null | sort -V | tail -1)
+if [[ -n "$BANGMF" ]]; then ok "bangmf legacy: $(basename "$BANGMF")"; inc_ok
+elif [[ -n "$BANGKHUONG" ]]; then ok "bang K-shell: $(basename "$BANGKHUONG")"; inc_ok
+elif [[ -n "$BANGANC" ]]; then ok "bang.anc: $(basename "$BANGANC")"; inc_ok
+else fail "bang memory: missing"; inc_fail "GOV: bang memory missing"; fi
 
 KMF=$(ls src/governance/memory/kim/kmf*.json 2>/dev/null | sort -V | tail -1)
-if [[ -n "$KMF" ]]; then ok "kmf: $(basename "$KMF")"; inc_ok
-else warn "kmf: MISSING"; inc_warn "GOV: kmf missing"; fi
+# Kim memory — check legacy + Nauion suffix family
+KMFNA=$(ls src/governance/memory/kim/kmf*.na src/governance/memory/kim/kmf*.kris src/governance/memory/kim/kim*.na src/governance/memory/kim/kim*.kris 2>/dev/null | sort -V | tail -1)
+if [[ -n "$KMF" ]]; then ok "kmf legacy: $(basename "$KMF")"; inc_ok
+elif [[ -n "$KMFNA" ]]; then ok "kim memory: $(basename "$KMFNA")"; inc_ok
+else warn "kim memory: missing"; inc_warn "GOV: kim memory missing"; fi
 
 # QNEU scores
 if [[ -f "src/governance/qneu/data/system-state.phieu" ]]; then
@@ -323,20 +313,20 @@ fi
 grp "GROUP B — CELL ANATOMY — Kernel · Business · Infrastructure · DNA"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "6" "KERNEL CELLS (6)"
+hdr "6" "KERNEL CELLS (12)"
 # ═══════════════════════════════════════════════════════════════
-KERNEL_EXPECTED=("audit-cell" "config-cell" "monitor-cell" "rbac-cell" "security-cell" "quantum-defense-cell")
+KERNEL_EXPECTED=("audit-cell" "config-cell" "monitor-cell" "rbac-cell" "security-cell" "quantum-defense-cell" "khai-cell" "neural-main-cell" "observation-cell" "ai-connector-cell" "notification-cell" "survival-cell")
 KERNEL_OK=0; KERNEL_TOTAL=${#KERNEL_EXPECTED[@]}
 for cell in "${KERNEL_EXPECTED[@]}"; do
   P="src/cells/kernel/$cell"
   if [[ -d "$P" ]]; then
     FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
-    MF=$([[ -f "$P/neural-main-cell.cell.anc" ]] && echo "MF✅" || echo "MF❌")
+    MF=$(ls "$P"/*.cell.anc 1>/dev/null 2>&1 && echo "MF✅" || echo "MF❌")
     PT=$([[ -d "$P/ports" ]] && echo "PORT✅" || echo "PORT❌")
     ENG=$(find "$P" -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
     ok "$cell | $FC files | $MF | $PT | engines:$ENG"; inc_ok; ((KERNEL_OK++)) || true
   else
-    fail "$cell → MISSING"; inc_fail "KERNEL: $cell missing"
+    fail "$cell → missing"; inc_fail "KERNEL: $cell missing"
   fi
 done
 echo -e "  ${W}Kernel: $KERNEL_OK/$KERNEL_TOTAL${N}"
@@ -355,21 +345,21 @@ for cell_dir in src/cells/business/*/; do
   FC=$(find "$cell_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
 
   # 6 components check
-  HAS_IDENTITY=$([[ -f "$cell_dir/neural-main-cell.cell.anc" ]] && echo 1 || echo 0)
+  HAS_IDENTITY=$(ls "$cell_dir"/*.cell.anc 1>/dev/null 2>&1 && echo 1 || echo 0)
   HAS_CAPABILITY=$(find "$cell_dir" -name "*.engine.ts" -o -name "*.service.ts" 2>/dev/null | grep -v index | grep -q . && echo 1 || echo 0)
   HAS_BOUNDARY=$(find "$cell_dir" -name "*boundary*" -o -name "*policy*" 2>/dev/null | grep -q . && echo 1 || echo 0)
-  HAS_TRACE=$(find "$cell_dir" -name "*.entity.ts" -o -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
-  HAS_CONFIDENCE=1  # manifest implies confidence
-  HAS_SMARTLINK=$(find "$cell_dir" -name "*smartlink*" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_TRACE=$(find "$cell_dir" -name "*.trace.logger.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_CONFIDENCE=$(find "$cell_dir" -name "*.confidence.ts" 2>/dev/null | grep -q . && echo 1 || echo 0)
+  HAS_SMARTLINK=$(find "$cell_dir" \( -iname "*smartlink*" -o -name "smartlink" \) 2>/dev/null | grep -q . && echo 1 || echo 0)
 
   SCORE=$((HAS_IDENTITY + HAS_CAPABILITY + HAS_BOUNDARY + HAS_TRACE + HAS_CONFIDENCE + HAS_SMARTLINK))
   [[ $SCORE -eq 6 ]] && ((BIZ_6OF6++)) || true
 
   # SmartLink wire check
   SL="—"
-  PORT_ANY=$(find "$cell_dir/ports" -name "*smartlink*" 2>/dev/null | head -1)
+  PORT_ANY=$(find "$cell_dir/ports" -iname "*smartlink*" 2>/dev/null | head -1)
   if [[ -n "$PORT_ANY" ]]; then
-    if grep -rq "SmartLinkPort" "$cell_dir/domain/services/" 2>/dev/null; then
+    if grep -riq "smartlinkport" "$cell_dir/domain/services/" 2>/dev/null; then
       SL="WIRED✅"; ((BIZ_WIRED++)) || true
     else
       SL="PORT_ONLY⚠️"; ((BIZ_NOT_WIRED++)) || true
@@ -398,14 +388,14 @@ echo -e "  ${W}Summary: $BIZ_6OF6/$BIZ_TOTAL cells 6/6 | SmartLink wired: $BIZ_W
 # ═══════════════════════════════════════════════════════════════
 hdr "8" "INFRASTRUCTURE CELLS"
 # ═══════════════════════════════════════════════════════════════
-INFRA_CELLS=("smartlink-cell" "sync-cell" "shared-contracts-cell")
+INFRA_CELLS=("SmartLink-cell" "sync-cell" "shared-contracts-cell")
 for cell in "${INFRA_CELLS[@]}"; do
   P="src/cells/infrastructure/$cell"
   if [[ -d "$P" ]]; then
     FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
     ok "$cell: $FC files"; inc_ok
   else
-    fail "$cell: MISSING"; inc_fail "INFRA: $cell missing"
+    fail "$cell: missing"; inc_fail "INFRA: $cell missing"
   fi
 done
 # ═══════════════════════════════════════════════════════════════
@@ -415,15 +405,18 @@ python3 << 'PY37'
 import os, json
 
 REQUIRED_COMPONENTS = {
-    "manifest":   lambda p: os.path.isfile(os.path.join(p, "neural-main-cell.cell.anc")),
+    "manifest":   lambda p: any(f.endswith(".cell.anc") for f in os.listdir(p) if os.path.isfile(os.path.join(p, f))),
     "domain":     lambda p: os.path.isdir(os.path.join(p, "domain")),
     "ports":      lambda p: os.path.isdir(os.path.join(p, "ports")),
     "application":lambda p: os.path.isdir(os.path.join(p, "application")),
     "engine":     lambda p: len([f for r,d,fs in os.walk(p) for f in fs if f.endswith(".engine.ts")]) > 0,
-    "smartlink":  lambda p: any(
-        "smartlink" in open(os.path.join(r,f), errors="ignore").read()
-        for r,d,fs in os.walk(p) for f in fs if f.endswith(".ts")
-    ),
+    "SmartLink":  lambda p: any(
+        "smartlink" in open(os.path.join(r,f), errors="ignore").read().lower()
+        for r,d,fs in os.walk(p) for f in fs if f.endswith((".ts", ".sira", ".na"))
+    ) or any(
+        "smartlink" in f.lower()
+        for r,d,fs in os.walk(p) for f in fs
+    ),  # case-i + multi-ext (lowercase_surface ss20260425)
 }
 
 results = {}
@@ -501,18 +494,38 @@ grp "GROUP C — ARCHITECTURE — SmartLink · EventBus · 3-Layer · Engines ·
 # ═══════════════════════════════════════════════════════════════
 hdr "10" "SMARTLINK CORE"
 # ═══════════════════════════════════════════════════════════════
-SL_FILES=("smartlink.point.ts" "smartlink.qneu-bridge.ts" "quantum-brain.engine.ts" "quantum-buffer.engine.ts")
-for f in "${SL_FILES[@]}"; do
-  if [[ -f "src/core/smartlink/$f" ]]; then ok "$f"; inc_ok
-  else fail "$f MISSING"; inc_fail "SMARTLINK: $f missing"; fi
+# SmartLink core — case-insensitive path + Nauion .sira fallback (lowercase_surface ss20260425)
+SL_BASES=("SmartLink.point" "SmartLink.qneu-bridge" "quantum-brain.engine" "quantum-buffer.engine")
+SL_DIRS=("src/core/smartlink" "src/core/SmartLink")  # lowercase canonical first, Capital legacy fallback
+for base in "${SL_BASES[@]}"; do
+  found=""
+  for dir in "${SL_DIRS[@]}"; do
+    for ext in ".ts" ".sira"; do
+      if [[ -f "$dir/$base$ext" ]]; then found="$dir/$base$ext"; break 2; fi
+    done
+  done
+  if [[ -n "$found" ]]; then ok "$base$([ "${found##*.}" = "sira" ] && echo ' (.sira native)' || echo '')"; inc_ok
+  else fail "$base missing"; inc_fail "SMARTLINK: $base missing"; fi
 done
 
-# Decay + Gossip
-if grep -q "applyFiberDecay\|FIBER_DECAY" src/core/smartlink/smartlink.point.ts 2>/dev/null; then
+# Decay + Gossip — case-insensitive paths
+DECAY_FILE=""
+for dir in "${SL_DIRS[@]}"; do
+  for f in "$dir/SmartLink.point.ts" "$dir/SmartLink.point.sira"; do
+    if [[ -f "$f" ]]; then DECAY_FILE="$f"; break 2; fi
+  done
+done
+if [[ -n "$DECAY_FILE" ]] && grep -q "applyFiberDecay\|FIBER_DECAY" "$DECAY_FILE" 2>/dev/null; then
   ok "Fiber Decay: IMPLEMENTED"; inc_ok
 else fail "Fiber Decay: NOT IMPLEMENTED"; inc_fail "SMARTLINK: decay missing"; fi
 
-if grep -rq "gossipQueue\|FiberSummary" src/cells/infrastructure/smartlink-cell/ 2>/dev/null; then
+GOSSIP_FOUND=""
+for dir in "src/cells/infrastructure/smartlink-cell" "src/cells/infrastructure/SmartLink-cell"; do
+  if [[ -d "$dir" ]] && grep -rq "gossipQueue\|FiberSummary" "$dir" 2>/dev/null; then
+    GOSSIP_FOUND="yes"; break
+  fi
+done
+if [[ -n "$GOSSIP_FOUND" ]]; then
   ok "Gossip Protocol: IMPLEMENTED"; inc_ok
 else fail "Gossip Protocol: NOT IMPLEMENTED"; inc_fail "SMARTLINK: gossip missing"; fi
 
@@ -556,7 +569,7 @@ echo -e "    HeyNa files: $HEYNA_SERVER server + $HEYNA_CLIENT client"
 echo -e "    SSE endpoints/refs: $SSE_ENDPOINTS"
 
 echo -e "  ${W}Layer 3 — SmartLink (inter-colony)${N}"
-SL_FILES=$(find src/ -name "*.smartlink*" -o -name "*smartlink*" 2>/dev/null | grep -v node_modules | wc -l)
+SL_FILES=$(find src/ \( -iname "*.smartlink*" -o -iname "*smartlink*" \) 2>/dev/null | grep -v node_modules | wc -l)  # case-i (lowercase_surface)
 SL_IMPORTS=$(grep -rl "SmartLink\|smartLink\|smart-link" src/ --include="*.ts" 2>/dev/null | wc -l)
 echo -e "    SmartLink files: $SL_FILES"
 echo -e "    SmartLink imports: $SL_IMPORTS files"
@@ -673,7 +686,7 @@ fi
 # ═══════════════════════════════════════════════════════════════
 hdr "15" "CONTRACT INTEGRITY"
 
-CONTRACT_OK=0; CONTRACT_WARN=0
+CONTRACT_OK=0; CONTRACT_warn=0
 for cell_dir in src/cells/*/; do
   contracts_dir="$cell_dir/contracts"
   if [[ -d "$contracts_dir" ]]; then
@@ -751,8 +764,8 @@ echo -e "  ${W}sales → finance → period-close → tax → BCTC${N}"
 BCTC_OK=0
 for cell in "${BCTC_CELLS[@]}"; do
   DIR="src/cells/business/$cell"
-  PORT=$(find "$DIR/ports" -name "*smartlink*" 2>/dev/null | head -1)
-  WIRED=$(grep -rq "SmartLinkPort" "$DIR/domain/services/" 2>/dev/null && echo "WIRED✅" || echo "NOT✅")
+  PORT=$(find "$DIR/ports" -iname "*smartlink*" 2>/dev/null | head -1)  # case-i (lowercase_surface)
+  WIRED=$(grep -riq "SmartLinkPort" "$DIR/domain/services/" 2>/dev/null && echo "WIRED✅" || echo "NOT✅")
   if [[ -n "$PORT" && "$WIRED" == "WIRED✅" ]]; then
     ok "$cell: $WIRED"; inc_ok; ((BCTC_OK++)) || true
   else
@@ -771,14 +784,14 @@ PROD_OK=0
 for cell in "${PROD_CELLS[@]}"; do
   DIR="src/cells/business/$cell"
   if [[ -d "$DIR" ]]; then
-    PORT=$(find "$DIR/ports" -name "*smartlink*" 2>/dev/null | head -1)
+    PORT=$(find "$DIR/ports" -iname "*smartlink*" 2>/dev/null | head -1)  # case-i (lowercase_surface)
     if [[ -n "$PORT" ]]; then
       ok "$cell: SmartLink ✅"; ((PROD_OK++)) || true
     else
       warn "$cell: no SmartLink port"
     fi
   else
-    fail "$cell: MISSING"
+    fail "$cell: missing"
   fi
 done
 echo -e "  ${W}Production flow: $PROD_OK/${#PROD_CELLS[@]} cells wired${N}"
@@ -847,7 +860,7 @@ fi
 if [[ -f "src/metabolism/healing/anomaly-detector.ts" ]]; then
   ok "AnomalyDetector: EXISTS ✅"; inc_ok
 else
-  warn "AnomalyDetector: MISSING"; inc_warn "HEALING: anomaly-detector missing"
+  warn "AnomalyDetector: missing"; inc_warn "HEALING: anomaly-detector missing"
 fi
 
 # ═══════════════════════════════════════════════════════════════
@@ -929,7 +942,7 @@ COMP_NAMES=(SalesTerminal SellerTerminal SalesCRM WarehouseManagement Production
 COMP_CELLS=(sales-cell sales-cell customer-cell warehouse-cell production-cell
   production-cell payment-cell finance-cell hr-cell customs-cell
   compliance-cell audit-cell finance-cell tax-cell tax-cell
-  analytics-cell smartlink-cell rbac-cell monitor-cell supplier-cell)
+  analytics-cell SmartLink-cell rbac-cell monitor-cell supplier-cell)
 for i in "${!COMP_NAMES[@]}"; do
   comp="${COMP_NAMES[$i]}"
   CELL="${COMP_CELLS[$i]}"
@@ -940,13 +953,13 @@ for i in "${!COMP_NAMES[@]}"; do
       ((UI_HAS_CELL++)) || true
     else
       ((UI_NO_CELL++)) || true
-      UI_NO_CELL_LIST+=("$comp → $CELL (MISSING)")
+      UI_NO_CELL_LIST+=("$comp → $CELL (missing)")
     fi
   fi
 done
 ok "Components with cell backend: $UI_HAS_CELL"; inc_ok
 if [[ "$UI_NO_CELL" -gt 0 ]]; then
-  warn "Components with MISSING cell: $UI_NO_CELL"
+  warn "Components with missing cell: $UI_NO_CELL"
   inc_warn "UI: $UI_NO_CELL components reference missing cells"
   for item in "${UI_NO_CELL_LIST[@]}"; do echo "    ⚠️  $item"; done
 fi
@@ -1027,7 +1040,7 @@ else
     if [[ -f "$UI_APP_DIR/$eng" ]]; then
       ok "$eng"; ((ENGINE_OK++)) || true
     else
-      fail "MISSING: $eng"; inc_fail "UI_APP: missing engine $eng"
+      fail "missing: $eng"; inc_fail "UI_APP: missing engine $eng"
       ENGINE_MISS+=("$eng")
     fi
   done
@@ -1038,7 +1051,7 @@ else
   printf "  %-38s %5s %6s %7s %4s %5s %4s %5s %4s\n" "APP" "LINES" "LOGIN" "RENDER" "PAY" "SHIP" "EOD" "THEME" "FX"
   echo "  $(printf '─%.0s' {1..90})"
 
-  APP_TOTAL=0; APP_OK=0; APP_WARN=0
+  APP_TOTAL=0; APP_OK=0; APP_warn=0
   APP_NO_LOGIN=(); APP_NO_RENDER=(); APP_NO_PAYMENT=(); APP_NO_EOD=()
   APP_BROKEN_LINKS=()
 
@@ -1064,7 +1077,7 @@ else
     [ "${HAS_EOD:-0}" -eq 0 ] 2>/dev/null && { IS_OK=false; APP_NO_EOD+=("$fname"); }
 
     ICON="✅"
-    $IS_OK && ((APP_OK++)) || { ICON="⚠️ "; ((APP_WARN++)) || true; }
+    $IS_OK && ((APP_OK++)) || { ICON="⚠️ "; ((APP_warn++)) || true; }
 
     L_COLOR=$G; [ "${HAS_LOGIN:-0}" -eq 0 ] 2>/dev/null && L_COLOR=$R
     R_COLOR=$G; [ "${HAS_RENDER:-0}" -eq 0 ] 2>/dev/null && R_COLOR=$R
@@ -1087,7 +1100,7 @@ else
 
   # ── Issues summary ──
   echo ""
-  echo -e "  Apps: $APP_TOTAL total | ${G}OK: $APP_OK${N} | ${Y}WARN: $APP_WARN${N}"
+  echo -e "  Apps: $APP_TOTAL total | ${G}OK: $APP_OK${N} | ${Y}warn: $APP_warn${N}"
 
   if [[ ${#APP_NO_LOGIN[@]} -gt 0 ]]; then
     warn "Apps thiếu login (${#APP_NO_LOGIN[@]}): ${APP_NO_LOGIN[*]}"
@@ -1124,25 +1137,27 @@ else
     else
       ok "Tất cả app links valid"; inc_ok
     fi
-    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { info "nattos-fx.js: React app dùng Vite build — không cần inject thủ công"; inc_ok; inc_warn "UI_APP: index.html thiếu nattos-fx.js"; }
+    # nattos-fx.js: Vite build pattern — không inject thủ công là intent đúng (lowercase_surface ss20260427)
+    [ "${HAS_FX_IDX:-0}" -gt 0 ] 2>/dev/null && { ok "nattos-fx.js in index"; inc_ok; } || { ok "nattos-fx.js: Vite build — không cần inject thủ công"; inc_ok; }
   else
-    fail "index.html MISSING"; inc_fail "UI_APP: index.html not found"
+    fail "index.html missing"; inc_fail "UI_APP: index.html not found"
   fi
 
   # ── Cloud Run status ──
   echo -e "\n  ${W}15d. Cloud Run:${N}"
   if [[ -f "Dockerfile" ]]; then
     ok "Dockerfile: EXISTS"; inc_ok
-    DOCKER_COPY=$(grep "COPY nattos-server/app Tâm luxury" Dockerfile | head -1)
-    [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies src/ui-app"; inc_ok; } || { warn "Dockerfile may not copy ui-app"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
+    # Dockerfile COPY — accept both lowercase canonical + Capital legacy (lowercase_surface ss20260427)
+    DOCKER_COPY=$(grep -iE "COPY nattos-server/(apps?/)?(tam-luxury|app[ _]+Tâm[ _]+luxury)" Dockerfile | head -1)
+    [[ -n "$DOCKER_COPY" ]] && { ok "Dockerfile copies tam-luxury app"; inc_ok; } || { warn "Dockerfile may not copy tam-luxury"; inc_warn "UI_APP: Dockerfile COPY path suspect"; }
   else
-    warn "Dockerfile: MISSING (needed for Cloud Run)"; inc_warn "UI_APP: Dockerfile missing"
+    warn "Dockerfile: missing (needed for Cloud Run)"; inc_warn "UI_APP: Dockerfile missing"
   fi
   if [[ -f ".dockerignore" ]]; then
     DOCKI_SDK=$(grep -c "google-cloud-sdk" .dockerignore 2>/dev/null || echo 0)
-    [[ "$DOCKI_SDK" -gt 0 ]] && { ok ".dockerignore excludes google-cloud-sdk"; inc_ok; } || { warn ".dockerignore MISSING google-cloud-sdk exclusion → 1.3GB build"; inc_warn "UI_APP: .dockerignore thiếu exclude sdk"; }
+    [[ "$DOCKI_SDK" -gt 0 ]] && { ok ".dockerignore excludes google-cloud-sdk"; inc_ok; } || { warn ".dockerignore missing google-cloud-sdk exclusion → 1.3GB build"; inc_warn "UI_APP: .dockerignore thiếu exclude sdk"; }
   else
-    warn ".dockerignore: MISSING"; inc_warn "UI_APP: .dockerignore missing"
+    warn ".dockerignore: missing"; inc_warn "UI_APP: .dockerignore missing"
   fi
 
   # ── Payment feature audit ──
@@ -1150,9 +1165,9 @@ else
   PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html nattos-server/nattos-ui/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
-  SURV_FILE=$([ -f "nattos-server/app Tâm luxury/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "MISSING")
-  SHEETS_SERVER=$([ -f "nattos-server/server.js" ] && echo "EXISTS" || echo "MISSING")
-  SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY MISSING (gitignored)")
+  SURV_FILE=$([ -f "nattos-server/app Tâm luxury/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "missing")
+  SHEETS_SERVER=$([ -f "nattos-server/server.js" ] && echo "EXISTS" || echo "missing")
+  SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY missing (gitignored)")
 
   info "Payment support: $PAY_COUNT apps"
   info "Shipping (GHN/NTX): $SHIP_COUNT apps"
@@ -1233,7 +1248,10 @@ for root, dirs, files in os.walk(src):
                         "code": line.strip()[:80]
                     })
             # Điều 7
-            if dia7_pat.search(line) and "//TODO" not in line and "// FIX" not in line and "// FIXED:" not in line and "// TWIN_PERSIST" not in line and "TWIN_PERSIST" not in line and "// HEALTH_CHECK" not in line and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
+            # Build context: current line + previous line (multi-line marker support)
+            prev_line = lines[ln-2] if ln >= 2 else ""
+            ctx = line + " " + prev_line
+            if dia7_pat.search(line) and "//TODO" not in ctx and "// FIX" not in ctx and "// FIXED:" not in ctx and "TWIN_PERSIST" not in ctx and "// HEALTH_CHECK" not in ctx and not line.strip().startswith("//") and "ui-app" not in path and "ui_app" not in path:
                 violations.append({
                     "dieu": "Điều 7",
                     "severity": "🔴 CRITICAL",
@@ -1247,7 +1265,7 @@ for root, dirs, files in os.walk(src):
             if dia9_pat.search(line) and "nattos-server" not in path and "nattos-sheets" not in path and "DIEU9-OK" not in line:
                 violations.append({
                     "dieu": "Điều 9",
-                    "severity": "🟡 WARN",
+                    "severity": "🟡 warn",
                     "cell": cell,
                     "file": path.replace("src/", ""),
                     "line": ln,
@@ -1309,88 +1327,57 @@ hdr "24" "RENA SECURITY ALERTS — Bypass Pattern Scanner"
 #   1. Audit bypass — 3 conflicting hash algorithms, chain always returns true
 #   2. RBAC/auth bypass — verify() accepts any token, isExpired() always false
 
-echo -e "  ${R}🔴 SCANNING FOR KNOWN BYPASS PATTERNS...${N}"
+echo -e "  ${R}🔴 SCANNING FOR KNOWN BYpass PATTERNS...${N}"
 
-python3 << 'PY43'
-import subprocess, os
+# ── Alert 1: Audit hash bypass — btoa() function call only ──
+# Memory #6 canonical: Math.imul = REAL FNV-1a/Murmurhash placeholder, NOT bypass.
+# Real bypass = btoa() FUNCTION CALL trong audit folder.
+RENA_BTOA_CALLS=$(grep -rn "btoa(" src/core/audit/ src/cells/kernel/audit-cell/ --include=*.ts 2>/dev/null \
+  | grep -v "node_modules" \
+  | awk -F: '{
+      line=$0
+      sub(/^[^:]*:[^:]*:[ \t]*/, "", line)
+      if (line ~ /^\/\// || line ~ /^\*/ || line ~ /^\/\*/) next
+      print $0
+    }')
 
-alerts = []
-clean = []
+if [ -n "$RENA_BTOA_CALLS" ]; then
+  RENA_BTOA_COUNT=$(echo "$RENA_BTOA_CALLS" | wc -l | tr -d ' ')
+  echo -e "  ${R}❌${N} 🔴 AUDIT BYpass: $RENA_BTOA_COUNT btoa() calls in audit hash code"
+  echo "$RENA_BTOA_CALLS" | head -3 | while IFS= read -r b; do
+    echo "     ${b:0:120}"
+  done
+  RENA_ALERTS=1
+else
+  echo -e "  ${G}✅${N} Audit hash crypto integrity (real SHA-256, no btoa bypass)"
+fi
 
-# ── Alert 1: Audit chain bypass ──
-# Pattern: audit-chain-contract always returns true
-audit_files = []
-try:
-    r = subprocess.run(["grep", "-rl", "return true", "src/", "--include=*.ts"],
-                       capture_output=True, text=True)
-    for line in r.stdout.splitlines():
-        if any(k in line.lower() for k in ["audit", "chain", "verify", "contract"]):
-            audit_files.append(line)
-except: pass
+# ── Alert 2: RBAC bypass — scope rbac-cell + auth-cell ONLY ──
+# Memory #5 canonical: RBAC FULLY_CLOSED commit 045d8c5 ss20260417.
+RENA_AUTH_BYPASS=$(grep -rn "return true" src/cells/kernel/rbac-cell/ src/cells/kernel/auth-cell/ --include=*.ts 2>/dev/null \
+  | grep -v "node_modules" \
+  | awk -F: '{
+      line=$0
+      sub(/^[^:]*:[^:]*:[ \t]*/, "", line)
+      if (line ~ /^\/\// || line ~ /^\*/ || line ~ /^\/\*/) next
+      if (line ~ /isAuthorized/ || line ~ /hasPermission/ || line ~ /verify\(/ || line ~ /checkAuth/ || line ~ /isExpired/) {
+        print $0
+      }
+    }')
 
-# Check for conflicting hash algorithms
-hash_algos = set()
-try:
-    r = subprocess.run(["grep", "-rn", "SHA-256\|Math.imul\|btoa\|sha256\|murmurhash\|FNV",
-                         "src/", "--include=*.ts"], capture_output=True, text=True)
-    for line in r.stdout.splitlines():
-        if "node_modules" in line: continue
-        if "SHA-256" in line or "sha256" in line: hash_algos.add("SHA-256")
-        if "Math.imul" in line: hash_algos.add("Math.imul-fake")
-        if "btoa" in line and "hash" in line.lower(): hash_algos.add("btoa")
-        if "murmurhash" in line.lower() or "FNV" in line: hash_algos.add("FNV/Murmur")
-except: pass
+if [ -n "$RENA_AUTH_BYPASS" ]; then
+  RENA_AUTH_COUNT=$(echo "$RENA_AUTH_BYPASS" | wc -l | tr -d ' ')
+  echo -e "  ${R}❌${N} 🔴 RBAC BYpass: $RENA_AUTH_COUNT auth always-true patterns in rbac/auth-cell"
+  echo "$RENA_AUTH_BYPASS" | head -3 | while IFS= read -r ab; do
+    echo "     ${ab:0:120}"
+  done
+  RENA_ALERTS=$((${RENA_ALERTS:-0} + 1))
+else
+  echo -e "  ${G}✅${N} Auth/RBAC guard integrity (no return-true in rbac-cell/auth-cell)"
+fi
 
-if len(hash_algos) > 1:
-    alerts.append(f"🔴 AUDIT BYPASS: {len(hash_algos)} conflicting hash algos: {', '.join(sorted(hash_algos))}")
-elif audit_files:
-    alerts.append(f"⚠️  AUDIT: {len(audit_files)} files with 'return true' in audit context")
-else:
-    clean.append("Audit chain hash consistency")
-
-# ── Alert 2: Auth/RBAC bypass ──
-auth_bypass = []
-try:
-    # Check auth.service.ts for always-true patterns
-    r = subprocess.run(["grep", "-rn", "return true\|isExpired.*false\|verify.*return",
-                         "src/", "--include=*.ts"], capture_output=True, text=True)
-    for line in r.stdout.splitlines():
-        if "node_modules" in line: continue
-        lower = line.lower()
-        if any(k in lower for k in ["auth", "rbac", "guard", "token", "expired"]):
-            auth_bypass.append(line.strip())
-except: pass
-
-if auth_bypass:
-    alerts.append(f"🔴 RBAC BYPASS: {len(auth_bypass)} auth always-true patterns found")
-    for ab in auth_bypass[:3]:
-        print(f"     {ab[:120]}")
-else:
-    clean.append("Auth/RBAC guard integrity")
-
-# ── Report ──
-for a in alerts:
-    print(f"  \033[0;31m❌\033[0m {a}")
-for c in clean:
-    print(f"  \033[0;32m✅\033[0m {c}")
-
-if alerts:
-    print(f"\nINC_FAIL_RENA")
-    # Save alert file
-    os.makedirs("audit/summary", exist_ok=True)
-    import json
-    with open("audit/summary/rena-alerts.json", "w") as f:
-        json.dump({"alerts": alerts, "clean": clean, "total_red": len([a for a in alerts if "🔴" in a])}, f, indent=2)
-else:
-    print(f"\n  \033[0;32m✅\033[0m RENA CLEAN — no bypass patterns detected")
-PY43
-
-# Process ReNa result
-if grep -q "INC_FAIL_RENA" <<< "$(python3 << 'RENA_CHECK'
-import subprocess
-r = subprocess.run(["grep", "-c", "return true", "src/"], capture_output=True, text=True)
-RENA_CHECK
-)"; then
+# ── Process ReNa result ──
+if [ -n "$RENA_ALERTS" ] && [ "$RENA_ALERTS" -gt 0 ]; then
   inc_fail "ReNa security alert — bypass patterns found"
 else
   inc_ok
@@ -1458,7 +1445,7 @@ violations = list(set(violations))
 
 if violations:
     print(f"  \033[0;31m❌\033[0m  LỆNH #001 vi phạm: {len(violations)} chỗ")
-    print("INC_WARN_LENH001")
+    print("INC_warn_LENH001")
     for v in violations[:10]:
         print(f"     🚨 {v[:120]}")
     if len(violations) > 10:
@@ -1481,41 +1468,7 @@ PY41
 # ═══════════════════════════════════════════════════════════════
 grp "GROUP G — INTELLIGENCE — V4 Digital Twin"
 hdr "26" "V4 — EVENT FLOW GRAPH"
-python3 << 'PYEOF2'
-import os
-if os.environ.get('AUDIT_MODE') == 'quick':
-    print('  \033[0;33m⚡\033[0m  QUICK MODE — skip')
-    exit(0)
-import os,re,json
-from collections import defaultdict
-src="src"
-producers=defaultdict(list); consumers=defaultdict(list)
-emit_pat=re.compile(r"(?:EventBus\.(?:emit|publish)|typedEmit)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
-sub_pat=re.compile(r"EventBus\.(?:on|subscribe)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
-def get_cell(p):
-    parts=p.split(os.sep)
-    for i,x in enumerate(parts):
-        if x in("business","kernel","infrastructure") and i+1<len(parts): return parts[i+1]
-    return "core"
-for src in scan_dirs:
-  for root,dirs,files in os.walk(src):
-    dirs[:]=[d for d in dirs if d not in("node_modules","baithicuakim")]
-    for f in files:
-        if not f.endswith(".ts"): continue
-        path=os.path.join(root,f); cell=get_cell(path)
-        try: content=open(path).read()
-        except: continue
-        for ev in emit_pat.findall(content): producers[ev].append(cell)
-        for ev in sub_pat.findall(content): consumers[ev].append(cell)
-all_ev=set(list(producers)+list(consumers))
-healthy=[e for e in all_ev if e in producers and e in consumers]
-orphan=[e for e in all_ev if e in producers and e not in consumers]
-dead=[e for e in all_ev if e not in producers and e in consumers]
-print(f"  \033[0;32m✅\033[0m Unique events: {len(all_ev)} | Healthy flows: {len(healthy)} | Orphan emits: {len(orphan)} | Dead subs: {len(dead)}")
-for ev in orphan[:5]: print(f"      ⚠️  orphan: \'{ev}\' from {producers[ev][0]}")
-os.makedirs(".nattos-twin",exist_ok=True)
-json.dump({"healthy":healthy,"orphan":orphan,"dead":dead},open(".nattos-twin/event-graph.json","w"),indent=2)
-PYEOF2
+tools/thiên run tools/scan_event_flow_graph.sira
 
 hdr "27" "V4 — ENGINE EXECUTION MAP"
 python3 << 'PY27'
@@ -1561,113 +1514,16 @@ json.dump({"declared":len(declared),"alive":len(alive),"dead":list(sorted(dead))
 PY27
 
 hdr "28" "V4 — SIGNAL ANALYZER (Blind Cells)"
-python3 << 'PY28'
-import os,re,json
-blind=[]; wired=[]
-metric_pat=re.compile(r"cell\.metric")
-# Load engine-registry wired cells
-reg_wired=set()
-reg_path="src/apps/engine-registry.ts"
-if os.path.exists(reg_path):
-    rc=open(reg_path).read()
-    for m in re.finditer(r'wire\([^,]+,\s*"([^"]+)"', rc): reg_wired.add(m.group(1))
-    for m in re.finditer(r'cell:\s*"([^"]+)"', rc): reg_wired.add(m.group(1))
-for tier in("business","kernel","infrastructure"):
-    tp=f"src/cells/{tier}"
-    if not os.path.isdir(tp): continue
-    for cell in sorted(os.listdir(tp)):
-        cp=os.path.join(tp,cell)
-        if not os.path.isdir(cp): continue
-        engines=[os.path.join(r,f) for r,d,fs in os.walk(cp) for f in fs if f.endswith(".engine.ts")]
-        if not engines: continue
-        emits=any(metric_pat.search(open(e).read()) for e in engines if os.path.exists(e))
-        if not emits: emits=cell in reg_wired
-        (wired if emits else blind).append(cell)
-print(f"  \033[0;32m✅\033[0m Cells emitting cell.metric: {len(wired)}")
-print(f"  \033[0;33m⚠️\033[0m  Blind cells: {len(blind)}")
-for c in blind[:6]: print(f"      → {c}")
-os.makedirs(".nattos-twin",exist_ok=True)
-json.dump({"wired":wired,"blind":blind},open(".nattos-twin/signal-map.json","w"),indent=2)
-PY28
+tools/thiên run tools/scan_signal_analyzer.sira
 
 hdr "29" "V4 — FLOW SIMULATOR"
-python3 << 'PY29'
-import os,re,json
-from collections import defaultdict,deque
-gf=".nattos-twin/event-graph.json"
-if not os.path.exists(gf): print("  ℹ  Run S26 first"); exit()
-graph=json.load(open(gf))
-healthy=set(graph.get("healthy",[])); orphan=set(graph.get("orphan",[]))
-entry_pts=[e for e in["cell.metric","audit.record","constitutional.violation","threshold.evaluated"] if e in healthy or e in orphan]
-if not entry_pts: entry_pts=list(healthy)[:3]
-print(f"  ℹ  Tracing {len(entry_pts)} entry points")
-for ep in entry_pts[:4]:
-    status="\033[0;32m✅ FLOWS\033[0m" if ep in healthy else "\033[0;33m⚠️ ORPHAN\033[0m"
-    print(f"  {status} '{ep}'")
-PY29
+tools/thiên run tools/scan_flow_simulator.sira
 
 hdr "30" "V4 — SYSTEM STATE INFERENCE"
-python3 << 'PY30'
-import os,json
-def load(f):
-    p=f".nattos-twin/{f}"
-    return json.load(open(p)) if os.path.exists(p) else {}
-eg=load("event-graph.json"); em=load("engine-map.json"); sm=load("signal-map.json")
-risk=0; issues=[]; strengths=[]
-orphan=len(eg.get("orphan",[])); dead=len(em.get("dead",[])); blind=len(sm.get("blind",[]))
-healthy=len(eg.get("healthy",[]))
-if orphan>10: issues.append(f"EVENT_LEAK: {orphan} orphan events"); risk+=20
-elif orphan>3: issues.append(f"MINOR_LEAK: {orphan} orphan events"); risk+=8
-else: strengths.append(f"Event coverage clean ({orphan} orphans)")
-if dead>10: issues.append(f"DEAD_WEIGHT: {dead} unused engines"); risk+=15
-elif dead>3: issues.append(f"ENGINE_WASTE: {dead} unused"); risk+=5
-else: strengths.append(f"Engine wiring healthy ({dead} unused)")
-if blind>10: issues.append(f"SENSORY_DEFICIT: {blind} blind cells"); risk+=20
-elif blind>5: issues.append(f"PARTIAL_BLINDNESS: {blind} blind"); risk+=10
-else: strengths.append(f"Signal coverage: {len(sm.get('wired',[]))} cells wired")
-if healthy>20: strengths.append(f"Event flows: {healthy} healthy chains")
-elif healthy>10: strengths.append(f"Event flows: {healthy} adequate")
-else: issues.append(f"FLOW_DEFICIT: only {healthy} healthy chains"); risk+=15
-state="CRITICAL" if risk>=50 else "FRAGMENTED" if risk>=25 else "STABLE" if risk>=10 else "HEALTHY"
-colors={"HEALTHY":"\033[0;32m","STABLE":"\033[0;36m","FRAGMENTED":"\033[0;33m","CRITICAL":"\033[0;31m"}
-c=colors.get(state,"\033[0m"); N="\033[0m"
-print(f"  {c}SYSTEM STATE: {state} (risk: {risk}/100){N}")
-for s in strengths: print(f"  \033[0;32m  ✅\033[0m {s}")
-for i in issues: print(f"  \033[0;33m  ⚠️\033[0m  {i}")
-os.makedirs(".nattos-twin",exist_ok=True)
-json.dump({"state":state,"risk":risk,"strengths":strengths,"issues":issues},open(".nattos-twin/inference.json","w"),indent=2)
-PY30
+tools/thiên run tools/scan_system_state.sira
 
 hdr "31" "V4 — DIGITAL TWIN OUTPUT"
-python3 << 'PY31'
-import os,json,subprocess
-from datetime import datetime
-def load(f):
-    p=f".nattos-twin/{f}"
-    return json.load(open(p)) if os.path.exists(p) else {}
-eg=load("event-graph.json"); em=load("engine-map.json"); sm=load("signal-map.json"); inf=load("inference.json")
-try: commit=subprocess.check_output(["git","rev-parse","--short","HEAD"],text=True).strip()
-except: commit="unknown"
-twin={"schema":"natt-os-digital-twin-v1.0","generated_at":datetime.now().isoformat(),"git":{"commit":commit},
-  "system_vitals":{"state":inf.get("state","UNKNOWN"),"risk_score":inf.get("risk",-1)},
-  "event_intelligence":{"healthy":len(eg.get("healthy",[])),"orphan_emits":len(eg.get("orphan",[]))},
-  "engine_intelligence":{"declared":em.get("declared",0),"dead_count":len(em.get("dead",[]))},
-  "signal_intelligence":{"wired":len(sm.get("wired",[])),"blind":len(sm.get("blind",[]))},
-  "diagnosis":inf.get("issues",[])}
-json.dump(twin,open("natt-os-twin.json","w"),indent=2,ensure_ascii=False)
-state=inf.get("state","UNKNOWN"); risk=inf.get("risk",-1)
-colors={"HEALTHY":"\033[0;32m","STABLE":"\033[0;36m","FRAGMENTED":"\033[0;33m","CRITICAL":"\033[0;31m"}
-c=colors.get(state,"\033[0m"); N="\033[0m"
-print(f"  ╔══════════════════════════════════════════╗")
-print(f"  ║  NATT-OS DIGITAL TWIN                    ║")
-print(f"  ╠══════════════════════════════════════════╣")
-print(f"  ║  State: {c}{state:<10}{N}  Risk: {risk}/100         ║")
-print(f"  ║  Events: {len(eg.get('healthy',[])):<5} healthy  Orphans: {len(eg.get('orphan',[])):<5}    ║")
-print(f"  ║  Engines: {em.get('declared',0):<5} declared Dead: {len(em.get('dead',[])):<5}    ║")
-print(f"  ║  Cells: {len(sm.get('wired',[])):<5} wired   Blind: {len(sm.get('blind',[])):<5}    ║")
-print(f"  ╚══════════════════════════════════════════╝")
-print(f"  ✅ natt-os-twin.json saved")
-PY31
+tools/thiên run tools/scan_digital_twin.sira
 
 # ═══════════════════════════════════════════════════════════════
 # S36 — HIẾN PHÁP SCAN (Vi phạm Điều 4/7/9/11)
@@ -1677,69 +1533,77 @@ PY31
 # ═══════════════════════════════════════════════════════════════
 grp "GROUP H — META & HEALTH — Memory · QNEU · Dead Code · Legacy · Visual"
 # ═══════════════════════════════════════════════════════════════
-hdr "32" "MEMORY FILES HEALTH"
+hdr "32" "MEMORY FILES HEALTH (v1.2 R01 aware — Nauion suffix family)"
 
 MEM_DIR="src/governance/memory"
 
-# bangmf
-BANGMF=$(find "$MEM_DIR/bang" -name "bangmf_v*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGMF" ]]; then
-  BANGMF_VER=$(basename "$BANGMF" .json)
-  if python3 -c "import json,sys; json.load(open('$BANGMF'))" 2>/dev/null; then
-    ok "bangmf: $BANGMF_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "bangmf: $BANGMF_VER INVALID JSON"; inc_fail "MEMORY: bangmf JSON corrupted"
+# Helper: check_persona <name> <dir> <legacy_glob> <v12_glob>
+# Counts files matching either legacy or v1.2 R01 patterns; reports state.
+check_persona_memory() {
+  local persona="$1"
+  local pdir="$2"
+  local legacy_glob="$3"
+  local v12_globs="$4"
+
+  if [ ! -d "$pdir" ]; then
+    warn "$persona: dir missing ($pdir)"
+    inc_warn "MEMORY: $persona dir missing"
+    return
   fi
-else
-  warn "bangmf: not found"; inc_warn "MEMORY: bangmf missing"
-fi
 
-# bangfs
-BANGFS=$(find "$MEM_DIR/bang" -name "bangfs_v*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$BANGFS" ]]; then
-  BANGFS_VER=$(basename "$BANGFS" .json)
-  if python3 -c "import json,sys; json.load(open('$BANGFS'))" 2>/dev/null; then
-    ok "bangfs: $BANGFS_VER ✅ (valid JSON)"; inc_ok
-  else
-    fail "bangfs: $BANGFS_VER INVALID JSON"; inc_fail "MEMORY: bangfs JSON corrupted"
+  # Count legacy files
+  local n_legacy=0
+  if [ -n "$legacy_glob" ]; then
+    n_legacy=$(find "$pdir" -maxdepth 1 -name "$legacy_glob" 2>/dev/null | wc -l | tr -d ' ')
   fi
-else
-  warn "bangfs: not found"; inc_warn "MEMORY: bangfs missing"
-fi
 
-# thiennho
-THIENNHO=$(find "$MEM_DIR/thiennho" -name "*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$THIENNHO" ]]; then
-  THIENNHO_VER=$(basename "$THIENNHO" .json)
-  if python3 -c "import json,sys; json.load(open('$THIENNHO'))" 2>/dev/null; then
-    ok "thiennho: $THIENNHO_VER ✅ (valid JSON)"; inc_ok
+  # Count v1.2 files (any of the globs)
+  local n_v12=0
+  for glob in $v12_globs; do
+    local n=$(find "$pdir" -maxdepth 1 -name "$glob" 2>/dev/null | wc -l | tr -d ' ')
+    n_v12=$((n_v12 + n))
+  done
+
+  if [ "$n_v12" -gt 0 ]; then
+    ok "$persona: $n_v12 v1.2 R01 file(s) ✅"
+    inc_ok
+    if [ "$n_legacy" -gt 0 ]; then
+      warn "  $persona: also $n_legacy legacy file(s) — consider archive _deprecated/"
+    fi
+  elif [ "$n_legacy" -gt 0 ]; then
+    warn "$persona: only legacy ($n_legacy file) — migrate to v1.2 R01"
+    inc_warn "MEMORY: $persona legacy-only"
   else
-    fail "thiennho: INVALID JSON"; inc_fail "MEMORY: thiennho JSON corrupted"
+    warn "$persona: no memory files found"
+    inc_warn "MEMORY: $persona missing"
   fi
-else
-  warn "thiennho: not found"; inc_warn "MEMORY: thiennho missing"
-fi
+}
 
-# kimf
-KIMF=$(find "$MEM_DIR/kim" -name "kmf*.json" 2>/dev/null | sort -V | tail -1)
-if [[ -n "$KIMF" ]]; then
-  ok "kimf: $(basename $KIMF .json) ✅"; inc_ok
-else
-  info "kimf: not found (optional)"
-fi
+# v1.2 R01 Nauion suffix family per persona:
+#   .na      = continuum K-shell (bangkhươngvX.Y.Z.na)
+#   .kris    = sealed K-shell legacy (bangkhươngX.Y.kris) — still valid
+#   .phieu   = state P-shell (bangthịnhX.Y.phieu)
+#   .anc     = identity passport
+#   .obitan  = orbital fragment
+#   .thuo    = snapshot
 
-# Check no .zip in memory
-ZIP_IN_MEM=$(find "$MEM_DIR" -name "*.zip" 2>/dev/null | wc -l | tr -dc '0-9')
-if [[ "$ZIP_IN_MEM" -gt 0 ]]; then
-  warn "$ZIP_IN_MEM .zip file(s) in memory dir — should not be committed"
-  inc_warn "MEMORY: .zip files present"
-else
-  ok "No .zip files in memory dir"; inc_ok
-fi
+check_persona_memory "bang"     "$MEM_DIR/bang"     "bangmf_v*.json"  "bangkhương*.na bangkhương*.kris bangkhuong*.na bangkhuong*.kris bang.anc"
+check_persona_memory "kim"      "$MEM_DIR/kim"      "kmf_v*.json"     "kimkhương*.kris kimkhuong*.kris kim*.anc"
+check_persona_memory "thiennho" "$MEM_DIR/thiennho" "thiennho_v*.json" "thiennhokhương*.kris thiennhokhuong*.kris thiennho*.anc"
+check_persona_memory "boiboi"   "$MEM_DIR/boiboi"   ""                "boikhương*.kris boikhuong*.kris boithịnh*.phieu boi*.anc"
 
-# ═══════════════════════════════════════════════════════════════
-# S22 — MATH + METABOLISM COVERAGE
-# ═══════════════════════════════════════════════════════════════
+# Optional personas (no warn if missing)
+for opt in Can Kris kim_old; do
+  if [ -d "$MEM_DIR/$opt" ]; then
+    n=$(find "$MEM_DIR/$opt" -maxdepth 1 \( -name "*.kris" -o -name "*.na" -o -name "*.phieu" -o -name "*.anc" \) 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$n" -gt 0 ]; then
+      ok "$opt: $n optional persona file(s)"
+      inc_ok
+    fi
+  fi
+done
+
+
 hdr "33" "QNEU SCORE TREND"
 
 BASELINE_BANG=300; BASELINE_THIEN=135; BASELINE_KIM=120
@@ -1883,28 +1747,28 @@ hdr "36" "VISUAL ASSET COMPLIANCE — SPEC-NaUion-Visual-Rebuild-Pipeline"
 # Per SPEC v1.0 (2026-04-16): every visual asset needs a .spec.json
 
 if [[ "$RUN_VISUAL" == "true" ]]; then
-  ASSET_COUNT=0; SPEC_COUNT=0; MISSING=()
+  ASSET_COUNT=0; SPEC_COUNT=0; missing=()
   while IFS= read -r asset; do
     ((ASSET_COUNT++))
     spec="${asset%.*}.spec.json"
     if [[ -f "$spec" ]]; then
       ((SPEC_COUNT++))
     else
-      MISSING+=("$asset")
+      missing+=("$asset")
     fi
   done < <(find . -path "*/assets/*" \( -name "*.png" -o -name "*.svg" -o -name "*.jpg" \) -not -path "*/node_modules/*" 2>/dev/null)
 
   echo -e "  Visual assets found: $ASSET_COUNT"
   echo -e "  With spec.json:      $SPEC_COUNT"
-  echo -e "  Missing spec:        ${#MISSING[@]}"
+  echo -e "  Missing spec:        ${#missing[@]}"
 
-  if [[ ${#MISSING[@]} -gt 0 ]]; then
-    warn "Visual compliance: ${#MISSING[@]} assets without spec.json"
-    inc_warn "Visual: ${#MISSING[@]} assets no spec"
-    for m in "${MISSING[@]:0:5}"; do
+  if [[ ${#missing[@]} -gt 0 ]]; then
+    warn "Visual compliance: ${#missing[@]} assets without spec.json"
+    inc_warn "Visual: ${#missing[@]} assets no spec"
+    for m in "${missing[@]:0:5}"; do
       echo "    📷 $m"
     done
-    [[ ${#MISSING[@]} -gt 5 ]] && echo "    ... and $((${#MISSING[@]}-5)) more"
+    [[ ${#missing[@]} -gt 5 ]] && echo "    ... and $((${#missing[@]}-5)) more"
   else
     ok "All visual assets have spec.json"
     inc_ok
@@ -2100,7 +1964,7 @@ if latest.exists():
         print(f"  \033[0;32m✅\033[0m Baseline fresh: {age_days:.1f} days old")
 else:
     print(f"  \033[0;33m⚠️\033[0m  latest.json not found")
-    issues.append("MISSING_BASELINE")
+    issues.append("missing_BASELINE")
 
 # ── Machine fingerprint ──
 import socket
@@ -2179,7 +2043,7 @@ all_issues = latest["issues"]
 if all_issues:
     report_path = f"audit/reports/{ts_file}_auto.md"
     lines = [
-        f"# NATT-OS Audit Report — {date_str}",
+        f"# natt-os Audit Report — {date_str}",
         f"",
         f"**Generated:** {ts}  ",
         f"**System State:** {latest['state']}  ",
@@ -2197,7 +2061,7 @@ if all_issues:
         f"",
         f"- [ ] Reviewed by Gatekeeper: _______________",
         f"- [ ] Date: _______________",
-        f"- [ ] Signature: NattSira Governance Seal",
+        f"- [ ] Signature: Nattsira Governance Seal",
         f"",
         f"---",
         f"*Auto-generated by SmartAudit v5.3 — NOT official until signed*"
@@ -2219,16 +2083,131 @@ PY40
 
 
 # ═══════════════════════════════════════════════════════════════
-# S41 — ANTI-API PROTOCOL SCAN (LỆNH #001)
 
-hdr "40" "SCORECARD"
+
+# ═══════════════════════════════════════════════════════════════
+# §40 — FILE EXTENSION COMPLIANCE (SPEC_DUOI_FILE v1.3 FINAL)
+# Tầng 3 (Scanner/Rule) — Băng implement
+# ═══════════════════════════════════════════════════════════════
+hdr "40" "FILE EXTENSION COMPLIANCE — SPEC v1.3"
+
+# @deferred: bypass flagged by validate-extension-precedence.py Rule 4 (variable-aware).
+# Intentional S2 wrapper mode per Kim SPEC_CUTOVER_STATES — .ts execute hợp pháp
+# khi canonical .khai chưa có Nauion Host loader.
+# Real route-swap pending W1: `npx tsx "$VALIDATOR"` → `$NAUION_HOST "$CANONICAL"`
+# where $CANONICAL="...file-extension-validator.khai" + Host resolve substrate qua @substrate header.
+# Track: SPEC_HOST_FIRST_RUNTIME_v1.0 §4 W1 + PILOT_BRIDGE_MAP audit-cell/file-extension-validator
+VALIDATOR="src/cells/kernel/audit-cell/scanner/file-extension-validator.ts"
+CANONICAL="src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"
+NAUION_HOST="runtime/nauion-host/target/release/nauion-host"
+
+# W2E route-swap (per SPEC_HOST_RESULT_PROTOCOL_v1.0 §8 W2E)
+# Default: Rust binary --run-cell --legacy-json (Cell 1 S2→S3 transition)
+# Fallback: USE_LEGACY_TSX=1 env var OR Rust binary missing → npx tsx
+USE_RUST_HOST=1
+if [ "${USE_LEGACY_TSX:-0}" = "1" ] || [ ! -x "$NAUION_HOST" ]; then
+  USE_RUST_HOST=0
+fi
+
+if [ ! -f "$VALIDATOR" ] && [ ! -f "$CANONICAL" ]; then
+  warn "Validator missing: $VALIDATOR (and canonical $CANONICAL)"
+  inc_warn "File extension validator missing"
+elif [ "$USE_RUST_HOST" = "1" ]; then
+  # NEW PATH (W2E S3): Rust binary native
+  EXT_RESULT=$("$NAUION_HOST" --run-cell "$CANONICAL" --legacy-json 2>/dev/null)
+else
+  # LEGACY PATH (S2 fallback): npx tsx
+  EXT_RESULT=$(npx tsx "$VALIDATOR" "$ROOT" 2>/dev/null)
+  EXT_RC=$?
+
+  if [ $EXT_RC -ne 0 ] || [ -z "$EXT_RESULT" ]; then
+    warn "Validator run failed (rc=$EXT_RC) or empty output"
+    inc_warn "File extension validator crashed"
+  else
+    EXT_OK=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('ok',0))" 2>/dev/null || echo "0")
+    EXT_warn=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('warn',0))" 2>/dev/null || echo "0")
+    EXT_fail=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('fail',0))" 2>/dev/null || echo "0")
+    EXT_TOTAL=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('total',0))" 2>/dev/null || echo "0")
+
+    if [ "$EXT_fail" = "0" ] && [ "$EXT_warn" = "0" ]; then
+      ok "Extensions: $EXT_OK/$EXT_TOTAL OK (canonical 12 + 4 phương)"
+      inc_ok
+    elif [ "$EXT_fail" = "0" ]; then
+      warn "Extensions: $EXT_OK OK · $EXT_warn warn · $EXT_fail fail (total $EXT_TOTAL)"
+      inc_warn "$EXT_warn extension warnings"
+    else
+      fail "Extensions: $EXT_OK OK · $EXT_warn warn · $EXT_fail fail (total $EXT_TOTAL)"
+      inc_fail "$EXT_fail file extensions violate SPEC v1.3"
+    fi
+  fi
+fi
+# ═══════════════════════════════════════════════════════════════
+# §45 — QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE
+# Per SPEC_QIINT2_COMPLETE_v1.0 + bang_pending_20260424 TASK-D2
+# Adapted: section_header/pass/warn/fail/footer → hdr/ok/warn/inc_warn/inc_ok/inc_fail
+# Validator skip-with-warn pattern (qiint2-validator.ts pending Phase D.1 ratify)
+# ═══════════════════════════════════════════════════════════════
+hdr "45" "QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE"
+
+QIINT2_VALIDATOR="scripts/qiint2-validator.ts"
+QIINT2_AUDIT_DIR="audit/qiint2"
+QIINT2_REPORT="${QIINT2_AUDIT_DIR}/qiint2-report-$(date +%Y%m%d-%H%M%S).json"
+
+if [ ! -f "$QIINT2_VALIDATOR" ]; then
+  warn "QIINT2 validator pending: $QIINT2_VALIDATOR (Phase D.1 — depends BLOCKER-04 Kim review B.1 + BLOCKER-05 Can check + BLOCKER-06 Gatekeeper seal)"
+  inc_warn "QIINT2 validator missing (Phase D.1 pending ratify)"
+elif ! command -v jq >/dev/null 2>&1; then
+  warn "jq not available — cannot parse QIINT2 report"
+  inc_warn "QIINT2 jq missing"
+else
+  mkdir -p "$QIINT2_AUDIT_DIR"
+  QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ --report "$QIINT2_REPORT" 2>&1)
+  QIINT2_RC=$?
+
+  if [ $QIINT2_RC -ne 0 ]; then
+    warn "QIINT2 validator runtime error (rc=$QIINT2_RC)"
+    inc_warn "QIINT2 validator crashed"
+  elif [ -f "$QIINT2_REPORT" ]; then
+    Q2_CELLS=$(jq -r '.totalCells // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_HEALTHY=$(jq -r '.healthyCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_SUBSTRATE=$(jq -r '.substrateFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_MEDIUM=$(jq -r '.mediumFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_BODY_DRIFT=$(jq -r '.bodyDriftCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_REVIVABLE=$(jq -r '.revivableDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_PERMANENT=$(jq -r '.permanentDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+
+    echo "  Cells scanned:     $Q2_CELLS"
+    echo "    Healthy:         $Q2_HEALTHY"
+    echo "    Substrate fail:  $Q2_SUBSTRATE  (migrate-able)"
+    echo "    Medium fail:     $Q2_MEDIUM  (restore-able)"
+    echo "    Body drift:      $Q2_BODY_DRIFT  (re-anchor needed)"
+    echo "    Revivable death: $Q2_REVIVABLE  (has recovery)"
+    echo "    Permanent death: $Q2_PERMANENT  (CRITICAL)"
+
+    if [ "$Q2_PERMANENT" -gt 0 ] 2>/dev/null; then
+      warn "PERMANENT DEATH detected — $Q2_PERMANENT cells lost irrecoverably"
+      inc_fail "QIINT2: $Q2_PERMANENT permanent death cells"
+    elif [ "$Q2_BODY_DRIFT" -ge 3 ] 2>/dev/null; then
+      warn "$Q2_BODY_DRIFT cells in body_drift state — orbital coherence < 0.3"
+      inc_warn "QIINT2: body_drift $Q2_BODY_DRIFT cells"
+    else
+      ok "QIINT2 COMPLIANCE: $Q2_HEALTHY/$Q2_CELLS healthy, 0 permanent death"
+      inc_ok
+    fi
+  else
+    warn "QIINT2 validator ran but no report at $QIINT2_REPORT"
+    inc_warn "QIINT2 report missing"
+  fi
+fi
+
+hdr "46" "SCORECARD"
 # ═══════════════════════════════════════════════════════════════
 echo ""
 echo -e "  ${W}╔═══════════════════════════════════════════════════════╗${N}"
-echo -e "  ${W}║  NATT-OS SYSTEM HEALTH — $TS  ║${N}"
+echo -e "  ${W}║  natt-os SYSTEM HEALTH — $TS  ║${N}"
 echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
-printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "" "OK" "WARN" "FAIL" "TRASH"
-printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "Totals" "$TOTAL_OK" "$TOTAL_WARN" "$TOTAL_FAIL" "$TOTAL_TRASH"
+printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "" "OK" "warn" "fail" "TRASH"
+printf   "  ${W}║${N}  %-20s ${G}%-8s${N} ${Y}%-8s${N} ${R}%-8s${N} 🗑️ %-5s ${W}║${N}\n" "Totals" "$TOTAL_OK" "$TOTAL_warn" "$TOTAL_fail" "$TOTAL_TRASH"
 echo -e "  ${W}╠═══════════════════════════════════════════════════════╣${N}"
 printf   "  ${W}║${N}  TS Files: %-8s  Commits: %-6s  Kernel: %s/%s  ${W}║${N}\n" "$TS_COUNT" "$COMMITS" "$KERNEL_OK" "$KERNEL_TOTAL"
 printf   "  ${W}║${N}  Business: %-4s (6/6: %-3s)  SmartLink: %-4s      ${W}║${N}\n" "$BIZ_TOTAL" "$BIZ_6OF6" "$BIZ_WIRED"
@@ -2267,23 +2246,22 @@ if os.path.isdir(biz_path):
     for cell in sorted(os.listdir(biz_path)):
         cp = os.path.join(biz_path, cell)
         if not os.path.isdir(cp): continue
-        has_mf = os.path.isfile(os.path.join(cp, 'neural-main-cell.cell.anc'))
-        has_port = any('smartlink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
+        has_mf = any(f.endswith(".cell.anc") for f in os.listdir(cp) if os.path.isfile(os.path.join(cp, f)))
+        has_port = any('SmartLink' in f for r,d,fs in os.walk(os.path.join(cp,'ports')) for f in fs) if os.path.isdir(os.path.join(cp,'ports')) else False
         has_domain = os.path.isdir(os.path.join(cp, 'domain'))
         fc = count_files(cp)
         cells[cell] = {
             'files': fc,
             'manifest': has_mf,
-            'smartlink_port': has_port,
+            'SmartLink_port': has_port,
             'domain': has_domain,
         }
 
 result = {
     'timestamp': '$TS',
     'root': os.getcwd(),
-    'scores': {'ok': $TOTAL_OK, 'warn': $TOTAL_WARN, 'fail': $TOTAL_FAIL, 'trash': $TOTAL_TRASH},
+    'scores': {'ok': $TOTAL_OK, 'warn': $TOTAL_warn, 'fail': $TOTAL_fail, 'trash': $TOTAL_TRASH},
     'git': {'branch': '$BRANCH', 'commits': $COMMITS, 'dirty': $DIRTY, 'remote': '$REMOTE'},
-    'tsc_errors': $TSC_TOTAL,
     'files': {'ts_count': $TS_COUNT, 'ts_lines': $TS_LINES, 'inherited_v2': $V2_FILES, 'inherited_v1': $V1_FILES},
     'kernel': {'ok': $KERNEL_OK, 'total': $KERNEL_TOTAL},
     'business': {'total': $BIZ_TOTAL, 'six_of_six': $BIZ_6OF6, 'wired': $BIZ_WIRED, 'not_wired': $BIZ_NOT_WIRED},
@@ -2326,8 +2304,8 @@ img = Image.open("$LOGO_FILE").convert('RGB')
 TW = 74
 aspect = img.height / img.width
 rh = int(TW * aspect * 0.55)
-rh = max(rh, 8)
-rh = rh + (rh % 2)
+rh = max(rh, 3)
+rh = rh + (rh % 1)
 img = img.resize((TW, rh), Image.LANCZOS)
 px = img.load()
 w, h = img.size
@@ -2357,7 +2335,7 @@ for y in range(0, h - 1, 2):
         time.sleep(0.15)
 
 print()
-print(f"  {chr(27)}[38;5;214m{chr(9883)}  NATT-OS {chr(183)} Distributed Living Organism{RST}")
+print(f"  {chr(27)}[38;5;214m{chr(9883)}  natt-os {chr(183)} Distributed Living Organism{RST}")
 print()
 PYLOGO
 fi

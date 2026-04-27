@@ -1,0 +1,74 @@
+# sira dns smoke runner evidence — 20260425
+
+status: pass
+created_at: 2026-04-25T17:26:20.843Z
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+runner này khởi động gateway tạm thời, gọi 127.0.0.1 với host header theo smoke matrix, rồi ghi lại status và reason.
+
+runner này kiểm hành vi route gate, không kiểm siraSign frame validation và không wire mạch heyna.
+
+---
+
+## 2. result table
+
+| host | path | expected | observed | http_status | reason | verdict | note | body_preview |
+|---|---|---|---|---:|---|---|---|---|
+| core.sira | /api/health | allow | allow | 200 | not_denied_by_route_gate | ok | core health route | {   "ok": true,   "host": "core.sira",   "root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",   "tam_root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-o |
+| core.sira | /admin | deny | deny | 403 | forbidden_path | ok | forbidden admin route | {   "ok": false,   "error": "sira route gate deny",   "host": "core.sira",   "path": "/admin",   "reason": "forbidden_path" } |
+| apps.sira | / | allow | allow | 200 | not_denied_by_route_gate | ok | apps root route | <!doctype html> <html lang="vi"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <title>sira app hub</title> < |
+| apps.sira | /api/secret | deny | deny | 403 | forbidden_path | ok | forbidden app secret route | {   "ok": false,   "error": "sira route gate deny",   "host": "apps.sira",   "path": "/api/secret",   "reason": "forbidden_path" } |
+| mach.sira | /mach/heyna | allow | allow | 200 | not_denied_by_route_gate | ok | mạch heyna route | data: {"type":"mach.heyna.connected","payload":{"host":"mach.sira","at":"2026-04-25T17:26:20.432Z"}}   |
+| mach.sira | /identity | deny | deny | 403 | forbidden_path | ok | mach identity forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "mach.sira",   "path": "/identity",   "reason": "forbidden_path" } |
+| audit.sira | /api/audit | allow | allow | 200 | not_denied_by_route_gate | ok | audit read route | {   "ok": true,   "total": 4,   "events": [     {       "audit_id": "audit_7708dbff37f1",       "timestamp": "2026-04-25T17:26:19.627Z",       "action": "gatewa |
+| audit.sira | /audit/write-direct | deny | deny | 403 | forbidden_path | ok | audit direct write forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "audit.sira",   "path": "/audit/write-direct",   "reason": "forbidden_path" } |
+| render.sira | /render | allow | allow | 200 | not_denied_by_route_gate | ok | render route | {   "ok": true,   "message": "NATT Domain Gateway",   "host": "render.sira",   "routes": [     "audit.natt",     "tam.natt",     "nauion.natt",     "core.natt", |
+| render.sira | /render/seal | deny | deny | 403 | forbidden_path | ok | render seal forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "render.sira",   "path": "/render/seal",   "reason": "forbidden_path" } |
+| tam.sira | /health | allow | allow | 404 | not_denied_by_route_gate | ok | tam health route | {   "ok": false,   "error": "not found",   "path": "/health" } |
+| tam.sira | /finance/secret | deny | deny | 403 | forbidden_path | ok | tam finance secret forbidden | {   "ok": false,   "error": "sira route gate deny",   "host": "tam.sira",   "path": "/finance/secret",   "reason": "forbidden_path" } |
+| unknown.sira | /api/health | deny | deny | 403 | unknown_host | ok | unknown host deny | {   "ok": false,   "error": "sira route gate deny",   "host": "unknown.sira",   "path": "/api/health",   "reason": "unknown_host" } |
+| localhost | /api/health | deny | deny | 403 | direct_localhost_bypass | ok | localhost is transport target, not trusted host | {   "ok": false,   "error": "sira route gate deny",   "host": "localhost",   "path": "/api/health",   "reason": "direct_localhost_bypass" } |
+| 127.0.0.1 | /api/health | deny | deny | 403 | direct_localhost_bypass | ok | loopback is transport target, not trusted host | {   "ok": false,   "error": "sira route gate deny",   "host": "127.0.0.1",   "path": "/api/health",   "reason": "direct_localhost_bypass" } |
+| mail.sira | / | deny | deny | 403 | unknown_host | ok | mail host is record layer, not browser route | {   "ok": false,   "error": "sira route gate deny",   "host": "mail.sira",   "path": "/",   "reason": "unknown_host" } |
+| smtp.sira | / | deny | deny | 403 | unknown_host | ok | smtp host is record layer, not browser route | {   "ok": false,   "error": "sira route gate deny",   "host": "smtp.sira",   "path": "/",   "reason": "unknown_host" } |
+| imap.sira | / | deny | deny | 403 | unknown_host | ok | imap host is record layer, not browser route | {   "ok": false,   "error": "sira route gate deny",   "host": "imap.sira",   "path": "/",   "reason": "unknown_host" } |
+
+---
+
+## 3. child output
+
+```text
+
+========================================================================================
+natt domain gateway — local routing
+========================================================================================
+ROOT       : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+PORT       : 39991
+AUDIT HTML : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html
+TAM ROOT   : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server
+NAUION ROOT: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server
+
+OPEN:
+  http://audit.sira:39991
+  http://tam.sira:39991
+  http://nauion.sira:39991
+  http://core.sira:39991
+  http://docs.sira:39991
+  http://mach.sira:39991/mach/heyna
+
+Stop: Ctrl + C
+========================================================================================
+
+
+
+```
+
+---
+
+## 4. next
+
+có thể đi tiếp sang hardening route gate hoặc siraSign frame validation.

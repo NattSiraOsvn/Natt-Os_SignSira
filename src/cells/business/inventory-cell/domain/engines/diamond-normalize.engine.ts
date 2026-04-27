@@ -1,5 +1,5 @@
 /**
- * NATT-OS Diamond Normalize Engine v1.0
+ * natt-os Diamond Normalize Engine v1.0
  * Port từ Doc 6 — diamondNormalizeV2() + tinhHoaHong()
  * Target: inventory-cell/domain/engines/
  *
@@ -90,21 +90,21 @@ export function diamondNormalizeV2(
     if (!carat) carat = sizeToCarat(sizeLy);
   }
 
-  if (!carat && !sizeLy) errors.push('MISSING_SIZE_CARAT');
+  if (!carat && !sizeLy) errors.push('missing_SIZE_CARAT');
 
   // ── COLOR ─────────────────────────────────────────────────────────────
   let color: ColorGrade | null = null;
   for (const c of COLOR_GRADES) {
     if (new RegExp(`\\b${c}\\b`).test(text)) { color = c; break; }
   }
-  if (!color) errors.push('MISSING_COLOR');
+  if (!color) errors.push('missing_COLOR');
 
   // ── CLARITY ───────────────────────────────────────────────────────────
   let clarity: ClarityGrade | null = null;
   for (const cl of [...CLARITY_GRADES].reverse()) { // IF first (longest match)
     if (text.includes(cl)) { clarity = cl; break; }
   }
-  if (!clarity) errors.push('MISSING_CLARITY');
+  if (!clarity) errors.push('missing_CLARITY');
 
   // ── CUT / POLISH / SYMMETRY ───────────────────────────────────────────
   const cutMap: Record<string, string> = {

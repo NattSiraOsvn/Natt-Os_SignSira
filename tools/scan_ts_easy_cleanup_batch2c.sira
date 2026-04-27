@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = process.cwd();
+const report = path.join(ROOT, "docs", "runtime", "TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na");
+
+if (!fs.existsSync(report)) {
+  console.error("Missing report:", report);
+  process.exit(1);
+}
+
+const content = fs.readFileSync(report, "utf8");
+const required = [
+  "## 2. Summary",
+  "## 3. Easy Candidates",
+  "## 5. Full Classification",
+  "NEEDS_TRANSLATION_TO_sira"
+];
+
+const missing = required.filter(x => !content.includes(x));
+
+if (missing.length) {
+  console.error("TS CLEANUP BATCH2C SCAN validation: fail");
+  for (const x of missing) console.error(" - missing " + x);
+  process.exit(1);
+}
+
+console.log("TS CLEANUP BATCH2C SCAN validation: pass");
+console.log("scope=NEEDS_TRANSLATION_TO_sira scan only");
+console.log("mode=no rename, no code mutation");

@@ -1,12 +1,12 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
 import { ResolveLinkUseCase } from "../use-cases/ResolveLinkUseCase";
-import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
-import { SmartLinkEngine } from "../../domain/services/smartlink.engine";
-import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
-import { SmartLinkStabilizer } from "../../domain/services/smartlink.stabilizer";
+import { SmartLinkMappingEngine } from "../../domain/services/SmartLink-mapping.engine";
+import { SmartLinkEngine } from "../../domain/services/SmartLink.engine";
+import { SmartLinkGovernance } from "../../domain/services/SmartLink.governance";
+import { SmartLinkStabilizer } from "../../domain/services/SmartLink.stabilizer";
 import type { CellID } from "../../../../shared-kernel/shared.types";
-import type { FiberSummary } from "@/core/smartlink/smartlink.point";
+import type { FiberSummary } from "@/core/SmartLink/SmartLink.point";
 
 // ── Gossip state (module-level — giống SmartLinkEngine) ──────────
 const _gossipQueue: FiberSummary[] = [];

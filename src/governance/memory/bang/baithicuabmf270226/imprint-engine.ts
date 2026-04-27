@@ -444,7 +444,7 @@ export class ImprintEngine {
 }
 
 // ─────────────────────────────────────────────────────────
-// ERROR TYPES
+// error TYPES
 // ─────────────────────────────────────────────────────────
 
 export class ImprintError extends Error {

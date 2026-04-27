@@ -1,5 +1,5 @@
 /**
- * NATT-OS Pricing Cell — Gold Types & Market Prices
+ * natt-os Pricing Cell — Gold Types & Market Prices
  * Source: Bảng Giá 2025, Tâm Luxury
  *
  * Đơn vị giá: VNĐ/chỉ (1 chỉ = 3.75g)

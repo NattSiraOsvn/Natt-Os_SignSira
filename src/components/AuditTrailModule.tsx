@@ -172,7 +172,7 @@ const AuditTrailModule: React.FC<AuditTrailModuleProps> = ({ actionLogs, current
                </div>
                <div className="bg-black/60 p-8 rounded-[2.5rem] border border-white/5 relative z-10 shadow-inner">
                   <p className="text-sm text-gray-400 italic leading-relaxed font-light">
-                     "Thưa Anh Natt, Thiên đang bóc tách nhật ký vận hành thời gian thực. Hệ thống sử dụng thuật toán băm Shard Hash để đảm bảo mọi hành động của nhân sự đều không thể chối bỏ (Non-repudiation). Nếu Anh phát hiện truy cập bất thường từ Identity lạ, hãy thực hiện lệnh **SHIELD LOCK** ngay."
+                     "Thưa Anh Natt, thiên đang bóc tách nhật ký vận hành thời gian thực. Hệ thống sử dụng thuật toán băm Shard Hash để đảm bảo mọi hành động của nhân sự đều không thể chối bỏ (Non-repudiation). Nếu Anh phát hiện truy cập bất thường từ Identity lạ, hãy thực hiện lệnh **SHIELD LOCK** ngay."
                   </p>
                </div>
                <button className="mt-8 w-full py-4 bg-amber-500 text-black font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-amber-400 shadow-xl transition-all">Xuất Báo Cáo Tuân Thủ</button>

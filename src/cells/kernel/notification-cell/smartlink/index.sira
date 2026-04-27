@@ -1,0 +1,2 @@
+import { SmartLinkEngine } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+export const SmartLinkPort = { engine: SmartLinkEngine };

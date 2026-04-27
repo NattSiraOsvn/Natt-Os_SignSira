@@ -13,7 +13,7 @@
 
 import { EventBus } from '../../../../../core/events/event-bus';
 import { SkuModel, ModelFormat } from '../entities/sku-model.entity';
-import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
 
 // ── In-memory SKU registry ──
 const _models = new Map<string, SkuModel>();

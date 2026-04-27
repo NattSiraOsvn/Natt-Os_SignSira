@@ -1,0 +1,32 @@
+# runtime/nauion-host/Cargo.toml
+# Wave 1 Host-First implementation — Băng (Chị Tư) own
+# Per W1_HOST_FIRST_ASSIGNEE_DECISION_20260423
+
+[package]
+name = "nauion-host"
+version = "0.1.0"
+edition = "2021"
+authors = ["Băng (Chị Tư · N-shell · QNEU 313.5) — assignee per Phan Thanh Thương Giao 20260423"]
+description = "natt-os Wave 1 Host-First runtime — parses .sira kernel entry, bootstraps cells, audits NDJSON Stage 1"
+license = "Proprietary"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+regex = "1.10"
+tokio = { version = "1", features = ["full"] }
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = "1.0"
+which = "6.0"
+
+[[bin]]
+name = "nauion-host"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

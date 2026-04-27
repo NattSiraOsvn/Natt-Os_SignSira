@@ -1,0 +1,64 @@
+# siraSign frame guard matrix evidence — 20260425
+
+status: pass
+created_at: 2026-04-25T17:26:23.638Z
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. scope
+
+runner này kiểm response thật của frame guard sau route gate.
+
+đây là frame shape guard, chưa phải crypto signature verification.
+
+runner này không wire mạch heyna.
+
+---
+
+## 2. result table
+
+| case | host | path | expected_gate | expected_reason | observed_gate | observed_reason | http_status | verdict | body_preview |
+|---|---|---|---|---|---|---|---:|---|---|
+| low_route_no_frame | core.sira | /api/health | allow | not_denied_by_frame_guard | allow | not_denied_by_frame_guard | 200 | ok | {   "ok": true,   "host": "core.sira",   "root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC",   "tam_root": "/Users/thien/Desktop/Hồ Sơ SHTT/ natt-o |
+| missing_subject | core.sira | /field/probe | deny | missing_sira_subject | deny | missing_sira_subject | 403 | ok | {   "ok": false,   "error": "siraSign frame guard deny",   "host": "core.sira",   "path": "/field/probe",   "reason": "missing_sira_subject" } |
+| missing_boundary | core.sira | /field/probe | deny | missing_sira_boundary | deny | missing_sira_boundary | 403 | ok | {   "ok": false,   "error": "siraSign frame guard deny",   "host": "core.sira",   "path": "/field/probe",   "reason": "missing_sira_boundary" } |
+| missing_causation | core.sira | /field/probe | deny | missing_sira_causation | deny | missing_sira_causation | 403 | ok | {   "ok": false,   "error": "siraSign frame guard deny",   "host": "core.sira",   "path": "/field/probe",   "reason": "missing_sira_causation" } |
+| missing_signature | core.sira | /field/probe | deny | missing_sira_signature | deny | missing_sira_signature | 403 | ok | {   "ok": false,   "error": "siraSign frame guard deny",   "host": "core.sira",   "path": "/field/probe",   "reason": "missing_sira_signature" } |
+| frame_shape_pass | core.sira | /field/probe | allow | not_denied_by_frame_guard | allow | not_denied_by_frame_guard | 404 | ok | {   "ok": false,   "error": "not found",   "path": "/field/probe" } |
+
+---
+
+## 3. child output
+
+```text
+
+========================================================================================
+natt domain gateway — local routing
+========================================================================================
+ROOT       : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+PORT       : 39993
+AUDIT HTML : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/docs/ui/NaU_audit.html
+TAM ROOT   : /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server
+NAUION ROOT: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/NaUion-Server
+
+OPEN:
+  http://audit.sira:39993
+  http://tam.sira:39993
+  http://nauion.sira:39993
+  http://core.sira:39993
+  http://docs.sira:39993
+  http://mach.sira:39993/mach/heyna
+
+Stop: Ctrl + C
+========================================================================================
+
+
+
+```
+
+---
+
+## 4. next
+
+frame guard shape behavior đã có response evidence.

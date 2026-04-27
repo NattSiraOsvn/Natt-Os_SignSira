@@ -134,9 +134,9 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
             <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-8 bg-blue-500/5 border-blue-500/20">
                <div className="flex items-center gap-4 mb-6">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={isGenerating} />
-                  <h4 className="ai-sub-headline text-blue-400 italic">Thiên - Cố vấn Tài chính</h4>
+                  <h4 className="ai-sub-headline text-blue-400 italic">thiên - Cố vấn Tài chính</h4>
                </div>
-               <p className="text-[12px] text-gray-400 italic leading-relaxed font-light">"Thưa Anh Natt, Thiên khuyến nghị sử dụng mã tham chiếu (Ref) khớp với số Hợp đồng hoặc SNT sản phẩm để Kris có thể tự động đối soát dòng tiền tại module **Banking Processor**."</p>
+               <p className="text-[12px] text-gray-400 italic leading-relaxed font-light">"Thưa Anh Natt, thiên khuyến nghị sử dụng mã tham chiếu (Ref) khớp với số Hợp đồng hoặc SNT sản phẩm để Kris có thể tự động đối soát dòng tiền tại module **Banking Processor**."</p>
             </div>
          </div>
 
@@ -172,7 +172,7 @@ const PaymentHub: React.FC<PaymentHubProps> = ({ currentRole, currentPosition, l
               <div className="natt-cell-medal bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.03)] rounded-3xl transition-all p-20 flex flex-col items-center justify-center text-center opacity-20 border-dashed border-white/10 h-full">
                  <div className="text-[120px] mb-10 grayscale">📳</div>
                  <p className="text-2xl font-serif uppercase tracking-[0.4em]">Payment Node Ready</p>
-                 <p className="text-xs mt-4 uppercase font-black text-gray-500 tracking-[0.2em]">Cấu hình giao dịch để Thiên băm mã QR Omega.</p>
+                 <p className="text-xs mt-4 uppercase font-black text-gray-500 tracking-[0.2em]">Cấu hình giao dịch để thiên băm mã QR Omega.</p>
               </div>
             )}
 

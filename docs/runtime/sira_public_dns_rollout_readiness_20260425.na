@@ -1,0 +1,90 @@
+# sira public dns rollout readiness — 20260425
+
+status: readiness-manifested
+created_at: 2026-04-25 23:19:30
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. principle
+
+dns public chỉ được mở sau khi route gate, host guard, dns smoke, hardening matrix và sirasign frame guard đều pass.
+
+public dns không được bypass natt domain gateway.
+
+public dns không được expose admin route, secret route, audit write route hoặc internal route.
+
+public dns không được dùng wildcard mở rộng khi chưa có deny-by-default.
+
+---
+
+## 2. allowed public surface
+
+```text
+apps.sira      -> public app entry, allow only safe read/app routes
+mach.sira      -> mạch heyna transport entry, allow only /mach/heyna and approved transport routes
+render.sira    -> render pilot/read surface, deny seal/write route
+tam.sira       -> tenant fixture app surface, protected by gateway
+audit.sira     -> audit read surface only, deny direct write
+core.sira      -> core health/readiness only, deny admin
+```
+
+---
+
+## 3. deny surface
+
+```text
+localhost public access -> deny
+127.0.0.1 public access -> deny
+unknown.sira -> deny
+mail.sira -> deny
+smtp.sira -> deny
+imap.sira -> deny
+/admin -> deny
+/api/secret -> deny
+/identity -> deny unless explicitly framed
+/audit/write-direct -> deny
+/render/seal -> deny
+/finance/secret -> deny
+```
+
+---
+
+## 4. dns provider action outside repo
+
+```text
+step 1: point public records to gateway only
+step 2: tls certificate on gateway layer
+step 3: gateway validates host before route
+step 4: route gate validates path
+step 5: sirasign frame guard validates sensitive frame
+step 6: dns smoke runner verifies allow/deny matrix
+```
+
+---
+
+## 5. required local gates before public switch
+
+```text
+tools/validate_sira_dns_zone_manifest.sira
+tools/validate_sira_gateway_route_binding.sira
+tools/validate_sira_gateway_hardening.sira
+tools/run_sira_dns_smoke_matrix.sira
+tools/validate_sira_dns_smoke_runner.sira
+tools/run_sira_gateway_hardening_matrix.sira
+tools/validate_sira_gateway_hardening_matrix.sira
+tools/validate_sirasign_frame_guard.sira
+tools/run_sirasign_frame_guard_matrix.sira
+tools/validate_sirasign_frame_guard_matrix.sira
+tools/validate_lowercase_surface.sira
+tools/thiên gate
+```
+
+---
+
+## 6. go / no-go rule
+
+```text
+go only if all local gates pass
+no-go if any transport_error, timeout, wildcard exposure, admin allow, secret allow, direct audit write allow, or frame bypass appears
+```

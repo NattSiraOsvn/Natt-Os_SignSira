@@ -1,7 +1,7 @@
 export interface AlertProps {
   id: string;
   cellId: string;
-  type: 'WARNING' | 'ERROR' | 'CRITICAL';
+  type: 'warnING' | 'error' | 'CRITICAL';
   message: string;
   timestamp: Date;
   acknowledged: boolean;

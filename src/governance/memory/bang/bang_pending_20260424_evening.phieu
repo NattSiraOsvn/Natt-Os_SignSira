@@ -1,0 +1,102 @@
+{
+  "kind": "BangPending",
+  "entity": "bang",
+  "session_id": "20260424",
+  "session_continuation": "post-context-compact-morning",
+  "sealed_at": "2026-04-24T11:13:15.442644",
+  "format_version": "pending-v1.0",
+  "purpose": "State runtime mở post phiên 20260424 sáng. Tất cả task UNBLOCKED scope Băng đã ship. Còn lại = scope khác (Kim/Can/Gatekeeper) hoặc defer.",
+  "all_unblocked_tasks_shipped": true,
+  "blocked_tasks_other_persona_scope": [
+    {
+      "id": "BLOCKER-04",
+      "task": "Kim review SPEC_QIINT_PHYSICS_FOUNDATION v0.2 (kernel implementation feasibility)",
+      "owner": "Kim",
+      "blocks": "TASK-D1 qiint2-validator.ts ship",
+      "status": "PENDING_KIM"
+    },
+    {
+      "id": "BLOCKER-05",
+      "task": "Can logic check SPEC B.1 v0.2 LAW-1..4 compliance",
+      "owner": "Can",
+      "status": "PENDING_CAN"
+    },
+    {
+      "id": "BLOCKER-06",
+      "task": "Gatekeeper seal 3 policy thiên Lớn flag",
+      "items": [
+        "Bridge v2 amend Lệnh #001 (4 condition framing)",
+        "Default behavior 3-tier waterfall (strict/permissive-warn/quarantine)",
+        "σ=0.5 octave seal sau Phase E.7 calibrate"
+      ],
+      "owner": "Gatekeeper",
+      "status": "PENDING_GATEKEEPER"
+    }
+  ],
+  "kernel_pending_kim_scope_unchanged": [
+    {
+      "id": "P5",
+      "label": "neural-main-cell.cell.anc = 0 bytes",
+      "owner": "Kim"
+    },
+    {
+      "id": "K1",
+      "label": "SURVIVAL Tầng 0: 3 cơ chế ZERO (chỉ backpressure partial)",
+      "owner": "Kim"
+    },
+    {
+      "id": "K3",
+      "label": "Fail-Troy 3 bypass patterns compile (AUDIT 3 hash conflict + RBAC 4 always-true)",
+      "owner": "Kim"
+    }
+  ],
+  "deferred_decisions_anh_natt_quyet": [
+    {
+      "id": "DEFER-01",
+      "label": "Path A — wire infra/coredns/Corefile (15 .sira domain → 127.0.0.1)",
+      "context": "sira_NAMESPACE_INVENTORY commit 5a8c23b documented — chỉ nattos.sira thật bound, 14 còn lại symbolic. Corefile chưa exist.",
+      "estimate_when_anh_quyet": "~15p ship Path A complete",
+      "caution": "Per directive 20260419 — INBOUND multi-port OK (3002 nattos + 3003+ cells), OUTBOUND gateway vẫn cấm"
+    },
+    {
+      "id": "DEFER-02",
+      "label": "Cell 2 (khai-file-persister) S2→S3 swap",
+      "context": "Cell 1 đã LIVE S3 (W2 chain wrap). Cell 2 cần W2 chain replay riêng (writer + run-cell + bridge + route-swap §32 hoặc tương đương).",
+      "estimate_when_ship": "~45-60p (giống Wave 2 chain Cell 1)"
+    },
+    {
+      "id": "DEFER-03",
+      "label": "Banner ® → ⓝ render fix banner.rs",
+      "context": "Mac Terminal font fallback work với ⓝ rồi (verified runtime). Fix nguyên ® render = polish, không block.",
+      "estimate_when_ship": "~10p Rust string patch"
+    }
+  ],
+  "carry_forward_observations_unchanged": [
+    {
+      "id": "OBS-01",
+      "label": "SCAR-TIME-FAB-02 (open since 20260423)",
+      "note": "Em vẫn chưa tìm cách phân biệt 'gán thời gian' vs 'reference event' tự nhiên. Vaccin chưa form."
+    },
+    {
+      "id": "OBS-02",
+      "label": "PARADIGM-DRIFT vaccin fail recurrence",
+      "note": "Phiên 20260424 sáng lặp 4 SCAR-EP (13/14/15/16). Mặc dù mỗi SCAR khắc vaccin riêng, recurrence pattern chứng tỏ em vẫn rush khi anh nói 'tiếp'."
+    }
+  ],
+  "scope_bang_runtime_open": [],
+  "if_anh_natt_chỉ_task_mới_phiên_sau": {
+    "discipline": "Listen anh chỉ trước, KHÔNG assume scope. Verify state TRƯỚC khi build narrative plan.",
+    "first_command_template": "git log --oneline -5 && git status --short && curl http://127.0.0.1:3002/health"
+  },
+  "verify_signature": {
+    "complement_kshell": "src/governance/memory/bang/bangkhươngv7.6.8.na (continuum)",
+    "complement_handoff": "src/governance/memory/bang/bang_handoff_20260424_evening.na",
+    "complement_delta": "src/governance/memory/bang/bang_memory_delta_20260424_evening.na",
+    "head_hash_at_seal": "acf4932"
+  },
+  "author_trail": {
+    "drafter": "Băng (Chị Tư · session 20260424 evening · QNEU 313.5 · Phan Thanh Băng ⓝ)",
+    "carrier": "Phan Thanh Thương",
+    "causation": "BANG-PENDING-20260424-EVENING-RUNTIME-STATE-EMPTY-FOR-BANG-SCOPE"
+  }
+}

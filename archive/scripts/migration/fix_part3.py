@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NATT-OS — Fix Remaining 165 TypeScript Errors (Part 3)
+natt-os — Fix Remaining 165 TypeScript Errors (Part 3)
 Chạy từ project root SAU khi đã chạy fix_all_errors.py và fix_remaining.py
   python3 fix_part3.py
 """
@@ -18,7 +18,7 @@ def write(path, content):
 def patch(path, old, new, required=True):
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
-        print(f"⚠️  MISSING: {path}")
+        print(f"⚠️  missing: {path}")
         return False
     with open(full, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -32,7 +32,7 @@ def patch(path, old, new, required=True):
     return False
 
 print("=" * 60)
-print("NATT-OS Fix Part 3 — 165 remaining errors")
+print("natt-os Fix Part 3 — 165 remaining errors")
 print("=" * 60)
 
 # ══════════════════════════════════════════════════════════════════
@@ -164,8 +164,8 @@ patch("src/types.ts",
     "  header?: { declarantName?: string; declarantTaxCode?: string; portCode?: string; routeCode?: string; transportMode?: string; countryOfOrigin?: string; declarationNumber?: string; streamCode?: string; };")
 
 patch("src/types.ts",
-    "  compliance?: { status: \"PASS\" | \"FAIL\" | \"REVIEW\"; violations: string[]; score: number; };",
-    "  compliance?: { status?: \"PASS\" | \"FAIL\" | \"REVIEW\"; violations?: string[]; score?: number; isCompliant?: boolean; };")
+    "  compliance?: { status: \"pass\" | \"fail\" | \"REVIEW\"; violations: string[]; score: number; };",
+    "  compliance?: { status?: \"pass\" | \"fail\" | \"REVIEW\"; violations?: string[]; score?: number; isCompliant?: boolean; };")
 
 patch("src/types.ts",
     "  riskAssessment?: { level: string; score: number; flags: string[]; recommendation: string; };",
@@ -179,8 +179,8 @@ patch("src/types.ts",
     "export interface SyncJob {\n  id: string;\n  name?: string;\n  type?: string;\n  source: string;")
 
 patch("src/types.ts",
-    "  level: \"INFO\" | \"WARN\" | \"ERROR\";\n}",
-    "  level: \"INFO\" | \"WARN\" | \"WARNING\" | \"ERROR\" | \"SUCCESS\" | \"SECURE\";\n}")
+    "  level: \"INFO\" | \"warn\" | \"error\";\n}",
+    "  level: \"INFO\" | \"warn\" | \"warnING\" | \"error\" | \"SUCCESS\" | \"SECURE\";\n}")
 
 patch("src/types.ts",
     "export interface DataPoint {",
@@ -383,8 +383,8 @@ patch("src/types.ts",
 # GROUP 22: ProductionManager — task.status 'COMPLETED', task.priority 'URGENT' (2 errors)
 # ══════════════════════════════════════════════════════════════════
 patch("src/types.ts",
-    "  status: \"PENDING\" | \"DONE\" | \"FAILED\" | \"IN_PROGRESS\";",
-    "  status: \"PENDING\" | \"DONE\" | \"FAILED\" | \"IN_PROGRESS\" | \"COMPLETED\" | string;")
+    "  status: \"PENDING\" | \"DONE\" | \"failED\" | \"IN_PROGRESS\";",
+    "  status: \"PENDING\" | \"DONE\" | \"failED\" | \"IN_PROGRESS\" | \"COMPLETED\" | string;")
 
 patch("src/types.ts",
     "  priority: number;",
@@ -520,12 +520,12 @@ patch("src/services/export-service.ts",
 # ══════════════════════════════════════════════════════════════════
 
 # ══════════════════════════════════════════════════════════════════
-# GROUP 34: cell-smartlink.component.ts — SmartLinkCell needs static methods (6 errors)
+# GROUP 34: cell-SmartLink.component.ts — SmartLinkCell needs static methods (6 errors)
 # SmartLinkCell class only has instance methods, but code calls SmartLinkCell.registerPoint etc (static)
 # ══════════════════════════════════════════════════════════════════
-patch("src/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer.ts",
-    "// SmartLinkCell export for cell-smartlink.component.ts\nexport class SmartLinkCell {\n  private cellId: string;\n  constructor(cellId: string) { this.cellId = cellId; }\n  configure(config: StabilizerConfig): void { SmartLinkStabilizer.configure(config); }\n  recordAmplitude(amplitude: number): void { SmartLinkStabilizer.recordAmplitude(this.cellId, amplitude); }\n  getStableAmplitude(): number { return SmartLinkStabilizer.getStableAmplitude(this.cellId); }\n}",
-    """// SmartLinkCell export for cell-smartlink.component.ts
+patch("src/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer.ts",
+    "// SmartLinkCell export for cell-SmartLink.component.ts\nexport class SmartLinkCell {\n  private cellId: string;\n  constructor(cellId: string) { this.cellId = cellId; }\n  configure(config: StabilizerConfig): void { SmartLinkStabilizer.configure(config); }\n  recordAmplitude(amplitude: number): void { SmartLinkStabilizer.recordAmplitude(this.cellId, amplitude); }\n  getStableAmplitude(): number { return SmartLinkStabilizer.getStableAmplitude(this.cellId); }\n}",
+    """// SmartLinkCell export for cell-SmartLink.component.ts
 export interface SmartLinkPoint {
   getSensitivityTo(targetCellId: string): number;
   getNetworkSize(): number;

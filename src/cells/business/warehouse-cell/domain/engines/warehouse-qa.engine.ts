@@ -5,7 +5,7 @@ export interface WarehouseQAAudit {
   healthScore: number;
   complianceIssues: {
     id: string;
-    severity: 'CRITICAL' | 'WARNING' | 'INFO';
+    severity: 'CRITICAL' | 'warnING' | 'INFO';
     category: 'INSURANCE' | 'SECURITY' | 'LOSS' | 'CERT' | 'STOCK';
     title: string;
     description: string;

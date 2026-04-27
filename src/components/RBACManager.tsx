@@ -105,7 +105,7 @@ const RBACManager: React.FC = () => {
                <AIAvatar personaId={PersonaID.KRIS} size="lg" isThinking={false} />
                <h4 className="ai-sub-headline text-indigo-400 mt-8 mb-4">Identity Guard (Kris)</h4>
                <p className="text-[12px] text-indigo-100/70 italic leading-relaxed font-light mb-8">
-                  "Chào Anh Natt, Kris đang giám sát ma trận quyền. Hệ thống hiện tại đang ở trạng thái bảo mật OMEGA. Thiên đã bóc tách xong log truy cập của ngày hôm nay, 100% Identity đều tuân thủ đúng Shard quyền."
+                  "Chào Anh Natt, Kris đang giám sát ma trận quyền. Hệ thống hiện tại đang ở trạng thái bảo mật OMEGA. thiên đã bóc tách xong log truy cập của ngày hôm nay, 100% Identity đều tuân thủ đúng Shard quyền."
                </p>
                <button className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[9px] font-black uppercase text-gray-500 hover:text-white hover:border-indigo-500/50 transition-all">Xuất Identity Audit Log</button>
             </div>

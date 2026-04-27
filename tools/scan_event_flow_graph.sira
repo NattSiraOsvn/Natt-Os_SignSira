@@ -1,0 +1,86 @@
+#!/usr/bin/env node
+// @nauion-scanner v1
+// @state runtime-policy excluded-from-production
+// @name sovereign @nauion event flow graph v0.1
+// @scope sovereign-audit-event-graph
+// @runtime_scope excluded
+// @owner natt sirawat / phan thanh thương
+// @anc băng sirawat
+// @tool scan_event_flow_graph
+// @session ss20260427
+// @created_at natthome
+
+// scan_event_flow_graph.sira — V4 Event Flow Graph
+// Refactor from nattos.sh §26 PYEOF2 → Nauion JS native ss20260427
+
+const fs = require("fs");
+const path = require("path");
+
+if (process.env.AUDIT_MODE === 'quick') {
+  console.log('  \x1b[0;33m⚡\x1b[0m  QUICK MODE — skip');
+  process.exit(0);
+}
+
+const GREEN = "\x1b[0;32m";
+const RESET = "\x1b[0m";
+
+const scan_dirs = ["src"];
+const producers = {};
+const consumers = {};
+
+const emit_pat = /(?:EventBus\.(?:emit|publish)|typedEmit)\s*\(\s*['"]([^'"]+)['"]/g;
+const sub_pat = /EventBus\.(?:on|subscribe)\s*\(\s*['"]([^'"]+)['"]/g;
+
+function get_cell(p) {
+  const parts = p.split(path.sep);
+  for (let i = 0; i < parts.length; i++) {
+    if (["business", "kernel", "infrastructure"].includes(parts[i]) && i + 1 < parts.length) {
+      return parts[i + 1];
+    }
+  }
+  return "core";
+}
+
+function walk(dir, callback) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (["node_modules", "baithicuakim"].includes(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(full, callback);
+    else callback(full);
+  }
+}
+
+for (const scan_dir of scan_dirs) {
+  walk(scan_dir, (filepath) => {
+    if (!filepath.endsWith(".ts")) return;
+    const cell = get_cell(filepath);
+    let content;
+    try { content = fs.readFileSync(filepath, "utf8"); } catch { return; }
+
+    let m;
+    const emit_re = new RegExp(emit_pat.source, 'g');
+    while ((m = emit_re.exec(content)) !== null) {
+      if (!producers[m[1]]) producers[m[1]] = [];
+      producers[m[1]].push(cell);
+    }
+    const sub_re = new RegExp(sub_pat.source, 'g');
+    while ((m = sub_re.exec(content)) !== null) {
+      if (!consumers[m[1]]) consumers[m[1]] = [];
+      consumers[m[1]].push(cell);
+    }
+  });
+}
+
+const all_ev = new Set([...Object.keys(producers), ...Object.keys(consumers)]);
+const healthy = [...all_ev].filter(e => producers[e] && consumers[e]);
+const orphan = [...all_ev].filter(e => producers[e] && !consumers[e]);
+const dead = [...all_ev].filter(e => !producers[e] && consumers[e]);
+
+console.log(`  ${GREEN}✅${RESET} Unique events: ${all_ev.size} | Healthy flows: ${healthy.length} | Orphan emits: ${orphan.length} | Dead subs: ${dead.length}`);
+for (const ev of orphan.slice(0, 5)) {
+  console.log(`      ⚠️  orphan: '${ev}' from ${producers[ev][0]}`);
+}
+
+fs.mkdirSync(".nattos-twin", { recursive: true });
+fs.writeFileSync(".nattos-twin/event-graph.json", JSON.stringify({ healthy, orphan, dead }, null, 2));

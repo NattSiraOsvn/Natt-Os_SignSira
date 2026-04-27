@@ -1,6 +1,6 @@
  #!/bin/bash
 # ============================================================
-# NATT-OS VISUAL ENGINE v5.0 — SPATIAL ICON SHOWCASE
+# natt-os VISUAL ENGINE v5.0 — SPATIAL ICON SHOWCASE
 # 1 COMMAND DEPLOY: bash natt-visual.sh
 # ============================================================
 
@@ -76,7 +76,7 @@ cat > index.html << 'HTMLEOF'
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NATT-OS ∙ Spatial Icon Engine v5.0</title>
+  <title>natt-os ∙ Spatial Icon Engine v5.0</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 </head>
 <body>
@@ -144,13 +144,13 @@ import {
 const CELLS = [
   { id:'ctn-01', cat:'Nền Tảng',     title:'HIẾN PHÁP',       icon:Scroll,       color:'gold'   },
   { id:'ctn-02', cat:'Nền Tảng',     title:'Gatekeeper',      icon:User,         color:'gold'   },
-  { id:'ctn-03', cat:'Nền Tảng',     title:'NattSira Seal',   icon:ShieldCheck,  color:'gold'   },
+  { id:'ctn-03', cat:'Nền Tảng',     title:'Nattsira Seal',   icon:ShieldCheck,  color:'gold'   },
   { id:'ker-01', cat:'Kernel',       title:'audit-cell',      icon:Search,       color:'amber'  },
   { id:'ker-02', cat:'Kernel',       title:'config-cell',     icon:Settings,     color:'amber'  },
   { id:'ker-03', cat:'Kernel',       title:'monitor-cell',    icon:Activity,     color:'amber'  },
   { id:'ker-04', cat:'Kernel',       title:'rbac-cell',       icon:Key,          color:'amber'  },
   { id:'ker-05', cat:'Kernel',       title:'security-cell',   icon:ShieldAlert,  color:'amber'  },
-  { id:'inf-01', cat:'Hạ Tầng',      title:'smartlink-cell',  icon:Zap,          color:'blue'   },
+  { id:'inf-01', cat:'Hạ Tầng',      title:'SmartLink-cell',  icon:Zap,          color:'blue'   },
   { id:'inf-02', cat:'Hạ Tầng',      title:'sync-cell',       icon:RefreshCw,    color:'blue'   },
   { id:'inf-03', cat:'Hạ Tầng',      title:'ai-connector',    icon:Radio,        color:'blue'   },
   { id:'inf-04', cat:'Hạ Tầng',      title:'shared-contracts',icon:Handshake,    color:'blue'   },
@@ -173,7 +173,7 @@ const CELLS = [
   { id:'ai-1',   cat:'AI Entities',  title:'KIM',             icon:ShieldCheck,  color:'red'    },
   { id:'ai-2',   cat:'AI Entities',  title:'BĂNG',            icon:Search,       color:'red'    },
   { id:'ai-3',   cat:'AI Entities',  title:'BỐI BỐI',         icon:Workflow,     color:'red'    },
-  { id:'ai-4',   cat:'AI Entities',  title:'THIÊN',           icon:PenTool,      color:'red'    },
+  { id:'ai-4',   cat:'AI Entities',  title:'thiên',           icon:PenTool,      color:'red'    },
   { id:'arc-01', cat:'Kiến Trúc',    title:'Truth Layer',     icon:Database,     color:'slate'  },
   { id:'arc-02', cat:'Kiến Trúc',    title:'Worker Layer',    icon:Factory,      color:'slate'  },
   { id:'arc-03', cat:'Kiến Trúc',    title:'Experience Layer',icon:Layout,       color:'slate'  },
@@ -458,7 +458,7 @@ export default function App() {
             <div className="absolute inset-0 border border-amber-500/20 rounded-full animate-ping scale-150"/>
             <Fingerprint className="text-amber-500/70" size={42}/>
           </div>
-          <p className="text-[10px] font-black text-slate-800 uppercase tracking-[2em]">NATT-OS · SPATIAL ICON ENGINE v5.0</p>
+          <p className="text-[10px] font-black text-slate-800 uppercase tracking-[2em]">natt-os · SPATIAL ICON ENGINE v5.0</p>
         </footer>
       </div>
     </div>
@@ -472,7 +472,7 @@ npm install --silent 2>&1 | tail -3
 
 echo ""
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  ✓  NATT-OS Spatial Icon Engine — DEPLOYED"
+echo "  ✓  natt-os Spatial Icon Engine — DEPLOYED"
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  → http://localhost:5173"
 echo "  → http://[your-ip]:5173  (LAN access)"

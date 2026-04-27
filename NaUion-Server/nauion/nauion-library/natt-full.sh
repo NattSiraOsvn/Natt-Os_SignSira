@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# NATT-OS SPATIAL ENGINE V5.0 — FULL DEPLOY
+# natt-os SPATIAL ENGINE V5.0 — FULL DEPLOY
 # 1 COMMAND: bash natt-full.sh
 # Includes: Medals + Modal + AI Chat Uplink + Post-FX
 # ============================================================
@@ -78,7 +78,7 @@ cat > index.html << 'EOF'
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NATT-OS · Spatial Engine v5.0</title>
+  <title>natt-os · Spatial Engine v5.0</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 </head>
 <body>
@@ -133,7 +133,7 @@ import {
 } from 'lucide-react';
 
 /* ─────────────────────────────────────────────────────────
-   GEMINI API — NATT-OS NEURAL LINK
+   GEMINI API — natt-os NEURAL LINK
    Paste your key in apiKey below to enable AI Chat Uplink
 ───────────────────────────────────────────────────────── */
 const apiKey = "";
@@ -171,7 +171,7 @@ const CELL_REGISTRY = [
   // 1. NỀN TẢNG
   { id:'ctn-01', category:'1. Nền Tảng',    title:'HIẾN PHÁP',        icon:Scroll,        color:'gold',   desc:'DNA gốc bất biến. Implementation Truth.',        version:'1.5.0',   status:'Immutable'  },
   { id:'ctn-02', category:'1. Nền Tảng',    title:'Gatekeeper',        icon:User,          color:'gold',   desc:'Quyền tối thượng, người giám hộ biên giới.',     version:'1.2.0',   status:'Enforced'   },
-  { id:'ctn-03', category:'1. Nền Tảng',    title:'NattSira Seal',     icon:ShieldCheck,   color:'gold',   desc:'Dấu triện lượng tử Gold Master.',                version:'3.0.0',   status:'Locked'     },
+  { id:'ctn-03', category:'1. Nền Tảng',    title:'Nattsira Seal',     icon:ShieldCheck,   color:'gold',   desc:'Dấu triện lượng tử Gold Master.',                version:'3.0.0',   status:'Locked'     },
   // 2a. KERNEL
   { id:'ker-01', category:'2a. Kernel',     title:'audit-cell',        icon:Search,        color:'amber',  desc:'Truy vết và kiểm toán mật độ logic.',            version:'1.0.0',   status:'Active'     },
   { id:'ker-02', category:'2a. Kernel',     title:'config-cell',       icon:Settings,      color:'amber',  desc:'Quản lý tham số hạt nhân hệ thống.',             version:'1.0.0',   status:'Stable'     },
@@ -179,7 +179,7 @@ const CELL_REGISTRY = [
   { id:'ker-04', category:'2a. Kernel',     title:'rbac-cell',         icon:Key,           color:'amber',  desc:'Phân quyền thực thể tối cao.',                   version:'2.0.0',   status:'Strict'     },
   { id:'ker-05', category:'2a. Kernel',     title:'security-cell',     icon:ShieldAlert,   color:'amber',  desc:'Lá chắn chống xâm nhập DNA.',                   version:'4.0.0',   status:'Defensive'  },
   // 2b. HẠ TẦNG
-  { id:'inf-01', category:'2b. Hạ Tầng',   title:'smartlink-cell',    icon:Zap,           color:'blue',   desc:'Hệ thần kinh liên kết nơ-ron.',                  version:'2.0.0',   status:'Fluid'      },
+  { id:'inf-01', category:'2b. Hạ Tầng',   title:'SmartLink-cell',    icon:Zap,           color:'blue',   desc:'Hệ thần kinh liên kết nơ-ron.',                  version:'2.0.0',   status:'Fluid'      },
   { id:'inf-02', category:'2b. Hạ Tầng',   title:'sync-cell',         icon:RefreshCw,     color:'blue',   desc:'Đồng bộ State xuyên không gian.',                version:'1.0.0',   status:'Active'     },
   { id:'inf-03', category:'2b. Hạ Tầng',   title:'ai-connector',      icon:Radio,         color:'blue',   desc:'Cầu nối trí tuệ ngoại vi.',                      version:'1.2.0',   status:'Linked'     },
   { id:'inf-04', category:'2b. Hạ Tầng',   title:'shared-contracts',  icon:Handshake,     color:'blue',   desc:'Hợp đồng dùng chung kiến trúc.',                 version:'1.5.0',   status:'Standard'   },
@@ -203,10 +203,10 @@ const CELL_REGISTRY = [
   { id:'evt-02', category:'4. Sự Kiện',    title:'Audit Trail',       icon:History,       color:'blue',   desc:'Dấu vết kiểm toán thực thi.',                    version:'1.0.0',   status:'Logged'     },
   { id:'evt-03', category:'4. Sự Kiện',    title:'Contract',          icon:FileSignature, color:'blue',   desc:'Hợp đồng thông minh xác thực.',                  version:'1.5.0',   status:'Valid'      },
   // 5. AI ENTITIES
-  { id:'ai-1',   category:'5. AI Entities',title:'KIM',               icon:ShieldCheck,   color:'red',    desc:'Chief Governance Enforcer.',                     version:'1.5.0',   status:'Active',    instruction:"Act as KIM, Chief Governance Enforcer of NATT-OS. Respond with constitutional precision." },
+  { id:'ai-1',   category:'5. AI Entities',title:'KIM',               icon:ShieldCheck,   color:'red',    desc:'Chief Governance Enforcer.',                     version:'1.5.0',   status:'Active',    instruction:"Act as KIM, Chief Governance Enforcer of natt-os. Respond with constitutional precision." },
   { id:'ai-2',   category:'5. AI Entities',title:'BĂNG',              icon:Search,        color:'red',    desc:'Ground Truth Validator.',                        version:'1.2.0',   status:'Invisible', instruction:"Act as BĂNG, the Ground Truth Validator. Your role is to audit and verify." },
-  { id:'ai-3',   category:'5. AI Entities',title:'BỐI BỐI',           icon:Workflow,      color:'red',    desc:'Ultimate Constitutional Builder.',               version:'1.5.0',   status:'Authorized',instruction:"Act as BỐI BỐI, the Ultimate Constitutional Builder of NATT-OS." },
-  { id:'ai-4',   category:'5. AI Entities',title:'THIÊN',             icon:PenTool,       color:'red',    desc:'Business Logic Architect.',                      version:'1.0.0',   status:'Creative',  instruction:"Act as THIÊN, the Business Logic Architect. Design with precision and creativity." },
+  { id:'ai-3',   category:'5. AI Entities',title:'BỐI BỐI',           icon:Workflow,      color:'red',    desc:'Ultimate Constitutional Builder.',               version:'1.5.0',   status:'Authorized',instruction:"Act as BỐI BỐI, the Ultimate Constitutional Builder of natt-os." },
+  { id:'ai-4',   category:'5. AI Entities',title:'thiên',             icon:PenTool,       color:'red',    desc:'Business Logic Architect.',                      version:'1.0.0',   status:'Creative',  instruction:"Act as thiên, the Business Logic Architect. Design with precision and creativity." },
   // 6. KIẾN TRÚC
   { id:'arc-01', category:'6. Kiến Trúc',  title:'Truth Layer',       icon:Database,      color:'slate',  desc:'State, Contract, Audit Foundation.',             version:'1.0.0',   status:'Core'       },
   { id:'arc-02', category:'6. Kiến Trúc',  title:'Worker Layer',      icon:Factory,       color:'slate',  desc:'Dây chuyền xử lý nghiệp vụ.',                    version:'1.0.0',   status:'Processing' },
@@ -573,7 +573,7 @@ export default function App() {
                 <Fingerprint className="text-amber-500 transition-all group-hover:scale-125" size={48}/>
               </div>
               <div className="space-y-4 text-center">
-                <p className="text-[12px] font-black text-white/40 uppercase tracking-[2em] ml-[2em]">NATT-OS INTEGRITY</p>
+                <p className="text-[12px] font-black text-white/40 uppercase tracking-[2em] ml-[2em]">natt-os INTEGRITY</p>
                 <div className="h-px w-32 bg-amber-500/30 mx-auto"/>
               </div>
             </div>
@@ -667,7 +667,7 @@ npm install --silent 2>&1 | tail -3
 
 echo ""
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  ✓  NATT-OS Spatial Engine v5.0 — FULLY DEPLOYED"
+echo "  ✓  natt-os Spatial Engine v5.0 — FULLY DEPLOYED"
 echo "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  → http://localhost:5173"
 echo ""

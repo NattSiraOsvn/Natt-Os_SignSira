@@ -108,7 +108,7 @@ export const SecurityOverlay: React.FC = () => {
             Unlock
           </button>
           <p className="text-slate-600 text-xs mt-4">
-            SiraSign biometric verify — coming soon
+            siraSign biometric verify — coming soon
           </p>
         </div>
       </div>

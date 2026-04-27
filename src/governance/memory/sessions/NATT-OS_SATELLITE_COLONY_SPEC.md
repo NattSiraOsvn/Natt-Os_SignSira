@@ -1,4 +1,4 @@
-# NATT-OS — QUẦN THỂ VỆ TINH (Satellite Colony)
+# natt-os — QUẦN THỂ VỆ TINH (Satellite Colony)
 ## Đề xuất kiến trúc — Băng, 2026-03-12
 
 ---
@@ -29,7 +29,7 @@ Cơ thể người:
   Hệ tiêu hóa                  = Metabolism Layer
   ❌ THIẾU: Huyết tương + Tế bào gốc = ???
 
-NATT-OS satellite:
+natt-os satellite:
   Huyết tương  = satellite packages chảy qua MỌI cell
   Tế bào gốc   = factory tự sinh component đúng chuẩn cho cell mới
 ```
@@ -88,7 +88,7 @@ src/satellites/
 // src/satellites/port-forge/port.factory.ts
 
 import { EventBus } from "@/core/events/event-bus";
-import type { TouchRecord } from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+import type { TouchRecord } from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
 
 export interface PortConfig {
   cellId: string;
@@ -142,7 +142,7 @@ export function forgeSmartLinkPort(config: PortConfig) {
 **Cell dùng thế nào:**
 
 ```typescript
-// src/cells/business/supplier-cell/ports/supplier-smartlink.port.ts
+// src/cells/business/supplier-cell/ports/supplier-SmartLink.port.sira
 
 import { forgeSmartLinkPort } from "@/satellites/port-forge/port.factory";
 
@@ -309,7 +309,7 @@ export interface HealthStatus {
     boundary: boolean;   // has boundary
     trace: boolean;      // has entity
     confidence: boolean; // has health check
-    smartlink: boolean;  // has port
+    SmartLink: boolean;  // has port
   };
   issues: string[];
   timestamp: number;
@@ -330,23 +330,23 @@ export function checkCellHealth(cellPath: string): HealthStatus {
   };
 
   const identity = fs.existsSync(path.join(cellPath, "neural-main-cell.cell.anc"));
-  if (!identity) issues.push("MISSING: neural-main-cell.cell.anc");
+  if (!identity) issues.push("missing: neural-main-cell.cell.anc");
 
   const capability = hasFile("*.engine.ts") || hasFile("*.service.ts");
-  if (!capability) issues.push("MISSING: engine or service");
+  if (!capability) issues.push("missing: engine or service");
 
   const boundary = hasFile("*boundary*") || hasFile("*policy*");
-  if (!boundary) issues.push("MISSING: boundary or policy");
+  if (!boundary) issues.push("missing: boundary or policy");
 
   const trace = hasFile("*.entity.ts");
-  if (!trace) issues.push("MISSING: entity for trace");
+  if (!trace) issues.push("missing: entity for trace");
 
-  const smartlink = hasFile("*smartlink*");
-  if (!smartlink) issues.push("MISSING: SmartLink port");
+  const SmartLink = hasFile("*SmartLink*");
+  if (!SmartLink) issues.push("missing: SmartLink port");
 
   const confidence = identity; // manifest = minimal confidence
 
-  const components = { identity, capability, boundary, trace, confidence, smartlink };
+  const components = { identity, capability, boundary, trace, confidence, SmartLink };
   const trueCount = Object.values(components).filter(Boolean).length;
   const score = Math.round((trueCount / 6) * 100);
 
@@ -418,7 +418,7 @@ export function createLifecycle(config: LifecycleConfig) {
 // Ví dụ: src/cells/business/supplier-cell/domain/services/supplier.engine.ts
 
 // ① Import satellites
-import { SupplierSmartLinkPort } from "../../ports/supplier-smartlink.port";
+import { SupplierSmartLinkPort } from "../../ports/supplier-SmartLink.port";
 import { SupplierBoundary } from "../boundary.policy";
 import { SupplierTrace } from "../trace.logger";
 

@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "smartaudit_session_report_20260425.na");
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing smartaudit session report");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  const requiredClauses = [
+  "natt-os smartaudit v7.0",
+  "distributed living organism",
+  "executive summary",
+  "commits counted",
+  "insertions",
+  "deletions",
+  "net lines",
+  "runtime / dns / gateway milestones",
+  "render-stack milestones",
+  "tools / operator milestones",
+  "not-claim boundary",
+  "production renderer chưa claim",
+  "crypto signature verification"
+];
+  const forbiddenMarks = [
+  "DNS XONG",
+  "PASS | FAIL",
+  "production renderer đã hoàn chỉnh",
+  "crypto signature verification hoàn chỉnh đã xong"
+];
+
+  for (const clause of requiredClauses) {
+    must(c.includes(clause), "missing report clause: " + clause);
+  }
+
+  for (const mark of forbiddenMarks) {
+    must(!c.includes(mark), "forbidden report wording: " + mark);
+  }
+}
+
+if (errors.length) {
+  console.error("smartaudit session report validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("smartaudit session report validation: pass");
+console.log("file=docs/runtime/smartaudit_session_report_20260425.na");

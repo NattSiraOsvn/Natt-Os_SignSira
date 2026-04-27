@@ -16,7 +16,7 @@ const SAFE_MARGIN_THRESHOLD = 0.87;
 export interface MarginAlert {
   ratio: number;
   isAlert: boolean;
-  level: 'SAFE' | 'WARNING' | 'DANGER';
+  level: 'SAFE' | 'warnING' | 'DANGER';
   explanation: string;
 }
 
@@ -25,7 +25,7 @@ export function checkMargin(revenue: number, cogs: number): MarginAlert {
   if (revenue <= 0) return { ratio: 0, isAlert: false, level: 'SAFE', explanation: 'Chưa có doanh thu' };
   
   const ratio = cogs / revenue;
-  const level = ratio > SAFE_MARGIN_THRESHOLD ? 'DANGER' : ratio > 0.80 ? 'WARNING' : 'SAFE';
+  const level = ratio > SAFE_MARGIN_THRESHOLD ? 'DANGER' : ratio > 0.80 ? 'warnING' : 'SAFE';
 
   return {
     ratio,

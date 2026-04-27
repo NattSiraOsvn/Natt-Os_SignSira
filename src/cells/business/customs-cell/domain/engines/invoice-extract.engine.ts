@@ -1,5 +1,5 @@
 /**
- * NATT-OS Invoice Extract Engine v1.0
+ * natt-os Invoice Extract Engine v1.0
  * Port từ Doc 25 — extractInvoiceData() + findValueByRegex()
  * Target: customs-cell/domain/engines/
  *

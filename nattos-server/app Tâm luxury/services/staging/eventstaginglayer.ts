@@ -6,7 +6,7 @@ export interface StagedEvent {
   eventId: string; // Unique ID for business logic
   idempotencyKey: string; // Hash(Content + Context)
   payload: unknown;
-  status: 'STAGED' | 'COMMITTED' | 'FAILED' | 'DUPLICATE_IGNORED';
+  status: 'STAGED' | 'COMMITTED' | 'failED' | 'DUPLICATE_IGNORED';
   timestamp: number;
   metadata?: unknown;
 }
@@ -144,7 +144,7 @@ class EventStagingLayerService {
   public rollbackEvent(eventId: string): void {
     const eventIndex = this.stagingQueue.findIndex(e => e.id === eventId);
     if (eventIndex !== -1) {
-        this.stagingQueue[eventIndex].status = 'FAILED';
+        this.stagingQueue[eventIndex].status = 'failED';
         // Không lưu Key -> Cho phép thử lại (Retry)
         console.warn(`[ESL] Event Rollback: ${eventId}`);
     }

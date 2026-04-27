@@ -3,7 +3,7 @@ import { UserRole, UserPosition, PositionType, ViewType, ModuleID, ComplianceVio
 
 /**
  * 🔐 RBAC ENGINE - AUTHORITY SOURCE OF TRUTH
- * Duy nhất quản lý ma trận quyền lực toàn Natt-OS.
+ * Duy nhất quản lý ma trận quyền lực toàn natt-os.
  */
 export class RBACEngine {
   private static currentUser: { role: UserRole; position: UserPosition } | null = null;

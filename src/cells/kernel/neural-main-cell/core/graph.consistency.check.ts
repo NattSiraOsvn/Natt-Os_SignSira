@@ -6,7 +6,7 @@
 import type { EntityId, PermanentNode } from '@/governance/qneu/types';
 
 export interface ConsistencyIssue {
-  type: 'ORPHAN_NODE' | 'LOW_WEIGHT_CLUSTER' | 'MISSING_CROSS_VALIDATION';
+  type: 'ORPHAN_NODE' | 'LOW_WEIGHT_CLUSTER' | 'missing_CROSS_VALIDATION';
   description: string;
   affectedEntities: EntityId[];
   severity: 'HIGH' | 'MEDIUM' | 'LOW';
@@ -53,7 +53,7 @@ export function checkGraphConsistency(
 
   if (bangNodes.size > 0 && kimNodes.size > 0 && overlap.length === 0) {
     issues.push({
-      type: 'MISSING_CROSS_VALIDATION',
+      type: 'missing_CROSS_VALIDATION',
       description: 'BANG và KIM không có permanent node chung — thiếu cross-validation',
       affectedEntities: ['BANG', 'KIM'],
       severity: 'MEDIUM',

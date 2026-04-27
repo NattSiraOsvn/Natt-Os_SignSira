@@ -1,0 +1,29 @@
+# PILOT GIỮ — render language pilot
+# @state: giữ
+# @status: draft → chờ validator
+
+obitan_state giữ {
+  domain: Π_medium
+  polarity: cool-rim
+  obitan_layer: n=2
+
+  surface_signal: APPEAR {
+    element_id: "guard-ring"
+    position: relative_to("verdict-final", offset(0,0))
+    origin_state: giữ
+    pressure: 0.9
+  }
+
+  invariant_field {
+    pressure_response: FALL
+    resonance_partners: [bọc, tha, neo]
+    decay_rate: γ(2) * 0.9
+    reflection_R: 0.95
+  }
+
+  expression {
+    wavelength_base: 670
+    intensity: constant(0.9)
+    duration: as long as needed
+  }
+}

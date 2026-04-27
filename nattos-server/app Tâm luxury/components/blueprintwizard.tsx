@@ -57,7 +57,7 @@ const BlueprintWizard: React.FC = () => {
         </div>
         <h2 className="text-4xl font-serif gold-gradient mb-4 italic uppercase tracking-tighter">AI Blueprint Wizard</h2>
         <p className="text-gray-400 font-light text-sm max-w-2xl mx-auto leading-relaxed">
-          "Từ ý tưởng thô đến hệ thống vận hành hoàn chỉnh. Thiên sẽ tự động thiết kế kiến trúc module, luồng dữ liệu và cơ chế bảo mật phù hợp 100% với DNA doanh nghiệp của khách hàng."
+          "Từ ý tưởng thô đến hệ thống vận hành hoàn chỉnh. thiên sẽ tự động thiết kế kiến trúc module, luồng dữ liệu và cơ chế bảo mật phù hợp 100% với DNA doanh nghiệp của khách hàng."
         </p>
       </div>
 

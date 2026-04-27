@@ -58,8 +58,8 @@
   },
 
   "warranty_cell_discovery": {
-    "previous_status": "❌ MISSING P2 - BLOCKING",
-    "current_status": "✅ READY TO DEPLOY",
+    "previous_status": "❌ missing P2 - BLOCKING",
+    "current_status": "✅ ready TO DEPLOY",
     "evidence": {
       "format": "PDF scan có template cố định (Giấy Đảm Bảo)",
       "extracted_fields": [
@@ -158,19 +158,19 @@
   },
 
   "cell_registry_v1_1": {
-    "previous": "v1.0 (17 LIVE, nhiều MISSING)",
+    "previous": "v1.0 (17 LIVE, nhiều missing)",
     "updates": {
-      "warranty-cell": "❌ MISSING P2 → ✅ READY TO DEPLOY",
+      "warranty-cell": "❌ missing P2 → ✅ ready TO DEPLOY",
       "metabolism-layer": "⏸ DEFERRED → ✅ TIER1 LIVE (UDP)",
-      "media-cell": "❌ MISSING P3 → Có thể bắt đầu với UDP processors/image",
-      "inventory-cell": "❌ MISSING P1 → Có thể dùng UDP cho Kho Hình/Video"
+      "media-cell": "❌ missing P3 → Có thể bắt đầu với UDP processors/image",
+      "inventory-cell": "❌ missing P1 → Có thể dùng UDP cho Kho Hình/Video"
     },
     "new_status_summary": {
       "LIVE": "18 (thêm metabolism-layer Tier1)",
-      "READY_TO_DEPLOY": ["warranty-cell"],
-      "MISSING_P1": ["design-3d-cell", "inventory-cell"],
-      "MISSING_P2": ["order-cell"],
-      "MISSING_P3": ["media-cell", "casting-cell", "stone-cell", "finishing-cell", "polishing-cell", "noi-vu-cell", "it-cell", "phap-che-cell"],
+      "ready_TO_DEPLOY": ["warranty-cell"],
+      "missing_P1": ["design-3d-cell", "inventory-cell"],
+      "missing_P2": ["order-cell"],
+      "missing_P3": ["media-cell", "casting-cell", "stone-cell", "finishing-cell", "polishing-cell", "noi-vu-cell", "it-cell", "phap-che-cell"],
       "NEED_UPGRADE": ["ban-kiem-soat-cell"],
       "DEFERRED": ["tax-cell TT200", "uei-conductor", "quantum-defense-cell"]
     }
@@ -186,7 +186,7 @@
   "wave_sequence_update": {
     "original": {
       "wave1": "BACKBONE (finance, hr, sales, production, audit)",
-      "wave2": "CRITICAL MISSING (design-3d, inventory, order, warranty)",
+      "wave2": "CRITICAL missing (design-3d, inventory, order, warranty)",
       "wave3": "COMPLETE (media, noi-vu, it, casting, stone, finishing, polishing, phap-che)",
       "wave4": "GOVERNANCE UPGRADE (ban-kiem-soat, quantum, phap-che)"
     },

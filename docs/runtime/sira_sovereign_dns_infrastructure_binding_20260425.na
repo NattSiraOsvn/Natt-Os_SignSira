@@ -1,0 +1,115 @@
+# sira sovereign dns infrastructure binding — 20260425
+
+status: binding-manifested
+created_at: 2026-04-25 23:32:36
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. principle
+
+.sira là namespace chủ quyền của natt-os.
+
+.sira không phụ thuộc root zone toàn cầu.
+
+.sira được resolve bởi natt resolver và authoritative zone do hạ tầng mình kiểm soát.
+
+public trong ngữ cảnh này nghĩa là public theo hạ tầng natt, không phải public theo root internet.
+
+client muốn vào .sira phải dùng resolver do mình cấu hình hoặc edge resolver do mình vận hành.
+
+---
+
+## 2. infrastructure chain
+
+```text
+client / device
+-> natt resolver
+-> authoritative zone .sira
+-> natt domain gateway
+-> host guard
+-> route gate
+-> sirasign frame guard
+-> runtime surface
+```
+
+---
+
+## 3. allowed logical hosts
+
+```text
+apps.sira    -> app surface through gateway
+mach.sira    -> mạch heyna transport through gateway
+core.sira    -> core health/readiness only
+audit.sira   -> audit read surface only
+render.sira  -> render read/pilot surface only
+tam.sira     -> tenant fixture surface through gateway
+```
+
+---
+
+## 4. denied logical hosts
+
+```text
+unknown.sira -> deny
+mail.sira    -> deny
+smtp.sira    -> deny
+imap.sira    -> deny
+localhost    -> deny from public resolver path
+127.0.0.1    -> deny from public resolver path
+```
+
+---
+
+## 5. forbidden exposure
+
+```text
+no wildcard allow
+no admin route exposure
+no secret route exposure
+no direct audit write exposure
+no render seal exposure
+no bypass around natt domain gateway
+no tenant route promoted into core dns rule
+```
+
+---
+
+## 6. resolver binding requirements
+
+```text
+resolver must answer .sira only from declared authoritative zone
+resolver must not silently normalize malformed host
+resolver must deny unknown host by default
+resolver must point allowed hosts to gateway only
+gateway must validate host before route
+route gate must validate path before runtime
+sirasign frame guard must validate sensitive frame
+dns smoke matrix must pass before rollout
+```
+
+---
+
+## 7. next implementation steps
+
+```text
+step 1: write authoritative zone file for .sira
+step 2: bind natt resolver to authoritative zone
+step 3: point allowed host records to gateway
+step 4: deny wildcard and unknown hosts
+step 5: run resolver-level smoke test
+step 6: run gateway-level smoke test
+step 7: run sirasign frame guard matrix
+step 8: only then enable client/device resolver path
+```
+
+---
+
+## 8. go / no-go
+
+```text
+go only if resolver smoke, gateway smoke, hardening matrix and frame guard matrix all pass
+no-go if any unknown host resolves as allow
+no-go if any admin, secret, direct audit write, or render seal route is reachable
+no-go if any route bypasses natt domain gateway
+```

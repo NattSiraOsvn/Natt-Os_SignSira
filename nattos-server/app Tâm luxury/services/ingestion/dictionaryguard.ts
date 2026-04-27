@@ -2,7 +2,7 @@
 // src/services/ingestion/DictionaryGuard.ts
 import { deepFreeze } from './utils';
 
-// 3️⃣ Nâng cấp Giao thức Quyết định Buffer (Natt-OS Philosophy)
+// 3️⃣ Nâng cấp Giao thức Quyết định Buffer (natt-os Philosophy)
 export enum BufferDecision {
   PROCEED = 'PROCEED',
   HOLD = 'HOLD',

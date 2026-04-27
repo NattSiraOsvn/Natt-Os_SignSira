@@ -1,0 +1,94 @@
+{
+  "khai_ip": {
+    "version": "v1.0",
+    "date": "2026-04-25",
+    "principle": "khai_bao_dia_chi_song_cua_namespace_sira",
+    "namespace": ".sira",
+    "production_edge_node": "imac",
+    "dns_engine": "coredns",
+    "gateway_required": "yes",
+    "route_gate_required": "yes",
+    "sirasign_frame_guard_required": "yes",
+    "edges": {
+      "local_edge": {
+        "scope": "local",
+        "resolver_ip": "127.0.0.1",
+        "gateway_ip": "127.0.0.1",
+        "status": "observed",
+        "evidence": "docs/runtime/sira_khai_ip_preflight_evidence_20260425.na"
+      },
+      "vpn_edge": {
+        "scope": "vpn_or_mesh",
+        "resolver_ip": "not_declared",
+        "gateway_ip": "not_declared",
+        "status": "not_declared"
+      },
+      "public_edge": {
+        "scope": "public",
+        "resolver_ip": "not_declared",
+        "gateway_ip": "not_declared",
+        "status": "not_declared"
+      },
+      "wifi_edge": {
+        "scope": "wifi",
+        "resolver_ip": "192.168.1.238",
+        "gateway_ip": "192.168.1.238",
+        "status": "secondary_edge_declared",
+        "note": "wifi edge is not primary physical server path"
+      },
+      "wired_edge": {
+        "scope": "wired_lan",
+        "resolver_ip": "192.168.1.199",
+        "gateway_ip": "192.168.1.199",
+        "status": "strict_allowlist_applied",
+        "device": "en0",
+        "hardware_port": "Ethernet",
+        "mac_address": "50:1f:c6:5b:b0:f5",
+        "static_ip_policy": "router_dhcp_reservation_preferred",
+        "ipv6_policy": "declare only after stable ula static or dhcpv6 reservation"
+      }
+    },
+    "allowed_logical_hosts": [
+      "anc.sira",
+      "apps.sira",
+      "mach.sira",
+      "core.sira",
+      "audit.sira",
+      "render.sira",
+      "tam.sira"
+    ],
+    "denied_logical_hosts": [
+      "unknown.sira",
+      "mail.sira",
+      "smtp.sira",
+      "imap.sira",
+      "localhost",
+      "127.0.0.1 public path"
+    ],
+    "policy": [
+      "dns la ten",
+      "khai ip la dia chi song",
+      "gateway la cong kiem",
+      "route gate la luat vao",
+      "sirasign la dau xac thuc frame",
+      "screen khong phai cell",
+      "client data khong phai core",
+      "no wildcard allow",
+      "no admin route exposure",
+      "no secret route exposure",
+      "no direct audit write exposure",
+      "no render seal exposure",
+      "wifi edge khong phai wired edge",
+      "wired edge la duong uu tien cho may vat ly server",
+      "ipv4 static policy la router dhcp reservation",
+      "ipv6 chi khai sau khi co dia chi on dinh"
+    ],
+    "rollback": [
+      "set client dns back to previous resolver",
+      "remove lan resolver from client devices",
+      "restore coredns backup if zone changed",
+      "rerun local_edge smoke",
+      "rerun gateway deny smoke"
+    ]
+  }
+}

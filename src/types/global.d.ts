@@ -8,7 +8,7 @@ declare module '*.md' {
   export default content;
 }
 
-// Global types for NATT-OS
+// Global types for natt-os
 declare global {
   interface Window {
     NATT_OS: any;

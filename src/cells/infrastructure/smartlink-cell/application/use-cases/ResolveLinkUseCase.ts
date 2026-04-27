@@ -1,7 +1,7 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
-import { SmartLinkMappingEngine } from "../../domain/services/smartlink-mapping.engine";
-import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
+import { SmartLinkMappingEngine } from "../../domain/services/SmartLink-mapping.engine";
+import { SmartLinkGovernance } from "../../domain/services/SmartLink.governance";
 import type { CellID } from "../../../../shared-kernel/shared.types";
 
 export class ResolveLinkUseCase {

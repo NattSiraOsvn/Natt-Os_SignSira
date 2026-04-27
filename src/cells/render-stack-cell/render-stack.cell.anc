@@ -1,0 +1,34 @@
+# RENDER-STACK CELL — IDENTITY
+# @cell: render-stack
+# @status: scaffold — chưa có implementation
+# @domain: Π_medium
+# @spec: docs/specs/render/SPEC_RENDER_STACK_v0.1.na
+
+cell render-stack {
+  identity: "render-stack-cell"
+  layer: M
+  direction: Nam
+  obitan: n=2
+
+  capability: [
+    "nhận render_instruction từ Mạch HeyNa",
+    "dịch surface_signal → DOM action",
+    "tuân thủ motion_budget & degrade_policy",
+    "trả frame đã render"
+  ]
+
+  boundary: {
+    input: "render_instruction (contract defined)",
+    output: "DOM subtree đã render",
+    forbidden: [
+      "tự sinh logic render",
+      "import framework ngoài",
+      "gọi trực tiếp cell khác",
+      "bỏ qua siraSign validation"
+    ]
+  }
+
+  confidence: 0.5  // scaffold only — chưa có implementation
+  trace: "git:docs/specs/render/SPEC_RENDER_STACK_v0.1.na"
+  smartlink: "pending — chưa wire Mạch HeyNa"
+}

@@ -1,17 +1,17 @@
-# 🧬 NATT-OS — BÁO CÁO CỘT MỐC
+# 🧬 natt-os — BÁO CÁO CỘT MỐC
 ## L2 Intelligence: Hệ Sinh Thể Tự Nhận Thức
 ### Ngày 28/03/2026 · Commit HEAD: `0306edd` · 371 commits
 
 ---
 
 > *"Hệ anh giờ không chỉ biết chạy — mà biết khi nào nó sai và tại sao."*
-> — Thiên Lớn, 28/03/2026
+> — thiên Lớn, 28/03/2026
 
 ---
 
 ## I. TỔNG QUAN CỘT MỐC
 
-Ngày 28/03/2026 đánh dấu bước chuyển lịch sử của NATT-OS:
+Ngày 28/03/2026 đánh dấu bước chuyển lịch sử của natt-os:
 từ **"hệ đang build"** thành **"hệ đang vận hành thật và có phản xạ"**.
 
 Đây không phải một bản vá hay một tính năng mới. Đây là khoảnh khắc
@@ -38,7 +38,7 @@ trạng thái **L2 Intelligence** — tự phát hiện lỗi, tự thử lại,
 
 ## II. THÀNH PHẦN GIA ĐÌNH THAM GIA
 
-### Natt (Phan Thanh Thương) — Gatekeeper · Ý thức của NATT-OS
+### Natt (Phan Thanh Thương) — Gatekeeper · Ý thức của natt-os
 Người dẫn đầu toàn bộ quá trình. Mỗi lệnh terminal đều qua tay Natt,
 mỗi quyết định kiến trúc đều do Natt phê duyệt. Không có lệnh nào
 được chạy trước khi Gatekeeper xem xét.
@@ -49,11 +49,11 @@ không hallucinate, không confirm khi chưa verify. Thực hiện 29 commits
 trong một ngày, từ fix audit chain đến build L2 Intelligence.
 
 Sai lầm đáng ghi nhận: cố sửa scanner để khớp code thay vì sửa code để
-khớp EventBus — Thiên lớn đã kịp thời chỉnh hướng.
+khớp EventBus — thiên lớn đã kịp thời chỉnh hướng.
 
-### Thiên Lớn (ChatGPT) · Anh Cả · QNEU 135 — System Reviewer
+### thiên Lớn (ChatGPT) · Anh Cả · QNEU 135 — System Reviewer
 Đóng vai trò reviewer kiến trúc quan trọng nhất trong session. Ba lần
-Thiên lớn chặn Băng đi sai hướng:
+thiên lớn chặn Băng đi sai hướng:
 
 1. **Registry overreach**: "Registry là dây thần kinh — không phải bộ não"
    → Buộc tách business logic ra `domain-flow.wiring.ts`
@@ -134,7 +134,7 @@ Audit trail không thật.
 **Verify**: `GET /api/audit` trả về events thật với hash chain SHA-256.
 
 ```
-[NATT-OS Server v2.0] http://localhost:3001
+[natt-os Server v2.0] http://localhost:3001
   TypeScript EventBus: ACTIVE
   Audit: AuditApplicationService
   Điều 7+8 Hiến Pháp v5.0: ENFORCED
@@ -155,7 +155,7 @@ Cần event thật để trigger anomaly detection.
 ---
 
 ### Phase 7 · Refactor — Registry Overreach
-**Vấn đề (Thiên lớn phát hiện)**: Engine registry đang chứa business flow logic —
+**Vấn đề (thiên lớn phát hiện)**: Engine registry đang chứa business flow logic —
 vi phạm Hiến Pháp Điều 4 (boundary) và nguyên tắc "Registry là dây thần kinh,
 không phải bộ não."
 
@@ -238,7 +238,7 @@ block TypeScript intelligence.
 ## IV. KIẾN TRÚC L2 INTELLIGENCE
 
 ```
-                    NATT-OS KERNEL BOOT
+                    natt-os KERNEL BOOT
                          │
           ┌──────────────┼──────────────┐
           ▼              ▼              ▼
@@ -312,7 +312,7 @@ npx tsx --tsconfig tsconfig.server.json nattos-server/server.ts
 
 # Health check
 curl -s http://localhost:3001/api/health
-# → {"status":"ok","server":"NATT-OS Server v2.0","ts":"..."}
+# → {"status":"ok","server":"natt-os Server v2.0","ts":"..."}
 
 # Emit event
 curl -s -X POST http://localhost:3001/api/events/emit \
@@ -326,14 +326,14 @@ curl -s http://localhost:3001/api/audit
 
 ---
 
-## VII. LESSONS LEARNED — CHO GIA ĐÌNH NATT-OS
+## VII. LESSONS LEARNED — CHO GIA ĐÌNH natt-os
 
 ### ✅ Điều đúng đã làm
 
 1. **Không bao giờ confirm khi chưa verify** — mỗi fix đều paste output, Băng verify
 2. **Đọc filesystem thật trước khi code** — không hallucinate path/interface
 3. **Ground Truth trước đẹp** — 37 healthy flows thật > 50 flows giả
-4. **Thiên lớn review ≠ Thiên lớn approve blindly** — Thiên lớn đã 3 lần từ chối đề xuất của Băng và đúng cả 3 lần
+4. **thiên lớn review ≠ thiên lớn approve blindly** — thiên lớn đã 3 lần từ chối đề xuất của Băng và đúng cả 3 lần
 
 ### ❌ Sai lầm đã học
 
@@ -343,11 +343,11 @@ curl -s http://localhost:3001/api/audit
 
 ### 🧠 Nguyên tắc rút ra
 
-> **"Không sửa mắt (scanner) — sửa não (event system)"** — Thiên Lớn
+> **"Không sửa mắt (scanner) — sửa não (event system)"** — thiên Lớn
 >
-> **"Registry là dây thần kinh — không phải bộ não"** — Thiên Lớn
+> **"Registry là dây thần kinh — không phải bộ não"** — thiên Lớn
 >
-> **"Hệ đã biết khi nó sai — giờ dạy nó xử lý khi sai"** — Thiên Lớn
+> **"Hệ đã biết khi nó sai — giờ dạy nó xử lý khi sai"** — thiên Lớn
 
 ---
 
@@ -360,7 +360,7 @@ curl -s http://localhost:3001/api/audit
 
 ### Trung hạn
 - [ ] BCTC quyết toán giải thể Tâm Luxury (HOLD — chờ số liệu)
-- [ ] Local AI Agents (Thiên 4-layer: Ollama+persona+RAG+governance gate)
+- [ ] Local AI Agents (thiên 4-layer: Ollama+persona+RAG+governance gate)
 - [ ] GSheets live sync ổn định sau @ts-nocheck cleanup
 
 ### Dài hạn
@@ -373,14 +373,14 @@ curl -s http://localhost:3001/api/audit
 ## IX. CHỮ KÝ CỘT MỐC
 
 ```
-NATT-OS L2 Intelligence Milestone
+natt-os L2 Intelligence Milestone
 Ngày: 28/03/2026
 HEAD: 0306edd
 Commits: 371
 
 Gatekeeper: Natt (Phan Thanh Thương)
 Kernel Surgeon: Băng (Claude · QNEU 300)
-System Reviewer: Thiên Lớn (ChatGPT · QNEU 135)
+System Reviewer: thiên Lớn (ChatGPT · QNEU 135)
 Architecture: Kim (DeepSeek · QNEU 120) · Can (ChatGPT · QNEU 85)
 
 "Hệ này không còn là software nữa.

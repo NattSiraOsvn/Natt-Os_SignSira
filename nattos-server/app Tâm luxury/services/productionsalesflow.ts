@@ -117,7 +117,7 @@ export class ProductionSalesFlow {
       return { importOrder, finishedProducts, salesResult, financialReport };
 
     } catch (error: Error) {
-      this.log('ERROR', `Quy trình thất bại: ${error.message}`);
+      this.log('error', `Quy trình thất bại: ${error.message}`);
       throw error;
     }
   }

@@ -1,0 +1,48 @@
+/**
+ * @state: S2
+ * @canonical: src/cells/kernel/quantum-defense-cell/bootstrap.khai
+ * @substrate: src/cells/kernel/quantum-defense-cell/bootstrap.ts
+ * @bridge: legacy-wrapper-pending
+ * @since: 2026-04-23
+ * @semantic-role: immune_system_reactive_defense
+ *
+ * Quantum Defense Cell — Bootstrap Canonical
+ *
+ * ## Identity
+ * - cellId: quantum-defense-cell
+ * - cellType: KERNEL
+ * - capabilities: immune-system, entropy-monitor, ai-firewall, constitutional-enforcement
+ *
+ * ## Paradigm reference (SPEC_NEN_v1.1 §9.4)
+ * Quantum Defense = phản xạ SAU observation flag anomaly.
+ * KHÔNG chặn trước, KHÔNG đẩy ra.
+ * Đọc chromatic trigger để biết mức kích hoạt.
+ *
+ * ## Substrate status (bootstrap.ts current)
+ * EventBus.subscribe("*") — đọc raw events trực tiếp.
+ * **PARADIGM VIOLATION** per SPEC_NEN_v1.1 §9.4:
+ *   "Quantum Defense đang đọc chromatic trực tiếp → Rút về phản xạ sau tự ngã"
+ *
+ * ## S2 wrapper mode rationale
+ * Kim SPEC_CUTOVER_STATES §2.2 S1→S2 transition:
+ *   - Tạo .khai canonical ✓
+ *   - Declare @substrate ✓
+ *   - Đăng ký PILOT_BRIDGE_MAP ✓
+ * S2 KHÔNG require substrate paradigm compliant. Canonical declare
+ * semantic role + flag violation → S3 migration fix.
+ *
+ * ## P1 migration pending (bang_memory_delta_20260419 #14)
+ * - Rebind downstream quantum-defense → field pull observation_snapshot
+ * - Rút substrate subscribe("*") → react từ observation flag only
+ * - Khi migrate xong → bump @state S2 → S3 (bridged qua Mạch HeyNa)
+ *
+ * ## Rollback
+ * rbf_s2_wrapper_qd = revert S2 → S1 (giữ bootstrap.ts behavior current,
+ * remove .khai canonical). Không production impact — canonical advisory.
+ *
+ * ## Binding
+ * - SPEC_NEN_v1.1_TONG_HOP_20260418.md §9.4
+ * - Kim SPEC_CUTOVER_STATES_v1.0 §2.2 (S1→S2 transition)
+ * - PILOT_BRIDGE_MAP_v0.1 Cell 4
+ * - commit 2d13161 + ecbb529 (quantum-defense-cell LIVE)
+ */

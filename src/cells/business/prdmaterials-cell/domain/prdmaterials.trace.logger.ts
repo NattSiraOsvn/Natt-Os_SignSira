@@ -1,5 +1,5 @@
 export type PrdMaterialsTraceEvent =
-  | 'LAP_CREATED' | 'LAP_CASTING_REQUESTED' | 'DEFECT_MARKED'
+  | 'LAP_created' | 'LAP_CASTING_REQUESTED' | 'DEFECT_MARKED'
   | 'GOLD_ALLOCATED' | 'PHIEU_FETCHED';
 export interface PrdMaterialsTraceLog {
   traceId: string;

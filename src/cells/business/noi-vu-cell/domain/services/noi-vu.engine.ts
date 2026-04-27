@@ -1,6 +1,6 @@
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishNoiVuSignal } from '../../ports/noi-vu-smartlink.port';
+import { publishNoiVuSignal } from '../../ports/noi-vu-SmartLink.port';
 // NoiVuSmartLinkPort wired — signal available for cross-cell communication
 /**
  * noi-vu.engine.ts — Internal operations: facilities, assets, admin

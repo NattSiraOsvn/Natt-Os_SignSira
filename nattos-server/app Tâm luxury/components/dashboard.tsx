@@ -110,13 +110,13 @@ const Dashboard: React.FC<DashboardProps> = ({ metrics, actionLogs, currentRole,
                <div className="flex items-center gap-5 mb-10 shrink-0">
                   <AIAvatar personaId={PersonaID.THIEN} size="md" isThinking={false} />
                   <div>
-                    <h3 className="text-sm font-black text-white uppercase tracking-widest">Cố vấn Thiên</h3>
+                    <h3 className="text-sm font-black text-white uppercase tracking-widest">Cố vấn thiên</h3>
                     <p className="text-[8px] text-amber-600 font-bold uppercase mt-1">Supreme Protocol Active</p>
                   </div>
                </div>
                <div className="flex-1 bg-black/60 p-8 rounded-[2.5rem] border border-white/5 relative z-10 shadow-inner italic font-light text-gray-400 text-sm leading-relaxed">
                   {isMaster 
-                     ? `"Thưa Anh Natt, Thiên đã đồng bộ Shard đối soát. Phát hiện rò rỉ 1.2% tại Node Kim cương tấm. Đề xuất lệnh rà soát kho HCM ngay."`
+                     ? `"Thưa Anh Natt, thiên đã đồng bộ Shard đối soát. Phát hiện rò rỉ 1.2% tại Node Kim cương tấm. Đề xuất lệnh rà soát kho HCM ngay."`
                      : `"Chào Chủ Doanh Nghiệp, hệ thống đang ở trạng thái an toàn. Doanh thu Net đang bám sát kịch bản Tấn Công đã thiết lập."`
                   }
                </div>

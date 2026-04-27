@@ -1,4 +1,4 @@
-# NATT-OS Satellite Colony Spec v1.0
+# natt-os Satellite Colony Spec v1.0
 
 **File:** `src/governance/specs/satellite-colony.spec.md`  
 **Ngày:** 2026-03-25  
@@ -10,10 +10,10 @@
 ## 1. Định nghĩa
 
 ```
-Satellite = 1 instance NATT-OS độc lập
+Satellite = 1 instance natt-os độc lập
          = 1 doanh nghiệp = 1 hệ sống
 
-Host     = NATT-OS gốc (Tâm Luxury)
+Host     = natt-os gốc (Tâm Luxury)
 ```
 
 Cùng kiến trúc sinh thể — khác Ground Truth.  
@@ -115,7 +115,7 @@ SmartLink Cell
 
 ```
 P1 — SmartLink inter-colony protocol
-     src/cells/infrastructure/smartlink-cell/colony.bridge.ts
+     src/cells/infrastructure/SmartLink-cell/colony.bridge.ts
 
 P2 — DNA loader cho Satellite (inherit + override)
      src/governance/gatekeeper/satellite-dna-loader.ts

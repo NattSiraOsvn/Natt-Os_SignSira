@@ -199,7 +199,7 @@ const DailyReportModule: React.FC<DailyReportModuleProps> = ({ currentRole, curr
             <div className="ai-panel p-8 bg-black/40 border-white/5">
                <h4 className="ai-sub-headline text-amber-500 mb-6 flex items-center gap-3">
                   <AIAvatar personaId={PersonaID.THIEN} size="sm" isThinking={false} />
-                  Tham mưu Bảo mật (Thiên)
+                  Tham mưu Bảo mật (thiên)
                </h4>
                <p className="text-[12px] text-gray-400 italic leading-relaxed font-light">
                  {/* Fix: currentPosition is an object, access role property */}

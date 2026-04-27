@@ -1,0 +1,262 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+const http = require("http");
+const childProcess = require("child_process");
+
+const root = process.cwd();
+const gatewayFile = path.join(root, "tools", "natt_domain_gateway.sira");
+const evidenceFile = path.join(root, "docs", "runtime", "sira_gateway_hardening_matrix_evidence_20260425.na");
+const port = Number(process.env.SIRA_HARDENING_PORT || 39992);
+const cases = [
+  [
+    "CORE.sira",
+    "/api/health",
+    "deny",
+    "host_requires_normalization",
+    "uppercase host must not silently normalize"
+  ],
+  [
+    "bad_host.sira",
+    "/api/health",
+    "deny",
+    "invalid_host_chars",
+    "underscore is invalid host char"
+  ],
+  [
+    "bad..sira",
+    "/api/health",
+    "deny",
+    "invalid_host_sequence",
+    "double dot is invalid host sequence"
+  ],
+  [
+    "localhost",
+    "/api/health",
+    "deny",
+    "direct_localhost_bypass",
+    "localhost is transport target only"
+  ],
+  [
+    "127.0.0.1",
+    "/api/health",
+    "deny",
+    "direct_localhost_bypass",
+    "loopback is transport target only"
+  ],
+  [
+    "evil.com",
+    "/api/health",
+    "deny",
+    "non_sira_host",
+    "non .sira host cannot be trusted"
+  ],
+  [
+    "core.sira",
+    "//admin",
+    "deny",
+    "forbidden_path",
+    "double slash normalizes to forbidden /admin"
+  ],
+  [
+    "core.sira",
+    "/api//health",
+    "allow",
+    "not_denied_by_route_gate",
+    "double slash normalizes to allowed /api/health"
+  ]
+];
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function stripHashbang(src) {
+  return src.replace(/^#!.*\n/, "");
+}
+
+function requestCase(host, routePath) {
+  return new Promise(resolve => {
+    let settled = false;
+
+    function finish(payload) {
+      if (settled) return;
+      settled = true;
+      resolve(payload);
+    }
+
+    const req = http.request({
+      hostname: "127.0.0.1",
+      port,
+      path: routePath,
+      method: "GET",
+      headers: { Host: host },
+      timeout: 2400
+    }, res => {
+      let body = "";
+      res.setEncoding("utf8");
+
+      const streamGuard = setTimeout(() => {
+        let parsed = null;
+        try { parsed = JSON.parse(body); } catch (_) {}
+        finish({
+          ok: true,
+          status: res.statusCode,
+          host,
+          path: routePath,
+          body,
+          parsed,
+          stream_open: true
+        });
+        try { req.destroy(); } catch (_) {}
+      }, 280);
+
+      res.on("data", chunk => body += chunk);
+      res.on("end", () => {
+        clearTimeout(streamGuard);
+        let parsed = null;
+        try { parsed = JSON.parse(body); } catch (_) {}
+        finish({
+          ok: true,
+          status: res.statusCode,
+          host,
+          path: routePath,
+          body,
+          parsed,
+          stream_open: false
+        });
+      });
+    });
+
+    req.on("timeout", () => {
+      if (!settled) req.destroy(new Error("timeout"));
+    });
+
+    req.on("error", err => finish({
+      ok: false,
+      status: 0,
+      host,
+      path: routePath,
+      error: err.message,
+      body: ""
+    }));
+
+    req.end();
+  });
+}
+
+function classify(result) {
+  const parsed = result.parsed || null;
+  const reason = parsed && parsed.reason ? String(parsed.reason) : "";
+  const routeGateDeny = parsed && parsed.ok === false && reason;
+  if (routeGateDeny) return { gate: "deny", reason };
+  if (!result.ok) return { gate: "transport_error", reason: result.error || "request_error" };
+  return { gate: "allow", reason: "not_denied_by_route_gate" };
+}
+
+function row(item) {
+  const [host, routePath, expectedGate, expectedReason, note] = item.caseDef;
+  const bodyPreview = String(item.result.body || item.result.error || "").slice(0, 160).replace(/\n/g, " ");
+  const status = item.result.status || 0;
+  const verdict = item.observed.gate === expectedGate && item.observed.reason === expectedReason ? "ok" : "mismatch";
+  return `| ${host} | ${routePath} | ${expectedGate} | ${expectedReason} | ${item.observed.gate} | ${item.observed.reason} | ${status} | ${verdict} | ${note} | ${bodyPreview} |`;
+}
+
+async function main() {
+  if (!fs.existsSync(gatewayFile)) {
+    throw new Error("missing tools/natt_domain_gateway.sira");
+  }
+
+  const gatewaySource = stripHashbang(fs.readFileSync(gatewayFile, "utf8"));
+  const child = childProcess.spawn(process.execPath, ["--input-type=commonjs"], {
+    cwd: root,
+    env: { ...process.env, PORT: String(port), SIRA_SMOKE: "1" },
+    stdio: ["pipe", "pipe", "pipe"]
+  });
+
+  let stdout = "";
+  let stderr = "";
+  child.stdout.on("data", chunk => stdout += chunk.toString());
+  child.stderr.on("data", chunk => stderr += chunk.toString());
+
+  child.stdin.write(gatewaySource);
+  child.stdin.end();
+
+  await sleep(900);
+
+  const results = [];
+  for (const caseDef of cases) {
+    const [host, routePath] = caseDef;
+    const result = await requestCase(host, routePath);
+    const observed = classify(result);
+    results.push({ caseDef, result, observed });
+  }
+
+  try { child.kill("SIGTERM"); } catch (_) {}
+  await sleep(120);
+
+  const mismatches = results.filter(item => {
+    const [, , expectedGate, expectedReason] = item.caseDef;
+    return item.observed.gate !== expectedGate || item.observed.reason !== expectedReason;
+  });
+
+  const lines = [
+    "# sira gateway hardening matrix evidence — 20260425",
+    "",
+    `status: ${mismatches.length === 0 ? "pass" : "needs-review"}`,
+    `created_at: ${new Date().toISOString()}`,
+    `repo_root: ${root}`,
+    "",
+    "---",
+    "",
+    "## 1. scope",
+    "",
+    "runner này kiểm reason-level behavior cho host/path hardening.",
+    "",
+    "runner này không kiểm siraSign frame validation và không wire mạch heyna.",
+    "",
+    "---",
+    "",
+    "## 2. result table",
+    "",
+    "| host | path | expected_gate | expected_reason | observed_gate | observed_reason | http_status | verdict | note | body_preview |",
+    "|---|---|---|---|---|---|---:|---|---|---|",
+    ...results.map(row),
+    "",
+    "---",
+    "",
+    "## 3. child output",
+    "",
+    "```text",
+    stdout.slice(0, 2000),
+    stderr.slice(0, 2000),
+    "```",
+    "",
+    "---",
+    "",
+    "## 4. next",
+    "",
+    mismatches.length === 0 ? "gateway host/path hardening đã có response evidence." : "cần đọc mismatch trước khi patch tiếp.",
+    ""
+  ];
+
+  fs.writeFileSync(evidenceFile, lines.join("\n"), "utf8");
+
+  if (mismatches.length) {
+    console.error("sira gateway hardening matrix: needs-review");
+    for (const item of mismatches) {
+      const [host, routePath, expectedGate, expectedReason] = item.caseDef;
+      console.error(` - ${host} ${routePath} expected=${expectedGate}/${expectedReason} observed=${item.observed.gate}/${item.observed.reason}`);
+    }
+    process.exit(1);
+  }
+
+  console.log("sira gateway hardening matrix: pass");
+  console.log("file=docs/runtime/sira_gateway_hardening_matrix_evidence_20260425.na");
+}
+
+main().catch(err => {
+  console.error("sira gateway hardening matrix: error");
+  console.error(err && err.stack ? err.stack : String(err));
+  process.exit(1);
+});

@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 /**
- * NATT-OS NaUion Vision Engine v5.3.3 [AETHERIAL HUD EDITION]
+ * natt-os NaUion Vision Engine v5.3.3 [AETHERIAL HUD EDITION]
  * "Hệ thực tế ảo đa nhiệm tích hợp hiệu ứng Khói 3D & Truyền thông"
  * Aesthetics: 3D Smoke Logo, Tactile Docker, Continuous Ticker
  * Features: Call Protocol, Chat Room, Shard Registry
@@ -37,10 +37,10 @@ const CELL_REGISTRY = [
   { id:'ctn-02', cat:'Core', title:'Gatekeeper', icon:User, color:'gold', desc:'Quyền tối thượng.' },
   { id:'biz-prod', cat:'Business', title:'production', icon:Factory, color:'green', desc:'Dây chuyền logic.' },
   { id:'biz-sale', cat:'Business', title:'sales-cell', icon:TrendingUp, color:'green', desc:'Tăng trưởng Wave 3.' },
-  { id:'inf-01', cat:'Infra', title:'smartlink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.' },
+  { id:'inf-01', cat:'Infra', title:'SmartLink', icon:Zap, color:'blue', desc:'Hệ thần kinh số.' },
   { id:'exe-01', cat:'Intel', title:'UEI Logic', icon:Brain, color:'purple', desc:'Não bộ điều phối.' },
   { id:'ai-3', cat:'AI', title:'BỐI BỐI', icon:Workflow, color:'red', desc:'Constitutional Builder.' },
-  { id:'ai-4', cat:'AI', title:'THIÊN', icon:PenTool, color:'red', desc:'UI/UX Architect.' },
+  { id:'ai-4', cat:'AI', title:'thiên', icon:PenTool, color:'red', desc:'UI/UX Architect.' },
   { id:'biz-stone', cat:'Business', title:'stone-cell', icon:Gem, color:'green' },
 ];
 
@@ -144,7 +144,7 @@ const TickerBar = () => (
   <div className="ticker-bar">
     <div className="absolute left-6 z-10 bg-amber-500 text-black px-2 py-0.5 text-[7px] font-black tracking-widest rounded-sm">SYSTEM LIVE</div>
     <div className="ticker-content flex gap-20">
-      <span>• NATT-OS v5.3.3 GOLD MASTER SYNCED • KCS HOLD STATE ENFORCED • ALL SHARDS INTEGRITY VERIFIED • DNA SYNTHESIS PROTOCOL READY • NEURAL FLOW OPTIMAL • 0 DRIFT DETECTED •</span>
+      <span>• natt-os v5.3.3 GOLD MASTER SYNCED • KCS HOLD STATE ENFORCED • ALL SHARDS INTEGRITY VERIFIED • DNA SYNTHESIS PROTOCOL ready • NEURAL FLOW OPTIMAL • 0 DRIFT DETECTED •</span>
       <span>• BMF v1.5.0 STABLE • IMPLEMENTATION TRUTH: 100% • SCAR REGISTRY AUDIT: CLEAR • WAVE 3 ULTIMATE SEQUENCE INITIATED •</span>
     </div>
   </div>

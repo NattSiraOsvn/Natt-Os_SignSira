@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+
+const paths = {
+  cellRoot: "src/cells/render-stack-cell",
+  domainRoot: "src/cells/render-stack-cell/domain",
+  cellAnc: "src/cells/render-stack-cell/cell.anc",
+  contract: "src/cells/render-stack-cell/contract.si",
+  types: "src/cells/render-stack-cell/domain/render-instruction.types.ts",
+  engine: "src/cells/render-stack-cell/domain/render-stack.engine.ts",
+  spec: "docs/render/spec_render_language_v0.2_candidate.na"
+};
+
+const files = Object.fromEntries(
+  Object.entries(paths).map(([key, rel]) => [key, path.join(root, rel)])
+);
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+function read(file) {
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+}
+
+must(fs.existsSync(files.cellRoot), "missing src/cells/render-stack-cell");
+must(fs.existsSync(files.domainRoot), "missing src/cells/render-stack-cell/domain");
+must(fs.existsSync(files.cellAnc), "missing src/cells/render-stack-cell/cell.anc");
+must(fs.existsSync(files.contract), "missing src/cells/render-stack-cell/contract.si");
+must(fs.existsSync(files.types), "missing src/cells/render-stack-cell/domain/render-instruction.types.ts");
+must(fs.existsSync(files.engine), "missing src/cells/render-stack-cell/domain/render-stack.engine.ts");
+must(fs.existsSync(files.spec), "missing docs/render/spec_render_language_v0.2_candidate.na");
+
+const anc = read(files.cellAnc);
+const contract = read(files.contract);
+const types = read(files.types);
+const engine = read(files.engine);
+
+must(/layer\s*[:=]\s*"?m"?/i.test(anc), "src/cells/render-stack-cell/cell.anc must declare layer m");
+must(/direction\s*[:=]\s*"?nam"?/i.test(anc), "src/cells/render-stack-cell/cell.anc must declare direction nam");
+must(/obitan\s*[:=]\s*"?n=2"?/i.test(anc) || anc.includes("n=2"), "src/cells/render-stack-cell/cell.anc must declare obitan n=2");
+
+const all = [contract, types, engine].join("\n");
+
+[
+  "react",
+  "vue",
+  "svelte",
+  "three",
+  "EventBus",
+  "production-ready",
+  "siraSign frame validation: wired",
+  "Mạch HeyNa wired"
+].forEach(mark => {
+  must(!all.includes(mark), "forbidden render-stack dependency or claim: " + mark);
+});
+
+const importLines = engine.split(/\r?\n/).filter(line => /^\s*import\s/.test(line));
+for (const line of importLines) {
+  const directOtherCell =
+    line.includes("src/cells/") && !line.includes("render-stack-cell");
+  const relativeOtherCell =
+    /\.\.\/.*-cell/.test(line) && !line.includes("render-stack-cell");
+
+  must(!directOtherCell && !relativeOtherCell, "direct cross-cell import is forbidden: " + line.trim());
+}
+
+must(types.includes("Render") || types.includes("render"), "src/cells/render-stack-cell/domain/render-instruction.types.ts must expose render-related contract");
+must(types.includes("Instruction") || types.includes("instruction"), "src/cells/render-stack-cell/domain/render-instruction.types.ts must expose instruction contract");
+must(engine.includes("instruction") || engine.includes("Instruction"), "src/cells/render-stack-cell/domain/render-stack.engine.ts must receive instruction input");
+
+must(
+  contract.includes("render language") || contract.includes("v0.2"),
+  "src/cells/render-stack-cell/contract.si must reference render language v0.2 scope"
+);
+
+must(
+  contract.includes("không claim production renderer") ||
+  contract.includes("chưa claim production renderer") ||
+  contract.includes("not production"),
+  "src/cells/render-stack-cell/contract.si must explicitly deny production renderer claim"
+);
+
+if (errors.length) {
+  console.error("render-stack-cell validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("render-stack-cell validation: pass");
+console.log("cell=src/cells/render-stack-cell");
+console.log("rules=no cross-cell import; no framework; no production claim; layer m; direction nam; obitan n=2");

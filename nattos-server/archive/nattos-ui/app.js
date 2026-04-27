@@ -1,4 +1,4 @@
-// app.js — NATT-OS · Nauion Bootstrap
+// app.js — natt-os · Nauion Bootstrap
 // Mạch HeyNa = SSE chính, Whao fallback = poll mỗi 3s
 import { store }              from './store.js';
 import { fetchAudit, fetchIntelligence } from './adapter.js';

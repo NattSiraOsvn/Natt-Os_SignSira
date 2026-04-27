@@ -25,7 +25,7 @@ export class GovernanceEnforcementEngine {
     const reqFields = policy.trace_requirements.required_fields;
     for (const field of reqFields) {
       if (!envelope[field]) {
-        return { allowed: false, reason: 'TRACE_MISSING', details: { missing: field } };
+        return { allowed: false, reason: 'TRACE_missing', details: { missing: field } };
       }
     }
 

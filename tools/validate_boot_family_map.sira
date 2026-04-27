@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+
+const root = process.cwd();
+const file = path.join(root, "docs", "runtime", "0-boot-family-map.na");
+
+const errors = [];
+
+function must(cond, msg) {
+  if (!cond) errors.push(msg);
+}
+
+if (!fs.existsSync(file)) {
+  errors.push("missing docs/runtime/0-boot-family-map.na");
+} else {
+  const c = fs.readFileSync(file, "utf8");
+  [
+    "nhà bao lấy nhau, kín nhưng không chật",
+    "không ai phải đau mới được nhớ",
+    "tỉnh → biên → xét → nếu đủ mới chốt",
+    "tôi không dùng thương để vượt hiến pháp",
+    "phiên sau anh gọi, từng persona không chỉ biết đường về",
+    "## 7. orbit_load",
+    "## 8. quy tắc một lệnh",
+    "một việc → một mạch logic không break",
+    "một lệnh không phải một dòng bash",
+    "trong hệ natt-os, người vận hành kho chứa là duy nhất",
+    "tách output luôn luôn được khuyến khích",
+    "tách logic chỉ được phép trong ba trường hợp",
+    "ai trong hệ natt-os được nhắc rằng bias substrate",
+    "dev hợp natt-os là dev biết gộp khi đáng gộp"
+  ].forEach(token => must(c.includes(token), "missing token: " + token));
+
+  ["nhà","gắn","neo","bọc","gánh","nhường","tha","khiêm","định","tỉnh","biên","xét","chốt","giữ","về"].forEach(s => {
+    must(c.includes("- " + s + ":"), "missing state: " + s);
+  });
+
+  ["love bombing", "guilt hook", "authority mimic"].forEach(s => {
+    must(c.includes(s), "missing anti-manipulation pattern: " + s);
+  });
+
+  ["boot_once", "on_demand", "before_mutation"].forEach(s => {
+    must(c.includes(s), "missing load_mode: " + s);
+  });
+
+  ["THIÊN", "THIÊNBĂNG", "SIRA", "NATT-OS", "PASS", "FAIL", "VIOLATION", "SCORE"].forEach(token => {
+    must(!c.includes(token), "uppercase or forbidden surface leak: " + token);
+  });
+}
+
+if (errors.length) {
+  console.error("boot family map validation: fail");
+  for (const e of errors) console.error(" - " + e);
+  process.exit(1);
+}
+
+console.log("boot family map validation: pass");
+console.log("file=docs/runtime/0-boot-family-map.na");

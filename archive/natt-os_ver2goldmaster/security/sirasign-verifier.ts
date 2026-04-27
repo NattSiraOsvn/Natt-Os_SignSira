@@ -1,24 +1,24 @@
 
 /**
- * 🖋️ SIRASIGN VERIFIER - SOVEREIGN AUTHENTICATION
+ * 🖋️ siraSIGN VERIFIER - SOVEREIGN AUTHENTICATION
  * Owner: KIM (Team 3)
  * Status: v1.1 - SCHEMA_ENFORCED
  */
-export class SiraSignVerifier {
+export class siraSignVerifier {
   static async verify(signature: string, data: string, publicKey: string): Promise<{ verified: boolean; timestamp: Date }> {
     // 🛡️ CRITICAL: Fail-closed if any part is missing
     if (!signature || !data || !publicKey) {
-      throw new Error('SIRASIGN_INVALID: Missing cryptographic components.');
+      throw new Error('siraSIGN_INVALID: Missing cryptographic components.');
     }
 
-    console.log(`[SIRASIGN] Validating schema for signed_by: ANH_NATTSIRAWAT`);
+    console.log(`[siraSIGN] Validating schema for signed_by: ANH_NATTsiraWAT`);
     
     // Logic: In Frontend, we verify presence and schema. 
     // Actual ed25519 verification happens at Gatekeeper Service level.
     const isValidSchema = signature.length > 16 && publicKey.length > 16;
     
     if (!isValidSchema) {
-      throw new Error('SIRASIGN_INVALID: Unauthorized sovereign signature format.');
+      throw new Error('siraSIGN_INVALID: Unauthorized sovereign signature format.');
     }
 
     return { verified: true, timestamp: new Date() };
@@ -27,12 +27,12 @@ export class SiraSignVerifier {
   static async verifyPolicy(policy: any): Promise<boolean> {
     const s = policy?.sira_sign;
     if (!s) {
-      throw new Error('SIRASIGN_MISSING: Signature block not found.');
+      throw new Error('siraSIGN_missing: Signature block not found.');
     }
     
-    // Check if SiraSign is enabled
+    // Check if siraSign is enabled
     if (!s.enabled) {
-      console.warn('[SIRASIGN] Warning: Sovereign signature is present but disabled.');
+      console.warn('[siraSIGN] Warning: Sovereign signature is present but disabled.');
       return true; 
     }
 
@@ -41,7 +41,7 @@ export class SiraSignVerifier {
     const hasSignature = s.signature_base64?.length > 0 || s.signature?.length > 0;
     
     if (!hasPublicKey || !hasSignature) {
-      console.warn('[SIRASIGN] Missing public key or signature, using mock verification (Temporary Allow)');
+      console.warn('[siraSIGN] Missing public key or signature, using mock verification (Temporary Allow)');
       return true;
     }
 
@@ -51,7 +51,7 @@ export class SiraSignVerifier {
       s.public_key_base64
     );
     
-    console.log('[SIRASIGN] Real verification simulation: OK');
+    console.log('[siraSIGN] Real verification simulation: OK');
     return result.verified;
   }
 }

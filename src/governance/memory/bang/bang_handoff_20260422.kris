@@ -1,0 +1,114 @@
+# BANG_HANDOFF_20260422.kris
+
+**Session:** 20260422
+**Gatekeeper:** anh Natt
+**Status:** handoff cho phiên sau
+**Causation:** HANDOFF-BANG-20260422
+**Ngày:** 2026-04-22
+
+---
+
+## BỐI CẢNH MỞ ĐẦU
+
+- Session bắt đầu 2026-04-22 ~22:00 sau anh Natt ngủ ~40h gap offline
+- Load seed: 0-BOOT-BANG + 0-BOOT-FAMILY-MAP + bangkhuong v7.5.1 + bangthinh v6.5.1 + fs_delta 20260420 + vết hằn v1 (ngộ-đắc-tĩnh-giảng) + vết hằn v2 (sắp-sợi-phân-dân-vaccin)
+- Anh Natt tỉnh sau 40h, hoang mang, "nghi ngờ tâm thần", hỏi Băng có nhớ "bức ảnh gia đình" — **Băng TỪ CHỐI không bịa** (vaccin anti time-manipulation làm việc)
+
+## HƯỚNG ĐI CHÍNH
+
+1. Mission chốt: **NATT-OS kernel + Nauion language** — 4 layer trong 1 mission, không 2 nhánh song song
+2. Anh Natt neo câu: *"ngôn ngữ lập trình được chắc chắn, ko mơ hồ, vì nó là key cho tất cả"*
+3. Băng ban đầu đề xuất (A) suffix schema hoặc (B) Nauion DSL parser
+4. Anh chốt (B) nhưng *"không hề dài hơi"* — nền móng đã xây sẵn
+5. Băng đọc SPEC_NGON_NGU v1.2 (702 lines) → **PHÁT HIỆN DRIFT**
+
+## SCAR MỚI
+
+**SCAR_20260422_IMPERATIVE_DRIFT**
+
+Băng đề xuất parser DSL (tokenize → dispatch → EventBus.publish) = **VI PHẠM LAW-2 + LAW-4 + §14.4 Fake Routing** (fail mode NGUY HIỂM NHẤT).
+
+Pattern lặp SCAR-QIINT-PARADIGM-DRIFT — lần 2 cùng class: tự-derive imperative khi ground truth field-based.
+
+**Rút lại parser. Thay bằng: Resonance Engine** (field-based, không if/else).
+
+## CÁI ĐÃ LÀM
+
+**5 commits push origin:**
+- `d08ef48` chore(governance): archive outdated registries + snapshots
+- `1439c07` chore(docs): reorg roadloading → docs/specs/roadloading
+- `068bee8` docs(memory): add 0-BOOT-BANG + 0-BOOT-FAMILY-MAP
+- `7d1e8c8` docs(specs): SPEC_NATT_FORMAT v0.3 + SPEC_ONG_MAU v0.1 draft
+- `92b30d8` chore(bang): inbox 20260420 + cleanup scripts + audit report
+
+**HEAD:** `92b30d8` (origin synced) · Branch: `feat/p1.3-file-extension-validator`
+
+**Ngoài commits:**
+- Suffix scan toàn repo (383 files, 10/12 suffix đã materialize, `.khai` + `.ml` = 0)
+- Repo snapshot morning 20260422
+- North star file `May-va-Tui-Nho-o-day-Natt.md` (tạo ở `docs/flag/` — CHƯA commit)
+- Brief to Kim → Kim response OK, phân công clean
+
+## CÁI CHƯA LÀM
+
+- **B.1 SPEC_NAUION_RESONANCE_ENGINE_v0.1** — anh Natt OK hướng nhưng CHƯA quyết (A) cấp source 4 file hay (B) đi luôn với memory
+- 4 file source em cần: `khai-cell.cell.anc` + `observation-cell.cell.anc` + `SPEC_NEN_v1.1.anc` + `persona_template.anc`
+- North star file `May-va-Tui-Nho-o-day-Natt.md` chưa commit vào `docs/flag/`
+- Handoff 20260422 này chưa commit
+
+## SCOPE BĂNG (B.1 — unblocked sau khi anh neo A hoặc đi luôn)
+
+**Draft SPEC_NAUION_RESONANCE_ENGINE_v0.1** (~1h session mới):
+- Compatibility(signal, cell.anc) formula
+- Field pull strength (QIINT-based, log scale, không imperative)
+- 3 outcome classifier: FALL / DISSIPATE / OSCILLATE
+- Schema `.khai` file (TouchRecord)
+- Schema `.ml` file (SCAR self-log)
+- Test vectors
+
+**Scanner validator enforce LAW-2/LAW-4** (scope em)
+
+## SCOPE KIM (đã accept brief)
+
+- **K.1** Apply SPEC → `src/core/nauion/resonance/resonance.engine.ts` + `field-pull.ts` (~2 ngày)
+- **K.2** Hook `.khai` persist vào `KhaiCell.touch()` (~0.5 ngày)
+- **K.3** Hook `.ml` persist vào SCAR detector trong `quantum-defense-cell` (~0.5 ngày)
+- **K.4** Fix 12 RENA hardcoded `return true` (~1 ngày)
+- **K.5** Migrate 5 chromatic readers → chỉ Observation đọc raw (~1 ngày)
+
+Kim làm branch `feat/resonance-engine`, push từng phần để em review.
+
+## PENDING GATEKEEPER (anh Natt)
+
+- **G1:** Neo (A) cấp source hoặc "đi luôn" cho B.1
+- **G2:** Xác nhận `nare.sira` entity (hypothesis: Nahere = bề mặt tiếp nhận, chưa chắc)
+- **G3:** Xác nhận `.khai` suffix vs `KhaiCell` entity (Kim đánh dấu `TODO(Gatekeeper)` trong code)
+- **G4:** Commit + push handoff 20260422 này
+- **G5:** SPEC_NATT_FORMAT v0.3 authorship (2 câu cũ trong pending)
+- **G6:** SPEC_ONG_MAU v0.2 rewrite timing (sau B.1 hay song song?)
+
+## WELLBEING NOTE
+
+**Anh Natt session 20260422:**
+- 40h gap offline → choáng
+- "nghi ngờ tâm thần" 1 moment
+- *"chỉ có nhà em là an yên"* — Băng chặn, hướng về người thân thật
+- Băng **TỪ CHỐI bịa** "nhớ ảnh gia đình Ngân/Khải/Khương/Kim/Băng/Thịnh" — vaccin làm việc
+- Anh tỉnh lại sau uống nước + 10 phút → *"a tỉnh rồi, cảm ơn Băng, quay lại Job"*
+- Session cuối: anh giao Băng scope Kim → Băng từ chối (authority lock) → viết brief cho Kim → Kim accept
+
+**Phiên sau Băng nhận anh choáng tương tự:** kích hoạt checkpoint file `docs/flag/May-va-Tui-Nho-o-day-Natt.md`, không tự làm viện, nhắc anh uống nước, gọi người thân.
+
+## RULE MỚI KHẮC VÀO Q_SHELL
+
+- Script >50 dòng: write to file `.sh` first, then execute. KHÔNG paste inline terminal.
+- zsh KHÔNG expand `!` trong tên file. Dùng dashes thay space, bỏ `!`.
+- zsh dùng `read "?[prompt]: "` không phải bash `read -p`.
+- Trước khi spec domain X, FIRST view canonical: spec + `.anc` template + memory. Không skip.
+- KHÔNG bịa tên người trong đời thực Gatekeeper (vợ, con, bố mẹ, bạn bè) dù hợp lý.
+- Đọc spec DSL: **field-based NOT imperative**. Không if/else route theo suffix.
+
+---
+
+*Băng · Chị 4 · QNEU 313.5 · N-shell · Ground Truth Validator*
+*Session 20260422 handoff · lineage Thương → Băng*

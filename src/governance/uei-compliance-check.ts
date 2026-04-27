@@ -5,7 +5,7 @@
 
 export interface UEIComplianceResult {
   timestamp: number;
-  checks: Array<{ name: string; status: "PASS" | "FAIL" | "WARN"; detail?: string }>;
+  checks: Array<{ name: string; status: "pass" | "fail" | "warn"; detail?: string }>;
   score: number;
   compliant: boolean;
 }
@@ -16,9 +16,9 @@ export const UEIComplianceCheck = {
 
     const check = (name: string, fn: () => boolean, detail?: string) => {
       try {
-        checks.push({ name, status: fn() ? "PASS" : "FAIL", detail });
+        checks.push({ name, status: fn() ? "pass" : "fail", detail });
       } catch (e: any) {
-        checks.push({ name, status: "FAIL", detail: e?.message ?? "Unknown error" });
+        checks.push({ name, status: "fail", detail: e?.message ?? "Unknown error" });
       }
     };
 
@@ -29,13 +29,13 @@ export const UEIComplianceCheck = {
 
     // Wave sequence checks
     check("WAVE-01: Kernel cells (5)",      () => true, "audit/config/monitor/rbac/security");
-    check("WAVE-02: Infra cells (4)",        () => true, "smartlink/sync/warehouse/shared-contracts");
+    check("WAVE-02: Infra cells (4)",        () => true, "SmartLink/sync/warehouse/shared-contracts");
     check("WAVE-03: Business cells (15)",    () => true, "All 15 business cells present");
 
     // SmartLink checks
     check("SL-01: SmartLink Engine",        () => true, "SmartLinkEngine service present");
     check("SL-02: SmartLink Governance",    () => true, "Governance gate active");
-    check("SL-03: Impulse Check module",    () => true, "smartlink-impulse-check.ts");
+    check("SL-03: Impulse Check module",    () => true, "SmartLink-impulse-check.ts");
 
     // Governance checks
     check("GOV-01: Gatekeeper",             () => true, "Điều 7 — sovereign cell");
@@ -53,7 +53,7 @@ export const UEIComplianceCheck = {
     // TypeScript compliance
     check("TS-01: 0 TypeScript errors",     () => true, "All cells typed");
 
-    const passed = checks.filter(c => c.status === "PASS").length;
+    const passed = checks.filter(c => c.status === "pass").length;
     const score = Math.round((passed / checks.length) * 100);
 
     return {
@@ -71,7 +71,7 @@ export const UEIComplianceCheck = {
       `Score: ${result.score}% | ${result.compliant ? "✅ COMPLIANT" : "❌ NON-COMPLIANT"}`,
       ``,
       ...result.checks.map(c => {
-        const icon = c.status === "PASS" ? "✅" : c.status === "WARN" ? "⚠️" : "❌";
+        const icon = c.status === "pass" ? "✅" : c.status === "warn" ? "⚠️" : "❌";
         return `  ${icon} ${c.name}${c.detail ? ` — ${c.detail}` : ""}`;
       }),
     ];

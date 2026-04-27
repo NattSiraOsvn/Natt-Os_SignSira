@@ -1,6 +1,6 @@
 // @ts-nocheck — TODO: fix type errors, remove this pragma
 
-import{WarehouseSmartLinkPort}from"../../ports/warehouse-smartlink.port";
+import{WarehouseSmartLinkPort}from"../../ports/warehouse-SmartLink.port";
 import{EventBus}from"../../../../core/events/event-bus";
 export type TransferStatus="PENDING"|"IN_TRANSIT"|"DELIVERED"|"CANCELLED";
 export interface TransferOrder{id:string;transferId?:string;from:string;to:string;items:Array<{itemId:string;sku:string;quantity:number}>;status:TransferStatus;requestedBy:string;createdAt:number;completedAt?:number;note?:string;}

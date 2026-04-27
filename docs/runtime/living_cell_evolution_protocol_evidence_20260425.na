@@ -1,0 +1,22 @@
+# living cell evolution protocol evidence — 20260425
+
+status: protocol-validated
+created_at: 2026-04-25T10:57:41.492219+00:00
+repo_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+
+---
+
+## 1. files
+
+- docs/runtime/living_cell_evolution_protocol_20260425.na
+- tools/validate_living_cell_evolution_protocol.sira
+
+---
+
+## 2. validation scope
+
+- khóa lại nguyên tắc natt-os là sinh thể số biết học.
+- tenant fixture là môi trường nuôi cell, không phải core.
+- compiler generic chỉ là enzyme kiểm hình.
+- không đi theo hướng workflow engine tĩnh.
+- bước tiếp theo chuyển sang cell learning seed.

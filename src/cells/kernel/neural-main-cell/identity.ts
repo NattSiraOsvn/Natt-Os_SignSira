@@ -1,6 +1,6 @@
 // ============================================================
 // NEURAL MAIN CELL — Identity (Điều 5, thành phần 1)
-// ADN duy nhất của cell trong NATT-OS
+// ADN duy nhất của cell trong natt-os
 // ============================================================
 
 export const NEURAL_MAIN_IDENTITY = {
@@ -10,7 +10,7 @@ export const NEURAL_MAIN_IDENTITY = {
   layer: 'kernel',         // Điều 8: Kernel Cell
   role: 'LONG_TERM_MEMORY', // Hệ thống trí nhớ dài hạn (Điều 21)
   description:
-    'Hệ thống trí nhớ dài hạn có trọng số cho toàn bộ AI Entity trong NATT-OS. ' +
+    'Hệ thống trí nhớ dài hạn có trọng số cho toàn bộ AI Entity trong natt-os. ' +
     'Externalize Neural MAIN tự nhiên của Gatekeeper thành hệ thống có thể vận hành độc lập.',
   serves: 'AI_ENTITIES',   // Phục vụ AI Entity, không phải business cell
   constitutional_ref: 'Điều 21-22, Hiến Pháp v4.0',

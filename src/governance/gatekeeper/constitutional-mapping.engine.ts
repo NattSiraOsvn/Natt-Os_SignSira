@@ -1,5 +1,5 @@
 /**
- * NATT-OS Constitutional Mapping Engine v1.1
+ * natt-os Constitutional Mapping Engine v1.1
  * CAN-02: DNA gate added to execute()
  *
  * Thay đổi từ v1.0:
@@ -22,7 +22,7 @@ export { TriggerType } from './trigger-types';
 
 // ── RESPONSE TYPES ─────────────────────────────────────────
 export enum ResponseType {
-  EMIT_WARNING        = 'EMIT_WARNING',
+  EMIT_warnING        = 'EMIT_warnING',
   EMIT_RISK           = 'EMIT_RISK',
   EMIT_CRITICAL       = 'EMIT_CRITICAL',
   FREEZE_CELL         = 'FREEZE_CELL',
@@ -55,7 +55,7 @@ export const CONSTITUTIONAL_MAPPING: MappingEntry[] = [
   },
   {
     trigger:     TriggerType.POLISH_RATE_LOW,
-    responses:   [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
+    responses:   [ResponseType.EMIT_warnING, ResponseType.LOG_AUDIT],
     chromatic:   'warning',
     confidence:  0.6,
     decay_ms:    600_000,
@@ -87,14 +87,14 @@ export const CONSTITUTIONAL_MAPPING: MappingEntry[] = [
   },
   {
     trigger:     TriggerType.CASHFLOW_GAP,
-    responses:   [ResponseType.EMIT_WARNING, ResponseType.LOG_AUDIT],
+    responses:   [ResponseType.EMIT_warnING, ResponseType.LOG_AUDIT],
     chromatic:   'warning',
     confidence:  0.6,
     decay_ms:    600_000,
     description: 'Cashflow gap vượt ngưỡng',
   },
   {
-    trigger:     TriggerType.INVOICE_MISSING,
+    trigger:     TriggerType.INVOICE_missing,
     responses:   [ResponseType.EMIT_RISK, ResponseType.ALERT_GATEKEEPER, ResponseType.LOG_AUDIT],
     chromatic:   'risk',
     confidence:  0.75,
@@ -143,7 +143,7 @@ export const CONSTITUTIONAL_MAPPING: MappingEntry[] = [
   },
   {
     trigger:     TriggerType.ROUND_NUMBER_ANOMALY,
-    responses:   [ResponseType.EMIT_WARNING, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
+    responses:   [ResponseType.EMIT_warnING, ResponseType.CROSS_VALIDATE, ResponseType.LOG_AUDIT],
     chromatic:   'warning',
     confidence:  0.6,
     decay_ms:    600_000,
@@ -151,7 +151,7 @@ export const CONSTITUTIONAL_MAPPING: MappingEntry[] = [
   },
   {
     trigger:     TriggerType.CELL_HEALTH_DEGRADED,
-    responses:   [ResponseType.EMIT_WARNING, ResponseType.ESCALATE_QUANTUM, ResponseType.LOG_AUDIT],
+    responses:   [ResponseType.EMIT_warnING, ResponseType.ESCALATE_QUANTUM, ResponseType.LOG_AUDIT],
     chromatic:   'warning',
     confidence:  0.65,
     decay_ms:    300_000,
