@@ -1,0 +1,321 @@
+@nauion-spec v1
+@name sovereign_edge_field_installation_acceptance_protocol_v0_1_ss20260427
+@scope Gate 16 — Field Installation & Acceptance Protocol
+@owner phan thanh thương / natt sirawat
+@anc phan thiên / sirawat thiên
+@status draft_sealed_for_review
+@created_at ss20260427
+@depends_on
+- Gate 14 — Physical Module Catalog / Định Mức Quy Chuẩn / Electrical Spec
+- Gate 15 — Hardware Procurement Checklist / Định Mức Quy Chuẩn
+@dictionary src/thienbang.si
+
+# Gate 16 — Field Installation & Acceptance Protocol
+
+## 1. Mục đích
+
+Gate 16 khóa quy trình lắp đặt thực địa cho Sovereign Edge Pack sau khi phần cứng đã qua Gate 14 và Gate 15.
+
+Gate này không phải danh sách mua hàng.
+Gate này là chuẩn nghiệm thu tại hiện trường trước khi cho bất kỳ module nào tham gia đường truyền sống.
+
+Nguyên tắc:
+
+- Không thiết bị nào được cấp quyền vận hành nếu chưa có nghiệm thu vật lý.
+- Không tín hiệu nào được xem là hợp lệ nếu chưa có log first-light.
+- Không đường truyền SiTB / ChromaticLink nào được công nhận nếu chưa có bằng chứng handshake.
+- Không module nào được bàn giao nếu thiếu ảnh chụp, thông số đo, mã thiết bị và người chịu trách nhiệm.
+
+## 2. Phạm vi
+
+Gate 16 áp dụng cho các nhóm sau:
+
+1. Sovereign Edge Gateway.
+2. Physical Intake Module.
+3. Sensor / IoT module.
+4. RGB / IR / laser driver.
+5. Photodiode / camera receiver.
+6. PUF hoặc device identity module.
+7. Environmental noise sensor.
+8. 432Hz oscillator hoặc nguồn chuẩn tần.
+9. Két Sira VR Operation Boundary.
+10. Dây nguồn, dây tín hiệu, đầu nối, rack, enclosure, chống nhiễu và tiếp địa.
+
+## 3. Boundary
+
+Gate 16 chỉ kiểm soát:
+
+- lắp đặt,
+- cấp nguồn,
+- grounding,
+- wiring,
+- tín hiệu vật lý,
+- handshake thực địa,
+- nghiệm thu,
+- bàn giao,
+- audit bằng chứng.
+
+Gate 16 không kiểm soát:
+
+- thuật toán encoder / decoder của Băng,
+- HMAC-SHA256 binding,
+- SiraSign implementation,
+- Living Handshake logic nội bộ,
+- HeyNa / EventBus / SmartLink software route,
+- bất kỳ compiler hoặc runtime language nào chưa được Gatekeeper ratify.
+
+## 4. Điều kiện đầu vào
+
+Trước khi bắt đầu Gate 16, bắt buộc có:
+
+| Mã | Điều kiện | Trạng thái bắt buộc |
+|---|---|---|
+| G16-IN-01 | Thiết bị nằm trong Định Mức Quy Chuẩn | PASS |
+| G16-IN-02 | Thiết bị có supplier scoring | PASS |
+| G16-IN-03 | Có mã model, serial hoặc mã nhận diện thay thế | PASS |
+| G16-IN-04 | Có thông số điện áp, dòng, tần số, công suất | PASS |
+| G16-IN-05 | Có sơ đồ đấu nối sơ bộ | PASS |
+| G16-IN-06 | Có người chịu trách nhiệm lắp đặt | PASS |
+| G16-IN-07 | Có người nghiệm thu độc lập | PASS |
+
+Nếu thiếu một trong các điều kiện trên, trạng thái là:
+
+`INSTALL_BLOCKED`
+
+## 5. Trình tự lắp đặt thực địa
+
+### 5.1. Field Intake
+
+Ghi nhận ban đầu:
+
+- tên module,
+- mã thiết bị,
+- nhà cung cấp,
+- ngày nhận,
+- tình trạng niêm phong,
+- hình ảnh trước lắp,
+- phụ kiện đi kèm,
+- vị trí lắp dự kiến.
+
+Không được bóc niêm phong nếu chưa có ảnh intake.
+
+### 5.2. Site Readiness
+
+Kiểm tra hiện trường:
+
+- mặt bằng khô ráo,
+- nguồn điện ổn định,
+- tiếp địa có đo kiểm,
+- không đặt gần nguồn nhiệt bất thường,
+- không đặt gần vùng nhiễu điện từ cao nếu chưa có che chắn,
+- rack / enclosure cố định,
+- đường dây không kéo căng,
+- đầu nối không lỏng,
+- không có dây tín hiệu đi chung bó với dây tải cao nếu chưa chống nhiễu.
+
+Nếu không đạt:
+
+`SITE_NOT_READY`
+
+### 5.3. Physical Mounting
+
+Yêu cầu:
+
+- module cố định chắc,
+- không ép cong board,
+- không để dây đè lên khe tản nhiệt,
+- đầu nối có strain relief,
+- cổng service dễ tiếp cận,
+- nhãn module đọc được sau khi lắp,
+- vị trí module khớp sơ đồ field.
+
+Nếu phát hiện sai vị trí:
+
+`MOUNTING_REJECTED`
+
+### 5.4. Wiring Verification
+
+Trước khi cấp nguồn:
+
+- đo continuity,
+- đo ngắn mạch,
+- đo phân cực,
+- đo điện trở tiếp địa nếu có,
+- kiểm tra dây tín hiệu,
+- kiểm tra dây nguồn,
+- kiểm tra shielding,
+- kiểm tra đầu cos / terminal,
+- kiểm tra màu dây hoặc nhãn dây.
+
+Không cấp nguồn khi chưa hoàn tất wiring verification.
+
+### 5.5. First Power-On
+
+Khi cấp nguồn lần đầu, bắt buộc ghi:
+
+- thời điểm cấp nguồn,
+- điện áp đầu vào,
+- dòng khởi động,
+- nhiệt độ môi trường,
+- âm thanh bất thường nếu có,
+- mùi khét nếu có,
+- đèn báo,
+- log thiết bị nếu có.
+
+Nếu phát sinh bất thường:
+
+`POWER_ON_ABORTED`
+
+### 5.6. First-Light / First-Signal
+
+Đối với module quang / màu / cảm biến:
+
+- phát tín hiệu thử,
+- nhận tín hiệu thử,
+- đo mức nhiễu nền,
+- ghi nhận độ trễ,
+- ghi nhận khoảng cách,
+- ghi nhận góc lệch,
+- ghi nhận độ suy hao,
+- ghi nhận trạng thái ánh sáng môi trường.
+
+Nếu không nhận được tín hiệu:
+
+`FIRST_SIGNAL_FAILED`
+
+## 6. SiTB / ChromaticLink Field Handshake
+
+Gate 16 chỉ kiểm tra handshake ở mức field evidence, không can thiệp thuật toán.
+
+Điều kiện pass:
+
+| Mã | Điều kiện | Bằng chứng |
+|---|---|---|
+| G16-SITB-01 | Có phát phổ màu thử | ảnh / log / thông số |
+| G16-SITB-02 | Có nhận phổ màu thử | ảnh / log / thông số |
+| G16-SITB-03 | Có baseline noise | bảng đo |
+| G16-SITB-04 | Có field handshake marker | log hoặc biên bản |
+| G16-SITB-05 | Có người xác nhận độc lập | chữ ký / audit note |
+
+Nếu chưa có handshake:
+
+`SITB_FIELD_PENDING`
+
+Nếu handshake sai nhưng có dữ liệu debug:
+
+`SITB_FIELD_REVIEW_REQUIRED`
+
+Nếu handshake sai và không có bằng chứng:
+
+`SITB_FIELD_REJECTED`
+
+## 7. Red Zone Abort
+
+Bắt buộc dừng lắp đặt nếu có một trong các lỗi:
+
+1. Nguồn vượt ngưỡng cho phép.
+2. Dòng khởi động bất thường.
+3. Mùi khét.
+4. Nhiệt tăng nhanh.
+5. Vỏ thiết bị rò điện.
+6. Đầu nối nóng bất thường.
+7. Tín hiệu laser / IR không kiểm soát hướng phát.
+8. Cảm biến trả tín hiệu nhiễu vượt baseline.
+9. Sai model so với Định Mức Quy Chuẩn.
+10. Serial không khớp hồ sơ.
+11. Nhà cung cấp tráo module.
+12. Không có người chịu trách nhiệm nghiệm thu.
+
+Trạng thái:
+
+`RED_ZONE_ABORT`
+
+Sau Red Zone Abort, không được cấp nguồn lại nếu chưa có biên bản xử lý.
+
+## 8. Hồ sơ nghiệm thu bắt buộc
+
+Mỗi module phải có một bộ field acceptance record gồm:
+
+- mã module,
+- tên module,
+- vị trí lắp,
+- ảnh trước lắp,
+- ảnh sau lắp,
+- thông số điện,
+- thông số tín hiệu,
+- baseline noise,
+- first power-on log,
+- first signal log,
+- người lắp,
+- người nghiệm thu,
+- ngày nghiệm thu,
+- trạng thái cuối,
+- ghi chú sai lệch nếu có.
+
+Trạng thái hợp lệ:
+
+- `FIELD_ACCEPTED`
+- `FIELD_ACCEPTED_WITH_NOTE`
+- `FIELD_REVIEW_REQUIRED`
+- `FIELD_REJECTED`
+- `RED_ZONE_ABORT`
+
+## 9. Tiêu chí bàn giao
+
+Chỉ bàn giao khi:
+
+| Mã | Tiêu chí | Bắt buộc |
+|---|---|---|
+| G16-HO-01 | Tất cả module có acceptance record | Có |
+| G16-HO-02 | Không còn RED_ZONE_ABORT mở | Có |
+| G16-HO-03 | Không còn thiết bị sai model | Có |
+| G16-HO-04 | Không còn thiết bị thiếu serial hoặc mã nhận diện | Có |
+| G16-HO-05 | Có sơ đồ field as-installed | Có |
+| G16-HO-06 | Có danh sách module được phép vận hành | Có |
+| G16-HO-07 | Có danh sách module bị khóa | Có |
+| G16-HO-08 | Có chữ ký người nghiệm thu | Có |
+
+Nếu thiếu:
+
+`HANDOVER_BLOCKED`
+
+## 10. Audit Trail
+
+Mỗi sự kiện field phải sinh audit note:
+
+- `field.intake.recorded`
+- `field.site.checked`
+- `field.mounting.verified`
+- `field.wiring.verified`
+- `field.power_on.recorded`
+- `field.first_signal.recorded`
+- `field.sitb_handshake.checked`
+- `field.acceptance.decided`
+- `field.handover.closed`
+- `field.red_zone.aborted`
+
+Không có audit note thì không được xem là đã tồn tại trong hệ.
+
+## 11. Quy tắc chống hybrid
+
+Gate 16 không cho phép:
+
+- nhúng Python dài vào Bash runtime,
+- trộn tool `.sira` với thân logic Bash,
+- tạo `.sira` làm vỏ che runtime khác khi route chưa được ratify,
+- đưa field protocol vào `nattos.sh`,
+- biến acceptance protocol thành script xóa / sửa file tự động.
+
+Gate 16 là protocol field / hardware.
+
+Nếu cần tool hóa, phải mở Gate riêng và có dictionary riêng.
+
+## 12. Seal
+
+Gate 16 được xem là sealed khi:
+
+1. Spec này tồn tại trong `docs/runtime`.
+2. Từ điển `src/thienbang.si` có vocab tương ứng.
+3. Không có token trái boundary.
+4. Commit chỉ chứa đúng scope Gate 16.
+5. Push lên đúng branch hiện hành.

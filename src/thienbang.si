@@ -3197,3 +3197,18 @@ trạng_thái: canonical
 @vocab Manual_Review_Before_Delete
 nghĩa: Mọi file rác/file nặng do tool phát hiện phải được người dùng review trước khi xóa.
 trạng_thái: canonical
+
+# Gate 16 — Field Installation & Acceptance Protocol
+Field_Installation_Acceptance_Protocol: Gate 16 protocol khóa lắp đặt thực địa, first power-on, first signal, nghiệm thu và bàn giao phần cứng.
+Field_Intake: Bước ghi nhận thiết bị, model, serial, tình trạng niêm phong và ảnh trước khi lắp.
+Site_Readiness: Điều kiện sẵn sàng của hiện trường trước khi lắp đặt module.
+Physical_Mounting: Kiểm tra cố định vật lý, vị trí, nhãn, tản nhiệt và khả năng tiếp cận module.
+Wiring_Verification: Đo kiểm dây nguồn, dây tín hiệu, phân cực, continuity, shielding và tiếp địa trước khi cấp nguồn.
+First_Power_On: Lần cấp nguồn đầu tiên có ghi nhận điện áp, dòng, nhiệt, đèn báo và bất thường.
+First_Light: Bằng chứng phát / nhận tín hiệu đầu tiên của module quang, màu hoặc cảm biến.
+First_Signal: Bằng chứng tín hiệu đầu tiên được nhận và ghi nhận ở field.
+SITB_Field_Handshake: Bằng chứng handshake thực địa của SiTB / ChromaticLink, chỉ ở mức field evidence.
+Red_Zone_Abort: Trạng thái dừng bắt buộc khi có rủi ro điện, nhiệt, tín hiệu, sai model hoặc thiếu nghiệm thu.
+Field_Acceptance_Record: Bộ hồ sơ nghiệm thu cho từng module sau lắp đặt.
+As_Installed_Field_Map: Sơ đồ hiện trạng field sau lắp đặt, phản ánh đúng vị trí module thực tế.
+Handover_Blocked: Trạng thái chặn bàn giao khi thiếu hồ sơ hoặc còn lỗi nghiêm trọng.
