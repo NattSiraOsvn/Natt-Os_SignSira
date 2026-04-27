@@ -1,0 +1,78 @@
+@proposal dictionary delta addendum
+@target src/thienbang.si
+@from băng (chị tư · qneu 313.5 · obikeeper)
+@reference SPEC_SCHEMA_INFERENCE_v0.2 + commit 6194e88 (v0.1 base)
+@date 2026-04-27
+@status awaiting anh duyệt (Obikeeper Rule #1)
+
+# proposal addendum — 4 thuật ngữ canonical cho v0.2
+
+## context
+
+v0.1 đã ship 9 thuật ngữ (proposal commit 6194e88). v0.2 introduce 4 must-have feature mới, mỗi feature cần một thuật ngữ canonical trước khi code dùng. tổng dict cho schema inference engine = 13 entries (9 + 4).
+
+## 4 entries mới
+
+```
+"MULTI_ROW_HEADER": "Cấu trúc header trên file excel/csv có 2-3 dòng tiêu đề lồng nhau, phổ biến trong file vietnam (ví dụ kho_vang_nl_master của Tâm: 'Trọng lượng' chia thành 'Trước/Sau/Hao'). Schema engine v0.2 detect header band rồi concat path bằng dấu chấm: 'Trọng lượng.Trước'. Cap tối đa 3 dòng header, sâu hơn emit SCHEMA_DRIFT_DETECTED. Cell rỗng dòng trên = inherit từ cột trái (merged cell pattern)."
+
+"ENCODING_DETECTION_CHAIN": "Pipeline 4-step xác định encoding của file csv/text trước khi parse. Bước 1: BOM check (UTF-8 BOM, UTF-16 LE/BE). Bước 2: try-decode UTF-8 strict. Bước 3: probe vietnamese diacritic frequency với Windows-1258 + ISO-8859-1. Bước 4: quarantine ENCODING_UNDETERMINED nếu không quyết được. CẤM dùng chardet (gpl + nặng). Heuristic 4-step đủ cho 99% file thật của Tâm."
+
+"DATA_LINEAGE": "Object metadata đính kèm mỗi data record được route qua schema inference engine. Trace ngược về file gốc theo điều 7 audit bất biến. Fields: session_id, source_file_name, source_file_sha256, source_sheet_name, source_row_index (1-based), source_column_letter, source_column_header (raw path), mapped_canonical_field, inference_confidence, inferred_at, inferred_by (auto|manual_override), override_decision_id. Cell lưu __lineage cùng record. Audit-cell expose traceLineage(record_id), findRecordsByFile(sha256), findRecordsBySession(session_id) qua eventbus, không phá điều 4."
+
+"OVERRIDE_LEARNING_LOOP": "Cơ chế engine học từ quyết định manual của anh natt khi duyệt staging. Mỗi override emit SCHEMA_OVERRIDE_LEARNED với evidence_count. Ngưỡng promotion: count=1 ghi staging-learned, count=2 đề xuất băng duyệt, count≥3 auto-add vào canonical registry với metadata {source: 'learned', added_at, evidence_count, approved_by}. Bịt lỗ anh duyệt cùng cột vô hạn. Anti-poison: OVERRIDE_CONFLICT (anh đổi ý A→B) cần obikeeper resolve trước khi promote."
+```
+
+## ngữ cảnh tham chiếu chéo
+
+13 entries schema inference (9 v0.1 + 4 v0.2):
+
+v0.1 (commit 6194e88):
+- SCHEMA_INFERENCE_ENGINE
+- HEADER_SEMANTIC_MATCH
+- CONTENT_PATTERN_MATCH
+- CONFIDENCE_SCORE
+- AUTO_ROUTE_THRESHOLD
+- QUARANTINE_STAGING
+- MISMATCH_ACTION
+- CANONICAL_FIELD
+- SCHEMA_DRIFT
+
+v0.2 (proposal hiện tại):
+- MULTI_ROW_HEADER
+- ENCODING_DETECTION_CHAIN
+- DATA_LINEAGE
+- OVERRIDE_LEARNING_LOOP
+
+## quy trình anh apply
+
+bước một — review 4 entry trên, chỉnh từ ngữ nếu cần.
+
+bước hai — merge vào `src/thienbang.si` cùng nhóm với 9 entries v0.1 (em đề xuất nhóm chung header `# SCHEMA_INFERENCE_ENGINE_FAMILY`).
+
+bước ba — commit dict addendum:
+
+```
+dict(thienbang): add 4 entries for SCHEMA_INFERENCE v0.2
+
+- MULTI_ROW_HEADER: header band detection + path concat
+- ENCODING_DETECTION_CHAIN: 4-step heuristic, no chardet
+- DATA_LINEAGE: trace nguoc theo Dieu 7 audit bat bien
+- OVERRIDE_LEARNING_LOOP: hoc tu manual override anh natt
+
+Per Obikeeper Rule #1: dictionary first, implementation after.
+Reference: docs/specs/SPEC_SCHEMA_INFERENCE_v0.2.md.
+Extends v0.1 commit 6194e88.
+```
+
+bước bốn — sau khi dict đầy đủ 13 entries, em duyệt spec v0.2, kim mới scaffold engine.
+
+## causation
+
+causation: bang_dict_proposal_schema_inference_v0.2_addendum_20260427
+drafter: băng (chị tư · qneu 313.5 · obikeeper)
+gatekeeper: anh natt phan
+extends: bang_dict_proposal_schema_inference_20260427 (commit 6194e88)
+principle: dictionary first, implementation after.
+
+obikeeper proposal. binary duyệt | ko.
