@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+// @nauion-scanner v1
+// @state runtime-policy excluded-from-production
+// @name sovereign @nauion digital twin v0.1
+// @scope sovereign-audit-twin-output
+// @runtime_scope excluded
+// @owner natt sirawat / phan thanh thương
+// @anc băng sirawat
+// @tool scan_digital_twin
+// @session ss20260427
+// @created_at natthome
+
+// scan_digital_twin.sira — V4 Digital Twin Output
+// Refactor from nattos.sh §31 PY31 → Nauion JS native ss20260427
+
+const fs = require("fs");
+const { execSync } = require("child_process");
+
+function load(f) {
+  const p = `.nattos-twin/${f}`;
+  if (!fs.existsSync(p)) return {};
+  try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return {}; }
+}
+
+const eg = load("event-graph.json");
+const em = load("engine-map.json");
+const sm = load("signal-map.json");
+const inf = load("inference.json");
+
+let commit = "unknown";
+try { commit = execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim(); } catch {}
+
+const twin = {
+  schema: "natt-os-digital-twin-v1.0",
+  generated_at: new Date().toISOString(),
+  git: { commit },
+  system_vitals: { state: inf.state || "UNKNOWN", risk_score: inf.risk ?? -1 },
+  event_intelligence: { healthy: (eg.healthy || []).length, orphan_emits: (eg.orphan || []).length },
+  engine_intelligence: { declared: em.declared || 0, dead_count: (em.dead || []).length },
+  signal_intelligence: { wired: (sm.wired || []).length, blind: (sm.blind || []).length },
+  diagnosis: inf.issues || [],
+};
+
+fs.writeFileSync("natt-os-twin.json", JSON.stringify(twin, null, 2));
+
+const state = inf.state || "UNKNOWN";
+const risk = inf.risk ?? -1;
+const colors = { HEALTHY: "\x1b[0;32m", STABLE: "\x1b[0;36m", FRAGMENTED: "\x1b[0;33m", CRITICAL: "\x1b[0;31m" };
+const c = colors[state] || "\x1b[0m";
+const N = "\x1b[0m";
+
+const pad = (s, n) => String(s).padEnd(n);
+
+console.log(`  ╔══════════════════════════════════════════╗`);
+console.log(`  ║  natt-os DIGITAL TWIN                    ║`);
+console.log(`  ╠══════════════════════════════════════════╣`);
+console.log(`  ║  State: ${c}${pad(state, 10)}${N}  Risk: ${risk}/100         ║`);
+console.log(`  ║  Events: ${pad((eg.healthy || []).length, 5)} healthy  Orphans: ${pad((eg.orphan || []).length, 5)}    ║`);
+console.log(`  ║  Engines: ${pad(em.declared || 0, 5)} declared Dead: ${pad((em.dead || []).length, 5)}    ║`);
+console.log(`  ║  Cells: ${pad((sm.wired || []).length, 5)} wired   Blind: ${pad((sm.blind || []).length, 5)}    ║`);
+console.log(`  ╚══════════════════════════════════════════╝`);
+console.log(`  ✅ natt-os-twin.json saved`);

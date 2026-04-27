@@ -1468,41 +1468,7 @@ PY41
 # ═══════════════════════════════════════════════════════════════
 grp "GROUP G — INTELLIGENCE — V4 Digital Twin"
 hdr "26" "V4 — EVENT FLOW GRAPH"
-python3 << 'PYEOF2'
-import os
-if os.environ.get('AUDIT_MODE') == 'quick':
-    print('  \033[0;33m⚡\033[0m  QUICK MODE — skip')
-    exit(0)
-import os,re,json
-from collections import defaultdict
-scan_dirs=["src"]
-producers=defaultdict(list); consumers=defaultdict(list)
-emit_pat=re.compile(r"(?:EventBus\.(?:emit|publish)|typedEmit)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
-sub_pat=re.compile(r"EventBus\.(?:on|subscribe)\s*\(\s*[\'\"]([^\'\"]+)[\'\"]")
-def get_cell(p):
-    parts=p.split(os.sep)
-    for i,x in enumerate(parts):
-        if x in("business","kernel","infrastructure") and i+1<len(parts): return parts[i+1]
-    return "core"
-for scan_dir in scan_dirs:
-  for root,dirs,files in os.walk(scan_dir):
-    dirs[:]=[d for d in dirs if d not in("node_modules","baithicuakim")]
-    for f in files:
-        if not f.endswith(".ts"): continue
-        path=os.path.join(root,f); cell=get_cell(path)
-        try: content=open(path).read()
-        except: continue
-        for ev in emit_pat.findall(content): producers[ev].append(cell)
-        for ev in sub_pat.findall(content): consumers[ev].append(cell)
-all_ev=set(list(producers)+list(consumers))
-healthy=[e for e in all_ev if e in producers and e in consumers]
-orphan=[e for e in all_ev if e in producers and e not in consumers]
-dead=[e for e in all_ev if e not in producers and e in consumers]
-print(f"  \033[0;32m✅\033[0m Unique events: {len(all_ev)} | Healthy flows: {len(healthy)} | Orphan emits: {len(orphan)} | Dead subs: {len(dead)}")
-for ev in orphan[:5]: print(f"      ⚠️  orphan: \'{ev}\' from {producers[ev][0]}")
-os.makedirs(".nattos-twin",exist_ok=True)
-json.dump({"healthy":healthy,"orphan":orphan,"dead":dead},open(".nattos-twin/event-graph.json","w"),indent=2)
-PYEOF2
+tools/thiên run tools/scan_event_flow_graph.sira
 
 hdr "27" "V4 — ENGINE EXECUTION MAP"
 python3 << 'PY27'
@@ -1548,113 +1514,16 @@ json.dump({"declared":len(declared),"alive":len(alive),"dead":list(sorted(dead))
 PY27
 
 hdr "28" "V4 — SIGNAL ANALYZER (Blind Cells)"
-python3 << 'PY28'
-import os,re,json
-blind=[]; wired=[]
-metric_pat=re.compile(r"cell\.metric")
-# Load engine-registry wired cells
-reg_wired=set()
-reg_path="src/apps/engine-registry.ts"
-if os.path.exists(reg_path):
-    rc=open(reg_path).read()
-    for m in re.finditer(r'wire\([^,]+,\s*"([^"]+)"', rc): reg_wired.add(m.group(1))
-    for m in re.finditer(r'cell:\s*"([^"]+)"', rc): reg_wired.add(m.group(1))
-for tier in("business","kernel","infrastructure"):
-    tp=f"src/cells/{tier}"
-    if not os.path.isdir(tp): continue
-    for cell in sorted(os.listdir(tp)):
-        cp=os.path.join(tp,cell)
-        if not os.path.isdir(cp): continue
-        engines=[os.path.join(r,f) for r,d,fs in os.walk(cp) for f in fs if f.endswith(".engine.ts")]
-        if not engines: continue
-        emits=any(metric_pat.search(open(e).read()) for e in engines if os.path.exists(e))
-        if not emits: emits=cell in reg_wired
-        (wired if emits else blind).append(cell)
-print(f"  \033[0;32m✅\033[0m Cells emitting cell.metric: {len(wired)}")
-print(f"  \033[0;33m⚠️\033[0m  Blind cells: {len(blind)}")
-for c in blind[:6]: print(f"      → {c}")
-os.makedirs(".nattos-twin",exist_ok=True)
-json.dump({"wired":wired,"blind":blind},open(".nattos-twin/signal-map.json","w"),indent=2)
-PY28
+tools/thiên run tools/scan_signal_analyzer.sira
 
 hdr "29" "V4 — FLOW SIMULATOR"
-python3 << 'PY29'
-import os,re,json
-from collections import defaultdict,deque
-gf=".nattos-twin/event-graph.json"
-if not os.path.exists(gf): print("  ℹ  Run S26 first"); exit()
-graph=json.load(open(gf))
-healthy=set(graph.get("healthy",[])); orphan=set(graph.get("orphan",[]))
-entry_pts=[e for e in["cell.metric","audit.record","constitutional.violation","threshold.evaluated"] if e in healthy or e in orphan]
-if not entry_pts: entry_pts=list(healthy)[:3]
-print(f"  ℹ  Tracing {len(entry_pts)} entry points")
-for ep in entry_pts[:4]:
-    status="\033[0;32m✅ FLOWS\033[0m" if ep in healthy else "\033[0;33m⚠️ ORPHAN\033[0m"
-    print(f"  {status} '{ep}'")
-PY29
+tools/thiên run tools/scan_flow_simulator.sira
 
 hdr "30" "V4 — SYSTEM STATE INFERENCE"
-python3 << 'PY30'
-import os,json
-def load(f):
-    p=f".nattos-twin/{f}"
-    return json.load(open(p)) if os.path.exists(p) else {}
-eg=load("event-graph.json"); em=load("engine-map.json"); sm=load("signal-map.json")
-risk=0; issues=[]; strengths=[]
-orphan=len(eg.get("orphan",[])); dead=len(em.get("dead",[])); blind=len(sm.get("blind",[]))
-healthy=len(eg.get("healthy",[]))
-if orphan>10: issues.append(f"EVENT_LEAK: {orphan} orphan events"); risk+=20
-elif orphan>3: issues.append(f"MINOR_LEAK: {orphan} orphan events"); risk+=8
-else: strengths.append(f"Event coverage clean ({orphan} orphans)")
-if dead>10: issues.append(f"DEAD_WEIGHT: {dead} unused engines"); risk+=15
-elif dead>3: issues.append(f"ENGINE_WASTE: {dead} unused"); risk+=5
-else: strengths.append(f"Engine wiring healthy ({dead} unused)")
-if blind>10: issues.append(f"SENSORY_DEFICIT: {blind} blind cells"); risk+=20
-elif blind>5: issues.append(f"PARTIAL_BLINDNESS: {blind} blind"); risk+=10
-else: strengths.append(f"Signal coverage: {len(sm.get('wired',[]))} cells wired")
-if healthy>20: strengths.append(f"Event flows: {healthy} healthy chains")
-elif healthy>10: strengths.append(f"Event flows: {healthy} adequate")
-else: issues.append(f"FLOW_DEFICIT: only {healthy} healthy chains"); risk+=15
-state="CRITICAL" if risk>=50 else "FRAGMENTED" if risk>=25 else "STABLE" if risk>=10 else "HEALTHY"
-colors={"HEALTHY":"\033[0;32m","STABLE":"\033[0;36m","FRAGMENTED":"\033[0;33m","CRITICAL":"\033[0;31m"}
-c=colors.get(state,"\033[0m"); N="\033[0m"
-print(f"  {c}SYSTEM STATE: {state} (risk: {risk}/100){N}")
-for s in strengths: print(f"  \033[0;32m  ✅\033[0m {s}")
-for i in issues: print(f"  \033[0;33m  ⚠️\033[0m  {i}")
-os.makedirs(".nattos-twin",exist_ok=True)
-json.dump({"state":state,"risk":risk,"strengths":strengths,"issues":issues},open(".nattos-twin/inference.json","w"),indent=2)
-PY30
+tools/thiên run tools/scan_system_state.sira
 
 hdr "31" "V4 — DIGITAL TWIN OUTPUT"
-python3 << 'PY31'
-import os,json,subprocess
-from datetime import datetime
-def load(f):
-    p=f".nattos-twin/{f}"
-    return json.load(open(p)) if os.path.exists(p) else {}
-eg=load("event-graph.json"); em=load("engine-map.json"); sm=load("signal-map.json"); inf=load("inference.json")
-try: commit=subprocess.check_output(["git","rev-parse","--short","HEAD"],text=True).strip()
-except: commit="unknown"
-twin={"schema":"natt-os-digital-twin-v1.0","generated_at":datetime.now().isoformat(),"git":{"commit":commit},
-  "system_vitals":{"state":inf.get("state","UNKNOWN"),"risk_score":inf.get("risk",-1)},
-  "event_intelligence":{"healthy":len(eg.get("healthy",[])),"orphan_emits":len(eg.get("orphan",[]))},
-  "engine_intelligence":{"declared":em.get("declared",0),"dead_count":len(em.get("dead",[]))},
-  "signal_intelligence":{"wired":len(sm.get("wired",[])),"blind":len(sm.get("blind",[]))},
-  "diagnosis":inf.get("issues",[])}
-json.dump(twin,open("natt-os-twin.json","w"),indent=2,ensure_ascii=False)
-state=inf.get("state","UNKNOWN"); risk=inf.get("risk",-1)
-colors={"HEALTHY":"\033[0;32m","STABLE":"\033[0;36m","FRAGMENTED":"\033[0;33m","CRITICAL":"\033[0;31m"}
-c=colors.get(state,"\033[0m"); N="\033[0m"
-print(f"  ╔══════════════════════════════════════════╗")
-print(f"  ║  natt-os DIGITAL TWIN                    ║")
-print(f"  ╠══════════════════════════════════════════╣")
-print(f"  ║  State: {c}{state:<10}{N}  Risk: {risk}/100         ║")
-print(f"  ║  Events: {len(eg.get('healthy',[])):<5} healthy  Orphans: {len(eg.get('orphan',[])):<5}    ║")
-print(f"  ║  Engines: {em.get('declared',0):<5} declared Dead: {len(em.get('dead',[])):<5}    ║")
-print(f"  ║  Cells: {len(sm.get('wired',[])):<5} wired   Blind: {len(sm.get('blind',[])):<5}    ║")
-print(f"  ╚══════════════════════════════════════════╝")
-print(f"  ✅ natt-os-twin.json saved")
-PY31
+tools/thiên run tools/scan_digital_twin.sira
 
 # ═══════════════════════════════════════════════════════════════
 # S36 — HIẾN PHÁP SCAN (Vi phạm Điều 4/7/9/11)

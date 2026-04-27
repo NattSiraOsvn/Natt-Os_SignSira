@@ -1,3 +1,14 @@
+// @nauion-kernel-module v1
+// @state runtime-policy excluded-from-production
+// @name sovereign @nauion mach heyna client v0.1
+// @scope sovereign-kernel-mach-client
+// @runtime_scope excluded
+// @owner natt sirawat / phan thanh thương
+// @anc băng sirawat
+// @tool nauion.mach
+// @session ss20260427
+// @created_at natthome
+
 /**
  * nauion.mach.ts
  * Mạch HeyNa CLIENT — kernel module browser-side

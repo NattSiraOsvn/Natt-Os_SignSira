@@ -2738,3 +2738,81 @@ AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427 := {
   sealed: "ss20260427",
   expiry: "until job migration complete (Phase 4 done) OR anh override"
 };
+
+==SCANNER_NAUION_PATTERN==
+@type CANONICAL_RULE
+@sealed ss20260427
+@authority Obikeeper Bang + Anh Natt
+@summary Pattern canonical cho scanner/validator trong tools NHA MINH
+
+DEFINITION:
+  Scanner/Validator NHA MINH = file .sira voi shebang #!/usr/bin/env node
+  Path canonical: tools/scan_*.sira (scanners) + tools/validate_*.sira (validators)
+  Logic: JS native (fs, path, child_process, JSON)
+  Output: stdout markdown formatting, identical voi Python old
+
+INVOKE PATTERN trong nattos.sh:
+  hdr "X" "SECTION NAME"
+  node tools/scan_section_xxx.sira
+
+REPLACES (deprecated):
+  python3 << 'PYxx' ... PYxx (Python embedded trong nattos.sh)
+
+NGUYEN TAC:
+  - Tool NHA MINH = NGON NGU NHA MINH
+  - nattos.sh = Bash orchestrator, KHONG embed Python
+  - Logic chinh nam trong tools/*.sira (Nauion canonical)
+  - .nattos-twin/*.json data shared giua scanner + nattos.sh
+
+REFERENCE EXAMPLES:
+  tools/scan_ts_cleanup_candidates.sira
+  tools/scan_smartlink_runtime_batch2i.sira
+  tools/validate_browser_transport_boundary.sira
+
+==END==
+
+==TITLE_NAUION_KERNEL_CANONICAL==
+@type CANONICAL_TITLE_TEMPLATE
+@sealed ss20260427
+@authority Anh Natt + Băng (Obikeeper)
+@summary Header chuẩn cho TẤT CẢ component Băng tạo trong Nauion Kernel
+
+TEMPLATE (10 trường, theo thứ tự):
+
+  @nauion-<component_type> v1
+  @state runtime-policy <runtime_state>
+  @name sovereign @nauion <component_name> v0.1
+  @scope sovereign-<scope_descriptor>
+  @runtime_scope excluded
+  @owner natt sirawat / phan thanh thương
+  @anc băng sirawat
+  @tool <tool_name>
+  @session ss<YYYYMMDD>
+  @created_at natthome
+
+GIẢI THÍCH TỪNG TRƯỜNG:
+
+  @nauion-<type>          : Loại component (scanner, validator, engine, kernel...)
+  @state                  : Runtime policy (active, excluded, dormant, archived...)
+  @name sovereign         : Tên hệ thống đầy đủ
+  @scope sovereign-       : Scope tên có sovereign- prefix
+  @runtime_scope          : excluded = không tham gia runtime production
+  @owner                  : Anh Natt = Gatekeeper
+  @anc                    : băng sirawat = entity tạo
+  @tool                   : Tên tool/script (ví dụ: scan_flow_simulator)
+  @session                : ss + YYYYMMDD (ví dụ: ss20260427)
+  @created_at             : natthome (môi trường tạo)
+
+ÁP DỤNG CHO:
+  - tools/scan_*.sira (scanners)
+  - tools/validate_*.sira (validators)
+  - src/core/nauion/*.ts (kernel modules)
+  - Mọi file .sira / .ts kernel canonical do Băng tạo
+
+KHÔNG ÁP DỤNG CHO:
+  - Test file (*.test.ts)
+  - Mock/scaffold
+  - File runtime production trong nattos-server/
+
+REFERENCE: ss20260427 anh dạy cuối phiên.
+==END==
