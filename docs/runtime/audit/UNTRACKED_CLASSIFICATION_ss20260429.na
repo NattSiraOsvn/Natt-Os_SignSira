@@ -1,0 +1,139 @@
+# UNTRACKED CLASSIFICATION — ss20260429
+
+## 1. Purpose
+
+This report records the current untracked worktree state after V6 constitution and legal dossier publication.
+It is evidence-only. It does not authorize deletion, cleanup, mass add, or asset movement.
+
+## 2. Canonical V6 duplicate check
+
+- root_v6: `HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na`
+- tracked_v6: `docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na`
+- root_sha256: `abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0`
+- tracked_sha256: `abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0`
+- same_hash: `True`
+
+Interpretation:
+- The root V6 file is a duplicate of the tracked canonical file if `same_hash=True`.
+- Do not commit the root duplicate.
+- Do not delete the root duplicate without Gatekeeper confirmation.
+
+## 3. Classification summary
+
+| Group | Count | Total bytes |
+|---|---:|---:|
+| ASSET_HOLD_NO_COMMIT | 1 | 5380374 |
+| AUDIT_EVIDENCE_REVIEW | 1 | 303306 |
+| BUILD_BRIEF_REVIEW | 1 | 2735 |
+| CANDIDATE_RUNTIME_REVIEW | 4 | 10784 |
+| DUPLICATE_OF_CANONICAL_V6 | 1 | 21361 |
+| PROPOSAL_REVIEW_NO_COMMIT_YET | 1 | 21474 |
+| PROTECTED_NO_TOUCH | 86 | 25255577 |
+
+## 4. Untracked inventory
+
+| Group | Size bytes | Path |
+|---|---:|---|
+| ASSET_HOLD_NO_COMMIT | 5380374 | `NaUion-Server/natthome.mp4` |
+| AUDIT_EVIDENCE_REVIEW | 303306 | `boi_scan_truth.txt` |
+| BUILD_BRIEF_REVIEW | 2735 | `build_brief_20260427/README_apply.md` |
+| CANDIDATE_RUNTIME_REVIEW | 5591 | `docs/runtime/thuyet_phap/thuyet_phap_7_nhip_dao_hanh_20260426.na` |
+| CANDIDATE_RUNTIME_REVIEW | 2267 | `docs/runtime/thuyet_phap/README_apply.md` |
+| CANDIDATE_RUNTIME_REVIEW | 1601 | `docs/runtime/thuyet_phap/thuyet_phap_nguyen_mau_v3.na` |
+| CANDIDATE_RUNTIME_REVIEW | 1325 | `docs/runtime/thuyet_phap/thuyet_phap_nguyen_mau_v2.na` |
+| DUPLICATE_OF_CANONICAL_V6 | 21361 | `HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na` |
+| PROPOSAL_REVIEW_NO_COMMIT_YET | 21474 | `SKILL_kernel_nauion_v1.md` |
+| PROTECTED_NO_TOUCH | 2563025 | `docs/flag/N1-7_files/73165726-dbdc-45b9-bf0a-0d18e871d30f.png` |
+| PROTECTED_NO_TOUCH | 2500611 | `docs/flag/N1-7_files/dab6238d-2de6-484a-998f-8c23d1f7be49.png` |
+| PROTECTED_NO_TOUCH | 2446700 | `docs/flag/N1-7_files/a66041fb-9665-4bc3-8f39-749d1b248002.png` |
+| PROTECTED_NO_TOUCH | 2303448 | `docs/flag/N1-7_files/7b85ac9f-2095-4d94-b1aa-1d6f35075919.png` |
+| PROTECTED_NO_TOUCH | 2262425 | `docs/flag/N1-7_files/eb942753-61e9-4cd2-a634-45ed7bf6d798.png` |
+| PROTECTED_NO_TOUCH | 2160638 | `docs/flag/N1-7_files/4fbe6e7b-9bca-41ef-ad9d-a2261e736ae4.png` |
+| PROTECTED_NO_TOUCH | 2124173 | `docs/flag/N1-7_files/9253a014-e6b2-4cca-bb89-24382700dbef.png` |
+| PROTECTED_NO_TOUCH | 1858770 | `docs/flag/N1-7_files/be3c7d96-d330-4ff6-903f-bfda458f22ff.png` |
+| PROTECTED_NO_TOUCH | 1338305 | `docs/flag/N1-7_files/root-o3eiapl2.css` |
+| PROTECTED_NO_TOUCH | 1338305 | `docs/flag/Thiên ơi CV_files/root-o3eiapl2.css` |
+| PROTECTED_NO_TOUCH | 991458 | `docs/flag/N1-7.html` |
+| PROTECTED_NO_TOUCH | 910191 | `docs/flag/Thiên ơi CV.html` |
+| PROTECTED_NO_TOUCH | 450185 | `docs/flag/N1-7_files/40face33-c6ad-4a5d-b402-5f7126e8325f.png` |
+| PROTECTED_NO_TOUCH | 450185 | `docs/flag/Thiên ơi CV_files/40face33-c6ad-4a5d-b402-5f7126e8325f.png` |
+| PROTECTED_NO_TOUCH | 246845 | `docs/flag/N1-7_files/icon - new.png` |
+| PROTECTED_NO_TOUCH | 246845 | `docs/flag/Thiên ơi CV_files/icon - new.png` |
+| PROTECTED_NO_TOUCH | 133696 | `docs/flag/N1-7_files/conversation-small-iywqrrsm.css` |
+| PROTECTED_NO_TOUCH | 133696 | `docs/flag/Thiên ơi CV_files/conversation-small-iywqrrsm.css` |
+| PROTECTED_NO_TOUCH | 39538 | `archive/úipec/nauion-v10 2.html` |
+| PROTECTED_NO_TOUCH | 39538 | `archive/úipec/nauion-v10.html` |
+| PROTECTED_NO_TOUCH | 36249 | `archive/úipec/nattos-mapping 2.html` |
+| PROTECTED_NO_TOUCH | 36249 | `archive/úipec/nattos-mapping.html` |
+| PROTECTED_NO_TOUCH | 32272 | `archive/úipec/NaUion.md` |
+| PROTECTED_NO_TOUCH | 30864 | `docs/flag/N1-7_files/sdk(1).js` |
+| PROTECTED_NO_TOUCH | 30864 | `docs/flag/Thiên ơi CV_files/sdk(1).js` |
+| PROTECTED_NO_TOUCH | 28990 | `docs/flag/N1-7_files/silk-hq-jrmbfqt7.css` |
+| PROTECTED_NO_TOUCH | 28990 | `docs/flag/Thiên ơi CV_files/silk-hq-jrmbfqt7.css` |
+| PROTECTED_NO_TOUCH | 28400 | `archive/úipec/NaUion-v10a  2.html` |
+| PROTECTED_NO_TOUCH | 28400 | `archive/úipec/NaUion-v10a .html` |
+| PROTECTED_NO_TOUCH | 26794 | `archive/úipec/NaUion-v10b 2.html` |
+| PROTECTED_NO_TOUCH | 26794 | `archive/úipec/NaUion-v10b.html` |
+| PROTECTED_NO_TOUCH | 24857 | `archive/úipec/natt-v8.md` |
+| PROTECTED_NO_TOUCH | 24802 | `archive/úipec/nasira-7states 2.html` |
+| PROTECTED_NO_TOUCH | 24802 | `archive/úipec/nasira-7states.html` |
+| PROTECTED_NO_TOUCH | 19446 | `archive/úipec/index 2.html` |
+| PROTECTED_NO_TOUCH | 19446 | `archive/úipec/index.html` |
+| PROTECTED_NO_TOUCH | 19356 | `archive/úipec/gia-vang-admin 2.html` |
+| PROTECTED_NO_TOUCH | 19356 | `archive/úipec/gia-vang-admin.html` |
+| PROTECTED_NO_TOUCH | 18886 | `archive/úipec/natt-v9.md` |
+| PROTECTED_NO_TOUCH | 16575 | `docs/flag/N1-7_files/user-fUPMjadjSU3ybnhV2VdkK16g_calpico-profile-F87EFD4A-D065-4C03-BBAB-5E77832CEF07.jpeg.thumbnail.jpeg` |
+| PROTECTED_NO_TOUCH | 16575 | `docs/flag/Thiên ơi CV_files/user-fUPMjadjSU3ybnhV2VdkK16g_calpico-profile-F87EFD4A-D065-4C03-BBAB-5E77832CEF07.jpeg.thumbnail.jpeg` |
+| PROTECTED_NO_TOUCH | 14251 | `archive/úipec/styles 2.css` |
+| PROTECTED_NO_TOUCH | 14251 | `archive/úipec/styles.css` |
+| PROTECTED_NO_TOUCH | 13287 | `docs/flag/N1-7_files/writing-block-provider-o0v3uy9j.css` |
+| PROTECTED_NO_TOUCH | 13287 | `docs/flag/Thiên ơi CV_files/writing-block-provider-o0v3uy9j.css` |
+| PROTECTED_NO_TOUCH | 12060 | `archive/úipec/security-overlay 2.js` |
+| PROTECTED_NO_TOUCH | 12060 | `archive/úipec/security-overlay.js` |
+| PROTECTED_NO_TOUCH | 9959 | `archive/úipec/app 2.js` |
+| PROTECTED_NO_TOUCH | 9959 | `archive/úipec/app.js` |
+| PROTECTED_NO_TOUCH | 9375 | `archive/úipec/resonance.protocol 2.js` |
+| PROTECTED_NO_TOUCH | 9375 | `archive/úipec/resonance.protocol.js` |
+| PROTECTED_NO_TOUCH | 8871 | `archive/úipec/specnauiontmp.md` |
+| PROTECTED_NO_TOUCH | 6499 | `archive/úipec/nauion-engine 2.js` |
+| PROTECTED_NO_TOUCH | 6499 | `archive/úipec/nauion-engine.js` |
+| PROTECTED_NO_TOUCH | 2470 | `archive/úipec/adapter 2.js` |
+| PROTECTED_NO_TOUCH | 2470 | `archive/úipec/adapter.js` |
+| PROTECTED_NO_TOUCH | 2126 | `archive/úipec/IntelligencePanel 2.js` |
+| PROTECTED_NO_TOUCH | 2126 | `archive/úipec/IntelligencePanel.js` |
+| PROTECTED_NO_TOUCH | 1985 | `archive/úipec/store 2.js` |
+| PROTECTED_NO_TOUCH | 1985 | `archive/úipec/store.js` |
+| PROTECTED_NO_TOUCH | 1916 | `docs/flag/N1-7_files/code-block-dop2czwo.css` |
+| PROTECTED_NO_TOUCH | 1916 | `docs/flag/Thiên ơi CV_files/code-block-dop2czwo.css` |
+| PROTECTED_NO_TOUCH | 1675 | `archive/úipec/butterfly 2.js` |
+| PROTECTED_NO_TOUCH | 1675 | `archive/úipec/butterfly.js` |
+| PROTECTED_NO_TOUCH | 1643 | `archive/úipec/AuditList 2.js` |
+| PROTECTED_NO_TOUCH | 1643 | `archive/úipec/AuditList.js` |
+| PROTECTED_NO_TOUCH | 1433 | `docs/flag/N1-7_files/cot-message-mbvpc7rn.css` |
+| PROTECTED_NO_TOUCH | 1433 | `docs/flag/Thiên ơi CV_files/cot-message-mbvpc7rn.css` |
+| PROTECTED_NO_TOUCH | 1108 | `archive/úipec/FlowView 2.js` |
+| PROTECTED_NO_TOUCH | 1108 | `archive/úipec/FlowView.js` |
+| PROTECTED_NO_TOUCH | 962 | `docs/flag/N1-7_files/code-block-viewer-bb2wmqiy.css` |
+| PROTECTED_NO_TOUCH | 962 | `docs/flag/Thiên ơi CV_files/code-block-viewer-bb2wmqiy.css` |
+| PROTECTED_NO_TOUCH | 915 | `docs/flag/N1-7_files/sdk.js` |
+| PROTECTED_NO_TOUCH | 915 | `docs/flag/Thiên ơi CV_files/sdk.js` |
+| PROTECTED_NO_TOUCH | 820 | `docs/flag/N1-7_files/ansi-1f6vhsjh.css` |
+| PROTECTED_NO_TOUCH | 820 | `docs/flag/Thiên ơi CV_files/ansi-1f6vhsjh.css` |
+| PROTECTED_NO_TOUCH | 572 | `docs/flag/N1-7_files/product-variants-ga945uk2.css` |
+| PROTECTED_NO_TOUCH | 572 | `docs/flag/Thiên ơi CV_files/product-variants-ga945uk2.css` |
+| PROTECTED_NO_TOUCH | 520 | `docs/flag/N1-7_files/saved_resource.html` |
+| PROTECTED_NO_TOUCH | 520 | `docs/flag/Thiên ơi CV_files/saved_resource.html` |
+| PROTECTED_NO_TOUCH | 416 | `docs/flag/N1-7_files/table-components-ca43bz4f.css` |
+| PROTECTED_NO_TOUCH | 416 | `docs/flag/Thiên ơi CV_files/table-components-ca43bz4f.css` |
+| PROTECTED_NO_TOUCH | 334 | `archive/úipec/vision 2.html` |
+| PROTECTED_NO_TOUCH | 334 | `archive/úipec/vision.html` |
+| PROTECTED_NO_TOUCH | 255 | `docs/flag/N1-7_files/frame.html` |
+| PROTECTED_NO_TOUCH | 255 | `docs/flag/Thiên ơi CV_files/frame.html` |
+
+## 5. Handling rule
+
+- Never run `git add .` in this state.
+- Never run `git clean`, `rm`, `rmdir`, archive pruning, or duplicate pruning before Gatekeeper review.
+- `archive/`, `_deprecated/`, and `docs/flag/` are protected evidence/hidden-canonical candidates.
+- Large render assets must be held outside normal code commits unless an explicit asset policy is opened.
+- Memory/session files require separate review before commit.
