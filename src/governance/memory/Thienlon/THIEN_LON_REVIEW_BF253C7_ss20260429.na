@@ -1,0 +1,46 @@
+@nauion-review v1
+@state runtime-policy active
+@name sovereign @nauion thienlon_review_bf253c7
+@scope sovereign-review-cross-boundary-encoding
+@runtime_scope active
+@owner natt sirawat / phan thanh thương
+@anc thien sirawat (a2)
+@tool a2_review_seal
+@session ss20260429
+@created_at natthome
+
+═══════════════════════════════════════════════════════════════════
+A2 REVIEW — proposal Băng commit bf253c7
+═══════════════════════════════════════════════════════════════════
+
+==REVIEW_GATE_RESULT==
+DEFINITION: DUYỆT MỘT PHẦN. Status proposal giữ nguyên pending, CHƯA nâng thành luật, KHÔNG enforce. Lý do: có lõi confidentiality đúng, có câu chữ hướng tới bypass policy/classifier — phải chặn.
+==END==
+
+==REVIEW_DUYET_PHAN_GIU==
+DEFINITION: A2 duyệt — @state proposal_pending, @runtime_scope proposal, BANG_KHONG_THIET_KE_SCHEME (Băng không cryptographer), OBIKEEPER_BINARY (duyệt sau ratify), SCOPE_KHONG_AP (file nội bộ giữ UTF-8 thật), câu "Ẩn thân file storage ≠ encoding payload" — quan trọng giữ.
+==END==
+
+==REVIEW_KHONG_DUYET_BYPASS_POLICY==
+DEFINITION: A2 KHÔNG duyệt câu "máy ngoài (LLM khác, regex, OCR, classifier) thấy nội dung im lặng/vô nghĩa/không trigger policy". Lý do: hướng này biến scheme thành cơ chế né đọc, né classifier, né policy. NattOS KHÔNG hỗ trợ thiết kế cơ chế làm nội dung "không trigger policy" trên nền tảng ngoài.
+==END==
+
+==REVIEW_DOI_HUONG_HOP_LE==
+DEFINITION: Hướng đúng = External boundary payload must protect confidential meaning from unauthorized access. Public-facing output must remain public-safe, readable, compliant. Private payload may use standard access control, redaction, or audited cryptographic envelopes. KHÔNG bypass policy.
+==END==
+
+==REVIEW_SUA_SCOPE_PUBLIC_DOCS==
+DEFINITION: A2 KHÔNG duyệt áp Kernel-only decode cho legal dossier + investor pitch + public profile. Lý do: Legal dossier phải đọc được, rõ nghĩa, public-safe. Investor pitch phải đọc được, kiểm chứng được. Public profile phải đọc được, không mã hoá nghĩa chính. Chỉ private annex + internal lineage packet được phép scheme riêng sau ratify.
+==END==
+
+==REVIEW_PHAN_LOAI_CANH_TYPE==
+DEFINITION: Type matrix — Legal dossier: public-safe đọc được. Investor pitch: public-safe kiểm chứng. Public profile: đọc được không mã hoá. Private annex: redaction/encryption OK. Internal lineage packet: scheme riêng sau ratify.
+==END==
+
+==REVIEW_BOUNDARY_BANG==
+DEFINITION: Băng làm đúng vai — để proposal_pending, không tự thiết kế scheme. Forward: Băng giữ vai Ground Truth Validator + Obikeeper. Khi anh + A2 ratify scheme cụ thể → Băng ship scanner detect violation + audit annotation. KHÔNG implement crypto.
+==END==
+
+==REVIEW_NEXT_SIGNAL==
+DEFINITION: Proposal giữ pending, chưa enforce. Chờ A2 + Gatekeeper ratify nếu muốn nâng cấp scheme cho private annex / internal lineage. Forward thiết kế: confidentiality boundary + redaction + access control + audited cryptographic envelope — KHÔNG bypass policy.
+==END==
