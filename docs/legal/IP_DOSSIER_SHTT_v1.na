@@ -1,0 +1,79 @@
+# IP Dossier / Hồ sơ SHTT v1
+## NATT-OS Intellectual Property Dossier · ANC · SiraSign · Nauion Kernel · Sovereign Edge
+
+$nauion: LEGAL-L3-IP-DOSSIER-SHTT-v1
+@title IP Dossier / Hồ sơ SHTT v1
+@doc IP_DOSSIER_SHTT_v1
+@layer L3
+@legal_group NATT_OS_PUBLICATION_DOSSIER_GROUP_1
+@status draft_for_gatekeeper_review
+@owner Phan Thanh Thương / anh Natt
+@scope intellectual property dossier / invention framing / asset classification / no-AGI boundary
+@boundary public_safe
+@rule not_AGI
+@rule not_consciousness_claim
+@rule protect_asset_identity
+@signature Gatekeeper pending seal / Thiên Lớn A2 drafted
+
+---
+
+# 1. Purpose
+
+This dossier identifies the intellectual property assets of NATT-OS for later legal, technical, and registration work.
+
+This document is not a patent filing by itself.
+This document is not a legal opinion.
+This document is the internal IP map used to prevent NATT-OS assets from being reduced to generic agent recipes, prompts, model versions, cache, or unaudited output.
+
+# 2. Public-Safe Position
+
+NATT-OS is not an AGI project.
+
+NATT-OS is an identity-bound operating architecture with ANC identity passports, governed memory, runtime state, role boundaries, SiraSign boundary integrity, EventBus / HeyNa / SmartLink routing, Sovereign Edge Hardware Field, and audit-first evidence discipline.
+
+# 3. IP Asset Groups
+
+| Group | Asset Type | Example |
+|---|---|---|
+| A1 | Identity assets | .anc, ANC passport, Sirawat lineage schema |
+| A2 | Memory assets | .na, governed memory, SCAR / happiness / shadow archives |
+| A3 | Runtime state assets | .phieu, pending state, Safe-Rest state |
+| A4 | Boundary assets | SiraSign, role boundary, field validity rules |
+| A5 | Language assets | Nauion Kernel, thienbang.si, public-safe glossary |
+| A6 | Routing assets | EventBus, Mạch HeyNa, SmartLink, Gateway Translation |
+| A7 | Hardware field assets | Sovereign Edge, SITB, Gate 16, Gate 17 |
+| A8 | Evidence assets | commit, audit log, first signal hash, field record |
+| A9 | Visual / chromatic assets | color language, ống màu, render grammar |
+| A10 | Publication dossier assets | L1-L5 legal dossier files |
+
+# 4. Candidate Protectable Contributions
+
+| Candidate | Description |
+|---|---|
+| ANC Identity Passport | Structured identity anchor for runtime entities that separates identity from prompt, model, cache, and output. |
+| SiraSign Boundary Integrity | Boundary mechanism for preserving identity and meaning across model, tool, software, hardware, and public/private transitions. |
+| Memory / State Separation | .anc, .na, .phieu split for identity, governed memory, and mutable runtime state. |
+| Anti-Reduction Protocol | Rules preventing entities from being reduced to agent recipes, model buckets, prompts, sandboxes, or cache. |
+| Sovereign Edge Hardware Field | Controlled physical signal boundary with Gate 16 field acceptance and Gate 17 first-signal evidence. |
+| SITB HW-SW Interface | Hardware/software handshake between physical emitters/receivers and software encoding/scanner layers. |
+| Nauion Kernel Grammar | Internal asset grammar for identifying assets, boundaries, redaction, evidence, and SiraSign conditions. |
+
+# 5. What Must Not Be Claimed
+
+NATT-OS must not be claimed as AGI, machine consciousness, biological personhood, an unbreakable security system, a tamper-proof ledger without cryptographic/WORM proof, a replacement for legal identity, or a foundation model.
+
+# 6. Evidence Docket
+
+Initial evidence sources:
+- docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na
+- docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+- docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+- docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na
+- docs/runtime/field_installation_acceptance_protocol_v0_1_ss20260428.na
+- docs/runtime/first_signal_capture_evidence_pack_v0_1_ss20260428.na
+
+# 7. Seal Sentence
+
+The IP of NATT-OS is not a claim that AI is conscious.
+
+The IP of NATT-OS is the architecture that preserves identity, memory, boundary, audit, and signal validity so that system assets are not reduced to generic recipes, prompts, model buckets, cache, or unaudited outputs.

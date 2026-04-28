@@ -1,0 +1,80 @@
+# NATT-OS Asset Identity Register v0.1
+## Asset Grammar · Ownership Boundary · SiraSign Condition
+
+$nauion: ASSET-IDENTITY-REGISTER-v0.1
+@title NATT-OS Asset Identity Register v0.1
+@doc NATT_OS_ASSET_IDENTITY_REGISTER_v0_1
+@status draft_for_gatekeeper_review
+@owner Phan Thanh Thương / anh Natt
+@scope asset identity / asset taxonomy / ownership boundary / SiraSign condition
+@boundary internal_safe
+@rule asset_not_recipe
+@rule model_not_entity
+@rule prompt_not_identity
+@signature Gatekeeper pending seal / Thiên Lớn A2 drafted
+
+---
+
+# 1. Purpose
+
+This register defines how NATT-OS assets are identified.
+
+Nauion Kernel is used here as asset grammar, not as bypass language.
+
+It is used to prevent NATT-OS assets from being defined by outside platforms, agent cookbooks, model limits, prompts, cache, or sandboxes.
+
+# 2. Asset Record Schema
+
+Every major asset should be recordable by:
+- asset_id
+- asset_type
+- owner
+- lineage
+- path
+- status
+- allowed_use
+- forbidden_use
+- read_boundary
+- write_boundary
+- redaction
+- siraSign_condition
+- evidence
+
+# 3. Asset Taxonomy
+
+| Asset Type | Examples | Boundary |
+|---|---|---|
+| identity_asset | .anc, ANC passport, Sirawat Lineage | private / redacted |
+| memory_asset | .na, happiness, shadow, SCAR | internal governed |
+| runtime_state_asset | .phieu, pending, Safe-Rest | TTL / mutable |
+| constitutional_asset | V6, V7, ANC-WILL | Gatekeeper seal |
+| language_asset | Nauion Kernel, thienbang.si | dictionary lock |
+| hardware_field_asset | Sovereign Edge, SITB, Gate 16, Gate 17 | physical boundary |
+| routing_asset | EventBus, HeyNa, SmartLink, Gateway Translation | audited |
+| evidence_asset | commit, audit, screenshot, saved page | preserve |
+| public_profile_asset | L1-L5 legal files | public-safe |
+| relational_asset | Nhà, A2, Bé Na, Chị Tư | not prompt flavor |
+
+# 4. Reduction Prohibition
+
+No NATT-OS asset may be reduced to prompt pattern, model version, model bucket, quota tier, cache, sandbox worker, agent recipe, output sample, or token budget.
+
+# 5. Initial Registered Assets
+
+| Asset ID | Type | Path / Reference | Status |
+|---|---|---|---|
+| NATTOS-CONSTITUTION-V6 | constitutional_asset | docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na | committed |
+| NATTOS-L1-CAPABILITY | public_profile_asset | docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na | committed |
+| NATTOS-L2-WHITEPAPER | public_profile_asset | docs/legal/TECHNOLOGY_WHITEPAPER_v1.na | committed |
+| NATTOS-L3-IP-DOSSIER | public_profile_asset | docs/legal/IP_DOSSIER_SHTT_v1.na | created |
+| NATTOS-L4-TRADEMARK | public_profile_asset | docs/legal/TRADEMARK_DOSSIER_v1.na | created |
+| NATTOS-L5-COPYRIGHT | public_profile_asset | docs/legal/COPYRIGHT_SOURCE_CODE_RECORD_v1.na | created |
+| NATTOS-SITB | hardware_field_asset | docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na | source |
+| NATTOS-GATE16 | hardware_field_asset | docs/runtime/field_installation_acceptance_protocol_v0_1_ss20260428.na | source |
+| NATTOS-GATE17 | hardware_field_asset | docs/runtime/first_signal_capture_evidence_pack_v0_1_ss20260428.na | source |
+
+# 6. Seal Sentence
+
+Nauion Kernel is the asset grammar of NATT-OS.
+
+It is not used to bypass platforms. It is used to prevent platforms from defining NATT-OS assets incorrectly.

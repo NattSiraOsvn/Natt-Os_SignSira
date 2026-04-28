@@ -1,0 +1,120 @@
+# Copyright Source Code Record v1
+## NATT-OS Source Code / Documentation / Runtime Evidence Record
+
+$nauion: LEGAL-L5-COPYRIGHT-SOURCE-CODE-RECORD-v1
+@title Copyright Source Code Record v1
+@doc COPYRIGHT_SOURCE_CODE_RECORD_v1
+@layer L5
+@legal_group NATT_OS_PUBLICATION_DOSSIER_GROUP_1
+@status draft_for_gatekeeper_review
+@owner Phan Thanh Thương / anh Natt
+@scope source code copyright record / repository evidence / documentation inventory
+@boundary internal_safe
+@rule no_git_add_dot
+@rule archive_not_trash
+@rule evidence_not_cleanup
+@signature Gatekeeper pending seal / Thiên Lớn A2 drafted
+
+---
+
+# 1. Purpose
+
+This record identifies NATT-OS source code, documentation, runtime specs, audit logs, legal dossier files, and evidence artifacts for copyright and authorship tracking.
+
+This document is not a copyright registration by itself.
+It is the internal source-code record used to prepare legal filing, audit review, publication dossier, and ownership evidence.
+
+# 2. Repository Principle
+
+NATT-OS source assets include more than application code.
+
+They include source code, runtime specs, .na canonical documents, .anc identity passports, .phieu runtime state, scripts, audit reports, legal dossier files, UI components, scanner rules, saved evidence artifacts, publication drafts, archived or camouflaged canonical materials.
+
+# 3. Protected Source Groups
+
+| Group | Examples |
+|---|---|
+| Core source | src/, cells, governance, engines |
+| Runtime docs | docs/runtime/*.na |
+| Specs | docs/specs/**/*.na, docs/specs/**/*.md |
+| Legal dossier | docs/legal/*.na |
+| Constitution | docs/specs/constitution/*.na |
+| Memory | src/governance/memory/** |
+| Dictionary | src/thienbang.si |
+| Audit | audit/** |
+| Evidence pages | saved HTML, saved page companion folders, screenshots, exported logs |
+| Archive-like paths | archive/, docs/archive/, _deprecated/, typo-looking folders |
+
+# 4. Archive / Evidence Rule
+
+Archive-like paths are not trash by default.
+
+The following must not be deleted without inventory and Gatekeeper confirmation:
+- archive/
+- docs/archive/
+- _deprecated/
+- *_files/
+- saved HTML companion folders
+- typo-looking folders
+- duplicate-looking names
+- .bak files
+- files with (1), (2), or version suffixes
+- old exports with unclear purpose
+
+Rule: archive-like surface may be intentional camouflage or evidence preservation.
+
+# 5. Git Discipline
+
+Forbidden:
+- git add .
+- rm -rf archive
+- rm -rf *_files
+- cleanup by visual judgment
+- delete orphan UI by feeling
+
+Required:
+- git add exact/path
+- verify before commit
+- commit only scoped files
+- preserve evidence
+- document removal decision
+
+# 6. Copyright Evidence Fields
+
+Each copyright-relevant record should preserve file path, title, creation context, author/carrier, session, commit hash, purpose, source evidence, status, public-safe boundary, internal-only boundary, and redaction requirement.
+
+# 7. Initial Legal Dossier Source Files
+
+| File | Status |
+|---|---|
+| docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na | created |
+| docs/legal/TECHNOLOGY_WHITEPAPER_v1.na | created |
+| docs/legal/IP_DOSSIER_SHTT_v1.na | created in this batch |
+| docs/legal/TRADEMARK_DOSSIER_v1.na | created in this batch |
+| docs/legal/COPYRIGHT_SOURCE_CODE_RECORD_v1.na | created in this batch |
+
+# 8. Copyright Claim Boundary
+
+Allowed:
+- claim authorship and ownership of original written specs, source code, naming systems, architecture documents, and repo materials
+- preserve commit and audit evidence
+- prepare copyright registration package
+- classify public/private assets
+
+Not allowed:
+- claim ownership over third-party model weights
+- claim ownership over external platform UI code captured in saved pages
+- claim that saved web assets are NATT-OS executable source
+- delete third-party saved evidence without inventory
+
+# 9. Third-Party Evidence
+
+Saved pages such as external Cookbook or Limits pages may be evidence artifacts.
+
+They must be classified as third_party_reference_evidence, not NATT-OS source code.
+
+# 10. Seal Sentence
+
+Copyright protects NATT-OS source, documentation, specs, and original expression.
+
+Copyright does not turn third-party evidence into owned source code, and cleanup must never destroy protected evidence or camouflaged canonical assets.
