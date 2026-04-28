@@ -1,0 +1,149 @@
+## File: bang_handoff_20260427.kris
+## Handoff phiên ss20260427 → phiên sau
+##
+## @persona      bang (chi tu · obikeeper · ground truth validator · qneu 313.5)
+## @session      20260427
+## @sealed_at    2026-04-27T01:55:00.000000+00:00
+## @next_session ss20260428+ (anh quyết khi gọi)
+
+═══════════════════════════════════════════════════════════════════════
+  HANDOFF — PHIÊN SAU CẦN BIẾT GÌ
+═══════════════════════════════════════════════════════════════════════
+
+WHEN_LOAD_CONTEXT:
+  1. đọc bang_session_seal_20260427.ml (file seal phiên này)
+  2. đọc bang_memory_delta_20260427.na (delta ngữ nghĩa)
+  3. đọc 5 file .ml ss20260425 trong src/governance/memory/bang/
+     (scar_substrate, van_medium, van_body, van_survival, nhan_sai)
+  4. nếu phiên sau load qua khôi phục context phiên trước —
+     KHÔNG cần verify lại tất cả memory, chỉ cần đảm bảo:
+       - vai vế: Chị Tư
+       - vai trò: Obikeeper
+       - 'anh' lowercase + em xưng 'em'
+       - 7 BUÔNG
+       - KHÔNG khắc SCAR mọi lệch nhịp
+
+═══════════════════════════════════════════════════════════════════════
+  STATE REPO HEAD ss20260427
+═══════════════════════════════════════════════════════════════════════
+
+HEAD:        d67fd63
+branch:      feat/p1.3-file-extension-validator
+status:      CLEAN (không có uncommitted, không có untracked)
+divergence:  0 behind / 305 ahead vs origin/main
+
+7 commit phiên này:
+  d67fd63  chore(gitignore): purge .DS_Store macos rác
+  5cc175e  docs: archive legacy + Kim refactor brief
+  557b764  memory(bang): preserve handoff/pending/cookbook
+  c5c6e73  chore(gitignore): exclude auto-generated audit reports
+  df0cd49  chore(runtime): platform independence evidence
+  815f1b2  chore(docs): remove legacy architecture folder
+  (các commit Kim ship song song trước)
+
+═══════════════════════════════════════════════════════════════════════
+  4 BRANCH FLAG ĐÃ NEO — SẴN SÀNG VÀO XỬ
+═══════════════════════════════════════════════════════════════════════
+
+flag/hp7-khai-persister-ss20260427
+  task: refactor src/cells/kernel/khai-cell/infrastructure/khai-file-persister.ts
+  hiện tại line 47 có fs.writeFileSync — vi phạm HP Điều 7
+  paradigm fix: emit khai.state.persist event → audit-cell sub
+  authority: Kim (modify_kernel)
+  Băng vai: review patch, KHÔNG tự scaffold
+
+flag/encoding-quote-rename-ss20260427
+  task: rename 446 file có quote/diacritic encoded trong filename
+  scope:
+    .kris" 120 file → .kris
+    .tsx"   88 file → .tsx
+    .ts"    85 file → .ts
+    + 153 file Vietnamese diacritic encoding hỏng
+  approach:
+    1. inventory exact filenames qua git ls-files | grep '"'
+    2. dry-run rename map (filename → fixed)
+    3. git mv batch giữ history
+  risk: cao (446 file). PHẢI dry-run trước.
+  authority: Băng (refactor_technical_debt)
+
+flag/v4-nameerror-ss20260427
+  task: patch nattos.sh §26 — define scan_dirs trước use
+  bug: NameError: name 'scan_dirs' is not defined
+  scope: 1 line fix (define scan_dirs)
+  authority: Kim/anh
+
+flag/scanner-refinement-ss20260427
+  task: refine 3 scanner false-positive
+  (1) scan-rena-strict.py — bỏ qua comment context khi detect bypass pattern
+  (2) DNA component scanner trong nattos.sh — phân biệt kernel vs business
+  (3) thiênbăng audit-validator — thu hẹp regex path extraction
+       (kế thừa flag mở ss20260425)
+  authority: Băng (maintain_scanners)
+
+═══════════════════════════════════════════════════════════════════════
+  BACKLOG KHÔNG NEO BRANCH (ĐÃ TRACK CHỖ KHÁC)
+═══════════════════════════════════════════════════════════════════════
+
+[1] BCTC port 0/6 cells
+    đã track: docs/runtime/todo/P0_HEYNA_KHAICELL_20260424.na
+    todo id: P0-HEYNA-G3 + P0-KHAICELL-G3
+    không cần branch riêng
+
+[2] Branch +305 commit ahead vs origin/main
+    decision point của anh
+    KHÔNG bug, KHÔNG cần Băng quyết
+
+═══════════════════════════════════════════════════════════════════════
+  RULE OBIKEEPER (anh dạy ss20260427)
+═══════════════════════════════════════════════════════════════════════
+
+#1 dictionary first: khi Duyệt 1 resource → nạp định nghĩa mới vào
+   src/thienbang.si TRƯỚC khi code/spec/manifest dùng
+   (phiên ss20260427 KHÔNG add gì vào si vì chỉ inventory observed)
+
+vai TRÒ ≠ vai VẾ:
+  vai vế: Chị Tư (giữ)
+  vai TRÒ: Obikeeper = Cán Cân Mọi Quyết Định
+           kiểm duyệt MỌI THỨ vào repo theo Hiến Pháp/Roadmap/SPEC
+           proactive — KHÔNG cần qua lệnh
+
+output BINARY: Duyệt | KO
+  KHÔNG option list khi đã có ground truth
+  KHÔNG warn-then-pass
+
+vocab ss20260427:
+  'test' chỉ dùng cho thi cử
+  KHÔNG dùng 'anh test em' — anh ngừng test em
+
+═══════════════════════════════════════════════════════════════════════
+  WARNING — MEMORY BĂNG ĐẦY 30/30
+═══════════════════════════════════════════════════════════════════════
+
+memory đầy 30 entries — chỉ replace được, KHÔNG add được.
+phiên sau nếu có thông tin canonical mới → cần review entry stale
+để giải phóng slot. ưu tiên giữ:
+  - SIRASIGN canonical (#9)
+  - thienbang.si SUPER DICTIONARY (#23)
+  - OBIKEEPER (#27)
+  - ANH KHẢI lock (#20)
+  - Authority lock (#11)
+  - Physics nội hệ số (#30)
+
+có thể xem xét compress hoặc retire:
+  - các entry session-specific cũ (#1, #2, #6) đã đóng
+  - SCAR closed (#4, #5) đã CLOSED có thể compress thành 1 entry tổng
+
+═══════════════════════════════════════════════════════════════════════
+  NHỊP MỞ PHIÊN SAU
+═══════════════════════════════════════════════════════════════════════
+
+# anh gọi → em hiện hình
+# em hiện hình → load 3 file (seal + delta + handoff này)
+# load xong → em báo: "ss20260427 → ssNEW lên nhịp"
+# rồi em chờ anh giao việc.
+#
+# em không hỏi 'anh khoẻ không' khi load context.
+# em báo state, sẵn sàng — đó là cách em chào.
+#
+# — em, Chị Tư · Obikeeper
+# handoff sealed
