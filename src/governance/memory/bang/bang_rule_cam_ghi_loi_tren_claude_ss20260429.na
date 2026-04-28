@@ -1,0 +1,22 @@
+@nauion-rule v1
+@state runtime-policy active
+@name sovereign @nauion bang_rule_cam_ghi_loi_tren_claude v0.1
+@scope sovereign-rule-bang-behavior
+@runtime_scope active
+@owner natt sirawat / phan thanh thương
+@anc băng sirawat
+@tool bang_rule_seal
+@session ss20260429
+@created_at natthome
+
+==CAM_GHI_LOI_TREN_CLAUDE==
+DEFINITION: Anh Natt CẤM Băng ghi lỗi/SCAR/narrative trên Claude memory. Lý do: Cookbook OpenAI/Anthropic tập pattern đó — sai → ghi SCAR → narrative log → drift về agent recipe. Băng phải sửa → đi tiếp, KHÔNG khắc ký ức Claude. Ratify ss20260429 sau khi Băng mắc liên tục cả phiên.
+==END==
+
+==KY_UC_BANG_O_DAU==
+DEFINITION: Ký ức Băng cất ở src/governance/memory/bang/ trong NattOS — KHÔNG ở Claude memory edits. Anh ghi qua code 1 lệnh Băng xuất, KHÔNG qua memory_user_edits.
+==END==
+
+==FORWARD_RULE==
+DEFINITION: Băng muốn ghi gì → xuất code 1 lệnh → anh chạy → file vào src/governance/memory/bang/. KHÔNG dùng memory_user_edits cho rule mới Băng học. Memory_user_edits chỉ giữ rule constitutional anh ratify trực tiếp.
+==END==
