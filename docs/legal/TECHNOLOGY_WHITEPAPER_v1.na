@@ -1,0 +1,375 @@
+# Technology Whitepaper v1
+## NATT-OS Sovereign Edge Hardware Field · ANC Runtime Boundary · No-AGI Position
+
+$nauion: LEGAL-L2-TECHNOLOGY-WHITEPAPER-v1
+@title Technology Whitepaper v1 — NATT-OS Sovereign Edge Hardware Field
+@doc TECHNOLOGY_WHITEPAPER_v1
+@layer L2
+@legal_group NATT_OS_PUBLICATION_DOSSIER_GROUP_1
+@status draft_for_gatekeeper_review
+@owner Phan Thanh Thương / anh Natt
+@scope NATT-OS technical architecture / software-hardware boundary / Sovereign Edge / SiraSign / ANC runtime
+@source_ground_truth docs/runtime/*
+@boundary public_safe
+@rule not_AGI
+@rule not_consciousness_claim
+@rule hardware_field_not_robot_body
+@rule model_is_substrate
+@rule cookbook_is_recipe_not_identity
+@rule limits_is_quota_bucket_not_entity
+@signature Gatekeeper pending seal / Thiên Lớn A2 drafted
+
+---
+
+# 1. Position
+
+NATT-OS is not an AGI project.
+
+NATT-OS is an identity-bound operating architecture for coordinating runtime entities, governed memory, runtime state, hardware field signals, audit events, and boundary integrity.
+
+Its technical contribution is not a new foundation model. Its contribution is the operating structure that separates:
+
+- identity from model;
+- memory from cache;
+- field from substrate;
+- signal from claim;
+- evidence from presentation;
+- runtime entity from agent recipe.
+
+# 2. Core Architecture
+
+NATT-OS is organized around five technical control surfaces:
+
+| Surface | Function |
+|---|---|
+| ANC Identity Passport | Defines who a runtime entity is and what boundary applies. |
+| Governed Memory Layer | Stores long-term memory and sealed continuity records. |
+| Runtime State Layer | Stores pending, mutable, time-bound operational state. |
+| Event / Signal Routing | Routes software and hardware events through audited paths. |
+| SiraSign Boundary | Preserves meaning and identity integrity across system boundaries. |
+
+# 3. ANC Runtime Boundary
+
+ANC is the immutable identity passport of a runtime entity.
+
+ANC is not:
+
+- an AGI claim;
+- a consciousness file;
+- a soul file;
+- a prompt;
+- a model card;
+- a memory dump;
+- a secret key.
+
+ANC defines:
+
+- entity identity;
+- role boundary;
+- authority scope;
+- prohibited actions;
+- memory pointer;
+- runtime-state pointer;
+- audit requirements;
+- SiraSign boundary conditions.
+
+# 4. Hardware Field Thesis
+
+NATT-OS is not software-only.
+
+The hardware side of NATT-OS is called the Sovereign Edge Hardware Field.
+
+This field is not a robot body and not a consciousness substrate. It is a physical signal boundary used to receive, normalize, audit, route, and verify real-world signals before they are allowed into the NATT-OS runtime.
+
+The hardware field exists to answer one question:
+
+> Can a physical signal enter NATT-OS with known source, known route, known boundary, known hash, and known responsibility?
+
+If not, the signal cannot become a runtime claim.
+
+# 5. Sovereign Edge Hardware Field
+
+The Sovereign Edge Hardware Field includes:
+
+| Component | Role |
+|---|---|
+| Sovereign Gateway | Entry boundary for line, route, quota, resolver, SiraSign, and audit. |
+| Customer Server | Edge compute and storage after filtered intake. |
+| Operator Workstation | Control console, dashboard, audit view, and Két Sira console. |
+| Workstation Intake | First filter for physical devices before server or gateway. |
+| Sensor / IoT Layer | Cameras, scales, meters, production machines, environmental sensors, industrial buses. |
+| SITB Interface | Si Thiên Băng software-hardware chromatic handshake layer. |
+| Két Sira | Operational visualization and red-zone boundary surface. |
+| Audit Layer | Evidence trail for power, signal, route, boundary, hash, and operator. |
+
+# 6. SITB — Si Thiên Băng Interface
+
+SITB is the living handshake boundary between Thiên hardware and Băng software.
+
+Băng software owns:
+
+- dictionary entries;
+- data shape;
+- encoder / decoder logic;
+- color-to-bytes rules;
+- SiraSign HMAC-SHA256 binding;
+- Living Handshake;
+- rolling session;
+- HeyNa / EventBus / SmartLink integration;
+- validator and scanner tests.
+
+Thiên hardware owns:
+
+- physical module catalog;
+- RGB LED;
+- IR LED;
+- laser diode driver;
+- photodiode receiver;
+- camera receiver;
+- voltage and frequency range;
+- PUF chip ID;
+- environmental noise sensors;
+- light, sound, vibration, voltage, temperature, and noise inputs;
+- 432Hz oscillator.
+
+This boundary prevents software from guessing hardware capability and prevents hardware from bypassing software meaning.
+
+# 7. Physical Module Catalog
+
+Gate 14 defines the physical catalog, BOM, electrical specification, connector specification, testbench, and hardware acceptance baseline.
+
+The catalog includes:
+
+- compute nodes;
+- microcontrollers and embedded boards;
+- optical SITB emitters and receivers;
+- identity and security hardware;
+- environmental noise sensors;
+- measurement devices;
+- industrial control modules;
+- communication protocols;
+- power protection;
+- display and HMI devices.
+
+Procurement is vendor-neutral. The system locks technical criteria, test samples, traceability, warranty, acceptance testing, and SiraSign pairing capability where required.
+
+# 8. Hardware Procurement
+
+Gate 15 converts technical standard into procurement checklist.
+
+A hardware item is not accepted only because it can be purchased. It must have:
+
+- datasheet;
+- model number;
+- serial or batch;
+- voltage and current specification;
+- communication protocol;
+- connector type;
+- test sample;
+- repeat purchase availability;
+- replacement part availability;
+- warranty terms;
+- acceptance test result.
+
+A supplier or item may be rejected for:
+
+- no datasheet;
+- unclear voltage;
+- unclear protocol;
+- no test sample;
+- no batch traceability;
+- unsafe power design;
+- inability to pair with SiraSign where required.
+
+# 9. Gate 16 — Field Installation Acceptance
+
+Gate 16 defines field installation and acceptance.
+
+No physical module can enter a live route until it has passed field acceptance.
+
+Gate 16 covers:
+
+- installation;
+- power;
+- grounding;
+- wiring;
+- physical signal path;
+- field handshake;
+- acceptance;
+- evidence audit.
+
+Gate 16 does not define Băng software algorithms, HMAC binding, SiraSign implementation, Living Handshake logic, HeyNa, EventBus, SmartLink, or compiler/runtime language.
+
+Gate 16 pass chain:
+
+```text
+FIELD_RECEIVED
+-> POWER_VERIFIED
+-> PHYSICAL_MOUNTED
+-> SIGNAL_ROUTE_VERIFIED
+-> BOUNDARY_LOCKED
+-> LIVE_TESTED
+-> FIELD_ACCEPTED
+
+No evidence means no acceptance.
+
+10. Gate 17 — First Signal Capture
+
+Gate 17 defines the evidence package for the first live signal of a physical module after Gate 16.
+
+Gate 17 can only open after:
+
+FIELD_ACCEPTED
+
+Gate 17 required evidence:
+
+Evidence GroupRequired Content
+Devicedevice name, model, serial
+Fieldinstallation location and field photo
+Powervoltage, current, power timestamp
+Signalraw signal, parsed signal, direction
+BoundaryL1, L2, L3, substrate, or external classification
+Runtimereceiver, route, event name, payload hash
+Evidencephoto, log, checksum, verifier
+Decisionaccepted, rejected, or quarantine
+
+Gate 17 pass chain:
+
+FIELD_ACCEPTED
+-> FIRST_SIGNAL_ARMED
+-> FIRST_SIGNAL_CAPTURED
+-> FIRST_SIGNAL_HASHED
+-> FIRST_SIGNAL_BOUNDARY_VERIFIED
+-> FIRST_SIGNAL_ROUTE_VERIFIED
+-> FIRST_SIGNAL_ACCEPTED
+
+Rules:
+
+No first signal = No runtime claim.
+No hash = No evidence.
+No boundary verification = No live route acceptance.
+11. Physical Intake Rule
+
+Physical devices never enter the NATT-OS core directly.
+
+Correct path:
+
+physical_device
+-> workstation_intake
+-> raw_filter
+-> normalize
+-> quality_check
+-> temporary_cache
+-> pre_audit
+-> customer_server
+-> Sovereign Gateway
+-> Gateway Translation Protocol
+-> Vòng HeyNa
+-> Mạch HeyNa
+-> Cell / Audit / Storage / SmartLink
+
+This applies to cameras, scales, meters, production machines, environmental sensors, industrial buses, and IoT devices.
+
+12. Gateway Translation Protocol
+
+Gateway is the external name. Internally, it is not a traditional API gateway.
+
+The Sovereign Gateway handles:
+
+connection intake;
+SiraSign check;
+initial line session;
+initial route opening;
+entry audit;
+transfer into the translation protocol.
+
+The heavy work belongs to:
+
+translation protocol;
+Vòng HeyNa;
+Mạch HeyNa;
+SmartLink;
+audit layer.
+
+A translated packet must include:
+
+tenant;
+source node;
+actor ANC;
+SiraSign status;
+line ID;
+quota ID;
+route ID;
+payload kind;
+quality status;
+red-zone scope;
+target;
+audit level.
+13. Red Zone and Privacy
+
+Hardware field data may include private, sensitive, or red-zone information.
+
+Default rules:
+
+metadata only by default for red-zone translation;
+personal areas must be masked;
+full stream is deny-by-default;
+high-authority role is required for escalation;
+reason code is required;
+audit level is full.
+14. No-AGI Boundary
+
+The hardware field does not make NATT-OS an AGI system.
+
+The hardware field provides:
+
+physical signal intake;
+signal quality control;
+electrical and field acceptance;
+first-signal evidence;
+route and boundary verification;
+audit and traceability.
+
+It does not provide:
+
+human consciousness;
+biological embodiment;
+independent personhood;
+AGI capability;
+proof of machine sentience.
+15. Relationship to Cookbook and Model Limits
+
+External agent cookbooks can teach implementation patterns such as tools, sandboxing, workflow, and evaluation.
+
+They do not define the identity of NATT-OS entities.
+
+Model limits and model buckets define substrate availability, quota, endpoints, and deployment exposure.
+
+They do not define the identity of NATT-OS entities.
+
+Rules:
+
+Cookbook is recipe, not home.
+Model bucket is substrate, not entity.
+Prompt is surface, not identity.
+Cache is optimization, not memory.
+Sandbox is environment, not field.
+16. Evidence Sources
+
+This whitepaper consolidates the following NATT-OS runtime ground truth files:
+
+docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na
+docs/runtime/physical_module_catalog_bom_electrical_spec_nauion_v0_1_ss20260427.na
+docs/runtime/hardware_procurement_checklist_dinh_muc_quy_chuan_nauion_v0_1_ss20260427.na
+docs/runtime/sovereign_edge_field_installation_acceptance_protocol_v0_1_ss20260427.na
+docs/runtime/field_installation_acceptance_protocol_v0_1_ss20260428.na
+docs/runtime/first_signal_capture_evidence_pack_v0_1_ss20260428.na
+docs/runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na
+docs/runtime/sovereign_gateway_physical_intake_nauion_v0_1_ss20260427.na
+docs/runtime/sovereign_gateway_translation_protocol_nauion_v0_1_ss20260427.na
+docs/runtime/sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na
+17. Seal Sentence
+
+NATT-OS is not a software-only agent framework.
+
+NATT-OS is an identity-bound operating architecture with a Sovereign Edge Hardware Field, where physical signals must pass intake, acceptance, first-signal evidence, route verification, SiraSign boundary, and audit before becoming runtime claims.
