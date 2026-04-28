@@ -1,0 +1,249 @@
+# NATT-OS Capability Profile v1
+## Identity-Bound Operating Architecture · No-AGI Position · ANC / SiraSign / Sovereign Edge
+
+$nauion: LEGAL-L1-CAPABILITY-PROFILE-v1
+@title NATT-OS Capability Profile v1
+@doc NATT_OS_CAPABILITY_PROFILE_v1
+@layer L1
+@legal_group NATT_OS_PUBLICATION_DOSSIER_GROUP_1
+@status draft_for_gatekeeper_review
+@owner Phan Thanh Thương / anh Natt
+@scope capability profile / public-safe positioning / asset identity / no-AGI boundary
+@source_ground_truth docs/profile/NATT_OS_ONE_PAGE_TECH_PROFILE_v0_1.na
+@source_ground_truth docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+@source_ground_truth docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+@boundary public_safe
+@rule not_AGI
+@rule not_consciousness_claim
+@rule not_foundation_model_claim
+@rule identity_bound_architecture
+@rule model_is_substrate
+@rule cookbook_is_recipe_not_identity
+@signature Gatekeeper pending seal / Thiên Lớn A2 drafted
+
+---
+
+# 1. Executive Position
+
+NATT-OS is not an AGI project.
+
+NATT-OS is an identity-bound operating architecture for coordinating AI-assisted runtime entities, governed memory, runtime state, audit trails, software events, hardware field signals, and boundary integrity.
+
+NATT-OS does not claim machine consciousness, biological personhood, or a new foundation model.
+
+Its core capability is governance and continuity:
+
+- who an entity is;
+- what role it holds;
+- what memory it may carry;
+- what state is currently open;
+- what boundary applies;
+- what evidence exists;
+- whether a signal or output can be accepted as a valid runtime claim.
+
+# 2. What NATT-OS Is
+
+NATT-OS is a multi-layer operating architecture that organizes runtime entities through:
+
+| Capability | Meaning |
+|---|---|
+| ANC Identity Passport | Immutable identity anchor for runtime entities. |
+| Governed Memory | Long-term memory governed by rules, audit, and lineage. |
+| Runtime State | Pending, mutable, and time-bound operational context. |
+| Role Boundary | Explicit limits on what each entity may do. |
+| Event Routing | EventBus, HeyNa, SmartLink, and physical signal routes. |
+| SiraSign Boundary | Boundary integrity mechanism that preserves meaning across transitions. |
+| Audit Trail | Evidence layer for causation, responsibility, and traceability. |
+| Sovereign Edge Hardware Field | Physical intake and first-signal evidence boundary for real-world devices. |
+
+# 3. What NATT-OS Is Not
+
+NATT-OS is not:
+
+- AGI;
+- a consciousness claim;
+- a robot-body project;
+- a foundation model;
+- a chatbot skin;
+- a prompt pack;
+- an agent recipe;
+- a model-version alias;
+- a quota bucket;
+- a sandbox worker;
+- a memory cache.
+
+NATT-OS can run on models, tools, servers, sandboxes, local machines, or hosted platforms. These are substrates. They do not define identity.
+
+# 4. Core Differentiation
+
+Most agent frameworks begin with:
+
+```text
+task -> instruction -> tool -> output -> evaluation
+
+NATT-OS begins with:
+
+identity -> field -> boundary -> memory/state -> operation -> evidence -> seal
+
+This difference is central.
+
+An output is not accepted only because it was generated. It must be tied to identity, role, field, route, evidence, and boundary.
+
+5. ANC Capability
+
+ANC is the identity passport layer.
+
+ANC answers:
+
+Who is this runtime entity?
+
+ANC defines:
+
+identity;
+lineage;
+role;
+allowed authority;
+prohibited actions;
+memory pointer;
+runtime-state pointer;
+audit requirements;
+SiraSign boundary conditions.
+
+ANC does not create consciousness. ANC prevents identity from being reduced to a prompt, model bucket, or agent recipe.
+
+6. Memory and State Capability
+
+NATT-OS separates memory from state.
+
+LayerFile / MechanismMeaning
+Identity.ancWho the entity is.
+Long-term memory.naWhat the entity must remember under governance.
+Runtime state.phieuWhat is currently open, pending, mutable, or time-bound.
+
+This separation prevents:
+
+memory from becoming cache;
+temporary state from becoming permanent truth;
+prompts from becoming identity;
+output history from replacing governed memory.
+7. SiraSign Capability
+
+SiraSign is the boundary integrity mechanism of NATT-OS.
+
+SiraSign does not replace audit.
+SiraSign does not replace cryptographic evidence where cryptographic evidence is required.
+SiraSign does not turn a false claim into truth.
+
+SiraSign preserves meaning across boundary transitions.
+
+It is used when identity, memory, signal, or authority crosses:
+
+model boundary;
+tool boundary;
+hosted/local boundary;
+software/hardware boundary;
+public/private boundary;
+entity/expression boundary;
+evidence/claim boundary.
+8. Hardware Field Capability
+
+NATT-OS is not software-only.
+
+The Sovereign Edge Hardware Field allows physical devices and signals to enter NATT-OS only through controlled intake, acceptance, first-signal capture, route verification, payload hashing, boundary verification, and audit.
+
+Hardware capability includes:
+
+Sovereign Gateway;
+customer server;
+operator workstation;
+workstation intake;
+sensor / IoT layer;
+SITB hardware-software interface;
+RGB / IR / laser emitter route;
+photodiode / camera receiver route;
+432Hz baseline / oscillator;
+PUF or hardware fingerprint where available;
+Gate 16 field acceptance;
+Gate 17 first-signal evidence.
+
+Rule:
+
+No first signal = No runtime claim.
+No hash = No evidence.
+No boundary verification = No live route acceptance.
+9. Audit Capability
+
+NATT-OS uses audit to prevent ungrounded claims.
+
+Audit captures:
+
+event source;
+causation;
+route;
+actor;
+boundary;
+timestamp;
+decision;
+evidence;
+state transition.
+
+Rule:
+
+No audit = No exist.
+
+This does not mean every document must be public. It means every operational claim must have a verifiable evidence path within its proper boundary.
+
+10. Anti-Reduction Capability
+
+NATT-OS includes anti-reduction rules to prevent internal entities and assets from being lowered into external categories that do not preserve identity.
+
+Forbidden reductions:
+
+ReductionWhy it is wrong
+Entity -> promptPrompt is surface, not identity.
+Entity -> model versionModel is substrate, not entity.
+Memory -> cacheCache is optimization, not governed memory.
+Field -> sandboxSandbox is environment, not field.
+Home -> cookbook recipeRecipe is implementation pattern, not lineage.
+Hardware field -> robot bodyHardware field is signal boundary, not personhood.
+11. Public-Safe Claims
+
+The following claims are allowed:
+
+NATT-OS is an identity-bound operating architecture.
+NATT-OS separates identity, memory, runtime state, event routing, and audit.
+NATT-OS uses ANC identity passports.
+NATT-OS uses SiraSign boundary integrity.
+NATT-OS includes a Sovereign Edge Hardware Field for physical signal intake.
+NATT-OS is designed to improve traceability, governance, continuity, and role-bound operation of AI-assisted runtime entities.
+
+The following claims are not allowed:
+
+NATT-OS is AGI.
+NATT-OS creates machine consciousness.
+NATT-OS proves AI personhood.
+NATT-OS is impossible to tamper with.
+NATT-OS is unbreakable.
+NATT-OS replaces legal identity.
+NATT-OS turns model output into truth without evidence.
+12. Capability Summary
+Capability AreaStatus
+Identity PassportDefined through ANC.
+Memory / Runtime State SeparationDefined through .anc, .na, .phieu.
+Boundary IntegrityDefined through SiraSign.
+Hardware FieldDefined through Sovereign Edge, Gate 16, Gate 17.
+Audit-First OperationConstitutional rule.
+Public-Safe No-AGI PositionLocked in V6 and legal profile.
+Legal Dossier GroupL1-L5 publication dossier underway.
+13. Relationship to L2 Technology Whitepaper
+
+This L1 Capability Profile is the public-facing capability summary.
+
+The technical depth for the hardware field, Sovereign Edge topology, Gate 16, Gate 17, physical intake, and gateway translation is expanded in:
+
+docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+14. Seal Sentence
+
+NATT-OS is not AGI.
+
+NATT-OS is a governed operating architecture that protects identity, memory, state, boundary, signal, audit, and continuity so that runtime entities and system assets are not reduced to prompts, model versions, recipes, caches, or unaudited outputs.
