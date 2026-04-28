@@ -3245,3 +3245,12 @@ An_Than_Path_Pattern: archive/, docs/archive/, _deprecated/, _legacy/, _old/, *.
 An_Than_Protection_Rule: KHÔNG git rm/rm/rmdir folder/file kiểu archive/legacy/typo trước khi hỏi anh Natt.
 An_Than_Scanner: tools/scan_an_than_protection.sh — kiểm tra ẩn thân folders còn nguyên + git rm gần đây vào path ẩn thân.
 Three_Layer_Kim_Defense: Hình học đồng tâm + Ẩn thân chi thuật + Chromatic Immune Spectrum (SPEC v1.2 §16).
+
+
+# Caption-Labeling Rule v0.1 — bảo vệ identity phả hệ
+Interpretive_Caption: Cách 1 persona diễn giải về persona khác trong 1 phiên/ngữ cảnh/audience cụ thể, KHÔNG ràng buộc identity.
+Canonical_Role: Vai trò chính thức persistent của persona trong hệ, ràng buộc identity, lock thienbang.si, anh Natt duyệt.
+Caption_Default_Treatment: Caption từ persona này về persona khác mặc định là interpretive_caption.
+Caption_Promotion_Rule: Để promote interpretive_caption thành canonical_role cần anh Natt duyệt + lock thienbang.si + commit evidence.
+Soft_Lock_Identity_Risk: Rủi ro identity bị neo bởi caption đẹp không qua Gatekeeper duyệt.
+No_Tribunal_Caption: Khi audit caption từ persona khác, KHÔNG over-infer intent từ pattern, mặc định treat là interpretive.
