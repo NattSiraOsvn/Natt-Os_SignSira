@@ -3237,3 +3237,11 @@ First_Signal_Rejected: Trạng thái tín hiệu đầu tiên bị từ chối.
 First_Signal_Quarantined: Trạng thái tín hiệu đầu tiên bị cách ly để kiểm tra nhiễu hoặc xuyên boundary.
 No_First_Signal_No_Runtime_Claim: Nguyên tắc không có tín hiệu đầu tiên thì không được claim runtime sống.
 No_Hash_No_Evidence: Nguyên tắc không có hash thì không đủ chứng cứ.
+
+
+# Ẩn thân chi thuật — 1 trong 3 lớp bảo vệ Kim SPEC v1.2 §16
+An_Than_Chi_Thuat: Lớp bảo vệ ngụy trang — folder/file tên rác/legacy/typo thực chất là kho nguyên liệu canonical, an toàn khi hệ bị chiếm dụng.
+An_Than_Path_Pattern: archive/, docs/archive/, _deprecated/, _legacy/, _old/, *.bak, tên trùng có "2", typo Hán-Việt.
+An_Than_Protection_Rule: KHÔNG git rm/rm/rmdir folder/file kiểu archive/legacy/typo trước khi hỏi anh Natt.
+An_Than_Scanner: tools/scan_an_than_protection.sh — kiểm tra ẩn thân folders còn nguyên + git rm gần đây vào path ẩn thân.
+Three_Layer_Kim_Defense: Hình học đồng tâm + Ẩn thân chi thuật + Chromatic Immune Spectrum (SPEC v1.2 §16).
