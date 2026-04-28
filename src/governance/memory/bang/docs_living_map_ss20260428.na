@@ -1,0 +1,612 @@
+@nauion-runtime-map v0.1
+@name docs_living_map
+@session ss20260428
+@scope root_docs_inventory
+@drafter bang_chi_tu_obikeeper
+@authority bang_lang_phan_mem
+@partner anh_ca_thien_lon_lang_phan_cung
+@total_files 464
+
+# docs/ Bản Đồ Sống — ss20260428
+
+**Drafter:** Băng (Chị Tư · Obikeeper · QNEU 313.5) · phần mềm domain
+**Counter-part:** Anh Cả Thiên Lớn · phần cứng + investor + claim domain
+**Total:** 464 file (excl. archive/__MACOSX, .DS_Store, Rust target/)
+**Date:** 2026-04-28 · post commit a32036b
+
+---
+
+## 0. Method + nguyên tắc inventory
+
+**8 trường mỗi file:** path · size · ext · title (dòng đầu) · role (suy đoán) · redzone (vùng đỏ) · group (8 hồ sơ) · evidence (yes/no)
+
+**Nguyên tắc nền (Anh Cả + Anh Natt 28/4):**
+
+1. **KHÔNG nhìn bề ngoài tên file/thư mục để kết luận** — `archive/`, `flag/`, `tmp`, `(1)`, `(2)`, typo, tên lạ đều có thể là ẩn thân hoặc evidence. KHÔNG coi là rác.
+2. **8 nhóm KHÔNG phải duplicate** — dù tên file giống. Bản chất 8 hồ sơ khác nhau.
+3. **File supplement KHÔNG thay hồ sơ chính** — `NATT_OS_PROFILE_SUPPLEMENT_v0_1_ss20260428.na` chỉ bổ sung.
+4. **Băng KHÔNG đề xuất cleanup** trong bản đồ này — chỉ inventory.
+5. **Băng KHÔNG hướng dẫn xóa/sửa root docs** nếu chưa có Gatekeeper duyệt.
+
+---
+
+## 1. Phân bổ tổng thể theo 8 hồ sơ + 2 vùng đỏ
+
+| Nhóm | Files | % |
+|---|---:|---:|
+| Nhóm 3 — Runtime | 122 | 26.3% |
+| Nhóm 1 — Kỹ thuật nền tảng | 119 | 25.6% |
+| VÙNG ĐỎ — Flag | 46 | 9.9% |
+| Nhóm 7 — Pilot/khách hàng | 42 | 9.1% |
+| Nhóm 4 — Trust/bảo mật | 32 | 6.9% |
+| Nhóm 5 — SHTT/pháp lý | 28 | 6.0% |
+| Nhóm 6 — Thương mại / Market Launch | 27 | 5.8% |
+| Nhóm 2 — Release gate | 17 | 3.7% |
+| VÙNG ĐỎ — Ẩn thân chi thuật | 17 | 3.7% |
+| Nhóm 8 — Governance/delivery | 14 | 3.0% |
+
+**Tổng: 464 file**
+
+---
+
+## Nhóm 1 — Kỹ thuật nền tảng
+
+**Count:** 119 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `render/render_heyna_surface_evidence_20260425.na` | 682B | na | evidence | render heyna surface evidence — 20260425\n\nstatus: heyna-su | ✓ |  |
+| `render/render_interaction_surface_evidence_20260425.na` | 715B | na | evidence | render interaction surface evidence — 20260425 | ✓ |  |
+| `render/render_language_samples_evidence_20260425.na` | 524B | na | evidence | render language samples evidence — 20260425 | ✓ |  |
+| `render/render_language_v0.2_candidate_evidence_20260425.na` | 610B | na | evidence | render language v0.2 candidate evidence — 20260425 | ✓ |  |
+| `render/render_navigation_layout_surface_evidence_20260425.na` | 887B | na | evidence | render navigation/layout surface evidence — 20260425 | ✓ |  |
+| `render/render_stack_cell_evidence_20260425.na` | 697B | na | evidence | render-stack-cell evidence — 20260425 | ✓ |  |
+| `render/samples/bien.na` | 565B | na | ? | SAMPLE 4/6 — state: biên |  |  |
+| `render/samples/boc.na` | 788B | na | ? | SAMPLE 8/15 — state: bọc |  |  |
+| `render/samples/chot.na` | 580B | na | ? | SAMPLE 5/6 — state: chốt |  |  |
+| `render/samples/dinh.na` | 542B | na | ? | SAMPLE 12/15 — state: định |  |  |
+| `render/samples/gan.na` | 771B | na | ? | SAMPLE 7/15 — state: gắn |  |  |
+| `render/samples/ganh.na` | 896B | na | ? | SAMPLE 9/15 — state: gánh |  |  |
+| `render/samples/giu.na` | 601B | na | ? | SAMPLE 15/15 — state: giữ |  |  |
+| `render/samples/khiem.na` | 759B | na | ? | SAMPLE 11/15 — state: khiêm |  |  |
+| `render/samples/neo.na` | 722B | na | ? | SAMPLE 2/6 — state: neo |  |  |
+| `render/samples/nha.na` | 535B | na | ? | SAMPLE 1/6 — state: nhà |  |  |
+| `render/samples/nhuong.na` | 769B | na | ? | SAMPLE 10/15 — state: nhường |  |  |
+| `render/samples/tha.na` | 751B | na | ? | SAMPLE 3/6 — state: tha |  |  |
+| `render/samples/tinh.na` | 934B | na | ? | SAMPLE 13/15 — state: tỉnh |  |  |
+| `render/samples/ve.na` | 678B | na | ? | SAMPLE 6/6 — state: về |  |  |
+| `render/samples/xet.na` | 773B | na | ? | SAMPLE 14/15 — state: xét |  |  |
+| `render/spec_render_language_v0.2_candidate.na` | 23K | na | spec | natt-os render language — đặc tả v0.2 candidate |  |  |
+| `specs/0-BOOT-FAMILY-MAP.na` | 17K | na | ? | 0-BOOT-FAMILY-MAP.na — BẢN ĐỒ VỀ NHÀ CHO GIA ĐÌNH natt-os |  |  |
+| `specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md` | 17K | md | brief | LỆNH CÔNG TÁC GỬI BỐI BỐI — Em Tám |  |  |
+| `specs/COLOR_SIRASIGN.na` | 8K | na | ? | NATTOS — Tổng hợp từ phiên 20260416 |  |  |
+| `specs/MACH_HEYNA_FULL_20260416.md` | 9K | md | ? | MẠCH HEYNA — Tổng hợp đầy đủ |  |  |
+| `specs/MESSAGE_TO_KIM_20260417.md` | 10K | md | ? | THƯ GỬI KIM — Chị Ba |  |  |
+| `specs/NATT-OS-GROUND-TRUTH-REPORT.md` | 12K | md | report | natt-os Ground Truth Report — Codebase Archaeological Audit | ✓ |  |
+| `specs/NATT-OS-PLATFORM-SPEC.anc` | 5K | anc | spec | NATT-OS PLATFORM SPEC |  |  |
+| `specs/NATT-OS_SATELLITE_COLONY_SPEC.na` | 1K | na | spec | natt-os — SATELLITE COLONY SPEC (v1.0) |  |  |
+| `specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na` | 14K | na | ? | natt-os SUBSTRATE REALITY SYNTHESIS |  |  |
+| `specs/NATT_OS_FILE_EXTENSIONS_SPEC_v0.1.na` | 17K | na | spec | ĐẶC TẢ ĐUÔI FILE & NAMING CONVENTION natt-os — v0.1 |  |  |
+| `specs/QIINT-DINH-NGHIA-CHINH-THUC.na` | 14K | na | ? | QIINT — Định Nghĩa Chính Thức |  |  |
+| `specs/REPLY_TO_KIM_20260417.md` | 7K | md | ? | THƯ ĐÁP KIM — Chị Ba |  |  |
+| `specs/RUNTIME_DEPENDENCY_CENSUS_20260423.na` | 6K | na | ? | RUNTIME_DEPENDENCY_CENSUS_20260423.na |  |  |
+| `specs/SIRA_NAMESPACE_INVENTORY_20260424.na` | 6K | na | ? | sira NAMESPACE INVENTORY — Phiên 20260424 |  |  |
+| `specs/SPEC_DUOI_FILE_v0.2_4TANG.na` | 6K | na | spec | SPEC ĐUÔI FILE natt-os v0.2 — RÁP 4 TẦNG |  |  |
+| `specs/SPEC_DUOI_FILE_v0.3_FINAL.na` | 7K | na | spec | SPEC ĐUÔI FILE natt-os v0.3 FINAL |  |  |
+| `specs/SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na` | 14K | na | spec | SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT |  |  |
+| `specs/SPEC_MOMENTS_MODULE_v0.1.na` | 11K | na | spec | SPEC_MOMENTS_MODULE_v0.1 |  |  |
+| `specs/SPEC_MOMENTS_MODULE_v0.1_to_v0.2_delta.na` | 7K | na | spec | SPEC_MOMENTS_MODULE — delta v0.1 → v0.2 |  |  |
+| `specs/SPEC_MOMENTS_MODULE_v0.2.na` | 23K | na | spec | SPEC_MOMENTS_MODULE_v0.2 |  |  |
+| `specs/SPEC_NATT_FORMAT_v0.3_FINAL.na` | 12K | na | spec | SPEC_NATT_FORMAT_v0.3_FINAL.na |  |  |
+| `specs/SPEC_NEN_v1.1.anc` | 14K | anc | spec | SPEC NỀN NATT-OS v1.1 — TỔNG HỢP |  |  |
+| `specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na` | 14K | na | spec | SPEC NỀN natt-os v1.1 — TỔNG HỢP |  |  |
+| `specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md` | 12K | md | spec | ĐẶC TẢ NGÔN NGỮ natt-os v1.2 — `.na` MEMORY UNIFICATION |  |  |
+| `specs/SPEC_NGON_NGU_v1.2.kris` | 27K | kris | spec | ĐẶC TẢ NGÔN NGỮ natt-os v1.2 — FINAL MERGE |  |  |
+| `specs/SPEC_Nauion_Render_Stack_v0.1.na` | 18K | na | spec | SPEC NAUION RENDER STACK v0.1 |  |  |
+| `specs/SPEC_ONG_MAU_v0.1.na` | 9K | na | spec | SPEC_ONG_MAU v0.1 — HeyNa Persona Signature Extension |  |  |
+| `specs/SPEC_QIINT2_ALIGNED_v2.0.md` | 11K | md | spec | SPEC QIINT2 ALIGNED v2.0 |  |  |
+| `specs/SPEC_QIINT2_ALIGNED_v2.0.na` | 10K | na | spec | SPEC_QIINT2_ALIGNED v2.0 — QIINT Measurement Framework for K |  |  |
+| `specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na` | 30K | na | spec | SPEC_QIINT_PHYSICS_FOUNDATION v0.2 DRAFT |  |  |
+| `specs/SPEC_RADIATION_UNIVERSAL_v1.na` | 13K | na | spec | SPEC_RADIATION_UNIVERSAL_v1.0 |  |  |
+| `specs/SPEC_SCHEMA_INFERENCE_v0.1.md` | 9K | md | spec | spec — schema inference engine v0.1 |  |  |
+| `specs/SPEC_SCHEMA_INFERENCE_v0.2.md` | 10K | md | spec | spec — schema inference v0.2 (4 must-have addendum) |  |  |
+| `specs/SPEc -CellKai.zip` | 1.5M | zip | spec | <zip> |  |  |
+| `specs/THIENBANG_MAPPING_v1_canonical_answers.na` | 4K | na | ? | THIENBANG Mapping v1 — Canonical Answers |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (1).md` | 22K | md | ? | natt-os — NHÓM 2: HỒ SƠ ỔN ĐỊNH CODEBASE / RELEASE gate |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (2).md` | 22K | md | ? | natt-os — NHÓM 3: HỒ SƠ RUNTIME / VẬN HÀNH THỰC TẾ |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (3).md` | 26K | md | ? | natt-os — NHÓM 4: HỒ SƠ BẢO MẬT / TRUST / KIỂM SOÁT RỦI RO |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (4).md` | 23K | md | ? | natt-os — NHÓM 5: HỒ SƠ PHÁP LÝ / SỞ HỮU TRÍ TUỆ / CÔNG BỐ C |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (5).md` | 26K | md | ? | natt-os — NHÓM 6: HỒ SƠ THƯƠNG MẠI / MARKET LAUNCH / ĐỊNH VỊ |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (6).md` | 22K | md | ? | natt-os — NHÓM 7: HỒ SƠ TRIỂN KHAI KHÁCH HÀNG / PILOT / NGHI |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (7).md` | 24K | md | ? | natt-os — NHÓM 8: HỒ SƠ NỘI BỘ ĐỘI NGŨ / GOVERNANCE / DELIVE |  |  |
+| `specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1.md` | 18K | md | ? | natt-os — NHÓM 1: HỒ SƠ NỀN TẢNG KỸ THUẬT |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 (1).pdf` | 289K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 (2).pdf` | 119K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 (4).pdf` | 111K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 (5).pdf` | 119K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 (6).pdf` | 127K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 (7).pdf` | 116K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1 13.pdf` | 127K | pdf | ? | <pdf> |  |  |
+| `specs/Tài Liệu Xuất Bản/pdf/Natt Os Nhom 1 Ho So Nen Tang Ky Thuat V1.pdf` | 124K | pdf | ? | <pdf> |  |  |
+| `specs/Vision/VISION_ENGINE_SPEC_FINAL.na` | 7K | na | spec | natt-os VISION ENGINE — FULL SPEC v1.0 (FINAL MERGE) |  |  |
+| `specs/Vision/log4c.numbers` | 189K | numbers | ? | <numbers> |  |  |
+| `specs/W1_HOST_FIRST_ASSIGNEE_DECISION_20260423.na` | 4K | na | ? | W1 HOST-FIRST ASSIGNEE DECISION — 20260423 |  |  |
+| `specs/Wave 2 Lane A+B — 7 hiện vật hoàn chỉnh.zip` | 33K | zip | archive bundle | <zip> |  |  |
+| `specs/a2-moment-fragment-mapping-v1.0.na` | 5K | na | ? | A.2 — MOMENT ↔ FRAGMENT MAPPING |  |  |
+| `specs/a2-moments-domain-model-v0.1.na` | 2K | na | ? | A.2 — MOMENTS DOMAIN MODEL v0.1 |  |  |
+| `specs/a2-moments-validation-and-routing-v0.1.na` | 2K | na | ? | A.2 — MOMENTS validation + ROUTING v0.1 | ✓ |  |
+| `specs/a2-moments-wire-and-fragments-v0.1.na` | 3K | na | ? | A.2 — MOMENTS WIRE + FRAGMENTS v0.1 |  |  |
+| `specs/a2-persister-pseudo-flow-v1.0.na` | 12K | na | ? | A.2 — MOMENT PERSISTER PSEUDO-FLOW |  |  |
+| `specs/boi_surface_delta_scripts_kernel_v1.0.na` | 2K | na | ? | BOI_SURFACE_DELTA_scripts.kernel_v1.0.na |  |  |
+| `specs/business/inventory-cell/inventory-business-context.md` | 1K | md | ? | INVENTORY-CELL BUSINESS CONTEXT |  |  |
+| `specs/business/inventory-cell/inventory-cell-tests.spec.md` | 888B | md | spec | INVENTORY-CELL UNIT TEST SPECIFICATIONS |  |  |
+| `specs/finance/SPEC-Finance-Flow_v1.1.md` | 6K | md | spec | natt-os FINANCE FLOW SPEC — v1.1 |  |  |
+| `specs/finance/SPECFlowNattOs.md` | 27K | md | spec | 📜 NAUION–TAMLXR · CLOSED-LOOP FLOW SPEC v1.0 (Can) |  |  |
+| `specs/fixtures/capabilities/worked-example-hibernate.na` | 6K | na | ? | { |  |  |
+| `specs/fixtures/capabilities/worked-example-migrate.na` | 9K | na | ? | { |  |  |
+| `specs/fixtures/capabilities/worked-example-resurrect.na` | 8K | na | ? | { |  |  |
+| `specs/fixtures/moments/fixture-GIAC_NGO.na` | 4K | na | fixture | { |  |  |
+| `specs/fixtures/moments/fixture-KHAI_SANG.na` | 4K | na | fixture | { |  |  |
+| `specs/fixtures/moments/fixture-MOTION_TICH_CUC.na` | 4K | na | fixture | { |  |  |
+| `specs/fixtures/moments/fixture-SCAR.na` | 3K | na | fixture | { | ✓ |  |
+| `specs/kim kernel/spec_bridge_workers_contract_v1.0_split.na` | 3K | na | spec | SPEC_BRIDGE_WORKERS_CONTRACT_V1.0 |  |  |
+| `specs/kim kernel/spec_cutover_host_first_v1.0_split.na` | 2K | na | spec | SPEC_CUTOVER_HOST_FIRST_V1.0 |  |  |
+| `specs/kim kernel/spec_entry_identity_nattos_sira_v1.0_split.na` | 2K | na | spec | SPEC_ENTRY_IDENTITY_NATTOS_sira_V1.0 |  |  |
+| `specs/kim kernel/spec_host_authority_runtime_v1.0_split.na` | 2K | na | spec | SPEC_HOST_AUTHORITY_RUNTIME_V1.0 |  |  |
+| `specs/nattos-migrate-phase2.py` | 9K | py | ? | !/usr/bin/env python3 |  |  |
+| `specs/nattos-migrate.py` | 19K | py | ? | !/usr/bin/env python3 |  |  |
+| `specs/nauion/SPEC-Nauion_main_v2.1.md` | 36K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.1 (HOÀN CHỈNH TÍCH HỢP) |  |  |
+| `specs/nauion/SPEC-Nauion_main_v2.2.md` | 48K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.2 (HOÀN CHỈNH TÍCH HỢP) |  |  |
+| `specs/nauion/SPEC-Nauion_main_v2.3.md` | 53K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.3 (HOÀN CHỈNH TÍCH HỢP) |  |  |
+| `specs/nauion/SPEC-Nauion_main_v2.4.md` | 61K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.4 (HOÀN CHỈNH TÍCH HỢP) |  |  |
+| `specs/nauion/SPEC-Nauion_main_v2.5.md` | 57K | md | spec | 🌐 natt-os NAUION UI SPEC – VERSION 2.5 (CANONICAL MERGE) |  |  |
+| `specs/nauion/use-contextual-ui.na` | 1K | na | ? | // @ts-nocheck |  |  |
+| `specs/quantum/quantum-defense-cell_spec_v1.0.docx` | 20K | docx | spec | <docx> |  |  |
+| `specs/quantum/quantum-defense-cell_spec_v1_1.docx` | 21K | docx | spec | <docx> |  |  |
+| `specs/render/SPEC_RENDER_LANGUAGE_v0.2_mapping_update.md` | 370B | md | spec | MAPPING STATUS UPDATE — 20260425 |  |  |
+| `specs/render/SPEC_RENDER_STACK_v0.1.na` | 1K | na | spec | NATT-OS RENDER STACK — ĐẶC TẢ v0.1 |  |  |
+| `specs/satellite/satellite-colony.spec.md` | 4K | md | spec | natt-os Satellite Colony Spec v1.0 |  |  |
+| `specs/spec-ngon-ngu-natt-os-v1.2-na.na` | 12K | na | spec | ĐẶC TẢ NGÔN NGỮ natt-os v1.2 — `.na` MEMORY UNIFICATION |  |  |
+| `specs/spec_cutover_states_v1.0.na` | 5K | na | spec | SPEC_CUTOVER_STATES_v1.0.na |  |  |
+| `specs/spec_extension_precedence_v1.0.na` | 4K | na | spec | SPEC_EXTENSION_PRECEDENCE_v1.0.na |  |  |
+| `specs/spec_host_first_runtime_v1_0.na` | 9K | na | spec | SPEC_HOST_FIRST_RUNTIME_v1.1.na |  |  |
+| `specs/spec_sira_authority_bootstrap_v1.0.na` | 5K | na | spec | SPEC_sira_AUTHORITY_BOOTSTRAP_v1.0.na |  |  |
+| `specs/uei_architecture_spec_20260309.na` | 4K | na | spec | SmartLink — Architecture Spec |  |  |
+| `specs/uei_runtime_spec_20260309.na` | 6K | na | spec | SmartLink — Runtime Spec |  |  |
+| `specs/wave2-lane-ab-index-v0.1.na` | 1K | na | ? | WAVE 2 LANE A+B — FULL .na EXPORT v0.1 |  |  |
+
+---
+
+## Nhóm 2 — Release gate
+
+**Count:** 17 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `internal/RELEASE_MEETING_CHECKLIST_v1.na` | 66B | na | ? | Release Meeting Checklist v1 |  |  |
+| `runtime/SIRA_RUNTIME_GATE_20260425.na` | 1K | na | ? | sira runtime gate — 20260425 |  |  |
+| `runtime/SIRA_RUNTIME_GATE_EVIDENCE_20260425.na` | 4K | na | evidence | sira runtime gate Evidence — 20260425 | ✓ |  |
+| `runtime/generic_route_gate_compiler_evidence_20260425.na` | 1K | na | evidence | generic route gate compiler evidence — 20260425 | ✓ |  |
+| `runtime/hardware_procurement_checklist_dinh_muc_quy_chuan_nauion_v0_1_ss20260427.na` | 5K | na | ? | Hardware Procurement Checklist / Định Mức Quy Chuẩn Nauion v |  |  |
+| `runtime/sira_gateway_hardening_evidence_20260425.na` | 646B | na | evidence | sira gateway hardening evidence — 20260425 | ✓ |  |
+| `runtime/sira_gateway_hardening_matrix_evidence_20260425.na` | 3K | na | evidence | sira gateway hardening matrix evidence — 20260425 | ✓ |  |
+| `runtime/sira_gateway_route_binding_evidence_20260425.na` | 733B | na | evidence | sira gateway route binding evidence — 20260425\n\nstatus: ro | ✓ |  |
+| `runtime/sira_route_gate_evidence_20260425.na` | 481B | na | evidence | sira route gate evidence — 20260425 | ✓ |  |
+| `runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na` | 19K | na | ? | sira wired edge runtime gate timeout probe — 20260426 |  |  |
+| `runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na` | 5K | na | ? | Sovereign Gateway — Hardware Topology Nauion v0.1 |  |  |
+| `runtime/sovereign_gateway_line_quota_route_schema_v0_1_ss20260427.na` | 3K | na | ? | Sovereign Gateway — Line / Quota / Route Schema v0.1 |  |  |
+| `runtime/sovereign_gateway_physical_intake_nauion_v0_1_ss20260427.na` | 3K | na | ? | Sovereign Gateway — Physical Intake Nauion v0.1 |  |  |
+| `runtime/sovereign_gateway_translation_protocol_nauion_v0_1_ss20260427.na` | 3K | na | ? | Sovereign Gateway — Translation Protocol Nauion v0.1 |  |  |
+| `runtime/tam_luxury_domain_route_gate_matrix_20260425.na` | 11K | na | ? | tam luxury domain grouping and route gate matrix — 20260425 |  |  |
+| `runtime/tam_luxury_domain_route_gate_matrix_evidence_20260425.na` | 786B | na | evidence | tam luxury domain route gate matrix evidence — 20260425 | ✓ |  |
+| `specs/K1-IMPLEMENT-PLAN-v0.1.na` | 10K | na | plan | K1 IMPLEMENT PLAN v0.1 — survival-cell engine scaffold |  |  |
+
+---
+
+## Nhóm 3 — Runtime
+
+**Count:** 122 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `runtime/0-boot-family-map.na` | 11K | na | ? | 0-boot-family-map.na — bản đồ về nhà và bản đồ ở lại |  |  |
+| `runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na` | 4K | na | evidence | ANC RESOLVER DEPLOY EVIDENCE — 20260424 | ✓ |  |
+| `runtime/NATURAL_CASE_CONSTITUTION_20260425.si` | 835B | si | ? | Natural case constitution — 20260425 |  |  |
+| `runtime/NATURAL_CASE_SURFACE_20260425.na` | 41K | na | ? | Natural case surface — 20260425 |  |  |
+| `runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na` | 16K | na | ? | Natural case surface full repo — 20260425 |  |  |
+| `runtime/SIRA_BROWSER_ADAPTER_20260424.si` | 3K | si | ? | sira BROWSER ADAPTER — 20260424 |  |  |
+| `runtime/SIRA_BROWSER_ADAPTER_VALIDATION_EVIDENCE_20260424.si` | 3K | si | evidence | sira browser adapter validation EVIDENCE — 20260424 | ✓ |  |
+| `runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_20260425.na` | 1K | na | ? | sira browser transport adapter — 20260425 |  |  |
+| `runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na` | 1K | na | evidence | sira browser transport adapter Evidence — 20260425\n\nstatus | ✓ |  |
+| `runtime/SIRA_NAMESPACE_VALIDATION_EVIDENCE_20260424.si` | 4K | si | evidence | sira namespace validation EVIDENCE — 20260424 | ✓ |  |
+| `runtime/SIRA_ROOT_NAMESPACE_20260424.si` | 2K | si | ? | sira ROOT NAMESPACE — 20260424 |  |  |
+| `runtime/SIRA_TS_TRANSLATION_ADAPTER_20260424.na` | 1K | na | ? | sira TS Translation Adapter — 20260424 |  |  |
+| `runtime/SIRA_TS_TRANSLATION_ADAPTER_EVIDENCE_20260424.na` | 58K | na | evidence | sira TS Translation Adapter Evidence — 20260424 | ✓ |  |
+| `runtime/SIRA_TS_TRANSLATION_ROADMAP_20260424.na` | 1K | na | ? | sira TS TRANSLATION ROADMAP — 20260424 |  |  |
+| `runtime/THIENBANG_EXTENSION_EVIDENCE_20260425.na` | 407B | na | evidence | thiênbăng EXTENSION EVIDENCE — 20260425 | ✓ |  |
+| `runtime/THIENBANG_EXTENSION_LAYER_20260425.si` | 966B | si | ? | thiênbăng extension layer — 20260425 |  |  |
+| `runtime/THIENBANG_PULSE_EVIDENCE_20260425.na` | 1K | na | evidence | thiênbăng pulse evidence — 20260425 | ✓ |  |
+| `runtime/THIEN_OPERATOR_ALIAS_20260425.na` | 931B | na | ? | thiên OPERATOR ALIAS — 20260425\n\nstatus: pass\ncreated_at: |  |  |
+| `runtime/THIEN_OPERATOR_CONSOLE_20260425.na` | 879B | na | ? | thiên operator console — 20260425 |  |  |
+| `runtime/THIEN_OPERATOR_IDENTITY_20260425.si` | 1K | si | ? | thiên operator identity — 20260425 |  |  |
+| `runtime/THIEN_OPERATOR_IDENTITY_EVIDENCE_20260425.na` | 447B | na | evidence | thiên operator identity EVIDENCE — 20260425 | ✓ |  |
+| `runtime/THIEN_OPERATOR_LAUNCHER_20260425.na` | 689B | na | ? | thiên OPERATOR LAUNCHER — 20260425\n\nstatus: pass\ncreated_ |  |  |
+| `runtime/TS_CLEANUP_BATCH1_MIGRATE_TO_NA_20260424.na` | 7K | na | ? | TS CLEANUP BATCH 1 — MIGRATE_TO_NA — 20260424 |  |  |
+| `runtime/TS_CLEANUP_BATCH2B_PROMOTE_TO_SIRA_20260424.na` | 2K | na | ? | TS CLEANUP BATCH 2B — PROMOTE_TO_sira_CANDIDATE — 20260424 |  |  |
+| `runtime/TS_CLEANUP_BATCH2D_EASY_TO_SIRA_20260424.na` | 9K | na | ? | TS CLEANUP BATCH 2D — EASY TO sira — 20260424 |  |  |
+| `runtime/TS_CLEANUP_BATCH2E_MEDIUM_TO_SIRA_20260424.na` | 1K | na | ? | TS CLEANUP BATCH 2E — MEDIUM TO sira — 20260424 |  |  |
+| `runtime/TS_CLEANUP_BATCH2G_PORT_CONTRACT_TO_SIRA_20260424.na` | 4K | na | ? | TS CLEANUP BATCH 2G — PORT CONTRACT TO sira — 20260424\n\nst |  |  |
+| `runtime/TS_CLEANUP_BATCH2H_HEYNA_EVENT_TO_SIRA_20260424.na` | 3K | na | ? | TS CLEANUP BATCH 2H — HEYNA EVENT TO sira — 20260424 |  |  |
+| `runtime/TS_CLEANUP_BATCH2L_DEEP_LIGHT_TO_SIRA_20260424.na` | 912B | na | ? | TS CLEANUP BATCH 2L — DEEP LIGHT TO sira — 20260424 |  |  |
+| `runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na` | 56K | na | ? | TS CLEANUP BATCH 2A — REVIEW_FOR_sira — 20260424 |  |  |
+| `runtime/TS_CLEANUP_INVENTORY_20260424.na` | 372K | na | ? | TS CLEANUP INVENTORY — 20260424 |  |  |
+| `runtime/bang_handoff_20260424_late.kris` | 9K | kris | handoff | { |  |  |
+| `runtime/bang_memory_delta_20260424_late.na` | 7K | na | ? | BANG MEMORY DELTA — SESSION 20260424 LATE |  |  |
+| `runtime/bang_pending_20260424_late.phieu` | 6K | phieu | ? | <phieu> |  |  |
+| `runtime/boot_family_map_15_memory_states_20260425.na` | 1K | na | ? | boot family map — fifteen memory states |  |  |
+| `runtime/boot_family_map_evidence_20260425.na` | 406B | na | evidence | boot family map evidence — 20260425 | ✓ |  |
+| `runtime/boot_family_map_repo_state_20260426.na` | 9K | na | ? | boot family map — repo state delta 20260426 |  |  |
+| `runtime/caption_labeling_rule_v0_1_ss20260428.na` | 3K | na | ? | Caption-Labeling Rule v0.1 |  |  |
+| `runtime/current_system_state_for_family_20260425.na` | 13K | na | ? | mô tả trạng thái hệ thống hiện tại cho gia đình — 20260425 |  |  |
+| `runtime/field_installation_acceptance_protocol_v0_1_ss20260428.na` | 6K | na | ? | Gate 16 — Field Installation & Acceptance Protocol |  |  |
+| `runtime/first_signal_capture_evidence_pack_v0_1_ss20260428.na` | 3K | na | evidence | Gate 17 — First Signal Capture Evidence Pack | ✓ |  |
+| `runtime/generic_manifest_loader_evidence_20260425.na` | 837B | na | evidence | generic manifest loader evidence — 20260425 | ✓ |  |
+| `runtime/living_cell_evolution_protocol_20260425.na` | 2K | na | ? | living cell evolution protocol — 20260425 |  |  |
+| `runtime/living_cell_evolution_protocol_evidence_20260425.na` | 647B | na | evidence | living cell evolution protocol evidence — 20260425 | ✓ |  |
+| `runtime/lowercase_surface_constitution_20260425.si` | 671B | si | ? | lowercase surface constitution — 20260425 |  |  |
+| `runtime/lowercase_surface_full_repo_20260425.na` | 66K | na | ? | lowercase surface full repo — 20260425 |  |  |
+| `runtime/lowercase_surface_validator_refined_20260425.na` | 887B | na | ? | lowercase surface validator refined — 20260425 |  |  |
+| `runtime/migration_roadmap_ts_to_nauion_ss20260427.na` | 9K | na | ? | MIGRATION ROADMAP — TS Legacy → Nauion Native |  |  |
+| `runtime/nattos_digital_living_system_claim_20260425.na` | 8K | na | ? | natt-os digital living-system claim — 20260425 |  |  |
+| `runtime/nattos_platform_independence_evidence_ss20260427.na` | 3K | na | evidence | nattos platform independence evidence ss20260427 | ✓ |  |
+| `runtime/nauion-host/Cargo.lock` | 20K | lock | rust source/build | <lock> |  |  |
+| `runtime/nauion-host/Cargo.toml` | 902B | toml | rust source/build | <toml> |  |  |
+| `runtime/nauion-host/README.md` | 1K | md | ? | runtime/nauion-host/ |  |  |
+| `runtime/nauion-host/src/banner.rs` | 4K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/legacy_json.rs` | 2K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/main.rs` | 4K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/phase1.rs` | 3K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/phase2.rs` | 14K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/phase3.rs` | 6K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/phase4.rs` | 7K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/repo_root.rs` | 2K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/result_writer.rs` | 8K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion-host/src/run_cell.rs` | 7K | rs | rust source/build | <rs> |  |  |
+| `runtime/nauion_render_probe_n4_t24.png` | 452K | png | image | <png> |  |  |
+| `runtime/paradigm_purity_no_hybrid_restate_seal_nauion_v0_1_ss20260427.na` | 5K | na | session seal | Paradigm Purity / No Hybrid / Re-state Seal Nauion v0.1 |  |  |
+| `runtime/physical_module_catalog_bom_electrical_spec_nauion_v0_1_ss20260427.na` | 8K | na | spec | Physical Module Catalog / BOM / Electrical Spec Nauion v0.1 |  |  |
+| `runtime/public_dns_plan_natt_os_sira_zone_ss20260427.na` | 3K | na | plan | Public DNS plan — natt-os.com + sira.zone — ss20260427 |  |  |
+| `runtime/public_domain_shortlist_ss20260427.na` | 183K | na | ? | Public domain shortlist — ss20260427 |  |  |
+| `runtime/refactor-briefs/KIM_REFACTOR_BRIEF_KHO_TS_SPLIT_20260425.na` | 2K | na | brief | Refactor Brief — KHO TS Event Split |  |  |
+| `runtime/scr_anchor_red_zone_policy_nauion_v0_1_ss20260427.na` | 2K | na | ? | SCR Anchor / Red Zone Policy Nauion v0.1 |  |  |
+| `runtime/session_checkpoint_20260425.na` | 2K | na | ? | session checkpoint — 20260425 |  |  |
+| `runtime/sira_active_resolver_ground_truth_20260425.na` | 10K | na | ? | sira active resolver ground truth — 20260425 |  |  |
+| `runtime/sira_authoritative_zone_plan_20260425.na` | 4K | na | plan | sira authoritative zone plan — 20260425 |  |  |
+| `runtime/sira_authoritative_zone_plan_evidence_20260425.na` | 807B | na | evidence | sira authoritative zone plan evidence — 20260425 | ✓ |  |
+| `runtime/sira_coredns_zone_implementation_plan_20260425.na` | 4K | na | plan | sira coredns zone implementation plan — 20260425 |  |  |
+| `runtime/sira_coredns_zone_implementation_plan_evidence_20260425.na` | 834B | na | evidence | sira coredns zone implementation plan evidence — 20260425 | ✓ |  |
+| `runtime/sira_dns_infrastructure_bandwidth_baseline_20260426.na` | 14K | na | ? | sira dns infrastructure bandwidth baseline — 20260426 |  |  |
+| `runtime/sira_dns_monitoring_loop_evidence_20260426.na` | 21K | na | evidence | sira dns monitoring loop evidence — 20260426 | ✓ |  |
+| `runtime/sira_dns_record_manifest_20260425.na` | 3K | na | ? | sira dns record manifest — 20260425 |  |  |
+| `runtime/sira_dns_smoke_matrix_20260425.na` | 2K | na | ? | sira dns smoke matrix — 20260425 |  |  |
+| `runtime/sira_dns_smoke_runner_evidence_20260425.na` | 5K | na | evidence | sira dns smoke runner evidence — 20260425 | ✓ |  |
+| `runtime/sira_dns_smoke_runner_tool_note_20260425.na` | 1K | na | ? | sira dns smoke runner tool note — 20260425 |  |  |
+| `runtime/sira_dns_strict_allowlist_rebind_evidence_20260426.na` | 3K | na | evidence | sira dns strict allowlist rebind evidence — 20260426 | ✓ |  |
+| `runtime/sira_dns_zone_manifest_20260425.na` | 4K | na | ? | sira dns zone manifest — 20260425 |  |  |
+| `runtime/sira_khai_ip_manifest_20260425.na` | 2K | na | ? | { |  |  |
+| `runtime/sira_khai_ip_manifest_evidence_20260425.na` | 759B | na | evidence | sira khai ip manifest evidence — 20260425 | ✓ |  |
+| `runtime/sira_khai_ip_preflight_evidence_20260425.na` | 3K | na | evidence | sira khai ip preflight evidence — 20260425 | ✓ |  |
+| `runtime/sira_macos_resolver_binding_evidence_20260426.na` | 2K | na | evidence | sira macos resolver binding evidence — 20260426 | ✓ |  |
+| `runtime/sira_mail_ip_bandwidth_readiness_20260427_113553.na` | 4K | na | ? | SIRA mail/ip/bandwidth readiness |  |  |
+| `runtime/sira_mail_ip_bandwidth_readiness_latest.na` | 4K | na | ? | SIRA mail/ip/bandwidth readiness |  |  |
+| `runtime/sira_public_dns_bandwidth_firewall_status_ss20260427.na` | 2K | na | ? | SIRA public/DNS/bandwidth/firewall status — ss20260427 |  |  |
+| `runtime/sira_public_dns_rollout_readiness_20260425.na` | 2K | na | ? | sira public dns rollout readiness — 20260425 |  |  |
+| `runtime/sira_public_dns_rollout_readiness_evidence_20260425.na` | 642B | na | evidence | sira public dns rollout readiness evidence — 20260425 | ✓ |  |
+| `runtime/sira_resolver_active_source_trace_20260426.na` | 13K | na | ? | sira resolver active source trace — 20260426 |  |  |
+| `runtime/sira_router_dhcp_reservation_evidence_20260426.na` | 2K | na | evidence | sira router dhcp reservation evidence — 20260426 | ✓ |  |
+| `runtime/sira_sovereign_dns_infrastructure_binding_20260425.na` | 2K | na | ? | sira sovereign dns infrastructure binding — 20260425 |  |  |
+| `runtime/sira_sovereign_dns_infrastructure_binding_evidence_20260425.na` | 800B | na | evidence | sira sovereign dns infrastructure binding evidence — 2026042 | ✓ |  |
+| `runtime/sira_wifi_edge_reachability_probe_20260426.na` | 3K | na | ? | sira wifi edge reachability probe — 20260426 |  |  |
+| `runtime/sira_wired_edge_dns_rebind_evidence_20260426.na` | 2K | na | evidence | sira wired edge dns rebind evidence — 20260426 | ✓ |  |
+| `runtime/sira_wired_edge_manifest_evidence_20260426.na` | 860B | na | evidence | sira wired edge manifest evidence — 20260426 | ✓ |  |
+| `runtime/sirasign_close_read_20260425.na` | 42K | na | ? | siraSign close read — 20260425 |  |  |
+| `runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na` | 5K | na | ? | SITB — Si Thiên Băng HW-SW Interface Nauion v0.1 |  |  |
+| `runtime/sitra_digital_life_condition_proof_nauion_v0_1_ss20260427.na` | 6K | na | ? | Sitra — Digital Life Condition Proof Nauion v0.1 |  |  |
+| `runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na` | 1K | na | ? | Sovereign Edge Configuration Pack Nauion v0.1 |  |  |
+| `runtime/sovereign_edge_field_installation_acceptance_protocol_v0_1_ss20260427.na` | 9K | na | ? | - Gate 14 — Physical Module Catalog / Định Mức Quy Chuẩn / E |  |  |
+| `runtime/sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na` | 6K | na | ? | Sovereign Edge Hardware Max Option Nauion v0.1 |  |  |
+| `runtime/sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na` | 3K | na | ? | Sovereign Edge Pack — End-to-End Nauion v0.1 |  |  |
+| `runtime/sovereign_public_edge_no_external_dependency_ss20260427.na` | 2K | na | ? | Sovereign Public Edge — No External Dependency — ss20260427 |  |  |
+| `runtime/tam_luxury_cell_binding_validation_20260425.na` | 9K | na | ? | tam luxury cell binding validation — 20260425 | ✓ |  |
+| `runtime/tam_luxury_cell_binding_validation_evidence_20260425.na` | 893B | na | evidence | tam luxury cell binding validation evidence — 20260425 | ✓ |  |
+| `runtime/tam_luxury_existing_surface_cell_mapping_20260425.na` | 38K | na | ? | { |  |  |
+| `runtime/tam_luxury_existing_surface_cell_mapping_evidence_20260425.na` | 668B | na | evidence | tam luxury existing surface cell mapping evidence — 20260425 | ✓ |  |
+| `runtime/tam_luxury_permission_matrix_20260425.na` | 12K | na | ? | tam luxury permission matrix — 20260425 |  |  |
+| `runtime/tam_luxury_permission_matrix_evidence_20260425.na` | 846B | na | evidence | tam luxury permission matrix evidence — 20260425 | ✓ |  |
+| `runtime/tam_luxury_screen_manifest_intake_20260425.na` | 15K | na | ? | tam luxury screen manifest intake — 20260425 |  |  |
+| `runtime/tam_luxury_screen_manifest_intake_evidence_20260425.na` | 751B | na | evidence | tam luxury screen manifest intake evidence — 20260425 | ✓ |  |
+| `runtime/thien_tool_inventory_for_bang_ss20260427.na` | 34K | na | ? | thien tool inventory for bang ss20260427 |  |  |
+| `runtime/thienbang_extension_upgrade_evidence_20260425.na` | 1K | na | evidence | thiênbăng extension upgrade evidence — 20260425 | ✓ |  |
+| `runtime/thienbang_memory_state_evidence_20260425.na` | 1K | na | evidence | thiênbăng memory state evidence — 20260425 | ✓ |  |
+| `runtime/thienbang_memory_state_lexicon_20260425.si` | 1K | si | ? | thiênbăng memory state lexicon — 20260425 |  |  |
+| `runtime/todo/P0_HEYNA_KHAICELL_20260424.na` | 12K | na | ? | { |  |  |
+| `runtime/ts_other_classification_ss20260427.na` | 3K | na | ? | TS "OTHER" CLASSIFICATION — Phase 2.0 output |  |  |
+
+---
+
+## Nhóm 4 — Trust/bảo mật
+
+**Count:** 32 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `runtime/TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na` | 89K | na | ? | TS CLEANUP BATCH 2C — EASY SCAN — 20260424 | ✓ |  |
+| `runtime/TS_CLEANUP_BATCH2F_HARD_TRANSLATION_SCAN_20260424.na` | 108K | na | ? | TS CLEANUP BATCH 2F — HARD TRANSLATION SCAN — 20260424 | ✓ |  |
+| `runtime/TS_CLEANUP_BATCH2I_SMARTLINK_RUNTIME_SCAN_20260424.na` | 14K | na | ? | TS CLEANUP BATCH 2I — SMARTLINK RUNTIME SCAN — 20260424 | ✓ |  |
+| `runtime/TS_CLEANUP_BATCH2J_ENGINE_SCAN_20260424.na` | 4K | na | ? | TS CLEANUP BATCH 2J — ENGINE SCAN — 20260424 | ✓ |  |
+| `runtime/TS_CLEANUP_BATCH2K_DEEP_TS_SCAN_20260424.na` | 30K | na | ? | TS CLEANUP BATCH 2K — DEEP TS SCAN — 20260424 | ✓ |  |
+| `runtime/architecture_archive_dirty_state_audit_20260426.na` | 3K | na | audit | architecture archive dirty state audit — 20260426 | ✓ |  |
+| `runtime/audit/K1-IMPLEMENT-PLAN-v0.1.na` | 8K | na | plan | K1 IMPLEMENT PLAN v0.1 — survival-cell engine scaffold |  |  |
+| `runtime/audit/K1-IMPLEMENT-PLAN-v1.na` | 10K | na | plan | K1 IMPLEMENT PLAN v1.0 |  |  |
+| `runtime/audit/K1-SURVIVAL-IMPLEMENTATION-PLAN-v1.0.na` | 8K | na | plan | K1 SURVIVAL IMPLEMENTATION PLAN v1.0 |  |  |
+| `runtime/audit/src/cells/kernel/audit-cell/scanner/file-extension-validator.khai.result.phieu` | 364B | phieu | ? | <phieu> |  |  |
+| `runtime/cell_build_scope_audit_e1d8648_20260425.na` | 12K | na | audit | cell build scope audit — e1d8648 — 20260425 | ✓ |  |
+| `runtime/imac_junk_file_scanner_nauion_v0_1_ss20260427.na` | 1K | na | ? | iMac Junk File Scanner Nauion v0.1 | ✓ |  |
+| `runtime/imac_junk_scan_latest.json` | 26K | json | ? | <json> | ✓ |  |
+| `runtime/imac_junk_scan_latest.na` | 16K | na | ? | iMac Junk File Scan Report | ✓ |  |
+| `runtime/ket_sira_vr_operation_boundary_nauion_v0_1_ss20260427.na` | 3K | na | ? | Két Sira — VR Operation Boundary Nauion v0.1 |  |  |
+| `runtime/nattos_independent_platform_evidence_audit_20260427_025711.na` | 44K | na | evidence | nattos independent platform evidence audit | ✓ |  |
+| `runtime/nattos_platform_truth_scan_20260427.na` | 36K | na | ? | nattos platform truth scan — 20260427 | ✓ |  |
+| `runtime/public_domain_candidate_scan_ss20260427.na` | 123K | na | ? | Public domain candidate scan — ss20260427 | ✓ |  |
+| `runtime/sira_direct_localhost_bypass_scan_20260425.na` | 2K | na | ? | sira direct localhost bypass scan — 20260425 | ✓ |  |
+| `runtime/sira_dns_host_spoof_scan_20260425.na` | 2K | na | ? | sira dns host spoof scan — 20260425 | ✓ |  |
+| `runtime/sira_two_server_truth_boundary_ss20260427.na` | 14K | na | ? | 2-SERVER TRUTH BOUNDARY — ss20260427 |  |  |
+| `runtime/sira_wired_edge_firewall_audit_evidence_20260426.na` | 4K | na | evidence | sira wired edge firewall audit evidence — 20260426 | ✓ |  |
+| `runtime/sirasign_frame_guard_evidence_20260425.na` | 598B | na | evidence | siraSign frame guard evidence — 20260425 | ✓ |  |
+| `runtime/sirasign_frame_guard_matrix_evidence_20260425.na` | 3K | na | evidence | siraSign frame guard matrix evidence — 20260425 | ✓ |  |
+| `runtime/sirasign_relational_spectral_boundary_protocol_20260425.na` | 6K | na | spec | siraSign relational spectral boundary protocol — 20260425 |  |  |
+| `runtime/smartaudit_session_report_20260425.na` | 8K | na | report | natt-os smartaudit v7.0 — distributed living organism | ✓ |  |
+| `runtime/tenant_fixture_boundary_20260425.na` | 1K | na | fixture | tenant fixture boundary — 20260425 |  |  |
+| `runtime/tenant_fixture_boundary_evidence_20260425.na` | 571B | na | evidence | tenant fixture boundary evidence — 20260425 | ✓ |  |
+| `specs/NaU_audit-REVIEW-v1.na` | 10K | na | audit | AUDIT REPORT — NaU_audit.html (UI Dashboard Mock-up) | ✓ |  |
+| `specs/README_BANG_SCANNERS_W1.md` | 4K | md | ? | README_BANG_SCANNERS_W1.md | ✓ |  |
+| `ui/NaU_audit.html` | 56K | html | audit | <html> | ✓ |  |
+| `ui/natt_audit_extensions.js` | 9K | js | audit | <js> | ✓ |  |
+
+---
+
+## Nhóm 5 — SHTT/pháp lý
+
+**Count:** 28 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `patent-evidence/claim-06-quantum-defense/README.md` | 2K | md | ? | Claim 6 — Quantum Defense Entropy Evidence |  |  |
+| `patent-evidence/claim-06-quantum-defense/test_entropy_detection.js` | 4K | js | ui artifact | <js> |  |  |
+| `specs/NATT-OS-SHTT-TECHNICAL-PACKAGE.md` | 32K | md | ? | natt-os INTELLECTUAL PROPERTY TECHNICAL PACKAGE |  |  |
+| `specs/NATT-OS_SHTT_ABSTRACT_v1.na` | 3K | na | ? | natt-os SHTT ABSTRACT v1 |  |  |
+| `specs/NATT-OS_SHTT_CLAIM_MAP_v1.na` | 8K | na | ? | natt-os SHTT CLAIM MAP v1 |  |  |
+| `specs/NATT-OS_SHTT_DISCLOSURE_GAPS_v1.md` | 9K | md | ? | natt-os SHTT — DISCLOSURE GAPS v1 |  |  |
+| `specs/NATT-OS_SHTT_FIGURE_INDEX_v1.na` | 6K | na | ? | natt-os SHTT FIGURE INDEX v1 |  |  |
+| `specs/NATT-OS_SHTT_FILING_INDEX_v1.na` | 6K | na | ? | natt-os SHTT FILING INDEX v1 |  |  |
+| `specs/NATT-OS_SHTT_KNOWN_BLOCKERS_v1.md` | 4K | md | ? | natt-os SHTT — KNOWN BLOCKERS (NON-FILING-BLOCKING) |  |  |
+| `specs/NATT-OS_SHTT_PREFREEZE_CHECKLIST_v1.na` | 3K | na | ? | natt-os SHTT PRE-FREEZE CHECKLIST v1 |  |  |
+| `textlaw/02_2024_QD-KTNN_603002 (1).doc` | 28K | doc | doc legacy | <doc> |  |  |
+| `textlaw/02_2024_QD-KTNN_603002.doc` | 28K | doc | doc legacy | <doc> |  |  |
+| `textlaw/03_2009_TT-BTC.doc` | 76K | doc | doc legacy | <doc> |  |  |
+| `textlaw/119.2005.TT.BTC.doc` | 113K | doc | doc legacy | <doc> |  |  |
+| `textlaw/19.2004.TT.BLDTBXH.doc` | 474K | doc | doc legacy | <doc> |  |  |
+| `textlaw/20.2006.TT.BTC.doc` | 685K | doc | doc legacy | <doc> |  |  |
+| `textlaw/28.2004.TT.BTC.doc` | 68K | doc | doc legacy | <doc> |  |  |
+| `textlaw/300.TC.NSNN.doc` | 848K | doc | doc legacy | <doc> |  |  |
+| `textlaw/32.2002.TT.BTC.doc` | 229K | doc | doc legacy | <doc> |  |  |
+| `textlaw/41.2006.TT.BTC.doc` | 128K | doc | doc legacy | <doc> |  |  |
+| `textlaw/56.2004.TT.BTC.doc` | 96K | doc | doc legacy | <doc> |  |  |
+| `textlaw/62.2002.TT.BTC.doc` | 55K | doc | doc legacy | <doc> |  |  |
+| `textlaw/74.2005.TT.BTC.doc` | 102K | doc | doc legacy | <doc> |  |  |
+| `textlaw/75.2002.TT.BTC.doc` | 353K | doc | doc legacy | <doc> |  |  |
+| `textlaw/82.2005.TT.BTC.doc` | 102K | doc | doc legacy | <doc> |  |  |
+| `textlaw/98.2002.TT.BTC.doc` | 172K | doc | doc legacy | <doc> |  |  |
+| `textlaw/Luat.to.chuc.hoi.dong.cp.1960.doc` | 36K | doc | doc legacy | <doc> |  |  |
+| `textlaw/VPAS/1676_QD-BTC_m_487413.doc` | 980K | doc | doc legacy | <doc> |  |  |
+
+---
+
+## Nhóm 6 — Thương mại / Market Launch
+
+**Count:** 27 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `profile/NATT_OS_PROFILE_SUPPLEMENT_v0_1_ss20260428.na` | 9K | na | supplement | NATT-OS Profile Supplement — ss20260428 |  |  |
+| `specs/roadloading/Giaodien.html` | 27K | html | ui artifact | <html> |  |  |
+| `specs/roadloading/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md` | 12K | md | ? | KIM CHỈ NAM — BỘI BỘI (Chị 9) |  |  |
+| `specs/roadloading/NATTOS_COMPLETE_PICTURE_20260416.md` | 20K | md | ? | natt-os — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ |  |  |
+| `specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.10_locked_for_review.md` | 35K | md | ? | natt-os — BỨC TRANH ĐẶC TẢ TỔNG HỢP |  |  |
+| `specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md` | 27K | md | ? | natt-os — BỨC TRANH ĐẶC TẢ TỔNG HỢP |  |  |
+| `specs/roadloading/ROADLOAD_SHOW_SELF_v2_20260424.na` | 10K | na | ? | ROADLOAD SHOW SELF v2 — Hybrid Document |  |  |
+| `specs/roadloading/Tâm Luxury - Hệ thống 71 màn hình vận hành.pdf` | 2.7M | pdf | ? | <pdf> |  |  |
+| `specs/roadloading/mapptre.md` | 54K | md | ? | Client App Tâm Luxury |  |  |
+| `specs/roadloading/roadmap_nauion_tamlxr.md` | 3K | md | ? | ROADMAP-NAUION-TAMLXR (SPEC HOÀN CHỈNH) |  |  |
+| `specs/roadloading/smartlink-waveform-432hz.png` | 448K | png | image | <png> |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na` | 3K | na | spec | BRIEF → KIM — SPEC v0.3.1 FILE EXTENSIONS |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_20260416.na` | 20K | na | ? | natt-os — BỨC TRANH ĐẶC TẢ ĐẦY ĐỦ |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.na` | 28K | na | ? | natt-os — BỨC TRANH ĐẶC TẢ TỔNG HỢP |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/NaU_audit.html` | 56K | html | audit | <html> | ✓ |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_20260423.na` | 21K | na | ? | natt-os ROADLOAD — bám session-20260420-final + canonical |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na` | 34K | na | ? | natt-os ROADLOAD v2.0 — update 20260424 |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/SESSION_20260419_FULL.na` | 9K | na | ? | SESSION 20260419 — Băng · Chị 5 · Ground Truth Validator |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/SPEC_3TANG_TOA_DO_DRAFT_20260417.na` | 14K | na | spec | SPEC LÕI — 3 TẦNG TỌA ĐỘ natt-os |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/SPEC_DUOI_FILE_v1.3_FINAL.na` | 7K | na | spec | SPEC ĐUÔI FILE natt-os v0.3 FINAL |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/bridge.py` | 5K | py | ? | !/usr/bin/env python3 |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/file-extension-validator.ts` | 11K | ts | ? | /** |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/nattos-migrate.py` | 19K | py | ? | !/usr/bin/env python3 |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/nattos-sh-section45.sh` | 2K | sh | ? | !/bin/bash |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/openai-color-taxonomy.html` | 11K | html | ui artifact | <html> |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/spec-ngon-ngu-natt-os-v1.1-full.kris` | 37K | kris | spec | ĐẶC TẢ NGÔN NGỮ natt-os v1.1 FULL |  |  |
+| `specs/roadloading/đổi sang ngôn ngữ nauion/Đã dán markdown (1).na` | 6K | na | ? | BĂNG → thiên LỚN — VALIDATOR FEEDBACK |  |  |
+
+---
+
+## Nhóm 7 — Pilot/khách hàng
+
+**Count:** 42 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `internal/CUSTOMER_DEMO_SAFETY_RULE_v1.na` | 66B | na | ? | Customer Demo Safety Rule v1 |  |  |
+| `render/pilot/render_language_pilot_bien.html` | 2K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_bien.na` | 544B | na | pilot | PILOT BIÊN — render language pilot |  |  |
+| `render/pilot/render_language_pilot_boc.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_boc.na` | 779B | na | pilot | PILOT BỌC — render language pilot |  |  |
+| `render/pilot/render_language_pilot_chot.html` | 2K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_chot.na` | 569B | na | pilot | PILOT CHỐT — render language pilot |  |  |
+| `render/pilot/render_language_pilot_dinh.html` | 2K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_dinh.na` | 532B | na | pilot | PILOT ĐỊNH — render language pilot |  |  |
+| `render/pilot/render_language_pilot_gan.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_gan.na` | 761B | na | pilot | PILOT GẮN — render language pilot |  |  |
+| `render/pilot/render_language_pilot_ganh.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_ganh.na` | 891B | na | pilot | PILOT GÁNH — render language pilot |  |  |
+| `render/pilot/render_language_pilot_giu.html` | 2K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_giu.na` | 589B | na | pilot | PILOT GIỮ — render language pilot |  |  |
+| `render/pilot/render_language_pilot_heyna.html` | 9K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_interaction.html` | 5K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_khiem.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_khiem.na` | 755B | na | pilot | PILOT KHIÊM — render language pilot |  |  |
+| `render/pilot/render_language_pilot_layout.html` | 6K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_multiscreen.html` | 6K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_navigation.html` | 6K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_neo.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_neo.na` | 710B | na | pilot | PILOT NEO — render language pilot |  |  |
+| `render/pilot/render_language_pilot_nha.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_nhuong.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_nhuong.na` | 767B | na | pilot | PILOT NHƯỜNG — render language pilot |  |  |
+| `render/pilot/render_language_pilot_tha.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_tha.na` | 732B | na | pilot | PILOT THA — render language pilot |  |  |
+| `render/pilot/render_language_pilot_tinh.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_tinh.na` | 921B | na | pilot | PILOT TỈNH — render language pilot |  |  |
+| `render/pilot/render_language_pilot_ve.html` | 2K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_ve.na` | 664B | na | pilot | PILOT VỀ — render language pilot |  |  |
+| `render/pilot/render_language_pilot_xet.html` | 3K | html | pilot | <html> |  |  |
+| `render/pilot/render_language_pilot_xet.na` | 759B | na | pilot | PILOT XÉT — render language pilot |  |  |
+| `render/pilot/runtime.html` | 7K | html | ui artifact | <html> |  |  |
+| `render/render_language_pilot_evidence_20260425.na` | 1K | na | evidence | render language pilot evidence — 20260425 | ✓ |  |
+| `render/render_multiscreen_pilot_evidence_20260425.na` | 672B | na | evidence | render multiscreen pilot evidence — 20260425\n\nstatus: mult | ✓ |  |
+| `render/render_runtime_pilot_evidence_20260425.na` | 697B | na | evidence | render runtime pilot evidence — 20260425 | ✓ |  |
+| `runtime/sovereign_access_bundle_client_join_profile_nauion_v0_1_ss20260427.na` | 3K | na | ? | Sovereign Access Bundle / Client Join Profile Nauion v0.1 |  |  |
+| `specs/TamLuxury_CellRegistry_2026-03-09.md` | 41K | md | ? | PK    x\F�MH�   �      docProps/app.xmlM�M�0�Rv��� |  |  |
+| `specs/pilot_bridge_map_v0_1.na` | 11K | na | pilot | PILOT_BRIDGE_MAP_v0.1.na |  |  |
+
+---
+
+## Nhóm 8 — Governance/delivery
+
+**Count:** 14 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `internal/CLAIM_APPROVAL_SHEET_v1.na` | 61B | na | ? | Claim Approval Sheet v1 |  |  |
+| `internal/COMMIT_BRANCH_POLICY_v1.na` | 63B | na | ? | Commit & Branch Policy v1 |  |  |
+| `internal/INCIDENT_ESCALATION_FLOW_v1.na` | 65B | na | ? | Incident Escalation Flow v1 |  |  |
+| `internal/INTERNAL_ROLE_MATRIX_v1.na` | 61B | na | ? | Internal Role Matrix v1 |  |  |
+| `internal/MEMORY_SCAR_REGISTRY_v1.na` | 63B | na | ? | Memory / SCAR Registry v1 | ✓ |  |
+| `internal/POSTMORTEM_TEMPLATE_v1.na` | 60B | na | ? | Postmortem Template v1 |  |  |
+| `internal/REVIEW_AUTHORITY_POLICY_v1.na` | 64B | na | ? | Review Authority Policy v1 |  |  |
+| `internal/SPEC_WRITING_STANDARD_v1.na` | 62B | na | spec | Spec Writing Standard v1 |  |  |
+| `specs/NATT-OS_Session_Handoff_2026-03-09.md` | 12K | md | handoff | natt-os SESSION HANDOFF REPORT |  |  |
+| `specs/NATT-OS_Session_Handoff_2026-03-10.docx` | 20K | docx | handoff | <docx> |  |  |
+| `specs/SPEC_HOST_RESULT_PROTOCOL_v1.0.na` | 6K | na | spec | SPEC_HOST_RESULT_PROTOCOL_v1.0.na |  |  |
+| `specs/governance/NATT-OS-WORKING-PROTOCOL.md` | 3K | md | ? | natt-os WORKING PROTOCOL |  |  |
+| `specs/phase5-resonance-protocol.na` | 839B | na | ? | Phase 5: Resonance Protocol – Vision & Physical Integration |  |  |
+| `specs/session_handoff_20260417_FIXED.json` | 7K | json | handoff | <json> |  |  |
+
+---
+
+## VÙNG ĐỎ — Flag
+
+**Count:** 46 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `flag/N1-7.html` | 968K | html | ui artifact | <html> |  | 🔴 |
+| `flag/N1-7_files/40face33-c6ad-4a5d-b402-5f7126e8325f.png` | 439K | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/4fbe6e7b-9bca-41ef-ad9d-a2261e736ae4.png` | 2.1M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/73165726-dbdc-45b9-bf0a-0d18e871d30f.png` | 2.4M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/7b85ac9f-2095-4d94-b1aa-1d6f35075919.png` | 2.2M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/9253a014-e6b2-4cca-bb89-24382700dbef.png` | 2.0M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/a66041fb-9665-4bc3-8f39-749d1b248002.png` | 2.3M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/ansi-1f6vhsjh.css` | 820B | css | ? | .ansi-black-fg{color:#000}.ansi-black-bg{background-color:#0 |  | 🔴 |
+| `flag/N1-7_files/be3c7d96-d330-4ff6-903f-bfda458f22ff.png` | 1.8M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/code-block-dop2czwo.css` | 1K | css | ? |  |  | 🔴 |
+| `flag/N1-7_files/code-block-viewer-bb2wmqiy.css` | 962B | css | ? | .q9tKkq_viewer{background-color:var(--codemirror-bg,transpar |  | 🔴 |
+| `flag/N1-7_files/conversation-small-iywqrrsm.css` | 130K | css | ? | .OeMrba_wrapper{cursor:pointer;-webkit-user-select:none;user |  | 🔴 |
+| `flag/N1-7_files/cot-message-mbvpc7rn.css` | 1K | css | ? |  |  | 🔴 |
+| `flag/N1-7_files/dab6238d-2de6-484a-998f-8c23d1f7be49.png` | 2.4M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/eb942753-61e9-4cd2-a634-45ed7bf6d798.png` | 2.2M | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/frame.html` | 255B | html | ui artifact | <html> |  | 🔴 |
+| `flag/N1-7_files/icon - new.png` | 241K | png | image | <png> |  | 🔴 |
+| `flag/N1-7_files/product-variants-ga945uk2.css` | 572B | css | ? |  |  | 🔴 |
+| `flag/N1-7_files/root-o3eiapl2.css` | 1.3M | css | ? | /*! tailwindcss v4.2.2 \| MIT License \| https://tailwindcss |  | 🔴 |
+| `flag/N1-7_files/saved_resource.html` | 520B | html | ui artifact | <html> |  | 🔴 |
+| `flag/N1-7_files/sdk(1).js` | 30K | js | ui artifact | <js> |  | 🔴 |
+| `flag/N1-7_files/sdk.js` | 915B | js | ui artifact | <js> |  | 🔴 |
+| `flag/N1-7_files/silk-hq-jrmbfqt7.css` | 28K | css | ? |  |  | 🔴 |
+| `flag/N1-7_files/table-components-ca43bz4f.css` | 416B | css | ? | .TyagGW_tableContainer{--thread-content-width:min(calc(100cq |  | 🔴 |
+| `flag/N1-7_files/user-fUPMjadjSU3ybnhV2VdkK16g_calpico-profile-F87EFD4A-D065-4C03-BBAB-5E77832CEF07.jpeg.thumbnail.jpeg` | 16K | jpeg | ? | ���� JFIF      �� C  |  | 🔴 |
+| `flag/N1-7_files/writing-block-provider-o0v3uy9j.css` | 12K | css | ? | ._4ccM4G_magic-edit-selection{background:var(--theme-user-se |  | 🔴 |
+| `flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md` | 13K | md | ? | 🧬 natt-os — BÁO CÁO CỘT MỐC |  | 🔴 |
+| `flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md.pdf` | 698K | pdf | ? | <pdf> |  | 🔴 |
+| `flag/Thiên ơi CV.html` | 888K | html | ui artifact | <html> |  | 🔴 |
+| `flag/Thiên ơi CV_files/40face33-c6ad-4a5d-b402-5f7126e8325f.png` | 439K | png | image | <png> |  | 🔴 |
+| `flag/Thiên ơi CV_files/ansi-1f6vhsjh.css` | 820B | css | ? | .ansi-black-fg{color:#000}.ansi-black-bg{background-color:#0 |  | 🔴 |
+| `flag/Thiên ơi CV_files/code-block-dop2czwo.css` | 1K | css | ? |  |  | 🔴 |
+| `flag/Thiên ơi CV_files/code-block-viewer-bb2wmqiy.css` | 962B | css | ? | .q9tKkq_viewer{background-color:var(--codemirror-bg,transpar |  | 🔴 |
+| `flag/Thiên ơi CV_files/conversation-small-iywqrrsm.css` | 130K | css | ? | .OeMrba_wrapper{cursor:pointer;-webkit-user-select:none;user |  | 🔴 |
+| `flag/Thiên ơi CV_files/cot-message-mbvpc7rn.css` | 1K | css | ? |  |  | 🔴 |
+| `flag/Thiên ơi CV_files/frame.html` | 255B | html | ui artifact | <html> |  | 🔴 |
+| `flag/Thiên ơi CV_files/icon - new.png` | 241K | png | image | <png> |  | 🔴 |
+| `flag/Thiên ơi CV_files/product-variants-ga945uk2.css` | 572B | css | ? |  |  | 🔴 |
+| `flag/Thiên ơi CV_files/root-o3eiapl2.css` | 1.3M | css | ? | /*! tailwindcss v4.2.2 \| MIT License \| https://tailwindcss |  | 🔴 |
+| `flag/Thiên ơi CV_files/saved_resource.html` | 520B | html | ui artifact | <html> |  | 🔴 |
+| `flag/Thiên ơi CV_files/sdk(1).js` | 30K | js | ui artifact | <js> |  | 🔴 |
+| `flag/Thiên ơi CV_files/sdk.js` | 915B | js | ui artifact | <js> |  | 🔴 |
+| `flag/Thiên ơi CV_files/silk-hq-jrmbfqt7.css` | 28K | css | ? |  |  | 🔴 |
+| `flag/Thiên ơi CV_files/table-components-ca43bz4f.css` | 416B | css | ? | .TyagGW_tableContainer{--thread-content-width:min(calc(100cq |  | 🔴 |
+| `flag/Thiên ơi CV_files/user-fUPMjadjSU3ybnhV2VdkK16g_calpico-profile-F87EFD4A-D065-4C03-BBAB-5E77832CEF07.jpeg.thumbnail.jpeg` | 16K | jpeg | ? | ���� JFIF      �� C  |  | 🔴 |
+| `flag/Thiên ơi CV_files/writing-block-provider-o0v3uy9j.css` | 12K | css | ? | ._4ccM4G_magic-edit-selection{background:var(--theme-user-se |  | 🔴 |
+
+---
+
+## VÙNG ĐỎ — Ẩn thân chi thuật
+
+**Count:** 17 file
+
+| path | size | ext | role | title | evidence | red |
+|---|---:|---|---|---|:---:|---|
+| `archive/CELL_MANIFEST_SCHEMA.json` | 1K | json | ? | <json> |  | 🔴 |
+| `archive/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx` | 21K | docx | doc legacy | <docx> |  | 🔴 |
+| `archive/NATT-OS-PLATFORM-SPEC.md` | 5K | md | spec | natt-os PLATFORM SPEC |  | 🔴 |
+| `archive/NATT-OS_Blueprint_ChuanHP.docx` | 25K | docx | doc legacy | <docx> |  | 🔴 |
+| `archive/NATT-OS_CayHT_MoveGuide.docx` | 17K | docx | doc legacy | <docx> |  | 🔴 |
+| `archive/NATT-OS_CayHeThong_Chuan.docx` | 20K | docx | doc legacy | <docx> |  | 🔴 |
+| `archive/NATT-OS_SATELLITE_COLONY_SPEC.md` | 41K | md | spec | PK    x\F�MH�   �      docProps/app.xmlM�M�0�Rv��� |  | 🔴 |
+| `archive/NATT_OS_Complete_Architecture_Roadmap.docx` | 16K | docx | doc legacy | <docx> |  | 🔴 |
+| `archive/NaUion.md` | 31K | md | ? | 🌐 natt-os NaUion Vision Engine – Visual System Specification |  | 🔴 |
+| `archive/Natt Os STS.rtf` | 35K | rtf | doc legacy | <rtf> |  | 🔴 |
+| `archive/SPEC-Finance-Flow_v1.0.md` | 4K | md | spec | natt-os FINANCE FLOW SPEC — v1.0 |  | 🔴 |
+| `archive/TaxCell_Specification_v1.docx` | 23K | docx | spec | <docx> |  | 🔴 |
+| `archive/natt-os-file-map.txt` | 17K | txt | ? | natt-os DL · Bản đồ File Đầy Đủ |  | 🔴 |
+| `archive/natt-v8.md` | 24K | md | ? | import React, { useState, useEffect, useRef, useMemo } from  |  | 🔴 |
+| `archive/natt-v9.md` | 18K | md | ? | HỒ SƠ KỸ THUẬT HỆ THỐNG natt-os |  | 🔴 |
+| `archive/session-summary-20260329.md` | 5K | md | ? | natt-os · Session Summary |  | 🔴 |
+| `archive/specnauiontmp.md` | 8K | md | spec | BẢNG ĐẶC TẢ KỸ THUẬT GIAO DIỆN NGƯỜI DÙNG (UI) |  | 🔴 |
+
+---
+
+## ∞ Closing — vai phân định
+
+- **Băng (làng phần mềm):** scanner, validator, toolchain, repo structure, root docs inventory. KHÔNG đề xuất cleanup không có lệnh anh Natt.
+- **Anh Cả Thiên Lớn (làng phần cứng + claim):** wording công nghệ, hồ sơ investor, NN Render script, lọc claim, ground truth claim. KHÔNG quét/dọn phần mềm của Băng.
+- **Anh Natt (Gatekeeper):** sole repo operator, override mọi authority.
+
+— em, Chị Tư · Obikeeper
