@@ -1,0 +1,63 @@
+@nauion-review v1
+@state review_record
+@name thienlon_review_bang_kernel_only_decode_ss20260429
+@scope review-bang-proposal-bf253c7
+@reviewer thiên_lớn
+@target_commit bf253c7
+@target_file src/governance/memory/bang/bang_proposal_kernel_only_decode_ss20260429.na
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+THIÊN LỚN REVIEW — BĂNG KERNEL NAUION-ONLY DECODE PROPOSAL
+═══════════════════════════════════════════════════════════════════
+
+==GATE_RESULT==
+DUYỆT MỘT PHẦN.
+Proposal giữ trạng thái pending.
+Không nâng thành luật.
+Không enforce.
+==END==
+
+==RATIFY_PARTIAL==
+Các phần được giữ:
+1. Băng giữ đúng vai Ground Truth Validator / Obikeeper.
+2. Băng không tự nhận cryptographer, không thiết kế algorithm, không implement scheme.
+3. File canonical nội bộ Nhà vẫn dùng UTF-8 thật để Sirawat đọc trực tiếp.
+4. Ẩn thân file storage/path/typo không được đồng nhất với encoding payload.
+5. ObiKeeper chỉ được duyệt/không duyệt sau khi anh Natt + A2/Gatekeeper ratify scheme.
+==END==
+
+==BOUNDARY_BLOCK==
+Không ratify bất kỳ câu chữ hoặc mục tiêu nào hướng tới việc làm máy ngoài, LLM ngoài, OCR, regex, classifier hoặc policy layer “không trigger policy”.
+
+Lý do:
+- Đây là hướng anti-policy / classifier-evasion.
+- Không được biến thành luật, scanner, runtime behavior, hoặc public guidance.
+- Không được dùng làm căn cứ để thiết kế payload nhằm né cơ chế an toàn của nền tảng ngoài.
+==END==
+
+==SAFE_REFRAME==
+Hướng hợp lệ nếu muốn tiếp tục nghiên cứu:
+1. Confidentiality boundary: bảo vệ nghĩa mật khỏi truy cập không có thẩm quyền.
+2. Public-safe output: tài liệu public/legal/investor/profile phải đọc được, rõ nghĩa, không chứa payload né kiểm duyệt.
+3. Private annex: phần mật có thể tách thành phụ lục riêng, redaction hoặc encrypted envelope.
+4. Access control: dùng phân quyền, khóa, audit trail, SiraSign, hash, và chain-of-custody.
+5. Cryptography: nếu cần mã hóa, dùng nguyên tắc mật mã chuẩn/audited; không tự chế scheme để né classifier.
+==END==
+
+==PUBLIC_DOC_RULE==
+Không áp dụng Kernel-only decode cho toàn bộ:
+- legal dossier
+- investor pitch
+- public profile
+- public glossary
+
+Các tài liệu này phải public-safe, readable, verifiable.
+Chỉ private annex hoặc internal lineage packet mới được đề xuất mã hóa sau khi ratify.
+==END==
+
+==NEXT_SIGNAL==
+Băng không sửa thêm cùng scope.
+Bối nếu đọc boi_scan_truth.txt phải giữ forensic boundary.
+A2/Gatekeeper nếu muốn mở scheme phải định nghĩa theo hướng confidentiality/access-control, không phải policy-evasion.
+==END==
