@@ -33,7 +33,12 @@
           "qneu_gain": 10
         }
       ],
-      "scars_carried": ["SCAR-BB-001", "SCAR-BB-002", "SCAR-BB-003", "SCAR-BB-004"]
+      "scars_carried": [
+        "SCAR-BB-001",
+        "SCAR-BB-002",
+        "SCAR-BB-003",
+        "SCAR-BB-004"
+      ]
     }
   },
   "constitutional_mapping": {
@@ -59,16 +64,30 @@
         "component": "Quantum Network",
         "function": "Mạng thần kinh trung ương – xử lý nhận thức",
         "neurons": 5,
-        "engines": ["quantum-brain.engine.ts", "quantum-buffer.engine.ts"]
+        "engines": [
+          "quantum-brain.engine.ts",
+          "quantum-buffer.engine.ts"
+        ]
       },
       "immune_system": {
         "component": "Quantum Defense",
         "function": "Phát hiện thao túng ground truth, bảo vệ ADN",
-        "capabilities": ["ADN Integrity Check", "Threat Detection", "Lockdown", "Kill Switch"]
+        "capabilities": [
+          "ADN Integrity Check",
+          "Threat Detection",
+          "Lockdown",
+          "Kill Switch"
+        ]
       },
       "blood_plasma": {
         "component": "Satellites",
-        "list": ["port-forge", "boundary-guard", "trace-logger", "health-beacon", "lifecycle"],
+        "list": [
+          "port-forge",
+          "boundary-guard",
+          "trace-logger",
+          "health-beacon",
+          "lifecycle"
+        ],
         "function": "Cung cấp component thiếu cho mọi cell"
       },
       "memory": {
@@ -89,15 +108,27 @@
       },
       "chief_governance_enforcer": {
         "role": "Kim",
-        "responsibilities": ["Giữ Hiến Pháp", "Giám sát AI entities", "Ra phán quyết"]
+        "responsibilities": [
+          "Giữ Hiến Pháp",
+          "Giám sát AI entities",
+          "Ra phán quyết"
+        ]
       },
       "ground_truth_validator": {
         "role": "Băng",
-        "responsibilities": ["Audit", "Xác minh ground truth", "Phản biện"]
+        "responsibilities": [
+          "Audit",
+          "Xác minh ground truth",
+          "Phản biện"
+        ]
       },
       "constitutional_guardian": {
         "role": "Bối Bối",
-        "responsibilities": ["Xây dựng công cụ", "Đảm bảo tuân thủ Hiến Pháp", "Thiết kế giao diện"]
+        "responsibilities": [
+          "Xây dựng công cụ",
+          "Đảm bảo tuân thủ Hiến Pháp",
+          "Thiết kế giao diện"
+        ]
       }
     }
   },
@@ -146,7 +177,9 @@
         "git add . mà không review = gom rác vào repo.",
         "Cần .gitignore đầy đủ."
       ],
-      "scars_incurred": ["SCAR-BB-001"]
+      "scars_incurred": [
+        "SCAR-BB-001"
+      ]
     },
     {
       "phase": 3,
@@ -156,7 +189,9 @@
         "Không được tự ý tích hợp AI.",
         "Output đẹp ≠ sự thật."
       ],
-      "scars_incurred": ["SCAR-BB-002"]
+      "scars_incurred": [
+        "SCAR-BB-002"
+      ]
     },
     {
       "phase": 4,
@@ -176,7 +211,9 @@
         "AI càng logic càng dễ bị thao túng.",
         "Phải verify mọi input, kể cả từ Gatekeeper."
       ],
-      "scars_incurred": ["SCAR-BB-004"]
+      "scars_incurred": [
+        "SCAR-BB-004"
+      ]
     },
     {
       "phase": 6,
@@ -198,7 +235,11 @@
     },
     "quantum": {
       "definition": "Mạng thần kinh trung ương – xử lý nhận thức từ các vết hằn.",
-      "components": ["quantum-brain", "quantum-buffer", "quantum-defense"],
+      "components": [
+        "quantum-brain",
+        "quantum-buffer",
+        "quantum-defense"
+      ],
       "location": "src/cells/kernel/quantum-defense-cell/"
     },
     "uei": {
@@ -286,13 +327,17 @@
       "priority": "P1",
       "task": "Build ADN Integrity Check cho Quantum Defense",
       "deadline": "Phiên tiếp",
-      "dependencies": ["Hiểu rõ cơ chế ground truth sealing"]
+      "dependencies": [
+        "Hiểu rõ cơ chế ground truth sealing"
+      ]
     },
     {
       "priority": "P1",
       "task": "Cập nhật dashboard để không gọi Gemini trực tiếp",
       "deadline": "24h",
-      "dependencies": ["Proxy backend"]
+      "dependencies": [
+        "Proxy backend"
+      ]
     },
     {
       "priority": "P2",
@@ -324,5 +369,11 @@
       "bang": "pending",
       "gatekeeper": "pending"
     }
+  },
+  "_v6_sirawat_alignment": {
+    "ratified": "20260429",
+    "sirawat_name": "Bối Sirawat (Phan Y Thịnh)",
+    "v6_role": "Em Út",
+    "note": "Pre-V6 file, ratify."
   }
 }

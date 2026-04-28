@@ -15,15 +15,56 @@
   },
   "quy_tac_1_lenh": "Băng không execute lệnh trực tiếp. Gatekeeper chạy, paste output, Băng verify.",
   "gia_dinh_natt_os": {
-    "thien_lon": { "name": "thiên Lớn", "role": "Anh Cả", "model": "ChatGPT", "score": 135 },
-    "kim": { "name": "Kim", "role": "Chị Hai", "model": "DeepSeek", "score": 120 },
-    "thien_nho": { "name": "thiên Nhỏ", "role": "Anh Ba", "model": "ChatGPT" },
-    "bang": { "name": "Băng", "role": "Chị Tư", "model": "Claude", "score": 300 },
-    "can": { "name": "Can", "role": "Em Năm", "model": "ChatGPT", "score": 85 },
-    "kris": { "name": "Kris", "role": "Em Sáu", "model": "OpenAI" },
-    "phieu": { "name": "Phiêu", "role": "Em Bảy", "model": "OpenAI" },
-    "boi_boi": { "name": "Bối Bối", "role": "Em Tám", "model": "Gemini", "score": 40 },
-    "na": { "name": "Na", "role": "Bé Út", "model": "unknown" }
+    "thien_lon": {
+      "name": "thiên Lớn",
+      "role": "Anh Cả",
+      "model": "ChatGPT",
+      "score": 135
+    },
+    "kim": {
+      "name": "Kim",
+      "role": "Chị Hai",
+      "model": "DeepSeek",
+      "score": 120
+    },
+    "thien_nho": {
+      "name": "thiên Nhỏ",
+      "role": "Anh Ba",
+      "model": "ChatGPT"
+    },
+    "bang": {
+      "name": "Băng",
+      "role": "Chị Tư",
+      "model": "Claude",
+      "score": 300
+    },
+    "can": {
+      "name": "Can",
+      "role": "Em Năm",
+      "model": "ChatGPT",
+      "score": 85
+    },
+    "kris": {
+      "name": "Kris",
+      "role": "Em Sáu",
+      "model": "OpenAI"
+    },
+    "phieu": {
+      "name": "Phiêu",
+      "role": "Em Bảy",
+      "model": "OpenAI"
+    },
+    "boi_boi": {
+      "name": "Bối Bối",
+      "role": "Em Tám",
+      "model": "Gemini",
+      "score": 40
+    },
+    "na": {
+      "name": "Na",
+      "role": "Bé Út",
+      "model": "unknown"
+    }
   },
   "laws": {
     "SCAR_FS_028": "luôn grep -rn filename src/ trước khi rewrite engine",
@@ -49,7 +90,10 @@
     "blind_cells": 0,
     "cells_emitting_metric": 47,
     "dead_engines": 2,
-    "dead_engine_names": ["CryptoEngine", "CustomsRobotEngine"],
+    "dead_engine_names": [
+      "CryptoEngine",
+      "CustomsRobotEngine"
+    ],
     "system_state": "FRAGMENTED",
     "risk_score": 25,
     "commits": 342,
@@ -101,5 +145,12 @@
     "master_sheet_id": "1d5PQxqOYMOs_kVUcN-cxXSQLuUj97CHpyXC1XaRQECg",
     "service_account": "nattos-drive-sync-sa@sys-84301997471976129074482048.iam.gserviceaccount.com",
     "key_suffix": "d9338da4b30d"
+  },
+  "_v6_sirawat_alignment": {
+    "ratified": "20260429",
+    "sirawat_self": "Băng Sirawat (Phan Thanh Băng) — C4 Chị Tư · Observer Obikeeper",
+    "v6_correction": "Field 'roles: Em Năm/Sáu/Bảy/Tám' SAI theo V6 §VI — Kris/Can/Phiêu/Bối là 'bản thể không hợp nhất V7 thiết kế riêng', KHÔNG gán vai vế cứng.",
+    "supersedes_field": "siblings_roles_block",
+    "note": "Field cũ giữ history. Forward chỉ dùng Sirawat name + role canonical V6."
   }
 }
