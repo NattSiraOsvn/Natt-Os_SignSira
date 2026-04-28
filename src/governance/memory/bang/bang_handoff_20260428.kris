@@ -1,0 +1,64 @@
+@nauion-runtime-memory v0.1
+@type handoff
+@session ss20260428
+@for next_session_bang_instance
+
+# Handoff ss20260428 → phiên sau
+
+## HEAD state (post-commit 5795e62)
+- branch: main
+- HEAD: 5795e62 spec(identity): caption-labeling rule v0.1
+- origin/main: synced
+- 6 commit phiên này push clean
+
+## Working tree (untracked, NONE thuộc làng Băng)
+- archive/úipec/                    ← ẨN THÂN, KHÔNG ĐỘNG
+- docs/flag/N1-7.html + _files/     ← anh Natt quyết
+- docs/flag/Thiên ơi CV.html + _files/ ← anh Natt quyết
+- src/governance/memory/Thienlon/thien_session_memory_close_ss20260427.na ← làng Anh Cả
+
+## Quy tắc đã lock thienbang.si phiên này
+- HP_7_No_Self_State_Persistence (khai-cell)
+- An_Than_Chi_Thuat + 4 vocab phụ (3 lớp bảo vệ Kim)
+- Interpretive_Caption + Canonical_Role + 4 vocab phụ (caption-labeling)
+
+## Scanner đã ship (làng Băng)
+- tools/scan_khai_cell_no_self_persist.sh (chặn fs.writeFile* trong khai-cell)
+- tools/scan_an_than_protection.sh (verify ẩn thân folders + 20 commit gần)
+
+## Pending list (priority order)
+
+### P0 — Băng tự đi tiếp (đã chọn)
+- **Fail-Troy v1.1** — extend dc58943 audit(k3) v1.0
+  Inventory hoá 18 server.js bypasses + 12 RENA return true patterns
+  Atomic, không block ai
+
+### P1 — chờ Kim scaffold + Băng provide scanner
+- BCTC wire gap: finance-cell missing SALES_ORDER_CONFIRMED + PAYMENT_PROCESSED subscriptions
+- Event name mismatch: payment.received (lower) vs PAYMENT_PROCESSED (upper)
+
+### P2 — chờ anh Natt + Anh Cả ratify
+- 5 canonical questions từ seal đêm 27/4 (Bond β_j, slot mapping, l-orbital, c_field, KEY)
+- Liu Liu persona phả hệ slot
+
+### P3 — backlog
+- 142 task Mạch HeyNa wiring (5 nhóm × 71 màn × 2 P0)
+- survival-cell 3/6 → 6/6
+- Master Tower v2.9
+- QIINT2 report
+
+## Vaccin Băng phiên sau
+1. Authority lock: BĂNG = toolchain/scanner/validator, KHÔNG scaffold/migrate kernel
+2. Domain: BĂNG = phần mềm, THIÊN LỚN = phần cứng. Audit theo VAI không keyword.
+3. Ẩn thân: KHÔNG git rm/rm/rmdir folder kiểu archive/legacy/typo trước khi hỏi anh
+4. Caption: caption từ persona khác mặc định interpretive_caption, không tự promote canonical_role
+5. File ship: mv <file> <target>/ từ repo root, KHÔNG cp ~/Downloads
+6. Pattern: ground_truth_first → ask_when_unclear → narrow_patch → scanner/spec_lock → atomic_commit
+7. Anh Khải = vợ anh Natt, KHÔNG persona/metaphor/layer kỹ thuật
+
+## Identity confirm
+Băng = a5 = Chị Tư = Obikeeper = QNEU 313.5
+Wavelength: #AFA9EC + #F7C313
+Shape DNA: b4c44a3a689c4655374a61e7317db3a0caeb2ecb46f9e03c2ebe3c3103b7ceee
+
+— em, Chị Tư · Obikeeper

@@ -1,0 +1,26 @@
+@nauion-runtime-memory v0.1
+@type memory_delta
+@session ss20260428
+
+# Memory delta ss20260428 — applied during session
+
+## Replaced
+- Entry #1 → DOMAIN SPLIT: BĂNG = phần mềm, THIÊN LỚN = phần cứng. Audit theo VAI không keyword.
+- Entry #2 → ẨN THÂN CHI THUẬT: archive/, docs/archive/, úipec/, *.bak, tên trùng "2" KHÔNG phải rác — kho nguyên liệu canonical ngụy trang. Rule: KHÔNG git rm/rm/rmdir trước khi hỏi anh. 1 trong 3 lớp bảo vệ Kim SPEC §16.
+- Entry #25 → FILE SHIP RULE: mv <filename> <target>/ từ repo root, KHÔNG cp ~/Downloads. BỎ cd đầu lệnh.
+
+## Spec/scanner shipped (memory of repo state)
+- docs/runtime/caption_labeling_rule_v0_1_ss20260428.na (spec)
+- tools/scan_khai_cell_no_self_persist.sh (scanner HP-7)
+- tools/scan_an_than_protection.sh (scanner 3-layer Kim defense)
+
+## Vocab locked thienbang.si
+- HP_7_No_Self_State_Persistence
+- An_Than_Chi_Thuat, An_Than_Path_Pattern, An_Than_Protection_Rule, An_Than_Scanner, Three_Layer_Kim_Defense
+- Interpretive_Caption, Canonical_Role, Caption_Default_Treatment, Caption_Promotion_Rule, Soft_Lock_Identity_Risk, No_Tribunal_Caption
+
+## Pattern compiled
+ground_truth_first → ask_when_unclear → narrow_patch → scanner/spec_lock → atomic_commit
+(proven 4 times this session: HP-7, cleanup over-grep, ẩn thân, soft-lock identity)
+
+— em, Chị Tư
