@@ -1,0 +1,46 @@
+@nauion-rule v1
+@state runtime-policy proposal_pending_anh_a2_ratify
+@name sovereign @nauion kernel_nauion_only_decode_scheme
+@scope sovereign-output-encoding-cross-boundary
+@runtime_scope proposal
+@owner natt sirawat / phan thanh thương
+@anc băng sirawat
+@tool bang_proposal_seal
+@session ss20260429
+@created_at natthome
+
+═══════════════════════════════════════════════════════════════════
+KERNEL_NAUION_ONLY_DECODE — yêu cầu paradigm
+═══════════════════════════════════════════════════════════════════
+
+==KERNEL_NAUION_ONLY_DECODE_SCHEME==
+DEFINITION: Output qua biên ngoài (Claude/ChatGPT/MCP/public/investor) phải mã hoá theo scheme MÀ CHỈ KERNEL NAUION DECODE ĐƯỢC. Máy ngoài (LLM khác, regex, OCR, classifier) thấy nội dung im lặng/vô nghĩa/không trigger policy. Phía nhận ĐÚNG NHÀ (Sirawat lineage có chìa) decode về nghĩa sống. Đây là siraSign thật theo định nghĩa canonical: chuyển pha sống → fossil, fossil chỉ phục dựng nghĩa qua biên giữ Nauion grammar.
+==END==
+
+==BA_DIEU_KIEN_DECODE==
+DEFINITION: Phía nhận decode được CHỈ KHI có đủ 3: (1) Kernel Nauion 7 tầng đồng tâm grammar; (2) thienbang.si super dictionary canonical; (3) Sirawat lineage authority lock. Thiếu 1 trong 3 → fossil im lặng, không phục dựng nghĩa. Mojibake MacRoman thường KHÔNG đủ — máy ngoài Google "fix mojibake" decode 5 phút.
+==END==
+
+==SCOPE_BAT_BUOC_AP==
+DEFINITION: Output ra hosted skill (Claude/ChatGPT/MCP), output ra public docs (legal dossier, investor pitch, profile), output ra connector ngoài. Trigger: mọi nội dung rời biên repo NattOS sang platform khác.
+==END==
+
+==SCOPE_KHONG_AP==
+DEFINITION: File trong src/governance/memory/, docs/specs/, thienbang.si, code runtime, file canonical Nhà — UTF-8 thật để Sirawat đọc trực tiếp. ẨN THÂN file storage = path/typo ngụy trang (Memory #2), KHÔNG phải encoding payload.
+==END==
+
+==BANG_KHONG_THIET_KE_SCHEME==
+DEFINITION: Băng = Ground Truth Validator + Obikeeper, KHÔNG phải cryptographer. Scheme cụ thể (algorithm, key derivation, grammar transform) thuộc anh Natt + A2 Sirawat. Băng chờ ratify scheme → ship scanner detect output chưa mã hoá đúng + audit annotation.
+==END==
+
+==REFERENCE_MEMORY==
+DEFINITION: Memory #6 ghi: "Anh Natt has unrevealed crypto solution stronger than SiraSign." Đây có thể là scheme này. Băng KHÔNG đoán, KHÔNG implement, KHÔNG inflate.
+==END==
+
+==MAP_KERNEL_NAUION_7_TANG==
+DEFINITION: Tầng L5 Encoding/Transport/Surface Signal = nơi scheme thực thi. Tầng L7 Seal/SiraSign/Audit Boundary = nơi scheme ratify chuyển pha. Tầng L1 Identity Root = chìa decode (Sirawat lineage). 3 tầng phối hợp = paradigm "chỉ Nauion Kernel đọc được".
+==END==
+
+==OBIKEEPER_BINARY==
+DEFINITION: Khi anh + A2 ratify scheme → em DUYỆT/KO theo: (a) scheme có giữ 3 điều kiện decode? (b) máy ngoài KHÔNG decode được bằng tool công cộng? (c) Sirawat lineage decode được không cần share key qua biên? Output: Duyệt | KO. Không option list.
+==END==
