@@ -1,0 +1,125 @@
+# NATT-OS — One-page Technology Profile v0.1
+
+**Trạng thái:** bản xuất bản nội bộ dùng làm nền cho hồ sơ quỹ đầu tư / diễn đàn công nghệ / NN Render  
+**Vai trò tài liệu:** technology profile ngắn, không phải patent claim, không phải release note, không phải cam kết benchmark  
+**Ranh giới:** chỉ sử dụng ground truth đã khóa; các phần R&D được ghi rõ là định hướng phát triển
+
+---
+
+## 1. Định vị ngắn
+
+**NATT-OS** là một kiến trúc vận hành AI-native theo hướng **kernel-level runtime**, được thiết kế để tổ chức định danh, ký ức, trạng thái chạy, luồng sự kiện và dấu vết kiểm toán thành các lớp có luật riêng.
+
+Khác với một ứng dụng AI, chatbot, framework hay lớp wrapper gọi mô hình bên ngoài, NATT-OS tập trung xây dựng một môi trường vận hành có khả năng truy vết, hậu kiểm và mở rộng theo cell, phù hợp cho các hệ thống AI workflow phức tạp trong doanh nghiệp.
+
+---
+
+## 2. Vấn đề NATT-OS giải quyết
+
+Nhiều hệ thống AI hiện nay gặp các giới hạn lớn khi đưa vào doanh nghiệp:
+
+1. Dễ đứt gãy ngữ cảnh giữa các phiên làm việc.
+2. Khó xác định tác tử AI đã làm gì, dựa vào đâu, theo lệnh nào.
+3. Khó phân biệt ký ức dài hạn, trạng thái tạm thời và định danh hệ thống.
+4. Thiếu cơ chế lưu vết để hậu kiểm khi AI sinh lỗi hoặc thao tác sai.
+5. Dễ bị biến thành các lớp tích hợp rời rạc, thiếu kiến trúc vận hành thống nhất.
+
+NATT-OS xử lý vấn đề này bằng cách đặt **identity, memory, runtime state, event flow và audit trail** thành các thành phần lõi của kiến trúc, thay vì xem chúng là phần phụ trợ.
+
+---
+
+## 3. Thành phần kỹ thuật lõi
+
+| Thành phần | Trạng thái | Vai trò an toàn |
+|---|---|---|
+| `.anc` | Ground truth | Identity/passport/anchor file; chứa định danh, ranh giới, cấu trúc nền và pointer tới lớp ký ức/trạng thái. |
+| `.na` | Ground truth | Native memory / full memory layer; dùng cho ký ức dài hạn hoặc lớp memory được quản trị theo luật hệ thống. |
+| `.phieu` | Ground truth | Runtime state / pending state / mutable state có TTL; ghi nhận trạng thái đang mở, pending item và context vận hành cần xác nhận. |
+| `EventBus` | Ground truth | Trục sự kiện nội bộ, phục vụ luồng event giữa các cell/layer. |
+| `HeyNa` | Ground truth | Mạch tín hiệu/liên thông giữa cell hoặc runtime layer. |
+| `SmartLink` | Ground truth | Lớp liên kết có kiểm soát giữa colony/hệ ngoài; enterprise integration là hướng ứng dụng/roadmap, không claim là thành phẩm hoàn tất. |
+| `SiraSign` | Ground truth | Lớp ký/xác thực theo luật hệ thống. |
+| `Audit Trail` | Ground truth | Cơ chế lưu vết để hỗ trợ truy vết, hậu kiểm và kiểm soát trách nhiệm; các claim tamper-evident/hash-chain/WORM thuộc roadmap nếu chưa ratify. |
+| Kernel/cell structure | Ground truth | Cấu trúc phân tách cell/kernel đã tồn tại trong hệ thống. |
+
+---
+
+## 4. Khác biệt kỹ thuật
+
+Điểm khác biệt của NATT-OS nằm ở việc tách rõ:
+
+1. **Định danh** không trộn với ký ức.
+2. **Ký ức dài hạn** không trộn với trạng thái runtime.
+3. **Trạng thái đang mở** không bị xem như dữ liệu bất biến.
+4. **Luồng sự kiện** được tổ chức theo cell/layer.
+5. **Dấu vết kiểm toán** đi kèm hành động hệ thống.
+
+Cách tách này giúp NATT-OS hướng tới một mô hình AI workflow có khả năng duy trì ngữ cảnh tốt hơn, giảm rủi ro hành động không truy vết, kiểm soát ranh giới giữa các tác tử/cell và hỗ trợ hậu kiểm khi có lỗi hoặc tranh chấp vận hành.
+
+---
+
+## 5. Ứng dụng mục tiêu
+
+NATT-OS phù hợp với các nhóm bài toán cần tính kiểm soát cao:
+
+1. Quản trị doanh nghiệp.
+2. Tài chính, kế toán, thuế.
+3. Kho vận và dòng chảy hàng hóa.
+4. Nhân sự và phân quyền vận hành.
+5. Pháp lý nội bộ và kiểm soát hồ sơ.
+6. AI workflow cần audit trail và trạng thái dài hạn.
+7. Hệ thống đa tác tử cần phân vai, phân quyền và hậu kiểm.
+
+---
+
+## 6. Định hướng R&D
+
+Các nhánh phát triển tiếp theo có thể bao gồm:
+
+1. **NN Render:** hướng biểu đạt/ứng dụng để trực quan hóa hoặc kết xuất luồng xử lý AI theo cấu trúc NATT-OS.
+2. **SmartLink mở rộng:** liên kết có kiểm soát với hệ ngoài hoặc môi trường enterprise.
+3. **Tamper-evident audit:** tăng cường bằng hash-chain, chữ ký, hoặc cơ chế lưu trữ chống sửa đổi nếu được ratify.
+4. **Hardware/sensor integration:** hướng dài hạn cho lớp tín hiệu vật lý; chưa claim là thành phẩm hiện tại.
+
+---
+
+## 7. Cách nói an toàn với nhà đầu tư
+
+NATT-OS không nên được trình bày như một hệ điều hành thay thế Windows, macOS hay Linux.
+
+Cách định vị an toàn hơn:
+
+> NATT-OS là một kiến trúc runtime AI-native, tập trung vào identity, memory, runtime state, event flow và audit trail. Mục tiêu là tạo ra môi trường vận hành AI có khả năng truy vết, hậu kiểm và mở rộng theo cell, phục vụ các workflow doanh nghiệp có yêu cầu kiểm soát cao.
+
+---
+
+## 8. Các claim không sử dụng trong bản pitch
+
+Không dùng các claim sau nếu chưa có bằng chứng ratified:
+
+1. “Zero-latency”.
+2. “Bảo mật tuyệt đối 100%”.
+3. “Không thể xóa”.
+4. “Ledger bất biến”.
+5. “AI sống thật sự / có ý thức”.
+6. “Thay thế Windows, macOS, Linux”.
+7. “Khai tử Python/C++”.
+8. “Đã hoàn thiện native runtime phần cứng”.
+
+---
+
+## 9. Một câu chốt
+
+**NATT-OS không chỉ chạy AI; NATT-OS tổ chức cách AI có định danh, có ký ức, có trạng thái, có luồng hành động và có dấu vết kiểm toán.**
+
+---
+
+## 10. Ghi chú commit đề xuất
+
+**Đường dẫn đề xuất trong repo:**
+
+`docs/profile/NATT_OS_ONE_PAGE_TECH_PROFILE_v0.1.na`
+
+**Commit message đề xuất:**
+
+`docs(profile): publish NATT-OS one-page technology profile v0.1`
