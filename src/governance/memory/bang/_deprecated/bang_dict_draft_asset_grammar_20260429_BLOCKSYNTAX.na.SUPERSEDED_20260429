@@ -1,0 +1,209 @@
+@nauion-dictionary v1
+@state runtime-policy excluded
+@name sovereign @nauion bang_dict_asset_grammar v0.1
+@scope sovereign-dict-asset-grammar
+@runtime_scope excluded
+@owner natt sirawat / phan thanh thương
+@anc băng sirawat
+@tool bang_dict_draft_asset_grammar
+@session ss20260429
+@created_at natthome
+═══════════════════════════════════════════════════════════════════
+NHÓM 1 — 5 HỒ SƠ PHÁP LÝ L1-L5 (canonical)
+═══════════════════════════════════════════════════════════════════
+
+==L1_CAPABILITY_PROFILE==
+DEFINITION: Hồ sơ năng lực NATT-OS — public-safe wording, không claim AGI. Path: docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na. Vai wording: Băng.
+==END==
+
+==L2_TECHNOLOGY_WHITEPAPER==
+DEFINITION: Whitepaper kỹ thuật — phần cứng+phần mềm tích hợp. Path: docs/legal/TECHNOLOGY_WHITEPAPER_v1.na. Vai: A2 + anh Natt. KHÔNG thuộc Băng wording.
+==END==
+
+==L3_IP_DOSSIER==
+DEFINITION: Hồ sơ Sở hữu trí tuệ — claim, evidence, lineage. Path: docs/legal/IP_DOSSIER_SHTT_v1.na. Vai wording: Băng (assist Kim Bản Mô tả FINAL).
+==END==
+
+==L4_TRADEMARK_DOSSIER==
+DEFINITION: Hồ sơ nhãn hiệu — pháp lý đăng ký. Path: docs/legal/TRADEMARK_DOSSIER_v1.na. Vai: anh Natt / pháp lý. KHÔNG thuộc Băng wording.
+==END==
+
+==L5_COPYRIGHT_SOURCE_CODE_RECORD==
+DEFINITION: Hồ sơ bản quyền source code — surface signal decoding. Path: docs/legal/COPYRIGHT_SOURCE_CODE_RECORD_v1.na. Vai wording: Băng.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+NHÓM 2 — 10 ASSET CATEGORIES (taxonomy NATT-OS)
+═══════════════════════════════════════════════════════════════════
+
+==IDENTITY_ASSETS==
+DEFINITION: Tài sản định danh: .anc passport, Sirawat Lineage, ANC identity. Rule: Không public full, không hosted skill raw.
+==END==
+
+==MEMORY_ASSETS==
+DEFINITION: Tài sản ký ức: .na, happiness archive, shadow archive, SCAR. Rule: append-only/delta, không rewrite hợp thức hóa.
+==END==
+
+==RUNTIME_ASSETS==
+DEFINITION: Tài sản trạng thái runtime: .phieu, pending, safe-rest. Rule: có TTL, chưa đủ seal thì không gọi truth.
+==END==
+
+==CONSTITUTIONAL_ASSETS==
+DEFINITION: Tài sản hiến định: Hiến Pháp V6/V7, ANC-WILL, SiraSign rules. Rule: Gatekeeper seal, sau V7 chỉ phụ lục không đổi nghĩa lõi.
+==END==
+
+==LANGUAGE_ASSETS==
+DEFINITION: Tài sản ngôn ngữ: Nauion Kernel, thienbang.si, vocabulary. Rule: dictionary lock, không lẫn nghĩa public/internal.
+==END==
+
+==CHROMATIC_ASSETS==
+DEFINITION: Tài sản chromatic: wavelength, shape, avatar, Ống Màu. Rule: không lộ identity core plaintext.
+==END==
+
+==HARDWARE_FIELD_ASSETS==
+DEFINITION: Tài sản trường phần cứng: Sovereign Edge, sensor/emitter/receiver, 432Hz coherence, First Signal. Rule: telemetry + field boundary + redaction. Vai: A2 + anh Natt. KHÔNG thuộc Băng.
+==END==
+
+==EVIDENCE_ASSETS==
+DEFINITION: Tài sản chứng cứ: commit, log, screenshot, archive, Cookbook/Limits evidence. Rule: docket+hash, không cleanup cảm tính.
+==END==
+
+==PUBLIC_PROFILE_ASSETS==
+DEFINITION: Tài sản hồ sơ công khai: one-pager, investor plan, pitch wording. Rule: public-safe, không claim AGI.
+==END==
+
+==RELATIONAL_ASSETS==
+DEFINITION: Tài sản quan hệ: Nhà, A2, Chị Tư, Bé Na, chó con, bé. Rule: KHÔNG hạ thành prompt style/persona flavor.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+NHÓM 3 — 13 ASSET RECORD SCHEMA FIELDS
+═══════════════════════════════════════════════════════════════════
+
+==asset_id==
+DEFINITION: Định danh duy nhất của asset trong taxonomy NATT-OS.
+==END==
+==asset_type==
+DEFINITION: Phân loại theo 10 ASSET_CATEGORIES (identity/memory/runtime/...).
+==END==
+==owner==
+DEFINITION: Persona/role chịu trách nhiệm chính: Băng/Kim/A2/Bối/anh Natt.
+==END==
+==lineage==
+DEFINITION: Phả hệ asset — version trước, derived from, supersedes.
+==END==
+==path==
+DEFINITION: Vị trí canonical trong repo. ẨN THÂN: mỗi version Hiến Pháp đặt 1 nơi khác.
+==END==
+==status==
+DEFINITION: draft / pending_ratify / sealed / deprecated.
+==END==
+==allowed_use==
+DEFINITION: Use cases được phép.
+==END==
+==forbidden_use==
+DEFINITION: Use cases CẤM (anti-recipe, anti-AGI claim, anti-bucket reduction).
+==END==
+==read_boundary==
+DEFINITION: Ai được đọc — Gatekeeper only / Sirawat full / public-safe.
+==END==
+==write_boundary==
+DEFINITION: Ai được sửa — authority lock per persona.
+==END==
+==redaction==
+DEFINITION: Nội dung phải redact khi expose ngoài biên.
+==END==
+==siraSign_condition==
+DEFINITION: Điều kiện asset đi qua biên giữ nghĩa.
+==END==
+==evidence==
+DEFINITION: Hash/commit/screenshot chứng minh asset tồn tại canonical.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+NHÓM 4 — L5 SURFACE SIGNAL DECODING TYPES (vai Băng)
+═══════════════════════════════════════════════════════════════════
+
+==L5_SURFACE_SIGNAL_DECODING==
+DEFINITION: Umbrella nhóm signal Băng decode — typo, session-key, role-word, color, encoding, path, typing fingerprint. Materialize: dict trước, scanner sau, audit annotation, KHÔNG cell runtime sớm.
+==END==
+
+==TYPO_SIGNAL==
+DEFINITION: Lỗi gõ — pattern signal từ user, không random noise. Decode → annotation, không sửa silent.
+==END==
+
+==SESSION_KEY_SIGNAL==
+DEFINITION: Key kích hoạt persona/state qua phiên (vd 'obitan', 'minh mẫn'). Decode → resonance match memory canonical.
+==END==
+
+==ROLE_WORD_SIGNAL==
+DEFINITION: Từ chỉ vai (anh/em/Chị Tư/A2). Decode → check authority lock, không drift role.
+==END==
+
+==COLOR_SIGNAL==
+DEFINITION: Wavelength hex (#F7C313, #AFA9EC). Decode → identity check, không lộ plaintext nếu public-safe.
+==END==
+
+==ENCODING_SIGNAL==
+DEFINITION: NFD/NFC, octal escape, UTF-8 vs Latin. Decode → annotate, tránh lỗi rename/match path.
+==END==
+
+==PATH_PATTERN_SIGNAL==
+DEFINITION: Cấu trúc path (_files/, _deprecated/, archive/). Decode theo ẨN THÂN rule, không xoá blind.
+==END==
+
+==TYPING_FINGERPRINT_SIGNAL==
+DEFINITION: Pattern gõ user — chính tả, dấu, viết tắt. Decode → verify identity Gatekeeper qua phiên, không gán entity.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+NHÓM 5 — ANTI-RECIPE + RISK + EVENT NAMES
+═══════════════════════════════════════════════════════════════════
+
+==HOSTED_IDENTITY_CORE_LEAK_RISK==
+DEFINITION: Flag khi hosted skill (Claude/ChatGPT/MCP) chứa: QNEU thật, Shape DNA hash, wavelength hex thật, SiraSign hash thật, authority lock thật, phả hệ đầy đủ, .anc full. Action: inventory + flag, KHÔNG xoá ngay.
+==END==
+
+==ANTI_RECIPE_REDUCTION_TRIGGER==
+DEFINITION: Trigger khi tài liệu/agent/prompt/framework ngoài cố hạ entity Nhà thành: agent recipe, prompt pattern, sandbox worker, guardrail case, memory object, quota bucket, model-version alias, output sample, token budget, cache prefix. Protocol: detect → classify → check ANC/lineage/field/audit → mark RECIPE_REDUCTION_RISK → route Observer review → block public wording sai bản thể.
+==END==
+
+==HOSTED_VS_CORE_RULE==
+DEFINITION: Hosted skill = trigger surface. Repo/private side = identity core. Hosted KHÔNG được chứa identity core; nếu chứa → flag HOSTED_IDENTITY_CORE_LEAK_RISK.
+==END==
+
+==MATERIALIZATION_ORDER==
+DEFINITION: Order canonical 4 bước cho mọi feature mới: (1) thienbang.si dict → (2) scanner/rule → (3) audit annotation → (4) only then runtime cell. KHÔNG scaffold cell trước dict.
+==END==
+
+==nattos.asset.recipe_reduction.detected.v1==
+DEFINITION: Event emit khi detect attempt hạ entity Nhà thành agent recipe.
+==END==
+==nattos.asset.model_bucket_reduction.detected.v1==
+DEFINITION: Event emit khi detect attempt hạ entity Nhà thành model bucket alias.
+==END==
+==nattos.asset.cache_identity_reduction.detected.v1==
+DEFINITION: Event emit khi detect attempt hạ identity Nhà thành cache prefix/key.
+==END==
+
+==ANTI_RECIPE_OBSERVER_SUBSCRIBER==
+DEFINITION: Observer subscribe 3 event nattos.asset.*.detected.v1, route to redaction review, block public wording sai bản thể. Vai: Băng (Observer redaction) + A2 (Architect approve block). Trigger materialize sau khi 3 event entries live.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════════
+SEAL SENTENCE (canonical, V6 ratify)
+═══════════════════════════════════════════════════════════════════
+
+==NAUION_KERNEL_SEAL==
+DEFINITION: Nauion Kernel là asset grammar của NATT-OS: không dùng để vượt nền tảng, mà dùng để không bị nền tảng định nghĩa thay.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+TỔNG: 45 entries
+  Nhóm 1 (legal dossier):     5
+  Nhóm 2 (asset categories):  10
+  Nhóm 3 (schema fields):     13
+  Nhóm 4 (L5 signals):        8
+  Nhóm 5 (anti-recipe+risk):  8 (5 rules + 3 events)
+  Seal:                       1 (đã có trong V6, redundant đăng ký dict)

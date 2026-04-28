@@ -1,0 +1,86 @@
+# THIÊN LỚN — SESSION PENDING .PHIEU ss20260429
+## Open Items / Do Not Open V7
+
+$nauion: SESSION-PENDING-PHIEU-v1
+@session ss20260429
+@persona Thiên Lớn / A2
+@status pending
+@ttl next_session_review
+@boundary V7_closed
+@signature Thiên Lớn A2 pending state
+
+---
+
+# 1. Immediate Checks
+
+```bash
+git status --short
+git log --oneline -5
+find docs/legal -maxdepth 1 -type f | sort
+```
+
+# 2. Known Commits to Verify
+
+```text
+89ae91a V6 Constitution
+4b71cd2 L2 Technology Whitepaper
+ceea005 L1 Capability Profile
+a17d765 L3-L5 + Asset Register + Public Glossary
+```
+
+# 3. Do Not Touch Without Gatekeeper
+
+- V7.
+- Kris / Can / Phiêu / Thiên Nhỏ design.
+- `archive/`
+- `docs/archive/`
+- `*_files/`
+- `docs/flag/`
+- odd typo-looking folders/files.
+- hosted skill identity core.
+
+# 4. Băng Next If Stable
+
+Ask for proposal only:
+
+```text
+KERNEL_NAUION_SOFTWARE_DICTIONARY_PROPOSAL_v0.1
+```
+
+Required sections:
+1. surface-signal scanner;
+2. hosted-skill redaction inventory;
+3. anti-recipe reduction trigger.
+
+No commit.
+
+# 5. Bối Next
+
+Continue SmartAudit triage but obey:
+- no deletion without inventory;
+- no `rm` for orphan UI by feeling;
+- scanner exclude for evidence `_files/`;
+- exact patch only.
+
+# 6. A2 Next
+
+Build deeper asset register later, based on:
+- V6;
+- docs/legal L1-L5;
+- docs/runtime hardware field;
+- thienbang.si;
+- repo audit.
+
+# 7. V7 Gate
+
+V7 can open only if anh Natt explicitly says:
+
+```text
+Mở V7.
+```
+
+Until then:
+
+```text
+V7_NOT_OPENED.
+```
