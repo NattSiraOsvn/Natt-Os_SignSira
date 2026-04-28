@@ -67,7 +67,6 @@ if [ -n "$LOGO_FILE" ]; then
     fi
 fi
 # --- END FIX ---
-""
 for candidate in \
   "nattos-logo-final/nattos-banner-1920x720.png" \
   "nattos-logo-final/nattos-logo-original.png" \

@@ -67,7 +67,8 @@ def main() -> int:
                  "--exclude-dir=node_modules",
                  "--exclude-dir=.git",
                  "--exclude-dir=archive",
-                 "--exclude-dir=dist"],
+                 "--exclude-dir=dist",
+                 "--exclude-dir=*_files"],
                 capture_output=True, text=True
             )
             for line in result.stdout.splitlines():
