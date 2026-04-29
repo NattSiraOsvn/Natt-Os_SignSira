@@ -12,3 +12,4 @@ export * from "./application";
 export * from "./domain/engines";
 
 export * from "./SmartLink";
+export { ObservationCellEngine } from './domain/engines/observation-cell.engine';

@@ -1,18 +1,19 @@
-// Observation Cell Engine v0.2 — Key 1 NauionEvent envelope compliant scaffold
+// Audit Cell Engine v0.2 — Key 1 NauionEvent envelope compliant scaffold
 // @sirawat-from Kim
 // @ground-truth thienfs.json, ui-kernel-contract.sira v0.2
-// @status scaffold — emits cell.metric / heyna.pulse via NauionEvent envelope
+// @status scaffold — emits NauionEvent envelope, closure remains locked
 
 import { EventBus } from '../../../../../core/events/event-bus';
 
-type PressureType = 'FALL' | 'DISSIPATE' | 'OSCILLATE';
-type NauionEventType = 'heyna.pulse' | 'cell.metric';
+type NauionEventType = 'audit.record' | 'cell.metric';
 
 interface NauionEventPayload {
   cell_id: string;
-  pressure_type?: PressureType;
-  pressure_value?: number;
   metric?: Record<string, unknown>;
+  audit?: {
+    event: string;
+    data: Record<string, unknown>;
+  };
   state_ref?: string;
   sirasign_ref?: string;
 }
@@ -33,10 +34,10 @@ interface NauionEvent {
   payload: NauionEventPayload;
 }
 
-export class ObservationCellEngine {
-  private readonly cellId = 'observation-cell';
+export class AuditCellEngine {
+  private readonly cellId = 'audit-cell';
   private readonly tenantId = 'natt-os';
-  private readonly targetSurface = 'kernel.observation';
+  private readonly targetSurface = 'kernel.audit';
 
   private makeId(kind: string): string {
     return `${this.cellId}-${kind}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
@@ -66,28 +67,35 @@ export class ObservationCellEngine {
     };
   }
 
-  emitMetric(metric: Record<string, unknown> = { status: 'active' }): void {
+  // Ghi nhận audit entry và phát tín hiệu theo NauionEvent envelope v0.2.
+  recordAudit(event: string, data: Record<string, unknown>): void {
+    const causationId = this.makeId('audit-cause');
+
+    EventBus.emit(
+      'audit.record',
+      this.makeEnvelope(
+        'audit.record',
+        {
+          cell_id: this.cellId,
+          audit: { event, data },
+        },
+        causationId,
+      ),
+    );
+
     EventBus.emit(
       'cell.metric',
-      this.makeEnvelope('cell.metric', {
-        cell_id: this.cellId,
-        metric,
-      }),
-    );
-  }
-
-  emitPressure(pressureType: PressureType, pressureValue: number): void {
-    if (pressureValue < 0 || pressureValue > 1) {
-      throw new Error('pressure_value must be within [0.0, 1.0]');
-    }
-
-    EventBus.emit(
-      'heyna.pulse',
-      this.makeEnvelope('heyna.pulse', {
-        cell_id: this.cellId,
-        pressure_type: pressureType,
-        pressure_value: pressureValue,
-      }),
+      this.makeEnvelope(
+        'cell.metric',
+        {
+          cell_id: this.cellId,
+          metric: {
+            status: 'active',
+            audit_count: 0, // closure locked until ground truth counter exists
+          },
+        },
+        causationId,
+      ),
     );
   }
 }
