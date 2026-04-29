@@ -1,13 +1,13 @@
-function getApiPortalCredential(): string {
+function getPortalChannel(): string {
   const env = (globalThis as any)?.process?.env || {};
-  return env.NATTOS_APIPORTAL_CREDENTIAL || env.NATTOS_APIPORTAL_TOKEN || "";
+  return env.NATTOS_ChannelPORTAL_CREDENTIAL || env.NATTOS_ChannelPORTAL_TOKEN || "";
 }
 
 
 
 import React, { useState } from 'react';
 
-const ApiPortal: React.FC = () => {
+const ChannelPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'auth' | 'ocr' | 'inventory' | 'analytics' | 'sdks' | 'mobile'>('overview');
   const [sdkLang, setSdkLang] = useState<'js' | 'python' | 'php' | 'curl'>('js');
   const [mobileResult, setMobileResult] = useState<string | null>(null);
@@ -30,8 +30,8 @@ const ApiPortal: React.FC = () => {
   };
 
   const codeSnippets = {
-    js: `// Tâm Luxury JavaScript SDK V-API 2.0
-const api = new TamLuxuryAPI({ apiKey: getApiPortalCredential() });
+    js: `// Tâm Luxury JavaScript SDK V-Channel 2.0
+const api = new TamLuxuryChannel({ channel: getPortalChannel() });
 
 // Advanced OCR Process
 const result = await api.processOCR(imageFile, {
@@ -42,9 +42,9 @@ const result = await api.processOCR(imageFile, {
 
 console.log('Result:', result.product.code, 'Ni:', result.product.finger_size);`,
     python: `# Tâm Luxury Python SDK
-from tamluxury import EnterpriseAPI
+from tamluxury import EnterpriseChannel
 
-api = EnterpriseAPI(api_key='YOUR_SECURE_KEY')
+api = EnterpriseChannel(api_key='YOUR_SECURE_KEY')
 
 # Get Business Analytics
 stats = api.get_analytics(period='month')
@@ -54,7 +54,7 @@ print(f"Top Product: {stats['top_products'][0]}")`,
 // Tâm Luxury PHP SDK
 require_once 'vendor/autoload.php';
 
-$api = new TamLuxury\\API('YOUR_SECURE_KEY');
+$api = new TamLuxury\\Channel('YOUR_SECURE_KEY');
 
 // Update Inventory Level
 $response = $api->inventory->update([
@@ -85,7 +85,7 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
       <div className="lg:w-72 glass rounded-[2.5rem] border border-white/5 flex flex-col p-6 overflow-y-auto no-scrollbar shrink-0 bg-gradient-to-b from-white/[0.03] to-transparent">
         <div className="mb-10 p-2">
           <h3 className="text-amber-500 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Tâm Luxury Enterprise</h3>
-          <p className="text-white font-serif italic text-2xl gold-gradient">V-API 2.0 Portal</p>
+          <p className="text-white font-serif italic text-2xl gold-gradient">V-Channel 2.0 Portal</p>
         </div>
         <nav className="space-y-1">
           {[
@@ -120,9 +120,9 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
         
         {activeTab === 'overview' && (
           <div className="space-y-10 animate-in slide-in-from-right-8 duration-700">
-            <h2 className="text-4xl font-serif gold-gradient italic">Enterprise API Standard 3.0.0</h2>
+            <h2 className="text-4xl font-serif gold-gradient italic">Enterprise Channel Standard 3.0.0</h2>
             <div className="prose prose-invert max-w-none text-gray-400 font-light leading-relaxed">
-               <p>Hệ thống API V-API 2.0 cung cấp giao diện lập trình mạnh mẽ cho quản trị trang sức, bóc tách AI và tích hợp Blockchain Isolation cho từng Shard doanh nghiệp.</p>
+               <p>Hệ thống Channel V-Channel 2.0 cung cấp giao diện lập trình mạnh mẽ cho quản trị trang sức, bóc tách AI và tích hợp Blockchain Isolation cho từng Shard doanh nghiệp.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -212,7 +212,7 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
             <div className="space-y-8">
               <div>
                 <h2 className="text-4xl font-serif gold-gradient italic">Mobile App Sandbox</h2>
-                <p className="text-gray-400 text-sm mt-4 leading-relaxed font-light">Giả lập trải nghiệm người dùng cuối trên thiết bị di động. Tất cả các tương tác đều được gọi qua V-API 2.0 thực tế.</p>
+                <p className="text-gray-400 text-sm mt-4 leading-relaxed font-light">Giả lập trải nghiệm người dùng cuối trên thiết bị di động. Tất cả các tương tác đều được gọi qua V-Channel 2.0 thực tế.</p>
               </div>
               <div className="space-y-4">
                 {[
@@ -269,7 +269,7 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
                       <div className="p-5 bg-amber-500/10 border border-amber-500/30 rounded-[2rem] animate-in zoom-in-95 duration-500 shadow-lg shadow-amber-500/5">
                         <div className="flex items-center gap-2 mb-2">
                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                           <p className="text-[8px] text-amber-500 font-black uppercase tracking-widest">Live API Response</p>
+                           <p className="text-[8px] text-amber-500 font-black uppercase tracking-widest">Live Channel Response</p>
                         </div>
                         <p className="text-[11px] text-gray-200 font-medium leading-relaxed font-mono">{mobileResult}</p>
                       </div>
@@ -278,7 +278,7 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
                     <div className="p-6 glass rounded-[2.5rem] border border-white/5 mt-auto">
                       <p className="text-[9px] text-gray-600 font-black uppercase tracking-widest mb-4">Network Status</p>
                       <div className="flex justify-between items-center mb-1">
-                         <span className="text-[10px] text-gray-400 font-bold">API V2 Node</span>
+                         <span className="text-[10px] text-gray-400 font-bold">Channel V2 Node</span>
                          <span className="text-[10px] text-green-500 font-black">STABLE</span>
                       </div>
                       <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
@@ -346,4 +346,4 @@ curl -X POST 'https://api.tamluxury.com/v1/ocr' \\
   );
 };
 
-export default ApiPortal;
+export default ChannelPortal;
