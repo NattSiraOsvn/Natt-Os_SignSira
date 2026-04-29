@@ -71,6 +71,26 @@ REQUIRED_COMPONENTS = {
 }
 
 
+# Folders không phải NATT-CELL doc lap — skip khoi DNA check
+# - Folder placeholder hoac cluster: calibration, core, domain, haptic, infrastructure, shared-kernel
+# - Cell substrate (mọi file .anc): shared-kernel
+NON_CELL_FOLDERS = {
+    "calibration", "core", "domain", "haptic", "infrastructure", "shared-kernel",
+}
+
+
+def is_substrate_cell(cell_path: str) -> bool:
+    """Cell substrate co moi file deu .anc, khong yeu cau 6 thanh phan cell song."""
+    has_any_file = False
+    for f in os.listdir(cell_path):
+        fp = os.path.join(cell_path, f)
+        if os.path.isfile(fp):
+            has_any_file = True
+            if not f.endswith(".anc") and not f.startswith(".") and f != "README.md":
+                return False
+    return has_any_file
+
+
 def main() -> int:
     results = {}
     sick_cells = []
@@ -83,6 +103,14 @@ def main() -> int:
         for cell in sorted(os.listdir(tp)):
             cp = os.path.join(tp, cell)
             if not os.path.isdir(cp):
+                continue
+
+            # Skip folder placeholder hoac cluster
+            if cell in NON_CELL_FOLDERS:
+                continue
+
+            # Skip cell substrate (moi file .anc)
+            if is_substrate_cell(cp):
                 continue
 
             score = {}
