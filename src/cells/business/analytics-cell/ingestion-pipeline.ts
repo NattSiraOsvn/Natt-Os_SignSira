@@ -3,10 +3,14 @@
 // — legacy V1 imports, pending migration
 
 import { EventEnvelope, PersonaID } from '../../../types';
-import { ShardingService } from '../../../../services/blockchainservice.ts';
-import { AuditProvider } from '../../../../services/admin/auditservice.ts';
-import { NotifyBus } from '../../../../services/notificationservice.ts';
-import { SagaHealthProjection } from '../domain/projections/sagahealthprojection.ts';
+// LEGACY V1 STUB - blockchainservice trashed ss20260307
+const ShardingService: any = { shard: (e: any) => e, getInstance: () => ShardingService };
+// LEGACY V1 STUB - auditservice in cell now (audit-cell)
+const AuditProvider: any = { log: (e: any) => {}, getLogs: (): any[] => [], getInstance: () => AuditProvider };
+// LEGACY V1 STUB - notificationservice trashed
+const NotifyBus: any = { notify: (e: any) => {}, getInstance: () => NotifyBus };
+// LEGACY V1 STUB - sagahealthprojection legacy
+const SagaHealthProjection: any = { project: (e: any) => e, getInstance: () => SagaHealthProjection };
 
 /**
  * 🚀 ANALYTICS INGESTION PIPELINE (KIM - TEAM 3)
