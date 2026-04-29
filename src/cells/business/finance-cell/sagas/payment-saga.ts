@@ -42,7 +42,7 @@ export class PaymentSaga {
           correlation_id: event.trace.correlation_id
         });
 
-        console.log(`[SAGA-PAYMENT] Khởi tạo giao dịch ${payment.getState().id} cho Hóa đơn ${event.payload.invoice_id}`);
+        console.log(`[SAGA-PAYMENT] khoi tao giao dich ${payment.getState().id} cho hoa don ${event.payload.invoice_id}`);
       },
       `PaymentInitiation[Order:${event.payload.order_id}]`,
       async (err) => await DeadLetterHandler.escalate(event, err)

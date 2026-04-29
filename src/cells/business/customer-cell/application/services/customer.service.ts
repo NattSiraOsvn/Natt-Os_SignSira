@@ -38,12 +38,12 @@ export class CustomerService {
   register(cmd: RegisterCustomerCommand): { customer: Customer; errors: string[] } {
     const errors: string[] = [];
 
-    if (!cmd.fullName?.trim()) errors.push('Họ tên không được để trống');
-    if (!cmd.phone?.trim()) errors.push('Số điện thoại không được để trống');
+    if (!cmd.fullName?.trim()) errors.push('ho ten khong duoc de trong');
+    if (!cmd.phone?.trim()) errors.push('so dien thoai khong duoc de trong');
 
     // Kiểm tra trùng SĐT
     if (cmd.phone && this.findByPhone(cmd.phone))
-      errors.push(`SĐT ${cmd.phone} đã tồn tại trong hệ thống`);
+      errors.push(`sdt ${cmd.phone} da ton tai trong he thong`);
 
     const props: CustomerProps = {
       id: `CU-${Date.now()}`,

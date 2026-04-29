@@ -35,7 +35,7 @@ EventBus.on('REPORT_GENERATED', async (event: unknown) => {
     return;
   }
 
-  console.log(`[period-close-cell] Nhận REPORT_GENERATED period=${period}. Bắt đầu đóng sổ...`);
+  console.log(`[period-close-cell] nhan REPORT_GENERATED period=${period}. bat dau dong so...`);
 
   // Tạo ClosingSession — chưa có approval → sẽ block tại Gatekeeper gate
   // Anh Natt (hoặc CFO) phải approve trước khi TK4211/4212 được ghi
@@ -61,16 +61,16 @@ EventBus.on('REPORT_GENERATED', async (event: unknown) => {
       source: 'period-close-cell',
       ts: Date.now(),
     });
-    console.log(`[period-close-cell] Đóng sổ period=${period} thành công — ${result.journalEntries.length} bút toán`);
+    console.log(`[period-close-cell] dong so period=${period} thanh cong — ${result.journalEntries.length} but toan`);
   } catch (err: any) {
     if (err.message?.includes('BLOCK_AWAITING_APPROVAL')) {
       EventBus.emit('PERIOD_CLOSE_AWAITING_APPROVAL', {
         period,
-        reason: 'TK4211/4212 cần Gatekeeper duyệt',
+        reason: 'TK4211/4212 can Gatekeeper duyet',
         source: 'period-close-cell',
         ts: Date.now(),
       });
-      console.log(`[period-close-cell] period=${period} chờ Gatekeeper duyệt TK4211/4212`);
+      console.log(`[period-close-cell] period=${period} cho Gatekeeper duyet TK4211/4212`);
     } else {
       EventBus.emit('PERIOD_CLOSE_failED', {
         period,
@@ -78,7 +78,7 @@ EventBus.on('REPORT_GENERATED', async (event: unknown) => {
         source: 'period-close-cell',
         ts: Date.now(),
       });
-      console.error(`[period-close-cell] Đóng sổ period=${period} thất bại:`, err.message);
+      console.error(`[period-close-cell] dong so period=${period} that bai:`, err.message);
     }
   }
 });

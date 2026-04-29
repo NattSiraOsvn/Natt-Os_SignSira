@@ -31,8 +31,8 @@ export const ACCOUNTS = {
 
 /** 4 Sổ kế toán */
 export const LEDGER_BOOKS = {
-  BOOK_1: { name: 'Tiền & Công nợ', accounts: ['111', '112', '131', '331', '334', '338', '341', '141'] },
-  BOOK_2: { name: 'Nguyên liệu & Tồn kho', accounts: ['152', '153', '154', '155', '156', '632'] },
-  BOOK_3: { name: 'TSCĐ & Khấu hao', accounts: ['211', '213', '214', '241', '242'] },
-  BOOK_4: { name: 'Doanh thu & Chi phí', accounts: ['511', '641', '642', '911'] },
+  BOOK_1: { name: 'tien & cong no', accounts: ['111', '112', '131', '331', '334', '338', '341', '141'] },
+  BOOK_2: { name: 'nguyen lieu & ton kho', accounts: ['152', '153', '154', '155', '156', '632'] },
+  BOOK_3: { name: 'tscd & khau hao', accounts: ['211', '213', '214', '241', '242'] },
+  BOOK_4: { name: 'Doanh thu & Chi phi', accounts: ['511', '641', '642', '911'] },
 } as const;

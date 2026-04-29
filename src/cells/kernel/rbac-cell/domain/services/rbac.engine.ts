@@ -35,10 +35,10 @@ export class RBACEngine {
   check(request: AccessRequest): AccessResult {
     const { employeeId, roleGroup, resource, action, timestamp } = request;
     const perms = PERMISSIONS[roleGroup];
-    if (!perms) return { granted: false, reason: `RoleGroup ${roleGroup} không tồn tại`, auditRequired: true };
+    if (!perms) return { granted: false, reason: `RoleGroup ${roleGroup} khong ton tai`, auditRequired: true };
 
     const resourceKey = Object.keys(perms).find(k => k === '*' || resource.startsWith(k));
-    if (!resourceKey) return { granted: false, reason: `${roleGroup} không có quyền trên ${resource}`, auditRequired: true };
+    if (!resourceKey) return { granted: false, reason: `${roleGroup} khong co quyen tren ${resource}`, auditRequired: true };
 
     const allowed   = perms[resourceKey];
     const granted   = allowed.includes(action) || allowed.includes('admin');
@@ -52,7 +52,7 @@ export class RBACEngine {
       });
     }
 
-    return { granted, reason: granted ? undefined : `${roleGroup} không có quyền ${action} trên ${resource}`, auditRequired };
+    return { granted, reason: granted ? undefined : `${roleGroup} khong co quyen ${action} tren ${resource}`, auditRequired };
   }
 }
 

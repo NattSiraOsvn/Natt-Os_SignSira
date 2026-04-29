@@ -153,11 +153,11 @@ export class BuybackTransaction {
    * Không thể thay đổi sau khi đã lock
    */
   lockGDBPolicy(policy: GDBLockedPolicy): void {
-    if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] lockGDBPolicy chỉ dùng cho mode EXCHANGE');
-    if (this._gdbLockedPolicy) throw new Error('[BUYBACK] GDB policy đã được lock, không thể thay đổi');
+    if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] lockGDBPolicy chi dung cho mode EXCHANGE');
+    if (this._gdbLockedPolicy) throw new Error('[BUYBACK] GDB policy da duoc lock, khong the thay đau');
 
     const err = validateGDBLockedPolicy(policy);
-    if (err) throw new Error(`[BUYBACK] GDB policy không hợp lệ: ${err}`);
+    if (err) throw new Error(`[BUYBACK] GDB policy khong hop le: ${err}`);
 
     this._gdbLockedPolicy = policy;
   }
@@ -166,11 +166,11 @@ export class BuybackTransaction {
    * Áp dụng override — bắt buộc có approvedBy + reason
    */
   applyOverride(override: ExchangeOverride): void {
-    if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] applyOverride chỉ dùng cho mode EXCHANGE');
-    if (!this._gdbLockedPolicy) throw new Error('[BUYBACK] Phải lock GDB policy trước khi override');
+    if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] applyOverride chi dung cho mode EXCHANGE');
+    if (!this._gdbLockedPolicy) throw new Error('[BUYBACK] phai lock GDB policy truoc khi override');
 
     const err = validateExchangeOverride(override);
-    if (err) throw new Error(`[BUYBACK] Override không hợp lệ: ${err}`);
+    if (err) throw new Error(`[BUYBACK] Override khong hop le: ${err}`);
 
     this._exchangeOverride = override;
   }
@@ -184,8 +184,8 @@ export class BuybackTransaction {
     jewelryCaseValueOnGDB: number,
     mainStoneValueOnGDB: number | null,
   ): ExchangeValuation {
-    if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] calculateExchangeValue chỉ dùng cho mode EXCHANGE');
-    if (!this._gdbLockedPolicy) throw new Error('[BUYBACK] Chưa lock GDB policy');
+    if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] calculateExchangeValue chi dung cho mode EXCHANGE');
+    if (!this._gdbLockedPolicy) throw new Error('[BUYBACK] chua lock GDB policy');
 
     this._exchangeActionType = actionType;
     this._exchangeValuation = calculateExchangeValuation(
@@ -203,7 +203,7 @@ export class BuybackTransaction {
 
   transitionTo(newStatus: BuybackStatus): void {
     if (!VALID_BUYBACK_TRANSITIONS[this._status]?.includes(newStatus)) {
-      throw new Error(`[BUYBACK] Transition không hợp lệ: ${this._status} → ${newStatus}`);
+      throw new Error(`[BUYBACK] Transition khong hop le: ${this._status} → ${newStatus}`);
     }
     this._status = newStatus;
     if (newStatus === 'COMPLETED') {

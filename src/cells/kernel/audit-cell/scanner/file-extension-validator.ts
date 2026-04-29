@@ -61,7 +61,7 @@ const SKIP_FILES = new Set([
 
 /**
  * Extract ALL possible extensions from a filename.
- * "bangkhương1.0.0.kris" → [".kris", ".0.kris", ...]
+ * "bangkhuong1.0.0.kris" → [".kris", ".0.kris", ...]
  * "audit-cell.cell.anc" → [".anc", ".cell.anc"]
  * "HIEN-PHAP-natt-os-v5.0.anc" → [".anc", ".0.anc"]
  */
@@ -257,7 +257,7 @@ export class FileExtensionValidator implements IFileExtensionValidator {
     const statsByDirection = new Map<Direction, { direction: Direction; total: number; valid: number; invalid: number }>();
 
     // Init direction stats
-    for (const dir of ['ĐÔNG', 'TÂY', 'NAM', 'BẮC'] as Direction[]) {
+    for (const dir of ['dong', 'tay', 'NAM', 'bac'] as Direction[]) {
       statsByDirection.set(dir, { direction: dir, total: 0, valid: 0, invalid: 0 });
     }
 

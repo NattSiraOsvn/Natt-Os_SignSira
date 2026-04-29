@@ -48,12 +48,12 @@ export class ProductWarrantyEngine {
     let isCritical = false;
 
     if (!withinPeriod) {
-      action = 'Hết bảo hành — báo giá sửa chữa';
+      action = 'het bao hanh — bao gia sua chua';
     } else if (issueType === 'stone') {
       // Stone loss = CRITICAL — có thể liên quan đến gian lận
       isCritical = true;
       status     = 'repair';
-      action     = 'CRITICAL: Kim cương có vấn đề — kiểm tra đích danh ngay';
+      action     = 'CRITICAL: Kim cuong co van de — kiem tra dich danh ngay';
       EventBus.emit('cell.metric', {
         cell: 'prdwarranty-cell', metric: 'warranty.anomaly',
         value: 1, confidence: 0.95,
@@ -61,10 +61,10 @@ export class ProductWarrantyEngine {
       });
     } else if (issueType === 'metal') {
       status = 'repair';
-      action = 'Gửi xưởng sửa chữa — hoàn trả trong 7 ngày';
+      action = 'gui xuong sua chua — hoan tra trong 7 ngay';
     } else {
       status = 'repair';
-      action = 'Kiểm tra và sửa chữa';
+      action = 'kiem tra va sua chua';
     }
 
     EventBus.emit('cell.metric', {

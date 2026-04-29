@@ -3,8 +3,8 @@ export interface ProcessExchangeResult{success:boolean;exchangeValue:number;newP
 export function processExchange(input:ProcessExchangeInput):ProcessExchangeResult{
   const P:Record<string,number>={"999":1.0,"916":0.916,"750":0.75,"610":0.61};
   const pf=P[input.purity];
-  if(!pf)return{success:false,exchangeValue:0,newProductPrice:0,topUpAmount:0,error:"Tuổi vàng không hợp lệ"};
-  if(input.conditionFactor<0.7||input.conditionFactor>1.0)return{success:false,exchangeValue:0,newProductPrice:0,topUpAmount:0,error:"Hệ số tình trạng 0.7–1.0"};
+  if(!pf)return{success:false,exchangeValue:0,newProductPrice:0,topUpAmount:0,error:"tuoi vang khong hop le"};
+  if(input.conditionFactor<0.7||input.conditionFactor>1.0)return{success:false,exchangeValue:0,newProductPrice:0,topUpAmount:0,error:"he so tinh trang 0.7–1.0"};
   const exchangeValue=Math.round(input.weight*pf*input.marketPricePerGram*input.conditionFactor);
   return{success:true,exchangeValue,newProductPrice:input.newProductPrice,topUpAmount:input.newProductPrice-exchangeValue};
 }

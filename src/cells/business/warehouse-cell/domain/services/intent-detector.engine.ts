@@ -3,9 +3,9 @@
  * WAREHOUSE-CELL — INTENT DETECTOR ENGINE
  * ============================================================================
  * SCAR FS-018: TEMPLATE_TYRANNY
- * "Không được im lặng từ chối dữ liệu. Hệ thống phải luôn ghi nhận
- *  mọi đầu vào, gán trạng thái minh bạch (LIVE/PROCESSING/PENDING),
- *  và cung cấp công cụ để giải quyết tắc nghẽn."
+ * "khong duoc im lang tu chau du lieu. he thong phai luon ghi nhan
+ *  mau dau vao, gan trang thai minh bach (LIVE/PROCESSING/PENDING),
+ *  va cung cap cong cu de giai quyet tac nghen."
  *
  * Kiến trúc: KHÔNG gọi cell khác trực tiếp.
  *            Emit event → cell liên quan lắng nghe.
@@ -44,11 +44,11 @@ export interface IntentResult {
 // ─── KEYWORD DICTIONARIES ─────────────────────────────────────────────────────
 
 const INTENT_KEYWORDS: Record<WarehouseIntent, string[]> = {
-  NHAP_KHO:   ['nhập', 'nhap', 'mua', 'purchase', 'received', 'nk', 'nhập kho', 'vào kho', 'vao kho', 'receipt'],
-  XUAT_KHO:   ['xuất', 'xuat', 'bán', 'ban', 'sale', 'delivery', 'xk', 'xuất kho', 'ra kho', 'giao hàng', 'ship'],
-  KIEM_KE:    ['kiểm', 'kiem', 'kê', 'ke', 'tồn', 'ton', 'inventory', 'stock', 'đếm', 'dem', 'kiểm kê'],
-  CHUYEN_KHO: ['chuyển', 'chuyen', 'transfer', 'điều chuyển', 'dieu chuyen', 'internal'],
-  HOAN_TRA:   ['hoàn', 'hoan', 'trả', 'tra', 'return', 'refund', 'hủy', 'huy', 'cancel'],
+  NHAP_KHO:   ['nhap', 'nhap', 'mua', 'purchase', 'received', 'nk', 'nhap kho', 'vao kho', 'vao kho', 'receipt'],
+  XUAT_KHO:   ['xuat', 'xuat', 'ban', 'ban', 'sale', 'delivery', 'xk', 'xuat kho', 'ra kho', 'giao hang', 'ship'],
+  KIEM_KE:    ['kiem', 'kiem', 'ke', 'ke', 'ton', 'ton', 'inventory', 'stock', 'dem', 'dem', 'kiem ke'],
+  CHUYEN_KHO: ['chuyen', 'chuyen', 'transfer', 'dieu chuyen', 'dieu chuyen', 'internal'],
+  HOAN_TRA:   ['hoan', 'hoan', 'tra', 'tra', 'return', 'refund', 'huy', 'huy', 'cancel'],
   UNKNOWN:    [],
 };
 
@@ -68,7 +68,7 @@ const PATTERNS = {
 
 /**
  * Tính độ tương đồng chuỗi (Dice's Coefficient)
- * Không dùng Levenshtein vì chậm với dataset lớn
+ * khong dung Levenshtein vi cham voi dataset lon
  */
 function diceSimilarity(a: string, b: string): number {
   if (a === b) return 1;
@@ -94,7 +94,7 @@ function diceSimilarity(a: string, b: string): number {
 }
 
 /**
- * Normalize chuỗi: bỏ dấu, lowercase, trim
+ * Normalize chuoi: bo dau, lowercase, trim
  */
 function normalize(s: unknown): string {
   return String(s ?? '')
@@ -105,7 +105,7 @@ function normalize(s: unknown): string {
 }
 
 /**
- * Score 1 field dựa trên regex pattern
+ * Score 1 field dua tren regex pattern
  */
 function scoreField(
   key: string,
@@ -115,65 +115,65 @@ function scoreField(
   const strVal = String(value ?? '').trim();
   const normKey = normalize(key);
 
-  // Trường rỗng → 0
+  // truong rong → 0
   if (!strVal || strVal === '' || strVal === 'undefined' || strVal === 'null') {
     return { field: key, value, score: 0, reason: 'empty' };
   }
 
-  // Kiểm tra theo key name + value pattern
-  if (/mã|ma|sku|code|id/.test(normKey)) {
+  // kiem tra theo key name + value pattern
+  if (/ma|ma|sku|code|id/.test(normKey)) {
     if (PATTERNS.MA_HANG.test(strVal)) return { field: key, value, score: 1.0, reason: 'mã hàng TL khớp' };
     if (PATTERNS.MA_DON.test(strVal))  return { field: key, value, score: 1.0, reason: 'mã đơn CT/KD/KB/VC khớp' };
     if (/^[A-Z]{1,4}\d{2,8}$/i.test(strVal)) return { field: key, value, score: 0.75, reason: 'có dạng mã hàng' };
-    notes.push(`Trường "${key}" có vẻ là mã nhưng không khớp pattern TL: "${strVal}"`);
+    notes.push(`truong "${key}" co ve la ma nhung khong khop pattern TL: "${strVal}"`);
     return { field: key, value, score: 0.4, reason: 'dạng mã không rõ' };
   }
 
-  if (/ngày|ngay|date|time|tgian/.test(normKey)) {
+  if (/ngay|ngay|date|time|tgian/.test(normKey)) {
     if (PATTERNS.NGAY.test(strVal)) return { field: key, value, score: 1.0, reason: 'ngày hợp lệ' };
     if (/\d{4}-\d{2}-\d{2}/.test(strVal)) return { field: key, value, score: 1.0, reason: 'ISO date' };
-    notes.push(`Trường "${key}" có vẻ là ngày nhưng format lạ: "${strVal}"`);
+    notes.push(`truong "${key}" co ve la ngay nhung format la: "${strVal}"`);
     return { field: key, value, score: 0.3, reason: 'ngày không parse được' };
   }
 
-  if (/số lượng|so luong|qty|quantity|sl/.test(normKey)) {
+  if (/so luong|so luong|qty|quantity|sl/.test(normKey)) {
     const n = parseFloat(strVal.replace(/[,\.]/g, '.').replace(/[^\d.]/g, ''));
     if (!isNaN(n) && n >= 0) return { field: key, value, score: 1.0, reason: 'số lượng hợp lệ' };
     return { field: key, value, score: 0.2, reason: 'không parse được số lượng' };
   }
 
-  if (/trọng|trong|luong|lượng|gram|kg|gold|vàng|vang/.test(normKey)) {
+  if (/trong|trong|luong|luong|gram|kg|gold|vang|vang/.test(normKey)) {
     if (PATTERNS.TRONG_LUONG.test(strVal)) return { field: key, value, score: 1.0, reason: 'trọng lượng hợp lệ' };
     const n = parseFloat(strVal.replace(/,/g, '.'));
     if (!isNaN(n) && n > 0) return { field: key, value, score: 0.8, reason: 'số dương, có thể là trọng lượng' };
     return { field: key, value, score: 0.2, reason: 'không parse được trọng lượng' };
   }
 
-  if (/giá|gia|price|amount|tiền|tien|tổng|tong/.test(normKey)) {
+  if (/gia|gia|price|amount|tien|tien|tong|tong/.test(normKey)) {
     const n = parseFloat(strVal.replace(/[,\.]/g, '').replace(/[^\d]/g, ''));
     if (!isNaN(n) && n > 0) return { field: key, value, score: 0.9, reason: 'số tiền dương' };
     return { field: key, value, score: 0.2, reason: 'không parse được tiền' };
   }
 
-  if (/tuổi|tuoi|purity|karat|k/.test(normKey)) {
+  if (/tuoi|tuoi|purity|karat|k/.test(normKey)) {
     if (PATTERNS.TUOI_VANG.test(strVal)) return { field: key, value, score: 1.0, reason: 'tuổi vàng nhận dạng được' };
     return { field: key, value, score: 0.5, reason: 'không xác định tuổi vàng' };
   }
 
-  if (/tên|ten|name|mô tả|mo ta|description|sp|sản phẩm|san pham/.test(normKey)) {
+  if (/ten|ten|name|mo ta|mo ta|description|sp|san pham|san pham/.test(normKey)) {
     if (strVal.length >= 3) return { field: key, value, score: 0.8, reason: 'tên/mô tả có nội dung' };
     return { field: key, value, score: 0.3, reason: 'tên quá ngắn' };
   }
 
-  // Các trường khác — cho điểm trung bình nếu không rỗng
+  // cac truong khac — cho diem trung binh neu khong rong
   return { field: key, value, score: 0.6, reason: 'trường có giá trị, chưa xác định loại' };
 }
 
 // ─── INTENT DETECTION ─────────────────────────────────────────────────────────
 
 /**
- * Phát hiện intent từ toàn bộ row data
- * Quét header + value để đoán loại nghiệp vụ
+ * phat hien intent tu toan bo row data
+ * quet header + value de doan loai nghiep vu
  */
 function detectIntent(row: Record<string, unknown>): WarehouseIntent {
   const allText = Object.entries(row)
@@ -201,22 +201,22 @@ function detectIntent(row: Record<string, unknown>): WarehouseIntent {
 // ─── MAIN EXPORT ──────────────────────────────────────────────────────────────
 
 /**
- * Phân tích 1 row dữ liệu thô → trả về IntentResult
- * KHÔNG ghi DB, KHÔNG gọi cell khác.
- * Caller (handler) sẽ emit event dựa trên kết quả.
+ * phan tich 1 row du lieu tho → tra ve IntentResult
+ * khong ghi DB, khong gau cell khac.
+ * Caller (handler) se emit event dua tren ket qua.
  */
 export function analyzeRow(row: Record<string, unknown>): IntentResult {
   const notes: string[] = [];
   const fieldScores: FieldScore[] = [];
 
-  // Score từng field
+  // Score tung field
   for (const [key, value] of Object.entries(row)) {
     if (['sourceFile', 'sourceSheet', 'syncTime', '_headerRow'].includes(key)) continue;
     fieldScores.push(scoreField(key, value, notes));
   }
 
-  // Tính overall score: weighted average
-  // Fields có score cao hơn đóng góp nhiều hơn
+  // tinh overall score: weighted average
+  // Fields co score cao hon dong gop nhieu hon
   const meaningful = fieldScores.filter(f => f.score > 0);
   const overallScore = meaningful.length === 0
     ? 0
@@ -224,17 +224,17 @@ export function analyzeRow(row: Record<string, unknown>): IntentResult {
 
   const intent = detectIntent(row);
 
-  // Phân loại confidence
+  // phan loai confidence
   let confidence: IngestConfidence;
   if (overallScore >= 0.85 && intent !== 'UNKNOWN') {
     confidence = 'LIVE';
   } else if (overallScore >= 0.50) {
     confidence = 'PROCESSING';
-    notes.push(`Score ${(overallScore * 100).toFixed(0)}% — cần xác nhận thêm`);
+    notes.push(`Score ${(overallScore * 100).toFixed(0)}% — can xac nhan them`);
     if (intent === 'UNKNOWN') notes.push('Không xác định được loại nghiệp vụ — kiểm tra lại tiêu đề cột');
   } else {
     confidence = 'PENDING';
-    notes.push(`Score thấp ${(overallScore * 100).toFixed(0)}% — dữ liệu không đủ rõ để xử lý tự động`);
+    notes.push(`Score thap ${(overallScore * 100).toFixed(0)}% — du lieu khong du ro de xu ly tu dong`);
   }
 
   return {
@@ -249,8 +249,8 @@ export function analyzeRow(row: Record<string, unknown>): IntentResult {
 }
 
 /**
- * Phân tích batch nhiều rows
- * Trả về { live, processing, pending } để handler emit events
+ * phan tich batch nhieu rows
+ * tra ve { live, processing, pending } de handler emit events
  */
 export function analyzeBatch(rows: Record<string, unknown>[]): {
   live:       IntentResult[];

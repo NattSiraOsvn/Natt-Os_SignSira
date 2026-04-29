@@ -37,9 +37,9 @@ const DISCOUNT_RULES: Record<CustomerType, number> = {
 };
 
 const AMOUNT_TIERS = [
-  { min: 50_000_000, rate: 0.03, label: 'Đơn > 50tr' },
-  { min: 20_000_000, rate: 0.02, label: 'Đơn > 20tr' },
-  { min: 10_000_000, rate: 0.01, label: 'Đơn > 10tr' },
+  { min: 50_000_000, rate: 0.03, label: 'don > 50tr' },
+  { min: 20_000_000, rate: 0.02, label: 'don > 20tr' },
+  { min: 10_000_000, rate: 0.01, label: 'don > 10tr' },
 ];
 
 const MIN_MARGIN = 0.05;
@@ -65,7 +65,7 @@ export class PromotionEngine {
         discount    = Math.max(0, amount - minPrice);
         finalAmount = amount - discount;
         marginSafe  = false;
-        warning     = `Discount bị giới hạn — margin tối thiểu ${MIN_MARGIN * 100}%`;
+        warning     = `Discount bi gioi han — margin tau thieu ${MIN_MARGIN * 100}%`;
         EventBus.emit('cell.metric', {
           cell: 'promotion-cell', metric: 'promotion.overuse',
           value: 1, confidence: 0.9, orderId,

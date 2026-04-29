@@ -123,8 +123,8 @@ export class BuybackService {
 
   applyOverride(txId: string, override: ExchangeOverride): { success: boolean; error?: string } {
     const tx = this.getById(txId);
-    if (!tx) return { success: false, error: `Không tìm thấy transaction ${txId}` };
-    if (tx.toJSON().mode !== 'EXCHANGE') return { success: false, error: 'Override chỉ áp dụng cho EXCHANGE' };
+    if (!tx) return { success: false, error: `khong tim thay transaction ${txId}` };
+    if (tx.toJSON().mode !== 'EXCHANGE') return { success: false, error: 'Override chi ap dung cho EXCHANGE' };
 
     try {
       tx.applyOverride(override);
@@ -147,7 +147,7 @@ export class BuybackService {
 
   transition(txId: string, newStatus: BuybackStatus): { success: boolean; error?: string } {
     const tx = this.getById(txId);
-    if (!tx) return { success: false, error: `Không tìm thấy transaction ${txId}` };
+    if (!tx) return { success: false, error: `khong tim thay transaction ${txId}` };
     try {
       tx.transitionTo(newStatus);
       return { success: true };

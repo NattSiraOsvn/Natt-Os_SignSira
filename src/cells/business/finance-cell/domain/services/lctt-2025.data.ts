@@ -33,12 +33,12 @@ export interface LcttLine { ma:string; ten:string; soTien:number; note?:string; 
 
 export const LCTT_2025: LcttLine[] = [
   { ma:"01", ten:"Tien thu ban hang DV", soTien:332179112395, note:"Gross credit VIETIN — can tach coc KH TK3387" },
-  { ma:"02", ten:"Tien chi nguoi cung cap", soTien:-334907437210, note:"Gross debit VIETIN — can tach mua vang/TSCĐ" },
+  { ma:"02", ten:"Tien chi nguoi cung cap", soTien:-334907437210, note:"Gross debit VIETIN — can tach mua vang/tscd" },
   { ma:"03", ten:"Tien chi luong NLD", soTien:0, note:"PENDING — Luong-BHXH sheet" },
   { ma:"04", ten:"Tien chi lai vay", soTien:-370000000, note:"TK635 CDPS 2025" },
   { ma:"05", ten:"Tien chi nop thue TNDN", soTien:0, note:"PENDING" },
   { ma:"20", ten:"LCTT thuan HD kinh doanh", soTien:-3098324815, note:"Tam tinh" },
-  { ma:"21", ten:"Tien chi mua TSCĐ", soTien:0, note:"PENDING TK211" },
+  { ma:"21", ten:"Tien chi mua tscd", soTien:0, note:"PENDING TK211" },
   { ma:"30", ten:"LCTT thuan HD dau tu", soTien:0 },
   { ma:"31", ten:"Tien thu di vay", soTien:0, note:"PENDING" },
   { ma:"40", ten:"LCTT thuan HD tai chinh", soTien:0 },

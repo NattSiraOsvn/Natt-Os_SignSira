@@ -33,31 +33,31 @@ const PURITY_RULES: PurityRule[] = [
   {
     pattern: /import.*from.*['"]@\/services\/[^'"]+['"]/,
     rule: 'DIRECT_SERVICE_IMPORT_PROHIBITED',
-    article: 'Điều 9 — Cấm kết nối thô',
+    article: 'dieu 9 — cam ket nau tho',
     severity: 'CRITICAL',
   },
   {
     pattern: /export.*from.*services/,
     rule: 'SERVICE_REEXPORT_FORBIDDEN',
-    article: 'Điều 9 — Cấm kết nối thô',
+    article: 'dieu 9 — cam ket nau tho',
     severity: 'CRITICAL',
   },
   {
     pattern: /WarehouseService|SalesService|ProductionService/,
     rule: 'LEGACY_DNA_DETECTED',
-    article: 'Điều 40 — Module không đúng tầng',
+    article: 'dieu 40 — Module khong dung tang',
     severity: 'HIGH',
   },
   {
     pattern: /proxy.*redirect|redirect.*proxy/i,
     rule: 'PROXY_PATTERN_DETECTED',
-    article: 'Điều 14 — AI không tự tạo workaround',
+    article: 'dieu 14 — AI khong tu tao workaround',
     severity: 'CRITICAL',
   },
   {
     pattern: /wrapper.*function|function.*wrapper/i,
     rule: 'WRAPPER_PATTERN_FORBIDDEN',
-    article: 'Điều 14 — AI không tự tạo workaround',
+    article: 'dieu 14 — AI khong tu tao workaround',
     severity: 'HIGH',
   },
   {
@@ -94,7 +94,7 @@ export class ConstitutionalEnforcerEngine {
     if (this.recentChain.length > 50) this.recentChain.shift();
   }
 
-  // --- Event-chain evaluation (Điều 9: Guard bypass detection) ---
+  // --- Event-chain evaluation (dieu 9: Guard bypass detection) ---
   evaluate(): ViolationDetected | null {
     const bypassPattern = this.recentChain.filter(t =>
       t.includes('bypass') ||
@@ -114,7 +114,7 @@ export class ConstitutionalEnforcerEngine {
     return null;
   }
 
-  // --- File purity scan (từ CellPurityEnforcer V1) ---
+  // --- File purity scan (tu CellPurityEnforcer V1) ---
   static scanFile(filePath: string, content: string): PurityScanResult {
     const violations: PurityViolation[] = [];
 

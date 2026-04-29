@@ -22,7 +22,7 @@ export interface MarginAlert {
 
 /** Kiểm tra margin — cảnh báo >87% */
 export function checkMargin(revenue: number, cogs: number): MarginAlert {
-  if (revenue <= 0) return { ratio: 0, isAlert: false, level: 'SAFE', explanation: 'Chưa có doanh thu' };
+  if (revenue <= 0) return { ratio: 0, isAlert: false, level: 'SAFE', explanation: 'chua co doanh thu' };
   
   const ratio = cogs / revenue;
   const level = ratio > SAFE_MARGIN_THRESHOLD ? 'DANGER' : ratio > 0.80 ? 'warnING' : 'SAFE';
@@ -32,8 +32,8 @@ export function checkMargin(revenue: number, cogs: number): MarginAlert {
     isAlert: ratio > SAFE_MARGIN_THRESHOLD,
     level,
     explanation: level === 'DANGER'
-      ? `Giá vốn/Doanh thu = ${(ratio * 100).toFixed(1)}% > 87% — CẦN KIỂM TRA NGAY`
-      : `Giá vốn/Doanh thu = ${(ratio * 100).toFixed(1)}% — ${level}`,
+      ? `gia von/Doanh thu = ${(ratio * 100).toFixed(1)}% > 87% — can kiem TRA NGAY`
+      : `gia von/Doanh thu = ${(ratio * 100).toFixed(1)}% — ${level}`,
   };
 }
 

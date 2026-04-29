@@ -15,7 +15,7 @@ import { calculateTNDN, TAM_LUXURY_TAX_2025 } from './domain/services/tax.wiring
 EventBus.on('PERIOD_CLOSE_COMPLETED', (event: unknown) => {
   const ev = event as { payload?: { period?: string } };
   const period = ev?.payload?.period ?? 'FY2025';
-  console.log(`[tax-cell] Nhận PERIOD_CLOSE_COMPLETED period=${period}. Tính thuế TNDN...`);
+  console.log(`[tax-cell] nhan PERIOD_CLOSE_COMPLETED period=${period}. tinh thue TNDN...`);
 
   const result = calculateTNDN({
     period,
@@ -25,7 +25,7 @@ EventBus.on('PERIOD_CLOSE_COMPLETED', (event: unknown) => {
     quyetDinhTruyThu: TAM_LUXURY_TAX_2025.truyThuQd296,
   });
 
-  console.log(`[tax-cell] TNDN period=${period} — thuế phát sinh=${result.thuePhatSinh.toLocaleString()} truy thu=${result.truyThu.toLocaleString()} tổng=${result.tongThue.toLocaleString()}`);
+  console.log(`[tax-cell] TNDN period=${period} — thue phat sinh=${result.thuePhatSinh.toLocaleString()} truy thu=${result.truyThu.toLocaleString()} tong=${result.tongThue.toLocaleString()}`);
 
   EventBus.emit('TAX_FILED', {
     period,

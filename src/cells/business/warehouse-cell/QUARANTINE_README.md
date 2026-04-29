@@ -32,7 +32,7 @@ import warehouseCell from './warehouse-cell'; // ❌ QUARANTINE VIOLATION
 ```
 
 ### AUDIT TRAIL
-- Quarantined by: BỐI BỐI (Constitutional Guardian)
+- Quarantined by: bau bau (Constitutional Guardian)
 - Approved by: ANH NAT (Gatekeeper)
 - Date: Wed Feb 11 02:12:42 +07 2026
 - Script: natt-os-pre-wave3.sh v1.1.0

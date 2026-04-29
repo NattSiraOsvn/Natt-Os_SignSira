@@ -42,14 +42,14 @@ export class WarehouseEngine {
       case 'OUT':
         if (qty > current) {
           success = false;
-          reason  = `Xuất ${qty} vượt tồn ${current} (${itemCode})`;
+          reason  = `xuat ${qty} vuot ton ${current} (${itemCode})`;
           EventBus.emit('cell.metric', { cell: 'warehouse-cell', metric: 'warehouse.out_exceed', value: qty - current, confidence: 0.95, itemCode });
         } else {
           newQty = current - qty;
         }
         break;
       case 'TRANSFER':
-        if (qty > current) { success = false; reason = `Chuyển kho vượt tồn`; }
+        if (qty > current) { success = false; reason = `chuyen kho vuot ton`; }
         else { newQty = current - qty; }
         break;
       case 'ADJUST':

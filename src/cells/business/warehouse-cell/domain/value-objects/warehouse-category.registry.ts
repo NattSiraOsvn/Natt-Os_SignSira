@@ -59,8 +59,8 @@ export interface RegisterCategoryCommand {
 export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   {
     code: 'CONG_CU_CO_DINH',
-    name: 'Công cụ cố định',
-    description: 'Máy strong, máy treo, kính hiển vi, thước đo — tài sản giao theo người',
+    name: 'cong cu co dinh',
+    description: 'may strong, may treo, kinh hien vi, thuoc do — tai san giao theo ngui',
     defaultUnit: 'CAI',
     defaultLocation: 'KHO_VAT_TU',
     requiresInsurance: false,
@@ -70,8 +70,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'CONG_CU_TIEU_HAO',
-    name: 'Công cụ tiêu hao',
-    description: 'Mũi khoan, đĩa xoàn, kềm, dũa Thụy Sĩ — mòn theo sử dụng',
+    name: 'cong cu tieu hao',
+    description: 'mui khoan, dia xoan, kem, dua thuy si — mon theo su dung',
     defaultUnit: 'MUI',
     defaultLocation: 'KHO_MUI',
     requiresInsurance: false,
@@ -81,8 +81,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'VAT_TU_SAN_XUAT',
-    name: 'Vật tư sản xuất',
-    description: 'Thạch cao, thuốc hàn, láp đúc, mẻ đất — dùng trong gia công',
+    name: 'vat tu san xuat',
+    description: 'thach cao, thuoc han, lap duc, me dat — dung trong gia cong',
     defaultUnit: 'CAI',
     defaultLocation: 'KHO_VAT_TU',
     requiresInsurance: false,
@@ -92,8 +92,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'HOA_CHAT',
-    name: 'Hóa chất',
-    description: 'Axit đen, nước cất, bột run, metalor RH, resin, bột siêu âm',
+    name: 'hoa chat',
+    description: 'Axit den, nuoc cat, bot run, metalor RH, resin, bot sieu am',
     defaultUnit: 'LIT',
     defaultLocation: 'KHO_HOA_CHAT',
     requiresInsurance: false,
@@ -103,8 +103,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'HOP_DONG_GOI',
-    name: 'Hộp đóng gói sản phẩm',
-    description: 'Hộp nhẫn mới/cũ, hộp vòng, hộp lắc, hộp mặt dây, hộp bộ Tâm',
+    name: 'hop dong gau san pham',
+    description: 'hop nhan moi/cu, hop vong, hop lac, hop mat day, hop bo tam',
     defaultUnit: 'CAI',
     defaultLocation: 'KHO_HOP',
     requiresInsurance: false,
@@ -114,8 +114,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'BAO_BI_DONG_GOI',
-    name: 'Bao bì đóng gói',
-    description: 'Túi zip các cỡ, túi giấy, bìa da cá sấu, ribbon, xâu nịt nhựa',
+    name: 'Bao bi dong gau',
+    description: 'tui zip cac co, tui giay, bia da ca sau, ribbon, xau nit nhua',
     defaultUnit: 'CAI',
     defaultLocation: 'KHO_HOP',
     requiresInsurance: false,
@@ -125,8 +125,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'VAN_PHONG_PHAM',
-    name: 'Văn phòng phẩm & thiết bị',
-    description: 'Thẻ nhớ, chuột máy tính, bìa lò xo, áo thun đồng phục',
+    name: 'ven phong pham & thiet bi',
+    description: 'the nho, chuot may tinh, bia lo xo, ao thun dong phuc',
     defaultUnit: 'CAI',
     defaultLocation: 'KHO_VAT_TU',
     requiresInsurance: false,
@@ -135,8 +135,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'NGUYEN_LIEU_QUY',
-    name: 'Nguyên liệu quý',
-    description: 'Vàng thỏi, vàng nhẫn SBJ, kim tấm, viên chủ, đá phụ rời',
+    name: 'nguyen lieu quy',
+    description: 'vang thau, vang nhan SBJ, kim tam, vien chu, da phu roi',
     defaultUnit: 'GR',
     defaultLocation: 'KHO_NGUYEN_LIEU',
     requiresInsurance: true,   // ← BẮT BUỘC bảo hiểm
@@ -146,8 +146,8 @@ export const DEFAULT_CATEGORIES: RegisterCategoryCommand[] = [
   },
   {
     code: 'BAN_THANH_PHAM',
-    name: 'Bán thành phẩm',
-    description: 'Vỏ nhẫn chưa gắn đá, dây chuyền chưa gắn mặt, WIP',
+    name: 'ban thanh pham',
+    description: 'vo nhan chua gen da, day chuyen chua gen mat, WIP',
     defaultUnit: 'CAI',
     defaultLocation: 'KHO_BAN_THANH_PHAM',
     requiresInsurance: false,
@@ -173,9 +173,9 @@ export class WarehouseCategoryRegistry {
 
   register(cmd: RegisterCategoryCommand): { success: boolean; error?: string } {
     const code = cmd.code.toUpperCase().trim();
-    if (!code) return { success: false, error: 'Mã danh mục không được để trống' };
-    if (this.categories.has(code)) return { success: false, error: `Mã ${code} đã tồn tại` };
-    if (!cmd.name?.trim()) return { success: false, error: 'Tên danh mục không được để trống' };
+    if (!code) return { success: false, error: 'ma danh muc khong duoc de trong' };
+    if (this.categories.has(code)) return { success: false, error: `ma ${code} da ton tai` };
+    if (!cmd.name?.trim()) return { success: false, error: 'ten danh muc khong duoc de trong' };
 
     this._registerInternal({ ...cmd, code });
     return { success: true };

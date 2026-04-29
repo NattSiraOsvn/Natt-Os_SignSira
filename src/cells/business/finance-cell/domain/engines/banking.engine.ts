@@ -21,19 +21,19 @@ export class BankingEngine {
   };
 
   private static CATEGORIES: Record<string, string> = {
-    DT_CK: "Doanh Thu Chuyển Khoản",
-    DT_POS: "💳 Doanh Thu Thẻ (POS)",
-    COGS_GOLD_PURCHASE: "💎 MUA VÀNG - Giá vốn",
-    COGS_DIAMOND_PURCHASE: "💎 MUA KIM CƯƠNG - Giá vốn",
-    COGS_DIAMOND_INSPECTION: "💎 PHÍ KIỂM ĐỊNH (GIA/HRD)",
-    COGS_CUSTOMS: "🏛️ PHÍ HẢI QUAN & THỦ TỤC",
-    TAX_VAT_IMPORT: "🏛️ THUẾ GTGT HÀNG NHẬP KHẨU",
-    TAX_PENALTY_FINE: "⚠️ TIỀN PHẠT HÀNH CHÍNH",
-    TAX_PENALTY_ADJUST: "⚠️ THUẾ ẤN ĐỊNH/TRUY THU",
-    BANK_FEE_TRANSACTION: "🏦 PHÍ CHUYỂN KHOẢN",
-    HR_SALARY: "👨‍💼 TIỀN LƯƠNG NHÂN VIÊN",
-    INTERNAL_CASH: "🔄 NỘP TIỀN MẶT",
-    OTHER: "❓ CHƯA PHÂN LOẠI"
+    DT_CK: "Doanh Thu chuyen khoan",
+    DT_POS: "💳 Doanh Thu the (POS)",
+    COGS_GOLD_PURCHASE: "💎 MUA vang - gia von",
+    COGS_DIAMOND_PURCHASE: "💎 MUA KIM cuong - gia von",
+    COGS_DIAMOND_INSPECTION: "💎 phi kiem dinh (GIA/HRD)",
+    COGS_CUSTOMS: "🏛️ phi hai QUAN & thu tuc",
+    TAX_VAT_IMPORT: "🏛️ thue GTGT hang nhap khau",
+    TAX_PENALTY_FINE: "⚠️ tien phat hanh chinh",
+    TAX_PENALTY_ADJUST: "⚠️ thue an dinh/TRUY THU",
+    BANK_FEE_TRANSACTION: "🏦 phi chuyen khoan",
+    HR_SALARY: "👨‍💼 tien luong nhan vien",
+    INTERNAL_CASH: "🔄 nop tien mat",
+    OTHER: "❓ chua phan loai"
   };
 
   static normalize(str: string): string {
@@ -73,38 +73,38 @@ export class BankingEngine {
     const nature = credit > 0 ? "THU" : "CHI";
     
     let category = "OTHER";
-    let detail = "Kris: Đang chờ bóc tách nghiệp vụ...";
-    let valueGroup: ValueGroup = nature === "THU" ? "THU" : "CHI_VẬN_HÀNH";
+    let detail = "Kris: dang cho boc tach nghiep vu...";
+    let valueGroup: ValueGroup = nature === "THU" ? "THU" : "chi_van_hanh";
     let taxRate = 0;
 
     // 🔴 1. ƯU TIÊN MÃ GIAO DỊCH (HẢI QUAN / THUẾ) - THEO ROBOT VIETIN
     if (code.includes("10686394446") || code.includes("3350356467860001")) {
       category = "COGS_CUSTOMS";
-      detail = "PHÍ HẢI QUAN & THỦ TỤC XNK";
+      detail = "phi hai QUAN & thu tuc XNK";
       taxRate = 8; // Mặc định phí nhập khẩu chịu VAT
     } else if (code.includes("252010209A")) {
       category = "TAX_PENALTY_ADJUST";
-      detail = "TRUY THU THUẾ THEO QĐ";
+      detail = "TRUY THU thue THEO qd";
     }
 
     // 🟡 2. ƯU TIÊN MÔ TẢ (THU SẢN PHẨM = COGS)
     if (descLower.includes("thu san pham")) {
       category = descLower.includes("vang") ? "COGS_GOLD_PURCHASE" : "COGS_DIAMOND_PURCHASE";
-      detail = "THU MUA LẠI SẢN PHẨM (Giá vốn)";
-      valueGroup = "CHI_GIÁ_VỐN";
+      detail = "THU MUA lai san pham (gia von)";
+      valueGroup = "chi_gia_von";
     } else if (descLower.includes("pos") || descLower.includes("the")) {
       category = "DT_POS";
-      detail = "Doanh thu quẹt thẻ Merchant";
+      detail = "Doanh thu quet the Merchant";
       valueGroup = "THU";
       taxRate = 10;
     } else if (descLower.includes("luong") || descLower.includes("salary")) {
       category = "HR_SALARY";
-      detail = "Chi lương Shard Nhân sự";
-      valueGroup = "CHI_VẬN_HÀNH";
+      detail = "Chi luong Shard nhan su";
+      valueGroup = "chi_van_hanh";
     }
 
-    if (category.startsWith("TAX")) valueGroup = "THUẾ";
-    if (category.startsWith("COGS")) valueGroup = "CHI_GIÁ_VỐN";
+    if (category.startsWith("TAX")) valueGroup = "thue";
+    if (category.startsWith("COGS")) valueGroup = "chi_gia_von";
 
     return {
       category: this.CATEGORIES[category] || this.CATEGORIES.OTHER,
@@ -130,10 +130,10 @@ export class BankingEngine {
       const credit = this.cleanMoney(row[4]);
       const amount = credit > 0 ? credit : debit;
       const intelligence = this.classify(debit, credit, String(row[6] || ""), String(row[2] || ""));
-      const isCustoms = intelligence.category === "PHÍ HẢI QUAN & THỦ TỤC XNK";
+      const isCustoms = intelligence.category === "phi hai QUAN & thu tuc XNK";
       
       return {
-        id: String(row[6]), // Using 'Số GD' as ID
+        id: String(row[6]), // Using 'so GD' as ID
         date: String(row[1]),
         refNo: String(row[10] || `REF-${Math.floor(Math.random()*10000)}`), // Số tham chiếu
         bankName: "VietinBank", // Mặc định hoặc bóc tách từ tên đối ứng

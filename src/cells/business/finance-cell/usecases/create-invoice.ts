@@ -50,7 +50,7 @@ export class CreateInvoice {
       return state;
 
     } catch (err) {
-      console.error(`[FINANCE-USECASE] Lỗi tạo hóa đơn cho Order ${id}:`, err);
+      console.error(`[FINANCE-USECASE] lau tao hoa don cho Order ${id}:`, err);
       return null;
     }
   }

@@ -39,7 +39,7 @@ export class WarehouseIntelligenceEngine {
     // Zero turnover với qty > 0 = suspicious
     const zeroTurnover = snapshots.filter(i => i.qty > 0 && i.turnoverRate === 0 && i.daysInStock > 30);
     if (zeroTurnover.length > 0) {
-      report.anomalies.push(`${zeroTurnover.length} items tồn kho không có xuất — nghi ngờ ghost stock`);
+      report.anomalies.push(`${zeroTurnover.length} items ton kho khong co xuat — nghi ngo ghost stock`);
       EventBus.emit('cell.metric', {
         cell: 'warehouse-cell', metric: 'warehouse.ghost_stock',
         value: zeroTurnover.length, confidence: 0.8,

@@ -24,31 +24,31 @@ export type ProductCategoryCode =
 export const WARRANTY_POLICIES: Record<WarrantyType, WarrantyPolicy> = {
   GOLD_STRUCTURE: {
     type: 'GOLD_STRUCTURE',
-    name: 'Bảo hành kết cấu vàng',
+    name: 'bao hanh ket cau vang',
     durationMonths: 24,
-    coverageDescription: 'Gãy, nứt, biến dạng do lỗi sản xuất',
-    excludes: ['Va đập mạnh', 'Tự ý sửa chữa ngoài', 'Hao mòn tự nhiên'],
+    coverageDescription: 'gay, nut, bien dang do lau san xuat',
+    excludes: ['Va dap manh', 'tu y sua chua ngoai', 'Hao mon tu nhien'],
   },
   STONE_SETTING: {
     type: 'STONE_SETTING',
-    name: 'Bảo hành ổ đá',
+    name: 'bao hanh o da',
     durationMonths: 12,
-    coverageDescription: 'Đá rơi, lỏng chấu do lỗi gắn',
-    excludes: ['Va đập', 'Tiếp xúc hóa chất', 'Tự tháo đá'],
+    coverageDescription: 'da roi, long chau do lau gen',
+    excludes: ['Va dap', 'tiep xuc hoa chat', 'tu thao da'],
   },
   SURFACE_FINISH: {
     type: 'SURFACE_FINISH',
-    name: 'Bảo hành bề mặt',
+    name: 'bao hanh be mat',
     durationMonths: 6,
-    coverageDescription: 'Đánh bóng, xi mạ lại miễn phí',
-    excludes: ['Trầy xước do sử dụng', 'Tiếp xúc hóa chất'],
+    coverageDescription: 'danh bong, xi ma lai mien phi',
+    excludes: ['tray xuoc do su dung', 'tiep xuc hoa chat'],
   },
   FULL_COVERAGE: {
     type: 'FULL_COVERAGE',
-    name: 'Bảo hành toàn diện (VIP/VVIP)',
+    name: 'bao hanh toan dien (VIP/VVIP)',
     durationMonths: 36,
-    coverageDescription: 'Bao gồm kết cấu + ổ đá + bề mặt + đánh bóng định kỳ',
-    excludes: ['Mất mát', 'thiên tai'],
+    coverageDescription: 'Bao gom ket cau + o da + be mat + danh bong dinh ky',
+    excludes: ['mat mat', 'thien tai'],
   },
 };
 

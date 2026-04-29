@@ -50,9 +50,9 @@ export class FinishingEngine {
 
     let reason: string | undefined;
     if (!pass) {
-      reason = `${stage}: qualityScore ${qualityScore.toFixed(3)} < ngưỡng ${threshold}`;
+      reason = `${stage}: qualityScore ${qualityScore.toFixed(3)} < nguong ${threshold}`;
       if (stage === 'inspection') {
-        reason += ' — KHÔNG XUẤT KHO';
+        reason += ' — khong xuat KHO';
       }
     }
 

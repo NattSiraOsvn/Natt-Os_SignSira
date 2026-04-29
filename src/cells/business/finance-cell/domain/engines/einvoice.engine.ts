@@ -40,16 +40,16 @@ export interface SigningMethod {
 export class EInvoiceEngine {
   static getTokenProviders(): TokenProvider[] {
     return [
-      { id: 'vettel', name: 'Tập đoàn Công nghiệp - Viễn thông Quân đội', shortName: 'Viettel-CA', color: 'bg-red-600', logo: '🛡️', status: 'ACTIVE', expiry: '2026-12-31', serial: '5404.0411.2332' },
-      { id: 'vnpt', name: 'Tập đoàn Bưu chính Viễn thông Việt Nam', shortName: 'VNPT-CA', color: 'bg-blue-600', logo: '🌐', status: 'ACTIVE', expiry: '2027-05-20', serial: '8892.1122.9901' },
-      { id: 'safeca', name: 'Công ty Cổ phần Chứng số An toàn', shortName: 'SafeCA', color: 'bg-amber-500', logo: '🔐', status: 'ACTIVE', expiry: '2027-01-15', serial: '7721.4455.1011' }
+      { id: 'vettel', name: 'tap doan cong nghiep - vien thong quan đau', shortName: 'Viettel-CA', color: 'bg-red-600', logo: '🛡️', status: 'ACTIVE', expiry: '2026-12-31', serial: '5404.0411.2332' },
+      { id: 'vnpt', name: 'tap doan buu chinh vien thong viet Nam', shortName: 'VNPT-CA', color: 'bg-blue-600', logo: '🌐', status: 'ACTIVE', expiry: '2027-05-20', serial: '8892.1122.9901' },
+      { id: 'safeca', name: 'cong ty co phan chung so An toan', shortName: 'SafeCA', color: 'bg-amber-500', logo: '🔐', status: 'ACTIVE', expiry: '2027-01-15', serial: '7721.4455.1011' }
     ];
   }
 
   static getSigningMethods(): SigningMethod[] {
     return [
-      { id: 'HSM', label: 'HSM Enterprise', subLabel: 'Hardware Security Module', icon: '🚀', speed: '10k+ TPS', scale: 'UNLIMITED', security: 'ENTERPRISE', description: 'Ký tự động hàng loạt cực nhanh.' },
-      { id: 'USB', label: 'USB Token', subLabel: 'Physical Key', icon: '🔑', speed: 'Manual', scale: 'SINGLE', security: 'PHYSICAL', description: 'Bảo mật vật lý tối đa.' }
+      { id: 'HSM', label: 'HSM Enterprise', subLabel: 'Hardware Security Module', icon: '🚀', speed: '10k+ TPS', scale: 'UNLIMITED', security: 'ENTERPRISE', description: 'ky tu dong hang loat cuc nhanh.' },
+      { id: 'USB', label: 'USB Token', subLabel: 'Physical Key', icon: '🔑', speed: 'Manual', scale: 'SINGLE', security: 'PHYSICAL', description: 'bao mat vat ly tau da.' }
     ];
   }
 
@@ -58,7 +58,7 @@ export class EInvoiceEngine {
     await new Promise(r => setTimeout(r, 2500)); // Giả lập độ trễ API Thuế
     return {
       code: '00',
-      message: 'TCT Chấp nhận gói tin hóa đơn',
+      message: 'TCT chap nhan gau tin hoa don',
       taxAuthCode: `CQT-${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
       receivedDate: new Date().toISOString()
     };

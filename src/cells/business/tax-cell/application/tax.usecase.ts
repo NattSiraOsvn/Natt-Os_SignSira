@@ -70,7 +70,7 @@ export class RecordDustRecoveryUseCase {
       debit:       '152-PHAN-KIM',
       credit:      '154',
       amountVND:   totalVND,
-      description: `Bụi thu hồi — workerId=${workerId} period=${periodId}`,
+      description: `bui thu hau — workerId=${workerId} period=${periodId}`,
     });
 
     await this.repo.save(acc);
@@ -97,7 +97,7 @@ export class CloseToInventoryUseCase {
       debit:       '155',
       credit:      '154',
       amountVND:   acc.tk154Balance,
-      description: `Nhập kho TP — weightTP=${weightTP}chỉ`,
+      description: `nhap kho TP — weightTP=${weightTP}chi`,
     });
 
     // TR-001 check: sau nhập kho TK154 = 0 là đúng (đã chuyển sang 155)

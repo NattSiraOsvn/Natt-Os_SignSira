@@ -24,51 +24,51 @@ export interface CdktAccountMapping {
  */
 export const CDKT_ACCOUNT_MAP: CdktAccountMapping[] = [
   // ═══ Tiền (Mã 110) ═══
-  { tkCode: "1111", cdktCode: "111", side: "cuoiKyNo", description: "Tiền mặt VND" },
-  { tkCode: "1112", cdktCode: "111", side: "cuoiKyNo", description: "Tiền mặt ngoại tệ" },
-  { tkCode: "112",  cdktCode: "111", side: "cuoiKyNo", description: "Tiền gửi NH (gộp vào Tiền)" },
+  { tkCode: "1111", cdktCode: "111", side: "cuoiKyNo", description: "tien mat VND" },
+  { tkCode: "1112", cdktCode: "111", side: "cuoiKyNo", description: "tien mat ngoai te" },
+  { tkCode: "112",  cdktCode: "111", side: "cuoiKyNo", description: "tien gui NH (gop vao tien)" },
 
   // ═══ Phải thu (Mã 130) ═══
-  { tkCode: "131",  cdktCode: "131", side: "cuoiKyNo", description: "Phải thu KH (dư Nợ)" },
-  { tkCode: "131",  cdktCode: "312", side: "cuoiKyCo", description: "KH trả trước (dư Có TK131)" },
-  { tkCode: "1388", cdktCode: "136", side: "cuoiKyNo", description: "Phải thu khác" },
-  { tkCode: "244",  cdktCode: "136", side: "cuoiKyNo", description: "Ký quỹ, ký cược (gộp phải thu khác)" },
+  { tkCode: "131",  cdktCode: "131", side: "cuoiKyNo", description: "phai thu KH (du no)" },
+  { tkCode: "131",  cdktCode: "312", side: "cuoiKyCo", description: "KH tra truoc (du co TK131)" },
+  { tkCode: "1388", cdktCode: "136", side: "cuoiKyNo", description: "phai thu khac" },
+  { tkCode: "244",  cdktCode: "136", side: "cuoiKyNo", description: "ky quy, ky cuoc (gop phai thu khac)" },
 
   // ═══ HTK (Mã 140) ═══
   { tkCode: "152",  cdktCode: "141", side: "cuoiKyNo", description: "NVL" },
   { tkCode: "153",  cdktCode: "141", side: "cuoiKyNo", description: "CCDC" },
-  { tkCode: "154",  cdktCode: "141", side: "cuoiKyNo", description: "SXKD dở dang" },
-  { tkCode: "155",  cdktCode: "141", side: "cuoiKyNo", description: "Thành phẩm" },
-  { tkCode: "156",  cdktCode: "141", side: "cuoiKyNo", description: "Hàng hóa" },
+  { tkCode: "154",  cdktCode: "141", side: "cuoiKyNo", description: "SXKD do dang" },
+  { tkCode: "155",  cdktCode: "141", side: "cuoiKyNo", description: "thanh pham" },
+  { tkCode: "156",  cdktCode: "141", side: "cuoiKyNo", description: "hang hoa" },
 
   // ═══ TS ngắn hạn khác (Mã 150) ═══
-  { tkCode: "242",  cdktCode: "151", side: "cuoiKyNo", description: "CP trả trước (phần NH)" },
-  { tkCode: "1331", cdktCode: "152", side: "cuoiKyNo", description: "Thuế GTGT được khấu trừ" },
-  { tkCode: "333",  cdktCode: "153", side: "cuoiKyNo", description: "Thuế phải thu NN (dư Nợ TK333)" },
+  { tkCode: "242",  cdktCode: "151", side: "cuoiKyNo", description: "CP tra truoc (phan NH)" },
+  { tkCode: "1331", cdktCode: "152", side: "cuoiKyNo", description: "thue GTGT duoc khau tru" },
+  { tkCode: "333",  cdktCode: "153", side: "cuoiKyNo", description: "thue phai thu NN (du no TK333)" },
 
   // ═══ TSCĐ (Mã 220) ═══
-  { tkCode: "2112", cdktCode: "222", side: "cuoiKyNo", description: "TSCĐ HH - Máy móc thiết bị" },
-  { tkCode: "2113", cdktCode: "222", side: "cuoiKyNo", description: "TSCĐ HH - Phương tiện VT" },
-  { tkCode: "2141", cdktCode: "223", side: "cuoiKyCo", description: "Hao mòn TSCĐ HH (số âm)" },
+  { tkCode: "2112", cdktCode: "222", side: "cuoiKyNo", description: "tscd HH - may moc thiet bi" },
+  { tkCode: "2113", cdktCode: "222", side: "cuoiKyNo", description: "tscd HH - phuong tien VT" },
+  { tkCode: "2141", cdktCode: "223", side: "cuoiKyCo", description: "Hao mon tscd HH (so am)" },
 
   // ═══ TS dở dang DH (Mã 240) ═══
-  { tkCode: "2413", cdktCode: "242", side: "cuoiKyNo", description: "XDCB dở dang" },
+  { tkCode: "2413", cdktCode: "242", side: "cuoiKyNo", description: "XDCB do dang" },
 
   // ═══ Nợ phải trả (Mã 300) ═══
-  { tkCode: "331",  cdktCode: "311", side: "cuoiKyCo", description: "Phải trả NCC (dư Có)" },
-  { tkCode: "331",  cdktCode: "132", side: "cuoiKyNo", description: "Trả trước NCC (dư Nợ TK331)" },
-  { tkCode: "333",  cdktCode: "313", side: "cuoiKyCo", description: "Thuế phải nộp (dư Có TK333)" },
-  { tkCode: "334",  cdktCode: "314", side: "cuoiKyCo", description: "Phải trả NLĐ" },
-  { tkCode: "335",  cdktCode: "315", side: "cuoiKyCo", description: "CP phải trả" },
-  { tkCode: "3387", cdktCode: "318", side: "cuoiKyCo", description: "DT chưa thực hiện" },
-  { tkCode: "3382", cdktCode: "319", side: "cuoiKyCo", description: "Kinh phí CĐ" },
+  { tkCode: "331",  cdktCode: "311", side: "cuoiKyCo", description: "phai tra NCC (du co)" },
+  { tkCode: "331",  cdktCode: "132", side: "cuoiKyNo", description: "tra truoc NCC (du no TK331)" },
+  { tkCode: "333",  cdktCode: "313", side: "cuoiKyCo", description: "thue phai nop (du co TK333)" },
+  { tkCode: "334",  cdktCode: "314", side: "cuoiKyCo", description: "phai tra nld" },
+  { tkCode: "335",  cdktCode: "315", side: "cuoiKyCo", description: "CP phai tra" },
+  { tkCode: "3387", cdktCode: "318", side: "cuoiKyCo", description: "DT chua thuc hien" },
+  { tkCode: "3382", cdktCode: "319", side: "cuoiKyCo", description: "Kinh phi cd" },
   { tkCode: "3383", cdktCode: "319", side: "cuoiKyCo", description: "BHXH" },
-  { tkCode: "341",  cdktCode: "320", side: "cuoiKyCo", description: "Vay NH (< 12 tháng)" },
+  { tkCode: "341",  cdktCode: "320", side: "cuoiKyCo", description: "Vay NH (< 12 thang)" },
 
   // ═══ Vốn CSH (Mã 400) ═══
-  { tkCode: "4111", cdktCode: "411", side: "cuoiKyCo", description: "Vốn góp CSH" },
-  { tkCode: "4211", cdktCode: "421a", side: "cuoiKyCo", description: "LNST chưa PP năm trước" },
-  { tkCode: "4212", cdktCode: "421b", side: "cuoiKyCo", description: "LNST chưa PP năm nay" },
+  { tkCode: "4111", cdktCode: "411", side: "cuoiKyCo", description: "von gop CSH" },
+  { tkCode: "4211", cdktCode: "421a", side: "cuoiKyCo", description: "LNST chua PP nam truoc" },
+  { tkCode: "4212", cdktCode: "421b", side: "cuoiKyCo", description: "LNST chua PP nam nay" },
 ];
 
 /**

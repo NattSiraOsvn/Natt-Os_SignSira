@@ -32,19 +32,19 @@ interface RawOrder {
 
 // Map trạng thái từ sheet → ProductionStage của FlowEngine
 const STAGE_MAP: Record<string, string> = {
-  'CHƯA HT':       'DESIGN',
-  'Chưa Đúc':      'MATERIAL_PREP',
-  'Chờ Nguội 1':   'CASTING',
-  'Đang Nguội 1':  'CASTING',
-  'Chờ Nguội 2 ( Ráp)': 'FILING',
-  'Chờ Nguội 3 ( Ráp)': 'FILING',
-  'Chờ Hột':       'STONE_SETTING',
-  'Đang Hột':      'STONE_SETTING',
-  'Chờ NB 1':      'POLISHING',
-  'Đang NB 1':     'POLISHING',
-  'Chờ NB cuối':   'POLISHING',
-  'Chờ Đá chủ':    'STONE_SETTING',
-  'DỪNG':          'DESIGN',
+  'chua HT':       'DESIGN',
+  'chua duc':      'MATERIAL_PREP',
+  'cho nguoi 1':   'CASTING',
+  'dang nguoi 1':  'CASTING',
+  'cho nguoi 2 ( rap)': 'FILING',
+  'cho nguoi 3 ( rap)': 'FILING',
+  'cho hot':       'STONE_SETTING',
+  'dang hot':      'STONE_SETTING',
+  'cho NB 1':      'POLISHING',
+  'dang NB 1':     'POLISHING',
+  'cho NB cuoi':   'POLISHING',
+  'cho da chu':    'STONE_SETTING',
+  'dung':          'DESIGN',
 };
 
 let _seeded = false;
@@ -64,7 +64,7 @@ export function seedProductionOrders(): void {
 
   // Chỉ seed đơn CHƯA HT và còn trong xưởng
   const active = rawOrders.filter(o =>
-    o.trangThai === 'CHƯA HT' && o.congDoan && o.congDoan !== 'HOÀN THÀNH'
+    o.trangThai === 'chua HT' && o.congDoan && o.congDoan !== 'hoan thanh'
   );
 
   active.forEach(o => {

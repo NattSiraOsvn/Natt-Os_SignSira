@@ -11,37 +11,37 @@
 export const PII_PATTERNS = {
   PHONE: {
     regex:       /\b(0|\+84)(3|5|7|8|9)([0-9]{8})\b/g,
-    description: 'Số điện thoại Việt Nam',
+    description: 'so dien thoai viet Nam',
     severity:    'HIGH',
     examples:    ['0901234567', '+84901234567'],
   },
   BANK_ACCOUNT: {
     regex:       /\b\d{9,14}\b/g,
-    description: 'Số tài khoản ngân hàng',
+    description: 'so tai khoan ngan hang',
     severity:    'CRITICAL',
     examples:    ['110604776999', '0123456789'],
   },
   ID_NUMBER: {
     regex:       /\b\d{9}|\d{12}\b/g,
-    description: 'CMND / CCCD / Hộ chiếu',
+    description: 'CMND / CCCD / ho chieu',
     severity:    'CRITICAL',
     examples:    ['123456789', '001099012345'],
   },
   CREDIT_CARD: {
     regex:       /\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b/g,
-    description: 'Số thẻ tín dụng',
+    description: 'so the tin dung',
     severity:    'CRITICAL',
     examples:    ['4111 1111 1111 1111'],
   },
   EMAIL: {
     regex:       /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g,
-    description: 'Địa chỉ email',
+    description: 'dia chi email',
     severity:    'MEDIUM',
     examples:    ['user@gmail.com'],
   },
   MONEY: {
     regex:       /\b\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?\s*(?:VND|USD|EUR|GBP|đ)\b/gi,
-    description: 'Số tiền tệ',
+    description: 'so tien te',
     severity:    'MEDIUM',
     examples:    ['1,000,000 VND', '500 USD'],
   },
@@ -51,12 +51,12 @@ export type PiiType = keyof typeof PII_PATTERNS;
 
 // ── FILENAME KEYWORDS ─────────────────────────────────────────────────────
 export const SENSITIVE_FILENAME_KEYWORDS = [
-  'kim', 'vàng', 'gold', 'diamond', 'spot fx',
-  'pack list', 'thanh toán', 'payment', 'invoice', 'hóa đơn',
-  'chuyển khoản', 'bank', 'ngân hàng', 'transaction', 'giao dịch',
-  'lương', 'salary', 'payroll', 'hợp đồng', 'contract',
-  'passport', 'cccd', 'cmnd', 'id card', 'hộ chiếu',
-  'mật khẩu', 'password', 'secret', 'private', 'bí mật',
+  'kim', 'vang', 'gold', 'diamond', 'spot fx',
+  'pack list', 'thanh toan', 'payment', 'invoice', 'hoa đon',
+  'chuyen khoan', 'bank', 'ngan hang', 'transaction', 'giao dich',
+  'luong', 'salary', 'payroll', 'hop dong', 'contract',
+  'passport', 'cccd', 'cmnd', 'id card', 'ho chieu',
+  'mat khau', 'password', 'secret', 'private', 'bi mat',
 ];
 
 // ── SENSITIVE MIME TYPES ──────────────────────────────────────────────────
@@ -149,10 +149,10 @@ export function scanTextForPii(
     matches,
     riskScore,
     recommendation:
-      riskScore >= 80 ? 'BLOCK — Dữ liệu PII cực kỳ nhạy cảm, cần xử lý ngay' :
-      riskScore >= 50 ? 'QUARANTINE — Kiểm tra trước khi cho phép truy cập'    :
-      riskScore >= 20 ? 'REVIEW — Có dữ liệu cần xem xét'                      :
-      'OK — Không phát hiện PII nghiêm trọng',
+      riskScore >= 80 ? 'BLOCK — du lieu PII cuc ky nhay cam, can xu ly ngay' :
+      riskScore >= 50 ? 'QUARANTINE — kiem tra truoc khi cho phep truy cap'    :
+      riskScore >= 20 ? 'REVIEW — co du lieu can xem xet'                      :
+      'OK — khong phat hien PII nghiem trong',
   };
 }
 
@@ -233,7 +233,7 @@ export function buildPiiReport(rowResults: RowPiiResult[], source: string): {
     violatedCells: rowResults.filter(r => r.piiResult.hasViolations).length,
     riskScore,
     topViolations,
-    summary: `${rowResults.length} cells vi phạm PII, risk=${riskScore}/100`,
+    summary: `${rowResults.length} cells vi pham PII, risk=${riskScore}/100`,
     action:
       riskScore >= 80 ? 'BLOCK'      :
       riskScore >= 50 ? 'QUARANTINE' :

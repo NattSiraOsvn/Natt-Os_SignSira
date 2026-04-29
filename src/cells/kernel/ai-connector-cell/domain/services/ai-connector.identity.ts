@@ -3,6 +3,6 @@ export const aiConnectorIdentity = {
   cellId:      'ai-connector-cell',
   version:     '1.0.0',
   domain:      'AI Connector',
-  description: 'Kết nối AI external services',
+  description: 'ket nau AI external services',
   constitutionRef: 'v5.0',
 } as const;

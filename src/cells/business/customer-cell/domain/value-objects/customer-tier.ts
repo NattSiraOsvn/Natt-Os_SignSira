@@ -14,15 +14,15 @@ export interface TierPolicy {
 export const TIER_POLICIES: Record<CustomerTier, TierPolicy> = {
   STANDARD: {
     tier: 'STANDARD', minSpendVND: 0, minPurchaseCount: 0,
-    benefits: ['Bảo hành tiêu chuẩn', 'Đánh bóng miễn phí 6 tháng/lần'],
+    benefits: ['bao hanh tieu chuan', 'danh bong mien phi 6 thang/lan'],
   },
   VIP: {
     tier: 'VIP', minSpendVND: 50_000_000, minPurchaseCount: 3,
-    benefits: ['Giữ hàng 48h', 'Cọc 5%', 'Ưu tiên sửa chữa', 'Quà sinh nhật'],
+    benefits: ['giu hang 48h', 'coc 5%', 'uu tien sua chua', 'qua sinh nhat'],
   },
   VVIP: {
     tier: 'VVIP', minSpendVND: 200_000_000, minPurchaseCount: 5,
-    benefits: ['Giữ hàng 72h', 'Không cần cọc', 'Bảo hành toàn diện 36 tháng', 'Tư vấn riêng', 'Ưu đãi buyback'],
+    benefits: ['giu hang 72h', 'khong can coc', 'bao hanh toan dien 36 thang', 'tu van rieng', 'uu dai buyback'],
   },
 };
 

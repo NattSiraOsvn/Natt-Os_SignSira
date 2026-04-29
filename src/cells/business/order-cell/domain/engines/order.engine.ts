@@ -8,11 +8,11 @@
 
 // ── ORDER ID PATTERNS ─────────────────────────────────────────────────────
 export const ORDER_PATTERNS = [
-  { regex: /\bCT\d{2}-\d{4,6}\b/gi, prefix: 'CT', stream: 'SX_CHINH',  label: 'Chế Tác',       priority: 1 },
+  { regex: /\bCT\d{2}-\d{4,6}\b/gi, prefix: 'CT', stream: 'SX_CHINH',  label: 'che tac',       priority: 1 },
   { regex: /\bKD\d{2}-\d{4,6}\b/gi, prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doanh',    priority: 2 },
-  { regex: /\bKB\d{2}-\d{4,6}\b/gi, prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho Bảo Hành', priority: 3 },
-  { regex: /\bVC\d{4,6}\b/gi,        prefix: 'VC', stream: 'SHOWROOM',  label: 'Vỉ Chưng / SR', priority: 4 },
-  { regex: /\b28\d{3}\b/gi,          prefix: '28', stream: 'SC_BH_KB',  label: 'Sửa Chữa',     priority: 5 },
+  { regex: /\bKB\d{2}-\d{4,6}\b/gi, prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho bao hanh', priority: 3 },
+  { regex: /\bVC\d{4,6}\b/gi,        prefix: 'VC', stream: 'SHOWROOM',  label: 'vi chung / SR', priority: 4 },
+  { regex: /\b28\d{3}\b/gi,          prefix: '28', stream: 'SC_BH_KB',  label: 'sua chua',     priority: 5 },
 ] as const;
 
 export type StreamType = 'SX_CHINH' | 'SX_PHU' | 'BAO_HANH' | 'SHOWROOM' | 'SC_BH_KB' | 'UNKNOWN';
@@ -100,9 +100,9 @@ export function detectStream(record: Record<string, unknown>, sheetName: string)
 
   // Fallback theo tên sheet
   const low = sheetName.toLowerCase();
-  if (/bảo hành|warranty/.test(low))         return { stream: 'BAO_HANH', orderId: null, allIds: [], label: 'Bảo Hành', riskLevel: 'medium' };
+  if (/bảo hành|warranty/.test(low))         return { stream: 'BAO_HANH', orderId: null, allIds: [], label: 'bao hanh', riskLevel: 'medium' };
   if (/showroom|sr/.test(low))               return { stream: 'SHOWROOM', orderId: null, allIds: [], label: 'Showroom',  riskLevel: 'low'    };
-  if (/sx|sản xuất|đúc|phôi/.test(low))      return { stream: 'SX_CHINH', orderId: null, allIds: [], label: 'SX Chính', riskLevel: 'low'    };
+  if (/sx|sản xuất|đúc|phôi/.test(low))      return { stream: 'SX_CHINH', orderId: null, allIds: [], label: 'SX chinh', riskLevel: 'low'    };
   if (/kd|kinh doanh/.test(low))             return { stream: 'SX_PHU',   orderId: null, allIds: [], label: 'KD',       riskLevel: 'low'    };
   if (/sửa chữa|sc-bh|28\d{3}/.test(low))   return { stream: 'SC_BH_KB', orderId: null, allIds: [], label: 'SC/BH/KB', riskLevel: 'high'   };
 
@@ -114,20 +114,20 @@ export function detectStage(sheetName: string): string {
   const low = sheetName.toLowerCase();
   if (/order|đơn hàng|bán hàng/.test(low))           return '1-Order';
   if (/3d|thiết kế|design/.test(low))                return '2-Design';
-  if (/sáp|wax/.test(low))                           return '3-Sáp';
-  if (/đúc|casting|phôi/.test(low))                  return '4-Đúc';
-  if (/láp|assembly|ráp/.test(low))                  return '5-Láp';
-  if (/hột|stone|đá tấm/.test(low))                  return '6-Gắn đá';
-  if (/nhám|đánh bóng|polish/.test(low))             return '7-Nhám';
+  if (/sáp|wax/.test(low))                           return '3-sap';
+  if (/đúc|casting|phôi/.test(low))                  return '4-duc';
+  if (/láp|assembly|ráp/.test(low))                  return '5-lap';
+  if (/hột|stone|đá tấm/.test(low))                  return '6-gen da';
+  if (/nhám|đánh bóng|polish/.test(low))             return '7-nham';
   if (/xi|mạ|plate/.test(low))                       return '8-Xi';
   if (/qc|quality|kiểm tra/.test(low))               return '9-QC';
-  if (/xuất xưởng|giao hàng|vận đơn/.test(low))      return '10-Xuất';
+  if (/xuất xưởng|giao hàng|vận đơn/.test(low))      return '10-xuat';
   if (/bảo hành|warranty|sửa chữa/.test(low))        return 'BH-BH';
   if (/showroom|trưng bày/.test(low))                return 'SR-SR';
-  if (/cân hàng|bột thu/.test(low))                  return 'SX-CânBột';
-  if (/cân nguyên liệu|vật tư/.test(low))            return 'SX-NLPhụ';
-  if (/giao nhận thợ|phát hàng/.test(low))           return 'SX-GiaoNhận';
-  if (/phân kim|nấu heo/.test(low))                  return 'SX-PhânKim';
+  if (/cân hàng|bột thu/.test(low))                  return 'SX-canbot';
+  if (/cân nguyên liệu|vật tư/.test(low))            return 'SX-nlphu';
+  if (/giao nhận thợ|phát hàng/.test(low))           return 'SX-giaonhan';
+  if (/phân kim|nấu heo/.test(low))                  return 'SX-phankim';
   return 'Other';
 }
 
@@ -153,13 +153,13 @@ export function buildOrderFlow(
       stream:      streamInfo.stream,
       streamGroup: STREAM_CONFIG[streamInfo.stream].group,
       stage,
-      timestamp:   _parseDate(record['ngày'] || record['ngày thực hiện'] || record['ngày đơn']),
-      customer:    String(record['khách hàng'] || record['tên khách'] || ''),
-      product:     String(record['mã hàng'] || record['mã sp'] || record['láp'] || ''),
-      status:      String(record['trạng thái'] || record['trạng thái đúc'] || ''),
-      weight:      _parseNum(record['trọng lượng vàng yêu cầu'] || record['trọng lượng phôi'] || record['trọng lượng']),
-      worker:      String(record['thợ'] || record['người nhận'] || record['pic'] || record['họ và tên'] || ''),
-      note:        String(record['ghi chú'] || record['note'] || ''),
+      timestamp:   _parseDate(record['ngay'] || record['ngay thuc hien'] || record['ngay don']),
+      customer:    String(record['khach hang'] || record['ten khach'] || ''),
+      product:     String(record['ma hang'] || record['ma sp'] || record['lap'] || ''),
+      status:      String(record['trang thai'] || record['trang thai duc'] || ''),
+      weight:      _parseNum(record['trong luong vang yeu cau'] || record['trong luong phau'] || record['trong luong']),
+      worker:      String(record['tho'] || record['ngui nhan'] || record['pic'] || record['ho va ten'] || ''),
+      note:        String(record['ghi chu'] || record['note'] || ''),
       sourceSheet: sheetName,
       step:        0, // sẽ set sau khi sort
       riskLevel:   STREAM_CONFIG[streamInfo.stream].riskLevel,
@@ -210,12 +210,12 @@ export function analyzeStreamRisk(records: Array<Record<string, unknown>>, sheet
 
   // Flag nếu SC_BH_KB > 30% tổng đơn
   if (scPercent > 30) {
-    flags.push(`⚠️ SC_BH_KB chiếm ${scPercent.toFixed(1)}% tổng đơn — kiểm tra luồng sửa chữa`);
+    flags.push(`⚠️ SC_BH_KB chiem ${scPercent.toFixed(1)}% tong don — kiem tra luong sua chua`);
   }
   // Flag nếu không có mã đơn
   const noIdCount = records.filter(r => detectStream(r, sheetName).orderId === null).length;
   if (noIdCount > total * 0.2) {
-    flags.push(`⚠️ ${noIdCount}/${total} records không có mã đơn truy vết`);
+    flags.push(`⚠️ ${noIdCount}/${total} records khong co ma don truy vet`);
   }
 
   return { total, byStream, highRiskCount, scBhKbPercent: scPercent, flags };

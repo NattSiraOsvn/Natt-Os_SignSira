@@ -31,22 +31,22 @@ export interface BomRecord {
 }
 
 // ── Validation rules theo nghiệp vụ Tâm Luxury ──
-const VALID_TUOI = new Set(['75', '58.5', '41.6', '99.99', 'THÉP', 'BẠC925', '75,TRẮNG']);
-const VALID_MAU  = new Set(['TRẮNG', 'ĐỎ', 'HỒNG', 'VÀNG', 'ĐEN']);
+const VALID_TUOI = new Set(['75', '58.5', '41.6', '99.99', 'thep', 'bac925', '75,trang']);
+const VALID_MAU  = new Set(['trang', 'do', 'hong', 'vang', 'den']);
 
 function validateBom(bom: BomRecord): { valid: boolean; reason?: string } {
   const tuoi = String(bom.tuoiVang).replace(',', '.');
   if (!bom.maHang || bom.maHang.trim() === '') {
-    return { valid: false, reason: 'MÃ_HÀNG_TRỐNG' };
+    return { valid: false, reason: 'ma_hang_trong' };
   }
   if (!VALID_MAU.has(bom.mauSP)) {
-    return { valid: false, reason: `MÀU_KHÔNG_HỢP_LỆ: ${bom.mauSP}` };
+    return { valid: false, reason: `mau_khong_hop_le: ${bom.mauSP}` };
   }
   // Tuổi vàng hợp lệ — hoặc là string có dấu phẩy (41,6 → 41.6)
   const normalised = tuoi === '41.6' || tuoi === '58.5' || tuoi === '75' || tuoi === '99.99';
-  const isSpecial  = bom.tuoiVang === 'THÉP' || bom.tuoiVang === 'BẠC925';
+  const isSpecial  = bom.tuoiVang === 'thep' || bom.tuoiVang === 'bac925';
   if (!normalised && !isSpecial) {
-    return { valid: false, reason: `TUỔI_VÀNG_KHÔNG_HỢP_LỆ: ${bom.tuoiVang}` };
+    return { valid: false, reason: `tuoi_vang_khong_hop_le: ${bom.tuoiVang}` };
   }
   EventBus.emit('cell.metric', { cell: 'bom3dprd-cell', metric: 'engine.executed', value: 1, ts: Date.now() });
 
@@ -73,7 +73,7 @@ EventBus.subscribe('BomCreated' as any, (envelope: any) => {
     maHang:    p.maHang ?? '',
     chungLoai: p.chungLoai ?? '',
     tuoiVang:  String(p.tuoiVang ?? '75'),
-    mauSP:     p.mauSP ?? 'TRẮNG',
+    mauSP:     p.mauSP ?? 'trang',
     niSize:    p.niSize,
     hasStone:  Boolean(p.ochu),   // Ổ CHỦ có giá trị → có đá
     status:    'PENDING',

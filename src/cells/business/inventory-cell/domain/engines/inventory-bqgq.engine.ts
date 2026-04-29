@@ -46,7 +46,7 @@ export class InventoryEngine {
    * avg_mới = (qty_cũ × avg_cũ + qty_nhập × giá_nhập) / (qty_cũ + qty_nhập)
    */
   nhap(code: string, qty: number, unitPrice: number, name = '', type?: ItemType): TransactionResult {
-    if (qty <= 0 || unitPrice < 0) return { ok: false, avgCost: 0, cogs: 0, profit: 0, vatAmount: 0, error: 'Qty/price không hợp lệ' };
+    if (qty <= 0 || unitPrice < 0) return { ok: false, avgCost: 0, cogs: 0, profit: 0, vatAmount: 0, error: 'Qty/price khong hop le' };
 
     const existing = this.items.get(code) ?? this._newItem(code, name, type);
     const totalValue = qty * unitPrice;
@@ -70,8 +70,8 @@ export class InventoryEngine {
    */
   xuat(code: string, qty: number, sellPrice: number): TransactionResult {
     const item = this.items.get(code);
-    if (!item) return { ok: false, avgCost: 0, cogs: 0, profit: 0, vatAmount: 0, error: `Mã ${code} không tồn tại` };
-    if (item.qty < qty) return { ok: false, avgCost: item.avgCost, cogs: 0, profit: 0, vatAmount: 0, error: `Âm kho: có ${item.qty.toFixed(3)}, xuất ${qty}` };
+    if (!item) return { ok: false, avgCost: 0, cogs: 0, profit: 0, vatAmount: 0, error: `ma ${code} khong ton tai` };
+    if (item.qty < qty) return { ok: false, avgCost: item.avgCost, cogs: 0, profit: 0, vatAmount: 0, error: `am kho: co ${item.qty.toFixed(3)}, xuat ${qty}` };
 
     const cogs    = qty * item.avgCost;
     const revenue = qty * sellPrice;
@@ -107,7 +107,7 @@ export class InventoryEngine {
       const mat = this.items.get(b.materialCode);
       const required = qty * b.qtyPerUnit * (1 + (b.wastePercent ?? 0) / 100);
       if (!mat || mat.qty < required) {
-        errors.push(`Thiếu ${b.materialCode}: cần ${required.toFixed(3)}, có ${mat?.qty.toFixed(3) ?? 0}`);
+        errors.push(`thieu ${b.materialCode}: can ${required.toFixed(3)}, co ${mat?.qty.toFixed(3) ?? 0}`);
       }
     }
     if (errors.length > 0) return { ok: false, productAvgCost: 0, totalCost: 0, errors };
@@ -189,7 +189,7 @@ export class InventoryEngine {
   /** Export ra rows để ghi GSheets */
   toRows(): unknown[][] {
     return [
-      ['MÃ SP', 'TÊN', 'SỐ LƯỢNG', 'GIÁ TRỊ TỒN', 'BQGQ', 'LOẠI', 'CẬP NHẬT'],
+      ['ma SP', 'ten', 'so luong', 'gia tri ton', 'BQGQ', 'loai', 'cap nhat'],
       ...this.getAll().map(i => [
         i.code, i.name,
         +i.qty.toFixed(4),

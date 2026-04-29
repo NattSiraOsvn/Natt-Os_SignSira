@@ -33,13 +33,13 @@ export class AIFirewallEngine {
     if (!profile.userAgent || profile.userAgent.length < 10) { reasons.push('No/empty User-Agent'); botScore += 0.3; }
 
     // Session too short
-    if (profile.sessionMs < 500) { reasons.push(`Session ${profile.sessionMs}ms quá ngắn`); botScore += 0.2; }
+    if (profile.sessionMs < 500) { reasons.push(`Session ${profile.sessionMs}ms qua ngen`); botScore += 0.2; }
 
     // No mouse events in long session = headless browser
-    if (profile.mouseEvents === 0 && profile.sessionMs > 2000) { reasons.push('No mouse events — headless browser nghi ngờ'); botScore += 0.3; }
+    if (profile.mouseEvents === 0 && profile.sessionMs > 2000) { reasons.push('No mouse events — headless browser nghi ngo'); botScore += 0.3; }
 
     // Low coherence
-    if (profile.coherence < 0.3) { reasons.push(`Coherence ${profile.coherence.toFixed(2)} quá thấp`); botScore += 0.2; }
+    if (profile.coherence < 0.3) { reasons.push(`Coherence ${profile.coherence.toFixed(2)} qua thap`); botScore += 0.2; }
 
     botScore = Math.min(1.0, botScore);
     const isBot = botScore >= 0.6;

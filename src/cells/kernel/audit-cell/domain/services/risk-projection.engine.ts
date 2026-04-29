@@ -59,7 +59,7 @@ export class RiskProjectionEngine {
       return this.record({
         type: 'HIGH_VALUE_TRANSACTION',
         severity: 'HIGH',
-        description: `Giao dịch ${(amount / 1_000_000_000).toFixed(1)} tỷ VND vượt ngưỡng. Yêu cầu Master ký số.`,
+        description: `Giao dich ${(amount / 1_000_000_000).toFixed(1)} ty VND vuot nguong. yeu cau Master ky so.`,
         entityId,
         entityType: 'INVOICE',
         metadata: { amount, orderId, source },
@@ -71,7 +71,7 @@ export class RiskProjectionEngine {
       return this.record({
         type: 'UNIDENTIFIED_SOURCE',
         severity: 'CRITICAL',
-        description: `Dòng tiền ${(amount / 1_000_000).toFixed(0)} triệu không liên kết đơn hàng.`,
+        description: `dong tien ${(amount / 1_000_000).toFixed(0)} trieu khong lien ket don hang.`,
         entityId,
         entityType: 'INVOICE',
         metadata: { amount, source },
@@ -96,7 +96,7 @@ export class RiskProjectionEngine {
       return this.record({
         type: 'GOLD_VARIANCE_EXCEEDED',
         severity: 'CRITICAL',
-        description: `Thợ ${hoVaTen} tháng ${thang}: chênh lệch ${tongChenhLech.toFixed(3)} chỉ vượt ngưỡng ${RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_CHI}.`,
+        description: `tho ${hoVaTen} thang ${thang}: chenh lech ${tongChenhLech.toFixed(3)} chi vuot nguong ${RiskProjectionEngine.THRESHOLDS.GOLD_VARIANCE_CHI}.`,
         entityId: `${hoVaTen}-T${thang}`,
         entityType: 'WORKER',
         metadata: { hoVaTen, thang, tongChenhLech },
@@ -107,7 +107,7 @@ export class RiskProjectionEngine {
       return this.record({
         type: 'GOLD_VARIANCE_warnING',
         severity: 'warnING',
-        description: `Thợ ${hoVaTen} tháng ${thang}: chênh lệch ${tongChenhLech.toFixed(3)} chỉ cần theo dõi.`,
+        description: `tho ${hoVaTen} thang ${thang}: chenh lech ${tongChenhLech.toFixed(3)} chi can theo dau.`,
         entityId: `${hoVaTen}-T${thang}`,
         entityType: 'WORKER',
         metadata: { hoVaTen, thang, tongChenhLech },
@@ -125,7 +125,7 @@ export class RiskProjectionEngine {
       return this.record({
         type: 'missing_BOM_CLUSTER',
         severity: 'CRITICAL',
-        description: `${ordersWithoutBOM.length} đơn thiếu BOM: ${ordersWithoutBOM.slice(0, 5).join(', ')}. Kẽ hở hợp thức hóa thiếu vàng.`,
+        description: `${ordersWithoutBOM.length} don thieu BOM: ${ordersWithoutBOM.slice(0, 5).join(', ')}. ke ho hop thuc hoa thieu vang.`,
         entityId: 'BOM_CHECK',
         entityType: 'SYSTEM',
         metadata: { orders: ordersWithoutBOM, count: ordersWithoutBOM.length },
@@ -147,7 +147,7 @@ export class RiskProjectionEngine {
       return this.record({
         type: 'ACCOUNTABILITY_CONCENTRATION',
         severity: 'HIGH',
-        description: `${person} kiểm soát ${(ratio * 100).toFixed(0)}% tổng roles (${roleCount}/${totalRoles}). Rủi ro single-point-of-failure.`,
+        description: `${person} kiem soat ${(ratio * 100).toFixed(0)}% tong roles (${roleCount}/${totalRoles}). rui ro single-point-of-failure.`,
         entityId: person,
         entityType: 'WORKER',
         metadata: { person, roleCount, totalRoles, ratio },

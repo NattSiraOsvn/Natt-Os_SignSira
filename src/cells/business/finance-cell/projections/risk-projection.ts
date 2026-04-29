@@ -15,23 +15,23 @@ export class RiskProjection {
   private static readonly HIGH_VALUE_THRESHOLD = 5000000000; // 5 Tỷ VND
 
   public static async analyze(invoice: InvoiceState) {
-    console.log(`[RISK-ENGINE] Phân tích dị thường cho Hóa đơn: ${invoice.id}`);
+    console.log(`[RISK-ENGINE] phan tich di thuong cho hoa don: ${invoice.id}`);
 
     // 1. Kiểm tra giá trị cực cao
     if (invoice.amount >= this.HIGH_VALUE_THRESHOLD) {
-      this.triggerAnomaly(invoice, 'HIGH_VALUE_INVOICE', 'Giao dịch vượt ngưỡng 5 tỷ VND. Cần Master Natt ký số trực tiếp.');
+      this.triggerAnomaly(invoice, 'HIGH_VALUE_INVOICE', 'Giao dich vuot nguong 5 ty VND. can Master Natt ky so truc tiep.');
     }
 
     // 2. Kiểm tra dấu hiệu rửa tiền (Giả lập logic)
     if (invoice.amount > 1000000000 && !invoice.orderId.includes('ORD')) {
-        this.triggerAnomaly(invoice, 'UNIDENTIFIED_SOURCE', 'Dòng tiền lớn không rõ nguồn gốc đơn hàng.', 'CRITICAL');
+        this.triggerAnomaly(invoice, 'UNIDENTIFIED_SOURCE', 'dong tien lon khong ro nguon goc don hang.', 'CRITICAL');
     }
   }
 
   private static triggerAnomaly(invoice: InvoiceState, reason: string, details: string, severity: any = 'HIGH') {
     NotifyBus.push({
       type: 'RISK',
-      title: `DỊ THƯỜNG TÀI CHÍNH: ${reason}`,
+      title: `di thuong tai chinh: ${reason}`,
       content: details,
       persona: PersonaID.KRIS,
       priority: severity === 'CRITICAL' ? 'HIGH' : 'MEDIUM',

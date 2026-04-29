@@ -50,7 +50,7 @@ export interface PayrollResult {
   taxableIncome: number;       // Thu nhập chịu thuế
   pit: number;                 // Thuế TNCN
   netSalary: number;           // Thực lĩnh
-  seniority?: string;          // Thâm niên dạng "X năm Y tháng Z ngày"
+  seniority?: string;          // Thâm niên dạng "X nam Y thang Z ngay"
 }
 
 export interface SalaryGrade {
@@ -211,7 +211,7 @@ export function findClosestSalaryGrade(
   actualSalary: number,
   rules: SalaryGrade[],
 ): string {
-  if (!rules || rules.length === 0) return 'Chưa định nghĩa';
+  if (!rules || rules.length === 0) return 'chua dinh nghia';
   const sorted = [...rules].sort((a, b) => a.salary - b.salary);
   let closest = sorted[0].grade;
   let minDiff = Math.abs(actualSalary - sorted[0].salary);
@@ -225,11 +225,11 @@ export function findClosestSalaryGrade(
 
 /**
  * calcSeniority — tính thâm niên từ ngày vào làm đến hôm nay.
- * Output: "X năm, Y tháng, Z ngày"
+ * Output: "X nam, Y thang, Z ngay"
  */
 export function calcSeniority(startDate: string | Date, endDate?: Date): string {
   const start = startDate instanceof Date ? startDate : parseDateSafe(startDate);
-  if (!start) return 'Lỗi dữ liệu ngày';
+  if (!start) return 'lau du lieu ngay';
   const end = endDate || new Date();
   return getDateDiffString(start, end);
 }
@@ -248,7 +248,7 @@ export function getDateDiffString(startDate: Date, endDate: Date): string {
     days += prevMonth.getDate();
   }
   if (months < 0) { years--; months += 12; }
-  return `${years} năm, ${months} tháng, ${days} ngày`;
+  return `${years} nam, ${months} thang, ${days} ngay`;
 }
 
 /**

@@ -108,7 +108,7 @@ export function mountIseuSurface(): void {
     // Emit nauion.state sau reinforcement
     const fiber = SmartLinkEngine.getFiberByDomain(domainId);
     EventBus.emit('nauion.state', {
-      state: outcome_weight >= 0.7 ? 'nauion' : outcome_weight >= 0.4 ? 'lệch' : 'gãy',
+      state: outcome_weight >= 0.7 ? 'nauion' : outcome_weight >= 0.4 ? 'lech' : 'gay',
       from: 'iseu-surface',
       domainId,
       outcome_weight,

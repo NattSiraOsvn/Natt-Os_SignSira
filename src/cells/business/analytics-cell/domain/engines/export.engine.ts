@@ -12,27 +12,27 @@ export class ExportEngine {
     
     // Sheet 1: TỔNG QUAN (Overview Metrics)
     const summaryData = [
-      { 'Chỉ số': 'Tổng số Node đối tác', 'Giá trị': data.length },
-      { 'Chỉ số': 'Node Nước Ngoài', 'Giá trị': data.filter(s => s.loaiNCC === 'NUOC_NGOAI').length },
-      { 'Chỉ số': 'Node Tiềm Năng', 'Giá trị': data.filter(s => s.coTienNang).length },
-      { 'Chỉ số': 'Tổng giá trị giao dịch', 'Giá trị': data.reduce((s, i) => s + (i.transactionAmount || 0), 0).toLocaleString() + ' đ' }
+      { 'chi so': 'tong so Node đau tac', 'gia tri': data.length },
+      { 'chi so': 'Node nuoc ngoai', 'gia tri': data.filter(s => s.loaiNCC === 'NUOC_NGOAI').length },
+      { 'chi so': 'Node tiem nang', 'gia tri': data.filter(s => s.coTienNang).length },
+      { 'chi so': 'tong gia tri giao dich', 'gia tri': data.reduce((s, i) => s + (i.transactionAmount || 0), 0).toLocaleString() + ' d' }
     ];
     const wsSummary = XLSX.utils.json_to_sheet(summaryData);
-    XLSX.utils.book_append_sheet(workbook, wsSummary, '1. TỔNG QUAN');
+    XLSX.utils.book_append_sheet(workbook, wsSummary, '1. tong QUAN');
 
     // Sheet 2: CHI TIẾT NODE (Node Details)
     const wsDetails = XLSX.utils.json_to_sheet(data.map(s => ({
-      'Mã Node': s.maNhaCungCap,
-      'Tên Đối Tác': s.tenNhaCungCap,
-      'Loại': s.loaiNCC === 'NUOC_NGOAI' ? 'Quốc tế' : 'Trong nước',
-      'Nhóm hàng': s.nhomHangChinh?.join(', '),
-      'Quy mô': s.quyMo,
-      'Xu hướng': s.xuHuong,
+      'ma Node': s.maNhaCungCap,
+      'ten đau tac': s.tenNhaCungCap,
+      'loai': s.loaiNCC === 'NUOC_NGOAI' ? 'quoc te' : 'Trong nuoc',
+      'nhom hang': s.nhomHangChinh?.join(', '),
+      'Quy mo': s.quyMo,
+      'Xu huong': s.xuHuong,
       'Sentiment': `${((s.sentimentScore || 0) * 100).toFixed(0)}%`,
-      'Doanh số (Net)': s.transactionAmount,
+      'Doanh so (Net)': s.transactionAmount,
       'Email': s.email || 'N/A'
     })));
-    XLSX.utils.book_append_sheet(workbook, wsDetails, '2. CHI TIẾT NODE');
+    XLSX.utils.book_append_sheet(workbook, wsDetails, '2. CHI tiet NODE');
 
     // Sheet 3: PHÂN TÍCH NHÓM (Group Analysis)
     const groupDist = data.reduce((acc: any, s) => {
@@ -41,19 +41,19 @@ export class ExportEngine {
        });
        return acc;
     }, {});
-    const groupData = Object.entries(groupDist).map(([key, val]) => ({ 'Ngành hàng': key, 'Số lượng Node': val }));
+    const groupData = Object.entries(groupDist).map(([key, val]) => ({ 'nganh hang': key, 'so luong Node': val }));
     const wsGroup = XLSX.utils.json_to_sheet(groupData);
-    XLSX.utils.book_append_sheet(workbook, wsGroup, '3. PHÂN TÍCH NHÓM');
+    XLSX.utils.book_append_sheet(workbook, wsGroup, '3. phan tich nhom');
 
     // Sheet 4: RỦI RO & TIỀM NĂNG (Audit Insight)
     const potentialData = data.filter(s => s.coTienNang || (s.sentimentScore && s.sentimentScore < 0.5)).map(s => ({
-      'Đối tác': s.tenNhaCungCap,
-      'Trạng thái': s.coTienNang ? 'TIỀM NĂNG' : 'RỦI RO',
-      'Điểm': s.diemDanhGia,
-      'Ghi chú': s.sentimentScore < 0.5 ? 'Sentiment thấp - Cần rà soát' : 'Quy mô lớn - Ưu tiên hợp tác'
+      'đau tac': s.tenNhaCungCap,
+      'trang thai': s.coTienNang ? 'tiem nang' : 'rui RO',
+      'diem': s.diemDanhGia,
+      'Ghi chu': s.sentimentScore < 0.5 ? 'Sentiment thap - can ra soat' : 'Quy mo lon - uu tien hop tac'
     }));
     const wsAudit = XLSX.utils.json_to_sheet(potentialData);
-    XLSX.utils.book_append_sheet(workbook, wsAudit, '4. RỦI RO & TIỀM NĂNG');
+    XLSX.utils.book_append_sheet(workbook, wsAudit, '4. rui RO & tiem nang');
 
     XLSX.writeFile(workbook, `${fileName}_${new Date().toISOString().split('T')[0]}.xlsx`);
     return this.generateFileHash(fileName);

@@ -1,27 +1,27 @@
 # warranty-cell
 
-## Mục đích
-Xử lý **bảo hành trọn đời và dịch vụ sửa chữa** trang sức — đặc thù Tâm Luxury.
+## muc dich
+xu ly **bao hanh tron doi va dich vu sua chua** trang suc — dac thu Tâm Luxury.
 
-## Flow chính
-1. **Tiếp nhận** — Khách mang sản phẩm cần bảo hành/sửa chữa
-2. **Chẩn đoán** — Xác định lỗi, đề xuất dịch vụ
-3. **Báo giá** — Tự động tính theo policy: VIP tier, mua tại shop, loại dịch vụ
-4. **Thực hiện** — Xi, mạ, hàn, gắn đá, resize...
-5. **Kiểm tra** — Quality check trước khi trả
-6. **Trả hàng** — Thông báo khách nhận
+## Flow chinh
+1. **tiep nhan** — khach mang san pham can bao hanh/sua chua
+2. **chan doan** — xac dinh lau, de xuat dich vu
+3. **bao gia** — tu dong tinh theo policy: VIP tier, mua tai shop, loai dich vu
+4. **thuc hien** — Xi, ma, han, gen da, resize...
+5. **kiem tra** — Quality check truoc khi tra
+6. **tra hang** — thong bao khach nhan
 
-## Chính sách phí
-| Policy | Điều kiện | Giảm |
+## chinh sach phi
+| Policy | dieu kien | giam |
 |--------|-----------|------|
-| FREE_LIFETIME | Mua tại shop + dịch vụ cơ bản | 100% |
+| FREE_LIFETIME | Mua tai shop + dich vu co ban | 100% |
 | FREE_VIP | VIP Gold/Platinum/Diamond | 100% (theo tier) |
-| DISCOUNTED | Mua tại shop + dịch vụ nâng cao | 50% |
-| FULL_PRICE | Hàng ngoài | 0% |
+| DISCOUNTED | Mua tai shop + dich vu nang cao | 50% |
+| FULL_PRICE | hang ngoai | 0% |
 
-## Dịch vụ
+## dich vu
 POLISH, REPLATE, RESIZE, STONE_RESET, STONE_REPLACE, SOLDER, CLASP_REPLACE, ENGRAVING, FULL_RESTORATION, CLEANING
 
 ## Boundary Rules
-- ✅ Giao tiếp qua `shared-contracts-cell` + EDA events
-- ❌ KHÔNG import trực tiếp từ business cells khác
+- ✅ Giao tiep qua `shared-contracts-cell` + EDA events
+- ❌ khong import truc tiep tu business cells khac

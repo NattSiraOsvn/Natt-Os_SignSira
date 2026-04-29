@@ -34,7 +34,7 @@ function checkScoreSpike(entityId: EntityId, deltaThisSession: number): Anomaly 
   if (deltaThisSession > 300) {
     return {
       entityId, type: 'SCORE_SPIKE', severity: 'HIGH',
-      description: 'Delta session vượt maxDeltaPerSession = 300',
+      description: 'Delta session vuot maxDeltaPerSession = 300',
       evidence: `deltaThisSession = ${deltaThisSession}`,
       detectedAt: new Date().toISOString(),
     };
@@ -47,7 +47,7 @@ function checkRepeatedViolations(entityId: EntityId, actions: QNEUAction[]): Ano
   if (violations.length >= thresholds.freezeProposalMinViolations) {
     return {
       entityId, type: 'REPEATED_VIOLATION', severity: 'CRITICAL',
-      description: `${violations.length} violations trong session — có thể cần FREEZE`,
+      description: `${violations.length} violations trong session — co the can FREEZE`,
       evidence: `violation count = ${violations.length}`,
       detectedAt: new Date().toISOString(),
     };
@@ -71,7 +71,7 @@ function checkUnusualActionMix(entityId: EntityId, actions: QNEUAction[]): Anoma
   if (actions.length > 0 && expectedMatch === 0) {
     return {
       entityId, type: 'UNUSUAL_ACTION_MIX', severity: 'MEDIUM',
-      description: 'Không có action nào match expected role pattern',
+      description: 'khong co action nao match expected role pattern',
       evidence: `Actions: ${Array.from(actionTypes).join(', ')}`,
       detectedAt: new Date().toISOString(),
     };

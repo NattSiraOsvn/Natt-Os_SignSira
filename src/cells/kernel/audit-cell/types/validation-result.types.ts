@@ -1,5 +1,5 @@
-export type Direction = 'ĐÔNG' | 'TÂY' | 'NAM' | 'BẮC';
-export type ExtensionTier = 'entity' | 'file' | 'sinh-thể' | 'implementation';
+export type Direction = 'dong' | 'tay' | 'NAM' | 'bac';
+export type ExtensionTier = 'entity' | 'file' | 'sinh-the' | 'implementation';
 
 export interface ValidationResult {
   filePath: string;

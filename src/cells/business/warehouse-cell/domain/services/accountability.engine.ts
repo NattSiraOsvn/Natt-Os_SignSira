@@ -60,7 +60,7 @@ export class AccountabilityEngine {
       if (!value || (typeof value === 'string' && value.trim() === '')) {
         violations.push({
           type: 'missing_ROLE',
-          message: `${role} không được để trống tại ${chain.congDoan}`,
+          message: `${role} khong duoc de trong tai ${chain.congDoan}`,
           roles: chain,
           maDon,
         });
@@ -71,7 +71,7 @@ export class AccountabilityEngine {
     if (chain.nguoiGiaoViec && chain.nguoiGiaoViec === chain.nguoiNhanViec) {
       violations.push({
         type: 'SELF_ASSIGN',
-        message: `Người giao và người nhận trùng nhau: ${chain.nguoiGiaoViec}`,
+        message: `ngui giao va ngui nhan trung nhau: ${chain.nguoiGiaoViec}`,
         roles: chain,
         maDon,
       });
@@ -81,7 +81,7 @@ export class AccountabilityEngine {
     if (chain.nguoiKiemTra && chain.nguoiKiemTra === chain.nguoiNhanViec) {
       violations.push({
         type: 'SELF_INSPECT',
-        message: `Người kiểm tra và người thực hiện trùng nhau: ${chain.nguoiKiemTra}`,
+        message: `ngui kiem tra va ngui thuc hien trung nhau: ${chain.nguoiKiemTra}`,
         roles: chain,
         maDon,
       });
@@ -91,7 +91,7 @@ export class AccountabilityEngine {
     if (chain.nguoiBanGiao && chain.nguoiBanGiao === chain.nguoiNhanBanGiao) {
       violations.push({
         type: 'SELF_ASSIGN',
-        message: `Người bàn giao và người nhận bàn giao trùng nhau: ${chain.nguoiBanGiao}`,
+        message: `ngui ban giao va ngui nhan ban giao trung nhau: ${chain.nguoiBanGiao}`,
         roles: chain,
         maDon,
       });
@@ -131,7 +131,7 @@ export class AccountabilityEngine {
 
   /**
    * Find all orders where a specific person was involved.
-   * For investigation: "show me everything thợ X touched."
+   * For investigation: "show me everything tho X touched."
    */
   findByPerson(personName: string): Array<{ maDon: string; chains: AccountabilityChain[] }> {
     const results: Array<{ maDon: string; chains: AccountabilityChain[] }> = [];
@@ -155,7 +155,7 @@ export class AccountabilityEngine {
 
   /**
    * Detect if a single person is controlling too many roles across orders.
-   * Addresses the "chị Uyên single-account" risk pattern.
+   * Addresses the "chi uyen single-account" risk pattern.
    */
   detectConcentrationRisk(
     thresholdPercent: number = 0.5

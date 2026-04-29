@@ -1,19 +1,19 @@
 # buyback-cell
 
-## Mục đích
-Xử lý nghiệp vụ **thu mua vàng cũ, đổi trả, trade-in** — đặc thù ngành trang sức.
+## muc dich
+xu ly nghiep vu **thu mua vang cu, đau tra, trade-in** — dac thu nganh trang suc.
 
-## Flow chính
-1. **Tiếp nhận** — Khách mang hàng cũ đến
-2. **Kiểm định** — Đo tuổi vàng, trọng lượng, kiểm đá, đánh giá tình trạng
-3. **Tính giá** — Công thức: `(weight × marketPrice × purity) + stone - depreciation - labor`
-4. **Thanh toán** — Trả tiền cho khách hoặc tính bù Trade-in
-5. **Phân loại** — RESELL / REFURBISH / SCRAP_GOLD / SCRAP_STONE
+## Flow chinh
+1. **tiep nhan** — khach mang hang cu den
+2. **kiem dinh** — do tuoi vang, trong luong, kiem da, danh gia tinh trang
+3. **tinh gia** — cong thuc: `(weight × marketPrice × purity) + stone - depreciation - labor`
+4. **Thanh toan** — tra tien cho khach hoac tinh bu Trade-in
+5. **phan loai** — RESELL / REFURBISH / SCRAP_GOLD / SCRAP_STONE
 
 ## Boundary Rules
-- ✅ Giao tiếp qua `shared-contracts-cell` + EDA events
-- ❌ KHÔNG import trực tiếp từ business cells khác
-- ❌ KHÔNG import kernel / infrastructure
+- ✅ Giao tiep qua `shared-contracts-cell` + EDA events
+- ❌ khong import truc tiep tu business cells khac
+- ❌ khong import kernel / infrastructure
 
 ## Events
 ### Emitted

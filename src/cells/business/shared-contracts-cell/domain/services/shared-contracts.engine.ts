@@ -42,14 +42,14 @@ export class SharedContractsEngine {
 
     // Kiểm tra parties
     if (!parties || parties.length < 2) {
-      riskFlags.push('Hợp đồng thiếu đủ 2 bên');
+      riskFlags.push('hop dong thieu du 2 ben');
       status = 'draft';
     }
 
     // Hết hạn
     if (now > endDate) {
       status = paymentRatio >= 1.0 ? 'completed' : 'breach';
-      if (paymentRatio < 1.0) riskFlags.push(`Hợp đồng hết hạn — còn nợ ${((1 - paymentRatio) * 100).toFixed(0)}%`);
+      if (paymentRatio < 1.0) riskFlags.push(`hop dong het han — con no ${((1 - paymentRatio) * 100).toFixed(0)}%`);
     }
 
     // Thanh toán chậm
@@ -57,12 +57,12 @@ export class SharedContractsEngine {
     const total   = endDate - startDate;
     const expectedPayRatio = total > 0 ? elapsed / total : 0;
     if (paymentRatio < expectedPayRatio * 0.8) {
-      riskFlags.push(`Thanh toán chậm — đã trả ${(paymentRatio * 100).toFixed(0)}% nhưng kỳ hạn yêu cầu ${(expectedPayRatio * 80).toFixed(0)}%`);
+      riskFlags.push(`Thanh toan cham — da tra ${(paymentRatio * 100).toFixed(0)}% nhung ky han yeu cau ${(expectedPayRatio * 80).toFixed(0)}%`);
     }
 
     // Giá trị lớn không có chứng từ
     if (value > 100_000_000 && !contract.obligations?.length) {
-      riskFlags.push(`HĐ ${value.toLocaleString()}đ — không có danh sách nghĩa vụ rõ ràng`);
+      riskFlags.push(`hd ${value.toLocaleString()}d — khong co danh sach nghia vu ro rang`);
     }
 
     if (riskFlags.length > 0) {

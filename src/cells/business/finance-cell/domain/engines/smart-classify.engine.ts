@@ -9,36 +9,36 @@
 // ── CATEGORIES ────────────────────────────────────────────────────────────
 export const CATEGORY = {
   // THU
-  DT_CK:      '💰 DOANH THU CHUYỂN KHOẢN',
-  DT_POS:     '💳 DOANH THU THẺ (POS)',
-  DT_QR:      '📱 DOANH THU VÍ ĐIỆN TỬ',
-  DT_TRADING: '💼 DOANH THU TỰ DOANH',
+  DT_CK:      '💰 DOANH THU chuyen khoan',
+  DT_POS:     '💳 DOANH THU the (POS)',
+  DT_QR:      '📱 DOANH THU vi dien tu',
+  DT_TRADING: '💼 DOANH THU tu DOANH',
   // COGS
-  COGS_GOLD_B2B:       '🟡 MUA VÀNG TỪ ĐỐI TÁC (B2B)',
-  COGS_GOLD_BUYBACK:   '🟡 THU MUA VÀNG TỪ KHÁCH',
-  COGS_DIAMOND_IMPORT: '💎 MUA KC NHẬP KHẨU',
-  COGS_DIAMOND_LOCAL:  '💎 MUA KC NỘI ĐỊA',
-  COGS_BUYBACK_JEWELRY:'💍 THU MUA TRANG SỨC',
-  COGS_MATERIAL:       '📦 MUA NGUYÊN VẬT LIỆU',
-  COGS_SHIPPING_INT:   '🌍 CƯỚC VẬN CHUYỂN QUỐC TẾ',
-  COGS_CUSTOMS_DUTY:   '🏛️ THUẾ NHẬP KHẨU',
-  COGS_CUSTOMS_FEE:    '🏛️ PHÍ HẢI QUAN',
+  COGS_GOLD_B2B:       '🟡 MUA vang tu đau tac (B2B)',
+  COGS_GOLD_BUYBACK:   '🟡 THU MUA vang tu khach',
+  COGS_DIAMOND_IMPORT: '💎 MUA KC nhap khau',
+  COGS_DIAMOND_LOCAL:  '💎 MUA KC nau dia',
+  COGS_BUYBACK_JEWELRY:'💍 THU MUA TRANG suc',
+  COGS_MATERIAL:       '📦 MUA nguyen vat lieu',
+  COGS_SHIPPING_INT:   '🌍 cuoc van chuyen quoc te',
+  COGS_CUSTOMS_DUTY:   '🏛️ thue nhap khau',
+  COGS_CUSTOMS_FEE:    '🏛️ phi hai QUAN',
   // THUẾ
-  TAX_VAT_IMPORT:      '🏛️ THUẾ GTGT NHẬP KHẨU',
-  TAX_VAT_DOMESTIC:    '🏛️ THUẾ GTGT NỘI ĐỊA',
-  TAX_CIT:             '🏛️ THUẾ TNDN',
-  TAX_PIT:             '🏛️ THUẾ TNCN',
-  TAX_PENALTY:         '⚠️ TIỀN PHẠT / CHẬM NỘP',
+  TAX_VAT_IMPORT:      '🏛️ thue GTGT nhap khau',
+  TAX_VAT_DOMESTIC:    '🏛️ thue GTGT nau dia',
+  TAX_CIT:             '🏛️ thue TNDN',
+  TAX_PIT:             '🏛️ thue TNCN',
+  TAX_PENALTY:         '⚠️ tien phat / cham nop',
   // VẬN HÀNH
-  BANK_FEE:            '🏦 PHÍ NGÂN HÀNG',
-  HR_SALARY:           '👨‍💼 LƯƠNG / THƯỞNG',
-  INSURANCE:           '🛡️ BẢO HIỂM XÃ HỘI',
-  MKT_ADS:             '📢 QUẢNG CÁO',
-  OPERATING_RENT:      '📋 THUÊ MẶT BẰNG',
-  OPERATING_UTILITY:   '📋 ĐIỆN NƯỚC INTERNET',
-  LOGISTICS:           '🚚 VẬN CHUYỂN / GIAO HÀNG',
-  INTERNAL_TRANSFER:   '🔄 CHUYỂN KHOẢN NỘI BỘ',
-  NEED_REVIEW:         '🔍 CẦN KIỂM TRA',
+  BANK_FEE:            '🏦 phi ngan hang',
+  HR_SALARY:           '👨‍💼 luong / thuong',
+  INSURANCE:           '🛡️ bao hiem xa hau',
+  MKT_ADS:             '📢 quang cao',
+  OPERATING_RENT:      '📋 thue mat bang',
+  OPERATING_UTILITY:   '📋 dien nuoc INTERNET',
+  LOGISTICS:           '🚚 van chuyen / GIAO hang',
+  INTERNAL_TRANSFER:   '🔄 chuyen khoan nau bo',
+  NEED_REVIEW:         '🔍 can kiem TRA',
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORY;
@@ -54,11 +54,11 @@ export interface ClassifyResult {
 }
 
 // ── KEYWORD LISTS ─────────────────────────────────────────────────────────
-const PERSONAL_NAMES = ['nguyễn','trần','lê','phạm','hoàng','huỳnh','võ','đặng','bùi','đỗ','hồ','ngô','dương'];
-const COMPANY_KW     = ['công ty','cty','tnhh','cp','jsc','co.,ltd','doanh nghiệp','chi nhánh','group','holding'];
-const BUYBACK_KW     = ['thu sp','thu sản phẩm','thu hàng','thu mua','thu đổi','đổi hàng','mua lại','thu hồi','thu lại'];
-const CUSTOMS_KW     = ['tờ khai','hải quan','nhập khẩu','customs','hqtsnhat','import'];
-const TAX_KW         = ['thuế','kbnn','ngân sách','nsnn','nộp thuế'];
+const PERSONAL_NAMES = ['nguyen','tran','le','pham','hoang','huynh','vo','dang','bui','do','ho','ngo','duong'];
+const COMPANY_KW     = ['cong ty','cty','tnhh','cp','jsc','co.,ltd','doanh nghiep','chi nhanh','group','holding'];
+const BUYBACK_KW     = ['thu sp','thu san pham','thu hang','thu mua','thu đau','đau hang','mua lai','thu hau','thu lai'];
+const CUSTOMS_KW     = ['to khai','hai quan','nhap khau','customs','hqtsnhat','import'];
+const TAX_KW         = ['thue','kbnn','ngan sach','nsnn','nop thue'];
 
 // ── UTILITY ───────────────────────────────────────────────────────────────
 function norm(s: unknown): string {

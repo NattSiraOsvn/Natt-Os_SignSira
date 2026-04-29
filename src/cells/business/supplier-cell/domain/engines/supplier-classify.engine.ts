@@ -6,42 +6,42 @@ export class SupplierEngine {
   public static readonly PRODUCT_CATEGORIES = {
     DIAMONDS_GEMS: {
       name: 'KIM_CUONG_DA_QUY',
-      keywords: ['kim cương', 'diamond', 'gem', 'đá quý', 'hột xoàn', 'pearl', 'ruby', 'sapphire', 'precious'],
+      keywords: ['kim cuong', 'diamond', 'gem', 'da quy', 'hot xoan', 'pearl', 'ruby', 'sapphire', 'precious'],
       specificSuppliers: ['PRIME GEMS', 'ASIAN STAR', 'WORLD GEMS', 'ZEN', 'GEMPRO']
     },
     GOLD_SILVER: {
       name: 'VANG_BAC',
-      keywords: ['vàng', 'gold', 'bạc', 'silver', 'trang sức', 'nữ trang', 'sjc', 'pnj', 'doji', '18k', '24k'],
-      specificSuppliers: ['SJC', 'GOLDJ', 'PNJ', 'TÂM LUXURY']
+      keywords: ['vang', 'gold', 'bac', 'silver', 'trang suc', 'nu trang', 'sjc', 'pnj', 'doji', '18k', '24k'],
+      specificSuppliers: ['SJC', 'GOLDJ', 'PNJ', 'tam LUXURY']
     },
     PACKAGING_PRINTING: {
       name: 'BAO_BI_IN_AN',
-      keywords: ['bao bì', 'in ấn', 'packaging', 'túi', 'hộp', 'printing', 'tem nhãn', 'brochure'],
-      specificSuppliers: ['VĨNH KHANG', 'TRÍ THIỆN', 'TÂN PHÚ', 'HỒNG PHÁT']
+      keywords: ['bao bi', 'in an', 'packaging', 'tui', 'hop', 'printing', 'tem nhan', 'brochure'],
+      specificSuppliers: ['vinh KHANG', 'tri thien', 'tan phu', 'hong phat']
     },
     LOGISTICS: {
       name: 'LOGISTICS',
-      keywords: ['vận chuyển', 'logistics', 'ship', 'giao hàng', 'vận tải', 'freight', 'forwarding', 'customs'],
-      specificSuppliers: ['SHOWTRANS', 'GIAI PHÁT', 'FEDEX', 'DHL']
+      keywords: ['van chuyen', 'logistics', 'ship', 'giao hang', 'van tai', 'freight', 'forwarding', 'customs'],
+      specificSuppliers: ['SHOWTRANS', 'GIAI phat', 'FEDEX', 'DHL']
     },
     EQUIPMENT_TOOLS: {
       name: 'THIET_BI_CONG_CU',
-      keywords: ['thiết bị', 'máy', 'công cụ', 'tool', 'kính hiển vi', 'laser', 'máy đúc', 'máy mài'],
+      keywords: ['thiet bi', 'may', 'cong cu', 'tool', 'kinh hien vi', 'laser', 'may duc', 'may mai'],
       specificSuppliers: ['NTO', 'O.T.E.C', 'HIGH TECH']
     },
     SERVICES: {
       name: 'DICH_VU',
-      keywords: ['dịch vụ', 'service', 'phần mềm', 'software', 'tư vấn', 'consulting', 'giám định', 'appraisal'],
-      specificSuppliers: ['MISA', 'NGÂN LƯỢNG', 'MALCA-AMIT', 'FPT', 'VIETTEL']
+      keywords: ['dich vu', 'service', 'phan mem', 'software', 'tu van', 'consulting', 'giam dinh', 'appraisal'],
+      specificSuppliers: ['MISA', 'ngan luong', 'MALCA-AMIT', 'FPT', 'VIETTEL']
     },
     OFFICE_SUPPLIES: {
       name: 'VAN_PHONG_PHAM',
-      keywords: ['văn phòng phẩm', 'office supplies', 'giấy', 'bút', 'mực', 'ghim', 'kẹp'],
-      specificSuppliers: ['PHONG VŨ', 'NGUYỄN CÔNG']
+      keywords: ['ven phong pham', 'office supplies', 'giay', 'but', 'muc', 'ghim', 'kep'],
+      specificSuppliers: ['PHONG vu', 'nguyen cong']
     },
     RAW_MATERIALS: {
       name: 'NGUYEN_LIEU',
-      keywords: ['nguyên liệu', 'raw material', 'hóa chất', 'chất liệu', 'phụ liệu', 'chain', 'clasp'],
+      keywords: ['nguyen lieu', 'raw material', 'hoa chat', 'chat lieu', 'phu lieu', 'chain', 'clasp'],
       specificSuppliers: []
     }
   };
@@ -78,7 +78,7 @@ export class SupplierEngine {
     else if (supplier.transactionAmount && supplier.transactionAmount > 100000000) score += 2;
     
     if (supplier.website && supplier.email) score += 2;
-    if (supplier.tenNhaCungCap.toUpperCase().includes('TẬP ĐOÀN') || supplier.tenNhaCungCap.toUpperCase().includes('GROUP')) score += 2;
+    if (supplier.tenNhaCungCap.toUpperCase().includes('tap doan') || supplier.tenNhaCungCap.toUpperCase().includes('GROUP')) score += 2;
 
     if (score >= 5) return 'LON';
     if (score >= 3) return 'VUA';
@@ -105,8 +105,8 @@ export class SupplierEngine {
     if (supplier.sentimentScore && supplier.sentimentScore < 0.5) {
       recs.push({
         type: 'critical' as const,
-        title: 'Cảnh báo thái độ (Sentiment Low)',
-        action: 'Rà soát lại các khiếu nại chưa xử lý hoặc tìm đối tác thay thế.'
+        title: 'canh bao thai do (Sentiment Low)',
+        action: 'ra soat lai cac khieu nai chua xu ly hoac tim đau tac thay the.'
       });
     }
 
@@ -114,16 +114,16 @@ export class SupplierEngine {
     if (supplier.nhomHangChinh?.includes('KIM_CUONG_DA_QUY') && supplier.quyMo === 'LON') {
       recs.push({
         type: 'opportunity' as const,
-        title: 'Đối tác chiến lược tiềm năng',
-        action: 'Đàm phán hạn mức nợ hoặc ưu đãi giá nhập cho lô hàng lớn.'
+        title: 'đau tac chien luoc tiem nang',
+        action: 'dam phan han muc no hoac uu dai gia nhap cho lo hang lon.'
       });
     }
 
     if (this.determineTrend(supplier) === 'GIAM' && supplier.mucDoUuTien === 'CAO') {
       recs.push({
         type: 'warning' as const,
-        title: 'Sụt giảm giao dịch',
-        action: 'Liên hệ xác minh nguyên nhân (Giá cả hay chất lượng dịch vụ).'
+        title: 'sut giam giao dich',
+        action: 'lien he xac minh nguyen nhan (gia ca hay chat luong dich vu).'
       });
     }
 

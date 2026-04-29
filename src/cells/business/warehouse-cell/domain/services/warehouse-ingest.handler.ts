@@ -75,7 +75,7 @@ export class WarehouseIngestHandler {
           batchId,
           rows: [],
           timestamp: Date.now(),
-          reason: 'Batch rỗng — không có dữ liệu để xử lý',
+          reason: 'Batch rong — khong co du lieu de xu ly',
         } satisfies WarehouseIngestPendingPayload
       );
       this.emit(ev);
@@ -144,7 +144,7 @@ export class WarehouseIngestHandler {
           batchId,
           rows: pending,
           timestamp: Date.now(),
-          reason: reasons || 'Dữ liệu không đủ rõ để xử lý tự động',
+          reason: reasons || 'du lieu khong du ro de xu ly tu dong',
         } satisfies WarehouseIngestPendingPayload
       );
       this.emit(ev);
@@ -198,8 +198,8 @@ export class WarehouseIngestHandler {
     const row = item.rawRow;
 
     // Extract số lượng / trọng lượng
-    const qty = this._extractNumber(row, ['số lượng', 'sl', 'qty', 'quantity', 'trọng lượng', 'trong luong']);
-    const sku = this._extractString(row, ['mã hàng', 'ma hang', 'sku', 'mã', 'ma', 'code']);
+    const qty = this._extractNumber(row, ['so luong', 'sl', 'qty', 'quantity', 'trong luong', 'trong luong']);
+    const sku = this._extractString(row, ['ma hang', 'ma hang', 'sku', 'ma', 'ma', 'code']);
 
     if (!qty || !sku) return null;
 
@@ -211,7 +211,7 @@ export class WarehouseIngestHandler {
       sku,
       delta,
       newQuantity: 0,  // inventory-cell tự tính dựa trên current stock
-      unit:        this._extractString(row, ['đơn vị', 'don vi', 'unit']) ?? 'cái',
+      unit:        this._extractString(row, ['don vi', 'don vi', 'unit']) ?? 'cai',
       intent:      item.intent,
       timestamp:   Date.now(),
     };

@@ -18,9 +18,9 @@ export interface MarkupTier {
 }
 
 export const MARKUP_TIERS: Record<MarkupTierCode, MarkupTier> = {
-  STANDARD: { code: 'STANDARD', multiplier: 1.15, percentLabel: '15%', description: 'Sản phẩm thông thường' },
-  PREMIUM:  { code: 'PREMIUM',  multiplier: 1.20, percentLabel: '20%', description: 'Sản phẩm cao cấp / thiết kế riêng' },
-  LUXURY:   { code: 'LUXURY',   multiplier: 1.30, percentLabel: '30%', description: 'Hàng luxury / limited edition / VIP' },
+  STANDARD: { code: 'STANDARD', multiplier: 1.15, percentLabel: '15%', description: 'san pham thong thuong' },
+  PREMIUM:  { code: 'PREMIUM',  multiplier: 1.20, percentLabel: '20%', description: 'san pham cao cap / thiet ke rieng' },
+  LUXURY:   { code: 'LUXURY',   multiplier: 1.30, percentLabel: '30%', description: 'hang luxury / limited edition / VIP' },
 } as const;
 
 /** Default markup nếu không chỉ định */

@@ -89,7 +89,7 @@ export function bootstrapQuantumDefense(): void {
     }
   });
 
-  console.info('[QuantumDefense] Bootstrap complete — Cảnh Vệ đã sẵn sàng');
+  console.info('[QuantumDefense] Bootstrap complete — canh ve da sen sang');
 }
 
 // Wire: monitor.health_checked → Quantum Defense awareness

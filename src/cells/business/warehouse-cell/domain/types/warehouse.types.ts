@@ -19,63 +19,63 @@ export enum LuongHang {
 }
 
 export enum CongDoan {
-  DUC         = 'ĐÚC',
-  NGUOI_1     = 'Nguội 1',
-  NGUOI_2_RAP = 'Nguội 2 ( Ráp)',
-  NGUOI_3_RAP = 'Nguội 3 ( Ráp)',
-  NGUOI_SC    = 'Nguội sửa chữa',
-  NAM         = 'NẠM',
-  DANH_BONG   = 'ĐÁNH BÓNG',
-  HOAN_THIEN  = 'HOÀN THIỆN',
+  DUC         = 'duc',
+  NGUOI_1     = 'nguoi 1',
+  NGUOI_2_RAP = 'nguoi 2 ( rap)',
+  NGUOI_3_RAP = 'nguoi 3 ( rap)',
+  NGUOI_SC    = 'nguoi sua chua',
+  NAM         = 'nam',
+  DANH_BONG   = 'danh bong',
+  HOAN_THIEN  = 'hoan thien',
   KCS         = 'KCS',
 }
 
 export enum TuoiVang {
-  T75_TRANG = '75-TRẮNG',   // 18K trắng
-  T75_DO    = '75-ĐỎ',      // 18K đỏ
-  T75_HONG  = '75-HỒNG',    // 18K hồng
-  T585_HONG = '58,5-HỒNG',  // 14K hồng
+  T75_TRANG = '75-trang',   // 18K trắng
+  T75_DO    = '75-do',      // 18K đỏ
+  T75_HONG  = '75-hong',    // 18K hồng
+  T585_HONG = '58,5-hong',  // 14K hồng
   T999      = '999',         // 24K
 }
 
 export enum TrangThaiPhoi {
-  DU_CT   = 'Đủ CT',
-  THIEU_CT = 'Thiếu CT',
+  DU_CT   = 'du CT',
+  THIEU_CT = 'thieu CT',
 }
 
 export enum TrangThaiDon {
-  CHO_DUC       = 'CHỜ ĐÚC',
-  DANG_DUC      = 'ĐANG ĐÚC',
-  KHO_PHOI_DUC  = 'KHO PHÔI ĐÚC',
-  BTP_XUONG     = 'BTP XƯỞNG',
-  DANG_NGUOI    = 'ĐANG NGUỘI',
-  DANG_NAM      = 'ĐANG NẠM',
+  CHO_DUC       = 'cho duc',
+  DANG_DUC      = 'dang duc',
+  KHO_PHOI_DUC  = 'KHO phau duc',
+  BTP_XUONG     = 'BTP xuong',
+  DANG_NGUOI    = 'dang nguoi',
+  DANG_NAM      = 'dang nam',
   KCS_CHECK     = 'KCS',
-  THANH_PHAM    = 'THÀNH PHẨM',
-  DA_GIAO       = 'ĐÃ GIAO',
+  THANH_PHAM    = 'thanh pham',
+  DA_GIAO       = 'da GIAO',
 }
 
 export enum MucDoRuiRo {
-  THAP    = 'THẤP',
+  THAP    = 'thap',
   TRUNG   = 'TB',
   CAO     = 'CAO',
 }
 
 export enum ChungLoai {
-  NHAN_NAM      = 'Nhẫn Nam',
-  NHAN_NU       = 'Nhẫn Nữ',
-  NHAN_KET      = 'Nhẫn Kết',
-  DAY_NAM       = 'Dây Nam',
-  DAY_NU        = 'Dây Nữ',
-  MAT           = 'Mặt',
-  BONG_TAI      = 'Bông Tai',
-  LAC_NAM       = 'Lắc Nam-Cuban',
-  LAC_NU        = 'Lắc Nữ',
-  VONG          = 'Vòng',
+  NHAN_NAM      = 'nhan Nam',
+  NHAN_NU       = 'nhan nu',
+  NHAN_KET      = 'nhan ket',
+  DAY_NAM       = 'day Nam',
+  DAY_NU        = 'day nu',
+  MAT           = 'mat',
+  BONG_TAI      = 'bong Tai',
+  LAC_NAM       = 'lac Nam-Cuban',
+  LAC_NU        = 'lac nu',
+  VONG          = 'vong',
 }
 
 export enum LoaiPhieu {
-  DE_XUAT_DUC     = 'ĐXĐ',     // Phiếu đề xuất đúc
+  DE_XUAT_DUC     = 'dxd',     // Phiếu đề xuất đúc
   PHIEU_NHAP_INFO = 'PN-INFO',  // Phiếu giao nhận INFO
   XUAT_KHO_NVL    = 'XK-NVL',   // Xuất kho nguyên vật liệu
   NHAP_KHO_TP     = 'NK-TP',    // Nhập kho thành phẩm
@@ -193,7 +193,7 @@ export interface LegalAuditStatus {
   nguyCoTranhChap:   string | null;
 }
 
-// ─── PHIẾU ĐỀ XUẤT ĐÚC — from "IN ĐX ĐÚC" sheet ───────────
+// ─── PHIẾU ĐỀ XUẤT ĐÚC — from "IN dx duc" sheet ───────────
 
 export interface PhieuDeXuatDuc {
   soPhieu:              string;          // ĐXĐ-21-1-26
@@ -227,13 +227,13 @@ export interface PhieuDeXuatDuc {
   tyLeHoi:      number;
 }
 
-// ─── PHIẾU GIAO NHẬN INFO — from "GIAO NHẬN INFO" sheet ─────
+// ─── PHIẾU GIAO NHẬN INFO — from "GIAO nhan INFO" sheet ─────
 
 export interface PhieuGiaoNhanInfo {
   soPhieu:       string;          // PN-INFO-26-01-01
   ngayDuc:       number;
   ngayNhanPhieu: number;
-  noiLuuTru:     string;          // 'Phòng Kho Sản xuất'
+  noiLuuTru:     string;          // 'phong Kho san xuat'
   keToanKho:     string;
   items: Array<{
     stt:          number;
@@ -257,7 +257,7 @@ export interface DataTrongLuong {
   maHang:         string;
   tuoiVang:       number;           // 75, 58.5, 99.9
   lap:            number | null;
-  maGop:          string;           // '75 TRẮNG'
+  maGop:          string;           // '75 trang'
   trangThaiPhoi:  TrangThaiPhoi;
   giaiDoan1: { trongLuong: number; kho: string };   // KHO PHÔI ĐÚC
   giaiDoan2: { ngay: number | null; trongLuong: number | null; kho: string | null };
@@ -299,17 +299,17 @@ export interface CanNguyenLieu {
   ngay:         number;
   hoVaTen:      string;
   caLamViec:    string;
-  nguyenLieu:   string;          // '75 Trắng', '75 Đỏ', '75 Hồng'
+  nguyenLieu:   string;          // '75 trang', '75 do', '75 hong'
   sanXuat:  { truoc: number; sau: number; lech: number };
   suaChua:  { truoc: number; sau: number; lech: number };
-  trangThai:    string;          // 'CÂN CUỐI NGÀY'
+  trangThai:    string;          // 'can cuoi ngay'
   ghiChu:       string;
 }
 
 // ─── SỔ GIAO THỢ — worker KPI tracking ──────────────────────
 
 export interface SoGiaoTho {
-  nhanVienNhap:   string;          // 'NGỌC'
+  nhanVienNhap:   string;          // 'ngoc'
   ngay:           number;
   maDon:          string;
   maHang:         string;
@@ -317,7 +317,7 @@ export interface SoGiaoTho {
   luongHang:      LuongHang;
   maTho:          number;
   tenTho:         string;
-  trangThai:      string;          // 'Xong Nguội sửa chữa'
+  trangThai:      string;          // 'Xong nguoi sua chua'
   ghiChu:         string;
   congDoan:       CongDoan;
   phatSinh:       number | null;

@@ -5,35 +5,35 @@
 export const NEURAL_MAIN_CAPABILITIES = {
   // Điều 22.1 — lookup permanent node
   lookup: {
-    description: 'Trả lời trực tiếp từ permanent node nếu pattern đã internalize',
+    description: 'tra loi truc tiep tu permanent node neu pattern da internalize',
     input: 'cellId + query string',
     output: 'PermanentNode | null',
   },
 
   // Điều 22.2 — export cho LLM context
   exportForLLMContext: {
-    description: 'Bridge top permanent nodes vào LLM context window',
+    description: 'Bridge top permanent nodes vao LLM context window',
     input: 'entityId + maxNodes',
-    output: 'Serialized permanent nodes cho inject vào prompt',
+    output: 'Serialized permanent nodes cho inject vao prompt',
   },
 
   // Điều 22.3 — memory governance
   memoryGovernance: {
-    description: 'Dual memory: Governance (HARD, bất biến) + Family (resonance, mềm)',
-    governanceMemory: 'Hiến Pháp, SCAR, Constitutional rules — không decay',
-    familyMemory: 'Resonance patterns — decay theo Điều 19',
+    description: 'Dual memory: Governance (HARD, bat bien) + Family (resonance, mem)',
+    governanceMemory: 'Hiến Pháp, SCAR, Constitutional rules — khong decay',
+    familyMemory: 'Resonance patterns — decay theo dieu 19',
   },
 
   // Validate QNEU consistency
   validateEntityEvolution: {
-    description: 'Kiểm tra QNEU score của entity có consistent với audit trail không',
+    description: 'kiem tra QNEU score cua entity co consistent voi audit trail khong',
     input: 'entityId',
     output: 'ValidationReport',
   },
 
   // Detect blind spots
   detectBlindSpots: {
-    description: 'Phát hiện domain entity chưa có permanent node — gap trong knowledge',
+    description: 'phat hien domain entity chua co permanent node — gap trong knowledge',
     input: 'entityId',
     output: 'BlindSpotReport',
   },

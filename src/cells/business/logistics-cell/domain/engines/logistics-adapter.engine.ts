@@ -33,7 +33,7 @@ interface LogisticsAdapter {
 // ============================================================================
 class GHNAdapter implements LogisticsAdapter {
   providerId = 'GHN';
-  providerName = 'Giao Hàng Nhanh';
+  providerName = 'Giao hang Nhanh';
   serviceType = 'EXPRESS' as const;
 
   async getLiveQuote(req: APIQuoteRequest): Promise<LogisticsSolution> {
@@ -190,7 +190,7 @@ export class LogisticsEngine {
   ): Promise<LogisticsSolution[]> {
     
     // 1. Phân tích địa chỉ (Giả lập District ID Mapping)
-    const toDistrictId = destination.includes('Hà Nội') ? 1001 : 1002;
+    const toDistrictId = destination.includes('ha nau') ? 1001 : 1002;
     const fromDistrictId = 2001; // HCM
 
     const request: APIQuoteRequest = {

@@ -44,7 +44,7 @@ export function removeDiacritics(str: string): string {
 
 /**
  * toSlug — normalize cho URL / username / key
- * "Nguyễn Văn An" → "nguyen-van-an"
+ * "nguyen ven An" → "nguyen-van-an"
  */
 export function toSlug(str: string): string {
   return removeDiacritics(str)
@@ -66,7 +66,7 @@ export interface EmailResult {
 
 /**
  * generateEmail — port từ Code block autoGenerateEmails()
- * "Nguyễn Văn An" → "an.nguyenvan@lxrtam.net"
+ * "nguyen ven An" → "an.nguyenvan@lxrtam.net"
  *
  * Format: [ten].[hodem]@domain
  * - ten = tên cuối cùng (An)

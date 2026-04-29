@@ -328,14 +328,14 @@ export function validateBCTC(
   const tongTS = getLine(cdkt, "270")?.currentYear ?? 0;
   const tongNV = getLine(cdkt, "440")?.currentYear ?? 0;
   if (tongTS !== tongNV) {
-    errors.push(`CDKT: Tổng TS (${tongTS}) ≠ Tổng NV (${tongNV}), chênh ${tongTS - tongNV}`);
+    errors.push(`CDKT: tong TS (${tongTS}) ≠ tong NV (${tongNV}), chenh ${tongTS - tongNV}`);
   }
 
   // LCTT: 70 = CDKT 110
   const lcttTienCuoiKy = getLine(lctt, "70")?.currentYear ?? 0;
   const cdktTien = getLine(cdkt, "110")?.currentYear ?? 0;
   if (lcttTienCuoiKy !== cdktTien) {
-    warnings.push(`LCTT tiền cuối kỳ (${lcttTienCuoiKy}) ≠ CDKT tiền (${cdktTien}), chênh ${lcttTienCuoiKy - cdktTien}`);
+    warnings.push(`LCTT tien cuoi ky (${lcttTienCuoiKy}) ≠ CDKT tien (${cdktTien}), chenh ${lcttTienCuoiKy - cdktTien}`);
   }
 
   // KQKD: LNST = CDKT 421b

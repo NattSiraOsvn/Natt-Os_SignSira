@@ -130,8 +130,8 @@ export class WeightVarianceEngine {
         congDoan: CongDoan.NGUOI_1, // daily weighing is at nguội level
         chenhLech: worstDiff,
         nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
-        message: `Thợ ${record.hoVaTen} (${record.luongHang}): lệch ${worstDiff.toFixed(3)} chỉ. ` +
-                 `Sổ sách: ${record.chenhLechSoSach.toFixed(3)}, thực thu: ${record.botThuThucTe.toFixed(3)}`,
+        message: `tho ${record.hoVaTen} (${record.luongHang}): lech ${worstDiff.toFixed(3)} chi. ` +
+                 `so sach: ${record.chenhLechSoSach.toFixed(3)}, thuc thu: ${record.botThuThucTe.toFixed(3)}`,
         timestamp: Date.now(),
       };
 
@@ -157,7 +157,7 @@ export class WeightVarianceEngine {
         chenhLech: totalLech,
         nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
         message: `NL ${record.nguyenLieu} - ${record.hoVaTen}: ` +
-                 `SX lệch ${record.sanXuat.lech.toFixed(3)}, SC lệch ${record.suaChua.lech.toFixed(3)}`,
+                 `SX lech ${record.sanXuat.lech.toFixed(3)}, SC lech ${record.suaChua.lech.toFixed(3)}`,
         timestamp: Date.now(),
       };
     }
@@ -183,7 +183,7 @@ export class WeightVarianceEngine {
         congDoan: CongDoan.HOAN_THIEN,
         chenhLech: tongHaoHut - maxAllowed,
         nguong: maxAllowed,
-        message: `${maDon} (${chungLoai}): hao hụt ${tongHaoHut.toFixed(3)} chỉ vượt max ${maxAllowed} chỉ`,
+        message: `${maDon} (${chungLoai}): hao hut ${tongHaoHut.toFixed(3)} chi vuot max ${maxAllowed} chi`,
         timestamp: Date.now(),
       };
       this.emit(WAREHOUSE_EVENTS.HAO_HUT_VUOT_NGUONG, alert);
@@ -232,8 +232,8 @@ export class WeightVarianceEngine {
         congDoan: CongDoan.KCS,
         chenhLech: absChenhLech,
         nguong: CHENH_LECH_THRESHOLDS.CANH_BAO,
-        message: `SOÁT KHO ${kyKiemTra}: chênh lệch ${chenhLech.toFixed(3)} chỉ. ` +
-                 `${donLech.length} đơn lệch: ${donLech.slice(0, 5).join(', ')}`,
+        message: `soat KHO ${kyKiemTra}: chenh lech ${chenhLech.toFixed(3)} chi. ` +
+                 `${donLech.length} don lech: ${donLech.slice(0, 5).join(', ')}`,
         timestamp: Date.now(),
       });
     }
@@ -295,7 +295,7 @@ export class WeightVarianceEngine {
     congDoan: CongDoan,
     chenhLech: number
   ): string {
-    const prefix = level === 'DO' ? '🟥 CẢNH BÁO ĐỎ' : '🟧 Cảnh báo vàng';
-    return `${prefix}: ${maDon} tại ${congDoan} — lệch ${chenhLech.toFixed(3)} chỉ`;
+    const prefix = level === 'DO' ? '🟥 canh bao do' : '🟧 canh bao vang';
+    return `${prefix}: ${maDon} tai ${congDoan} — lech ${chenhLech.toFixed(3)} chi`;
   }
 }

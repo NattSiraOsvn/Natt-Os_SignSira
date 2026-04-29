@@ -16,11 +16,11 @@ export interface GoldType {
 }
 
 export const GOLD_TYPES: Record<GoldTypeCode, GoldType> = {
-  '750': { code: '750', karatLabel: '18K', purityPercent: 75.0, description: 'Vàng 18K — phổ biến nhất cho trang sức' },
-  '585': { code: '585', karatLabel: '14K', purityPercent: 58.5, description: 'Vàng 14K — bền, giá hợp lý' },
-  '416': { code: '416', karatLabel: '10K', purityPercent: 41.6, description: 'Vàng 10K — entry level' },
-  '990': { code: '990', karatLabel: 'SJC Nhẫn', purityPercent: 99.0, description: 'Vàng SJC dạng nhẫn' },
-  '999': { code: '999', karatLabel: '24K', purityPercent: 99.9, description: 'Vàng 24K nguyên chất' },
+  '750': { code: '750', karatLabel: '18K', purityPercent: 75.0, description: 'vang 18K — pho bien nhat cho trang suc' },
+  '585': { code: '585', karatLabel: '14K', purityPercent: 58.5, description: 'vang 14K — ben, gia hop ly' },
+  '416': { code: '416', karatLabel: '10K', purityPercent: 41.6, description: 'vang 10K — entry level' },
+  '990': { code: '990', karatLabel: 'SJC nhan', purityPercent: 99.0, description: 'vang SJC dang nhan' },
+  '999': { code: '999', karatLabel: '24K', purityPercent: 99.9, description: 'vang 24K nguyen chat' },
 } as const;
 
 /**

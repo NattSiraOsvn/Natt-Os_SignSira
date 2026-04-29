@@ -9,7 +9,7 @@
  *   G4: Thành phẩm hoàn chỉnh
  */
 
-export type PhoiStatus = 'Đủ CT' | 'Thiếu CT' | 'Đã đúc' | 'HỎNG';
+export type PhoiStatus = 'du CT' | 'thieu CT' | 'da duc' | 'hong';
 
 export interface CastingRecord {
   id: string;              // casting:{lapId}:{orderId}
@@ -35,7 +35,7 @@ export function createCastingRecord(
   weightG1: number,
   goldPurity: number,
   goldColor: string,
-  location = 'KHO PHÔI',
+  location = 'KHO phau',
 ): CastingRecord {
   return {
     id: `casting:${lapId}:${orderId}`,
@@ -45,7 +45,7 @@ export function createCastingRecord(
     goldPurity,
     goldColor,
     location,
-    status: 'Đủ CT',
+    status: 'du CT',
     updatedAt: new Date(),
   };
 }

@@ -34,7 +34,7 @@ export class FinanceAuditLogger {
       NotifyBus.push({
         type: 'RISK',
         title: 'AUDIT CRITICAL ALERT',
-        content: `Mutation nhạy cảm: ${entry.action} trên ${entry.entity_id}. Correlation: ${entry.correlation_id}`,
+        content: `Mutation nhay cam: ${entry.action} tren ${entry.entity_id}. Correlation: ${entry.correlation_id}`,
         persona: PersonaID.KRIS
       });
     }

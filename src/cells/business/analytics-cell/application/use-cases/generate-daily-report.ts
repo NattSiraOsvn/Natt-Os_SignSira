@@ -8,5 +8,5 @@ export function generateDailyReport(input:GenerateDailyReportInput):GenerateDail
   const grossMargin=input.metrics.totalRevenue-input.metrics.totalCost;
   const grossMarginRate=input.metrics.totalRevenue>0?grossMargin/input.metrics.totalRevenue:0;
   const ratio=input.metrics.returnCustomers/Math.max(1,input.metrics.totalOrders);
-  return{success:true,report,grossMargin,grossMarginRate,conversionInsight:ratio>0.5?"Khách quen chiếm đa số — tập trung upsell":"Cần tăng khách mới — review marketing"};
+  return{success:true,report,grossMargin,grossMarginRate,conversionInsight:ratio>0.5?"khach quen chiem da so — tap trung upsell":"can tang khach moi — review marketing"};
 }

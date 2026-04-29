@@ -13,7 +13,7 @@ export class SupplierClassifier {
     
     // Kiểm tra có phải cá nhân (tên có thể chứa "CN" hoặc MST có độ dài đặc biệt)
     if (maSoThue.length === 9 || maSoThue.length === 12 || 
-        tenNhaCungCap.toLowerCase().includes('cá nhân') ||
+        tenNhaCungCap.toLowerCase().includes('ca nhan') ||
         tenNhaCungCap.toLowerCase().includes('cn.')) {
       return 'CA_NHAN';
     }
@@ -32,35 +32,35 @@ export class SupplierClassifier {
     
     // Kim cương/Đá quý
     if (name.includes('gem') || name.includes('diamond') || 
-        name.includes('kim cương') || name.includes('đá quý') ||
+        name.includes('kim cuong') || name.includes('da quy') ||
         note.includes('diamond') || name.includes('prime')) {
       groups.push('KIM_CUONG_DA_QUY');
     }
     
     // Vàng/Bạc
-    if (name.includes('vàng') || name.includes('gold') || 
-        name.includes('sjc') || name.includes('bạc') ||
-        name.includes('trang sức')) {
+    if (name.includes('vang') || name.includes('gold') || 
+        name.includes('sjc') || name.includes('bac') ||
+        name.includes('trang suc')) {
       groups.push('VANG_BAC');
     }
     
     // Bao bì/In ấn
-    if (name.includes('in') || name.includes('bao bì') || 
-        name.includes('packaging') || name.includes('túi') ||
-        name.includes('hộp')) {
+    if (name.includes('in') || name.includes('bao bi') || 
+        name.includes('packaging') || name.includes('tui') ||
+        name.includes('hop')) {
       groups.push('BAO_BI_IN_AN');
     }
     
     // Dịch vụ
-    if (name.includes('dịch vụ') || name.includes('service') ||
-        name.includes('công nghệ') || name.includes('tech') ||
-        name.includes('vận chuyển') || name.includes('logistics')) {
+    if (name.includes('dich vu') || name.includes('service') ||
+        name.includes('cong nghe') || name.includes('tech') ||
+        name.includes('van chuyen') || name.includes('logistics')) {
       groups.push('DICH_VU');
     }
     
     // Thiết bị/Công cụ
-    if (name.includes('thiết bị') || name.includes('equipment') ||
-        name.includes('máy') || name.includes('công cụ') ||
+    if (name.includes('thiet bi') || name.includes('equipment') ||
+        name.includes('may') || name.includes('cong cu') ||
         name.includes('tool')) {
       groups.push('THIET_BI_CONG_CU');
     }
@@ -78,7 +78,7 @@ export class SupplierClassifier {
     const { tinhTP, diaChi, quocGia } = supplier;
     
     // NCC nước ngoài
-    if (quocGia && quocGia !== 'Việt Nam' && quocGia !== 'VN') {
+    if (quocGia && quocGia !== 'viet Nam' && quocGia !== 'VN') {
       return 'QUOC_TE';
     }
     
@@ -86,15 +86,15 @@ export class SupplierClassifier {
     const province = (tinhTP || '').toLowerCase();
     
     // Miền Bắc
-    const northKeywords = ['hà nội', 'hanoi', 'hải phòng', 'quảng ninh', 
-                          'bắc ninh', 'vĩnh phúc', 'thái nguyên'];
+    const northKeywords = ['ha nau', 'hanoi', 'hai phong', 'quang ninh', 
+                          'bac ninh', 'vinh phuc', 'thai nguyen'];
     if (northKeywords.some(keyword => address.includes(keyword) || province.includes(keyword))) {
       return 'BAC';
     }
     
     // Miền Trung
-    const centralKeywords = ['đà nẵng', 'huế', 'nghệ an', 'hà tĩnh', 
-                            'quảng bình', 'quảng trị', 'thừa thiên'];
+    const centralKeywords = ['da nang', 'hue', 'nghe an', 'ha tinh', 
+                            'quang binh', 'quang tri', 'thua thien'];
     if (centralKeywords.some(keyword => address.includes(keyword) || province.includes(keyword))) {
       return 'TRUNG';
     }
@@ -129,28 +129,28 @@ export class SupplierClassifier {
     const note = (ghiChu || '').toLowerCase();
     
     // Dịch vụ công nghệ
-    if (name.includes('công nghệ') || name.includes('tech') || 
-        name.includes('software') || name.includes('phần mềm')) {
+    if (name.includes('cong nghe') || name.includes('tech') || 
+        name.includes('software') || name.includes('phan mem')) {
       services.push('CONG_NGHE');
     }
     
     // Dịch vụ logistics
-    if (name.includes('vận chuyển') || name.includes('logistics') ||
-        name.includes('ship') || name.includes('giao hàng') ||
+    if (name.includes('van chuyen') || name.includes('logistics') ||
+        name.includes('ship') || name.includes('giao hang') ||
         name.includes('showtrans')) {
       services.push('LOGISTICS');
     }
     
     // Dịch vụ giám định
-    if (name.includes('giám định') || name.includes('kiểm định') ||
+    if (name.includes('giam dinh') || name.includes('kiem dinh') ||
         name.includes('appraisal') || name.includes('p.n.j') ||
         name.includes('malca')) {
       services.push('GIAM_DINH');
     }
     
     // Dịch vụ marketing
-    if (name.includes('quảng cáo') || name.includes('marketing') ||
-        name.includes('truyền thông') || name.includes('advertising')) {
+    if (name.includes('quang cao') || name.includes('marketing') ||
+        name.includes('truyen thong') || name.includes('advertising')) {
       services.push('MARKETING');
     }
     
@@ -186,7 +186,7 @@ export class SupplierClassifier {
     
     // Check bằng quốc gia
     if (quocGia && 
-        !['Việt Nam', 'VN', 'Vietnam'].includes(quocGia) &&
+        !['viet Nam', 'VN', 'Vietnam'].includes(quocGia) &&
         quocGia.trim() !== '') {
       return true;
     }

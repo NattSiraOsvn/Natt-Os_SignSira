@@ -38,7 +38,7 @@ export const FiscalWorkbenchEngine = {
       {
         id: `JE-${Date.now()}-1`,
         date, createdAt: Date.now(), createdBy,
-        description: `Ghi nhận DT: ${invoice.buyerName}`,
+        description: `Ghi nhan DT: ${invoice.buyerName}`,
         debitAccount: "131", creditAccount: "511",
         amount: invoice.totalAmount, currency: invoice.currency,
         reference: ref, invoiceId: invoice.id,
@@ -46,7 +46,7 @@ export const FiscalWorkbenchEngine = {
       {
         id: `JE-${Date.now()}-2`,
         date, createdAt: Date.now(), createdBy,
-        description: `VAT đầu ra: ${invoice.buyerName}`,
+        description: `VAT dau ra: ${invoice.buyerName}`,
         debitAccount: "131", creditAccount: "3331",
         amount: invoice.vatAmount, currency: invoice.currency,
         reference: ref, invoiceId: invoice.id,

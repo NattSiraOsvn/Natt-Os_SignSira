@@ -13,20 +13,20 @@ export class SellerEngine {
   static calculateCommission(report: Partial<SellerReport>, sellerKPI: number = 100) {
     const shellHH = (report.shellRevenue || 0) * 0.05; // 5% cho vỏ
     let stoneHH = 0;
-    let baseRateMsg = 'Vỏ 5%';
+    let baseRateMsg = 'vo 5%';
 
     switch (report.stoneType) {
       case 'UNDER_4LY':
         stoneHH = (report.stoneRevenue || 0) * 0.05;
-        baseRateMsg += ' + Viên <4ly 5%';
+        baseRateMsg += ' + vien <4ly 5%';
         break;
       case 'ROUND_OVER_4LY':
         stoneHH = (report.stoneRevenue || 0) * 0.02;
-        baseRateMsg += ' + Viên Tròn >4ly 2%';
+        baseRateMsg += ' + vien tron >4ly 2%';
         break;
       case 'FANCY_SHAPE':
         stoneHH = (report.stoneRevenue || 0) * 0.03;
-        baseRateMsg += ' + Viên Fancy 3%';
+        baseRateMsg += ' + vien Fancy 3%';
         break;
       default:
         stoneHH = 0;

@@ -27,19 +27,19 @@ function _emit(to: string, signal: string, payload: Record<string, unknown>) {
 // Định mức trọng lượng vàng mặc định theo chủng loại (gram)
 // Nguồn: DATA ĐÚC sheet — trọng lượng phôi trung bình
 const DEFAULT_GOLD_WEIGHT: Record<string, number> = {
-  'Nhẫn Nữ':       4.2,
-  'Nhẫn Nam':      5.5,
-  'Nhẫn Kết':      6.0,
-  'Nhẫn Cưới':     3.8,
-  'Lắc Nữ':        8.0,
-  'Lắc Nam-Cuban': 280.0,
-  'Lắc Nam':       15.0,
-  'Dây Nữ':        12.0,
-  'Dây Nam-Cuban': 220.0,
-  'Bông Tai':      3.5,
-  'Mặt Dây Nữ':    6.0,
-  'Vòng Nữ':       9.0,
-  'Nhẫn Kết-Cartier': 7.0,
+  'nhan nu':       4.2,
+  'nhan Nam':      5.5,
+  'nhan ket':      6.0,
+  'nhan cui':     3.8,
+  'lac nu':        8.0,
+  'lac Nam-Cuban': 280.0,
+  'lac Nam':       15.0,
+  'day nu':        12.0,
+  'day Nam-Cuban': 220.0,
+  'bong Tai':      3.5,
+  'mat day nu':    6.0,
+  'vong nu':       9.0,
+  'nhan ket-Cartier': 7.0,
   'default':        5.0,
 };
 

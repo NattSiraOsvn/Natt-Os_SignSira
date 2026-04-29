@@ -8,7 +8,7 @@ import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockc
 
 /**
  * ☠️ DEAD LETTER HANDLER
- * Nơi chứa các Event "chết" không thể xử lý tự động. 
+ * Nơi chứa các Event "chet" không thể xử lý tự động. 
  * Chỉ có thiên Lớn (Gatekeeper) mới có quyền quyết định Replay hoặc Purge.
  */
 export class DeadLetterHandler {
@@ -18,14 +18,14 @@ export class DeadLetterHandler {
     const errorHash = ShardingService.generateShardHash({ event_id: event.event_id, error: String(error) });
 
     // 1. Log ra hệ thống quan sát (Thực tế lưu vào DB bảng finance.dlq)
-    console.error(`[DLQ-ESCALATION] 🚨 EVENT ${event.event_name} (ID: ${event.event_id}) BỊ TREO.`);
-    console.error(`Lý do: ${String(error)}`);
+    console.error(`[DLQ-ESCALATION] 🚨 EVENT ${event.event_name} (ID: ${event.event_id}) bi TREO.`);
+    console.error(`ly do: ${String(error)}`);
 
     // 2. Tín hiệu đỏ cho Gatekeeper Dashboard
     NotifyBus.push({
       type: 'RISK',
       title: 'DEAD LETTER QUEUE ALERT',
-      content: `Event ${event.event_name} thất bại sau 3 lần retry. Đã đưa vào DLQ. Hash: 0x${errorHash.substring(0,8)}`,
+      content: `Event ${event.event_name} that bai sau 3 lan retry. da dua vao DLQ. Hash: 0x${errorHash.substring(0,8)}`,
       persona: PersonaID.KRIS,
       priority: 'HIGH'
     });

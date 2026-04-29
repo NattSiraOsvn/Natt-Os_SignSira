@@ -57,7 +57,7 @@ export function detectBlindSpots(
         entityId,
         missingActionType: actionType,
         severity: deriveSeverity(actionType, entityId),
-        recommendation: `${entityId} cần thêm ${thresholds.permanentNodeThreshold} lần '${actionType}' để hình thành permanent node`,
+        recommendation: `${entityId} can them ${thresholds.permanentNodeThreshold} lan '${actionType}' de hinh thanh permanent node`,
       });
     }
   }

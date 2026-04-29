@@ -3,8 +3,8 @@ export interface CreateInvoiceInput{buyerName:string;buyerTaxCode?:string;buyerA
 export interface CreateInvoiceResult{success:boolean;invoice?:EInvoice;errors:string[];}
 export function createInvoice(input:CreateInvoiceInput):CreateInvoiceResult{
   const errors:string[]=[];
-  if(!input.buyerName?.trim())errors.push("Tên người mua không được để trống");
-  if(!input.items?.length)errors.push("Cần ít nhất 1 dòng hàng");
+  if(!input.buyerName?.trim())errors.push("ten ngui mua khong duoc de trong");
+  if(!input.items?.length)errors.push("can it nhat 1 dong hang");
   if(errors.length>0)return{success:false,errors};
   const items:EInvoiceItem[]=input.items.map((i,idx)=>EInvoiceEngine.buildItem(idx+1,i.itemCode,i.description,i.quantity,i.unitPrice,i.vatRate,i.unit));
   const totalAmount=items.reduce((s,i)=>s+i.amount,0);

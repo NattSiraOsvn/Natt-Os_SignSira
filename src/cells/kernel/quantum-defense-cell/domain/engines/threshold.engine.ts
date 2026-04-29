@@ -56,7 +56,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     critical_above: 0.20,
     baseline:       0.0488,
     weight:         0.9,
-    description:    'PHỔ SC per worker — baseline Trần Hoài Phúc 49.88%',
+    description:    'pho SC per worker — baseline tran hoai phuc 49.88%',
   },
   {
     id:             'NL_PHU_PER_WORKER',
@@ -68,7 +68,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     critical_above: 4.5,
     baseline:       3.95,
     weight:         0.7,
-    description:    'NL phụ monthly per worker — baseline Nguyễn Văn Vẹn 3.95 chỉ',
+    description:    'NL phu monthly per worker — baseline nguyen ven ven 3.95 chi',
   },
   {
     id:             'SC_WEIGHT_FLOW',
@@ -79,7 +79,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     risk_delta:     0.05,
     critical_delta: 0.10,
     weight:         0.9,
-    description:    'TL ra vs TL vào luồng SC-BH-KB',
+    description:    'TL ra vs TL vao luong SC-BH-KB',
   },
   {
     id:             'ROUND_NUMBER_DETECTION',
@@ -90,7 +90,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     risk_above:     0.50,
     critical_above: 0.70,
     weight:         0.6,
-    description:    'Tỷ lệ số liệu suspiciously round trong batch',
+    description:    'ty le so lieu suspiciously round trong batch',
   },
 
   // ── FINANCE ─────────────────────────────────────────────
@@ -103,7 +103,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     risk_above:     10_000_000,
     critical_above: 100_000_000,
     weight:         0.85,
-    description:    'BCTC 4 sổ chênh lệch — LNTT GT vs KTT',
+    description:    'BCTC 4 so chenh lech — LNTT GT vs KTT',
   },
   {
     id:             'CASHFLOW_GAP_RATIO',
@@ -114,7 +114,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     risk_delta:     0.10,
     critical_delta: 0.20,
     weight:         0.8,
-    description:    'Cashflow gap tỷ lệ',
+    description:    'Cashflow gap ty le',
   },
 
   // ── SECURITY ────────────────────────────────────────────
@@ -127,7 +127,7 @@ export const THRESHOLD_REGISTRY: ThresholdDefinition[] = [
     risk_above:     3,
     critical_above: 5,
     weight:         1.0,
-    description:    'Số nguồn dữ liệu xung đột trong cùng batch',
+    description:    'so nguon du lieu xung dot trong cung batch',
   },
 ];
 

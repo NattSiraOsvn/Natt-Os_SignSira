@@ -3,6 +3,6 @@ export const notificationIdentity = {
   cellId:      'notification-cell',
   version:     '1.0.0',
   domain:      'Notification',
-  description: 'Thông báo nội bộ và external',
+  description: 'thong bao nau bo va external',
   constitutionRef: 'v5.0',
 } as const;

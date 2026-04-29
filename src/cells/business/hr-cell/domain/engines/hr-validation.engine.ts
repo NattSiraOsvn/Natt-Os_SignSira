@@ -58,7 +58,7 @@ export class HREngine {
     if (!startDateStr) return "N/A";
     const start = new Date(startDateStr);
     const now = new Date();
-    if (isNaN(start.getTime())) return "Dữ liệu lỗi";
+    if (isNaN(start.getTime())) return "du lieu lau";
 
     let years = now.getFullYear() - start.getFullYear();
     let months = now.getMonth() - start.getMonth();
@@ -73,7 +73,7 @@ export class HREngine {
       years--;
       months += 12;
     }
-    return years > 0 ? `${years} năm, ${months} tháng` : `${months} tháng`;
+    return years > 0 ? `${years} nam, ${months} thang` : `${months} thang`;
   }
 
   static processPayroll(employee: EmployeePayroll, rules: SalaryRule[]): EmployeePayroll {

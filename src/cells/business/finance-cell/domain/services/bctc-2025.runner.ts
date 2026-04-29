@@ -118,17 +118,17 @@ export function runBctc2025(): Bctc2025Output {
   const GT_TONG_TS = 133_922_918_742;
   if (Math.abs(lntt - GT_LNTT) > 1_000_000) {
     validation.warnings.push(
-      `LNTT chênh GT: calc=${lntt.toLocaleString()} | GT=${GT_LNTT.toLocaleString()}`
+      `LNTT chenh GT: calc=${lntt.toLocaleString()} | GT=${GT_LNTT.toLocaleString()}`
     );
   }
   if (Math.abs(tong_ts - GT_TONG_TS) > 1_000_000) {
     validation.warnings.push(
-      `Tổng TS chênh GT: calc=${tong_ts.toLocaleString()} | GT=${GT_TONG_TS.toLocaleString()}`
+      `tong TS chenh GT: calc=${tong_ts.toLocaleString()} | GT=${GT_TONG_TS.toLocaleString()}`
     );
   }
   if (cp_dt_pct < 10) {
     validation.warnings.push(
-      `TR-003: CP/DT = ${cp_dt_pct.toFixed(1)}% < 10% — phi lý ngành SX kim hoàn`
+      `TR-003: CP/DT = ${cp_dt_pct.toFixed(1)}% < 10% — phi ly nganh SX kim hoan`
     );
   }
 
@@ -170,14 +170,14 @@ export function printBctcSummary(): void {
   const fmt = (n: number) => n.toLocaleString('vi-VN');
 
   console.log('\n══════════════════════════════════');
-  console.log('  BCTC TÂM LUXURY 2025 — SUMMARY');
+  console.log('  BCTC tam LUXURY 2025 — SUMMARY');
   console.log('══════════════════════════════════');
-  console.log(`  Tổng TS  : ${fmt(result.summary.tong_ts)}`);
-  console.log(`  Tổng NV  : ${fmt(result.summary.tong_nv)}`);
-  console.log(`  Cân đối  : ${result.summary.balanced ? '✅' : '🔴 KHÔNG CÂN'}`);
+  console.log(`  tong TS  : ${fmt(result.summary.tong_ts)}`);
+  console.log(`  tong NV  : ${fmt(result.summary.tong_nv)}`);
+  console.log(`  can đau  : ${result.summary.balanced ? '✅' : '🔴 khong can'}`);
   console.log('──────────────────────────────────');
-  console.log(`  DT thuần : ${fmt(result.summary.dt_thuan)}`);
-  console.log(`  Giá vốn  : ${fmt(result.summary.gv)}`);
+  console.log(`  DT thuan : ${fmt(result.summary.dt_thuan)}`);
+  console.log(`  gia von  : ${fmt(result.summary.gv)}`);
   console.log(`  GM%      : ${result.summary.gm_pct.toFixed(1)}%`);
   console.log(`  CP/DT    : ${result.summary.cp_dt_pct.toFixed(1)}%`);
   console.log(`  LNTT     : ${fmt(result.summary.lntt)}`);

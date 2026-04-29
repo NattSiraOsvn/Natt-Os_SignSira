@@ -13,10 +13,10 @@ export interface DepreciationRate {
 }
 
 export const DEPRECIATION_RATES: Record<BuybackCondition, DepreciationRate> = {
-  EXCELLENT: { condition: 'EXCELLENT', goldRetentionRate: 0.98, stoneRetentionRate: 0.90, description: 'Như mới, không trầy xước' },
-  GOOD:      { condition: 'GOOD',      goldRetentionRate: 0.95, stoneRetentionRate: 0.80, description: 'Ít dấu hiệu sử dụng' },
-  FAIR:      { condition: 'FAIR',      goldRetentionRate: 0.90, stoneRetentionRate: 0.60, description: 'Có dấu hiệu sử dụng rõ' },
-  POOR:      { condition: 'POOR',      goldRetentionRate: 0.80, stoneRetentionRate: 0.30, description: 'Hư hỏng, cần sửa chữa nhiều' },
+  EXCELLENT: { condition: 'EXCELLENT', goldRetentionRate: 0.98, stoneRetentionRate: 0.90, description: 'nhu moi, khong tray xuoc' },
+  GOOD:      { condition: 'GOOD',      goldRetentionRate: 0.95, stoneRetentionRate: 0.80, description: 'it dau hieu su dung' },
+  FAIR:      { condition: 'FAIR',      goldRetentionRate: 0.90, stoneRetentionRate: 0.60, description: 'co dau hieu su dung ro' },
+  POOR:      { condition: 'POOR',      goldRetentionRate: 0.80, stoneRetentionRate: 0.30, description: 'hu hong, can sua chua nhieu' },
 };
 
 export type BuybackStatus = 'ASSESSMENT' | 'OFFER_MADE' | 'ACCEPTED' | 'REJECTED' | 'PAYMENT_PENDING' | 'COMPLETED' | 'CANCELLED';

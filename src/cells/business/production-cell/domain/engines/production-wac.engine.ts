@@ -65,7 +65,7 @@ export class ProductionService {
       sku: data.sku || 'UNKNOWN_PRODUCT',
       customer_id: data.customer_id || 'WALK-IN',
       status: data.status || OrderStatus.SALE_ORDER,
-      priority: data.priority || 'TRUNG_BÌNH',
+      priority: data.priority || 'trung_binh',
       deadline: data.deadline || now + (7 * 24 * 60 * 60 * 1000),
       gold_type: data.gold_type || '18K',
       target_weight: data.target_weight || 0,
@@ -84,7 +84,7 @@ export class ProductionService {
   static generateWorkflowFromAI(aiData: any): ProductionOrder {
     console.log("[PROD-ENGINE] AI Auto-generating workflow for:", aiData);
     
-    // 1. Phân tích Deadline (Nếu AI trả về string "7 ngày" hoặc date)
+    // 1. Phân tích Deadline (Nếu AI trả về string "7 ngay" hoặc date)
     let deadlineTimestamp = Date.now() + (7 * 86400000);
     if (aiData.deadline) {
         // Simple heuristic check

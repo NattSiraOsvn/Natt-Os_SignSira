@@ -110,27 +110,27 @@ export function validateGDBLockedPolicy(policy: GDBLockedPolicy): string | null 
   const maxPct = max * 100;
 
   if (policy.jewelryCase.buybackDeduction < minPct || policy.jewelryCase.buybackDeduction > maxPct)
-    return `jewelryCase.buybackDeduction phải trong khoảng ${minPct}–${maxPct}%`;
+    return `jewelryCase.buybackDeduction phai trong khoang ${minPct}–${maxPct}%`;
   if (policy.jewelryCase.upgradeDeduction < minPct || policy.jewelryCase.upgradeDeduction > maxPct)
-    return `jewelryCase.upgradeDeduction phải trong khoảng ${minPct}–${maxPct}%`;
+    return `jewelryCase.upgradeDeduction phai trong khoang ${minPct}–${maxPct}%`;
 
   if (policy.mainStone) {
     if (policy.mainStone.buybackDeduction !== null) {
       if (policy.mainStone.buybackDeduction < minPct || policy.mainStone.buybackDeduction > maxPct)
-        return `mainStone.buybackDeduction phải trong khoảng ${minPct}–${maxPct}%`;
+        return `mainStone.buybackDeduction phai trong khoang ${minPct}–${maxPct}%`;
     }
     if (policy.mainStone.upgradeDeduction !== null) {
       if (policy.mainStone.upgradeDeduction < minPct || policy.mainStone.upgradeDeduction > maxPct)
-        return `mainStone.upgradeDeduction phải trong khoảng ${minPct}–${maxPct}%`;
+        return `mainStone.upgradeDeduction phai trong khoang ${minPct}–${maxPct}%`;
     }
   }
   return null;
 }
 
 export function validateExchangeOverride(override: ExchangeOverride): string | null {
-  if (!override.approvedBy?.trim()) return 'Override bắt buộc có approvedBy';
-  if (!override.reason?.trim()) return 'Override bắt buộc có reason';
-  if (!override.approvedAt) return 'Override bắt buộc có approvedAt';
+  if (!override.approvedBy?.trim()) return 'Override bat buoc co approvedBy';
+  if (!override.reason?.trim()) return 'Override bat buoc co reason';
+  if (!override.approvedAt) return 'Override bat buoc co approvedAt';
 
   const { min, max } = EXCHANGE_RATE_BOUNDS;
   const minPct = min * 100;
@@ -138,7 +138,7 @@ export function validateExchangeOverride(override: ExchangeOverride): string | n
 
   for (const [field, val] of Object.entries(override.overriddenFields)) {
     if (val !== undefined && (val < minPct || val > maxPct))
-      return `Override field '${field}' = ${val}% phải trong khoảng ${minPct}–${maxPct}%`;
+      return `Override field '${field}' = ${val}% phai trong khoang ${minPct}–${maxPct}%`;
   }
   return null;
 }

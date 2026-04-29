@@ -7,20 +7,20 @@ export class SupplierImportHelper {
   static processImportedData(row: any): Supplier {
     // Map từ cột Excel sang object Supplier
     const supplier: Supplier = {
-      id: row['Mã nhà cung cấp (*)'] || Math.random().toString(36).substring(7),
-      maNhaCungCap: row['Mã nhà cung cấp (*)'] || '',
-      tenNhaCungCap: row['Tên nhà cung cấp (*)'] || '',
-      diaChi: row['Địa chỉ'] || '',
-      maSoThue: row['Mã số thuế'] || '',
-      maNhomNCC: row['Mã nhóm nhà cung cấp'] || '',
-      dienThoai: row['Điện thoại'] || '',
+      id: row['ma nha cung cap (*)'] || Math.random().toString(36).substring(7),
+      maNhaCungCap: row['ma nha cung cap (*)'] || '',
+      tenNhaCungCap: row['ten nha cung cap (*)'] || '',
+      diaChi: row['đia chi'] || '',
+      maSoThue: row['ma so thue'] || '',
+      maNhomNCC: row['ma nhom nha cung cap'] || '',
+      dienThoai: row['dien thoai'] || '',
       website: row['Website'] || '',
       email: row['Email'] || '',
-      quocGia: row['Quốc gia'] || 'Việt Nam',
-      tinhTP: row['Tỉnh/TP'] || '',
-      soTaiKhoan: row['Số tài khoản'] || '',
-      tenNganHang: row['Tên ngân hàng'] || '',
-      ghiChu: row['Ghi chú'] || ''
+      quocGia: row['quoc gia'] || 'viet Nam',
+      tinhTP: row['tinh/TP'] || '',
+      soTaiKhoan: row['so tai khoan'] || '',
+      tenNganHang: row['ten ngan hang'] || '',
+      ghiChu: row['Ghi chu'] || ''
     };
     
     return SupplierClassifier.classifySupplier(supplier);
@@ -32,25 +32,25 @@ export class SupplierImportHelper {
     
     // Kiểm tra bắt buộc
     if (!supplier.maNhaCungCap.trim()) {
-      errors.push('Mã NCC là bắt buộc');
+      errors.push('ma NCC la bat buoc');
     }
     
     if (!supplier.tenNhaCungCap.trim()) {
-      errors.push('Tên NCC là bắt buộc');
+      errors.push('ten NCC la bat buoc');
     }
     
     // Validate MST cho NCC trong nước
     if (supplier.loaiNCC === 'TO_CHUC' || supplier.loaiNCC === 'CA_NHAN') {
       if (!supplier.maSoThue) {
-        errors.push('Mã số thuế là bắt buộc cho NCC trong nước');
+        errors.push('ma so thue la bat buoc cho NCC trong nuoc');
       } else if (!/^\d{10}(-\d{3})?$/.test(supplier.maSoThue)) {
-        errors.push('Mã số thuế không đúng định dạng (10 số hoặc 10 số-3 số)');
+        errors.push('ma so thue khong dung dinh dang (10 so hoac 10 so-3 so)');
       }
     }
     
     // Validate email
     if (supplier.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(supplier.email)) {
-      errors.push('Email không hợp lệ');
+      errors.push('Email khong hop le');
     }
     
     return {

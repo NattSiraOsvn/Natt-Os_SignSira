@@ -39,11 +39,11 @@ export class PhapCheEngine {
     for (const c of contracts) {
       const daysRemaining = Math.floor((c.endDate.getTime() - now.getTime()) / 86400000);
       if (daysRemaining < 0 && c.status === 'ACTIVE') {
-        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'EXPIRED', message: `Hợp đồng ${c.title} đã hết hạn`, createdAt: new Date() });
+        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'EXPIRED', message: `hop dong ${c.title} da het han`, createdAt: new Date() });
       } else if (daysRemaining <= 30 && daysRemaining >= 0) {
-        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'EXPIRING_SOON', message: `Hợp đồng ${c.title} hết hạn sau ${daysRemaining} ngày`, daysRemaining, createdAt: new Date() });
+        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'EXPIRING_SOON', message: `hop dong ${c.title} het han sau ${daysRemaining} ngay`, daysRemaining, createdAt: new Date() });
       } else if (c.status === 'REVIEWING' && c.requiresGatekeeperApproval) {
-        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'PENDING_APPROVAL', message: `Hợp đồng ${c.title} chờ Gatekeeper duyệt`, createdAt: new Date() });
+        alerts.push({ alertId: `ALT-${Date.now()}`, contractId: c.contractId, type: 'PENDING_APPROVAL', message: `hop dong ${c.title} cho Gatekeeper duyet`, createdAt: new Date() });
       }
     }
     return alerts;

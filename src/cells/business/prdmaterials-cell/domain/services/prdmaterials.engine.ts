@@ -58,7 +58,7 @@ EventBus.subscribe('StockReserved' as any, (envelope: any) => {
       gold24KWeight:   gold24K,
       goldAlloyWeight: gold24K * 0.25,
       goldPurity:      purity,
-      goldColor:       p.mauSP === 'TRẮNG' ? 'TRG' : p.mauSP === 'ĐỎ' ? 'HVG' : 'HOG',
+      goldColor:       p.mauSP === 'trang' ? 'TRG' : p.mauSP === 'do' ? 'HVG' : 'HOG',
       sourceLot24K:    `Au${new Date().getFullYear()}${String(new Date().getMonth()+1).padStart(2,'0')}`,
     }
   );

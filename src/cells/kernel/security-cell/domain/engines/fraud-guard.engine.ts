@@ -7,9 +7,9 @@ import { touchBoolean } from "@/core/chromatic/touch-result";
 // DỮ LIỆU LỊCH SỬ THU ĐỔI (Mock Database)
 // identityHash giả lập là hash của CCCD hoặc Khuôn mặt khách hàng cũ
 const REDEEM_HISTORY_INDEX = [
-  { sku: 'NNA232', cert: 'VC8534', customer: 'Thịnh+Hải Anh Chiến', date: '08/07/2024', status: 'ĐÃ_THU', staffId: 'CFO', identityHash: 'hash_khach_A_face_123' },
-  { sku: 'MD1148', cert: 'D1138', customer: 'Chị Linh Meow', date: '29/10/2024', status: 'ĐÃ_THU', staffId: 'S-007', identityHash: 'hash_khach_B_cccd_456' },
-  { sku: 'NNU859', cert: '', customer: 'Chị Đào', date: '29/10/2024', status: 'ĐÃ_THU', staffId: 'CFO', identityHash: 'hash_khach_C_face_789' },
+  { sku: 'NNA232', cert: 'VC8534', customer: 'thinh+hai Anh chien', date: '08/07/2024', status: 'da_thu', staffId: 'CFO', identityHash: 'hash_khach_A_face_123' },
+  { sku: 'MD1148', cert: 'D1138', customer: 'chi Linh Meow', date: '29/10/2024', status: 'da_thu', staffId: 'S-007', identityHash: 'hash_khach_B_cccd_456' },
+  { sku: 'NNU859', cert: '', customer: 'chi dao', date: '29/10/2024', status: 'da_thu', staffId: 'CFO', identityHash: 'hash_khach_C_face_789' },
 ];
 
 export class FraudGuardService {
@@ -53,7 +53,7 @@ export class FraudGuardService {
       return {
         allowed: true,
         level: AlertLevel.INFO,
-        message: "Sản phẩm sạch. Chưa có trong lịch sử thu đổi.",
+        message: "san pham sach. chua co trong lich su thu đau.",
         action: 'PROCEED'
       };
     }
@@ -70,11 +70,11 @@ export class FraudGuardService {
         // SP Đã thu + Cùng nhân viên thu + Nhưng dùng định danh khách khác
         // => Dấu hiệu nhân viên đem hàng đã thu ra quay vòng để ăn chênh lệch lần 2
         if (isSameStaff && isDifferentIdentity) {
-            this.lockAccountTrigger(staffId, "Cố ý thu đổi lặp với định danh giả mạo");
+            this.lockAccountTrigger(staffId, "co y thu đau lap voi dinh danh gia mao");
             return {
                 allowed: false,
                 level: AlertLevel.FATAL,
-                message: `PHÁT HIỆN GIAN LẬN: Bạn đang cố thu lại sản phẩm ${match.sku} (đã thu ngày ${match.date}) nhưng dùng định danh khách hàng khác. HỆ THỐNG ĐÃ KHÓA TÀI KHOẢN.`,
+                message: `phat hien GIAN lan: ban dang co thu lai san pham ${match.sku} (da thu ngay ${match.date}) nhung dung dinh danh khach hang khac. he thong da khoa tai khoan.`,
                 action: 'LOCK_ACCOUNT',
                 historyRecord: match
             };
@@ -87,7 +87,7 @@ export class FraudGuardService {
              return {
                 allowed: false,
                 level: AlertLevel.INFO,
-                message: `Giao dịch trùng lặp: Sản phẩm này vừa được thu từ cùng khách hàng này. Vui lòng kiểm tra lại giỏ hàng.`,
+                message: `Giao dich trung lap: san pham nay vua duoc thu tu cung khach hang nay. Vui long kiem tra lai gio hang.`,
                 action: 'BLOCK',
                 historyRecord: match
             };
@@ -100,7 +100,7 @@ export class FraudGuardService {
              return {
                 allowed: false, // Tạm chặn, cần Supervisor Override
                 level: AlertLevel.CRITICAL,
-                message: `CẢNH BÁO: Sản phẩm này đã được thu hồi bởi nhân sự khác (${match.staffId}). Cần Quản lý xác thực nguồn gốc.`,
+                message: `canh bao: san pham nay da duoc thu hau boi nhan su khac (${match.staffId}). can quan ly xac thuc nguon goc.`,
                 action: 'BLOCK',
                 historyRecord: match
             };
@@ -110,7 +110,7 @@ export class FraudGuardService {
         return {
             allowed: false,
             level: AlertLevel.warnING,
-            message: `CẢNH BÁO: Sản phẩm ${match.sku} có trong lịch sử thu đổi. YÊU CẦU ĐỊNH DANH (Face/CCCD) để xác thực.`,
+            message: `canh bao: san pham ${match.sku} co trong lich su thu đau. yeu cau dinh DANH (Face/CCCD) de xac thuc.`,
             action: 'warn',
             historyRecord: match
         };
@@ -127,8 +127,8 @@ export class FraudGuardService {
   private lockAccountTrigger(userId: string, reason: string) {
     NotifyBus.push({
       type: 'RISK',
-      title: 'AN NINH OMEGA: KHÓA TÀI KHOẢN',
-      content: `User ${userId} bị khóa vĩnh viễn. Lý do: ${reason}.`,
+      title: 'AN NINH OMEGA: khoa tai khoan',
+      content: `User ${userId} bi khoa vinh vien. ly do: ${reason}.`,
       persona: PersonaID.KRIS,
       priority: 'HIGH'
     });

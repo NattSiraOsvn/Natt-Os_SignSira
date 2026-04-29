@@ -9,32 +9,32 @@
 
 // ── JEWELRY CATEGORIES ────────────────────────────────────────────────────
 export const JEWELRY_CATEGORIES = [
-  'Nhẫn Cặp',       // phải check trước Nhẫn đơn
-  'Nhẫn',
-  'Bông Tai',
-  'Lắc Tay',
-  'Vòng Tay',
-  'Mặt + Dây Chuyền',
-  'Mặt Dây',
-  'Dây Chuyền',
-  'Khuyên',
-  'Phụ Kiện',
+  'nhan cap',       // phải check trước Nhẫn đơn
+  'nhan',
+  'bong Tai',
+  'lac Tay',
+  'vong Tay',
+  'mat + day chuyen',
+  'mat day',
+  'day chuyen',
+  'khuyen',
+  'phu kien',
 ] as const;
 
 export type JewelryCategory = typeof JEWELRY_CATEGORIES[number];
 
 // ── CATEGORY PATTERNS ─────────────────────────────────────────────────────
 const CATEGORY_PATTERNS: Array<{ pattern: RegExp; category: JewelryCategory }> = [
-  { pattern: /nhẫn\s*cặp|nhan\s*cap/i,            category: 'Nhẫn Cặp' },
-  { pattern: /nhẫn|nhan/i,                          category: 'Nhẫn' },
-  { pattern: /bông\s*tai|bong\s*tai|hoa\s*tai/i,   category: 'Bông Tai' },
-  { pattern: /lắc\s*tay|lac\s*tay/i,               category: 'Lắc Tay' },
-  { pattern: /vòng\s*tay|vong\s*tay/i,             category: 'Vòng Tay' },
-  { pattern: /mặt\s*\+\s*dây|mat\s*\+\s*day/i,    category: 'Mặt + Dây Chuyền' },
-  { pattern: /mặt\s*dây|mat\s*day/i,               category: 'Mặt Dây' },
-  { pattern: /dây\s*chuyền|day\s*chuyen/i,         category: 'Dây Chuyền' },
-  { pattern: /khuyên|khuyen/i,                      category: 'Khuyên' },
-  { pattern: /phụ\s*kiện|phu\s*kien/i,             category: 'Phụ Kiện' },
+  { pattern: /nhẫn\s*cặp|nhan\s*cap/i,            category: 'nhan cap' },
+  { pattern: /nhẫn|nhan/i,                          category: 'nhan' },
+  { pattern: /bông\s*tai|bong\s*tai|hoa\s*tai/i,   category: 'bong Tai' },
+  { pattern: /lắc\s*tay|lac\s*tay/i,               category: 'lac Tay' },
+  { pattern: /vòng\s*tay|vong\s*tay/i,             category: 'vong Tay' },
+  { pattern: /mặt\s*\+\s*dây|mat\s*\+\s*day/i,    category: 'mat + day chuyen' },
+  { pattern: /mặt\s*dây|mat\s*day/i,               category: 'mat day' },
+  { pattern: /dây\s*chuyền|day\s*chuyen/i,         category: 'day chuyen' },
+  { pattern: /khuyên|khuyen/i,                      category: 'khuyen' },
+  { pattern: /phụ\s*kiện|phu\s*kien/i,             category: 'phu kien' },
 ];
 
 // ── SIZE PATTERNS ─────────────────────────────────────────────────────────
@@ -81,7 +81,7 @@ export function classifyJewelryItem(rawText: string): JewelryClassifyResult {
     if (!sizeList.includes(clean)) sizeList.push(clean);
   }
 
-  // 3. Detect category (order matters — 'Nhẫn Cặp' before 'Nhẫn')
+  // 3. Detect category (order matters — 'nhan cap' before 'nhan')
   let category: JewelryCategory | '' = '';
   for (const { pattern, category: cat } of CATEGORY_PATTERNS) {
     if (pattern.test(text)) { category = cat; break; }
@@ -106,7 +106,7 @@ export function classifyBatch(items: string[]): JewelryClassifyResult[] {
 
 /**
  * buildInventoryTag — tạo tag ngắn cho inventory từ classification
- * e.g.: 'Nhẫn Nữ · 1.5ly · IF' (dùng cho label máy in)
+ * e.g.: 'nhan nu · 1.5ly · IF' (dùng cho label máy in)
  */
 export function buildInventoryTag(
   classify: JewelryClassifyResult,
@@ -193,8 +193,8 @@ export function buildTransferRows(
 // ── PRESET: Chi Phí Seller → Chi Phí tổng hợp ────────────────────────────
 /**
  * CHI_PHI_TRANSFER_CONFIG — port từ Doc 31 bocTachDuLieuChiPhi()
- * Nguồn: 'Chi Phí Của Seller'
- * Đích:  'Chi Phí'
+ * Nguồn: 'Chi phi cua Seller'
+ * Đích:  'Chi phi'
  *
  * Cột nguồn: A=Ngày, B=SRL, C=SLRcode, E=Khách, F=Địa Chỉ, G=Hàng Hóa, H=TL, L=Tổng Cước
  * Cột đích:  C=SLRcode, D=SRL, F=Ngày, G=ThôngTin, H=ĐịaChỉ, I=DiễnGiải, J=SốLượng, K=ĐơnGiá
@@ -227,7 +227,7 @@ export function buildCategoryStats(results: JewelryClassifyResult[]): {
   let withSize = 0, withBaguette = 0, unclassified = 0;
 
   results.forEach(r => {
-    const cat = r.category || 'Chưa phân loại';
+    const cat = r.category || 'chua phan loai';
     catMap[cat] = (catMap[cat] ?? 0) + 1;
     if (r.hasSize)     withSize++;
     if (r.hasBaguette) withBaguette++;

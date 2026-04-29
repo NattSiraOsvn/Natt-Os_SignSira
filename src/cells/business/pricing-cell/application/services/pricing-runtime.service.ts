@@ -45,9 +45,9 @@ let _goldPrices: GoldPrice[] = [
 ];
 
 const _rules: PricingRule[] = [
-  { id: "RULE-001", name: "Nhẫn cơ bản", category: "RING", craftingCostPerGram: 500_000, marginRate: 0.25, gemSurcharge: 0, active: true, validFrom: "2025-01-01" },
-  { id: "RULE-002", name: "Dây chuyền", category: "NECKLACE", craftingCostPerGram: 400_000, marginRate: 0.20, gemSurcharge: 0, active: true, validFrom: "2025-01-01" },
-  { id: "RULE-003", name: "Có đá quý", category: "GEM", craftingCostPerGram: 800_000, marginRate: 0.35, gemSurcharge: 0.15, active: true, validFrom: "2025-01-01" },
+  { id: "RULE-001", name: "nhan co ban", category: "RING", craftingCostPerGram: 500_000, marginRate: 0.25, gemSurcharge: 0, active: true, validFrom: "2025-01-01" },
+  { id: "RULE-002", name: "day chuyen", category: "NECKLACE", craftingCostPerGram: 400_000, marginRate: 0.20, gemSurcharge: 0, active: true, validFrom: "2025-01-01" },
+  { id: "RULE-003", name: "co da quy", category: "GEM", craftingCostPerGram: 800_000, marginRate: 0.35, gemSurcharge: 0.15, active: true, validFrom: "2025-01-01" },
 ];
 
 export const PricingRuntimeService = {

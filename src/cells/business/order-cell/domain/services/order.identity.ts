@@ -2,7 +2,7 @@
 export const orderIdentity = {
   cellId:      'order-cell',
   version:     '1.0.0',
-  domain:      'Order / Đơn hàng',
-  description: 'Quản lý đơn đặt hàng KH — tạo, xác nhận, theo dõi trạng thái',
+  domain:      'Order / don hang',
+  description: 'quan ly don dat hang KH — tao, xac nhan, theo dau trang thai',
   constitutionRef: 'v4.1',
 } as const;

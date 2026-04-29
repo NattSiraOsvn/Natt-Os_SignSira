@@ -20,12 +20,12 @@ export class RetryPolicy {
       } catch (error) {
         lastError = error;
         const delay = this.BASE_DELAY * Math.pow(2, attempt - 1);
-        console.warn(`[RETRY-ENGINE] ${context} thất bại lần ${attempt}/${this.MAX_ATTEMPTS}. Thử lại sau ${delay}ms...`);
+        console.warn(`[RETRY-ENGINE] ${context} that bai lan ${attempt}/${this.MAX_ATTEMPTS}. thu lai sau ${delay}ms...`);
         await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
 
-    console.error(`[RETRY-ENGINE] ${context} thất bại hoàn toàn sau ${this.MAX_ATTEMPTS} lần.`);
+    console.error(`[RETRY-ENGINE] ${context} that bai hoan toan sau ${this.MAX_ATTEMPTS} lan.`);
     await onFinalFailure(lastError);
     return null;
   }

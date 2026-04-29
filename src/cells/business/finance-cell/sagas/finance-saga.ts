@@ -24,7 +24,7 @@ export class FinanceSaga {
   private static async handleOrderCreated(event: EventEnvelope) {
     if (this.processedEvents.has(event.event_id)) return;
 
-    console.log(`[SAGA-FINANCE] Nhận Order ${event.payload.id}. Đang tạo Proforma Invoice...`);
+    console.log(`[SAGA-FINANCE] nhan Order ${event.payload.id}. dang tao Proforma Invoice...`);
     
     const invoice = InvoiceAggregate.createFromOrder(
       event.payload.id, 
@@ -59,11 +59,11 @@ export class FinanceSaga {
   }
 
   private static async handleInventoryInsufficient(event: EventEnvelope) {
-    console.log(`[SAGA-COMPENSATION] Thiếu kho cho Order ${event.payload.order_id}. Đang thu hồi hóa đơn...`);
+    console.log(`[SAGA-COMPENSATION] thieu kho cho Order ${event.payload.order_id}. dang thu hau hoa don...`);
     NotifyBus.push({
       type: 'RISK',
       title: 'FINANCE COMPENSATION',
-      content: `Hóa đơn cho Order ${event.payload.order_id} đã bị hủy do thiếu kho.`,
+      content: `hoa don cho Order ${event.payload.order_id} da bi huy do thieu kho.`,
       persona: PersonaID.KRIS
     });
   }

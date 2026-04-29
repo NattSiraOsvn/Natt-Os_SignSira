@@ -23,7 +23,7 @@ export interface WarehouseItemProps {
   quantity: number;
   unitCostVND: number;           // Đơn giá bình quân
   location: WarehouseLocation;
-  locationNote?: string;         // VD: "Két A1 - Tầng 1"
+  locationNote?: string;         // VD: "ket A1 - tang 1"
   status: WarehouseItemStatus;
   minThreshold: number;          // Ngưỡng cảnh báo tồn kho
   insuranceStatus: 'COVERED' | 'NOT_COVERED' | 'EXPIRED';
@@ -98,7 +98,7 @@ export class WarehouseItem {
   // ─── Stock operations ───
 
   receiveStock(quantity: number, unitCost: number, performedBy: string): void {
-    if (quantity <= 0) throw new Error('[WAREHOUSE] Số lượng nhập phải > 0');
+    if (quantity <= 0) throw new Error('[WAREHOUSE] so luong nhap phai > 0');
 
     // Tính giá bình quân mới
     const totalValue = this._quantity * this._unitCostVND + quantity * unitCost;
@@ -111,7 +111,7 @@ export class WarehouseItem {
     this._movements.push({
       type: 'IN',
       quantity,
-      reason: 'Nhập kho',
+      reason: 'nhap kho',
       performedBy,
       toLocation: this._location,
       timestamp: new Date(),
@@ -119,8 +119,8 @@ export class WarehouseItem {
   }
 
   releaseStock(quantity: number, reason: string, performedBy: string): void {
-    if (quantity <= 0) throw new Error('[WAREHOUSE] Số lượng xuất phải > 0');
-    if (quantity > this._quantity) throw new Error(`[WAREHOUSE] Tồn kho không đủ: có ${this._quantity}, yêu cầu ${quantity}`);
+    if (quantity <= 0) throw new Error('[WAREHOUSE] so luong xuat phai > 0');
+    if (quantity > this._quantity) throw new Error(`[WAREHOUSE] ton kho khong du: co ${this._quantity}, yeu cau ${quantity}`);
 
     this._quantity -= quantity;
     this._updatedAt = new Date();
@@ -137,7 +137,7 @@ export class WarehouseItem {
   }
 
   adjustStock(newQuantity: number, reason: string, performedBy: string): void {
-    if (newQuantity < 0) throw new Error('[WAREHOUSE] Số lượng điều chỉnh không thể âm');
+    if (newQuantity < 0) throw new Error('[WAREHOUSE] so luong dieu chinh khong the am');
     const diff = newQuantity - this._quantity;
     this._quantity = newQuantity;
     this._lastCountDate = new Date();
@@ -147,7 +147,7 @@ export class WarehouseItem {
     this._movements.push({
       type: 'ADJUST',
       quantity: Math.abs(diff),
-      reason: `Kiểm kê: ${reason} (${diff >= 0 ? '+' : ''}${diff})`,
+      reason: `kiem ke: ${reason} (${diff >= 0 ? '+' : ''}${diff})`,
       performedBy,
       timestamp: new Date(),
     });

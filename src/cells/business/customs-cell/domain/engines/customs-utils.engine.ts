@@ -43,8 +43,8 @@ export const REGEX_PATTERNS = {
     ]
   },
   SHAPES: {
-    'tròn|round': 'Round',
-    'vuông|princess': 'Princess',
+    'tron|round': 'Round',
+    'vuong|princess': 'Princess',
     'oval|oval-cut': 'Oval',
     'emerald|emerald-cut': 'Emerald',
     'pear|pear-shaped': 'Pear',
@@ -56,20 +56,20 @@ export const REGEX_PATTERNS = {
 };
 
 export const ITEM_DICTIONARY: Record<string, string> = {
-  'mã số hàng hóa': 'hsCode',
-  'mã hs': 'hsCode',
+  'ma so hang hoa': 'hsCode',
+  'ma hs': 'hsCode',
   'hs code': 'hsCode',
-  'mô tả hàng hóa': 'description',
+  'mo ta hang hoa': 'description',
   'description': 'description',
-  'tên hàng': 'description',
-  'số lượng': 'qtyActual',
+  'ten hang': 'description',
+  'so luong': 'qtyActual',
   'quantity': 'qtyActual',
   'sl': 'qtyActual',
-  'trị giá hóa đơn': 'invoiceValue',
+  'tri gia hoa don': 'invoiceValue',
   'invoice value': 'invoiceValue',
-  'đơn vị tính': 'unit',
+  'don vi tinh': 'unit',
   'unit': 'unit',
-  'nước xuất xứ': 'originCountry',
+  'nuoc xuat xu': 'originCountry',
   'origin': 'originCountry'
 };
 
@@ -271,13 +271,13 @@ export class CustomsUtils {
 
   static validateItem(item: any): string[] {
     const errors: string[] = [];
-    if (!item.hsCode) errors.push('Thiếu mã HS');
-    if (!item.description || item.description.length < 5) errors.push('Mô tả quá ngắn');
+    if (!item.hsCode) errors.push('thieu ma HS');
+    if (!item.description || item.description.length < 5) errors.push('mo ta qua ngen');
     
     // Validate Kim cương đặc thù (Mã HS 7102)
     if (item.hsCode.startsWith('7102')) {
-        if (!item.certNumber) errors.push('Thiếu mã GIA');
-        if (!item.weightCT) errors.push('Thiếu trọng lượng CT');
+        if (!item.certNumber) errors.push('thieu ma GIA');
+        if (!item.weightCT) errors.push('thieu trong luong CT');
     }
     
     return errors;

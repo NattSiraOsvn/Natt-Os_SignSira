@@ -78,7 +78,7 @@ export class WarrantyClaim {
 
   transitionTo(newStatus: ClaimStatus): void {
     if (!isValidClaimTransition(this._status, newStatus)) {
-      throw new Error(`[WARRANTY] Transition không hợp lệ: ${this._status} → ${newStatus}`);
+      throw new Error(`[WARRANTY] Transition khong hop le: ${this._status} → ${newStatus}`);
     }
     this._status = newStatus;
   }

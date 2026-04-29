@@ -29,7 +29,7 @@ export class SalesTransaction {
   get commissionVND(): number { return this._commissionVND; }
 
   transitionTo(s: SaleStatus) {
-    if (!(VALID_SALE_TRANSITIONS[this._status]?.includes(s))) throw new Error(`[SALES] ${this._status} → ${s} không hợp lệ`);
+    if (!(VALID_SALE_TRANSITIONS[this._status]?.includes(s))) throw new Error(`[SALES] ${this._status} → ${s} khong hop le`);
     this._status = s;
     if (s === 'COMPLETED') { this._closedAt = new Date(); this._commissionVND = Math.round(this._finalValueVND * COMMISSION_RATES[0].ratePercent / 100); }
   }

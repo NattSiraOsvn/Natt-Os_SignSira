@@ -16,7 +16,7 @@ try {
 
 if (seedData.length > 0) {
   HREngine.seedFromRaw(seedData);
-  console.log(`[hr-cell] ✅ Seeded ${seedData.length} employees from sổ lương`);
+  console.log(`[hr-cell] ✅ Seeded ${seedData.length} employees from so luong`);
 }
 
 export { HREngine };

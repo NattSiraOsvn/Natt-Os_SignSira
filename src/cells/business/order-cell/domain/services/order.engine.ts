@@ -91,9 +91,9 @@ export const orderEngine = new OrderEngine();
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const STAGE_LABELS = [
-  '1-Order', '2-Design', '3-Sáp', '4-Đúc', '5-Láp',
-  '6-Gắn đá', '7-Hoàn thiện', '8-QC', '9-Xuất',
-  '10-Thanh toán', 'BH-Bảo hành', 'SR-Showroom', 'Other',
+  '1-Order', '2-Design', '3-sap', '4-duc', '5-lap',
+  '6-gen da', '7-hoan thien', '8-QC', '9-xuat',
+  '10-Thanh toan', 'BH-bao hanh', 'SR-Showroom', 'Other',
 ] as const;
 
 export type StageLabel = typeof STAGE_LABELS[number];
@@ -107,15 +107,15 @@ export function detectStage(sheetName: string): StageLabel {
 
   if (/order|don.?hang|ban.?hang|sale|\bkd\b/.test(low))             return '1-Order';
   if (/\b3d\b|thiet.?ke|design|mau.?sp/.test(low))                   return '2-Design';
-  if (/\bsap\b|wax|rubber/.test(low))                                 return '3-Sáp';
-  if (/\bduc\b|casting|phoi/.test(low))                               return '4-Đúc';
-  if (/\blap\b|assembly|\brap\b/.test(low))                           return '5-Láp';
-  if (/\bda\b|set.?stone|gan.?da/.test(low))                          return '6-Gắn đá';
-  if (/danh.?bong|polish|hoan.?thien|finish/.test(low))               return '7-Hoàn thiện';
+  if (/\bsap\b|wax|rubber/.test(low))                                 return '3-sap';
+  if (/\bduc\b|casting|phoi/.test(low))                               return '4-duc';
+  if (/\blap\b|assembly|\brap\b/.test(low))                           return '5-lap';
+  if (/\bda\b|set.?stone|gan.?da/.test(low))                          return '6-gen da';
+  if (/danh.?bong|polish|hoan.?thien|finish/.test(low))               return '7-hoan thien';
   if (/\bqc\b|kiem.?tra|quality/.test(low))                           return '8-QC';
-  if (/xuat.?xuong|giao.?hang|van.?don|shipping|delivery/.test(low))  return '9-Xuất';
-  if (/thanh.?toan|payment|thu.?tien/.test(low))                      return '10-Thanh toán';
-  if (/bao.?hanh|warranty|sua.?chua|repair/.test(low))                return 'BH-Bảo hành';
+  if (/xuat.?xuong|giao.?hang|van.?don|shipping|delivery/.test(low))  return '9-xuat';
+  if (/thanh.?toan|payment|thu.?tien/.test(low))                      return '10-Thanh toan';
+  if (/bao.?hanh|warranty|sua.?chua|repair/.test(low))                return 'BH-bao hanh';
   if (/showroom|trung.?bay|\bsr\b/.test(low))                         return 'SR-Showroom';
   return 'Other';
 }
@@ -136,10 +136,10 @@ export interface OrderPattern {
 }
 
 export const ORDER_PATTERNS: OrderPattern[] = [
-  { regex: /\bCT\d{2}-\d{4,6}\b/gi,  prefix: 'CT', stream: 'SX_CHINH',  label: 'Chế Tác' },
+  { regex: /\bCT\d{2}-\d{4,6}\b/gi,  prefix: 'CT', stream: 'SX_CHINH',  label: 'che tac' },
   { regex: /\bKD\d{2}-\d{3,6}\b/gi,  prefix: 'KD', stream: 'SX_PHU',    label: 'Kinh Doanh' },
-  { regex: /\bKB\d{2}-\d{4,6}\b/gi,  prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho Bảo Hành' },
-  { regex: /\bVC\d{4,6}\b/gi,         prefix: 'VC', stream: 'SHOWROOM',  label: 'Vỉ Chưng / SR' },
+  { regex: /\bKB\d{2}-\d{4,6}\b/gi,  prefix: 'KB', stream: 'BAO_HANH',  label: 'Kho bao hanh' },
+  { regex: /\bVC\d{4,6}\b/gi,         prefix: 'VC', stream: 'SHOWROOM',  label: 'vi chung / SR' },
 ];
 
 export interface ExtractedOrderId {

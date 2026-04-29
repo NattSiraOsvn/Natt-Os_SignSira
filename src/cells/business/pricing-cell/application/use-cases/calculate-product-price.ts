@@ -19,15 +19,15 @@ export function executeCalculateProductPrice(command: CalculateProductPriceComma
   try {
     // Validate input
     if (command.input.goldWeightGram < 0) {
-      return { success: false, error: 'Trọng lượng vàng không được âm' };
+      return { success: false, error: 'trong luong vang khong duoc am' };
     }
     if (command.input.stoneValueVND < 0) {
-      return { success: false, error: 'Giá tấm/đá không được âm' };
+      return { success: false, error: 'gia tam/da khong duoc am' };
     }
 
     const breakdown = calculateFullPrice(command.input);
     return { success: true, breakdown };
   } catch (err) {
-    return { success: false, error: `Lỗi tính giá: ${String(err)}` };
+    return { success: false, error: `lau tinh gia: ${String(err)}` };
   }
 }

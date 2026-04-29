@@ -92,7 +92,7 @@ export const WarehouseProductionEngine = {
   /** Tạo phiếu giao nhận */
   taoPhieuGiaoNhan(phieu: PhieuGiaoNhan): PhieuGiaoNhan {
     const existing = _phieuGiaoNhan.find(p => p.soPhieu === phieu.soPhieu);
-    if (existing) throw new Error(`[WAREHOUSE] Phiếu ${phieu.soPhieu} đã tồn tại`);
+    if (existing) throw new Error(`[WAREHOUSE] phieu ${phieu.soPhieu} da ton tai`);
     _phieuGiaoNhan.push(phieu);
     return phieu;
   },

@@ -12,10 +12,10 @@ export class PersonnelEngine {
       kpiPoints: 9999,
       tasksCompleted: 450,
       lastRating: 'MASTER',
-      bio: 'Kiểm toán độc lập, Tổng tham mưu chiến lược toàn hệ sinh thái.'
+      bio: 'kiem toan doc lap, tong tham muu chien luoc toan he sinh thai.'
     },
     [PositionType.GENERAL_MANAGER]: {
-      fullName: 'Nguyễn Minh Hiếu',
+      fullName: 'nguyen Minh hieu',
       employeeCode: 'TL-M002',
       position: PositionType.GENERAL_MANAGER as any,
       role: UserRole.LEVEL_1,
@@ -23,10 +23,10 @@ export class PersonnelEngine {
       kpiPoints: 850,
       tasksCompleted: 120,
       lastRating: 'EXCELLENT',
-      bio: 'Quản lý điều hành chung, chịu trách nhiệm vận hành hệ thống.'
+      bio: 'quan ly dieu hanh chung, chiu trach nhiem van hanh he thong.'
     },
     [PositionType.PROD_DIRECTOR]: {
-      fullName: 'Trần Văn Hòa',
+      fullName: 'tran ven hoa',
       employeeCode: 'TL-M003',
       position: PositionType.PROD_DIRECTOR as any,
       role: UserRole.LEVEL_1,
@@ -34,10 +34,10 @@ export class PersonnelEngine {
       kpiPoints: 920,
       tasksCompleted: 85,
       lastRating: 'EXCELLENT',
-      bio: 'Giám đốc sản xuất, chuyên gia kỹ thuật kim hoàn.'
+      bio: 'giam doc san xuat, chuyen gia ky thuat kim hoan.'
     },
     [PositionType.ACCOUNTING_MANAGER]: {
-      fullName: 'Nguyễn Thị Mi',
+      fullName: 'nguyen thi Mi',
       employeeCode: 'TL-H001',
       position: PositionType.ACCOUNTING_MANAGER as any,
       role: UserRole.LEVEL_2,
@@ -45,10 +45,10 @@ export class PersonnelEngine {
       kpiPoints: 780,
       tasksCompleted: 240,
       lastRating: 'OPTIMAL',
-      bio: 'Quản lý tài chính kế toán, kiểm soát dòng tiền.'
+      bio: 'quan ly tai chinh ke toan, kiem soat dong tien.'
     },
     [PositionType.CASTING_MANAGER]: {
-      fullName: 'Trần Anh Tuấn',
+      fullName: 'tran Anh tuan',
       employeeCode: 'TL-H002',
       position: PositionType.CASTING_MANAGER as any,
       role: UserRole.LEVEL_2,
@@ -56,10 +56,10 @@ export class PersonnelEngine {
       kpiPoints: 650,
       tasksCompleted: 95,
       lastRating: 'GOOD',
-      bio: 'Quản lý phân xưởng đúc, tối ưu quy trình đúc.'
+      bio: 'quan ly phan xuong duc, tau uu quy trinh duc.'
     },
     [PositionType.ROUGH_FINISHER]: {
-      fullName: 'Nguyễn Văn Vẹn',
+      fullName: 'nguyen ven ven',
       employeeCode: 'TL-W045',
       position: PositionType.ROUGH_FINISHER as any,
       role: UserRole.LEVEL_6,
@@ -67,13 +67,13 @@ export class PersonnelEngine {
       kpiPoints: 420,
       tasksCompleted: 58,
       lastRating: 'STABLE',
-      bio: 'Thợ nguội, chuyên xử lý bề mặt sản phẩm thô.'
+      bio: 'tho nguoi, chuyen xu ly be mat san pham tho.'
     }
   };
 
   static getProfileByPosition(role: string): PersonnelProfile {
     return this.profiles[role] || {
-      fullName: 'Nhân viên Tâm Luxury',
+      fullName: 'nhan vien Tâm Luxury',
       employeeCode: 'TL-X999',
       position: role as any,
       role: UserRole.LEVEL_5,
@@ -81,7 +81,7 @@ export class PersonnelEngine {
       kpiPoints: 0,
       tasksCompleted: 0,
       lastRating: 'NEW',
-      bio: 'Hồ sơ nhân sự chưa cập nhật.'
+      bio: 'ho so nhan su chua cap nhat.'
     };
   }
 

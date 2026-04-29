@@ -57,30 +57,30 @@ export const GOLD_TYPES = ['750', '750W', '585', '375', '999', 'PL'] as const;
 
 /** SPELL_FIX — chuẩn hóa viết tắt mã SP sai chính tả */
 export const SPELL_FIX: Record<string, string> = {
-  'NU': 'NNU', 'NỮ': 'NNU', 'NA': 'NNA', 'NAM': 'NNA',
-  'VONG': 'VT', 'V T': 'VT', 'VÒNG': 'VT',
-  'LAC': 'LT', 'LẮC': 'LT',
-  'BONG': 'BT', 'BTAI': 'BT', 'BÔNG': 'BT',
+  'NU': 'NNU', 'nu': 'NNU', 'NA': 'NNA', 'NAM': 'NNA',
+  'VONG': 'VT', 'V T': 'VT', 'vong': 'VT',
+  'LAC': 'LT', 'lac': 'LT',
+  'BONG': 'BT', 'BTAI': 'BT', 'bong': 'BT',
   'KIMCUONG': 'KC',
-  'DAY': 'D', 'DÂY': 'D',
-  'NHAN': 'N', 'NHẪN': 'N',
+  'DAY': 'D', 'day': 'D',
+  'NHAN': 'N', 'nhan': 'N',
 };
 
 /** Trạng thái đơn được track trong vòng đời SP */
 export const TRACKED_STATUSES = [
-  'ĐÃ ĐẶT', 'ĐÃ CỌC', 'ĐÃ BÁN', 'ĐÃ GIAO', 'ĐÃ ĐỔI',
-  'HT CỌC', 'HT ĐỔI', 'TRẢ LẠI',
+  'da dat', 'da coc', 'da ban', 'da GIAO', 'da đau',
+  'HT coc', 'HT đau', 'tra lai',
 ];
 
 /** Cột quan trọng trong DTHU/LGT */
 export const KEY_COLUMNS = {
-  NGAY: ['ngày', 'date', 'ngay'],
-  TEN: ['tên khách', 'khách hàng', 'khách', 'ten', 'customer'],
-  SDT: ['sđt', 'điện thoại', 'phone', 'sdt', 'mobile'],
-  MASP: ['mã sp', 'mã sản phẩm', 'code', 'sku', 'masp'],
-  MAVC: ['mã vc', 'mã vỏ', 'mavc'],
-  GIA: ['giá', 'price', 'tiền', 'amount', 'gia'],
-  LOAI: ['loại', 'type', 'loai'],
+  NGAY: ['ngay', 'date', 'ngay'],
+  TEN: ['ten khach', 'khach hang', 'khach', 'ten', 'customer'],
+  SDT: ['sdt', 'đien thoai', 'phone', 'sdt', 'mobile'],
+  MASP: ['ma sp', 'ma san pham', 'code', 'sku', 'masp'],
+  MAVC: ['ma vc', 'ma vo', 'mavc'],
+  GIA: ['gia', 'price', 'tien', 'amount', 'gia'],
+  LOAI: ['loai', 'type', 'loai'],
 };
 
 /** BACKUP_MAP — 14 sheets backup trong file nguồn */
@@ -290,18 +290,18 @@ export function calcCommission(params: {
 
   let hhVo   = giaVo   * rateVo;
   let hhVien = giaVien * rateVien;
-  let note   = 'Bán mới';
+  let note   = 'ban moi';
 
   if (isDoi && thuLai && thuLai > 0) {
     const diff = giaSP - thuLai;
     if (diff <= 0) {
       hhVo = 0; hhVien = 0;
-      note = `Đổi ngang/xuống (Thu ${thuLai.toLocaleString('vi-VN')}đ)`;
+      note = `đau ngang/xuong (Thu ${thuLai.toLocaleString('vi-VN')}d)`;
     } else {
       const ratio = diff / giaSP;
       hhVo   = hhVo   * ratio;
       hhVien = hhVien * ratio;
-      note   = `Đổi bù ${Math.round(ratio * 100)}%`;
+      note   = `đau bu ${Math.round(ratio * 100)}%`;
     }
   }
 
@@ -366,14 +366,14 @@ export function syncLifecycle(
 ): unknown[][] {
   // Build key map từ sell
   const sellH = sellHeaders.map(h => String(h || '').toLowerCase());
-  const ngayIdxS  = sellH.findIndex(h => h.includes('ngày') || h.includes('date'));
-  const khachIdxS = sellH.findIndex(h => h.includes('khách') || h.includes('ten'));
-  const sdtIdxS   = sellH.findIndex(h => h.includes('sđt') || h.includes('phone'));
-  const maSPIdxS  = sellH.findIndex(h => h.includes('mã sp') || h.includes('code'));
-  const giaVoIdxS = sellH.findIndex(h => h.includes('tiền vỏ') || h.includes('gia vo'));
-  const maVCIdxS  = sellH.findIndex(h => h.includes('mã vc'));
-  const giaVienIdxS = sellH.findIndex(h => h.includes('tiền viên') || h.includes('gia vien'));
-  const tongIdxS  = sellH.findIndex(h => h.includes('thành tiền') || h.includes('tong'));
+  const ngayIdxS  = sellH.findIndex(h => h.includes('ngay') || h.includes('date'));
+  const khachIdxS = sellH.findIndex(h => h.includes('khach') || h.includes('ten'));
+  const sdtIdxS   = sellH.findIndex(h => h.includes('sdt') || h.includes('phone'));
+  const maSPIdxS  = sellH.findIndex(h => h.includes('ma sp') || h.includes('code'));
+  const giaVoIdxS = sellH.findIndex(h => h.includes('tien vo') || h.includes('gia vo'));
+  const maVCIdxS  = sellH.findIndex(h => h.includes('ma vc'));
+  const giaVienIdxS = sellH.findIndex(h => h.includes('tien vien') || h.includes('gia vien'));
+  const tongIdxS  = sellH.findIndex(h => h.includes('thanh tien') || h.includes('tong'));
 
   const fmtKey = (v: unknown) => {
     if (v instanceof Date) return v.toISOString().split('T')[0];
@@ -389,9 +389,9 @@ export function syncLifecycle(
 
   // Map sang life
   const lifeH = lifeHeaders.map(h => String(h || '').toLowerCase());
-  const ngayIdxL  = lifeH.findIndex(h => h.includes('ngày') || h.includes('date'));
-  const khachIdxL = lifeH.findIndex(h => h.includes('khách'));
-  const sdtIdxL   = lifeH.findIndex(h => h.includes('sđt') || h.includes('phone'));
+  const ngayIdxL  = lifeH.findIndex(h => h.includes('ngay') || h.includes('date'));
+  const khachIdxL = lifeH.findIndex(h => h.includes('khach'));
+  const sdtIdxL   = lifeH.findIndex(h => h.includes('sdt') || h.includes('phone'));
 
   const result = lifeRows.map((row, i) => {
     if (i === 0) return [...row];

@@ -133,7 +133,7 @@ export function extractInvoiceData(
     seller:       findValueByRegex(data, /SELLER|EXPORTER/i, 1, 2) ||
                   findValueByRegex(data, /SELLER|EXPORTER/i, 0, 1),
     buyer:        findValueByRegex(data, /BUYER|IMPORTER/i, 1, 2) ||
-                  'CÔNG TY TNHH TÂM LUXURY',
+                  'cong TY TNHH tam LUXURY',
     paymentTerm:  findValueByRegex(data, /PAYMENT\s*TERM/i),
     deliveryTerm: findValueByRegex(data, /DELIVERY\s*TERM/i) || 'DAP',
   };
@@ -141,7 +141,7 @@ export function extractInvoiceData(
   // ── 2. Find Table Header ─────────────────────────────────────────────
   const headerRowIdx = detectInvoiceHeaderRow(data);
   if (headerRowIdx === -1) {
-    errors.push('HEADER_NOT_FOUND: Không tìm thấy bảng chi tiết invoice');
+    errors.push('HEADER_NOT_FOUND: khong tim thay bang chi tiet invoice');
     return { metadata, lineItems: [], errors };
   }
 
@@ -189,7 +189,7 @@ export function extractInvoiceData(
     });
   }
 
-  if (lineItems.length === 0) errors.push('NO_LINE_ITEMS: Không tìm thấy dòng hàng hóa');
+  if (lineItems.length === 0) errors.push('NO_LINE_ITEMS: khong tim thay dong hang hoa');
 
   return { metadata, lineItems, errors };
 }

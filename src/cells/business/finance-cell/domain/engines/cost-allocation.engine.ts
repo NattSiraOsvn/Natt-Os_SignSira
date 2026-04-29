@@ -49,7 +49,7 @@ export class CostAllocationSystem {
     // Nợ 641/642 (Chi tiết theo Cost Center) / Có 242 (Chi phí trả trước) hoặc 112 (Tiền)
     const debitEntries = allocation.allocations.map(a => ({
       accountNumber: '642', // TK Chi phí quản lý (Mặc định)
-      accountName: 'Chi phí quản lý',
+      accountName: 'Chi phi quan ly',
       amount: a.allocatedAmount,
       type: 'DEBIT' as const,
       detail: `PB ${allocation.costType} - ${a.costCenter}`,
@@ -59,10 +59,10 @@ export class CostAllocationSystem {
 
     const creditEntry = {
       accountNumber: '242', // TK Chờ phân bổ
-      accountName: 'Chi phí trả trước',
+      accountName: 'Chi phi tra truoc',
       amount: allocation.totalAmount,
       type: 'CREDIT' as const,
-      detail: `Phân bổ ${allocation.costType} kỳ này`,
+      detail: `phan bo ${allocation.costType} ky nay`,
       debit: 0,
       credit: allocation.totalAmount
     };
@@ -73,7 +73,7 @@ export class CostAllocationSystem {
       referenceId: allocation.costId,
       referenceType: 'ALLOCATION',
       journalType: 'ALLOCATION',
-      description: `Bút toán phân bổ chi phí ${allocation.costType}`,
+      description: `but toan phan bo chi phi ${allocation.costType}`,
       status: 'DRAFT',
       matchScore: 100,
       entries: [...debitEntries, creditEntry]

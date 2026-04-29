@@ -43,7 +43,7 @@ export class BankingEngine {
 
   processTransfer(transfer: BankTransfer): BankingResult {
     if (transfer.amount <= 0) {
-      return { transferId: transfer.transferId, status: 'failed', reason: 'Amount phải > 0' };
+      return { transferId: transfer.transferId, status: 'failed', reason: 'Amount phai > 0' };
     }
 
     if (transfer.amount > 500_000_000) {

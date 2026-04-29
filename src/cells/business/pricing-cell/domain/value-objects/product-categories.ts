@@ -33,20 +33,20 @@ export interface ProductCategory {
 }
 
 export const PRODUCT_CATEGORIES: Record<ProductCategoryCode, ProductCategory> = {
-  BONG_TAI:   { code: 'BONG_TAI',   label: 'Earrings',        labelVi: 'Bông Tai',       formulaType: 'FIXED_TABLE' },
-  DAY_CHUYEN: { code: 'DAY_CHUYEN', label: 'Necklace',        labelVi: 'Dây Chuyền',     formulaType: 'SCALE_TYPE_1' },
-  MAT_DAY:    { code: 'MAT_DAY',    label: 'Pendant',         labelVi: 'Mặt Dây',        formulaType: 'SCALE_TYPE_2' },
-  VONG_TAY:   { code: 'VONG_TAY',   label: 'Bracelet',        labelVi: 'Vòng Tay',       formulaType: 'SCALE_TYPE_2' },
-  LAC_TAY:    { code: 'LAC_TAY',    label: 'Bangle',          labelVi: 'Lắc Tay',        formulaType: 'SCALE_TYPE_2' },
-  NHAN_CUOI:  { code: 'NHAN_CUOI',  label: 'Wedding Ring',    labelVi: 'Nhẫn Cưới',      formulaType: 'FIXED_TABLE' },
-  NHAN_KET:   { code: 'NHAN_KET',   label: 'Engagement Ring', labelVi: 'Nhẫn Kết',       formulaType: 'SCALE_TYPE_2' },
-  NHAN_NAM:   { code: 'NHAN_NAM',   label: 'Men Ring',        labelVi: 'Nhẫn Nam',       formulaType: 'SCALE_TYPE_2' },
-  NHAN_NU:    { code: 'NHAN_NU',    label: 'Women Ring',      labelVi: 'Nhẫn Nữ',        formulaType: 'ADDITIVE' },
-  PHU_KIEN:   { code: 'PHU_KIEN',   label: 'Accessories',     labelVi: 'Phụ Kiện',       formulaType: 'COMPOSITE' },
+  BONG_TAI:   { code: 'BONG_TAI',   label: 'Earrings',        labelVi: 'bong Tai',       formulaType: 'FIXED_TABLE' },
+  DAY_CHUYEN: { code: 'DAY_CHUYEN', label: 'Necklace',        labelVi: 'day chuyen',     formulaType: 'SCALE_TYPE_1' },
+  MAT_DAY:    { code: 'MAT_DAY',    label: 'Pendant',         labelVi: 'mat day',        formulaType: 'SCALE_TYPE_2' },
+  VONG_TAY:   { code: 'VONG_TAY',   label: 'Bracelet',        labelVi: 'vong Tay',       formulaType: 'SCALE_TYPE_2' },
+  LAC_TAY:    { code: 'LAC_TAY',    label: 'Bangle',          labelVi: 'lac Tay',        formulaType: 'SCALE_TYPE_2' },
+  NHAN_CUOI:  { code: 'NHAN_CUOI',  label: 'Wedding Ring',    labelVi: 'nhan cui',      formulaType: 'FIXED_TABLE' },
+  NHAN_KET:   { code: 'NHAN_KET',   label: 'Engagement Ring', labelVi: 'nhan ket',       formulaType: 'SCALE_TYPE_2' },
+  NHAN_NAM:   { code: 'NHAN_NAM',   label: 'Men Ring',        labelVi: 'nhan Nam',       formulaType: 'SCALE_TYPE_2' },
+  NHAN_NU:    { code: 'NHAN_NU',    label: 'Women Ring',      labelVi: 'nhan nu',        formulaType: 'ADDITIVE' },
+  PHU_KIEN:   { code: 'PHU_KIEN',   label: 'Accessories',     labelVi: 'phu kien',       formulaType: 'COMPOSITE' },
 } as const;
 
-/** Trigger patterns cho "Báo giá riêng" — áp dụng cho tất cả categories */
+/** Trigger patterns cho "bao gia rieng" — áp dụng cho tất cả categories */
 export const CUSTOM_QUOTE_TRIGGERS: readonly string[] = [
-  'VIP', 'siêu to', 'full tấm', 'đặc biệt', 'max tấm',
-  'khủng', 'KAT', 'dây vàng nhiều', 'hàng nhập', 'cao cấp',
+  'VIP', 'sieu to', 'full tam', 'đac biet', 'max tam',
+  'khung', 'KAT', 'day vang nhieu', 'hang nhap', 'cao cap',
 ] as const;

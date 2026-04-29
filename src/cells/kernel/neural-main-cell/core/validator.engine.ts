@@ -49,7 +49,7 @@ export function validateEntityScore(
     isConsistent,
     inconsistencyReason: isConsistent
       ? undefined
-      : `Score lệch ${delta.toFixed(2)} — vượt tolerance ${CONSISTENCY_TOLERANCE}`,
+      : `Score lech ${delta.toFixed(2)} — vuot tolerance ${CONSISTENCY_TOLERANCE}`,
     validatedAt: new Date(nowMs).toISOString(),
   };
 }

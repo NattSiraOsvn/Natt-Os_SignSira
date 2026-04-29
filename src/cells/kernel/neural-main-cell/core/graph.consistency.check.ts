@@ -39,7 +39,7 @@ export function checkGraphConsistency(
       } else if (node.weight < 0.3) {
         issues.push({
           type: 'LOW_WEIGHT_CLUSTER',
-          description: `Node '${node.actionType}' của ${entityId} đang decay (weight=${node.weight.toFixed(2)})`,
+          description: `Node '${node.actionType}' cua ${entityId} dang decay (weight=${node.weight.toFixed(2)})`,
           affectedEntities: [entityId],
           severity: node.weight < 0.15 ? 'HIGH' : 'MEDIUM',
         });
@@ -54,7 +54,7 @@ export function checkGraphConsistency(
   if (bangNodes.size > 0 && kimNodes.size > 0 && overlap.length === 0) {
     issues.push({
       type: 'missing_CROSS_VALIDATION',
-      description: 'BANG và KIM không có permanent node chung — thiếu cross-validation',
+      description: 'BANG va KIM khong co permanent node chung — thieu cross-validation',
       affectedEntities: ['BANG', 'KIM'],
       severity: 'MEDIUM',
     });

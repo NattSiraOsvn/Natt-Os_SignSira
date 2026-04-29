@@ -22,7 +22,7 @@ export interface RawCastingResult {
   weightG1: number;
   weightG2?: number;
   location: string;
-  status: 'Đủ CT' | 'Thiếu CT' | 'HỎNG';
+  status: 'du CT' | 'thieu CT' | 'hong';
   defects?: string[];
   castingDate?: string;
 }

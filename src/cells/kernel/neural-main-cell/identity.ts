@@ -10,10 +10,10 @@ export const NEURAL_MAIN_IDENTITY = {
   layer: 'kernel',         // Điều 8: Kernel Cell
   role: 'LONG_TERM_MEMORY', // Hệ thống trí nhớ dài hạn (Điều 21)
   description:
-    'Hệ thống trí nhớ dài hạn có trọng số cho toàn bộ AI Entity trong natt-os. ' +
-    'Externalize Neural MAIN tự nhiên của Gatekeeper thành hệ thống có thể vận hành độc lập.',
+    'he thong tri nho dai han co trong so cho toan bo AI Entity trong natt-os. ' +
+    'Externalize Neural MAIN tu nhien cua Gatekeeper thanh he thong co the van hanh doc lap.',
   serves: 'AI_ENTITIES',   // Phục vụ AI Entity, không phải business cell
-  constitutional_ref: 'Điều 21-22, Hiến Pháp v4.0',
+  constitutional_ref: 'dieu 21-22, Hiến Pháp v4.0',
   createdAt: '2026-03-20',
 } as const;
 

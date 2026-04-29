@@ -51,7 +51,7 @@ export async function visionOcr(
 ): Promise<{ text: string; confidence: number; error?: string }> {
   // STUBBED — LỆNH #001: Vision API không được gọi từ business cell
   // Di chuyển về nattos-server khi cần
-  return { text: '', confidence: 0, error: 'STUBBED_LỆNH_001' };
+  return { text: '', confidence: 0, error: 'stubbed_lenh_001' };
 }
 
 // ── PARSE GOLD PRICE FROM OCR TEXT ────────────────────────────────────────

@@ -52,8 +52,8 @@ export class InventoryEngine {
 
     switch (action.type) {
       case 'IN': {
-        if (action.qty <= 0) throw new Error(`[Inventory] IN qty phải > 0 (${itemCode})`);
-        if (action.price < 0) throw new Error(`[Inventory] price không thể âm (${itemCode})`);
+        if (action.qty <= 0) throw new Error(`[Inventory] IN qty phai > 0 (${itemCode})`);
+        if (action.price < 0) throw new Error(`[Inventory] price khong the am (${itemCode})`);
 
         if (itemType === 'diamond_center') {
           // Đích danh — không BQGQ
@@ -74,7 +74,7 @@ export class InventoryEngine {
       }
 
       case 'OUT': {
-        if (action.qty <= 0) throw new Error(`[Inventory] OUT qty phải > 0 (${itemCode})`);
+        if (action.qty <= 0) throw new Error(`[Inventory] OUT qty phai > 0 (${itemCode})`);
         if (action.qty > quantity) {
           // Cảnh báo xuất vượt tồn — không throw, chỉ signal
           EventBus.emit('cell.metric', {

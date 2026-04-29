@@ -15,7 +15,7 @@ export class CustomsRobotEngine {
     const totalValue = decl.items.reduce((sum, i) => sum + i.invoiceValue, 0);
     if (totalValue > 100000) { // > $100k
       score += 20;
-      factors.push({ factor: 'HIGH_VALUE', weight: 20, description: 'Lô hàng giá trị lớn (>100k USD)' });
+      factors.push({ factor: 'HIGH_VALUE', weight: 20, description: 'lo hang gia tri lon (>100k USD)' });
     }
 
     // Factor 2: Xuất xứ nhạy cảm (VD: Khu vực rủi ro kim cương máu, hoặc cấm vận)
@@ -23,7 +23,7 @@ export class CustomsRobotEngine {
     const hasRiskyOrigin = decl.items.some(i => riskyOrigins.includes(i.originCountry));
     if (hasRiskyOrigin) {
       score += 30;
-      factors.push({ factor: 'RISKY_ORIGIN', weight: 30, description: 'Xuất xứ từ khu vực nhạy cảm' });
+      factors.push({ factor: 'RISKY_ORIGIN', weight: 30, description: 'xuat xu tu khu vuc nhay cam' });
     }
 
     // Factor 3: Mã HS nhạy cảm (Vàng, Kim cương, Tiền chất)
@@ -31,13 +31,13 @@ export class CustomsRobotEngine {
     const hasSensitiveItems = decl.items.some(i => sensitiveHS.some(hs => i.hsCode.startsWith(hs)));
     if (hasSensitiveItems) {
       score += 25;
-      factors.push({ factor: 'SENSITIVE_HS', weight: 25, description: 'Hàng hóa quản lý đặc biệt (Vàng/Đá quý)' });
+      factors.push({ factor: 'SENSITIVE_HS', weight: 25, description: 'hang hoa quan ly dac biet (vang/da quy)' });
     }
 
     // Factor 4: Luồng tờ khai
     if (decl.header.streamCode === 'RED') {
       score += 15;
-      factors.push({ factor: 'RED_STREAM', weight: 15, description: 'Luồng Đỏ - Kiểm hóa vật lý' });
+      factors.push({ factor: 'RED_STREAM', weight: 15, description: 'luong do - kiem hoa vat ly' });
     }
 
     // Normalize Score
@@ -62,7 +62,7 @@ export class CustomsRobotEngine {
       if (item.hsCode.startsWith('710210') || item.hsCode.startsWith('710221') || item.hsCode.startsWith('710231')) {
         docs.add('KIMBERLEY_PROCESS_CERT');
         if (!item.certNumber && !item.description.toLowerCase().includes('kimberley')) {
-           issues.push({ type: 'LICENSE', severity: 'BLOCKING', message: `Thiếu chứng chỉ Kimberley cho dòng ${item.stt} (Kim cương thô)` });
+           issues.push({ type: 'LICENSE', severity: 'BLOCKING', message: `thieu chung chi Kimberley cho dong ${item.stt} (Kim cuong tho)` });
         }
       }
 
@@ -74,7 +74,7 @@ export class CustomsRobotEngine {
       // Rule: Vàng nguyên liệu (7108) cần giấy phép NHNN
       if (item.hsCode.startsWith('7108')) {
         docs.add('IMPORT_LICENSE_SBV');
-        issues.push({ type: 'RESTRICTION', severity: 'warnING', message: `Dòng ${item.stt}: Nhập khẩu Vàng nguyên liệu cần hạn ngạch NHNN.` });
+        issues.push({ type: 'RESTRICTION', severity: 'warnING', message: `dong ${item.stt}: nhap khau vang nguyen lieu can han ngach NHNN.` });
       }
     });
 
@@ -95,9 +95,9 @@ export class CustomsRobotEngine {
     // Logic: Kiểm tra keyword trong mô tả có khớp với nhóm HS không
     // Mock Database
     const hsRules: Record<string, string[]> = {
-      '7102': ['kim cương', 'diamond'],
-      '7108': ['vàng', 'gold'],
-      '7113': ['trang sức', 'jewelry', 'nhẫn', 'dây chuyền']
+      '7102': ['kim cuong', 'diamond'],
+      '7108': ['vang', 'gold'],
+      '7113': ['trang suc', 'jewelry', 'nhan', 'day chuyen']
     };
 
     const mainHS = item.hsCode.substring(0, 4);
@@ -106,7 +106,7 @@ export class CustomsRobotEngine {
     if (requiredKeywords) {
       const match = requiredKeywords.some(kw => desc.includes(kw));
       if (!match) {
-        warnings.push(`HS Code ${item.hsCode} thường dùng cho nhóm '${requiredKeywords.join('/')}' nhưng mô tả không khớp.`);
+        warnings.push(`HS Code ${item.hsCode} thuong dung cho nhom '${requiredKeywords.join('/')}' nhung mo ta khong khop.`);
       }
     }
 
@@ -119,11 +119,11 @@ export class CustomsRobotEngine {
   static generateTimeline(decl: CustomsDeclaration): TrackingStep[] {
     const now = Date.now();
     return [
-      { id: '1', label: 'Tiếp nhận hồ sơ (E-Customs)', status: 'COMPLETED', timestamp: now - 86400000, pic: 'System', location: 'VNACCS/VCIS' },
-      { id: '2', label: 'Phân luồng tờ khai', status: 'COMPLETED', timestamp: now - 82000000, notes: `Kết quả: Luồng ${decl.header.streamCode}` },
-      { id: '3', label: 'Nộp thuế XNK', status: decl.summary.totalTaxPayable > 0 ? 'PROCESSING' : 'PENDING', location: 'Kho Bạc / VietinBank' },
-      { id: '4', label: 'Kiểm hóa / Soi chiếu', status: decl.header.streamCode === 'RED' ? 'PENDING' : 'COMPLETED', notes: 'Chờ công chức hải quan' },
-      { id: '5', label: 'Thông quan (Clearance)', status: 'PENDING' }
+      { id: '1', label: 'tiep nhan ho so (E-Customs)', status: 'COMPLETED', timestamp: now - 86400000, pic: 'System', location: 'VNACCS/VCIS' },
+      { id: '2', label: 'phan luong to khai', status: 'COMPLETED', timestamp: now - 82000000, notes: `ket qua: luong ${decl.header.streamCode}` },
+      { id: '3', label: 'nop thue XNK', status: decl.summary.totalTaxPayable > 0 ? 'PROCESSING' : 'PENDING', location: 'Kho bac / VietinBank' },
+      { id: '4', label: 'kiem hoa / Soi chieu', status: decl.header.streamCode === 'RED' ? 'PENDING' : 'COMPLETED', notes: 'cho cong chuc hai quan' },
+      { id: '5', label: 'thong quan (Clearance)', status: 'PENDING' }
     ];
   }
 
@@ -138,9 +138,9 @@ export class CustomsRobotEngine {
       plans.push({
         type: 'LEGAL',
         priority: 'URGENT',
-        action: 'Chuẩn bị hồ sơ giải trình & Kiểm hóa vật lý',
-        department: 'Ban Pháp Chế / XNK',
-        reason: 'Tờ khai Luồng Đỏ - Yêu cầu kiểm tra thực tế hàng hóa.'
+        action: 'chuan bi ho so giai trinh & kiem hoa vat ly',
+        department: 'Ban phap che / XNK',
+        reason: 'to khai luong do - yeu cau kiem tra thuc te hang hoa.'
       });
     }
 
@@ -148,16 +148,16 @@ export class CustomsRobotEngine {
       plans.push({
         type: 'QC',
         priority: 'HIGH',
-        action: 'Kích hoạt quy trình kiểm định Kim cương (4C Check)',
-        department: 'Phòng Kiểm Định / Kho Quý',
-        reason: 'Phát hiện mã HS 7102 (Kim cương) - Cần soi mã cạnh GIA.'
+        action: 'kich hoat quy trinh kiem dinh Kim cuong (4C Check)',
+        department: 'phong kiem dinh / Kho quy',
+        reason: 'phat hien ma HS 7102 (Kim cuong) - can soi ma canh GIA.'
       });
       plans.push({
         type: 'WAREHOUSE',
         priority: 'NORMAL',
-        action: 'Nhập kho Két sắt (High Security Vault)',
-        department: 'Thủ Kho',
-        reason: 'Hàng hóa giá trị cao/nhạy cảm.'
+        action: 'nhap kho ket sat (High Security Vault)',
+        department: 'thu Kho',
+        reason: 'hang hoa gia tri cao/nhay cam.'
       });
     }
 
@@ -165,9 +165,9 @@ export class CustomsRobotEngine {
       plans.push({
         type: 'FINANCE',
         priority: 'URGENT',
-        action: 'Duyệt chi nộp thuế ngay & Cân đối dòng tiền',
-        department: 'Kế Toán Trưởng (CFO)',
-        reason: `Tổng thuế phải nộp lớn (${decl.summary.totalTaxPayable.toLocaleString()}đ) - Cần ưu tiên thanh khoản.`
+        action: 'duyet chi nop thue ngay & can đau dong tien',
+        department: 'ke toan truong (CFO)',
+        reason: `tong thue phai nop lon (${decl.summary.totalTaxPayable.toLocaleString()}d) - can uu tien thanh khoan.`
       });
     }
 
@@ -178,7 +178,7 @@ export class CustomsRobotEngine {
    * PROCESSOR: Standardized Signature (rows, metadata)
    */
   static processNewDeclaration(rows: any[][], metadata: { fileName: string }): CustomsDeclaration & { actionPlans: ActionPlan[] } {
-    console.log(`[CUSTOMS-ROBOT] Kích hoạt chế độ bóc tách 52 cột cho file: ${metadata.fileName} (Updated Logic)...`);
+    console.log(`[CUSTOMS-ROBOT] kich hoat che do boc tach 52 cot cho file: ${metadata.fileName} (Updated Logic)...`);
 
     let headerRowIndex = -1;
     const colMap: Record<string, number> = {};
@@ -224,7 +224,7 @@ export class CustomsRobotEngine {
         hsCode: hsCode,
         description: description,
         gemType: hsCode.startsWith('7102') ? 'NATURAL' : 'NONE',
-        processStatus: description.toLowerCase().includes('thô') ? 'Thô' : 'Đã gia công',
+        processStatus: description.toLowerCase().includes('tho') ? 'tho' : 'da gia cong',
         shape: diamondSpecs.shape || '', 
         color: diamondSpecs.color || '',
         clarity: diamondSpecs.clarity || '',
@@ -288,10 +288,10 @@ export class CustomsRobotEngine {
       items,
       summary: {
         totalTaxPayable: items.reduce((sum, item) => sum + item.vatAmount + item.importTaxAmount, 0),
-        clearanceStatus: items.some(i => i.validationErrors && i.validationErrors.length > 0) ? "CẢNH BÁO DỮ LIỆU" : "ĐỦ ĐIỀU KIỆN",
+        clearanceStatus: items.some(i => i.validationErrors && i.validationErrors.length > 0) ? "canh bao du lieu" : "du dieu kien",
         riskNotes: "",
         relatedFiles: [],
-        internalNotes: `Bóc tách thành công ${items.length} dòng hàng từ file ${metadata.fileName} với logic Natt-Parser v2.`
+        internalNotes: `boc tach thanh cong ${items.length} dong hang tu file ${metadata.fileName} voi logic Natt-Parser v2.`
       }
     };
 
@@ -312,14 +312,14 @@ export class CustomsRobotEngine {
     const results: (CustomsDeclaration & { actionPlans: ActionPlan[] })[] = [];
     
     for (const file of files) {
-       console.log(`[CUSTOMS-ROBOT] Bắt đầu đọc file thực tế: ${file.name}`);
+       console.log(`[CUSTOMS-ROBOT] bat dau doc file thuc te: ${file.name}`);
        try {
          const rawRows = await CustomsUtils.readExcelFile(file);
          if (rawRows.length < 2) continue;
          const declaration = this.processNewDeclaration(rawRows, { fileName: file.name });
          results.push(declaration);
        } catch (error) {
-         console.error(`Lỗi khi đọc file ${file.name}:`, error);
+         console.error(`lau khi doc file ${file.name}:`, error);
        }
     }
     return results;

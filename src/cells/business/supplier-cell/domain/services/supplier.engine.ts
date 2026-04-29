@@ -40,36 +40,36 @@ export class SupplierEngine {
 
     // 1. Nguồn gốc không rõ
     if (!input.certification) {
-      flags.push('Không có chứng chỉ nguồn gốc');
+      flags.push('khong co chung chi nguon goc');
       score -= 0.3;
     }
 
     // 2. Purity mismatch — vàng phải có purity
     if (input.type === 'gold') {
       if (!input.purity) {
-        flags.push('Vàng không có thông số purity');
+        flags.push('vang khong co thong so purity');
         score -= 0.25;
       } else if (input.purity < 0.585 || input.purity > 0.999) {
-        flags.push(`Purity ${(input.purity * 100).toFixed(1)}% bất thường`);
+        flags.push(`Purity ${(input.purity * 100).toFixed(1)}% bat thuong`);
         score -= 0.2;
       }
     }
 
     // 3. Lịch sử xấu
     if ((input.historyScore ?? 1.0) < 0.5) {
-      flags.push(`History score ${input.historyScore?.toFixed(2)} thấp`);
+      flags.push(`History score ${input.historyScore?.toFixed(2)} thap`);
       score -= 0.2;
     }
 
     // 4. Delivery time bất thường
     if (input.deliveryTime > 14) {
-      flags.push(`Thời gian giao hàng ${input.deliveryTime} ngày quá dài`);
+      flags.push(`thoi gian giao hang ${input.deliveryTime} ngay qua dai`);
       score -= 0.1;
     }
 
     // 5. Giá bất thường (quá thấp so với thị trường → nghi ngờ)
     if (input.type === 'gold' && input.price < 1_000_000) {
-      flags.push(`Giá vàng ${input.price.toLocaleString()}đ/chỉ quá thấp — nghi ngờ hàng giả`);
+      flags.push(`gia vang ${input.price.toLocaleString()}d/chi qua thap — nghi ngo hang gia`);
       score -= 0.3;
     }
 

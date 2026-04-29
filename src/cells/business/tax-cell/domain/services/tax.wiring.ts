@@ -89,7 +89,7 @@ export function calculateTNDN(input: TndnInput): TndnResult {
     TaxWiring.emit("TAX_ANOMALY_DETECTED", {
       type: "HIGH_EFFECTIVE_TAX_RATE",
       effectiveRate: tongThue / input.lnTruocThue,
-      detail: `Thuế thực tế ${tongThue} > 50% LNTT ${input.lnTruocThue}. Kiểm tra CP loại trừ + QĐ truy thu.`,
+      detail: `thue thuc te ${tongThue} > 50% LNTT ${input.lnTruocThue}. kiem tra CP loai tru + qd truy thu.`,
     });
   }
 

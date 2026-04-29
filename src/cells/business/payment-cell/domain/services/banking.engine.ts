@@ -6,18 +6,18 @@
 import { BankTransaction } from '../entities/payment.entity';
 
 const CATEGORIES: Record<string, string> = {
-  DT_CK: 'Doanh Thu Chuyển Khoản',
-  DT_POS: 'Doanh Thu Thẻ (POS)',
-  COGS_GOLD_PURCHASE: 'MUA VÀNG - Giá vốn',
-  COGS_DIAMOND_PURCHASE: 'MUA KIM CƯƠNG - Giá vốn',
-  COGS_DIAMOND_INSPECTION: 'PHÍ KIỂM ĐỊNH (GIA/HRD)',
-  COGS_CUSTOMS: 'PHÍ HẢI QUAN & THỦ TỤC',
-  TAX_VAT_IMPORT: 'THUẾ GTGT HÀNG NHẬP KHẨU',
-  TAX_PENALTY: 'TIỀN PHẠT HÀNH CHÍNH',
-  BANK_FEE: 'PHÍ CHUYỂN KHOẢN',
-  HR_SALARY: 'TIỀN LƯƠNG NHÂN VIÊN',
-  INTERNAL_CASH: 'NỘP TIỀN MẶT',
-  OTHER: 'CHƯA PHÂN LOẠI',
+  DT_CK: 'Doanh Thu chuyen khoan',
+  DT_POS: 'Doanh Thu the (POS)',
+  COGS_GOLD_PURCHASE: 'MUA vang - gia von',
+  COGS_DIAMOND_PURCHASE: 'MUA KIM cuong - gia von',
+  COGS_DIAMOND_INSPECTION: 'phi kiem dinh (GIA/HRD)',
+  COGS_CUSTOMS: 'phi hai QUAN & thu tuc',
+  TAX_VAT_IMPORT: 'thue GTGT hang nhap khau',
+  TAX_PENALTY: 'tien phat hanh chinh',
+  BANK_FEE: 'phi chuyen khoan',
+  HR_SALARY: 'tien luong nhan vien',
+  INTERNAL_CASH: 'nop tien mat',
+  OTHER: 'chua phan loai',
 };
 
 function normalize(str: string): string {

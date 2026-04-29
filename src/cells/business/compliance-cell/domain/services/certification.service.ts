@@ -40,10 +40,10 @@ export const CertificationService = {
   getExpired: (): Certification[] => _certs.filter(c => c.expiresAt < Date.now()),
 
   runComplianceCheck: (): ComplianceCheck[] => [
-    { regulationId: "ND-24/2012", title: "Kinh doanh vàng", category: "GOLD_BUSINESS", passed: true, severity: "HIGH", details: "Giấy phép kinh doanh vàng còn hiệu lực", checkedAt: Date.now() },
-    { regulationId: "TT-200/2014", title: "Chế độ kế toán TT200", category: "FINANCE", passed: true, severity: "HIGH", details: "Hệ thống kế toán tuân thủ TT200", checkedAt: Date.now() },
-    { regulationId: "L-PCRT-2022", title: "Phòng chống rửa tiền", category: "AML_RISK", passed: true, severity: "CRITICAL", details: "KYC đang hoạt động", checkedAt: Date.now() },
-    { regulationId: "L-HQ-2014", title: "Luật Hải Quan", category: "IMPORT_EXPORT", passed: true, severity: "MEDIUM", details: "Tờ khai hải quan đúng quy định", checkedAt: Date.now() },
+    { regulationId: "ND-24/2012", title: "Kinh doanh vang", category: "GOLD_BUSINESS", passed: true, severity: "HIGH", details: "giay phep kinh doanh vang con hieu luc", checkedAt: Date.now() },
+    { regulationId: "TT-200/2014", title: "che do ke toan TT200", category: "FINANCE", passed: true, severity: "HIGH", details: "he thong ke toan tuan thu TT200", checkedAt: Date.now() },
+    { regulationId: "L-PCRT-2022", title: "phong chong rua tien", category: "AML_RISK", passed: true, severity: "CRITICAL", details: "KYC dang hoat dong", checkedAt: Date.now() },
+    { regulationId: "L-HQ-2014", title: "luat hai Quan", category: "IMPORT_EXPORT", passed: true, severity: "MEDIUM", details: "to khai hai quan dung quy dinh", checkedAt: Date.now() },
   ],
 
   getComplianceScore: (): number => {

@@ -40,7 +40,7 @@ export async function runNeuralCycleForEntity(
   state: QNEUSystemState,
   nowMs: number = Date.now()
 ): Promise<void> {
-  trace('VALIDATE', entityId, 'SUCCESS', 'Bắt đầu neural cycle');
+  trace('VALIDATE', entityId, 'SUCCESS', 'bat dau neural cycle');
 
   const records = await fetchAuditRecords({ entityId, fromMs: nowMs - 86400000 * 7 });
   const actions = extractQNEUActions(records, entityId);

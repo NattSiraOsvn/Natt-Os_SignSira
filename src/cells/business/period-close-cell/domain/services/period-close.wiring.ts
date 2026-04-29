@@ -76,10 +76,10 @@ export function runPreCloseChecks(input: {
     rule: "TR-006",
     passed: dustOk,
     detail: dustOk
-      ? "DUST_CLOSE_REPORT đã APPROVED"
-      : "CHƯA có DUST_CLOSE_REPORT approved — bụi chưa nấu hoặc PHỔ chưa phân tích",
+      ? "DUST_CLOSE_REPORT da APPROVED"
+      : "chua co DUST_CLOSE_REPORT approved — bui chua nau hoac pho chua phan tich",
   });
-  if (!dustOk) blockReasons.push("TR-006: Bụi chưa xử lý");
+  if (!dustOk) blockReasons.push("TR-006: bui chua xu ly");
 
   // TR-001: TK154 WIP > 0 nếu SX active
   const wipOk = !input.productionActive || input.wipBalance > 0;
@@ -87,8 +87,8 @@ export function runPreCloseChecks(input: {
     rule: "TR-001",
     passed: wipOk,
     detail: wipOk
-      ? `WIP = ${input.wipBalance} — hợp lý`
-      : `WIP = 0 nhưng xưởng đang SX — phi thực tế (KTT ép 154=0?)`,
+      ? `WIP = ${input.wipBalance} — hop ly`
+      : `WIP = 0 nhung xuong dang SX — phi thuc te (KTT ep 154=0?)`,
   });
   if (!wipOk) blockReasons.push("TR-001: WIP=0 khi SX active");
 
@@ -98,10 +98,10 @@ export function runPreCloseChecks(input: {
     rule: "TR-003",
     passed: ratioOk,
     detail: ratioOk
-      ? `CP/DT = ${(input.cpDtRatio * 100).toFixed(1)}% — hợp lý`
-      : `CP/DT = ${(input.cpDtRatio * 100).toFixed(1)}% < 10% — phi lý cho ngành SX 130+ NV`,
+      ? `CP/DT = ${(input.cpDtRatio * 100).toFixed(1)}% — hop ly`
+      : `CP/DT = ${(input.cpDtRatio * 100).toFixed(1)}% < 10% — phi ly cho nganh SX 130+ NV`,
   });
-  if (!ratioOk) blockReasons.push("TR-003: CP/DT ratio bất thường");
+  if (!ratioOk) blockReasons.push("TR-003: CP/DT ratio bat thuong");
 
   // Anti-fraud: open alerts
   const fraudOk = input.openFraudAlerts === 0;
@@ -109,10 +109,10 @@ export function runPreCloseChecks(input: {
     rule: "ANTI-FRAUD",
     passed: fraudOk,
     detail: fraudOk
-      ? "Không có cảnh báo fraud chưa giải quyết"
-      : `${input.openFraudAlerts} cảnh báo fraud RED/BLACK chưa xử lý`,
+      ? "khong co canh bao fraud chua giai quyet"
+      : `${input.openFraudAlerts} canh bao fraud RED/BLACK chua xu ly`,
   });
-  if (!fraudOk) blockReasons.push(`ANTI-FRAUD: ${input.openFraudAlerts} alerts chưa resolve`);
+  if (!fraudOk) blockReasons.push(`ANTI-FRAUD: ${input.openFraudAlerts} alerts chua resolve`);
 
   // Gatekeeper: TK4211/4212 profit retention
   const gkOk = input.gatekeeperApproved;
@@ -120,10 +120,10 @@ export function runPreCloseChecks(input: {
     rule: "CONSTITUTION",
     passed: gkOk,
     detail: gkOk
-      ? "Gatekeeper đã phê duyệt kết chuyển lợi nhuận"
-      : "CHƯA có Gatekeeper approval cho TK4211→4212",
+      ? "Gatekeeper da phe duyet ket chuyen loi nhuan"
+      : "chua co Gatekeeper approval cho TK4211→4212",
   });
-  if (!gkOk) blockReasons.push("CONSTITUTION: Thiếu Gatekeeper approval");
+  if (!gkOk) blockReasons.push("CONSTITUTION: thieu Gatekeeper approval");
 
   const canClose = blockReasons.length === 0;
 
@@ -135,7 +135,7 @@ export function runPreCloseChecks(input: {
     if (!gkOk) {
       PeriodCloseWiring.emit("GATEKEEPER_APPROVAL_REQUIRED", {
         period: input.period,
-        reason: "Kết chuyển lợi nhuận TK4211→4212 cần Gatekeeper ký",
+        reason: "ket chuyen loi nhuan TK4211→4212 can Gatekeeper ky",
       });
     }
   }

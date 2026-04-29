@@ -3,6 +3,6 @@ export const bom3dprdIdentity = {
   cellId:      'bom3dprd-cell',
   version:     '1.0.0',
   domain:      'BOM & 3D Print',
-  description: 'Quản lý Bill of Materials và lệnh in 3D cho mẫu kim hoàn',
+  description: 'quan ly Bill of Materials va lenh in 3D cho mau kim hoan',
   constitutionRef: 'v4.1',
 } as const;

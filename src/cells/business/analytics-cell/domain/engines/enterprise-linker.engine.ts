@@ -10,16 +10,16 @@ export class EnterpriseLinker {
   static async generateMultiDimensionalReport(period: string): Promise<AggregatedReport> {
     // 1. Mock Data from PRODUCTION SHARD
     const productionData = [
-      { sku: 'NNA-ROLEX-01', cost: 185000000, gold: 3.5, stone: 1.2, worker: 'Nguyễn Văn Vẹn' },
-      { sku: 'NNU-HALO-02', cost: 28000000, gold: 1.2, stone: 0.8, worker: 'Bùi Cao Sơn' },
-      { sku: 'BT-DIAMOND-03', cost: 45000000, gold: 1.5, stone: 1.0, worker: 'Trần Hoài Phúc' }
+      { sku: 'NNA-ROLEX-01', cost: 185000000, gold: 3.5, stone: 1.2, worker: 'nguyen ven ven' },
+      { sku: 'NNU-HALO-02', cost: 28000000, gold: 1.2, stone: 0.8, worker: 'bui Cao son' },
+      { sku: 'BT-DIAMOND-03', cost: 45000000, gold: 1.5, stone: 1.0, worker: 'tran hoai phuc' }
     ];
 
     // 2. Mock Data from SALES SHARD
     const salesData = [
       { sku: 'NNA-ROLEX-01', price: 250000000, customer: 'ANH NATT', inv: 'INV-001' },
-      { sku: 'NNU-HALO-02', price: 45000000, customer: 'CHỊ LAN', inv: 'INV-002' },
-      { sku: 'BT-DIAMOND-03', price: 68000000, customer: 'KHÁCH VÃNG LAI', inv: 'INV-003' }
+      { sku: 'NNU-HALO-02', price: 45000000, customer: 'chi LAN', inv: 'INV-002' },
+      { sku: 'BT-DIAMOND-03', price: 68000000, customer: 'khach vang LAI', inv: 'INV-003' }
     ];
 
     // 3. Mock Data from FINANCE SHARD (Bank Transactions)

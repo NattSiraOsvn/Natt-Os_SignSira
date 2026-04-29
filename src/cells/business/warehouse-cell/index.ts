@@ -57,13 +57,13 @@ EventBus.subscribe('ProductionCompleted' as any, async (envelope: any) => {
   const report = await warehouseIngestHandler.process({
     batchId,
     rows: [{
-      'mã đơn':     p.orderId,
-      'mã hàng':    maHang,
-      'loại':       'nhập kho thành phẩm',
-      'số lượng':   p.qty ?? 1,
-      'trọng lượng': p.goldWeightGram ?? 0,
-      'đơn vị':     'cái',
-      'ngày':       new Date().toISOString().split('T')[0],
+      'ma don':     p.orderId,
+      'ma hang':    maHang,
+      'loai':       'nhap kho thanh pham',
+      'so luong':   p.qty ?? 1,
+      'trong luong': p.goldWeightGram ?? 0,
+      'don vi':     'cai',
+      'ngay':       new Date().toISOString().split('T')[0],
     }],
     sourceFile:  'production-flow',
     sourceSheet: 'ProductionCompleted',
@@ -72,7 +72,7 @@ EventBus.subscribe('ProductionCompleted' as any, async (envelope: any) => {
 
   // Nếu LIVE → nhập kho thực sự
   if (report.liveCount > 0) {
-    _updateStock(maHang, p.qty ?? 1, 'cái');
+    _updateStock(maHang, p.qty ?? 1, 'cai');
     WarehouseSmartLinkPort.notifyNhapKhoDone(p.orderId, maHang, p.goldWeightGram ?? 0);
     WarehouseSmartLinkPort.notifyGoodsReceived(batchId, [maHang]);
   }
@@ -89,12 +89,12 @@ EventBus.subscribe('GoodsDispatched' as any, async (envelope: any) => {
   const report = await warehouseIngestHandler.process({
     batchId,
     rows: [{
-      'mã đơn':   p.orderId ?? p.shipmentId,
-      'mã hàng':  maHang,
-      'loại':     'xuất kho giao hàng',
-      'số lượng': p.qty ?? 1,
-      'đơn vị':   'cái',
-      'ngày':     new Date().toISOString().split('T')[0],
+      'ma don':   p.orderId ?? p.shipmentId,
+      'ma hang':  maHang,
+      'loai':     'xuat kho giao hang',
+      'so luong': p.qty ?? 1,
+      'don vi':   'cai',
+      'ngay':     new Date().toISOString().split('T')[0],
     }],
     sourceFile:  'order-flow',
     sourceSheet: 'GoodsDispatched',
@@ -102,7 +102,7 @@ EventBus.subscribe('GoodsDispatched' as any, async (envelope: any) => {
   });
 
   if (report.liveCount > 0) {
-    _updateStock(maHang, -(p.qty ?? 1), 'cái');
+    _updateStock(maHang, -(p.qty ?? 1), 'cai');
     WarehouseSmartLinkPort.notifyXuatKhoDone(p.orderId, maHang, 0);
     WarehouseSmartLinkPort.notifyGoodsDispatched(batchId, p.orderId ?? '');
   }
@@ -118,10 +118,10 @@ EventBus.subscribe('GoodsReceived' as any, async (envelope: any) => {
   const items   = Array.isArray(p.items) ? p.items : [p.shipmentId];
 
   const rows = items.map((item: string) => ({
-    'mã hàng':    item,
-    'loại':       'nhập nguyên liệu',
-    'số lượng':   1,
-    'ngày':       new Date().toISOString().split('T')[0],
+    'ma hang':    item,
+    'loai':       'nhap nguyen lieu',
+    'so luong':   1,
+    'ngay':       new Date().toISOString().split('T')[0],
   }));
 
   await warehouseIngestHandler.process({ batchId, rows, requestedBy: 'supplier' });

@@ -20,26 +20,26 @@ export const TSCD_TYPE: Record<string, {
   SX: {
     tkKhauHao:    '627',    // Chi phí SX chung
     tkKetChuyen:  '154',    // Kết chuyển vào chi phí SX dở dang
-    description:  'TSCĐ sản xuất: máy móc xưởng, thiết bị SX',
+    description:  'tscd san xuat: may moc xuong, thiet bi SX',
   },
   VP: {
     tkKhauHao:    '642',    // Chi phí quản lý DN
     tkKetChuyen:  null,     // Không kết chuyển
-    description:  'TSCĐ văn phòng: máy tính, bàn ghế, điều hòa',
+    description:  'tscd ven phong: may tinh, ban ghe, dieu hoa',
   },
   BAN_HANG: {
     tkKhauHao:    '641',    // Chi phí bán hàng
     tkKetChuyen:  null,
-    description:  'TSCĐ bán hàng: quầy kệ showroom, POS',
+    description:  'tscd ban hang: quay ke showroom, POS',
   },
 };
 
 export type TscdCategory = keyof typeof TSCD_TYPE;
 
 // ── TSCD KEYWORDS ─────────────────────────────────────────────────────────
-const SX_KEYWORDS  = ['máy','lò','khuôn','nồi','bơm','máy đúc','máy mài','máy hàn','thiết bị sản xuất','xưởng','lò nung'];
-const VP_KEYWORDS  = ['máy tính','laptop','bàn','ghế','tủ','điều hòa','điện thoại','máy in','văn phòng','màn hình'];
-const BH_KEYWORDS  = ['quầy','kệ','tủ kính','pos','showcase','display','showroom','hộp đựng'];
+const SX_KEYWORDS  = ['may','lo','khuon','nau','bom','may duc','may mai','may han','thiet bi san xuat','xuong','lo nung'];
+const VP_KEYWORDS  = ['may tinh','laptop','ban','ghe','tu','dieu hoa','đien thoai','may in','ven phong','man hinh'];
+const BH_KEYWORDS  = ['quay','ke','tu kinh','pos','showcase','display','showroom','hop dung'];
 
 function detectTscdCategory(description: string): TscdCategory {
   const d = description.toLowerCase();
@@ -136,29 +136,29 @@ const TK_KEYWORD_MAP: Array<{
   maxAmt?:  number;
 }> = [
   // TSCĐ — chỉ áp dụng khi amount >= 30tr
-  { keywords: ['máy móc','thiết bị','máy đúc','lò nung','máy mài'], tk: '211', desc: 'TSCD huu hinh', minAmt: 30_000_000 },
+  { keywords: ['may moc','thiet bi','may duc','lo nung','may mai'], tk: '211', desc: 'TSCD huu hinh', minAmt: 30_000_000 },
   // Nguyên vật liệu
-  { keywords: ['vàng','bạch kim','vàng 24k','vàng 18k','vảy hàn','chỉ bắn'], tk: '152', desc: 'Nguyen vat lieu chinh' },
-  { keywords: ['kim cương','viên chủ','diamond','brilliant'], tk: '152', desc: 'Da quy NK' },
+  { keywords: ['vang','bach kim','vang 24k','vang 18k','vay han','chi ben'], tk: '152', desc: 'Nguyen vat lieu chinh' },
+  { keywords: ['kim cuong','vien chu','diamond','brilliant'], tk: '152', desc: 'Da quy NK' },
   // Hàng hóa
-  { keywords: ['dây chuyền moissanite','nhẫn slab','hàng nhập','hàng mua về'], tk: '156', desc: 'Hang hoa mua ban' },
+  { keywords: ['day chuyen moissanite','nhan slab','hang nhap','hang mua ve'], tk: '156', desc: 'Hang hoa mua ban' },
   // Chi phí bán hàng
-  { keywords: ['ads','meta','facebook','google ads','chi phí marketing','quảng cáo'], tk: '641', desc: 'Chi phi ban hang — marketing' },
-  { keywords: ['ship','giao hàng','vận chuyển','ghtk','ghn','nhất tín'], tk: '641', desc: 'Chi phi van chuyen' },
+  { keywords: ['ads','meta','facebook','google ads','chi phi marketing','quang cao'], tk: '641', desc: 'Chi phi ban hang — marketing' },
+  { keywords: ['ship','giao hang','van chuyen','ghtk','ghn','nhat tin'], tk: '641', desc: 'Chi phi van chuyen' },
   // Chi phí quản lý
-  { keywords: ['điện','nước','internet','thuê nhà','văn phòng phẩm'], tk: '642', desc: 'Chi phi quan ly DN' },
-  { keywords: ['phân kim','tinh chế','bột thu','hao hụt'], tk: '642', desc: 'Chi phi phan kim' },
+  { keywords: ['đien','nuoc','internet','thue nha','ven phong pham'], tk: '642', desc: 'Chi phi quan ly DN' },
+  { keywords: ['phan kim','tinh che','bot thu','hao hut'], tk: '642', desc: 'Chi phi phan kim' },
   // Thuế
-  { keywords: ['thuế gtgt','vat','thuế nhập khẩu','thuế xuất'], tk: '333', desc: 'Thue GTGT phai nop' },
-  { keywords: ['thuế tncn','pit','thu nhập cá nhân'], tk: '333', desc: 'Thue TNCN phai nop' },
+  { keywords: ['thue gtgt','vat','thue nhap khau','thue xuat'], tk: '333', desc: 'Thue GTGT phai nop' },
+  { keywords: ['thue tncn','pit','thu nhap ca nhan'], tk: '333', desc: 'Thue TNCN phai nop' },
   // Doanh thu
-  { keywords: ['doanh thu bán','tiền bán','thanh toán đơn','thu tiền'], tk: '511', desc: 'Doanh thu ban hang' },
-  { keywords: ['cọc','tiền cọc','đặt cọc'], tk: '131', desc: 'Phai thu khach hang — coc' },
+  { keywords: ['doanh thu ban','tien ban','thanh toan don','thu tien'], tk: '511', desc: 'Doanh thu ban hang' },
+  { keywords: ['coc','tien coc','dat coc'], tk: '131', desc: 'Phai thu khach hang — coc' },
   // Mua vào
-  { keywords: ['mua vàng','nhập vàng','mua nguyên liệu'], tk: '331', desc: 'Phai tra nguoi ban' },
+  { keywords: ['mua vang','nhap vang','mua nguyen lieu'], tk: '331', desc: 'Phai tra nguoi ban' },
   // Nhân công
-  { keywords: ['lương','thưởng','lương thợ','lương nhân viên'], tk: '334', desc: 'Luong phai tra NV' },
-  { keywords: ['bhxh','bhyt','bhtn','bảo hiểm'], tk: '338', desc: 'Phai tra BHXH' },
+  { keywords: ['luong','thuong','luong tho','luong nhan vien'], tk: '334', desc: 'Luong phai tra NV' },
+  { keywords: ['bhxh','bhyt','bhtn','bao hiem'], tk: '338', desc: 'Phai tra BHXH' },
 ];
 
 export function accountByKeywords(

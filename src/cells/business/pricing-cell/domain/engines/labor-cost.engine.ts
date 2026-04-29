@@ -43,8 +43,8 @@ function requiresCustomQuote(H: string): boolean {
 
 /** 1. BÔNG TAI — Fixed Table */
 function calcBongTai(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): LaborCostResult {
-  if (!L || E <= 0) return { type: 'WAITING', reason: 'Thiếu đơn vị hoặc trọng lượng' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Thiết kế đặc biệt' };
+  if (!L || E <= 0) return { type: 'WAITING', reason: 'thieu don vi hoac trong luong' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'thiet ke dac biet' };
 
   if (L === 'CHIEC') {
     if (E <= 0.6) return { type: 'CALCULATED', amount: 500_000 };
@@ -53,9 +53,9 @@ function calcBongTai(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): Labor
       if (N <= 20_000_000) return { type: 'CALCULATED', amount: 1_000_000 };
       if (N <= 30_000_000) return { type: 'CALCULATED', amount: 1_500_000 };
       if (N <= 80_000_000) return { type: 'CALCULATED', amount: 2_500_000 };
-      return { type: 'CUSTOM_QUOTE', reason: 'Bông tai chiếc E≤2g nhưng N>80M' };
+      return { type: 'CUSTOM_QUOTE', reason: 'bong tai chiec E≤2g nhung N>80M' };
     }
-    return { type: 'CUSTOM_QUOTE', reason: 'Bông tai chiếc E>2g' };
+    return { type: 'CUSTOM_QUOTE', reason: 'bong tai chiec E>2g' };
   }
 
   if (L === 'DOI') {
@@ -64,16 +64,16 @@ function calcBongTai(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): Labor
     if (E <= 3.5 && N <= 80_000_000) return { type: 'CALCULATED', amount: 5_000_000 };
     if (E <= 8 && N <= 120_000_000) return { type: 'CALCULATED', amount: 7_000_000 };
     if (E > 8) return { type: 'CALCULATED', amount: 10_000_000 };
-    return { type: 'CUSTOM_QUOTE', reason: 'Bông tai đôi ngoài bảng giá' };
+    return { type: 'CUSTOM_QUOTE', reason: 'bong tai đau ngoai bang gia' };
   }
 
-  return { type: 'error', fallbackAmount: 3_000_000, reason: 'Sai kiểu bông — đơn vị không hợp lệ' };
+  return { type: 'error', fallbackAmount: 3_000_000, reason: 'Sai kieu bong — don vi khong hop le' };
 }
 
 /** 2. DÂY CHUYỀN — Scale Type 1: Base × (1 + MAX(0, N/T - 1) × 0.4) */
 function calcDayChuyen(E: number, N: number, H: string, isCurban: boolean): LaborCostResult {
   if (E <= 0 || N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Dây chuyền đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'day chuyen dac biet' };
 
   let base: number;
   let tHReshold: number;
@@ -102,13 +102,13 @@ function calcDayChuyen(E: number, N: number, H: string, isCurban: boolean): Labo
 /** 3. MẶT DÂY — Scale Type 2: Base × MAX(1, N/T) */
 function calcMatDay(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Mặt dây đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'mat day dac biet' };
 
   let base: number;
   let tHReshold: number;
 
-  // Priority: H có "chữ" và E ≤ 3
-  if (H.includes('chữ') && E <= 3) {
+  // Priority: H có "chu" và E ≤ 3
+  if (H.includes('chu') && E <= 3) {
     base = 3_000_000; tHReshold = 30_000_000;
   } else if (E > 10) {
     base = 12_000_000; tHReshold = 70_000_000;
@@ -135,7 +135,7 @@ function calcMatDay(E: number, N: number, H: string): LaborCostResult {
 /** 4. VÒNG TAY — Scale Type 2 */
 function calcVongTay(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Vòng tay đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'vong tay dac biet' };
 
   let base: number;
   let tHReshold: number;
@@ -155,7 +155,7 @@ function calcVongTay(E: number, N: number, H: string): LaborCostResult {
 /** 5. LẮC TAY — Scale Type 2 */
 function calcLacTay(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Lắc tay đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'lac tay dac biet' };
 
   let base: number;
   let tHReshold: number;
@@ -177,26 +177,26 @@ function calcLacTay(E: number, N: number, H: string): LaborCostResult {
 /** 6. NHẪN CƯỚI — Fixed Table */
 function calcNhanCuoi(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Nhẫn cưới đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'nhan cui dac biet' };
 
   if (L === 'DOI') {
     if (E <= 3 && N <= 20_000_000) return { type: 'CALCULATED', amount: 3_000_000 };
     if (E <= 5 && N <= 40_000_000) return { type: 'CALCULATED', amount: 5_000_000 };
     if (E <= 8 && N <= 80_000_000) return { type: 'CALCULATED', amount: 8_000_000 };
-    return { type: 'CUSTOM_QUOTE', reason: 'Nhẫn cưới đôi ngoài bảng' };
+    return { type: 'CUSTOM_QUOTE', reason: 'nhan cui đau ngoai bang' };
   }
 
   // Chiếc
   if (E <= 2 && N <= 15_000_000) return { type: 'CALCULATED', amount: 1_500_000 };
   if (E <= 3 && N <= 30_000_000) return { type: 'CALCULATED', amount: 2_500_000 };
   if (E <= 5 && N <= 50_000_000) return { type: 'CALCULATED', amount: 4_000_000 };
-  return { type: 'CUSTOM_QUOTE', reason: 'Nhẫn cưới chiếc ngoài bảng' };
+  return { type: 'CUSTOM_QUOTE', reason: 'nhan cui chiec ngoai bang' };
 }
 
 /** 7. NHẪN KẾT — Scale Type 2 */
 function calcNhanKet(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Nhẫn kết đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'nhan ket dac biet' };
 
   let base: number;
   let tHReshold: number;
@@ -218,7 +218,7 @@ function calcNhanKet(E: number, N: number, H: string): LaborCostResult {
 /** 8. NHẪN NAM — Scale Type 2 */
 function calcNhanNam(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Nhẫn nam đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'nhan nam dac biet' };
 
   let base: number;
   let tHReshold: number;
@@ -240,7 +240,7 @@ function calcNhanNam(E: number, N: number, H: string): LaborCostResult {
 /** 9. NHẪN NỮ — Additive: Base + N × 10% */
 function calcNhanNu(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Nhẫn nữ đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'nhan nu dac biet' };
 
   const upperH = H.toUpperCase();
   const hasToHalo = upperH.includes('TO') || upperH.includes('HALO');
@@ -259,10 +259,10 @@ function calcNhanNu(E: number, N: number, H: string): LaborCostResult {
 /** 10. PHỤ KIỆN — Composite: MAX(1.5M, E×1.8M + N×12% + bonus) */
 function calcPhuKien(E: number, N: number, H: string): LaborCostResult {
   if (E <= 0 && N <= 0) return { type: 'ZERO' };
-  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'Phụ kiện đặc biệt' };
+  if (requiresCustomQuote(H)) return { type: 'CUSTOM_QUOTE', reason: 'phu kien dac biet' };
 
   const upperH = H.toUpperCase();
-  const bonus = (upperH.includes('PHỨC TẠP') || upperH.includes('KỸ THUẬT CAO')) ? 1_500_000 : 0;
+  const bonus = (upperH.includes('phuc tap') || upperH.includes('ky thuat CAO')) ? 1_500_000 : 0;
 
   const raw = E * 1_800_000 + N * 0.12 + bonus;
   const amount = Math.max(1_500_000, Math.round(raw));

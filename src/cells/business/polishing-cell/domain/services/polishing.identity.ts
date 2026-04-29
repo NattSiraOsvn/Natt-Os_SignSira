@@ -2,7 +2,7 @@
 export const polishingIdentity = {
   cellId:      'polishing-cell',
   version:     '1.0.0',
-  domain:      'Polishing / Đánh bóng',
-  description: 'Quản lý công đoạn đánh bóng máy — lệnh sản xuất, khối lượng đầu vào/ra',
+  domain:      'Polishing / danh bong',
+  description: 'quan ly cong doan danh bong may — lenh san xuat, khau luong dau vao/ra',
   constitutionRef: 'v4.1',
 } as const;

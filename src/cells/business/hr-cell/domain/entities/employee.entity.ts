@@ -2,7 +2,7 @@
 // Wave B — Cập nhật theo cấu trúc thực tế sổ lương Tâm Luxury
 
 export type EmployeeStatus = 'ACTIVE' | 'ON_LEAVE' | 'TERMINATED' | 'PROBATION';
-export type ContractType   = 'Hợp đồng chính thức' | 'Hợp đồng thử việc' | 'CTV' | 'Thời vụ';
+export type ContractType   = 'hop dong chinh thuc' | 'hop dong thu viec' | 'CTV' | 'thoi vu';
 
 // Bộ phận production — map sang cell tương ứng
 export type ProductionGroup =

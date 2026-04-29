@@ -53,7 +53,7 @@ export class RBACEngine {
 
   static checkCompliance(): ComplianceViolation[] {
     return [
-      { id: 'v-001', type: 'RBAC_SYNC', description: 'Đã hợp nhất các Shard định danh vào Lõi Authority.', severity: 'LOW', timestamp: Date.now() }
+      { id: 'v-001', type: 'RBAC_SYNC', description: 'da hop nhat cac Shard dinh danh vao lau Authority.', severity: 'LOW', timestamp: Date.now() }
     ];
   }
 }

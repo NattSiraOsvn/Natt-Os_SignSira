@@ -40,12 +40,12 @@ export class WarehouseDomainService {
 
   validateItem(item: WarehouseItem): string[] {
     const errors: string[] = [];
-    if (!item.sku?.trim()) errors.push('SKU không được để trống');
-    if (!item.name?.trim()) errors.push('Tên mặt hàng không được để trống');
-    if (item.quantity < 0) errors.push('Số lượng không thể âm');
-    if (item.unitCostVND < 0) errors.push('Đơn giá không thể âm');
+    if (!item.sku?.trim()) errors.push('SKU khong duoc de trong');
+    if (!item.name?.trim()) errors.push('ten mat hang khong duoc de trong');
+    if (item.quantity < 0) errors.push('so luong khong the am');
+    if (item.unitCostVND < 0) errors.push('don gia khong the am');
     if (!this.registry.exists(item.categoryCode))
-      errors.push(`Danh mục ${item.categoryCode} chưa đăng ký trong registry`);
+      errors.push(`Danh muc ${item.categoryCode} chua dang ky trong registry`);
     return errors;
   }
 

@@ -3,14 +3,14 @@ import { GDBData, GDBDocument, DiamondSpecs } from '@/types';
 
 class GDBPatternDatabase {
   static readonly GDB_KEYWORDS = {
-    DOCUMENT_TYPES: ['GIẤY ĐẢM BẢO', 'THÔNG TIN KHÁCH HÀNG', 'CÔNG TY TNHH TÂM LUXURY', 'CHUYÊN KIM CƯƠNG thiên NHIÊN', 'TÂM LUXURY - DIAMOND & JEWELRY'],
-    CUSTOMER_INFO: ['TÊN KHÁCH HÀNG', 'Tên Khách Hàng', 'SĐT KHÁCH HÀNG', 'SĐT Khách Hàng', 'Số điện thoại', 'KHÁCH HÀNG'],
-    PRODUCT_INFO: ['MÃ SẢN PHẨM', 'THÔNG SỐ', 'SIZE', 'GIÁ TRỊ', 'Trị Giá', 'Vòng trang sức', 'Bông tai', 'Nhẫn', 'Dây chuyền'],
-    VALUE_INFO: ['TỔNG GIÁ TRỊ', 'Tổng Trị Giá', 'Viết Bằng Chữ', 'Bằng chữ', 'BẢNG CHỮ', 'triệu đồng', 'đồng chẵn'],
-    EXCHANGE_POLICY: ['CHẾ ĐỘ THU ĐỐI', 'Giá Trị Thu Đối', 'Thu lại', 'Đổi lớn', 'Vàng thu lại', 'Vàng đổi lớn', 'Kim cương thu lại', 'Kim cương đổi lớn'],
-    WARRANTY: ['CHẾ ĐỘ BẢO HÀNH', 'Bảo hành', 'rơi rớt kim cương', 'dưới 3mm', 'làm mới, làm sạch, làm bóng'],
-    COMPANY_INFO: ['SHOWROOM', 'WEBSITE', 'FACEBOOK', 'YOUTUBE', 'Hotline', 'Địa chỉ', 'TP.HCM'],
-    SIGNATURE: ['Ngày', 'Tháng', 'Năm', 'CHỮ KÝ', 'Ký tên', 'Người Bán', 'Xác nhận']
+    DOCUMENT_TYPES: ['giay dam bao', 'thong TIN khach hang', 'cong TY TNHH tam LUXURY', 'chuyen KIM cuong thien nhien', 'tam LUXURY - DIAMOND & JEWELRY'],
+    CUSTOMER_INFO: ['ten khach hang', 'ten khach hang', 'sdt khach hang', 'sdt khach hang', 'so dien thoai', 'khach hang'],
+    PRODUCT_INFO: ['ma san pham', 'thong so', 'SIZE', 'gia tri', 'tri gia', 'vong trang suc', 'bong tai', 'nhan', 'day chuyen'],
+    VALUE_INFO: ['tong gia tri', 'tong tri gia', 'viet bang chu', 'bang chu', 'bang chu', 'trieu dong', 'dong chen'],
+    EXCHANGE_POLICY: ['che do THU đau', 'gia tri Thu đau', 'Thu lai', 'đau lon', 'vang thu lai', 'vang đau lon', 'Kim cuong thu lai', 'Kim cuong đau lon'],
+    WARRANTY: ['che do bao hanh', 'bao hanh', 'roi rot kim cuong', 'dui 3mm', 'lam moi, lam sach, lam bong'],
+    COMPANY_INFO: ['SHOWROOM', 'WEBSITE', 'FACEBOOK', 'YOUTUBE', 'Hotline', 'đia chi', 'TP.HCM'],
+    SIGNATURE: ['ngay', 'thang', 'nam', 'chu ky', 'ky ten', 'ngui ban', 'xac nhan']
   };
 
   static readonly REGEX_PATTERNS = {
@@ -23,8 +23,8 @@ class GDBPatternDatabase {
   };
 
   static readonly KNOWN_TEMPLATES = [
-    { name: 'Tâm Luxury Template 2022', keywords: ['TÂM LUXURY', 'CHUYÊN KIM CƯƠNG thiên NHIÊN', 'NNU428'] },
-    { name: 'Tâm Luxury Template 2021', keywords: ['CÔNG TY TNHH TÂM LUXURY', 'GIẤY ĐẢM BÁO', 'Bông tai'] }
+    { name: 'Tâm Luxury Template 2022', keywords: ['tam LUXURY', 'chuyen KIM cuong thien nhien', 'NNU428'] },
+    { name: 'Tâm Luxury Template 2021', keywords: ['cong TY TNHH tam LUXURY', 'giay dam bao', 'bong tai'] }
   ];
 }
 
@@ -219,8 +219,8 @@ export class GDBRecognitionEngine {
   private extractWarrantyInfo() {
     const warranty = { diamondLossUnder3mm: false, freeMaintenance: false, conditions: [] as string[] };
     const text = this.ocrText.toLowerCase();
-    if (text.includes('rơi rớt kim cương') && text.includes('3mm')) warranty.diamondLossUnder3mm = true;
-    if (text.includes('làm mới') || text.includes('làm sạch')) warranty.freeMaintenance = true;
+    if (text.includes('roi rot kim cuong') && text.includes('3mm')) warranty.diamondLossUnder3mm = true;
+    if (text.includes('lam moi') || text.includes('lam sach')) warranty.freeMaintenance = true;
     return warranty;
   }
 
@@ -242,7 +242,7 @@ export class GDBRecognitionEngine {
          // Simple parsing, improvements needed for full locale date
          info.issueDate = new Date(); 
       }
-      if (line.match(/TRẦN LÊ VĂN TÂM|Tâm Luxury/i)) info.sellerName = 'Trần Lê Văn Tâm';
+      if (line.match(/TRẦN LÊ VĂN TÂM|Tâm Luxury/i)) info.sellerName = 'tran le ven tam';
     }
     return info;
   }

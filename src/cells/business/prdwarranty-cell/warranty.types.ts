@@ -45,9 +45,9 @@ export interface ProductDiagnosis {
   issues: string[];
   recommendedServices: WarrantyServiceType[];
   urgency: 'LOW' | 'MEDIUM' | 'HIGH';
-  estimatedDuration: string;   // VD: "2 ngày", "1 tuần"
+  estimatedDuration: string;   // VD: "2 ngay", "1 tuan"
   materialNeeded?: {
-    type: string;              // VD: "Vàng 18K", "Kim cương 3ly"
+    type: string;              // VD: "vang 18K", "Kim cuong 3ly"
     quantity: number;
     estimatedCost: number;
   }[];
@@ -60,7 +60,7 @@ export interface ServiceQuote {
     basePrice: number;
     feePolicy: FeePolicy;
     finalPrice: number;        // Sau khi áp dụng policy
-    reason: string;            // VD: "Free - VIP Gold", "Giảm 50% - mua tại shop"
+    reason: string;            // VD: "Free - VIP Gold", "giam 50% - mua tai shop"
   }[];
   materialCost: number;
   laborCost: number;

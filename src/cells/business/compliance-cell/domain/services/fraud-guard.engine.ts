@@ -34,25 +34,25 @@ export class FraudGuardEngine {
 
     // PHỔ SC > 4% = flag (Trần Hoài Phúc baseline 49.88%)
     if ((input.phoScRatio ?? 0) > 0.04) {
-      flags.push(`PHỔ SC ${((input.phoScRatio ?? 0) * 100).toFixed(1)}% vượt ngưỡng 4%`);
+      flags.push(`pho SC ${((input.phoScRatio ?? 0) * 100).toFixed(1)}% vuot nguong 4%`);
       riskScore += Math.min(0.4, (input.phoScRatio ?? 0) * 4);
     }
 
     // NL phụ > 2 chỉ/tháng = flag (Nguyễn Văn Vẹn baseline 3.95)
     if ((input.nlPhuMonthly ?? 0) > 2.0) {
-      flags.push(`NL phụ ${input.nlPhuMonthly} chỉ/tháng vượt ngưỡng 2`);
+      flags.push(`NL phu ${input.nlPhuMonthly} chi/thang vuot nguong 2`);
       riskScore += Math.min(0.3, ((input.nlPhuMonthly ?? 0) - 2) * 0.1);
     }
 
     // Round number anomaly > 70%
     if ((input.roundNumberRatio ?? 0) > 0.7) {
-      flags.push(`${((input.roundNumberRatio ?? 0) * 100).toFixed(0)}% số liệu quá tròn — nghi ngờ chỉnh sửa`);
+      flags.push(`${((input.roundNumberRatio ?? 0) * 100).toFixed(0)}% so lieu qua tron — nghi ngo chinh sua`);
       riskScore += 0.2;
     }
 
     // Multi-source conflict
     if ((input.sourceConflicts ?? 0) >= 2) {
-      flags.push(`${input.sourceConflicts} nguồn dữ liệu xung đột`);
+      flags.push(`${input.sourceConflicts} nguon du lieu xung dot`);
       riskScore += Math.min(0.3, (input.sourceConflicts ?? 0) * 0.1);
     }
 

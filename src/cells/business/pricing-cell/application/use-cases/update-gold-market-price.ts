@@ -21,7 +21,7 @@ export interface UpdateGoldPriceResult {
 export function executeUpdateGoldMarketPrice(command: UpdateGoldPriceCommand): UpdateGoldPriceResult {
   try {
     if (command.newPricePerChi <= 0) {
-      return { success: false, error: 'Giá vàng phải lớn hơn 0' };
+      return { success: false, error: 'gia vang phai lon hon 0' };
     }
 
     const updatedPrice: GoldMarketPrice = {
@@ -37,6 +37,6 @@ export function executeUpdateGoldMarketPrice(command: UpdateGoldPriceCommand): U
 
     return { success: true, updatedPrice };
   } catch (err) {
-    return { success: false, error: `Lỗi cập nhật giá: ${String(err)}` };
+    return { success: false, error: `lau cap nhat gia: ${String(err)}` };
   }
 }

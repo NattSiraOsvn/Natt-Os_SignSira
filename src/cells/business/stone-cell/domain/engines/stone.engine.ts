@@ -45,8 +45,8 @@ export class StoneEngine {
     const anomalies: string[] = [];
 
     // Validate basic
-    if (!stone.id) { anomalies.push('Stone ID bắt buộc'); return { stone, anomalies, success: false }; }
-    if (stone.carat <= 0) { anomalies.push('Carat phải > 0'); return { stone, anomalies, success: false }; }
+    if (!stone.id) { anomalies.push('Stone ID bat buoc'); return { stone, anomalies, success: false }; }
+    if (stone.carat <= 0) { anomalies.push('Carat phai > 0'); return { stone, anomalies, success: false }; }
 
     const existing = this.registry.get(stone.id);
 
@@ -55,22 +55,22 @@ export class StoneEngine {
     switch (action) {
       case 'import':
         if (existing) {
-          anomalies.push(`Stone ${stone.id} đã tồn tại — không thể import lại`);
+          anomalies.push(`Stone ${stone.id} da ton tai — khong the import lai`);
           return { stone: existing, anomalies, success: false };
         }
         updated.status = 'raw';
         break;
 
       case 'assign':
-        if (!existing) { anomalies.push(`Stone ${stone.id} chưa được import`); return { stone, anomalies, success: false }; }
-        if (existing.status !== 'raw') { anomalies.push(`Stone ${stone.id} không ở trạng thái raw (hiện: ${existing.status})`); return { stone: existing, anomalies, success: false }; }
-        if (!productId) { anomalies.push('Cần productId khi assign'); return { stone, anomalies, success: false }; }
+        if (!existing) { anomalies.push(`Stone ${stone.id} chua duoc import`); return { stone, anomalies, success: false }; }
+        if (existing.status !== 'raw') { anomalies.push(`Stone ${stone.id} khong o trang thai raw (hien: ${existing.status})`); return { stone: existing, anomalies, success: false }; }
+        if (!productId) { anomalies.push('can productId khi assign'); return { stone, anomalies, success: false }; }
         updated = { ...existing, status: 'assigned', productId, updatedAt: timestamp };
         break;
 
       case 'mount':
         if (!existing || existing.status !== 'assigned') {
-          anomalies.push(`Stone ${stone.id} phải ở trạng thái assigned trước khi mount`);
+          anomalies.push(`Stone ${stone.id} phai o trang thai assigned truoc khi mount`);
           return { stone: existing ?? stone, anomalies, success: false };
         }
         updated = { ...existing, status: 'mounted', updatedAt: timestamp };
@@ -78,14 +78,14 @@ export class StoneEngine {
 
       case 'sell':
         if (!existing || existing.status !== 'mounted') {
-          anomalies.push(`Stone ${stone.id} phải ở trạng thái mounted trước khi sell`);
+          anomalies.push(`Stone ${stone.id} phai o trang thai mounted truoc khi sell`);
           return { stone: existing ?? stone, anomalies, success: false };
         }
         updated = { ...existing, status: 'sold', updatedAt: timestamp };
         break;
 
       case 'return':
-        if (!existing) { anomalies.push(`Stone ${stone.id} không tồn tại`); return { stone, anomalies, success: false }; }
+        if (!existing) { anomalies.push(`Stone ${stone.id} khong ton tai`); return { stone, anomalies, success: false }; }
         updated = { ...existing, status: 'raw', productId: undefined, updatedAt: timestamp };
         break;
     }
@@ -107,7 +107,7 @@ export class StoneEngine {
     if (action === 'assign' && existing) {
       const caratDelta = Math.abs(stone.carat - existing.carat);
       if (caratDelta > 0.05) {
-        anomalies.push(`Carat thay đổi bất thường: ${existing.carat} → ${stone.carat}`);
+        anomalies.push(`Carat thay đau bat thuong: ${existing.carat} → ${stone.carat}`);
         EventBus.emit('cell.metric', {
           cell:       'stone-cell',
           metric:     'stone.substitution_risk',

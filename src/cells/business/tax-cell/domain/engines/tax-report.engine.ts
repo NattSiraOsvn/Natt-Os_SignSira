@@ -12,7 +12,7 @@ export class TaxReportService {
     
     const entries: VATEntry[] = [
       {
-        category: 'Vàng trang sức 18K (AU750)',
+        category: 'vang trang suc 18K (AU750)',
         salesValue: 2500000000,
         purchaseValue: 2100000000,
         addedValue: 400000000, // 2.5B - 2.1B
@@ -20,7 +20,7 @@ export class TaxReportService {
         taxAmount: 40000000     // 400M * 10%
       },
       {
-        category: 'Kim cương GIA & Đá quý',
+        category: 'Kim cuong GIA & da quy',
         salesValue: 1800000000,
         purchaseValue: 1550000000,
         addedValue: 250000000, // 1.8B - 1.55B
@@ -28,7 +28,7 @@ export class TaxReportService {
         taxAmount: 25000000     // 250M * 10%
       },
       {
-        category: 'Sản phẩm chế tác theo đơn',
+        category: 'san pham che tac theo don',
         salesValue: 950000000,
         purchaseValue: 780000000,
         addedValue: 170000000,

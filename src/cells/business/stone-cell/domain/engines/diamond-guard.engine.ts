@@ -97,8 +97,8 @@ export const NK_2025_SUMMARY = {
   },
   cuocNkTotal: 1_654_638_455,  // Malca-Amit + Showtrans (chưa VAT)
   cuocNkBreakdown: {
-    'MALCA-AMIT VIỆT NAM': 1_183_993_214,
-    'SHOWTRANS VIỆT NAM':    470_645_241,
+    'MALCA-AMIT viet NAM': 1_183_993_214,
+    'SHOWTRANS viet NAM':    470_645_241,
   },
 } as const;
 
@@ -122,7 +122,7 @@ export class DiamondGuardEngine {
     if (tongThanhToanNh > 0 && chenhLechPct > 2) {
       flags.push({
         code: 'TY_GIA_CHENH_NHIEU',
-        msg: `Chênh tỷ giá ${chenhLechPct.toFixed(2)}% — kiểm tra mốc tỷ giá HQ (3h/10h/8h)`,
+        msg: `chenh ty gia ${chenhLechPct.toFixed(2)}% — kiem tra moc ty gia HQ (3h/10h/8h)`,
         severity: chenhLechPct > 5 ? 'HIGH' : 'MEDIUM',
       });
     }
@@ -131,7 +131,7 @@ export class DiamondGuardEngine {
     if (!lot.thanhToanNh || lot.thanhToanNh.length === 0) {
       flags.push({
         code: 'CHUA_THANH_TOAN',
-        msg: `Lô ${lot.invoice} chưa match với sao kê NH`,
+        msg: `lo ${lot.invoice} chua match voi sao ke NH`,
         severity: 'MEDIUM',
       });
     }
@@ -149,7 +149,7 @@ export class DiamondGuardEngine {
     if (lot.ngayPhatHanh > lot.ngayDangKy) {
       flags.push({
         code: 'INVOICE_SAU_HQ',
-        msg: `Invoice ${lot.ngayPhatHanh} > HQ ${lot.ngayDangKy} — ký ngược (rủi ro gian lận)`,
+        msg: `Invoice ${lot.ngayPhatHanh} > HQ ${lot.ngayDangKy} — ky nguoc (rui ro gian lan)`,
         severity: 'HIGH',
       });
     }
@@ -182,7 +182,7 @@ export class DiamondGuardEngine {
     if (pct > 50) {
       flags.push({
         code: 'ZEN_CONCENTRATION',
-        msg: `ZEN INTERNATIONAL chiếm ${pct.toFixed(1)}% tổng NK (${zen.lots} lô) — rủi ro phụ thuộc NCC`,
+        msg: `ZEN INTERNATIONAL chiem ${pct.toFixed(1)}% tong NK (${zen.lots} lo) — rui ro phu thuoc NCC`,
         severity: 'HIGH',
       });
     }
@@ -200,7 +200,7 @@ export class DiamondGuardEngine {
     if (chenhPct > 1) {
       flags.push({
         code: 'GOI_DAU_MO_HO',
-        msg: `Cước ${ncc}: Invoice ${invoiceAmount.toLocaleString()} ≠ NH ${nhAmount.toLocaleString()} (${chenhPct.toFixed(1)}%)`,
+        msg: `cuoc ${ncc}: Invoice ${invoiceAmount.toLocaleString()} ≠ NH ${nhAmount.toLocaleString()} (${chenhPct.toFixed(1)}%)`,
         severity: chenhPct > 5 ? 'HIGH' : 'LOW',
       });
     }

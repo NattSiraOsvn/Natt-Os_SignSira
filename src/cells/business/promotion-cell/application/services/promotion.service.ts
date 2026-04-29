@@ -49,13 +49,13 @@ export class PromotionService {
   create(cmd: CreatePromotionCommand): { promotion: Promotion; errors: string[] } {
     const errors: string[] = [];
 
-    if (!cmd.code?.trim()) errors.push('Mã khuyến mãi không được để trống');
-    if (this.findByCode(cmd.code)) errors.push(`Mã ${cmd.code} đã tồn tại`);
-    if (cmd.discountValue <= 0) errors.push('Giá trị giảm phải > 0');
+    if (!cmd.code?.trim()) errors.push('ma khuyen mai khong duoc de trong');
+    if (this.findByCode(cmd.code)) errors.push(`ma ${cmd.code} da ton tai`);
+    if (cmd.discountValue <= 0) errors.push('gia tri giam phai > 0');
     if (cmd.type === 'PERCENTAGE' && cmd.discountValue > 50)
-      errors.push('Giảm % tối đa 50%');
+      errors.push('giam % tau da 50%');
     if (cmd.startDate >= cmd.endDate)
-      errors.push('Ngày bắt đầu phải trước ngày kết thúc');
+      errors.push('ngay bat dau phai truoc ngay ket thuc');
 
     const props: PromotionProps = {
       id: `PR-${Date.now()}`,
@@ -85,24 +85,24 @@ export class PromotionService {
 
   applyPromotion(cmd: ApplyPromotionCommand): ApplyPromotionResult {
     const promo = this.findByCode(cmd.code);
-    if (!promo) return { success: false, discountVND: 0, error: `Mã ${cmd.code} không tồn tại` };
-    if (!promo.isValid()) return { success: false, discountVND: 0, error: 'Mã khuyến mãi không còn hiệu lực' };
+    if (!promo) return { success: false, discountVND: 0, error: `ma ${cmd.code} khong ton tai` };
+    if (!promo.isValid()) return { success: false, discountVND: 0, error: 'ma khuyen mai khong con hieu luc' };
 
     // Kiểm tra tier restriction
     if (promo.rules.applicableTiers && promo.rules.applicableTiers.length > 0) {
       if (!promo.rules.applicableTiers.includes(cmd.customerTier))
-        return { success: false, discountVND: 0, error: `Mã này chỉ áp dụng cho tier: ${promo.rules.applicableTiers.join(', ')}` };
+        return { success: false, discountVND: 0, error: `ma nay chi ap dung cho tier: ${promo.rules.applicableTiers.join(', ')}` };
     }
 
     // Kiểm tra category restriction
     if (cmd.categoryCode && promo.rules.applicableCategories && promo.rules.applicableCategories.length > 0) {
       if (!promo.rules.applicableCategories.includes(cmd.categoryCode))
-        return { success: false, discountVND: 0, error: 'Mã không áp dụng cho danh mục này' };
+        return { success: false, discountVND: 0, error: 'ma khong ap dung cho danh muc nay' };
     }
 
     const discountVND = promo.applyDiscount(cmd.orderValueVND);
     if (discountVND === 0)
-      return { success: false, discountVND: 0, error: `Đơn hàng chưa đạt giá trị tối thiểu ${promo.rules.minOrderValueVND?.toLocaleString()}đ` };
+      return { success: false, discountVND: 0, error: `don hang chua dat gia tri tau thieu ${promo.rules.minOrderValueVND?.toLocaleString()}d` };
 
     promo.recordUsage();
     return {
@@ -123,7 +123,7 @@ export class PromotionService {
     });
 
     const { promo, discount } = PromotionEngine.getBestDiscount(eligible, orderValueVND);
-    if (!promo || discount === 0) return { success: false, discountVND: 0, error: 'Không có khuyến mãi phù hợp' };
+    if (!promo || discount === 0) return { success: false, discountVND: 0, error: 'khong co khuyen mai phu hop' };
 
     promo.recordUsage();
     return { success: true, discountVND: discount, promotionId: promo.id, promotionName: promo.name };

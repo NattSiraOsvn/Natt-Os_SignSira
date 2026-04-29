@@ -52,7 +52,7 @@ export const CustomsRobotEngine={
       totalVAT:c.vatAmount,
       totalPayable:c.totalPayable,
       createdAt:Date.now(),
-      actionPlans:c.totalPayable>50_000_000?[{priority:"URGENT",description:"Kiểm tra lại HS Code"}]:[],
+      actionPlans:c.totalPayable>50_000_000?[{priority:"URGENT",description:"kiem tra lai HS Code"}]:[],
     }));
   },
 };

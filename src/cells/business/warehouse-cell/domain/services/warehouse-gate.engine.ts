@@ -44,47 +44,47 @@ export const GATE_DEFINITIONS: GateRequirement[] = [
   {
     gate: 1, name: 'NHAN_DON',
     requiredFields: ['maDon', 'ngayNhanDon', 'loaiDon', 'trongLuongCamKet', 'tuoiVang', 'salePhuTrach'],
-    description: 'Nhận đơn từ khách — điểm khởi phát vòng đời',
+    description: 'nhan don tu khach — diem khoi phat vong doi',
   },
   {
     gate: 2, name: 'THIET_KE_3D_BOM',
     requiredFields: ['fileSTL', 'bomVersion', 'dinhMucVang', 'dinhMucDa', 'haoHutDuKien', 'nguoiDuyetThietKe'],
-    description: 'Thiết kế 3D + BOM — bộ não sản phẩm',
+    description: 'thiet ke 3D + BOM — bo nao san pham',
   },
   {
     gate: 3, name: 'LENH_SAN_XUAT',
     requiredFields: ['soLenhSX', 'nguoiTaoLenh', 'vangXuatXuong', 'ngayCapVang', 'accountability'],
-    description: 'Lệnh SX — xuất NVL từ kho cho xưởng',
+    description: 'lenh SX — xuat NVL tu kho cho xuong',
   },
   {
     gate: 4, name: 'QUA_TRINH_SAN_XUAT',
     requiredFields: ['weightCheckpoints', 'congDoanHienTai'],
-    description: 'Sản xuất 4 cấp — trung tâm thất thoát bụi vàng',
+    description: 'san xuat 4 cap — trung tam that thoat bui vang',
   },
   {
     gate: 5, name: 'KCS_KIEM_DINH',
     requiredFields: ['kcsResult'],
-    description: 'KCS — TL cuối, dung sai, xác nhận đá',
+    description: 'KCS — TL cuoi, dung sai, xac nhan da',
   },
   {
     gate: 6, name: 'TONG_HOP_VANG_KHO',
     requiredFields: ['vangXuat', 'vangThuHoi', 'vangTraLai', 'vangTon', 'buiThuGom', 'chenhLech'],
-    description: 'Tổng hợp vàng — điểm cân đối KHO',
+    description: 'tong hop vang — diem can đau KHO',
   },
   {
     gate: 7, name: 'GIAO_HANG',
     requiredFields: ['maVanDon', 'ngayGiao', 'trongLuongGiao', 'nguoiGiao', 'nguoiNhan'],
-    description: 'Giao hàng — vận đơn + TL + ảnh bàn giao',
+    description: 'Giao hang — van don + TL + anh ban giao',
   },
   {
     gate: 8, name: 'CHOT_DON',
     requiredFields: ['tongTLThucTe', 'tongTLDinhMuc', 'haoHutHopLy', 'haoHutBatThuong', 'nguoiDuyetCuoi'],
-    description: 'Chốt đơn — so sánh thực tế vs định mức',
+    description: 'chot don — so sanh thuc te vs dinh muc',
   },
   {
     gate: 9, name: 'SOAT_KHO_KIEM_TOAN',
     requiredFields: ['soatKhoRecord'],
-    description: 'Soát kho — vàng xuất - TP - tồn - bụi = 0?',
+    description: 'soat kho — vang xuat - TP - ton - bui = 0?',
   },
 ];
 
@@ -178,7 +178,7 @@ export class WarehouseGateEngine {
       this.emit(WAREHOUSE_EVENTS.GATE_BLOCKED, {
         maDon,
         gate: gateNumber,
-        reason: `Phải qua Gate ${order.currentGate + 1} trước`,
+        reason: `phai qua Gate ${order.currentGate + 1} truoc`,
       });
       return { passed: false, missing: [`GATE_${order.currentGate + 1}_NOT_passED`], order };
     }
@@ -200,7 +200,7 @@ export class WarehouseGateEngine {
         gate: gateNumber,
         gateName: gateDef.name,
         missing,
-        reason: `Thiếu dữ liệu: ${missing.join(', ')}`,
+        reason: `thieu du lieu: ${missing.join(', ')}`,
       });
       return { passed: false, missing, order };
     }
@@ -231,7 +231,7 @@ export class WarehouseGateEngine {
   }
 
   /**
-   * Get full lifecycle view of an order — the "1 click = full vòng đời".
+   * Get full lifecycle view of an order — the "1 click = full vong doi".
    */
   getOrderLifecycle(maDon: string): OrderLifecycle | null {
     return this.orders.get(maDon) || null;

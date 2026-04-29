@@ -37,20 +37,20 @@ export class ThreatDetectionEngine {
 
       const fails = ipSignals.filter(s => s.eventType === 'login_fail');
       if (fails.length >= 5) {
-        reasons.push(`${fails.length} lần login thất bại — brute force nghi ngờ`);
+        reasons.push(`${fails.length} lan login that bai — brute force nghi ngo`);
         riskScore += Math.min(0.5, fails.length * 0.08);
       }
 
       const denied = ipSignals.filter(s => s.eventType === 'access_denied');
       if (denied.length >= 3) {
-        reasons.push(`${denied.length} lần bị từ chối truy cập`);
+        reasons.push(`${denied.length} lan bi tu chau truy cap`);
         riskScore += 0.2;
       }
 
       // Bot detection: no user agent = HTTP-only bot
       const botSignals = ipSignals.filter(s => !s.userAgent || s.userAgent.length < 5);
       if (botSignals.length > 0) {
-        reasons.push(`${botSignals.length} request không có User-Agent — nghi ngờ bot`);
+        reasons.push(`${botSignals.length} request khong co User-Agent — nghi ngo bot`);
         riskScore += 0.4;
       }
 

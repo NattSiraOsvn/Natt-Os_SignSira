@@ -1,6 +1,6 @@
 {
   "cellId": "design-3d-cell",
-  "readFrom": ["EventBus", "3D file system (664GB)", "production-cell (định mức)"],
+  "readFrom": ["EventBus", "3D file system (664GB)", "production-cell (dinh muc)"],
   "writeTo": ["EventBus (publish only)", "audit-cell (trace)"],
   "forbidden": ["direct DB write", "modify 3D source files", "bypass audit trail"],
   "downstreamCells": ["production-cell", "inventory-cell", "finance-cell", "audit-cell", "warranty-cell"]

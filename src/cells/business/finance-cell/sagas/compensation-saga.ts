@@ -37,16 +37,16 @@ export class CompensationSaga {
    * Kích hoạt chuỗi hành động bù trừ (LIFO - Last In First Out)
    */
   public async compensate(correlationId: string, reason: string) {
-    logger.warn(`🚨 KÍCH HOẠT BÙ TRỪ cho Flow: ${correlationId}. Lý do: ${reason}`);
+    logger.warn(`🚨 kich hoat bu tru cho Flow: ${correlationId}. ly do: ${reason}`);
     
     const actions = this.compensations.get(correlationId) || [];
     // Chạy ngược từ hành động cuối cùng về đầu
     for (let i = actions.length - 1; i >= 0; i--) {
       try {
         await actions[i]();
-        logger.info(`✓ Bù trừ bước ${i+1} thành công.`);
+        logger.info(`✓ bu tru buoc ${i+1} thanh cong.`);
       } catch (err) {
-        logger.error(`✕ Bù trừ bước ${i+1} thất bại!`, err);
+        logger.error(`✕ bu tru buoc ${i+1} that bai!`, err);
         // Nếu bù trừ thất bại, chuyển sang trạng thái "STUCK" chờ Master xử lý
       }
     }

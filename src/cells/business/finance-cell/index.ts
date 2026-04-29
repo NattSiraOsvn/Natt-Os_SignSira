@@ -92,7 +92,7 @@ EventBus.subscribe('PAYMENT_PROCESSED', (event: unknown) => {
       journalEntry: {
         id: `JE_PAY_${paymentId}_${Date.now()}`,
         date: new Date().toISOString(),
-        description: `Ghi nhận thanh toán ${paymentId}`,
+        description: `Ghi nhan thanh toan ${paymentId}`,
         entries: [
           { account: '112', debit: amount, credit: 0 },
           { account: '511', debit: 0, credit: amount },

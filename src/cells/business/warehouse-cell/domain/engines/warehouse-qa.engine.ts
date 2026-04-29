@@ -49,40 +49,40 @@ interface RegionMetrics {
 export class WarehouseEngine {
   static warehouses: Warehouse[] = [
     { 
-      id: 'W-HCM-01', name: 'KHO TỔNG HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'Trần Hoài Phúc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO',
+      id: 'W-HCM-01', name: 'KHO tong HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'tran hoai phuc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO',
       layout: [
-        { id: 'B-1', x: 1, y: 1, z: 1, label: 'Két A1 - Tầng 1', occupied: true, type: 'SAFE' },
+        { id: 'B-1', x: 1, y: 1, z: 1, label: 'ket A1 - tang 1', occupied: true, type: 'SAFE' },
       ]
     },
-    { id: 'W-HN-01', name: 'CHI NHÁNH HÀ NỘI', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'Bùi Cao Sơn', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
-    { id: 'W-003', name: 'Kho Bán Thành Phẩm (WIP)', code: 'WIP-FACTORY', type: 'BÁN THÀNH PHẨM', manager: 'Nguyễn Văn Vẹn', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG BÌNH' },
+    { id: 'W-HN-01', name: 'CHI nhanh ha nau', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'bui Cao son', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
+    { id: 'W-003', name: 'Kho ban thanh pham (WIP)', code: 'WIP-FACTORY', type: 'ban thanh pham', manager: 'nguyen ven ven', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG binh' },
   ];
 
   static items: InventoryItem[] = [
     { 
-      id: 'IT-001', sku: 'GOLD-18K-01', name: 'Vàng thỏi 18K', type: 'VÀNG', warehouseId: 'W-HCM-01', quantity: 1250.45, unit: 'GRAM', cost: 4200000, purity: '75%', location: 'SAFE-A1', status: 'SẴN SÀNG', lastCountDate: '21/01/2025', minThreshold: 2000, insuranceStatus: 'CHƯA CÓ', internalCertId: 'TL-G-25001', qrUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=GOLD-18K-01' 
+      id: 'IT-001', sku: 'GOLD-18K-01', name: 'vang thau 18K', type: 'vang', warehouseId: 'W-HCM-01', quantity: 1250.45, unit: 'GRAM', cost: 4200000, purity: '75%', location: 'SAFE-A1', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 2000, insuranceStatus: 'chua co', internalCertId: 'TL-G-25001', qrUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=GOLD-18K-01' 
     },
     { 
-      id: 'IT-004', sku: 'NNU-HALO-01', name: 'Nhẫn Nữ Halo Diamond 18K', type: 'THÀNH PHẨM', warehouseId: 'W-HCM-01', quantity: 50, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25004', location: 'DISPLAY-04', status: 'SẴN SÀNG', lastCountDate: '21/01/2025', minThreshold: 10, insuranceStatus: 'CÒN HẠN'
+      id: 'IT-004', sku: 'NNU-HALO-01', name: 'nhan nu Halo Diamond 18K', type: 'thanh pham', warehouseId: 'W-HCM-01', quantity: 50, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25004', location: 'DISPLAY-04', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 10, insuranceStatus: 'con han'
     },
     { 
-      id: 'IT-005', sku: 'NNA-ROLEX-01', name: 'Nhẫn Nam Rolex Custom', type: 'THÀNH PHẨM', warehouseId: 'W-HCM-01', quantity: 12, unit: 'PIECE', cost: 58000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25005', location: 'DISPLAY-05', status: 'SẴN SÀNG', lastCountDate: '21/01/2025', minThreshold: 5, insuranceStatus: 'CÒN HẠN'
+      id: 'IT-005', sku: 'NNA-ROLEX-01', name: 'nhan Nam Rolex Custom', type: 'thanh pham', warehouseId: 'W-HCM-01', quantity: 12, unit: 'PIECE', cost: 58000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25005', location: 'DISPLAY-05', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 5, insuranceStatus: 'con han'
     },
     { 
-      id: 'IT-006', sku: 'NNU-HALO-01', name: 'Nhẫn Nữ Halo Diamond 18K', type: 'THÀNH PHẨM', warehouseId: 'W-HN-01', quantity: 5, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25006', location: 'HN-A1', status: 'SẴN SÀNG', lastCountDate: '21/01/2025', minThreshold: 15, insuranceStatus: 'CÒN HẠN'
+      id: 'IT-006', sku: 'NNU-HALO-01', name: 'nhan nu Halo Diamond 18K', type: 'thanh pham', warehouseId: 'W-HN-01', quantity: 5, unit: 'PIECE', cost: 45000000, certType: CertType.INTERNAL, internalCertId: 'TL-F-25006', location: 'HN-A1', status: 'sen sang', lastCountDate: '21/01/2025', minThreshold: 15, insuranceStatus: 'con han'
     }
   ];
 
   static runQAAudit(): WarehouseQAAudit {
     const issues: WarehouseQAAudit['complianceIssues'] = [];
-    const uninsuredItems = this.items.filter(i => (i.type === 'KIM CƯƠNG' || i.type === 'VÀNG') && i.insuranceStatus === 'CHƯA CÓ');
+    const uninsuredItems = this.items.filter(i => (i.type === 'KIM cuong' || i.type === 'vang') && i.insuranceStatus === 'chua co');
     if (uninsuredItems.length > 0) {
       issues.push({
         id: 'INS-001',
         severity: 'CRITICAL',
         category: 'INSURANCE',
-        title: 'Tài sản rủi ro cao chưa bảo hiểm',
-        description: `${uninsuredItems.length} mặt hàng giá trị cao đang lưu kho không có bảo hiểm.`,
+        title: 'tai san rui ro cao chua bao hiem',
+        description: `${uninsuredItems.length} mat hang gia tri cao dang luu kho khong co bao hiem.`,
         impactValue: uninsuredItems.reduce((acc, i) => acc + (i.cost * i.quantity), 0)
       });
     }
@@ -120,11 +120,11 @@ export class WarehouseEngine {
       transfers: [
         {
           productId: 'IT-004',
-          productName: 'Nhẫn Nữ Halo Diamond 18K',
+          productName: 'nhan nu Halo Diamond 18K',
           from: WarehouseLocation.HCM_HEADQUARTER,
           to: WarehouseLocation.HANOI_BRANCH,
           quantity: transferQty,
-          reason: 'Hà Nội Stock Alert: Nhu cầu tăng 200% (Tet Season)'
+          reason: 'ha nau Stock Alert: Nhu cau tang 200% (Tet Season)'
         }
       ]
     };
@@ -147,9 +147,9 @@ export class WarehouseEngine {
         efficiency: 78
       },
       recommendations: [
-        "Chuyển 2000 sản phẩm Trending từ HCM -> HN để giảm tải kho HCM.",
-        "Tăng định mức an toàn tại Hà Nội thêm 15% cho dòng Nhẫn Cưới.",
-        "Rà soát hàng tồn kho lâu ngày (Aged Stock) tại HCM để thanh lý."
+        "chuyen 2000 san pham Trending tu HCM -> HN de giam tai kho HCM.",
+        "tang dinh muc an toan tai ha nau them 15% cho dong nhan cui.",
+        "ra soat hang ton kho lau ngay (Aged Stock) tai HCM de thanh ly."
       ]
     };
   }

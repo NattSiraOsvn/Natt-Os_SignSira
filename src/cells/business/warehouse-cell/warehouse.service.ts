@@ -5,9 +5,9 @@ import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, 
 
 // ⚠️ DATA ISOLATION: Seed data defined locally to prevent cross-boundary imports
 const PRODUCT_SEED_DATA = [
-  { id: 'p1', name: 'Nhẫn Nam Rolex Kim Cương', stock: 5 },
-  { id: 'p2', name: 'Nhẫn Nữ Halo Diamond', stock: 10 },
-  { id: 'p3', name: 'Bông Tai Diamond Solitaire', stock: 8 }
+  { id: 'p1', name: 'nhan Nam Rolex Kim cuong', stock: 5 },
+  { id: 'p2', name: 'nhan nu Halo Diamond', stock: 10 },
+  { id: 'p3', name: 'bong Tai Diamond Solitaire', stock: 8 }
 ];
 
 class WarehouseService {
@@ -77,7 +77,7 @@ class WarehouseService {
   async reserveStock(productId: string, quantity: number): Promise<string> {
     const stock = this.stockMap.get(productId);
     if (!stock || stock.available < quantity) {
-      throw new Error(`Tồn kho không đủ cho sản phẩm ${productId}.`);
+      throw new Error(`ton kho khong du cho san pham ${productId}.`);
     }
 
     const reservationId = `RES-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
@@ -173,9 +173,9 @@ export const WarehouseProvider = WarehouseService.getInstance();
 export class WarehouseEngine {
   static warehouses: Warehouse[] = [
     { 
-      id: 'W-HCM-01', name: 'KHO TỔNG HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'Trần Hoài Phúc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO'
+      id: 'W-HCM-01', name: 'KHO tong HCM', code: 'HCM-MAIN', type: 'MASTER_HUB', manager: 'tran hoai phuc', totalValue: 45000000000, itemCount: 12000, securityLevel: 'CAO'
     },
-    { id: 'W-HN-01', name: 'CHI NHÁNH HÀ NỘI', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'Bùi Cao Sơn', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
-    { id: 'W-003', name: 'Kho Bán Thành Phẩm (WIP)', code: 'WIP-FACTORY', type: 'BÁN THÀNH PHẨM', manager: 'Nguyễn Văn Vẹn', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG BÌNH' },
+    { id: 'W-HN-01', name: 'CHI nhanh ha nau', code: 'HN-BRANCH', type: 'DISTRIBUTION', manager: 'bui Cao son', totalValue: 12500000000, itemCount: 4500, securityLevel: 'CAO' },
+    { id: 'W-003', name: 'Kho ban thanh pham (WIP)', code: 'WIP-FACTORY', type: 'ban thanh pham', manager: 'nguyen ven ven', totalValue: 15000000000, itemCount: 450, securityLevel: 'TRUNG binh' },
   ];
 }

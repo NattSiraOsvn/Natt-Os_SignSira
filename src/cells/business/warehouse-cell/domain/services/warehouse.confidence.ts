@@ -35,7 +35,7 @@ export function assessWarehouseConfidence(params: {
   const overallScore = Math.round((coverageScore + reconciliationScore + dataQuality) / 3);
 
   const flags: string[] = [];
-  if (phoiThieuCT > 0) flags.push(`PHOI_THIEU_CT: ${phoiThieuCT} lô`);
+  if (phoiThieuCT > 0) flags.push(`PHOI_THIEU_CT: ${phoiThieuCT} lo`);
   if (coverageScore < 70) flags.push('COVERAGE_LOW');
   if (reconciliationScore < 80) flags.push('RECONCILE_GAP');
   if (totalSoCaiEntries === 0) flags.push('SO_CAI_EMPTY');

@@ -19,17 +19,17 @@ export class BuybackEngine {
     const props = tx.toJSON();
 
     if (tx.goldWeightGram < MIN_GOLD_WEIGHT_GRAM)
-      errors.push(`Trọng lượng vàng tối thiểu ${MIN_GOLD_WEIGHT_GRAM}g`);
+      errors.push(`trong luong vang tau thieu ${MIN_GOLD_WEIGHT_GRAM}g`);
 
     if (tx.requiresAuthentication && !props.isAuthenticated)
-      errors.push('Cần xác thực nguồn gốc sản phẩm');
+      errors.push('can xac thuc nguon goc san pham');
 
     // EXCHANGE phải có GDB
     if (props.mode === 'EXCHANGE') {
-      if (!props.gdbRef) errors.push('[EXCHANGE] Thiếu mã GĐB — bắt buộc quét GĐB trước');
-      if (!props.gdbLockedPolicy) errors.push('[EXCHANGE] Chưa lock GDB policy');
+      if (!props.gdbRef) errors.push('[EXCHANGE] thieu ma gdb — bat buoc quet gdb truoc');
+      if (!props.gdbLockedPolicy) errors.push('[EXCHANGE] chua lock GDB policy');
       if (!props.gdbOriginalValue || props.gdbOriginalValue <= 0)
-        errors.push('[EXCHANGE] Thiếu giá trị GĐB gốc');
+        errors.push('[EXCHANGE] thieu gia tri gdb goc');
     }
 
     return errors;
@@ -65,7 +65,7 @@ export class BuybackEngine {
     };
 
     const err = validateGDBLockedPolicy(policy);
-    if (err) throw new Error(`[ENGINE] GDB policy không hợp lệ: ${err}`);
+    if (err) throw new Error(`[ENGINE] GDB policy khong hop le: ${err}`);
 
     return policy;
   }

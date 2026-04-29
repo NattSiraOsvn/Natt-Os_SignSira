@@ -46,8 +46,8 @@ export class DustRecoveryEngine {
   compute(input: DustInput): DustResult {
     const { batchId, workerId, material, inputWeight, outputWeight, recoveredDust, timestamp } = input;
 
-    if (inputWeight <= 0) throw new Error(`[DustRecovery] inputWeight phải > 0 (batch: ${batchId})`);
-    if (outputWeight < 0) throw new Error(`[DustRecovery] outputWeight không thể âm (batch: ${batchId})`);
+    if (inputWeight <= 0) throw new Error(`[DustRecovery] inputWeight phai > 0 (batch: ${batchId})`);
+    if (outputWeight < 0) throw new Error(`[DustRecovery] outputWeight khong the am (batch: ${batchId})`);
 
     const dust         = inputWeight - outputWeight;
     const lossRate     = dust / inputWeight;
@@ -59,11 +59,11 @@ export class DustRecoveryEngine {
 
     if (lossRate > baseline.max) {
       isAnomaly     = true;
-      anomalyReason = `lossRate ${(lossRate * 100).toFixed(2)}% vượt baseline max ${(baseline.max * 100)}% (${material})`;
+      anomalyReason = `lossRate ${(lossRate * 100).toFixed(2)}% vuot baseline max ${(baseline.max * 100)}% (${material})`;
     } else if (lossRate < baseline.min * 0.5) {
       // Quá thấp bất thường — có thể dữ liệu fake
       isAnomaly     = true;
-      anomalyReason = `lossRate ${(lossRate * 100).toFixed(2)}% thấp bất thường — nghi ngờ báo cáo sai`;
+      anomalyReason = `lossRate ${(lossRate * 100).toFixed(2)}% thap bat thuong — nghi ngo bao cao sai`;
     }
 
     const confidence = isAnomaly

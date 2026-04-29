@@ -97,7 +97,7 @@ export const EInvoiceEngine = {
 
   buildItem: (
     lineNo: number, itemCode: string, description: string,
-    quantity: number, unitPrice: number, vatRate = 0.1, unit = "Cái"
+    quantity: number, unitPrice: number, vatRate = 0.1, unit = "cai"
   ): EInvoiceItem => {
     const amount = quantity * unitPrice;
     return { lineNo, itemCode, description, unit, quantity, unitPrice, discount: 0, amount, vatRate, vatAmount: amount * vatRate };
