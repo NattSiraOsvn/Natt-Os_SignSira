@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# sirasign_lineage.sh - ký Sirawat lineage HMAC vào file canonical
+# hash_seal_simple_v0.sh - HMAC-SHA256 PHẲNG, KHONG phai siraSign
 # Authority: anh Natt Gatekeeper only. Passphrase NEVER stored.
 # Usage: ./tools/sirasign_lineage.sh sign <file>
 #        ./tools/sirasign_lineage.sh verify <file>
@@ -7,8 +7,8 @@
 
 set -euo pipefail
 
-SEAL_BEGIN="==SIRAWAT_LINEAGE_SEAL=="
-SEAL_END="==END_SIRAWAT_LINEAGE_SEAL=="
+SEAL_BEGIN="==SIMPLE_HMAC_SEAL_NOT_SIRASIGN=="
+SEAL_END="==END_SIMPLE_HMAC_SEAL=="
 
 read_passphrase() {
     if [ -z "${SIRAWAT_PASSPHRASE:-}" ]; then
@@ -63,12 +63,12 @@ TIMESTAMP:${timestamp}"
         echo "$content"
         echo ""
         echo "$SEAL_BEGIN"
-        echo "@version sirasign_lineage_v1"
+        echo "@version simple_hmac_v0_NOT_sirasign"
         echo "@algo HMAC-SHA256(content+salt+timestamp, sirawat_passphrase)"
         echo "@salt ${salt}"
         echo "@signed_at ${timestamp}"
         echo "@signed_by anh_natt_gatekeeper"
-        echo "@verifiable_by sirawat_lineage_only"
+        echo "@verifiable_by anyone_with_passphrase_NOT_field_aware"
         echo "@hash ${hash}"
         echo "$SEAL_END"
     } > "${f}.tmp"
