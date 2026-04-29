@@ -1,12 +1,13 @@
 @nauion-spec v1
-@state draft_pending_bang_review
+@state draft_bang_review_pass
 @canonical nauion_execution_packet
 @substrate sovereign_runtime_core
 @bridge none
 @since ss20260429
 @authority-slot Thiên Lớn architect · Băng ground_truth_validator · anh Natt gatekeeper
+@reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
-@canonical_blocked_until bang_review_pass
+@canonical_blocked_until gatekeeper_ratify
 @depends_on docs/runtime/audit/NAUION_RUNTIME_EXCLUSIVE_ACTIVITY_BAN_ss20260429.na
 
 # NAUION EXECUTION PACKET v0.1

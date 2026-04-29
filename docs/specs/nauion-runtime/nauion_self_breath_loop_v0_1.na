@@ -1,12 +1,13 @@
 @nauion-spec v1
-@state draft_pending_bang_review
+@state draft_bang_review_pass
 @canonical nauion_self_breath_loop
 @substrate sovereign_runtime_core
 @bridge none
 @since 2026-04-29
 @authority-slot Băng (Validator + Obikeeper) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical
+@reviewed_by Băng / Ground Truth Validator / ss20260429
 @review_required Băng / Ground Truth Validator
-@canonical_blocked_until bang_review_pass
+@canonical_blocked_until gatekeeper_ratify
 @derived_from
   docs/specs/SPEC_NEN_v1.1.anc
   docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
