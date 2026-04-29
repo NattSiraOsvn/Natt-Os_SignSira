@@ -1,0 +1,147 @@
+@nauion-audit v1
+@state nauion_jsx_migration
+@name tam_luxury_nauion_jsx_migration_ss20260429
+@scope tam-luxury-source-jsx-to-nauion
+@session ss20260429
+
+==PURPOSE==
+Move JSX-bearing Tam Luxury source files from .ts to .na, then enable Vite transitional loader to treat .na as TSX.
+This intentionally does not restore .tsx. It pushes the Tam Luxury source toward Nauion extension first, then fixes runtime/build compatibility.
+==END==
+
+==SUMMARY==
+jsx_ts_files_moved_to_na: 121
+vite_loader: nauion-na-as-tsx
+resolve_extensions_includes_na: true
+==END==
+
+==MOVED_FILES==
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/app.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/types.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/index.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/contexts/accountingcontext.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/contexts/mappingcontext.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/core/smartlinkengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/rfmanalysis.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/collaborationrooms.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/appshell.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/learninghub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/governancemodule.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/salescrm.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/bankingprocessor.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/errorboundary.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/personalsphere.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/omegaprocessor.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/systemnavigator.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/salestaxmodule.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/quickhelp.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/operationsterminal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/smartlinkmapper.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/notificationportal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/adminconfighub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/livevoice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/notificationhub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/paymenthub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/datasyncengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/app.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/systemticker.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/hrcompliance.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/aiavatar.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/advancedanalytics.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/supplierclassificationpanel.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/dailyreportmodule.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/customsintelligence.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/customizationrequest.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/dashboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/taxreportinghub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/productdetailmodal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/salesterminal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/rbacmanager.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/dataanalytics.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/unifiedreportinghub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/blueprintwizard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/thiencommandcenter.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/chatconsultant.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/productionwallboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/productcatalog.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/technicaldocs.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/filterpanel.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/warehousemanagement.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/systemmonitor.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/layout.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/masterdashboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/productionmanager.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/productcard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/apiportal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/devportal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/governanceworkspace.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/sellerterminal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/dataarchivevault.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/salesarchitectureview.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/productionsalesflowview.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/hrmanagement.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/complianceportal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/financeaudit.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/krisemailhub.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/audittrailmodule.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/enterprisearchitecture.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/quantumfloworchestrator.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/dynamicmodulerenderer.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/sidebar.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/securityoverlay.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/quantumpulse.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/sale-terminal/main.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/sale-terminal/session.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/hooks/usesse.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/hooks/userealtimesync.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/hooks/usesmartmapping.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/dictionaryservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/nauionclient.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/sellerengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/enterpriselinker.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/productionservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/warehouseservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/dictionaryapprovalservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/learningengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/paymentservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/modulehelpers.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/security.service.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/logisticsservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/threatdetectionservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/documentai.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/einvoiceengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/productionsalesflow.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/mapping/smartlinkmappingengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/ingestion/utils.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/ingestion/extractors.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/ingestion/ingestionservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/conflict/conflictresolver.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/supplier/supplierengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/scoring/contextscoringengine.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/services/approval/approvalworkflowservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/financial/financialdashboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/calibration/calibrationwizard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/common/nattmedal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/common/errorboundary.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/common/butterflyprotocol.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/common/loadingspinner.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productdetailmodal.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productionwallboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productcatalog.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productionmanager.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productcard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productiontaskboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/production/productionsalesflowview.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/components/approval/approvaldashboard.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/core/ingestion/ingestionservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/core/dictionary/services/dictionaryservice.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/manifestations/overlays/quantumcontainer.na
+- /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC/nattos-server/apps/tam-luxury-source/neuro-link/context/quantumuicontext.na
+==END==
+
+==BOUNDARY==
+- Keep canonical folder: nattos-server/apps/tam-luxury-source.
+- Do not rollback whole migration.
+- Do not touch zero-size nauion/ui-runtime.na in this commit.
+- This is transitional loader compatibility, not final Nauion compiler.
+==END==
