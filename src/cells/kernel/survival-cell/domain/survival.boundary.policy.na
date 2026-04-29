@@ -1,24 +1,16 @@
-// Điều 3 §3 Hiến Pháp v5.0 — Boundary
-export const survivalBoundaryPolicy = {
-  cellId: 'survival-cell',
-  allowedCallers: [
-    'gatekeeper',
-    'audit-cell',
-    'quantum-defense-cell',
-  ],
-  allowedTargets: [
-    'SmartLink-cell',
-    'audit-cell',
-  ],
-  prohibitedActions: [
-    'DIRECT_DB_WRITE_WITHOUT_AUDIT',
-    'BYPASS_CONSTITUTION',
-    'EXTERNAL_API_WITHOUT_GATEKEEPER',
-    'CROSS_CELL_DIRECT_IMPORT',
-  ],
-  requiresGatekeeperApproval: [
-    'PERIOD_CLOSE',
-    'BULK_DELETE',
-    'BULK_ADJUST',
-  ],
-} as const;
+@policy survival-cell-boundary
+@enforced true
+
+# Survival Cell Boundary Policy
+# Cell này nằm ở lớp Kernel, dưới cùng của kiến trúc.
+# Nó chỉ giao tiếp qua EventBus và KHÔNG được gọi trực tiếp từ bất kỳ cell nào khác.
+
+allow_emit:
+  - survival.threshold.reached
+  - survival.fallback.activated
+  - heyna.pulse
+
+forbidden:
+  - direct_import_from_other_cells
+  - file_system_write
+  - network_call

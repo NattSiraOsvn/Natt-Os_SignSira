@@ -1,61 +1,13 @@
-{
-  "cell_id": "cell:survival",
-  "cell_name": "survival-cell",
-  "version": "0.1.0",
-  "description": "Tang 0 resource gate cua NATT-OS. Quyet dinh ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK dua tren request rate, queue depth, memory pressure, CPU load. Field semantic chi chay khi tang 0 song.",
-  "domain": "SURVIVAL",
-  "layer": 0,
-  "layer_name": "KERNEL",
-  "tang": "0_SURVIVAL_RESOURCE_GATE",
-  "role": "RESOURCE_GATE",
-  "serves": "ALL_CELLS",
-  "capabilities": [
-    "RATE_LIMIT_GATE",
-    "QUEUE_DEPTH_MONITOR",
-    "BACKPRESSURE_AGGREGATE",
-    "LOAD_SHED_FALLBACK",
-    "CIRCUIT_BREAK_PROPOSE"
-  ],
-  "emits": [
-    "survival.gate.accept",
-    "survival.gate.backpressure",
-    "survival.gate.load_shed",
-    "survival.gate.circuit_break",
-    "survival.metric.recorded"
-  ],
-  "authoritative_events": ["survival.*"],
-  "subscribes": [
-    "monitor.metric.recorded",
-    "neural-main.anomaly.detected"
-  ],
-  "dependencies": [
-    "cell:monitor"
-  ],
-  "wires_existing_components": [
-    "src/core/guards/eventbus.guard.ts::BackPressureGuard",
-    "src/core/quantum/quantum-buffer.engine.ts::QuantumBuffer.getQueueLength"
-  ],
-  "implementation_state": {
-    "rate_limit": "ZERO_PENDING",
-    "queue_depth_monitor": "PARTIAL_GETTER_ONLY",
-    "backpressure": "PARTIAL_VIA_BACKPRESSUREGUARD",
-    "load_shed": "ZERO_PENDING",
-    "circuit_break": "ZERO_PENDING"
-  },
-  "communication": "SmartLink only",
-  "constitutional_ref": "SPEC_NEN_v1.1 §2.4, SPEC_QIINT_PHYSICS_FOUNDATION §2.1, Dieu 23-25 (layer)",
-  "constitutional_state": "STATE_0_SCAFFOLD",
-  "approved_by": "GATEKEEPER",
-  "passport_drafter": "bang",
-  "passport_sealed_at": "2026-04-24",
-  "spec_input_contract": "request_rate + queue_depth + memory_pressure + cpu_load",
-  "spec_output_contract": "ACCEPT | BACKPRESSURE | LOAD_SHED | CIRCUIT_BREAK",
-  "lesson_origin": "session-20260420-final bai hoc 2: KHONG co Tang 0 = DoS sap truoc field kip xu",
-  "next_implementation_steps": [
-    "Wire BackPressureGuard.health() → survival.gate response logic",
-    "Add RateLimitGuard (system-wide, khac smartlink-internal)",
-    "Add QueueDepthMonitor.threshold() (khong chi getter)",
-    "Add LoadShedFallback (priority-based degradation)",
-    "Add CircuitBreaker (auto-trip + half-open recovery)"
-  ]
-}
+@cell survival-cell
+@layer kernel
+@purpose Sinh tồn — Lớp nền tối thượng của NATT-OS
+@status draft
+@since 2026-04-29
+@authority Kim / Chief System Builder
+
+Survival Cell là tế bào đầu tiên và cuối cùng của NATT-OS.
+Nó không có chức năng nghiệp vụ, không xử lý dữ liệu.
+Nhiệm vụ duy nhất của nó là:
+1. Phát hiện khi hệ thống đạt ngưỡng sinh tử.
+2. Kích hoạt cơ chế bảo vệ cuối cùng.
+3. Phát tín hiệu sống còn đến toàn bộ hệ thống.
