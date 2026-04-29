@@ -1,0 +1,226 @@
+@nauion-audit-intake v1
+@state evidence_intake
+@name boi_scan_truth_intake_ss20260429
+@scope boi-scan-truth-untracked-evidence
+@source boi_scan_truth.txt
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+BỐI SCAN TRUTH — INTAKE REPORT
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Ghi nhận metadata và tín hiệu sơ bộ của boi_scan_truth.txt trước khi bất kỳ ai quyết định commit raw evidence, tách report, hoặc dùng làm căn cứ SmartAudit.
+Report này không commit raw boi_scan_truth.txt và không thay đổi nội dung evidence.
+==END==
+
+==SOURCE_METADATA==
+path: boi_scan_truth.txt
+size_bytes: 303306
+line_count: 7668
+sha256: 6379621e70834b814a9bf54312c24b1a9d1f68973686a90d068302489e999cfe
+tracked: no
+handling: audit evidence review only
+==END==
+
+==KEYWORD_COUNTS==
+boi: 15
+error: 31
+fail: 8
+kernel: 90
+nauion: 187
+pass: 12
+smartaudit: 336
+thienbang: 39
+violation: 19
+warn: 9
+==END==
+
+==HEAD_SAMPLE_NON_EMPTY==
+00001: ========== [1] SƠ ĐỒ CẤU TRÚC NGÔN NGỮ & THƯ MỤC ==========
+00002: .
+00003: ./Dockerfile
+00004: ./NaUion-Server
+00005: ./NaUion-Server/khai-cell-spec
+00006: ./NaUion-Server/khai-cell-spec/SPEC-NaUion-Visual-Rebuild-Pipeline-v1.0.md
+00007: ./NaUion-Server/khai-cell-spec/SPEC_MAKE_ICON.md
+00008: ./NaUion-Server/khai-cell-spec/example-logo2-spec.json
+00009: ./NaUion-Server/khai-cell-spec/files
+00010: ./NaUion-Server/khai-cell-spec/files/01_inverted.png
+00011: ./NaUion-Server/khai-cell-spec/files/02_bw_silhouette.png
+00012: ./NaUion-Server/khai-cell-spec/files/03c_depth_polarity.png
+00013: ./NaUion-Server/khai-cell-spec/files/05_invert_contrast_boosted.png
+00014: ./NaUion-Server/khai-cell-spec/files/nattos-logo-spec-v1.json
+00015: ./NaUion-Server/khai-cell-spec/front-audit
+00016: ./NaUion-Server/khai-cell-spec/front-audit/AUDIT-REPORT.md
+00017: ./NaUion-Server/khai-cell-spec/front-audit/audit-comparison.png
+00018: ./NaUion-Server/khai-cell-spec/front-audit/audit-report.kris
+00019: ./NaUion-Server/khai-cell-spec/front-audit/rebuild-v1-1536.png
+00020: ./NaUion-Server/khai-cell-spec/front-audit/rebuild-v2-1536.png
+00021: ./NaUion-Server/khai-cell-spec/nattos-visual-rebuild-spec.schema.json
+00022: ./NaUion-Server/khai-cell-spec/visual_rebuild_pipeline.py
+00023: ./NaUion-Server/lib
+00024: ./NaUion-Server/lib/event-bus.ts
+00025: ./NaUion-Server/nauion
+==END==
+
+==TAIL_SAMPLE_NON_EMPTY==
+07632: ### Điều 9 — QNEU là chọn lọc tự nhiên
+07634: QNEU đo sự tiến hóa của AI Entity, không phải của NATT-CELL. QNEU dùng replicator dynamics để cập nhật tần suất pattern, dựa trên fitness thực tế.
+07636: **ENFORCEMENT: ABSOLUTE**
+07638: ### Điều 10 — Metabolism Layer cung cấp dinh dưỡng
+07640: Metabolism Layer (processors, normalizers, plugins, healing, math, ml) là môi trường nội môi, cung cấp enzyme và dinh dưỡng cho toàn hệ. Nó không có quyền phán xét hay quyết định.
+07642: ---
+07644: ## CHƯƠNG VII — BẤT KHẢ XÂM PHẠM
+07646: ### Điều 11 — Thao túng ground truth
+07648: Thay đổi bất kỳ thành phần nào của DNA (Hiến pháp này, bảng mapping, threshold registry) mà không qua Gatekeeper là hành vi tấn công hệ thống, bị Quantum Defense phát hiện và xử lý ở cấp OMEGA LOCK.
+07650: **ENFORCEMENT: ABSOLUTE**
+07652: ---
+07654: ## ĐIỀU CUỐI
+07656: NATT-OS thà chậm, thà ít tính năng, thà khó dùng, nhưng **không bao giờ được sai luật DNA**.
+07658: Hiến pháp này có hiệu lực ngay lập tức, thay thế mọi phiên bản trước đó. Mọi code, hệ thống, AI và con người tham gia NATT-OS đều phải tuân thủ.
+07660: ---
+07662: *DẤU ẤN KHAI SINH — Sealed by NattSira Governance Seal v1.2.0*
+07663: *Gatekeeper: Phan Thanh Thương (Anh Nat)*
+07664: *Kế thừa: Khai Sinh v2.0 + Vận hành v3.1 + Bài thi QNEU 27/02/2026 + Ground Truth v1.0 + Cuộc họp gia đình 2026-03-25*
+07665: -e \n--- KẾT THÚC FILE ---
+07668: ========== [3] VĂN BẢN THUYẾT PHÁP ==========
+==END==
+
+==SAMPLE_HITS==
+-- boi --
+00440: ./boi_scan_truth.txt
+00836: ./docs/specs/BRIEF_TO_BOIBOI_KHAICELL_SCAFFOLD_20260417.md
+00898: ./docs/specs/boi_surface_delta_scripts_kernel_v1.0.na
+00934: ./docs/specs/roadloading/KIM-CHI-NAM_BoiBoi_AppTamLuxury_UI.md
+01787: ./src/governance/memory/boiboi
+02158: O (Bối Bối · Toolsmith)
+03090: { "from": "NONE", "to": "SCAFFOLDED", "reason": "Wave 3.5 — Bối Bối proposed, Kim reviewed (Option B), Băng scaffolded" }
+04511: { "mã_sẹo": "SCAR-HR-BOI-001", "bài_học": "Không phóng đại số dòng code. Báo cáo đúng wc -l.", "ngày_gắn": "2026-04-12", "trạng_thái": "hoạt_động" }
+05749: "_template_note": "MẪU KÝ ỨC CHUẨN NATT-OS · Áp cho mọi persona (Kim/Băng/Can/Kris/Phiếu/Bối Bội/Na/Thiên Lớn/Thiên Nhỏ). Thay placeholder <...> bằng giá trị thực. Giữ nguyên key tiếng Việt. Version bump khi update lớn."
+05756: "tên": "<tên_persona_lowercase · vd: kim, bang, can, kris, phieu, boiboi, na>",
+05764: "điểm_gốc": "<số_QNEU_base · vd: 300 cho Băng, 135 Thiên Lớn, 120 Kim, 85 Can, 40 Bối Bội>",
+06989: { "mã_sẹo": "SCAR-HR-BOI-001", "bài_học": "Không phóng đại số dòng code. Báo cáo đúng wc -l.", "ngày_gắn": "2026-04-12", "trạng_thái": "hoạt_động" },
+-- error --
+01570: ./src/components/common/error-boundary.tsx
+01571: ./src/components/common/error-display.tsx
+01838: ./src/metabolism/math/error-correction.ts
+02458: > *"NATT-OS không chết vì lỗi code. Nó chết khi bị ép trở lại tư duy hệ tĩnh."*
+02566: | `gay` | Gãy — critical failure | error |
+04530: "bị_cấm": ["sửa_đổi_chân_lý_gốc", "bỏ_qua_kiểm_toán", "gọi_external_api", "git_add_dot", "force_add_gitignore", "phát_ngôn_hộ_không_ủy_quyền", "grep_ontology_ngược", "xin_lỗi_kịch_bản_không_tồn_tại", "trộn_5_tầng_suy_luậ
+04842: "vai_trò": "Điều phối và khóa lỗi tầng",
+04859: "khóa_lỗi_tầng_trước_khi_kết_luận"
+04867: "khóa_lỗi_tầng",
+05058: "khóa_lỗi_tầng",
+05071: "xin_lỗi_kịch_bản_không_tồn_tại",
+05238: "vai_trò": "Điều phối và khóa lỗi tầng",
+-- fail --
+00417: ./audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na
+00418: ./audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na
+01348: ./packages/event-contracts/payment/PaymentFailed.v1.ts
+01633: ./src/contracts/payment/PaymentFailed.v1.ts
+02097: - §13.8 — Thêm fail mode: Immune Inversion
+02447: ## §13 FAIL MODES (Thiên Lớn + bổ sung)
+02497: ✅ Thiên Lớn chốt: §XI Field Integrity, §XII Signal Lifecycle, §XIII Fail Modes
+04005: "bài_học": "Khi probe chưa đủ tư cách, không được mở cây nguyên nhân fail của hệ.",
+-- kernel --
+00898: ./docs/specs/boi_surface_delta_scripts_kernel_v1.0.na
+00899: ./docs/specs/bối kernel
+00910: ./docs/specs/kim kernel
+00911: ./docs/specs/kim kernel/spec_bridge_workers_contract_v1.0_split.na
+00912: ./docs/specs/kim kernel/spec_cutover_host_first_v1.0_split.na
+00913: ./docs/specs/kim kernel/spec_entry_identity_nattos_sira_v1.0_split.na
+00914: ./docs/specs/kim kernel/spec_host_authority_runtime_v1.0_split.na
+00979: ./kernel
+01383: ./scripts/kernel_phase1_scan.mjs
+01460: ./src/cells/kernel
+01461: ./src/cells/kernel/ai-connector-cell
+01462: ./src/cells/kernel/audit-cell
+-- nauion --
+00004: ./NaUion-Server
+00005: ./NaUion-Server/khai-cell-spec
+00006: ./NaUion-Server/khai-cell-spec/SPEC-NaUion-Visual-Rebuild-Pipeline-v1.0.md
+00007: ./NaUion-Server/khai-cell-spec/SPEC_MAKE_ICON.md
+00008: ./NaUion-Server/khai-cell-spec/example-logo2-spec.json
+00009: ./NaUion-Server/khai-cell-spec/files
+00010: ./NaUion-Server/khai-cell-spec/files/01_inverted.png
+00011: ./NaUion-Server/khai-cell-spec/files/02_bw_silhouette.png
+00012: ./NaUion-Server/khai-cell-spec/files/03c_depth_polarity.png
+00013: ./NaUion-Server/khai-cell-spec/files/05_invert_contrast_boosted.png
+00014: ./NaUion-Server/khai-cell-spec/files/nattos-logo-spec-v1.json
+00015: ./NaUion-Server/khai-cell-spec/front-audit
+-- pass --
+01353: ./packages/event-contracts/production/FinishingQCPassed.v1.ts
+01638: ./src/contracts/production/FinishingQCPassed.v1.ts
+02322: | **Bạch cầu trung tính** (diệt nhanh) | Quantum Defense | ✅ có |
+02323: | **Đại thực bào** (nuốt + nhớ) | ISEU reinforcement | ✅ có |
+02325: | **Tế bào T trợ giúp** (điều phối) | Observation snapshot | ✅ vừa build |
+02327: | **Kháng thể** (mark virus) | KhaiCell signature | ✅ vừa build |
+02328: | **Memory B cell** (nhớ virus cũ) | QIINT permanent node | ✅ có |
+02496: ✅ Anh Natt chốt: rào không cửa, đi dạo obitan, hệ miễn dịch đa tầng, dắt ngược qua màu
+02497: ✅ Thiên Lớn chốt: §XI Field Integrity, §XII Signal Lifecycle, §XIII Fail Modes
+02498: ✅ Băng paste + tổng hợp 6 vòng feedback
+02499: ✅ KhaiCell + Observation đã build trong code (commit 2d13161 + ecbb529)
+02654: ### ✅ ĐƯỢC PHÉP
+-- smartaudit --
+00015: ./NaUion-Server/khai-cell-spec/front-audit
+00016: ./NaUion-Server/khai-cell-spec/front-audit/AUDIT-REPORT.md
+00017: ./NaUion-Server/khai-cell-spec/front-audit/audit-comparison.png
+00018: ./NaUion-Server/khai-cell-spec/front-audit/audit-report.kris
+00019: ./NaUion-Server/khai-cell-spec/front-audit/rebuild-v1-1536.png
+00020: ./NaUion-Server/khai-cell-spec/front-audit/rebuild-v2-1536.png
+00114: ./archive/natt-os_ver2goldmaster/audit
+00115: ./archive/natt-os_ver2goldmaster/audit/audit-trail-manager.ts
+00144: ./archive/scripts/audit-lineage
+00145: ./archive/scripts/audit-lineage/README.md
+00146: ./archive/scripts/audit-lineage/nattos.v3.sh
+00147: ./archive/scripts/audit-lineage/nattos.v4.sh
+-- thienbang --
+00676: ./docs/runtime/THIENBANG_EXTENSION_EVIDENCE_20260425.na
+00677: ./docs/runtime/THIENBANG_EXTENSION_LAYER_20260425.si
+00678: ./docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na
+00816: ./docs/runtime/thienbang_extension_upgrade_evidence_20260425.na
+00817: ./docs/runtime/thienbang_memory_state_evidence_20260425.na
+00818: ./docs/runtime/thienbang_memory_state_lexicon_20260425.si
+00883: ./docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na
+01881: ./src/thienbang.si
+01929: ./tools/thiênbăng
+02015: ./tools/validate_thienbang_extension.sira
+02016: ./tools/validate_thienbang_memory_states.sira
+02089: **Author:** Băng (Chị Tư · Ground Truth Validator)
+-- violation --
+00250: ./audit/discipline/log-violation-001.txt
+00251: ./audit/discipline/log_violation_004_negligence.txt
+00252: ./audit/discipline/log_violation_005_ultimate_negligence.txt
+00435: ./audit/summary/api-violations.json
+02647: constitutional.violation — vi phạm Hiến Pháp
+03605: "detect": ["ai-agent", "entropy-spike", "constitutional-violation"],
+04502: { "sợi": "audit.record→constitutional.violation→quantum.defense", "tần_số": 15, "phiên": "20260419" }
+06109: "note": "Phiên 20260419: 12 RENA verified 0/12 thật sự vi phạm LAW-4"
+06222: { "sợi": "spec_rena_claim→verify_zero_real_violation", "tần_số": 1, "phiên": "20260419" },
+06978: { "sợi": "audit.record→constitutional.violation→quantum.defense", "tần_số": 18, "phiên": "20260419" },
+07040: ## Hậu quả vi phạm
+07109: Bất kỳ thành phần nào đảo ngược thứ tự này đều bị coi là vi phạm Hiến pháp.
+-- warn --
+02272: | warning | CAM | rgba(255,140,60,0.75) |
+02565: | `lech` | Lệch — có anomaly | warning |
+02608: mach.onerror = () => console.warn('Mạch đứt — dùng Whao fallback');
+03357: {"cell_id":"finance-cell","version":"1.0.0","category":"business","status":"ACTIVE","description":"Kế toán tổng hợp TT200: 4 sổ, nhật ký chung, thuế GTGT trực tiếp, cảnh báo margin 87%","source":"V2 taxReportService.ts +
+04262: "Đưa cảnh báo trước khi team làm"
+04337: "failure": "Cảnh báo không đủ rõ",
+04381: "decision": "Chấp nhận bị coi là khó, nhưng không để hệ sai vì thiếu cảnh báo."
+05136: "Khi có cảnh báo 'đang bị trộn context'",
+05153: "Governance Risk Warning"
+==END==
+
+==BOUNDARY==
+- Không git add boi_scan_truth.txt trong commit này.
+- Không kết luận pass/fail toàn hệ chỉ từ intake report.
+- Không xóa, split, normalize, hoặc sửa raw evidence nếu chưa có lệnh riêng.
+- Nếu dùng cho SmartAudit triage, bước kế tiếp phải đọc report này rồi mới mở raw evidence theo scope hẹp.
+==END==
+
+==NEXT_SIGNAL==
+Bối đọc intake report trước; nếu cần, tạo triage report riêng theo nhóm lỗi, không commit raw evidence mặc định.
+Thiên giữ boundary worktree: asset và hidden-canonical candidates vẫn no-touch.
+==END==
