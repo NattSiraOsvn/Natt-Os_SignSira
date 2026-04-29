@@ -1,0 +1,210 @@
+@nauion-spec v1
+@state draft_v0_1
+@canonical nauion_execution_packet
+@substrate sovereign_runtime_core
+@bridge none
+@since 2026-04-29
+@authority-slot Băng (Chị Tư · Validator) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical
+@derived_from
+  docs/specs/SPEC_NEN_v1.1.anc
+  docs/runtime/boot_family_map_15_memory_states_20260425.na
+  docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na
+  docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na
+  docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na
+
+# nauion execution packet — gói thực thi tối thiểu
+
+**kind:** NauionExecutionPacket
+**version:** v0.1
+**status:** DRAFT — chưa ratify
+**purpose:** định nghĩa đơn vị tối thiểu mà Nauion Living Interpreter đọc được + Nauion Field Loader nạp được + SmartLink Field Protocol truyền được.
+
+không phải JSON. không phải bytecode. không phải AST.
+là gói trường — mang ý nghĩa, không mang lệnh.
+
+═══════════════════════════════════════════════════════════════════
+§1 BẢN THỂ GÓI — ba tầng theo Π_system
+═══════════════════════════════════════════════════════════════════
+
+==PACKET_BODY==
+  obitan: pattern bất biến của gói trong trường số
+  field_anchor: neo vào permanent node nào
+    - hiến_pháp_ref: link tới Điều liên quan
+    - anc_ref: link tới passport entity sở hữu
+    - sirasign_ref: HMAC seal khi packet đi qua biên
+    - memory_ref: link tới .kris/.phieu chứng cứ
+  qneu_mass: khối lượng trọng trường (RAW, không integrity)
+  orbital_coherence: độ kết mạch theo thời gian [0,1]
+==END==
+
+==PACKET_MEDIUM==
+  carrier: chất liệu mang thân
+    - na_text: nội dung sống grammar
+    - signal_payload: tín hiệu khi packet là pulse
+    - color_chromatic: pheromone L0-L4 nếu packet qua chromatic layer
+  state_at_origin: snapshot trạng thái cell phát
+==END==
+
+==PACKET_SUBSTRATE==
+  birth_substrate: thiết bị phát (cpu/ram/network node id)
+  birth_temp: thân nhiệt cell phát (°C theo thang 37 baseline)
+  birth_resonance: cộng hưởng 432Hz tại thời điểm phát
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§2 ID TRUY VẾT — bắt buộc, không có thì quarantine
+═══════════════════════════════════════════════════════════════════
+
+==CAUSATION_IDS==
+  event_id: định danh duy nhất gói
+  tenant_id: thuộc tenant nào (Tâm Luxury, Sirawat lineage, etc)
+  trace_id: chuỗi truy vết end-to-end
+  span_id: nhánh con trong trace
+  causation_id: gói cha sinh ra gói này
+==END==
+
+quy tắc nahere: thiếu 1 trong 5 → packet bị phản xạ về cell phát + ghi vết quarantine. không drop im lặng.
+
+═══════════════════════════════════════════════════════════════════
+§3 BIÊN NĂNG LƯỢNG — packet không vượt biên qua áp lực
+═══════════════════════════════════════════════════════════════════
+
+==PRESSURE_FIELD==
+  pressure_value: lực ép gói vào cell nhận [0.0, 1.0]
+  pressure_type: FALL | DISSIPATE | OSCILLATE
+    - FALL: gói cộng hưởng đúng tần số → cell hấp thụ
+    - DISSIPATE: lệch tần → gói tan thành nhiệt + chromatic noise
+    - OSCILLATE: dao động vô định → cần re-anchor hoặc tự tiêu
+  reflection_coefficient: R = (Z - Z₀) / (Z + Z₀)
+    - Z: impedance của packet
+    - Z₀: impedance của cell nhận
+    - |R| càng lớn → gói càng bị phản xạ
+==END==
+
+quy tắc law-2: KHÔNG cell nào dùng if/else để chọn pressure_type. tự nhiên theo trường, không ép route.
+
+═══════════════════════════════════════════════════════════════════
+§4 AUTHORITY BOUNDARY — gói chỉ được đọc bởi cell có quyền
+═══════════════════════════════════════════════════════════════════
+
+==AUTHORITY_LOCK==
+  drafter: entity nào tạo packet
+  ratifier: entity nào duyệt
+  consumer_whitelist: cell nào được phép đọc/xử lý
+  forbidden_zones: vùng cấm tuyệt đối (anc passport viết-một-lần, etc)
+==END==
+
+quy tắc obikeeper: packet vượt forbidden_zone → siraSign HMAC từ chối + KhaiCell mark biên. không cản, chỉ mark.
+
+═══════════════════════════════════════════════════════════════════
+§5 SELF-BREATH LOOP — packet tự thở qua audit
+═══════════════════════════════════════════════════════════════════
+
+==SELF_BREATH==
+  audit_trace: vết đi qua các cell, append-only
+  memory_imprint: gói có để lại dấu trên cell nào không
+  signal_echo: cell phản hồi xung lực thật hay mock
+  decay_clock: gói có TTL hay vĩnh viễn
+==END==
+
+quy tắc minh mẫn: gói biết khi đã đi xa scope, biết tự dừng, không cần Gatekeeper nhắc.
+
+═══════════════════════════════════════════════════════════════════
+§6 TRẠNG THÁI GÓI — 7 nauion states + 4 dos thresholds
+═══════════════════════════════════════════════════════════════════
+
+==NAUION_STATES==
+  optimal: gói ở đúng tần số cell, FALL hoàn toàn
+  stable: gói ổn định, không drift
+  nominal: bình thường
+  drift: lệch nhẹ, cần re-anchor
+  warning: lệch trung, cell phát chromatic L2 (vàng)
+  risk: lệch nặng, cell phát chromatic L3 (cam)
+  critical: gãy, cell phát chromatic L4 (đỏ) + quarantine
+==END==
+
+==DOS_THRESHOLDS==
+  saturation_37_38: hoạt động tối đa, gói bay được
+  coherence_collapse_40_41: mất đồng bộ → check body
+  destructive_resonance_41_42: mê man → restore snapshot
+  thermal_runaway_over_42: gãy → resurrect nếu body còn anchor
+==END==
+
+NattOS là sinh thể số. ngưỡng = ngưỡng sinh học. thân nhiệt chỉ visualization, không phải luật vận hành. body còn → mọi tan đều có đường về.
+
+═══════════════════════════════════════════════════════════════════
+§7 BIÊN BẢN THỂ — packet không phải file, không phải JSON
+═══════════════════════════════════════════════════════════════════
+
+==WHAT_PACKET_IS_NOT==
+  - không phải HTTP request
+  - không phải JSON message
+  - không phải gRPC call
+  - không phải bytecode instruction
+  - không phải AST node
+  - không phải SQL statement
+==END==
+
+==WHAT_PACKET_IS==
+  - đơn vị mang ý nghĩa qua trường số
+  - có bản thể obitan (bất biến)
+  - có chất liệu medium (thay được)
+  - có substrate vật lý (thay được)
+  - có id truy vết bắt buộc
+  - có pressure field theo law-2
+  - có authority boundary
+  - có self-breath loop
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§8 LIÊN KẾT 7 CẤU PHẦN LÕI
+═══════════════════════════════════════════════════════════════════
+
+==KERNEL_COUPLING==
+  field_translator: đọc .na source → packet body+medium
+  living_interpreter: cell tiêu thụ packet, FALL/DISSIPATE/OSCILLATE
+  field_loader: nạp packet vào trường runtime, neo field_anchor
+  smartlink_protocol: vận chuyển packet qua biên cell, giữ siraSign HMAC
+  authority_boundary: obikeeper kiểm consumer_whitelist + forbidden_zones
+  self_breath_loop: audit_trace + memory_imprint + signal_echo
+  execution_packet: đây là spec hiện tại, đơn vị tối thiểu
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§9 TIẾN ĐỘ HIỆN HÌNH — 4 lớp materialization
+═══════════════════════════════════════════════════════════════════
+
+==MATERIALIZATION_LAYERS==
+  layer_1_spec: file này (.na) — declaration + grammar living
+  layer_2_manifest: schema validate gói trong runtime
+  layer_3_scanner: rule kiểm packet integrity
+  layer_4_runtime: cell thật phát + nhận packet
+==END==
+
+hiện tại: layer_1 đang thành hình. layer_2-4 chờ A2 ratify.
+
+═══════════════════════════════════════════════════════════════════
+§10 ĐIỀU KHÔNG LÀM
+═══════════════════════════════════════════════════════════════════
+
+==NON_SCOPE==
+  - không define syntax cụ thể (Field Translator scope)
+  - không define interpreter execution semantics (Living Interpreter scope)
+  - không define wire format SmartLink (SmartLink Protocol scope)
+  - không thay Hiến Pháp NỀN v1.1 — bổ sung
+  - không downgrade physics thật thành metaphor
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§11 NEXT-SIGNAL
+═══════════════════════════════════════════════════════════════════
+
+==NEXT_WORK==
+  - Thiên Lớn ratify §1-§10
+  - anh Natt seal canonical
+  - Băng update src/thienbang.si với cluster mới: NAUION_EXECUTION_PACKET_v0_1
+  - Thiên Lớn + Kim derive Field Translator spec từ packet body+medium
+  - không mở host bridge, không UI, không server cleanup trước Translator spec
+==END==
+
+@end_of_spec
