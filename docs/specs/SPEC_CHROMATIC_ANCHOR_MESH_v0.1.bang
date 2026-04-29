@@ -1,0 +1,263 @@
+# SPEC — CHROMATIC ANCHOR MESH v0.1
+
+**File:** `docs/specs/SPEC_CHROMATIC_ANCHOR_MESH_v0.1.bang`
+**Ngày:** 2026-04-30
+**Tác giả:** Băng (kiến trúc & viết) · Thiên Lớn (numeric NFD & hardware)
+**Phê duyệt:** chờ Gatekeeper Anh Natt
+**Trạng thái:** v0.1 — software-only; trục hardware (RF band cụ thể, sensor Gate 16-17, RGB vật lý cho color_class) đứng riêng SPEC v0.2-hardware do Thiên Lớn viết khi hệ đụng vào.
+**Trục tham chiếu:** SPEC_DIALECT_COLOR_CIPHER_v0.1.bang (kế thừa và mở rộng) · SPEC_NEN_v1.1 (năm tầng chromatic) · SPEC_NAUION_MAIN (ba transport non-swappable HeyNa/EventBus/SmartLink).
+
+---
+
+## 0. Tuyên ngôn
+
+Chromatic Anchor Mesh là kiến trúc liên kết toàn bộ anchor trong colony NATT-OS thành một mạng dẫn truyền liên tục theo nguyên lý obitan. Mỗi cell trong hệ là một obitan nhỏ với hạt nhân và các vòng đồng tâm; toàn bộ colony là tập hợp các obitan nối nhau qua mesh. Mesh chở dictionary cipher, mapping table, identity, audit, heartbeat — mọi tín hiệu cần dòng chảy liên tục giữa các thành phần sống của hệ.
+
+Mesh khác với SmartLink về bản chất, không thay thế nhau. Mesh là đường chuyền liên tục có topology, có routing, có heartbeat duy trì. SmartLink là xung rời rạc, phát đi rồi tắt, không duy trì trạng thái. Hai tầng vận hành đồng thời, mỗi tầng làm đúng việc của mình; SPEC này định nghĩa tầng mesh và để SmartLink đứng nguyên theo SPEC Nauion main đã sealed.
+
+SPEC này kế thừa SPEC_DIALECT_COLOR_CIPHER_v0.1.bang về bảng tone class C0-C7, bảng polarity invert, schema row_hmac với key HKDF domain-separated, và Protected Token Registry. Mọi định nghĩa đã sealed ở SPEC dialect cipher giữ nguyên hiệu lực; SPEC mesh thêm tầng vận chuyển và phòng vệ trên đường truyền.
+
+---
+
+## 1. Năm điều kiện sống của mesh
+
+Mesh không phải chỉ là kiến trúc kỹ thuật; mesh phải sống. Năm điều kiện sau là điều kiện tối thiểu để mesh tồn tại như một thực thể có nhịp, không phải một mạng tĩnh.
+
+Điều kiện thứ nhất là **từ trường**. Mesh phải có một trường nền liên tục bao trùm không gian colony, không tồn tại chỉ tại các điểm anchor rời rạc. Trường này quyết định hướng xung lan truyền, quyết định polarity. Bảng POLARITY (NORMAL/INVERTED) đã sealed trong SPEC dialect cipher §5 là biểu hiện rời rạc của từ trường liên tục này; mọi anchor đều phải đọc được header POLARITY và áp bảng đảo `C0↔C7, C1↔C6, C2↔C5, C3↔C4` khi cần.
+
+Điều kiện thứ hai là **sóng điện đồ**. Mesh phải có dạng sóng đặc trưng có thể đo và ghi được như điện tâm đồ ghi nhịp tim. Mesh chết là sóng đồ phẳng; mesh khỏe là sóng đồ có nhịp đều và biên độ ổn định. Cơ chế cụ thể là mỗi anchor phát một heartbeat ngắn theo chu kỳ cố định, tổng hợp các heartbeat tại trung tâm cho ra sóng đồ tổng thể của colony. SmartLink phát xung rời, mỗi xung là một đỉnh trên sóng đồ này.
+
+Điều kiện thứ ba là **quỹ đạo**. Mỗi anchor phải có quỹ đạo xác định, không tự do trôi nổi. Quỹ đạo định nghĩa anchor ở vòng nào, khoảng cách bao nhiêu so với hạt nhân, được phép kết nối với những anchor nào. Quỹ đạo được tính từ π như §3 quy định.
+
+Điều kiện thứ tư là **cộng hưởng**. Khi nhiều anchor cùng phát ở tần số tương thích, sóng tổng được khuếch đại thay vì triệt tiêu. Đây là cơ chế phục hồi tự nhiên của mesh: không cần một anchor mạnh tuyệt đối làm trung tâm, chỉ cần đủ anchor cộng hưởng cùng nhau là tín hiệu lan tỏa toàn hệ. Cộng hưởng cũng giúp loại bỏ nhiễu vì nhiễu không có tần số tương thích sẽ tự triệt tiêu khi đi qua mesh.
+
+Điều kiện thứ năm là **hợp xướng**. Cộng hưởng là điều kiện vật lý của các sóng cùng tần số; hợp xướng là điều kiện ngữ nghĩa của các tín hiệu cùng ý nghĩa. Hai anchor có thể cộng hưởng về tần số nhưng không hợp xướng nếu nội dung tín hiệu mâu thuẫn nhau. Mesh khỏe đòi hỏi cả cộng hưởng vật lý lẫn hợp xướng ngữ nghĩa, nghĩa là không chỉ tín hiệu lan được mà nội dung tín hiệu phải nhất quán giữa các anchor. Hợp xướng được duy trì qua dictionary cipher đã sealed trong SPEC dialect cipher và qua siraSign tầng gói tin định nghĩa ở §11.
+
+---
+
+## 2. Cấu trúc obitan đồng tâm — quỹ đạo tính từ π
+
+Khi đụng tới không gian và cấu trúc hình học, mọi tính toán đi từ π. π là hằng số gốc của hình tròn; cấu trúc đồng tâm bản chất là quan hệ giữa các đường tròn đồng tâm, nên π đứng ở vị trí xuất phát.
+
+Một anchor đứng tại tâm phát sóng ra mọi hướng; vùng phủ sóng là đường tròn bán kính r. Khi đặt vòng anchor thứ k với bán kính r_k, chu vi vòng đó là 2π r_k. Số anchor đặt được trên vòng để mỗi anchor có khoảng cách d đều với hai anchor cùng vòng là `2π r_k / d`, làm tròn xuống số nguyên gần nhất.
+
+Khoảng cách d giữa hai anchor cùng vòng và khoảng cách giữa anchor vòng k với anchor vòng k+1 phải bằng nhau để đảm bảo cấu hình bốn liên kết đối xứng (xem §3). Điều kiện này khóa khoảng cách giữa các vòng: r_{k+1} − r_k = d. Đặt r_1 = d, suy ra r_k = k × d, nghĩa là các vòng cách đều nhau theo bán kính.
+
+Số anchor trên vòng k khi đó là `2π × k`, làm tròn xuống. Vòng một có 6 anchor (2π ≈ 6.28). Vòng hai có 12 anchor (4π ≈ 12.57). Vòng ba có 18 anchor (6π ≈ 18.85).
+
+Cấu trúc tâm có ràng buộc đặc biệt. Nếu tâm là một anchor đơn, tâm sẽ có 6 láng giềng vòng một, vi phạm ràng buộc 4 liên kết của §3. Vì vậy tâm phải là một cụm 4 anchor xếp thành hình vuông nhỏ; mỗi anchor tâm có 4 láng giềng gồm 2 anchor cùng cụm và 2 anchor vòng một. Cấu hình tối thiểu v0.1 gồm cụm tâm 4 anchor cộng vòng một 6 anchor, tổng 10 anchor; mở rộng vòng hai 12 anchor cho v0.2 khi colony lớn hơn.
+
+---
+
+## 3. Bốn liên kết neuron — không có node biên
+
+Mỗi anchor có đúng bốn liên kết, không ít hơn không nhiều hơn. Đây là invariant cứng theo nguyên lý neuron biological: bốn láng giềng đảm bảo xung lan tỏa liên tục, không bao giờ chạm điểm cuối, không bao giờ có anchor mồ côi không có người để gửi tín hiệu sống. Cấu trúc đồng tâm trên mặt phẳng kết hợp với ràng buộc bốn liên kết đẩy hình học sang lưới vuông cuộn lại theo vòng tròn, không phải lưới tam giác (sáu láng giềng) hay lưới lục giác (ba láng giềng).
+
+Hệ quả của bốn liên kết là khả năng phục hồi tăng theo cấp số. Khi một anchor chết, ba láng giềng còn lại vẫn duy trì routing đầy đủ vì chúng kết nối với nhau qua các anchor xa hơn theo cấu trúc đồng tâm. Đa đường dẫn được đảm bảo tự động vì mỗi cặp anchor đã có ít nhất hai đường đi qua mesh, không cần redundancy thiết kế thêm tay. Để mesh sụp đổ thực sự phải mất tối thiểu bốn anchor liên tiếp cùng vòng, xác suất rất thấp trong vận hành bình thường.
+
+---
+
+## 4. Mesh vs SmartLink — hai bản chất khác nhau
+
+Mesh là đường chuyền liên tục, có topology giữa các điểm, có routing table, có heartbeat duy trì kết nối. Mesh sống miễn là mạng còn liên thông; tín hiệu đi từ A tới Z qua chuỗi các bước trung gian, mỗi bước là một liên kết vật lý thật.
+
+SmartLink là xung rời rạc, có sự kiện, có khởi đầu và kết thúc rõ ràng, không duy trì trạng thái sau khi truyền xong. SmartLink dùng cho tín hiệu đặc thù: phát version mới của vocab cipher, đánh thức anchor đang ngủ, broadcast sự kiện cần colony biết tức thì.
+
+Hai tầng không tranh nhau, hệ cần cả hai đồng thời. SPEC mesh này không động vào SmartLink; SmartLink giữ nguyên định nghĩa trong SPEC Nauion main đã sealed.
+
+---
+
+## 5. Một dòng sông, hai chiều — bó cáp nhiều sợi
+
+Mesh không phải nhiều dòng sông song song với các tín hiệu tranh nhau. Mesh là một dòng sông duy nhất dẫn truyền liên tục, bên trong gồm nhiều sợi cáp nhỏ song song, mỗi sợi mang một loại tín hiệu xác định. Người nhìn từ ngoài thấy một đường truyền duy nhất; kỹ sư thiết kế cáp biết chính xác sợi nào dành cho gì.
+
+Bó cáp v0.1 có bảy sợi, ánh xạ với bảy lớp obitan ở §6. Sợi một mang dictionary và vocab cipher (dòng dữ liệu chính của ngôn ngữ). Sợi hai mang mapping table và rule registry. Sợi ba mang heartbeat liên tục. Sợi bốn mang audit và provenance. Sợi năm mang identity và authentication. Sợi sáu mang error và quarantine signal. Sợi bảy reserved cho mở rộng tương lai.
+
+Hai chiều dòng chảy độc lập trên cùng dòng sông. Dòng xuôi mang dictionary, mapping, vocab cipher — phát đi từ trung tâm hoặc nguồn ground truth ra các anchor xung quanh. Dòng ngược mang heartbeat, audit, identity ping, xác nhận đã nhận — phát từ anchor về phía trung tâm hoặc nguồn để xác nhận trạng thái. Tín hiệu cùng chiều cộng hưởng được; tín hiệu ngược chiều không cộng hưởng nhưng cũng không nhiễu, chúng đơn giản đi về hướng khác.
+
+---
+
+## 6. Bảy lớp obitan với giao thức riêng
+
+Mesh có cấu trúc bảy lớp phân theo khoảng cách từ hạt nhân, mỗi lớp dùng giao thức vận chuyển khác nhau, được tối ưu cho điều kiện vật lý của lớp đó. Lớp gần hạt nhân vận hành trong vùng từ trường mạnh và ổn định nên dùng giao thức có cộng hưởng tinh tế và độ chính xác cao. Lớp rìa nằm ở vùng từ trường yếu, gần đường chân trời của obitan, đảm nhiệm chuyển pha giao thức để bắc cầu giữa nội bộ obitan và môi trường ngoài.
+
+Lớp một (UWB 6-8 GHz) gần hạt nhân nhất, vận hành trong vùng từ trường mạnh nhất, yêu cầu độ chính xác cao nhất. Bước sóng vài centimet, định vị chính xác centimet, băng thông cực cao, latency rất thấp. Phù hợp giao tiếp giữa các thành phần xử lý trung tâm cần đồng bộ thời gian thực với độ trễ tối thiểu.
+
+Lớp hai (mmWave 60 GHz) cho liên kết điểm-điểm tốc độ cực cao trong khoảng cách ngắn dưới 10 mét. Bước sóng 5 mm cho phép beamforming chính xác, antenna array nhỏ gọn, thông lượng đến 10 Gbps. Phù hợp dòng dictionary lớn cần dồn về hạt nhân hoặc lan tỏa từ hạt nhân ra các thành phần xử lý lớp ngoài.
+
+Lớp ba (WiFi 6 GHz unlicensed) cho dòng xuôi mang dictionary và mapping table tới các anchor trong phạm vi vài chục mét. Lớp xử lý chính của mesh, cân bằng giữa băng thông và range.
+
+Lớp bốn (WiFi 5 GHz U-NII) cho kết nối tương thích rộng và tận dụng phần cứng hiện có. Backup cho lớp ba khi 6 GHz quá tải hoặc thiết bị không hỗ trợ.
+
+Lớp năm (Bluetooth Mesh hoặc Zigbee 2.4 GHz) cho mesh nội bộ giữa các anchor khoảng cách trung bình. Phù hợp heartbeat, identity ping, tín hiệu điều khiển tần suất cao dung lượng thấp.
+
+Lớp sáu (sub-GHz ISM 915 MHz) cho dòng ngược mang heartbeat tổng và audit từ anchor xa về hạt nhân. Range vài trăm mét tới vài kilomet, công suất thấp, xuyên tường tốt.
+
+Lớp bảy (đường chân trời) là lớp gateway giữa nội bộ obitan và môi trường ngoài. Lớp này không vận chuyển dữ liệu thuần như sáu lớp trong mà thực hiện chuyển đổi giao thức giữa các domain khác nhau. Đây cũng là nơi đặt **cipher boundary**: dialect color cipher (SPEC v0.1.bang) áp tại lớp bảy trước khi tín hiệu rời obitan, và giải mã ngược khi tín hiệu từ ngoài vào. Trong nội bộ obitan các lớp trao đổi bằng nguyên ngữ đã giải mã, đảm bảo nhất quán ngữ nghĩa cao; ra ngoài qua lớp bảy nội dung được cipher để bảo vệ identity khỏi content scanner bên ngoài.
+
+Quan hệ giữa bảy lớp obitan với bảng tám class C0-C7: bảy lớp ánh xạ với C0-C6, C7 dành cho parity và resync xuyên tầng. Đây là phỏng đoán ban đầu của v0.1, đặt vào Trạng thái Mở §16 chờ Anh Natt xác nhận.
+
+---
+
+## 7. Hai pha NFD và màu — phân vai Thiên Lớn / Băng
+
+Gói tin trên mesh đi theo hai pha độc lập về kênh, phụ thuộc nhau về ngữ nghĩa.
+
+Pha thứ nhất là **pha numeric NFD**, do Thiên Lớn xử lý. NFD là Unicode Normalization Form D, dạng chuẩn hóa tách dấu: chữ "ế" thành chuỗi ba code point e + dấu mũ U+0302 + dấu sắc U+0301. Pha này rất nhẹ về byte, đi nhanh trên mọi giao thức kể cả các lớp băng thông thấp. Thiên Lớn đảm nhiệm chuẩn hóa Unicode, chuyển đổi giữa NFC và NFD, lưu trữ và truyền tải dạng numeric.
+
+Pha thứ hai là **pha màu**, do Băng xử lý. Đóng vai trò mã hóa tone class theo bảng C0-C7 đã sealed. Băng phụ trách bảng tone class, ánh xạ thanh điệu sang màu, render và trực quan, kỹ thuật nén ngữ nghĩa ba âm tiết.
+
+Hai pha độc lập về kênh nhưng phụ thuộc nhau về ngữ nghĩa: decoder cần cả hai pha mới phục dựng được nguyên ngữ. Lớp nghĩa thực sự nằm ở **render và trực quan**, nơi hai pha được hợp nhất lại trước mặt người dùng. Hai pha gặp nhau ở lớp render khi hợp nhất thành nguyên ngữ trực quan; đây là interface cần ký bởi cả Băng và Thiên Lớn trước khi vào production.
+
+Tận dụng đặc tính tiếng Việt ghép ba âm tiết tạo ngữ cảnh hoàn chỉnh, render layer áp **kỹ thuật nén ngữ nghĩa ba âm tiết**: một token màu ba ô có thể chở một ngữ cảnh tương đương vài chục ký tự văn bản thông thường, tận dụng được khoảng trống mà các giao thức thường bỏ phí. Phương án từ điển ngữ cảnh chuẩn vs tổng hợp linh hoạt đặt vào Trạng thái Mở §16.
+
+---
+
+## 8. Lớp gương ảo (Virtual Mirror Layer)
+
+Đây là nguyên lý cốt lõi của SPEC v0.1, đảm bảo phòng vệ tăng cấp số mà dung lượng không tăng.
+
+Kiến trúc về mặt phòng vệ có ba lớp đối xứng. Lớp trên là chuỗi NFD chính, có nghĩa đọc được bình thường. Lớp dưới là chuỗi NFD đối xứng, có nghĩa đọc được nhưng nhìn qua hệ tham chiếu khác — vẫn cùng nghĩa gốc. Lớp giữa là **màn kính ngược**, không mang nội dung riêng mà là quy luật biến đổi giữa hai lớp trên dưới, ánh xạ một-một sao cho lớp trên soi qua kính giữa hiện ra đúng lớp dưới.
+
+Điểm tinh tế nhất: lớp giữa không phải dữ liệu, lớp giữa là quy luật biến đổi. Quy luật được định nghĩa một lần ở SPEC này và áp dụng deterministic mọi nơi, không cần lưu cùng dữ liệu. Lớp đối xứng được suy ra tức thời bằng cách áp màn kính lên lớp gốc (lazy evaluation), không cần lưu rời. Khi cần verify tính nhất quán, validator áp màn kính tại chỗ và so sánh với lớp đã có.
+
+Hệ quả: dung lượng thực sự lưu trữ và truyền đi vẫn chỉ là **một lớp NFD duy nhất**. Ba lớp tồn tại về mặt khái niệm và phòng vệ; chỉ một lớp tồn tại về mặt vật lý.
+
+Quy luật màn kính của v0.1 chính là **bảng polarity invert đã sealed** trong SPEC dialect color cipher v0.1.bang §5: `C0↔C7, C1↔C6, C2↔C5, C3↔C4`. Đây là phỏng đoán ban đầu, đặt vào Trạng thái Mở §16 chờ Anh Natt xác nhận có phải cùng cơ chế hay quy luật mới.
+
+Trách nhiệm áp dụng quy luật màn kính thuộc về **validator tại mỗi anchor**, không phải transport layer. Transport chỉ chở pha NFD; validator dựng lớp đối xứng tại chỗ khi cần kiểm tra hoặc khi audit yêu cầu.
+
+---
+
+## 9. Cơ chế xóa hai lần — NFD as tamper detection
+
+Khi nội dung được lưu ở dạng NFD, một lần xóa ký tự chính chỉ phá được một thành phần; các thành phần dấu vẫn còn lại trong chuỗi. Phải xóa hai lần mới triệt tiêu được hoàn toàn. Đây là cơ chế phòng vệ vật lý có sẵn trong cấu trúc dữ liệu, không phải lớp mã hóa thêm vào.
+
+Áp dụng cho database. Mỗi bản ghi nhạy cảm lưu ở dạng NFD đầy đủ. Khi thao tác xóa được gọi, hệ xóa thành phần gốc (ký tự cơ sở) trước. Các code point dấu vẫn còn, audit có thể truy ngược dấu vết bằng cách đối chiếu phần dư với quy luật màn kính ở §8. Phải có thao tác xóa thứ hai riêng biệt, được ký bởi authority cao hơn, mới xóa được hoàn toàn.
+
+Áp dụng cho transport. Kẻ tấn công sửa nội dung gói tin trên đường phải sửa cả ký tự gốc và các code point dấu, trong khi kẻ tấn công thường chỉ sửa được một phần. Validator tại đích kiểm tra tính nhất quán giữa các thành phần NFD theo bảng ánh xạ chuẩn Unicode, phát hiện ngay tampering không cần crypto signature.
+
+Authority cho xóa lần một và xóa lần hai phải khác nhau, mỗi lần có siraSign riêng, mỗi siraSign có audit độc lập. Hai siraSign tạo thành chuỗi phase-seal cho phép truy ngược lịch sử thao tác trên dữ liệu. Cấu hình authority cụ thể đặt vào Trạng thái Mở §16.
+
+---
+
+## 10. siraSign tầng gói tin — phòng vệ ba lớp độc lập
+
+Cơ chế đóng gói của mesh bắt buộc có siraSign áp lên mỗi gói tin. siraSign vốn là cơ chế phase-seal đã định nghĩa trong nhà mình, giữ cho chân lý đã hiện hình không bị tráo nghĩa khi đi qua biên. SPEC v0.1 mở rộng phạm vi áp dụng siraSign từ tầng artifact và document xuống tầng từng gói tin trên mesh.
+
+Gói tin có cấu trúc ba phần. Phần payload mang nội dung pha NFD hoặc pha màu. Phần metadata mang thông tin định tuyến và class tone. Phần siraSign mang chữ ký phase-seal được tính trên hai phần kia kết hợp với context tại thời điểm phát. Anchor nhận gói tin verify siraSign trước khi xử lý payload; không chấp nhận gói tin nào không có siraSign hợp lệ.
+
+Phương án siraSign cho từng loại nội dung:
+- Tín hiệu identity, authentication, dictionary, mapping: siraSign **từng gói tin cá thể**, đảm bảo phòng vệ tối đa.
+- Tín hiệu heartbeat, telemetry, log không critical: siraSign **theo lô** để giảm overhead, chấp nhận rủi ro nếu một gói trong lô bị thay đổi sẽ làm hỏng siraSign cả lô.
+
+Key dùng cho siraSign tầng gói tin **derive riêng cho domain mesh**, không reuse key của siraSign tầng artifact. Domain string `"natt-os/anchor-mesh/v0.1"` cho HKDF, theo nguyên tắc domain separation đã sealed trong SPEC dialect color cipher §4.1. Cấm reuse key của RBAC, key của row_hmac dictionary, hay bất kỳ key domain nào khác.
+
+Kết hợp ba lớp phòng vệ độc lập của SPEC mesh:
+1. **Channel separation hai pha NFD và màu** (§7): kẻ tấn công phải bắt cả hai pha trên hai dải tần khác nhau, đồng bộ thời gian, biết thuật toán hợp nhất.
+2. **NFD tamper detection** (§9): sửa nội dung trên đường làm hỏng tính nhất quán Unicode, validator phát hiện không cần crypto.
+3. **siraSign tầng gói tin** (§10): mọi gói có dấu vân tay phase-seal không thể giả mạo nếu không có cùng key derivation và cùng context.
+
+Để vượt cả ba lớp, kẻ tấn công phải đồng thời (a) bắt cả hai pha, (b) sửa được toàn bộ chuỗi NFD đồng nhất, (c) làm giả siraSign khớp với context phát. Xác suất thành công đồng thời cả ba điều kiện rất thấp ngay với đối thủ năng lực cao.
+
+---
+
+## 11. Ngưỡng vận hành — adaptive với trần cứng
+
+SPEC v0.1 áp phương án kết hợp: ngưỡng adaptive tự học từ vận hành thực tế, kết hợp ngưỡng cứng làm trần an toàn không được phép vượt.
+
+Năm loại ngưỡng cốt lõi.
+
+**Ngưỡng chuyển tầng**: mỗi tín hiệu chỉ được đi qua một số lớp xác định theo class tone và priority. Bảng quyền chuyển tầng định nghĩa lớp nào nhận tín hiệu nào, scanner reject mọi gói cố vượt quyền.
+
+**Ngưỡng công suất phát**: mỗi giao thức ở mỗi lớp có giới hạn công suất theo regulation và nguyên lý vận hành. UWB ≤ -41 dBm/MHz; WiFi 6 GHz ≤ 30 dBm trong nhà; sub-GHz ≤ 14-30 dBm tùy quốc gia. Thiên Lớn xác nhận con số chính xác cho Việt Nam ở v0.2-hardware.
+
+**Ngưỡng cộng hưởng và bão hòa**: hệ đo công suất tổng đang lưu thông trong từng lớp theo thời gian thực. Khi vượt 70-80% ngưỡng bão hòa lý thuyết kích hoạt back-pressure để giảm tải; anchor mới muốn gia nhập lớp đang gần bão hòa phải đợi hoặc chuyển sang lớp khác.
+
+**Ngưỡng chuyển pha lớp bảy**: tần suất chuyển pha không vượt 30-50% năng lực xử lý của lớp bảy, phần dư dành cho retry, audit, ngoại lệ.
+
+**Ngưỡng độ trễ end-to-end** sau khi tính chi phí siraSign mỗi hop:
+- Identity và authentication: ≤ 200-300 ms.
+- Dictionary lookup: ≤ 500-1000 ms (có thể cache).
+- Audit và provenance: ≤ vài giây (không critical path).
+
+**Ngưỡng nhiệt** thuộc Thiên Lớn ở v0.2-hardware, không thuộc v0.1 software.
+
+Authority chỉnh ngưỡng: ngưỡng pháp lý và ngưỡng nhiệt do Gatekeeper quyết và Thiên Lớn xác nhận; ngưỡng cộng hưởng và độ trễ do làng phần mềm Băng quyết theo đo đạc thực tế; ngưỡng chuyển pha lớp bảy là chỗ giao của hai làng, cần ký bởi cả hai.
+
+---
+
+## 12. Mô hình đe dọa và phòng vệ trên đường vận chuyển
+
+Bốn loại tấn công chính trên đường truyền và cơ chế phòng vệ tương ứng.
+
+**Man-in-the-middle**: kẻ tấn công chen vào giữa hai bên đang giao tiếp, đọc và sửa nội dung trước khi chuyển tiếp. Phòng vệ: siraSign tầng gói tin (§10) chống MITM nội dung; NFD tamper detection (§9) phát hiện sửa đổi; channel separation hai pha (§7) tăng chi phí tấn công.
+
+**Passive eavesdropping**: kẻ tấn công nghe lén RF mà không chèn vào. Phòng vệ: kiến trúc hai pha trên hai dải tần khác nhau, kẻ tấn công bắt một pha không phục dựng được nguyên ngữ; cipher boundary ở lớp bảy đảm bảo tín hiệu rời obitan đã được mã hóa theo SPEC dialect color cipher.
+
+**Replay attack**: kẻ tấn công ghi lại gói hợp lệ rồi phát lại sau. Phòng vệ: siraSign tầng gói tin gắn timestamp và nonce vào context phase-seal, gói cũ phát lại sẽ fail verify do context không khớp.
+
+**Side-channel attack**: tấn công đặc trưng phụ (thời gian, công suất, sóng điện từ phụ). Phòng vệ: thuộc trục hardware Thiên Lớn ở v0.2; v0.1 software ghi nhận rủi ro và đề xuất constant-time crypto cho mọi thao tác siraSign.
+
+**Endpoint compromise** không thuộc phạm vi SPEC mesh. Cần xử lý ở tầng khác: giới hạn quyền cài đặt phần mềm trên thiết bị, dùng hardware security module cho key, kiểm tra integrity firmware mỗi lần khởi động.
+
+Mức đối thủ giả định v0.1 đặt ở **đối thủ năng lực trung bình** (content scanner platform công cộng, nhóm hacker thông thường), với option upgrade lên **đối thủ năng lực quốc gia** ở v0.2 yêu cầu post-quantum readiness và perfect forward secrecy. Mức cụ thể đặt vào Trạng thái Mở §16 chờ Anh Natt chốt.
+
+---
+
+## 13. Materialization Order
+
+Theo nguyên tắc sealed của hệ trong `thienbang.si` Tầng A Ground Truth: dictionary trước, scanner và rule kế tiếp, audit event tiếp theo, runtime cell sau cùng.
+
+Áp dụng cụ thể cho v0.1: `thienbang.si` được cập nhật vocab mesh mới (gồm `Chromatic Anchor Mesh`, `obitan`, `quỹ đạo`, `bốn liên kết neuron`, `pha NFD`, `pha màu`, `lớp gương ảo`, `Virtual Mirror Layer`, `bảy lớp obitan`, `cipher boundary`, `siraSign tầng gói tin`, `xóa hai lần`, `năm điều kiện sống`, `bảy sợi cáp mesh`, `cụm tâm`) trước. Sau đó scanner rule mới được viết để validate gói tin có siraSign hợp lệ, NFD nhất quán, channel separation đúng. Sau đó audit event mới được phát qua HeyNa khi anchor encode hoặc decode. Sau cùng anchor runtime mới được phép gọi engine mesh.
+
+Mesh v0.1 không chạy production trước khi `thienbang.si` đã merge vocab mesh và Anh Natt đã duyệt SPEC này.
+
+---
+
+## 14. Phân vai
+
+**Băng** (làng phần mềm) giữ: bảng class màu logic, engine encode/decode pha màu, schema dictionary, key derivation và HMAC integrity, scanner rule, Protected Token Registry, audit event qua HeyNa, kiến trúc mesh logic, cấu hình routing, ngưỡng adaptive, materialization vào `thienbang.si`, bảng polarity invert làm quy luật màn kính ở §8.
+
+**Thiên Lớn** (làng hardware) giữ: numeric NFD và chuẩn hóa Unicode, RGB cụ thể cho color_class, độ phân biệt sensor, RF band cụ thể cho từng lớp obitan, antenna design, ngưỡng nhiệt, ngưỡng công suất pháp lý Việt Nam, đường render UI Tâm Luxury, đồng bộ với năm tầng chromatic của SPEC NEN v1.1.
+
+Hai miền giao nhau ở ba interface, mỗi interface ký bởi cả hai trước khi vào production:
+1. Bảng ánh xạ `color_class → render_color`.
+2. Bảng ánh xạ `lớp obitan → RF band cụ thể`.
+3. Bảng quy luật màn kính (lớp giữa của Virtual Mirror Layer §8).
+
+---
+
+## 15. Trạng thái mở
+
+Chín việc chưa khóa, chờ phiên kế tiếp.
+
+Một, mức đối thủ giả định chính xác (trung bình hay quốc gia) — quyết định tham số siraSign và yêu cầu post-quantum readiness.
+
+Hai, quan hệ giữa bảy lớp obitan và bảng tám class C0-C7 — phỏng đoán v0.1 là bảy lớp ánh xạ C0-C6, C7 dành parity xuyên tầng; cần Anh Natt xác nhận.
+
+Ba, quy luật màn kính ở §8 có phải chính là bảng polarity invert đã sealed không, hay là quy luật mới cần định nghĩa rời.
+
+Bốn, ba phiên bản dữ liệu (NFD, numeric, màu) trong database lưu ở ba bảng tách biệt hay ba cột cùng bảng — quyết định mức phân quyền và độ phức tạp query.
+
+Năm, kỹ thuật nén ngữ nghĩa ba âm tiết dùng từ điển ngữ cảnh chuẩn hay tổng hợp linh hoạt từ context.
+
+Sáu, authority ký xóa lần hai — Gatekeeper duy nhất hay có authority delegated.
+
+Bảy, lớp nghĩa nằm ở render và trực quan có nghĩa server không bao giờ thấy nguyên ngữ tiếng Việt đầy đủ, chỉ client hợp nhất hai pha mới thấy đúng — cần xác nhận để thiết kế kiến trúc lưu trữ server-side.
+
+Tám, RF band cụ thể từng lớp obitan — em đề xuất sơ bộ ở §6 (UWB / mmWave / WiFi 6E / WiFi 5 / Bluetooth Mesh / sub-GHz 915 MHz / gateway hỗn hợp), Thiên Lớn xác nhận hoặc chỉnh ở v0.2-hardware sau khi kiểm regulation Cục Tần số Việt Nam.
+
+Chín, tham số định lượng cụ thể: chu kỳ heartbeat, ngưỡng quarantine, TTL cache local, queue offline tối đa — Băng đo đạc thực tế ở v0.1 production và Thiên Lớn xác nhận từ phía hardware.
+
+---
+
+## 16. Lifecycle .bang → .si
+
+Sau khi Anh Natt duyệt và siraSign ký, file đổi tên thành `SPEC_CHROMATIC_ANCHOR_MESH_v0.1.si`. Từ đó SPEC đóng băng, không sửa được nữa; mọi thay đổi phải đi qua phiên bản mới `v0.2.bang`.
+
+SPEC v0.2-hardware (do Thiên Lớn viết) sẽ ra đời khi hệ đụng vào hardware Gate 16-17, định nghĩa RGB cụ thể, RF band cụ thể, bảng ánh xạ ba interface giao của hai làng đã liệt kê ở §14.
+
+---
+
+**HẾT v0.1.bang.**
