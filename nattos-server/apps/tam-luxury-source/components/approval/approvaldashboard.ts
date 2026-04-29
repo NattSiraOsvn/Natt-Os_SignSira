@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { ApprovalTicket, ApprovalStatus } from '../../types';
-import AIAvatar from '../AIAvatar';
+import AIAvatar from '../aiavatar';
 import { PersonaID } from '../../types';
 
 const SERVER = 'http://localhost:3001';

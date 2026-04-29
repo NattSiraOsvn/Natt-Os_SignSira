@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Supplier, PersonaID } from '../types';
-import { SupplierEngine } from '../services/supplier/SupplierEngine';
-import { GmailIntelligence } from '../services/gmailService';
-import { ExportEngine } from '../services/exportService';
-import AIAvatar from './AIAvatar';
+import { SupplierEngine } from '../services/supplier/supplierengine';
+import { GmailIntelligence } from '../services/gmailservice';
+import { ExportEngine } from '../services/exportservice';
+import AIAvatar from './aiavatar';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
 
 export const SupplierClassificationPanel: React.FC = () => {

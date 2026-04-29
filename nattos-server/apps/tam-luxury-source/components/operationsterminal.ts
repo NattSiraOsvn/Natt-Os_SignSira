@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { UserRole, UserPosition, SellerReport, LogisticsSolution, TransferOrder } from '../types';
-import { LogisticsCore } from '../services/logisticsService';
-import AIAvatar from './AIAvatar';
+import { LogisticsCore } from '../services/logisticsservice';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 
 interface OperationsTerminalProps {

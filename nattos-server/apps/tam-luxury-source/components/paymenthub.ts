@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { UserRole, UserPosition, PersonaID } from '../types';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
-import AIAvatar from './AIAvatar';
+import { PaymentEngine, PaymentResponse } from '../services/paymentservice';
+import AIAvatar from './aiavatar';
 
 interface PaymentHubProps {
   currentRole: UserRole;

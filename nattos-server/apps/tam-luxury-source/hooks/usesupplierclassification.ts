@@ -1,8 +1,8 @@
 
 import { useState, useCallback } from 'react';
 import { Supplier } from '../types';
-import { SupplierClassifier } from '../utils/supplierClassifier';
-import { SupplierImportHelper } from '../utils/supplierImportHelper';
+import { SupplierClassifier } from '../utils/supplierclassifier';
+import { SupplierImportHelper } from '../utils/supplierimporthelper';
 import * as XLSX from 'xlsx';
 
 export const useSupplierClassification = () => {

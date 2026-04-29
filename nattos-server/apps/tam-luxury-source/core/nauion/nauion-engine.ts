@@ -3,7 +3,7 @@
  * Tuân thủ SPEC v2.4 (OPT-01R) | Tác giả: Bối Bối
  * Nhiệm vụ: Duy trì 1 kết nối SSE duy nhất, tính toán Impedance Z, phát Nauion.
  */
-import { NotifyBus } from '../../services/notificationService';
+import { NotifyBus } from '../../services/notificationservice';
 
 export class NauionEngine {
     private static instance: NauionEngine;

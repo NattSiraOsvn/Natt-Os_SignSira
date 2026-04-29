@@ -5,7 +5,7 @@ import {
   ResponsiveContainer, BarChart, Bar, ComposedChart, Line
 } from 'recharts';
 // [LỆNH #001] AI API removed — pending EventBus wire
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 
 const AdvancedAnalytics: React.FC = () => {

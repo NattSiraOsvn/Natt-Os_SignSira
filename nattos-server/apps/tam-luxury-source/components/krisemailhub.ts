@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { GmailIntelligence } from '../services/gmailService';
+import { GmailIntelligence } from '../services/gmailservice';
 import { EmailMessage, PersonaID, BusinessMetrics } from '../types';
 
 interface KrisEmailHubProps {

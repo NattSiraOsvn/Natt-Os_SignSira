@@ -122,7 +122,7 @@ natt-os_ver2goldmaster/
 │   ├── server.js         # Main server (port 3001, Node.js + Express)
 │   ├── engine-registry.ts
 │   ├── apps/tam-luxury/  # Static client (43 HTML apps)
-│   └── app Tâm luxury/   # React/TS source
+│   └── apps/tam-luxury-source/   # React/TS source
 │
 ├── audit/
 │   ├── reports/          # Auto-generated audit reports

@@ -1,9 +1,9 @@
 // src/services/ingestion/AIProcessor.ts
-import { IdempotencyManager } from './IdempotencyManager';
-import { DictionaryGuard, matchWithDictionary, BufferDecision } from './DictionaryGuard'; // Added BufferDecision
+import { IdempotencyManager } from './idempotencymanager';
+import { DictionaryGuard, matchWithDictionary, BufferDecision } from './dictionaryguard'; // Added BufferDecision
 import { ExcelExtractor, OCRExtractor, PDFExtractor, ExtractedData } from './extractors';
-import { TaskRouter } from '../taskRouter';
-import { NotifyBus } from '../notificationService';
+import { TaskRouter } from '../taskrouter';
+import { NotifyBus } from '../notificationservice';
 import { PersonaID, ViewType } from '../../types';
 
 // --- INIT COMPONENTS ---

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { BusinessMetrics, ActionLog, UserRole, UserPosition, PersonaID } from '../types';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 
 interface DashboardProps {
   metrics: BusinessMetrics;

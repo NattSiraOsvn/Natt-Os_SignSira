@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { PersonaID } from '../types';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 
 export type NotificationType = 'ORDER' | 'NEWS' | 'RISK' | 'SYSTEM';
 

@@ -1,7 +1,7 @@
 
-import { NotifyBus } from './notificationService';
-import { ShardingService } from './blockchainService';
-import { QuantumBrain } from './quantumEngine'; // Import Brain
+import { NotifyBus } from './notificationservice';
+import { ShardingService } from './blockchainservice';
+import { QuantumBrain } from './quantumengine'; // Import Brain
 import { PersonaID } from '../types';
 
 /**

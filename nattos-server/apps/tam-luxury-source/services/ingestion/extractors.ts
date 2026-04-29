@@ -2,7 +2,7 @@
 // src/services/ingestion/extractors.ts
 import * as XLSX from 'xlsx';
 // [LỆNH #001] AI API removed — pending EventBus wire
-import { CustomsUtils } from '../customsUtils';
+import { CustomsUtils } from '../customsutils';
 
 // --- INTERFACES ---
 export interface ExtractedData {

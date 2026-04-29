@@ -1,5 +1,5 @@
 
-import { NotifyBus, AlertType } from './notificationService';
+import { NotifyBus, AlertType } from './notificationservice';
 import { PersonaID } from '../types';
 
 export class RealTimeNotificationService {

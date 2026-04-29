@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import ThreatDetectionService, { SecurityThreat } from '../services/threatDetectionService';
-import QuantumPulse from './QuantumPulse';
-import { QuantumBuffer } from '../services/quantumBufferService';
+import ThreatDetectionService, { SecurityThreat } from '../services/threatdetectionservice';
+import QuantumPulse from './quantumpulse';
+import { QuantumBuffer } from '../services/quantumbufferservice';
 
 interface SecurityOverlayProps {
   children: React.ReactNode;

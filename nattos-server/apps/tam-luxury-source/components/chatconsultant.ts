@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Domain, ChatMessage, PersonaID } from '../types';
 import { DOMAINS, PERSONAS } from '../constants';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 
 interface ChatConsultantProps {
   initialDomain?: Domain;

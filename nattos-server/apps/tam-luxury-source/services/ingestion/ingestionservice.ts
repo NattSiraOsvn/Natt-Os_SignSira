@@ -1,7 +1,7 @@
 
 import { FileMetadata, IngestStatus } from '../../types';
-import { ShardingService } from '../blockchainService';
-import { NotifyBus } from '../notificationService';
+import { ShardingService } from '../blockchainservice';
+import { NotifyBus } from '../notificationservice';
 
 /**
  * 🚀 OMEGA INGESTION SERVICE v2.0

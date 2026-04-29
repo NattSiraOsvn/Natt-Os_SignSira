@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { EnterpriseLinker } from '../services/enterpriseLinker';
+import { EnterpriseLinker } from '../services/enterpriselinker';
 import { AggregatedReport, PersonaID } from '../types';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   ComposedChart, Line, Area, PieChart, Pie, Cell, Treemap
 } from 'recharts';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 
 const UnifiedReportingHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'channels' | 'costs' | 'products'>('overview');

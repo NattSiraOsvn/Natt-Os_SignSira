@@ -1,9 +1,9 @@
 
 import React, { useState, ReactNode, useMemo } from 'react';
 import { ViewType, UserRole, ModuleConfig, UserPosition, PositionType } from '../types';
-import { PersonnelEngine } from '../services/personnelEngine';
-import ModuleRegistry from '../services/moduleRegistry';
-import SystemTicker from './SystemTicker';
+import { PersonnelEngine } from '../services/personnelengine';
+import ModuleRegistry from '../services/moduleregistry';
+import SystemTicker from './systemticker';
 
 interface AppShellProps {
   children: ReactNode;

@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { UserRole, UserPosition, SellerReport, SellerIdentity, CustomerLead, PersonaID, PositionType } from '../types';
-import { SellerEngine } from '../services/sellerEngine';
-import { NotifyBus } from '../services/notificationService';
-import AIAvatar from './AIAvatar';
+import { SellerEngine } from '../services/sellerengine';
+import { NotifyBus } from '../services/notificationservice';
+import AIAvatar from './aiavatar';
 
 interface SellerTerminalProps {
   currentRole: UserRole;

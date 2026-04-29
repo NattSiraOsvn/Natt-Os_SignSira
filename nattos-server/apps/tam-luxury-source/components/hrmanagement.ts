@@ -3,9 +3,9 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { 
   UserRole, UserPosition, DetailedPersonnel, BusinessMetrics, PositionType 
 } from '../types';
-import { HREngine } from '../services/hrEngine';
-import { ExportEngine } from '../services/exportService';
-import AIAvatar from './AIAvatar';
+import { HREngine } from '../services/hrengine';
+import { ExportEngine } from '../services/exportservice';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 import { 
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer 

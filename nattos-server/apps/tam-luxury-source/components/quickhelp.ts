@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { PersonaID } from '../types';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 
 interface QuickHelpProps {
   onClose: () => void;

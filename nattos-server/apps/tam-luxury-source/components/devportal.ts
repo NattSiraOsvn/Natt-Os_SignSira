@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import TechnicalDocs from './TechnicalDocs';
-import { ShardingService } from '../services/blockchainService';
-import { aiEngine } from '../services/aiEngine';
+import TechnicalDocs from './technicaldocs';
+import { ShardingService } from '../services/blockchainservice';
+import { aiEngine } from '../services/aiengine';
 import { BlockShard, AuditItem, BusinessMetrics, PersonaID } from '../types';
-import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleRegistry';
-import { ExportEngine } from '../services/exportService';
-import AIAvatar from './AIAvatar';
-import SuperDictionary, { SUPER_DICTIONARY } from '../SuperDictionary';
+import ModuleRegistry, { MODULE_REGISTRY } from '../services/moduleregistry';
+import { ExportEngine } from '../services/exportservice';
+import AIAvatar from './aiavatar';
+import SuperDictionary, { SUPER_DICTIONARY } from '../superdictionary';
 
 interface DevPortalProps {
   logAction?: (action: string, details: string, undoData?: unknown) => void;

@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { ShardingService } from '../services/blockchainService';
-import { EventBridge } from '../services/eventBridge';
-import AIAvatar from './AIAvatar';
+import { ShardingService } from '../services/blockchainservice';
+import { EventBridge } from '../services/eventbridge';
+import AIAvatar from './aiavatar';
 import { PersonaID, UserRole, BusinessMetrics, UserPosition } from '../types';
 
 // Interface nhận đúng Props từ DynamicModuleRenderer để tránh Crash

@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
-import { SmartLinkMappingEngine } from '../services/mapping/SmartLinkMappingEngine';
+import { SmartLinkMappingEngine } from '../services/mapping/smartlinkmappingengine';
 import { AccountingMappingRule, SalesEvent, AccountingEntry, RealTimeUpdate } from '../types';
 
 export const useSmartMapping = () => {

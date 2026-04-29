@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import ApiPortal from './ApiPortal';
+import ApiPortal from './apiportal';
 
 const TechnicalDocs: React.FC = () => {
   const [activeDoc, setActiveDoc] = useState<'architecture' | 'apis' | 'deployment' | 'troubleshooting' | 'playground' | 'metrics'>('architecture');

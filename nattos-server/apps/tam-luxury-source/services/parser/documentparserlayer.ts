@@ -1,6 +1,6 @@
 
-import { QuantumBuffer } from '../quantumBufferService';
-import { NotifyBus } from '../notificationService';
+import { QuantumBuffer } from '../quantumbufferservice';
+import { NotifyBus } from '../notificationservice';
 import { PersonaID } from '../../types';
 
 export interface IngestTask {

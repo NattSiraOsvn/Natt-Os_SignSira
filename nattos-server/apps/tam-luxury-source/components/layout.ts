@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import ErrorBoundary from './ErrorBoundary';
+import ErrorBoundary from './errorboundary';
 import { 
   Terminal, 
   Cpu, 

@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { SmartLinkEngine } from '../services/smartLinkEngine';
-import { SalesCore } from '../services/salesCore';
+import { SmartLinkEngine } from '../services/smartlinkengine';
+import { SalesCore } from '../services/salescore';
 import { AccountingEntry, UserRole } from '../types';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 
 interface SmartLinkMapperProps {

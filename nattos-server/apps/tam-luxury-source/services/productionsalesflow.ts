@@ -5,8 +5,8 @@ import {
   WarehouseLocation, 
   ProductType 
 } from '../types';
-import { SalesCore } from './salesCore';
-import { ShardingService } from './blockchainService';
+import { SalesCore } from './salescore';
+import { ShardingService } from './blockchainservice';
 
 // ============================================================================
 // 🏭 PRODUCTION & SALES FLOW DEFINITIONS

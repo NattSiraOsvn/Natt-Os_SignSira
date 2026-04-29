@@ -2,11 +2,11 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Product, ExchangeItem, BusinessMetrics, UserRole, PersonaID, GuarantyCertificate, AlertLevel, IdentityData } from '../types';
 import { SAMPLE_PRODUCTS } from '../constants';
-import { NotifyBus } from '../services/notificationService';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
-import { FraudGuard } from '../services/fraudGuard'; 
-import AIAvatar from './AIAvatar';
-import { SellerEngine } from '../services/sellerEngine';
+import { NotifyBus } from '../services/notificationservice';
+import { PaymentEngine, PaymentResponse } from '../services/paymentservice';
+import { FraudGuard } from '../services/fraudguard'; 
+import AIAvatar from './aiavatar';
+import { SellerEngine } from '../services/sellerengine';
 import { UserPosition, SellerReport, SellerIdentity, CustomerLead } from '../types';
 
 interface SalesTerminalProps {

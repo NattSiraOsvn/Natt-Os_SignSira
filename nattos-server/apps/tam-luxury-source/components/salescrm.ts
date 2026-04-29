@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import { Product, BusinessMetrics } from '../types';
 import { SAMPLE_PRODUCTS } from '../constants';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
+import { PaymentEngine, PaymentResponse } from '../services/paymentservice';
 
 interface SalesCRMProps {
   logAction: (action: string, details: string, undoData?: unknown) => void;

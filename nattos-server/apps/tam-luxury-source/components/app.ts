@@ -1,20 +1,20 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import AppShell from './AppShell';
-import DynamicModuleRenderer from './DynamicModuleRenderer';
-import SecurityOverlay from './SecurityOverlay';
-import NotificationHub, { AppNotification } from './NotificationHub';
-import NotificationPortal from './NotificationPortal';
+import AppShell from './appshell';
+import DynamicModuleRenderer from './dynamicmodulerenderer';
+import SecurityOverlay from './securityoverlay';
+import NotificationHub, { AppNotification } from './notificationhub';
+import NotificationPortal from './notificationportal';
 import { ViewType, ActionLog, BusinessMetrics, UserRole, UserPosition, PositionType, PersonaID } from '../types';
-import { RBACEngine } from '../services/rbacEngine';
-import { NotifyBus } from '../services/notificationService';
-import { ShardingService } from '../services/blockchainService';
-import OfflineService from '../services/offlineService';
-import { RealTimeService } from '../services/realTimeNotificationService';
+import { RBACEngine } from '../services/rbacengine';
+import { NotifyBus } from '../services/notificationservice';
+import { ShardingService } from '../services/blockchainservice';
+import OfflineService from '../services/offlineservice';
+import { RealTimeService } from '../services/realtimenotificationservice';
 
 // --- QUANTUM ARCHITECTURE IMPORTS ---
-import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/QuantumUIContext';
-import QuantumContainer from '../manifestations/overlays/QuantumContainer';
+import { QuantumUIProvider, useQuantumUI } from '../neuro-link/context/quantumuicontext';
+import QuantumContainer from '../manifestations/overlays/quantumcontainer';
 
 // Wrapper component to access Context
 const QuantumAppWrapper: React.FC = () => {

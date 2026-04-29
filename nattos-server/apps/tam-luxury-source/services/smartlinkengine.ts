@@ -1,6 +1,6 @@
 
 // ⚠️ DEPRECATED: Please use '@/core/SmartLinkEngine' instead.
-import { SmartLinkCore } from '../core/SmartLinkEngine';
+import { SmartLinkCore } from '../core/smartlinkengine';
 
 /**
  * Wrapper for Legacy Compatibility

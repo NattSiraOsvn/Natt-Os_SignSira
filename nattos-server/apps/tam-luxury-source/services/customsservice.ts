@@ -1,6 +1,6 @@
 
 import { CustomsDeclaration, CustomsDeclarationItem, ActionPlan, RiskAssessment, ComplianceCheck, TrackingStep } from '../types';
-import { CustomsUtils, ITEM_DICTIONARY } from './customsUtils';
+import { CustomsUtils, ITEM_DICTIONARY } from './customsutils';
 
 export class CustomsRobotEngine {
   

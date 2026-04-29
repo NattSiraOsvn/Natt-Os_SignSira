@@ -4,8 +4,8 @@ import {
   UserRole, UserPosition, OrderStatus, 
   ProductionOrder, PersonaID, LearnedTemplate
 } from '../types';
-import { LearningEngine } from '../services/learningEngine';
-import AIAvatar from './AIAvatar';
+import { LearningEngine } from '../services/learningengine';
+import AIAvatar from './aiavatar';
 
 interface DailyReportModuleProps {
   currentRole: UserRole;

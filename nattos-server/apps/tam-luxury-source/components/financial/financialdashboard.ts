@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { useSmartMapping } from '../../hooks/useSmartMapping';
-import { useAccounting } from '../../contexts/AccountingContext';
+import { useSmartMapping } from '../../hooks/usesmartmapping';
+import { useAccounting } from '../../contexts/accountingcontext';
 import { AccountingEntry } from '../../types';
-import LoadingSpinner from '../common/LoadingSpinner';
-import { SalesCore } from '../../services/salesCore';
+import LoadingSpinner from '../common/loadingspinner';
+import { SalesCore } from '../../services/salescore';
 
 // Mock Component for Overview Cards
 const FinancialOverviewCard = ({ title, value, sub, color }: { title: string, value: string, sub: string, color: string }) => (

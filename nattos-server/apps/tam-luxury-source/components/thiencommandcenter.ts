@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 import { PersonaID, BusinessMetrics, UserRole, UserPosition, ActionLog, HeatLevel } from '../types';
-import { ShardingService } from '../services/blockchainService';
-import { useAuthority } from '../hooks/useAuthority';
+import { ShardingService } from '../services/blockchainservice';
+import { useAuthority } from '../hooks/useauthority';
 
 interface ThienCommandCenterProps {
   metrics: BusinessMetrics;

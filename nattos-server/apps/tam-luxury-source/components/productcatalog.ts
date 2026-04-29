@@ -1,14 +1,14 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Product, CustomizationRequest, BusinessMetrics, UserPosition } from '../types';
-import ProductCard from './ProductCard';
-import ProductDetailModal from './ProductDetailModal';
-import CustomizationRequestModal from './CustomizationRequest';
-import FilterPanel from './FilterPanel';
-import AIAvatar from './AIAvatar';
+import ProductCard from './productcard';
+import ProductDetailModal from './productdetailmodal';
+import CustomizationRequestModal from './customizationrequest';
+import FilterPanel from './filterpanel';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
-import { PaymentEngine, PaymentResponse } from '../services/paymentService';
-import { LogisticsCore } from '../services/logisticsService';
+import { PaymentEngine, PaymentResponse } from '../services/paymentservice';
+import { LogisticsCore } from '../services/logisticsservice';
 
 interface ProductCatalogProps {
   logAction: (action: string, details: string) => void;

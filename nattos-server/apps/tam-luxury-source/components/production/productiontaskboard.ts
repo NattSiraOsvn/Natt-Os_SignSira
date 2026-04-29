@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { phatNauion } from '../../services/nauionClient';
-import { useSSE } from '../../hooks/useSSE';
+import { phatNauion } from '../../services/nauionclient';
+import { useSSE } from '../../hooks/usesse';
 import { useContextualUI } from '../../hooks/use-contextual-ui'; // Hook có sẵn từ SPEC
 import '../../styles/nattos-glass.css';
 

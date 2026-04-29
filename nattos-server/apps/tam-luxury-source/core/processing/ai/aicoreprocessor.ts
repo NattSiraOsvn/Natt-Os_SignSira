@@ -1,7 +1,7 @@
 
 // [LỆNH #001] AI API removed — pending EventBus wire
 import { FileMetadata, IngestStatus } from '../../../types';
-import { Ingestion } from '../../ingestion/IngestionService';
+import { Ingestion } from '../../ingestion/ingestionservice';
 
 export class AICoreProcessor {
   // private ai: GoogleGenAI; // LỆNH #001

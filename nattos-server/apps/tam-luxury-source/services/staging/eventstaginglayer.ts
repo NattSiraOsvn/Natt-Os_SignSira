@@ -1,5 +1,5 @@
 
-import { ShardingService } from '../blockchainService';
+import { ShardingService } from '../blockchainservice';
 
 export interface StagedEvent {
   id: string;

@@ -1,4 +1,4 @@
-import { initMachHeyna } from './services/heynaConnector';
+import { initMachHeyna } from './services/heynaconnector';
 import React, { useState, useEffect } from 'react';
 import MasterDashboard from './components/masterdashboard';
 import SalesTerminal from './components/salesterminal';
@@ -6,8 +6,8 @@ import ProductionManager from './components/productionmanager';
 import WarehouseManagement from './components/warehousemanagement';
 import FinancialDashboard from './components/financial/financialdashboard';
 import HRManagement from './components/hrmanagement';
-import ProductionTaskBoard from './components/production/ProductionTaskBoard';
-import { ButterflyProtocol } from './components/common/ButterflyProtocol';
+import ProductionTaskBoard from './components/production/productiontaskboard';
+import { ButterflyProtocol } from './components/common/butterflyprotocol';
 
 // TÚI MÁU DỰ PHÒNG (Mock Data để UI sống mượt mà không bao giờ trắng màn hình)
 const mockMetrics = { revenue: 12500000000, totalTaxDue: 1250000000, totalPayroll: 450000000, currentOperatingCost: 120000000, importVolume: 24, pendingApprovals: 8, cadPending: 12 };

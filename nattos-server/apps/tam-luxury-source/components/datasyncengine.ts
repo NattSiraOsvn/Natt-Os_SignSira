@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { SyncJob, SyncConflictStrategy, SyncLog, ConflictResolutionMethod, DataPoint } from '../types';
-import OfflineService from '../services/offlineService';
-import SuperDictionary from '../SuperDictionary';
-import { ConflictEngine } from '../services/conflict/ConflictResolver';
+import OfflineService from '../services/offlineservice';
+import SuperDictionary from '../superdictionary';
+import { ConflictEngine } from '../services/conflict/conflictresolver';
 
 const DataSyncEngine: React.FC = () => {
   const [isConnected, setIsConnected] = useState(true);

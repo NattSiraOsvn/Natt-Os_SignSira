@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { EInvoice, BusinessMetrics, UserRole, DistributedTask } from '../types';
-import { TaskRouter } from '../services/taskRouter';
-import { TaxReportService } from '../services/taxReportService';
-import AIAvatar from './AIAvatar';
+import { TaskRouter } from '../services/taskrouter';
+import { TaxReportService } from '../services/taxreportservice';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 
 interface SalesTaxModuleProps {

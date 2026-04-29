@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 /* Fix: Import SalesChannel from types directly */
 import { SalesChannel } from '../types';
-import { FlowEngine, FlowLog } from '../services/productionSalesFlow';
-import AIAvatar from './AIAvatar';
+import { FlowEngine, FlowLog } from '../services/productionsalesflow';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 
 const ProductionSalesFlowView: React.FC = () => {

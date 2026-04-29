@@ -24,7 +24,7 @@ src/cells/                       = ENGINE (runtime spine — KHÔNG CHẠM)
         ↕ Mạch HeyNa SSE  (GET /mach/heyna)
         ↕ POST /phat/nauion
 
-nattos-server/app Tâm luxury/   = PERCEPTION (browser — EM LÀM Ở ĐÂY)
+nattos-server/apps/tam-luxury-source/   = PERCEPTION (browser — EM LÀM Ở ĐÂY)
   React/TypeScript source
 ```
 
@@ -75,7 +75,7 @@ Server chạy tại `localhost:3001`. Đây là danh sách endpoints em được
 ```
 nattos-server/
 ├── server.js                    ← Server chính · port 3001 (KHÔNG CHẠM)
-├── app Tâm luxury/              ← React/TypeScript SOURCE (em code ở đây)
+├── apps/tam-luxury-source/              ← React/TypeScript SOURCE (em code ở đây)
 │   ├── index.html               ← Vite entry point
 │   ├── index.tsx                ← React root
 │   ├── components/*.tsx         ← 73 UI components

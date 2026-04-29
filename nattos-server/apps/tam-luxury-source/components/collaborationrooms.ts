@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { RoomConfig, PersonaID, ChatMessage, RoomSettings, BusinessMetrics, UserRole, UserPosition, PositionType, JoinRequest } from '../types';
 import { PERSONAS } from '../constants';
-import AIAvatar from './AIAvatar';
+import AIAvatar from './aiavatar';
 
 interface CollaborationRoomsProps {
   currentRole: UserRole;

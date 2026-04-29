@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { BusinessMetrics, UserRole, UserPosition, ActionLog, PersonaID } from '../types';
-import AIAvatar from './AIAvatar';
-import { NattMedal } from './common/NattMedal';
+import AIAvatar from './aiavatar';
+import { NattMedal } from './common/nattmedal';
 
 interface MasterDashboardProps {
   metrics: BusinessMetrics;

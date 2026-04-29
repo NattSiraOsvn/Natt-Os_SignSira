@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { SmartLinkMappingEngine } from '../services/mapping/SmartLinkMappingEngine';
+import { SmartLinkMappingEngine } from '../services/mapping/smartlinkmappingengine';
 import { AccountingEntry, AccountingMappingRule, SalesEvent } from '../types';
 
 interface AccountingContextType {

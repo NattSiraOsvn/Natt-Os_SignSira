@@ -3,11 +3,11 @@ import {
   DataPoint, ResolutionContext, ResolvedData, 
   ConflictResolutionMethod, ConflictResolutionRule, BusinessContext
 } from '../../types';
-import { ShardingService } from '../blockchainService';
-import { SUPER_DICTIONARY } from '../../SuperDictionary';
-import { NotifyBus } from '../notificationService';
+import { ShardingService } from '../blockchainservice';
+import { SUPER_DICTIONARY } from '../../superdictionary';
+import { NotifyBus } from '../notificationservice';
 import { PersonaID } from '../../types';
-import { ContextScoring } from '../scoring/ContextScoringEngine';
+import { ContextScoring } from '../scoring/contextscoringengine';
 
 export class ConflictResolver {
   private static instance: ConflictResolver;

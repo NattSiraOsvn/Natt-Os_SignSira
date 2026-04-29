@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { BankingEngine } from '../services/bankingService';
+import { BankingEngine } from '../services/bankingservice';
 import { BankTransaction, BankSummary, PersonaID } from '../types';
-import { NotifyBus } from '../services/notificationService';
-import AIAvatar from './AIAvatar';
+import { NotifyBus } from '../services/notificationservice';
+import AIAvatar from './aiavatar';
 
 const BankingProcessor: React.FC = () => {
   const [transactions, setTransactions] = useState<BankTransaction[]>([]);

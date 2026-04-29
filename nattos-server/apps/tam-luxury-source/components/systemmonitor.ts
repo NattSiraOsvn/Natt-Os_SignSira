@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { BusinessMetrics, PersonaID, OperationRecord } from '../types';
-import AIAvatar from './AIAvatar';
-import ThreatDetectionService, { SecurityThreat, SystemHealth } from '../services/threatDetectionService';
-import { RecoverySystem } from '../services/recoveryEngine';
-import { NotifyBus } from '../services/notificationService';
+import AIAvatar from './aiavatar';
+import ThreatDetectionService, { SecurityThreat, SystemHealth } from '../services/threatdetectionservice';
+import { RecoverySystem } from '../services/recoveryengine';
+import { NotifyBus } from '../services/notificationservice';
 
 interface SystemMonitorProps {
   logAction?: (action: string, details: string) => void;

@@ -1,9 +1,9 @@
 
 import React, { useState, useMemo } from 'react';
 import { VATReport, PITReport, BusinessMetrics, UserRole, PersonaID } from '../types';
-import { TaxReportService } from '../services/taxReportService';
-import { ExportEngine } from '../services/exportService';
-import AIAvatar from './AIAvatar';
+import { TaxReportService } from '../services/taxreportservice';
+import { ExportEngine } from '../services/exportservice';
+import AIAvatar from './aiavatar';
 
 interface TaxReportingHubProps {
   metrics: BusinessMetrics;

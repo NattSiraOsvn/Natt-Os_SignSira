@@ -14,7 +14,7 @@ import {
   SalesOrder,
   PositionType
 } from '../types';
-import { SellerEngine } from './sellerEngine';
+import { SellerEngine } from './sellerengine';
 
 // ============================================================================
 // 🧠 SALES CORE ENGINE (LOGIC LAYER)

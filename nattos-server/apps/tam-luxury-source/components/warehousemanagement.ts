@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { WarehouseEngine, AllocationPlan, WarehouseIntelligence } from '../services/warehouseService';
+import { WarehouseEngine, AllocationPlan, WarehouseIntelligence } from '../services/warehouseservice';
 import { InventoryItem, UserRole, BusinessMetrics, WarehouseLocation } from '../types';
-import { LogisticsCore } from '../services/logisticsService';
-import AIAvatar from './AIAvatar';
+import { LogisticsCore } from '../services/logisticsservice';
+import AIAvatar from './aiavatar';
 import { PersonaID } from '../types';
 
 interface WarehouseManagementProps {

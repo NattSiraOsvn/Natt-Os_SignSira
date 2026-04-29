@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ViewType, WorkflowNode, WorkflowEdge } from '../types';
-import { EventBridge } from '../services/eventBridge';
+import { EventBridge } from '../services/eventbridge';
 
 interface SystemNavigatorProps {
   setActiveView: (view: ViewType) => void;

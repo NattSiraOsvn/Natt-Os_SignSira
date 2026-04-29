@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { GlobalAlert, NotifyBus } from '../services/notificationService';
-import AIAvatar from './AIAvatar';
+import { GlobalAlert, NotifyBus } from '../services/notificationservice';
+import AIAvatar from './aiavatar';
 
 const NotificationPortal: React.FC = () => {
   const [activeAlerts, setActiveAlerts] = useState<GlobalAlert[]>([]);
