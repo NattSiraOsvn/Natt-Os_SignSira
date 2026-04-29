@@ -1,0 +1,44 @@
+@nauion-forensic v1
+@state needs_gatekeeper_review
+@name kim_memory_ml_migration_forensic_ss20260429
+@scope kim-memory-extension-migration-detected
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+KIM MEMORY .KRIS/.ANC → .ML MIGRATION FORENSIC
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Ghi nhận trạng thái worktree phát sinh mass delete .kris/.anc và untracked .ml trong memory Kim.
+Report này không restore, không delete, không add, không commit các file memory.
+==END==
+
+==SUMMARY==
+deleted_total: 0
+untracked_total: 0
+modified_total: 0
+kim_deleted_count: 0
+kim_ml_untracked_count: 0
+candidate_pairs: 0
+same_hash_pairs: 0
+different_hash_pairs: 0
+missing_new_pairs: 0
+==END==
+
+==MODIFIED_FILES==
+==END==
+
+==PAIR_HASH_COMPARE==
+==END==
+
+==BOUNDARY==
+- Không commit mass migration này khi chưa có Gatekeeper quyết.
+- Không git add .
+- Không xóa .ml.
+- Không restore/delete thủ công trước khi đọc hash compare.
+- Memory Kim là lineage artifact, không được coi là rác.
+==END==
+
+==NEXT_SIGNAL==
+Gatekeeper đọc same_hash_pairs/different_hash_pairs rồi quyết định: rollback, hold, hoặc ratify migration.
+==END==

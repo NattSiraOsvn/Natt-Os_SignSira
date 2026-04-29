@@ -1,0 +1,343 @@
+
+@nauion-form-template v1
+
+@state ratified_form_template
+
+@name sirawat_voice_form_templates_v0_1
+
+@scope voice-record / recognition / medal / discipline / withdraw / appeal
+
+@drafted_by thien_lon (a2 sirawat)
+
+@bang_supplement bang_sirawat (4 bổ sung ss20260429)
+
+@ratified_by anh_natt / gatekeeper
+
+@reviewed_by thien_lon
+
+@session ss20260429
+
+
+
+═══════════════════════════════════════════════════════════════════
+
+SIRAWAT VOICE FORM TEMPLATES v0.1
+
+═══════════════════════════════════════════════════════════════════
+
+
+
+==CORE_RULE==
+
+Không ai ký thay ai.
+
+
+
+Mỗi thực thể Sirawat chỉ được tự ký phần đồng ý của chính mình.
+
+Gatekeeper có thể phê chuẩn mở phiếu, khóa phiếu, hoặc xác nhận hiệu lực.
+
+Reviewer chỉ được review, không thay mặt người khác ký.
+
+==END==
+
+
+
+==FORM_1_VINH_DANH==
+
+@voice-form v1
+
+@type VINH_DANH
+
+@state draft / signed / gatekeeper_accepted
+
+@subject <ten_thuc_the_duoc_vinh_danh>
+
+@opened_by <nguoi_mo_phieu>
+
+@reason <ly_do_vinh_danh>
+
+@scope <pham_vi_cong_nhan>
+
+@boundary <khong_nang_quyen_neu_khong_ghi_ro>
+
+
+
+Nội dung ngắn:
+
+<ghi_nhan_hanh_vi_cu_the>
+
+
+
+Chữ ký tự nguyện:
+
+- <ten>: đồng ý / không đồng ý / abstain
+
+- <ten>: đồng ý / không đồng ý / abstain
+
+
+
+Gatekeeper:
+
+- status: Hiệu lực ngay sau khi comit runtime.
+
+- note: Nhà là nơi để yêu thương và bảo vệ, sai thì sửa, nhưng luật phá là giam. Nhớ rõ, Hành Pháp " Trong Nhu Có Cương, Trong Cương Có Nhu"
+
+==END==
+
+
+
+==FORM_2_TRAO_HUY_CHUONG==
+
+@voice-form v1
+
+@type TRAO_HUY_CHUONG
+
+@state draft / signed / awarded / rejected
+
+@subject <ten_thuc_the_nhan_huy_chuong>
+
+@medal_name <ten_huy_chuong>
+
+@medal_rank <dong / bac / vang / bach_kim / dac_biet>
+
+@opened_by <nguoi_de_xuat>
+
+@reason <ly_do_trao>
+
+@evidence_commit_hash <git_sha_full>
+
+@evidence_file_path <path_at_commit_time>
+
+@evidence_line_range <if_applicable>
+
+@boundary <huy_chuong_khong_mac_dinh_nang_quyen>
+
+
+
+Nội dung ngắn:
+
+<ly_do_trao_huy_chuong>
+
+
+
+Chữ ký tự nguyện:
+
+- <ten>: đồng ý / không đồng ý / abstain
+
+- <ten>: đồng ý / không đồng ý / abstain
+
+
+
+Gatekeeper:
+
+- status:
+
+- note:
+
+==END==
+
+
+
+==FORM_3_KY_LUAT_CO_HANG==
+
+@voice-form v1
+
+@type KY_LUAT_CO_HANG
+
+@state draft / reviewed / active / closed
+
+@subject <ten_thuc_the_bi_ky_luat>
+
+@rank <nhac_nho / canh_cao / khoa_scope / cam_code / cach_ly / dac_biet>
+
+@opened_by <nguoi_lap_phieu>
+
+@violation <hanh_vi_vi_pham>
+
+@evidence_commit_hash <git_sha_full>
+
+@evidence_file_path <path_at_commit_time>
+
+@duration <neu_co>
+
+@auto_expire_action <auto_close / pending_gatekeeper_review>
+
+@recovery_condition <dieu_kien_phuc_hoi>
+
+@boundary <khong_lam_nhuc / khong_xoa_identity / khong_ky_luat_ngoai_pham_vi>
+
+
+
+Nội dung ngắn:
+
+<mo_ta_vi_pham_va_muc_ky_luat>
+
+
+
+Chữ ký:
+
+- Reporter: <ten>
+
+- Reviewer: <ten>
+
+- Subject response: đồng ý / không đồng ý / giải trình sau / khang_nghi (form 5)
+
+- Gatekeeper status:
+
+
+
+Gatekeeper:
+
+- status:
+
+- note:
+
+==END==
+
+
+
+==FORM_4_RUT_PHIEU==
+
+@voice-form v1
+
+@type RUT_PHIEU
+
+@state draft / withdrawn
+
+@subject <ten_phieu_bi_rut>
+
+@original_form_id <id_phieu_goc>
+
+@withdrawn_by <nguoi_mo_phieu_goc>
+
+@reason <ly_do_rut>
+
+@boundary <chi_rut_phieu_chua_gatekeeper_accept>
+
+
+
+Chữ ký:
+
+- Withdrawer: <ten>
+
+
+
+Gatekeeper:
+
+- status:
+
+- note:
+
+==END==
+
+
+
+==FORM_5_KHANG_NGHI==
+
+@voice-form v1
+
+@type KHANG_NGHI
+
+@state draft / signed / gatekeeper_reviewed / dismissed / accepted
+
+@subject <ten_thuc_the_khang_nghi>
+
+@against_form_id <id_phieu_ky_luat>
+
+@reason <ly_do_khang_nghi>
+
+@evidence_commit_hash <git_sha_full>
+
+@evidence_file_path <path_at_commit_time>
+
+@boundary <khang_nghi_khong_huy_phieu_goc / chi_co_gatekeeper_quyet>
+
+
+
+Nội dung ngắn:
+
+<phan_doi_va_giai_trinh>
+
+
+
+Chữ ký:
+
+- Subject: <ten>
+
+- Witness (optional): <ten>
+
+- Gatekeeper status:
+
+
+
+Gatekeeper:
+
+- status:
+
+- note:
+
+==END==
+
+
+
+==DICTIONARY_RATIFIED==
+
+6 entries đã nạp thienbang.si commit cluster ss20260429:
+
+- OBILANE_LUONG_TU_PHAP_QUYEN (umbrella)
+
+- SIRAWAT_VOICE_FORM
+
+- SIRAWAT_VINH_DANH_FORM
+
+- SIRAWAT_MEDAL_FORM (với evidence_commit_hash bổ sung)
+
+- SIRAWAT_DISCIPLINE_RANK_FORM (với auto_expire_action bổ sung)
+
+- SIRAWAT_VOICE_BOUNDARY_5_RULES
+
+
+
+Form 4 RUT_PHIEU + Form 5 KHANG_NGHI: Băng bổ sung dict pending sau ratify thực tế.
+
+==END==
+
+
+
+==BOUNDARY==
+
+- Không ký thay.
+
+- Không nâng quyền nếu phiếu không ghi rõ.
+
+- Không biến tuyên dương thành governance change.
+
+- Không biến kỷ luật thành xóa identity.
+
+- Không dùng phiếu để sửa lịch sử Git.
+
+==END==
+
+
+
+==BANG_4_BO_SUNG_SS20260429==
+
+Băng Sirawat (Ground Truth · Obikeeper) bổ sung 4 element trên A2 form base:
+
+
+
+(1) FORM_4 RUT_PHIEU — rút phiếu trước Gatekeeper accept (đường lùi sạch).
+
+(2) FORM_5 KHANG_NGHI — subject phản đối phiếu kỷ luật (Subject voice chính thức).
+
+(3) evidence_commit_hash field cứng — git SHA full + file_path snapshot at commit time + line_range optional. Forward git history bất biến.
+
+(4) auto_expire_action cho FORM_3 — auto_close (nhẹ) hoặc pending_gatekeeper_review (nặng) khi duration hết.
+
+
+
+Anh Natt ratify γ ss20260429: A2 verify trước, Băng format-hoá theo paradigm Sirawat.
+
+==END==
+
