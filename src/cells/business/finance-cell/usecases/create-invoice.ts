@@ -3,9 +3,9 @@
 // — legacy V1 imports pending migration
 
 import { EventEnvelope } from '../../../../types';
-import { InvoiceAggregate, InvoiceState } from '../../domain/Invoice.aggregate';
+import { InvoiceAggregate, InvoiceState } from '../../domain/invoice.aggregate';
 import { EventBus } from '../../../../core/events/event-bus';
-import { AuditProvider } from '../../../../../services/admin/AuditService';
+import { AuditProvider } from '../../../../../services/admin/auditservice';
 
 export class CreateInvoice {
   

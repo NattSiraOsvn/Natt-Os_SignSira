@@ -3,7 +3,7 @@
  * Wire engine → SmartLinkPort — Điều 9 Hiến Pháp
  * nattos.sh: grep SmartLinkPort in domain/services/ → WIRED
  */
-import { PricingSmartLinkPort } from '../../ports/pricing-SmartLink.port';
+import { PricingSmartLinkPort } from '../../ports/pricing-smartlink.port';
 
 export { PricingSmartLinkPort };
 

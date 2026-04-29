@@ -2,4 +2,4 @@
 export * from './prdwarranty.identity';
 export * from './prdwarranty.engine';
 export * from './prdwarranty.confidence';
-export * from '../../ports/prdwarranty-SmartLink.port';
+export * from '../../ports/prdwarranty-smartlink.port';

@@ -1,7 +1,7 @@
  — TODO: fix type errors, remove this pragma
 
 import { SalesEngine, SaleTransaction } from "../../domain/services/sales.engine";
-import { SalesSmartLinkPort } from "../../ports/sales-SmartLink.port";
+import { SalesSmartLinkPort } from "../../ports/sales-smartlink.port";
 export interface CreateSalesOrderInput { productId:string; productName:string; quantity:number; unitPrice:number; discount?:number; vatRate?:number; sellerId:string; customerId?:string; channel:string; }
 export interface CreateSalesOrderResult { success:boolean; transaction?:SaleTransaction; error?:string; }
 export async function createSalesOrder(input:CreateSalesOrderInput):Promise<CreateSalesOrderResult> {

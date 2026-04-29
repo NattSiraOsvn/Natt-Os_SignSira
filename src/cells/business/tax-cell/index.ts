@@ -1,12 +1,12 @@
  — TODO: fix type errors, remove this pragma
 
-export { TaxEngine } from './infrastructure/Tax.engine';
+export { TaxEngine } from './infrastructure/tax.engine';
 export { AccumulateLaborCostUseCase, RecordDustRecoveryUseCase, CloseToInventoryUseCase } from './application/tax.usecase';
 export type { ITaxRepository } from './application/tax.usecase';
 export type { CostAccumulation, JournalEntry, JournalEntryType } from './domain/tax.entity';
 export { createCostAccumulation, addJournalEntry } from './domain/tax.entity';
 export { TaxSheetAdapterStub } from './interface/tax.sheets.adapter';
-export * from './ports/tax-SmartLink.port';
+export * from './ports/tax-smartlink.port';
 
 // ── BCTC Wire: PERIOD_CLOSE_COMPLETED → calculateTNDN ──
 import { EventBus } from '../../../core/events/event-bus';

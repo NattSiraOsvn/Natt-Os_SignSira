@@ -1,4 +1,4 @@
-import type { IMonitorRepository } from "../../ports/MonitorRepository";
+import type { IMonitorRepository } from "../../ports/monitorrepository";
 import type { CellHealth } from "../../domain/entities/cell-health.entity";
 
 const _store = new Map<string, CellHealth>();

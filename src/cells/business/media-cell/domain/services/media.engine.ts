@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { MediaSmartLinkPort } from "../../ports/media-SmartLink.port";
+import { MediaSmartLinkPort } from "../../ports/media-smartlink.port";
 import { MediaAsset, MediaType, MediaPlatform } from '../entities/media-asset.entity';
 
 export class MediaEngine {

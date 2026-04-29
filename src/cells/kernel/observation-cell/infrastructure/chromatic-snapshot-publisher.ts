@@ -23,8 +23,8 @@
  * Đây là MẠCH THỨ NHẤT của hệ miễn dịch sống.
  */
 
-import type { SnapshotPublisher } from "../ports/SnapshotPublisher";
-import type { ObservationSnapshot } from "../domain/entities/ObservationSnapshot";
+import type { SnapshotPublisher } from "../ports/snapshotpublisher";
+import type { ObservationSnapshot } from "../domain/entities/observationsnapshot";
 import { EventBus } from "../../../../core/events/event-bus";
 import { touch, type ChromaticState } from "../../../../core/chromatic/touch-result";
 

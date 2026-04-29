@@ -2,7 +2,7 @@
 
 // — legacy V1 imports pending migration
 
-import { InvoiceState } from '../../domain/Invoice.aggregate';
+import { InvoiceState } from '../../domain/invoice.aggregate';
 import { EventBus } from '../../../../core/events/event-bus';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID, AlertLevel } from '../../../../types';

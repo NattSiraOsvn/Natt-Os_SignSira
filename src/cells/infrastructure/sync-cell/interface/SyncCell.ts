@@ -1,6 +1,6 @@
-import { SyncApplicationService } from '../application/services/SyncApplicationService';
-import { InMemorySyncRepository } from '../infrastructure/repositories/InMemorySyncRepository';
-import { SyncEventEmitterAdapter } from '../infrastructure/adapters/SyncEventEmitterAdapter';
+import { SyncApplicationService } from '../application/services/syncapplicationservice';
+import { InMemorySyncRepository } from '../infrastructure/repositories/inmemorysyncrepository';
+import { SyncEventEmitterAdapter } from '../infrastructure/adapters/synceventemitteradapter';
 import { SyncDirection } from '../domain/entities';
 
 export class SyncCell {

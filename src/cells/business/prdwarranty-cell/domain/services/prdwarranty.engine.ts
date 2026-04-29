@@ -1,7 +1,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishWarrantySignal } from '../../ports/prdwarranty-SmartLink.port';
+import { publishWarrantySignal } from '../../ports/prdwarranty-smartlink.port';
 // PrdwarrantySmartLinkPort wired — signal available for cross-cell communication
 // ── prdwarranty.engine.ts ─────────────────────────────────────
 // Bảo hành sản phẩm — vòng đời sau bán

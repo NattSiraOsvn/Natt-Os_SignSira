@@ -1,3 +1,3 @@
-export { SyncJob } from './SyncJob';
-export type { SyncJobProps, SyncStatus, SyncDirection } from './SyncJob';
-export type { SyncConfig, SyncConfigProps } from './SyncConfig';
+export { SyncJob } from './syncjob';
+export type { SyncJobProps, SyncStatus, SyncDirection } from './syncjob';
+export type { SyncConfig, SyncConfigProps } from './syncconfig';

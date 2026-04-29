@@ -8,7 +8,7 @@
  * Resonance check happens in field, not at touch point.
  */
 
-import type { KhaiCellSignature } from "../domain/entities/KhaiCellSignature";
+import type { KhaiCellSignature } from "../domain/entities/khaicellsignature";
 
 export type KhaiCellInput = {
   raw: unknown;

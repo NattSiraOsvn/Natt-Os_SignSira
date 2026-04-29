@@ -10,5 +10,5 @@ export * from "./application";
 
 export * from "./domain/engines";
 
-export * from "./SmartLink";
+export * from "./smartlink";
 export * from './domain/engines';

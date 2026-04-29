@@ -22,7 +22,7 @@
  * pattern competition là cơ chế hệ "chọn" pattern nào được lan xa hơn.
  */
 
-import type { TouchRecord } from './SmartLink.point';
+import type { TouchRecord } from './smartlink.point';
 import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
 
 // ── Types ─────────────────────────────────────────────────────────────────────

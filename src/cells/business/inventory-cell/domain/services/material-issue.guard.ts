@@ -1,7 +1,7 @@
 
 
 import { traceLogger } from "@/satellites/trace-logger/trace.logger";
-import { InventorySmartLinkPort } from "../../ports/inventory-SmartLink.port";
+import { InventorySmartLinkPort } from "../../ports/inventory-smartlink.port";
 
 /**
  * MaterialIssueGuard — touch point for material issue events.

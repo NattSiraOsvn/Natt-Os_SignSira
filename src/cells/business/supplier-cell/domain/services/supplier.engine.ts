@@ -1,6 +1,6 @@
 
 // SmartLink wire — Điều 6 Hiến Pháp v5.0
-import { publishSupplierSignal } from '../../ports/supplier-SmartLink.port';
+import { publishSupplierSignal } from '../../ports/supplier-smartlink.port';
 // SupplierSmartLinkPort wired — signal available for cross-cell communication
 /**
  * supplier.engine.ts — Nhà cung cấp vàng / kim cương

@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { WarrantySmartLinkPort } from "../../ports/warranty-SmartLink.port";
+import { WarrantySmartLinkPort } from "../../ports/warranty-smartlink.port";
 /**
  * natt-os — Warranty Cell
  * Domain Service: Warranty Engine

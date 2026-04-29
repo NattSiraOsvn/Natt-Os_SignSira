@@ -1,5 +1,5 @@
-import type { IMonitorRepository } from "../../ports/MonitorRepository";
-import { HealthAnalyzer } from "../../domain/services/HealthAnalyzer";
+import type { IMonitorRepository } from "../../ports/monitorrepository";
+import { HealthAnalyzer } from "../../domain/services/healthanalyzer";
 
 export class ReportHealthUseCase {
   constructor(private repo: IMonitorRepository) {}

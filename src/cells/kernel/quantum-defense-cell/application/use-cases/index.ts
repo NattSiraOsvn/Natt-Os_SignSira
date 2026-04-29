@@ -1,3 +1,3 @@
-export * from "./ObserveEventStream"
-export * from "./EvaluateCoherence"
-export * from "./PublishImmuneResponse"
+export * from "./observeeventstream"
+export * from "./evaluatecoherence"
+export * from "./publishimmuneresponse"

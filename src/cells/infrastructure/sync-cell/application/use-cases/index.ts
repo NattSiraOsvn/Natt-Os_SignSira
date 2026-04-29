@@ -1,1 +1,1 @@
-export { StartSyncUseCase } from './StartSyncUseCase';
+export { StartSyncUseCase } from './startsyncusecase';

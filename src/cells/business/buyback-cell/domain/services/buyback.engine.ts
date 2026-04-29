@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { BuybackSmartLinkPort } from "../../ports/buyback-SmartLink.port";
+import { BuybackSmartLinkPort } from "../../ports/buyback-smartlink.port";
 /**
  * natt-os — Buyback Cell
  * Domain Service: BuybackEngine

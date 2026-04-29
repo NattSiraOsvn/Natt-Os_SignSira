@@ -3,9 +3,9 @@
 // — legacy V1 imports pending migration
 
 import { EventBus } from '../../../../core/events/event-bus';
-import { InvoiceAggregate } from '../../domain/Invoice.aggregate';
+import { InvoiceAggregate } from '../../domain/invoice.aggregate';
 import { EventEnvelope, PersonaID } from '../../../../types';
-import { AuditProvider } from '../../../../../services/admin/AuditService';
+import { AuditProvider } from '../../../../../services/admin/auditservice';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 
 export class FinanceSaga {

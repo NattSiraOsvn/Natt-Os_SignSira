@@ -3,11 +3,11 @@
 // — legacy V1 imports pending migration
 
 import { EventBus } from '../../../../core/events/event-bus';
-import { PaymentAggregate } from '../../domain/Payment.aggregate';
+import { PaymentAggregate } from '../../domain/payment.aggregate';
 import { EventEnvelope } from '../../../../types';
-import { RetryPolicy } from '../../infrastructure/messaging/RetryPolicy';
-import { DeadLetterHandler } from '../../infrastructure/messaging/DeadLetterHandler';
-import { FinanceAuditLogger } from '../../infrastructure/audit/AuditLogger';
+import { RetryPolicy } from '../../infrastructure/messaging/retrypolicy';
+import { DeadLetterHandler } from '../../infrastructure/messaging/deadletterhandler';
+import { FinanceAuditLogger } from '../../infrastructure/audit/auditlogger';
 
 /**
  * 🎼 PAYMENT SAGA ORCHESTRATOR

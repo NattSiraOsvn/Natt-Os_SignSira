@@ -1,6 +1,6 @@
  — TODO: fix type errors, remove this pragma
 
-import { AnalyticsSmartLinkPort } from "../../ports/analytics-SmartLink.port";
+import { AnalyticsSmartLinkPort } from "../../ports/analytics-smartlink.port";
 import type { BusinessMetrics } from "@/types";
 
 export interface AnalyticsReport {

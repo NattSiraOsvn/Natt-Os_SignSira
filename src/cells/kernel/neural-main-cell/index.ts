@@ -15,13 +15,13 @@ import { checkGraphConsistency } from './core/graph.consistency.check';
 import { proposeFreezeIfNeeded } from './core/freeze.proposer';
 import { fetchAuditRecords } from './interfaces/data.fetcher';
 import { exportForLLMContext, publishNeuralReport } from './interfaces/reporter';
-import { publishNeuralEvent, NEURAL_MAIN_EVENTS } from './SmartLink.port';
+import { publishNeuralEvent, NEURAL_MAIN_EVENTS } from './smartlink.port';
 import { trace } from './trace.memory';
 
 export { NEURAL_MAIN_IDENTITY } from './identity';
 export { NEURAL_MAIN_CAPABILITIES } from './capability.manifest';
 export { NEURAL_MAIN_BOUNDARY } from './boundary.rule';
-export { NEURAL_MAIN_EVENTS, publishNeuralEvent } from './SmartLink.port';
+export { NEURAL_MAIN_EVENTS, publishNeuralEvent } from './smartlink.port';
 export { measureConfidence } from './confidence.score';
 export { trace, getRecentTraces } from './trace.memory';
 

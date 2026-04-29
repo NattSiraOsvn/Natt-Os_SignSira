@@ -3,7 +3,7 @@
 // Orchestrates routing, dead-letter capture, retry, compensation
 // ═══════════════════════════════════════════════════════════════
 
-import type { EventBusSmartLinkPort } from "../ports/event-bus.SmartLink.port";
+import type { EventBusSmartLinkPort } from "../ports/event-bus.smartlink.port";
 
 export class EventBusApplication implements EventBusSmartLinkPort {
   private subscribers = new Map<string, Set<(payload: unknown) => void>>();

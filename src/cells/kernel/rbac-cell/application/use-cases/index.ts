@@ -1,3 +1,3 @@
-export { CheckAccessUseCase } from './CheckAccessUseCase';
-export { AssignRoleUseCase } from './AssignRoleUseCase';
-export { RevokeRoleUseCase } from './RevokeRoleUseCase';
+export { CheckAccessUseCase } from './checkaccessusecase';
+export { AssignRoleUseCase } from './assignroleusecase';
+export { RevokeRoleUseCase } from './revokeroleusecase';

@@ -1,8 +1,8 @@
 import { QuantumDefenseEngine } from "../../domain/services"
 import { IQuantumDefenseRepository, IQuantumDefenseEventEmitter } from "../../ports"
-import { ObserveEventStream } from "../use-cases/ObserveEventStream"
-import { EvaluateCoherence } from "../use-cases/EvaluateCoherence"
-import { PublishImmuneResponse } from "../use-cases/PublishImmuneResponse"
+import { ObserveEventStream } from "../use-cases/observeeventstream"
+import { EvaluateCoherence } from "../use-cases/evaluatecoherence"
+import { PublishImmuneResponse } from "../use-cases/publishimmuneresponse"
 import { ImmuneState } from "../../domain/entities"
 
 interface EventEnvelope {

@@ -1,2 +1,2 @@
 export * from "./khai-cell.contract";
-export * from "./KhaiCellEmitter";
+export * from "./khaicellemitter";

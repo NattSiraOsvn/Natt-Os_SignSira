@@ -4,7 +4,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 export { EventBusApplication } from "./application/event-bus.application";
-export type { EventBusSmartLinkPort } from "./ports/event-bus.SmartLink.port";
+export type { EventBusSmartLinkPort } from "./ports/event-bus.smartlink.port";
 
 // Engines — wired (no longer dead)
 export { CompensationEngine } from "./domain/services/compensation.engine";

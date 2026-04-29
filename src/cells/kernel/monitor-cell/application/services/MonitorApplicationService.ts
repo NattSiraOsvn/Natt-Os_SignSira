@@ -1,6 +1,6 @@
-import { InMemoryMonitorRepository } from "../../infrastructure/repositories/InMemoryMonitorRepository";
-import { ReportHealthUseCase } from "../use-cases/ReportHealthUseCase";
-import { TriggerAlertUseCase } from "../use-cases/TriggerAlertUseCase";
+import { InMemoryMonitorRepository } from "../../infrastructure/repositories/inmemorymonitorrepository";
+import { ReportHealthUseCase } from "../use-cases/reporthealthusecase";
+import { TriggerAlertUseCase } from "../use-cases/triggeralertusecase";
 
 const _repo = new InMemoryMonitorRepository();
 

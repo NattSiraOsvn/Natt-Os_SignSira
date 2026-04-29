@@ -1,1 +1,1 @@
-export * from "./ConfigCell";
+export * from "./configcell";

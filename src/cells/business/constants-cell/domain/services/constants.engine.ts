@@ -1,7 +1,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 
 // Điều 9 §2 — Capability
-import { ConstantsSmartLinkPort } from '../../ports/constants-SmartLink.port';
+import { ConstantsSmartLinkPort } from '../../ports/constants-smartlink.port';
 
 export interface ConstantsCommand {
   type: string;

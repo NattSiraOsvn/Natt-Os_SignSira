@@ -1,1 +1,1 @@
-export { SyncCell, getSyncCell } from './SyncCell';
+export { SyncCell, getSyncCell } from './synccell';

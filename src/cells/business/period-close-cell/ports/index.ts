@@ -1,3 +1,3 @@
  — TODO: fix type errors, remove this pragma
 
-export * from "./periodclose-SmartLink.port";
+export * from "./periodclose-smartlink.port";

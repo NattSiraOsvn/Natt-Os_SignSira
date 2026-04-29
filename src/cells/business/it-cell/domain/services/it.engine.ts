@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { ItSmartLinkPort } from "../../ports/it-SmartLink.port";
+import { ItSmartLinkPort } from "../../ports/it-smartlink.port";
 import { ITAsset, ITAssetType, ITRequest } from '../entities/it-asset.entity';
 
 export class ITEngine {

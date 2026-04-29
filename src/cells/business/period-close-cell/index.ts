@@ -20,7 +20,7 @@ export const PeriodCloseServices = {
   integrateTax: TaxIntegrator.integrate.bind(TaxIntegrator),
   rollback: RollbackManager.rollback.bind(RollbackManager),
 };
-export * from './ports/period-close-SmartLink.port';
+export * from './ports/period-close-smartlink.port';
 
 // ── BCTC Wire: REPORT_GENERATED → trigger period closing ──
 // SPEC §3: period-close-cell lắng REPORT_GENERATED → đóng sổ

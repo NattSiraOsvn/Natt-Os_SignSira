@@ -2,4 +2,4 @@
 export * from './polishing.identity';
 export * from '../engines/polishing.engine';
 export * from './polishing.confidence';
-export * from '../../ports/polishing-SmartLink.port';
+export * from '../../ports/polishing-smartlink.port';

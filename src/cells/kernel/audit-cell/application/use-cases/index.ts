@@ -1,2 +1,2 @@
-export { LogAuditUseCase } from './LogAuditUseCase';
-export { VerifyChainUseCase } from './VerifyChainUseCase';
+export { LogAuditUseCase } from './logauditusecase';
+export { VerifyChainUseCase } from './verifychainusecase';

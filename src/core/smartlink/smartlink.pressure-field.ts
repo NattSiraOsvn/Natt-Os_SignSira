@@ -29,7 +29,7 @@
  *   UEI đọc Pressure Field như một trong các inputs của consciousness.
  */
 
-import { PatternCompetition, type PatternCompetitor, type NetworkCompetitionSnapshot } from './SmartLink.competition';
+import { PatternCompetition, type PatternCompetitor, type NetworkCompetitionSnapshot } from './smartlink.competition';
 import { Router, type RoutingCandidate } from '@/core/routing/deterministic-router';
 
 // ── Types ─────────────────────────────────────────────────────────────────────

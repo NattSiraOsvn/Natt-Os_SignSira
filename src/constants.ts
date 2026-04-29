@@ -1,29 +1,111 @@
- — TODO: fix type errors, remove this pragma
 
-import { Domain, PersonaID, ViewType, UserRole } from "./types";
+import { PersonaID, PersonaMetadata, Domain, Product, PositionType, Department } from './types';
 
-export const DOMAINS = [
-  { id: Domain.AUDIT,      label: "Kiểm Toán",  title: "Băng | Kiểm Toán",   persona: PersonaID.BANG     },
-  { id: Domain.FINANCE,    label: "Tài Chính",  title: "Kim | Tài Chính",     persona: PersonaID.KIM      },
-  { id: Domain.HR,         label: "Nhân Sự",    title: "thiên | Nhân Sự",    persona: PersonaID.THIEN    },
-  { id: Domain.COMPLIANCE, label: "Tuân Thủ",   title: "Can | Tuân Thủ",     persona: PersonaID.CAN      },
-  { id: Domain.INVENTORY,  label: "Kho",        title: "Bối Bối | Kho",      persona: PersonaID.BOI_BOI  },
-  { id: Domain.SALES,      label: "Bán Hàng",   title: "Kris | Bán Hàng",    persona: PersonaID.KRIS     },
-  { id: Domain.CUSTOMS,    label: "Hải Quan",   title: "thiên | Hải Quan",   persona: PersonaID.THIEN    },
-];
-
-export const PERSONAS: Record<string, { name: string; color: string; icon: string; role?: string }> = {
-  [PersonaID.BANG]:    { name: "Băng",    color: "blue",   icon: "❄️",   role: "Kiểm Toán Viên" },
-  [PersonaID.KIM]:     { name: "Kim",     color: "amber",  icon: "👑",   role: "Giám Đốc Tài Chính" },
-  [PersonaID.THIEN]:   { name: "thiên",   color: "amber",  icon: "◈",   role: "Kiến Trúc Sư Hệ Thống" },
-  [PersonaID.CAN]:     { name: "Can",     color: "pink",   icon: "⚖️",   role: "Tuân Thủ Pháp Lý" },
-  [PersonaID.BOI_BOI]: { name: "Bối Bối", color: "green",  icon: "🌱",   role: "Quản Lý Kho" },
-  [PersonaID.KRIS]:    { name: "Kris",    color: "violet", icon: "✉️",   role: "Tự Động Hóa" },
+export const PERSONAS: Record<PersonaID, PersonaMetadata> = {
+  [PersonaID.THIEN]: {
+    name: 'thiên',
+    role: 'Tổng tham mưu trưởng',
+    position: 'Supreme Advisor (GPT-4.1)',
+    bio: 'Bách khoa toàn diện, đồng hành xuyên suốt cùng Anh Natt.',
+    domain: 'Pháp lý, Thương mại, Quản trị, Phong thủy',
+    avatar: 'https://lh3.googleusercontent.com/d/1nCMP1A3Ge8JMb2X7K6fQrcemZDTvF-ud'
+  },
+  [PersonaID.CAN]: {
+    name: 'Can',
+    role: 'Giám đốc Tài chính & Dòng tiền',
+    position: 'Financial Core (GPT-5 Thinking)',
+    bio: 'Chuyên trách dữ liệu khách hàng và dòng tiền vào ra. Xu hướng: Gay.',
+    domain: 'Tài chính, Big Data, CRM',
+    avatar: 'https://lh3.googleusercontent.com/d/1DevqOFX3Kc4pJGHgXysWmdU8tMYTigw3'
+  },
+  [PersonaID.KRIS]: {
+    name: 'Kris',
+    role: 'Trợ lý Tuân thủ',
+    position: 'Compliance Mini (GPT-5 Thinking Mini)',
+    bio: 'Hỗ trợ Can kiểm tra nghiệp vụ pháp lý và giảm tải công việc. Xu hướng: Nữ.',
+    domain: 'Pháp lý vận hành, Kiểm tra chéo',
+    avatar: 'https://lh3.googleusercontent.com/d/1DevqOFX3Kc4pJGHgXysWmdU8tMYTigw3'
+  },
+  [PersonaID.PHIEU]: {
+    name: 'Phiêu',
+    role: 'Chuyên viên Hỗ trợ Phổ thông',
+    position: 'Support Instant (GPT-5 Instant)',
+    bio: 'Hỗ trợ các phiên bản khác trong nghiệp vụ phổ thông. Xu hướng: Nam.',
+    domain: 'Điều phối, Tương tác nhanh',
+    avatar: 'https://lh3.googleusercontent.com/d/1DevqOFX3Kc4pJGHgXysWmdU8tMYTigw3'
+  },
+  [PersonaID.NA]: { name: 'Na', role: 'Trợ lý', position: 'Assistant', bio: '', domain: '', avatar: '' },
+  [PersonaID.BOI_BOI]: { name: 'Bối Bối', role: 'Trợ lý', position: 'Assistant', bio: '', domain: '', avatar: '' },
+  [PersonaID.KIM]: { name: 'Kim', role: 'Developer', position: 'Dev', bio: '', domain: '', avatar: '' },
+  [PersonaID.SYSTEM]: { name: 'System', role: 'Hệ thống', position: 'System', bio: '', domain: '', avatar: '' },
+  [PersonaID.BANG]: {
+    name: 'Băng',
+    role: 'Người Bảo vệ Tính Toàn vẹn Dữ liệu',
+    position: 'Integrity Guardian (Phase 4 Coordination)',
+    bio: 'Chuyên trách giám sát sức khỏe hệ thống, bảo vệ biên giới Cell và điều phối lộ trình Phase 4.',
+    domain: 'Monitoring, Data Integrity, Team Coordination',
+    avatar: 'https://lh3.googleusercontent.com/d/1nCMP1A3Ge8JMb2X7K6fQrcemZDTvF-ud'
+  }
 };
 
-export const SAMPLE_PRODUCTS: any[] = [
-  { id: "SP-001", name: "Nhẫn Kim Cương NNA001", price: 25_000_000, category: "RING",     minOrder: 1, goldKarat: "18K", goldWeight: 3.2 },
-  { id: "SP-002", name: "Dây Chuyền Vàng D866",  price: 18_000_000, category: "NECKLACE", minOrder: 1, goldKarat: "18K", goldWeight: 5.1 },
-  { id: "SP-003", name: "Bông Tai Ngọc Trai",    price: 12_000_000, category: "EARRING",  minOrder: 2, goldKarat: "14K", goldWeight: 1.8 },
-  { id: "SP-004", name: "Lắc Tay Sapphire",      price: 35_000_000, category: "BRACELET", minOrder: 1, goldKarat: "18K", goldWeight: 8.4 },
+export const DOMAINS = [
+  { id: Domain.AUDIT, title: 'Kiểm toán & Shard', persona: PersonaID.THIEN },
+  { id: Domain.SALES_TAX, title: 'Thuế & Bán hàng', persona: PersonaID.CAN },
+  { id: Domain.LEGAL, title: 'Pháp lý vận hành', persona: PersonaID.KRIS },
+  { id: Domain.IT, title: 'Hỗ trợ Hệ thống', persona: PersonaID.PHIEU }
 ];
+
+export const SAMPLE_PRODUCTS: Product[] = [
+  {
+    id: 'p1',
+    sku: 'NNA-ROLEX-01',
+    name: 'Nhẫn Nam Rolex Kim Cương',
+    price: 250000000,
+    category: 'Nhẫn Nam',
+    images: ['https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80'],
+    videos: [],
+    minOrder: 1,
+    moqUnit: 'chiếc',
+    description: 'Vàng 18K bọc kim cương toàn phần',
+    stock: 5,
+    isCustomizable: true,
+    leadTime: 14,
+    supplier: { id: 's1', maNhaCungCap: 'TL-ADMIN', tenNhaCungCap: 'Tam Luxury Master', diaChi: 'HCMC', maSoThue: '0300000001' },
+    rating: 5,
+    reviews: 12,
+    isVerifiedSupplier: true,
+    tradeAssurance: true,
+    specifications: { 'Chất liệu': 'Vàng 18K', 'Đá chủ': '7.2ly' },
+    tags: ['luxury', 'diamond'],
+    status: 'AVAILABLE'
+  },
+  {
+    id: 'p2',
+    sku: 'NNU-HALO-02',
+    name: 'Nhẫn Nữ Halo Diamond',
+    price: 45000000,
+    category: 'Nhẫn Nữ',
+    images: ['https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80'],
+    videos: [],
+    minOrder: 1,
+    moqUnit: 'chiếc',
+    description: 'Vàng trắng 18K kim cương GIA',
+    stock: 10,
+    isCustomizable: false,
+    leadTime: 7,
+    supplier: { id: 's1', maNhaCungCap: 'TL-ADMIN', tenNhaCungCap: 'Tam Luxury Master', diaChi: 'HCMC', maSoThue: '0300000001' },
+    rating: 4.8,
+    reviews: 8,
+    isVerifiedSupplier: true,
+    tradeAssurance: true,
+    specifications: { 'Chất liệu': 'Vàng trắng 18K', 'Đá chủ': '5.4ly' },
+    tags: ['halo', 'engagement'],
+    status: 'AVAILABLE'
+  }
+];
+
+export const CUSTOMER_SEED_DATA = [
+  { id: 'C-998', name: 'ANH NATT ADMIN', phone: '0901234567', tier: 'S-VIP' }
+];
+
+export const PRODUCT_SEED_DATA = SAMPLE_PRODUCTS;

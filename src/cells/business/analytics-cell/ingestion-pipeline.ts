@@ -3,10 +3,10 @@
 // — legacy V1 imports, pending migration
 
 import { EventEnvelope, PersonaID } from '../../../types';
-import { ShardingService } from '../../../../services/blockchainService.ts';
-import { AuditProvider } from '../../../../services/admin/AuditService.ts';
-import { NotifyBus } from '../../../../services/notificationService.ts';
-import { SagaHealthProjection } from '../domain/projections/SagaHealthProjection.ts';
+import { ShardingService } from '../../../../services/blockchainservice.ts';
+import { AuditProvider } from '../../../../services/admin/auditservice.ts';
+import { NotifyBus } from '../../../../services/notificationservice.ts';
+import { SagaHealthProjection } from '../domain/projections/sagahealthprojection.ts';
 
 /**
  * 🚀 ANALYTICS INGESTION PIPELINE (KIM - TEAM 3)

@@ -1,13 +1,13 @@
  — TODO: fix type errors, remove this pragma
 
 // inventory-cell/index.ts — Wave 4 wire: diamond-normalize + EventBus
-export { InventoryEngine } from './infrastructure/Inventory.engine';
+export { InventoryEngine } from './infrastructure/inventory.engine';
 export { ProcessWipCompletedUseCase } from './application/inventory.usecase';
 export type { IInventoryRepository } from './application/inventory.usecase';
 export type { StockEntry, StockEntryStatus } from './domain/inventory.entity';
 export { createStockEntry } from './domain/inventory.entity';
 export { InventorySheetAdapterStub } from './interface/inventory.sheets.adapter';
-export * from './ports/inventory-SmartLink.port';
+export * from './ports/inventory-smartlink.port';
 
 // Wave 4 engines
 export {

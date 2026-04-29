@@ -1,1 +1,1 @@
-export * from "./constants-SmartLink.port";
+export * from "./constants-smartlink.port";

@@ -1,4 +1,4 @@
-import type { ISecurityRepository } from "../../ports/SecurityRepository";
+import type { ISecurityRepository } from "../../ports/securityrepository";
 import type { Threat } from "../../domain/entities/threat.entity";
 
 const _store: Threat[] = [];

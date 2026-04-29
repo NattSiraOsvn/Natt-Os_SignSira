@@ -1,1 +1,1 @@
-export * from "./StartObservation";
+export * from "./startobservation";

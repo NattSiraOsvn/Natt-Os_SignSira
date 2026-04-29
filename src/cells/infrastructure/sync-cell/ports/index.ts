@@ -1,3 +1,3 @@
-export type { SyncRepository } from './SyncRepository';
-export type { SyncEventEmitter } from './SyncEventEmitter';
+export type { SyncRepository } from './syncrepository';
+export type { SyncEventEmitter } from './synceventemitter';
 export * from './sync-cell.contract';

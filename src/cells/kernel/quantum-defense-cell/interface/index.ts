@@ -1,1 +1,1 @@
-export * from "./QuantumDefenseCell"
+export * from "./quantumdefensecell"

@@ -1,5 +1,5 @@
 import { SyncJob, SyncConfig } from '../../domain/entities';
-import { SyncRepository } from '../../ports/SyncRepository';
+import { SyncRepository } from '../../ports/syncrepository';
 
 export class InMemorySyncRepository implements SyncRepository {
   private jobs = new Map<string, SyncJob>();

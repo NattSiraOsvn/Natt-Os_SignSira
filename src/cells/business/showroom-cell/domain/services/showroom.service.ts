@@ -1,4 +1,4 @@
-import { ShowroomSmartLinkPort } from "../../ports/showroom-SmartLink.port";
+import { ShowroomSmartLinkPort } from "../../ports/showroom-smartlink.port";
 import type { ShowroomProduct, ShowroomMedia } from "@/types/showroom";
 
 const _catalog: ShowroomProduct[] = [];

@@ -4,7 +4,7 @@ import {
   ConflictResolutionMethod, ConflictResolutionRule, BusinessContext
 } from '../../types';
 import { ShardingService } from '@/cells/kernel/audit-cell/domain/engines/blockchain-shard.engine';
-import { SUPER_DICTIONARY } from '../../SuperDictionary';
+import { SUPER_DICTIONARY } from '../../superdictionary';
 import { NotifyBus } from '@/cells/infrastructure/notification-cell/domain/services/notification.service';
 import { PersonaID } from '../../types';
 import { ContextScoring } from '../scoring/context-scoring.engine';

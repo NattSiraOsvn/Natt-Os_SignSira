@@ -3,9 +3,9 @@
 // — legacy V1 imports pending migration
 
 import { EventEnvelope } from '../../../../types';
-import { CreateInvoice } from '../usecases/CreateInvoice';
-import { RiskProjection } from '../projections/RiskProjection';
-import { AuditProvider } from '../../../../../services/admin/AuditService';
+import { CreateInvoice } from '../usecases/createinvoice';
+import { RiskProjection } from '../projections/riskprojection';
+import { AuditProvider } from '../../../../../services/admin/auditservice';
 
 /**
  * 🔁 FINANCE EVENT PIPELINE

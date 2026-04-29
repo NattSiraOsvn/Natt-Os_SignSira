@@ -1,4 +1,4 @@
-import { IConfigRepository } from "../../ports/ConfigRepository";
+import { IConfigRepository } from "../../ports/configrepository";
 
 export class GetConfigUseCase {
   constructor(private repo: IConfigRepository) {}

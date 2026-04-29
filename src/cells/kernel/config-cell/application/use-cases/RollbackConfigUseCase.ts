@@ -1,4 +1,4 @@
-import type { IConfigRepository } from "../../ports/ConfigRepository";
+import type { IConfigRepository } from "../../ports/configrepository";
 
 export class RollbackConfigUseCase {
   constructor(private repo: IConfigRepository) {}

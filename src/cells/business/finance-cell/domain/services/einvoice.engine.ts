@@ -1,4 +1,4 @@
-import { FinanceSmartLinkPort } from '../../ports/finance-SmartLink.port';
+import { FinanceSmartLinkPort } from '../../ports/finance-smartlink.port';
 export type EInvoiceStatus = "DRAFT" | "SIGNED" | "SUBMITTED" | "ACCEPTED" | "REJECTED" | "CANCELLED";
 
 export interface EInvoiceItem {

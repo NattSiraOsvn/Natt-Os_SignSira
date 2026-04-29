@@ -4,7 +4,7 @@
  */
 
 import { EventBus } from '../../../../../core/events/event-bus';
-import { AuditApplicationService } from '../services/AuditApplicationService';
+import { AuditApplicationService } from '../services/auditapplicationservice';
 
 export function registerAuditHandlers(): void {
   EventBus.on('audit.record', async (payload: any) => {

@@ -1,4 +1,4 @@
-import { RBACApplicationService } from "../application/services/RBACApplicationService";
+import { RBACApplicationService } from "../application/services/rbacapplicationservice";
 import { AuthService } from "../domain/services/auth.service";
 
 export const RBACCell = {

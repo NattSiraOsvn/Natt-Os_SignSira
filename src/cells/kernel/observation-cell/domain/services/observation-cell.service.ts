@@ -27,7 +27,7 @@
 import {
   generateSnapshotId,
   type ObservationSnapshot,
-} from "../entities/ObservationSnapshot";
+} from "../entities/observationsnapshot";
 
 import type {
   SignalEvent,

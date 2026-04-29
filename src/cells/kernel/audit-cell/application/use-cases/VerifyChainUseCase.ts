@@ -1,4 +1,4 @@
-import type { IAuditRepository } from "../../ports/AuditRepository";
+import type { IAuditRepository } from "../../ports/auditrepository";
 import { AuditChainService } from "../../domain/services/auditchainservice";
 
 export class VerifyChainUseCase {

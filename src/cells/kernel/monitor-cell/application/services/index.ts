@@ -1,1 +1,1 @@
-export { MonitorApplicationService } from './MonitorApplicationService';
+export { MonitorApplicationService } from './monitorapplicationservice';

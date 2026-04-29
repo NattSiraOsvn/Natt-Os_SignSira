@@ -1,5 +1,5 @@
 import { createTraceLogger } from "@/satellites/trace-logger";
-import { DustRecoverySmartLinkPort } from "../../ports/dust-recovery-SmartLink.port";
+import { DustRecoverySmartLinkPort } from "../../ports/dust-recovery-smartlink.port";
 
 const trace = createTraceLogger({ cellId: "dust-recovery-cell", domain: "PHO" });
 

@@ -2,4 +2,4 @@
 export * from './constants.identity';
 export * from './constants.engine';
 export * from './constants.confidence';
-export * from '../../ports/constants-SmartLink.port';
+export * from '../../ports/constants-smartlink.port';
