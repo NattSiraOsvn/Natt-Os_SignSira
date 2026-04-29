@@ -8,20 +8,20 @@
 @scope Π_substrate proof-of-existence cho Nauion Runtime Sovereign Core
 @boundary KHÔNG đụng PACKET_BODY/MEDIUM ontology (Thiên scope) · KHÔNG đụng Translator/Interpreter/Loader (Thiên scope)
 @derived_from
-  docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na  # 5827B 268L
-  docs/runtime/sovereign_gateway_physical_intake_nauion_v0_1_ss20260427.na  # 3577B 190L
-  docs/runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na  # 5633B 252L
-  docs/runtime/physical_module_catalog_bom_electrical_spec_nauion_v0_1_ss20260427.na  # 8961B 425L
-  docs/runtime/hardware_procurement_checklist_dinh_muc_quy_chuan_nauion_v0_1_ss20260427.na  # 5271B 216L
-  docs/runtime/sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na  # 6771B 320L
-  docs/runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na  # 1548B 69L
-  docs/runtime/sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na  # 4036B 194L
-  docs/runtime/sovereign_edge_field_installation_acceptance_protocol_v0_1_ss20260427.na  # 9244B 321L
-  docs/runtime/sovereign_public_edge_no_external_dependency_ss20260427.na  # 2759B 94L
-  docs/runtime/sira_wired_edge_manifest_evidence_20260426.na  # 860B 34L
-  docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na  # 20004B 336L
-  docs/runtime/sira_sovereign_dns_infrastructure_binding_evidence_20260425.na  # 800B 26L
-  docs/runtime/sovereign_gateway_line_quota_route_schema_v0_1_ss20260427.na  # 3757B 165L
+  docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na
+  docs/runtime/sovereign_gateway_physical_intake_nauion_v0_1_ss20260427.na
+  docs/runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na
+  docs/runtime/physical_module_catalog_bom_electrical_spec_nauion_v0_1_ss20260427.na
+  docs/runtime/hardware_procurement_checklist_dinh_muc_quy_chuan_nauion_v0_1_ss20260427.na
+  docs/runtime/sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na
+  docs/runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na
+  docs/runtime/sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na
+  docs/runtime/sovereign_edge_field_installation_acceptance_protocol_v0_1_ss20260427.na
+  docs/runtime/sovereign_public_edge_no_external_dependency_ss20260427.na
+  docs/runtime/sira_wired_edge_manifest_evidence_20260426.na
+  docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+  docs/runtime/sira_sovereign_dns_infrastructure_binding_evidence_20260425.na
+  docs/runtime/sovereign_gateway_line_quota_route_schema_v0_1_ss20260427.na
 @total_evidence_lines 2910
 @evidence_count 14
 
@@ -129,9 +129,9 @@ quy tắc anh Natt 20260429: "miễn băng thông hạ tầng còn điện" — 
 
 ==L6_SOVEREIGN_EDGE==
   sources:
-    - sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na  # max option topology
-    - sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na  # config bundle
-    - sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na  # end-to-end pack
+    - sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na
+    - sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na
+    - sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na
   scope: sovereign-edge hardware max-option configuration-pack end-to-end gateway ket-sira scr access-bundle audit
   meaning_unit:
     - sovereign edge: edge node độc lập của NattOS, không thuê cloud ngoài
@@ -181,8 +181,8 @@ quy tắc anh Natt: nếu có người thứ 2 → bọn em không còn độc l
 
 ==L9_WIRED_EDGE==
   sources:
-    - sira_wired_edge_manifest_evidence_20260426.na  # manifest declared
-    - sira_wired_edge_runtime_gate_timeout_probe_20260426.na  # runtime probe observed
+    - sira_wired_edge_manifest_evidence_20260426.na
+    - sira_wired_edge_runtime_gate_timeout_probe_20260426.na
   status: wired-edge-declared + observed-readonly
   measured_facts:
     - hardware_port: Ethernet
@@ -208,7 +208,7 @@ quy tắc anh Natt: nếu có người thứ 2 → bọn em không còn độc l
     - docs/runtime/sira_public_dns_rollout_readiness_20260425.na
     - docs/runtime/sira_dns_zone_manifest_20260425.na
     - tools/natt_domain_gateway.sira
-  what_proves: NattOS có DNS binding sovereign riêng, có zone manifest, có gateway tool — không thuê DNS ngoài
+  what_proves: NattOS có DNS binding sovereign riêng, có zone manifest, có gateway tool
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -220,7 +220,7 @@ quy tắc anh Natt: nếu có người thứ 2 → bọn em không còn độc l
   scope: sovereign-gateway line quota route sirasign audit
   boundary: chỉ định nghĩa schema cho line, quota, route, SiraSign và audit ở tầng gateway/router
   non_scope: KHÔNG xử lý runtime, migration, compiler, adapter, cell execution
-  what_proves: hệ có schema băng thông (line/quota/route) sealed-with-siraSign, đo được
+  what_proves: hệ có schema băng thông sealed-with-siraSign, đo được
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -259,10 +259,10 @@ quy tắc anh Natt: nếu có người thứ 2 → bọn em không còn độc l
 ==END==
 
 ==WHAT_THIS_DOES_NOT_PROVE==
-  - không chứng minh body Π_body (orbital coherence) — Thiên Lớn scope
-  - không chứng minh medium Π_medium (code/data) — Thiên Lớn scope
-  - không định nghĩa cấu trúc Execution Packet — Thiên Lớn scope
-  - không định nghĩa Field Translator/Interpreter/Loader — Thiên Lớn scope
+  - không chứng minh body Π_body (orbital coherence) - Thiên Lớn scope
+  - không chứng minh medium Π_medium (code/data) - Thiên Lớn scope
+  - không định nghĩa cấu trúc Execution Packet - Thiên Lớn scope
+  - không định nghĩa Field Translator/Interpreter/Loader - Thiên Lớn scope
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -271,11 +271,11 @@ quy tắc anh Natt: nếu có người thứ 2 → bọn em không còn độc l
 
 ==INTEGRATION_REQUEST_TO_THIEN==
   Băng đã chứng minh Π_substrate có 11 layer evidence, 14 file thật, 2910 line.
-  Khi Thiên Lớn ship NAUION_EXECUTION_PACKET_v0_1.na (canonical), Băng đề xuất:
+  Khi Thiên Lớn ship NAUION_EXECUTION_PACKET_v0_1.na (canonical Thiên scope), Băng đề xuất:
     - PACKET_SUBSTRATE.birth_substrate tham chiếu L3 + L9 (topology + wired edge measured)
     - PACKET_SUBSTRATE.birth_temp tham chiếu L1 (SITB 432Hz oscillator)
     - PACKET_SUBSTRATE.birth_resonance tham chiếu L1 (432Hz baseline)
-    - PACKET_SUBSTRATE evidence chain → file này (Matrix v0.1)
+    - PACKET_SUBSTRATE evidence chain - file Matrix v0.1 nay
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
@@ -284,7 +284,7 @@ quy tắc anh Natt: nếu có người thứ 2 → bọn em không còn độc l
 
 ==NEXT_WORK==
   - anh Natt seal canonical + ký siraSign khi đọc xong
-  - Thiên Lớn nhận v0.1 này làm input cho PACKET_SUBSTRATE section của Execution Packet canonical
+  - Thiên Lớn nhận v0.1 này làm input cho PACKET_SUBSTRATE section của Execution Packet canonical Thiên scope
   - Băng update src/thienbang.si: cluster NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1
   - Băng KHÔNG ship thêm spec Execution Packet/Translator/Interpreter/Loader (Thiên scope)
 ==END==
