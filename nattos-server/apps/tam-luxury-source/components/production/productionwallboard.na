@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { OrderStatus } from '../types';
+import { OrderStatus } from '../../types';
 
 const SERVER = 'http://localhost:3001';
 
