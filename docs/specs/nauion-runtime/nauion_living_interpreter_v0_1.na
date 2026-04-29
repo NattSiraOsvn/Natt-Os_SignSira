@@ -1,0 +1,44 @@
+@nauion-spec v1
+@state draft_v0_1
+@canonical nauion_living_interpreter
+@substrate sovereign_runtime_core
+@authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@depends_on docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
+@depends_on docs/specs/nauion-runtime/nauion_execution_packet_evidence_drift_review_v0_1.na
+@session ss20260429
+@bridge none
+@created_at 2026-04-29T13:54:36
+
+# nauion living interpreter v0.1
+
+==PURPOSE==
+Tiêu thụ Nauion Execution Packet như đơn vị sống: kiểm anchor, authority, pressure, boundary, recovery, audit, memory imprint.
+Không execute như code host. Không chạy theo app route.
+==END==
+
+==CONSUMPTION_FLOW==
+  step_1_load_packet
+  step_2_verify_source_hash
+  step_3_verify_body_medium_substrate_anchor
+  step_4_check_authority_boundary
+  step_5_calculate_pressure_field
+  step_6_decide_fall_dissipate_oscillate
+  step_7_emit_audit_memory_signal
+  step_8_safe_rest_or_quarantine_if_needed
+==END==
+
+==STATE_DECISION==
+  FALL: cộng hưởng đúng trường, được hấp thụ
+  DISSIPATE: lệch trường, tan thành nhiệt/chromatic noise
+  OSCILLATE: dao động vô định, cần re-anchor hoặc tự tiêu
+  SAFE_REST: giảm tải để giữ body
+  QUARANTINE: cách ly nếu vi phạm authority/boundary
+==END==
+
+==BOUNDARY==
+Không Host Bridge. Không mock pressure. Không ép route bằng if/else. Không gọi build/pass là sống.
+==END==
+
+==NEXT_SIGNAL==
+Field Loader nạp packet vào runtime field.
+==END==
