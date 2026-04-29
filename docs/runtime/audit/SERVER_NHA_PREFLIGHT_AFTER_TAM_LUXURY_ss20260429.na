@@ -1,0 +1,71 @@
+@nauion-audit v1
+@state server_nha_preflight_after_tam_luxury
+@name server_nha_preflight_after_tam_luxury_ss20260429
+@scope nattos-server
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+SERVER NHÀ PREFLIGHT — AFTER TAM LUXURY NAUION MIGRATION
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Gắn cờ sau khi Tam Luxury source đã build pass sau Nauion migration, đồng thời kiểm tra sơ bộ server nhà nattos-server trước khi sửa sâu.
+==END==
+
+==TAM_LUXURY_FLAG==
+Tam Luxury source đã có audit build pass.
+Cảnh báo: legacy V1 stubs vẫn là technical debt, build pass không đồng nghĩa production business correctness.
+Không được coi các stub vừa tạo là nghiệp vụ production-ready.
+==END==
+
+==HEAD_RECENT==
+067c185b chore(audit): record Tam Luxury build pass after Nauion migration
+508d15c7 chore(legacy): close all 17 remaining broken imports - BROKEN 0/0
+6f2b64c7 chore(legacy): inline stubs cho 48 broken legacy V1 module - close migration gap
+6a6c89fd fix(src): close fixable import gaps - 52 broken con lai pre-existing legacy
+92549403 fix(src): close import gaps sau rename pascalcase + tsx->ts
+d5f95f44 refactor(src): rename 96 tsx->ts + lowercase + fix import paths
+8df1b892 fix(tam-luxury): close remaining Nauion import gaps
+3100ef26 fix(tam-luxury): repair production imports after Nauion migration
+==END==
+
+==STATUS_BEFORE==
+clean
+==END==
+
+==SERVER_PACKAGE==
+package_exists: True
+scripts: {"dev": "node server.js", "start": "node server.js"}
+dependencies_count: 4
+devDependencies_count: 6
+==END==
+
+==SERVER_RUNTIME_IMPORT_SCAN==
+runtime_files_scanned: 197
+relative_imports_checked: 396
+broken_relative_imports: 0
+==END==
+
+==SERVER_NAMING_AND_STUB_FLAGS==
+tsx_count: 0
+pascal_ts_count: 0
+legacy_stub_file_count: 0
+==END==
+
+==SERVER_BUILD_CHECK==
+build_exit_code: not_run
+No build script found in nattos-server/package.json
+==END==
+
+==GATE_RESULT==
+PASS_PREFLIGHT_OR_NO_BUILD_SCRIPT: server nhà không có broken import runtime theo scan hiện tại.
+==END==
+
+==BOUNDARY==
+- Report này chỉ gắn cờ và preflight server nhà.
+- Không sửa server logic trong report này.
+- Không xóa legacy stubs.
+- Không rename/move thêm khi chưa có lỗi cụ thể.
+- Nếu build fail, sửa lỗi đầu tiên theo scope nhỏ.
+==END==
+
