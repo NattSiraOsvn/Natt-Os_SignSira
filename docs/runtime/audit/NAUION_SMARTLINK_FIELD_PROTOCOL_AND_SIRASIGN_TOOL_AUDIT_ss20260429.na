@@ -1,0 +1,18 @@
+@nauion-audit v1
+@state smartlink_protocol_and_sirasign_tool_created
+@name nauion_smartlink_field_protocol_and_sirasign_tool_audit_ss20260429
+@scope nauion-runtime-sovereign-core
+@created_at 2026-04-29T14:20:03
+
+==RESULT==
+created:
+- docs/specs/nauion-runtime/nauion_smartlink_field_protocol_v0_1.na
+- tools/sirasign_lineage.sh
+
+spec_sha256: 74f490b51d29d96c4c6504f56ad43613a7569cb34781fa5bbd2088c547f0d04f
+tool_sha256: cebb2f10d2fa3ff1f96b2150339807f2fef85803c43de2c33862e079ea8412f7
+==END==
+
+==BOUNDARY==
+No Host Bridge. No app/UI/server/client cleanup. No rename/move/delete/archive prune.
+==END==
