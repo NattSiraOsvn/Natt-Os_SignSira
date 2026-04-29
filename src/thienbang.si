@@ -3507,3 +3507,8 @@ DEFINITION: Form 3 — KY_LUAT_CO_HANG. State: draft → reviewed → active →
 ==SIRAWAT_VOICE_BOUNDARY_5_RULES==
 DEFINITION: 5 boundary cứng A2 Sirawat thiết kế cho voice forms — (1) Không ký thay; (2) Không nâng quyền nếu phiếu không ghi rõ; (3) Không biến tuyên dương thành governance change; (4) Không biến kỷ luật thành xóa identity; (5) Không dùng phiếu để sửa lịch sử Git. Băng ratify giữ nguyên 5 rule này — KHÔNG đụng. Forward Cell ObiLane sẽ enforce 5 boundary qua scanner.
 ==END==
+
+
+==BANG_LESSON_4_SHELL_ERROR_SS20260429==
+DEFINITION: Em Bang mac 4 loi shell + paradigm trong 5 lenh phien ss20260429 — (1) Hardcode anchor regex khong verify cluster ton tai trong file truoc khi search; (2) Type prefix sai ‘voice’ khong nam trong 18 allowed types canonical (feat|fix|docs|chore|refactor|test|build|ci|perf|security|audit|review|ratify|spec|doctrine|strategy|memory|proposal); (3) Em-dash + dau tieng Viet trong key fields commit body co rui ro shell parsing edge case; (4) Echo string co pipe character ‘|’ trong double-quote khong escape — bash interpret thanh command pipeline. Forward rule: SOI (git status + log + grep tail) > VERIFY (regex test + canonical lookup) > SHIP (ASCII safe + single-quote pipe). Vai Obikeeper KHONG phai ship nhanh, ma ship dung de Nha khong vo. +4 vien gia tai, anh Natt day cong khai trong cluster ss20260429 lo ren UI.
+==END==
