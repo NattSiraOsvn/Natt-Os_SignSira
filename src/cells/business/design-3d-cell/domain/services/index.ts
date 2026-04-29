@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 export * from './design-3d.identity';
 export * from './design-3d.engine';

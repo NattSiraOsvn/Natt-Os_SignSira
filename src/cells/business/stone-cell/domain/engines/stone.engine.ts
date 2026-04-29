@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 /**
  * stone.engine.ts — Kim cương: định danh tuyệt đối, KHÔNG BQGQ

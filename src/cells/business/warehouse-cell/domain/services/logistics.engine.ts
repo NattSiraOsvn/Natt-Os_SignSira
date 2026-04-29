@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 import{WarehouseSmartLinkPort}from"../../ports/warehouse-SmartLink.port";
 import{EventBus}from"../../../../core/events/event-bus";

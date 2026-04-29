@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 // warehouse-cell/index.ts
 // Wave 1 — Ingest pipeline hoàn tất

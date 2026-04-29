@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 // finance-cell/index.ts — Wave 4 wire: depreciation + accountByKeywords + EventBus
 export * from "./domain/services";

@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 /**
  * dust-recovery.engine.ts — Hao hụt vật lý trong SX nữ trang

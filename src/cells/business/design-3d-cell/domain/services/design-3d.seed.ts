@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 // design-3d-cell/domain/services/design-3d.seed.ts
 // Wave A — Load 3d_queue_raw.json → pre-populate SkuModel registry

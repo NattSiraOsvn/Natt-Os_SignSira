@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors
+ — TODO: fix type errors
 export * from './domain/entities';
 export * from './domain/services';
 export * from './application';

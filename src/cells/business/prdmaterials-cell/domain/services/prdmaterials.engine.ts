@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 // prdmaterials-cell/domain/services/prdmaterials.engine.ts
 // Wave C-1 — Quản lý láp đúc + phân bổ vàng 24K theo TL sáp

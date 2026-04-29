@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 export type { FinishingRecord, WorkerAssignment, DustIssue, FinishingStatus } from './domain/finishing.entity';
 export { createDustIssue, createFinishingRecord } from './domain/finishing.entity';

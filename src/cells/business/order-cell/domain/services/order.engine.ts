@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 // order-cell/domain/services/order.engine.ts
 // Wave 1 — emit đúng event theo luồng SX-CT vs SX-KD

@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 export type { StoneRecord, StoneItem, StoneType, StoneStatus } from './domain/stone.entity';
 export { createStoneRecord, addStoneItem, setStone, rejectStone, isStoneCompleted } from './domain/stone.entity';

@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 import { AnalyticsSmartLinkPort } from "../../ports/analytics-SmartLink.port";
 import type { BusinessMetrics } from "@/types";

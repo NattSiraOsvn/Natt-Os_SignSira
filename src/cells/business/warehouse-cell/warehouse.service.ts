@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 
 import { StockStatus, SmartLinkEnvelope, Movement, StockReservation, Warehouse, WarehouseLocation } from '../../shared-kernel/shared.types';

@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 import{HREngine,PayslipEntry}from"../../domain/services/hr.engine";
 export interface GeneratePayrollInput{month:string;bonusMap?:Record<string,number>;}
