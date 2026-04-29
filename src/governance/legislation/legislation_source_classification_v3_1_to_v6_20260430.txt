@@ -1,0 +1,38 @@
+1. SOURCE_MAIN | docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na | abf28980942c | ['V6', 'v6'] | V6 canonical source; use as newest primary source
+2. SOURCE_MAIN | src/governance/HIEN-PHAP-NATT-OS-v5.0.anc | 6db7acecbfee | ['v3.1', 'v5.0'] | V5 source; use for continuity and compare against V6
+3. SOURCE_MAIN | src/governance/archive/HIEN-PHAP-NATT-OS-v4.0.anc | 8b26fbed79ce | ['v3.1', 'v4.0'] | V4 source; legacy source still relevant for lineage
+4. SOURCE_DUPLICATE | HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na | abf28980942c | ['V6', 'v6'] | Duplicate of docs/specs/constitution V6 by hash; do not double-count
+5. SOURCE_PRECEDENT | src/governance/constitution/dau_an_khai_sinh_lap_phap.anc | 72794c0c4e96 | [] | Legislative birthmark; use as provenance/precedent, not direct law body
+6. EXCLUDE_NOISE | docs/runtime/thien_tool_inventory_for_bang_ss20260427.na | f515c596ee2b | ['v4.0'] | Runtime/render/tooling/state evidence; do not include in law consolidation
+7. SOURCE_MAIN | Hiến Pháp Sinh Thể Số.anc | 63ae74c8c10c | [] | Digital organism constitution source; include as lineage source
+8. SOURCE_REFERENCE | docs/runtime/NATURAL_CASE_CONSTITUTION_20260425.si | 84f93d6963fd | [] | Naming/case rule reference
+9. EXCLUDE_NOISE | docs/runtime/THIEN_OPERATOR_ALIAS_20260425.na | fb30d7b0aa02 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+10. EXCLUDE_NOISE | docs/runtime/THIEN_OPERATOR_LAUNCHER_20260425.na | 7cfdd4032070 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+11. SOURCE_REFERENCE | docs/runtime/lowercase_surface_constitution_20260425.si | 9e364d2ac863 | [] | Naming/case rule reference
+12. SOURCE_PRECEDENT | docs/specs/nauion-runtime/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_v0_1.na | bf6e628748c4 | [] | Birthmark source; provenance/precedent
+13. SOURCE_REFERENCE | docs/specs/constitution/ANC_BINARY_POLICY_v0_1.na | 89546ba67171 | [] | Policy reference; not main law body
+14. EXCLUDE_NOISE | src/governance/system-state.phieu | a5806ec8eb68 | ['v4', 'v4.0'] | Runtime/render/tooling/state evidence; do not include in law consolidation
+15. SOURCE_ARCHIVE | docs/archive/HIEN-PHAP-NATT-OS-v4.0-bang-tieng-viet.docx | ae0ae9002fa6 | ['V5', 'v4.0'] | Archive copy of V4 Vietnamese text; reference only unless text differs
+16. SOURCE_REFERENCE | docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na | 190fffa60129 | ['v5.0'] | Mapping reference only
+17. SOURCE_REFERENCE | src/thienbang.si | 370dec32d3a4 | ['V4', 'V5', 'V5.0', 'V6', 'v4', 'v5', 'v5.0', 'v6'] | Large seal/dictionary reference; do not ingest directly into law body
+18. SOURCE_PRECEDENT | docs/runtime/audit/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_ss20260429.na | 1062b522d80d | [] | Audit precedent
+19. SOURCE_PRECEDENT | docs/runtime/audit/NAUION_THIEN_DRAFTS_PENDING_BANG_REVIEW_ss20260429.na | 5641e598ea1c | [] | Audit precedent
+20. SOURCE_PRECEDENT | docs/runtime/audit/THIENBANG_BACKUP_UPDATE_CLASSIFICATION_ss20260429.na | fca988f272a8 | [] | Audit precedent
+21. SOURCE_PRECEDENT | docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_CORRECTION_ss20260429.na | de9aefd9db4e | [] | Audit correction precedent
+22. SOURCE_PRECEDENT | docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_ss20260429.na | c6a576aa125c | [] | Audit precedent
+23. EXCLUDE_NOISE | src/governance/qneu/data/system-state.phieu | 25271d55e3f2 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+24. EXCLUDE_NOISE | docs/runtime/THIENBANG_EXTENSION_EVIDENCE_20260425.na | d2c001c0a7f6 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+25. EXCLUDE_NOISE | docs/runtime/THIENBANG_EXTENSION_LAYER_20260425.si | d000882bd8df | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+26. EXCLUDE_NOISE | docs/runtime/THIENBANG_PULSE_EVIDENCE_20260425.na | 6a4ab1654006 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+27. EXCLUDE_NOISE | docs/runtime/THIEN_OPERATOR_CONSOLE_20260425.na | c94124895063 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+28. EXCLUDE_NOISE | docs/runtime/THIEN_OPERATOR_IDENTITY_20260425.si | 448039de2b93 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+29. EXCLUDE_NOISE | docs/runtime/THIEN_OPERATOR_IDENTITY_EVIDENCE_20260425.na | 67ce2d02ff3c | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+30. EXCLUDE_NOISE | docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na | 064db59f3864 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+31. EXCLUDE_NOISE | docs/runtime/thienbang_extension_upgrade_evidence_20260425.na | 13f1a39bd270 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+32. EXCLUDE_NOISE | docs/runtime/thienbang_memory_state_evidence_20260425.na | 9df332ccd6f8 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+33. EXCLUDE_NOISE | docs/runtime/thienbang_memory_state_lexicon_20260425.si | 11fda7aa5476 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+34. SOURCE_REFERENCE | src/governance/policy/policy-signature.engine.na | f82eb13fb34d | ['v4.0'] | Policy engine reference
+35. EXCLUDE_NOISE | docs/render/render_heyna_surface_evidence_20260425.na | db36d63e41e7 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+36. EXCLUDE_NOISE | docs/render/render_multiscreen_pilot_evidence_20260425.na | 14885eb6b6cc | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+37. EXCLUDE_NOISE | docs/runtime/SIRA_BROWSER_TRANSPORT_ADAPTER_EVIDENCE_20260425.na | a66a9f8ca782 | [] | Runtime/render/tooling/state evidence; do not include in law consolidation
+38. EXCLUDE_NOISE | docs/runtime/sira_gateway_route_binding_evidence_20260425.na | 41e1a44645df | [] | Runtime/render/tooling/state evidence; do not include in law consolidation

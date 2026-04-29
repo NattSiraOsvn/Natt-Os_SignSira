@@ -1,0 +1,11 @@
+# Dialect Cipher Rule Seed v0.1
+
+RB_* = Bình Định source dialect rule.
+RN_* = NATT dialect cipher rule.
+
+RN_KEEP_RIME: keep rime, extract tone only.
+RN_UOI_UI: uoi -> ui.
+RN_OI_AU: oi -> au.
+RN_AN_EN: an -> en.
+RN_ANG_ENG: ang -> eng.
+RN_PROTECTED: protected token, no transform.

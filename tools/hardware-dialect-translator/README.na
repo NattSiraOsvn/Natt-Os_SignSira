@@ -1,0 +1,21 @@
+# Hardware Dialect Translator v0.1
+
+## Purpose
+
+Tool chuyển ngữ theo cell/folder cho NATT-OS.
+
+Tool này không chạy toàn repo một lần. Mỗi lần chạy phải chỉ định một thư mục bằng `--dir`.
+
+## Boundary
+
+- Không tự đổi toàn repo.
+- Không cipher token kỹ thuật.
+- Không đụng `.anc`, `.si`, `.phieu`, `.bang` nếu chưa whitelist.
+- `.bang` chỉ dành cho SPEC nội bộ mã hóa.
+- CSV/XLSX 17k từ là seed/lookup, không phải corpus rewrite bắt buộc.
+
+## Transport note
+
+Mesh là đường truyền liên tục.
+SmartLink là xung khác tính chất.
+Hardware compiler phải tách hai tầng này.

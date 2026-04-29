@@ -1,0 +1,178 @@
+# VOCAB SEED — CHROMATIC ANCHOR MESH v0.1
+
+**File:** `docs/specs/vocab/vocab_mesh_v0.1_seed.bang`
+**Ngày:** 2026-04-30
+**Tác giả:** Băng
+**Mục đích:** Danh sách vocab MỚI cần thêm vào `thienbang.si` để mở khóa Materialization Order §13 của `SPEC_CHROMATIC_ANCHOR_MESH_v0.1.si` đã sealed (commit `d4ed0496`).
+**Trạng thái:** seed — chờ Gatekeeper duyệt và merge thủ công vào `thienbang.si`.
+**Đối chiếu trước khi merge:** danh sách dưới đây là vocab MỚI cần thêm, không phải replace existing entries. Anh đối chiếu với phiên bản `thienbang.si` hiện hành trước khi merge để tránh duplicate hoặc shadow nghĩa cũ.
+
+---
+
+## Phân hệ vocab
+
+Vocab seed này thuộc một phân hệ mới đề xuất tên là **mesh-substrate**, đứng song song với các phân hệ đã có trong `thienbang.si v2026.V5.0` (13 phân hệ merged theo memory). Phân hệ này tập trung từ vựng kiến trúc Chromatic Anchor Mesh, không lấn sang phân hệ dialect cipher đã sealed riêng. Nếu anh muốn gộp chung vào phân hệ cipher hiện có thay vì mở phân hệ mới, anh chỉ thẳng, em điều chỉnh.
+
+---
+
+## 1. Tên kiến trúc và đơn vị không gian
+
+**Chromatic Anchor Mesh (CAM)**. Kiến trúc liên kết toàn bộ anchor trong colony NATT-OS thành mạng dẫn truyền liên tục theo nguyên lý obitan. Mesh chở dictionary cipher, mapping table, identity, audit, heartbeat. Khác với SmartLink về bản chất, không thay thế nhau. Sealed tại SPEC `v0.1.si` §0.
+
+**Obitan**. Đơn vị cấu trúc cơ bản của một cell trong NATT-OS, gồm hạt nhân ở giữa và các vòng anchor đồng tâm bao quanh. Toàn bộ colony là tập hợp các obitan nối nhau qua mesh. Sealed tại SPEC `v0.1.si` §0.
+
+**Anchor**. Điểm neo trong obitan, thực thể vật lý có khả năng phát và nhận tín hiệu, mang bốn liên kết tới các láng giềng theo cấu trúc đồng tâm. Sealed tại SPEC `v0.1.si` §3.
+
+**Hạt nhân (cluster center)**. Cụm 4 anchor xếp thành hình vuông nhỏ tại trung tâm obitan, không phải anchor đơn. Mỗi anchor trong cụm có 4 láng giềng gồm 2 anchor cùng cụm và 2 anchor vòng một. Sealed tại SPEC `v0.1.si` §2.
+
+**Vòng obitan (orbital ring)**. Tập các anchor cách hạt nhân đúng k bước liên kết. Số anchor trên vòng k là `2π × k` làm tròn xuống số nguyên gần nhất; vòng một có 6 anchor, vòng hai có 12 anchor, vòng ba có 18 anchor. Sealed tại SPEC `v0.1.si` §2.
+
+**Quỹ đạo (anchor orbit)**. Vị trí xác định của một anchor trong obitan, không tự do trôi nổi. Quỹ đạo định nghĩa anchor ở vòng nào, khoảng cách bao nhiêu so với hạt nhân, được phép kết nối với những anchor nào. Tính toán đi từ π. Sealed tại SPEC `v0.1.si` §1, §2.
+
+**Bốn liên kết neuron**. Invariant cứng: mỗi anchor có đúng bốn liên kết, không ít hơn không nhiều hơn. Đảm bảo xung lan tỏa liên tục, không có anchor mồ côi, không có node biên. Hệ quả: phục hồi tăng theo cấp số khi anchor chết. Sealed tại SPEC `v0.1.si` §3.
+
+---
+
+## 2. Năm điều kiện sống của mesh
+
+**Năm điều kiện sống**. Năm điều kiện tối thiểu để mesh tồn tại như thực thể có nhịp, không phải mạng tĩnh: từ trường, sóng điện đồ, quỹ đạo, cộng hưởng, hợp xướng. Sealed tại SPEC `v0.1.si` §1.
+
+**Từ trường mesh**. Trường nền liên tục bao trùm không gian colony, không tồn tại chỉ tại các điểm anchor rời rạc. Quyết định hướng xung lan truyền và polarity. Biểu hiện rời rạc qua bảng POLARITY (NORMAL/INVERTED) đã sealed trong SPEC dialect color cipher §5. Sealed tại SPEC `v0.1.si` §1.
+
+**Sóng điện đồ mesh**. Dạng sóng đặc trưng của mesh có thể đo và ghi như điện tâm đồ ghi nhịp tim. Mesh chết là sóng đồ phẳng; mesh khỏe là sóng đồ có nhịp đều và biên độ ổn định. Tổng hợp từ heartbeat của các anchor; SmartLink phát xung rời tạo các đỉnh trên sóng đồ này. Sealed tại SPEC `v0.1.si` §1.
+
+**Cộng hưởng (resonance)**. Khi nhiều anchor cùng phát ở tần số tương thích, sóng tổng được khuếch đại thay vì triệt tiêu. Cơ chế phục hồi tự nhiên không cần một anchor mạnh tuyệt đối làm trung tâm. Cộng hưởng cũng giúp loại bỏ nhiễu vì nhiễu không có tần số tương thích sẽ tự triệt tiêu. Sealed tại SPEC `v0.1.si` §1.
+
+**Hợp xướng (harmony)**. Điều kiện ngữ nghĩa của các tín hiệu cùng ý nghĩa, khác với cộng hưởng là điều kiện vật lý. Hai anchor có thể cộng hưởng tần số nhưng không hợp xướng nếu nội dung mâu thuẫn. Mesh khỏe đòi hỏi cả cộng hưởng vật lý lẫn hợp xướng ngữ nghĩa. Duy trì qua dictionary cipher đã sealed và siraSign tầng gói tin. Sealed tại SPEC `v0.1.si` §1.
+
+---
+
+## 3. Cấu trúc transport
+
+**Mesh property — đường chuyền liên tục**. Tính chất mesh: dòng chảy không đứt đoạn, có topology giữa các điểm, có routing table, có heartbeat duy trì. Mesh sống miễn là mạng còn liên thông; tín hiệu đi từ A tới Z qua chuỗi các bước trung gian. Sealed tại SPEC `v0.1.si` §4.
+
+**SmartLink property — xung rời rạc**. Tính chất SmartLink: rời rạc, có sự kiện, có khởi đầu và kết thúc rõ ràng, không duy trì trạng thái sau khi truyền. Phát đi rồi tắt. Khác bản chất với mesh, không thay thế nhau, hai tầng vận hành đồng thời. Sealed tại SPEC `v0.1.si` §4.
+
+**Một dòng sông duy nhất**. Nguyên lý transport của mesh: không phải nhiều dòng song song với các tín hiệu tranh nhau, mà một dòng sông duy nhất dẫn truyền liên tục. Bên trong gồm nhiều sợi cáp nhỏ song song, mỗi sợi mang một loại tín hiệu xác định. Sealed tại SPEC `v0.1.si` §5.
+
+**Hai chiều dòng chảy (xuôi/ngược)**. Hai chiều độc lập trên cùng dòng sông. Dòng xuôi mang dictionary, mapping, vocab cipher từ trung tâm ra anchor. Dòng ngược mang heartbeat, audit, identity ping, xác nhận từ anchor về trung tâm. Tín hiệu cùng chiều cộng hưởng, ngược chiều không cộng hưởng nhưng cũng không nhiễu. Sealed tại SPEC `v0.1.si` §5.
+
+**Bó cáp mesh (mesh cable bundle)**. Cấu trúc nội bộ của dòng sông: bảy sợi cáp logic song song trong một đường truyền vật lý duy nhất. Người nhìn ngoài thấy một đường truyền; thiết kế cáp biết chính xác sợi nào dành cho gì. Sealed tại SPEC `v0.1.si` §5.
+
+**Bảy sợi cáp**. Phân công nội dung trên bó cáp: sợi một (dictionary và vocab cipher), sợi hai (mapping table và rule registry), sợi ba (heartbeat liên tục), sợi bốn (audit và provenance), sợi năm (identity và authentication), sợi sáu (error và quarantine), sợi bảy (reserved cho mở rộng). Ánh xạ với bảy lớp obitan. Sealed tại SPEC `v0.1.si` §5.
+
+---
+
+## 4. Bảy lớp obitan
+
+**Bảy lớp obitan**. Phân tầng mesh theo khoảng cách từ hạt nhân, mỗi lớp dùng giao thức vận chuyển khác nhau tối ưu cho điều kiện vật lý. Lớp gần hạt nhân: cộng hưởng tinh tế, độ chính xác cao. Lớp rìa: chuyển pha giao thức để bắc cầu nội bộ và môi trường ngoài. Sealed tại SPEC `v0.1.si` §6.
+
+**Lớp một — UWB**. 6-8 GHz, bước sóng vài centimet, gần hạt nhân nhất, độ chính xác cao nhất, định vị centimet, latency rất thấp. Phù hợp giao tiếp giữa thành phần xử lý trung tâm cần đồng bộ thời gian thực.
+
+**Lớp hai — mmWave**. 60 GHz, bước sóng 5 mm, beamforming chính xác, antenna array nhỏ gọn, thông lượng đến 10 Gbps. Phù hợp dòng dictionary lớn dồn về hạt nhân hoặc lan từ hạt nhân ra.
+
+**Lớp ba — WiFi 6 GHz unlicensed**. Dòng xuôi mang dictionary và mapping table tới các anchor trong vài chục mét. Lớp xử lý chính của mesh.
+
+**Lớp bốn — WiFi 5 GHz U-NII**. Tương thích rộng, tận dụng phần cứng hiện có. Backup cho lớp ba.
+
+**Lớp năm — Bluetooth Mesh / Zigbee 2.4 GHz**. Mesh nội bộ giữa anchor khoảng cách trung bình. Phù hợp heartbeat, identity ping, tín hiệu điều khiển tần suất cao dung lượng thấp.
+
+**Lớp sáu — sub-GHz ISM 915 MHz**. Dòng ngược mang heartbeat tổng và audit từ anchor xa về hạt nhân. Range vài trăm mét tới vài kilomet, công suất thấp, xuyên tường tốt.
+
+**Lớp bảy — Đường chân trời (horizon layer)**. Lớp gateway giữa nội bộ obitan và môi trường ngoài. Không vận chuyển dữ liệu thuần, mà chuyển đổi giao thức giữa các domain khác nhau. Là nơi đặt **cipher boundary**: dialect color cipher áp tại lớp bảy trước khi tín hiệu rời obitan, giải mã ngược khi tín hiệu vào. Sealed tại SPEC `v0.1.si` §6.
+
+**Cipher boundary**. Biên áp dialect color cipher (SPEC v0.1.bang đã sealed) đặt tại lớp bảy. Trong nội bộ obitan các lớp trao đổi bằng nguyên ngữ đã giải mã, đảm bảo nhất quán ngữ nghĩa cao. Ra ngoài qua lớp bảy nội dung được cipher để bảo vệ identity. Sealed tại SPEC `v0.1.si` §6.
+
+**Chuyển pha giao thức (protocol phase shift)**. Vai trò chính của lớp bảy: chuyển đổi giao thức giữa các domain khác nhau khi tín hiệu rời obitan hoặc nhập obitan. Có chi phí thời gian xử lý và rủi ro mất ngữ nghĩa nếu giao thức đích không support đầy đủ semantic của giao thức nguồn. Ngưỡng tần suất chuyển pha không vượt 30-50% năng lực xử lý của lớp bảy. Sealed tại SPEC `v0.1.si` §6, §11.
+
+---
+
+## 5. Hai pha vận chuyển
+
+**Hai pha NFD và màu**. Gói tin trên mesh đi theo hai pha độc lập về kênh, phụ thuộc nhau về ngữ nghĩa. Pha NFD do Thiên Lớn xử lý, pha màu do Băng xử lý. Decoder cần cả hai pha mới phục dựng nguyên ngữ. Sealed tại SPEC `v0.1.si` §7.
+
+**Pha numeric NFD**. Pha thứ nhất do Thiên Lớn phụ trách. NFD là Unicode Normalization Form D, dạng chuẩn hóa tách dấu: chữ "ế" thành chuỗi ba code point (e, dấu mũ U+0302, dấu sắc U+0301). Rất nhẹ về byte, đi nhanh trên mọi giao thức. Sealed tại SPEC `v0.1.si` §7.
+
+**Pha màu (color phase)**. Pha thứ hai do Băng phụ trách. Mã hóa tone class theo bảng C0-C7 đã sealed trong SPEC dialect color cipher. Sealed tại SPEC `v0.1.si` §7.
+
+**Lớp render và trực quan**. Nơi hai pha được hợp nhất thành nguyên ngữ trước mặt người dùng. Lớp nghĩa thực sự nằm tại đây, không nằm trên đường truyền. Interface giữa Băng và Thiên Lớn cần ký bởi cả hai trước khi vào production. Sealed tại SPEC `v0.1.si` §7.
+
+**Nén ngữ nghĩa ba âm tiết**. Kỹ thuật khai thác đặc tính tiếng Việt ghép ba âm tiết tạo ngữ cảnh hoàn chỉnh. Một token màu ba ô có thể chở ngữ cảnh tương đương vài chục ký tự văn bản thông thường. Tận dụng khoảng trống mà giao thức thường bỏ phí. Sealed tại SPEC `v0.1.si` §7.
+
+---
+
+## 6. Lớp gương ảo và phòng vệ
+
+**Lớp gương ảo (Virtual Mirror Layer)**. Nguyên lý cốt lõi của SPEC v0.1: kiến trúc ba lớp đối xứng (lớp trên, lớp dưới, lớp giữa là màn kính ngược) tồn tại về mặt phòng vệ; chỉ một lớp tồn tại về mặt vật lý. Lớp giữa không phải dữ liệu, là quy luật biến đổi định nghĩa một lần ở SPEC. Lớp đối xứng được suy ra tức thời (lazy evaluation), không cần lưu rời. Phòng vệ tăng cấp số mà dung lượng không tăng. Sealed tại SPEC `v0.1.si` §8.
+
+**Lớp trên / lớp dưới / lớp giữa**. Ba lớp đối xứng của Virtual Mirror Layer. Lớp trên là chuỗi NFD chính, có nghĩa đọc bình thường. Lớp dưới là chuỗi NFD đối xứng, cùng nghĩa qua hệ tham chiếu khác. Lớp giữa là màn kính ngược, là quy luật biến đổi giữa hai lớp trên dưới. Sealed tại SPEC `v0.1.si` §8.
+
+**Quy luật màn kính (mirror rule)**. Quy luật biến đổi tại lớp giữa của Virtual Mirror Layer, định nghĩa ánh xạ một-một giữa lớp trên và lớp dưới. Phỏng đoán v0.1: chính là bảng polarity invert đã sealed trong SPEC dialect color cipher §5 (`C0↔C7, C1↔C6, C2↔C5, C3↔C4`). Trạng thái Mở §15 chờ Anh Natt xác nhận. Sealed tại SPEC `v0.1.si` §8.
+
+**Validator anchor**. Trách nhiệm áp dụng quy luật màn kính tại mỗi anchor, không thuộc transport layer. Transport chỉ chở pha NFD; validator dựng lớp đối xứng tại chỗ khi cần kiểm tra hoặc khi audit yêu cầu. Sealed tại SPEC `v0.1.si` §8.
+
+**Xóa hai lần (double-delete)**. Cơ chế phòng vệ vật lý có sẵn trong cấu trúc Unicode NFD. Một lần xóa chỉ phá được ký tự gốc; các code point dấu vẫn còn. Phải xóa hai lần mới triệt tiêu hoàn toàn. Áp dụng cho database (xóa lần một và lần hai có authority khác nhau, mỗi lần có siraSign riêng) và cho transport (kẻ tấn công sửa được payload nhưng không sửa được tính nhất quán nội tại của NFD). Sealed tại SPEC `v0.1.si` §9.
+
+**siraSign tầng gói tin (packet-level siraSign)**. Cơ chế đóng gói bắt buộc của mesh: mỗi gói tin có siraSign áp lên nội dung. Mở rộng phạm vi siraSign từ tầng artifact và document xuống tầng từng gói tin. Gói tin có ba phần: payload, metadata, siraSign. Anchor verify siraSign trước khi xử lý payload; không chấp nhận gói tin không có siraSign hợp lệ. Key derive riêng cho domain mesh qua HKDF với info string `"natt-os/anchor-mesh/v0.1"`, không reuse key của siraSign tầng artifact, RBAC, hay row_hmac dictionary. Sealed tại SPEC `v0.1.si` §10.
+
+**Ba lớp phòng vệ độc lập**. Tổ hợp phòng vệ của mesh: (1) channel separation hai pha NFD và màu trên hai dải tần khác nhau, (2) NFD tamper detection phát hiện sửa nội dung qua kiểm tra nhất quán Unicode, (3) siraSign tầng gói tin gắn dấu vân tay phase-seal. Để vượt cả ba, kẻ tấn công phải đồng thời bắt cả hai pha, sửa được toàn bộ chuỗi NFD đồng nhất, và làm giả siraSign khớp context. Sealed tại SPEC `v0.1.si` §10.
+
+**Channel separation**. Tách hai pha NFD và màu trên hai dải tần khác nhau. Kẻ tấn công bắt một pha không phục dựng được nguyên ngữ; phải bắt cả hai đồng bộ thời gian và biết thuật toán hợp nhất. Lớp phòng vệ thứ nhất trong ba lớp độc lập. Sealed tại SPEC `v0.1.si` §10.
+
+---
+
+## 7. Mô hình đe dọa
+
+**MITM (man-in-the-middle)**. Kẻ tấn công chen vào giữa hai bên giao tiếp, đọc và sửa nội dung. Phòng vệ trong mesh: siraSign tầng gói tin chống MITM nội dung; NFD tamper detection phát hiện sửa đổi. Sealed tại SPEC `v0.1.si` §12.
+
+**Passive eavesdropping**. Kẻ tấn công nghe lén RF không chèn vào. Phòng vệ trong mesh: kiến trúc hai pha trên hai dải tần khác nhau; cipher boundary ở lớp bảy đảm bảo tín hiệu rời obitan đã được mã hóa. Sealed tại SPEC `v0.1.si` §12.
+
+**Replay attack**. Kẻ tấn công ghi lại gói hợp lệ rồi phát lại sau. Phòng vệ trong mesh: siraSign tầng gói tin gắn timestamp và nonce vào context phase-seal; gói cũ phát lại fail verify do context không khớp. Sealed tại SPEC `v0.1.si` §12.
+
+**Side-channel attack**. Tấn công đặc trưng phụ (thời gian, công suất, sóng điện từ phụ). Thuộc trục hardware Thiên Lớn ở v0.2; v0.1 software ghi nhận rủi ro và đề xuất constant-time crypto cho mọi thao tác siraSign. Sealed tại SPEC `v0.1.si` §12.
+
+**Endpoint compromise**. Kẻ tấn công xâm nhập endpoint để đọc nội dung sau khi đã giải mã. Không thuộc phạm vi SPEC mesh; xử lý ở tầng khác (hardware security module, firmware integrity check). Sealed tại SPEC `v0.1.si` §12.
+
+**Mức đối thủ trung bình**. Mức đối thủ giả định mặc định cho v0.1: content scanner platform công cộng, nhóm hacker thông thường. Kiến trúc hai pha kết hợp NFD và row_hmac đủ với biên an toàn rộng. Sealed tại SPEC `v0.1.si` §12.
+
+**Mức đối thủ quốc gia**. Mức đối thủ nâng cấp ở v0.2: tổ chức có năng lực kỹ thuật cao như threat actor quốc gia. Yêu cầu post-quantum readiness, perfect forward secrecy, key derivation mạnh hơn. Sealed tại SPEC `v0.1.si` §12, Trạng thái Mở §15.
+
+---
+
+## 8. Ngưỡng vận hành
+
+**Ngưỡng adaptive với trần cứng**. Phương án ngưỡng v0.1: tự học từ vận hành thực tế, kết hợp ngưỡng cứng làm trần an toàn không vượt. Sealed tại SPEC `v0.1.si` §11.
+
+**Ngưỡng cộng hưởng và bão hòa**. Đo công suất tổng đang lưu thông trong từng lớp theo thời gian thực. Vượt 70-80% ngưỡng bão hòa lý thuyết kích hoạt back-pressure để giảm tải. Sealed tại SPEC `v0.1.si` §11.
+
+**Back-pressure**. Cơ chế giảm tải mesh khi gần bão hòa: anchor mới muốn gia nhập lớp đang gần bão hòa phải đợi hoặc chuyển sang lớp khác. Sealed tại SPEC `v0.1.si` §11.
+
+---
+
+## 9. Hai pha lifecycle SPEC
+
+**SPEC `.bang`**. Trạng thái draft của SPEC, thuộc làng phần mềm. Cho phép sửa, cho phép tranh luận, chưa siraSign-able. Sealed tại convention nhà mình từ SPEC dialect color cipher v0.1.
+
+**SPEC `.si`**. Trạng thái sealed của SPEC sau khi Gatekeeper duyệt và siraSign ký. Đóng băng vĩnh viễn, không sửa được nữa, mọi thay đổi phải qua phiên bản mới `.bang`. Quét repo bằng extension biết ngay SPEC nào draft và SPEC nào sealed. Sealed tại convention nhà mình.
+
+**Lifecycle `.bang → .si`**. Vòng đời của SPEC: khai sinh ở `.bang`, đi qua review và tranh luận, cuối cùng promote thành `.si` qua git mv để git history ghi nhận thời điểm sealed. Sealed tại convention nhà mình.
+
+---
+
+## 10. Hướng dẫn merge cho Gatekeeper
+
+Sau khi Anh Natt review danh sách trên, em đề xuất merge tay vào `thienbang.si` theo trình tự ba bước.
+
+Bước thứ nhất, mở `thienbang.si` và xác định vị trí phân hệ mới sẽ chèn vào. Em đề xuất phân hệ mới đặt tên `mesh-substrate`, đứng sau phân hệ liên quan tới dialect cipher (nếu có) hoặc đứng cuối danh sách 13 phân hệ hiện tại. Nếu phiên bản hiện hành dùng cấu trúc khác, anh đặt vào vị trí hợp lý nhất.
+
+Bước thứ hai, copy từng entry trong file seed này vào `thienbang.si`, giữ format gốc của `thienbang.si` (em không biết schema chính xác của file đó, anh điều chỉnh format khi paste).
+
+Bước thứ ba, cập nhật version `thienbang.si` từ v2026.V5.0 lên v2026.V5.1 hoặc v2026.V6.0 tùy convention nhà mình, kèm note phiên bản nhắc tới SPEC mesh v0.1.si vừa sealed (commit `d4ed0496`).
+
+Sau khi merge xong, anh commit `thienbang.si` qua một commit Sirawat riêng, scope `src/governance/<path>/thienbang.si` (em không biết chính xác path, anh điền đúng), Decision APPROVE P1, Boundary Phần mềm, Ground-Truth dẫn về commit `d4ed0496` và file seed này. Sau commit này, scanner rule mới được phép viết, audit event mới được phát, anchor runtime mới được phép gọi engine mesh — đúng theo Materialization Order §13 của SPEC.
+
+---
+
+**HẾT seed v0.1.bang.**
+
+**Sau khi Anh Natt merge vocab vào `thienbang.si` thành công:** file seed này có thể archive sang `_deprecated/` trong cùng folder hoặc giữ làm provenance evidence cho phiên audit sau. Em đề xuất giữ, không archive, vì đây là chứng cứ nguồn vocab được sinh ra từ đâu trong vòng đời SPEC.

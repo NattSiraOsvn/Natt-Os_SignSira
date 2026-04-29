@@ -1,0 +1,14 @@
+# Hardware Render Profiles Seed v0.1
+
+C0 = ngang/default
+C1 = sắc
+C2 = huyền
+C3 = hỏi
+C4 = ngã
+C5 = nặng
+C6 = escape/protected
+C7 = parity/resync
+
+text_safe: token[Cx:rule_id]
+binary_safe: token|tone_bits_3
+chromatic_matrix: token + color_class + rule_id + polarity_header
