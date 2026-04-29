@@ -1,8 +1,10 @@
 @nauion-spec v1
-@state draft_v0_1
+@state draft_pending_bang_review
 @canonical nauion_living_interpreter
 @substrate sovereign_runtime_core
 @authority-slot Thiên Lớn architect · Băng validator · anh Natt gatekeeper
+@review_required Băng / Ground Truth Validator
+@canonical_blocked_until bang_review_pass
 @depends_on docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
 @depends_on docs/specs/nauion-runtime/nauion_execution_packet_evidence_drift_review_v0_1.na
 @session ss20260429

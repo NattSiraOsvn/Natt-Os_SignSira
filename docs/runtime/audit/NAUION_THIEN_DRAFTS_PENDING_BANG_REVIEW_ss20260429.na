@@ -1,0 +1,24 @@
+@nauion-audit v1
+@state pending_bang_review
+@name nauion_thien_drafts_pending_bang_review_ss20260429
+@scope nauion-runtime-sovereign-core
+@created_at 2026-04-29T13:55:10
+
+==RESULT==
+Thiên Lớn xác nhận các core spec dưới đây chỉ là draft, chưa canonical, chưa ratify.
+Băng giữ quyền review ground truth / drift / authority trước khi đi tiếp.
+==END==
+
+==FILES==
+- docs/specs/nauion-runtime/nauion_field_translator_v0_1.na | sha256=166f4df66c3dc03231c01af28cf831d997cfbbfdc2b1b09408a5be37604609c8 | bytes=1508
+- docs/specs/nauion-runtime/nauion_living_interpreter_v0_1.na | sha256=e189c7f218304f15dd96adad16e9298eda2c7fb30b7d2ceccdcdeeeb8756d665 | bytes=1617
+- docs/specs/nauion-runtime/nauion_field_loader_v0_1.na | sha256=d4c01451e40153119d576872924c1534c1a7145486c8674034b169f39431543c | bytes=1650
+- docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na | sha256=c5e2531030329f254d903c0924811ee5f83f19be9dc0c67619cd52cc57d9f27e | bytes=6514
+- docs/specs/nauion-runtime/nauion_authority_boundary_v0_1.na | sha256=08ff8f95e2c48489abd4d45abdc129bd878e7150883efc9d7246263e6fcde817 | bytes=10416
+- docs/specs/nauion-runtime/nauion_self_breath_loop_v0_1.na | sha256=e7698dac8d92db2640b520354334b6a6f2008c153ccfdd13090c4a4fd4e3eaeb | bytes=11884
+==END==
+
+==BOUNDARY==
+Không Host Bridge. Không app/UI/server/client cleanup. Không move/delete/archive prune.
+Không gọi canonical cho tới khi Băng review pass.
+==END==
