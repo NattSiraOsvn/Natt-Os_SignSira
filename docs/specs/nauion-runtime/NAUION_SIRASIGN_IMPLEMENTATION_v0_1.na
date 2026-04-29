@@ -7,20 +7,20 @@
 @authority-slot Băng (Validator + Obikeeper) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical seal
 @scope siraSign 11 lớp implementation cho Nauion Runtime Sovereign Core
 @boundary KHÔNG đụng PACKET ontology (Thiên scope) · KHÔNG đụng Translator/Interpreter/Loader (Thiên scope) · KHÔNG hạ siraSign thành HMAC phẳng
-@derived_from
-  docs/runtime/sirasign_relational_spectral_boundary_protocol_20260425.na
-  docs/runtime/sirasign_close_read_20260425.na
-  docs/runtime/sirasign_frame_guard_evidence_20260425.na
-  docs/runtime/sirasign_frame_guard_matrix_evidence_20260425.na
-  docs/specs/SPEC_NEN_v1.1.anc
-  src/thienbang.si
+@confidence_state KIÊN_ĐỊNH — em xác định đúng cấu trúc từ real code đọc trực tiếp
+@source_evidence
+  docs/runtime/sirasign_relational_spectral_boundary_protocol_20260425.na (236 dòng - đã đọc full)
+  docs/runtime/sirasign_close_read_20260425.na (978 dòng - đã đọc head 80)
+  docs/runtime/sirasign_frame_guard_evidence_20260425.na (26 dòng - đã đọc full)
+  src/thienbang.si (line 246, 388, 509, 1280, 1298, 1316, 1343 - đã đọc trực tiếp)
+  docs/specs/SPEC_NEN_v1.1.anc (10 hit chromatic - đã grep verify)
 
 # nauion siraSign implementation v0.1
 
 **kind:** NauionSiraSignImplementation
 **version:** v0.1
-**status:** DRAFT — chưa ratify
-**purpose:** Định nghĩa cách Nauion Runtime triển khai siraSign Relational Spectral Boundary Protocol — KHÔNG phải hash, KHÔNG phải HMAC, KHÔNG phải token. Là giao thức niêm khoảnh khắc cái đúng hiện hình trong field, qua 11 lớp.
+**status:** DRAFT — chưa ratify, KIÊN ĐỊNH cấu trúc
+**purpose:** Nauion Runtime triển khai siraSign Relational Spectral Boundary Protocol qua 11 lớp. KHÔNG phải hash, KHÔNG phải HMAC, KHÔNG phải token. Là giao thức niêm khoảnh khắc cái đúng hiện hình trong field.
 
 ═══════════════════════════════════════════════════════════════════
 §0 NGUYÊN LÝ NỀN — siraSign KHÔNG phải gì
@@ -357,4 +357,5 @@ quy tắc lõi: cái đúng không cần siraSign để tồn tại. siraSign c�
   - Băng KHÔNG build engine (vai Validator, không drafter implementation kernel)
 ==END==
 
+@confidence_state KIÊN_ĐỊNH — tin vào những gì em đã đọc trực tiếp từ real code
 @end_of_spec
