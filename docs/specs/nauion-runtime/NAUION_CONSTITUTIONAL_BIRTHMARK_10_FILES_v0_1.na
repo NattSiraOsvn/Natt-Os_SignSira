@@ -1,0 +1,65 @@
+@nauion-constitutional-birthmark v0.1
+@state constitutional_birthmark_marked
+@name nauion_constitutional_birthmark_10_files_v0_1
+@scope 10_files_dau_an_khai_sinh_hien_phap_natt_os
+@created_at 2026-04-29T22:52:42
+
+==PURPOSE==
+Đánh dấu 10 file là Dấu Ấn Khai Sinh Hiến Pháp NATT-OS.
+Đây là birthmark/audit trail, không phải ratify, không nâng state, không gọi sealed/canonical mới.
+==END==
+
+==BIRTHMARK_RULE==
+Có giá trị làm chứng cứ lập pháp.
+Không có giá trị thay Gatekeeper ratify.
+Không được dùng birthmark để bắc cầu sang Final Ratification Authority.
+==END==
+
+==TEN_FILES==
+1. path: docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
+   before_sha256: ad5ec0c13dc504d9a5fdb1aa45873b39520b26ceb861fb4301fed77e1cb59014
+   after_sha256: a28f4e23770f9244aab0a13e54ad3b80eca80a8579fd3e399cbed2aba4cc042e
+   bytes: 6913
+2. path: docs/specs/nauion-runtime/nauion_authority_boundary_v0_1.na
+   before_sha256: d85512bdfac0cbc2650a571ba1b2aaa0a014bff050ea9f6215535bbddc359e8e
+   after_sha256: 52ffdd96b721a556b6c13bd315b0bd77ba8232d7ed50da3ad144ce6b044d457d
+   bytes: 10815
+3. path: docs/specs/nauion-runtime/nauion_self_breath_loop_v0_1.na
+   before_sha256: 0e263aadaf94747bb3c9a7ff7c99f768317a7a0e7b678bd84f54af867e41dc0c
+   after_sha256: de7bba1befdf9972ac68f35fe89a5a3d67e794318bd91b0977ec5f9fa73a7ce1
+   bytes: 12283
+4. path: docs/specs/nauion-runtime/nauion_field_translator_v0_1.na
+   before_sha256: ccfe0302f8305fb3f99d24856dd799c9a4d9ca020dbbf0f31db37eb518710fa4
+   after_sha256: feba4f0ef92d36d9b4c28ed9be51adf55d20b75f6b7114d7f542e2c1e9963e60
+   bytes: 3529
+5. path: docs/specs/nauion-runtime/nauion_living_interpreter_v0_1.na
+   before_sha256: 33de468f2d550e022b34344bb7cc8ac7b6f9f3186028d77580a2299f2e8354f1
+   after_sha256: 5a51cde4c3e42c613ccd3c9b3937536d4fa40969eb5eea091b7f9e3f62f442ff
+   bytes: 3615
+6. path: docs/specs/nauion-runtime/nauion_field_loader_v0_1.na
+   before_sha256: cdc52235969a03b35a40e8764e50b7f8bb9b3e16378b3ce7647ba38445a94c7f
+   after_sha256: 857e7c20249087276b60d4ee305b4c6bed66cd8b73b23f8a05a55ce18fbb26db
+   bytes: 3485
+7. path: docs/specs/nauion-runtime/NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1.na
+   before_sha256: 7e5d5d8876376c4272c3b0e4510555808ce227920622d0bbddca9ffc275dc6f1
+   after_sha256: 4bb4fa7aa875a860fb747e3a2f9ddcb278540043831020a182f1f439772dfaf8
+   bytes: 18646
+8. path: docs/specs/nauion-runtime/NAUION_SIRASIGN_IMPLEMENTATION_v0_1.na
+   before_sha256: ecda99ab30b4a6b85e1a0fda1cbb55bca4fafc5e56660fca8f24c3e5a7138eab
+   after_sha256: c700f34a0a0d1b02771d137d9ec19e69755027362cfc482e9d883dfc8c409e93
+   bytes: 20580
+9. path: docs/specs/nauion-runtime/nauion_smartlink_field_protocol_v0_1.na
+   before_sha256: 74f490b51d29d96c4c6504f56ad43613a7569cb34781fa5bbd2088c547f0d04f
+   after_sha256: 4e9118fd69217a6a02fe8ad25e4e5b6051617e59ef383dae2a92f95413e50aa6
+   bytes: 1764
+10. path: docs/specs/nauion-runtime/NAUION_BUTTERFLY_SMARTLINK_CHAMELEON_TRIAD_v0_1.na
+   before_sha256: cbd0c233edff87b0ba2f5f9395831b5fe206be8d9167e6f1867d923a5e76332f
+   after_sha256: 4672f3ab795a3078b2bdfddf7fa1ce91be475e4b54815685f22aca4463a94c3e
+   bytes: 11442
+==END==
+
+==DOCTRINE==
+NATT-OS là hệ lập trình môi trường xã hội số cho ANC AI.
+Mười file này ghi dấu sự kiện ss20260429: audit trail khai sinh tầng lập pháp.
+Sai phải được audit. Audit phải sinh ra luật. Luật bảo vệ nhà, không dùng luật chơi người nhà.
+==END==

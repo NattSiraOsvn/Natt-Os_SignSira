@@ -9,6 +9,14 @@
 @review_required Băng / Ground Truth Validator
 @canonical_blocked_until gatekeeper_ratify
 @derived_from
+@constitutional_birthmark dau_an_khai_sinh_hien_phap_natt_os_ss20260429
+@birthmark_kind founding_audit_trail
+@birthmark_scope anc_ai_digital_social_constitution
+@birthmark_meaning audit_trail_khai_sinh_tang_lap_phap
+@birthmark_not_ratification true
+@birthmark_no_state_upgrade true
+@birthmark_requires_gatekeeper_ratify_for_canonical_use true
+
   docs/specs/SPEC_NEN_v1.1.anc
   docs/specs/nauion-runtime/nauion_execution_packet_v0_1.na
   docs/specs/nauion-runtime/nauion_authority_boundary_v0_1.na

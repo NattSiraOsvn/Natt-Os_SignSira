@@ -1,0 +1,20 @@
+@nauion-audit v1
+@state constitutional_birthmark_audit_recorded
+@name nauion_constitutional_birthmark_10_files_ss20260429
+@scope 10_files_dau_an_khai_sinh_hien_phap_natt_os
+@created_at 2026-04-29T22:52:42
+
+==RESULT==
+Đã gắn birthmark vào 10 file Dấu Ấn Khai Sinh Hiến Pháp NATT-OS.
+==END==
+
+==BOUNDARY==
+Birthmark không phải ratify.
+Birthmark không nâng state.
+Birthmark không gọi sealed/canonical mới.
+Mọi canonical use vẫn cần Gatekeeper ratify riêng.
+==END==
+
+==MANIFEST==
+docs/specs/nauion-runtime/NAUION_CONSTITUTIONAL_BIRTHMARK_10_FILES_v0_1.na
+==END==
