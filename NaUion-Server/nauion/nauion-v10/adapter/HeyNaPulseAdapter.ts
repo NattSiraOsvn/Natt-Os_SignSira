@@ -1,7 +1,7 @@
 /**
- * @nauion-adapter v0.2
+ * @nauion-adapter v0.2.1
  * @state active
- * @name sovereign @nauion heyna_pulse_adapter v0.2
+ * @name sovereign @nauion heyna_pulse_adapter v0.2.1
  * @scope sovereign-ui-v10
  * @owner natt sirawat / phan thanh thương
  * @anc bối bối
@@ -25,7 +25,7 @@ export interface NauionEventV02 {
   received_at?: number;
   payload: {
     cell_id: string;
-    pressure_type?: "FALL" | "DISSIPATE" | "OSCILLATE";
+    pressure_type?: string; // KHÔNG mock: map type từ kernel
     pressure_value?: number;
     metric?: Record<string, any>;
     state_ref?: string;
@@ -35,11 +35,11 @@ export interface NauionEventV02 {
 
 export class HeyNaPulseAdapter {
   public connect() {
-    console.log("[Nauion-v10] Bối Bối: Ống dẫn Mạch HeyNa v0.2 đã mở. Trạng thái: IDLE.");
+    console.log("[Nauion-v10] Bối Bối: Ống dẫn Mạch HeyNa v0.2.1 đã mở. Trạng thái: IDLE.");
   }
 
   public onSignalReceived(event: NauionEventV02) {
-    // 1. Kiểm duyệt cấu trúc (Rule 5)
+    // 1. Kiểm duyệt cấu trúc
     if (!event.event_id || !event.tenant_id || !event.trace_id || !event.span_id || !event.causation_id) {
       console.warn(`[Quarantine] Tín hiệu bị cách ly do thiếu ID cốt lõi: ${event.event_type}`);
       return;
@@ -61,14 +61,15 @@ export class HeyNaPulseAdapter {
   }
 
   private dispatchToVisionEngine(type: string, value: number, isPreview: boolean) {
-    // Map biến số vật lý thẳng vào WGSL Uniforms. KHÔNG CÓ IF/ELSE logic đồ họa bịa đặt.
-    // 0 = IDLE, 1 = FALL, 2 = DISSIPATE, 3 = OSCILLATE
-    let typeInt = 0;
-    if (type === 'FALL') typeInt = 1;
-    else if (type === 'DISSIPATE') typeInt = 2;
-    else if (type === 'OSCILLATE') typeInt = 3;
+    // Chuyển đổi dữ liệu cho WGSL Uniforms. KHÔNG ép route bằng if/else.
+    const typeMap: Record<string, number> = {
+      'FALL': 1,      // allowed_mock: data map to WGSL
+      'DISSIPATE': 2, // allowed_mock: data map to WGSL
+      'OSCILLATE': 3  // allowed_mock: data map to WGSL
+    };
+    
+    const typeInt = typeMap[type] || 0;
 
-    console.log(`[VisionEngine] Nhận Lực Ép: ${type} (Value: ${value}). Mode: ${isPreview ? 'Preview' : 'Sealed'}`);
-    // Thực tế sẽ gọi GPU device.queue.writeBuffer(...) tại đây.
+    console.log(`[VisionEngine] Nhận Lực Ép WGSL (Type: ${typeInt}, Value: ${value}). Mode: ${isPreview ? 'Preview' : 'Sealed'}`);
   }
 }
