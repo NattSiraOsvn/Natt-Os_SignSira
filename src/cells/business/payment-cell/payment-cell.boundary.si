@@ -1,1 +1,1 @@
-{"cell_id":"payment-cell","policy":"PAYMENT_DOMAIN","allowed_consumers":["sales-cell","order-cell","finance-cell"],"forbidden":["khong luu card number","khong gau bank API truc tiep — qua adapter"]}
+{"cell_id":"payment-cell","policy":"PAYMENT_DOMAIN","allowed_consumers":["sales-cell","order-cell","finance-cell"],"forbidden":["Không lưu card number","Không gọi bank API trực tiếp — qua adapter"]}
