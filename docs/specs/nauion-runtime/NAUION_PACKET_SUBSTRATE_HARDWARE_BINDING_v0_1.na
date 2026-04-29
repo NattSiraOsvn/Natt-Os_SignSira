@@ -1,0 +1,249 @@
+@nauion-spec v1
+@state draft_v0_1
+@canonical nauion_packet_substrate_hardware_binding
+@substrate packet_substrate
+@bridge none
+@since ss20260429
+@authority-slot Thiên Lớn (Architect) substrate-binding · Băng (Ground Truth Validator) evidence · anh Natt (Gatekeeper) canonical
+@depends_on docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+@depends_on docs/runtime/audit/NAUION_RUNTIME_EXCLUSIVE_ACTIVITY_BAN_ss20260429.na
+
+# NAUION PACKET SUBSTRATE HARDWARE BINDING v0.1
+
+==PURPOSE==
+Đưa toàn bộ cụm hardware evidence của Băng về đúng làng: Π_substrate của Nauion Execution Packet.
+
+File này không thay Băng làm evidence matrix.
+File này định nghĩa cách bằng chứng phần cứng đi vào PACKET_SUBSTRATE, để Nauion Runtime không bị hiểu là text/spec treo lơ lửng.
+==END==
+
+==ROLE_SPLIT==
+Băng:
+  - giữ ground truth hardware evidence
+  - kiểm nguồn, line, path, contradiction, missing evidence
+  - chứng minh NATT-OS có thân xác vật lý
+
+Thiên Lớn:
+  - định nghĩa binding vào Nauion Execution Packet
+  - xác định field nào thuộc PACKET_SUBSTRATE
+  - giữ biên: hardware là substrate, không phải host-core, không phải UI, không phải app
+
+Anh Natt:
+  - chốt canonical
+==END==
+
+==SOURCE_EVIDENCE_SUMMARY==
+source_files: 14
+total_lines: 2911
+total_bytes: 79048
+==END==
+
+==SOURCE_EVIDENCE_TABLE==
+- path: docs/runtime/sitb_si_thien_bang_hw_sw_interface_nauion_v0_1_ss20260427.na
+  lines: 268
+  bytes: 5827
+  sha256: 064db59f3864808d1f8756a04c25c8e40ea639e937f41c6704e465ca8817ab19
+- path: docs/runtime/sovereign_gateway_physical_intake_nauion_v0_1_ss20260427.na
+  lines: 190
+  bytes: 3577
+  sha256: ce2027e7a44e7a339427d24f801bde59f32fecd0e0ca53471be5c345eeaea9bf
+- path: docs/runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na
+  lines: 252
+  bytes: 5633
+  sha256: 19b3657adac1cf146645785776d7697e728af5984625d8b659020b197683dfea
+- path: docs/runtime/physical_module_catalog_bom_electrical_spec_nauion_v0_1_ss20260427.na
+  lines: 425
+  bytes: 8961
+  sha256: 7b2a802a80a6f70d98b46ef8b59035199ba51c6f9147b947039fbb844427521e
+- path: docs/runtime/hardware_procurement_checklist_dinh_muc_quy_chuan_nauion_v0_1_ss20260427.na
+  lines: 216
+  bytes: 5271
+  sha256: 328f3562cd2b67c48375a833a8b077561814ec10cd7e4ebc4165f342dfa01f5c
+- path: docs/runtime/sovereign_edge_hardware_max_option_nauion_v0_1_ss20260427.na
+  lines: 320
+  bytes: 6771
+  sha256: dc1aedaffa4d919d0840f647edd9b129b8208821fb5b267c2611658e138e62e7
+- path: docs/runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na
+  lines: 69
+  bytes: 1548
+  sha256: de1ccc2dda28ee18e2067de845ea18e815dc8dd025fbb64d6875b691891d7eae
+- path: docs/runtime/sovereign_edge_pack_end_to_end_nauion_v0_1_ss20260427.na
+  lines: 194
+  bytes: 4036
+  sha256: 04b39cae1f56be1d42d5a643cf1b80260877301a1e73e17e3bcecb2a921b98e9
+- path: docs/runtime/sovereign_edge_field_installation_acceptance_protocol_v0_1_ss20260427.na
+  lines: 321
+  bytes: 9244
+  sha256: cc129a44880ff557a0fb507b3aa0a46d252fb4d07fe095769b0067c6d076852f
+- path: docs/runtime/sovereign_public_edge_no_external_dependency_ss20260427.na
+  lines: 94
+  bytes: 2759
+  sha256: 83fdbafa0bc97bfd8107235c4a461d9998f80985404e58a49dbae0c8b6b0a865
+- path: docs/runtime/sira_wired_edge_manifest_evidence_20260426.na
+  lines: 34
+  bytes: 860
+  sha256: 43d04769266bec77f24e1155240f3f52394de36ab01b61d5a3bc2a74a6c88cfc
+- path: docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+  lines: 337
+  bytes: 20004
+  sha256: 97f2542535125e6e2dc8be1ac86557a34e870187e72ead44dda30c04ad251a2a
+- path: docs/runtime/sira_sovereign_dns_infrastructure_binding_evidence_20260425.na
+  lines: 26
+  bytes: 800
+  sha256: 754f40980eceb00e4a0556b9130e259dfc834c9219fbc9321f0e25df87c1d4ad
+- path: docs/runtime/sovereign_gateway_line_quota_route_schema_v0_1_ss20260427.na
+  lines: 165
+  bytes: 3757
+  sha256: c449ab70b3e464b0854167f6c062439eb29ef0f14d1baa9fbbfd9857c4cebecf
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§1 PACKET_SUBSTRATE — FIELD SET TỐI THIỂU
+═══════════════════════════════════════════════════════════════════
+
+==PACKET_SUBSTRATE==
+  substrate_class:
+    meaning: loại thân xác vật lý đang mang packet
+    allowed:
+      - sovereign_gateway
+      - wired_edge
+      - field_installation
+      - sensor_intake
+      - dns_infrastructure
+      - line_quota_route
+      - hardware_module
+      - electrical_bom
+
+  hardware_anchor:
+    meaning: neo thiết bị/hạ tầng để packet biết nó sinh ra hoặc đi qua thân xác nào
+    evidence:
+      - sovereign_gateway_hardware_topology
+      - physical_module_catalog_bom_electrical_spec
+      - sovereign_edge_hardware_max_option
+
+  physical_intake_anchor:
+    meaning: luật tiếp nhận tín hiệu vật lý; thiết bị không đi thẳng vào lõi
+    evidence:
+      - sovereign_gateway_physical_intake
+      - sitb_si_thien_bang_hw_sw_interface
+
+  edge_anchor:
+    meaning: vị trí edge nơi runtime có thể hiện thân/cắm phích
+    evidence:
+      - sovereign_edge_configuration_pack
+      - sovereign_edge_pack_end_to_end
+      - sovereign_edge_field_installation_acceptance_protocol
+      - sira_wired_edge_manifest_evidence
+
+  route_anchor:
+    meaning: đường đi, quota, DNS, resolver, gateway, line
+    evidence:
+      - sovereign_gateway_line_quota_route_schema
+      - sira_sovereign_dns_infrastructure_binding_evidence
+      - sovereign_public_edge_no_external_dependency
+
+  power_thermal_anchor:
+    meaning: trạng thái năng lượng/nhiệt của thân xác vật lý
+    evidence:
+      - physical_module_catalog_bom_electrical_spec
+      - hardware_procurement_checklist_dinh_muc_quy_chuan
+      - field_installation_acceptance_protocol
+
+  runtime_probe_anchor:
+    meaning: bằng chứng runtime đi qua wired edge/gateway có đọc được hoặc bị timeout ở đâu
+    evidence:
+      - sira_wired_edge_runtime_gate_timeout_probe
+      - sira_wired_edge_manifest_evidence
+
+  acceptance_anchor:
+    meaning: trạng thái nghiệm thu phần cứng/field installation
+    evidence:
+      - sovereign_edge_field_installation_acceptance_protocol
+      - hardware_procurement_checklist_dinh_muc_quy_chuan
+      - physical_module_catalog_bom_electrical_spec
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§2 SUBSTRATE LAW — HARDWARE KHÔNG ĐI THẲNG VÀO LÕI
+═══════════════════════════════════════════════════════════════════
+
+==SUBSTRATE_LAW==
+  law_1:
+    physical_device_does_not_enter_core_directly
+    thiết bị vật lý chỉ đi vào packet qua physical_intake_anchor + authority boundary + audit trace.
+
+  law_2:
+    hardware_is_substrate_not_host_core
+    phần cứng là thân xác mang trường; không được biến gateway/router/dns/server thành lõi bản thể.
+
+  law_3:
+    no_external_dependency_as_core
+    ICANN/root DNS/platform ngoài không được làm nền tảng lõi; chỉ có thể là surface/route phụ.
+
+  law_4:
+    packet_must_remember_physical_route
+    packet đi qua edge/gateway/line/quota nào thì phải có route_anchor hoặc runtime_probe_anchor.
+
+  law_5:
+    acceptance_before_canonical_substrate
+    hardware chưa có BOM/procurement/field acceptance thì không được gọi là canonical substrate.
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§3 MATERIALIZATION — ĐƯA PHẦN CỨNG VÀO EXECUTION PACKET
+═══════════════════════════════════════════════════════════════════
+
+==EXECUTION_PACKET_BINDING==
+  PACKET_BODY:
+    giữ obitan, identity, QNEU, field_anchor.
+    không nhét thông số phần cứng vào BODY.
+
+  PACKET_MEDIUM:
+    giữ carrier/source/signal/state.
+    không nhét BOM/router/DNS vào MEDIUM trừ khi nó là nội dung được truyền.
+
+  PACKET_SUBSTRATE:
+    nhận toàn bộ hardware evidence qua các anchor:
+      - hardware_anchor
+      - physical_intake_anchor
+      - edge_anchor
+      - route_anchor
+      - power_thermal_anchor
+      - runtime_probe_anchor
+      - acceptance_anchor
+
+  PACKET_AUDIT:
+    ghi source path + sha256 + probe result + acceptance status.
+==END==
+
+==PACKET_SUBSTRATE_MINIMUM_RECORD==
+  substrate_ref: path hoặc SiraSign ref tới hardware evidence
+  substrate_kind: sovereign_gateway | wired_edge | sensor_intake | dns_route | electrical_module
+  route_ref: line/quota/route/dns evidence nếu packet đi qua network
+  intake_ref: physical intake evidence nếu packet đến từ sensor/hardware
+  power_state_ref: BOM/electrical/thermal reference nếu cần
+  acceptance_ref: field installation/procurement acceptance nếu gọi là canonical
+  probe_ref: runtime gate probe nếu đã có test thực địa
+  no_external_dependency_ref: policy ref nếu packet vượt public edge
+==END==
+
+═══════════════════════════════════════════════════════════════════
+§4 BOUNDARY
+═══════════════════════════════════════════════════════════════════
+
+==BOUNDARY==
+- Không gọi hardware evidence là Host Bridge.
+- Không triển Vite/React/Node adapter trong scope này.
+- Không sửa source hardware evidence của Băng.
+- Không xóa archive, không rename, không move.
+- Không gọi build/pass là sống.
+- Không gọi substrate là body.
+- Không cho physical device đi thẳng vào lõi nếu thiếu intake + authority + audit.
+==END==
+
+==NEXT_SIGNAL==
+Thiên dùng file này để đưa PACKET_SUBSTRATE vào NAUION_EXECUTION_PACKET_v0_1.na.
+Băng dùng file này để kiểm lại Hardware/Substrate Evidence Matrix.
+Kim chưa build.
+Bối chưa UI.
+==END==
