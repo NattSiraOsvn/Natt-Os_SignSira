@@ -68,15 +68,15 @@ export const SPELL_FIX: Record<string, string> = {
 
 /** Trạng thái đơn được track trong vòng đời SP */
 export const TRACKED_STATUSES = [
-  'da dat', 'da coc', 'da ban', 'da GIAO', 'da đau',
-  'HT coc', 'HT đau', 'tra lai',
+  'da dat', 'da coc', 'da ban', 'da GIAO', 'da dau',
+  'HT coc', 'HT dau', 'tra lai',
 ];
 
 /** Cột quan trọng trong DTHU/LGT */
 export const KEY_COLUMNS = {
   NGAY: ['ngay', 'date', 'ngay'],
   TEN: ['ten khach', 'khach hang', 'khach', 'ten', 'customer'],
-  SDT: ['sdt', 'đien thoai', 'phone', 'sdt', 'mobile'],
+  SDT: ['sdt', 'dien thoai', 'phone', 'sdt', 'mobile'],
   MASP: ['ma sp', 'ma san pham', 'code', 'sku', 'masp'],
   MAVC: ['ma vc', 'ma vo', 'mavc'],
   GIA: ['gia', 'price', 'tien', 'amount', 'gia'],
@@ -296,12 +296,12 @@ export function calcCommission(params: {
     const diff = giaSP - thuLai;
     if (diff <= 0) {
       hhVo = 0; hhVien = 0;
-      note = `đau ngang/xuong (Thu ${thuLai.toLocaleString('vi-VN')}d)`;
+      note = `dau ngang/xuong (Thu ${thuLai.toLocaleString('vi-VN')}d)`;
     } else {
       const ratio = diff / giaSP;
       hhVo   = hhVo   * ratio;
       hhVien = hhVien * ratio;
-      note   = `đau bu ${Math.round(ratio * 100)}%`;
+      note   = `dau bu ${Math.round(ratio * 100)}%`;
     }
   }
 

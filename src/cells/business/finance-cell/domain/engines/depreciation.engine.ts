@@ -38,7 +38,7 @@ export type TscdCategory = keyof typeof TSCD_TYPE;
 
 // ── TSCD KEYWORDS ─────────────────────────────────────────────────────────
 const SX_KEYWORDS  = ['may','lo','khuon','nau','bom','may duc','may mai','may han','thiet bi san xuat','xuong','lo nung'];
-const VP_KEYWORDS  = ['may tinh','laptop','ban','ghe','tu','dieu hoa','đien thoai','may in','ven phong','man hinh'];
+const VP_KEYWORDS  = ['may tinh','laptop','ban','ghe','tu','dieu hoa','dien thoai','may in','ven phong','man hinh'];
 const BH_KEYWORDS  = ['quay','ke','tu kinh','pos','showcase','display','showroom','hop dung'];
 
 function detectTscdCategory(description: string): TscdCategory {
@@ -146,7 +146,7 @@ const TK_KEYWORD_MAP: Array<{
   { keywords: ['ads','meta','facebook','google ads','chi phi marketing','quang cao'], tk: '641', desc: 'Chi phi ban hang — marketing' },
   { keywords: ['ship','giao hang','van chuyen','ghtk','ghn','nhat tin'], tk: '641', desc: 'Chi phi van chuyen' },
   // Chi phí quản lý
-  { keywords: ['đien','nuoc','internet','thue nha','ven phong pham'], tk: '642', desc: 'Chi phi quan ly DN' },
+  { keywords: ['dien','nuoc','internet','thue nha','ven phong pham'], tk: '642', desc: 'Chi phi quan ly DN' },
   { keywords: ['phan kim','tinh che','bot thu','hao hut'], tk: '642', desc: 'Chi phi phan kim' },
   // Thuế
   { keywords: ['thue gtgt','vat','thue nhap khau','thue xuat'], tk: '333', desc: 'Thue GTGT phai nop' },

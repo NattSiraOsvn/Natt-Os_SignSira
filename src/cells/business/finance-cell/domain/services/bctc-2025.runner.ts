@@ -174,7 +174,7 @@ export function printBctcSummary(): void {
   console.log('══════════════════════════════════');
   console.log(`  tong TS  : ${fmt(result.summary.tong_ts)}`);
   console.log(`  tong NV  : ${fmt(result.summary.tong_nv)}`);
-  console.log(`  can đau  : ${result.summary.balanced ? '✅' : '🔴 khong can'}`);
+  console.log(`  can dau  : ${result.summary.balanced ? '✅' : '🔴 khong can'}`);
   console.log('──────────────────────────────────');
   console.log(`  DT thuan : ${fmt(result.summary.dt_thuan)}`);
   console.log(`  gia von  : ${fmt(result.summary.gv)}`);

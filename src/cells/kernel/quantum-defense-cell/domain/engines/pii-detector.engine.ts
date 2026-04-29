@@ -52,7 +52,7 @@ export type PiiType = keyof typeof PII_PATTERNS;
 // ── FILENAME KEYWORDS ─────────────────────────────────────────────────────
 export const SENSITIVE_FILENAME_KEYWORDS = [
   'kim', 'vang', 'gold', 'diamond', 'spot fx',
-  'pack list', 'thanh toan', 'payment', 'invoice', 'hoa đon',
+  'pack list', 'thanh toan', 'payment', 'invoice', 'hoa don',
   'chuyen khoan', 'bank', 'ngan hang', 'transaction', 'giao dich',
   'luong', 'salary', 'payroll', 'hop dong', 'contract',
   'passport', 'cccd', 'cmnd', 'id card', 'ho chieu',

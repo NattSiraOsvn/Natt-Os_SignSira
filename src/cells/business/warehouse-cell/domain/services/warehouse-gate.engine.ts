@@ -69,7 +69,7 @@ export const GATE_DEFINITIONS: GateRequirement[] = [
   {
     gate: 6, name: 'TONG_HOP_VANG_KHO',
     requiredFields: ['vangXuat', 'vangThuHoi', 'vangTraLai', 'vangTon', 'buiThuGom', 'chenhLech'],
-    description: 'tong hop vang — diem can đau KHO',
+    description: 'tong hop vang — diem can dau KHO',
   },
   {
     gate: 7, name: 'GIAO_HANG',

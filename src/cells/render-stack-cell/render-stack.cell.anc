@@ -11,24 +11,24 @@ cell render-stack {
   obitan: n=2
 
   capability: [
-    "nhận render_instruction từ Mạch HeyNa",
-    "dịch surface_signal → DOM action",
-    "tuân thủ motion_budget & degrade_policy",
-    "trả frame đã render"
+    "nhan render_instruction tu Mạch HeyNa",
+    "dich surface_signal → DOM action",
+    "tuan thu motion_budget & degrade_policy",
+    "tra frame da render"
   ]
 
   boundary: {
     input: "render_instruction (contract defined)",
-    output: "DOM subtree đã render",
+    output: "DOM subtree da render",
     forbidden: [
-      "tự sinh logic render",
-      "import framework ngoài",
-      "gọi trực tiếp cell khác",
-      "bỏ qua siraSign validation"
+      "tu sinh logic render",
+      "import framework ngoai",
+      "gau truc tiep cell khac",
+      "bo qua siraSign validation"
     ]
   }
 
   confidence: 0.5  // scaffold only — chưa có implementation
   trace: "git:docs/specs/render/SPEC_RENDER_STACK_v0.1.na"
-  smartlink: "pending — chưa wire Mạch HeyNa"
+  smartlink: "pending — chua wire Mạch HeyNa"
 }

@@ -1,7 +1,7 @@
 # buyback-cell
 
 ## muc dich
-xu ly nghiep vu **thu mua vang cu, đau tra, trade-in** — dac thu nganh trang suc.
+xu ly nghiep vu **thu mua vang cu, dau tra, trade-in** — dac thu nganh trang suc.
 
 ## Flow chinh
 1. **tiep nhan** — khach mang hang cu den

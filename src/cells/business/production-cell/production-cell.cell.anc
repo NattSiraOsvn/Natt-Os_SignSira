@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "category": "business",
   "status": "ACTIVE",
-  "description": "Quản lý pipeline sản xuất trang sức: workflow 12 bước, hao hụt vàng, BQGQ liên hoàn, SNT tracking",
+  "description": "quan ly pipeline san xuat trang suc: workflow 12 buoc, hao hut vang, BQGQ lien hoan, SNT tracking",
   "source": "V2 productionEngine.ts + productionService.ts + productionSalesFlow.ts",
   "components": { "identity": true, "capability": true, "boundary": true, "trace": true, "confidence": true, "smartlink": true }
 }

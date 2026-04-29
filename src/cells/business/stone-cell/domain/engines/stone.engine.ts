@@ -107,7 +107,7 @@ export class StoneEngine {
     if (action === 'assign' && existing) {
       const caratDelta = Math.abs(stone.carat - existing.carat);
       if (caratDelta > 0.05) {
-        anomalies.push(`Carat thay đau bat thuong: ${existing.carat} → ${stone.carat}`);
+        anomalies.push(`Carat thay dau bat thuong: ${existing.carat} → ${stone.carat}`);
         EventBus.emit('cell.metric', {
           cell:       'stone-cell',
           metric:     'stone.substitution_risk',

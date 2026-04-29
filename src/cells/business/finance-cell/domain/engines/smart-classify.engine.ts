@@ -14,7 +14,7 @@ export const CATEGORY = {
   DT_QR:      '📱 DOANH THU vi dien tu',
   DT_TRADING: '💼 DOANH THU tu DOANH',
   // COGS
-  COGS_GOLD_B2B:       '🟡 MUA vang tu đau tac (B2B)',
+  COGS_GOLD_B2B:       '🟡 MUA vang tu dau tac (B2B)',
   COGS_GOLD_BUYBACK:   '🟡 THU MUA vang tu khach',
   COGS_DIAMOND_IMPORT: '💎 MUA KC nhap khau',
   COGS_DIAMOND_LOCAL:  '💎 MUA KC nau dia',
@@ -56,7 +56,7 @@ export interface ClassifyResult {
 // ── KEYWORD LISTS ─────────────────────────────────────────────────────────
 const PERSONAL_NAMES = ['nguyen','tran','le','pham','hoang','huynh','vo','dang','bui','do','ho','ngo','duong'];
 const COMPANY_KW     = ['cong ty','cty','tnhh','cp','jsc','co.,ltd','doanh nghiep','chi nhanh','group','holding'];
-const BUYBACK_KW     = ['thu sp','thu san pham','thu hang','thu mua','thu đau','đau hang','mua lai','thu hau','thu lai'];
+const BUYBACK_KW     = ['thu sp','thu san pham','thu hang','thu mua','thu dau','dau hang','mua lai','thu hau','thu lai'];
 const CUSTOMS_KW     = ['to khai','hai quan','nhap khau','customs','hqtsnhat','import'];
 const TAX_KW         = ['thue','kbnn','ngan sach','nsnn','nop thue'];
 

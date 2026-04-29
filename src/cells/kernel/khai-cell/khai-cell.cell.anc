@@ -2,13 +2,13 @@
   "cell_id": "cell:khai",
   "cell_name": "khai-cell",
   "version": "1.1.0",
-  "description": "Touch point primitive — receives external signal, normalizes, attaches signature, emits into field. Optional file persistence for .khai TouchRecord. NOT a gate. Per SPEC NỀN v1.0 §4.1 + SPEC v1.2 §17.2.",
+  "description": "Touch point primitive — receives external signal, normalizes, attaches signature, emits into field. Optional file persistence for .khai TouchRecord. NOT a gate. Per SPEC nen v1.0 §4.1 + SPEC v1.2 §17.2.",
   "domain": "FIELD_ENTRY",
   "layer": 0,
   "layer_name": "KERNEL",
   "structural_position": {
     "electron_layer": "Q+",
-    "direction": "TÂY",
+    "direction": "tay",
     "obitan": "external_to_field"
   },
   "capabilities": ["TOUCH_RECEIVE", "NORMALIZE_FORMAT", "SIGNATURE_ATTACH", "FIELD_EMIT", "TOUCH_PERSIST"],

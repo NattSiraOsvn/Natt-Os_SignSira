@@ -106,7 +106,7 @@ export class SupplierEngine {
       recs.push({
         type: 'critical' as const,
         title: 'canh bao thai do (Sentiment Low)',
-        action: 'ra soat lai cac khieu nai chua xu ly hoac tim đau tac thay the.'
+        action: 'ra soat lai cac khieu nai chua xu ly hoac tim dau tac thay the.'
       });
     }
 
@@ -114,7 +114,7 @@ export class SupplierEngine {
     if (supplier.nhomHangChinh?.includes('KIM_CUONG_DA_QUY') && supplier.quyMo === 'LON') {
       recs.push({
         type: 'opportunity' as const,
-        title: 'đau tac chien luoc tiem nang',
+        title: 'dau tac chien luoc tiem nang',
         action: 'dam phan han muc no hoac uu dai gia nhap cho lo hang lon.'
       });
     }

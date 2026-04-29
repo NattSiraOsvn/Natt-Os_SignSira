@@ -7,9 +7,9 @@ class GDBPatternDatabase {
     CUSTOMER_INFO: ['ten khach hang', 'ten khach hang', 'sdt khach hang', 'sdt khach hang', 'so dien thoai', 'khach hang'],
     PRODUCT_INFO: ['ma san pham', 'thong so', 'SIZE', 'gia tri', 'tri gia', 'vong trang suc', 'bong tai', 'nhan', 'day chuyen'],
     VALUE_INFO: ['tong gia tri', 'tong tri gia', 'viet bang chu', 'bang chu', 'bang chu', 'trieu dong', 'dong chen'],
-    EXCHANGE_POLICY: ['che do THU đau', 'gia tri Thu đau', 'Thu lai', 'đau lon', 'vang thu lai', 'vang đau lon', 'Kim cuong thu lai', 'Kim cuong đau lon'],
+    EXCHANGE_POLICY: ['che do THU dau', 'gia tri Thu dau', 'Thu lai', 'dau lon', 'vang thu lai', 'vang dau lon', 'Kim cuong thu lai', 'Kim cuong dau lon'],
     WARRANTY: ['che do bao hanh', 'bao hanh', 'roi rot kim cuong', 'dui 3mm', 'lam moi, lam sach, lam bong'],
-    COMPANY_INFO: ['SHOWROOM', 'WEBSITE', 'FACEBOOK', 'YOUTUBE', 'Hotline', 'đia chi', 'TP.HCM'],
+    COMPANY_INFO: ['SHOWROOM', 'WEBSITE', 'FACEBOOK', 'YOUTUBE', 'Hotline', 'dia chi', 'TP.HCM'],
     SIGNATURE: ['ngay', 'thang', 'nam', 'chu ky', 'ky ten', 'ngui ban', 'xac nhan']
   };
 

@@ -46,7 +46,7 @@ TARGET_EXTENSIONS = {
     '.md', '.json',
     '.html', '.vue',
     '.py', '.yaml', '.yml',
-    '.bang', '.na', '.si', '.phieu',
+    '.bang', '.na', '.si', '.phieu', '.anc',
 }
 
 # Folder bỏ qua

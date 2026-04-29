@@ -10,7 +10,7 @@ export class SupplierImportHelper {
       id: row['ma nha cung cap (*)'] || Math.random().toString(36).substring(7),
       maNhaCungCap: row['ma nha cung cap (*)'] || '',
       tenNhaCungCap: row['ten nha cung cap (*)'] || '',
-      diaChi: row['đia chi'] || '',
+      diaChi: row['dia chi'] || '',
       maSoThue: row['ma so thue'] || '',
       maNhomNCC: row['ma nhom nha cung cap'] || '',
       dienThoai: row['dien thoai'] || '',

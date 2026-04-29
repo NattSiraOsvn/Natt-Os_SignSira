@@ -3,7 +3,7 @@
   "status": "ACTIVE",
   "structure": { "current_structure": "5_LAYER", "migration_status": "COMPLETE" },
   "adn": {
-    "identity": { "name": "Warranty Cell", "domain": "Bảo hành trang sức Tâm Luxury" },
+    "identity": { "name": "Warranty Cell", "domain": "bao hanh trang suc Tâm Luxury" },
     "capability": {
       "primary": ["checkWarrantyStatus", "submitClaim", "approveClaim", "rejectClaim"],
       "secondary": ["trackRepair", "overdueClaims", "freePolishTracking"]
@@ -12,6 +12,6 @@
       "events_emitted": ["warranty.claim.submitted","warranty.claim.approved","warranty.claim.rejected","warranty.repair.started","warranty.repair.completed","warranty.item.returned"],
       "events_consumed": ["order.completed","inventory.item.maintenance"]
     },
-    "lifecycle": { "implemented_by": "Băng", "approved_by": "Anh Natt (Gatekeeper)" }
+    "lifecycle": { "implemented_by": "bang", "approved_by": "Anh Natt (Gatekeeper)" }
   }
 }

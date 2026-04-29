@@ -40,7 +40,7 @@ export interface SigningMethod {
 export class EInvoiceEngine {
   static getTokenProviders(): TokenProvider[] {
     return [
-      { id: 'vettel', name: 'tap doan cong nghiep - vien thong quan đau', shortName: 'Viettel-CA', color: 'bg-red-600', logo: '🛡️', status: 'ACTIVE', expiry: '2026-12-31', serial: '5404.0411.2332' },
+      { id: 'vettel', name: 'tap doan cong nghiep - vien thong quan dau', shortName: 'Viettel-CA', color: 'bg-red-600', logo: '🛡️', status: 'ACTIVE', expiry: '2026-12-31', serial: '5404.0411.2332' },
       { id: 'vnpt', name: 'tap doan buu chinh vien thong viet Nam', shortName: 'VNPT-CA', color: 'bg-blue-600', logo: '🌐', status: 'ACTIVE', expiry: '2027-05-20', serial: '8892.1122.9901' },
       { id: 'safeca', name: 'cong ty co phan chung so An toan', shortName: 'SafeCA', color: 'bg-amber-500', logo: '🔐', status: 'ACTIVE', expiry: '2027-01-15', serial: '7721.4455.1011' }
     ];

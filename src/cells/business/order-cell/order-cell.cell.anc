@@ -9,7 +9,7 @@
     "subscribes": [],
     "emits": ["ORDER_CREATED"]
   },
-  "dataSource": "ĐIỀU_PHỐI_NĂM_2 / sheet ĐH UYÊN",
+  "dataSource": "dieu_phoi_nam_2 / sheet dh uyen",
   "components": {
     "identity": "neural-main-cell.cell.anc",
     "capability": "application/order.usecase.ts",

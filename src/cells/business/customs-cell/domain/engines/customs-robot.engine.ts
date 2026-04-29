@@ -165,7 +165,7 @@ export class CustomsRobotEngine {
       plans.push({
         type: 'FINANCE',
         priority: 'URGENT',
-        action: 'duyet chi nop thue ngay & can đau dong tien',
+        action: 'duyet chi nop thue ngay & can dau dong tien',
         department: 'ke toan truong (CFO)',
         reason: `tong thue phai nop lon (${decl.summary.totalTaxPayable.toLocaleString()}d) - can uu tien thanh khoan.`
       });

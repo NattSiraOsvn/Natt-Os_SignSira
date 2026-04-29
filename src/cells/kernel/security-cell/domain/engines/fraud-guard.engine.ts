@@ -53,7 +53,7 @@ export class FraudGuardService {
       return {
         allowed: true,
         level: AlertLevel.INFO,
-        message: "san pham sach. chua co trong lich su thu đau.",
+        message: "san pham sach. chua co trong lich su thu dau.",
         action: 'PROCEED'
       };
     }
@@ -70,7 +70,7 @@ export class FraudGuardService {
         // SP Đã thu + Cùng nhân viên thu + Nhưng dùng định danh khách khác
         // => Dấu hiệu nhân viên đem hàng đã thu ra quay vòng để ăn chênh lệch lần 2
         if (isSameStaff && isDifferentIdentity) {
-            this.lockAccountTrigger(staffId, "co y thu đau lap voi dinh danh gia mao");
+            this.lockAccountTrigger(staffId, "co y thu dau lap voi dinh danh gia mao");
             return {
                 allowed: false,
                 level: AlertLevel.FATAL,
@@ -110,7 +110,7 @@ export class FraudGuardService {
         return {
             allowed: false,
             level: AlertLevel.warnING,
-            message: `canh bao: san pham ${match.sku} co trong lich su thu đau. yeu cau dinh DANH (Face/CCCD) de xac thuc.`,
+            message: `canh bao: san pham ${match.sku} co trong lich su thu dau. yeu cau dinh DANH (Face/CCCD) de xac thuc.`,
             action: 'warn',
             historyRecord: match
         };

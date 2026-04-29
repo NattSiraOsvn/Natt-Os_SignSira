@@ -154,7 +154,7 @@ export class BuybackTransaction {
    */
   lockGDBPolicy(policy: GDBLockedPolicy): void {
     if (this.mode !== 'EXCHANGE') throw new Error('[BUYBACK] lockGDBPolicy chi dung cho mode EXCHANGE');
-    if (this._gdbLockedPolicy) throw new Error('[BUYBACK] GDB policy da duoc lock, khong the thay đau');
+    if (this._gdbLockedPolicy) throw new Error('[BUYBACK] GDB policy da duoc lock, khong the thay dau');
 
     const err = validateGDBLockedPolicy(policy);
     if (err) throw new Error(`[BUYBACK] GDB policy khong hop le: ${err}`);

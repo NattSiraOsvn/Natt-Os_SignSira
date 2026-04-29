@@ -304,7 +304,7 @@ export const TAM_LUXURY_2025_CDPS: CdpsLine[] = [
 // ══════════════════════════════════════════
 export const CDPS_AUDIT_FLAGS = [
   { tk: '154',   rule: 'TR-001', msg: 'WIP cuoiKyNo = 0 — KTT ep bang 0, phi thuc te SX kim hoan' },
-  { tk: '156',   rule: 'TR-003', msg: 'ton KC 70.19 ty — can kiem ke thuc te đau chieu' },
+  { tk: '156',   rule: 'TR-003', msg: 'ton KC 70.19 ty — can kiem ke thuc te dau chieu' },
   { tk: '635',   rule: 'TR-004', msg: 'ma 23 KQKD phai tach: lai vay ~370tr vs CL ty gia ~2.39 ty' },
   { tk: '811',   rule: 'FS-022', msg: 'CP khac 6.98 ty gop nhieu loai — phan tich tung but toan' },
   { tk: '632',   rule: 'INFO',   msg: 'CDPS 248.84 ty ≠ KQKD 246.75 ty — chenh 2.08 ty phan kim' },

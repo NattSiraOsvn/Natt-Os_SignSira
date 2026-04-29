@@ -2,7 +2,7 @@
   "cellId": "event-bus-cell",
   "version": "1.0.0",
   "layer": "infrastructure",
-  "description": "Central event routing — Điều 3 sole messaging layer",
+  "description": "Central event routing — dieu 3 sole messaging layer",
   "engines": [
     "compensation.engine",
     "dead-letter.engine",

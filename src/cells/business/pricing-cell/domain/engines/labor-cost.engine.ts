@@ -64,7 +64,7 @@ function calcBongTai(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): Labor
     if (E <= 3.5 && N <= 80_000_000) return { type: 'CALCULATED', amount: 5_000_000 };
     if (E <= 8 && N <= 120_000_000) return { type: 'CALCULATED', amount: 7_000_000 };
     if (E > 8) return { type: 'CALCULATED', amount: 10_000_000 };
-    return { type: 'CUSTOM_QUOTE', reason: 'bong tai đau ngoai bang gia' };
+    return { type: 'CUSTOM_QUOTE', reason: 'bong tai dau ngoai bang gia' };
   }
 
   return { type: 'error', fallbackAmount: 3_000_000, reason: 'Sai kieu bong — don vi khong hop le' };
@@ -183,7 +183,7 @@ function calcNhanCuoi(E: number, N: number, H: string, L: 'CHIEC' | 'DOI'): Labo
     if (E <= 3 && N <= 20_000_000) return { type: 'CALCULATED', amount: 3_000_000 };
     if (E <= 5 && N <= 40_000_000) return { type: 'CALCULATED', amount: 5_000_000 };
     if (E <= 8 && N <= 80_000_000) return { type: 'CALCULATED', amount: 8_000_000 };
-    return { type: 'CUSTOM_QUOTE', reason: 'nhan cui đau ngoai bang' };
+    return { type: 'CUSTOM_QUOTE', reason: 'nhan cui dau ngoai bang' };
   }
 
   // Chiếc

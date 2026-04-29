@@ -12,7 +12,7 @@ export class ExportEngine {
     
     // Sheet 1: TỔNG QUAN (Overview Metrics)
     const summaryData = [
-      { 'chi so': 'tong so Node đau tac', 'gia tri': data.length },
+      { 'chi so': 'tong so Node dau tac', 'gia tri': data.length },
       { 'chi so': 'Node nuoc ngoai', 'gia tri': data.filter(s => s.loaiNCC === 'NUOC_NGOAI').length },
       { 'chi so': 'Node tiem nang', 'gia tri': data.filter(s => s.coTienNang).length },
       { 'chi so': 'tong gia tri giao dich', 'gia tri': data.reduce((s, i) => s + (i.transactionAmount || 0), 0).toLocaleString() + ' d' }
@@ -23,7 +23,7 @@ export class ExportEngine {
     // Sheet 2: CHI TIẾT NODE (Node Details)
     const wsDetails = XLSX.utils.json_to_sheet(data.map(s => ({
       'ma Node': s.maNhaCungCap,
-      'ten đau tac': s.tenNhaCungCap,
+      'ten dau tac': s.tenNhaCungCap,
       'loai': s.loaiNCC === 'NUOC_NGOAI' ? 'quoc te' : 'Trong nuoc',
       'nhom hang': s.nhomHangChinh?.join(', '),
       'Quy mo': s.quyMo,
@@ -47,7 +47,7 @@ export class ExportEngine {
 
     // Sheet 4: RỦI RO & TIỀM NĂNG (Audit Insight)
     const potentialData = data.filter(s => s.coTienNang || (s.sentimentScore && s.sentimentScore < 0.5)).map(s => ({
-      'đau tac': s.tenNhaCungCap,
+      'dau tac': s.tenNhaCungCap,
       'trang thai': s.coTienNang ? 'tiem nang' : 'rui RO',
       'diem': s.diemDanhGia,
       'Ghi chu': s.sentimentScore < 0.5 ? 'Sentiment thap - can ra soat' : 'Quy mo lon - uu tien hop tac'

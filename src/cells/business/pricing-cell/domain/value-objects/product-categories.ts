@@ -47,6 +47,6 @@ export const PRODUCT_CATEGORIES: Record<ProductCategoryCode, ProductCategory> = 
 
 /** Trigger patterns cho "bao gia rieng" — áp dụng cho tất cả categories */
 export const CUSTOM_QUOTE_TRIGGERS: readonly string[] = [
-  'VIP', 'sieu to', 'full tam', 'đac biet', 'max tam',
+  'VIP', 'sieu to', 'full tam', 'dac biet', 'max tam',
   'khung', 'KAT', 'day vang nhieu', 'hang nhap', 'cao cap',
 ] as const;
