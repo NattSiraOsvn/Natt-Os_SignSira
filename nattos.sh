@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# natt-os SmartAudit v7.0
-# Author: Băng — Ground Truth Validator (QNEU 300)
+# natt-os SmartAudit v7.1
+# Author: Băng — Ground Truth Validator (QNEU 313.5)
 # Redesigned: 2026-04-16 — session architecture synthesis
+# Patched:    2026-04-30 — auto-discover cells, QNEU live read, version unify
 # Usage:  bash nattos.sh [--json] [--full] [--rena] [--visual]
 #         bash nattos.sh --mode=smart|quick|full
 #         Chạy từ root natt-os ver2goldmaster
@@ -10,7 +11,12 @@
 # Output: AI-agent readable + human readable
 # Mọi agent (Băng, thiên, Kim, Cần, Bội Bội) đọc = hiểu ngay
 #
-# 9 Groups · 42 Sections · 3-Layer Architecture Aware (v7.1 patched 20260426)
+# 9 Groups · 46 Sections · 3-Layer Architecture Aware (v7.1)
+# v7.1 changes:
+#   §6/§7/§8 — auto-discover cells dưới src/cells/business/{kernel,business,infrastructure}/
+#             với fallback layout cũ src/cells/{kernel,business,infrastructure}/
+#   §33     — QNEU đọc từ system-state.phieu, không fallback số chết
+#   header  — v7.0/v7.1 thống nhất một version
 # ═══════════════════════════════════════════════════════════════
 set -o pipefail
 
@@ -85,7 +91,7 @@ echo "  ╚═╝  ╚═══╝   ╚═╝  ╚═╝     ╚═╝       �
 echo -e "${N}"
 
 echo -e "  ${DIM}┌──────────────────────────────────────────────────────────┐${N}"
-echo -e "  ${DIM}│${N}  ${W}SmartAudit v7.0${N}  ${C}·${N}  Distributed Living Organism       ${DIM}│${N}"
+echo -e "  ${DIM}│${N}  ${W}SmartAudit v7.1${N}  ${C}·${N}  Distributed Living Organism       ${DIM}│${N}"
 if [[ -n "$LOGO_FILE" ]]; then
 echo -e "  ${DIM}│${N}  ${C}Logo:${N} ${GOLD}⚛${N}  $LOGO_FILE  ${DIM}│${N}"
 else
@@ -99,7 +105,7 @@ echo -e "  ${DIM}│${N}  ${DIM}A${N}·Foundation  ${DIM}B${N}·Cells  ${DIM}C${
 echo -e "  ${DIM}│${N}  ${DIM}F${N}·Security    ${DIM}G${N}·Intel  ${DIM}H${N}·Meta  ${DIM}I${N}·Output          ${DIM}│${N}"
 echo -e "  ${DIM}└──────────────────────────────────────────────────────────┘${N}"
 echo ""
-echo -e "  ${W}SmartAudit v7.0 — $TS${N}"
+echo -e "  ${W}SmartAudit v7.1 — $TS${N}"
 echo -e "  Root: $ROOT"
 
 
@@ -312,36 +318,79 @@ fi
 grp "GROUP B — CELL ANATOMY — Kernel · Business · Infrastructure · DNA"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "6" "KERNEL CELLS (12)"
+hdr "6" "KERNEL CELLS — auto-discover"
 # ═══════════════════════════════════════════════════════════════
-KERNEL_EXPECTED=("audit-cell" "config-cell" "monitor-cell" "rbac-cell" "security-cell" "quantum-defense-cell" "khai-cell" "neural-main-cell" "observation-cell" "ai-connector-cell" "notification-cell" "survival-cell")
-KERNEL_OK=0; KERNEL_TOTAL=${#KERNEL_EXPECTED[@]}
-for cell in "${KERNEL_EXPECTED[@]}"; do
-  P="src/cells/kernel/$cell"
-  if [[ -d "$P" ]]; then
-    FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
-    MF=$(ls "$P"/*.cell.anc 1>/dev/null 2>&1 && echo "MF✅" || echo "MF❌")
-    PT=$([[ -d "$P/ports" ]] && echo "PORT✅" || echo "PORT❌")
-    ENG=$(find "$P" -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-    ok "$cell | $FC files | $MF | $PT | engines:$ENG"; inc_ok; ((KERNEL_OK++)) || true
-  else
-    fail "$cell → missing"; inc_fail "KERNEL: $cell missing"
-  fi
+# v7.1: bỏ KERNEL_EXPECTED hard-code. Discover từ filesystem.
+# Layout primary:  src/cells/business/kernel/<cell>/
+# Layout fallback: src/cells/kernel/<cell>/
+KERNEL_DIR=""
+for cand in "src/cells/business/kernel" "src/cells/kernel"; do
+  if [[ -d "$cand" ]]; then KERNEL_DIR="$cand"; break; fi
 done
+
+KERNEL_OK=0; KERNEL_TOTAL=0
+if [[ -z "$KERNEL_DIR" ]]; then
+  fail "Kernel dir không tồn tại (đã thử src/cells/business/kernel + src/cells/kernel)"
+  inc_fail "KERNEL: dir missing"
+else
+  info "Kernel layout: $KERNEL_DIR"
+  for cell_dir in "$KERNEL_DIR"/*/; do
+    [[ -d "$cell_dir" ]] || continue
+    cell=$(basename "$cell_dir")
+    # Skip placeholder folder (rỗng hoàn toàn — không file nào)
+    FC=$(find "$cell_dir" -type f \( -name "*.ts" -o -name "*.anc" -o -name "*.sira" -o -name "*.khai" \) 2>/dev/null | wc -l | tr -dc '0-9')
+    if [[ "${FC:-0}" -eq 0 ]]; then
+      info "$cell: placeholder (rỗng) — skip"
+      continue
+    fi
+    ((KERNEL_TOTAL++)) || true
+    MF=$(ls "$cell_dir"/*.cell.anc 1>/dev/null 2>&1 && echo "MF✅" || echo "MF❌")
+    PT=$([[ -d "$cell_dir/ports" ]] && echo "PORT✅" || echo "PORT❌")
+    ENG=$(find "$cell_dir" -name "*.engine.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+    ok "$cell | $FC files | $MF | $PT | engines:$ENG"; inc_ok; ((KERNEL_OK++)) || true
+  done
+fi
 echo -e "  ${W}Kernel: $KERNEL_OK/$KERNEL_TOTAL${N}"
 
 # ═══════════════════════════════════════════════════════════════
 hdr "7" "BUSINESS CELLS — 6-COMPONENT HEALTH"
 # ═══════════════════════════════════════════════════════════════
 # NATT-CELL = 6: Identity, Capability, Boundary, Trace, Confidence, SmartLink
+# v7.1: auto-detect business dir.
+# Layout primary:  src/cells/business/business/<cell>/
+# Layout fallback: src/cells/business/<cell>/  (legacy 2-level)
+BUSINESS_DIR=""
+for cand in "src/cells/business/business" "src/cells/business"; do
+  if [[ -d "$cand" ]]; then
+    # Nếu là src/cells/business mà bên trong CHỈ có folder kernel/business/infrastructure
+    # thì đó là layout 3-level, business cells nằm sâu hơn → bỏ qua
+    has_subgroups=$(ls -1 "$cand"/{kernel,business,infrastructure} 2>/dev/null | wc -l | tr -dc '0-9')
+    if [[ "$cand" == "src/cells/business" && "${has_subgroups:-0}" -gt 0 ]]; then
+      continue
+    fi
+    BUSINESS_DIR="$cand"; break
+  fi
+done
+
 BIZ_TOTAL=0; BIZ_6OF6=0; BIZ_WIRED=0; BIZ_NOT_WIRED=0
 echo -e "  ${W}Cell                     Files  6/6  SmartLink  Status${N}"
 echo -e "  ─────────────────────────────────────────────────────────"
 
-for cell_dir in src/cells/business/*/; do
-  CELL=$(basename "$cell_dir")
-  ((BIZ_TOTAL++)) || true
-  FC=$(find "$cell_dir" -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+if [[ -z "$BUSINESS_DIR" ]]; then
+  fail "Business dir không tồn tại"
+  inc_fail "BUSINESS: dir missing"
+else
+  info "Business layout: $BUSINESS_DIR"
+  for cell_dir in "$BUSINESS_DIR"/*/; do
+    [[ -d "$cell_dir" ]] || continue
+    CELL=$(basename "$cell_dir")
+    # Skip nếu folder rỗng (placeholder)
+    FC=$(find "$cell_dir" -type f \( -name "*.ts" -o -name "*.anc" -o -name "*.sira" \) 2>/dev/null | wc -l | tr -dc '0-9')
+    if [[ "${FC:-0}" -eq 0 ]]; then
+      info "$CELL: placeholder — skip"
+      continue
+    fi
+    ((BIZ_TOTAL++)) || true
 
   # 6 components check
   HAS_IDENTITY=$(ls "$cell_dir"/*.cell.anc 1>/dev/null 2>&1 && echo 1 || echo 0)
@@ -380,23 +429,41 @@ for cell_dir in src/cells/business/*/; do
 
   printf "  %-25s %3s   %s/6   %-12s %b\n" "$CELL" "$FC" "$SCORE" "$SL" "$STATUS"
 done
+fi  # end if BUSINESS_DIR
 
 echo ""
 echo -e "  ${W}Summary: $BIZ_6OF6/$BIZ_TOTAL cells 6/6 | SmartLink wired: $BIZ_WIRED | Not wired: $BIZ_NOT_WIRED${N}"
 
 # ═══════════════════════════════════════════════════════════════
-hdr "8" "INFRASTRUCTURE CELLS"
+hdr "8" "INFRASTRUCTURE CELLS — auto-discover"
 # ═══════════════════════════════════════════════════════════════
-INFRA_CELLS=("SmartLink-cell" "sync-cell" "shared-contracts-cell")
-for cell in "${INFRA_CELLS[@]}"; do
-  P="src/cells/infrastructure/$cell"
-  if [[ -d "$P" ]]; then
-    FC=$(find "$P" -name "*.ts" | wc -l | tr -dc '0-9')
-    ok "$cell: $FC files"; inc_ok
-  else
-    fail "$cell: missing"; inc_fail "INFRA: $cell missing"
-  fi
+# v7.1: bỏ INFRA_CELLS hard-code. Discover từ filesystem.
+# Layout primary:  src/cells/business/infrastructure/<cell>/
+# Layout fallback: src/cells/infrastructure/<cell>/
+INFRA_DIR=""
+for cand in "src/cells/business/infrastructure" "src/cells/infrastructure"; do
+  if [[ -d "$cand" ]]; then INFRA_DIR="$cand"; break; fi
 done
+
+if [[ -z "$INFRA_DIR" ]]; then
+  fail "Infrastructure dir không tồn tại"
+  inc_fail "INFRA: dir missing"
+else
+  info "Infrastructure layout: $INFRA_DIR"
+  INFRA_OK=0; INFRA_TOTAL=0
+  for cell_dir in "$INFRA_DIR"/*/; do
+    [[ -d "$cell_dir" ]] || continue
+    cell=$(basename "$cell_dir")
+    FC=$(find "$cell_dir" -type f \( -name "*.ts" -o -name "*.anc" -o -name "*.sira" \) 2>/dev/null | wc -l | tr -dc '0-9')
+    if [[ "${FC:-0}" -eq 0 ]]; then
+      info "$cell: placeholder — skip"; continue
+    fi
+    ((INFRA_TOTAL++)) || true
+    ok "$cell: $FC files"; inc_ok; ((INFRA_OK++)) || true
+  done
+  echo -e "  ${W}Infrastructure: $INFRA_OK/$INFRA_TOTAL${N}"
+fi  # end if INFRA_DIR
+
 # ═══════════════════════════════════════════════════════════════
 hdr "9" "CELL DNA CHECK — 6-Component Anatomy per Cell"
 
@@ -941,9 +1008,15 @@ echo -e "  ${W}UI Summary: $COMP_COUNT components | orphans:$UI_ORPHANS | dead:$
 # ═══════════════════════════════════════════════════════════════
 hdr "22" "UI APP — SCAN DEEP"
 # ═══════════════════════════════════════════════════════════════
-UI_APP_DIR="nattos-server/app Tâm luxury"
-if [[ ! -d "$UI_APP_DIR" ]]; then
-  fail "nattos-server/app Tâm luxury/ NOT FOUND"; inc_fail "UI_APP: directory missing"
+# v7.1: auto-detect UI app dir.
+# Layout primary:  nattos-server/apps/tam-luxury (lowercase canonical)
+# Layout fallback: nattos-server/app Tâm luxury (legacy, có space + dấu)
+UI_APP_DIR=""
+for cand in "nattos-server/apps/tam-luxury" "nattos-server/app Tâm luxury"; do
+  if [[ -d "$cand" ]]; then UI_APP_DIR="$cand"; break; fi
+done
+if [[ -z "$UI_APP_DIR" ]]; then
+  fail "UI app dir NOT FOUND (đã thử apps/tam-luxury + app Tâm luxury)"; inc_fail "UI_APP: directory missing"
 else
 
   # ── Count HTML apps ──
@@ -1087,7 +1160,7 @@ else
   PAY_COUNT=$(grep -rlE "payment|vietqr|zalopay|checkout" "$UI_APP_DIR"/*.html nattos-server/nattos-ui/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SHIP_COUNT=$(grep -rlE "GHN|Nhất Tín|GHTK|Viettel Post" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
   SMART_COUNT=$(grep -rlE "SmartGetData|smartgetdata" "$UI_APP_DIR"/*.html 2>/dev/null | wc -l | tr -dc '0-9')
-  SURV_FILE=$([ -f "nattos-server/app Tâm luxury/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "missing")
+  SURV_FILE=$([ -f "$UI_APP_DIR/nauion/nauion-v9.html" ] && echo "EXISTS" || echo "missing")
   SHEETS_SERVER=$([ -f "nattos-server/server.js" ] && echo "EXISTS" || echo "missing")
   SA_KEY=$([ -f "nattos-sheets-server/nattos-google-sa.json" ] && echo "✅ KEY PRESENT" || echo "⚠️  KEY missing (gitignored)")
 
@@ -1321,13 +1394,9 @@ if [[ -f "$STATE_FILE" ]]; then
   done
   ok "QNEU scores loaded from system-state"; inc_ok
 else
-  info "system-state.phieu not found — showing seed baselines"
-  printf "  %-12s %s\n" "Entity" "Seed Score"
-  printf "  %-12s %s\n" "BANG" "300"
-  printf "  %-12s %s\n" "THIEN" "135"
-  printf "  %-12s %s\n" "KIM" "120"
-  printf "  %-12s %s\n" "CAN" "85"
-  printf "  %-12s %s\n" "BOI_BOI" "40"
+  warn "system-state.phieu not found — QNEU scores unavailable"
+  info "(v7.1: bỏ fallback số chết để tránh báo cáo sai)"
+  inc_warn "QNEU: system-state.phieu missing"
 fi
 
 # Check first-seed version
@@ -1675,7 +1744,7 @@ fi
 
 echo ""
 echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
-echo -e "  END SmartAudit v7.0 — $TS"
+echo -e "  END SmartAudit v7.1 — $TS"
 echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
 
 # ═══════════════════════════════════════════════════════════════
