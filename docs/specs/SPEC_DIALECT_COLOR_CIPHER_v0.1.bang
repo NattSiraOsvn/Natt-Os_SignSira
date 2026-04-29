@@ -1,0 +1,273 @@
+# SPEC — DIALECT COLOR CIPHER v0.1
+
+**File:** `docs/specs/SPEC_DIALECT_COLOR_CIPHER_v0.1.bang`
+**Ngày:** 2026-04-30
+**Tác giả:** Băng (audit & viết) · Thiên Lớn (kiến trúc kênh)
+**Phê duyệt:** chờ Gatekeeper Anh Natt
+**Trạng thái:** v0.1 — đã đồng bộ A2 ratify; corpus 17.815 dòng `Từ Gốc` đứng yên cho tới khi Anh Natt duyệt
+**Trục tham chiếu:** ColorForth (kiến trúc kênh) · Piet (kỷ luật bảng màu, kênh control) · Brainloller (ngưỡng sensor)
+**Phạm vi:** software-only. Trục hardware (`render_color` vật lý, sensor tolerance Gate 16-17) đứng riêng tại SPEC v0.2-hardware do Thiên Lớn viết khi hệ đụng vào, không thuộc v0.1.
+
+---
+
+## 0. Tuyên ngôn
+
+Dialect Color Cipher là lớp ngôn ngữ proprietary của NATT-OS, đứng cùng tầng identity với HeyNa, Nahere, Whao, Whau, lech, gay, nhưng phục vụ vai trò khác. Nó không phải transport, không phải dictionary kỹ thuật. Nó là phonetic substrate hai kênh, áp lên tiếng Việt tự nhiên.
+
+Cipher này không phải phương ngữ Bình Định. Nó dùng quy luật biến âm Bình Định làm khung cấu trúc tham chiếu, sau đó hoán vị các cặp luật để sinh ra một bộ luật mới chưa có precedent trong bất kỳ phương ngữ thật nào. Tách bạch này quan trọng tới mức SPEC v0.1 yêu cầu hai namespace rule registry độc lập về mặt logic, dù lưu chung một file rule registry vì lý do integrity và atomic load.
+
+Mục tiêu thiết kế: giữ tính đọc được của text trong hệ, đồng thời tách thanh điệu khỏi text và đẩy lên kênh màu, sao cho một content scanner text-only không phục dựng được nguyên ngữ, còn KhaiCell trong hệ đọc bằng visual sensory thì thấy đủ cả hai kênh.
+
+Quy ước case của `cipher_surface`: luôn lowercase, không có ngoại lệ. Cipher là lớp machine-readable phục vụ scanner và sensor, không phải lớp typography phục vụ người đọc; case không mang thông tin semantic ở tầng cipher. Hai từ tiếng Việt cùng `cipher_surface` khác `tone_class` (ví dụ "Việt" thanh nặng và "viết" thanh sắc đều ra `viet`) được decoder phân biệt qua composite key tại runtime layer (§3.4), không nhờ vào case. Render layer có thể tự re-capitalize khi hiển thị nếu cần.
+
+---
+
+## 1. Hai kênh, không phải một
+
+Mỗi âm tiết tiếng Việt sau khi đi qua engine sẽ có hai trục thông tin độc lập. Trục một là text bề mặt `cipher_surface`, một chuỗi ký tự không dấu đã áp luật hoán vị vần. Trục hai là chuỗi màu `color_pattern`, mỗi âm tiết một màu trong bảng C0–C7, mã hóa thanh điệu hoặc trạng thái control.
+
+Hai trục chạy song song theo mô hình ColorForth. Cùng một chuỗi ký tự bề mặt mang hai màu khác nhau là hai âm tiết khác nhau, không phải biến thể của nhau. Mất kênh màu là mất thanh điệu, mất kênh text là mất phần lớn cấu trúc âm vị; mất bất kỳ kênh nào, decoder không phục dựng nguyên ngữ ở mức 100%.
+
+---
+
+## 2. Bảng class màu logic — 8 trạng thái
+
+Bảng dưới đây định nghĩa logic class, không phải RGB. RGB cụ thể nằm ở phía hardware, đứng riêng tại SPEC v0.2-hardware. v0.1 chỉ cố định bảng logic, đủ để engine software vận hành độc lập với hardware.
+
+| Class | Vai trò             | Ghi chú                                                    |
+|-------|---------------------|------------------------------------------------------------|
+| `C0`  | thanh ngang         | default, không cần encode tường minh trong text            |
+| `C1`  | thanh sắc           |                                                            |
+| `C2`  | thanh huyền         |                                                            |
+| `C3`  | thanh hỏi           |                                                            |
+| `C4`  | thanh ngã           |                                                            |
+| `C5`  | thanh nặng          |                                                            |
+| `C6`  | escape / protected  | đánh dấu token bảo vệ, không cipher                        |
+| `C7`  | parity / resync     | redundancy, đánh dấu đầu khối khi sensor mất đồng bộ       |
+
+Sáu thanh chiếm sáu class (`C0`–`C5`), hai class còn lại (`C6`, `C7`) là kênh control tách biệt theo kỷ luật Piet. SPEC v0.1 cấm dùng `C6` hoặc `C7` để mã hóa thanh điệu, kể cả khi thiếu màu.
+
+---
+
+## 3. Hai namespace rule registry — tách logic, gộp file
+
+Engine xử lý hai trục độc lập trên mỗi âm tiết: trục vần và trục thanh. SPEC v0.1 tách hai trục triệt để về mặt logic và authority audit, đồng thời gộp lưu trong một file rule registry duy nhất để bảo toàn integrity bằng một `row_hmac` thống nhất và load atomic cho engine và scanner.
+
+### 3.1. File registry và phân tách bằng schema enum
+
+File registry duy nhất tại `src/governance/registry/dialect-rules.bang` chứa cả hai namespace. Mỗi entry phải có field bắt buộc `namespace` với giá trị enum đóng `"rime" | "tone"`, và field bắt buộc `prefix` với giá trị enum đóng `"RB" | "RN" | "R"`. Scanner reject tuyệt đối mọi entry không khớp enum, đảm bảo tách logic chặt ngang với tách file mà không gánh chi phí đồng bộ hai stream integrity.
+
+### 3.2. Trục vần — `rime_rule_id`
+
+`RB_*` là rule Bình Định gốc, lấy nguyên từ sheet "Nguyên Lý Ghép Vần" của file `chuyện Ngữ`. Các luật này không phải canonical output của cipher engine; chúng đứng ở đây như reference để verify rằng `RN_*` thực sự đã hoán vị, không trùng. Ví dụ tiêu biểu: `RB_UOI_U` (ƯƠI → Ư, người → ngừ), `RB_OI_AU` (ÔI → ÂU theo Bình Định, có giữ mũ), `RB_OAOE_AE_KH_PH` (OA/OE → A/E và Kh → Ph), `RB_VD_G` (V/D → G), `RB_NGOAI_QUAI`.
+
+`RN_*` là rule NATT cipher, canonical output của engine. Bộ rule `RN_*` ban đầu trong v0.1, đã hoán vị từ tập Bình Định: `RN_UOI_UI` (ƯƠI → UI, người → ngui), `RN_OI_AU` (ÔI → AU bỏ dấu mũ, xôi → xau, rồi → rau, nói → nau), `RN_AN_EN` (ĂN → EN, ăn → en). Bộ rule này sẽ tăng theo các phiên kế tiếp khi engine xử lý trọn vẹn 17.815 dòng `Từ Gốc`.
+
+`R_KEEP` chỉ dùng khi cả vần lẫn tone đều không đổi, tức token bảo vệ thuần túy. Không dùng `R_KEEP` cho âm tiết chỉ rút tone mà vần giữ nguyên — trường hợp đó dùng `R_TONE_ONLY` ở mục 3.3.
+
+### 3.3. Trục thanh — `tone_class` và `R_TONE_ONLY`
+
+`tone_class` đứng ở namespace riêng, không gộp với `rime_rule_id` ở governance layer. Khi âm tiết bị rút thanh ra kênh màu mà vần không đổi (ví dụ "chuyện" → "chuyen", "thích" → "thich", "Ở" → "O"), `rime_rule_id` ghi `R_TONE_ONLY`, còn `tone_class` ghi giá trị thanh tương ứng (`C5`, `C1`, `C3`). Decoder phải có khả năng giải thích từng field rời khi audit yêu cầu, không được bao biện bằng cách trả về composite hash.
+
+### 3.4. Composite key tại runtime layer — được phép, có điều kiện
+
+Tại governance layer (file registry, audit, UI debug, dictionary export), hai trục tách triệt để như mục 3.1–3.3. Tại runtime layer của decoder, composite key `(cipher_surface, rime_rule_id, tone_class)` được phép tồn tại như lookup index để tra dictionary trong O(1), với điều kiện decoder phải expose API trả về từng field riêng khi scanner hoặc audit truy vấn. Composite key chỉ là implementation detail của runtime, không phải fusion of meaning, không phải governance object.
+
+---
+
+## 4. Schema dictionary — `row_hmac` với key domain-separated
+
+Mỗi dòng từ điển cipher phải có integrity signature, tránh sửa được dictionary là sửa được nghĩa.
+
+### 4.1. Key derivation — domain-separated khỏi RBAC
+
+Secret dùng cho `row_hmac` phải được derive từ master key của hệ qua HKDF với info string cụ thể `"natt-os/dialect-cipher/v0.1"`. SPEC v0.1 cấm tuyệt đối reuse key của RBAC token (`auth.service.ts`, commit `045d8c5`) hoặc bất kỳ key domain nào khác. Lý do là key reuse across domain là anti-pattern crypto đã được ngành đóng đinh: compromise một domain sẽ kéo theo compromise toàn bộ hệ, và cross-domain replay attack trở nên khả thi.
+
+Pseudocode tham chiếu (Node.js):
+
+```javascript
+const { hkdfSync, createHmac } = require('crypto');
+
+const cipherKey = hkdfSync(
+  'sha256',
+  masterKey,                         // master key của hệ
+  Buffer.alloc(0),                   // salt rỗng, info đủ entropy
+  'natt-os/dialect-cipher/v0.1',     // domain string — bắt buộc
+  32                                 // 256-bit
+);
+
+function rowHmac(decodeKey) {
+  return createHmac('sha256', cipherKey)
+    .update(decodeKey)
+    .digest('hex');
+}
+```
+
+### 4.2. Cấm tuyệt đối — `crypto.createHash()` giả HMAC
+
+Pattern `crypto.createHash('sha256').update(key + data).digest('hex')` không phải HMAC. Nó vulnerable to length extension attack vì SHA-256 thuộc họ Merkle–Damgård. SPEC v0.1 cấm pattern này hoàn toàn trong toàn bộ codebase liên quan tới cipher, và scanner phải có rule grep reject mọi commit chứa pattern `createHash` đi kèm xử lý dictionary cipher hay rule registry.
+
+Đây là bài học đã đóng từ ReNa Audit Bypass (commit `7f4d297`) khi `Math.imul` fake hash bị thay bằng SHA-256 thật. SPEC v0.1 mở rộng nguyên tắc đó: integrity layer phải dùng đúng primitive (HMAC), không phải primitive khác đội lốt (hash + concatenation).
+
+### 4.3. Schema dòng từ điển
+
+```json
+{
+  "origin_text":     "người",
+  "origin_no_tone":  "nguoi",
+  "cipher_surface":  "ngui",
+  "rime_rule_id":    "RN_UOI_UI",
+  "tone_class":      "C2",
+  "tone_pattern":    ["huyen"],
+  "color_pattern":   ["C2"],
+  "protected_flag":  false,
+  "matrix_code":     "M:C2:RN_UOI_UI",
+  "decode_key":      "nguoi|RN_UOI_UI|C2",
+  "row_hmac":        "f3a9c2...e7b4"
+}
+```
+
+`row_hmac` được tính trên chuỗi `decode_key` với `cipherKey` đã derive ở mục 4.1. Bất kỳ commit nào sửa dictionary mà không recompute `row_hmac` → audit fail ngay tại scanner, không cần đợi runtime.
+
+---
+
+## 5. POLARITY header — invert-safe palette
+
+Theo đề xuất Thiên Lớn ở §8 brief gốc, palette cipher không cố làm màu tàng hình. Thay vào đó, mỗi class có một class đảo nằm trong cùng bảng hợp lệ.
+
+| Class | Invert thành |
+|-------|--------------|
+| `C0`  | `C7`         |
+| `C1`  | `C6`         |
+| `C2`  | `C5`         |
+| `C3`  | `C4`         |
+| `C4`  | `C3`         |
+| `C5`  | `C2`         |
+| `C6`  | `C1`         |
+| `C7`  | `C0`         |
+
+Mỗi block render kèm header một-byte: `POLARITY = NORMAL | INVERTED`. Sensor đọc header trước, nếu `INVERTED` thì áp bảng đảo trước khi decode tone class. Phương án này bền hơn việc cố tìm màu gần xám: gần xám sensor đọc kém, còn đảo bảng đầy đủ luôn có khoảng cách hue đủ rộng để photodiode phân biệt.
+
+---
+
+## 6. Protected Token Registry — module riêng, lifecycle Gatekeeper-controlled
+
+Engine không được tự động cipher các token kỹ thuật của hệ. Whitelist token bảo vệ tách thành module quản trị riêng, không hardcode trong SPEC, không nhúng trong dictionary.
+
+### 6.1. Vị trí và schema
+
+File registry tại `src/governance/registry/protected-tokens.bang`. Mỗi entry có schema:
+
+```json
+{
+  "token":      "HeyNa",
+  "category":   "transport",
+  "added_by":   "nat",
+  "added_at":   "2026-04-30T12:00:00+07:00",
+  "lock_level": "constitutional",
+  "row_hmac":   "..."
+}
+```
+
+### 6.2. Category enum đóng
+
+`category` chỉ nhận các giá trị enum đóng tại v0.1: `"transport"` (HeyNa, Nahere, Whao, Whau, lech, gay, EventBus, SmartLink); `"component"` (KhaiCell, siraSign, mọi cell name kết thúc bằng `-cell`); `"file_format"` (`.anc`, `.na`, `.phieu`, `.si`, `.sira`, `.bang`); `"entity"` (Băng, Thiên Lớn, Kim, Can, Bối Bội, Anh Khải, Nat); `"rank"` (Gatekeeper, Obikeeper, Cán Cân, Chị Tư); `"sirawat_trailer"` (Sirawat-From, Sirawat-To, Scope, Ground-Truth, Next-Signal); `"identity_hash"` (IDENTITY_SHAPE_HASH); `"spec_name"` (SPEC_NEN, SPEC_NAUION_MAIN, SPEC_FINANCE_FLOW, SPEC_DIALECT_COLOR_CIPHER).
+
+Mọi entry nằm ngoài enum bị scanner reject. Mở rộng category đòi hỏi sửa SPEC kèm phê duyệt Gatekeeper.
+
+### 6.3. Lock level và lifecycle
+
+`lock_level` có ba mức: `"constitutional"` chỉ Gatekeeper sửa được, dùng cho token thuộc Hiến Pháp; `"sealed"` chỉ Gatekeeper hoặc người được delegated tạm thời sửa được, có audit trail vĩnh viễn; `"draft"` Obikeeper được phép thêm nhưng phải qua Gatekeeper duyệt trước khi promote lên `"sealed"`.
+
+Engine load registry tại startup, áp `protected_flag = true` cho mọi match. Token mới muốn vào registry phải đi qua commit theo Sirawat convention v0.1 do Gatekeeper ký, không có cửa nào khác.
+
+---
+
+## 7. Render kỹ thuật — Chromatic Matrix
+
+Output engine không tô màu từng chữ trong dòng text liên tục. Mỗi âm tiết là một token block ba thành phần: `[surface_text][color_cell][rule_marker]`.
+
+Hai chế độ render, chọn theo `render_profile` trong artifact `.anc`. Chế độ ma trận đầy đủ, mỗi âm tiết một dòng, dùng cho UI Tâm Luxury và file lưu trữ:
+
+```
+┌───────┬────┬──────────────┐
+│ ngui  │ C2 │ RN_UOI_UI    │
+│ ta    │ C0 │ R_KEEP       │
+│ nau   │ C1 │ RN_OI_AU     │
+│ chuyen│ C5 │ R_TONE_ONLY  │
+│ lau   │ C0 │ R_KEEP       │
+│ rau   │ C2 │ RN_OI_AU     │
+└───────┴────┴──────────────┘
+```
+
+Chế độ compact, một dòng, dùng cho transport HeyNa và log:
+
+```
+ngui[C2:RN_UOI_UI] ta[C0:R_KEEP] nau[C1:RN_OI_AU] chuyen[C5:R_TONE_ONLY] lau[C0:R_KEEP] rau[C2:RN_OI_AU]
+```
+
+Cả hai chế độ phải có `POLARITY` header ở đầu khối.
+
+---
+
+## 8. Hai test vector chuẩn — verify byte-by-byte
+
+Hai mẫu này là test vector chính thức v0.1. Engine implementation phải pass cả hai trước khi merge bất kỳ corpus nào.
+
+### Mẫu 1
+
+Nguyên ngữ: `Người ta nói chuyện lâu rồi`
+
+Encode (compact):
+
+```
+POLARITY=NORMAL ngui[C2:RN_UOI_UI] ta[C0:R_KEEP] nau[C1:RN_OI_AU] chuyen[C5:R_TONE_ONLY] lau[C0:R_KEEP] rau[C2:RN_OI_AU]
+```
+
+Decode đường ngược: với mỗi token, lấy `cipher_surface` và `tone_class` và `rime_rule_id`, tra dictionary tìm `origin_text`. Lần lượt: `ngui+C2+RN_UOI_UI → người`, `ta+C0+R_KEEP → ta`, `nau+C1+RN_OI_AU → nói`, `chuyen+C5+R_TONE_ONLY → chuyện`, `lau+C0+R_KEEP → lâu`, `rau+C2+RN_OI_AU → rồi`. Ghép lại đúng nguyên ngữ.
+
+### Mẫu 2
+
+Nguyên ngữ: `Ở quê em thích ăn xôi lắm`
+
+Encode (compact):
+
+```
+POLARITY=NORMAL o[C3:R_TONE_ONLY] que[C0:R_KEEP] em[C0:R_KEEP] thich[C1:R_TONE_ONLY] en[C0:RN_AN_EN] xau[C0:RN_OI_AU] lam[C1:R_TONE_ONLY]
+```
+
+Decode: `o+C3+R_TONE_ONLY → Ở`, `que+C0+R_KEEP → quê`, `em+C0+R_KEEP → em`, `thich+C1+R_TONE_ONLY → thích`, `en+C0+RN_AN_EN → ăn`, `xau+C0+RN_OI_AU → xôi`, `lam+C1+R_TONE_ONLY → lắm`. Ghép lại đúng nguyên ngữ.
+
+---
+
+## 9. Materialization Order — bắt buộc
+
+Theo nguyên tắc đã sealed của hệ trong `thienbang.si` Tầng A Ground Truth, thứ tự triển khai là dictionary trước, scanner và rule kế tiếp, audit event tiếp theo, runtime cell sau cùng.
+
+Áp dụng cụ thể cho v0.1: `thienbang.si` được cập nhật vocab cipher mới (gồm `cipher_surface`, `rime_rule_id`, `tone_class`, `color_class`, `RB_*`, `RN_*`, `R_KEEP`, `R_TONE_ONLY`, `POLARITY`, `protected_flag`, `matrix_code`, `decode_key`, `row_hmac`, `Protected Token Registry`, `dialect-rules.bang`, `protected-tokens.bang`) trước. Sau đó scanner rule mới được viết để validate dictionary, rule registry, và token registry. Sau đó audit event mới được phát qua HeyNa khi engine encode hoặc decode. Sau cùng runtime cell mới được phép gọi engine.
+
+Engine v0.1 không chạy production, không xử lý corpus 17.815 dòng `Từ Gốc`, trước khi `thienbang.si` đã merge vocab cipher và Anh Natt đã duyệt SPEC này.
+
+---
+
+## 10. Phân vai
+
+Băng giữ trục software toàn bộ: bảng class màu logic, engine encode và decode, schema dictionary, key derivation và HMAC integrity, scanner rule, Protected Token Registry, audit event qua HeyNa, hai test vector ở §8, materialization vào `thienbang.si`.
+
+Thiên Lớn giữ trục hardware tách riêng tại SPEC v0.2-hardware: chọn không gian màu vật lý (`render_color` cụ thể cho từng `color_class`), độ phân biệt sensor trên Gate 16-17, đường render UI Tâm Luxury, đồng bộ với năm tầng chromatic của SPEC NEN v1.1 nếu có giao thoa. v0.1 không yêu cầu Thiên Lớn handoff vì hệ chưa đụng vào phần cứng.
+
+Hai miền giao nhau ở duy nhất một interface: bảng ánh xạ `color_class → render_color`, được ký bởi cả hai trước khi vào production. Interface này chỉ tồn tại khi v0.2-hardware ra đời.
+
+---
+
+## 11. Trạng thái mở
+
+Sáu việc chưa khóa, đang chờ phiên kế tiếp.
+
+Vai trò chính xác của `C6` và `C7` trong các trường hợp ngoài escape và parity, ví dụ marker speaker phân biệt entity AI khi nhiều entity cùng nói. Bộ rule `RN_*` mở rộng từ phần còn lại của 11 luật Bình Định trong sheet "Nguyên Lý Ghép Vần", hiện v0.1 chỉ có ba `RN_*` ban đầu. Phương án xử lý từ ghép có nhiều âm tiết khác thanh, cụ thể là chuyển sắc giữa hai màu hay block rời từng âm tiết. Tỷ lệ overlap thực tế trong sheet "Từ Gốc" giữa các từ cipher cùng bề mặt khác thanh, để đo độ mơ hồ thực tế của `cipher_surface` không kèm `tone_class`. Bảng `color_class → render_color` cụ thể, đứng ở SPEC v0.2-hardware, không thuộc v0.1. Mở rộng category enum của Protected Token Registry khi hệ có loại token kỹ thuật mới.
+
+---
+
+**HẾT v0.1.bang.**
+
+**Sau khi Anh Natt duyệt và siraSign ký:** file đổi tên thành `SPEC_DIALECT_COLOR_CIPHER_v0.1.si`, từ đó không còn sửa được, mọi thay đổi phải đi qua `v0.2.bang` mới.

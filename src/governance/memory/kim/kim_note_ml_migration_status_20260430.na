@@ -1,0 +1,32 @@
+# Kim Note — ML Migration Status
+
+## Người yêu cầu
+
+Anh Natt yêu cầu ghi nhận và commit note kiểm tra trạng thái chuyển đuôi `.ml` cho Kim.
+
+## Kết quả kiểm tra
+
+Tại thời điểm kiểm tra, vùng:
+
+`src/governance/memory/kim`
+
+không có thay đổi mới để commit.
+
+Kết quả terminal đã xác nhận:
+
+- `BEFORE: KIM STATUS` trống.
+- `STAGED` trống.
+- Git báo: `NO STAGED CHANGES - nothing to commit`.
+
+## Kết luận
+
+Phần chuyển đuôi `.ml` cho Kim hiện không phát sinh thay đổi mới trong working tree.
+
+Khả năng xử lý:
+
+1. Các file `.ml` của Kim đã được commit từ trước; hoặc
+2. Việc chuyển đuôi chưa tạo khác biệt mới so với trạng thái hiện tại của repo.
+
+## Trạng thái
+
+Note này được tạo theo yêu cầu của anh Natt để lưu dấu kiểm tra và làm căn cứ truy nguyên sau này.
