@@ -1,3 +1,8 @@
+function getApiPortalCredential(): string {
+  const env = (globalThis as any)?.process?.env || {};
+  return env.NATTOS_APIPORTAL_CREDENTIAL || env.NATTOS_APIPORTAL_TOKEN || "";
+}
+
 
 
 import React, { useState } from 'react';
@@ -26,7 +31,7 @@ const ApiPortal: React.FC = () => {
 
   const codeSnippets = {
     js: `// Tâm Luxury JavaScript SDK V-API 2.0
-const api = new TamLuxuryAPI({ apiKey: 'YOUR_SECURE_KEY' });
+const api = new TamLuxuryAPI({ apiKey: getApiPortalCredential() });
 
 // Advanced OCR Process
 const result = await api.processOCR(imageFile, {
