@@ -1,0 +1,27 @@
+# NAUION KERNEL — VISION ENGINE v0.1
+# @state: active
+# @domain: Π_medium
+# @layer: L5 (O-shell)
+# @owner: natt sirawat / phan thanh thương
+# @anc: bối bối
+# @session: ss20260429
+
+obitan_engine vision_engine {
+  renderer: "WebGPU"
+  shader_mặc_định: ["liquid_glass.wgsl", "compute_particles.wgsl"]
+  trạng_thái: "Whao_khởi_tạo"
+
+  khởi_động() {
+    ghi_nhận_vết("Whao: Đang nạp WebGPU Context...")
+    trạng_thái = "Whau_sẵn_sàng"
+    trạng_thái_lực = "TĨNH_IDLE"
+    lực_ép_hiện_tại = 0.0
+  }
+
+  nhận_áp_lực(kiểu_nguyên, lực_ép, chế_độ) {
+    # Kỷ luật: Chỉ nhận tham số, ghi thẳng vào Buffer của GPU
+    # Không có if/else phân nhánh hiển thị ở đây
+    ghi_buffer_gpu(kiểu_nguyên, lực_ép, chế_độ)
+    phát_Nauion("vision.frame.rendered", { kiểu: kiểu_nguyên, lực: lực_ép })
+  }
+}
