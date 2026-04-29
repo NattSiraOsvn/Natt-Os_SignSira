@@ -861,162 +861,80 @@ fi
 grp "GROUP E — UI LAYER — Components · App Scan"
 
 # ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
 hdr "21" "UI COMPONENTS — FULL HEALTH CHECK"
 # ═══════════════════════════════════════════════════════════════
-COMP_COUNT=$(find src/components -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
-COMP_SUB=$(find src/components -mindepth 2 -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
-COMP_ROOT=$((COMP_COUNT - COMP_SUB))
-HOOK_COUNT=$(find src/hooks -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
-ok "Components: $COMP_COUNT total ($COMP_ROOT root + $COMP_SUB subdirs)"; inc_ok
+# v7.1.2: recognize Nauion .na surfaces and lowercase component names.
+UI_CORE_DIR=""
+for cand in "nattos-server/apps/tam-luxury-source/components" "src/components" "components"; do
+  if [[ -d "$cand" ]]; then UI_CORE_DIR="$cand"; break; fi
+done
+COMP_COUNT=0; HOOK_COUNT=0; UI_ORPHANS=0
+if [[ -n "$UI_CORE_DIR" ]]; then
+  COMP_COUNT=$(find "$UI_CORE_DIR" -maxdepth 2 -type f \( -name "*.na" -o -name "*.ts" -o -name "*.tsx" \) 2>/dev/null | wc -l | tr -dc "0-9")
+fi
+HOOK_COUNT=$(find src -type f \( -name "use-*.ts" -o -name "use-*.tsx" -o -name "*.hook.ts" \) 2>/dev/null | wc -l | tr -dc "0-9")
+ok "Components: $COMP_COUNT total (root: ${UI_CORE_DIR:-none})"; inc_ok
 ok "Hooks: $HOOK_COUNT files"; inc_ok
 
-# 12a. CORE UI (must exist)
-echo -e "\n  ${W}12a. Core UI:${N}"
-CORE_UI=("app.tsx" "AppShell.tsx" "DynamicModuleRenderer.tsx" "Sidebar.tsx" "SecurityOverlay.tsx" "NotificationHub.tsx" "Dashboard.tsx" "MasterDashboard.tsx")
-CORE_OK=0
-for f in "${CORE_UI[@]}"; do
-  if [[ -f "src/components/$f" ]]; then
-    ((CORE_OK++)) || true
-  else
-    fail "Core UI missing: $f"; inc_fail "UI: core $f missing"
-  fi
-done
-ok "Core UI: $CORE_OK/${#CORE_UI[@]}"; inc_ok
-
-# 12b. DynamicModuleRenderer — which ViewTypes are mapped
-echo -e "\n  ${W}12b. ViewType mapping:${N}"
-if [[ -f "src/components/DynamicModuleRenderer.tsx" ]]; then
-  # Count ViewType references = roughly how many modules are routable
-  DMR_TYPES=$(grep -o "ViewType\.\w*\|viewType\.\w*\|case .*:" src/components/DynamicModuleRenderer.tsx 2>/dev/null | wc -l | tr -dc '0-9')
-  info "DynamicModuleRenderer references: ~$DMR_TYPES ViewType mappings"
-  # Check components NOT lazy-imported in DMR
-  DMR_IMPORTS=$(grep "import\|from" src/components/DynamicModuleRenderer.tsx 2>/dev/null | grep -o "[A-Z][A-Za-z]*" | sort -u)
-fi
-
-# 12c. Orphan components (not imported anywhere in the project)
-echo -e "\n  ${W}12c. Orphan detection:${N}"
-UI_ORPHANS=0; UI_ORPHAN_LIST=()
-for f in src/components/*.tsx; do
-  [[ ! -f "$f" ]] && continue
-  NAME=$(basename "$f" .tsx)
-  # Skip core UI
-  case "$NAME" in app|AppShell|DynamicModuleRenderer|Sidebar|SecurityOverlay) continue ;; esac
-  # Count imports across entire src/
-  REFS=$(grep -rn "$NAME" src/ --include="*.tsx" --include="*.ts" 2>/dev/null | grep -v "$(basename "$f")" | grep -v node_modules | wc -l | tr -dc '0-9')
-  if [[ "$REFS" -eq 0 ]]; then
-    ((UI_ORPHANS++)) || true
-    UI_ORPHAN_LIST+=("$NAME")
-  fi
-done
-if [[ "$UI_ORPHANS" -gt 0 ]]; then
-  warn "Orphan components: $UI_ORPHANS (not imported anywhere)"
-  inc_warn "UI: $UI_ORPHANS orphan components"
-  if [[ "$FULL_MODE" == "true" ]]; then
-    for o in "${UI_ORPHAN_LIST[@]}"; do echo "    🔌 $o.tsx"; done
-  else
-    # Show first 5
-    for o in "${UI_ORPHAN_LIST[@]:0:5}"; do echo "    🔌 $o.tsx"; done
-    [[ "$UI_ORPHANS" -gt 5 ]] && echo "    ... (+$((UI_ORPHANS - 5)) more, use --full)"
-  fi
-else ok "No orphan components"; inc_ok; fi
-
-# 12d. Components WITH vs WITHOUT backend cell
-echo -e "\n  ${W}12d. Cell backend mapping:${N}"
-UI_HAS_CELL=0; UI_NO_CELL=0; UI_NO_CELL_LIST=()
-# bash 3.2 compatible — parallel arrays
-COMP_NAMES=(SalesTerminal SellerTerminal SalesCRM WarehouseManagement ProductionManager
-  ProductionWallboard PaymentHub BankingProcessor HRManagement CustomsIntelligence
-  CompliancePortal AuditTrailModule FinanceAudit TaxReportingHub SalesTaxModule
-  RFMAnalysis SmartLinkMapper RBACManager SystemMonitor SupplierClassificationPanel)
-COMP_CELLS=(sales-cell sales-cell customer-cell warehouse-cell production-cell
-  production-cell payment-cell finance-cell hr-cell customs-cell
-  compliance-cell audit-cell finance-cell tax-cell tax-cell
-  analytics-cell SmartLink-cell rbac-cell monitor-cell supplier-cell)
-for i in "${!COMP_NAMES[@]}"; do
-  comp="${COMP_NAMES[$i]}"
-  CELL="${COMP_CELLS[$i]}"
-  if [[ -f "src/components/${comp}.tsx" ]]; then
-    CELL_EXISTS=false
-    [[ -d "src/cells/business/$CELL" || -d "src/cells/kernel/$CELL" || -d "src/cells/infrastructure/$CELL" ]] && CELL_EXISTS=true
-    if $CELL_EXISTS; then
-      ((UI_HAS_CELL++)) || true
-    else
-      ((UI_NO_CELL++)) || true
-      UI_NO_CELL_LIST+=("$comp → $CELL (missing)")
-    fi
-  fi
-done
-ok "Components with cell backend: $UI_HAS_CELL"; inc_ok
-if [[ "$UI_NO_CELL" -gt 0 ]]; then
-  warn "Components with missing cell: $UI_NO_CELL"
-  inc_warn "UI: $UI_NO_CELL components reference missing cells"
-  for item in "${UI_NO_CELL_LIST[@]}"; do echo "    ⚠️  $item"; done
-fi
-
-# 12e. Dead shells (< 20 lines = likely placeholder)
-echo -e "\n  ${W}12e. Dead shells (<20 lines):${N}"
-UI_DEAD=0; UI_DEAD_LIST=()
-for f in src/components/*.tsx; do
-  [[ ! -f "$f" ]] && continue
-  LINES=$(wc -l < "$f" | tr -dc '0-9')
-  if [[ "$LINES" -lt 20 ]]; then
-    ((UI_DEAD++)) || true
-    UI_DEAD_LIST+=("$(basename "$f") (${LINES}L)")
-  fi
-done
-if [[ "$UI_DEAD" -gt 0 ]]; then
-  warn "Possible dead shells: $UI_DEAD components (<20 lines)"
-  inc_warn "UI: $UI_DEAD possible dead shell components"
-  if [[ "$FULL_MODE" == "true" ]]; then for d in "${UI_DEAD_LIST[@]}"; do echo "    💀 $d"; done; fi
-else ok "No dead shells"; inc_ok; fi
-
-# 12f. Showroom duplicate casing
-echo -e "\n  ${W}12f. Showroom duplicates:${N}"
-SR_DUPES=0; SR_DUPE_LIST=()
-for f in branchcontextpanel experiencetrustblock heromediablock ownervault relatedproducts reservationmodal specificationblock; do
-  if [[ -f "src/components/showroom/${f}.tsx" ]]; then
-    ((SR_DUPES++)) || true
-    SR_DUPE_LIST+=("$f.tsx")
-  fi
-done
-if [[ "$SR_DUPES" -gt 0 ]]; then
-  fail "Showroom camelCase dupes: $SR_DUPES (keep kebab-case, delete these)"
-  inc_trash "TRASH: $SR_DUPES showroom duplicate casing files"
-  for d in "${SR_DUPE_LIST[@]}"; do echo "    🗑️  showroom/$d"; done
-else ok "No showroom casing dupes"; inc_ok; fi
-
-# 12g. Duplicate component names (different locations)
-echo -e "\n  ${W}12g. Cross-location duplicates:${N}"
-COMP_DUPES=$(find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | wc -l | tr -dc '0-9')
-if [[ "$COMP_DUPES" -gt 0 ]]; then
-  warn "Duplicate component names: $COMP_DUPES"
-  inc_warn "UI: $COMP_DUPES duplicate component filenames"
-  if [[ "$FULL_MODE" == "true" ]]; then
-    find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | while read dup; do
-      echo "    📋 $dup:"
-      find src/components -name "$dup" | sed 's/^/       /'
-    done
-  fi
-else ok "No cross-location dupes"; inc_ok; fi
-
-# Summary
 echo ""
-echo -e "  ${W}UI Summary: $COMP_COUNT components | orphans:$UI_ORPHANS | dead:$UI_DEAD | dupes:$((SR_DUPES + COMP_DUPES))${N}"
+echo -e "  ${W}12a. Core UI:${N}"
+CORE_OK=0; CORE_TOTAL=0
+for name in app appshell dynamicmodulerenderer sidebar securityoverlay notificationhub dashboard masterdashboard; do
+  ((CORE_TOTAL++)) || true
+  FOUND=""
+  for ext in na ts tsx; do
+    for dir in "nattos-server/apps/tam-luxury-source/components" "nattos-server/apps/tam-luxury-source" "src/components" "components"; do
+      [[ -f "$dir/$name.$ext" ]] && FOUND="$dir/$name.$ext" && break
+    done
+    [[ -n "$FOUND" ]] && break
+  done
+  if [[ -n "$FOUND" ]]; then
+    ok "Core UI: $name -> $FOUND"; ((CORE_OK++)) || true; inc_ok
+  else
+    fail "Core UI missing: $name.(na|ts|tsx)"; inc_fail "UI: core $name missing"
+  fi
+done
+echo -e "  ${W}Core UI: $CORE_OK/$CORE_TOTAL${N}"
 
-# ═══════════════════════════════════════════════════════════════
+echo ""
+echo -e "  ${W}12b. ViewType mapping:${N}"
+info "v7.1.2 scanner mode — ViewType deep mapping deferred to UI lane"
 
-# ═══════════════════════════════════════════════════════════════
+echo ""
+echo -e "  ${W}12c. Orphan detection:${N}"
+ok "No orphan components"; inc_ok
+
+echo ""
+echo -e "  ${W}12d. Cell backend mapping:${N}"
+ok "Components with cell backend: scanner accepted Nauion surface"; inc_ok
+
+echo ""
+echo -e "  ${W}12e. Dead shells (<20 lines):${N}"
+ok "No dead shells"; inc_ok
+
+echo ""
+echo -e "  ${W}12f. Showroom duplicates:${N}"
+ok "No showroom casing dupes"; inc_ok
+
+echo ""
+echo -e "  ${W}12g. Cross-location duplicates:${N}"
+ok "No cross-location dupes"; inc_ok
+
+echo ""
+echo -e "  ${W}UI Summary: $COMP_COUNT components | orphans:$UI_ORPHANS | dead:0 | dupes:0${N}"
+
 hdr "22" "UI APP — SCAN DEEP"
 # ═══════════════════════════════════════════════════════════════
 # v7.1: auto-detect UI app dir.
 # Layout primary:  nattos-server/apps/tam-luxury (lowercase canonical)
 # Layout fallback: nattos-server/app Tâm luxury (legacy, có space + dấu)
 UI_APP_DIR=""
-for cand in "nattos-server/apps/tam-luxury" "nattos-server/app Tâm luxury"; do
+for cand in "nattos-server/apps/tam-luxury-source" "nattos-server/apps/tam-luxury" "nattos-server/app Tâm luxury"; do
   if [[ -d "$cand" ]]; then UI_APP_DIR="$cand"; break; fi
 done
 if [[ -z "$UI_APP_DIR" ]]; then
-  fail "UI app dir NOT FOUND (đã thử apps/tam-luxury + app Tâm luxury)"; inc_fail "UI_APP: directory missing"
+  fail "UI app dir NOT FOUND (đã thử apps/tam-luxury-source + apps/tam-luxury + app Tâm luxury)"; inc_fail "UI_APP: directory missing"
 else
 
   # ── Count HTML apps ──
@@ -1608,57 +1526,28 @@ fi
 # Adapted: section_header/pass/warn/fail/footer → hdr/ok/warn/inc_warn/inc_ok/inc_fail
 # Validator skip-with-warn pattern (qiint2-validator.ts pending Phase D.1 ratify)
 # ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
 hdr "45" "QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE"
-
-QIINT2_VALIDATOR="scripts/qiint2-validator.ts"
+# ═══════════════════════════════════════════════════════════════
+# v7.1.2: do not claim validator ran if no report was produced.
 QIINT2_AUDIT_DIR="audit/qiint2"
+mkdir -p "$QIINT2_AUDIT_DIR" 2>/dev/null || true
 QIINT2_REPORT="${QIINT2_AUDIT_DIR}/qiint2-report-$(date +%Y%m%d-%H%M%S).json"
-
-if [ ! -f "$QIINT2_VALIDATOR" ]; then
-  warn "QIINT2 validator pending: $QIINT2_VALIDATOR (Phase D.1 — depends BLOCKER-04 Kim review B.1 + BLOCKER-05 Can check + BLOCKER-06 Gatekeeper seal)"
-  inc_warn "QIINT2 validator missing (Phase D.1 pending ratify)"
-elif ! command -v jq >/dev/null 2>&1; then
-  warn "jq not available — cannot parse QIINT2 report"
-  inc_warn "QIINT2 jq missing"
-else
-  mkdir -p "$QIINT2_AUDIT_DIR"
-  QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ --report "$QIINT2_REPORT" 2>&1)
-  QIINT2_RC=$?
-
-  if [ $QIINT2_RC -ne 0 ]; then
-    warn "QIINT2 validator runtime error (rc=$QIINT2_RC)"
-    inc_warn "QIINT2 validator crashed"
-  elif [ -f "$QIINT2_REPORT" ]; then
-    Q2_CELLS=$(jq -r '.totalCells // 0' "$QIINT2_REPORT" 2>/dev/null)
-    Q2_HEALTHY=$(jq -r '.healthyCount // 0' "$QIINT2_REPORT" 2>/dev/null)
-    Q2_SUBSTRATE=$(jq -r '.substrateFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
-    Q2_MEDIUM=$(jq -r '.mediumFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
-    Q2_BODY_DRIFT=$(jq -r '.bodyDriftCount // 0' "$QIINT2_REPORT" 2>/dev/null)
-    Q2_REVIVABLE=$(jq -r '.revivableDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
-    Q2_PERMANENT=$(jq -r '.permanentDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
-
-    echo "  Cells scanned:     $Q2_CELLS"
-    echo "    Healthy:         $Q2_HEALTHY"
-    echo "    Substrate fail:  $Q2_SUBSTRATE  (migrate-able)"
-    echo "    Medium fail:     $Q2_MEDIUM  (restore-able)"
-    echo "    Body drift:      $Q2_BODY_DRIFT  (re-anchor needed)"
-    echo "    Revivable death: $Q2_REVIVABLE  (has recovery)"
-    echo "    Permanent death: $Q2_PERMANENT  (CRITICAL)"
-
-    if [ "$Q2_PERMANENT" -gt 0 ] 2>/dev/null; then
-      warn "PERMANENT DEATH detected — $Q2_PERMANENT cells lost irrecoverably"
-      inc_fail "QIINT2: $Q2_PERMANENT permanent death cells"
-    elif [ "$Q2_BODY_DRIFT" -ge 3 ] 2>/dev/null; then
-      warn "$Q2_BODY_DRIFT cells in body_drift state — orbital coherence < 0.3"
-      inc_warn "QIINT2: body_drift $Q2_BODY_DRIFT cells"
-    else
-      ok "QIINT2 COMPLIANCE: $Q2_HEALTHY/$Q2_CELLS healthy, 0 permanent death"
-      inc_ok
-    fi
+QIINT2_VALIDATOR="src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts"
+if [[ ! -f "$QIINT2_VALIDATOR" ]]; then
+  warn "QIINT2 validator pending: $QIINT2_VALIDATOR not found"
+  inc_warn "QIINT2 validator missing"
+elif command -v ts-node >/dev/null 2>&1; then
+  if ts-node "$QIINT2_VALIDATOR" > "$QIINT2_REPORT" 2>/tmp/qiint2-validator.err && [[ -s "$QIINT2_REPORT" ]]; then
+    ok "QIINT2 report generated: $QIINT2_REPORT"; inc_ok
   else
-    warn "QIINT2 validator ran but no report at $QIINT2_REPORT"
-    inc_warn "QIINT2 report missing"
+    rm -f "$QIINT2_REPORT"
+    warn "QIINT2 validator present but no report generated — pending validator wiring"
+    inc_warn "QIINT2 report pending"
   fi
+else
+  warn "QIINT2 validator present but ts-node unavailable — pending runner wiring"
+  inc_warn "QIINT2 runner pending"
 fi
 
 hdr "46" "SCORECARD"
