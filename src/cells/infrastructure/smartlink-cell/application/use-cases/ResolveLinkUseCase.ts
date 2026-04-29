@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 import { SmartLinkMappingEngine } from "../../domain/services/SmartLink-mapping.engine";
 import { SmartLinkGovernance } from "../../domain/services/SmartLink.governance";
