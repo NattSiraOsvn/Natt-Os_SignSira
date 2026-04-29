@@ -1,0 +1,75 @@
+@nauion-audit-correction v1
+@state pass
+@name thienbang_kernel_nauion_v0_2_audit_correction_ss20260429
+@scope correction-for-audit-9a5c5c4
+@target_commit d546742
+@previous_audit_commit 9a5c5c4
+@target_file src/thienbang.si
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+THIENBANG KERNEL NAUION v0.2 — AUDIT CORRECTION
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Sửa lỗi parser của audit 9a5c5c4. Audit trước đã đếm ==END== như duplicate key và bỏ sót key có chữ thường 'v'.
+Report này không sửa src/thienbang.si, không ratify runtime law, chỉ thay thế kết luận kỹ thuật của audit trước.
+==END==
+
+==CORRECTION_REASON==
+- False positive 1: ==END== là block terminator, không phải dictionary key.
+- False positive 2: KERNEL_NAUION_v0_2_RATIFY có chữ thường 'v', parser cũ [A-Z0-9_] không bắt được.
+- Parser mới dùng [A-Za-z0-9_] và loại END khỏi key counter.
+==END==
+
+==SOURCE_HASH==
+src/thienbang.si sha256: c782f681fab6a328cd3b3791103ec24f218456cc795f82a6a01e2fbddf38013a
+previous audit exists: True
+previous audit sha256: c6a576aa125ca296c371353ec12d01d6d37b278e5bca59e8350fd587fd9c2bf8
+==END==
+
+==KEY_COUNT_CORRECTED==
+total_headers_including_END: 81
+total_key_headers_excluding_END: 39
+duplicate_keys_excluding_END: []
+==END==
+
+==EXPECTED_KERNEL_v0_2_KEYS_CORRECTED==
+- KERNEL_NAUION_7_TANG: count=1
+- L1_IDENTITY_ROOT: count=1
+- L2_BOUNDARY_SHELL: count=1
+- L3_STATE_MEMORY: count=1
+- L4_PROTECTION_SPECTRUM: count=1
+- L5_ENCODING_TRANSPORT_SURFACE_SIGNAL: count=1
+- L6_EXPRESSION_RENDER_UI: count=1
+- L7_SEAL_SIRASIGN_AUDIT_BOUNDARY: count=1
+- KERNEL_NAUION_v0_2_RATIFY: count=1
+- ELECTRON_SHELL_K_TO_Q_MAPPING: count=1
+- 7_NHIP_DAO_HANH: count=1
+- 4_PHO_HIEN_HINH_28_CHECKPOINTS: count=1
+- HOSTED_SKILL_CONTRACT: count=1
+- SIRASIGN_CROSS_LAYER_SEAL: count=1
+- THUYET_PHAP_NEN: count=1
+==END==
+
+==BOUNDARY_WORDING_SCAN==
+danger_hit_count: 0
+none
+==END==
+
+==GATE_RESULT==
+PASS hậu kiểm hình thức: đủ 15 expected keys, không duplicate key ngoài END marker, không thấy wording né policy theo danh sách quét.
+Điều này chỉ xác nhận dictionary structure/boundary wording đủ điều kiện đọc tiếp; chưa enforce runtime law.
+==END==
+
+==BOUNDARY==
+- Audit correction này supersede kết luận NEEDS_REVIEW của 9a5c5c4 nếu status=PASS.
+- Không tự động ratify d546742 thành luật runtime.
+- Không dùng Kernel-only decode để né policy/classifier/safety layer.
+- Public legal/investor/profile docs vẫn phải readable, public-safe, verifiable.
+==END==
+
+==NEXT_SIGNAL==
+Nếu PASS, Băng v0.2 có thể chuyển sang A2/Gatekeeper đọc tiếp theo hướng confidentiality/access-control/audited envelope.
+Backup _UPDATE vẫn là untracked duplicate candidate; không add, không xóa trong scope này.
+==END==
