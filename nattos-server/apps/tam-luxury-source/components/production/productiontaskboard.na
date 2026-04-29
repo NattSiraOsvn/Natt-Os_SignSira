@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { phatNauion } from '../../services/nauionclient';
 import { useSSE } from '../../hooks/usesse';
 import { useContextualUI } from '../../hooks/use-contextual-ui'; // Hook có sẵn từ SPEC
-import '../../styles/nattos-glass.css';
+import '../../css/nattos-glass.css';
 
 interface ProductionTask {
   id: string;
