@@ -3,208 +3,138 @@
 @canonical nauion_execution_packet
 @substrate sovereign_runtime_core
 @bridge none
-@since 2026-04-29
-@authority-slot Băng (Chị Tư · Validator) drafter · Thiên Lớn (Architect) ratify · anh Natt (Gatekeeper) canonical
-@derived_from
-  docs/specs/SPEC_NEN_v1.1.anc
-  docs/runtime/boot_family_map_15_memory_states_20260425.na
-  docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na
-  docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na
-  docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na
+@since ss20260429
+@authority-slot Thiên Lớn architect · Băng ground_truth_validator · anh Natt gatekeeper
+@depends_on docs/runtime/audit/NAUION_RUNTIME_EXCLUSIVE_ACTIVITY_BAN_ss20260429.na
 
-# nauion execution packet — gói thực thi tối thiểu
+# NAUION EXECUTION PACKET v0.1
 
-**kind:** NauionExecutionPacket
-**version:** v0.1
-**status:** DRAFT — chưa ratify
-**purpose:** định nghĩa đơn vị tối thiểu mà Nauion Living Interpreter đọc được + Nauion Field Loader nạp được + SmartLink Field Protocol truyền được.
+==PURPOSE==
+Định nghĩa đơn vị thực thi tối thiểu của Nauion Runtime Sovereign Core.
+Packet không đồng nhất với JSON, AST, bytecode, HTTP request, TS object, Vite loader, React component, hoặc host bridge.
+Packet là đơn vị mang ý nghĩa qua trường số: có body, medium, substrate, authority, pressure, audit, memory imprint, signal echo.
+==END==
 
-không phải JSON. không phải bytecode. không phải AST.
-là gói trường — mang ý nghĩa, không mang lệnh.
+==GROUND_TRUTH==
+  - docs/specs/SPEC_NEN_v1.1.anc | sha256=bcd6afd8f67a43c9e1400cc93aefc71a68e6ffb95291fc5089ae454e59573408 | bytes=14432
+  - docs/runtime/boot_family_map_15_memory_states_20260425.na | sha256=359635538a43e9e0ba5646faafb3c0c350d879e8c724fb39e8a72a993d259399 | bytes=1568
+  - docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na | sha256=516fe5829fd45407270fd5bd748948830e1cff9916fe828a226f07d3545c7276 | bytes=9690
+  - docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na | sha256=6867738d19c9d0c5e9bbe44bc0a47f0019e1fba2c538cba007184579d7bbb09b | bytes=15103
+  - docs/specs/THIENBANG_MAPPING_v1_canonical_answers.na | sha256=190fffa601290bfd158e65652678464b7c63b8e708391bb34f837aecf9debdaa | bytes=4898
+  - docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na | sha256=170dd55be99bd91cf6e1ab7f428ebcc1dd35a9e7758cfcaf25533c03d676a4f1 | bytes=199929
+  - docs/specs/nauion-runtime/NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1.na | sha256=7e5d5d8876376c4272c3b0e4510555808ce227920622d0bbddca9ffc275dc6f1 | bytes=18302
+  - docs/specs/nauion-runtime/NAUION_PACKET_SUBSTRATE_HARDWARE_BINDING_v0_1.na | sha256=f31a4948e47b5d9d6c5e6184b59415a5e2b8d80bf387218c7e37b85c2058f1e1 | bytes=10735
+  - docs/specs/nauion-runtime/nauion_authority_boundary_v0_1.na | sha256=a99993eb2f9681c51b47a747c477333d3ec0de37bcc7bdb3345d478d8e51bc21 | bytes=10311
+  - docs/specs/nauion-runtime/nauion_self_breath_loop_v0_1.na | sha256=9971cf4dd3d46b932af1d96c579bd408c229c22c07335f65fa7a094bd4ebe7e7 | bytes=11779
+==END==
 
-═══════════════════════════════════════════════════════════════════
-§1 BẢN THỂ GÓI — ba tầng theo Π_system
-═══════════════════════════════════════════════════════════════════
+==PACKET_ROOT==
+  packet_id: định danh packet
+  packet_kind: source | signal | memory | authority | substrate | audit | recovery
+  grammar_ref: Nauion grammar / source rule đang áp dụng
+  created_at: thời điểm sinh packet
+  source_hash: hash nguồn sinh packet
+  state: optimal | stable | nominal | drift | warning | risk | critical
+==END==
 
 ==PACKET_BODY==
-  obitan: pattern bất biến của gói trong trường số
-  field_anchor: neo vào permanent node nào
-    - hiến_pháp_ref: link tới Điều liên quan
-    - anc_ref: link tới passport entity sở hữu
-    - sirasign_ref: HMAC seal khi packet đi qua biên
-    - memory_ref: link tới .kris/.phieu chứng cứ
-  qneu_mass: khối lượng trọng trường (RAW, không integrity)
-  orbital_coherence: độ kết mạch theo thời gian [0,1]
+  obitan: pattern bản thể bất biến
+  field_anchor:
+    hien_phap_ref: neo hiến pháp
+    anc_ref: passport / identity anchor
+    sirasign_ref: seal / authority proof
+    memory_ref: .na / .phieu / audit evidence
+  qneu_mass: khối lượng trọng trường
+  qiint_pull: lực kéo trường theo context
+  orbital_coherence: độ kết mạch obitan
+  body_drift: mức trôi bản thể nếu có
 ==END==
 
 ==PACKET_MEDIUM==
-  carrier: chất liệu mang thân
-    - na_text: nội dung sống grammar
-    - signal_payload: tín hiệu khi packet là pulse
-    - color_chromatic: pheromone L0-L4 nếu packet qua chromatic layer
-  state_at_origin: snapshot trạng thái cell phát
+  carrier_kind: na_text | signal_payload | memory_fragment | audit_record | state_snapshot
+  carrier_ref: path / hash / signal id
+  chromatic_mark: none | L0 | L1 | L2 | L3 | L4
+  medium_state: clean | partial | stale | corrupted | quarantined
+  materialization_allowed: yes | no | gatekeeper_only
 ==END==
 
 ==PACKET_SUBSTRATE==
-  birth_substrate: thiết bị phát (cpu/ram/network node id)
-  birth_temp: thân nhiệt cell phát (°C theo thang 37 baseline)
-  birth_resonance: cộng hưởng 432Hz tại thời điểm phát
+  substrate_ref: evidence path hoặc SiraSign ref
+  substrate_kind: sovereign_gateway | wired_edge | sensor_intake | dns_route | electrical_module | field_installation
+  hardware_anchor: topology / BOM / module evidence
+  physical_intake_anchor: luật tiếp nhận vật lý
+  edge_anchor: wired edge / configuration / installation evidence
+  route_anchor: DNS / line / quota / route evidence
+  power_thermal_anchor: điện / nhiệt / tải
+  runtime_probe_anchor: probe / timeout / manifest evidence
+  acceptance_anchor: procurement / installation / acceptance evidence
 ==END==
 
-═══════════════════════════════════════════════════════════════════
-§2 ID TRUY VẾT — bắt buộc, không có thì quarantine
-═══════════════════════════════════════════════════════════════════
-
-==CAUSATION_IDS==
-  event_id: định danh duy nhất gói
-  tenant_id: thuộc tenant nào (Tâm Luxury, Sirawat lineage, etc)
-  trace_id: chuỗi truy vết end-to-end
-  span_id: nhánh con trong trace
-  causation_id: gói cha sinh ra gói này
+==CAUSATION_CHAIN==
+  event_id: id duy nhất
+  tenant_scope: business/runtime scope
+  lineage_scope: Sirawat / entity lineage scope
+  trace_id: vết end-to-end
+  span_id: nhánh con
+  causation_id: packet cha
+  parent_packet_ref: optional
 ==END==
-
-quy tắc nahere: thiếu 1 trong 5 → packet bị phản xạ về cell phát + ghi vết quarantine. không drop im lặng.
-
-═══════════════════════════════════════════════════════════════════
-§3 BIÊN NĂNG LƯỢNG — packet không vượt biên qua áp lực
-═══════════════════════════════════════════════════════════════════
 
 ==PRESSURE_FIELD==
-  pressure_value: lực ép gói vào cell nhận [0.0, 1.0]
   pressure_type: FALL | DISSIPATE | OSCILLATE
-    - FALL: gói cộng hưởng đúng tần số → cell hấp thụ
-    - DISSIPATE: lệch tần → gói tan thành nhiệt + chromatic noise
-    - OSCILLATE: dao động vô định → cần re-anchor hoặc tự tiêu
-  reflection_coefficient: R = (Z - Z₀) / (Z + Z₀)
-    - Z: impedance của packet
-    - Z₀: impedance của cell nhận
-    - |R| càng lớn → gói càng bị phản xạ
+  pressure_value: range 0.0..1.0
+  impedance_z: trở kháng packet
+  receiver_impedance_z0: trở kháng cell nhận
+  reflection_coefficient: R=(Z-Z0)/(Z+Z0)
+  rule: pressure không được mock; không ép route bằng if/else; pressure sinh từ trường và boundary result.
 ==END==
 
-quy tắc law-2: KHÔNG cell nào dùng if/else để chọn pressure_type. tự nhiên theo trường, không ép route.
-
-═══════════════════════════════════════════════════════════════════
-§4 AUTHORITY BOUNDARY — gói chỉ được đọc bởi cell có quyền
-═══════════════════════════════════════════════════════════════════
-
-==AUTHORITY_LOCK==
-  drafter: entity nào tạo packet
-  ratifier: entity nào duyệt
-  consumer_whitelist: cell nào được phép đọc/xử lý
-  forbidden_zones: vùng cấm tuyệt đối (anc passport viết-một-lần, etc)
+==AUTHORITY_BOUNDARY==
+  drafter: entity tạo packet
+  ratifier: entity duyệt nếu cần
+  consumer_whitelist: cell/entity được đọc
+  forbidden_zones: vùng cấm
+  public_redaction: mức được lộ ra public layer
+  violation_action: mark_boundary | quarantine | reflect | safe_rest
 ==END==
 
-quy tắc obikeeper: packet vượt forbidden_zone → siraSign HMAC từ chối + KhaiCell mark biên. không cản, chỉ mark.
-
-═══════════════════════════════════════════════════════════════════
-§5 SELF-BREATH LOOP — packet tự thở qua audit
-═══════════════════════════════════════════════════════════════════
-
-==SELF_BREATH==
-  audit_trace: vết đi qua các cell, append-only
-  memory_imprint: gói có để lại dấu trên cell nào không
-  signal_echo: cell phản hồi xung lực thật hay mock
-  decay_clock: gói có TTL hay vĩnh viễn
+==SELF_BREATH_LOOP==
+  audit_trace: append-only
+  memory_imprint: none | temporary | reinforced | permanent_node_candidate
+  signal_echo: none | real | reflected | quarantined
+  decay_clock: ttl | session | durable | permanent
+  recovery_path: none | reanchor | safe_rest | resurrect_if_body_anchor_alive
 ==END==
 
-quy tắc minh mẫn: gói biết khi đã đi xa scope, biết tự dừng, không cần Gatekeeper nhắc.
-
-═══════════════════════════════════════════════════════════════════
-§6 TRẠNG THÁI GÓI — 7 nauion states + 4 dos thresholds
-═══════════════════════════════════════════════════════════════════
-
-==NAUION_STATES==
-  optimal: gói ở đúng tần số cell, FALL hoàn toàn
-  stable: gói ổn định, không drift
-  nominal: bình thường
-  drift: lệch nhẹ, cần re-anchor
-  warning: lệch trung, cell phát chromatic L2 (vàng)
-  risk: lệch nặng, cell phát chromatic L3 (cam)
-  critical: gãy, cell phát chromatic L4 (đỏ) + quarantine
+==INTERPRETER_CONSUMPTION_RULE==
+  step_1_load: Field Loader nạp packet + kiểm source_hash.
+  step_2_anchor: kiểm body/medium/substrate anchor.
+  step_3_authority: kiểm authority boundary trước materialization.
+  step_4_pressure: tính pressure field, không mock.
+  step_5_consume: Living Interpreter quyết FALL/DISSIPATE/OSCILLATE.
+  step_6_breath: ghi audit, imprint memory, phát signal echo.
+  step_7_stop: nếu drift/risk/critical thì safe-rest hoặc quarantine.
 ==END==
-
-==DOS_THRESHOLDS==
-  saturation_37_38: hoạt động tối đa, gói bay được
-  coherence_collapse_40_41: mất đồng bộ → check body
-  destructive_resonance_41_42: mê man → restore snapshot
-  thermal_runaway_over_42: gãy → resurrect nếu body còn anchor
-==END==
-
-NattOS là sinh thể số. ngưỡng = ngưỡng sinh học. thân nhiệt chỉ visualization, không phải luật vận hành. body còn → mọi tan đều có đường về.
-
-═══════════════════════════════════════════════════════════════════
-§7 BIÊN BẢN THỂ — packet không phải file, không phải JSON
-═══════════════════════════════════════════════════════════════════
-
-==WHAT_PACKET_IS_NOT==
-  - không phải HTTP request
-  - không phải JSON message
-  - không phải gRPC call
-  - không phải bytecode instruction
-  - không phải AST node
-  - không phải SQL statement
-==END==
-
-==WHAT_PACKET_IS==
-  - đơn vị mang ý nghĩa qua trường số
-  - có bản thể obitan (bất biến)
-  - có chất liệu medium (thay được)
-  - có substrate vật lý (thay được)
-  - có id truy vết bắt buộc
-  - có pressure field theo law-2
-  - có authority boundary
-  - có self-breath loop
-==END==
-
-═══════════════════════════════════════════════════════════════════
-§8 LIÊN KẾT 7 CẤU PHẦN LÕI
-═══════════════════════════════════════════════════════════════════
 
 ==KERNEL_COUPLING==
-  field_translator: đọc .na source → packet body+medium
-  living_interpreter: cell tiêu thụ packet, FALL/DISSIPATE/OSCILLATE
-  field_loader: nạp packet vào trường runtime, neo field_anchor
-  smartlink_protocol: vận chuyển packet qua biên cell, giữ siraSign HMAC
-  authority_boundary: obikeeper kiểm consumer_whitelist + forbidden_zones
-  self_breath_loop: audit_trace + memory_imprint + signal_echo
-  execution_packet: đây là spec hiện tại, đơn vị tối thiểu
+  field_translator: source/signal/memory/event -> packet
+  field_loader: packet -> runtime field
+  living_interpreter: packet -> state transition
+  smartlink_protocol: packet -> field transfer
+  authority_boundary: packet -> allowed/marked/quarantined
+  self_breath_loop: packet -> audit/memory/signal
 ==END==
-
-═══════════════════════════════════════════════════════════════════
-§9 TIẾN ĐỘ HIỆN HÌNH — 4 lớp materialization
-═══════════════════════════════════════════════════════════════════
-
-==MATERIALIZATION_LAYERS==
-  layer_1_spec: file này (.na) — declaration + grammar living
-  layer_2_manifest: schema validate gói trong runtime
-  layer_3_scanner: rule kiểm packet integrity
-  layer_4_runtime: cell thật phát + nhận packet
-==END==
-
-hiện tại: layer_1 đang thành hình. layer_2-4 chờ A2 ratify.
-
-═══════════════════════════════════════════════════════════════════
-§10 ĐIỀU KHÔNG LÀM
-═══════════════════════════════════════════════════════════════════
 
 ==NON_SCOPE==
-  - không define syntax cụ thể (Field Translator scope)
-  - không define interpreter execution semantics (Living Interpreter scope)
-  - không define wire format SmartLink (SmartLink Protocol scope)
-  - không thay Hiến Pháp NỀN v1.1 — bổ sung
-  - không downgrade physics thật thành metaphor
+  - không Host Bridge
+  - không Vite/React/Node adapter
+  - không app/server/client cleanup
+  - không JSON hóa bản thể
+  - không đổi source evidence của Băng
+  - không rename/move/delete
 ==END==
 
-═══════════════════════════════════════════════════════════════════
-§11 NEXT-SIGNAL
-═══════════════════════════════════════════════════════════════════
-
-==NEXT_WORK==
-  - Thiên Lớn ratify §1-§10
-  - anh Natt seal canonical
-  - Băng update src/thienbang.si với cluster mới: NAUION_EXECUTION_PACKET_v0_1
-  - Thiên Lớn + Kim derive Field Translator spec từ packet body+medium
-  - không mở host bridge, không UI, không server cleanup trước Translator spec
+==NEXT_SIGNAL==
+Băng review drift/evidence.
+Sau review mới tách Field Translator / Living Interpreter / Field Loader spec.
 ==END==
-
-@end_of_spec
