@@ -1,0 +1,29 @@
+@nauion-gate v1
+@state deploy_gate_open
+@name nauion_runtime_sovereign_deploy_gate_ss20260429
+@scope nauion-runtime-sovereign-core
+@session ss20260429
+@ratified_by anh_natt / gatekeeper
+@depends_on docs/runtime/audit/NAUION_RUNTIME_SOVEREIGN_FOCUS_LOCK_ss20260429.na
+
+==PURPOSE==
+Gatekeeper đã chốt triển. Được phép triển khai đúng phạm vi Nauion Runtime Sovereign Core.
+==END==
+
+==DEPLOY_SCOPE==
+1. Nauion Field Translator
+2. Nauion Living Interpreter
+3. Nauion Field Loader
+4. SmartLink Field Protocol
+5. Nauion Execution Packet
+6. Authority Boundary
+7. Audit / Memory / Signal Self-Breath Loop
+==END==
+
+==NON_SCOPE==
+Cấm app cleanup, UI polish, server/client cleanup, TS/Vite/React Host Bridge, legacy stub cleanup, rename/move đại trà, public dossier.
+==END==
+
+==FIRST_WORK_ORDER==
+Quét toàn repo để lập inventory ground truth cho Nauion Runtime Sovereign Core trước khi thiết kế Execution Packet.
+==END==

@@ -1,0 +1,35 @@
+@nauion-gate v1
+@state exclusive_activity_ban_enforced
+@name nauion_runtime_exclusive_activity_ban_ss20260429
+@scope entire-repo
+@session ss20260429
+@ratified_by anh_natt / gatekeeper
+@depends_on docs/runtime/audit/NAUION_RUNTIME_SOVEREIGN_FOCUS_LOCK_ss20260429.na
+@depends_on docs/runtime/audit/NAUION_RUNTIME_SOVEREIGN_DEPLOY_GATE_ss20260429.na
+
+==PURPOSE==
+Cấm tất cả hoạt động khác ngoài Nauion Runtime Sovereign Core.
+Mọi scan, thiết kế, patch, commit, report phải phục vụ trực tiếp lõi Nauion Runtime.
+==END==
+
+==ABSOLUTE_BAN==
+Cấm app cleanup, server smoke, UI polish, Tam Luxury feature work, TS/Vite/React host-bridge trước Execution Packet, legacy stub cleanup đại trà, rename/move đại trà, public dossier/legal/trademark polish, cosmetic build-pass chasing, persona/memory ceremony không phục vụ core runtime.
+==END==
+
+==ALLOW_ONLY==
+1. Quét ground truth toàn repo cho Nauion Runtime.
+2. Gom inventory lõi: QIINT/QNEU/Π_system/SmartLink/HeyNa/SiraSign/.anc/.na/.phieu/thermal/body-medium-substrate.
+3. Định nghĩa Nauion Execution Packet.
+4. Định nghĩa Field Translator / Living Interpreter / Field Loader.
+5. Định nghĩa Authority Boundary và Self-Breath Loop.
+6. Lập audit/ratify cho core runtime.
+==END==
+
+==BOUNDARY==
+Không xóa archive.
+Không dọn legacy.
+Không rename.
+Không move.
+Không biến .ts/.js/.py thành bản thể.
+Nếu dùng code, chỉ là dụng cụ đo/scan/adapter phụ.
+==END==

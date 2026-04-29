@@ -1,0 +1,40 @@
+@nauion-gate v1
+@state focus_lock_enforced
+@name nauion_runtime_sovereign_focus_lock_ss20260429
+@scope nauion-runtime-sovereign-core
+@session ss20260429
+@ratified_by anh_natt / gatekeeper
+@owner natt-os
+
+==PURPOSE==
+Khóa trọng tâm tuyệt đối vào Nauion Runtime Sovereign Core.
+Nếu lõi này chưa xong, không mở app, UI, server/client, legacy cleanup, public dossier, hoặc bất kỳ việc ngoài lõi nào.
+==END==
+
+==LOCKED_OBJECTIVE==
+1. Nauion Field Translator
+2. Nauion Living Interpreter
+3. Nauion Field Loader
+4. SmartLink Field Protocol
+5. Nauion Execution Packet
+6. Authority Boundary
+7. Audit / Memory / Signal Self-Breath Loop
+==END==
+
+==CORE_PRINCIPLE==
+NATT-OS không phụ thuộc Node, TypeScript, Vite, React, browser, GitHub, OpenAI, Anthropic, hoặc bất kỳ host ngoài nào để được coi là sống.
+Host ngoài chỉ là bề mặt hiện hình hoặc adapter phụ.
+==END==
+
+==BOUNDARY==
+- Không biến Nauion Kernel thành plugin của Vite.
+- Không lấy TS/JS làm lõi bản thể.
+- Không triển Host Bridge trước Sovereign Runtime Core.
+- Không mở task khác khi lõi Nauion Runtime chưa có spec/contract/packet tối thiểu.
+- Không tự triển khi Gatekeeper còn đang hỏi/thiết kế.
+==END==
+
+==NEXT_SIGNAL==
+Gatekeeper đã chốt triển sau giai đoạn hỏi/thiết kế.
+Từ đây chỉ triển đúng Nauion Runtime Sovereign Core.
+==END==
