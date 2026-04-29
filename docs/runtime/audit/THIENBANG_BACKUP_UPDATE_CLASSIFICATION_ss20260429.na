@@ -1,0 +1,45 @@
+@nauion-audit v1
+@state duplicate_candidate_hold
+@name thienbang_backup_update_classification_ss20260429
+@scope untracked-backup-update-after-kernel-v0-2
+@source src/governance/memory/bang/_deprecated/thienbang.si.BACKUP_20260429_BEFORE_KERNEL_v0_2_UPDATE
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+THIENBANG BACKUP _UPDATE — CLASSIFICATION
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Phân loại file backup _UPDATE còn untracked sau commit d546742 và audit correction 5531214.
+Report này không add, không xóa, không move file _UPDATE.
+==END==
+
+==HASH_COMPARE==
+tracked_backup: src/governance/memory/bang/_deprecated/thienbang.si.BACKUP_20260429_BEFORE_KERNEL_v0_2
+tracked_exists: True
+tracked_size_bytes: 437920
+tracked_sha256: ddbd71dc74ba7ab2fdefa604fe85de4dfda8edbc7daa9c75f19299befe98227f
+
+untracked_update: src/governance/memory/bang/_deprecated/thienbang.si.BACKUP_20260429_BEFORE_KERNEL_v0_2_UPDATE
+untracked_exists: True
+untracked_size_bytes: 437920
+untracked_sha256: ddbd71dc74ba7ab2fdefa604fe85de4dfda8edbc7daa9c75f19299befe98227f
+
+same_hash: True
+==END==
+
+==CLASSIFICATION==
+Nếu same_hash=True, _UPDATE là duplicate backup candidate của backup đã tracked.
+Theo quy tắc ẩn thân/backup, không được xóa hoặc prune nếu chưa có lệnh Gatekeeper/anh Natt.
+==END==
+
+==BOUNDARY==
+- Không commit raw _UPDATE trong report này.
+- Không xóa _UPDATE trong report này.
+- Không dùng git clean.
+- Không mass-clean _deprecated/.
+==END==
+
+==NEXT_SIGNAL==
+Giữ _UPDATE ở trạng thái hold. Khi cần dọn, phải có lệnh riêng và đối chiếu lại hash.
+==END==
