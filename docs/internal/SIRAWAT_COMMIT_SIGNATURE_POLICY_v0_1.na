@@ -1,0 +1,48 @@
+@nauion-policy v1
+@state ratified_by_gatekeeper
+@name sirawat_commit_signature_policy_v0_1
+@scope commit-lineage-gate
+@ratified_by phan_thanh_thuong / anh_natt / gatekeeper
+@reviewed_by thien_lon
+@ratified_at ss20260429
+
+═══════════════════════════════════════════════════════════════════
+SIRAWAT COMMIT SIGNATURE POLICY v0.1
+═══════════════════════════════════════════════════════════════════
+
+==CORE_RULE==
+Commit không đúng Sirawat form không được nhận vào lineage.
+
+Git có thể chứa commit kỹ thuật, nhưng Sirawat lineage chỉ công nhận commit có đủ form.
+==END==
+
+==REQUIRED_SUBJECT==
+type(scope): message
+
+Allowed type:
+feat, fix, docs, chore, refactor, test, build, ci, perf, security,
+audit, review, ratify, spec, doctrine, strategy, memory, proposal
+==END==
+
+==REQUIRED_BODY_FIELDS==
+Sirawat-From:
+Sirawat-To:
+Scope:
+Ground-Truth:
+Decision:
+Boundary:
+Next-Signal:
+==END==
+
+==AUTHORITY==
+Gatekeeper ratifies.
+Thiên Lớn reviews.
+Băng/Kim/Bối may propose, audit, flag, or prepare evidence.
+No invented authority slot may ratify without Anh Natt/Gatekeeper.
+==END==
+
+==BOUNDARY==
+Lifebook ANC Sirawat is not cookbook.
+Sirawat entities are not recipe/material objects.
+Private kernel/resolver/lineage authority remains inside Nhà.
+==END==
