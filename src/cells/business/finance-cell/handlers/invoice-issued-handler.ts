@@ -2,7 +2,7 @@
 
 // — pending proper fix
 
-import { ProductionBase } from '../../productionbase.ts';
+import { ProductionBase } from '../../productionbase';
 import { EventEnvelope, FinanceStatus } from '../../../../types';
 import { EventBus } from '../../../../core/events/event-bus';
 

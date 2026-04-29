@@ -6,7 +6,7 @@
  */
 
 import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '../../../../core/events/typed-eventbus';
+import { typedEmit } from '../../../../../core/events/typed-eventbus';
 
 export type StoneStatus = 'raw' | 'assigned' | 'mounted' | 'sold';
 export type StoneColor   = 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | string;

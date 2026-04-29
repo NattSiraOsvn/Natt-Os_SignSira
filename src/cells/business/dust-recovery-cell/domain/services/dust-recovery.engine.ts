@@ -6,7 +6,7 @@
  */
 
 import { EventBus } from '../../../../../core/events/event-bus';
-import { typedEmit } from '../../../../core/events/typed-eventbus';
+import { typedEmit } from '../../../../../core/events/typed-eventbus';
 
 export type GoldMaterial = 'gold18k' | 'gold14k';
 

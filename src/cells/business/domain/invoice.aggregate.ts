@@ -1,0 +1,1 @@
+export class InvoiceAggregate { static create(d: any): any { return new InvoiceAggregate(); } } export const Invoice: any = InvoiceAggregate; export type InvoiceState = any;

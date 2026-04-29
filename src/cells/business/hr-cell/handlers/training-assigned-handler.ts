@@ -2,7 +2,7 @@
 
 // — pending proper fix
 
-import { ProductionBase } from '../../productionbase.ts';
+import { ProductionBase } from '../../productionbase';
 import { EventEnvelope, TrainingStatus } from '../../../../types';
 
 export class TrainingAssignedHandler extends ProductionBase {

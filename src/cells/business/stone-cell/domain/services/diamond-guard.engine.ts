@@ -1,0 +1,1 @@
+export const DiamondGuardEngine: any = { check: () => true, getInstance: () => DiamondGuardEngine };

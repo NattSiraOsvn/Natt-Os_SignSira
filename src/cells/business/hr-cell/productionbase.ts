@@ -1,0 +1,1 @@
+export class ProductionBase { protected initialized = false; init(): void { this.initialized = true; } } export default ProductionBase;

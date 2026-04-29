@@ -2,7 +2,7 @@
 
 // — pending proper fix
 
-import { ProductionBase } from '../../productionbase.ts';
+import { ProductionBase } from '../../productionbase';
 import { EventEnvelope } from '../../../../types';
 
 export class EmployeeCreatedHandler extends ProductionBase {
