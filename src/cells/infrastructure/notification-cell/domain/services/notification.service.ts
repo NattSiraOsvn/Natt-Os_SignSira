@@ -39,7 +39,7 @@ class NotificationService {
       timestamp: Date.now()
     };
     this.listeners.forEach(l => l(newAlert));
-    console.log(`[NOTIFY-BUS] Đã đẩy cảnh báo: ${alert.title}`);
+    console.log(`[NOTIFY-BUS] da day canh bao: ${alert.title}`);
   }
 }
 

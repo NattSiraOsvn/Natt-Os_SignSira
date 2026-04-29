@@ -1,7 +1,7 @@
 /**
  * dead-letter.engine.ts
  * ─────────────────────
- * Dead Letter Queue — chứa events "chết" không xử lý được.
+ * Dead Letter Queue — chứa events "chet" không xử lý được.
  * Chỉ Gatekeeper (Anh Natt) có quyền Replay hoặc Purge.
  *
  * Source: masterv1 DeadLetterHandler

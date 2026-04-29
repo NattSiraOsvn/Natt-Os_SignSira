@@ -55,11 +55,11 @@ export const IGNORE_SHEETS = new Set([
 // ── SHEET SCHEMAS ─────────────────────────────────────────────────────────
 export const SCHEMAS = {
   MAP:    ['Key', 'File', 'Sheet', 'JSON Data', 'Time'],
-  PROD:   ['NGÀY','MÃ ĐƠN','STREAM','MÃ HÀNG','TUỔI','MÀU','TL VÀO (g)','TL RA (g)','HAO HỤT (g)','TRẠNG THÁI','THỢ / PIC','NGUỒN'],
-  SHIP:   ['NGÀY XUẤT','SỐ VẬN ĐƠN','STREAM','MÃ HÀNG','TÊN HÀNG','SỐ LƯỢNG','ĐƠN VỊ','KHÁCH HÀNG','NƠI NHẬN','TRẠNG THÁI','NGUỒN'],
-  STREAM: ['Mã Đơn','Stream','Loại','Ngày','Khách','Mã Hàng','Tên Hàng','Trạng Thái','TL','Màu','Tuổi','Thợ','Ghi Chú','Nguồn','All IDs'],
-  FLOW:   ['Mã Đơn','Stream','Loại Luồng','Bước #','Stage','Thời Gian','Khách','SP','Trạng Thái','TL','Thợ','Ghi Chú','Nguồn','All IDs'],
-  AUDIT:  ['THỜI GIAN','TỔNG GD','TỔNG THU','TỔNG COGS','VAT TRONG COGS','BUYBACK GD','NEED REVIEW','TỒN KHO VÀNG','TRẠNG THÁI'],
+  PROD:   ['ngay','ma don','STREAM','ma hang','tuoi','mau','TL vao (g)','TL RA (g)','HAO hut (g)','trang thai','tho / PIC','nguon'],
+  SHIP:   ['ngay xuat','so van don','STREAM','ma hang','ten hang','so luong','don vi','khach hang','noi nhan','trang thai','nguon'],
+  STREAM: ['ma don','Stream','loai','ngay','khach','ma hang','ten hang','trang thai','TL','mau','tuoi','tho','Ghi chu','nguon','All IDs'],
+  FLOW:   ['ma don','Stream','loai luong','buoc #','Stage','thoi Gian','khach','SP','trang thai','TL','tho','Ghi chu','nguon','All IDs'],
+  AUDIT:  ['thoi GIAN','tong GD','tong THU','tong COGS','VAT TRONG COGS','BUYBACK GD','NEED REVIEW','ton KHO vang','trang thai'],
 };
 
 // ── CHUNK WRITER ──────────────────────────────────────────────────────────
@@ -228,14 +228,14 @@ export function* iterateMapBatches(
 
 // ── PROD / SHIP KEYWORDS ──────────────────────────────────────────────────
 export const PROD_SHEET_KW = [
-  'đúc','phôi','láp','info','3d','trọng lượng','vàng','đá','sáp',
-  'nguyên liệu','nguội','hột','nhám bóng','xi','qc','cân bột',
-  'cân nguyên liệu','giao nhận thợ','sổ giao thợ',
+  'duc','phau','lap','info','3d','trong luong','vang','da','sap',
+  'nguyen lieu','nguoi','hot','nham bong','xi','qc','can bot',
+  'can nguyen lieu','giao nhan tho','so giao tho',
 ];
 
 export const SHIP_SHEET_KW = [
-  'xuất xưởng','vận đơn','xuất kho','giao hàng','thành phẩm',
-  'shipping','delivery','order','bán hàng','đơn hàng ngày',
+  'xuat xuong','van don','xuat kho','giao hang','thanh pham',
+  'shipping','delivery','order','ban hang','don hang ngay',
 ];
 
 export function isProdRecord(record: Record<string, unknown>): boolean {
@@ -250,33 +250,33 @@ export function isShipRecord(record: Record<string, unknown>): boolean {
 
 export function buildProdRow(record: Record<string, unknown>): unknown[] {
   return [
-    record['ngày'] || record['ngày yêu cầu đúc'] || record['ngày lên mã'] || record['_syncTime'] || '',
-    record['_orderId'] || record['mã đơn'] || record['số phiếu'] || record['láp'] || '---',
+    record['ngay'] || record['ngay yeu cau duc'] || record['ngay len ma'] || record['_syncTime'] || '',
+    record['_orderId'] || record['ma don'] || record['so phieu'] || record['lap'] || '---',
     record['_stream'] || '---',
-    record['mã hàng'] || record['mã sp'] || record['mã chính thức'] || '---',
-    record['tuổi vàng'] || record['tuổi'] || '---',
-    record['màu'] || record['màu sp'] || '---',
-    record['trọng lượng vàng yêu cầu'] || record['trọng lượng đầu vào'] || 0,
-    record['trọng lượng phôi'] || record['trọng lượng thực tế'] || 0,
+    record['ma hang'] || record['ma sp'] || record['ma chinh thuc'] || '---',
+    record['tuoi vang'] || record['tuoi'] || '---',
+    record['mau'] || record['mau sp'] || '---',
+    record['trong luong vang yeu cau'] || record['trong luong dau vao'] || 0,
+    record['trong luong phau'] || record['trong luong thuc te'] || 0,
     0,
-    record['trạng thái đúc'] || record['trạng thái phôi'] || record['trạng thái'] || '---',
-    record['tên thợ'] || record['người nhận'] || record['họ và tên'] || '---',
+    record['trang thai duc'] || record['trang thai phau'] || record['trang thai'] || '---',
+    record['ten tho'] || record['ngui nhan'] || record['ho va ten'] || '---',
     `${record['_sourceFile']} › ${record['_sourceSheet']}`,
   ];
 }
 
 export function buildShipRow(record: Record<string, unknown>): unknown[] {
   return [
-    record['ngày'] || record['ngày xuất'] || record['ngày giao'] || '',
-    record['_orderId'] || record['số vận đơn'] || record['mã đơn'] || '---',
+    record['ngay'] || record['ngay xuat'] || record['ngay giao'] || '',
+    record['_orderId'] || record['so van don'] || record['ma don'] || '---',
     record['_stream'] || '---',
-    record['mã hàng'] || record['mã sp'] || '---',
-    record['tên hàng'] || record['sản phẩm'] || '---',
-    record['số lượng'] || 0,
-    record['đơn vị'] || 'cái',
-    record['khách hàng'] || record['tên khách'] || '---',
-    record['nơi nhận'] || record['địa chỉ'] || '---',
-    record['trạng thái'] || 'Đã xuất',
+    record['ma hang'] || record['ma sp'] || '---',
+    record['ten hang'] || record['san pham'] || '---',
+    record['so luong'] || 0,
+    record['don vi'] || 'cai',
+    record['khach hang'] || record['ten khach'] || '---',
+    record['noi nhan'] || record['đia chi'] || '---',
+    record['trang thai'] || 'da xuat',
     `${record['_sourceFile']} › ${record['_sourceSheet']}`,
   ];
 }
@@ -291,7 +291,7 @@ export interface AuditLogEntry {
   buybackCount: number;
   needReview:   number;
   goldStock:    string;
-  status:       '✅ OK' | '⚠️ CẦN REVIEW' | '❌ LỖI';
+  status:       '✅ OK' | '⚠️ can REVIEW' | '❌ lau';
 }
 
 export function buildAuditRow(entry: AuditLogEntry): unknown[] {
@@ -302,7 +302,7 @@ export function buildAuditRow(entry: AuditLogEntry): unknown[] {
 }
 
 export function calcAuditStatus(needReview: number, totalTx: number): AuditLogEntry['status'] {
-  if (needReview > totalTx * 0.1) return '⚠️ CẦN REVIEW';
+  if (needReview > totalTx * 0.1) return '⚠️ can REVIEW';
   return '✅ OK';
 }
 
@@ -435,72 +435,72 @@ export function buildKpiSnapshot(inventoryRows: unknown[][]): KpiSnapshot {
 
 // ── FULL CATEGORY MAP (60+ categories) ───────────────────────────────────
 export const FULL_CATEGORY_MAP = {
-  DT_CK:                    '💰 DOANH THU CHUYỂN KHOẢN',
-  DT_POS:                   '💳 DOANH THU THẺ (POS)',
-  DT_QR:                    '📱 DOANH THU VÍ ĐIỆN TỬ',
-  DT_TRADING:               '💼 DOANH THU TỰ DOANH',
-  DT_OTHER:                 '📈 DOANH THU KHÁC',
-  COGS_GOLD_B2B:            '🟡 MUA VÀNG TỪ ĐỐI TÁC (B2B)',
-  COGS_GOLD_BUYBACK:        '🟡 THU MUA VÀNG TỪ KHÁCH',
-  COGS_GOLD_INSPECTION:     '🟡 PHÍ KIỂM ĐỊNH VÀNG',
-  COGS_GOLD_CRAFTING:       '🟡 PHÍ GIA CÔNG VÀNG',
-  COGS_DIAMOND_IMPORT:      '💎 MUA KC NHẬP KHẨU',
-  COGS_DIAMOND_LOCAL:       '💎 MUA KC NỘI ĐỊA',
-  COGS_DIAMOND_INSPECTION:  '💎 PHÍ KIỂM ĐỊNH KC (GIA/HRD)',
-  COGS_DIAMOND_SETTING:     '💎 PHÍ GẮN/GIA CÔNG KC',
-  COGS_BUYBACK_JEWELRY:     '💍 THU MUA TRANG SỨC',
-  COGS_BUYBACK_OTHER:       '💍 THU MUA HÀNG KHÁC',
-  COGS_MATERIAL:            '📦 MUA NGUYÊN VẬT LIỆU',
-  COGS_MATERIAL_OTHER:      '📦 CHI PHÍ NVL KHÁC',
-  COGS_SHIPPING_INT:        '🌍 CƯỚC VẬN CHUYỂN QUỐC TẾ',
-  COGS_SHIPPING_DOM:        '🚚 CƯỚC VẬN CHUYỂN NỘI ĐỊA',
-  COGS_INSURANCE:           '🛡️ BẢO HIỂM HÀNG HÓA',
-  COGS_CUSTOMS_DUTY:        '🏛️ THUẾ NHẬP KHẨU',
-  COGS_CUSTOMS_FEE:         '🏛️ PHÍ HẢI QUAN & THỦ TỤC',
-  TAX_VAT_IMPORT:           '🏛️ THUẾ GTGT NHẬP KHẨU',
-  TAX_VAT_DOMESTIC:         '🏛️ THUẾ GTGT NỘI ĐỊA',
-  TAX_CIT:                  '🏛️ THUẾ TNDN',
-  TAX_PIT:                  '🏛️ THUẾ TNCN',
-  TAX_PENALTY_LATE:         '⚠️ TIỀN CHẬM NỘP THUẾ',
-  TAX_PENALTY_FINE:         '⚠️ TIỀN PHẠT HÀNH CHÍNH',
-  TAX_PENALTY_ADJUST:       '⚠️ THUẾ ẤN ĐỊNH/TRUY THU',
-  TAX_OTHER:                '🏛️ THUẾ & PHÍ KHÁC',
-  BANK_FEE_TX:              '🏦 PHÍ CHUYỂN KHOẢN',
-  BANK_FEE_FOREX:           '🏦 PHÍ ĐỔI NGOẠI TỆ',
-  BANK_FEE_MONTHLY:         '🏦 PHÍ DỊCH VỤ NGÂN HÀNG',
-  BANK_FEE_OTHER:           '🏦 PHÍ NGÂN HÀNG KHÁC',
-  HR_SALARY_BASIC:          '👨‍💼 LƯƠNG CƠ BẢN',
-  HR_SALARY_OT:             '👨‍💼 LƯƠNG LÀM THÊM',
-  HR_BONUS:                 '👨‍💼 THƯỞNG',
-  HR_COMMISSION:            '👨‍💼 HOA HỒNG ĐẠI LÝ',
-  HR_INSURANCE:             '👨‍💼 BẢO HIỂM NHÂN VIÊN',
+  DT_CK:                    '💰 DOANH THU chuyen khoan',
+  DT_POS:                   '💳 DOANH THU the (POS)',
+  DT_QR:                    '📱 DOANH THU vi dien tu',
+  DT_TRADING:               '💼 DOANH THU tu DOANH',
+  DT_OTHER:                 '📈 DOANH THU khac',
+  COGS_GOLD_B2B:            '🟡 MUA vang tu đau tac (B2B)',
+  COGS_GOLD_BUYBACK:        '🟡 THU MUA vang tu khach',
+  COGS_GOLD_INSPECTION:     '🟡 phi kiem dinh vang',
+  COGS_GOLD_CRAFTING:       '🟡 phi GIA cong vang',
+  COGS_DIAMOND_IMPORT:      '💎 MUA KC nhap khau',
+  COGS_DIAMOND_LOCAL:       '💎 MUA KC nau dia',
+  COGS_DIAMOND_INSPECTION:  '💎 phi kiem dinh KC (GIA/HRD)',
+  COGS_DIAMOND_SETTING:     '💎 phi gen/GIA cong KC',
+  COGS_BUYBACK_JEWELRY:     '💍 THU MUA TRANG suc',
+  COGS_BUYBACK_OTHER:       '💍 THU MUA hang khac',
+  COGS_MATERIAL:            '📦 MUA nguyen vat lieu',
+  COGS_MATERIAL_OTHER:      '📦 CHI phi NVL khac',
+  COGS_SHIPPING_INT:        '🌍 cuoc van chuyen quoc te',
+  COGS_SHIPPING_DOM:        '🚚 cuoc van chuyen nau dia',
+  COGS_INSURANCE:           '🛡️ bao hiem hang hoa',
+  COGS_CUSTOMS_DUTY:        '🏛️ thue nhap khau',
+  COGS_CUSTOMS_FEE:         '🏛️ phi hai QUAN & thu tuc',
+  TAX_VAT_IMPORT:           '🏛️ thue GTGT nhap khau',
+  TAX_VAT_DOMESTIC:         '🏛️ thue GTGT nau dia',
+  TAX_CIT:                  '🏛️ thue TNDN',
+  TAX_PIT:                  '🏛️ thue TNCN',
+  TAX_PENALTY_LATE:         '⚠️ tien cham nop thue',
+  TAX_PENALTY_FINE:         '⚠️ tien phat hanh chinh',
+  TAX_PENALTY_ADJUST:       '⚠️ thue an dinh/TRUY THU',
+  TAX_OTHER:                '🏛️ thue & phi khac',
+  BANK_FEE_TX:              '🏦 phi chuyen khoan',
+  BANK_FEE_FOREX:           '🏦 phi đau ngoai te',
+  BANK_FEE_MONTHLY:         '🏦 phi dich vu ngan hang',
+  BANK_FEE_OTHER:           '🏦 phi ngan hang khac',
+  HR_SALARY_BASIC:          '👨‍💼 luong co ban',
+  HR_SALARY_OT:             '👨‍💼 luong lam them',
+  HR_BONUS:                 '👨‍💼 thuong',
+  HR_COMMISSION:            '👨‍💼 HOA hong dai ly',
+  HR_INSURANCE:             '👨‍💼 bao hiem nhan vien',
   INS_SOCIAL:               '🛡️ BHXH',
   INS_HEALTH:               '🛡️ BHYT',
   INS_UNEMPLOY:             '🛡️ BHTN',
-  INS_UNION:                '🛡️ KINH PHÍ CÔNG ĐOÀN',
-  MKT_ADS_ONLINE:           '📢 QUẢNG CÁO ONLINE',
-  MKT_ADS_OFFLINE:          '📢 QUẢNG CÁO OFFLINE',
-  MKT_PROMOTION:            '📢 KHUYẾN MÃI',
-  MKT_EVENT:                '📢 SỰ KIỆN, HỘI CHỢ',
-  MKT_CONTENT:              '📢 NỘI DUNG MARKETING',
-  OP_RENT:                  '📋 THUÊ MẶT BẰNG',
-  OP_UTILITY:               '📋 ĐIỆN, NƯỚC, INTERNET',
-  OP_OFFICE:                '📋 VĂN PHÒNG PHẨM',
-  OP_SOFTWARE:              '📋 PHẦN MỀM, BẢN QUYỀN',
-  OP_MAINTENANCE:           '📋 SỬA CHỮA, BẢO TRÌ',
-  OP_TRAVEL:                '📋 CÔNG TÁC PHÍ',
-  LOG_SHIPPING:             '🚚 GIAO HÀNG',
-  LOG_PACKAGING:            '🚚 BAO BÌ, ĐÓNG GÓI',
-  LOG_STORAGE:              '🚚 LƯU KHO',
-  PAY_NCC_MATERIAL:         '💸 TT NHÀ CUNG CẤP NVL',
-  PAY_NCC_SERVICE:          '💸 TT NHÀ CUNG CẤP DỊCH VỤ',
-  PAY_NCC_CONSULTANT:       '💸 TT TƯ VẤN/CHUYÊN GIA',
-  PAY_NCC_OTHER:            '💸 TT ĐỐI TÁC KHÁC',
-  INTERNAL_TRANSFER:        '🔄 CHUYỂN KHOẢN NỘI BỘ',
-  INTERNAL_CASH_IN:         '🔄 NỘP TIỀN MẶT VÀO NH',
-  INTERNAL_CASH_OUT:        '🔄 RÚT TIỀN MẶT',
-  INTERNAL_LOAN:            '🔄 CHO VAY/ĐI VAY',
-  NEED_REVIEW:              '🔍 CẦN KIỂM TRA',
+  INS_UNION:                '🛡️ KINH phi cong doan',
+  MKT_ADS_ONLINE:           '📢 quang cao ONLINE',
+  MKT_ADS_OFFLINE:          '📢 quang cao OFFLINE',
+  MKT_PROMOTION:            '📢 khuyen mai',
+  MKT_EVENT:                '📢 su kien, hau cho',
+  MKT_CONTENT:              '📢 nau DUNG MARKETING',
+  OP_RENT:                  '📋 thue mat bang',
+  OP_UTILITY:               '📋 dien, nuoc, INTERNET',
+  OP_OFFICE:                '📋 ven phong pham',
+  OP_SOFTWARE:              '📋 phan mem, ban quyen',
+  OP_MAINTENANCE:           '📋 sua chua, bao tri',
+  OP_TRAVEL:                '📋 cong tac phi',
+  LOG_SHIPPING:             '🚚 GIAO hang',
+  LOG_PACKAGING:            '🚚 BAO bi, dong gau',
+  LOG_STORAGE:              '🚚 luu KHO',
+  PAY_NCC_MATERIAL:         '💸 TT nha CUNG cap NVL',
+  PAY_NCC_SERVICE:          '💸 TT nha CUNG cap dich vu',
+  PAY_NCC_CONSULTANT:       '💸 TT tu van/chuyen GIA',
+  PAY_NCC_OTHER:            '💸 TT đau tac khac',
+  INTERNAL_TRANSFER:        '🔄 chuyen khoan nau bo',
+  INTERNAL_CASH_IN:         '🔄 nop tien mat vao NH',
+  INTERNAL_CASH_OUT:        '🔄 rut tien mat',
+  INTERNAL_LOAN:            '🔄 CHO VAY/di VAY',
+  NEED_REVIEW:              '🔍 can kiem TRA',
 } as const;
 
 export type FullCategoryKey = keyof typeof FULL_CATEGORY_MAP;
