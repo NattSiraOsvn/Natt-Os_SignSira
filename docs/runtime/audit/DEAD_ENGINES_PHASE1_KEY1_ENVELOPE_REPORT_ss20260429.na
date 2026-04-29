@@ -1,0 +1,60 @@
+@nauion-audit v1
+@state phase1_complete
+@name dead_engines_phase1_key1_envelope_report_ss20260429
+@scope dead-engines-phase1-key1-envelope
+@target_commit 0f67c28
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+DEAD ENGINES PHASE 1/3 — KEY 1 ENVELOPE REPORT
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Ghi nhận commit 0f67c28 đã scaffold observation-cell và audit-cell engines theo NauionEvent envelope v0.2 của Key 1 mach_heyna_pulse_envelope.
+
+Report này không migrate legacy audit payload ở handlers/services.
+==END==
+
+==SOURCE_FILES==
+- path: src/cells/kernel/audit-cell/domain/engines/audit-cell.engine.ts
+  exists: True
+  sha256: faef73ae103d1ae02e5bb5468bfbc97b2905d247bcd4adb78fc6b0e2c0665966
+- path: src/cells/kernel/observation-cell/domain/engines/observation-cell.engine.ts
+  exists: True
+  sha256: 85bfad2f552a4c93f537ef9f803ff55a6677c6970404504d1062b7954a195f3d
+- path: src/cells/kernel/observation-cell/index.ts
+  exists: True
+  sha256: 71d46c9fcd5d7332cf002a612a17f3865a98e3a3dee451cce0d41a4755bff17b
+- path: docs/specs/ui-kernel-contract.sira
+  exists: True
+  sha256: b66a833802afe6405e17f57b1201e0f819b21bb64dcd83d3b42211d007c3554a
+==END==
+
+==ENVELOPE_CHECK==
+audit_engine_has_required_fields: True
+observation_engine_has_required_fields: True
+required_fields: schema_version, event_id, tenant_id, trace_id, span_id, causation_id, emitted_at, payload
+==END==
+
+==EVENT_TYPES==
+audit-cell:
+- audit.record
+- cell.metric
+
+observation-cell:
+- cell.metric
+- heyna.pulse
+==END==
+
+==BOUNDARY==
+- Phase 1/3 only.
+- Runtime closure remains locked.
+- UI must not mock pressure signal.
+- Legacy audit handlers/services are not migrated in this commit.
+==END==
+
+==NEXT_SIGNAL==
+Bối kiểm adapter compatibility với schema_version/event_id/tenant_id/trace_id/span_id.
+Băng kiểm envelope contract so với ui-kernel-contract.sira.
+Phase 2/3 có thể migrate legacy audit handlers/services nếu Gatekeeper mở scope.
+==END==
