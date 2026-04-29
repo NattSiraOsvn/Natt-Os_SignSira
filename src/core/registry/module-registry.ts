@@ -1,4 +1,4 @@
-// @ts-nocheck — TODO: fix type errors, remove this pragma
+ — TODO: fix type errors, remove this pragma
 
 import { ViewType, UserRole } from "@/types";
 export const MODULE_REGISTRY: Record<string, any> = {

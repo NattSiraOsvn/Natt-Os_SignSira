@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 /**
  * natt-os IMMUNE GUARD v2 — Touch point for boundary signals.
