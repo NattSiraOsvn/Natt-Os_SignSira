@@ -44,3 +44,30 @@ Không Host Bridge. Không mock pressure. Không ép route bằng if/else. Khôn
 ==NEXT_SIGNAL==
 Field Loader nạp packet vào runtime field.
 ==END==
+
+═══════════════════════════════════════════════════════════════════
+==BANG_REVIEW_PATCH_v0_1==
+@reviewed_at 2026-04-29T14:04:03
+@reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
+@verdict PASS_WITH_PATCH
+@confidence_state KIÊN_ĐỊNH
+
+==GAP_2_SIRASIGN_LINK==
+CONSUMPTION_FLOW.step_4 'check_authority_boundary' phẳng.
+PATCH: step_4 phải verify compound seal 8 thành phần per NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8 (commit 4a52d799).
+Verify thiếu 1 trong 8 (state/spectral_state/field_condition/relation/meaning/causation/authority/audit_lineage) → packet bị reflect về Translator + log quarantine.
+==END==
+
+==GAP_3_SIRASIGN_VERDICT==
+STATE_DECISION 5 trạng thái không khớp 7 verdict siraSign §9.
+PATCH: bổ sung 2 verdict thiếu - ASK_GATE (cần anh Natt chốt) + DEGRADE (cho qua nhưng giảm authority) + AUDIT_ONLY (ghi vết không cấp authority) + SUPERSEDE (niêm mới đè cũ, fossil giữ).
+Tổng 7 verdict + giữ 5 trạng thái field hiện tại = 2 lớp song song:
+  - field outcome: FALL/DISSIPATE/OSCILLATE/SAFE_REST/QUARANTINE (em vẫn đúng)
+  - sirasign verdict: ALLOW/DENY/QUARANTINE/ASK_GATE/DEGRADE/AUDIT_ONLY/SUPERSEDE
+==END==
+
+==GAP_4_CHROMATIC_THRESHOLD==
+CONSUMPTION_FLOW.step_5 'calculate_pressure_field' chưa dùng chromatic L4 cứng.
+PATCH: nếu spectral_capture = L4_red (critical) → bypass sang step_8 quarantine ngay, không cho qua step_6 decide.
+==END==
+==END_BANG_REVIEW_PATCH_v0_1==

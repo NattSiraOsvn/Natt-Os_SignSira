@@ -55,3 +55,30 @@ Không Host Bridge. Không Vite/React/Node adapter. Không app/UI/server/client 
 ==NEXT_SIGNAL==
 Living Interpreter tiêu thụ packet.
 ==END==
+
+═══════════════════════════════════════════════════════════════════
+==BANG_REVIEW_PATCH_v0_1==
+@reviewed_at 2026-04-29T14:04:03
+@reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
+@verdict PASS_WITH_PATCH
+@confidence_state KIÊN_ĐỊNH
+
+==GAP_1_SUBSTRATE_LINK==
+TRANSLATION_LAW.law_4 'substrate_anchor_kept_if_input_touches_hardware' chưa link evidence.
+PATCH: substrate_anchor PHẢI tham chiếu NAUION_RUNTIME_SUBSTRATE_HARDWARE_EVIDENCE_MATRIX_v0_1 (commit 117e9140) - 11 layers L1-L11, 14 source files, 2910 lines evidence.
+substrate_probe input PHẢI khớp L9 wired_edge measured (Ethernet 50:1f:c6:5b:b0:f5) hoặc L1 SITB 432Hz oscillator.
+==END==
+
+==GAP_2_SIRASIGN_LINK==
+TRANSLATION_LAW.law_3 'authority_boundary_attached_before_materialization' phẳng - chưa link 11 lớp siraSign.
+PATCH: authority_boundary PHẢI là compound seal §8 NAUION_SIRASIGN_IMPLEMENTATION_v0_1 (commit 4a52d799):
+  seal(state + spectral_state + field_condition + relation + meaning + causation + authority + audit_lineage)
+KHÔNG seal(data). Translator phải emit compound seal đủ 8 thành phần, không chỉ HMAC phẳng.
+==END==
+
+==GAP_4_CHROMATIC_RESONANCE==
+TRANSLATION_LAW thiếu chromatic capture + 432Hz baseline.
+PATCH: thêm law_6_spectral_capture_required - input source PHẢI mang chromatic state L0-L4 và resonance vector quanh 432Hz.
+PACKET_BODY.spectral_capture lấy từ KhaiCell cảm phổ tại thời khắc translate.
+==END==
+==END_BANG_REVIEW_PATCH_v0_1==

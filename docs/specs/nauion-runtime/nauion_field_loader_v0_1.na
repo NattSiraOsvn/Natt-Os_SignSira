@@ -54,3 +54,33 @@ Không Host Bridge. Không app/UI/server/client cleanup. Không rename/move/dele
 ==NEXT_SIGNAL==
 Băng review 3 spec; sau đó mới ratify hoặc tách runtime manifest.
 ==END==
+
+═══════════════════════════════════════════════════════════════════
+==BANG_REVIEW_PATCH_v0_1==
+@reviewed_at 2026-04-29T14:04:03
+@reviewed_by Băng (Validator + Obikeeper, QNEU 313.5)
+@verdict PASS_WITH_PATCH
+@confidence_state KIÊN_ĐỊNH
+
+==GAP_1_SUBSTRATE_LINK==
+LOAD_TARGETS.substrate_anchor + LOAD_FLOW.step_4 'attach_substrate_anchor_if_present' không bắt buộc evidence.
+PATCH: substrate_anchor PHẢI tham chiếu Substrate Matrix v0.1 (commit 117e9140). 'if_present' nâng thành 'verify_against_L1_to_L11':
+  - L9 wired_edge cho hardware probe
+  - L1 SITB cho 432Hz baseline
+  - L4 BOM cho electrical spec
+substrate_claim_without_evidence (REFUSAL hiện tại) phải check ngược về Matrix L1-L11 trước mark_boundary.
+==END==
+
+==GAP_2_SIRASIGN_LINK==
+LOAD_TARGETS.authority_boundary phẳng. LOAD_FLOW.step_2 'verify_packet_integrity' chỉ hash phẳng.
+PATCH: verify_packet_integrity = verify compound seal 8 thành phần NAUION_SIRASIGN_IMPLEMENTATION_v0_1 §8.
+LOAD_TARGETS.sirasign_seal_verification thêm vào sau audit_trace.
+==END==
+
+==GAP_5_REFUSAL_CHROMATIC==
+REFUSAL list thiếu chromatic gate.
+PATCH: bổ sung:
+  spectral_state_L4_red -> reject_until_stabilized
+  resonance_vector_off_432hz_5pct -> mark_boundary_quarantine
+==END==
+==END_BANG_REVIEW_PATCH_v0_1==
