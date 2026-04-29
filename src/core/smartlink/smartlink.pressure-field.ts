@@ -1,7 +1,7 @@
 /**
  * natt-os SmartLink — Pressure Field
  * ════════════════════════════════════════════════════════
- * src/core/SmartLink/SmartLink.pressure-field.ts
+ * src/core/smartlink/SmartLink.pressure-field.ts
  *
  * Pressure Field = lực kéo của mạng sợi lên routing.
  *

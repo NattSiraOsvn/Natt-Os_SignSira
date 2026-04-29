@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-import { QuantumBrain } from '@/core/SmartLink/quantum-brain.engine';
+import { QuantumBrain } from '@/core/smartlink/quantum-brain.engine';
 import { QuantumState, ConsciousnessField, QuantumEvent } from '../types';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis } from 'recharts';
 import AIAvatar from './aiavatar';

@@ -4,13 +4,13 @@
 import React, { useState, useEffect } from 'react';
 import { ShowroomAPI } from '@/cells/business/showroom-cell/domain/services/showroom.api';
 import { ShowroomProduct } from '@/types/showroom';
-import { HeroMediaBlock } from './heromediablock';
-import { BranchContextPanel } from './branchcontextpanel';
-import { SpecificationBlock } from './specificationblock';
-import { ExperienceTrustBlock } from './experiencetrustblock';
-import { RelatedProducts } from './relatedproducts';
-import { OwnerVault } from './ownervault';
-import { ReservationModal } from './reservationmodal';
+import { HeroMediaBlock } from './hero-media-block';
+import { BranchContextPanel } from './branch-context-panel';
+import { SpecificationBlock } from './specification-block';
+import { ExperienceTrustBlock } from './experience-trust-block';
+import { RelatedProducts } from './related-products';
+import { OwnerVault } from './owner-vault';
+import { ReservationModal } from './reservation-modal';
 import LoadingSpinner from '@/common/loadingspinner';
 
 const ProductPage: React.FC = () => {

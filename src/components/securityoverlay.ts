@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import ThreatDetectionService, { SecurityThreat } from '@/cells/kernel/security-cell/domain/services/ThreatDetectionService';
 import QuantumPulse from './quantumpulse';
-import { QuantumBuffer } from '@/core/SmartLink/quantum-buffer.engine';
+import { QuantumBuffer } from '@/core/smartlink/quantum-buffer.engine';
 
 interface SecurityOverlayProps {
   children: React.ReactNode;

@@ -3,7 +3,7 @@
 // @ground-truth thienfs.json, ui-kernel-contract.sira
 // @status skeleton
 
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export class KhaiCellEngine {
   private cellId = 'khai-cell';

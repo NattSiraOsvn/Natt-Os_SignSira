@@ -2,4 +2,4 @@
 export * from './application/index';
 export * from './ports/index';
 export * from './domain/services/ai.engine';
-export * from './SmartLink/index';
+export * from './smartlink/index';

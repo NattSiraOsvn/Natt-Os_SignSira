@@ -1,7 +1,7 @@
 /**
  * natt-os SmartLink — Pattern Competition Layer
  * ════════════════════════════════════════════════════════
- * src/core/SmartLink/SmartLink.competition.ts
+ * src/core/smartlink/SmartLink.competition.ts
  *
  * Pattern competition = cơ chế chọn lọc tự nhiên của mạng sợi.
  *

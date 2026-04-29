@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { IngestStatus, FileMetadata, PersonaID } from '../types';
 import { Ingestion } from '@/core/ingestion/ingestion.service';
-import { QuantumBuffer } from '@/core/SmartLink/quantum-buffer.engine';
+import { QuantumBuffer } from '@/core/smartlink/quantum-buffer.engine';
 import { DocumentParserLayer } from '@/core/ingestion/document-parser.engine';
 import AIAvatar from './aiavatar';
 

@@ -44,7 +44,7 @@ import QuantumFlowOrchestrator from './quantumfloworchestrator';
 import AdminConfigHub from './adminconfighub';
 import FinancialDashboard from './financial/financialdashboard'; 
 import PersonalSphere from './personalsphere'; 
-import CalibrationWizard from './calibrationwizard';
+import CalibrationWizard from './calibration/calibrationwizard';
 
 interface DynamicModuleRendererProps {
   view: ViewType;

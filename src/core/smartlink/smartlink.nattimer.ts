@@ -1,7 +1,7 @@
 /**
  * natt-os SmartLink — NATTimer
  * ════════════════════════════════════════════════════════
- * src/core/SmartLink/SmartLink.nattimer.ts
+ * src/core/smartlink/SmartLink.nattimer.ts
  *
  * NATTimer = NATT Temporal Integration Memory
  *
@@ -409,7 +409,7 @@ export const NATTimer = {
  * Để NATTimer hoạt động, gọi NATTimer.record() sau mỗi SmartLink touch.
  * Cách đơn giản nhất: thêm vào CellSmartLinkComponent.emit():
  *
- *   import { NATTimer } from '@/core/SmartLink/SmartLink.nattimer';
+ *   import { NATTimer } from '@/core/smartlink/SmartLink.nattimer';
  *
  *   async emit(targetCellId, impulse) {
  *     const result = SmartLinkCell.requestTouch(this.cellId, targetCellId, impulse);

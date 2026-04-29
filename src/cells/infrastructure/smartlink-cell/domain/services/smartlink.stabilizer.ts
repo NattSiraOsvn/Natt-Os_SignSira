@@ -48,8 +48,8 @@ export const SmartLinkStabilizer = {
 };
 
 // SmartLinkCell — wire SmartLinkPoint thật (không còn stub)
-import { SmartLinkPoint as CoreSmartLinkPoint } from '@/core/SmartLink/SmartLink.point';
-export type { SmartLinkPoint } from '@/core/SmartLink/SmartLink.point';
+import { SmartLinkPoint as CoreSmartLinkPoint } from '@/core/smartlink/SmartLink.point';
+export type { SmartLinkPoint } from '@/core/smartlink/SmartLink.point';
 
 const _points = new Map<string, CoreSmartLinkPoint>();
 

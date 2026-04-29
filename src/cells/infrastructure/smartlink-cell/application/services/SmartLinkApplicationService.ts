@@ -6,7 +6,7 @@ import { SmartLinkEngine } from "../../domain/services/smartlink.engine";
 import { SmartLinkGovernance } from "../../domain/services/smartlink.governance";
 import { SmartLinkStabilizer } from "../../domain/services/smartlink.stabilizer";
 import type { CellID } from "../../../../shared-kernel/shared.types";
-import type { FiberSummary } from "@/core/SmartLink/SmartLink.point";
+import type { FiberSummary } from "@/core/smartlink/SmartLink.point";
 
 // ── Gossip state (module-level — giống SmartLinkEngine) ──────────
 const _gossipQueue: FiberSummary[] = [];

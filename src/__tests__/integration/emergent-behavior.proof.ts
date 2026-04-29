@@ -21,10 +21,10 @@
  * Ngày tạo: 2026-04-13
  */
 
-import { NATTimer } from '@/core/SmartLink/SmartLink.nattimer';
-import { PressureField } from '@/core/SmartLink/SmartLink.pressure-field';
-import { PatternCompetition } from '@/core/SmartLink/SmartLink.competition';
-import { SmartLinkRegistry } from '@/core/SmartLink/index';
+import { NATTimer } from '@/core/smartlink/SmartLink.nattimer';
+import { PressureField } from '@/core/smartlink/SmartLink.pressure-field';
+import { PatternCompetition } from '@/core/smartlink/SmartLink.competition';
+import { SmartLinkRegistry } from '@/core/smartlink/index';
 import * as fs from 'fs';
 import * as path from 'path';
 
