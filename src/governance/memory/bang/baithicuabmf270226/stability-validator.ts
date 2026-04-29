@@ -34,7 +34,7 @@ import {
   VerificationSource,
   QNEUEventType,
   DEFAULT_COLLECTOR_CONFIG,
-} from '../types/qneu.types';
+} from './qneu.types';
 
 // ─────────────────────────────────────────────────────────
 // STABILITY VALIDATOR

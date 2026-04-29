@@ -5,9 +5,9 @@
 import { EventBus } from '../../../../core/events/event-bus';
 import { PaymentAggregate } from '../../domain/payment.aggregate';
 import { EventEnvelope } from '../../../../types';
-import { RetryPolicy } from '../../infrastructure/messaging/retrypolicy';
-import { DeadLetterHandler } from '../../infrastructure/messaging/deadletterhandler';
-import { FinanceAuditLogger } from '../../infrastructure/audit/auditlogger';
+import { RetryPolicy } from '../messaging/retry-policy';
+import { DeadLetterHandler } from '../messaging/dead-letter-handler';
+import { FinanceAuditLogger } from '../audit/audit-logger';
 
 /**
  * 🎼 PAYMENT SAGA ORCHESTRATOR

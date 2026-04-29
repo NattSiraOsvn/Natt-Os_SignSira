@@ -37,7 +37,7 @@ import {
   StabilityStatus,
   StabilityRecommendation,
   DEFAULT_COLLECTOR_CONFIG,
-} from './types/qneu.types';
+} from './qneu.types';
 
 import { ImprintEngine } from './imprint-engine';
 import { StabilityValidator } from './stability-validator';
@@ -627,4 +627,4 @@ export interface CellDiagnostics {
 export { ImprintEngine } from './imprint-engine';
 export { StabilityValidator } from './stability-validator';
 export { NeuralMAIN } from './neural-main';
-export * from './types/qneu.types';
+export * from './qneu.types';

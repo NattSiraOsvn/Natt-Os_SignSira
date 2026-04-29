@@ -9,4 +9,4 @@ export { QNEUCollector } from './qneu-collector';
 export { ImprintEngine } from './imprint-engine';
 export { StabilityValidator } from './stability-validator';
 export { NeuralMAIN } from './neural-main';
-export * from './types/qneu.types';
+export * from './qneu.types';

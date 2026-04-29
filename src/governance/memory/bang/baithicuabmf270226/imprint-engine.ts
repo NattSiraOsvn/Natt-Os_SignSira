@@ -28,7 +28,7 @@ import {
   PenaltyCategory,
   ActionType,
   DEFAULT_COLLECTOR_CONFIG,
-} from '../types/qneu.types';
+} from './qneu.types';
 
 // ─────────────────────────────────────────────────────────
 // PATTERN SIGNATURE GENERATOR

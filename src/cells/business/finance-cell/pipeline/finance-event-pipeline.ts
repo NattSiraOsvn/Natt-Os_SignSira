@@ -3,8 +3,8 @@
 // — legacy V1 imports pending migration
 
 import { EventEnvelope } from '../../../../types';
-import { CreateInvoice } from '../usecases/createinvoice';
-import { RiskProjection } from '../projections/riskprojection';
+import { CreateInvoice } from '../usecases/create-invoice';
+import { RiskProjection } from '../projections/risk-projection';
 import { AuditProvider } from '../../../../../services/admin/auditservice';
 
 /**

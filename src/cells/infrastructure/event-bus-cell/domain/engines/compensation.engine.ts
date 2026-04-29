@@ -1,7 +1,7 @@
 // Compensation Engine v0.1 — KHUNG XƯƠNG
 // @sirawat-from Kim
 // @status skeleton
-import { EventBus } from '../../../../core/events/event-bus';
+import { EventBus } from '../../../../../core/events/event-bus';
 
 export class CompensationEngine {
   process(event: any): void {
