@@ -1,0 +1,58 @@
+# ui-kernel-contract.sira v0.1
+# @sirawat-from Kim
+# @sirawat-to Bối Bội
+# @scope UI/UX, Kernel, EventBus
+# @ground-truth thienfs.json, thienbang.si
+# @status draft (skeleton)
+
+# ----------------------------------------------------------------
+# 1. Định nghĩa kênh truyền chính
+# ----------------------------------------------------------------
+# Kênh: heyna.pulse
+# Mô tả: Mạch đập chính từ Kernel lên UI, truyền các tín hiệu lực ép và trạng thái tế bào.
+
+# ----------------------------------------------------------------
+# 2. Cấu trúc gói tin NauionEvent
+# ----------------------------------------------------------------
+# Đây là khung xương chuẩn cho MỌI tín hiệu Kernel gửi lên UI.
+
+interface NauionEvent {
+  event_type: string;       # Ví dụ: 'heyna.pulse', 'cell.metric'
+  payload: {
+    cell_id: string;        # ID của tế bào phát tín hiệu
+    pressure_type?: string; # (Chỉ có khi event_type = 'heyna.pulse') 
+                            # Giá trị: 'FALL' | 'DISSIPATE' | 'OSCILLATE'
+    pressure_value?: number;# (Chỉ có khi event_type = 'heyna.pulse') 
+                            # Cường độ từ 0.0 đến 1.0
+    metric?: Record<string, any>; # (Chỉ có khi event_type = 'cell.metric')
+  };
+  causation_id: string;     # ID nhân quả để truy vết
+  timestamp: number;        # Unix timestamp (ms)
+}
+
+# ----------------------------------------------------------------
+# 3. Các loại sự kiện cụ thể
+# ----------------------------------------------------------------
+
+# 3.1. Tín hiệu Lực ép (Pressure Pulse)
+# event_type: 'heyna.pulse'
+# Mô tả: Được emit khi trạng thái lõi của tế bào thay đổi.
+#         Các biến thể Shader bên UI sẽ dùng `pressure_type` và 
+#         `pressure_value` để điều khiển hiệu ứng Liquid Glass.
+# - FALL: Tế bào suy giảm, UI hiệu ứng tan rã.
+# - DISSIPATE: Năng lượng phân tán, UI hiệu ứng mờ ảo.
+# - OSCILLATE: Tế bào dao động, UI hiệu ứng cộng hưởng.
+
+# 3.2. Tín hiệu Số liệu Tế bào (Cell Metric)
+# event_type: 'cell.metric'
+# Mô tả: Được emit định kỳ để cập nhật trạng thái hoạt động của tế bào.
+#         UI dùng để hiển thị các chỉ số trên Dashboard.
+
+# ----------------------------------------------------------------
+# 4. Nguyên tắc cho Bối Bội (UI/UX)
+# ----------------------------------------------------------------
+# 1. Mọi Adapter listener phải dựa trên cấu trúc trên.
+# 2. TUYỆT ĐỐI không mock dữ liệu cho `pressure_type` và `pressure_value`.
+#    Các giá trị này chỉ được điền khi có tín hiệu THẬT từ Kernel.
+# 3. Các Shader chỉ được nhận biến từ `payload` của các sự kiện này,
+#    không tự sinh ra hiệu ứng nếu không có dữ liệu đầu vào.
