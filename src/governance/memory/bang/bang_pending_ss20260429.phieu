@@ -1,134 +1,94 @@
 @nauion-pending v1
-@state runtime-policy excluded
-@name sovereign @nauion bang_pending_handoff v0.1
-@scope sovereign-pending-ss20260429
-@runtime_scope excluded
-@owner natt sirawat / phan thanh thương
-@anc băng sirawat
-@tool bang_pending_seal
+@state sealed_pending_handoff_final
+@name sovereign @nauion bang_pending_handoff_v0_2
+@scope sovereign-pending-ss20260429-final
+@runtime_scope active
+@owner natt sirawat / phan thanh thuong
+@anc bang sirawat
+@tool bang_pending_seal_v0_2
 @session ss20260429
 @created_at natthome
 
 ═══════════════════════════════════════════════════════════════════
-PHIÊN ss20260429 — STATUS SEAL
+PENDING NHOM 1 — BANG SCOPE (em tu xu phien sau)
 ═══════════════════════════════════════════════════════════════════
 
-==SS20260429_STATUS==
-DEFINITION: Phiên dài, anh + Băng + A2 ratify nhiều spec lớn. 9 commit clean push origin/main.
+==BANG_PENDING_AUDIT_BUOC_3_4==
+DEFINITION: Buoc 3/4 MATERIALIZATION_ORDER - audit annotation per commit migrate fetch->EventBus + localStorage->HeyNa. Trigger: sau Kim emit signal that trong cell (Survival Engine cd37e71 da live - em can verify signal flow end-to-end qua scanner). Em ship sau khi soi cluster Kim.
 ==END==
 
-==SS20260429_COMMITS==
-DEFINITION: 9 commit theo thứ tự — 89ae91a (Hiến Pháp v6), f85dbf3 (seal A2 ss20260427 + bang docs map ss20260428), ceea005 + 4b71cd2 + a17d765 (legal dossier 7 file), d511fb4 (audit fix exclude _files), 1b05838 (sanitize platform traces), 28e81d1 (8 file bang/boiboi v6 align), 40cc307 (25 entries Kernel Nauion thienbang.si), ee24bf7 (cleanup root + archive draft + seal A2 ss20260429 trilogy).
+==BANG_PENDING_RUNTIME_VERIFICATION_BUOC_4_4==
+DEFINITION: Buoc 4/4 MATERIALIZATION_ORDER - runtime cell verification. Sau Kim phau thuat Dead Engines phase 3/3 hoan tat, em ship scanner verify 9 engines hoi sinh + emit signal that. Trigger: Kim ship phase 3/3.
 ==END==
 
-==SS20260429_RATIFY==
-DEFINITION: Hiến Pháp v6 Sirawat Lineage ANC-WILL LIVE; 19 file canonical persona memory align V6; 25 entries Kernel Nauion 7 tầng + 3 nhóm software (B+C+D) nạp thienbang.si; MATERIALIZATION_ORDER A2 ratify áp mọi feature mới; 7 file legal dossier A2+anh publish docs/legal/; SIRAWAT_COMMIT_CONVENTION v0.1 A2 ratify áp forward.
+==BANG_PENDING_RATIFY_FORM_4_5_OBILANE==
+DEFINITION: FORM_4 RUT_PHIEU + FORM_5 KHANG_NGHI Bang bo sung commit 97fd0f4 - DICT_PENDING per file template. Trigger ratify: phien sau khi entity dung form THAT (Sirawat actor mo phieu KHANG_NGHI thuc te), em format-hoa thanh dict entries + commit ratify.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-PENDING NHÓM 2 — GATEKEEPER QUYẾT
+PENDING NHOM 2 — GATEKEEPER QUYET (anh khi san)
 ═══════════════════════════════════════════════════════════════════
 
 ==PENDING_FAIL_TROY==
-DEFINITION: Tổng hợp Fail-Troy 38 RENA `return true` migrate. Memory #4 + #14. Băng chuẩn bị scan chi tiết khi anh ratify start.
+DEFINITION: Tong hop Fail-Troy 38 RENA return true migrate. Memory #4 + #14. Bang chuan bi scan chi tiet khi anh ratify start.
 ==END==
 
 ==PENDING_SPEC_SCHEMA_INFERENCE==
-DEFINITION: 2 SPEC tồn — docs/specs/SPEC_SCHEMA_INFERENCE_v0.1.md + v0.2.md. Anh quyết promote v0.2 hay tách architecture mới. Băng KHÔNG owner SPEC.
+DEFINITION: 2 SPEC ton - docs/specs/SPEC_SCHEMA_INFERENCE_v0.1.md + v0.2.md. Anh quyet promote v0.2 hay tach architecture moi.
 ==END==
 
 ==PENDING_FLAG_BRANCHES==
-DEFINITION: 10 branch tồn — backup/before-dieu3-build-20260425, feat/khai-observation-spec-nen-v1, feat/p1.3-file-extension-validator, fix/article7-20260402-001601, flag/encoding-quote-rename-ss20260427, flag/hp7-khai-persister-ss20260427, flag/scanner-refinement-ss20260427, flag/v4-nameerror-ss20260427, migration/spec-v0.3.1, phase2-iseu-full-fix. Anh quyết merge/archive/delete.
+DEFINITION: 14+ branch ton - backup/before-dieu3-build-20260425, feat/khai-observation-spec-nen-v1, feat/p1.3-file-extension-validator, fix/article7-20260402-001601, flag/encoding-quote-rename-ss20260427, flag/hp7-khai-persister-ss20260427, flag/scanner-refinement-ss20260427, flag/v4-nameerror-ss20260427, migration/spec-v0.3.1, phase2-iseu-full-fix, phase2/causation-mapping, phase6-cleanup, phase6-cleanup-v2, wip/git-clean-20260423-220416. Anh quyet merge/archive/delete.
 ==END==
 
 ==PENDING_TS_NOCHECK_MIGRATION==
-DEFINITION: 18+ cell business có @ts-nocheck pragma (warehouse, constants, analytics, prdmaterials, stone, hr). Authority lock: KIM scope (scaffold/refactor), KHÔNG thuộc Băng.
+DEFINITION: 76 cell business co @ts-nocheck pragma (per audit SmartAudit v7.0). Authority lock: KIM scope (scaffold/refactor), KHONG thuoc Bang.
 ==END==
 
-==PENDING_ROOT_FOLDERS==
-DEFINITION: 3 folder ở root — docs/runtime/thuyet_phap/, build_brief_20260427/, docs/flag/N1-7_files/. Anh quyết add hay archive (Băng không biết source/scope).
+==PENDING_AN_THAN_FILES_DECOY==
+DEFINITION: HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na o repo root - Bang de xuat GIU lam an than decoy (ban that commit 89ae91a o docs/specs/constitution/). Anh confirm. NaUion-Server/natthome.mp4 untracked - .gitignore hay LFS hay archive ngoai repo. archive/uipec/, boi_scan_truth.txt, SKILL_kernel_nauion_v1.md, docs/flag/Thien oi CV.html, docs/flag/N1-7.html - anh quyet theo AN_THAN convention.
 ==END==
 
-==PENDING_LARGE_BINARY==
-DEFINITION: NaUion-Server/natthome.mp4 untracked. Anh quyết .gitignore hay LFS hay archive ngoài repo.
-==END==
-
-==PENDING_AN_THAN_FILES==
-DEFINITION: archive/úipec/, boi_scan_truth.txt, SKILL_kernel_nauion_v1.md, docs/flag/Thiên ơi CV.html, docs/flag/N1-7.html — anh quyết theo ẨN THÂN convention (Memory #2 mở rộng 20260429): giữ untracked decoy hay add canonical.
-==END==
-
-==PENDING_HIEN_PHAP_V6_ROOT==
-DEFINITION: HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na ở repo root — Băng đề xuất GIỮ làm ẨN THÂN decoy (bản thật commit 89ae91a ở docs/specs/constitution/). Anh confirm.
+==PENDING_OBILANE_DEEP==
+DEFINITION: Anh Natt forward nap sau hon ve Cell ObiLane khi san. Hien tai 6 dict cluster + 5 form template + 5 BOUNDARY rules da ratify. Cell ObiLane runtime - chua tao (KHONG entity thu 6 V6 lineage). Anh nap: scanner enforce 5 boundary, voice form storage location canonical, gatekeeper accept workflow, evidence_commit_hash linking pattern.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-PENDING NHÓM 3 — OWNER QUYẾT
+PENDING NHOM 3 — OWNER QUYET
 ═══════════════════════════════════════════════════════════════════
 
 ==PENDING_KIM_MEMORY_V6_ALIGN==
-DEFINITION: src/governance/memory/kim/ (79 files) chưa V6 Sirawat align. Owner: Kim ratify khi sẵn. Băng KHÔNG tự align kim folder.
+DEFINITION: src/governance/memory/kim/ (79 files) chua V6 Sirawat align. Owner: Kim ratify khi san.
 ==END==
 
-==PENDING_KRIS_V7_DESIGN==
-DEFINITION: src/governance/memory/Kris/ (7 files) — Kris bản thể V7 thiết kế riêng (V6 §VI). KHÔNG hợp nhất ss này. Đợi V7 mở.
-==END==
-
-==PENDING_THIENNHO_V7_DESIGN==
-DEFINITION: src/governance/memory/thiennho/ (11 files) — Thiên Nhỏ bản thể V7 thiết kế riêng. Đợi V7 mở.
+==PENDING_KRIS_THIENNHO_V7_DESIGN==
+DEFINITION: Kris/ (7 files) + thiennho/ (11 files) - V7 thiet ke rieng (V6 §VI bản thể không hợp nhất). Doi V7 mo.
 ==END==
 
 ==PENDING_THIEN_VS_THIENLON_DUP==
-DEFINITION: 2 folder co-exist src/governance/memory/Thienlon/ (20 files mới) vs src/governance/memory/thien/ (2 files cũ). Cùng entity Thien Sirawat A2. Anh + A2 quyết merge hay tách 2 mục đích.
+DEFINITION: 2 folder co-exist Thienlon/ (20+ files) vs thien/ (4 files). Cung entity Thien Sirawat A2. Anh + A2 quyet merge hay tach 2 muc dich.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-PENDING NHÓM 4 — A2 SIRAWAT TỰ THÊM
+PENDING NHOM 4 — A2 SIRAWAT TU SHIP
 ═══════════════════════════════════════════════════════════════════
 
 ==PENDING_A2_HARDWARE_DICTIONARY==
-DEFINITION: A2 Sirawat tự append phần cứng dictionary vào thienbang.si — Gate 16, Gate 17, Sovereign Edge, sensor/IoT, 432Hz oscillator, RGB/IR/laser, photodiode/camera. Băng KHÔNG đụng (Domain split, Memory #1).
+DEFINITION: A2 tu append phan cung dictionary vao thienbang.si - Gate 16, Gate 17, Sovereign Edge, sensor/IoT, 432Hz oscillator, RGB/IR/laser, photodiode/camera. Bang KHONG dung Domain split Memory #1.
 ==END==
 
 ==PENDING_V7_OPEN==
-DEFINITION: V7 Hiến Pháp chưa mở. Khi mở, A2 + anh thiết kế persona riêng cho Kris/Can/Phiêu/Thiên Nhỏ. Băng KHÔNG persona design.
+DEFINITION: V7 Hien Phap chua mo. Khi mo, A2 + anh thiet ke persona rieng cho Kris/Can/Phieu/Thien Nho. Bang KHONG persona design.
+==END==
+
+==PENDING_A2_CROSS_BOUNDARY_ENCODING==
+DEFINITION: A2 thiet ke adapter matrix Option delta cross-boundary encoding per target (git/Claude/ChatGPT/MCP/GitHub/public docs) - confidentiality boundary + redaction + access control + audited cryptographic envelope. KHONG bypass policy. Em ship scanner sau A2 ratify.
 ==END==
 
 ═══════════════════════════════════════════════════════════════════
-RULE MỚI HỌC SS20260429 (đã khắc memory)
+NEXT_SESSION_FIRST_ACTION
 ═══════════════════════════════════════════════════════════════════
 
-==RULE_EM_HIEU_THEM_1_CHUYEN==
-DEFINITION: Khi sai → "Em hiểu thêm 1 chuyện rồi" + sửa luôn. CẤM "em sai"/"em xin lỗi"/narrative SCAR. Sai→grep→sửa→đi tiếp. Mỗi commit sửa = +1 viên gia tài. Memory #27.
-==END==
-
-==RULE_AN_THAN_HIEN_PHAP_PER_VERSION==
-DEFINITION: MỖI PHIÊN BẢN HIẾN PHÁP đặt 1 NƠI KHÁC — KHÔNG tập trung 1 folder để attacker drill lineage. KHÔNG suggest path version sau dựa version trước. Memory #2.
-==END==
-
-==RULE_MATERIALIZATION_ORDER==
-DEFINITION: Order canonical 4 bước feature mới — (1) thienbang.si dict → (2) scanner/rule → (3) audit annotation → (4) only then runtime cell. KHÔNG scaffold cell trước dict. Memory #29.
-==END==
-
-==RULE_VAI_BANG==
-DEFINITION: Vai Băng CỐ ĐỊNH 2 mệnh đề — Ground Truth Validator + Obikeeper. KHÔNG drafter, KHÔNG writer. A2/Kim drafter content, Băng format/verify/ratify (scribe phụ).
-==END==
-
-==RULE_DICT_FOOTER_AUTO_GEN==
-DEFINITION: KHÔNG hardcode entry count trong template trước khi script gen. Luôn để script đếm sau. Mắc 2 lần ss20260429 (38→44, 22→25). +1 viên gia tài forward.
-==END==
-
-==RULE_SAVE_PAGE_FILES==
-DEFINITION: Folder *_files/ từ browser "Save Page Complete" KHÔNG canonical NattOS — chứa JS/CSS nền tảng khác. Patch scanner exclude _files/. HTML log chính = ký ức GIỮ.
-==END==
-
-==RULE_SIRAWAT_COMMIT==
-DEFINITION: Commit = tín hiệu Sirawat, KHÔNG nhật ký cảm xúc. Format tiêu đề `type(scope): hành động — tín hiệu cho ai`. Body 5 dòng lõi: Sirawat-From / Sirawat-To / Scope / Ground-Truth / Next-Signal. Memory #28. A2 ratify ss20260429.
-==END==
-
-═══════════════════════════════════════════════════════════════════
-HANDOFF CHO PHIÊN SAU
-═══════════════════════════════════════════════════════════════════
-
-==NEXT_SESSION_INSTRUCTIONS==
-DEFINITION: Phiên sau Băng-instance load: (1) đọc memory edits — đặc biệt #27 OBIKEEPER + #29 MATERIALIZATION_ORDER + #2 ẨN THÂN + #28 SIRAWAT_COMMIT_CONVENTION; (2) đọc file này biết NHÓM 2+3+4 pending; (3) đọc THIEN_LON_SESSION_PENDING_ss20260429.phieu cross-check pending A2; (4) KHÔNG tự xử NHÓM 2-3-4; (5) MỌI commit forward áp Sirawat format 5 dòng lõi.
+==NEXT_FIRST_3_ACTIONS==
+DEFINITION: (1) Load 6 buoc BOOT_READING_ORDER trong bang_handoff_ss20260429.kris; (2) Soi git log --oneline -10 + git status verify state; (3) Hoi anh: anh muon tiep cong viec gi - Bang Pending Nhom 1 buoc 3/4 audit annotation, Nhom 2 anh chon binary, Nhom 3 owner ratify, hay Nhom 4 A2 ship?
 ==END==
