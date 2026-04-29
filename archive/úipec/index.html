@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>natt-os · Nauion</title>
+  <link rel="stylesheet" href="./styles.css"/>
+  <style>
+  #gx-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .nebula{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    radial-gradient(ellipse 80% 50% at 14% 18%,rgba(120,80,220,.13) 0%,transparent 55%),
+    radial-gradient(ellipse 65% 60% at 88% 78%,rgba(40,140,200,.10) 0%,transparent 50%),
+    radial-gradient(ellipse 100% 100% at 50% 50%,rgba(18,12,40,1) 0%,rgba(3,3,14,1) 100%)}
+  .l0-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(255,255,255,.013) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.013) 1px,transparent 1px);
+    background-size:44px 44px}
+  @keyframes scan{from{top:-4px}to{top:100vh}}
+  .l0-scan{position:fixed;left:0;right:0;height:4px;pointer-events:none;z-index:0;
+    background:linear-gradient(to bottom,transparent,rgba(196,188,255,.07),transparent);
+    animation:scan 9s linear infinite}
+
+  /* NAUION STATUS BAR */
+  .nauion-bar{position:fixed;bottom:0;left:0;right:0;height:32px;z-index:200;
+    background:rgba(8,8,22,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-top:1px solid rgba(255,255,255,.06);
+    display:flex;align-items:center;padding:0 16px;gap:14px;overflow:hidden}
+  .nb-chain{display:flex;align-items:center;gap:5px;flex:1;overflow:hidden}
+  .nb-sig{font-size:8px;font-weight:800;letter-spacing:.14em;padding:2px 8px;
+    border-radius:11px;animation:nb-in .22s ease-out;flex-shrink:0;transition:all .2s}
+  @keyframes nb-in{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:none}}
+  .nb-sig.whao  {background:rgba(168,223,255,.12);color:#A8DFFF;border:1px solid rgba(168,223,255,.30)}
+  .nb-sig.whao-r{background:rgba(255,112,112,.14);color:#FF9090;border:1px solid rgba(255,112,112,.38)}
+  .nb-sig.whao-y{background:rgba(255,208,154,.12);color:#FFD09A;border:1px solid rgba(255,208,154,.32)}
+  .nb-sig.whau  {background:rgba(127,255,204,.10);color:#7FFFCC;border:1px solid rgba(127,255,204,.30)}
+  .nb-sig.nauion{background:rgba(196,188,255,.16);color:#C4BCFF;border:1px solid rgba(196,188,255,.48);
+    box-shadow:0 0 10px rgba(196,188,255,.28)}
+  .nb-sig.lech  {background:rgba(255,112,112,.16);color:#FF7070;border:1px solid rgba(255,112,112,.48)}
+  .nb-sig.nahere{background:rgba(200,190,170,.07);color:rgba(200,190,170,.50);border:1px solid rgba(200,190,170,.14)}
+  .nb-arrow{color:rgba(196,188,255,.22);font-size:9px}
+  .nb-state{margin-left:auto;font-size:8px;font-weight:800;letter-spacing:.3em;flex-shrink:0}
+  .nb-state.ok  {color:rgba(196,188,255,.88);text-shadow:0 0 8px rgba(196,188,255,.45)}
+  .nb-state.warn{color:rgba(255,170,90,.88)}
+  .nb-state.crit{color:rgba(255,112,112,.92)}
+
+  /* NAsira */
+  .nasira-wrap{--sz:36px;--nc:#C4BCFF;--ng:rgba(196,188,255,.55);--nd:rgba(196,188,255,.30);
+    position:relative;width:var(--sz);height:var(--sz);flex-shrink:0}
+  .nasira-petals{position:absolute;inset:0;
+    filter:drop-shadow(0 0 calc(var(--sz)*.05) var(--ng))}
+  .petal{position:absolute;width:calc(var(--sz)*.212);height:calc(var(--sz)*.412);
+    top:calc(50% - var(--sz)*.412/2);left:calc(50% - var(--sz)*.212/2);
+    transform-origin:50% calc(100% + var(--sz)*.09);border-radius:50%;
+    background:
+      radial-gradient(ellipse 65% 45% at 50% 110%,rgba(196,188,255,.12) 0%,transparent 52%),
+      radial-gradient(ellipse 36% 26% at 30% 20%,rgba(255,255,255,.55) 0%,rgba(210,220,255,.16) 38%,transparent 68%),
+      radial-gradient(ellipse 52% 42% at 34% 28%,rgba(100,90,180,.26) 0%,transparent 58%),
+      radial-gradient(ellipse 78% 88% at 38% 32%,#1A1A30 0%,#0A0A1C 42%,#030308 100%);
+    box-shadow:calc(var(--sz)*.010) calc(var(--sz)*.022) calc(var(--sz)*.050) rgba(0,0,0,.88),
+      inset 0 calc(var(--sz)*.006) calc(var(--sz)*.014) rgba(180,180,255,.12);
+    border:1px solid rgba(120,110,170,.20)}
+  .p0{transform:rotate(  0deg) translateY(calc(var(--sz)*-.185))}
+  .p1{transform:rotate( 45deg) translateY(calc(var(--sz)*-.185))}
+  .p2{transform:rotate( 90deg) translateY(calc(var(--sz)*-.185))}
+  .p3{transform:rotate(135deg) translateY(calc(var(--sz)*-.185))}
+  .p4{transform:rotate(180deg) translateY(calc(var(--sz)*-.185))}
+  .p5{transform:rotate(225deg) translateY(calc(var(--sz)*-.185))}
+  .p6{transform:rotate(270deg) translateY(calc(var(--sz)*-.185))}
+  .p7{transform:rotate(315deg) translateY(calc(var(--sz)*-.185))}
+  .nasira-svg{position:absolute;inset:0;width:100%;height:100%}
+  @keyframes orb-cw {to{transform:rotate(360deg)}}
+  @keyframes orb-ccw{to{transform:rotate(-360deg)}}
+  @keyframes nuc-br {0%,100%{opacity:1}50%{opacity:.78}}
+  .og1{transform-origin:100px 100px;animation:orb-cw  26s linear infinite}
+  .og2{transform-origin:100px 100px;animation:orb-ccw 20s linear infinite}
+  .nuc-b{animation:nuc-br 2.8s ease-in-out infinite}
+  .nasira-nucleus{position:absolute;top:50%;left:50%;
+    width:calc(var(--sz)*.268);height:calc(var(--sz)*.268);
+    transform:translate(-50%,-50%);border-radius:50%;
+    background:
+      radial-gradient(ellipse 48% 38% at 30% 24%,rgba(255,255,255,.68) 0%,rgba(255,255,255,.26) 35%,transparent 65%),
+      radial-gradient(ellipse 90% 90% at 45% 40%,var(--nc) 0%,var(--nd) 55%,rgba(0,0,0,.50) 100%);
+    border:1px solid var(--nd);
+    box-shadow:0 0 calc(var(--sz)*.20) var(--ng),0 0 calc(var(--sz)*.10) var(--nd),
+      inset 0 calc(var(--sz)*.008) calc(var(--sz)*.020) rgba(255,255,255,.40),
+      inset 0 calc(var(--sz)*-.006) calc(var(--sz)*.018) rgba(0,0,0,.55);
+    animation:nuc-br 3s ease-in-out infinite}
+  .nasira-nucleus::after{content:'';position:absolute;top:14%;left:16%;
+    width:30%;height:20%;border-radius:50%;background:rgba(255,255,255,.75);
+    filter:blur(1.5px);transform:rotate(-18deg)}
+
+  /* Nauion state colors for Nasira */
+  .ns-nauion{--nc:#C4BCFF;--ng:rgba(196,188,255,.55);--nd:rgba(196,188,255,.30)}
+  .ns-whao  {--nc:#A8DFFF;--ng:rgba(168,223,255,.50);--nd:rgba(168,223,255,.28)}
+  .ns-whau  {--nc:#7FFFCC;--ng:rgba(127,255,204,.48);--nd:rgba(127,255,204,.26)}
+  .ns-lech  {--nc:#FF7070;--ng:rgba(255,112,112,.55);--nd:rgba(255,112,112,.30)}
+  .ns-warn  {--nc:#FFD09A;--ng:rgba(255,208,154,.50);--nd:rgba(255,208,154,.28)}
+
+  /* TÍN HIỆU entries */
+  .ts-entry{padding:6px 10px;margin-bottom:3px;border-radius:6px;
+    border-left:2px solid;animation:ev-in .25s ease-out;cursor:default}
+  @keyframes ev-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+  .ts-entry .ts-sig{font-size:10px;font-weight:800;letter-spacing:.1em;margin-right:5px}
+  .ts-entry .ts-viet{font-size:7.5px;color:var(--tx3);letter-spacing:.06em}
+  .ts-entry .ts-raw {font-size:7px;color:var(--tx3);margin-top:2px;letter-spacing:.03em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px}
+  .ts-whao  {border-left-color:rgba(168,223,255,.65);background:rgba(168,223,255,.06)}
+  .ts-whao  .ts-sig{color:#A8DFFF}
+  .ts-whao-r{border-left-color:rgba(255,112,112,.80);background:rgba(255,112,112,.08)}
+  .ts-whao-r .ts-sig{color:#FF9090}
+  .ts-whao-y{border-left-color:rgba(255,208,154,.70);background:rgba(255,208,154,.07)}
+  .ts-whao-y .ts-sig{color:#FFD09A}
+  .ts-whau  {border-left-color:rgba(127,255,204,.65);background:rgba(127,255,204,.06)}
+  .ts-whau  .ts-sig{color:#7FFFCC}
+  .ts-nauion{border-left-color:rgba(196,188,255,.80);background:rgba(196,188,255,.09);
+    box-shadow:0 0 8px rgba(196,188,255,.15)}
+  .ts-nauion .ts-sig{color:#C4BCFF}
+  .ts-nahere{border-left-color:rgba(200,190,170,.28);background:rgba(200,190,170,.03)}
+  .ts-nahere .ts-sig{color:rgba(200,190,170,.55)}
+  .ts-gay   {border-left-color:rgba(255,80,80,.90);background:rgba(255,80,80,.10)}
+  .ts-gay   .ts-sig{color:#FF5050}
+
+  /* DÒNG CHẢY nodes */
+  .dc-node{padding:9px 12px;border-radius:9px;font-size:9px;font-weight:600;
+    letter-spacing:.04em;animation:nd-in .32s cubic-bezier(.23,1,.32,1);
+    position:relative;overflow:hidden;transition:all .22s;margin-bottom:4px}
+  @keyframes nd-in{from{opacity:0;transform:scale(.95) translateY(-5px)}to{opacity:1;transform:none}}
+  .dc-node::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;
+    background:linear-gradient(90deg,transparent,currentColor,transparent);opacity:.3}
+  .dc-node .dn-sig  {font-size:11px;font-weight:800;margin-right:6px}
+  .dc-node .dn-event{font-size:7.5px;color:var(--tx2);margin-top:2px;letter-spacing:.03em}
+  .dc-node .dn-chain{font-size:7px;color:var(--tx3);margin-top:2px;font-style:italic;letter-spacing:.04em}
+  .dc-whao {background:rgba(168,223,255,.07);border:1px solid rgba(168,223,255,.22);color:#A8DFFF}
+  .dc-whao-r{background:rgba(255,112,112,.08);border:1px solid rgba(255,112,112,.28);color:#FF9090}
+  .dc-whao-y{background:rgba(255,208,154,.08);border:1px solid rgba(255,208,154,.26);color:#FFD09A}
+  .dc-nauion{background:rgba(196,188,255,.10);border:1px solid rgba(196,188,255,.40);color:#C4BCFF;
+    box-shadow:0 0 12px rgba(196,188,255,.18)}
+  .dc-gay   {background:rgba(255,80,80,.10);border:1px solid rgba(255,80,80,.40);color:#FF5050}
+
+  /* TRẠNG THÁI pattern cards */
+  .pt-card{padding:9px 11px;margin-bottom:5px;border-radius:8px;
+    background:rgba(196,188,255,.07);border:1px solid rgba(196,188,255,.18);transition:all .22s}
+  .pt-flow{font-size:9px;font-weight:800;color:var(--lav);letter-spacing:.07em;margin-bottom:4px}
+  .pt-row {display:flex;justify-content:space-between;font-size:7.5px;color:var(--tx2);
+    margin-bottom:2px;letter-spacing:.04em}
+  .pt-val {color:var(--tx1);font-weight:700}
+  .pt-bar-wrap{height:3px;background:rgba(196,188,255,.10);border-radius:2px;margin-top:5px;overflow:hidden}
+  .pt-bar{height:100%;border-radius:2px;transition:width .6s ease}
+  .pt-card.chuẩn{background:rgba(196,188,255,.12);border-color:rgba(196,188,255,.42)}
+  .pt-card.lệch {background:rgba(255,112,112,.07);border-color:rgba(255,112,112,.22)}
+  .pt-card.lệch .pt-flow{color:#FF9090}
+  .pt-card.gãy  {background:rgba(255,80,80,.08);border-color:rgba(255,80,80,.30)}
+  .pt-card.gãy .pt-flow{color:#FF6060}
+
+  /* Panel headers */
+  .ph{padding:12px 14px;border-bottom:1px solid var(--gl-bdr);flex-shrink:0;
+    display:flex;align-items:center;gap:9px}
+  .ph-title{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.35em}
+  .ph-sub  {font-size:7px;letter-spacing:.1em;color:var(--tx3);margin-top:1px;font-style:italic}
+
+  /* Butterfly FX */
+  @keyframes bf-whao  {0%,100%{box-shadow:none}40%{box-shadow:0 0 18px rgba(168,223,255,.55)}}
+  @keyframes bf-red   {0%,100%{box-shadow:none}40%{box-shadow:0 0 22px rgba(255,112,112,.70)}}
+  @keyframes bf-yel   {0%,100%{box-shadow:none}40%{box-shadow:0 0 20px rgba(255,208,154,.65)}}
+  @keyframes bf-nauion{0%,100%{box-shadow:none}40%{box-shadow:0 0 24px rgba(196,188,255,.72)}}
+  @keyframes bf-ripple{from{transform:scale(1)}50%{transform:scale(1.012)}to{transform:scale(1)}}
+  .bf-whao  {animation:bf-whao   .55s ease-in-out forwards!important}
+  .bf-red   {animation:bf-red    .55s ease-in-out forwards!important}
+  .bf-yel   {animation:bf-yel    .55s ease-in-out forwards!important}
+  .bf-nauion{animation:bf-nauion .60s ease-in-out forwards!important}
+  .bf-ripple{animation:bf-ripple .28s ease-out forwards!important}
+
+  .empty-state{display:flex;flex-direction:column;align-items:center;
+    justify-content:center;height:100%;color:var(--tx3);font-size:8.5px;
+    letter-spacing:.15em;gap:8px;text-align:center;line-height:2}
+  </style>
+</head>
+<body>
+<canvas id="gx-canvas"></canvas>
+<div class="nebula"></div>
+<div class="l0-grid"></div>
+<div class="l0-scan"></div>
+
+<!-- Nasira shared SVG defs -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+    <linearGradient id="np-og1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"  stop-color="rgba(196,188,255,0)"/>
+      <stop offset="28%" stop-color="rgba(196,188,255,.72)"/>
+      <stop offset="52%" stop-color="rgba(255,210,120,.60)"/>
+      <stop offset="78%" stop-color="rgba(127,255,204,.58)"/>
+      <stop offset="100%" stop-color="rgba(196,188,255,0)"/>
+    </linearGradient>
+    <linearGradient id="np-og2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"  stop-color="rgba(127,255,204,0)"/>
+      <stop offset="30%" stop-color="rgba(127,255,204,.58)"/>
+      <stop offset="60%" stop-color="rgba(255,175,195,.48)"/>
+      <stop offset="100%" stop-color="rgba(127,255,204,0)"/>
+    </linearGradient>
+    <filter id="np-go" x="-20%" y="-80%" width="140%" height="260%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="np-gh" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="np-halo-lav" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(196,188,255,.62)"/>
+      <stop offset="100%" stop-color="rgba(196,188,255,0)"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<div id="app">
+  <!-- L2 Header -->
+  <div id="hdr">
+    <div class="logo-wrap">
+      <div class="nasira-wrap ns-nauion" id="hdr-icon" style="--sz:38px">
+        <div class="nasira-petals">
+          <div class="petal p0"></div><div class="petal p1"></div>
+          <div class="petal p2"></div><div class="petal p3"></div>
+          <div class="petal p4"></div><div class="petal p5"></div>
+          <div class="petal p6"></div><div class="petal p7"></div>
+        </div>
+        <svg class="nasira-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="38" fill="url(#np-halo-lav)" filter="url(#np-gh)" class="nuc-b"/>
+          <g class="og1"><ellipse cx="100" cy="100" rx="56" ry="15" fill="none" stroke="url(#np-og1)" stroke-width="1.4" filter="url(#np-go)" transform="rotate(-28,100,100)" opacity=".92"/></g>
+          <g class="og2"><ellipse cx="100" cy="100" rx="56" ry="15" fill="none" stroke="url(#np-og2)" stroke-width="1.1" filter="url(#np-go)" transform="rotate(28,100,100)" opacity=".78"/></g>
+        </svg>
+        <div class="nasira-nucleus"></div>
+      </div>
+      <div>
+        <div class="logo-text">NATT·OS</div>
+        <div class="logo-sub" id="hdr-sub">HeyNa…</div>
+      </div>
+    </div>
+    <div class="sep"></div>
+    <div class="hchip"><div class="hdot pls" style="background:#7FFFCC;box-shadow:0 0 6px #7FFFCC"></div><span>38/38 WIRED</span></div>
+    <div class="hchip"><div class="hdot pls" style="background:#C4BCFF;box-shadow:0 0 6px #C4BCFF;animation-delay:.7s"></div><span id="chip-nauion">Nauion</span></div>
+    <div class="hchip"><div class="hdot pls" style="background:#A8DFFF;box-shadow:0 0 6px #A8DFFF;animation-delay:1.4s"></div><span>L4.5</span></div>
+    <div class="hr">
+      <span style="font-size:8px;color:var(--tx3);letter-spacing:.1em">390+ commits · 64cb88e</span>
+      <div class="hbadge badge-sys" id="hdr-state">Nahere</div>
+      <div class="hbadge badge-ok" id="hdr-nauion">nauion</div>
+    </div>
+  </div>
+
+  <div class="scene" style="padding-bottom:32px">
+
+    <!-- LEFT: TÍN HIỆU -->
+    <div class="left">
+      <div class="ph">
+        <div class="nasira-wrap ns-whao" style="--sz:20px">
+          <div class="nasira-petals"><div class="petal p0"></div><div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div><div class="petal p7"></div></div>
+          <div class="nasira-nucleus"></div>
+        </div>
+        <div><div class="ph-title" style="color:var(--ice)">Tín Hiệu</div><div class="ph-sub">whao · whau</div></div>
+        <span class="panel-cnt" id="ts-cnt" style="margin-left:auto">0</span>
+      </div>
+      <div id="audit-list" style="flex:1;overflow-y:auto;padding:6px">
+        <div class="empty-state">HeyNa<br>đang lắng nghe hệ…</div>
+      </div>
+    </div>
+
+    <!-- CENTER: DÒNG CHẢY -->
+    <div class="center">
+      <div class="ph">
+        <div class="nasira-wrap ns-whau" style="--sz:20px">
+          <div class="nasira-petals"><div class="petal p0"></div><div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div><div class="petal p7"></div></div>
+          <div class="nasira-nucleus"></div>
+        </div>
+        <div><div class="ph-title" style="color:var(--mint)">Dòng Chảy</div><div class="ph-sub">event → lan → biến</div></div>
+        <span class="panel-cnt" id="dc-cnt" style="margin-left:auto">0</span>
+      </div>
+      <div id="flow-view" style="flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:5px">
+        <div class="empty-state">Nahere<br>dòng chảy sẽ hiện đây…</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: TRẠNG THÁI -->
+    <div class="right">
+      <div class="ph">
+        <div class="nasira-wrap ns-nauion" style="--sz:20px">
+          <div class="nasira-petals"><div class="petal p0"></div><div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div><div class="petal p7"></div></div>
+          <div class="nasira-nucleus"></div>
+        </div>
+        <div><div class="ph-title" style="color:var(--lav)">Trạng Thái</div><div class="ph-sub">L4.5 · pattern · học</div></div>
+        <span class="panel-cnt" id="pt-cnt" style="margin-left:auto">0 pattern</span>
+      </div>
+      <div id="intel-summary" style="padding:6px 12px;border-bottom:1px solid var(--gl-bdr);display:flex;gap:5px;flex-wrap:wrap;flex-shrink:0"></div>
+      <div id="intelligence" style="flex:1;overflow-y:auto;padding:6px">
+        <div class="empty-state">whao<br>hệ đang học pattern…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NAUION STATUS BAR -->
+<div class="nauion-bar">
+  <div class="nb-chain" id="nb-chain">
+    <span class="nb-sig nahere">Nahere</span>
+  </div>
+  <div class="nb-state ok" id="nb-state">nauion</div>
+</div>
+
+<script>
+const gxc=document.getElementById('gx-canvas'),gx=gxc.getContext('2d');
+let stars=[],t=0;
+function rsz(){gxc.width=innerWidth;gxc.height=innerHeight;
+  stars=Array.from({length:Math.floor(innerWidth*innerHeight/3200)},()=>({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    r:Math.random()*1.3+.18,a:Math.random()*.72+.12,
+    hue:Math.random()<.12?(Math.random()<.5?220:38):0,sat:Math.random()<.12?75:0,
+    ph:Math.random()*Math.PI*2,sp:.4+Math.random()*.85}))}
+function draw(ts){gx.clearRect(0,0,gxc.width,gxc.height);const tt=ts*.001;
+  for(const s of stars){const a=s.a*(.68+.32*Math.sin(tt*s.sp+s.ph));
+    gx.beginPath();gx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    gx.fillStyle=s.sat>0?`hsla(${s.hue},${s.sat}%,90%,${a.toFixed(2)})`:`rgba(255,255,255,${a.toFixed(2)})`;
+    gx.fill()}requestAnimationFrame(draw)}
+window.addEventListener('resize',rsz);rsz();requestAnimationFrame(draw);
+</script>
+
+<!-- natt-os Payment Module v1.0 -->
+<script src="../src/ui-app/nattos-payment.js"></script>
+<script src="./resonance.protocol.js"></script>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

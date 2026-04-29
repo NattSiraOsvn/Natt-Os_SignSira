@@ -1,14 +1,19 @@
-import { KhaiCellService } from "../services";
-import type { KhaiCellEmitter, KhaiCellInput, KhaiCellOutput } from "../../ports";
+// Khai Cell Engine v0.1 — KHUNG XƯƠNG
+// @sirawat-from Kim
+// @ground-truth thienfs.json, ui-kernel-contract.sira
+// @status skeleton
+
+import { EventBus } from '../../../../core/events/event-bus';
 
 export class KhaiCellEngine {
-  private readonly service: KhaiCellService;
-
-  constructor(emitter: KhaiCellEmitter) {
-    this.service = new KhaiCellService(emitter);
-  }
-
-  run(input: KhaiCellInput): KhaiCellOutput {
-    return this.service.touch(input);
+  private cellId = 'khai-cell';
+  
+  start(): void {
+    EventBus.emit('cell.metric', {
+      cell_id: this.cellId,
+      metric: { status: 'active' },
+      causation_id: `${this.cellId}-${Date.now()}`,
+      timestamp: Date.now(),
+    });
   }
 }

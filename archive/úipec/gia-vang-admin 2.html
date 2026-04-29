@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>natt-os · Giá Vàng</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══ DESIGN TOKENS — SPEC-Nauion_main v2.1 ══ */
+:root {
+  --color-champagne:    #F7E7CE;
+  --color-peach:        #FFDAB9;
+  --color-ice-blue:     #E0FFFF;
+  --color-mint:         #E0FFE0;
+  --color-lavender:     #E6E6FA;
+  --color-rose:         #FFE4E1;
+  --color-burgundy:     #800020;
+  --color-silver:       #E8E8E8;
+  --color-deep-space:   #0A0A14;
+
+  --glow-champagne:     0 0 30px rgba(247,231,206,.7);
+  --glow-champagne-sm:  0 0 14px rgba(247,231,206,.45);
+  --glow-pastel:        0 0 20px rgba(255,235,200,.6);
+
+  --liquid-glass-blur:     18px;
+  --liquid-glass-saturate: 180%;
+  --liquid-glass-border:   1px solid rgba(255,255,255,.2);
+  --liquid-glass-shadow:   0 8px 32px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.1);
+
+  --z-truth: 1; --z-worker: 10; --z-experience: 50; --z-modal: 100; --z-security: 999;
+  --orbit-slow: 28s; --orbit-medium: 18s; --orbit-fast: 12s;
+  --specular-duration: 1.2s;
+
+  --tx0: #EEE8D8; --tx1: rgba(232,220,196,.8);
+  --tx2: rgba(200,185,150,.5); --tx3: rgba(180,165,120,.28);
+  --bdr: rgba(247,231,206,.12);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--color-deep-space);
+  color:var(--tx0);
+  font-family:'JetBrains Mono',monospace;
+  min-height:100vh;overflow-x:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px;
+}
+
+/* ── Truth Layer: grid ── */
+.l0-grid{position:fixed;inset:0;z-index:var(--z-truth);pointer-events:none;
+  background-image:
+    linear-gradient(rgba(247,231,206,.013) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(247,231,206,.013) 1px,transparent 1px);
+  background-size:44px 44px}
+
+/* ── Truth Layer: ambient ── */
+.l0-glow{position:fixed;inset:0;z-index:var(--z-truth);pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 45% at 18% 22%,rgba(247,231,206,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 45% 50% at 82% 78%,rgba(224,255,255,.04) 0%,transparent 60%)}
+
+/* ── Truth Layer: scan line ── */
+.l0-scan{position:fixed;left:0;right:0;height:2px;pointer-events:none;z-index:var(--z-truth);
+  background:linear-gradient(to bottom,transparent,rgba(247,231,206,.08),transparent);
+  animation:scan 18s linear infinite}
+@keyframes scan{0%{top:-2%}100%{top:102%}}
+
+/* ── Truth Layer: film grain ── */
+.l0-grain{position:fixed;inset:0;z-index:var(--z-truth);pointer-events:none;
+  opacity:.042;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── Worker Layer: particles ── */
+.particle{position:fixed;border-radius:50%;pointer-events:none;z-index:var(--z-worker);opacity:0;
+  animation:float-up var(--dur,8s) ease-in-out infinite var(--delay,0s)}
+@keyframes float-up{
+  0%{opacity:0;transform:translateY(0) scale(1)}
+  20%{opacity:.35}70%{opacity:.12}
+  100%{opacity:0;transform:translateY(-90px) scale(.2)}}
+
+/* ══ EXPERIENCE LAYER ══ */
+.wrap{position:relative;z-index:var(--z-experience);width:100%;max-width:500px}
+
+/* ── Header ── */
+.hdr{text-align:center;margin-bottom:30px}
+.hdr-tag{font-size:8px;font-weight:800;letter-spacing:.55em;color:var(--color-peach);
+  text-transform:uppercase;margin-bottom:10px;
+  text-shadow:0 0 12px rgba(255,218,185,.4)}
+.hdr-title{font-size:28px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  line-height:1;display:inline-block;position:relative}
+/* Chromatic aberration */
+.hdr-title::before,.hdr-title::after{content:attr(data-text);position:absolute;
+  top:0;left:0;width:100%;pointer-events:none}
+.hdr-title::before{color:rgba(255,80,80,.035);transform:translate(2px,2px)}
+.hdr-title::after {color:rgba(0,160,255,.035);transform:translate(-2px,-2px)}
+.hdr-title-txt{
+  background:linear-gradient(135deg,var(--color-champagne) 0%,#FFBF00 40%,#FFF5CC 70%,var(--color-champagne) 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:gold-sweep 5s linear infinite}
+@keyframes gold-sweep{0%{background-position:0% 0%}100%{background-position:200% 0%}}
+.hdr-sub{font-size:8px;color:var(--tx2);letter-spacing:.2em;margin-top:8px;text-transform:uppercase}
+
+/* Orbital rings around header */
+.orbital{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;opacity:.22}
+.r1{animation:orbit-cw var(--orbit-slow) linear infinite}
+.r2{animation:orbit-ccw var(--orbit-medium) linear infinite}
+.r3{animation:orbit-cw var(--orbit-fast) linear infinite}
+@keyframes orbit-cw {to{transform:rotate(360deg)}}
+@keyframes orbit-ccw{to{transform:rotate(-360deg)}}
+
+/* ── Liquid Glass Card — SPEC 2.1 ── */
+.card{
+  position:relative;overflow:hidden;border-radius:20px;
+  /* Liquid Glass formula */
+  backdrop-filter:blur(var(--liquid-glass-blur)) saturate(var(--liquid-glass-saturate));
+  -webkit-backdrop-filter:blur(var(--liquid-glass-blur)) saturate(var(--liquid-glass-saturate));
+  background:radial-gradient(
+    circle at var(--mouse-x,50%) var(--mouse-y,50%),
+    rgba(247,231,206,.12) 0%,
+    rgba(247,231,206,.02) 60%,
+    transparent 100%
+  );
+  border:var(--liquid-glass-border);
+  box-shadow:var(--liquid-glass-shadow);
+  padding:30px 34px;
+}
+
+/* Liquid Glass flow layer */
+.card-flow{position:absolute;inset:0;border-radius:20px;pointer-events:none;
+  background:conic-gradient(
+    from var(--flow-angle,0deg),
+    rgba(247,231,206,0) 0deg,
+    rgba(247,231,206,.08) 30deg,
+    rgba(247,231,206,0) 60deg);
+  mix-blend-mode:overlay;
+  animation:flow-rotate 10s linear infinite}
+@property --flow-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes flow-rotate{to{--flow-angle:360deg}}
+
+/* Caustics SVG filter */
+.card-caustics{position:absolute;inset:0;border-radius:20px;pointer-events:none;
+  opacity:.06;filter:url(#caustic-filter)}
+
+/* Fresnel rim */
+.card-rim{position:absolute;inset:0;border-radius:20px;pointer-events:none;
+  border:1px solid rgba(247,231,206,.06);filter:blur(.5px)}
+
+/* Specular sweep */
+.card::before{content:'';position:absolute;top:0;left:-200%;width:55%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(247,231,206,.06),transparent);
+  transform:skewX(-12deg);transition:left 1.2s ease;pointer-events:none;z-index:1}
+.card:hover::before{left:200%}
+
+/* ── Current bar ── */
+.current{
+  background:rgba(247,231,206,.04);
+  border:1px solid rgba(247,231,206,.1);
+  border-radius:11px;padding:14px 18px;
+  margin-bottom:26px;font-size:9px;letter-spacing:.06em;
+  color:var(--tx2);line-height:2.2;position:relative;z-index:2}
+.current .v{color:var(--color-champagne);font-weight:700;font-size:11px;
+  text-shadow:var(--glow-champagne-sm)}
+.current .upd{color:var(--tx3);font-size:8px;margin-top:3px}
+
+/* ── Fields ── */
+.fields{display:grid;gap:14px;margin-bottom:18px;position:relative;z-index:2}
+.field label{font-size:8px;font-weight:800;letter-spacing:.28em;color:var(--tx2);
+  text-transform:uppercase;display:block;margin-bottom:7px}
+.field input{
+  width:100%;
+  background:rgba(10,10,20,.5);
+  border:1px solid rgba(247,231,206,.12);
+  border-radius:9px;padding:13px 16px;
+  color:var(--tx0);font-family:inherit;
+  font-size:13px;font-weight:700;outline:none;
+  transition:border .15s,box-shadow .15s;
+  letter-spacing:.04em}
+.field input:focus{
+  border-color:rgba(247,231,206,.55);
+  box-shadow:var(--glow-champagne-sm)}
+.field input::placeholder{color:var(--tx3);font-weight:400}
+.hint{font-size:8px;color:var(--tx3);margin-top:5px;letter-spacing:.04em}
+
+/* ── Computed 18K — read only ── */
+.computed{
+  background:rgba(247,231,206,.05);
+  border:1px solid rgba(247,231,206,.15);
+  border-radius:9px;padding:13px 16px;
+  position:relative;overflow:hidden}
+.computed::after{content:'READ ONLY';position:absolute;right:14px;top:50%;
+  transform:translateY(-50%);font-size:7px;letter-spacing:.2em;
+  color:var(--tx3);font-weight:800}
+.computed .val{font-size:15px;font-weight:800;color:var(--color-champagne);
+  text-shadow:var(--glow-champagne-sm);letter-spacing:.04em}
+.computed .formula{font-size:8px;color:var(--tx3);margin-top:4px;letter-spacing:.04em}
+
+/* ── Divider ── */
+.div{border:none;border-top:1px solid rgba(247,231,206,.08);margin:18px 0;
+  position:relative;z-index:2}
+
+/* ── Button — Liquid Glass + Specular ── */
+.btn{
+  width:100%;padding:16px;
+  position:relative;overflow:hidden;cursor:pointer;border-radius:11px;
+  backdrop-filter:blur(8px);
+  background:radial-gradient(
+    circle at var(--btn-x,50%) var(--btn-y,50%),
+    rgba(247,231,206,.16) 0%,
+    rgba(247,231,206,.04) 70%,transparent 100%);
+  border:1px solid rgba(247,231,206,.42);
+  color:var(--color-champagne);font-family:inherit;
+  font-size:9px;font-weight:800;letter-spacing:.35em;text-transform:uppercase;
+  box-shadow:var(--glow-champagne-sm);transition:box-shadow .2s,transform .15s;
+  z-index:2}
+.btn::before{content:'';position:absolute;top:0;left:-200%;width:55%;height:100%;
+  background:linear-gradient(to right,transparent,rgba(247,231,206,.14),transparent);
+  transform:skewX(-12deg);transition:left var(--specular-duration) ease;z-index:1}
+.btn:hover{box-shadow:var(--glow-champagne);transform:translateY(-1px)}
+.btn:hover::before{left:200%}
+.btn:active{transform:translateY(0)}
+.btn span{position:relative;z-index:2}
+
+/* ── Status ── */
+.status{margin-top:14px;padding:13px 16px;border-radius:9px;
+  font-size:9px;font-weight:700;letter-spacing:.07em;
+  display:none;line-height:1.7;position:relative;z-index:2}
+.status.ok{
+  background:rgba(224,255,224,.06);
+  border:1px solid rgba(224,255,224,.3);
+  color:var(--color-mint);display:block}
+.status.err{
+  background:rgba(128,0,32,.07);
+  border:1px solid rgba(128,0,32,.4);
+  color:#FF9090;display:block}
+
+/* ── Conn dot ── */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;
+  margin-right:7px;vertical-align:middle;animation:pulse 2.2s ease-in-out infinite}
+.dot.ok {background:var(--color-mint);   box-shadow:0 0 7px var(--color-mint)}
+.dot.err{background:var(--color-burgundy);box-shadow:0 0 7px var(--color-burgundy);animation-duration:.7s}
+.dot.idle{background:var(--tx3);animation-duration:3s}
+
+/* ── Adaptive performance ── */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}}
+</style>
+
+<!-- Caustics SVG filter -->
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="caustic-filter">
+      <feTurbulence type="turbulence" baseFrequency="0.018 0.022" numOctaves="3" result="noise">
+        <animate attributeName="baseFrequency" values="0.018 0.022;0.022 0.018;0.018 0.022"
+          dur="8s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="12"/>
+    </filter>
+  </defs>
+</svg>
+</head>
+<body>
+
+<!-- Truth Layer (z:1) -->
+<div class="l0-grid"></div>
+<div class="l0-glow"></div>
+<div class="l0-scan"></div>
+<div class="l0-grain"></div>
+
+<!-- Worker Layer: particles (z:10) -->
+<div id="particles"></div>
+
+<!-- Experience Layer (z:50) -->
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="hdr-tag">NATT · OS &nbsp;·&nbsp; TRUTH LAYER &nbsp;·&nbsp; GATEKEEPER</div>
+    <div style="position:relative;display:inline-block;padding:0 32px">
+      <div class="orbital" style="width:280px;height:70px">
+        <svg viewBox="0 0 280 70" fill="none" style="position:absolute;inset:0;width:100%;height:100%">
+          <g class="r1"><ellipse cx="140" cy="35" rx="134" ry="28"
+            stroke="rgba(247,231,206,.55)" stroke-width=".5" stroke-dasharray="5 10"/></g>
+          <g class="r2"><ellipse cx="140" cy="35" rx="110" ry="20"
+            stroke="rgba(255,191,0,.3)" stroke-width=".4" stroke-dasharray="3 8"/></g>
+          <g class="r3"><ellipse cx="140" cy="35" rx="155" ry="34"
+            stroke="rgba(247,231,206,.15)" stroke-width=".3" stroke-dasharray="1 7"/></g>
+        </svg>
+      </div>
+      <div class="hdr-title" data-text="GIÁ VÀNG">
+        <span class="hdr-title-txt">GIÁ VÀNG</span>
+      </div>
+    </div>
+    <div class="hdr-sub">Cập nhật thủ công &nbsp;·&nbsp; Phát Nauion toàn hệ thống</div>
+  </div>
+
+  <div class="card" id="card">
+    <div class="card-flow"></div>
+    <div class="card-caustics"></div>
+    <div class="card-rim"></div>
+
+    <!-- Current price -->
+    <div class="current" id="current">
+      <span class="dot idle" id="dot"></span>Đang kết nối server...
+    </div>
+
+    <!-- Input fields -->
+    <div class="fields">
+      <div class="field">
+        <label>SJC — Giá Mua &nbsp;(VNĐ / chỉ)</label>
+        <input type="text" id="sjc_buy" placeholder="119,500,000" oninput="fmtInput(this)">
+      </div>
+      <div class="field">
+        <label>SJC — Giá Bán &nbsp;(VNĐ / chỉ)</label>
+        <input type="text" id="sjc_sell" placeholder="122,000,000" oninput="fmtInput(this)">
+      </div>
+      <div class="field">
+        <label>Vàng 9999 / 24K &nbsp;(VNĐ / chỉ)</label>
+        <input type="text" id="gold9999" placeholder="114,500,000"
+          oninput="fmtInput(this); updateGold18k()">
+        <div class="hint">Giá mua vào — gốc tính giá sản phẩm toàn hệ thống</div>
+      </div>
+      <div class="field">
+        <label>Vàng 18K &nbsp;(tự tính · không nhập)</label>
+        <div class="computed">
+          <div class="val" id="g18k_val">— nhập 9999 để tính</div>
+          <div class="formula" id="g18k_fm">= gold9999 × avgPuritySX%</div>
+        </div>
+        <div class="hint">Tính từ % phổ SX thực tế trong database · KHÔNG hardcode</div>
+      </div>
+    </div>
+
+    <hr class="div">
+
+    <button class="btn" id="btn" onclick="submitGia()">
+      <span>⬡ &nbsp; PHÁT NAUION — CẬP NHẬT GIÁ VÀNG</span>
+    </button>
+    <div class="status" id="status"></div>
+  </div>
+
+</div>
+
+<script>
+const SERVER = 'http://localhost:3001';
+let _purity = 75.44;
+
+// ── Adaptive performance (SPEC 8.3) ──
+const mem = navigator.deviceMemory || 4;
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Worker Layer: Particles ──
+if (!reduced) {
+  const wrap = document.getElementById('particles');
+  const n = mem < 4 ? 8 : mem < 8 ? 16 : 24;
+  const cols = ['rgba(247,231,206,.55)','rgba(255,191,0,.35)','rgba(255,245,180,.28)'];
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement('div');
+    d.className = 'particle';
+    const s = 1 + Math.random() * 2.2;
+    d.style.cssText = `width:${s}px;height:${s}px;background:${cols[i%3]};
+      left:${Math.random()*100}vw;top:${15+Math.random()*65}vh;
+      --dur:${5+Math.random()*9}s;--delay:${Math.random()*9}s`;
+    wrap.appendChild(d);
+  }
+}
+
+// ── Liquid Glass: mouse tracking ──
+const card = document.getElementById('card');
+document.addEventListener('mousemove', e => {
+  document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+  document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+  // Button local coords
+  const btn = document.getElementById('btn');
+  if (btn) {
+    const r = btn.getBoundingClientRect();
+    btn.style.setProperty('--btn-x', ((e.clientX - r.left) / r.width * 100) + '%');
+    btn.style.setProperty('--btn-y', ((e.clientY - r.top) / r.height * 100) + '%');
+  }
+});
+
+// ── Format số — dấu phẩy ngăn cách hàng nghìn ──
+function fmt(v) {
+  return v ? Number(v).toLocaleString('vi-VN') + ' đ' : '—';
+}
+function fmtInput(el) {
+  const raw = el.value.replace(/\D/g, '');
+  el.dataset.raw = raw;
+  el.value = raw ? Number(raw).toLocaleString('vi-VN') : '';
+}
+function getRaw(id) {
+  const el = document.getElementById(id);
+  return parseFloat(el.dataset.raw || el.value.replace(/\D/g,'')) || 0;
+}
+
+// ── Tính 18K từ phổ SX thực tế ──
+function updateGold18k() {
+  const g = getRaw('gold9999');
+  const vEl = document.getElementById('g18k_val');
+  const fEl = document.getElementById('g18k_fm');
+  if (!g) { vEl.textContent = '— nhập 9999 để tính'; return; }
+  const v18 = Math.round(g * (_purity / 100));
+  vEl.textContent = v18.toLocaleString('vi-VN') + ' đ / chỉ';
+  fEl.textContent = `= ${g.toLocaleString('vi-VN')} × ${_purity}% (phổ SX thực tế)`;
+}
+
+// ── Load current prices ──
+async function loadCurrent() {
+  const dot = document.getElementById('dot');
+  const bar = document.getElementById('current');
+  try {
+    const r = await fetch(`${SERVER}/kenh/gia-vang`);
+    const d = await r.json();
+    _purity = d.avgPuritySX || 75.44;
+    dot.className = 'dot ok';
+    bar.innerHTML = `<span class="dot ok"></span>
+      SJC Mua <span class="v">${fmt(d.sjc_buy)}</span> &nbsp;·&nbsp;
+      Bán <span class="v">${fmt(d.sjc_sell)}</span> &nbsp;·&nbsp;
+      9999 <span class="v">${fmt(d.gold9999)}</span> &nbsp;·&nbsp;
+      18K <span class="v">${fmt(d.gold18k)}</span>
+      ${d.updatedAt ? `<div class="upd">Cập nhật: ${new Date(d.updatedAt).toLocaleString('vi-VN')}</div>` : ''}`;
+    const fill = (id, v) => {
+      if (!v) return;
+      const el = document.getElementById(id);
+      el.value = Number(v).toLocaleString('vi-VN');
+      el.dataset.raw = v;
+    };
+    fill('sjc_buy', d.sjc_buy);
+    fill('sjc_sell', d.sjc_sell);
+    fill('gold9999', d.gold9999);
+    updateGold18k();
+  } catch {
+    dot.className = 'dot err';
+    bar.innerHTML = '<span class="dot err"></span>Không kết nối được :3001';
+  }
+}
+
+// ── Submit ──
+async function submitGia() {
+  const sjc_buy  = getRaw('sjc_buy');
+  const sjc_sell = getRaw('sjc_sell');
+  const gold9999 = getRaw('gold9999');
+  const st = document.getElementById('status');
+
+  if (!sjc_buy || !sjc_sell || !gold9999) {
+    st.className = 'status err';
+    st.textContent = '⚠  Nhập đủ 3 giá trước khi phát Nauion';
+    return;
+  }
+  try {
+    const r = await fetch(`${SERVER}/phat/gia-vang`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sjc_buy, sjc_sell, gold9999 })
+    });
+    const d = await r.json();
+    st.className = 'status ok';
+    st.innerHTML = `✅ Nauion đã phát &nbsp;·&nbsp; 18K = ${d.gold18k?.toLocaleString('vi-VN')} đ / chỉ`;
+    loadCurrent();
+  } catch {
+    st.className = 'status err';
+    st.textContent = '❌ Lỗi kết nối server';
+  }
+}
+
+// ── Mạch HeyNa SSE — không setInterval ──
+(function startMach() {
+  const m = new EventSource(`${SERVER}/mach/heyna`);
+  m.onmessage = e => {
+    try {
+      const d = JSON.parse(e.data);
+      if (d.event === 'gia-vang.updated') loadCurrent();
+    } catch {}
+  };
+  m.onerror = () => { m.close(); setTimeout(startMach, 3000); };
+})();
+
+loadCurrent();
+</script>
+</body>
+</html>

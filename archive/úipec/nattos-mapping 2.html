@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>natt-os · Cell Mapping · Butterfly Effect</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #04040F;
+  /* Pastel palette — chủ đạo */
+  --mint:       #7FFFCC;  --mint-dim:  rgba(127,255,204,.14); --mint-ring:  rgba(127,255,204,.45);
+  --ice:        #A8DFFF;  --ice-dim:   rgba(168,223,255,.12); --ice-ring:   rgba(168,223,255,.40);
+  --lav:        #C4BCFF;  --lav-dim:   rgba(196,188,255,.15); --lav-ring:   rgba(196,188,255,.55);
+  --rose:       #FFB0CC;  --rose-dim:  rgba(255,176,204,.10); --rose-ring:  rgba(255,176,204,.38);
+  --peach:      #FFD09A;  --peach-dim: rgba(255,208,154,.10); --peach-ring: rgba(255,208,154,.35);
+  --gold:       #F5DCA8;
+  /* Text — HIGH contrast pastel-on-dark */
+  --tx0:  #EEE8D8;          /* abbr, label chính — gần trắng warm */
+  --tx1:  rgba(232,220,196,.85); /* tên cell */
+  --tx2:  rgba(200,190,170,.60); /* sub label */
+  --tx3:  rgba(180,170,150,.35); /* muted */
+  /* Glass (L2 only) */
+  --gl-bg:  rgba(8,8,22,.78);
+  --gl-blur: blur(28px) saturate(170%);
+  --gl-bdr: rgba(255,255,255,.07);
+  /* Chromatic */
+  --opt: #C4BCFF; --nom: #7FFFCC; --stb: #6CB4FF;
+  --dft: #90D890; --wrn: #FFAA5A; --crt: #FF7070;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx0);font-family:'JetBrains Mono',monospace;
+  height:100vh;overflow:hidden}
+
+/* ── L0 Background ── */
+.l0{position:fixed;inset:0;pointer-events:none;z-index:0}
+.l0::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 70% 50% at 15% 20%, rgba(196,188,255,.12) 0%,transparent 55%),
+  radial-gradient(ellipse 60% 60% at 85% 80%, rgba(127,255,204,.08) 0%,transparent 55%),
+  radial-gradient(ellipse 50% 40% at 50% 50%, rgba(168,223,255,.06) 0%,transparent 60%)}
+.l0-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
+  background-size:44px 44px}
+@keyframes scan{from{top:-4px}to{top:100vh}}
+.l0-scan{position:fixed;left:0;right:0;height:4px;pointer-events:none;z-index:0;
+  background:linear-gradient(to bottom,transparent,rgba(196,188,255,.08),transparent);
+  animation:scan 9s linear infinite}
+
+/* ── L2 Header glass ── */
+.hdr{position:fixed;top:0;left:0;right:0;height:52px;z-index:100;
+  background:var(--gl-bg);backdrop-filter:var(--gl-blur);-webkit-backdrop-filter:var(--gl-blur);
+  border-bottom:1px solid var(--gl-bdr);
+  display:flex;align-items:center;padding:0 20px;gap:18px}
+.hdr-logo{font-size:12px;font-weight:800;letter-spacing:.45em;color:var(--lav);
+  text-shadow:0 0 18px rgba(196,188,255,.5)}
+.hdr-sep{width:1px;height:20px;background:var(--gl-bdr)}
+.hdr-chip{display:flex;align-items:center;gap:5px;font-size:9px;
+  color:var(--tx1);letter-spacing:.1em;font-weight:500}
+.hdr-dot{width:6px;height:6px;border-radius:50%}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.7)}}
+.pls{animation:pulse 2.2s ease-in-out infinite}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.badge{font-size:9px;font-weight:800;letter-spacing:.18em;padding:4px 12px;
+  border-radius:20px;background:rgba(196,188,255,.12);
+  border:1px solid rgba(196,188,255,.4);color:var(--lav)}
+.badge.healthy{background:rgba(127,255,204,.10);border-color:rgba(127,255,204,.4);color:var(--mint)}
+
+/* ── Layout ── */
+.layout{position:fixed;top:52px;bottom:0;left:0;right:0;display:flex;z-index:1}
+
+/* ── L2 Sidebar ── */
+.sb{width:196px;flex-shrink:0;background:var(--gl-bg);
+  backdrop-filter:var(--gl-blur);-webkit-backdrop-filter:var(--gl-blur);
+  border-right:1px solid var(--gl-bdr);overflow-y:auto;padding:12px 0}
+.sb::-webkit-scrollbar{width:2px}
+.sb::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+.sb-lbl{font-size:8px;font-weight:800;letter-spacing:.38em;color:var(--tx3);
+  text-transform:uppercase;padding:5px 16px 4px;display:block}
+.sb-item{padding:6px 16px;font-size:10px;font-weight:500;color:var(--tx2);cursor:pointer;
+  transition:all .15s;display:flex;align-items:center;gap:8px;letter-spacing:.04em;
+  border-left:2px solid transparent}
+.sb-item:hover{color:var(--tx1);background:rgba(255,255,255,.03)}
+.sb-item.active{color:var(--lav);border-left-color:var(--lav);background:rgba(196,188,255,.08)}
+.sb-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sb-div{border:none;border-top:1px solid var(--gl-bdr);margin:8px 0}
+.sb-info{font-size:8px;color:var(--tx3);padding:2px 16px;letter-spacing:.03em;line-height:1.8}
+.sb-info.ok{color:rgba(127,255,204,.7);font-weight:600}
+.sb-info.hold{color:rgba(255,170,90,.55)}
+
+/* ── L1 Content — STRICTLY NO GLASS ── */
+.main{flex:1;overflow-y:auto;padding:16px 14px;position:relative}
+.main::-webkit-scrollbar{width:3px}
+.main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07)}
+
+/* Section header */
+.sec{margin-bottom:20px}
+.sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,.06)}
+.sec-title{font-size:9px;font-weight:800;letter-spacing:.38em;text-transform:uppercase}
+.sec-badge{font-size:7px;font-weight:600;padding:2px 8px;border-radius:10px;letter-spacing:.07em}
+.sec-note{margin-left:auto;font-size:7px;color:var(--tx3);letter-spacing:.04em}
+
+/* ── CELL CARD — pastel phồng căng ── */
+/* Mỗi group có pastel tint riêng + gradient tạo depth */
+.cell-card{
+  flex-shrink:0;width:88px;border-radius:10px;padding:10px 8px 8px;
+  cursor:pointer;transition:transform .22s cubic-bezier(.23,1,.32,1), box-shadow .22s ease;
+  text-align:center;position:relative;overflow:hidden;user-select:none;
+  /* Phồng căng: gradient top highlight → depth */
+}
+/* Top highlight line — tạo cảm giác 3D phồng */
+.cell-card::before{
+  content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
+  border-radius:0 0 50% 50%;
+}
+/* Inner glow bottom — depth shadow bên trong */
+.cell-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:40%;
+  border-radius:0 0 10px 10px;pointer-events:none;
+}
+.cell-card:hover{transform:translateY(-3px) scale(1.04)}
+.cell-card:active{transform:translateY(0) scale(.98)}
+
+/* Group Kernel — Lavender */
+.gk{
+  background:linear-gradient(160deg, rgba(196,188,255,.20) 0%, rgba(196,188,255,.10) 60%, rgba(140,132,220,.07) 100%);
+  border:1px solid rgba(196,188,255,.40);
+  box-shadow:0 2px 14px rgba(196,188,255,.12), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.gk::before{background:rgba(220,216,255,.55)}
+.gk::after{background:linear-gradient(to top,rgba(100,90,200,.12),transparent)}
+.gk:hover{box-shadow:0 6px 24px rgba(196,188,255,.28), inset 0 1px 0 rgba(255,255,255,.18), 0 0 0 1px rgba(196,188,255,.55)}
+
+/* Group Production — Mint */
+.gp{
+  background:linear-gradient(160deg, rgba(127,255,204,.18) 0%, rgba(127,255,204,.09) 60%, rgba(60,200,160,.06) 100%);
+  border:1px solid rgba(127,255,204,.38);
+  box-shadow:0 2px 14px rgba(127,255,204,.10), inset 0 1px 0 rgba(255,255,255,.10);
+}
+.gp::before{background:rgba(200,255,240,.50)}
+.gp::after{background:linear-gradient(to top,rgba(40,160,120,.10),transparent)}
+.gp:hover{box-shadow:0 6px 24px rgba(127,255,204,.26), inset 0 1px 0 rgba(255,255,255,.16), 0 0 0 1px rgba(127,255,204,.52)}
+
+/* Group BCTC — Ice */
+.gb{
+  background:linear-gradient(160deg, rgba(168,223,255,.16) 0%, rgba(168,223,255,.08) 60%, rgba(100,170,240,.05) 100%);
+  border:1px solid rgba(168,223,255,.36);
+  box-shadow:0 2px 14px rgba(168,223,255,.09), inset 0 1px 0 rgba(255,255,255,.09);
+}
+.gb::before{background:rgba(210,240,255,.48)}
+.gb::after{background:linear-gradient(to top,rgba(60,130,210,.09),transparent)}
+.gb:hover{box-shadow:0 6px 24px rgba(168,223,255,.24), inset 0 1px 0 rgba(255,255,255,.14), 0 0 0 1px rgba(168,223,255,.50)}
+
+/* Group Support — Peach */
+.gs{
+  background:linear-gradient(160deg, rgba(255,208,154,.14) 0%, rgba(255,208,154,.07) 60%, rgba(220,160,80,.05) 100%);
+  border:1px solid rgba(255,208,154,.30);
+  box-shadow:0 2px 14px rgba(255,208,154,.08), inset 0 1px 0 rgba(255,255,255,.09);
+}
+.gs::before{background:rgba(255,235,200,.45)}
+.gs::after{background:linear-gradient(to top,rgba(180,110,30,.08),transparent)}
+.gs:hover{box-shadow:0 6px 24px rgba(255,208,154,.22), inset 0 1px 0 rgba(255,255,255,.14), 0 0 0 1px rgba(255,208,154,.44)}
+
+/* Card internals */
+.c-abbr{
+  font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--tx0);margin-bottom:3px;
+  text-shadow:0 1px 6px rgba(0,0,0,.4)
+}
+.c-name{
+  font-size:7.5px;font-weight:500;letter-spacing:.04em;color:var(--tx1);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px
+}
+.c-state{width:100%;height:3px;border-radius:2px;position:relative;overflow:hidden}
+.c-state-fill{position:absolute;inset:0;border-radius:2px}
+.c-dot{width:6px;height:6px;border-radius:50%;position:absolute;top:7px;right:7px;
+  box-shadow:0 0 6px currentColor}
+
+/* Selected */
+.cell-card.selected{transform:translateY(-3px) scale(1.05) !important}
+.selected.gk{box-shadow:0 8px 32px rgba(196,188,255,.45),inset 0 1px 0 rgba(255,255,255,.22),0 0 0 2px rgba(196,188,255,.8)!important;border-color:rgba(196,188,255,.9)!important}
+.selected.gp{box-shadow:0 8px 32px rgba(127,255,204,.42),inset 0 1px 0 rgba(255,255,255,.22),0 0 0 2px rgba(127,255,204,.8)!important;border-color:rgba(127,255,204,.9)!important}
+.selected.gb{box-shadow:0 8px 32px rgba(168,223,255,.40),inset 0 1px 0 rgba(255,255,255,.20),0 0 0 2px rgba(168,223,255,.8)!important;border-color:rgba(168,223,255,.9)!important}
+.selected.gs{box-shadow:0 8px 32px rgba(255,208,154,.36),inset 0 1px 0 rgba(255,255,255,.20),0 0 0 2px rgba(255,208,154,.75)!important;border-color:rgba(255,208,154,.9)!important}
+
+/* Butterfly animations */
+@keyframes bf0{
+  0%{transform:scale(1)}
+  20%{transform:scale(1.08) translateY(-4px)}
+  100%{transform:scale(1)}
+}
+@keyframes bf1{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.06) translateY(-3px)}
+  100%{transform:scale(1)}
+}
+@keyframes bf2{
+  0%{transform:scale(1)}
+  30%{transform:scale(1.04) translateY(-2px)}
+  100%{transform:scale(1)}
+}
+@keyframes bf3{
+  0%{transform:scale(1)}
+  35%{transform:scale(1.02) translateY(-1px)}
+  100%{transform:scale(1)}
+}
+.bh0{animation:bf0 .65s cubic-bezier(.23,1,.32,1) forwards}
+.bh1{animation:bf1 .60s cubic-bezier(.23,1,.32,1) forwards}
+.bh2{animation:bf2 .55s cubic-bezier(.23,1,.32,1) forwards}
+.bh3{animation:bf3 .50s cubic-bezier(.23,1,.32,1) forwards}
+
+/* Glow flash overlay per hop */
+@keyframes gl0{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+.cell-card .glow-flash{position:absolute;inset:0;border-radius:10px;pointer-events:none;opacity:0}
+.bh0 .glow-flash{background:rgba(196,188,255,.22);animation:gl0 .65s ease-out forwards}
+.bh1 .glow-flash{background:rgba(127,255,204,.18);animation:gl0 .60s ease-out forwards}
+.bh2 .glow-flash{background:rgba(168,223,255,.15);animation:gl0 .55s ease-out forwards}
+.bh3 .glow-flash{background:rgba(255,208,154,.14);animation:gl0 .50s ease-out forwards}
+
+/* Chains */
+.chain{display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;gap:0}
+.chain::-webkit-scrollbar{height:2px}
+.chain::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07)}
+.ch-arr{flex-shrink:0;width:22px;text-align:center;color:var(--tx3);font-size:10px;font-weight:700}
+
+/* Kernel row */
+.kern-row{display:flex;gap:7px;flex-wrap:wrap}
+.kern-row .cell-card{flex:1;min-width:80px;width:auto}
+
+/* Support grid */
+.sup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:7px}
+
+/* ── L2 Event Panel ── */
+.ep{width:262px;flex-shrink:0;background:var(--gl-bg);
+  backdrop-filter:var(--gl-blur);-webkit-backdrop-filter:var(--gl-blur);
+  border-left:1px solid var(--gl-bdr);display:flex;flex-direction:column}
+.ep-hdr{padding:12px 14px;border-bottom:1px solid var(--gl-bdr);
+  display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ep-ttl{font-size:9px;font-weight:800;letter-spacing:.3em;color:var(--tx3);text-transform:uppercase}
+.ep-cnt{margin-left:auto;font-size:8px;color:var(--tx2);font-weight:600;letter-spacing:.05em}
+.ev-log{flex:1;overflow-y:auto;padding:8px}
+.ev-log::-webkit-scrollbar{width:2px}
+.ev-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08)}
+.ev-empty{height:100%;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;color:var(--tx3);font-size:9px;text-align:center;gap:10px;
+  letter-spacing:.08em;line-height:1.8}
+.ev-icon{font-size:24px;opacity:.25}
+
+/* Event entries — pastel per hop */
+.ev{border-radius:6px;padding:6px 9px;margin-bottom:4px;
+  border-left:2px solid;animation:evIn .28s ease-out;cursor:default;
+  transition:background .15s}
+@keyframes evIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
+.ev0{border-left-color:rgba(196,188,255,.9);background:rgba(196,188,255,.09)}
+.ev1{border-left-color:rgba(127,255,204,.75);background:rgba(127,255,204,.07)}
+.ev2{border-left-color:rgba(168,223,255,.65);background:rgba(168,223,255,.06)}
+.ev3{border-left-color:rgba(255,208,154,.55);background:rgba(255,208,154,.05)}
+.ev-ts{font-size:7px;color:var(--tx3);margin-right:4px}
+.ev-type{font-size:9px;font-weight:700;letter-spacing:.04em}
+.ev0 .ev-type{color:var(--lav)}
+.ev1 .ev-type{color:var(--mint)}
+.ev2 .ev-type{color:var(--ice)}
+.ev3 .ev-type{color:var(--peach)}
+.ev-from{font-size:7px;color:var(--tx3);margin-top:1px;letter-spacing:.03em}
+
+/* Cell detail panel */
+.cd{padding:12px 14px;border-top:1px solid var(--gl-bdr);flex-shrink:0}
+.cd-nm{font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--tx0);
+  padding-bottom:6px;margin-bottom:7px;border-bottom:1px solid var(--gl-bdr)}
+.cd-row{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:8px;color:var(--tx2);margin-bottom:4px;letter-spacing:.04em}
+.cd-val{color:var(--tx1);font-weight:700;font-size:8.5px}
+.cd-evs{margin-top:7px;display:flex;flex-wrap:wrap;gap:3px}
+.ev-chip{font-size:7px;padding:2px 6px;border-radius:4px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  color:var(--tx2);letter-spacing:.03em;font-weight:500}
+
+/* Ripple */
+.rh{position:fixed;inset:0;pointer-events:none;z-index:9999}
+.rr{position:absolute;border-radius:50%;pointer-events:none;
+  transform:translate(-50%,-50%) scale(0);
+  animation:rr-out 1s ease-out forwards}
+.rr.r0{border:1.5px solid rgba(196,188,255,.7);animation-duration:1.2s}
+.rr.r1{border:1px solid rgba(196,188,255,.35);animation-duration:1.5s;animation-delay:.1s}
+@keyframes rr-out{to{transform:translate(-50%,-50%) scale(30);opacity:0}}
+
+/* Section title colors */
+.ttl-k{color:var(--lav)} .ttl-p{color:var(--mint)} .ttl-b{color:var(--ice)} .ttl-s{color:var(--peach)}
+.bdg-k{background:rgba(196,188,255,.12);border:1px solid rgba(196,188,255,.3);color:var(--lav)}
+.bdg-p{background:rgba(127,255,204,.10);border:1px solid rgba(127,255,204,.3);color:var(--mint)}
+.bdg-b{background:rgba(168,223,255,.10);border:1px solid rgba(168,223,255,.28);color:var(--ice)}
+.bdg-s{background:rgba(255,208,154,.10);border:1px solid rgba(255,208,154,.25);color:var(--peach)}
+</style>
+</head>
+<body>
+
+<div class="l0"></div>
+<div class="l0-grid"></div>
+<div class="l0-scan"></div>
+
+<!-- L2 Header -->
+<header class="hdr">
+  <div class="hdr-logo">NATT·OS</div>
+  <div class="hdr-sep"></div>
+  <div class="hdr-chip"><div class="hdr-dot pls" style="background:var(--mint);box-shadow:0 0 6px var(--mint)"></div>38/38 WIRED</div>
+  <div class="hdr-chip"><div class="hdr-dot pls" style="background:var(--lav);box-shadow:0 0 6px var(--lav);animation-delay:.7s"></div>TSC 0</div>
+  <div class="hdr-chip"><div class="hdr-dot pls" style="background:var(--ice);box-shadow:0 0 6px var(--ice);animation-delay:1.4s"></div>L4 LIVE</div>
+  <div class="hdr-r">
+    <span id="hdr-git" style="font-size:8px;color:var(--tx3);letter-spacing:.1em">— · —</span>
+    <div class="badge">SYSTEM · HEALTHY</div>
+    <div class="badge healthy">● risk 0/100</div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- L2 Sidebar -->
+  <nav class="sb">
+    <div style="padding-bottom:6px">
+      <span class="sb-lbl">Cell Groups</span>
+      <div class="sb-item active" onclick="filterGrp('all',this)"><span class="sb-dot" style="background:var(--lav)"></span>All Cells (44)</div>
+      <div class="sb-item" onclick="filterGrp('kernel',this)"><span class="sb-dot" style="background:var(--lav)"></span>Kernel (6)</div>
+      <div class="sb-item" onclick="filterGrp('production',this)"><span class="sb-dot" style="background:var(--mint)"></span>Production (8)</div>
+      <div class="sb-item" onclick="filterGrp('bctc',this)"><span class="sb-dot" style="background:var(--ice)"></span>BCTC Flow (8)</div>
+      <div class="sb-item" onclick="filterGrp('support',this)"><span class="sb-dot" style="background:var(--peach)"></span>Support (22)</div>
+    </div>
+    <div class="sb-div"></div>
+    <div style="padding-bottom:6px">
+      <span class="sb-lbl">Chromatic State</span>
+      <div class="sb-item" style="cursor:default"><span class="sb-dot" style="background:var(--opt)"></span><span style="color:var(--lav);font-weight:700">optimal</span> — TÍM</div>
+      <div class="sb-item" style="cursor:default"><span class="sb-dot" style="background:var(--nom)"></span><span style="color:var(--mint);font-weight:700">nominal</span> — LỤC-LAM</div>
+      <div class="sb-item" style="cursor:default"><span class="sb-dot" style="background:var(--stb)"></span><span style="color:var(--ice);font-weight:700">stable</span> — CHÀM</div>
+      <div class="sb-item" style="cursor:default"><span class="sb-dot" style="background:var(--dft)"></span><span style="color:var(--peach);font-weight:700">drift</span> — CAM</div>
+      <div class="sb-item" style="cursor:default"><span class="sb-dot" style="background:var(--wrn)"></span><span style="color:var(--rose);font-weight:700">warning</span> — ĐỎ CAM</div>
+    </div>
+    <div class="sb-div"></div>
+    <div style="padding-bottom:6px">
+      <span class="sb-lbl">Intelligence</span>
+      <div class="sb-info ok">L1 Awareness ✓</div>
+      <div class="sb-info ok">L2 Self-Healing ✓</div>
+      <div class="sb-info ok">L3 Typed Overlay ✓</div>
+      <div class="sb-info ok">L4 Learning ✓</div>
+      <div class="sb-info hold">Local AI — HOLD</div>
+      <div class="sb-info hold">BCTC — HOLD</div>
+    </div>
+    <div class="sb-div"></div>
+    <div style="padding-bottom:6px">
+      <span class="sb-lbl">SCARs</span>
+      <div class="sb-info">FS-028 grep first</div>
+      <div class="sb-info">FS-032 _emit shadow</div>
+      <div class="sb-info">FS-033 registry rule</div>
+      <div class="sb-info">NO_FAKE_SUBSCRIBER</div>
+    </div>
+    <div class="sb-div"></div>
+    <div style="padding-bottom:6px">
+      <span class="sb-lbl">Organism</span>
+      <div class="sb-info">Gatekeeper = ý thức</div>
+      <div class="sb-info">Cell = cơ quan</div>
+      <div class="sb-info">EventBus = thần kinh</div>
+      <div class="sb-info">Audit = ký ức</div>
+      <div class="sb-info">QD = phản xạ</div>
+    </div>
+  </nav>
+
+  <!-- L1 Content — NO GLASS -->
+  <main class="main" id="main">
+
+    <div class="sec" id="sec-kernel">
+      <div class="sec-hdr">
+        <span class="sec-title ttl-k">◈ Kernel Cells</span>
+        <span class="sec-badge bdg-k">6/6 · PORT✓ · MF✓</span>
+      </div>
+      <div class="kern-row" id="kern-row"></div>
+    </div>
+
+    <div class="sec" id="sec-production">
+      <div class="sec-hdr">
+        <span class="sec-title ttl-p">⟶ Production Flow</span>
+        <span class="sec-badge bdg-p">8/8 · SmartLink✓</span>
+        <span class="sec-note">design-3d → casting → stone → polishing → warehouse</span>
+      </div>
+      <div class="chain" id="prod-chain"></div>
+    </div>
+
+    <div class="sec" id="sec-bctc">
+      <div class="sec-hdr">
+        <span class="sec-title ttl-b">⟶ BCTC Flow</span>
+        <span class="sec-badge bdg-b">8/8 · SmartLink✓</span>
+        <span class="sec-note">sales → order → finance → tax → customs</span>
+      </div>
+      <div class="chain" id="bctc-chain"></div>
+    </div>
+
+    <div class="sec" id="sec-support">
+      <div class="sec-hdr">
+        <span class="sec-title ttl-s">◯ Support Cells</span>
+        <span class="sec-badge bdg-s">22/22 · SmartLink✓</span>
+      </div>
+      <div class="sup-grid" id="sup-grid"></div>
+    </div>
+
+  </main>
+
+  <!-- L2 Event Panel -->
+  <aside class="ep">
+    <div class="ep-hdr">
+      <span class="ep-ttl">🦋 Butterfly · EventBus</span>
+      <span class="ep-cnt" id="ep-cnt">0 events</span>
+    </div>
+    <div class="ev-log" id="ev-log">
+      <div class="ev-empty" id="ev-empty">
+        <div class="ev-icon">🦋</div>
+        <div>Click any cell<br>to trigger cascade</div>
+        <div style="font-size:7px;color:var(--tx3);margin-top:4px">
+          1 event → ripple across<br>toàn bộ organism
+        </div>
+      </div>
+    </div>
+    <div class="cd" id="cd" style="display:none">
+      <div class="cd-nm" id="cd-nm">—</div>
+      <div class="cd-row"><span>Group</span><span class="cd-val" id="cd-grp">—</span></div>
+      <div class="cd-row"><span>State</span><span class="cd-val" id="cd-st">—</span></div>
+      <div class="cd-row"><span>Cascades to</span><span class="cd-val" id="cd-conn">—</span></div>
+      <div class="cd-evs" id="cd-evs"></div>
+    </div>
+  </aside>
+</div>
+
+<div class="rh" id="rh"></div>
+
+<script>
+const ST = {optimal:'#C4BCFF',nominal:'#7FFFCC',stable:'#6CB4FF',drift:'#90D890',warning:'#FFAA5A',critical:'#FF7070'};
+
+const KERNEL = [
+  {id:'audit-cell',       abbr:'AUD',  state:'optimal', emits:['audit.record','audit.recorded'], connects:[]},
+  {id:'config-cell',      abbr:'CFG',  state:'stable',  emits:['config.updated'],                connects:[]},
+  {id:'monitor-cell',     abbr:'MON',  state:'nominal', emits:['system.health','cell.metric'],   connects:['quantum-defense-cell','audit-cell']},
+  {id:'rbac-cell',        abbr:'RBAC', state:'stable',  emits:['rbac.granted'],                  connects:[]},
+  {id:'security-cell',    abbr:'SEC',  state:'warning', emits:['security.alert'],                connects:['audit-cell','quantum-defense-cell']},
+  {id:'quantum-defense-cell',abbr:'QD',state:'optimal', emits:['anomaly.detected','self-healing.retry'],connects:['audit-cell','monitor-cell']},
+];
+const PRODUCTION = [
+  {id:'design-3d-cell',   abbr:'D3D', state:'nominal', emits:['DesignApproved'],              connects:['production-cell']},
+  {id:'production-cell',  abbr:'PRD', state:'nominal', emits:['ProductionStarted'],           connects:['casting-cell']},
+  {id:'casting-cell',     abbr:'CST', state:'nominal', emits:['casting.complete'],            connects:['stone-cell']},
+  {id:'stone-cell',       abbr:'STN', state:'nominal', emits:['DiamondLossDetected'],         connects:['finishing-cell']},
+  {id:'finishing-cell',   abbr:'FIN', state:'nominal', emits:['finishing.complete'],          connects:['polishing-cell']},
+  {id:'polishing-cell',   abbr:'POL', state:'nominal', emits:['polishing.complete'],          connects:['inventory-cell']},
+  {id:'inventory-cell',   abbr:'INV', state:'drift',   emits:['inventory.updated'],           connects:['warehouse-cell']},
+  {id:'warehouse-cell',   abbr:'WRH', state:'nominal', emits:['GoodsDispatched'],             connects:['logistics-cell']},
+];
+const BCTC = [
+  {id:'sales-cell',       abbr:'SLS', state:'optimal', emits:['sales.confirm','sales.created'],connects:['order-cell','payment-cell','finance-cell']},
+  {id:'order-cell',       abbr:'ORD', state:'nominal', emits:['order.created'],               connects:['production-cell','inventory-cell']},
+  {id:'payment-cell',     abbr:'PAY', state:'nominal', emits:['payment.received'],            connects:['finance-cell']},
+  {id:'finance-cell',     abbr:'FNC', state:'nominal', emits:['finance.recorded'],            connects:['period-close-cell']},
+  {id:'period-close-cell',abbr:'PCL', state:'nominal', emits:['period.closed'],               connects:['tax-cell']},
+  {id:'tax-cell',         abbr:'TAX', state:'nominal', emits:['tax.calculated'],              connects:['customs-cell']},
+  {id:'customs-cell',     abbr:'CSM', state:'drift',   emits:['customs.cleared'],             connects:[]},
+  {id:'analytics-cell',   abbr:'ANL', state:'stable',  emits:['analytics.computed'],          connects:[]},
+];
+const SUPPORT = [
+  {id:'buyback-cell',       abbr:'BYB', state:'nominal', emits:['buyback.approved'],              connects:['finance-cell']},
+  {id:'bom3dprd-cell',      abbr:'BOM', state:'stable',  emits:[],                                connects:['production-cell']},
+  {id:'comms-cell',         abbr:'COM', state:'nominal', emits:['notification.sent'],             connects:[]},
+  {id:'compliance-cell',    abbr:'CMP', state:'warning', emits:['compliance.check'],              connects:['audit-cell']},
+  {id:'constants-cell',     abbr:'CNS', state:'stable',  emits:[],                                connects:[]},
+  {id:'customer-cell',      abbr:'CUS', state:'nominal', emits:['customer.updated'],              connects:['sales-cell']},
+  {id:'dust-recovery-cell', abbr:'DST', state:'warning', emits:['DustShortfall'],                 connects:['audit-cell']},
+  {id:'hr-cell',            abbr:'HR',  state:'nominal', emits:['hr.updated'],                    connects:[]},
+  {id:'it-cell',            abbr:'IT',  state:'stable',  emits:[],                                connects:[]},
+  {id:'logistics-cell',     abbr:'LOG', state:'nominal', emits:['shipment.dispatched'],           connects:['customer-cell']},
+  {id:'media-cell',         abbr:'MED', state:'stable',  emits:[],                                connects:[]},
+  {id:'noi-vu-cell',        abbr:'NOI', state:'stable',  emits:[],                                connects:[]},
+  {id:'phap-che-cell',      abbr:'PHP', state:'warning', emits:['compliance.legal'],              connects:['compliance-cell']},
+  {id:'prdmaterials-cell',  abbr:'MTL', state:'nominal', emits:['MaterialRetained'],              connects:['production-cell']},
+  {id:'prdwarranty-cell',   abbr:'PWR', state:'nominal', emits:['warranty.issued'],               connects:['customer-cell']},
+  {id:'pricing-cell',       abbr:'PRC', state:'nominal', emits:['pricing.updated'],               connects:['sales-cell']},
+  {id:'promotion-cell',     abbr:'PRO', state:'nominal', emits:['promotion.applied'],             connects:['sales-cell']},
+  {id:'shared-contracts-cell',abbr:'SHC',state:'stable', emits:[],                                connects:[]},
+  {id:'showroom-cell',      abbr:'SHW', state:'nominal', emits:['display.updated'],               connects:['sales-cell','inventory-cell']},
+  {id:'supplier-cell',      abbr:'SUP', state:'nominal', emits:['supply.received'],               connects:['inventory-cell']},
+  {id:'warranty-cell',      abbr:'WTY', state:'nominal', emits:['warranty.registered'],           connects:['customer-cell','finance-cell']},
+  {id:'payment-processing',abbr:'PMT',  state:'nominal', emits:['payment.processed'],             connects:['finance-cell']},
+];
+
+const ALL = [...KERNEL,...PRODUCTION,...BCTC,...SUPPORT];
+const MAP = {};
+ALL.forEach(c => MAP[c.id] = c);
+const GRP = (c) => KERNEL.includes(c)?'kernel':PRODUCTION.includes(c)?'production':BCTC.includes(c)?'bctc':'support';
+const GCLS = {kernel:'gk',production:'gp',bctc:'gb',support:'gs'};
+
+function mkCard(cell) {
+  const g = GRP(cell), gcls = GCLS[g];
+  const col = ST[cell.state] || '#7FFFCC';
+  const d = document.createElement('div');
+  d.className = `cell-card ${gcls}`;
+  d.id = 'card-' + cell.id;
+  d.innerHTML = `
+    <div class="glow-flash"></div>
+    <div class="c-dot pls" style="color:${col};background:${col};box-shadow:0 0 6px ${col}88"></div>
+    <div class="c-abbr">${cell.abbr}</div>
+    <div class="c-name">${cell.id.replace(/-cell$/,'')}</div>
+    <div class="c-state"><div class="c-state-fill" style="background:${col};opacity:.55;box-shadow:0 0 6px ${col}44"></div></div>`;
+  d.onclick = e => trigger(cell, g, e);
+  return d;
+}
+
+function chain(cells, containerId, gcls) {
+  const el = document.getElementById(containerId);
+  cells.forEach((c, i) => {
+    if (i > 0) { const a = document.createElement('div'); a.className = 'ch-arr'; a.textContent = '→'; el.appendChild(a); }
+    el.appendChild(mkCard(c));
+  });
+}
+
+document.getElementById('kern-row').append(...KERNEL.map(mkCard));
+chain(PRODUCTION, 'prod-chain');
+chain(BCTC, 'bctc-chain');
+SUPPORT.forEach(c => document.getElementById('sup-grid').appendChild(mkCard(c)));
+
+// ── Butterfly ──────────────────────────────────────────
+let evCount = 0, timers = [];
+const hopCls = ['bh0','bh1','bh2','bh3'];
+
+function trigger(cell, grp, event) {
+  timers.forEach(clearTimeout); timers.length = 0;
+  document.querySelectorAll('.cell-card').forEach(c => {
+    c.className = c.className.replace(/\s*(selected|bh\d)/g,'').trim();
+    void c.offsetWidth;
+  });
+  evCount = 0;
+  document.getElementById('ev-log').innerHTML = '';
+  document.getElementById('ev-empty').style.display = 'none';
+  document.getElementById('ep-cnt').textContent = '0 events';
+
+  spawnRipple(event.clientX, event.clientY);
+
+  const src = document.getElementById('card-' + cell.id);
+  if (src) { src.classList.add('selected', 'bh0'); }
+
+  showDetail(cell);
+
+  // BFS cascade
+  const visited = new Set([cell.id]);
+  const queue = [{id:cell.id, hop:0}];
+  const sched = [];
+
+  while (queue.length) {
+    const {id, hop} = queue.shift();
+    const c = MAP[id];
+    if (!c) continue;
+    const base = hop * 340;
+    (c.emits||[]).forEach((ev, i) => sched.push({at:base + i*100, kind:'ev', ev, from:id, hop}));
+    (c.connects||[]).forEach(tid => {
+      if (!visited.has(tid)) {
+        visited.add(tid);
+        queue.push({id:tid, hop:hop+1});
+        sched.push({at:(hop+1)*340, kind:'glow', tid, hop:hop+1});
+      }
+    });
+  }
+
+  sched.forEach(item => {
+    const t = setTimeout(() => {
+      if (item.kind === 'ev') {
+        addEv(item.ev, item.from, item.hop);
+      } else {
+        const card = document.getElementById('card-' + item.tid);
+        if (card) {
+          const hcls = hopCls[Math.min(item.hop, 3)];
+          card.classList.remove(...hopCls, 'selected');
+          void card.offsetWidth;
+          card.classList.add(hcls);
+          setTimeout(() => card.classList.remove(hcls), 2000);
+        }
+      }
+    }, item.at);
+    timers.push(t);
+  });
+}
+
+function addEv(evType, fromId, hop) {
+  evCount++;
+  const log = document.getElementById('ev-log');
+  const d = document.createElement('div');
+  d.className = `ev ev${Math.min(hop,3)}`;
+  const n = new Date();
+  const ts = `${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}:${n.getSeconds().toString().padStart(2,'0')}.${n.getMilliseconds().toString().padStart(3,'0')}`;
+  const hopTag = ['↳ src','  h1·','  h2·','  h3·'][Math.min(hop,3)];
+  d.innerHTML = `<div><span class="ev-ts">${ts}</span><span class="ev-type">${evType}</span></div><div class="ev-from">${hopTag} ${fromId}</div>`;
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+  document.getElementById('ep-cnt').textContent = `${evCount} event${evCount > 1 ? 's' : ''}`;
+}
+
+function showDetail(cell) {
+  document.getElementById('cd').style.display = 'block';
+  document.getElementById('cd-nm').textContent = cell.id;
+  const g = GRP(cell).toUpperCase();
+  document.getElementById('cd-grp').textContent = g;
+  const stEl = document.getElementById('cd-st');
+  stEl.textContent = cell.state.toUpperCase();
+  stEl.style.color = ST[cell.state];
+  document.getElementById('cd-conn').textContent = cell.connects.length ? `${cell.connects.length} cells` : 'isolated';
+  document.getElementById('cd-evs').innerHTML = cell.emits.length
+    ? cell.emits.map(e => `<span class="ev-chip">${e}</span>`).join('')
+    : '<span class="ev-chip" style="opacity:.4">no emits</span>';
+}
+
+function spawnRipple(x, y) {
+  const host = document.getElementById('rh');
+  ['r0','r1'].forEach((cls, i) => {
+    const r = document.createElement('div');
+    r.className = `rr ${cls}`;
+    r.style.cssText = `left:${x}px;top:${y}px;width:20px;height:20px;animation-delay:${i*100}ms`;
+    host.appendChild(r);
+    setTimeout(() => r.remove(), 1600);
+  });
+}
+
+function filterGrp(grp, el) {
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  ['kernel','production','bctc','support'].forEach(g => {
+    const s = document.getElementById('sec-' + g);
+    if (s) s.style.display = (grp === 'all' || grp === g) ? '' : 'none';
+  });
+}
+
+// Auto-demo: trigger QD (optimal — đẹp nhất) sau 1.6s
+setTimeout(() => {
+  const c = MAP['sales-cell'];
+  const card = document.getElementById('card-sales-cell');
+  if (c && card) {
+    const r = card.getBoundingClientRect();
+    trigger(c, 'bctc', {clientX: r.left + r.width/2, clientY: r.top + r.height/2});
+  }
+}, 1600);
+
+// ── Mạch HeyNa — wire cell state real-time ──────────────────
+const _lastSeen = {};
+const STATE_MAP = {
+  alive:    'optimal',
+  warning:  'warning',
+  critical: 'critical',
+  drift:    'drift',
+};
+
+function applyMachState(cellId, newState) {
+  const cell = MAP[cellId];
+  if (!cell) return;
+  cell.state = newState;
+  const card = document.getElementById('card-' + cellId);
+  if (!card) return;
+  const col = ST[newState] || '#7FFFCC';
+  // Update dot color
+  const dot = card.querySelector('.c-dot');
+  if (dot) { dot.style.background = col; dot.style.boxShadow = `0 0 8px ${col}`; }
+  // Update state bar
+  const bar = card.querySelector('.c-state-fill');
+  if (bar) bar.style.background = col;
+  // Update abbr color
+  const abbr = card.querySelector('.c-abbr');
+  if (abbr) abbr.style.color = col;
+}
+
+function handleMachEvent(data) {
+  if (!data || !data.event) return;
+  const ev = data.event;
+  const payload = data.payload || {};
+
+  // cell.metric → cell alive
+  if (ev === 'cell.metric' && payload.cell) {
+    const cellId = payload.cell;
+    _lastSeen[cellId] = Date.now();
+    applyMachState(cellId, 'optimal');
+  }
+
+  // audit.record → flash ripple trên cell liên quan
+  if (ev === 'audit.record' && payload.cell) {
+    const card = document.getElementById('card-' + payload.cell);
+    if (card) {
+      const r = card.getBoundingClientRect();
+      spawnRipple(r.left + r.width/2, r.top + r.height/2);
+    }
+  }
+
+  // constitutional.violation → warning
+  if (ev === 'constitutional.violation' && payload.cell) {
+    applyMachState(payload.cell, 'warning');
+  }
+
+  // iseu.reinforcement → flash
+  if (ev === 'iseu.reinforcement' && payload.sourceCell) {
+    const card = document.getElementById('card-' + payload.sourceCell);
+    if (card) {
+      const r = card.getBoundingClientRect();
+      spawnRipple(r.left + r.width/2, r.top + r.height/2);
+    }
+  }
+}
+
+// Drift check: cell không emit 30s → drift
+setInterval(() => {
+  const now = Date.now();
+  Object.entries(_lastSeen).forEach(([cellId, ts]) => {
+    if (now - ts > 30000) {
+      applyMachState(cellId, 'drift');
+    }
+  });
+}, 5000);
+
+// Subscribe Mạch HeyNa
+(function startMach() {
+  const mach = new EventSource('http://localhost:3001/mach/heyna');
+  mach.onopen = () => console.log('[Mapping] Mạch HeyNa — Nahere');
+  mach.onmessage = (e) => {
+    try { handleMachEvent(JSON.parse(e.data)); } catch {}
+  };
+  mach.onerror = () => {
+    mach.close();
+    setTimeout(startMach, 3000);
+    console.warn('[Mapping] Mạch đứt — retry 3s');
+  };
+})();
+
+// ── Header stats từ server ──
+fetch('http://localhost:3001/kenh/suc')
+  .then(r => r.json())
+  .then(d => {
+    const el = document.getElementById('hdr-git');
+    if (el && d.commits) el.textContent = d.commits + ' commits · ' + (d.hash || '—');
+  })
+  .catch(() => {});
+</script>
+</body>
+</html>
