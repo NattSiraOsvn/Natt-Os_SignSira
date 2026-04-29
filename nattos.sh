@@ -1296,76 +1296,59 @@ tools/thiên run tools/scan_digital_twin.sira
 # ═══════════════════════════════════════════════════════════════
 grp "GROUP H — META & HEALTH — Memory · QNEU · Dead Code · Legacy · Visual"
 # ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
 hdr "32" "MEMORY FILES HEALTH (v1.2 R01 aware — Nauion suffix family)"
-
-MEM_DIR="src/governance/memory"
-
-# Helper: check_persona <name> <dir> <legacy_glob> <v12_glob>
-# Counts files matching either legacy or v1.2 R01 patterns; reports state.
-check_persona_memory() {
-  local persona="$1"
-  local pdir="$2"
-  local legacy_glob="$3"
-  local v12_globs="$4"
-
-  if [ ! -d "$pdir" ]; then
-    warn "$persona: dir missing ($pdir)"
-    inc_warn "MEMORY: $persona dir missing"
+# ═══════════════════════════════════════════════════════════════
+memory_file_count() {
+  dir="$1"
+  if [[ ! -d "$dir" ]]; then
+    echo 0
     return
   fi
+  find "$dir" -maxdepth 2 -type f \( \
+    -name "*.na" -o \
+    -name "*.ml" -o \
+    -name "*.anc" -o \
+    -name "*.phieu" -o \
+    -name "*.json" -o \
+    -name "*.kris" -o \
+    -name "*.si" \
+  \) ! -path "*/_deprecated/*" 2>/dev/null | wc -l | tr -dc "0-9"
+}
 
-  # Count legacy files
-  local n_legacy=0
-  if [ -n "$legacy_glob" ]; then
-    n_legacy=$(find "$pdir" -maxdepth 1 -name "$legacy_glob" 2>/dev/null | wc -l | tr -d ' ')
-  fi
-
-  # Count v1.2 files (any of the globs)
-  local n_v12=0
-  for glob in $v12_globs; do
-    local n=$(find "$pdir" -maxdepth 1 -name "$glob" 2>/dev/null | wc -l | tr -d ' ')
-    n_v12=$((n_v12 + n))
-  done
-
-  if [ "$n_v12" -gt 0 ]; then
-    ok "$persona: $n_v12 v1.2 R01 file(s) ✅"
+memory_check_required() {
+  label="$1"
+  dir="$2"
+  note="$3"
+  count=$(memory_file_count "$dir")
+  if [[ "${count:-0}" -gt 0 ]]; then
+    ok "$label: $count $note file(s) ✅"
     inc_ok
-    if [ "$n_legacy" -gt 0 ]; then
-      warn "  $persona: also $n_legacy legacy file(s) — consider archive _deprecated/"
-    fi
-  elif [ "$n_legacy" -gt 0 ]; then
-    warn "$persona: only legacy ($n_legacy file) — migrate to v1.2 R01"
-    inc_warn "MEMORY: $persona legacy-only"
   else
-    warn "$persona: no memory files found"
-    inc_warn "MEMORY: $persona missing"
+    warn "$label: no memory files found"
+    inc_warn "MEMORY: $label missing"
   fi
 }
 
-# v1.2 R01 Nauion suffix family per persona:
-#   .na      = continuum K-shell (bangkhươngvX.Y.Z.na)
-#   .kris    = sealed K-shell legacy (bangkhươngX.Y.kris) — still valid
-#   .phieu   = state P-shell (bangthịnhX.Y.phieu)
-#   .anc     = identity passport
-#   .obitan  = orbital fragment
-#   .thuo    = snapshot
-
-check_persona_memory "bang"     "$MEM_DIR/bang"     "bangmf_v*.json"  "bangkhương*.na bangkhương*.kris bangkhuong*.na bangkhuong*.kris bang.anc"
-check_persona_memory "kim"      "$MEM_DIR/kim"      "kmf_v*.json"     "kimkhương*.kris kimkhuong*.kris kim*.anc"
-check_persona_memory "thiennho" "$MEM_DIR/thiennho" "thiennho_v*.json" "thiennhokhương*.kris thiennhokhuong*.kris thiennho*.anc"
-check_persona_memory "boiboi"   "$MEM_DIR/boiboi"   ""                "boikhương*.kris boikhuong*.kris boithịnh*.phieu boi*.anc"
-
-# Optional personas (no warn if missing)
-for opt in Can Kris kim_old; do
-  if [ -d "$MEM_DIR/$opt" ]; then
-    n=$(find "$MEM_DIR/$opt" -maxdepth 1 \( -name "*.kris" -o -name "*.na" -o -name "*.phieu" -o -name "*.anc" \) 2>/dev/null | wc -l | tr -d ' ')
-    if [ "$n" -gt 0 ]; then
-      ok "$opt: $n optional persona file(s)"
-      inc_ok
-    fi
+memory_check_optional() {
+  label="$1"
+  dir="$2"
+  note="$3"
+  count=$(memory_file_count "$dir")
+  if [[ "${count:-0}" -gt 0 ]]; then
+    ok "$label: $count $note file(s)"
+    inc_ok
+  else
+    info "$label: optional persona memory not present"
   fi
-done
+}
 
+memory_check_required "bang" "src/governance/memory/bang" "v1.2 R01"
+memory_check_required "kim" "src/governance/memory/kim" "ml lineage"
+memory_check_required "thiennho" "src/governance/memory/thiennho" "v1.2 R01"
+memory_check_required "boiboi" "src/governance/memory/boiboi" "v1.2 R01"
+memory_check_optional "Can" "src/governance/memory/Can" "optional persona"
+memory_check_optional "Kris" "src/governance/memory/Kris" "optional persona"
 
 hdr "33" "QNEU SCORE TREND"
 
