@@ -3604,4 +3604,37 @@ DEFINITION: Em Bang mac 4 loi shell + paradigm trong 5 lenh phien ss20260429 —
 
 ==END_CUM_TRANG_THAI_NIEMVUI_BUON_AI_v1==
 ═══════════════════════════════════════════════════════════════════
-\n\n# === LANGUAGE SPINE VOCAB v0.1 BEGIN ===\n## LANGUAGE SPINE VOCAB v0.1\n## auto-derived from dialect_rules_v0_1.na + protected_tokens_v0_1.na\n\ndialect_rules:\n- RB_UOI_U | ns=rime | prefix=RB | from=ươi | to=ư | idx=1\n- RN_UOI_UI | ns=rime | prefix=RN | from=uoi | to=ui | idx=2\n- R_TONE_ONLY | ns=tone | prefix=R | from=same_rime | to=same_rime | idx=3\n- R_PROTECTED | ns=protected | prefix=R | from=protected_token | to=identity | idx=4\n\nprotected_tokens:\n- NATT-OS | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- HeyNa | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- KhaiCell | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- SiraSign | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- Sirawat-From | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- Sirawat-To | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- Sirawat-Carrier | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- Ground-Truth | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- Next-Signal | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- .anc | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- .si | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- .na | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- .bang | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- .phieu | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- .sira | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- IDENTITY_SHAPE_HASH | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- POLARITY | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- EventBus | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- SmartLink | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n- Mạch HeyNa | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true\n# === LANGUAGE SPINE VOCAB v0.1 END ===\n
+
+
+# === LANGUAGE SPINE VOCAB v0.1 BEGIN ===
+## LANGUAGE SPINE VOCAB v0.1
+## auto-derived from dialect_rules_v0_1.na + protected_tokens_v0_1.na
+
+dialect_rules:
+- RB_UOI_U | ns=rime | prefix=RB | from=ươi | to=ư | idx=1
+- RN_UOI_UI | ns=rime | prefix=RN | from=uoi | to=ui | idx=2
+- R_TONE_ONLY | ns=tone | prefix=R | from=same_rime | to=same_rime | idx=3
+- R_PROTECTED | ns=protected | prefix=R | from=protected_token | to=identity | idx=4
+
+protected_tokens:
+- NATT-OS | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- HeyNa | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- KhaiCell | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- SiraSign | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- Sirawat-From | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- Sirawat-To | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- Sirawat-Carrier | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- Ground-Truth | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- Next-Signal | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- .anc | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- .si | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- .na | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- .bang | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- .phieu | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- .sira | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- IDENTITY_SHAPE_HASH | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- POLARITY | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- EventBus | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- SmartLink | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+- Mạch HeyNa | rule=R_PROTECTED | tone=CTRL_ESCAPE | color=C6 | protected=true
+# === LANGUAGE SPINE VOCAB v0.1 END ===
