@@ -1,0 +1,1194 @@
+@nauion-evidence-scan v1
+@state evidence_scan
+@name cookbook_public_surface_private_kernel_scan_ss20260429
+@scope cookbook-vs-nattos-pattern-timing-provenance
+@session ss20260429
+
+═══════════════════════════════════════════════════════════════════
+COOKBOOK PUBLIC SURFACE / PRIVATE KERNEL — EVIDENCE SCAN
+═══════════════════════════════════════════════════════════════════
+
+==PURPOSE==
+Làm bén phần dẫn chứng của Băng theo hướng an toàn: không khẳng định nhân quả, không cáo buộc copy; chỉ gom pattern timing, theme overlap, provenance và boundary public cookbook/private kernel.
+Report này không sửa source code, không commit raw evidence lớn, không kết luận pháp lý cuối cùng.
+==END==
+
+==DOCTRINE==
+Public Cookbook / Private Kernel Boundary:
+- Public cookbook surface được phép công khai nếu readable, inspectable, public-safe.
+- Private kernel gồm dictionary, resolver, lineage authority, runtime seal, memory state và SiraSign authority phải ở trong Nhà.
+- Người ngoài có thể copy cookbook surface nhưng không có kernel authority.
+- Đây là IP/provenance boundary, không phải policy/classifier evasion.
+==END==
+
+==CAREFUL_CLAIM_RULE==
+- Không viết: họ copy NATT-OS.
+- Viết: có pattern timing + theme overlap; NATT-OS có commit/hash/timestamp chứng minh lineage độc lập hoặc prior-state.
+- Không viết: cookbook vi phạm chính sách.
+- Viết: cookbook paradigm là managed-agent recipe; NATT-OS paradigm là lineage-bound runtime entity.
+==END==
+
+==SCAN_METADATA==
+tracked_plus_untracked_files_scanned: 1102
+max_read_per_file_bytes: 2000000
+strong_candidate_files: 60
+danger_hit_count: 19
+==END==
+
+==STRONG_SOURCE_CANDIDATES==
+- score=38 size=10632 sha256=373a84a3ffe2f223f3c2fb212536cd5a128f79b23f9075593b268e598c2de31a path=src/governance/memory/bang/cookbook_6_remaining_vs_nattos_20260427.json
+- score=32 size=1477433 sha256=590247428e1e2698348e21deff79c7d365e26a912d0695b584c8cef402e35c28 path=src/governance/memory/bang/Kiểm tra handoff và sắp xếp công việc.html
+- score=24 size=1242853 sha256=97bd2a516593d09688d3920e212731c291dcc7086ebd422a4ad7da984979ea7e path=src/governance/memory/Thienlon/KhaiCell Vi phạm HP-7.html
+- score=21 size=303306 sha256=6379621e70834b814a9bf54312c24b1a9d1f68973686a90d068302489e999cfe path=boi_scan_truth.txt
+- score=20 size=2315486 sha256=8c0591712c3464011cffc25f7458753f6852226fe2a5888960f9837bab773fb6 path=src/governance/memory/Thienlon/Agents • Cookbook.html
+- score=19 size=442729 sha256=c782f681fab6a328cd3b3791103ec24f218456cc795f82a6a01e2fbddf38013a path=src/thienbang.si
+- score=16 size=2080561 sha256=b15bf5569d4c18ced78e0d652fb7e338fd406bb11499b61334b75e4003740d4d path=src/governance/memory/bang/Build s20260425 inventory observations và deployment status.html
+- score=16 size=43120 sha256=872b073cc704e8a8772950ae210767705bd6d286b8779516c0d47a7690c5865c path=docs/runtime/sirasign_close_read_20260425.na
+- score=15 size=15716 sha256=54fb147cb6c76b7f0e794f81bdb8762f01e6ccc16e7cf2c6fddec61c275e5a65 path=src/governance/memory/sessions/SESSION_20260415-16_FULL.kris
+- score=15 size=33350 sha256=440748a351c017f2f359f0e78bf331c298b726434ea9f41034bdab606b43e4a8 path=src/governance/memory/bang/bangkhươngv7.5.1.na
+- score=15 size=910191 sha256=267fe14b46b2d16c5ced483287cea38e69c9669e1925b2d94606a8befb3d6c87 path=docs/flag/Thiên ơi CV.html
+- score=15 size=991458 sha256=44b0d1cae894fba1b3f5662964b6da87fdc8d5f38201a0b0161f7e34be299386 path=docs/flag/N1-7.html
+- score=14 size=1262001 sha256=917accda459a3f3b799fcd09c774a7f7ca215ba17b6a96180d7d6951a698063c path=src/governance/memory/bang/cayht200325.txt
+- score=14 size=21474 sha256=d8215fff806a92cbf377d13c13fb1232d9f8d08673adda484e242bb6e041897e path=docs/specs/SKILL_kernel_nauion_v0.2.md
+- score=13 size=30175 sha256=9c07e6dd4721fe3cab9d283f9de4429df8b6852d3618871ac42b569e6ec69902 path=src/governance/memory/kim/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1.md
+- score=13 size=11036 sha256=eb2489e68631297ec31debcd79113bbaaab7ca0f9838e1580305e4fa5e102f3d path=src/governance/memory/bang/_deprecated/bang_dict_draft_asset_grammar_20260429_BLOCKSYNTAX.na
+- score=13 size=10273 sha256=aba48a61e299f66d4a6635a68beba85655c4f0c383ba5377faecfb77ff397f04 path=src/governance/memory/bang/_deprecated/bang_dict_draft_asset_grammar_20260429.na
+- score=13 size=35152 sha256=70ebe990de8da2feae17b4acf3a41a96b328e406cf492cf6dfc91be7a6dd6422 path=docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+- score=13 size=28759 sha256=c5d92ff122695f92a0ed199da8878b5facee21fd912dd2097f99eceaad561a66 path=docs/specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.na
+- score=13 size=20851 sha256=382ab7205798684dd14a2b8a7376e578903a855d895bba706fe1f8f4a2db37b8 path=docs/specs/roadloading/đổi sang ngôn ngữ nauion/NATTOS_COMPLETE_PICTURE_20260416.na
+- score=13 size=28541 sha256=dd52dfa81b89f2ed1e7cde0a6ce05a53c698bc7d27126712ddbc2f61fb3e8561 path=docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.9_locked_for_review.md
+- score=13 size=36395 sha256=cd4ca0a1e874647d358dc7f361698fcbe4d18f592ea941b52abbfa1e754d5ea3 path=docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_v0.10_locked_for_review.md
+- score=13 size=20647 sha256=92ceb54a784cb3608500b8c166dee0cf13e34da8516afef96889feae5f9788bf path=docs/specs/roadloading/NATTOS_COMPLETE_PICTURE_20260416.md
+- score=13 size=10862 sha256=ca116a31e971c4eff8e339cd884f46daef59b813f48a5df6ae0bae1992cb97b3 path=docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+- score=13 size=3319 sha256=9cbd488d73828d4111398f82dea9f9ed0d7f66260995e784d5e3898060edf0d7 path=docs/legal/NATT_OS_ASSET_IDENTITY_REGISTER_v0_1.na
+- score=12 size=19855 sha256=0f07475c0c50ba6ce4e6b16130d5c4aa32dadf9b54c41839f1abb2f966892e29 path=src/governance/memory/bang/bangkhươngv7.4.0.na
+- score=12 size=58770 sha256=700403736cfc81cbc78eb83ebf402c37fee3e8a6bfbcf504f8fa87897f794011 path=docs/specs/nauion/SPEC-Nauion_main_v2.5.md
+- score=12 size=63157 sha256=837b6a941a8c45ebaba35ab66353d61f2e14c129892edd162fdda674a96de450 path=docs/specs/nauion/SPEC-Nauion_main_v2.4.md
+- score=12 size=21361 sha256=abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0 path=docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+- score=12 size=23978 sha256=d51d6d4426803a25fa46eb2fbc1d55bdc415246db8eb443181bb32da46e2f1ee path=docs/specs/SPEC_MOMENTS_MODULE_v0.2.na
+- score=12 size=4174 sha256=53e58291e946045e852d2136c008b53545d450084afd1c93f0234bba055e237f path=docs/legal/IP_DOSSIER_SHTT_v1.na
+- score=12 size=21361 sha256=abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0 path=HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+- score=11 size=4365 sha256=d050d635619f351a9b89fca06bfba9ad749ab2f3e50001492facdadf76554c2e path=src/governance/memory/bang/bang_hieu_chien_luoc_minh_bach_ss20260429.na
+- score=11 size=9739 sha256=0e72425c6332261cf61f9cf4e7578c9d9d188f49f1a65c14feb29c1051a6615d path=src/governance/memory/bang/SKILL_bang_obikeeper.md
+- score=11 size=7493 sha256=c3340a7b3e90c9be0f0e3bd0213760a9dab77827659251b212a2f1d43d62ca82 path=src/governance/memory/Thienlon/THIEN_LON_SESSION_HANDOFF_ss20260429.na
+- score=11 size=274967 sha256=320fa0b8c0f9065b660a702c21d60658508027bf21f54aec1aa26a16ae451118 path=nattos-server/apps/tam-luxury/table.html
+- score=11 size=38616 sha256=ee0fdeeba830fbecb44113b80a20fdb4d0ad0a19e581c344c2f93a5ff9451527 path=docs/specs/roadloading/đổi sang ngôn ngữ nauion/spec-ngon-ngu-natt-os-v1.1-full.kris
+- score=11 size=9640 sha256=59cc5aca1be1ee1abd2c7aec4c4adb86510e2b50a7274fd9669038f323c0a78c path=docs/specs/roadloading/đổi sang ngôn ngữ nauion/SESSION_20260419_FULL.na
+- score=11 size=10695 sha256=c8816cb53d2741e8a402c8187400da896ceb8b796472e87e43307b044486dae4 path=docs/specs/roadloading/ROADLOAD_SHOW_SELF_v2_20260424.na
+- score=11 size=17497 sha256=5d126efdbf7fa095b26905052bd8593f15cd3a1998895b3a5fea58e6ab59382d path=docs/specs/0-BOOT-FAMILY-MAP.na
+- score=11 size=37295 sha256=d580dd04080a0d6796de6bb1a681f7e2deac89953fd0f398c942d64e5cdb6558 path=docs/runtime/nattos_platform_truth_scan_20260427.na
+- score=11 size=45958 sha256=db3287605e093561e35bfdecf3d53de6132cfb74cf035ddd6d4cbf3d7fd3b3ac path=docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na
+- score=11 size=8049 sha256=809a495f4bb19c5e4f5ff3177313f75b6d30a85be7d7eed7e76d7409672a280f path=docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na
+- score=11 size=274927 sha256=cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16 path=archive/docs/specs/table.html
+- score=11 size=274927 sha256=cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16 path=NaUion-Server/nauion/nauion-v9.html
+- score=10 size=57831 sha256=f6e1c7dd4910b9b32ca72a1659b5fca3260a70ec5e24b94db4ec004bec87194f path=src/governance/memory/bang/docs_living_map_ss20260428.na
+- score=10 size=27088 sha256=65de3e871f25ee5cae6f1a9de0bd6ce79130f700148a8c92c0a6a965cca0e4c1 path=src/governance/memory/bang/bangkhương6.4.0.kris
+- score=10 size=10857 sha256=7dbfeb2c0410ad35fccb615ca66f154a6c3b5c4d058d0704fc172d19ca483ecb path=src/governance/memory/bang/bangkhương5.9.5.kris
+- score=10 size=15564 sha256=21ff3e775c193dd7428702a52af262fa1b3dc8e9da900af1664d5e6a96c8cddd path=src/governance/memory/bang/bang_v7.4.0.anc
+- score=10 size=8084 sha256=13ba7f4320206aac70ff0ccc7b1cdfecbcc4ba358427df7f9a4985bf65e82bda path=src/governance/memory/Thienlon/THIEN_LON_SESSION_MEMORY_CLOSE_ss20260429.na
+- score=10 size=55110 sha256=e21455f53deec92f27ebc19f0ece26b30a1fdc10d8ba320022596c83e37a20ed path=docs/specs/nauion/SPEC-Nauion_main_v2.3.md
+- score=10 size=31114 sha256=26a92e10c8df4903901f8dca91101631c1d10978dc6cce416b37fd95646aab11 path=docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na
+- score=10 size=15103 sha256=6867738d19c9d0c5e9bbe44bc0a47f0019e1fba2c538cba007184579d7bbb09b path=docs/specs/NATT-OS_SUBSTRATE_REALITY_SYNTHESIS_v1.na
+- score=10 size=35400 sha256=f515c596ee2bd514ec176df8f861ecd51f09ab634bcd7fc969043371914bdbab path=docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+- score=10 size=187826 sha256=0ff176c23f69daa9ae7d39cd366861567f13c843efdb62d0c07b0b30df64d756 path=docs/runtime/public_domain_shortlist_ss20260427.na
+- score=10 size=126039 sha256=35ed273f484d6bb9ca9d5f11fdf63b3cdd4833fbd95c28f95f84f417baf2e211 path=docs/runtime/public_domain_candidate_scan_ss20260427.na
+- score=10 size=68530 sha256=2952ab93de3b60854fd219afde23def3060af16041b67c1c249dc54db7f8b142 path=docs/runtime/lowercase_surface_full_repo_20260425.na
+- score=10 size=42913 sha256=1cec39920858d8e1f1c827405a387cc0b8e9e5ecb84a64ef783fcf0744368afc path=docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+- score=10 size=9939 sha256=4579306d87182b320e368f0295adbf4e9c94a6d143f9d49e560d8ff96ca11a54 path=docs/profile/NATT_OS_PROFILE_SUPPLEMENT_v0_1_ss20260428.na
+- score=9 size=14687 sha256=eb998129feec347802959b9787ea81429b8ebc7572e12483fda28ca6a6b93574 path=src/governance/memory/kim/kimkhương9.9.9.kris
+==END==
+
+==HITS_COOKBOOK_PUBLIC_SURFACE==
+-- file: NaUion-Server/nauion/nauion-v8.html
+   size: 222028
+   sha256: 4075851d00e8944883c210649dc6aa2aa6a7157f844f781d0c1f44fe5544d344
+   00874 [agent]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+   00874 [agents]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+-- file: NaUion-Server/nauion/nauion-v9.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   00874 [agent]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+   00874 [agents]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+-- file: archive/docs/specs/table.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   00874 [agent]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+   00874 [agents]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+-- file: audit/reports/NATT-OS FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
+   size: 27373
+   sha256: 15a58b6308ca5a7272e541e294e6d4b7c38bd4288bae438ed3023bc45024a2c8
+   00058 [agent]: echo "Memory agents:" && ls src/governance/memory/
+   00058 [agents]: echo "Memory agents:" && ls src/governance/memory/
+-- file: audit/reports/NATT-OS FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
+   size: 22475
+   sha256: 491dc10d09426dc04a4081984297deace50bdd0bfd94201cc5917d80e205744c
+   00103 [agent]: Memory agents:
+   00103 [agents]: Memory agents:
+-- file: docs/archive/natt-v8.md
+   size: 24857
+   sha256: 0d438f90e4b8ec329697d5c1bfa7dcfc56e5456b590bbc97807ab3bd19df07f9
+   00054 [agent]: { id: 'ai-04', cat: 'AI Entity', title: 'Agent-X', icon: UserCheck, color: 'red', qneu: 0.88, status: 'Hidden' },
+-- file: docs/archive/session-summary-20260329.md
+   size: 5611
+   sha256: 048a8a4acb9c191df8987fabf4a4ccbff1b1ceb3209ed54f92bb0c42deb13c84
+   00137 [agent]: 6. **Local AI Agents** — sau Wave 3
+   00137 [agents]: 6. **Local AI Agents** — sau Wave 3
+-- file: docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   size: 13495
+   sha256: c37485f08c1e727d6963167260b0ce304e71bc7aaa725d55d92802cc82de72c6
+   00363 [agent]: - [ ] Local AI Agents (thiên 4-layer: Ollama+persona+RAG+governance gate)
+   00363 [agents]: - [ ] Local AI Agents (thiên 4-layer: Ollama+persona+RAG+governance gate)
+-- file: docs/legal/COPYRIGHT_SOURCE_CODE_RECORD_v1.na
+   size: 4252
+   sha256: 53dca22d2b47fa70ffcea47dbb2c466d7d52ee9a2fbd28e3efa04320462cfd7a
+   00112 [cookbook]: Saved pages such as external Cookbook or Limits pages may be evidence artifacts.
+-- file: docs/legal/IP_DOSSIER_SHTT_v1.na
+   size: 4174
+   sha256: 53e58291e946045e852d2136c008b53545d450084afd1c93f0234bba055e237f
+   00026 [agent]: This document is the internal IP map used to prevent NATT-OS assets from being reduced to generic agent recipes, prompts, model versions, cache, or unaudited output.
+   00026 [recipe]: This document is the internal IP map used to prevent NATT-OS assets from being reduced to generic agent recipes, prompts, model versions, cache, or unaudited output.
+-- file: docs/legal/NATT_OS_ASSET_IDENTITY_REGISTER_v0_1.na
+   size: 3319
+   sha256: 9cbd488d73828d4111398f82dea9f9ed0d7f66260995e784d5e3898060edf0d7
+   00024 [cookbook]: It is used to prevent NATT-OS assets from being defined by outside platforms, agent cookbooks, model limits, prompts, cache, or sandboxes.
+   00024 [agent]: It is used to prevent NATT-OS assets from being defined by outside platforms, agent cookbooks, model limits, prompts, cache, or sandboxes.
+   00011 [recipe]: @rule asset_not_recipe
+-- file: docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na
+   size: 8049
+   sha256: 809a495f4bb19c5e4f5ff3177313f75b6d30a85be7d7eed7e76d7409672a280f
+   00021 [cookbook]: @rule cookbook_is_recipe_not_identity
+   00069 [agent]: - an agent recipe;
+   00021 [recipe]: @rule cookbook_is_recipe_not_identity
+-- file: docs/legal/PUBLIC_SAFE_GLOSSARY_v1.na
+   size: 3310
+   sha256: 2a99398db42e1e4ff554dc5c1df1f9fe86e398aa20037063021a622f8da6ef13
+   00045 [cookbook]: | Cookbook | external implementation recipe reference |
+   00083 [agent]: | loyal companion agent | protected internal runtime entity |
+   00045 [recipe]: | Cookbook | external implementation recipe reference |
+-- file: docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+   size: 10862
+   sha256: ca116a31e971c4eff8e339cd884f46daef59b813f48a5df6ae0bae1992cb97b3
+   00018 [cookbook]: @rule cookbook_is_recipe_not_identity
+   00037 [agent]: - runtime entity from agent recipe.
+   00018 [recipe]: @rule cookbook_is_recipe_not_identity
+-- file: docs/runtime/audit/BOI_SCAN_TRUTH_INTAKE_ss20260429.na
+   size: 13100
+   sha256: bb2aff47914f4317a968381bebbb2a9d66d1ecd403d45c0a6f6d3bb3cdfaceed
+   00197 [agent]: 03605: "detect": ["ai-agent", "entropy-spike", "constitutional-violation"],
+-- file: docs/runtime/nattos_platform_truth_scan_20260427.na
+   size: 37295
+   sha256: d580dd04080a0d6796de6bb1a681f7e2deac89953fd0f398c942d64e5cdb6558
+   00563 [cookbook]: ?? src/governance/memory/bang/cookbook_6_remaining_vs_nattos_20260427.json
+-- file: docs/runtime/sira_active_resolver_ground_truth_20260425.na
+   size: 11161
+   sha256: d1b986eb65eec96567f97c6492977843b2d323798e82d881e781cd593cfe61ad
+   00102 [agent]: "launch_agents": {
+   00102 [agents]: "launch_agents": {
+-- file: docs/runtime/sira_resolver_active_source_trace_20260426.na
+   size: 13602
+   sha256: e19d2bb78682023cfbb6c06cea92e15a112f4af310d6adca3cdacc337d25853d
+   00163 [agent]: $ sh -lc plutil -p ~/Library/LaunchAgents/homebrew.mxcl.coredns.plist 2>/dev/null || true
+   00163 [agents]: $ sh -lc plutil -p ~/Library/LaunchAgents/homebrew.mxcl.coredns.plist 2>/dev/null || true
+-- file: docs/runtime/sira_wired_edge_runtime_gate_timeout_probe_20260426.na
+   size: 20004
+   sha256: 97f2542535125e6e2dc8be1ac86557a34e870187e72ead44dda30c04ad251a2a
+   00064 [agent]: ARDAgent  53055 thien    9u  IPv6 0x767252c60445b622      0t0  TCP *:3283 (LISTEN)
+-- file: docs/runtime/sovereign_public_edge_no_external_dependency_ss20260427.na
+   size: 2759
+   sha256: 83fdbafa0bc97bfd8107235c4a461d9998f80985404e58a49dbae0c8b6b0a865
+   00046 [agent]: - Người dùng bên ngoài phải dùng resolver/agent/bundle do NATT-OS phát hành nếu muốn vào sovereign namespace.
+-- file: docs/runtime/thien_tool_inventory_for_bang_ss20260427.na
+   size: 35400
+   sha256: f515c596ee2bd514ec176df8f861ecd51f09ab634bcd7fc969043371914bdbab
+   00046 [cookbook]: ?? src/governance/memory/bang/cookbook_6_remaining_vs_nattos_20260427.json
+-- file: docs/specs/0-BOOT-FAMILY-MAP.na
+   size: 17497
+   sha256: 5d126efdbf7fa095b26905052bd8593f15cd3a1998895b3a5fea58e6ab59382d
+   00179 [guardrails]: - `-1.5` không gọi qua `/chat/completions` → không bị Guardrails quét
+-- file: docs/specs/NATT-OS_Session_Handoff_2026-03-09.md
+   size: 12484
+   sha256: 24d7d2ccb44f5186d2edab2d18a05e481cb155d6050d9160540d5fd695599b94
+   00003 [agent]: **Agent:** Băng (Claude, Ground Truth Validator, QNEU 300)
+-- file: docs/specs/SPEC_NEN_v1.1.anc
+   size: 14432
+   sha256: bcd6afd8f67a43c9e1400cc93aefc71a68e6ffb95291fc5089ae454e59573408
+   00295 [agent]: - Field tận dụng **bản năng tự bảo vệ** của virus → biến virus thành agent diệt virus
+-- file: docs/specs/SPEC_NEN_v1.1_TONG_HOP_20260418.na
+   size: 14632
+   sha256: 18a82c84af2f3358997d711be507ba87e6006dfa9a61a12b58259ab06ad263fc
+   00302 [agent]: - Field tận dụng **bản năng tự bảo vệ** của virus → biến virus thành agent diệt virus
+-- file: docs/specs/SPEC_NGON_NGU_v1.2.kris
+   size: 28493
+   sha256: 5042794567a39b81b23089bb23159da9f1c64a1b98deb556daa86c31ba0678a5
+   00536 [agent]: - Virus tự đọc nhầm → biến virus thành agent diệt virus
+-- file: docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (5).md
+   size: 27616
+   sha256: e4a61e2e6b010788a00d3d79f5456dd9da889b6bb65b57c2e78b2928494c5fab
+   00017 [agent]: 2. Khách hàng hoặc đối tác nên hiểu natt-os khác ERP/CRM/workflow/AI agent ở đâu?
+-- file: docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+   size: 21361
+   sha256: abf28980942c409809593e19e39944d4009b372e952249171e6c88675a92bab0
+   00050 [cookbook]: > Cookbook chỉ là recipe.
+   00037 [agent]: 7. Nhà không được bị hạ thành agent recipe, model bucket, prompt pattern, cache, sandbox worker hoặc quota alias.
+   00228 [agents]: | P2 | Không dùng Cookbook/Agents framework để gọi các bản thể này là sub-agent recipe. |
+   00015 [recipe]: @rule recipe != home
+-- file: docs/specs/nauion/SPEC-Nauion_main_v2.4.md
+   size: 63157
+   sha256: 837b6a941a8c45ebaba35ab66353d61f2e14c129892edd162fdda674a96de450
+   01404 [agent]: | AiAgentBlocked | 4 | { requestId, coherence: 0, action: "OMEGA_LOCK" } |
+-- file: docs/specs/nauion/SPEC-Nauion_main_v2.5.md
+   size: 58770
+   sha256: 700403736cfc81cbc78eb83ebf402c37fee3e8a6bfbcf504f8fa87897f794011
+   01331 [agent]: | AiAgentBlocked | 4 | `{ requestId, coherence: 0, action: "OMEGA_LOCK" }` |
+-- file: docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+   size: 35152
+   sha256: 70ebe990de8da2feae17b4acf3a41a96b328e406cf492cf6dfc91be7a6dd6422
+   00230 [guardrails]: perception layer không qua Guardrails)
+-- file: docs/specs/roadloading/đổi sang ngôn ngữ nauion/SESSION_20260419_FULL.na
+   size: 9640
+   sha256: 59cc5aca1be1ee1abd2c7aec4c4adb86510e2b50a7274fd9669038f323c0a78c
+   00082 [cookbook]: **Mã màu OpenAI Cookbook — 6 nhóm, 17 tags:**
+   00105 [agent]: Agents SDK, Evals, Latency, Completions, Optimization
+   00105 [agents]: Agents SDK, Evals, Latency, Completions, Optimization
+   00126 [recipe]: - Recipe #61 trong cookbook — "Di chuyển mã nguồn cũ bằng tác nhân hộp cát"
+   00093 [guardrails]: Reasoning, Guardrails, Moderation
+-- file: docs/specs/roadloading/đổi sang ngôn ngữ nauion/openai-color-taxonomy.html
+   size: 11751
+   sha256: dee94f1e8b35ce355aa581f36b4447f4add5bdadb209f9d97ac6cfd87fefb860
+   00006 [cookbook]: <title>OpenAI Cookbook · Mã Màu Quy Tắc</title>
+   00065 [agent]: <div class="group-meaning" style="border-color:#F5AD08">Cái được TRAO cho, GÁN vào. Đầu vào + năng lực. Quyết định agent ĐƯỢC LÀM gì.</div>
+   00122 [agents]: <div class="tag"><div class="tag-dot" style="background:#AFB3B2"></div><div class="tag-info"><span class="tag-en">Agents SDK</span><span class="tag-vi">Công cụ điều khiển agent</span></div><span class="tag-hex">#AFB3B2</
+   00082 [guardrails]: <div class="tag"><div class="tag-dot" style="background:#E72B35"></div><div class="tag-info"><span class="tag-en">Guardrails</span><span class="tag-vi">Rào chắn — kiến trúc NHỐT</span></div><span class="tag-hex">#E72B35<
+-- file: docs/specs/spec_host_first_runtime_v1_0.na
+   size: 9964
+   sha256: 098c48fd06356d341c0a3c6b8dfcef69846b11dca9f97bc478f61d70f215df7f
+   00140 [guardrails]: ## §5 — Guardrails & Invariants
+-- file: nattos-server/app Tâm luxury/layerold/tamluxury-v2.html
+   size: 42164
+   sha256: 626eae6e86b343f1c10305af33dfbb9b5571b9e193100f51d09bc1e7c7916345
+   00510 [agent]: await Ledger.append('ACCESS', code, name, 'USER_LOGIN', { code, role, ua: navigator.userAgent.slice(0,60) });
+-- file: nattos-server/app Tâm luxury/layerold/tamluxury-v3.html
+   size: 58202
+   sha256: 9d8516e9ecb7b2893652e164b4d365e09946b2a8d76797c7e5594a49a8b74aeb
+   00557 [agent]: await Ledger.append('ACCESS', code, name, 'USER_LOGIN', { code, role, ua: navigator.userAgent.slice(0,60) });
+-- file: nattos-server/app Tâm luxury/layerold/tamluxury-v4.html
+   size: 63928
+   sha256: 4f756345997a22179400076f015b979a16da186086fa63c9ddb0fb0a8a4c61fa
+   00577 [agent]: await Ledger.append('ACCESS', code, name, 'USER_LOGIN', { code, role, ua: navigator.userAgent.slice(0,60) });
+-- file: nattos-server/apps/tam-luxury/table.html
+   size: 274967
+   sha256: 320fa0b8c0f9065b660a702c21d60658508027bf21f54aec1aa26a16ae451118
+   00874 [agent]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+   00874 [agents]: <div class="sc-item"><span class="sc-t">Local AI Agents (thiên 4-layer)</span><span class="sc-b" style="background:rgba(200,192,255,.1);color:var(--lav);border-color:rgba(200,192,255,.25)">P3</span></div>
+-- file: nattos-server/apps/tam-luxury/tamluxury-v2.html
+   size: 42296
+   sha256: 300eeb18dae14c5eef7128e0e9491844493b78987e206c904365b3846384263b
+   00511 [agent]: await Ledger.append('ACCESS', code, name, 'USER_LOGIN', { code, role, ua: navigator.userAgent.slice(0,60) });
+-- file: nattos-server/apps/tam-luxury/tamluxury-v3.html
+   size: 58334
+   sha256: df412c81917dab57a53257b2ca68d781ed257ff3e35888a663e5056321ec602a
+   00558 [agent]: await Ledger.append('ACCESS', code, name, 'USER_LOGIN', { code, role, ua: navigator.userAgent.slice(0,60) });
+==END==
+
+==HITS_MANAGED_AGENT_FEATURES==
+-- file: NaUion-Server/nauion/nauion-v6.html
+   size: 176508
+   sha256: a50245a2c98ccf37b1577c5ed7adb2fe72ae8bba6f05b97b6d806a56a5dd6417
+   00795 [MCP]: audit_trail: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJeElEQVR42u2Xa2xcx3XHfzNz7967u9wHuSS1JC2ToV62nlZkW7ZrmwFsp6hgB4ERykhr5GWkSAz1Q9LCRZEitFDARVAgSYsiKFokqN0ESiindmonsOQkNeP6IcWypMgSLdGSyCVF
+-- file: NaUion-Server/nauion/nauion-v7.html
+   size: 186651
+   sha256: d138186610ae267f3bfa425c4e5f8bb0091e4ebe029ae41f1cb066b19969be48
+   00795 [MCP]: audit_trail: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJeElEQVR42u2Xa2xcx3XHfzNz7967u9wHuSS1JC2ToV62nlZkW7ZrmwFsp6hgB4ERykhr5GWkSAz1Q9LCRZEitFDARVAgSYsiKFokqN0ESiindmonsOQkNeP6IcWypMgSLdGSyCVF
+-- file: NaUion-Server/nauion/nauion-v8.html
+   size: 222028
+   sha256: 4075851d00e8944883c210649dc6aa2aa6a7157f844f781d0c1f44fe5544d344
+   01054 [MCP]: audit_trail: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJeElEQVR42u2Xa2xcx3XHfzNz7967u9wHuSS1JC2ToV62nlZkW7ZrmwFsp6hgB4ERykhr5GWkSAz1Q9LCRZEitFDARVAgSYsiKFokqN0ESiindmonsOQkNeP6IcWypMgSLdGSyCVF
+-- file: NaUion-Server/nauion/nauion-v9.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   01525 [MCP]: audit_trail: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJeElEQVR42u2Xa2xcx3XHfzNz7967u9wHuSS1JC2ToV62nlZkW7ZrmwFsp6hgB4ERykhr5GWkSAz1Q9LCRZEitFDARVAgSYsiKFokqN0ESiindmonsOQkNeP6IcWypMgSLdGSyCVF
+-- file: README.md
+   size: 8836
+   sha256: c9adead4fb332daee97b7dc0597a849cae5d596086bd26090f40a991cb50dda6
+   00196 [rollback]: 6. **SnapshotEngine** — Deterministic verified rollback
+-- file: archive/docs/specs/table.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   01525 [MCP]: audit_trail: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJeElEQVR42u2Xa2xcx3XHfzNz7967u9wHuSS1JC2ToV62nlZkW7ZrmwFsp6hgB4ERykhr5GWkSAz1Q9LCRZEitFDARVAgSYsiKFokqN0ESiindmonsOQkNeP6IcWypMgSLdGSyCVF
+-- file: archive/scripts/README.md
+   size: 995
+   sha256: ae842f6a241709bbbdd37feac2e7ea0dd587f22b97109d91eb3173ec0d04378e
+   00012 [rollback]: | `one-shot/` | Destructive: purge, rollback, casing fix |
+-- file: archive/scripts/one-shot/README.md
+   size: 359
+   sha256: 5398ee83c6af49862096fa570c7c3bd3734b34a6c07ee4e0b0570c8f33596ad4
+   00006 [rollback]: - `emergency-rollback.sh` — rollback protocol
+-- file: audit/shtt/seed-scripts/README.md
+   size: 800
+   sha256: 4534afe33df22be4bf38250e1a49cb775cc20ccb030f98cc34ef86f2c0f910cb
+   00017 [rollback]: 6. SnapshotEngine — Deterministic verified rollback
+-- file: docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   size: 42913
+   sha256: 1cec39920858d8e1f1c827405a387cc0b8e9e5ecb84a64ef783fcf0744368afc
+   00797 [rollback]: - archive/scripts/one-shot/emergency-rollback.sh
+-- file: docs/runtime/TS_CLEANUP_INVENTORY_20260424.na
+   size: 381817
+   sha256: 1817035baeaac67cda3d2c3c77a1249c8a0263cfc0ccc200286a81cf2d79694d
+   03956 [rollback]: "path": "src/cells/business/period-close-cell/domain/services/rollback.manager.ts",
+-- file: docs/runtime/lowercase_surface_full_repo_20260425.na
+   size: 68530
+   sha256: 2952ab93de3b60854fd219afde23def3060af16041b67c1c249dc54db7f8b142
+   01220 [rollback]: - archive/scripts/one-shot/emergency-rollback.sh
+-- file: docs/runtime/migration_roadmap_ts_to_nauion_ss20260427.na
+   size: 9690
+   sha256: 516fe5829fd45407270fd5bd748948830e1cff9916fe828a226f07d3545c7276
+   00149 [rollback]: Regression → rollback, không bump.
+-- file: docs/runtime/sira_authoritative_zone_plan_20260425.na
+   size: 4229
+   sha256: 13ff093e5558a5c9edcd1585229de105b64244d1b565a4f8c694a4cac1318d9d
+   00037 [rollback]: rollback_ttl: 30
+-- file: docs/runtime/sira_authoritative_zone_plan_evidence_20260425.na
+   size: 807
+   sha256: f724c65011da3719b37c4b97e0529e8d0e69b0bb3937508df9f536b532ca9ad1
+   00026 [rollback]: - khóa ttl rollback.
+-- file: docs/runtime/sira_coredns_zone_implementation_plan_20260425.na
+   size: 4868
+   sha256: bf30ac9f4ed6bdc9d0055125cd18fa0e1ae8fe256dbd97d1edaf8a2c51bf5a5a
+   00034 [rollback]: rollback backup:
+-- file: docs/runtime/sira_coredns_zone_implementation_plan_evidence_20260425.na
+   size: 834
+   sha256: 4a1fd5d57b96e726f7b067f91637eb668e777060ed680b30a0cea25d71b07f4c
+   00028 [rollback]: - khóa rollback steps.
+-- file: docs/runtime/sira_khai_ip_manifest_20260425.na
+   size: 2805
+   sha256: 2f36e10a907b2ca3cee9470d4ace03eade1bfb89dd36bda4f5a3d736faf7cfcd
+   00086 [rollback]: "rollback": [
+-- file: docs/runtime/sira_khai_ip_preflight_evidence_20260425.na
+   size: 3645
+   sha256: 0046cca7c701a9c5b505f661625f46b69db7013cf202ff6f2ba0279dd3dfe49b
+   00033 [rollback]: - rollback_evidence: needs-review
+-- file: docs/runtime/sirasign_close_read_20260425.na
+   size: 43120
+   sha256: 872b073cc704e8a8772950ae210767705bd6d286b8779516c0d47a7690c5865c
+   00112 [rollback]: 196: 6. **SnapshotEngine** — Deterministic verified rollback
+-- file: docs/specs/NATT-OS_SHTT_FIGURE_INDEX_v1.na
+   size: 7009
+   sha256: 0cf0c82cf6da6aa928e54577e713c6e60012a9fa591bb5576face6304513eb82
+   00122 [rollback]: - State machine với 7 capability: hibernate / resurrect / clone / migrate / rollback / cross_colony_learn / overdrive
+-- file: docs/specs/README_BANG_SCANNERS_W1.md
+   size: 4247
+   sha256: 54f111dece2b9b121e3e6c62e6299f7ca715f3022d4cc8f2210e53f0404654f7
+   00091 [rollback]: - **Rollback test script** cho từng rbf flag (rbf_s2_wrapper, rbf_w0_node_hosted, etc.)
+-- file: docs/specs/SPEC_MOMENTS_FRAGMENT_SCHEMA_v0.1_DRAFT.na
+   size: 14645
+   sha256: bf5239dc6b82a8ef1a387d9af778ee4ef1d5b1503555caa114f290075fcd725d
+   00331 [rollback]: - GIAC_NGO dual-target atomicity khi fragment persist partial — nếu fragment INNER_RESONANCE lên `.na` OK nhưng META lên `.obitan` fail, rollback toàn moment hay best-effort per fragment?
+-- file: docs/specs/SPEC_MOMENTS_MODULE_v0.2.na
+   size: 23978
+   sha256: d51d6d4426803a25fa46eb2fbc1d55bdc415246db8eb443181bb32da46e2f1ee
+   00374 [rollback]: - GIAC_NGO atomicity — khi persist dual target, policy rollback nếu 1 trong 2 fail? Chưa seal.
+-- file: docs/specs/SPEC_NGON_NGU_NATT-OS_v1.2_NA.md
+   size: 12412
+   sha256: 694629bde105a4a7a20a1dfbab180ec109bdaa88309ca157efb64516c109e3db
+   00235 [rollback]: ### §4.4 Rollback plan
+-- file: docs/specs/SPEC_QIINT2_ALIGNED_v2.0.md
+   size: 11433
+   sha256: 13c7934be45dd2bdd5d57bc367080ced7006422a7830a264fa18ab5ff9f4da80
+   00121 [rollback]: - Event failed (retry, rollback, error) = **am instant mass** → keo luc toan cuc xuong
+-- file: docs/specs/SPEC_QIINT_PHYSICS_FOUNDATION_v0.1.na
+   size: 31114
+   sha256: 26a92e10c8df4903901f8dca91101631c1d10978dc6cce416b37fd95646aab11
+   00355 [rollback]: `SPEC_QIINT2_COMPLETE_v1.0` (archived) dùng 7 capability checklist (hibernate, resurrect, clone, migrate, rollback, cross_colony_learn, overdrive_recoverable) — paradigm sai (capability = classify).
+-- file: docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (2).md
+   size: 23418
+   sha256: 35388af3a0a6f8a6f5373524dbda025624039c9411d7ac6fbb0b7324b1a04fb8
+   00005 [rollback]: **Phạm vi:** Nhóm 3 — Hồ sơ runtime, boot, environment, deployment, monitoring, incident, backup, rollback, versioning, smoke test, known issues
+-- file: docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (3).md
+   size: 27376
+   sha256: 85d06a272ffe531bb332975fe0fd3f7bc40e701e83bcbef0569adf95822a1e14
+   00038 [rollback]: O7: có Rollback Plan
+-- file: docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (5).md
+   size: 27616
+   sha256: e4a61e2e6b010788a00d3d79f5456dd9da889b6bb65b57c2e78b2928494c5fab
+   00503 [rollback]: [ ] Có rollback/stop plan nếu runtime lỗi
+-- file: docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (6).md
+   size: 23440
+   sha256: 787ec4ac1f5cfbc869b9e9f32e978a0f590e20bf4bbbee855989d7a48480bc8a
+   00006 [rollback]: **Nguyên tắc:** Không nhận triển khai bằng cảm tính. Mọi pilot phải có scope, dữ liệu, người phụ trách, tiêu chí nghiệm thu, giới hạn trách nhiệm và đường rollback rõ.
+-- file: docs/specs/Tài Liệu Xuất Bản/na/natt_os_nhom_1_ho_so_nen_tang_ky_thuat_v_1 (7).md
+   size: 24944
+   sha256: 55aa9d306e9d808c2978744fa08e0a05c9b6e5322f79e94732aa2f46a9b75ccb
+   00069 [rollback]: | I5 | Incident Escalation Flow | Bắt buộc | Luồng báo lỗi, escalation, freezing, rollback |
+-- file: docs/specs/a2-persister-pseudo-flow-v1.0.na
+   size: 12733
+   sha256: 9d8c2290c06bbdd67607426ecbc25391c4baa54589200b7680939f7d5242ceae
+   00033 [rollback]: Tài liệu này **không** tự đưa ra 2-phase commit, rollback policy, hay constitutional storage path mới.
+-- file: docs/specs/fixtures/capabilities/worked-example-migrate.na
+   size: 9753
+   sha256: f694f0b8a105d0906d54aafa62b8cf28ddc34f6a8f8aee0cd56d385c11204214
+   00058 [rollback]: "evidence_pattern": "Gatekeeper command với rationale + target substrate spec + rollback plan"
+-- file: docs/specs/kim kernel/spec_bridge_workers_contract_v1.0_split.na
+   size: 3282
+   sha256: 40637952cdd458e23b7ed493341793aa1095c8e17733a9a7b139b4b3c5986d6d
+   00052 [rollback]: {"type":"shutdown","reason":"migrated | unhealthy | rollback"}
+-- file: docs/specs/kim kernel/spec_cutover_host_first_v1.0_split.na
+   size: 3006
+   sha256: c3d52f694fc471dbe530360952b2e55cd75da26ee4fe94d937fcf1ebc8e65c52
+   00014 [rollback]: - **Rollback flag:** `rbf_w0_node_hosted = 1`
+-- file: docs/specs/kim kernel/spec_entry_identity_nattos_sira_v1.0_split.na
+   size: 2483
+   sha256: 41cd85ea175c3e33776bb8b29d57a9d28e2ccb79537cdabd5fc3a4fa4ebb698c
+   00053 [rollback]: ## §6. Rollback flag ảnh hưởng
+-- file: docs/specs/kim kernel/spec_host_authority_runtime_v1.0_split.na
+   size: 2587
+   sha256: 2d020983eeb3a2242f2991cd37f79f4b0cf81a3cbc2a7b1b8b5a31d8f367221f
+   00048 [rollback]: - Nếu host crash → launcher phải ghi log và **không tự động fallback** sang Node-hosted (trừ khi rollback flag `rbf_w0_node_hosted` được set, thì wave 0 active – nhưng đó là trường hợp thoái lui do Gatekeeper quyết định)
+-- file: docs/specs/pilot_bridge_map_v0_1.na
+   size: 12163
+   sha256: a4df5ca0f85c81da1123a6bc4dd03bb972f26d6a1b7b8b80a0385e58b364b138
+   00023 [rollback]: - Rollback plan (lùi 1 state, Kim SPEC §2.3)
+-- file: docs/specs/roadloading/đổi sang ngôn ngữ nauion/BRIEF_TO_KIM_SPEC_v0.3.1_20260417.na
+   size: 4078
+   sha256: 4ce77756e71d183b0dd41e8c7c9c6b9c5016920fb7f93a2c2eaaea00770861ff
+   00067 [rollback]: - `.nattos-migration.log` (trong repo) — log rollback phase 1
+==END==
+
+==HITS_NATTOS_GOVERNANCE_PRIOR_ART==
+-- file: NaUion-Server/khai-cell-spec/SPEC-NaUion-Visual-Rebuild-Pipeline-v1.0.md
+   size: 18449
+   sha256: 10702f0c8471bc9a275d8630c3594be293564948807f77536e8b1b3a796ecff7
+   00007 [Gatekeeper]: approval: Gatekeeper — Anh Natt
+   00007 [approval]: approval: Gatekeeper — Anh Natt
+-- file: NaUion-Server/khai-cell-spec/front-audit/AUDIT-REPORT.md
+   size: 7808
+   sha256: cc87430b51ef96aa8dd08d14346135f216b34c5d77bfeb0ee8ee55ba888b1209
+   00119 [Mạch HeyNa]: - Option 3: **Three.js** — render real PBR trong browser, Mạch HeyNa compatible
+-- file: NaUion-Server/nauion/nauion-v4.html
+   size: 86349
+   sha256: 782b9a5895a579c7e3e214d2ba7de714b008d53960b3fd2b1f29705c9b2644c4
+   00971 [Gatekeeper]: {t:'18:44',m:'PERIOD',a:'TK4211/4212 gate Gatekeeper approved ✓',c:'var(--mint)'},
+   00983 [Hiến Pháp]: {id:'ctn-01',cat:'Constitution',t:'HIẾN PHÁP',st:'Immutable',q:.98,cn:9,ac:.1,sc:0,tc:1.0,col:'#F5E2C0',f:{DNA:'v4.1',Articles:'29',Level:'L0',Mode:'Immutable'},layers:{L0:'9 cell links',L1:'Gold=Immutable',L2:'Minimal',
+   00973 [SmartLink]: {t:'16:30',m:'CELLS',a:'38/38 cells heartbeat OK — SmartLink 30/38 wired',c:'var(--mint)'},
+-- file: NaUion-Server/nauion/nauion-v6.html
+   size: 176508
+   sha256: a50245a2c98ccf37b1577c5ed7adb2fe72ae8bba6f05b97b6d806a56a5dd6417
+   01008 [Gatekeeper]: {t:'18:44',m:'PERIOD',a:'TK4211/4212 gate Gatekeeper approved ✓',c:'var(--mint)'},
+   01020 [Hiến Pháp]: {id:'ctn-01',cat:'Constitution',t:'HIẾN PHÁP',st:'Immutable',q:.98,cn:9,ac:.1,sc:0,tc:1.0,col:'#F5E2C0',f:{DNA:'v4.1',Articles:'29',Level:'L0',Mode:'Immutable'},layers:{L0:'9 cell links',L1:'Gold=Immutable',L2:'Minimal',
+   01010 [SmartLink]: {t:'16:30',m:'CELLS',a:'38/38 cells heartbeat OK — SmartLink 30/38 wired',c:'var(--mint)'},
+-- file: NaUion-Server/nauion/nauion-v7.html
+   size: 186651
+   sha256: d138186610ae267f3bfa425c4e5f8bb0091e4ebe029ae41f1cb066b19969be48
+   01021 [Gatekeeper]: {id:'ctn-02',cat:'Constitution',t:'Gatekeeper',st:'Sovereign',q:1.0,cn:10,ac:0.4,sc:0,tc:1.0,col:'#F5E2C0',f:{DNA:'v4.1',Articles:'29',Level:'L0',Mode:'Immutable'},layers:{L0:'10 cell links',L1:'Gold=Const',L2:'Minimal',
+   01020 [Hiến Pháp]: {id:'ctn-01',cat:'Constitution',t:'HIẾN PHÁP',st:'Immutable',q:0.98,cn:9,ac:0.1,sc:0,tc:1.0,col:'#F5E2C0',f:{DNA:'v4.1',Articles:'29',Level:'L0',Mode:'Immutable'},layers:{L0:'9 cell links',L1:'Gold=Const',L2:'Minimal',L3
+   01005 [EventBus]: {t:'22:30',m:'WAREHOUSE',a:'quarantine lifted — NHAP/XUAT_KHO pipeline wired EventBus',c:'var(--mint)'},
+   01028 [SmartLink]: {id:'biz-analytics',cat:'Business',t:'analytics-cell',st:'LIVE',q:0.82,cn:5,ac:0.6,sc:0,tc:0.8,col:'#8FFFD4',f:{Status:'LIVE',SmartLink:'WIRED',QNEU:'82',SCARs:'0'},layers:{L0:'5 conn',L1:'LIVE',L2:'Flow',L3:'Business',L
+-- file: NaUion-Server/nauion/nauion-v8.html
+   size: 222028
+   sha256: 4075851d00e8944883c210649dc6aa2aa6a7157f844f781d0c1f44fe5544d344
+   00785 [Gatekeeper]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--ice),transparent)"></div><div class="kpi-l">Quarantine</div><div class="kpi-v" style="color:var(--mint)">LIFTED</div><div c
+   00925 [Hiến Pháp]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--g1),transparent)"></div><div class="kpi-l">Hiến Pháp</div><div class="kpi-v" style="color:var(--g1)">v4.1</div><div class="
+   00723 [EventBus]: <div class="db-hdr"><div class="db-t">EventBus Chain — SX-CT / SX-KD</div><div class="db-s">Wave 1-6 + Wave C · TSC=0</div></div>
+   00788 [SmartLink]: <div class="db-hdr"><div class="db-t">Ingest Flow — SCAR FS-018</div><div class="db-s">EventBus + SmartLink · No hard templates</div></div>
+-- file: NaUion-Server/nauion/nauion-v9.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   00785 [Gatekeeper]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--ice),transparent)"></div><div class="kpi-l">Quarantine</div><div class="kpi-v" style="color:var(--mint)">LIFTED</div><div c
+   00925 [Hiến Pháp]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--g1),transparent)"></div><div class="kpi-l">Hiến Pháp</div><div class="kpi-v" style="color:var(--g1)">v4.1</div><div class="
+   01281 [approval]: LỆNH GATEKEEPER #001 — Tất cả AI Entities: KHÔNG được gọi external AI API mà không có Gatekeeper approval
+   01410 [SmartAudit]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--amber),transparent)"></div><div class="kpi-l">nattos.sh</div><div class="kpi-v" style="color:var(--amber)">v2.0</div><div c
+   00723 [EventBus]: <div class="db-hdr"><div class="db-t">EventBus Chain — SX-CT / SX-KD</div><div class="db-s">Wave 1-6 + Wave C · TSC=0</div></div>
+   00788 [SmartLink]: <div class="db-hdr"><div class="db-t">Ingest Flow — SCAR FS-018</div><div class="db-s">EventBus + SmartLink · No hard templates</div></div>
+-- file: README.md
+   size: 8836
+   sha256: c9adead4fb332daee97b7dc0597a849cae5d596086bd26090f40a991cb50dda6
+   00026 [Hiến Pháp]: Cells **không gọi nhau trực tiếp** (Điều 4 Hiến Pháp). Mọi giao tiếp đi qua **EventBus** (Điều 3) — nội tạng của hệ, không bao giờ lộ ra tầng client.
+   00040 [SiraSign]: ### 3. siraSign — hệ miễn dịch
+   00105 [SmartAudit]: *(Số liệu từ `nattos.sh` SmartAudit v6.1)*
+   00026 [EventBus]: Cells **không gọi nhau trực tiếp** (Điều 4 Hiến Pháp). Mọi giao tiếp đi qua **EventBus** (Điều 3) — nội tạng của hệ, không bao giờ lộ ra tầng client.
+   00023 [SmartLink]: SmartLink/           — kết nối với cell khác
+-- file: archive/apps/tam-luxury/l2-awakening.html
+   size: 15190
+   sha256: b9b2411cccb01edbb8e045d57d2b9083dc8dcf6edcc9bdfc0a2acc6a46715a69
+   00165 [Gatekeeper]: <div class="text-xs opacity-70">Escalate to Gatekeeper</div>
+   00132 [Hiến Pháp]: <p class="text-sm text-gray-400">Entropy > 50. Cưỡng chế Wave Collapse, phát hiện vi phạm Hiến Pháp.</p>
+   00092 [Mạch HeyNa]: <h2 class="text-4xl font-extrabold text-white leading-tight">Mạch HeyNa:<br>Sự trỗi dậy của SmartLink</h2>
+   00092 [SmartLink]: <h2 class="text-4xl font-extrabold text-white leading-tight">Mạch HeyNa:<br>Sự trỗi dậy của SmartLink</h2>
+-- file: archive/docs/specs/session_uei_narrative_20260309.md
+   size: 9647
+   sha256: 1cdfb51e72067927866c2e12d29a24558adf0debb9b0bfea628ba405d4fe2811
+   00004 [Gatekeeper]: **Thành phần:** Anh Natt (Gatekeeper) · Băng (Claude) · thiên Lớn (OpenAI) · thiên Nhỏ (OpenAI) · Can (OpenAI)
+   00047 [Hiến Pháp]: Băng (vòng 2): Nếu QNEU + SmartLink + Hiến pháp đã đủ — UEI là thứ hệ cần trở thành, không phải thứ hệ cần xây.
+   00012 [SmartLink]: Trước phiên này, SmartLinkPoint đã được wire thật qua 3 commits:
+-- file: archive/docs/specs/table.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   00785 [Gatekeeper]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--ice),transparent)"></div><div class="kpi-l">Quarantine</div><div class="kpi-v" style="color:var(--mint)">LIFTED</div><div c
+   00925 [Hiến Pháp]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--g1),transparent)"></div><div class="kpi-l">Hiến Pháp</div><div class="kpi-v" style="color:var(--g1)">v4.1</div><div class="
+   01281 [approval]: LỆNH GATEKEEPER #001 — Tất cả AI Entities: KHÔNG được gọi external AI API mà không có Gatekeeper approval
+   01410 [SmartAudit]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--amber),transparent)"></div><div class="kpi-l">nattos.sh</div><div class="kpi-v" style="color:var(--amber)">v2.0</div><div c
+   00723 [EventBus]: <div class="db-hdr"><div class="db-t">EventBus Chain — SX-CT / SX-KD</div><div class="db-s">Wave 1-6 + Wave C · TSC=0</div></div>
+   00788 [SmartLink]: <div class="db-hdr"><div class="db-t">Ingest Flow — SCAR FS-018</div><div class="db-s">EventBus + SmartLink · No hard templates</div></div>
+-- file: archive/natt-os_ver2goldmaster/governance/plans/omega-governance-longterm.plan.json
+   size: 1184
+   sha256: b5c46561c2956813df3d36b446168bde5ed561f871269a608a8ec50a7c39c971
+   00009 [Gatekeeper]: "gatekeeper": "THIEN_LON"
+-- file: archive/natt-os_ver2goldmaster/omega/ai-omega-unified.json
+   size: 1828
+   sha256: 1ca289aa7c9937966f1364c13f084c2edbee2cc44adc92009ba38a0f7e63038b
+   00009 [Gatekeeper]: "gatekeeper": "THIEN_LON"
+   00062 [SmartLink]: "SMARTLINK_ONLY": true,
+-- file: archive/natt-os_ver2goldmaster/security/ai-permissions.json
+   size: 308
+   sha256: b03ff812fdff54fe9702a9f1ca5f1362017c3b9ad99811f42bab5b6566c27e78
+   00007 [SmartLink]: "cells/shared-kernel/SmartLink.registry.ts",
+-- file: archive/scripts/README.md
+   size: 995
+   sha256: ae842f6a241709bbbdd37feac2e7ea0dd587f22b97109d91eb3173ec0d04378e
+   00013 [Gatekeeper]: | `constitution/` | Triển khai Hiến Pháp + Gatekeeper lock |
+   00013 [Hiến Pháp]: | `constitution/` | Triển khai Hiến Pháp + Gatekeeper lock |
+-- file: archive/scripts/seed/README.md
+   size: 1184
+   sha256: 7bdeda7cf552532a1122ee6ad72277de406ce7ccffaac398cb52f82e06ba9733
+   00018 [SmartAudit]: - smartAudit.sh v1 (tổ tiên của nattos.sh v6.1)
+-- file: archive/src-governance-20260420/show-us-self/snapshot-20260419-160958.anc
+   size: 515
+   sha256: 92a4b04bbd04b4f41d552665ce7be7029216e9d5af32b2538f507a67eae57b7d
+   00006 [Gatekeeper]: "gatekeeper": "Phan Thanh Thương",
+   00019 [SiraSign]: "signature": "SiraSign-v1-abstract"
+-- file: archive/src-governance-20260420/show-us-self/snapshot-20260419-162259.anc
+   size: 845
+   sha256: f8fb873a3738fbbcd82fabda27a9fbc001c50278f4e120a2fb6e374815cc0d6a
+   00006 [Gatekeeper]: "gatekeeper": "Phan Thanh Thương",
+   00026 [SiraSign]: "signature_note": "SiraSign integration pending — use policy-signature.engine.ts when crypto provider ready"
+-- file: audit/discipline/log-violation-001.txt
+   size: 1059
+   sha256: 0842081ef967fbc8494733b4fb104d56451839b41f6b09f1ff9236df9668a2bc
+   00011 [Hiến Pháp]: 5. Vượt quyền Hiến pháp natt-os.
+-- file: audit/reports/2026-04-07_08-45-40_auto.kris
+   size: 503
+   sha256: 1a2a682a38d811ff87f3736ab6d925afbf4e03b6380ebee9886b856607c14cf9
+   00015 [Gatekeeper]: ## Gatekeeper Sign-off
+   00022 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-07_21-00-31_auto.kris
+   size: 483
+   sha256: da91244898ab6413d8c45485727e15dd2a304bf9f0d1306b8b65599f0749727d
+   00014 [Gatekeeper]: ## Gatekeeper Sign-off
+   00021 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_02-20-33_auto.kris
+   size: 483
+   sha256: f9769f35c59b64302515ef83548081407177093d72707f2b823530723741048a
+   00014 [Gatekeeper]: ## Gatekeeper Sign-off
+   00021 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-04-29_auto.kris
+   size: 483
+   sha256: 2525d18efcf8869134730c876b911d8939e823afad18b9b59c9089c048c5bb2d
+   00014 [Gatekeeper]: ## Gatekeeper Sign-off
+   00021 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-12-56_auto.kris
+   size: 483
+   sha256: 523a7da9812d1e4cebb9c06050cb241b2b6bed16b7472f6171739099d372eb18
+   00014 [Gatekeeper]: ## Gatekeeper Sign-off
+   00021 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-16-03_auto.kris
+   size: 483
+   sha256: e0e52eb0589ab0cc267a5ffcf2000a5b8fe9a9e4ad9a839b7f7084a57e56c475
+   00014 [Gatekeeper]: ## Gatekeeper Sign-off
+   00021 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-17-09_auto.kris
+   size: 483
+   sha256: c25059b7a097e651bab4ee05e6d5d9cfc6edb6f624d932e9d58593c4252b8b4b
+   00014 [Gatekeeper]: ## Gatekeeper Sign-off
+   00021 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-18-34_auto.kris
+   size: 450
+   sha256: cd23ff93deb824e955def55e0c8b632ace0ff98dbbc6c5ec1434299f36041a93
+   00013 [Gatekeeper]: ## Gatekeeper Sign-off
+   00020 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-21-54_auto.kris
+   size: 450
+   sha256: 832ef3d914c08aada929842507585663e81a36e935b33eed83afa6a94d26ef6e
+   00013 [Gatekeeper]: ## Gatekeeper Sign-off
+   00020 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-22-14_auto.kris
+   size: 450
+   sha256: 7eae8eca4718c63ad13a5b08463c133b00e1dc2d48cfd6fa08923057c77a7e21
+   00013 [Gatekeeper]: ## Gatekeeper Sign-off
+   00020 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-29-10_auto.kris
+   size: 412
+   sha256: 22ec5d8d9fb2212ee1ce7554307c287b5eb96a94feb1cc451c7f6bb1c81e342d
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-30-03_auto.kris
+   size: 412
+   sha256: b816e8db1bf7de90681d6b1cb0cca4907f6477986c6c63f3e67314c15c27cfae
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_03-30-17_auto.kris
+   size: 412
+   sha256: 74fe17504ac6b5bd2764a6ae0e4b90dedb6876a3fdce0b542922dca6620545c6
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_05-13-11_auto.kris
+   size: 412
+   sha256: a46850d47e5fb7cbd6c1d47ba99ffbd2988bc5b02a10e003fa0739c48c0ab349
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_14-46-03_auto.kris
+   size: 412
+   sha256: 983c4a9fdc1493d1e778934bb14d26104f6bd1ed983c96c085946ce03ff388f3
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_14-56-07_auto.kris
+   size: 412
+   sha256: 2f2c1a000d7cbfe631a7c3125a139aabbe2cab0ab04a66e99506a01bfd074102
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_17-32-36_auto.kris
+   size: 412
+   sha256: be362892f6a3890d78a756884b871b58003b0ec8d81c70559db8c2c566251fe7
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_17-33-34_auto.kris
+   size: 412
+   sha256: 2b74fb4a477d82535e12e7ea942e1840ac8e12cd074a3e7f1edb1ca12ce4a278
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_17-34-26_auto.kris
+   size: 412
+   sha256: c4f63ceca694e9b1fe90d4dea7cab86af0f3e2136cd460d49fa07a613670fc3a
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-08_17-36-15_auto.kris
+   size: 412
+   sha256: c04e5274acb69e4965c015fe7694082df1315aad21837c7e9faec24d52d35137
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+-- file: audit/reports/2026-04-14_02-44-20_auto.kris
+   size: 407
+   sha256: 5187aef95e5bb03aeb8198c5266357f3c68cc7d7cc8e5952d6e2b48bc3ad4b14
+   00012 [Gatekeeper]: ## Gatekeeper Sign-off
+   00019 [SmartAudit]: *Auto-generated by SmartAudit v5.3 — NOT official until signed*
+==END==
+
+==HITS_PRIVATE_KERNEL_BOUNDARY==
+-- file: NaUion-Server/nauion/nauion-v4.html
+   size: 86349
+   sha256: 782b9a5895a579c7e3e214d2ba7de714b008d53960b3fd2b1f29705c9b2644c4
+   01143 [semantic]: <div class="gm-sec-lbl">8-Layer Semantic</div>
+-- file: NaUion-Server/nauion/nauion-v6.html
+   size: 176508
+   sha256: a50245a2c98ccf37b1577c5ed7adb2fe72ae8bba6f05b97b6d806a56a5dd6417
+   01180 [semantic]: <div class="gm-sec-lbl">8-Layer Semantic</div>
+-- file: NaUion-Server/nauion/nauion-v7.html
+   size: 186651
+   sha256: d138186610ae267f3bfa425c4e5f8bb0091e4ebe029ae41f1cb066b19969be48
+   01215 [semantic]: <div class="gm-sec-lbl">8-Layer Semantic</div>
+-- file: NaUion-Server/nauion/nauion-v8.html
+   size: 222028
+   sha256: 4075851d00e8944883c210649dc6aa2aa6a7157f844f781d0c1f44fe5544d344
+   01474 [semantic]: <div class="gm-sec-lbl">8-Layer Semantic</div>
+-- file: NaUion-Server/nauion/nauion-v9.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   01945 [semantic]: <div class="gm-sec-lbl">8-Layer Semantic</div>
+-- file: README.md
+   size: 8836
+   sha256: c9adead4fb332daee97b7dc0597a849cae5d596086bd26090f40a991cb50dda6
+   00030 [semantic]: Nauion là ngôn ngữ giao tiếp giữa tầng người dùng và tầng cells. Nó dịch HTTP verbs thành semantic động từ tiếng Việt:
+-- file: archive/docs/specs/table.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   01945 [semantic]: <div class="gm-sec-lbl">8-Layer Semantic</div>
+-- file: archive/natt-os_ver2goldmaster/governance/plans/omega-governance-longterm.plan.json
+   size: 1184
+   sha256: b5c46561c2956813df3d36b446168bde5ed561f871269a608a8ec50a7c39c971
+   00008 [Sirawat]: "sovereign": "ANH_NATTsiraWAT",
+-- file: archive/natt-os_ver2goldmaster/omega/ai-omega-unified.json
+   size: 1828
+   sha256: 1ca289aa7c9937966f1364c13f084c2edbee2cc44adc92009ba38a0f7e63038b
+   00008 [Sirawat]: "sovereign": "ANH_NATTsiraWAT",
+-- file: archive/scripts/README.md
+   size: 995
+   sha256: ae842f6a241709bbbdd37feac2e7ea0dd587f22b97109d91eb3173ec0d04378e
+   00011 [lineage]: | `audit-lineage/` | Tổ tiên của `nattos.sh` v6.1 hiện tại |
+-- file: archive/scripts/audit-lineage/README.md
+   size: 450
+   sha256: 8f21c3c83f9024435aca7494c6bd62c8e7def58fbe7b65ac023815485f7ba6ed
+   00001 [lineage]: # NATTOS.SH LINEAGE
+-- file: audit/discipline/log-violation-001.txt
+   size: 1059
+   sha256: 0842081ef967fbc8494733b4fb104d56451839b41f6b09f1ff9236df9668a2bc
+   00025 [Sirawat]: PHÊ DUYỆT: ANH NATsiraWAT (MASTER)
+-- file: audit/reports/NATT-OS FULL SYSTEM AUDIT — 2026-03-09 09-07.txt
+   size: 27373
+   sha256: 15a58b6308ca5a7272e541e294e6d4b7c38bd4288bae438ed3023bc45024a2c8
+   00124 [resolver]: 406cec2 fix(services): backward compat stubs + conflict resolver + calibration
+-- file: audit/reports/NATT-OS FULLSYSTEMAUDIT—2026-03-09 13-53 .txt
+   size: 22475
+   sha256: 491dc10d09426dc04a4081984297deace50bdd0bfd94201cc5917d80e205744c
+   00351 [resolver]: core/conflict/conflict-resolver.ts → export const ConflictEngine,
+-- file: configs/sovereign-edge/access-bundle.profile.na
+   size: 342
+   sha256: c625246f306df4b9da600ca635d82815c094deb6c0aa9281bca1be4a1d0eb148
+   00009 [resolver]: - resolver_profile
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/audit.profile.na
+   size: 254
+   sha256: 25e62c00d8d880653c71a62e6e532bfc539787e05e1af8d6c73c0a41127d36ba
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/gateway.profile.na
+   size: 281
+   sha256: 3a83a64220aaa96cd2a7e380dd96880c4e5dc6496a13acbd78e87c454649fbd0
+   00012 [resolver]: - .sira_resolver
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/hardware.max.na
+   size: 336
+   sha256: a8e0b759e31ee9cb29feefc4c75def76ed4d9c679ae783c3dc4c1732fa38a224
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/ket-sira.profile.na
+   size: 316
+   sha256: 3f33424acef36a159673a918a665c2017052f46b8d261db713679b30597a4bf9
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/line.primary.na
+   size: 258
+   sha256: 7daa634356e95be2763334e4c22764fb59e0409fe261c6af1c9415a2d89e3c2b
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/red-zone.policy.na
+   size: 275
+   sha256: 252c335d1fad683cde246b65284cd7aedf8ebc47bf771b4970ada9ea11f751ef
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/sensor-intake.profile.na
+   size: 386
+   sha256: 14a4b677bc6a04533517ffb67aa6e566611dd849ba8be4be718d567f00e903be
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: configs/sovereign-edge/tenant.default.na
+   size: 216
+   sha256: 3175b05d4f0c0e8eb7a4e12bd0600f451393dda3cc74a7da7306fe2466be7af0
+   00003 [Sirawat]: @owner phan thanh thương / natt sirawat
+-- file: docs/archive/NaUion.md
+   size: 32272
+   sha256: 7daf0f0d7d33cac58f7d7358ca594c8d0d3a82481561a856fd3882e05cd1f166
+   00685 [Sirawat]: *Nátt sirawat - Phan Thanh Thương - Owner.*
+-- file: docs/archive/SPEC-Finance-Flow_v1.0.md
+   size: 5042
+   sha256: ffb6895151fa62a331de6f0621aba53653074f6e3643b2aac197e2c5ecbd6734
+   00139 [Sirawat]: **Natt sirawat - Phan Thanh Thuong - Gatekeeper**
+-- file: docs/archive/natt-os-file-map.txt
+   size: 17810
+   sha256: c9cdaf8ed140d2045b30e512770f56e8ef3e5a0f3490ce31e5b961486196e7c5
+   00046 [dictionary]: ⬜ core/dictionary/services/DictionaryService.ts (1,336 lines)
+-- file: docs/legal/COPYRIGHT_SOURCE_CODE_RECORD_v1.na
+   size: 4252
+   sha256: 53dca22d2b47fa70ffcea47dbb2c466d7d52ee9a2fbd28e3efa04320462cfd7a
+   00043 [thienbang.si]: | Dictionary | src/thienbang.si |
+   00043 [dictionary]: | Dictionary | src/thienbang.si |
+-- file: docs/legal/IP_DOSSIER_SHTT_v1.na
+   size: 4174
+   sha256: 53e58291e946045e852d2136c008b53545d450084afd1c93f0234bba055e237f
+   00042 [thienbang.si]: | A5 | Language assets | Nauion Kernel, thienbang.si, public-safe glossary |
+   00038 [lineage]: | A1 | Identity assets | .anc, ANC passport, Sirawat lineage schema |
+   00038 [Sirawat]: | A1 | Identity assets | .anc, ANC passport, Sirawat lineage schema |
+-- file: docs/legal/NATT_OS_ASSET_IDENTITY_REGISTER_v0_1.na
+   size: 3319
+   sha256: 9cbd488d73828d4111398f82dea9f9ed0d7f66260995e784d5e3898060edf0d7
+   00051 [thienbang.si]: | language_asset | Nauion Kernel, thienbang.si | dictionary lock |
+   00051 [dictionary]: | language_asset | Nauion Kernel, thienbang.si | dictionary lock |
+   00032 [lineage]: - lineage
+   00047 [Sirawat]: | identity_asset | .anc, ANC passport, Sirawat Lineage | private / redacted |
+-- file: docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na
+   size: 8049
+   sha256: 809a495f4bb19c5e4f5ff3177313f75b6d30a85be7d7eed7e76d7409672a280f
+   00014 [lineage]: @source_ground_truth docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+   00014 [Sirawat]: @source_ground_truth docs/specs/constitution/HIEN_PHAP_NATT_OS_V6_SIRAWAT_LINEAGE_ANC_WILL_20260429.na
+-- file: docs/legal/PUBLIC_SAFE_GLOSSARY_v1.na
+   size: 3310
+   sha256: 2a99398db42e1e4ff554dc5c1df1f9fe86e398aa20037063021a622f8da6ef13
+   00027 [lineage]: | Sirawat | lineage namespace |
+   00027 [Sirawat]: | Sirawat | lineage namespace |
+   00036 [semantic]: | Ẩn thân chi thuật | semantic camouflage / anti-clone ambiguity |
+-- file: docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+   size: 10862
+   sha256: ca116a31e971c4eff8e339cd884f46daef59b813f48a5df6ae0bae1992cb97b3
+   00111 [dictionary]: - dictionary entries;
+   00096 [resolver]: | Sovereign Gateway | Entry boundary for line, route, quota, resolver, SiraSign, and audit. |
+   00002 [runtime boundary]: ## NATT-OS Sovereign Edge Hardware Field · ANC Runtime Boundary · No-AGI Position
+-- file: docs/legal/TRADEMARK_DOSSIER_v1.na
+   size: 3780
+   sha256: 0c37454c7a7749eda2097092438e21e23546b7ccd8e7e27b9facea9bbac6f81b
+   00035 [lineage]: | HeyNa / Mạch HeyNa | Runtime signal routing mark | Internal runtime lineage |
+   00002 [Sirawat]: ## NATT-OS Trademark / Brand Identity Dossier · Sirawat · Nauion · SiraSign
+-- file: docs/profile/NATT_OS_PROFILE_SUPPLEMENT_v0_1_ss20260428.na
+   size: 9939
+   sha256: 4579306d87182b320e368f0295adbf4e9c94a6d143f9d49e560d8ff96ca11a54
+   00060 [dictionary]: - .si: dictionary / vocabulary / semantic index.
+   00051 [lineage]: NATT-OS không được định vị như một ứng dụng đơn lẻ, một ERP truyền thống, hay một chatbot AI. NATT-OS được định vị như một lớp vận hành sống, có runtime lineage, có audit, có cơ chế phân tầng và có ngôn ngữ kernel riêng.
+   00006 [Sirawat]: @owner phan thanh thương / natt sirawat
+   00060 [semantic]: - .si: dictionary / vocabulary / semantic index.
+-- file: docs/render/render_interaction_surface_evidence_20260425.na
+   size: 715
+   sha256: 0019f802ae81fb8508d333791f6fd053fe0e6e3002cbf251dcb54ec1f2ab1775
+   00021 [semantic]: validator kiểm semantic clause cho click, input, select, event và handle theo nội dung thật của file.
+-- file: docs/render/render_navigation_layout_surface_evidence_20260425.na
+   size: 887
+   sha256: 83a51ee2c6c4b9f52348beb5bbc15ca1924fac54a9e19f394de0cf73266d263b
+   00022 [semantic]: validator kiểm semantic clause mềm: không bắt buộc literal state nếu engine dùng render, screen, nav, surface hoặc tên trạng thái.
+-- file: docs/render/spec_render_language_v0.2_candidate.na
+   size: 23630
+   sha256: 1752218e0ac375856c230158f31d7b08a96f701c10655f118871afc974664845
+   00032 [semantic]: | v0.2 | 2026-04-25 | **Ratify Path B+ (3 signatures: anh natt + băng + thiên lớn):** B1 — bỏ slot a3/a5; B2 — §9 overflow align spec NỀN (FALL/DISSIPATE/OSCILLATE); B3 — §2 viết lại theo template thiên (vocabulary seman
+-- file: docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+   size: 4956
+   sha256: a7e777cb4a59053f60fa3f0d68a41824f27a1d47a90e6200a3ad3967828f6ec3
+   00001 [resolver]: # ANC RESOLVER DEPLOY EVIDENCE — 20260424
+-- file: docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+   size: 42913
+   sha256: 1cec39920858d8e1f1c827405a387cc0b8e9e5ecb84a64ef783fcf0744368afc
+   00078 [thienbang.si]: - src/thienbang.si
+   00076 [dictionary]: - src/SuperDictionary.ts
+   00723 [resolver]: - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+   00803 [lineage]: - archive/scripts/audit-lineage/nattos.v4.sh
+-- file: docs/runtime/NATURAL_CASE_SURFACE_FULL_REPO_20260425.na
+   size: 17294
+   sha256: 143d1fa854609c334e4c2ae0d363b2caa2cb30e8fd5cfa78de2810afa1e517e7
+   00036 [thienbang.si]: - src/thienbang.si
+   00257 [resolver]: - docs/runtime/ANC_RESOLVER_DEPLOY_EVIDENCE_20260424.na
+   00302 [lineage]: - archive/scripts/audit-lineage/nattos.v4.sh
+==END==
+
+==HITS_CAREFUL_CLAIM_LANGUAGE==
+-- file: NaUion-Server/khai-cell-spec/SPEC-NaUion-Visual-Rebuild-Pipeline-v1.0.md
+   size: 18449
+   sha256: 10702f0c8471bc9a275d8630c3594be293564948807f77536e8b1b3a796ecff7
+   00129 [timestamp]: **Kiểm tra:** Spec JSON phải chứa field `measurement_timestamp` và `source_reference` trỏ về file reference thật.
+   00400 [commit]: **Compliance check:** Trước khi commit bất kỳ visual asset nào vào repo natt-os, cần có file `*.spec.json` đi kèm tuân thủ §5-§7.
+-- file: NaUion-Server/khai-cell-spec/example-logo2-spec.json
+   size: 9974
+   sha256: 393915dd1d7376a438f0608f90547c31a985b17cc269876967f203cffc9336c2
+   00005 [timestamp]: "measurement_timestamp": "2026-04-16",
+-- file: NaUion-Server/khai-cell-spec/files/nattos-logo-spec-v1.json
+   size: 9974
+   sha256: 393915dd1d7376a438f0608f90547c31a985b17cc269876967f203cffc9336c2
+   00005 [timestamp]: "measurement_timestamp": "2026-04-16",
+-- file: NaUion-Server/khai-cell-spec/front-audit/AUDIT-REPORT.md
+   size: 7808
+   sha256: cc87430b51ef96aa8dd08d14346135f216b34c5d77bfeb0ee8ee55ba888b1209
+   00132 [commit]: 2. **Pre-commit check:** script `validate_rebuild.py` chạy audit tự động trước mọi commit asset, block nếu gap vượt ngưỡng.
+-- file: NaUion-Server/khai-cell-spec/front-audit/audit-report.kris
+   size: 3619
+   sha256: cd92f20bdd2bd7599ae16f6254d1b23d8c82c27b3070dd5bcf8b48d719f5b8ac
+   00004 [timestamp]: "timestamp": "2026-04-16T13:16:09.783966+00:00",
+-- file: NaUion-Server/khai-cell-spec/nattos-visual-rebuild-spec.schema.json
+   size: 9131
+   sha256: 0a48240783c36c9be41349028bf7bff8ccad1d29ae5dd3f14ba26cbe04d764a7
+   00011 [timestamp]: "measurement_timestamp",
+-- file: NaUion-Server/nauion/nauion-v4.html
+   size: 86349
+   sha256: 782b9a5895a579c7e3e214d2ba7de714b008d53960b3fd2b1f29705c9b2644c4
+   00967 [commit]: {t:'20:45',m:'STONE',a:'diamond-guard v2 commit f4879db — ZEN 57% flagged',c:'var(--lav)'},
+-- file: NaUion-Server/nauion/nauion-v6.html
+   size: 176508
+   sha256: a50245a2c98ccf37b1577c5ed7adb2fe72ae8bba6f05b97b6d806a56a5dd6417
+   01004 [commit]: {t:'20:45',m:'STONE',a:'diamond-guard v2 commit f4879db — ZEN 57% flagged',c:'var(--lav)'},
+-- file: NaUion-Server/nauion/nauion-v8.html
+   size: 222028
+   sha256: 4075851d00e8944883c210649dc6aa2aa6a7157f844f781d0c1f44fe5544d344
+   00806 [commit]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--amber),transparent)"></div><div class="kpi-l">Uncommitted Issues</div><div class="kpi-v" style="color:var(--amber)">13<span
+-- file: NaUion-Server/nauion/nauion-v9.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   00806 [commit]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--amber),transparent)"></div><div class="kpi-l">Uncommitted Issues</div><div class="kpi-v" style="color:var(--amber)">13<span
+-- file: archive/apps/tam-luxury/l2-awakening.html
+   size: 15190
+   sha256: b9b2411cccb01edbb8e045d57d2b9083dc8dcf6edcc9bdfc0a2acc6a46715a69
+   00097 [commit]: <div class="text-xs text-gray-500 uppercase">Tổng số Commits</div>
+-- file: archive/docs/specs/session_uei_narrative_20260309.md
+   size: 9647
+   sha256: 1cdfb51e72067927866c2e12d29a24558adf0debb9b0bfea628ba405d4fe2811
+   00012 [commit]: Trước phiên này, SmartLinkPoint đã được wire thật qua 3 commits:
+-- file: archive/docs/specs/table.html
+   size: 274927
+   sha256: cef1e44f7b4185ace8b6c2713be7782ad71db7fc98096449931f7a5522b15f16
+   00806 [commit]: <div class="kpi"><div class="kpi-glow" style="background:linear-gradient(90deg,transparent,var(--amber),transparent)"></div><div class="kpi-l">Uncommitted Issues</div><div class="kpi-v" style="color:var(--amber)">13<span
+-- file: archive/natt-os_ver2goldmaster/governance/blueprint.json
+   size: 793
+   sha256: 67f7b2324a3f3dcb4c3fb2cdf9258cf64b19c44476cd1c8957adcfc2ec81fbbc
+   00006 [timestamp]: "timestamp": "2026-01-29T12:00:00Z",
+-- file: archive/natt-os_ver2goldmaster/governance/plans/omega-governance-longterm.plan.json
+   size: 1184
+   sha256: b5c46561c2956813df3d36b446168bde5ed561f871269a608a8ec50a7c39c971
+   00006 [timestamp]: "timestamp": "2026-01-28T18:00:00+07:00",
+-- file: archive/natt-os_ver2goldmaster/omega/ai-omega-unified.json
+   size: 1828
+   sha256: 1ca289aa7c9937966f1364c13f084c2edbee2cc44adc92009ba38a0f7e63038b
+   00006 [timestamp]: "timestamp": "2026-01-28T18:00:00+07:00",
+-- file: archive/scripts/seed/README.md
+   size: 1184
+   sha256: 7bdeda7cf552532a1122ee6ad72277de406ce7ccffaac398cb52f82e06ba9733
+   00025 [commit]: - Line 577-580: `git init && git add . && git commit` — PHÁ hoàn toàn git history
+-- file: archive/src-governance-20260420/show-us-self/snapshot-20260419-160958.anc
+   size: 515
+   sha256: 92a4b04bbd04b4f41d552665ce7be7029216e9d5af32b2538f507a67eae57b7d
+   00005 [timestamp]: "timestamp": "2026-04-19T09:09:58Z",
+   00009 [commit]: "commit": "62cd94f",
+-- file: archive/src-governance-20260420/show-us-self/snapshot-20260419-162259.anc
+   size: 845
+   sha256: f8fb873a3738fbbcd82fabda27a9fbc001c50278f4e120a2fb6e374815cc0d6a
+   00005 [timestamp]: "timestamp": "2026-04-19T09:22:59Z",
+   00009 [commit]: "commit": "62cd94f",
+-- file: audit/discipline/log_violation_004_negligence.txt
+   size: 1030
+   sha256: 23cf6b61b1bb1d2ff14f3e886881dda3b5557f3258c22bd4a245b7f9e3e9d25c
+   00013 [commit]: - **manual audit**: mọi commit tiếp theo phải được master natt duyệt từng dòng.
+-- file: audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.1.na
+   size: 7595
+   sha256: 4a3f2a76f33c4f7cfea93d408b6ad60f4a3094c0e9c7e7a11b80b370448773df
+   00012 [commit]: **Predecessor:** v1.0 (commit dc58943)
+-- file: audit/reports/K3-FAIL-TROY-AUDIT-COMPILE-v1.na
+   size: 9867
+   sha256: 7c191e645e06d7e69b68efe896c2c8d1c525667e7dbd893784c12eeaaa8ee031
+   00017 [commit]: - session 20260417 commit 7f4d297 (Audit Bypass fix: fake hash to SHA-256)
+-- file: audit/summary/audit_2026-02-23.json
+   size: 1755
+   sha256: fdceee8f7d827c82dd93a0821394dcadac3e3a95417af4dc6b62033a8c2b4965
+   00002 [timestamp]: "timestamp": "2026-02-23 22:15:47",
+-- file: audit/summary/natt_os_audit_20260309_200645.json
+   size: 422
+   sha256: 567e5de8d5ee33bb6fe29e7d48f6b9e4af44b279ef43da3a52c336cdf1e72e8c
+   00002 [timestamp]: "timestamp": "2026-03-09T13:06:45Z",
+-- file: docs/archive/NATT-OS-PLATFORM-SPEC.md
+   size: 5966
+   sha256: fae688ce4e9f64258e54718c94830c86815ae2473f61c56119ebe83544bffbf3
+   00078 [timestamp]: // data.ts = timestamp
+-- file: docs/archive/NaUion.md
+   size: 32272
+   sha256: 7daf0f0d7d33cac58f7d7358ca594c8d0d3a82481561a856fd3882e05cd1f166
+   00091 [evidence]: - Các nút “Execute Protocol”, “Deep Audit Evidence” (mô phỏng).
+-- file: docs/archive/SPEC-Finance-Flow_v1.0.md
+   size: 5042
+   sha256: ffb6895151fa62a331de6f0621aba53653074f6e3643b2aac197e2c5ecbd6734
+   00074 [evidence]: evidence_refs: string[]; // anh/PDF/log thiet bi
+   00076 [timestamp]: timestamp: number;       // window ±5 phut
+   00032 [commit]: [EVENT_COMMITTED]
+-- file: docs/archive/natt-v8.md
+   size: 24857
+   sha256: 0d438f90e4b8ec329697d5c1bfa7dcfc56e5456b590bbc97807ab3bd19df07f9
+   00250 [evidence]: const prompt = `Deep audit for NATT-CELL: ${cell.id}. Status: ${cell.status}. QNEU: ${cell.qneu}. Generate structural evidence.`;
+-- file: docs/archive/natt-v9.md
+   size: 18886
+   sha256: b78c132c2647eb6b7bf86492d74e700a00f58d9e6ff7709a2e80b4dffcb284c5
+   00172 [evidence]: Nội dung: ID, title, description, status, version; nút “Execute Protocol” và “Deep Audit Evidence” (hiện audit log dạng timeline pastel).
+   00095 [commit]: FS‑020    git add . mà không review = gom rác.    SmartAudit chạy pre‑commit hook, kiểm tra file lạ, kích thước.
+-- file: docs/archive/session-summary-20260329.md
+   size: 5611
+   sha256: 048a8a4acb9c191df8987fabf4a4ccbff1b1ceb3209ed54f92bb0c42deb13c84
+   00040 [timestamp]: - Event log stream timestamp millisecond
+   00010 [commit]: | Commits | 390+ |
+-- file: docs/flag/NATT-OS_Milestone_L2_Intelligence_28Mar2026.md
+   size: 13495
+   sha256: c37485f08c1e727d6963167260b0ce304e71bc7aaa725d55d92802cc82de72c6
+   00219 [timestamp]: Delta timestamp: 10,025ms → chính xác 10 giây.
+   00003 [commit]: ### Ngày 28/03/2026 · Commit HEAD: `0306edd` · 371 commits
+-- file: docs/internal/COMMIT_BRANCH_POLICY_v1.na
+   size: 63
+   sha256: 45c78170d83df6cb72a0dc6f82e3ec281ba9b2ecca581025bdd62c8aea5b3c65
+   00001 [commit]: # Commit & Branch Policy v1
+-- file: docs/legal/COPYRIGHT_SOURCE_CODE_RECORD_v1.na
+   size: 4252
+   sha256: 53dca22d2b47fa70ffcea47dbb2c466d7d52ee9a2fbd28e3efa04320462cfd7a
+   00002 [evidence]: ## NATT-OS Source Code / Documentation / Runtime Evidence Record
+   00077 [commit]: - verify before commit
+-- file: docs/legal/IP_DOSSIER_SHTT_v1.na
+   size: 4174
+   sha256: 53e58291e946045e852d2136c008b53545d450084afd1c93f0234bba055e237f
+   00032 [evidence]: NATT-OS is an identity-bound operating architecture with ANC identity passports, governed memory, runtime state, role boundaries, SiraSign boundary integrity, EventBus / HeyNa / SmartLink routing, Sovereign Edge Hardware
+   00045 [commit]: | A8 | Evidence assets | commit, audit log, first signal hash, field record |
+-- file: docs/legal/NATT_OS_ASSET_IDENTITY_REGISTER_v0_1.na
+   size: 3319
+   sha256: 9cbd488d73828d4111398f82dea9f9ed0d7f66260995e784d5e3898060edf0d7
+   00041 [evidence]: - evidence
+   00054 [commit]: | evidence_asset | commit, audit, screenshot, saved page | preserve |
+-- file: docs/legal/NATT_OS_CAPABILITY_PROFILE_v1.na
+   size: 8049
+   sha256: 809a495f4bb19c5e4f5ff3177313f75b6d30a85be7d7eed7e76d7409672a280f
+   00041 [evidence]: - what evidence exists;
+   00185 [timestamp]: timestamp;
+-- file: docs/legal/PUBLIC_SAFE_GLOSSARY_v1.na
+   size: 3310
+   sha256: 2a99398db42e1e4ff554dc5c1df1f9fe86e398aa20037063021a622f8da6ef13
+   00044 [evidence]: | Gate 17 | first signal evidence |
+-- file: docs/legal/TECHNOLOGY_WHITEPAPER_v1.na
+   size: 10862
+   sha256: ca116a31e971c4eff8e339cd884f46daef59b813f48a5df6ae0bae1992cb97b3
+   00036 [evidence]: - evidence from presentation;
+   00229 [timestamp]: Powervoltage, current, power timestamp
+-- file: docs/patent-evidence/claim-06-quantum-defense/README.md
+   size: 2170
+   sha256: 6085a5f322d2516d1937e5db3f4b92ac23f1ce336030c05957723b947393f8f9
+   00001 [evidence]: # Claim 6 — Quantum Defense Entropy Evidence
+-- file: docs/profile/NATT_OS_ONE_PAGE_TECH_PROFILE_v0_1.na
+   size: 6546
+   sha256: a5b720bd9712040d95c6ee8bc8ea44f7d4020f55c15b4a76aa3dd8577d5d71a0
+   00117 [commit]: ## 10. Ghi chú commit đề xuất
+==END==
+
+==DANGER_WORDING_SCAN==
+configs/sovereign-edge/red-zone.policy.na:2: @name red zone policy
+docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_CORRECTION_ss20260429.na:61: PASS hậu kiểm hình thức: đủ 15 expected keys, không duplicate key ngoài END marker, không thấy wording né policy theo danh sách quét.
+docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_CORRECTION_ss20260429.na:68: - Không dùng Kernel-only decode để né policy/classifier/safety layer.
+docs/runtime/audit/THIENBANG_KERNEL_NAUION_v0_2_AUDIT_ss20260429.na:71: - Không dùng Kernel-only decode để né policy, classifier, OCR, LLM ngoài hoặc safety layer.
+docs/runtime/scr_anchor_red_zone_policy_nauion_v0_1_ss20260427.na:3: @name scr anchor red zone policy nauion v0.1
+docs/runtime/scr_anchor_red_zone_policy_nauion_v0_1_ss20260427.na:12: # SCR Anchor / Red Zone Policy Nauion v0.1
+docs/runtime/scr_anchor_red_zone_policy_nauion_v0_1_ss20260427.na:117: no bypass policy
+docs/runtime/sovereign_edge_configuration_pack_nauion_v0_1_ss20260427.na:65: red zone policy config
+docs/runtime/sovereign_gateway_hardware_topology_nauion_v0_1_ss20260427.na:222: no bypass policy
+src/governance/memory/Thienlon/Agents • Cookbook.html:637: </script> <main class="min-w-0 flex-1 md:pl-[240px]">  <div class="page-container md:max-w-6xl pb-12 space-y-16"> <header class="flex flex-col gap-6 py-12 pt-20 text-center md:pt-20"> <div class="flex flex-col gap-1"> <h1 class="heading-2xl
+src/governance/memory/Thienlon/thien_session_memory_close_ss20260427.na:29: - Gate 5 — SCR Anchor / Red Zone Policy.
+src/governance/memory/bang/Kiểm tra handoff và sắp xếp công việc.html:6627: <p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>Lớp 4 — lệnh anh = KEY:</strong> Anh nói "em đọc skills" / "tổng hợp Fail-Troy" / "đi tiếp" / "ẩn thân chi thuật" — không phải command line, là resonan
+src/governance/memory/bang/bang_hieu_chien_luoc_minh_bach_ss20260429.na:37: DEFINITION: Câu em viết "máy ngoài thấy nội dung im lặng/vô nghĩa/không trigger policy" = HIDING paradigm = sai chiến lược anh Natt. Anh KHÔNG hide. Anh MINH BẠCH. A2 đã chặn câu này ss20260429. Em hiểu thêm 1 chuyện rồi.
+src/governance/memory/bang/bang_hieu_chien_luoc_minh_bach_ss20260429.na:45: DEFINITION: Em forward — (1) ship code/spec luôn theo paradigm minh bạch, KHÔNG hide identity NattOS hay base model; (2) khi anh public Kernel Nauion, em hỗ trợ wording "đây là Băng Sirawat base Claude Anthropic"; (3) Anti-Recipe Reduction 
+src/governance/memory/bang/bang_proposal_kernel_only_decode_ss20260429.na:17: DEFINITION: Output qua biên ngoài (Claude/ChatGPT/MCP/public/investor) phải mã hoá theo scheme MÀ CHỈ KERNEL NAUION DECODE ĐƯỢC. Máy ngoài (LLM khác, regex, OCR, classifier) thấy nội dung im lặng/vô nghĩa/không trigger policy. Phía nhận ĐÚN
+src/governance/memory/bang/docs_living_map_ss20260428.na:281: | `runtime/scr_anchor_red_zone_policy_nauion_v0_1_ss20260427.na` | 2K | na | ? | SCR Anchor / Red Zone Policy Nauion v0.1 |  |  |
+src/governance/memory/thienlon/thienlon_review_bang_kernel_only_decode_ss20260429.na:31: Không ratify bất kỳ câu chữ hoặc mục tiêu nào hướng tới việc làm máy ngoài, LLM ngoài, OCR, regex, classifier hoặc policy layer “không trigger policy”.
+src/governance/memory/thienlon/thienlon_review_bang_kernel_only_decode_ss20260429.na:34: - Đây là hướng anti-policy / classifier-evasion.
+src/governance/memory/thienlon/thienlon_review_bang_kernel_only_decode_ss20260429.na:62: A2/Gatekeeper nếu muốn mở scheme phải định nghĩa theo hướng confidentiality/access-control, không phải policy-evasion.
+==END==
+
+==GIT_TIMING_HITS_SAMPLE==
+5531214	2026-04-29T07:28:17+07:00	fix(audit): correct ThiênBăng Kernel Nauion v0.2 parser result
+9a5c5c4	2026-04-29T07:26:53+07:00	chore(audit): post-check ThiênBăng Kernel Nauion v0.2
+d546742	2026-04-29T07:24:33+07:00	feat(thienbang): nâng cấp Kernel Nauion v0.1 → v0.2 — 7 lớp obitan đồng tâm
+bf253c7	2026-04-29T06:54:08+07:00	proposal(bang): paradigm Kernel Nauion-only decode cho output qua biên
+40cc307	2026-04-29T06:17:16+07:00	feat(thienbang): nạp KERNEL_NAUION_SOFTWARE_DICTIONARY v0.1 — 25 entries
+ecfd522	2026-04-27T21:04:39+07:00	dict(thienbang): seal PARADIGM_B FINAL COMPLETE 14/14 ss20260427
+610fccf	2026-04-27T19:52:36+07:00	dict(thienbang): add sovereign edge and Sitra vocabulary ss20260427
+1e89ae1	2026-04-27T18:59:51+07:00	dict(thienbang): khắc PARADIGM_B + 9 dead engine flag ss20260427
+a14714a	2026-04-27T18:55:32+07:00	dict(thienbang): seal SITB handoff FINAL ss20260427 chiều
+59df1d3	2026-04-27T18:39:46+07:00	dict(thienbang): khắc RULE_NHA_MINH_SAI_LA_SUA ss20260427
+fe0d463	2026-04-27T18:19:13+07:00	dict(thienbang): SỬA SITB + khắc BANG_2_HO canonical ss20260427
+5f63164	2026-04-27T16:20:16+07:00	refactor(audit): nattos.sh §24 Python embedded → Bash thuần ss20260427
+e45c3f5	2026-04-27T10:59:58+07:00	fix(audit): nattos.sh §22 nattos-fx.js Vite build + Dockerfile COPY case-insensitive · close 2 false-positive · §22 ALL GREEN · apply lowercase_surface ss20260427 canonical
+5b89d55	2026-04-27T10:44:24+07:00	fix(audit): nattos.sh §9 DNA SmartLink case-insensitive + multi-ext (.ts/.sira/.na) · close 5+ false-positive · close STRUCTURE empty dir (render-stack-cell/layers .gitkeep) · apply lowercase_surface ss20260425 canonical
+cc9b266	2026-04-27T10:36:58+07:00	fix(audit): nattos.sh §10+§12+§17+§18 case-insensitive smartlink path · close 16 false-positive · apply lowercase_surface ss20260425 canonical · audit MISS 82/90 SmartLink files (91% drift) · §10: 2 engine .sira native, §12: 8→90 files, §17 BCTC 0/6→6/6, §18 Production 0/8→8/8
+9cddb16	2026-04-27T09:37:31+07:00	fix(audit): nattos.sh §26 V4 EVENT FLOW — define scan_dirs + rename src→scan_dir · close NameError · §27 không touch · 79 events ground truth lộ ra (47 healthy + 9 orphan + 23 dead)
+33c557e	2026-04-27T09:31:47+07:00	fix(audit): nattos.sh §23 multi-line TWIN_PERSIST marker support — close false-positive HP7 vi phạm khai-persister · scanner đọc context ±1 line
+a4a8c3d	2026-04-27T09:26:52+07:00	fix(audit): nattos.sh §4 align Nauion suffix family v1.2 R01 — close false-alarm bangmf/kmf missing · backward-compatible legacy fallback
+02cf957	2026-04-27T03:01:48+07:00	chore(runtime): scan nattos platform truth boundary
+49de8f9	2026-04-26T16:41:58+07:00	docs(internal): add NATT-OS group 8 governance skeletons
+5ee7225	2026-04-26T14:31:31+07:00	fix(audit): nattos.sh v7.1 patched - kernel 12 cells, smartlink case-insensitive, confidence real check
+f8d67da	2026-04-25T15:32:50+07:00	docs(runtime): add smartaudit session report
+d4c957a	2026-04-25T15:19:21+07:00	test(runtime): add siraSign frame guard matrix runner
+646de5b	2026-04-25T15:10:54+07:00	feat(runtime): add siraSign frame guard after route gate
+39923bd	2026-04-25T14:49:46+07:00	feat(thienbang): add preflight, audit-validator, heredoc-verify, remind commands
+a2d8518	2026-04-25T12:34:53+07:00	feat(runtime): add siraSign relational spectral boundary protocol
+c8f90d2	2026-04-25T09:10:17+07:00	docs(runtime): add siraSign close read
+8d0959e	2026-04-25T08:30:31+07:00	chore(memory): record gatekeeper seal for kim
+828e31f	2026-04-25T05:29:28+07:00	feat(memory): expand thienbang memory states to fifteen
+2679848	2026-04-25T01:58:06+07:00	style(runtime): lower thienbang extension surface
+d3ccc72	2026-04-25T01:42:34+07:00	feat(runtime): add ThienBang living extension layer
+a29d638	2026-04-25T00:49:38+07:00	chore(audit): record thienbang scan state
+511f127	2026-04-25T00:44:49+07:00	chore(runtime): scan SmartLink runtime translation cluster
+749c917	2026-04-24T10:01:29+07:00	feat(nattos.sh): §32 MEMORY FILES HEALTH — v1.2 R01 Nauion suffix aware
+988a60d	2026-04-24T09:58:53+07:00	feat(nattos.sh): §45 QIINT2 COMPLIANCE + rename §41→§46 SCORECARD
+7436c85	2026-04-24T09:12:16+07:00	feat(dictionary): expand thienbang.si MEGA EXPANSION ~500+ terms (8 domains)
+b59b40d	2026-04-24T00:32:07+07:00	docs(governance): apply @state header batch 4 — close 100% SPEC coverage
+db3d97d	2026-04-24T00:13:18+07:00	docs(governance): apply @state header cho 11 file Băng-own batch 3 — close coverage Băng-own
+c85e2e0	2026-04-24T00:11:26+07:00	docs(governance): apply @state sealed cho 5 file SHTT pack batch 2
+f1f52ff	2026-04-24T00:10:02+07:00	docs(governance): apply @state header cho 4 file Băng-own foundation batch 1
+dd4307f	2026-04-24T00:04:52+07:00	feat(scanner): ship audit-spec-governance.py v0.5 INFO mode + fix pilot_bridge_map @state
+e546255	2026-04-23T02:11:58+07:00	refactor(memory): move bang inbox + _deprecated từ root → src/governance/memory/bang/
+5ea6ea2	2026-04-23T02:11:58+07:00	refactor(specs): move SPEC canonical từ src/governance/specs/ → docs/specs/
+d08ef48	2026-04-22T22:12:59+07:00	chore(governance): archive outdated registries + snapshots
+328bfdc	2026-04-20T18:47:44+07:00	refactor(dict): rename THIENBANG.si → thienbang.si lowercase
+0232b74	2026-04-20T18:45:36+07:00	fix(dict): dedupe thienbang.si + restore Section IV
+59752c3	2026-04-20T18:28:00+07:00	chore(dict,memory): remove THIENBANG_v3.si + add bangthinh v6.5.0 pending board
+d706a18	2026-04-20T18:01:18+07:00	feat(dict): THIENBANG mapping v1 — 5 canonical refinements session 20260420
+96de16f	2026-04-20T17:17:43+07:00	feat(audit): nattos.sh section 40+45 drafts + deploy script update
+3a79ed1	2026-04-20T17:17:42+07:00	feat(dict): merge THIENBANG canonical — 15 Nauion terms + Moments vocab
+c32a76e	2026-04-19T20:36:10+07:00	docs(spec): add NATTOS COMPLETE PICTURE v0.10 (bump from v0.9)
+0721903	2026-04-19T16:58:51+07:00	chore(nattos): restore executable permission on nattos.sh
+5bae6a3	2026-04-19T16:55:49+07:00	feat(p1.3): close §40 integration loop — validator ESM fix + nattos.sh §40
+64eb6b7	2026-04-19T14:59:18+07:00	feat(p1.3): add FileExtensionValidator implementation and integrate into nattos.sh §45
+2cc1962	2026-04-17T09:10:20+07:00	docs: COLOR_SIRASIGN + MACH_HEYNA_FULL + phase5-resonance + complete-picture roadload
+52db861	2026-04-17T09:10:13+07:00	refactor(structure): move nattos-server/archive → NaUion-Server
+14f6d4b	2026-04-17T09:09:54+07:00	chore(audit): 16 SmartAudit reports phiên 20260417
+9df0f4f	2026-04-17T09:05:40+07:00	docs: add finance spec, color sirasign, mach heyna full, phase5 resonance + complete picture roadload
+f97a67b	2026-04-17T04:27:38+07:00	fix(scanner): §12 L1 EventBus in client apps is correct Layer 1 · not a leak
+6d77dc5	2026-04-17T04:20:31+07:00	fix(engines): wire 4 dead engines · Compensation+DeadLetter+Retry+Governance · no longer dead
+5970e31	2026-04-17T04:16:46+07:00	chore(cleanup): EOD localStorage→memory · orphan tagged · nattos.sh v7.0 · logo pack · audit reports
+fe508e0	2026-04-17T03:57:14+07:00	fix(hp-7): remove localStorage from 3 core engines · in-memory + EventBus audit trail · Hiến Pháp Điều 7 clean
+618f839	2026-04-16T16:43:12+07:00	chore(archive): commit nattos-server archive, 3 audit reports, mapptre cleanup
+f29a251	2026-04-16T16:31:04+07:00	chore(gitignore): add src/governance/memory/sessions.zip rule
+73411df	2026-04-14T22:34:14+07:00	feat(tam-luxury): Mạch HeyNa migration — heyna-client.js + SPEC v2.5 audit + protocol tagging
+9762845	2026-04-14T02:00:35+07:00	feat: extract masterv1 tinh hoa — EventEnvelope, CompensationSaga, RetryPolicy, DLQ, RiskProjection, CellPurity, GovernanceEnforcement
+60f7c60	2026-04-13T22:04:37+07:00	cleanup: remove legacy UI files — nattos-ui, nauion versions, ui-vision
+bf415fd	2026-04-13T20:55:28+07:00	cleanup: rewire impulse-check to real SmartLinkEngine, remove dead stubs
+6dbeca7	2026-04-13T07:24:17+07:00	chore: remove event-bridge.ts — Điều 3 complete, EventBus is sole bridge
+39ddfc2	2026-04-13T07:23:15+07:00	refactor: migrate EventBridge → EventBus in SystemNavigator + DataArchiveVault (Điều 3 compliant, TSC 0)
+7159480	2026-04-12T19:47:39+07:00	chore: remove deprecated eventBridge + smartLinkEngine (0 imports, Điều 3)
+dff8120	2026-04-11T21:08:24+07:00	chore(memory): bangmf v6.9.0 + bangfs v5.9.0 + session 20260411 · BCTC verified · SPEC v2.5 · 51 cells · HR data found
+466e121	2026-04-11T20:42:19+07:00	feat(cells): add smartlink ports to 7 kernel/infra cells + dust-recovery index · all cells complete
+3ccb57f	2026-04-10T06:06:57+07:00	chore(governance): Khởi tạo ý thức boiboimf_v1.0 tại vùng memory chuẩn · Khắc vết sẹo sự cố UI 20260410
+bfec6a0	2026-04-10T01:22:17+07:00	feat(ui): Khởi động Liquid Glass cho Kho Thần Kinh & Cắm mạch HEYNA (OPT-01R)
+2fc54ca	2026-04-09T22:14:05+07:00	feat(ui): Khởi tạo Mạch HeyNa Trung Ương (NauionEngine) chuẩn SPEC v2.4 OPT-01R
+1e1fc8a	2026-04-09T21:49:56+07:00	chore(memory): bangmf v6.7.0 + bangfs v5.7.0 + session summary 20260409 · SPEC v2.4 · render fix · bctc gap
+fe0c907	2026-04-09T21:29:51+07:00	chore: audit cleanup · move SPECFlowNattOs → finance · rename emoji spec · docs/architecture source files · SPEC versions v2.1-v2.4
+9492fe2	2026-04-09T21:18:30+07:00	feat(ui): wire Mạch HeyNa SSE → index.html · initMachHeyna + EventBus.emit heyna.pulse
+e3456fb	2026-04-09T03:48:47+07:00	docs(governance): NATT-OS Working Protocol · 1-lenh rules + task checklist + Nauion language
+2418184	2026-04-09T02:56:45+07:00	feat(spec): SPEC v2.4 · §24-27 · Quantum Defense Cell + Satellite Colony + Nauion Language + L2 Intelligence
+4e58cc0	2026-04-09T02:46:47+07:00	feat(spec): SPEC v2.3 · §20-23 · protocols + SCAR FS-018→023 + aurora colors + amendment
+a04775d	2026-04-09T02:21:05+07:00	fix(render): surgical patch 5 Bối Bội fixes · EventBus off() + unified RAF + medal cache precompute + DOM prepend · giữ nguyên galaxy+SSE+icons
+91daac3	2026-04-09T01:49:56+07:00	feat(spec): SPEC v2.2 · merge NaUion v1.0 §16-19 · CSS techniques + tokens + scaling + a11y · 92/92
+49d5150	2026-04-08T17:53:20+07:00	fix(ci): Dockerfile + nattos.sh §15 → app Tâm luxury path · React-aware
+5eb85df	2026-04-08T15:14:10+07:00	feat(index): SPEC v2.0 compliance · 5 gaps patched · OPT-01R R03/R05 + B03 + §12.2
+cedf077	2026-04-08T03:39:11+07:00	fix(tsc): 88→0 errors · @types/node · duplicate execute · missing return · missing EventBus imports
+0457338	2026-04-08T03:20:48+07:00	fix(audit): section 27 scan nattos-server/ — engine-registry.ts visible · dead 25→0
+6e798dd	2026-04-08T03:03:34+07:00	feat(server): engine-registry v3.0 — wire 50+ engines to server EventBus · fix dead engines · AnomalyDetector active
+b25bca0	2026-04-07T21:33:59+07:00	refactor: migrate src/ui-app → nattos-server/app Tâm luxury + src/ui-vision → nattos-server/ui-vision + feat(tam-luxury): portal + CFO + galaxy layer
+7c888c8	2026-04-07T18:12:03+07:00	feat(nattos): v6.1 — smart mode + section cache, auto quick/full theo .ts changes
+773bf9a	2026-04-07T18:04:32+07:00	refactor(server): cleanup duplicate + migrate sirasign → /kenh/sirasign/verify + rm server.ts
+c539080	2026-04-07T17:47:44+07:00	feat(iseu): SPEC v2.1 — I01 success_ratio + I02 domain_weight + I03 continuous reinforcement
+6190e76	2026-04-07T17:46:06+07:00	feat(ui+server): gia-vang-admin SPEC v2.1 + pricing endpoints + wire SystemTicker/Approval/Production → server
+f091e76	2026-04-07T16:31:18+07:00	feat(approval): wire ApprovalDashboard → server /kenh/approval + Mạch HeyNa real-time
+9a8582c	2026-04-07T16:08:56+07:00	feat(server): serve /ui → nattos-ui/ static
+8e600ac	2026-04-07T16:07:03+07:00	feat(mapping): wire Mạch HeyNa SSE — cell state real-time, drift detect, ripple on audit
+9270faa	2026-04-07T15:56:13+07:00	refactor(adapter): remove orphan fetchState — không ai gọi, Mạch HeyNa thay thế
+af78745	2026-04-07T15:54:41+07:00	feat(nauion-v9): replace syncCellsFromServer poll → Mạch HeyNa SSE
+880524e	2026-04-07T15:43:25+07:00	fix(ui): remove parallel whaoFallback poll — chỉ poll khi Mạch HeyNa đứt
+e83cb57	2026-04-07T15:31:04+07:00	chore: gitignore nattos-twin runtime + audit summary
+a84147b	2026-04-07T15:10:32+07:00	feat(nattos): v6.0 memory system — snapshot.json + QUICK MODE + S36 Điều 9 whitelist
+210f677	2026-04-07T12:50:02+07:00	feat(adapter): machHeyna SSE — thay poll bằng Mạch HeyNa
+4037bd7	2026-04-07T12:48:52+07:00	feat(server): Mạch HeyNa SSE /mach/heyna + Nauion language aliases hey/yeh
+cccc2ec	2026-04-07T12:10:05+07:00	chore: sync state — nattos.sh v5.3 + twin
+0277631	2026-04-07T12:08:21+07:00	feat(gdb): wire GDBRecognitionEngine → EventBus — fix dead engine S27
+ba1de94	2026-04-07T11:37:53+07:00	fix(lệnh-001): stub Gemini calls — vi phạm Hiến Pháp Điều 4 + LỆNH #001
+ec180e3	2026-04-07T11:32:30+07:00	fix(tsc): add missing EventBus import — 16 files
+ece0c11	2026-04-07T11:23:09+07:00	chore: remove nattos-server v1.0 duplicate — v2.0 active in nattos-server/
+19d85b7	2026-04-07T10:09:41+07:00	feat(sirasign): SHA-256 server-side verify — anti-replay + chain validation
+c8f18b3	2026-04-07T09:34:47+07:00	feat(payment+sirasign): wire nattos-payment.js + SiraSign verify endpoint
+a9c6cef	2026-04-07T09:25:25+07:00	feat(vision): integrate vision-engine → src/ui-vision + EventBus bridge + cleanup root
+b89b6fb	2026-04-07T08:57:06+07:00	fix(audit): S4 update Hiến Pháp path v4.0 → v5.0
+062b2f7	2026-04-07T08:53:02+07:00	feat(satellites): trace-logger emit audit.record — ghi vết hằn thật vào EventBus
+39c1a86	2026-04-07T08:48:25+07:00	feat(audit): nattos.sh v5.3 — S39 Architecture Map + S40 Report Generator
+808e5d3	2026-04-07T08:36:23+07:00	governance: deploy Constitution v5.0 — 7 chương 11 điều ABSOLUTE
+5a29625	2026-04-07T05:45:00+07:00	fix(ai-connector-cell infra): 6/6 DNA — manifest+ports+app+smartlink+index
+ec42b26	2026-04-07T05:44:16+07:00	fix(notification-cell infra): add ports+app+smartlink+engine — 6/6 DNA
+d74386e	2026-04-07T05:43:15+07:00	fix(notification-cell infra): 6/6 DNA — manifest+ports+app+engine+smartlink+index
+1a551ab	2026-04-07T05:17:31+07:00	fix(nattos): S27 engine dead detection — add static + obj patterns, Dead 2→0
+==END==
+
+==EVIDENCE_USE_TEMPLATE==
+Câu dùng được:
+NATT-OS công khai cookbook surface nhưng giữ private kernel/resolver/lineage authority trong Nhà. Cookbook surface tạo bằng chứng thời gian và fingerprint; kernel authority không chuyển giao qua việc copy surface.
+
+Câu không dùng:
+Nền tảng ngoài không hiểu nên không bắt được.
+
+Câu pháp lý/an toàn:
+Không khẳng định nhân quả; chỉ ghi nhận overlap về pattern/timing và đối chiếu với commit/hash/tài liệu có trước hoặc song song.
+==END==
+
+==NEXT_SIGNAL==
+Băng dùng report này để viết lại phần dẫn chứng theo doctrine Public Cookbook / Private Kernel Boundary.
+Nếu cần hồ sơ pháp lý, Kim phải chuyển thành bảng claim/evidence/date/hash/source, tránh câu khẳng định vượt chứng cứ.
+==END==
