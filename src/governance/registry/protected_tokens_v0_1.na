@@ -24,7 +24,8 @@
     "POLARITY",
     "EventBus",
     "SmartLink",
-    "Mạch HeyNa"
+    "Mạch HeyNa",
+    "KHO_NGUYEN_LIEU_UYEN"
   ],
   "records": [
     {
@@ -206,6 +207,15 @@
       "color_class": "C6",
       "protected_flag": true,
       "row_hmac": "7685046332e6cf9213f31c6bceb018ef8f213415db1b87ebb7b766e313385142"
+    },
+    {
+      "i": 21,
+      "token": "KHO_NGUYEN_LIEU_UYEN",
+      "rime_rule_id": "R_PROTECTED",
+      "tone_code": "CTRL_ESCAPE",
+      "color_class": "C6",
+      "protected_flag": true,
+      "row_hmac": "1e33293c1d96ab4da8188e665b98ae5b97d2757f795289e655188e9dce7d179d"
     }
   ]
 }
