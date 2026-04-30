@@ -1,0 +1,62 @@
+# SPEC — Language Spine Index v0.1
+
+File: `docs/specs/SPEC_LANGUAGE_SPINE_INDEX_v0.1.bang`
+Status: draft v0.1 — SPEC index only
+Owner: Thiên Lớn — chữ mã hoá / chuyển ngôn ngữ / bộ đọc dịch
+Date: 2026-04-30
+
+## 0. Boundary
+
+SPEC này chỉ khóa trục chữ mã hoá.
+Không xử schema kho, không xử dashboard, không xử runtime deploy, không chạy corpus.
+
+## 1. Canonical spine
+
+```text
+SPEC_DIALECT_COLOR_CIPHER_v0.1.bang
+→ SPEC_NUMERIC_NFD_FRAME_v0.1.bang
+→ SPEC_CHROMATIC_ANCHOR_MESH_v0.1.si
+→ vocab_mesh_v0.1_seed.bang
+→ dialect_rules_v0_1.na
+→ protected_tokens_v0_1.na
+→ numeric_test_vectors_v0_1.json
+```
+
+## 2. Required documents
+
+| Path | Role |
+|---|---|
+| `docs/specs/SPEC_DIALECT_COLOR_CIPHER_v0.1.bang` | luật chữ mã hoá, tone, color_class, protected, HMAC |
+| `docs/specs/SPEC_NUMERIC_NFD_FRAME_v0.1.bang` | frame số NFD cho phần cứng đọc |
+| `docs/specs/SPEC_CHROMATIC_ANCHOR_MESH_v0.1.si` | polarity, mirror, anchor mesh |
+| `docs/specs/vocab/vocab_mesh_v0.1_seed.bang` | vocab seed cho mesh |
+| `src/governance/registry/dialect_rules_v0_1.na` | registry rule runtime, không dùng `.bang` |
+| `src/governance/registry/protected_tokens_v0_1.na` | registry token bảo vệ, không dùng `.bang` |
+| `tools/dialect-cipher/numeric_test_vectors_v0_1.json` | fixture verify encode/decode |
+
+## 3. Non-negotiable rules
+
+1. `.bang` chỉ dành cho SPEC.
+2. Registry/runtime data không dùng `.bang`; dùng `.na` hoặc `.json`.
+3. `C1 = sắc`, `C2 = huyền`.
+4. `C6 = escape/protected`, `C7 = parity/resync`.
+5. `RB_*` là rule Bình Định gốc.
+6. `RN_*` là NATT dialect cipher.
+7. `R_TONE_ONLY` dùng khi vần giữ nguyên nhưng tone được rút ra kênh màu.
+8. `R_PROTECTED` dùng cho token kỹ thuật không được cipher.
+9. `decode_key` chỉ là composite index; audit phải giữ field rời.
+10. `row_hmac` bắt buộc cho registry row, không dùng fake hash để thay HMAC.
+
+## 4. Materialization order
+
+1. Lock language spine index.
+2. Lock dialect rule registry.
+3. Lock protected token registry.
+4. Lock numeric test vectors.
+5. Viết validator sau Gatekeeper duyệt.
+6. Sau validator mới chuyển ngữ schema/domain/corpus.
+
+## 5. Seal sentence
+
+Chữ mã hoá là xương sống đọc dịch của NATT-OS: chữ, dấu, vần, màu, mirror, parity, HMAC và siraSign phải gặp nhau tại một spine duy nhất trước khi đi vào schema, runtime hoặc phần cứng.
+
