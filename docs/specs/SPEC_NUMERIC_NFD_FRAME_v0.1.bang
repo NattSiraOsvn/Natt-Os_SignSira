@@ -1,0 +1,288 @@
+# SPEC — Numeric NFD Frame v0.1
+
+File: `docs/specs/SPEC_NUMERIC_NFD_FRAME_v0.1.bang`  
+Status: draft v0.1 — contract only  
+Owner: Thiên Lớn — numeric / NFD / hardware-readable frame  
+Date: 2026-04-30
+
+## 0. Boundary
+
+SPEC này chỉ định nghĩa hợp đồng Numeric NFD Frame.
+
+Không làm:
+- không code engine;
+- không chạy corpus;
+- không sửa dictionary;
+- không chọn RGB/HSL vật lý;
+- không claim production;
+- không thay Color Cipher của Băng;
+- không thay Chromatic Anchor Mesh.
+
+SPEC này là lớp giữa:
+
+```text
+Dialect Color Cipher
+→ Numeric NFD Frame
+→ Chromatic Anchor Mesh
+→ Render / Hardware Reader
+→ Validator
+1. Ground Truth từ SPEC đã có
+
+Nguồn tham chiếu:
+
+docs/specs/SPEC_DIALECT_COLOR_CIPHER_v0.1.bang
+docs/specs/SPEC_CHROMATIC_ANCHOR_MESH_v0.1.si
+docs/specs/vocab/vocab_mesh_v0.1_seed.bang
+
+Quy tắc bắt buộc:
+
+C1 = sắc.
+C2 = huyền.
+C6 = escape / protected.
+C7 = parity / resync.
+C6 và C7 không được dùng làm thanh tiếng Việt thường.
+.bang chỉ dành cho SPEC.
+Numeric layer không lưu ba lớp vật lý; chỉ lưu một lớp NFD vật lý, mirror dựng lại bằng validator.
+2. Pipeline chuẩn
+NFC text
+→ NFD codepoints
+→ split rime / tone
+→ apply rime rule
+→ assign color_class
+→ compute mirror_class
+→ compute parity_bit
+→ package frame
+→ siraSign packet
+→ anchor validator
+3. Packet schema
+{
+  "frame_version": "NATT-NUMERIC-FRAME-v0.1",
+  "frame_id": "ULID",
+  "phase": "numeric_nfd",
+  "polarity": "NORMAL",
+  "obitan_layer": 7,
+  "packet_nonce": "hex",
+  "packet_timestamp": 1770000000000,
+  "payload": [],
+  "siraSign": "pending"
+}
+3.1. Packet fields
+FieldTypeRequiredMeaning
+frame_versionstringyesfixed: NATT-NUMERIC-FRAME-v0.1
+frame_idstringyesULID or equivalent
+phaseenumyesmust be numeric_nfd
+polarityenumyesNORMAL or INVERTED
+obitan_layerintegeryesanchor/runtime layer
+packet_noncestringyesanti-replay
+packet_timestampintegeryesmillisecond timestamp
+payloadarrayyessyllable/token frames
+siraSignstringpendingpacket-level seal
+4. Syllable frame schema
+{
+  "i": 0,
+  "origin_text": "người",
+  "origin_nfc": "người",
+  "origin_nfd_codes": [110, 103, 117, 111, 795, 105],
+  "base_surface": "nguoi",
+  "cipher_surface": "ngui",
+  "rime_rule_id": "RN_UOI_UI",
+  "rime_rule_index": 1,
+  "tone_code": "T2",
+  "tone_index": 2,
+  "tone_class": "C2",
+  "color_class": "C2",
+  "mirror_class": "C5",
+  "protected_flag": false,
+  "parity_bit": 1,
+  "decode_key": "nguoi|RN_UOI_UI|C2",
+  "row_hmac_ref": "required"
+}
+5. Tone / color mapping
+Vietnamese tonetone_codetone_indexcolor_class
+ngangT00C0
+sắcT11C1
+huyềnT22C2
+hỏiT33C3
+ngãT44C4
+nặngT55C5
+protected / escapeCTRL_ESCAPE6C6
+parity / resyncCTRL_PARITY7C7
+
+Ghi chú bắt buộc:
+
+C1 = sắc
+C2 = huyền
+C6 = escape / protected
+C7 = parity / resync
+6. Polarity and mirror class
+
+Polarity:
+
+NORMAL   = 0
+INVERTED = 1
+
+Mirror table:
+
+NormalInverted
+C0C7
+C1C6
+C2C5
+C3C4
+
+Quy tắc:
+
+mirror_class = invert(color_class) nếu polarity = INVERTED
+mirror_class = paired mirror nếu validator cần dựng lớp đối xứng
+
+Ví dụ:
+
+color_class = C2
+mirror_class = C5
+7. Parity
+
+Parity v0.1 dùng XOR:
+
+parity_bit = (rime_rule_index XOR tone_index XOR color_index XOR polarity_bit) mod 2
+
+Trong đó:
+
+color_index = index của C0–C7
+polarity_bit = 0 nếu NORMAL
+polarity_bit = 1 nếu INVERTED
+
+Parity chỉ dùng để phát hiện lỗi đọc nhanh.
+Parity không thay thế row_hmac, không thay siraSign.
+
+8. Protected token
+
+Protected token phải:
+
+không áp rime cipher;
+không rút tone như âm tiết thường;
+đặt protected_flag = true;
+đặt tone_code = CTRL_ESCAPE;
+đặt color_class = C6;
+có decode_key riêng;
+vẫn có parity_bit;
+vẫn có row_hmac_ref.
+
+Ví dụ:
+
+{
+  "origin_text": "NATT-OS",
+  "cipher_surface": "NATT-OS",
+  "rime_rule_id": "R_PROTECTED",
+  "tone_code": "CTRL_ESCAPE",
+  "color_class": "C6",
+  "mirror_class": "C1",
+  "protected_flag": true
+}
+9. Runtime decode key
+
+Canonical decode key:
+
+base_surface|rime_rule_id|color_class
+
+Ví dụ:
+
+nguoi|RN_UOI_UI|C2
+
+Runtime có thể index bằng:
+
+(cipher_surface, rime_rule_id, color_class)
+
+Nhưng governance/audit phải giữ từng field rời, không được fuse nghĩa vào một string duy nhất.
+
+10. Integrity model
+LayerMechanismScope
+rowrow_hmacdictionary row
+tokenparity_bitfast sensor check
+packetsiraSignfull numeric frame packet
+
+Domain separation:
+
+row_hmac domain: natt-os/dialect-cipher/v0.1
+packet siraSign domain: natt-os/anchor-mesh/v0.1
+
+Không dùng crypto.createHash() để giả HMAC.
+Không reuse RBAC key cho dictionary row HMAC.
+
+11. Render interface
+
+Numeric frame không chọn màu vật lý.
+
+Render layer nhận:
+
+{
+  "cipher_surface": "ngui",
+  "color_class": "C2",
+  "mirror_class": "C5",
+  "polarity": "NORMAL",
+  "parity_bit": 1
+}
+
+Render layer tự quyết:
+
+RGB / HSL
+brightness
+background / foreground
+sensor tolerance
+optical carrier
+12. Hardware reader interface
+
+Hardware reader không phục dựng tiếng Việt.
+Hardware reader chỉ trả tín hiệu đọc được:
+
+{
+  "i": 0,
+  "read_color_class": "C2",
+  "read_polarity": "NORMAL",
+  "read_parity_bit": 1,
+  "confidence": 0.97
+}
+
+Validator mới ghép với dictionary để decode.
+
+13. Test vectors
+origin_textbase_surfacecipher_surfacerime_rule_idtone_codecolor_classmirror_classprotected
+ngườinguoinguiRN_UOI_UIT2C2C5false
+chuyệnchuyenchuyenR_TONE_ONLYT5C5C2false
+thíchthichthichR_TONE_ONLYT1C1C6false
+hệheheR_TONE_ONLYT5C5C2false
+NATT-OSNATT-OSNATT-OSR_PROTECTEDCTRL_ESCAPEC6C1true
+14. Validator requirements
+
+Validator phải kiểm:
+
+frame_version = NATT-NUMERIC-FRAME-v0.1.
+phase = numeric_nfd.
+color_class thuộc C0–C7.
+tone_code khớp color_class.
+C6/C7 không bị dùng làm thanh tiếng Việt thường.
+mirror_class khớp bảng polarity mirror.
+parity_bit khớp XOR.
+row_hmac_ref tồn tại.
+Packet có packet_nonce.
+Packet có packet_timestamp.
+Packet có hoặc chờ siraSign.
+15. Open states
+CodeContentOwner
+OPEN-HW-01RGB/HSL/sensor toleranceThiên Lớn
+OPEN-HW-02photodiode/camera carrierThiên Lớn
+OPEN-SW-01rule registry numeric index canonicalBăng
+OPEN-SW-02row_hmac storage formatBăng
+OPEN-MESH-01packet siraSign context fieldsBăng + Thiên Lớn
+OPEN-GK-01Gatekeeper ratify before engine/corpusAnh Natt
+16. Materialization order
+Seal Numeric NFD Frame SPEC.
+Update vocab if needed.
+Write validator.
+Write fixture test vectors.
+Connect render profile.
+Run small corpus.
+Run 17.815-row corpus only after Gatekeeper approval.
+17. Seal sentence
+
+Numeric frame không phải bảng màu.
+
+Numeric frame là xương số của pha NFD, nơi chữ, dấu, màu, mirror, parity và siraSign gặp nhau trước khi đi vào phần cứng.
