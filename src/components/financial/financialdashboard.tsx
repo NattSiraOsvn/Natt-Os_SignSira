@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useSmartMapping } from '../../hooks/usesmartmapping';
+import { useSmartMapping } from '../../hooks/useSmartMapping';
 import { useAccounting } from '../../contexts/accounting-context';
 import { AccountingEntry } from '../../types';
 import LoadingSpinner from '../common/loadingspinner';

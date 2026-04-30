@@ -1,11 +1,11 @@
 // @orphan-ok: standalone engine, loaded dynamically via HeyNa SSE
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 
 import React, { useState, useEffect, useRef } from 'react';
 import { SyncJob, SyncConflictStrategy, SyncLog, ConflictResolutionMethod, DataPoint } from '../types';
 import OfflineService from '@/cells/infrastructure/sync-cell/domain/services/offline.engine';
-import SuperDictionary from '../superdictionary';
+import SuperDictionary from '../SuperDictionary';
 import { ConflictEngine } from '@/core/conflict/conflict-resolver';
 
 const DataSyncEngine: React.FC = () => {

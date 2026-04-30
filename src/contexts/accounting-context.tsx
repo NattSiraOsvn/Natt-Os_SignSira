@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { SmartLinkMappingEngine } from '@/cells/infrastructure/SmartLink-cell/domain/engines/SmartLink-mapping.engine';
+import { SmartLinkMappingEngine } from '@/cells/infrastructure/smartlink-cell/domain/engines/smartlink-mapping.engine';
 /* Fix: Import from ../types to ensure compatibility with engine return types */
 import { AccountingEntry, AccountingMappingRule, SalesEvent } from '../types';
 

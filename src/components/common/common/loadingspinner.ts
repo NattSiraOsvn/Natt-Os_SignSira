@@ -1,2 +1,2 @@
 
-export { default } from "@/components/common/LoadingSpinner";
+export { default } from "@/components/common/loadingspinner";

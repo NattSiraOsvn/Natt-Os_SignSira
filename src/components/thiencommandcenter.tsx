@@ -1,11 +1,11 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 
 import React, { useState } from 'react';
 import AIAvatar from './aiavatar';
 import { PersonaID, BusinessMetrics, UserRole, UserPosition, ActionLog, HeatLevel } from '../types';
 import { ShardingService } from '@/core/audit/sharding-engine';
-import { useAuthority } from '../hooks/useauthority';
+import { useAuthority } from '../hooks/useAuthority';
 
 interface ThienCommandCenterProps {
   metrics: BusinessMetrics;
