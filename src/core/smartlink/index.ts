@@ -1,6 +1,6 @@
 // SmartLink barrel — Điều 22 sợi dẫn truyền thần kinh
-export * from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine";
-export * from "@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.governance";
+export * from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine";
+export * from "@/cells/infrastructure/smartlink-cell/domain/services/smartlink.governance";
 
 // Convenience singleton registry
 interface SmartLinkRegistration {

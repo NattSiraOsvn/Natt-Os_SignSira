@@ -1,1 +1,1 @@
-export * from "./design3dapplicationservice"
+export * from "./Design3dApplicationService"

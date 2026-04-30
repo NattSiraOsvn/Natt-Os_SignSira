@@ -1,6 +1,6 @@
 
-export * from './application/index';
-export * from './ports/index';
+export * from './application';
+export * from './ports';
 export * from './domain/engines/notification.engine';
 export * from './smartlink/index';
 

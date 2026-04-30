@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import { SmartLinkEngine } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+import { SmartLinkEngine } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const INTENSITY_MAP: Record<string, number> = {
   'payment.received': 1.0,

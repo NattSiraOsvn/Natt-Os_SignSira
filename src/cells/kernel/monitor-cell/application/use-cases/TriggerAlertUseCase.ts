@@ -1,5 +1,5 @@
-import type { IMonitorRepository } from "../../ports/monitorrepository";
-import { HealthAnalyzer } from "../../domain/services/healthanalyzer";
+import type { IMonitorRepository } from "../../ports/MonitorRepository";
+import { HealthAnalyzer } from "../../domain/services/HealthAnalyzer";
 
 export class TriggerAlertUseCase {
   constructor(private repo: IMonitorRepository) {}

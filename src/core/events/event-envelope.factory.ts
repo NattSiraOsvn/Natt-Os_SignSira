@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 // — pending proper fix
 import type { CellEvent } from "@/cells/shared-kernel/shared.types";

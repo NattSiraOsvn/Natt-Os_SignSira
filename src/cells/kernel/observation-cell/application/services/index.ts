@@ -1,1 +1,1 @@
-export * from "./observationcellapplicationservice";
+export * from "./ObservationCellApplicationService";

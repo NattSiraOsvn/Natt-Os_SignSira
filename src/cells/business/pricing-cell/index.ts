@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 // pricing-cell/index.ts — Wave 4 wire: gold-price + EventBus
 export * from "./application/services";

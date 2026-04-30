@@ -1,1 +1,1 @@
-export { InMemoryConfigRepository } from './inmemoryconfigrepository';
+export { InMemoryConfigRepository } from './InMemoryConfigRepository';

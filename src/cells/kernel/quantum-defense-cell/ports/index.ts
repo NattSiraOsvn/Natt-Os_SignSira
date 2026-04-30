@@ -1,4 +1,4 @@
 export * from "./quantum-defense-cell.contract"
-export * from "./quantumdefenseeventemitter"
-export * from "./quantumdefenserepository"
+export * from "./QuantumDefenseEventEmitter"
+export * from "./QuantumDefenseRepository"
 export * from "./quantum-defense-smartlink.port"

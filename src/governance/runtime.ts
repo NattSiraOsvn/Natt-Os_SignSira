@@ -365,7 +365,7 @@ export function runDecayCycle(): { decayed: number; removed: number } {
 // SmartLink patterns ghi vào audit để UEI field đọc được
 // ═══════════════════════════════════════════
 
-import { QneuBridge } from '@/core/SmartLink/SmartLink.qneu-bridge';
+import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
 
 QneuBridge.onImprint((imprint) => {
   appendAuditEvent({

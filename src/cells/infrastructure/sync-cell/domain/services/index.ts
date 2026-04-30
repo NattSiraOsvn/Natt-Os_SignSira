@@ -1,1 +1,1 @@
-export { SyncEngine } from './syncengine';
+export { SyncEngine } from './SyncEngine';

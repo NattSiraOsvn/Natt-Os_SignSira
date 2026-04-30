@@ -1,4 +1,4 @@
-import type { IAuditRepository } from "../../ports/auditrepository";
+import type { IAuditRepository } from "../../ports/AuditRepository";
 import type { AuditRecord } from "../../domain/entities/audit-record.entity";
 
 const _store: AuditRecord[] = [];

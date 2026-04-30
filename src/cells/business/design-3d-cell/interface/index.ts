@@ -1,1 +1,1 @@
-export * from "./design3dcell"
+export * from "./Design3dCell"

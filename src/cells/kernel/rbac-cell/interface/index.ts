@@ -1,2 +1,2 @@
-export { RBACCell, getRBACCell } from "./rbaccell";
-export type { } from "./rbaccell";
+export { RBACCell, getRBACCell } from "./RBACCell";
+export type { } from "./RBACCell";

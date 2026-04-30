@@ -19,10 +19,10 @@
  *   }
  */
 
-import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
-import { QneuBridge } from '@/core/smartlink/SmartLink.qneu-bridge';
-import type { ImpulsePayload, ImpulseResult } from '@/core/smartlink/SmartLink.point';
-import { NATTimer } from '@/core/smartlink/SmartLink.nattimer';
+import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
+import { QneuBridge } from '@/core/smartlink/smartlink.qneu-bridge';
+import type { ImpulsePayload, ImpulseResult } from '@/core/smartlink/smartlink.point';
+import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
 
 export class CellSmartLinkComponent {
   private readonly cellId: string;

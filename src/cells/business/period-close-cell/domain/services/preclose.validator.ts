@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 import { ValidationReport } from '../entities/validation-report.entity';
 import { ClosingSession } from '../entities/closing-session.entity';

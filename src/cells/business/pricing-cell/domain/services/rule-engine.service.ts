@@ -2,7 +2,7 @@
 // Wave 6b — nhận StockReplenished (action=PRICE_NEW_STOCK)
 //   → tính giá → emit OrderConfirmed → payment, customer, warranty
 import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _touch: TouchRecord[] = [];
 function _emit(to: string, signal: string, payload: Record<string, unknown>) {

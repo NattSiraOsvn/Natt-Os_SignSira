@@ -1,4 +1,4 @@
-import type { ISecurityRepository } from "../../ports/securityrepository";
+import type { ISecurityRepository } from "../../ports/SecurityRepository";
 import type { Threat } from "../../domain/entities/threat.entity";
 
 export class DetectThreatUseCase {

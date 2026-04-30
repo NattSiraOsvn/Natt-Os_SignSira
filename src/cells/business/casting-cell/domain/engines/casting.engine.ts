@@ -3,7 +3,7 @@
 //   → sau đúc xong emit WIP_PHOI → finishing-cell
 //   → sau đúc xong emit WIP_STONE → stone-cell (nếu có đá chủ)
 import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _touch: TouchRecord[] = [];
 

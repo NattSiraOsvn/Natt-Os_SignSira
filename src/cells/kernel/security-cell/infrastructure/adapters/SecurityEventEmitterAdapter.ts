@@ -4,7 +4,7 @@
 // @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
 // @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
 
-import { SecurityEventEmitter } from '../../ports/securityeventemitter';
+import { SecurityEventEmitter } from '../../ports/SecurityEventEmitter';
 
 // sira_TYPE_CLASS
 export class SecurityEventEmitterAdapter implements SecurityEventEmitter {

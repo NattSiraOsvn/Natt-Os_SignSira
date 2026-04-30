@@ -1,5 +1,5 @@
 import { EventBus } from '../../../../../core/events/event-bus';
-import{CustomsSmartLinkPort}from"../../ports/customs-SmartLink.port";
+import{CustomsSmartLinkPort}from"../../ports/customs-smartlink.port";
 export type HSCodeCategory="PRECIOUS_METAL"|"GEMSTONE"|"JEWELRY"|"EQUIPMENT"|"CHEMICAL"|"OTHER";
 export type DutyRateScheme="ASEAN"|"MFN"|"FTA_EU"|"FTA_US";
 export interface CustomsGood{hsCode:string;description:string;quantity:number;unit:string;cif_USD:number;category?:HSCodeCategory;}

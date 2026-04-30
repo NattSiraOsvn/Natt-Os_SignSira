@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 import { AnalyticsSmartLinkPort } from "../../ports/analytics-smartlink.port";
 import type { BusinessMetrics } from "@/types";

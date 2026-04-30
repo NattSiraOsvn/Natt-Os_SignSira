@@ -1,4 +1,4 @@
-import type { IConfigRepository } from "../../ports/configrepository";
+import type { IConfigRepository } from "../../ports/ConfigRepository";
 import type { ConfigEntry } from "../../domain/entities/config-entry.entity";
 
 export class SetConfigUseCase {

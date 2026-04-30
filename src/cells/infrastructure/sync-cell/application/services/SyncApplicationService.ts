@@ -1,7 +1,7 @@
 import { StartSyncUseCase } from '../use-cases';
 import { SyncEngine } from '../../domain/services';
-import { SyncRepository } from '../../ports/syncrepository';
-import { SyncEventEmitter } from '../../ports/synceventemitter';
+import { SyncRepository } from '../../ports/SyncRepository';
+import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
 import { SyncDirection } from '../../domain/entities';
 
 export class SyncApplicationService {

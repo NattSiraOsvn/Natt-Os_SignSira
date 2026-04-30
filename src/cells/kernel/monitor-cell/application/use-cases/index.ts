@@ -1,2 +1,2 @@
-export { ReportHealthUseCase } from './reporthealthusecase';
-export { TriggerAlertUseCase } from './triggeralertusecase';
+export { ReportHealthUseCase } from './ReportHealthUseCase';
+export { TriggerAlertUseCase } from './TriggerAlertUseCase';

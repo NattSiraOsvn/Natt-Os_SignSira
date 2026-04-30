@@ -4,7 +4,7 @@
 // @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
 // @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
 
-import { ConfigEventEmitter } from '../../ports/eventemitter';
+import { ConfigEventEmitter } from '../../ports/EventEmitter';
 
 // sira_TYPE_CLASS
 export class ConfigEventEmitterAdapter implements ConfigEventEmitter {

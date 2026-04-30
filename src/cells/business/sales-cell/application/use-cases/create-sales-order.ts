@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 import { SalesEngine, SaleTransaction } from "../../domain/services/sales.engine";
 import { SalesSmartLinkPort } from "../../ports/sales-smartlink.port";

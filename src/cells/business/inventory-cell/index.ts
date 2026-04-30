@@ -1,7 +1,7 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 // inventory-cell/index.ts — Wave 4 wire: diamond-normalize + EventBus
-export { InventoryEngine } from './infrastructure/inventory.engine';
+export { InventoryEngine } from './infrastructure/Inventory.engine';
 export { ProcessWipCompletedUseCase } from './application/inventory.usecase';
 export type { IInventoryRepository } from './application/inventory.usecase';
 export type { StockEntry, StockEntryStatus } from './domain/inventory.entity';

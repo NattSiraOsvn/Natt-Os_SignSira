@@ -1,6 +1,6 @@
 import { SmartLink, LinkType } from '../../domain/entities';
-import { SmartLinkRepository } from '../../ports/smartlinkrepository';
-import { SmartLinkEventEmitter } from '../../ports/smartlinkeventemitter';
+import { SmartLinkRepository } from '../../ports/SmartLinkRepository';
+import { SmartLinkEventEmitter } from '../../ports/SmartLinkEventEmitter';
 
 export class CreateLinkUseCase {
   constructor(

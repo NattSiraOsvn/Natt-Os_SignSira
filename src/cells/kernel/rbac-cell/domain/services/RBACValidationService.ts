@@ -1,4 +1,4 @@
-import type { IRBACRepository } from "../../ports/rbacrepository";
+import type { IRBACRepository } from "../../ports/RBACRepository";
 
 // Hierarchy: MASTER > LEVEL_1 > LEVEL_2 ... > GUEST
 const ROLE_WEIGHT: Record<string, number> = {

@@ -1,4 +1,4 @@
-export { PolishingEngine } from './infrastructure/polishing.engine';
+export { PolishingEngine } from './infrastructure/Polishing.engine';
 export { ProcessWipStoneUseCase } from './application/polishing.usecase';
 export type { IPolishingRepository, IPolishingSheetAdapter } from './application/polishing.usecase';
 export type { PolishingRecord, PolishingStatus } from './domain/polishing.entity';

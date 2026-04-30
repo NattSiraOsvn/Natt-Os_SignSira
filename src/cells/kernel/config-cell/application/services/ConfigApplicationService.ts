@@ -1,7 +1,7 @@
-import { InMemoryConfigRepository } from "../../infrastructure/repositories/inmemoryconfigrepository";
-import { SetConfigUseCase } from "../use-cases/setconfigusecase";
-import { CreateSnapshotUseCase } from "../use-cases/createsnapshotusecase";
-import { RollbackConfigUseCase } from "../use-cases/rollbackconfigusecase";
+import { InMemoryConfigRepository } from "../../infrastructure/repositories/InMemoryConfigRepository";
+import { SetConfigUseCase } from "../use-cases/SetConfigUseCase";
+import { CreateSnapshotUseCase } from "../use-cases/CreateSnapshotUseCase";
+import { RollbackConfigUseCase } from "../use-cases/RollbackConfigUseCase";
 
 const _repo = new InMemoryConfigRepository();
 

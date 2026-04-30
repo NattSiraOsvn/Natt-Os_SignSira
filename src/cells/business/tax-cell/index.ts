@@ -1,6 +1,6 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
-export { TaxEngine } from './infrastructure/tax.engine';
+export { TaxEngine } from './infrastructure/Tax.engine';
 export { AccumulateLaborCostUseCase, RecordDustRecoveryUseCase, CloseToInventoryUseCase } from './application/tax.usecase';
 export type { ITaxRepository } from './application/tax.usecase';
 export type { CostAccumulation, JournalEntry, JournalEntryType } from './domain/tax.entity';

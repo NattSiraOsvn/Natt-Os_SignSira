@@ -1,7 +1,7 @@
 import { SyncJob, SyncDirection } from '../../domain/entities';
 import { SyncEngine } from '../../domain/services';
-import { SyncRepository } from '../../ports/syncrepository';
-import { SyncEventEmitter } from '../../ports/synceventemitter';
+import { SyncRepository } from '../../ports/SyncRepository';
+import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
 
 export class StartSyncUseCase {
   constructor(

@@ -62,8 +62,8 @@ const SKIP_FILES = new Set([
 /**
  * Extract ALL possible extensions from a filename.
  * "bangkhuong1.0.0.kris" → [".kris", ".0.kris", ...]
- * "audit-cell.cell.anc" → [".anc", ".cell.anc"]
- * "HIEN-PHAP-natt-os-v5.0.anc" → [".anc", ".0.anc"]
+ * "audit-cell.cell" → ["", ".cell"]
+ * "HIEN-PHAP-natt-os-v5.0" → ["", ".0"]
  */
 function extractExtensions(filename: string): string[] {
   const parts = filename.split('.');
@@ -78,7 +78,7 @@ function extractExtensions(filename: string): string[] {
 
 /**
  * Find the best matching canonical extension for a filename.
- * Tries longest match first (e.g., ".cell.anc" before ".anc").
+ * Tries longest match first (e.g., ".cell" before "").
  */
 function findMatchingRule(filename: string): ExtensionRule | null {
   const extensions = extractExtensions(filename);

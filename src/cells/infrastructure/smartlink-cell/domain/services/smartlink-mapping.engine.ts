@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 // SmartLink Mapping — ánh xạ signal giữa các cell (Điều 22)
 import type { CellID } from "../../../../shared-kernel/shared.types";

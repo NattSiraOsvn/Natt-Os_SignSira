@@ -1,8 +1,8 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 export type { FinishingRecord, WorkerAssignment, DustIssue, FinishingStatus } from './domain/finishing.entity';
 export { createDustIssue, createFinishingRecord } from './domain/finishing.entity';
 export type { IFinishingRepository, IFinishingSheetAdapter, RawWorkerRow } from './application/finishing.usecase';
 export { AssignWorkerUseCase, ProcessWipPhoiUseCase, RecordDustIssueUseCase } from './application/finishing.usecase';
-export { FinishingEngine, InMemoryFinishingRepository } from './infrastructure/finishing.engine';
+export { FinishingEngine, InMemoryFinishingRepository } from './infrastructure/Finishing.engine';
 export * from './ports/finishing-smartlink.port';

@@ -4,7 +4,7 @@
 // @authority Anh Natt + Băng (per AUTHORITY_OVERRIDE_MIGRATION_TS_NAUION_SS20260427)
 // @logic-preserved runtime đã proven (chat 81f0e72d 07/04/26)
 
-import { SyncEventEmitter } from '../../ports/synceventemitter';
+import { SyncEventEmitter } from '../../ports/SyncEventEmitter';
 
 // sira_TYPE_CLASS
 export class SyncEventEmitterAdapter implements SyncEventEmitter {

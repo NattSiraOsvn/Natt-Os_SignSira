@@ -1,1 +1,1 @@
-export * from "./touchsignal";
+export * from "./TouchSignal";

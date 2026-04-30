@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 // prdmaterials-cell/domain/services/prdmaterials.engine.ts
 // Wave C-1 — Quản lý láp đúc + phân bổ vàng 24K theo TL sáp
@@ -15,7 +15,7 @@ import { EventBus } from '../../../../../core/events/event-bus';
 import { typedEmit } from '@/core/events/typed-eventbus';
 import { createLap, markDefect, Lap, LapItem } from '../prdmaterials.entity';
 import { assessPrdMaterialsConfidence } from './prdmaterials.confidence';
-import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _laps   = new Map<string, Lap>();   // key = orderId
 const _touch: TouchRecord[] = [];

@@ -1,2 +1,2 @@
-export { SmartLink } from './smartlink';
-export type { SmartLinkProps, LinkType } from './smartlink';
+export { SmartLink } from './SmartLink';
+export type { SmartLinkProps, LinkType } from './SmartLink';

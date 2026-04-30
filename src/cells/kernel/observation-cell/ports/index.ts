@@ -1,2 +1,2 @@
-export * from "./signalstreamreader";
-export * from "./snapshotpublisher";
+export * from "./SignalStreamReader";
+export * from "./SnapshotPublisher";

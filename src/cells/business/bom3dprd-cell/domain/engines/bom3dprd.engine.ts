@@ -9,7 +9,7 @@
 //   BomRejected   → production-cell + design-3d-cell (BOM sai spec)
 
 import { EventBus } from '../../../../../core/events/event-bus';
-import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 // ── BOM record ──
 export interface BomRecord {

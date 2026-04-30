@@ -1,4 +1,4 @@
- — TODO: fix type errors, remove this pragma
+//  — TODO: fix type errors, remove this pragma
 
 /**
  * stone-cell — infrastructure/stone.engine.ts

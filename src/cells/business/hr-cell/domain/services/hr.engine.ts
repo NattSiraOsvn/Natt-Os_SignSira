@@ -13,7 +13,7 @@
 import { EventBus } from '../../../../../core/events/event-bus';
 import { HRSmartLinkPort } from '../../ports/hr-smartlink.port';
 import type { Employee, ProductionGroup } from '../entities/employee.entity';
-import type { TouchRecord } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.engine';
+import type { TouchRecord } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.engine';
 
 const _employees = new Map<string, Employee>();
 const _touch: TouchRecord[] = [];

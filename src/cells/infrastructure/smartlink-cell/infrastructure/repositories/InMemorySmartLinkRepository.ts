@@ -1,5 +1,5 @@
 import { SmartLink, LinkType } from '../../domain/entities';
-import { SmartLinkRepository } from '../../ports/smartlinkrepository';
+import { SmartLinkRepository } from '../../ports/SmartLinkRepository';
 
 export class InMemorySmartLinkRepository implements SmartLinkRepository {
   private links = new Map<string, SmartLink>();

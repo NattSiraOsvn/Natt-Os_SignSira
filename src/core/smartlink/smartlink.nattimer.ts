@@ -32,7 +32,7 @@
  * (xem NOTE ở cuối file)
  */
 
-import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
+import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -409,7 +409,7 @@ export const NATTimer = {
  * Để NATTimer hoạt động, gọi NATTimer.record() sau mỗi SmartLink touch.
  * Cách đơn giản nhất: thêm vào CellSmartLinkComponent.emit():
  *
- *   import { NATTimer } from '@/core/smartlink/SmartLink.nattimer';
+ *   import { NATTimer } from '@/core/smartlink/smartlink.nattimer';
  *
  *   async emit(targetCellId, impulse) {
  *     const result = SmartLinkCell.requestTouch(this.cellId, targetCellId, impulse);

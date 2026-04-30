@@ -1,1 +1,1 @@
-export * from "./inmemoryskumodelrepository"
+export * from "./InMemorySkuModelRepository"

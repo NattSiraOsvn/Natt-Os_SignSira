@@ -1,6 +1,6 @@
-import { InMemoryAuditRepository } from "../../infrastructure/repositories/inmemoryauditrepository";
-import { LogAuditUseCase } from "../use-cases/logauditusecase";
-import { VerifyChainUseCase } from "../use-cases/verifychainusecase";
+import { InMemoryAuditRepository } from "../../infrastructure/repositories/InMemoryAuditRepository";
+import { LogAuditUseCase } from "../use-cases/LogAuditUseCase";
+import { VerifyChainUseCase } from "../use-cases/VerifyChainUseCase";
 import type { AuditRecord } from "../../domain/entities/audit-record.entity";
 
 const _repo = new InMemoryAuditRepository();

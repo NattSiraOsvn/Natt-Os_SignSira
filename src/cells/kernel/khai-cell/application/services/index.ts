@@ -1,1 +1,1 @@
-export * from "./khaicellapplicationservice";
+export * from "./KhaiCellApplicationService";

@@ -23,7 +23,7 @@
  */
 
 import type { TouchRecord } from './smartlink.point';
-import { SmartLinkCell } from '@/cells/infrastructure/SmartLink-cell/domain/services/SmartLink.stabilizer';
+import { SmartLinkCell } from '@/cells/infrastructure/smartlink-cell/domain/services/smartlink.stabilizer';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 

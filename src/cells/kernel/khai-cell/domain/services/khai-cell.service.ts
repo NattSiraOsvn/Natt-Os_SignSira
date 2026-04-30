@@ -25,7 +25,7 @@ import {
   generateTraceId,
   generateEntropySeed,
   type KhaiCellSignature,
-} from "../entities/khaicellsignature";
+} from "../entities/KhaiCellSignature";
 
 import type {
   KhaiCellInput,

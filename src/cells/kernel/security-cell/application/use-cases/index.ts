@@ -1,1 +1,1 @@
-export { DetectThreatUseCase } from './detectthreatusecase';
+export { DetectThreatUseCase } from './DetectThreatUseCase';
