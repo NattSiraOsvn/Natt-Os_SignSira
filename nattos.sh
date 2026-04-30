@@ -1667,7 +1667,7 @@ else
   mkdir -p "$QIINT2_AUDIT_DIR"
   QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ 2>&1)
   QIINT2_RC=$?
-  echo "$QIINT2_OUT" > "$QIINT2_REPORT"
+  echo "$QIINT2_OUT" | awk "/^\{/,0" > "$QIINT2_REPORT"
 
   if [ $QIINT2_RC -ne 0 ]; then
     warn "QIINT2 validator runtime error (rc=$QIINT2_RC)"
