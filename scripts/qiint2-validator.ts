@@ -346,7 +346,7 @@ export function batchReport(reports: CellReport[]): BatchReport {
 // ═══════════════════════════════════════════════════════════════════════
 
 // @ts-ignore
-if (typeof require !== 'undefined' && require.main === module) {
+if (true) { // tsx ESM compat — always run main {
   const demo = [
     validateCell({
       cellName: 'khai-cell',
