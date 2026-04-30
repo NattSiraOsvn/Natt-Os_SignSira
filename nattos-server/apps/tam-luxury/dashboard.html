@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="vi" data-resonance-state="IDLE" data-ui-mode="work">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TÂM LUXURY · Dashboard Toàn Cục — NattOs NattCell Kernel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root {
+  --bg-primary: #0a0810;
+  --bg-secondary: rgba(12, 8, 20, 0.78);
+  --gold: #F5E2C0;
+  --gold-bright: #FFD700;
+  --gold-deep: #B8860B;
+  --amber: #FFBF00;
+  --rose: #FFB8D4;
+  --pearl: #F4E5D6;
+  --mint: #8FFFD4;
+  --ice: #B8E8FF;
+  --lavender: #C8C0FF;
+  --crimson: #EF4444;
+  --emerald: #10B981;
+  --violet: #8B5CF6;
+  --glow-gold: 0 0 30px rgba(255,215,0,0.55);
+  --glow-rose: 0 0 24px rgba(255,184,212,0.5);
+  --glow-mint: 0 0 24px rgba(143,255,212,0.5);
+  --glow-red: 0 0 24px rgba(239,68,68,0.7);
+  --z-truth: 1; --z-worker: 10; --z-experience: 50; --z-modal: 100; --z-alert: 200;
+}
+body {
+  margin: 0; padding: 0;
+  background: var(--bg-primary);
+  color: white;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+/* TRUTH LAYER — Nebula gold/pearl tone for jewelry context */
+#truth-layer { position: fixed; inset: 0; z-index: var(--z-truth); pointer-events: none; }
+.nebula { position: absolute; inset: 0; mix-blend-mode: screen; filter: blur(45px); }
+.neb-1 { background: radial-gradient(ellipse 60% 40% at 25% 35%, rgba(245,226,192,0.10), transparent); animation: drift 36s infinite alternate linear; }
+.neb-2 { background: radial-gradient(ellipse 50% 50% at 75% 50%, rgba(255,184,212,0.08), transparent); animation: drift 48s infinite alternate-reverse linear; }
+.neb-3 { background: radial-gradient(ellipse 55% 35% at 50% 80%, rgba(184,134,11,0.06), transparent); animation: drift 42s infinite alternate linear; }
+.neb-4 { background: radial-gradient(ellipse 40% 60% at 90% 10%, rgba(255,215,0,0.05), transparent); }
+.caustics {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay; opacity: 0.10;
+  animation: causticsDrift 28s ease-in-out infinite;
+}
+.film-grain {
+  position: fixed; inset: 0; z-index: 998; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04; mix-blend-mode: overlay;
+}
+@keyframes drift { 0% {transform: translate(0,0) scale(1);} 100% {transform: translate(30px,-20px) scale(1.05);} }
+@keyframes causticsDrift { 0%, 100% {transform: translate(0,0);} 50% {transform: translate(-15px,10px);} }
+@keyframes pulse-soft { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+/* GLASS PANEL */
+.glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(245,226,192,0.12);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.glass:hover { border-color: rgba(245,226,192,0.25); }
+.glass-gold {
+  background: linear-gradient(135deg, rgba(245,226,192,0.10) 0%, rgba(184,134,11,0.04) 100%);
+  border: 1px solid rgba(245,226,192,0.22);
+}
+
+/* TEXT GLOW */
+.glow-gold { text-shadow: 0 0 14px rgba(255,215,0,0.7); color: var(--gold); }
+.glow-rose { text-shadow: 0 0 14px rgba(255,184,212,0.6); color: var(--rose); }
+.glow-mint { text-shadow: 0 0 12px rgba(143,255,212,0.6); color: var(--mint); }
+.glow-red  { text-shadow: 0 0 12px rgba(239,68,68,0.7); color: var(--crimson); }
+
+/* SCROLLBAR */
+.cs::-webkit-scrollbar { width: 4px; height: 4px; }
+.cs::-webkit-scrollbar-track { background: transparent; }
+.cs::-webkit-scrollbar-thumb { background: rgba(245,226,192,0.18); border-radius: 4px; }
+
+/* HEYNA STATUS DOT */
+.heyna-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 10px var(--mint);
+  animation: pulse-soft 1.6s ease-in-out infinite;
+}
+.heyna-dot.lech  { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+.heyna-dot.gay   { background: var(--crimson); box-shadow: 0 0 10px var(--crimson); }
+.heyna-dot.idle  { background: #555; box-shadow: none; animation: none; }
+
+/* LOADING SHIMMER (chưa có data từ HeyNa) */
+.shimmer {
+  background: linear-gradient(90deg, rgba(245,226,192,0.04) 0%, rgba(245,226,192,0.12) 50%, rgba(245,226,192,0.04) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
+
+/* GROUP TILE */
+.group-tile {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.group-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(245,226,192,0.15);
+}
+.group-tile::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(245,226,192,0.08), transparent 50%);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.group-tile:hover::before { opacity: 1; }
+
+/* UTILITY CHIP */
+.util-chip {
+  background: rgba(245,226,192,0.06);
+  border: 1px solid rgba(245,226,192,0.18);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--pearl);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.util-chip:hover {
+  background: rgba(245,226,192,0.14);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 10px rgba(245,226,192,0.3);
+}
+
+/* ALERT PILL */
+.alert-pill {
+  border-left: 3px solid var(--crimson);
+  background: rgba(239,68,68,0.08);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+.alert-pill.lech {
+  border-left-color: var(--amber);
+  background: rgba(255,191,0,0.08);
+}
+
+/* RESONANCE HEATMAP BARS */
+.heat-bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 10px rgba(245,226,192,0.4);
+  transition: height 0.6s ease;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(2,2,8,0.85);
+  backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.active { display: flex; }
+.modal-content {
+  width: 100%; max-width: 1100px; max-height: 85vh;
+  border-radius: 24px; overflow: hidden;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(245,226,192,0.25);
+  box-shadow: 0 0 60px rgba(245,226,192,0.2);
+}
+
+/* SCAN LINE */
+.scan-line {
+  position: fixed; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245,226,192,0.3), transparent);
+  pointer-events: none; z-index: 5;
+  animation: scan 14s linear infinite;
+}
+@keyframes scan { 0% { top: 0; } 100% { top: 100vh; } }
+</style>
+</head>
+<body>
+
+<!-- TRUTH LAYER -->
+<div id="truth-layer">
+  <div class="nebula neb-1"></div>
+  <div class="nebula neb-2"></div>
+  <div class="nebula neb-3"></div>
+  <div class="nebula neb-4"></div>
+  <div class="caustics"></div>
+</div>
+<div class="film-grain"></div>
+<div class="scan-line"></div>
+
+<!-- ROOT -->
+<div class="relative h-screen w-screen flex flex-col" style="z-index: var(--z-worker);">
+
+  <!-- ╔═══ HEADER BAR ═══╗ -->
+  <header class="h-14 md:h-16 shrink-0 flex items-center justify-between px-4 md:px-8 border-b border-white/8 backdrop-blur-md bg-black/30 relative" style="z-index: 20;">
+    <!-- Brand -->
+    <div class="flex items-center gap-3">
+      <div class="text-2xl md:text-3xl font-serif tracking-wider glow-gold" style="font-family: 'Georgia', serif;">✦ TÂM LUXURY ✦</div>
+      <div class="hidden md:flex items-center gap-2 ml-4 pl-4 border-l border-white/10">
+        <span class="text-[9px] text-gray-500 tracking-widest font-mono">DASHBOARD TOÀN CỤC</span>
+        <span class="text-[9px] text-gray-600">·</span>
+        <span class="text-[9px] text-gray-400 font-mono">71 MÀN HÌNH · 7 NHÓM</span>
+      </div>
+    </div>
+    <!-- Status cluster -->
+    <div class="flex items-center gap-3 md:gap-5 text-[10px] font-mono">
+      <div class="flex items-center gap-2">
+        <div id="heyna-status-dot" class="heyna-dot idle"></div>
+        <span id="heyna-status-text" class="text-gray-400">MẠCH HEYNA: <span class="text-gray-500">đang đợi...</span></span>
+      </div>
+      <span class="hidden md:inline w-px h-4 bg-white/10"></span>
+      <span class="hidden md:inline">Z: <span id="impedance-z" class="glow-mint">1.00</span></span>
+      <span class="hidden md:inline w-px h-4 bg-white/10"></span>
+      <span>QNEU: <span id="qneu-global" class="glow-gold">—</span></span>
+      <span class="w-px h-4 bg-white/10"></span>
+      <span class="text-gray-500 hidden lg:inline">HASH: <span id="audit-hash" class="text-amber-400">—</span></span>
+      <span class="w-px h-4 bg-white/10 hidden md:block"></span>
+      <span id="clock" class="text-gray-300">--:--:--</span>
+    </div>
+  </header>
+
+  <!-- ╔═══ MAIN GRID ═══╗ -->
+  <main class="flex-1 overflow-y-auto cs px-4 md:px-8 py-4 md:py-6 space-y-4 md:space-y-6">
+
+    <!-- ROW 1 — KPI STRIP (6 cards live từ HeyNa) -->
+    <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+      <!-- KPI 1: Doanh thu hôm nay -->
+      <div class="glass glass-gold rounded-2xl p-4 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-1">DOANH THU HÔM NAY</div>
+        <div id="kpi-revenue" class="text-2xl md:text-3xl font-black glow-gold tabular-nums">—</div>
+        <div id="kpi-revenue-trend" class="text-[10px] text-gray-500 mt-1 font-mono">đợi sales-cell...</div>
+        <div class="absolute top-2 right-2 text-base opacity-60">💰</div>
+      </div>
+      <!-- KPI 2: Đơn hàng đang xử lý -->
+      <div class="glass rounded-2xl p-4 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-1">ĐƠN HÀNG XỬ LÝ</div>
+        <div id="kpi-orders" class="text-2xl md:text-3xl font-black glow-mint tabular-nums">—</div>
+        <div id="kpi-orders-trend" class="text-[10px] text-gray-500 mt-1 font-mono">đợi production-cell...</div>
+        <div class="absolute top-2 right-2 text-base opacity-60">⚙️</div>
+      </div>
+      <!-- KPI 3: Tồn kho vàng -->
+      <div class="glass rounded-2xl p-4 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-1">TỒN KHO VÀNG</div>
+        <div id="kpi-gold-stock" class="text-2xl md:text-3xl font-black glow-gold tabular-nums">—</div>
+        <div id="kpi-gold-trend" class="text-[10px] text-gray-500 mt-1 font-mono">đợi inventory-cell...</div>
+        <div class="absolute top-2 right-2 text-base opacity-60">🏆</div>
+      </div>
+      <!-- KPI 4: Hao hụt thực tế -->
+      <div class="glass rounded-2xl p-4 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-1">HAO HỤT VS ĐỊNH MỨC</div>
+        <div id="kpi-loss" class="text-2xl md:text-3xl font-black tabular-nums text-gray-300">—</div>
+        <div id="kpi-loss-trend" class="text-[10px] text-gray-500 mt-1 font-mono">đợi anomaly-predictor...</div>
+        <div class="absolute top-2 right-2 text-base opacity-60">📉</div>
+      </div>
+      <!-- KPI 5: Công nợ KH -->
+      <div class="glass rounded-2xl p-4 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-1">CÔNG NỢ KHÁCH HÀNG</div>
+        <div id="kpi-debt" class="text-2xl md:text-3xl font-black glow-rose tabular-nums">—</div>
+        <div id="kpi-debt-trend" class="text-[10px] text-gray-500 mt-1 font-mono">đợi finance-cell...</div>
+        <div class="absolute top-2 right-2 text-base opacity-60">📊</div>
+      </div>
+      <!-- KPI 6: Tỷ lệ giá vốn / doanh thu -->
+      <div class="glass rounded-2xl p-4 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-1">GIÁ VỐN / DOANH THU</div>
+        <div id="kpi-cogs" class="text-2xl md:text-3xl font-black tabular-nums text-gray-300">—</div>
+        <div id="kpi-cogs-trend" class="text-[10px] text-gray-500 mt-1 font-mono">ngưỡng cảnh báo: 87%</div>
+        <div class="absolute top-2 right-2 text-base opacity-60">⚠️</div>
+      </div>
+    </section>
+
+    <!-- ROW 2 — 7 GROUP TILES (71 màn hình theo PDF) -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+      <!-- Group 1: Sản xuất & Kho (15 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="san-xuat-kho" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 01</div>
+            <div class="text-base font-bold text-white mt-1">Sản xuất &amp; Kho</div>
+          </div>
+          <div class="text-3xl opacity-70">⚙️</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">15 màn hình · Thợ, Tổ trưởng, Thủ kho, GĐ SX, KCS</div>
+        <div class="flex flex-wrap gap-1.5" id="util-sxk">
+          <button class="util-chip" data-util="My Workbench">My Workbench</button>
+          <button class="util-chip" data-util="SmartLink Map">SmartLink Map</button>
+          <button class="util-chip" data-util="Causality Trace">Causality Trace</button>
+          <button class="util-chip" data-util="Quick Stocktake">Quick Stocktake</button>
+          <button class="util-chip" data-util="Anomaly Predictor">Anomaly Predictor</button>
+          <button class="util-chip" data-util="QC Entry">QC Entry</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Live: <span id="sxk-live" class="glow-mint">—</span> tasks</span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Group 2: Nhân sự & HC (15 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="nhan-su-hc" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 02</div>
+            <div class="text-base font-bold text-white mt-1">Nhân sự &amp; HC</div>
+          </div>
+          <div class="text-3xl opacity-70">👥</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">15 màn hình · NV, Quản lý, HCNS, Kế toán</div>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="util-chip" data-util="HR Dashboard">HR Dashboard</button>
+          <button class="util-chip" data-util="QNEU Dashboard">QNEU Dashboard</button>
+          <button class="util-chip" data-util="Quick Approval">Quick Approval</button>
+          <button class="util-chip" data-util="Theo dõi chấm công">Chấm công</button>
+          <button class="util-chip" data-util="AI Recommendation Engine">AI Wiki</button>
+          <button class="util-chip" data-util="Profile Viewer">Profile Viewer</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Pending: <span id="hr-pending" class="glow-rose">—</span> đơn</span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Group 3: Tài chính – KT (10 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="tai-chinh-kt" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 03</div>
+            <div class="text-base font-bold text-white mt-1">Tài chính – KT</div>
+          </div>
+          <div class="text-3xl opacity-70">💰</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">10 màn hình · Kế toán, BKS, TGĐ</div>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="util-chip" data-util="Finance Control Tower">Finance Tower</button>
+          <button class="util-chip" data-util="Compliance Checklist">Compliance</button>
+          <button class="util-chip" data-util="Executive Dashboard">Executive</button>
+          <button class="util-chip" data-util="Data Reconciliation">Đối soát</button>
+          <button class="util-chip" data-util="Báo cáo thuế">Thuế</button>
+          <button class="util-chip" data-util="Đối chiếu công nợ">Công nợ NCC</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Cashflow: <span id="cashflow-live" class="glow-gold">—</span></span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Group 4: Kinh doanh & KH (8 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="kinh-doanh-kh" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 04</div>
+            <div class="text-base font-bold text-white mt-1">Kinh doanh &amp; KH</div>
+          </div>
+          <div class="text-3xl opacity-70">💎</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">8 màn hình · Sale, CSKH, Marketing</div>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="util-chip" data-util="Tạo đơn hàng nhanh">Tạo đơn nhanh</button>
+          <button class="util-chip" data-util="Sales Performance Dashboard">Sales Perf</button>
+          <button class="util-chip" data-util="Lịch chăm sóc VIP">CRM VIP</button>
+          <button class="util-chip" data-util="Ticket Management">Ticket</button>
+          <button class="util-chip" data-util="Nhắc nợ tự động">Nhắc nợ</button>
+          <button class="util-chip" data-util="Chiến dịch Tracker">Marketing</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Hôm nay: <span id="sales-today" class="glow-mint">—</span> đơn</span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Group 5: Ban Kiểm soát (7 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="ban-kiem-soat" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 05</div>
+            <div class="text-base font-bold text-white mt-1">Ban Kiểm soát</div>
+          </div>
+          <div class="text-3xl opacity-70">🛡️</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">7 màn hình · BKS, TGĐ · Quyền giám sát tối cao</div>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="util-chip" data-util="Audit Trail Viewer">Audit Trail</button>
+          <button class="util-chip" data-util="Compliance Checklist">Compliance</button>
+          <button class="util-chip" data-util="Quick Violation Entry">Vi phạm</button>
+          <button class="util-chip" data-util="Anomaly Predictor">Sensitivity Radar</button>
+          <button class="util-chip" data-util="Data Reconciliation">Đối chiếu KPI</button>
+          <button class="util-chip" data-util="Executive Dashboard">Tổng hợp rủi ro</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Anomaly: <span id="bks-anomaly" class="text-gray-300">—</span></span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Group 6: Cổng KH (8 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="cong-kh" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 06</div>
+            <div class="text-base font-bold text-white mt-1">Cổng Khách hàng</div>
+          </div>
+          <div class="text-3xl opacity-70">🌟</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">8 màn hình · KH, KH VIP</div>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="util-chip" data-util="Tra cứu đơn hàng">Tra đơn</button>
+          <button class="util-chip" data-util="Lịch sử mua hàng">Lịch sử</button>
+          <button class="util-chip" data-util="Đăng ký bảo hành">Bảo hành</button>
+          <button class="util-chip" data-util="Hồ sơ VIP cá nhân hóa">VIP</button>
+          <button class="util-chip" data-util="Chat hỗ trợ trực tuyến">Chat KH</button>
+          <button class="util-chip" data-util="Đánh giá sản phẩm">Đánh giá</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Online: <span id="kh-online" class="glow-mint">—</span> KH</span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Group 7: Tiện ích & QT (8 màn) -->
+      <div class="group-tile glass rounded-2xl p-5" data-group="tien-ich-qt" onmousemove="trackHover(event,this)">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[9px] tracking-widest text-gray-400 font-bold">NHÓM 07</div>
+            <div class="text-base font-bold text-white mt-1">Tiện ích &amp; Quản trị</div>
+          </div>
+          <div class="text-3xl opacity-70">⚛️</div>
+        </div>
+        <div class="text-[11px] text-gray-400 mb-3">8 màn hình · Toàn NV, Admin, BKS</div>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="util-chip" data-util="My Workbench">Personal DB</button>
+          <button class="util-chip" data-util="System Health Check">Health Check</button>
+          <button class="util-chip" data-util="Version & Config Manager">Version Mgr</button>
+          <button class="util-chip" data-util="Audit Trail Viewer">Audit Log</button>
+          <button class="util-chip" data-util="Kết xuất báo cáo">Xuất BC</button>
+          <button class="util-chip" data-util="Ticket Management">Thông báo</button>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8 flex items-center justify-between text-[10px] font-mono">
+          <span class="text-gray-500">Health: <span id="health-live" class="glow-mint">—</span></span>
+          <span class="text-gold-400">Mở →</span>
+        </div>
+      </div>
+
+      <!-- Spotlight: Mạch HeyNa monitor -->
+      <div class="glass glass-gold rounded-2xl p-5 relative overflow-hidden">
+        <div class="text-[9px] tracking-widest text-gray-400 font-bold mb-2">MẠCH HEYNA</div>
+        <div class="text-base font-bold glow-gold mb-2">Live Stream Monitor</div>
+        <div class="space-y-1.5 text-[11px] font-mono">
+          <div class="flex justify-between"><span class="text-gray-500">Events/min:</span> <span id="hn-rate" class="text-white">—</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">SSE uptime:</span> <span id="hn-uptime" class="text-white">—</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Cells active:</span> <span id="hn-cells" class="text-white">—</span></div>
+          <div class="flex justify-between"><span class="text-gray-500">Last event:</span> <span id="hn-last" class="text-gray-400 truncate max-w-[120px]">—</span></div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/8">
+          <button onclick="openModal('audit-log')" class="text-[10px] glow-gold font-mono w-full text-center">▸ Mở Neural Terminal</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROW 3 — RESONANCE HEATMAP + HEYNA FEED + ANOMALY PANEL -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4">
+
+      <!-- Resonance Heatmap (7 ngày) -->
+      <div class="glass rounded-2xl p-5 lg:col-span-1">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-[9px] tracking-widest text-gray-400 font-bold">RESONANCE HEATMAP · 7 NGÀY</div>
+          <div class="text-[9px] text-gray-500 font-mono">monitor-cell</div>
+        </div>
+        <div id="heatmap-bars" class="flex items-end gap-2 h-[120px] px-1 border-b border-l border-white/10">
+          <!-- bars injected by JS -->
+        </div>
+        <div class="flex justify-between mt-2 text-[9px] text-gray-500 font-mono px-1">
+          <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+        </div>
+      </div>
+
+      <!-- HeyNa Live Feed -->
+      <div class="glass rounded-2xl p-5 lg:col-span-1 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-[9px] tracking-widest text-gray-400 font-bold">HEYNA FEED · LIVE</div>
+          <div class="flex items-center gap-1.5 text-[9px] font-mono">
+            <div id="feed-dot" class="heyna-dot idle" style="width:6px;height:6px;"></div>
+            <span id="feed-status" class="text-gray-500">đợi /mach/heyna</span>
+          </div>
+        </div>
+        <div id="heyna-feed" class="flex-1 overflow-y-auto cs space-y-1.5 text-[10px] font-mono max-h-[200px]">
+          <div class="text-gray-600 italic text-center py-8">Chưa nhận event từ Mạch HeyNa.<br>Khi server localhost:3001 phát Nauion, các sự kiện sẽ hiện ở đây theo thời gian thực.</div>
+        </div>
+      </div>
+
+      <!-- Anomaly Panel -->
+      <div class="glass rounded-2xl p-5 lg:col-span-1 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-[9px] tracking-widest text-gray-400 font-bold">ANOMALY · LECH &amp; GAY</div>
+          <div class="text-[9px] text-gray-500 font-mono">anomaly-predictor</div>
+        </div>
+        <div id="anomaly-list" class="flex-1 overflow-y-auto cs space-y-2 max-h-[200px]">
+          <div class="text-gray-600 italic text-center py-8 text-[11px]">Chưa có anomaly nào được phát hiện.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROW 4 — DATABASE TABLES (database/ctytam) -->
+    <section class="glass rounded-2xl p-5 md:p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <div class="text-[9px] tracking-widest text-gray-400 font-bold">DATABASE/CTYTAM · NGUỒN DỮ LIỆU GỐC</div>
+          <div class="text-sm font-bold text-white mt-1">Bảng dữ liệu thực tế của Tâm Luxury</div>
+        </div>
+        <div class="text-[10px] text-gray-500 font-mono">Đọc qua /kenh/state/* — không direct fetch</div>
+      </div>
+      <div id="db-tables" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-3">
+        <!-- DB tile injected by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ╔═══ FOOTER ═══╗ -->
+  <footer class="h-9 shrink-0 flex items-center justify-between px-4 md:px-8 border-t border-white/8 bg-black/50 backdrop-blur-md text-[9px] md:text-[10px] font-mono text-gray-500" style="z-index: 20;">
+    <div class="flex items-center gap-3 md:gap-4">
+      <span>NattOs NattCell Kernel</span>
+      <span class="w-px h-3 bg-white/15"></span>
+      <span id="footer-engines" class="glow-mint">ENGINES: ĐỢI HEYNA</span>
+    </div>
+    <div class="flex items-center gap-3 md:gap-4">
+      <span class="hidden md:inline">Mọi thao tác có dấu vết kiểm toán SHA-256</span>
+      <span class="hidden md:inline w-px h-3 bg-white/15"></span>
+      <span>BKS giữ quyền giám sát tối cao</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ╔═══ MODAL: GROUP DETAIL ═══╗ -->
+<div id="modal-group" class="modal-overlay">
+  <div class="modal-content glass">
+    <div class="h-12 px-5 flex items-center justify-between border-b border-white/10 bg-black/40">
+      <div class="flex items-center gap-3">
+        <span id="modal-group-icon" class="text-xl">⚙️</span>
+        <h2 id="modal-group-title" class="text-sm font-bold tracking-wide">—</h2>
+      </div>
+      <button onclick="closeModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
+    </div>
+    <div id="modal-group-body" class="flex-1 overflow-y-auto cs p-5"></div>
+  </div>
+</div>
+
+<!-- ╔═══ MODAL: AUDIT LOG / NEURAL TERMINAL ═══╗ -->
+<div id="modal-audit" class="modal-overlay">
+  <div class="modal-content glass" style="max-width: 900px;">
+    <div class="h-12 px-5 flex items-center justify-between border-b border-white/10 bg-black/40">
+      <div class="flex items-center gap-2">
+        <span class="glow-mint text-xs font-mono font-bold">NEURAL_TERMINAL :: AUDIT_TRAIL</span>
+      </div>
+      <button onclick="closeModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
+    </div>
+    <div id="modal-audit-body" class="flex-1 overflow-y-auto cs p-5 font-mono text-[10px] text-green-400 bg-black/40">
+      <div class="text-gray-600 italic">Chưa có audit event. Khi /mach/heyna phát sự kiện, log sẽ hiện ở đây.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══ MODAL: UTILITY DETAIL ═══╗ -->
+<div id="modal-util" class="modal-overlay">
+  <div class="modal-content glass" style="max-width: 700px;">
+    <div class="h-12 px-5 flex items-center justify-between border-b border-white/10 bg-black/40">
+      <h2 id="modal-util-title" class="text-sm font-bold tracking-wide">—</h2>
+      <button onclick="closeModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
+    </div>
+    <div id="modal-util-body" class="flex-1 overflow-y-auto cs p-5"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     SCRIPT — VANILLA JS · HeyNa SSE · NO MOCK · NO LOCALSTORAGE
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+//─────────────────────────────────────────────────────────────────
+// CONFIG — server endpoint per SPEC v2.5 §26.2
+//─────────────────────────────────────────────────────────────────
+const HEYNA_BASE = window.location.origin || 'http://localhost:3001';
+const ENDPOINTS = {
+  heyna: HEYNA_BASE + '/mach/heyna',          // SSE stream
+  nauion: HEYNA_BASE + '/kenh/nauion',        // Nauion + Z
+  suc: HEYNA_BASE + '/kenh/suc',              // Health
+  vet: HEYNA_BASE + '/kenh/vet',              // Audit trail
+  intel: HEYNA_BASE + '/kenh/intel',          // Intelligence
+  state: (cell) => HEYNA_BASE + '/kenh/state/' + cell,
+  phat: HEYNA_BASE + '/phat/nauion'           // POST emit
+};
+
+// 71 màn hình per PDF — group → list
+const SCREENS = {
+  'san-xuat-kho': {
+    title: 'Sản xuất & Kho', icon: '⚙️',
+    list: [
+      ['Bảng giao việc sản xuất (Task Board)', 'Thợ', ['My Workbench','SmartLink Map']],
+      ['Theo dõi WIP', 'Tổ trưởng, GĐ SX', ['Causality Trace','Impact Analysis']],
+      ['Nhập – xuất kho theo lệnh SX', 'Thủ kho, Thợ', ['Quick Stocktake','Data Reconciliation']],
+      ['Báo cáo sản lượng & hao hụt theo ca', 'Thợ, Tổ trưởng', ['Event Retry Engine']],
+      ['Tính lương sản phẩm (piece-rate)', 'Kế toán SX, Thợ', ['QNEU Dashboard cá nhân']],
+      ['Kiểm kê kho vàng / kim cương', 'Thủ kho, Ban kiểm kê', ['Data Reconciliation','Anomaly Predictor']],
+      ['Đề xuất mua nguyên liệu', 'Thủ kho, QL SX', ['Quick Approval']],
+      ['Đăng ký bảo trì máy móc', 'Kỹ thuật, QL xưởng', ['Health Check','Theo dõi bảo trì']],
+      ['Nghiệm thu sản phẩm (KCS)', 'QC (KCS)', ['QC Entry']],
+      ['Bàn giao sản phẩm giữa các công đoạn', 'Tổ trưởng các tổ', ['Causality Trace']],
+      ['Dashboard kho tổng hợp', 'TGĐ, Kế toán kho', ['Health Score']],
+      ['Cảnh báo hao hụt bất thường', 'BKS, GĐ SX', ['Anomaly Predictor']],
+      ['Lịch sử xuất nhập kho theo lệnh', 'Thủ kho, BKS', ['Audit Trail Viewer']],
+      ['Cấu hình Định mức & Đơn giá Gia công', 'Admin, Kế toán SX', ['Version & Config Manager']],
+      ['Quản lý Phế phẩm & Tái chế', 'QL SX, BKS', ['Quantum Defense']]
+    ]
+  },
+  'nhan-su-hc': {
+    title: 'Nhân sự & Hành chính', icon: '👥',
+    list: [
+      ['Quản lý hồ sơ nhân viên', 'HCNS', ['HR Dashboard','Profile Viewer']],
+      ['Quản lý hợp đồng lao động', 'HCNS', ['Version & Config Manager']],
+      ['Quản lý tuyển dụng & định biên', 'Trưởng phòng, HCNS, TGĐ', ['Quick Approval','Tuyển dụng Pipeline']],
+      ['Chấm công (check-in/out)', 'NV', ['Theo dõi chấm công']],
+      ['Duyệt đơn nghỉ phép / tăng ca', 'Quản lý trực tiếp', ['Quick Approval']],
+      ['Bảng chấm công tổng hợp', 'HCNS, Kế toán', ['Theo dõi chấm công','Audit Trail Viewer']],
+      ['Quản lý KPI & đánh giá', 'NV, Quản lý, HCNS', ['QNEU Dashboard']],
+      ['Bảng lương cá nhân', 'NV', ['QNEU Dashboard cá nhân']],
+      ['Xét duyệt tăng lương', 'HCNS, TGĐ', ['Quick Approval','Lịch tăng lương']],
+      ['Sổ tay nhân viên (Wiki)', 'Toàn NV', ['AI Recommendation Engine']],
+      ['Quản lý khen thưởng & kỷ luật', 'Quản lý, BKS', ['Quick Violation Entry']],
+      ['Dashboard nhân sự', 'TGĐ, HCNS', ['Executive Dashboard']],
+      ['Quản lý Quá trình Thử việc', 'HCNS', ['HR Dashboard']],
+      ['Cấu hình Tham số Lương & Bảo hiểm', 'Admin, Kế toán', ['Version & Config Manager']],
+      ['Đối soát và Khóa Bảng lương', 'Kế toán trưởng', ['Finance Control Tower']]
+    ]
+  },
+  'tai-chinh-kt': {
+    title: 'Tài chính – Kế toán', icon: '💰',
+    list: [
+      ['Quản lý tạm ứng & thanh toán', 'Toàn NV, Kế toán', ['Quick Entry','Theo dõi tạm ứng']],
+      ['Quản lý thu – chi', 'Kế toán', ['Quick Entry']],
+      ['Báo cáo tuân thủ tài chính', 'BKS, TGĐ', ['Compliance Checklist']],
+      ['Đối soát lương – KPI – chấm công', 'Kế toán, BKS', ['Data Reconciliation']],
+      ['Dòng tiền thực tế (Cashflow)', 'TGĐ, Kế toán trưởng', ['Executive Dashboard']],
+      ['Cảnh báo doanh thu – giá vốn', 'TGĐ, BKS', ['Anomaly Predictor']],
+      ['Bảng cân đối thử', 'Kế toán, BKS', ['Báo cáo tài chính tức thời']],
+      ['Quản lý thuế (xuất hóa đơn, kê khai)', 'Kế toán thuế', ['Báo cáo thuế']],
+      ['Sổ quỹ tiền mặt & Tiền gửi NH', 'Kế toán', ['Finance Control Tower']],
+      ['Đối soát Công nợ Phải trả NCC', 'Kế toán công nợ', ['Đối chiếu công nợ']]
+    ]
+  },
+  'kinh-doanh-kh': {
+    title: 'Kinh doanh & Khách hàng', icon: '💎',
+    list: [
+      ['Xác nhận đơn hàng & giấy đảm bảo', 'Sale', ['Tạo đơn hàng nhanh']],
+      ['Báo cáo doanh thu & hoa hồng', 'Sale, Kế toán', ['Sales Performance Dashboard']],
+      ['Quản lý công nợ khách hàng', 'Sale, CSKH', ['Nhắc nợ tự động']],
+      ['Quản lý phản hồi & khiếu nại KH', 'CSKH, Quản lý', ['Ticket Management']],
+      ['Chăm sóc khách hàng VIP (CRM)', 'CSKH, Sale', ['Lịch chăm sóc VIP']],
+      ['Quản lý chiến dịch Marketing', 'Marketing, TGĐ', ['Chiến dịch Tracker']],
+      ['Khảo sát hài lòng khách hàng', 'Marketing, CSKH', ['Gửi khảo sát tự động']],
+      ['Dashboard kinh doanh', 'TGĐ, Trưởng phòng KD', ['Executive Dashboard']]
+    ]
+  },
+  'ban-kiem-soat': {
+    title: 'Ban Kiểm soát', icon: '🛡️',
+    list: [
+      ['Kiểm tra tuân thủ định kỳ', 'BKS', ['Compliance Checklist']],
+      ['Xử lý vi phạm & giải trình', 'BKS', ['Quick Violation Entry']],
+      ['Kiểm toán nội bộ', 'BKS, TGĐ', ['Audit Trail Viewer']],
+      ['Tiếp nhận & xử lý khiếu nại nội bộ', 'Toàn NV, BKS', ['Ticket Management']],
+      ['Báo cáo tổng hợp rủi ro', 'BKS, TGĐ', ['Executive Dashboard']],
+      ['Sensitivity Radar (Entropy)', 'BKS, TGĐ', ['Anomaly Predictor']],
+      ['Báo cáo Đối chiếu KPI đa chiều', 'BKS', ['Data Reconciliation']]
+    ]
+  },
+  'cong-kh': {
+    title: 'Cổng Khách hàng', icon: '🌟',
+    list: [
+      ['Tra cứu đơn hàng', 'Khách hàng', ['Tra cứu đơn hàng']],
+      ['Lịch sử mua sắm', 'Khách hàng', ['Lịch sử mua hàng']],
+      ['Bảo hành & sửa chữa', 'Khách hàng', ['Đăng ký bảo hành']],
+      ['Gửi yêu cầu hỗ trợ / khiếu nại', 'Khách hàng', ['Chat hỗ trợ trực tuyến']],
+      ['Đánh giá sản phẩm', 'Khách hàng', ['Đánh giá sản phẩm']],
+      ['Thông báo khuyến mãi & sự kiện', 'Khách hàng', ['Thông báo ưu đãi sớm']],
+      ['Hồ sơ VIP', 'Khách hàng VIP', ['Hồ sơ VIP cá nhân hóa']],
+      ['Xác thực & đăng nhập', 'Khách hàng', ['User & Role Manager']]
+    ]
+  },
+  'tien-ich-qt': {
+    title: 'Tiện ích & Quản trị', icon: '⚛️',
+    list: [
+      ['Personal Dashboard', 'Toàn NV', ['My Workbench']],
+      ['Lịch làm việc chung', 'Toàn NV', ['Quản lý lịch họp']],
+      ['Thông báo & tin nhắn nội bộ', 'Toàn NV', ['Ticket Management']],
+      ['Thư viện tài liệu & biểu mẫu', 'Toàn NV', ['AI Recommendation Engine']],
+      ['Công cụ xuất báo cáo nâng cao', 'Kế toán, HCNS, BKS', ['Kết xuất báo cáo']],
+      ['Audit Log Viewer', 'BKS, Admin', ['Audit Trail Viewer']],
+      ['Health Check & Self-healing', 'IT, BKS', ['System Health Check']],
+      ['Quản lý phiên bản', 'Admin, BKS', ['Version & Config Manager']]
+    ]
+  }
+};
+
+// Database tables expected under database/ctytam (per memory)
+const DB_TABLES = [
+  ['nhan-vien', 'Nhân viên', '👤'],
+  ['hop-dong-ld', 'Hợp đồng LĐ', '📄'],
+  ['cham-cong', 'Chấm công', '⏱️'],
+  ['bang-luong', 'Bảng lương', '💵'],
+  ['kpi-danh-gia', 'KPI', '📊'],
+  ['don-hang', 'Đơn hàng', '🧾'],
+  ['khach-hang', 'Khách hàng', '👥'],
+  ['cham-soc-vip', 'CRM VIP', '⭐'],
+  ['kho-vang', 'Kho vàng', '🏆'],
+  ['kho-da-quy', 'Kho đá quý', '💎'],
+  ['lenh-san-xuat', 'Lệnh SX', '⚙️'],
+  ['phe-pham', 'Phế phẩm', '♻️'],
+  ['cong-no-kh', 'Công nợ KH', '📌'],
+  ['cong-no-ncc', 'Công nợ NCC', '📍'],
+  ['thu-chi', 'Thu – Chi', '💸'],
+  ['tam-ung', 'Tạm ứng', '🔖'],
+  ['hoa-don', 'Hóa đơn', '🧮'],
+  ['vi-pham', 'Vi phạm', '⚠️'],
+  ['kiem-toan', 'Kiểm toán', '🔍'],
+  ['bao-tri', 'Bảo trì', '🔧'],
+  ['cau-hinh', 'Cấu hình', '⚙️'],
+  ['phien-ban', 'Phiên bản', '🗂️'],
+  ['kpi-mar', 'Marketing', '📣'],
+  ['ticket', 'Ticket', '🎫']
+];
+
+//─────────────────────────────────────────────────────────────────
+// EVENT BUS (HeyNa Pattern) — per SPEC §7
+//─────────────────────────────────────────────────────────────────
+class HeynaBus {
+  constructor() { this.listeners = {}; this.events = []; this.maxLog = 200; }
+  on(type, cb) { (this.listeners[type] = this.listeners[type] || []).push(cb); }
+  emit(env) {
+    this.events.unshift(env);
+    if (this.events.length > this.maxLog) this.events.pop();
+    (this.listeners[env.event_type] || []).forEach(cb => { try { cb(env); } catch(e) { console.error(e); } });
+    (this.listeners['*'] || []).forEach(cb => { try { cb(env); } catch(e) {} });
+  }
+}
+const Bus = new HeynaBus();
+
+//─────────────────────────────────────────────────────────────────
+// SSE CONNECTION — Mạch HeyNa primary data source
+//─────────────────────────────────────────────────────────────────
+const State = {
+  connected: false,
+  lastEventTs: 0,
+  startTs: Date.now(),
+  eventCount: 0,
+  eventCountWindow: [], // for rate calc
+  cells: new Set(),
+  impedanceZ: 1.0,
+  qneuGlobal: null
+};
+
+function setHeynaStatus(mode, msg) {
+  const dot = document.getElementById('heyna-status-dot');
+  const txt = document.getElementById('heyna-status-text');
+  const fdot = document.getElementById('feed-dot');
+  const fst = document.getElementById('feed-status');
+  const eng = document.getElementById('footer-engines');
+  dot.className = 'heyna-dot ' + mode;
+  fdot.className = 'heyna-dot ' + mode;
+  fdot.style.width = '6px'; fdot.style.height = '6px';
+  txt.innerHTML = 'MẠCH HEYNA: <span class="' + (mode==='gay'?'glow-red':mode==='lech'?'text-amber-400':mode==='idle'?'text-gray-500':'glow-mint') + '">' + msg + '</span>';
+  fst.textContent = msg;
+  fst.className = mode==='gay'?'glow-red':mode==='lech'?'text-amber-400':mode==='idle'?'text-gray-500':'glow-mint';
+  eng.textContent = 'ENGINES: ' + (mode==='idle'?'ĐỢI HEYNA':mode==='gay'?'GÃY':mode==='lech'?'LỆCH':'ONLINE');
+  eng.className = 'font-mono ' + (mode==='gay'?'glow-red':mode==='lech'?'text-amber-400':mode==='idle'?'text-gray-500':'glow-mint');
+}
+
+let evtSource = null;
+let reconnectDelay = 2000;
+
+function connectHeyna() {
+  setHeynaStatus('idle', 'đang kết nối ' + ENDPOINTS.heyna + '...');
+  try {
+    evtSource = new EventSource(ENDPOINTS.heyna);
+  } catch (e) {
+    setHeynaStatus('gay', 'Không tạo được EventSource: ' + e.message);
+    return;
+  }
+
+  evtSource.onopen = () => {
+    State.connected = true;
+    State.startTs = Date.now();
+    reconnectDelay = 2000;
+    setHeynaStatus('whau', 'kết nối ✓ ' + new URL(ENDPOINTS.heyna).pathname);
+  };
+
+  evtSource.onmessage = (e) => {
+    State.lastEventTs = Date.now();
+    State.eventCount++;
+    State.eventCountWindow.push(State.lastEventTs);
+    // keep only last 60s
+    State.eventCountWindow = State.eventCountWindow.filter(t => State.lastEventTs - t < 60000);
+
+    let env;
+    try { env = JSON.parse(e.data); }
+    catch (err) {
+      logFeed({event_type:'parse.error', payload:{raw:e.data}, source_cell:'sse', timestamp:Date.now()}, 'gay');
+      return;
+    }
+    if (env.source_cell) State.cells.add(env.source_cell);
+    Bus.emit(env);
+    logFeed(env);
+    routeEvent(env);
+  };
+
+  evtSource.onerror = () => {
+    State.connected = false;
+    setHeynaStatus('gay', 'mất kết nối — retry ' + (reconnectDelay/1000) + 's');
+    try { evtSource.close(); } catch(_){}
+    setTimeout(connectHeyna, reconnectDelay);
+    reconnectDelay = Math.min(reconnectDelay * 1.5, 30000);
+  };
+}
+
+//─────────────────────────────────────────────────────────────────
+// EVENT ROUTING — bind sự kiện HeyNa vào DOM (không mock)
+//─────────────────────────────────────────────────────────────────
+function routeEvent(env) {
+  const t = env.event_type;
+  const p = env.payload || {};
+
+  // KPIs
+  if (t === 'sales.summary' || t === 'SALES_SUMMARY') {
+    if (p.todayRevenue != null) {
+      setText('kpi-revenue', formatVND(p.todayRevenue));
+      setText('kpi-revenue-trend', p.trendText || ('vs hôm qua: ' + (p.deltaPct || 0) + '%'));
+    }
+    if (p.todayOrderCount != null) setText('sales-today', p.todayOrderCount);
+  }
+  if (t === 'production.summary') {
+    if (p.activeOrders != null) setText('kpi-orders', p.activeOrders);
+    setText('kpi-orders-trend', p.byStage ? Object.entries(p.byStage).map(([k,v])=>k+':'+v).join(' · ') : 'production-cell live');
+    if (p.tasksLive != null) setText('sxk-live', p.tasksLive);
+  }
+  if (t === 'inventory.summary') {
+    if (p.goldStockGrams != null) setText('kpi-gold-stock', p.goldStockGrams.toLocaleString() + ' g');
+    setText('kpi-gold-trend', p.threshold ? 'ngưỡng: ' + p.threshold + 'g' : 'inventory-cell live');
+  }
+  if (t === 'finance.summary' || t === 'finance.cashflow') {
+    if (p.customerDebt != null) setText('kpi-debt', formatVND(p.customerDebt));
+    if (p.cogsRatio != null) {
+      const pct = (p.cogsRatio * 100).toFixed(1) + '%';
+      const el = document.getElementById('kpi-cogs');
+      el.textContent = pct;
+      el.className = 'text-2xl md:text-3xl font-black tabular-nums ' + (p.cogsRatio > 0.87 ? 'glow-red' : p.cogsRatio > 0.80 ? 'text-amber-400' : 'glow-mint');
+    }
+    if (p.cashflowToday != null) setText('cashflow-live', formatVND(p.cashflowToday));
+  }
+  if (t === 'anomaly.detected' || t === 'lech' || t === 'gay') {
+    addAnomaly(env);
+    if (p.lossPct != null) {
+      const el = document.getElementById('kpi-loss');
+      el.textContent = (p.lossPct * 100).toFixed(2) + '%';
+      el.className = 'text-2xl md:text-3xl font-black tabular-nums ' + (p.lossPct > 0.05 ? 'glow-red' : 'glow-mint');
+      setText('kpi-loss-trend', p.cellSource ? 'từ ' + p.cellSource : 'anomaly-predictor');
+    }
+  }
+  if (t === 'qneu.update' || t === 'qneu.global') {
+    if (p.global != null) {
+      State.qneuGlobal = p.global;
+      setText('qneu-global', p.global);
+    }
+  }
+  if (t === 'system.impedance') {
+    State.impedanceZ = p.value || p;
+    setText('impedance-z', Number(State.impedanceZ).toFixed(2));
+    if (State.impedanceZ > 1.3) setHeynaStatus('gay', 'Z=' + State.impedanceZ.toFixed(2) + ' DEGRADED');
+    else if (State.impedanceZ > 1.0) setHeynaStatus('lech', 'Z=' + State.impedanceZ.toFixed(2) + ' STRESSED');
+  }
+  if (t === 'audit.appended' || t === 'audit.write') {
+    if (p.hash) setText('audit-hash', String(p.hash).slice(0, 12));
+  }
+  if (t === 'health.heatmap' || t === 'resonance.heatmap') {
+    if (Array.isArray(p.days)) renderHeatmap(p.days);
+  }
+  if (t === 'hr.summary') {
+    if (p.pendingApprovals != null) setText('hr-pending', p.pendingApprovals);
+  }
+  if (t === 'customer.online') {
+    if (p.count != null) setText('kh-online', p.count);
+  }
+  if (t === 'health.status' || t === 'cell.health') {
+    if (p.healthScore != null) setText('health-live', (p.healthScore * 100).toFixed(0) + '%');
+  }
+  if (t === 'bks.anomaly_count') {
+    if (p.count != null) {
+      const el = document.getElementById('bks-anomaly');
+      el.textContent = p.count;
+      el.className = p.count > 0 ? 'glow-red' : 'glow-mint';
+    }
+  }
+}
+
+//─────────────────────────────────────────────────────────────────
+// FEED RENDERING
+//─────────────────────────────────────────────────────────────────
+function logFeed(env, levelOverride) {
+  const feed = document.getElementById('heyna-feed');
+  // remove placeholder
+  const placeholder = feed.querySelector('.italic');
+  if (placeholder) placeholder.remove();
+
+  const level = levelOverride || (env.event_type.includes('gay') || env.event_type === 'audit.fail' ? 'gay' : env.event_type.includes('lech') || env.event_type.includes('anomaly') ? 'lech' : 'whau');
+  const colorClass = level === 'gay' ? 'text-red-400' : level === 'lech' ? 'text-amber-400' : 'text-emerald-400';
+  const ts = new Date(env.timestamp || Date.now()).toLocaleTimeString('vi-VN');
+
+  const item = document.createElement('div');
+  item.className = 'flex items-start gap-2 ' + colorClass + ' opacity-90';
+  item.innerHTML = `
+    <span class="text-gray-600 shrink-0">${ts}</span>
+    <span class="shrink-0 font-bold">${escapeHTML(env.event_type)}</span>
+    <span class="text-gray-400 truncate">${escapeHTML(env.source_cell || '')}</span>`;
+  feed.insertBefore(item, feed.firstChild);
+  while (feed.children.length > 50) feed.removeChild(feed.lastChild);
+
+  // Update stats
+  setText('hn-rate', State.eventCountWindow.length + '/min');
+  setText('hn-uptime', formatUptime(Date.now() - State.startTs));
+  setText('hn-cells', State.cells.size);
+  setText('hn-last', env.event_type);
+
+  // Audit modal mirror
+  const audit = document.getElementById('modal-audit-body');
+  const aplaceholder = audit.querySelector('.italic');
+  if (aplaceholder) aplaceholder.remove();
+  const arow = document.createElement('div');
+  arow.className = 'whitespace-pre-wrap break-all border-b border-white/5 py-1';
+  arow.innerHTML = `<span class="text-gray-500">${ts}</span> <span class="text-amber-400">${escapeHTML(env.event_id || '-')}</span>
+<span class="text-emerald-400">${escapeHTML(env.event_type)}</span> <span class="text-gray-400">from</span> <span class="text-cyan-400">${escapeHTML(env.source_cell || '-')}</span>
+<span class="text-gray-500">payload:</span> <span class="text-gray-300">${escapeHTML(JSON.stringify(env.payload || {}).slice(0, 200))}</span>`;
+  audit.insertBefore(arow, audit.firstChild);
+  while (audit.children.length > 100) audit.removeChild(audit.lastChild);
+}
+
+function addAnomaly(env) {
+  const list = document.getElementById('anomaly-list');
+  const placeholder = list.querySelector('.italic');
+  if (placeholder) placeholder.remove();
+
+  const isGay = env.event_type === 'gay' || (env.payload && env.payload.severity === 'CRITICAL');
+  const item = document.createElement('div');
+  item.className = 'alert-pill ' + (isGay ? '' : 'lech');
+  const p = env.payload || {};
+  item.innerHTML = `
+    <div class="flex items-center justify-between mb-1">
+      <span class="font-bold ${isGay?'text-red-400':'text-amber-400'}">${isGay?'GÃY':'LỆCH'}</span>
+      <span class="text-gray-500 text-[9px] font-mono">${new Date(env.timestamp || Date.now()).toLocaleTimeString('vi-VN')}</span>
+    </div>
+    <div class="text-gray-200 text-[11px]">${escapeHTML(p.message || env.event_type)}</div>
+    <div class="text-gray-500 text-[10px] font-mono mt-1">cell: ${escapeHTML(p.cellSource || env.source_cell || '?')}</div>`;
+  list.insertBefore(item, list.firstChild);
+  while (list.children.length > 20) list.removeChild(list.lastChild);
+}
+
+//─────────────────────────────────────────────────────────────────
+// HEATMAP + DB TABLES INIT
+//─────────────────────────────────────────────────────────────────
+function renderHeatmap(days) {
+  const c = document.getElementById('heatmap-bars');
+  c.innerHTML = '';
+  const max = Math.max(...days.map(d => d.value || 0), 1);
+  days.slice(-7).forEach((d, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'heat-bar';
+    const h = ((d.value || 0) / max * 100);
+    bar.style.height = h + '%';
+    if ((d.value || 0) / max > 0.85) bar.style.background = 'linear-gradient(180deg, var(--rose) 0%, var(--gold-deep) 100%)';
+    if ((d.value || 0) / max < 0.2) bar.style.background = 'linear-gradient(180deg, var(--crimson) 0%, #4a1010 100%)';
+    bar.title = (d.label || ('D' + (i+1))) + ': ' + (d.value || 0);
+    c.appendChild(bar);
+  });
+}
+
+function initHeatmapPlaceholders() {
+  const c = document.getElementById('heatmap-bars');
+  for (let i = 0; i < 7; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'heat-bar shimmer';
+    bar.style.height = '20%';
+    bar.style.background = 'rgba(245,226,192,0.1)';
+    bar.style.boxShadow = 'none';
+    c.appendChild(bar);
+  }
+}
+
+function initDbTables() {
+  const wrap = document.getElementById('db-tables');
+  DB_TABLES.forEach(([id, name, icon]) => {
+    const tile = document.createElement('button');
+    tile.className = 'glass rounded-xl p-3 text-left hover:border-amber-400/40 transition-all';
+    tile.innerHTML = `
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-base">${icon}</span>
+        <span class="text-[10px] tracking-wide text-gray-400 font-mono">${id}</span>
+      </div>
+      <div class="text-[12px] font-bold text-white">${name}</div>
+      <div class="text-[9px] text-gray-500 font-mono mt-1" id="db-${id}-count">đợi /kenh/state/${id}</div>`;
+    tile.onclick = () => fetchAndShowTable(id, name);
+    wrap.appendChild(tile);
+  });
+}
+
+async function fetchAndShowTable(id, name) {
+  // Mở modal util với tên bảng + thử fetch /kenh/state/<id>
+  document.getElementById('modal-util-title').innerHTML = '📂 ' + escapeHTML(name) + ' <span class="text-[10px] text-gray-500 font-mono">— database/ctytam/' + escapeHTML(id) + '</span>';
+  const body = document.getElementById('modal-util-body');
+  body.innerHTML = '<div class="text-gray-400 text-sm">Đang fetch <span class="font-mono text-amber-400">/kenh/state/' + escapeHTML(id) + '</span> ...</div>';
+  document.getElementById('modal-util').classList.add('active');
+
+  try {
+    const res = await fetch(ENDPOINTS.state(id), { headers: {'Accept':'application/json'} });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    body.innerHTML = renderTablePreview(data, id);
+  } catch (e) {
+    body.innerHTML = `
+      <div class="text-amber-400 text-sm mb-3">Chưa kết nối được <span class="font-mono">/kenh/state/${escapeHTML(id)}</span></div>
+      <div class="text-gray-400 text-[12px] mb-3">Lỗi: <span class="text-red-400 font-mono">${escapeHTML(e.message)}</span></div>
+      <div class="text-gray-500 text-[11px]">
+        Server localhost:3001 cần expose <span class="text-amber-400 font-mono">/kenh/state/${escapeHTML(id)}</span> trả JSON từ <span class="text-amber-400 font-mono">database/ctytam/${escapeHTML(id)}</span>.
+        Khi backend sẵn sàng, dữ liệu sẽ hiển thị ở đây.
+      </div>`;
+  }
+}
+
+function renderTablePreview(data, id) {
+  if (!data) return '<div class="text-gray-500">Không có dữ liệu.</div>';
+  const rows = Array.isArray(data) ? data : (data.rows || data.items || []);
+  if (!rows.length) return '<div class="text-gray-500">Bảng rỗng (0 rows).</div>';
+  const cols = Object.keys(rows[0]).slice(0, 6);
+  let html = `<div class="text-[11px] text-gray-400 mb-2 font-mono">${rows.length} rows · ${cols.length} cols (preview top 20)</div>`;
+  html += '<table class="w-full text-[11px]"><thead><tr class="text-amber-400 border-b border-white/10">';
+  cols.forEach(c => html += `<th class="text-left py-2 px-2 font-mono">${escapeHTML(c)}</th>`);
+  html += '</tr></thead><tbody>';
+  rows.slice(0, 20).forEach((r, i) => {
+    html += '<tr class="border-b border-white/5 ' + (i%2?'bg-white/2':'') + '">';
+    cols.forEach(c => html += `<td class="py-1.5 px-2 text-gray-300">${escapeHTML(String(r[c] ?? '—').slice(0, 60))}</td>`);
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+//─────────────────────────────────────────────────────────────────
+// MODAL HANDLERS — Group detail / Utility detail
+//─────────────────────────────────────────────────────────────────
+function openModal(kind, payload) {
+  closeModal();
+  if (kind === 'group') {
+    const g = SCREENS[payload];
+    if (!g) return;
+    document.getElementById('modal-group-icon').textContent = g.icon;
+    document.getElementById('modal-group-title').innerHTML = g.title + ' <span class="text-[10px] text-gray-500 font-mono ml-2">' + g.list.length + ' màn hình</span>';
+    const body = document.getElementById('modal-group-body');
+    body.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-2">' + g.list.map((s, i) => `
+      <div class="glass rounded-xl p-3">
+        <div class="flex items-start justify-between mb-1">
+          <span class="text-[9px] tracking-widest text-gray-500 font-mono">#${String(i+1).padStart(2,'0')}</span>
+          <span class="text-[9px] text-gray-500 italic">${escapeHTML(s[1])}</span>
+        </div>
+        <div class="text-[13px] font-bold text-white mb-2">${escapeHTML(s[0])}</div>
+        <div class="flex flex-wrap gap-1">
+          ${s[2].map(u => `<button class="util-chip" onclick="openModal('util','${escapeAttr(u)}')">${escapeHTML(u)}</button>`).join('')}
+        </div>
+      </div>`).join('') + '</div>';
+    document.getElementById('modal-group').classList.add('active');
+  }
+  if (kind === 'util') {
+    document.getElementById('modal-util-title').textContent = '🛠 ' + payload;
+    document.getElementById('modal-util-body').innerHTML = renderUtilityCard(payload);
+    document.getElementById('modal-util').classList.add('active');
+  }
+  if (kind === 'audit-log') {
+    document.getElementById('modal-audit').classList.add('active');
+  }
+}
+
+function closeModal() {
+  document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+}
+
+function renderUtilityCard(name) {
+  const meta = UTIL_META[name] || { desc: 'Công cụ tiện ích trong hệ thống NattOs.', endpoint: null };
+  return `
+    <div class="text-[12px] text-gray-300 leading-relaxed mb-3">${escapeHTML(meta.desc)}</div>
+    ${meta.endpoint ? `<div class="text-[11px] text-amber-400 font-mono mb-3">Endpoint: ${escapeHTML(meta.endpoint)}</div>` : ''}
+    <div class="text-[11px] text-gray-500 mb-2">Sự kiện HeyNa liên quan:</div>
+    <div class="flex flex-wrap gap-1.5">
+      ${(meta.events || ['<đợi cấu hình>']).map(e => `<span class="util-chip">${escapeHTML(e)}</span>`).join('')}
+    </div>
+    <div class="mt-4 pt-3 border-t border-white/10">
+      <button onclick="emitTestEvent('${escapeAttr(name)}')" class="text-[11px] glow-mint border border-emerald-400/30 rounded-full px-3 py-1.5 hover:bg-emerald-400/10 transition-colors">
+        ▸ Phát Nauion test (POST /phat/nauion)
+      </button>
+    </div>`;
+}
+
+const UTIL_META = {
+  'My Workbench':       { desc: 'Bảng làm việc cá nhân — tùy chỉnh widget, KPI cá nhân, đơn hàng/task chờ.', endpoint: '/kenh/state/my-workbench', events: ['workbench.open','workbench.update'] },
+  'SmartLink Map':      { desc: 'Bản đồ liên kết giữa các cell — visualize SmartLink fiber, gossip, decay.', endpoint: '/kenh/state/smartlink', events: ['smartlink.update','fiber.decay'] },
+  'Causality Trace':    { desc: 'Truy vết nhân quả — xem chuỗi event từ nguyên nhân đến hậu quả qua causation_id.', endpoint: '/kenh/vet?type=trace', events: ['trace.query','trace.result'] },
+  'Impact Analysis':    { desc: 'Phân tích tác động khi một event/cell thay đổi — what-if simulation.', events: ['impact.compute'] },
+  'Quick Stocktake':    { desc: 'Kiểm kê nhanh kho vàng/đá quý — quét + xác nhận 2 người.', endpoint: '/kenh/state/kho-vang', events: ['stocktake.start','stocktake.confirm'] },
+  'Data Reconciliation':{ desc: 'Đối soát dữ liệu nhiều nguồn — phát hiện sai lệch tự động.', events: ['recon.run','recon.diff'] },
+  'Event Retry Engine': { desc: 'Engine tự retry event thất bại — exponential backoff + escalate khi vượt ngưỡng.', events: ['event.retry','event.escalate'] },
+  'QNEU Dashboard':     { desc: 'Dashboard QNEU — điểm chất lượng/độ tin cậy của entity.', endpoint: '/kenh/state/qneu', events: ['qneu.update','qneu.recompute'] },
+  'QNEU Dashboard cá nhân': { desc: 'Dashboard QNEU cá nhân — điểm cá nhân + khoản lương đối chiếu.', endpoint: '/kenh/state/qneu-personal', events: ['qneu.personal'] },
+  'Anomaly Predictor':  { desc: 'Dự đoán bất thường — phát hiện hao hụt/giá vốn/tồn kho lệch định mức.', endpoint: '/kenh/intel?topic=anomaly', events: ['anomaly.predict','anomaly.detected'] },
+  'QC Entry':           { desc: 'Form nghiệm thu QC — nhập kết quả đạt/không đạt + lý do.', events: ['qc.entry','qc.result'] },
+  'Quick Approval':     { desc: 'Cổng phê duyệt nhanh — duyệt/từ chối + lý do trong 1 click.', events: ['approval.request','approval.decision'] },
+  'Health Score':       { desc: 'Điểm sức khỏe tổng hợp — tổng hợp từ Health Check + Anomaly + Cell vitals.', endpoint: '/kenh/suc', events: ['health.score'] },
+  'Health Check':       { desc: 'Health check toàn hệ — cell vitals, SmartLink, EventBus.', endpoint: '/kenh/suc', events: ['health.check','health.status'] },
+  'System Health Check':{ desc: 'Health check hệ thống — uptime, latency, queue depth.', endpoint: '/kenh/suc', events: ['system.health'] },
+  'Audit Trail Viewer': { desc: 'Xem audit trail SHA-256 — lọc theo user/action/entity.', endpoint: '/kenh/vet', events: ['audit.query','audit.appended'] },
+  'Quantum Defense':    { desc: 'Lớp phòng vệ lượng tử — phát hiện tấn công, anomaly cấp cao.', events: ['defense.alert','defense.action'] },
+  'HR Dashboard':       { desc: 'Dashboard nhân sự — số NV, cơ cấu, thâm niên, thử việc.', endpoint: '/kenh/state/nhan-vien', events: ['hr.summary'] },
+  'Profile Viewer':     { desc: 'Xem hồ sơ NV — CCCD, BHXH, hợp đồng (RBAC enforced).', events: ['profile.view'] },
+  'Theo dõi chấm công': { desc: 'Theo dõi chấm công — xác nhận giờ vào/ra.', endpoint: '/kenh/state/cham-cong', events: ['attendance.in','attendance.out'] },
+  'Tuyển dụng Pipeline':{ desc: 'Pipeline tuyển dụng — từ apply đến onboard.', events: ['hiring.stage'] },
+  'Lịch tăng lương':    { desc: 'Lịch xét tăng lương theo thâm niên + hiệu suất.', events: ['salary.review'] },
+  'AI Recommendation Engine': { desc: 'Engine gợi ý — wiki nội quy, BHXH, quy trình.', events: ['ai.recommend'] },
+  'Quick Violation Entry': { desc: 'Nhập vi phạm nhanh — biên bản + khung phạt.', events: ['violation.entry'] },
+  'Executive Dashboard':{ desc: 'Dashboard điều hành — top KPI, trend, alert.', endpoint: '/kenh/intel?topic=executive', events: ['exec.summary'] },
+  'Finance Control Tower': { desc: 'Tháp kiểm soát tài chính — sổ quỹ + ngân hàng + đối soát.', endpoint: '/kenh/state/thu-chi', events: ['finance.summary','finance.cashflow'] },
+  'Compliance Checklist': { desc: 'Checklist tuân thủ — định kỳ + bất thường.', events: ['compliance.check','compliance.violation'] },
+  'Báo cáo tài chính tức thời': { desc: 'Bảng cân đối thử + sổ cái + sổ chi tiết tức thời.', events: ['report.balance'] },
+  'Báo cáo thuế':       { desc: 'Tổng hợp dữ liệu kê khai thuế — VAT, TNDN, TNCN.', events: ['tax.report'] },
+  'Đối chiếu công nợ':  { desc: 'Đối chiếu công nợ NCC — tự động khớp hóa đơn / phiếu chi.', endpoint: '/kenh/state/cong-no-ncc', events: ['debt.recon'] },
+  'Theo dõi tạm ứng':   { desc: 'Theo dõi tạm ứng — quá hạn cảnh báo tự động.', endpoint: '/kenh/state/tam-ung', events: ['advance.track'] },
+  'Quick Entry':        { desc: 'Nhập nhanh phiếu thu/chi/tạm ứng.', events: ['entry.quick'] },
+  'Tạo đơn hàng nhanh': { desc: 'Form tạo đơn — đính kèm giấy đảm bảo + xác nhận thanh toán.', events: ['order.create','order.attach'] },
+  'Sales Performance Dashboard': { desc: 'Dashboard hiệu suất bán hàng — doanh thu cá nhân/nhóm + hoa hồng.', events: ['sales.performance'] },
+  'Lịch chăm sóc VIP':  { desc: 'Lịch chăm sóc KH VIP — lịch sử mua + sở thích + nhắc nhở.', endpoint: '/kenh/state/cham-soc-vip', events: ['crm.vip.touch'] },
+  'Ticket Management':  { desc: 'Quản lý ticket — phản hồi/khiếu nại/nội bộ đa cấp.', endpoint: '/kenh/state/ticket', events: ['ticket.create','ticket.assign'] },
+  'Nhắc nợ tự động':    { desc: 'Nhắc nợ KH tự động — SMS/Zalo/Email theo lịch.', events: ['debt.remind'] },
+  'Chiến dịch Tracker': { desc: 'Theo dõi chiến dịch marketing — KPI, ngân sách, ROI.', events: ['marketing.campaign'] },
+  'Gửi khảo sát tự động': { desc: 'Khảo sát hài lòng KH định kỳ.', events: ['survey.send','survey.result'] },
+  'Tra cứu đơn hàng':   { desc: 'Tra cứu đơn hàng — trạng thái SX/giao/bảo hành.', endpoint: '/kenh/state/don-hang', events: ['order.lookup'] },
+  'Lịch sử mua hàng':   { desc: 'Lịch sử mua sắm KH — sản phẩm, giá, hình ảnh, chứng từ.', events: ['order.history'] },
+  'Đăng ký bảo hành':   { desc: 'Form đăng ký bảo hành — ảnh + mã đơn.', events: ['warranty.register'] },
+  'Chat hỗ trợ trực tuyến': { desc: 'Chat hỗ trợ KH — kèm ảnh + audit trail.', events: ['chat.message'] },
+  'Đánh giá sản phẩm':  { desc: 'Đánh giá sao + review sau khi nhận hàng.', events: ['review.submit'] },
+  'Thông báo ưu đãi sớm': { desc: 'Thông báo khuyến mãi VIP nhận trước.', events: ['promo.notify'] },
+  'Hồ sơ VIP cá nhân hóa': { desc: 'Hồ sơ VIP — sở thích, ngày kỷ niệm, gợi ý sản phẩm.', events: ['vip.profile'] },
+  'User & Role Manager':{ desc: 'Quản lý user/role — đăng nhập SĐT + OTP + RBAC.', events: ['auth.login','rbac.check'] },
+  'Quản lý lịch họp':   { desc: 'Quản lý lịch họp + sự kiện công ty.', events: ['calendar.event'] },
+  'Kết xuất báo cáo':   { desc: 'Xuất Excel/PDF — tùy chỉnh cột, lọc, lưu mẫu.', events: ['report.export'] },
+  'Version & Config Manager': { desc: 'Quản lý phiên bản — kmf, specs, configs, quy trình.', endpoint: '/kenh/state/phien-ban', events: ['version.commit','config.update'] },
+  'Theo dõi bảo trì':   { desc: 'Theo dõi lịch bảo trì máy móc — trạng thái máy.', endpoint: '/kenh/state/bao-tri', events: ['maintenance.schedule','maintenance.complete'] }
+};
+
+async function emitTestEvent(utilName) {
+  const env = {
+    event_type: 'util.test_emit',
+    payload: { util: utilName, source: 'tam-luxury-dashboard' },
+    source_cell: 'dashboard',
+    timestamp: Date.now()
+  };
+  try {
+    const res = await fetch(ENDPOINTS.phat, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(env)
+    });
+    if (res.ok) alert('Whau ✓ event đã phát Nauion vào hệ.');
+    else alert('Lech ⚠ HTTP ' + res.status);
+  } catch (e) { alert('Gay ✗ ' + e.message); }
+}
+
+//─────────────────────────────────────────────────────────────────
+// REST FETCH HELPERS — initial state from /kenh/* endpoints
+//─────────────────────────────────────────────────────────────────
+async function fetchInitialState() {
+  // /kenh/nauion → impedance + Nauion mood
+  try {
+    const r = await fetch(ENDPOINTS.nauion);
+    if (r.ok) {
+      const d = await r.json();
+      if (d.impedanceZ != null) { State.impedanceZ = d.impedanceZ; setText('impedance-z', Number(d.impedanceZ).toFixed(2)); }
+      if (d.qneuGlobal != null) { State.qneuGlobal = d.qneuGlobal; setText('qneu-global', d.qneuGlobal); }
+    }
+  } catch(e) { /* server chưa sẵn sàng */ }
+
+  // /kenh/intel → executive summary
+  try {
+    const r = await fetch(ENDPOINTS.intel);
+    if (r.ok) {
+      const d = await r.json();
+      if (d.kpi) routeEvent({ event_type:'sales.summary', payload: d.kpi.sales || {}, source_cell:'intel' });
+      if (d.kpi) routeEvent({ event_type:'production.summary', payload: d.kpi.production || {}, source_cell:'intel' });
+      if (d.kpi) routeEvent({ event_type:'inventory.summary', payload: d.kpi.inventory || {}, source_cell:'intel' });
+      if (d.kpi) routeEvent({ event_type:'finance.summary', payload: d.kpi.finance || {}, source_cell:'intel' });
+      if (d.heatmap) routeEvent({ event_type:'health.heatmap', payload:{ days: d.heatmap }, source_cell:'monitor-cell' });
+    }
+  } catch(e) { /* graceful — UI vẫn hiển thị '—' chờ HeyNa */ }
+}
+
+//─────────────────────────────────────────────────────────────────
+// UTILS
+//─────────────────────────────────────────────────────────────────
+function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+function escapeHTML(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeAttr(s) { return String(s).replace(/[<>"']/g, ''); }
+function formatVND(n) {
+  if (n == null) return '—';
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B ₫';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M ₫';
+  return n.toLocaleString('vi-VN') + ' ₫';
+}
+function formatUptime(ms) {
+  const s = Math.floor(ms / 1000);
+  if (s < 60) return s + 's';
+  if (s < 3600) return Math.floor(s/60) + 'm ' + (s%60) + 's';
+  return Math.floor(s/3600) + 'h ' + Math.floor((s%3600)/60) + 'm';
+}
+function trackHover(e, el) {
+  const r = el.getBoundingClientRect();
+  el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+  el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+}
+
+// Clock
+setInterval(() => {
+  setText('clock', new Date().toLocaleTimeString('vi-VN'));
+  if (State.connected) setText('hn-uptime', formatUptime(Date.now() - State.startTs));
+}, 1000);
+
+//─────────────────────────────────────────────────────────────────
+// BIND GROUP TILES
+//─────────────────────────────────────────────────────────────────
+document.querySelectorAll('.group-tile').forEach(tile => {
+  tile.addEventListener('click', (e) => {
+    if (e.target.classList.contains('util-chip')) return; // chip handles itself
+    openModal('group', tile.dataset.group);
+  });
+});
+document.querySelectorAll('.util-chip').forEach(chip => {
+  chip.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (chip.dataset.util) openModal('util', chip.dataset.util);
+  });
+});
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', (e) => { if (e.target === m) closeModal(); });
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+//─────────────────────────────────────────────────────────────────
+// BOOTSTRAP
+//─────────────────────────────────────────────────────────────────
+initHeatmapPlaceholders();
+initDbTables();
+fetchInitialState();
+connectHeyna();
+
+// Audit hash placeholder
+setText('audit-hash', '—');
+</script>
+</body>
+</html>
