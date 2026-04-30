@@ -425,31 +425,25 @@ setInterval(()=>{ const el=document.getElementById('ttime'); if(el) el.textConte
 const fmt  = v => v ? Number(v).toLocaleString('vi-VN')+'đ' : '—';
 const fmtM = v => v ? (v/1e6).toFixed(1)+'M' : '—';
 
-// Approvals — fetch tu server
-async function loadApprovals() {
-  try {
-    const d = await fetch(`${S}/kenh/approvals`).then(r=>r.json());
-    const list = d.items || [];
-    const el = document.getElementById('approval-list');
-    if(!list.length){ el.innerHTML='<div style="color:var(--text3);padding:20px;text-align:center;font-size:11px">Không có phê duyệt chờ</div>'; return; }
-    el.innerHTML = list.map(a=>`
-    <div class="ar">
-      <div class="ar-icon" style="background:${a.iconBg||'rgba(200,146,42,.15)'}">${a.icon||'📄'}</div>
-      <div class="ar-info">
-        <div class="ar-title">${a.title}</div>
-        <div class="ar-meta">${a.id} · ${a.meta}</div>
-      </div>
-      <div class="ar-amt">${a.amt}</div>
-      <div class="ar-btns">
-        <button class="btn-ap" onclick="approveItem('${a.id}',this)">✓ Duyệt</button>
-        <button class="btn-rj" onclick="rejectItem('${a.id}',this)">✗ Từ chối</button>
-      </div>
-    </div>`).join('');
-    document.getElementById('kpi-pending').textContent = list.length;
-    document.getElementById('pending-count').textContent = list.length + ' CHỜ DUYỆT';
-  } catch {
-    document.getElementById('approval-list').innerHTML='<div style="color:var(--red);padding:20px;text-align:center;font-size:11px">Lỗi tải dữ liệu phê duyệt</div>';
-  }
+// Approvals — render tu SSE event approval.list
+function renderApprovals(list) {
+  const el = document.getElementById('approval-list');
+  if(!list||!list.length){ el.innerHTML='<div style="color:var(--text3);padding:20px;text-align:center;font-size:11px">Không có phê duyệt chờ</div>'; return; }
+  el.innerHTML = list.map(a=>`
+  <div class="ar">
+    <div class="ar-icon" style="background:${a.iconBg||'rgba(200,146,42,.15)'}">${a.icon||'📄'}</div>
+    <div class="ar-info">
+      <div class="ar-title">${a.title}</div>
+      <div class="ar-meta">${a.id} · ${a.meta}</div>
+    </div>
+    <div class="ar-amt">${a.amt}</div>
+    <div class="ar-btns">
+      <button class="btn-ap" onclick="approveItem('${a.id}',this)">✓ Duyệt</button>
+      <button class="btn-rj" onclick="rejectItem('${a.id}',this)">✗ Từ chối</button>
+    </div>
+  </div>`).join('');
+  document.getElementById('kpi-pending').textContent = list.length;
+  document.getElementById('pending-count').textContent = list.length + ' CHỜ DUYỆT';
 }
 
 function approveItem(id, btn) {
@@ -512,7 +506,7 @@ function startSSE() {
     try {
       const d = JSON.parse(e.data);
       if(d.event==='gia-vang.updated') loadGold();
-      if(d.event==='approval.new') loadApprovals();
+      if(d.event==='approval.list') renderApprovals(d.payload?.items||[]);
       if(d.event==='audit.record') {
         const tb = document.getElementById('audit-body');
         if(!tb) return;
@@ -535,8 +529,7 @@ function startSSE() {
 function startCFO() {
   loadGold();
   loadKPI();
-  loadApprovals();
-  startSSE();
+  startSSE(); // approval.list se den qua SSE
 }
 </script>
 <script src="heyna-client.js"></script>
