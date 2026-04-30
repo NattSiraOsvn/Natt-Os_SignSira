@@ -1665,8 +1665,9 @@ elif ! command -v jq >/dev/null 2>&1; then
   inc_warn "QIINT2 jq missing"
 else
   mkdir -p "$QIINT2_AUDIT_DIR"
-  QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ --report "$QIINT2_REPORT" 2>&1)
+  QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ 2>&1)
   QIINT2_RC=$?
+  echo "$QIINT2_OUT" > "$QIINT2_REPORT"
 
   if [ $QIINT2_RC -ne 0 ]; then
     warn "QIINT2 validator runtime error (rc=$QIINT2_RC)"
