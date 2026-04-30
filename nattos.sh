@@ -382,7 +382,7 @@ for cand in "src/cells/business/business" "src/cells/business"; do
     # Nếu là src/cells/business mà bên trong CHỈ có folder kernel/business/infrastructure
     # thì đó là layout 3-level, business cells nằm sâu hơn → bỏ qua
     has_subgroups=$(ls -1 "$cand"/{kernel,business,infrastructure} 2>/dev/null | wc -l | tr -dc '0-9')
-    if [[ "$cand" == "src/cells/business" && "${has_subgroups:-0}" -gt 0 ]]; then
+    if [[ "$cand" == "src/cells/business" && "${has_subgroups:-0}" -gt 5 ]]; then
       continue
     fi
     BUSINESS_DIR="$cand"; break
