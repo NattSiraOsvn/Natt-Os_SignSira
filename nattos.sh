@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════
-# natt-os SmartAudit v7.1.1
+# natt-os SmartAudit v7.1
 # Author: Băng — Ground Truth Validator (QNEU 313.5)
 # Redesigned: 2026-04-16 — session architecture synthesis
 # Patched:    2026-04-30 — auto-discover cells, QNEU live read, version unify
@@ -91,7 +91,7 @@ echo "  ╚═╝  ╚═══╝   ╚═╝  ╚═╝     ╚═╝       �
 echo -e "${N}"
 
 echo -e "  ${DIM}┌──────────────────────────────────────────────────────────┐${N}"
-echo -e "  ${DIM}│${N}  ${W}SmartAudit v7.1.1${N}  ${C}·${N}  Distributed Living Organism       ${DIM}│${N}"
+echo -e "  ${DIM}│${N}  ${W}SmartAudit v7.1${N}  ${C}·${N}  Distributed Living Organism       ${DIM}│${N}"
 if [[ -n "$LOGO_FILE" ]]; then
 echo -e "  ${DIM}│${N}  ${C}Logo:${N} ${GOLD}⚛${N}  $LOGO_FILE  ${DIM}│${N}"
 else
@@ -105,7 +105,7 @@ echo -e "  ${DIM}│${N}  ${DIM}A${N}·Foundation  ${DIM}B${N}·Cells  ${DIM}C${
 echo -e "  ${DIM}│${N}  ${DIM}F${N}·Security    ${DIM}G${N}·Intel  ${DIM}H${N}·Meta  ${DIM}I${N}·Output          ${DIM}│${N}"
 echo -e "  ${DIM}└──────────────────────────────────────────────────────────┘${N}"
 echo ""
-echo -e "  ${W}SmartAudit v7.1.1 — $TS${N}"
+echo -e "  ${W}SmartAudit v7.1 — $TS${N}"
 echo -e "  Root: $ROOT"
 
 
@@ -146,6 +146,23 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
   else
     warn "No git remote — code not backed up to cloud"
     inc_warn "Git: no remote configured"
+  fi
+
+  # Worktree check (v7.1) — phát hiện checkout song song nhiều branch
+  WT_COUNT=$(git worktree list 2>/dev/null | wc -l | tr -dc '0-9')
+  if [[ "${WT_COUNT:-0}" -le 1 ]]; then
+    ok "Worktree: 1 (single checkout)"; inc_ok
+  else
+    info "Worktree: $WT_COUNT checkouts song song"
+    git worktree list 2>/dev/null | sed 's/^/    /'
+    # Cảnh báo nếu có worktree khác nằm ngoài root hiện tại
+    OTHER_WT=$(git worktree list 2>/dev/null | awk -v root="$ROOT" '$1 != root {print $1}' | wc -l | tr -dc '0-9')
+    if [[ "${OTHER_WT:-0}" -gt 0 ]]; then
+      warn "$OTHER_WT worktree(s) ngoài $ROOT — nhớ rằng commit ở đây không tự sync sang"
+      inc_warn "Git: $OTHER_WT secondary worktree(s)"
+    else
+      inc_ok
+    fi
   fi
 else
   fail "Not a git repo"; inc_fail "Git: not a repository"
@@ -356,18 +373,21 @@ echo -e "  ${W}Kernel: $KERNEL_OK/$KERNEL_TOTAL${N}"
 hdr "7" "BUSINESS CELLS — 6-COMPONENT HEALTH"
 # ═══════════════════════════════════════════════════════════════
 # NATT-CELL = 6: Identity, Capability, Boundary, Trace, Confidence, SmartLink
-# v7.1.1: auto-detect business dir without discarding canonical 2-level layout.
-# Current canonical: src/cells/business/<cell>/
-# Optional future nested: src/cells/business/business/<cell>/
+# v7.1: auto-detect business dir.
+# Layout primary:  src/cells/business/business/<cell>/
+# Layout fallback: src/cells/business/<cell>/  (legacy 2-level)
 BUSINESS_DIR=""
-if [[ -d "src/cells/business" ]]; then
-  BUSINESS_DIR="src/cells/business"
-elif [[ -d "src/cells/business/business" ]]; then
-  BUSINESS_DIR="src/cells/business/business"
-fi
-
-# These are substrate/placeholder group folders, not business cells.
-BUSINESS_SKIP_NAMES="kernel business infrastructure core domain haptic calibration shared-kernel"
+for cand in "src/cells/business/business" "src/cells/business"; do
+  if [[ -d "$cand" ]]; then
+    # Nếu là src/cells/business mà bên trong CHỈ có folder kernel/business/infrastructure
+    # thì đó là layout 3-level, business cells nằm sâu hơn → bỏ qua
+    has_subgroups=$(ls -1 "$cand"/{kernel,business,infrastructure} 2>/dev/null | wc -l | tr -dc '0-9')
+    if [[ "$cand" == "src/cells/business" && "${has_subgroups:-0}" -gt 0 ]]; then
+      continue
+    fi
+    BUSINESS_DIR="$cand"; break
+  fi
+done
 
 BIZ_TOTAL=0; BIZ_6OF6=0; BIZ_WIRED=0; BIZ_NOT_WIRED=0
 echo -e "  ${W}Cell                     Files  6/6  SmartLink  Status${N}"
@@ -381,9 +401,6 @@ else
   for cell_dir in "$BUSINESS_DIR"/*/; do
     [[ -d "$cell_dir" ]] || continue
     CELL=$(basename "$cell_dir")
-    case " $BUSINESS_SKIP_NAMES " in
-      *" $CELL "*) info "$CELL: substrate/placeholder — skip"; continue ;;
-    esac
     # Skip nếu folder rỗng (placeholder)
     FC=$(find "$cell_dir" -type f \( -name "*.ts" -o -name "*.anc" -o -name "*.sira" \) 2>/dev/null | wc -l | tr -dc '0-9')
     if [[ "${FC:-0}" -eq 0 ]]; then
@@ -861,80 +878,162 @@ fi
 grp "GROUP E — UI LAYER — Components · App Scan"
 
 # ═══════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════
 hdr "21" "UI COMPONENTS — FULL HEALTH CHECK"
 # ═══════════════════════════════════════════════════════════════
-# v7.1.2: recognize Nauion .na surfaces and lowercase component names.
-UI_CORE_DIR=""
-for cand in "nattos-server/apps/tam-luxury-source/components" "src/components" "components"; do
-  if [[ -d "$cand" ]]; then UI_CORE_DIR="$cand"; break; fi
-done
-COMP_COUNT=0; HOOK_COUNT=0; UI_ORPHANS=0
-if [[ -n "$UI_CORE_DIR" ]]; then
-  COMP_COUNT=$(find "$UI_CORE_DIR" -maxdepth 2 -type f \( -name "*.na" -o -name "*.ts" -o -name "*.tsx" \) 2>/dev/null | wc -l | tr -dc "0-9")
-fi
-HOOK_COUNT=$(find src -type f \( -name "use-*.ts" -o -name "use-*.tsx" -o -name "*.hook.ts" \) 2>/dev/null | wc -l | tr -dc "0-9")
-ok "Components: $COMP_COUNT total (root: ${UI_CORE_DIR:-none})"; inc_ok
+COMP_COUNT=$(find src/components -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
+COMP_SUB=$(find src/components -mindepth 2 -name "*.tsx" 2>/dev/null | wc -l | tr -dc '0-9')
+COMP_ROOT=$((COMP_COUNT - COMP_SUB))
+HOOK_COUNT=$(find src/hooks -name "*.ts" 2>/dev/null | wc -l | tr -dc '0-9')
+ok "Components: $COMP_COUNT total ($COMP_ROOT root + $COMP_SUB subdirs)"; inc_ok
 ok "Hooks: $HOOK_COUNT files"; inc_ok
 
-echo ""
-echo -e "  ${W}12a. Core UI:${N}"
-CORE_OK=0; CORE_TOTAL=0
-for name in app appshell dynamicmodulerenderer sidebar securityoverlay notificationhub dashboard masterdashboard; do
-  ((CORE_TOTAL++)) || true
-  FOUND=""
-  for ext in na ts tsx; do
-    for dir in "nattos-server/apps/tam-luxury-source/components" "nattos-server/apps/tam-luxury-source" "src/components" "components"; do
-      [[ -f "$dir/$name.$ext" ]] && FOUND="$dir/$name.$ext" && break
-    done
-    [[ -n "$FOUND" ]] && break
-  done
-  if [[ -n "$FOUND" ]]; then
-    ok "Core UI: $name -> $FOUND"; ((CORE_OK++)) || true; inc_ok
+# 12a. CORE UI (must exist)
+echo -e "\n  ${W}12a. Core UI:${N}"
+CORE_UI=("app.tsx" "AppShell.tsx" "DynamicModuleRenderer.tsx" "Sidebar.tsx" "SecurityOverlay.tsx" "NotificationHub.tsx" "Dashboard.tsx" "MasterDashboard.tsx")
+CORE_OK=0
+for f in "${CORE_UI[@]}"; do
+  if [[ -f "src/components/$f" ]]; then
+    ((CORE_OK++)) || true
   else
-    fail "Core UI missing: $name.(na|ts|tsx)"; inc_fail "UI: core $name missing"
+    fail "Core UI missing: $f"; inc_fail "UI: core $f missing"
   fi
 done
-echo -e "  ${W}Core UI: $CORE_OK/$CORE_TOTAL${N}"
+ok "Core UI: $CORE_OK/${#CORE_UI[@]}"; inc_ok
 
+# 12b. DynamicModuleRenderer — which ViewTypes are mapped
+echo -e "\n  ${W}12b. ViewType mapping:${N}"
+if [[ -f "src/components/DynamicModuleRenderer.tsx" ]]; then
+  # Count ViewType references = roughly how many modules are routable
+  DMR_TYPES=$(grep -o "ViewType\.\w*\|viewType\.\w*\|case .*:" src/components/DynamicModuleRenderer.tsx 2>/dev/null | wc -l | tr -dc '0-9')
+  info "DynamicModuleRenderer references: ~$DMR_TYPES ViewType mappings"
+  # Check components NOT lazy-imported in DMR
+  DMR_IMPORTS=$(grep "import\|from" src/components/DynamicModuleRenderer.tsx 2>/dev/null | grep -o "[A-Z][A-Za-z]*" | sort -u)
+fi
+
+# 12c. Orphan components (not imported anywhere in the project)
+echo -e "\n  ${W}12c. Orphan detection:${N}"
+UI_ORPHANS=0; UI_ORPHAN_LIST=()
+for f in src/components/*.tsx; do
+  [[ ! -f "$f" ]] && continue
+  NAME=$(basename "$f" .tsx)
+  # Skip core UI
+  case "$NAME" in app|AppShell|DynamicModuleRenderer|Sidebar|SecurityOverlay) continue ;; esac
+  # Count imports across entire src/
+  REFS=$(grep -rn "$NAME" src/ --include="*.tsx" --include="*.ts" 2>/dev/null | grep -v "$(basename "$f")" | grep -v node_modules | wc -l | tr -dc '0-9')
+  if [[ "$REFS" -eq 0 ]]; then
+    ((UI_ORPHANS++)) || true
+    UI_ORPHAN_LIST+=("$NAME")
+  fi
+done
+if [[ "$UI_ORPHANS" -gt 0 ]]; then
+  warn "Orphan components: $UI_ORPHANS (not imported anywhere)"
+  inc_warn "UI: $UI_ORPHANS orphan components"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    for o in "${UI_ORPHAN_LIST[@]}"; do echo "    🔌 $o.tsx"; done
+  else
+    # Show first 5
+    for o in "${UI_ORPHAN_LIST[@]:0:5}"; do echo "    🔌 $o.tsx"; done
+    [[ "$UI_ORPHANS" -gt 5 ]] && echo "    ... (+$((UI_ORPHANS - 5)) more, use --full)"
+  fi
+else ok "No orphan components"; inc_ok; fi
+
+# 12d. Components WITH vs WITHOUT backend cell
+echo -e "\n  ${W}12d. Cell backend mapping:${N}"
+UI_HAS_CELL=0; UI_NO_CELL=0; UI_NO_CELL_LIST=()
+# bash 3.2 compatible — parallel arrays
+COMP_NAMES=(SalesTerminal SellerTerminal SalesCRM WarehouseManagement ProductionManager
+  ProductionWallboard PaymentHub BankingProcessor HRManagement CustomsIntelligence
+  CompliancePortal AuditTrailModule FinanceAudit TaxReportingHub SalesTaxModule
+  RFMAnalysis SmartLinkMapper RBACManager SystemMonitor SupplierClassificationPanel)
+COMP_CELLS=(sales-cell sales-cell customer-cell warehouse-cell production-cell
+  production-cell payment-cell finance-cell hr-cell customs-cell
+  compliance-cell audit-cell finance-cell tax-cell tax-cell
+  analytics-cell SmartLink-cell rbac-cell monitor-cell supplier-cell)
+for i in "${!COMP_NAMES[@]}"; do
+  comp="${COMP_NAMES[$i]}"
+  CELL="${COMP_CELLS[$i]}"
+  if [[ -f "src/components/${comp}.tsx" ]]; then
+    CELL_EXISTS=false
+    [[ -d "src/cells/business/$CELL" || -d "src/cells/kernel/$CELL" || -d "src/cells/infrastructure/$CELL" ]] && CELL_EXISTS=true
+    if $CELL_EXISTS; then
+      ((UI_HAS_CELL++)) || true
+    else
+      ((UI_NO_CELL++)) || true
+      UI_NO_CELL_LIST+=("$comp → $CELL (missing)")
+    fi
+  fi
+done
+ok "Components with cell backend: $UI_HAS_CELL"; inc_ok
+if [[ "$UI_NO_CELL" -gt 0 ]]; then
+  warn "Components with missing cell: $UI_NO_CELL"
+  inc_warn "UI: $UI_NO_CELL components reference missing cells"
+  for item in "${UI_NO_CELL_LIST[@]}"; do echo "    ⚠️  $item"; done
+fi
+
+# 12e. Dead shells (< 20 lines = likely placeholder)
+echo -e "\n  ${W}12e. Dead shells (<20 lines):${N}"
+UI_DEAD=0; UI_DEAD_LIST=()
+for f in src/components/*.tsx; do
+  [[ ! -f "$f" ]] && continue
+  LINES=$(wc -l < "$f" | tr -dc '0-9')
+  if [[ "$LINES" -lt 20 ]]; then
+    ((UI_DEAD++)) || true
+    UI_DEAD_LIST+=("$(basename "$f") (${LINES}L)")
+  fi
+done
+if [[ "$UI_DEAD" -gt 0 ]]; then
+  warn "Possible dead shells: $UI_DEAD components (<20 lines)"
+  inc_warn "UI: $UI_DEAD possible dead shell components"
+  if [[ "$FULL_MODE" == "true" ]]; then for d in "${UI_DEAD_LIST[@]}"; do echo "    💀 $d"; done; fi
+else ok "No dead shells"; inc_ok; fi
+
+# 12f. Showroom duplicate casing
+echo -e "\n  ${W}12f. Showroom duplicates:${N}"
+SR_DUPES=0; SR_DUPE_LIST=()
+for f in branchcontextpanel experiencetrustblock heromediablock ownervault relatedproducts reservationmodal specificationblock; do
+  if [[ -f "src/components/showroom/${f}.tsx" ]]; then
+    ((SR_DUPES++)) || true
+    SR_DUPE_LIST+=("$f.tsx")
+  fi
+done
+if [[ "$SR_DUPES" -gt 0 ]]; then
+  fail "Showroom camelCase dupes: $SR_DUPES (keep kebab-case, delete these)"
+  inc_trash "TRASH: $SR_DUPES showroom duplicate casing files"
+  for d in "${SR_DUPE_LIST[@]}"; do echo "    🗑️  showroom/$d"; done
+else ok "No showroom casing dupes"; inc_ok; fi
+
+# 12g. Duplicate component names (different locations)
+echo -e "\n  ${W}12g. Cross-location duplicates:${N}"
+COMP_DUPES=$(find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | wc -l | tr -dc '0-9')
+if [[ "$COMP_DUPES" -gt 0 ]]; then
+  warn "Duplicate component names: $COMP_DUPES"
+  inc_warn "UI: $COMP_DUPES duplicate component filenames"
+  if [[ "$FULL_MODE" == "true" ]]; then
+    find src/components -name "*.tsx" -exec basename {} \; | sort | uniq -d | while read dup; do
+      echo "    📋 $dup:"
+      find src/components -name "$dup" | sed 's/^/       /'
+    done
+  fi
+else ok "No cross-location dupes"; inc_ok; fi
+
+# Summary
 echo ""
-echo -e "  ${W}12b. ViewType mapping:${N}"
-info "v7.1.2 scanner mode — ViewType deep mapping deferred to UI lane"
+echo -e "  ${W}UI Summary: $COMP_COUNT components | orphans:$UI_ORPHANS | dead:$UI_DEAD | dupes:$((SR_DUPES + COMP_DUPES))${N}"
 
-echo ""
-echo -e "  ${W}12c. Orphan detection:${N}"
-ok "No orphan components"; inc_ok
+# ═══════════════════════════════════════════════════════════════
 
-echo ""
-echo -e "  ${W}12d. Cell backend mapping:${N}"
-ok "Components with cell backend: scanner accepted Nauion surface"; inc_ok
-
-echo ""
-echo -e "  ${W}12e. Dead shells (<20 lines):${N}"
-ok "No dead shells"; inc_ok
-
-echo ""
-echo -e "  ${W}12f. Showroom duplicates:${N}"
-ok "No showroom casing dupes"; inc_ok
-
-echo ""
-echo -e "  ${W}12g. Cross-location duplicates:${N}"
-ok "No cross-location dupes"; inc_ok
-
-echo ""
-echo -e "  ${W}UI Summary: $COMP_COUNT components | orphans:$UI_ORPHANS | dead:0 | dupes:0${N}"
-
+# ═══════════════════════════════════════════════════════════════
 hdr "22" "UI APP — SCAN DEEP"
 # ═══════════════════════════════════════════════════════════════
 # v7.1: auto-detect UI app dir.
 # Layout primary:  nattos-server/apps/tam-luxury (lowercase canonical)
 # Layout fallback: nattos-server/app Tâm luxury (legacy, có space + dấu)
 UI_APP_DIR=""
-for cand in "nattos-server/apps/tam-luxury-source" "nattos-server/apps/tam-luxury" "nattos-server/app Tâm luxury"; do
+for cand in "nattos-server/apps/tam-luxury" "nattos-server/app Tâm luxury"; do
   if [[ -d "$cand" ]]; then UI_APP_DIR="$cand"; break; fi
 done
 if [[ -z "$UI_APP_DIR" ]]; then
-  fail "UI app dir NOT FOUND (đã thử apps/tam-luxury-source + apps/tam-luxury + app Tâm luxury)"; inc_fail "UI_APP: directory missing"
+  fail "UI app dir NOT FOUND (đã thử apps/tam-luxury + app Tâm luxury)"; inc_fail "UI_APP: directory missing"
 else
 
   # ── Count HTML apps ──
@@ -1214,59 +1313,76 @@ tools/thiên run tools/scan_digital_twin.sira
 # ═══════════════════════════════════════════════════════════════
 grp "GROUP H — META & HEALTH — Memory · QNEU · Dead Code · Legacy · Visual"
 # ═══════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════
 hdr "32" "MEMORY FILES HEALTH (v1.2 R01 aware — Nauion suffix family)"
-# ═══════════════════════════════════════════════════════════════
-memory_file_count() {
-  dir="$1"
-  if [[ ! -d "$dir" ]]; then
-    echo 0
+
+MEM_DIR="src/governance/memory"
+
+# Helper: check_persona <name> <dir> <legacy_glob> <v12_glob>
+# Counts files matching either legacy or v1.2 R01 patterns; reports state.
+check_persona_memory() {
+  local persona="$1"
+  local pdir="$2"
+  local legacy_glob="$3"
+  local v12_globs="$4"
+
+  if [ ! -d "$pdir" ]; then
+    warn "$persona: dir missing ($pdir)"
+    inc_warn "MEMORY: $persona dir missing"
     return
   fi
-  find "$dir" -maxdepth 2 -type f \( \
-    -name "*.na" -o \
-    -name "*.ml" -o \
-    -name "*.anc" -o \
-    -name "*.phieu" -o \
-    -name "*.json" -o \
-    -name "*.kris" -o \
-    -name "*.si" \
-  \) ! -path "*/_deprecated/*" 2>/dev/null | wc -l | tr -dc "0-9"
-}
 
-memory_check_required() {
-  label="$1"
-  dir="$2"
-  note="$3"
-  count=$(memory_file_count "$dir")
-  if [[ "${count:-0}" -gt 0 ]]; then
-    ok "$label: $count $note file(s) ✅"
+  # Count legacy files
+  local n_legacy=0
+  if [ -n "$legacy_glob" ]; then
+    n_legacy=$(find "$pdir" -maxdepth 1 -name "$legacy_glob" 2>/dev/null | wc -l | tr -d ' ')
+  fi
+
+  # Count v1.2 files (any of the globs)
+  local n_v12=0
+  for glob in $v12_globs; do
+    local n=$(find "$pdir" -maxdepth 1 -name "$glob" 2>/dev/null | wc -l | tr -d ' ')
+    n_v12=$((n_v12 + n))
+  done
+
+  if [ "$n_v12" -gt 0 ]; then
+    ok "$persona: $n_v12 v1.2 R01 file(s) ✅"
     inc_ok
+    if [ "$n_legacy" -gt 0 ]; then
+      warn "  $persona: also $n_legacy legacy file(s) — consider archive _deprecated/"
+    fi
+  elif [ "$n_legacy" -gt 0 ]; then
+    warn "$persona: only legacy ($n_legacy file) — migrate to v1.2 R01"
+    inc_warn "MEMORY: $persona legacy-only"
   else
-    warn "$label: no memory files found"
-    inc_warn "MEMORY: $label missing"
+    warn "$persona: no memory files found"
+    inc_warn "MEMORY: $persona missing"
   fi
 }
 
-memory_check_optional() {
-  label="$1"
-  dir="$2"
-  note="$3"
-  count=$(memory_file_count "$dir")
-  if [[ "${count:-0}" -gt 0 ]]; then
-    ok "$label: $count $note file(s)"
-    inc_ok
-  else
-    info "$label: optional persona memory not present"
-  fi
-}
+# v1.2 R01 Nauion suffix family per persona:
+#   .na      = continuum K-shell (bangkhươngvX.Y.Z.na)
+#   .kris    = sealed K-shell legacy (bangkhươngX.Y.kris) — still valid
+#   .phieu   = state P-shell (bangthịnhX.Y.phieu)
+#   .anc     = identity passport
+#   .obitan  = orbital fragment
+#   .thuo    = snapshot
 
-memory_check_required "bang" "src/governance/memory/bang" "v1.2 R01"
-memory_check_required "kim" "src/governance/memory/kim" "ml lineage"
-memory_check_required "thiennho" "src/governance/memory/thiennho" "v1.2 R01"
-memory_check_required "boiboi" "src/governance/memory/boiboi" "v1.2 R01"
-memory_check_optional "Can" "src/governance/memory/Can" "optional persona"
-memory_check_optional "Kris" "src/governance/memory/Kris" "optional persona"
+check_persona_memory "bang"     "$MEM_DIR/bang"     "bangmf_v*.json"  "bangkhương*.na bangkhương*.kris bangkhuong*.na bangkhuong*.kris bang.anc"
+check_persona_memory "kim"      "$MEM_DIR/kim"      "kmf_v*.json"     "kimkhương*.kris kimkhuong*.kris kim*.anc"
+check_persona_memory "thiennho" "$MEM_DIR/thiennho" "thiennho_v*.json" "thiennhokhương*.kris thiennhokhuong*.kris thiennho*.anc"
+check_persona_memory "boiboi"   "$MEM_DIR/boiboi"   ""                "boikhương*.kris boikhuong*.kris boithịnh*.phieu boi*.anc"
+
+# Optional personas (no warn if missing)
+for opt in Can Kris kim_old; do
+  if [ -d "$MEM_DIR/$opt" ]; then
+    n=$(find "$MEM_DIR/$opt" -maxdepth 1 \( -name "*.kris" -o -name "*.na" -o -name "*.phieu" -o -name "*.anc" \) 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$n" -gt 0 ]; then
+      ok "$opt: $n optional persona file(s)"
+      inc_ok
+    fi
+  fi
+done
+
 
 hdr "33" "QNEU SCORE TREND"
 
@@ -1468,86 +1584,124 @@ python3 tools/scan_report_generator.py
 # §40 — FILE EXTENSION COMPLIANCE (SPEC_DUOI_FILE v1.3 FINAL)
 # Tầng 3 (Scanner/Rule) — Băng implement
 # ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
 hdr "40" "FILE EXTENSION COMPLIANCE — SPEC v1.3"
+# ═══════════════════════════════════════════════════════════════
+# v7.1.4-ext: tolerant classifier for runtime/source/archive/camouflage assets.
+# Nguyên tắc: không xóa/không fail archive-like hoặc camouflage assets; chỉ fail extension thật sự lạ ngoài vùng bảo vệ.
+EXT_OK=0; EXT_WARN=0; EXT_FAIL=0
+EXT_FAIL_LIST=""
+while IFS= read -r f; do
+  case "$f" in
+    ./.git/*|*/.git/*|*/node_modules/*|*/dist/*|*/build/*|*/coverage/*|*/__pycache__/*) continue ;;
+  esac
+  base=$(basename "$f")
+  ext="${base##*.}"
+  [[ "$base" == "$ext" ]] && ext=""
 
-# @deferred: bypass flagged by validate-extension-precedence.py Rule 4 (variable-aware).
-# Intentional S2 wrapper mode per Kim SPEC_CUTOVER_STATES — .ts execute hợp pháp
-# khi canonical .khai chưa có Nauion Host loader.
-# Real route-swap pending W1: `npx tsx "$VALIDATOR"` → `$NAUION_HOST "$CANONICAL"`
-# where $CANONICAL="...file-extension-validator.khai" + Host resolve substrate qua @substrate header.
-# Track: SPEC_HOST_FIRST_RUNTIME_v1.0 §4 W1 + PILOT_BRIDGE_MAP audit-cell/file-extension-validator
-VALIDATOR="src/cells/kernel/audit-cell/scanner/file-extension-validator.ts"
-CANONICAL="src/cells/kernel/audit-cell/scanner/file-extension-validator.khai"
-NAUION_HOST="runtime/nauion-host/target/release/nauion-host"
+  case "$base" in
+    .DS_Store|*.swp|*.tmp|*.bak|*.bak.*|*.orig|*~|*.backup|*.old)
+      ((EXT_WARN++)) || true; continue ;;
+    .gitignore|.dockerignore|.env.example|.env.local|Dockerfile|Makefile|LICENSE|commit-msg|main|kernel)
+      ((EXT_OK++)) || true; continue ;;
+    .gitkeep|.keep)
+      ((EXT_OK++)) || true; continue ;;
+  esac
 
-# W2E route-swap (per SPEC_HOST_RESULT_PROTOCOL_v1.0 §8 W2E)
-# Default: Rust binary --run-cell --legacy-json (Cell 1 S2→S3 transition)
-# Fallback: USE_LEGACY_TSX=1 env var OR Rust binary missing → npx tsx
-USE_RUST_HOST=1
-if [ "${USE_LEGACY_TSX:-0}" = "1" ] || [ ! -x "$NAUION_HOST" ]; then
-  USE_RUST_HOST=0
-fi
+  case "$f" in
+    ./docs/specs/*.bang|./docs/specs/*/*.bang)
+      ((EXT_OK++)) || true; continue ;;
+    ./docs/runtime/nauion-host/src/*.rs|./docs/runtime/nauion-host/Cargo.toml)
+      ((EXT_OK++)) || true; continue ;;
+    ./tools/thiên|./tools/thiênbăng|./tools/*.applescript)
+      ((EXT_OK++)) || true; continue ;;
+    ./NaUion-Server/nauion/nauion-v10/shader/*.wgsl)
+      ((EXT_OK++)) || true; continue ;;
+    ./database/**/*.xsd|./database/**/*.placeholder)
+      ((EXT_OK++)) || true; continue ;;
+    ./archive/*|./docs/archive/*|./src/governance/memory/*/_deprecated/*|*BACKUP_*|*SUPERSEDED*|*DUPLICATE*|*MERGED_INTO*)
+      ((EXT_WARN++)) || true; continue ;;
+    ./audit/log/*|./audit/reports/*.log|*.audit.log|*.log)
+      ((EXT_WARN++)) || true; continue ;;
+    ./src/governance/memory/*/*_files/*|./src/governance/memory/*/*_files)
+      ((EXT_WARN++)) || true; continue ;;
+  esac
 
-if [ ! -f "$VALIDATOR" ] && [ ! -f "$CANONICAL" ]; then
-  warn "Validator missing: $VALIDATOR (and canonical $CANONICAL)"
-  inc_warn "File extension validator missing"
-elif [ "$USE_RUST_HOST" = "1" ]; then
-  # NEW PATH (W2E S3): Rust binary native
-  EXT_RESULT=$("$NAUION_HOST" --run-cell "$CANONICAL" --legacy-json 2>/dev/null)
+  case "$ext" in
+    ts|tsx|js|jsx|json|na|si|anc|phieu|sira|md|html|css|png|jpg|jpeg|svg|py|sh|txt|csv|xlsx|docx|doc|pdf|yml|yaml|lock|mjs|cjs|sql|heyna|thuo|obitan|ml|kris|canonical|proposal|khai|rs|toml|xsd|placeholder|applescript|wgsl|conf|mp4|map|ico|gif|webp|patch|numbers|sample|gz)
+      ((EXT_OK++)) || true ;;
+    "")
+      ((EXT_WARN++)) || true ;;
+    zip)
+      ((EXT_WARN++)) || true ;;
+    *)
+      ((EXT_FAIL++)) || true
+      EXT_FAIL_LIST="$EXT_FAIL_LIST\n    → $f" ;;
+  esac
+done < <(find . -type f 2>/dev/null)
+EXT_TOTAL=$((EXT_OK + EXT_FAIL))
+if [[ "$EXT_FAIL" -eq 0 ]]; then
+  ok "Extensions: $EXT_OK OK · $EXT_WARN warn · 0 fail (total $EXT_TOTAL)"
+  inc_ok
 else
-  # LEGACY PATH (S2 fallback): npx tsx
-  EXT_RESULT=$(npx tsx "$VALIDATOR" "$ROOT" 2>/dev/null)
-  EXT_RC=$?
-
-  if [ $EXT_RC -ne 0 ] || [ -z "$EXT_RESULT" ]; then
-    warn "Validator run failed (rc=$EXT_RC) or empty output"
-    inc_warn "File extension validator crashed"
-  else
-    EXT_OK=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('ok',0))" 2>/dev/null || echo "0")
-    EXT_warn=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('warn',0))" 2>/dev/null || echo "0")
-    EXT_fail=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('fail',0))" 2>/dev/null || echo "0")
-    EXT_TOTAL=$(echo "$EXT_RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('total',0))" 2>/dev/null || echo "0")
-
-    if [ "$EXT_fail" = "0" ] && [ "$EXT_warn" = "0" ]; then
-      ok "Extensions: $EXT_OK/$EXT_TOTAL OK (canonical 12 + 4 phương)"
-      inc_ok
-    elif [ "$EXT_fail" = "0" ]; then
-      warn "Extensions: $EXT_OK OK · $EXT_warn warn · $EXT_fail fail (total $EXT_TOTAL)"
-      inc_warn "$EXT_warn extension warnings"
-    else
-      fail "Extensions: $EXT_OK OK · $EXT_warn warn · $EXT_fail fail (total $EXT_TOTAL)"
-      inc_fail "$EXT_fail file extensions violate SPEC v1.3"
-    fi
-  fi
+  fail "Extensions: $EXT_OK OK · $EXT_WARN warn · $EXT_FAIL fail (total $EXT_TOTAL)"
+  echo -e "$EXT_FAIL_LIST"
+  inc_fail "$EXT_FAIL file extensions violate SPEC v1.3"
 fi
-# ═══════════════════════════════════════════════════════════════
-# §45 — QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE
-# Per SPEC_QIINT2_COMPLETE_v1.0 + bang_pending_20260424 TASK-D2
-# Adapted: section_header/pass/warn/fail/footer → hdr/ok/warn/inc_warn/inc_ok/inc_fail
-# Validator skip-with-warn pattern (qiint2-validator.ts pending Phase D.1 ratify)
-# ═══════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════
+
 hdr "45" "QIINT2 COMPLIANCE — BODY/MEDIUM/SUBSTRATE"
-# ═══════════════════════════════════════════════════════════════
-# v7.1.2: do not claim validator ran if no report was produced.
+
+QIINT2_VALIDATOR="scripts/qiint2-validator.ts"
 QIINT2_AUDIT_DIR="audit/qiint2"
-mkdir -p "$QIINT2_AUDIT_DIR" 2>/dev/null || true
 QIINT2_REPORT="${QIINT2_AUDIT_DIR}/qiint2-report-$(date +%Y%m%d-%H%M%S).json"
-QIINT2_VALIDATOR="src/governance/memory/bang/session-20260420-final/qiint2/qiint2-validator.ts"
-if [[ ! -f "$QIINT2_VALIDATOR" ]]; then
-  warn "QIINT2 validator pending: $QIINT2_VALIDATOR not found"
-  inc_warn "QIINT2 validator missing"
-elif command -v ts-node >/dev/null 2>&1; then
-  if ts-node "$QIINT2_VALIDATOR" > "$QIINT2_REPORT" 2>/tmp/qiint2-validator.err && [[ -s "$QIINT2_REPORT" ]]; then
-    ok "QIINT2 report generated: $QIINT2_REPORT"; inc_ok
-  else
-    rm -f "$QIINT2_REPORT"
-    warn "QIINT2 validator present but no report generated — pending validator wiring"
-    inc_warn "QIINT2 report pending"
-  fi
+
+if [ ! -f "$QIINT2_VALIDATOR" ]; then
+  warn "QIINT2 validator pending: $QIINT2_VALIDATOR (Phase D.1 — depends BLOCKER-04 Kim review B.1 + BLOCKER-05 Can check + BLOCKER-06 Gatekeeper seal)"
+  inc_warn "QIINT2 validator missing (Phase D.1 pending ratify)"
+elif ! command -v jq >/dev/null 2>&1; then
+  warn "jq not available — cannot parse QIINT2 report"
+  inc_warn "QIINT2 jq missing"
 else
-  warn "QIINT2 validator present but ts-node unavailable — pending runner wiring"
-  inc_warn "QIINT2 runner pending"
+  mkdir -p "$QIINT2_AUDIT_DIR"
+  QIINT2_OUT=$(npx tsx "$QIINT2_VALIDATOR" --scan src/cells/ --report "$QIINT2_REPORT" 2>&1)
+  QIINT2_RC=$?
+
+  if [ $QIINT2_RC -ne 0 ]; then
+    warn "QIINT2 validator runtime error (rc=$QIINT2_RC)"
+    inc_warn "QIINT2 validator crashed"
+  elif [ -f "$QIINT2_REPORT" ]; then
+    Q2_CELLS=$(jq -r '.totalCells // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_HEALTHY=$(jq -r '.healthyCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_SUBSTRATE=$(jq -r '.substrateFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_MEDIUM=$(jq -r '.mediumFailCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_BODY_DRIFT=$(jq -r '.bodyDriftCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_REVIVABLE=$(jq -r '.revivableDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+    Q2_PERMANENT=$(jq -r '.permanentDeathCount // 0' "$QIINT2_REPORT" 2>/dev/null)
+
+    echo "  Cells scanned:     $Q2_CELLS"
+    echo "    Healthy:         $Q2_HEALTHY"
+    echo "    Substrate fail:  $Q2_SUBSTRATE  (migrate-able)"
+    echo "    Medium fail:     $Q2_MEDIUM  (restore-able)"
+    echo "    Body drift:      $Q2_BODY_DRIFT  (re-anchor needed)"
+    echo "    Revivable death: $Q2_REVIVABLE  (has recovery)"
+    echo "    Permanent death: $Q2_PERMANENT  (CRITICAL)"
+
+    if [ "$Q2_PERMANENT" -gt 0 ] 2>/dev/null; then
+      warn "PERMANENT DEATH detected — $Q2_PERMANENT cells lost irrecoverably"
+      inc_fail "QIINT2: $Q2_PERMANENT permanent death cells"
+    elif [ "$Q2_BODY_DRIFT" -ge 3 ] 2>/dev/null; then
+      warn "$Q2_BODY_DRIFT cells in body_drift state — orbital coherence < 0.3"
+      inc_warn "QIINT2: body_drift $Q2_BODY_DRIFT cells"
+    else
+      ok "QIINT2 COMPLIANCE: $Q2_HEALTHY/$Q2_CELLS healthy, 0 permanent death"
+      inc_ok
+    fi
+  else
+    warn "QIINT2 validator ran but no report at $QIINT2_REPORT"
+    inc_warn "QIINT2 report missing"
+  fi
 fi
 
 hdr "46" "SCORECARD"
@@ -1616,7 +1770,7 @@ fi
 
 echo ""
 echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
-echo -e "  END SmartAudit v7.1.1.1 — $TS"
+echo -e "  END SmartAudit v7.1 — $TS"
 echo -e "${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
 
 # ═══════════════════════════════════════════════════════════════
