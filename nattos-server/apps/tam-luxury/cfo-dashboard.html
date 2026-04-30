@@ -21,13 +21,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 *{-webkit-user-select:none;user-select:none}
 input,select{-webkit-user-select:text!important;user-select:text!important}
 @media print{body *{visibility:hidden!important}body::after{content:"TÀI LIỆU MẬT — TÂM LUXURY — CFO";visibility:visible!important;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;color:red;font-weight:900}}
-
-/* Watermark */
 #wm{position:fixed;inset:0;z-index:9990;pointer-events:none;overflow:hidden;
   display:flex;flex-wrap:wrap;gap:60px;padding:40px;transform:rotate(-22deg) scale(1.6)}
 #wm span{font-size:9px;color:rgba(200,146,42,.04);font-family:var(--mono);white-space:nowrap}
-
-/* Login */
 .login{display:flex;align-items:center;justify-content:center;height:100vh;
   background:radial-gradient(ellipse at 30% 40%,rgba(200,146,42,.07) 0%,transparent 60%),var(--bg)}
 .lbox{width:400px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:40px;
@@ -50,13 +46,10 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
   color:#000;border:none;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;
   margin-top:8px;font-family:var(--sans);letter-spacing:.06em}
 .lbtn:hover{opacity:.9}
+.lbtn:disabled{opacity:.5;cursor:not-allowed}
 .lerr{margin-top:10px;padding:8px 12px;background:rgba(240,80,80,.08);border:1px solid rgba(240,80,80,.2);
   border-radius:3px;font-size:10px;color:var(--red);display:none;text-align:center}
-
-/* App */
 .app{display:none;flex-direction:column;height:100vh}
-
-/* Topbar */
 .topbar{background:var(--bg2);border-bottom:1px solid var(--border);
   display:flex;align-items:center;padding:0 20px;height:52px;flex-shrink:0;
   box-shadow:0 2px 20px rgba(0,0,0,.5)}
@@ -83,13 +76,9 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
   padding:3px 10px;background:rgba(200,146,42,.08);border:1px solid var(--border);border-radius:2px}
 .tout{background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.2);
   color:var(--red);padding:4px 10px;border-radius:2px;font-size:10px;cursor:pointer;font-family:var(--mono)}
-
-/* Content */
 .content{flex:1;overflow:hidden}
 .tp{display:none;height:100%;overflow-y:auto;padding:16px}
 .tp.active{display:block}
-
-/* KPI row */
 .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
 .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:4px;
   padding:14px 16px;position:relative;overflow:hidden}
@@ -103,19 +92,13 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
 .kpi-red::before{background:var(--red)}
 .kpi-blue::before{background:var(--blue)}
 .kpi-amber::before{background:var(--amber)}
-
-/* Grid */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
-
-/* Panel */
 .panel{background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden}
 .phdr{padding:10px 14px;border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between}
 .ptitle{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--text2);text-transform:uppercase}
 .pbody{padding:12px 14px;overflow-y:auto;max-height:260px}
-
-/* Table */
 .tbl{width:100%;border-collapse:collapse;font-size:11px}
 .tbl th{font-family:var(--mono);font-size:8px;letter-spacing:.14em;color:var(--text3);
   text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--border);
@@ -124,16 +107,12 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
 .tbl tr:hover td{background:rgba(200,146,42,.03)}
 .tv{color:var(--text);font-weight:500;font-family:var(--mono)}
 .tg{color:var(--gold2);font-weight:600;font-family:var(--mono)}
-
-/* Badges */
 .badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px;font-weight:500}
 .bg{background:rgba(61,214,140,.1);color:var(--green);border:1px solid rgba(61,214,140,.2)}
 .br{background:rgba(240,80,80,.1);color:var(--red);border:1px solid rgba(240,80,80,.2)}
 .ba{background:rgba(240,160,48,.1);color:var(--amber);border:1px solid rgba(240,160,48,.2)}
 .bb{background:rgba(96,184,240,.1);color:var(--blue);border:1px solid rgba(96,184,240,.2)}
 .bgo{background:rgba(200,146,42,.1);color:var(--gold2);border:1px solid var(--border2)}
-
-/* Approval */
 .ar{display:flex;align-items:center;gap:10px;padding:9px 10px;
   background:var(--bg3);border:1px solid var(--border);border-radius:3px;margin-bottom:6px;cursor:pointer;transition:all .15s}
 .ar:hover{border-color:var(--border2)}
@@ -145,23 +124,17 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
 .ar-btns{display:flex;gap:5px;flex-shrink:0}
 .btn-ap{padding:4px 10px;background:var(--green);color:#000;border:none;border-radius:2px;font-size:10px;font-weight:700;cursor:pointer}
 .btn-rj{padding:4px 10px;background:transparent;border:1px solid rgba(240,80,80,.3);color:var(--red);border-radius:2px;font-size:10px;cursor:pointer}
-
-/* Chart bar */
 .bar-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(200,146,42,.05)}
 .bar-label{width:110px;font-size:10px;color:var(--text3);flex-shrink:0}
 .bar-track{flex:1;height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
 .bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
 .bar-val{width:70px;text-align:right;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--gold2);flex-shrink:0}
-
-/* Toast */
 .tw{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:7px;z-index:200}
 .toast{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;
   padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:9px;
   box-shadow:0 4px 20px rgba(0,0,0,.5);animation:si .25s ease}
 .toast.success{border-left:3px solid var(--green)}.toast.error{border-left:3px solid var(--red)}.toast.info{border-left:3px solid var(--gold)}
 @keyframes si{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
-
-/* Nav links to other apps */
 .app-links{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .alink{display:flex;align-items:center;gap:8px;padding:10px 12px;
   background:var(--bg2);border:1px solid var(--border);border-radius:3px;
@@ -173,7 +146,6 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
 <body>
 <div id="wm"></div>
 
-<!-- LOGIN -->
 <div class="login" id="ls">
   <div class="lbox">
     <div class="llogo">
@@ -183,7 +155,7 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
     </div>
     <div class="lf">
       <label>Mã Nhân Viên</label>
-      <input id="lcode" value="TLXR-CFO-01" placeholder="TLXR-CFO-01">
+      <input id="lcode" placeholder="TLXR-CFO-01">
     </div>
     <div class="lf">
       <label>Họ Tên</label>
@@ -193,15 +165,11 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
       <label>Mật Khẩu</label>
       <input id="lpass" type="password" placeholder="••••••••">
     </div>
-    <button class="lbtn" onclick="doLogin()">🔑 ĐĂNG NHẬP CFO</button>
+    <button class="lbtn" id="lbtn" onclick="doLogin()">🔑 ĐĂNG NHẬP CFO</button>
     <div class="lerr" id="lerr">Mã NV hoặc mật khẩu không đúng</div>
-    <div style="margin-top:14px;padding:10px;background:rgba(200,146,42,.05);border:1px solid var(--border);border-radius:3px;font-family:var(--mono);font-size:9px;color:var(--text3);text-align:center;letter-spacing:.06em">
-      TLXR-CFO-01 · Pass: TamLuxury@CFO
-    </div>
   </div>
 </div>
 
-<!-- APP -->
 <div class="app" id="app">
   <header class="topbar">
     <div class="tlogo">TÂM LUXURY</div>
@@ -227,7 +195,6 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
   </header>
 
   <div class="content">
-    <!-- OVERVIEW -->
     <div class="tp active" id="tp-overview">
       <div class="kpi-row">
         <div class="kpi kpi-gold">
@@ -243,7 +210,7 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
         <div class="kpi kpi-gold">
           <div class="kpi-l">Vàng 9999 / Chỉ</div>
           <div class="kpi-v" id="kpi-gold">—</div>
-          <div class="kpi-s" id="kpi-gold-s">Live · Mạch HeyNa</div>
+          <div class="kpi-s">Live · Mạch HeyNa</div>
         </div>
         <div class="kpi kpi-blue">
           <div class="kpi-l">Vàng 18K / Chỉ</div>
@@ -252,17 +219,16 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
         </div>
         <div class="kpi kpi-amber">
           <div class="kpi-l">Phê Duyệt Chờ</div>
-          <div class="kpi-v" id="kpi-pending">2</div>
+          <div class="kpi-v" id="kpi-pending">—</div>
           <div class="kpi-s">Cần xử lý</div>
         </div>
       </div>
 
       <div class="g2">
-        <!-- Revenue breakdown -->
         <div class="panel">
           <div class="phdr">
             <span class="ptitle">Doanh Thu Theo Kênh</span>
-            <span class="badge bgo">Tháng 04/2025</span>
+            <span class="badge bgo" id="kpi-period">—</span>
           </div>
           <div class="pbody">
             <div class="bar-row">
@@ -282,8 +248,6 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
             </div>
           </div>
         </div>
-
-        <!-- Quick links -->
         <div class="panel">
           <div class="phdr"><span class="ptitle">Truy Cập Nhanh · CFO</span></div>
           <div class="pbody">
@@ -301,7 +265,6 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
         </div>
       </div>
 
-      <!-- Audit trail -->
       <div class="panel">
         <div class="phdr">
           <span class="ptitle">Sổ Cái Truy Vết · Realtime</span>
@@ -318,32 +281,31 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
       </div>
     </div>
 
-    <!-- CASHFLOW -->
     <div class="tp" id="tp-cashflow">
       <div class="kpi-row">
         <div class="kpi kpi-green">
           <div class="kpi-l">Thu Vào</div>
-          <div class="kpi-v" style="color:var(--green)">+0đ</div>
+          <div class="kpi-v" style="color:var(--green)" id="cf-thu">—</div>
           <div class="kpi-s">Tháng này</div>
         </div>
         <div class="kpi kpi-red">
           <div class="kpi-l">Chi Ra</div>
-          <div class="kpi-v" style="color:var(--red)">-0đ</div>
+          <div class="kpi-v" style="color:var(--red)" id="cf-chi">—</div>
           <div class="kpi-s">Tháng này</div>
         </div>
         <div class="kpi kpi-blue">
           <div class="kpi-l">Tồn Quỹ</div>
-          <div class="kpi-v">—</div>
+          <div class="kpi-v" id="cf-ton">—</div>
           <div class="kpi-s">Hiện tại</div>
         </div>
         <div class="kpi kpi-amber">
           <div class="kpi-l">Phải Thu</div>
-          <div class="kpi-v">—</div>
+          <div class="kpi-v" id="cf-phai-thu">—</div>
           <div class="kpi-s">Công nợ KH</div>
         </div>
         <div class="kpi kpi-gold">
           <div class="kpi-l">Phải Trả</div>
-          <div class="kpi-v">—</div>
+          <div class="kpi-v" id="cf-phai-tra">—</div>
           <div class="kpi-s">NCC + Chi phí</div>
         </div>
       </div>
@@ -356,13 +318,12 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
       </div>
     </div>
 
-    <!-- APPROVAL -->
     <div class="tp" id="tp-approval">
       <div style="margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
         <span style="font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.14em">PHÊ DUYỆT TÀI CHÍNH · CFO</span>
-        <span class="badge ba" id="pending-count">2 CHỜ DUYỆT</span>
+        <span class="badge ba" id="pending-count">— CHỜ DUYỆT</span>
       </div>
-      <div id="approval-list"></div>
+      <div id="approval-list"><div style="color:var(--text3);padding:20px;text-align:center;font-size:11px">Đang tải...</div></div>
       <div style="margin-top:12px">
         <a href="ktt-approval.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(200,146,42,.1);border:1px solid var(--border2);border-radius:3px;color:var(--gold2);font-size:11px;text-decoration:none">
           ⬡ Mở KTT Approval đầy đủ
@@ -370,34 +331,13 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
       </div>
     </div>
 
-    <!-- GOLD -->
     <div class="tp" id="tp-gold">
       <div class="kpi-row">
-        <div class="kpi kpi-gold">
-          <div class="kpi-l">SJC Mua Vào</div>
-          <div class="kpi-v" id="g-sjc-buy">—</div>
-          <div class="kpi-s">VNĐ / chỉ</div>
-        </div>
-        <div class="kpi kpi-gold">
-          <div class="kpi-l">SJC Bán Ra</div>
-          <div class="kpi-v" id="g-sjc-sell">—</div>
-          <div class="kpi-s">VNĐ / chỉ</div>
-        </div>
-        <div class="kpi kpi-gold">
-          <div class="kpi-l">Vàng 9999</div>
-          <div class="kpi-v" id="g-9999">—</div>
-          <div class="kpi-s">Giá mua vào</div>
-        </div>
-        <div class="kpi kpi-blue">
-          <div class="kpi-l">Vàng 18K</div>
-          <div class="kpi-v" id="g-18k">—</div>
-          <div class="kpi-s">Phổ SX 75.44%</div>
-        </div>
-        <div class="kpi kpi-green">
-          <div class="kpi-l">Cập Nhật Lúc</div>
-          <div class="kpi-v" style="font-size:14px" id="g-upd">—</div>
-          <div class="kpi-s">Mạch HeyNa</div>
-        </div>
+        <div class="kpi kpi-gold"><div class="kpi-l">SJC Mua Vào</div><div class="kpi-v" id="g-sjc-buy">—</div><div class="kpi-s">VNĐ / chỉ</div></div>
+        <div class="kpi kpi-gold"><div class="kpi-l">SJC Bán Ra</div><div class="kpi-v" id="g-sjc-sell">—</div><div class="kpi-s">VNĐ / chỉ</div></div>
+        <div class="kpi kpi-gold"><div class="kpi-l">Vàng 9999</div><div class="kpi-v" id="g-9999">—</div><div class="kpi-s">Giá mua vào</div></div>
+        <div class="kpi kpi-blue"><div class="kpi-l">Vàng 18K</div><div class="kpi-v" id="g-18k">—</div><div class="kpi-s">Phổ SX 75.44%</div></div>
+        <div class="kpi kpi-green"><div class="kpi-l">Cập Nhật Lúc</div><div class="kpi-v" style="font-size:14px" id="g-upd">—</div><div class="kpi-s">Mạch HeyNa</div></div>
       </div>
       <div class="g2">
         <div class="panel">
@@ -411,15 +351,12 @@ input,select{-webkit-user-select:text!important;user-select:text!important}
         <div class="panel">
           <div class="phdr"><span class="ptitle">Cập Nhật Giá Vàng</span></div>
           <div class="pbody" style="text-align:center;color:var(--text3);padding:20px;font-size:11px">
-            <a href="gia-vang-admin.html" style="color:var(--gold2);text-decoration:none">
-              → Mở Gia Vàng Admin (/ui/gia-vang-admin.html)
-            </a>
+            <a href="gia-vang-admin.html" style="color:var(--gold2);text-decoration:none">→ Mở Gia Vàng Admin</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- REPORTS -->
     <div class="tp" id="tp-reports">
       <div class="app-links" style="grid-template-columns:repeat(3,1fr)">
         <a class="alink" href="surveillance.html"><span class="alink-icon">👁️</span><div><div style="font-weight:600">Surveillance</div><div style="font-size:9px;color:var(--text3)">Risk + Loss chain</div></div></a>
@@ -445,27 +382,36 @@ const S = 'http://localhost:3001';
 const wm = document.getElementById('wm');
 for(let i=0;i<30;i++){const s=document.createElement('span');s.textContent='TÂM LUXURY · CFO · BẢO MẬT · ';wm.appendChild(s);}
 
-// CFO credentials
-const CFO = {code:'TLXR-CFO-01', pass:'TamLuxury@CFO'};
-
-function doLogin() {
+// Login → server auth
+async function doLogin() {
   const code = document.getElementById('lcode').value.trim();
   const pass  = document.getElementById('lpass').value;
   const name  = document.getElementById('lname').value.trim();
-  if(code !== CFO.code || pass !== CFO.pass) {
-    document.getElementById('lerr').style.display='block';
-    return;
+  const btn   = document.getElementById('lbtn');
+  const err   = document.getElementById('lerr');
+  if(!code || !pass){ err.textContent='Vui lòng nhập đủ thông tin'; err.style.display='block'; return; }
+  btn.disabled = true; btn.textContent = 'Đang xác thực...';
+  try {
+    const r = await fetch(`${S}/auth/login`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({code, pass, role:'cfo'})
+    });
+    const d = await r.json();
+    if(!r.ok || !d.ok){ err.textContent = d.message || 'Mã NV hoặc mật khẩu không đúng'; err.style.display='block'; return; }
+    err.style.display='none';
+    document.getElementById('tuname').textContent = name || d.name || 'CFO';
+    document.getElementById('ls').style.display='none';
+    document.getElementById('app').style.display='flex';
+    startCFO();
+  } catch {
+    err.textContent = 'Không kết nối được server'; err.style.display='block';
+  } finally {
+    btn.disabled=false; btn.textContent='🔑 ĐĂNG NHẬP CFO';
   }
-  document.getElementById('lerr').style.display='none';
-  document.getElementById('tuname').textContent = name || 'CFO';
-  document.getElementById('ls').style.display='none';
-  document.getElementById('app').style.display='flex';
-  startCFO();
 }
 
-function doLogout() {
-  location.reload();
-}
+function doLogout() { location.reload(); }
 
 function switchTab(id) {
   document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('active'));
@@ -474,87 +420,99 @@ function switchTab(id) {
   document.getElementById('tp-'+id).classList.add('active');
 }
 
-// Clock
-setInterval(()=>{
-  const el = document.getElementById('ttime');
-  if(el) el.textContent = new Date().toLocaleTimeString('vi-VN');
-},1000);
+setInterval(()=>{ const el=document.getElementById('ttime'); if(el) el.textContent=new Date().toLocaleTimeString('vi-VN'); },1000);
 
-const fmt = v => v ? Number(v).toLocaleString('vi-VN')+'đ' : '—';
+const fmt  = v => v ? Number(v).toLocaleString('vi-VN')+'đ' : '—';
 const fmtM = v => v ? (v/1e6).toFixed(1)+'M' : '—';
 
-// Approval data
-const APPROVALS = [
-  {id:'AP-2025-041',title:'Thanh toán NCC Vàng · Lô 04/2025',meta:'Kế toán · 07/04/2025',amt:'450,000,000đ',icon:'🏦',iconBg:'rgba(200,146,42,.15)'},
-  {id:'AP-2025-042',title:'Chi phí vận hành xưởng tháng 04',meta:'Trưởng xưởng · 07/04/2025',amt:'28,500,000đ',icon:'🏭',iconBg:'rgba(96,184,240,.15)'},
-];
-
-function renderApprovals() {
-  const el = document.getElementById('approval-list');
-  el.innerHTML = APPROVALS.map(a=>`
-  <div class="ar">
-    <div class="ar-icon" style="background:${a.iconBg}">${a.icon}</div>
-    <div class="ar-info">
-      <div class="ar-title">${a.title}</div>
-      <div class="ar-meta">${a.id} · ${a.meta}</div>
-    </div>
-    <div class="ar-amt">${a.amt}</div>
-    <div class="ar-btns">
-      <button class="btn-ap" onclick="approveItem('${a.id}',this)">✓ Duyệt</button>
-      <button class="btn-rj" onclick="rejectItem('${a.id}',this)">✗ Từ chối</button>
-    </div>
-  </div>`).join('');
+// Approvals — fetch tu server
+async function loadApprovals() {
+  try {
+    const d = await fetch(`${S}/kenh/approvals`).then(r=>r.json());
+    const list = d.items || [];
+    const el = document.getElementById('approval-list');
+    if(!list.length){ el.innerHTML='<div style="color:var(--text3);padding:20px;text-align:center;font-size:11px">Không có phê duyệt chờ</div>'; return; }
+    el.innerHTML = list.map(a=>`
+    <div class="ar">
+      <div class="ar-icon" style="background:${a.iconBg||'rgba(200,146,42,.15)'}">${a.icon||'📄'}</div>
+      <div class="ar-info">
+        <div class="ar-title">${a.title}</div>
+        <div class="ar-meta">${a.id} · ${a.meta}</div>
+      </div>
+      <div class="ar-amt">${a.amt}</div>
+      <div class="ar-btns">
+        <button class="btn-ap" onclick="approveItem('${a.id}',this)">✓ Duyệt</button>
+        <button class="btn-rj" onclick="rejectItem('${a.id}',this)">✗ Từ chối</button>
+      </div>
+    </div>`).join('');
+    document.getElementById('kpi-pending').textContent = list.length;
+    document.getElementById('pending-count').textContent = list.length + ' CHỜ DUYỆT';
+  } catch {
+    document.getElementById('approval-list').innerHTML='<div style="color:var(--red);padding:20px;text-align:center;font-size:11px">Lỗi tải dữ liệu phê duyệt</div>';
+  }
 }
 
 function approveItem(id, btn) {
   btn.closest('.ar').style.opacity='.4';
   toast(`✅ Đã phê duyệt ${id}`, 'success');
-  uiAction('approval.cfo.approve', {ticketId:id, approverId:'TLXR-CFO-01'});
+  uiAction('approval.cfo.approve', {ticketId:id});
 }
 function rejectItem(id, btn) {
   btn.closest('.ar').style.opacity='.4';
   toast(`❌ Đã từ chối ${id}`, 'error');
+  uiAction('approval.cfo.reject', {ticketId:id});
 }
 
-// Toast
+// KPIs — fetch tu server
+async function loadKPI() {
+  try {
+    const d = await fetch(`${S}/kenh/cfo-kpi`).then(r=>r.json());
+    document.getElementById('kpi-rev').textContent     = d.revenue     || '—';
+    document.getElementById('kpi-rev-s').textContent   = d.period      || '—';
+    document.getElementById('kpi-profit').textContent  = d.profit      || '—';
+    document.getElementById('kpi-period').textContent  = d.period      || '—';
+    document.getElementById('cf-thu').textContent      = d.cashIn      || '—';
+    document.getElementById('cf-chi').textContent      = d.cashOut     || '—';
+    document.getElementById('cf-ton').textContent      = d.cashBalance || '—';
+    document.getElementById('cf-phai-thu').textContent = d.receivable  || '—';
+    document.getElementById('cf-phai-tra').textContent = d.payable     || '—';
+  } catch {}
+}
+
 function toast(msg, type='info') {
   const tw = document.getElementById('tw');
   const t = document.createElement('div');
-  t.className = `toast ${type}`;
-  t.textContent = msg;
-  tw.appendChild(t);
-  setTimeout(()=>t.remove(), 3500);
+  t.className = `toast ${type}`; t.textContent = msg;
+  tw.appendChild(t); setTimeout(()=>t.remove(), 3500);
 }
 
-// ui.action
 function uiAction(type, payload) {
-  /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/phat/nauion`,{method:'POST',headers:{'Content-Type':'application/json'},
+  fetch(`${S}/phat/nauion`,{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({type:'ui.action',payload:{actionType:type,...payload},ts:Date.now()})
   }).catch(()=>{});
 }
 
-// Load gold
 async function loadGold() {
   try {
-    const d = await /* [HEYNA-MIGRATE] */ /* [HEYNA-MIGRATE] */ fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
-    document.getElementById('tgold').textContent = `9999: ${fmtM(d.gold9999)}`;
-    document.getElementById('kpi-gold').textContent = fmtM(d.gold9999);
-    document.getElementById('kpi-18k').textContent  = fmtM(d.gold18k);
-    document.getElementById('g-sjc-buy').textContent = fmtM(d.sjc_buy);
+    const d = await fetch(`${S}/kenh/gia-vang`).then(r=>r.json());
+    document.getElementById('tgold').textContent      = `9999: ${fmtM(d.gold9999)}`;
+    document.getElementById('kpi-gold').textContent   = fmtM(d.gold9999);
+    document.getElementById('kpi-18k').textContent    = fmtM(d.gold18k);
+    document.getElementById('g-sjc-buy').textContent  = fmtM(d.sjc_buy);
     document.getElementById('g-sjc-sell').textContent = fmtM(d.sjc_sell);
-    document.getElementById('g-9999').textContent   = fmtM(d.gold9999);
-    document.getElementById('g-18k').textContent    = fmtM(d.gold18k);
+    document.getElementById('g-9999').textContent     = fmtM(d.gold9999);
+    document.getElementById('g-18k').textContent      = fmtM(d.gold18k);
     if(d.updatedAt) document.getElementById('g-upd').textContent = new Date(d.updatedAt).toLocaleTimeString('vi-VN');
   } catch{}
 }
 
-// SSE
 function startSSE() {
   const es = new EventSource(`${S}/mach/heyna`);
   es.onmessage = e => {
     try {
       const d = JSON.parse(e.data);
       if(d.event==='gia-vang.updated') loadGold();
+      if(d.event==='approval.new') loadApprovals();
       if(d.event==='audit.record') {
         const tb = document.getElementById('audit-body');
         if(!tb) return;
@@ -576,14 +534,9 @@ function startSSE() {
 
 function startCFO() {
   loadGold();
+  loadKPI();
+  loadApprovals();
   startSSE();
-  renderApprovals();
-  // Mock KPIs
-  document.getElementById('kpi-rev').textContent = '1.24 tỷ';
-  document.getElementById('kpi-rev-s').textContent = 'Tháng 04/2025';
-  document.getElementById('kpi-profit').textContent = '18.4%';
-  document.getElementById('kpi-pending').textContent = APPROVALS.length;
-  document.getElementById('pending-count').textContent = APPROVALS.length + ' CHỜ DUYỆT';
 }
 </script>
 <script src="heyna-client.js"></script>
