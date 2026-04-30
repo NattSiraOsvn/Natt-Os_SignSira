@@ -174,7 +174,6 @@ export function extractOrderIds(text: unknown): ExtractedOrderId[] {
 
 
 // Wire: order.created → PRICING requests
-import { EventBus } from '../../../../../core/events/event-bus';
 
 EventBus.on('order.created', (payload: any) => {
   if (!payload || !payload.orderId) return;
