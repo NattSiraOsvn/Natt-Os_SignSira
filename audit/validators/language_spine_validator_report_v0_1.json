@@ -1,0 +1,18 @@
+{
+  "schema": "natt-os/language-spine-validator-report/v0.1",
+  "status": "PASS",
+  "files": [
+    "docs/specs/SPEC_LANGUAGE_SPINE_INDEX_v0.1.bang",
+    "docs/specs/SPEC_NUMERIC_NFD_FRAME_v0.1.bang",
+    "src/governance/registry/dialect_rules_v0_1.na",
+    "src/governance/registry/protected_tokens_v0_1.na",
+    "tools/dialect-cipher/numeric_test_vectors_v0_1.json"
+  ],
+  "checks": {
+    "spec_snippets": "PASS",
+    "required_rules": "PASS",
+    "color_truth": "PASS",
+    "protected_registry": "PASS",
+    "numeric_vectors": "PASS"
+  }
+}
