@@ -677,6 +677,105 @@ $primitive_groups:
       carrier: git cherry-pick
       polarity: NORMAL
 
+
+  system_container_file_lifecycle:
+    - key: MAKE_CONTAINER
+      tuCu: mkdir
+      tuDich: dựng
+      tuNell: dung
+      nghia: dựng vùng chứa
+      vi: hệ dựng một vùng chứa để artifact có nơi trú
+      carrier: mkdir
+      polarity: NORMAL
+    - key: ENSURE_CONTAINER
+      tuCu: mkdir -p
+      tuDich: dựng chắc
+      tuNell: dungchac
+      nghia: bảo đảm vùng chứa tồn tại
+      vi: hệ dựng vùng chứa nếu chưa có và không phá nếu đã có
+      carrier: mkdir -p
+      polarity: NORMAL
+    - key: TOUCH_ARTIFACT
+      tuCu: touch
+      tuDich: chạm
+      tuNell: cham
+      nghia: tạo dấu hiện diện cho artifact
+      vi: hệ chạm để tạo artifact rỗng hoặc cập nhật dấu thời gian
+      carrier: touch
+      polarity: NORMAL
+    - key: EMPTY_ARTIFACT
+      tuCu: truncate
+      tuDich: trống
+      tuNell: trong
+      nghia: làm rỗng artifact nhưng giữ thân
+      vi: hệ xoá nội dung bên trong nhưng vẫn giữ vật mang
+      carrier: truncate
+      polarity: INVERTED
+    - key: COPY_ARTIFACT
+      tuCu: cp
+      tuDich: sao
+      tuNell: sao
+      nghia: sao artifact
+      vi: hệ tạo bản sao của artifact để giữ hoặc chuyển
+      carrier: cp
+      polarity: NORMAL
+    - key: MOVE_ARTIFACT
+      tuCu: mv
+      tuDich: dời
+      tuNell: doi
+      nghia: dời hoặc đổi tên artifact
+      vi: hệ dời artifact sang vị trí hoặc tên mới
+      carrier: mv
+      polarity: NORMAL
+    - key: REMOVE_ARTIFACT
+      tuCu: rm
+      tuDich: gỡ
+      tuNell: go
+      nghia: gỡ artifact
+      vi: hệ gỡ artifact khỏi mặt làm việc
+      carrier: rm
+      polarity: INVERTED
+    - key: RESTORE_ARTIFACT
+      tuCu: restore
+      tuDich: hồi
+      tuNell: hoi
+      nghia: hồi artifact từ nguồn đúng
+      vi: hệ hồi artifact từ ground truth hoặc remote được chỉ định
+      carrier: git restore
+      polarity: NORMAL
+    - key: BACKUP_ARTIFACT
+      tuCu: backup
+      tuDich: giữ bản
+      tuNell: giuban
+      nghia: giữ bản dự phòng
+      vi: hệ giữ bản dự phòng trước khi nắn hoặc vá
+      carrier: cp
+      polarity: NORMAL
+    - key: CHECK_ARTIFACT_EXISTS
+      tuCu: test -f/test -d
+      tuDich: xét có
+      tuNell: xetco
+      nghia: xét artifact có tồn tại không
+      vi: hệ xét vật mang có thật trong nhà trước khi thao tác
+      carrier: test
+      polarity: NORMAL
+    - key: LIST_CONTAINER
+      tuCu: ls/find
+      tuDich: bày
+      tuNell: bay
+      nghia: bày danh sách trong vùng chứa
+      vi: hệ bày các artifact trong vùng chứa để kiểm
+      carrier: ls/find
+      polarity: NORMAL
+    - key: SEAL_LIFECYCLE
+      tuCu: lifecycle seal
+      tuDich: khóa vòng
+      tuNell: khoavong
+      nghia: khóa vòng đời artifact
+      vi: hệ khóa trạng thái vòng đời sau khi artifact đủ điều kiện
+      carrier: seal
+      polarity: NORMAL
+
 $polarity_rule:
   NORMAL: bật, hiện, cho qua, gắn, chốt, đẩy, kéo
   INVERTED: tắt, ẩn, chặn, gỡ, tháo, cách ly, bọc, cắt lộ

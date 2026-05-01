@@ -32,6 +32,7 @@ $must_have_groups:
   - data_io
   - opsec
   - git_state
+  - system_container_file_lifecycle
 
 $must_have_rules:
   - dictionary_first
@@ -47,5 +48,5 @@ $fail_condition:
   - carrier bị nhận nhầm là semantic chính
 
 $seal:
-  sentence: Scanner này kiểm primitive words sau khi dictionary first đã materialize.
+  sentence: Scanner này kiểm primitive words sau khi dictionary first đã materialize đủ 12 nhóm primitive.
   sign: Phan Thanh Thương / Natt Sirawat

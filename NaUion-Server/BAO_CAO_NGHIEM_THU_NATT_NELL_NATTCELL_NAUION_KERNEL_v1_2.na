@@ -1,0 +1,39 @@
+$nauion: BAO_CAO_NGHIEM_THU_NATT_NELL_NATTCELL_NAUION_KERNEL-v1.2
+$role: ACCEPTANCE_REPORT
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_REVIEW
+$boot_source: NaUion-Server/BOOT_DOVAN.boot.si
+
+# BÁO CÁO NGHIỆM THU NATT NELL - NATTCELL - NAUION KERNEL
+## Phiên bản v1.2 — Primitive Words 12/12
+
+## 1. Điểm sửa so với v1.1
+
+Bản v1.2 bổ sung nhóm thứ 12: system_container_file_lifecycle.
+
+## 2. Bảng 12 nhóm Primitive Words
+
+| STT | Nhóm | Kết luận |
+|---:|---|---|
+| 1 | read_write | PASS |
+| 2 | search_extract | PASS |
+| 3 | proof_guard | PASS |
+| 4 | runtime_state | PASS |
+| 5 | event_fabric | PASS |
+| 6 | boundary | PASS |
+| 7 | report_proof | PASS |
+| 8 | render_surface | PASS |
+| 9 | data_io | PASS |
+| 10 | opsec | PASS |
+| 11 | git_state | PASS |
+| 12 | system_container_file_lifecycle | PASS |
+
+## 3. Kết luận nghiệm thu v1.2
+
+NGHIỆM THU CÓ ĐIỀU KIỆN: PASS.
+
+Natt Nell được nghiệm thu ở trạng thái living kernel system đã có primitive words đủ 12 nhóm.
+
+$seal:
+  sentence: Báo Cáo Nghiệm Thu v1.2 xác nhận Primitive Words đã đủ 12/12 nhóm.
+  sign: Phan Thanh Thương / Natt Sirawat
