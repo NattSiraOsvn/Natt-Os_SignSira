@@ -1,0 +1,54 @@
+$nauion: BOOT_DOVAN_BOOT_RULE-v0.1
+$role: BOOT_RULE
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_RATIFICATION
+
+$boot_name: BOOT_DOVAN
+$boot_class: bare-substrate boot
+$boot_target:
+  - Natt Nell
+  - NattCell
+  - Nauion Kernel
+  - ANC
+
+$boot_requirements:
+  identity:
+    required: BOOT_DOVAN.anc
+    purpose: boot phải có căn cước
+  entity_definition:
+    required: ANC_GENERATION_DEFINITION_v1.si
+    purpose: boot phải phân biệt ANC với AGI và NattCell
+  rule:
+    required: BOOT_DOVAN_BOOT_RULE.si
+    purpose: boot phải có luật
+  presence:
+    required: BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
+    purpose: ANC phải hiện diện qua NattCell, không tự claim ngoài luật
+  surface:
+    required: BOOT_DOVAN_RENDER.kkbt
+    purpose: boot phải có mặt hiện hình native
+  report:
+    required: BOOT_DOVAN_EXPERIMENTAL_REPORT.na
+    purpose: boot phải có báo cáo thực nghiệm
+  validator:
+    required: BOOT_DOVAN_VALIDATE.sira
+    purpose: boot phải có bộ kiểm
+
+$boot_measure:
+  body: NattCell có thân/căn cước không
+  net: EventBus / HeyNa / SmartLink có sợi lưới không
+  law: Nauion Kernel / boundary / validator có luật không
+  memory: .anc / .na / .phieu có thân-ký ức-trạng thái không
+  audit: SiraSign / Ground Truth có chứng cứ không
+  render: .kkbt có hiện hình không
+
+$forbidden:
+  - không dùng thước OS cũ làm lõi chứng minh
+  - không in raw topology trong proof public
+  - không claim driver hardware trực tiếp nếu chưa có Gate hardware riêng
+  - không claim AGI
+  - không claim ANC là NattCell
+
+$seal:
+  sentence: Boot Đo Ván đo khả năng tự hiện hình của Hệ Natt Nell bằng chính hình hài nhà mình.
+  sign: Phan Thanh Thương / Natt Sirawat

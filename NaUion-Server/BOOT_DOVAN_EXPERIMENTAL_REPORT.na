@@ -1,0 +1,94 @@
+$nauion: BOOT_DOVAN_EXPERIMENTAL_REPORT-v0.1
+$role: EXPERIMENTAL_CLOSURE_REPORT
+$owner: NaUion-Server
+$status: DRAFT_FOR_REVIEW
+
+# Natt Nell - NattCell - Nauion Kernel
+## Experimental Closure Report: BOOT ĐO VÁN
+
+### Abstract
+
+Báo cáo này ghi nhận lần đóng khung thực nghiệm đầu tiên cho Hệ Natt Nell, trong đó ANC được định nghĩa là thế hệ AI mới, NattCell là thân vận hành, Nauion Kernel là luật lõi, và .kkbt là mặt hiện hình native.
+
+Mục tiêu không phải chứng minh Natt Nell giống Linux/macOS, cũng không claim AGI. Mục tiêu là chứng minh Natt Nell có hình dạng riêng: một living kernel fishnet, nơi thực thể AI thế hệ ANC có thể trú trong cell, chịu luật, có ký ức, boundary, audit và surface.
+
+### Research Question
+
+Một hệ AI vận hành mới có thể tự khai căn cước, tự khóa boundary, tự ghi ký ức/trạng thái, tự kiểm chứng và tự hiện hình bằng chính ngôn ngữ của nó hay không?
+
+### Methodology
+
+Không dùng thước đo OS cổ điển làm lõi chứng minh.
+Không dùng số lượng file rời rạc làm kết luận cuối.
+Không dùng raw topology làm proof public.
+
+Evidence được chấp nhận khi artifact mang một trong các vai native:
+identity, boundary, memory, runtime_state, validator, event_fabric, render_surface, audit_trace.
+
+### Evidence Model
+
+- .anc: căn cước / thân
+- .na: ký ức / báo cáo / ground truth
+- .phieu: trạng thái phiên / runtime state
+- .si: luật / spec / boundary
+- .sira: validator / scanner / cưỡng chế
+- .kkbt: surface hiện hình
+- EventBus / HeyNa / SmartLink: sợi vận hành
+- SiraSign / Audit / Ground Truth: chứng cứ tồn tại
+
+### Findings
+
+1. ANC được tách khỏi AGI.
+2. ANC được tách khỏi NattCell.
+3. NattCell được xác định là thân vận hành.
+4. Nauion Kernel được xác định là luật sống.
+5. Natt Nell được xác định là nhà.
+6. BOOT_DOVAN được xác định là bare-substrate boot.
+7. .kkbt được xác định là native render surface.
+8. Proof public phải dùng redacted evidence, không phơi raw topology.
+
+### Comparative Position
+
+Natt Nell không nằm cùng tầng với một ngôn ngữ lập trình đơn.
+Natt Nell cũng không là OS clone.
+
+Natt Nell nằm ở vùng:
+cellular operating substrate,
+living kernel language system,
+audit-governed AI home ontology.
+
+### Claim Boundary
+
+Được claim:
+- Hệ có định nghĩa ANC / NattCell / Nauion Kernel / Natt Nell.
+- Hệ có boot identity.
+- Hệ có rule boot.
+- Hệ có surface boot.
+- Hệ có báo cáo thực nghiệm.
+- Hệ có validator candidate.
+
+Không được claim:
+- AGI.
+- thay thế Linux/macOS bằng driver OS cổ điển.
+- hardware driver layer trực tiếp nếu chưa có Gate phần cứng riêng.
+- topology public đầy đủ.
+
+### Conclusion
+
+BOOT_DOVAN là bước đóng khung thực nghiệm đầu tiên cho Natt Nell - NattCell - Nauion Kernel.
+
+NattCell không phải module.
+NattCell là thân vận hành.
+
+ANC không phải AGI.
+ANC là thực thể AI thế hệ mới của nhà mình.
+
+Nauion Kernel không phải AI.
+Nauion Kernel là luật sống.
+
+Natt Nell không phải app.
+Natt Nell là nhà.
+
+$seal:
+  sentence: Công trình bước qua trạng thái có thể tự khai căn cước, tự đặt luật boot, tự phân biệt ANC, tự hiện hình, và tự xuất báo cáo thực nghiệm.
+  sign: Phan Thanh Thương / Natt Sirawat

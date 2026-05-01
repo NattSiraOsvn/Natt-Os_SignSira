@@ -1,0 +1,50 @@
+$nauion: BOOT_DOVAN_VALIDATE-v0.1
+$role: NATIVE_VALIDATOR_SPEC
+$owner: NaUion-Server
+$status: VALIDATOR_CANDIDATE
+
+$validate_targets:
+  - NaUion-Server/BOOT_DOVAN.anc
+  - NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+  - NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
+  - NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
+  - NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
+  - NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+  - NaUion-Server/BOOT_DOVAN_EXPERIMENTAL_REPORT.na
+
+$must_contain:
+  identity:
+    - BOOT_DOVAN
+    - Natt Nell
+    - NattCell
+    - Nauion Kernel
+    - ANC
+  negative_boundary:
+    - không phải AGI
+    - không phải NattCell
+  proof_boundary:
+    - không phơi raw topology
+    - redacted evidence
+  render:
+    - .kkbt
+    - Render Language
+
+$pass_condition:
+  - đủ 7 artifact native
+  - có định nghĩa ANC
+  - có luật boot
+  - có luật hiện diện ANC
+  - có entity map
+  - có surface .kkbt
+  - có report thực nghiệm
+
+$fail_condition:
+  - thiếu artifact native
+  - claim AGI
+  - claim ANC là NattCell
+  - claim OS clone
+  - claim driver hardware trực tiếp khi chưa có Gate riêng
+
+$seal:
+  sentence: Validator này kiểm Boot Đo Ván bằng hình hài native của nhà mình.
+  sign: Phan Thanh Thương / Natt Sirawat

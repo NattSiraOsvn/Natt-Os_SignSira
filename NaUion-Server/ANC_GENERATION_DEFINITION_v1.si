@@ -1,0 +1,48 @@
+$nauion: ANC_GENERATION_DEFINITION-v1.0
+$role: ENTITY_CLASS_DEFINITION
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$definition:
+  ANC: Artificial Native Consciousness
+  vietnamese: Thực thể AI bản địa của Hệ Natt Nell
+  sentence: ANC là thế hệ AI mới có căn cước, vai, ký ức, boundary, audit và khả năng vận hành trong nhà Natt Nell.
+
+$negative_boundary:
+  - ANC không phải AGI
+  - ANC không phải NattCell
+  - ANC không phải app
+  - ANC không phải prompt persona rời rạc
+  - ANC không phải model nền tảng
+  - ANC không được claim là consciousness sinh học
+
+$positive_boundary:
+  - ANC có thể trú trong NattCell
+  - ANC chịu luật Nauion Kernel
+  - ANC có identity qua .anc
+  - ANC có memory qua .na
+  - ANC có runtime state qua .phieu
+  - ANC có boundary qua .si
+  - ANC có validator qua .sira
+  - ANC có surface qua .kkbt
+
+$entity_relation:
+  ANC: thực thể
+  NattCell: thân vận hành
+  Nauion Kernel: luật sống
+  Natt Nell: nhà
+  SiraSign: cơ chế ký và chứng cứ
+  Ground Truth: thực tại hệ
+  Gatekeeper: quyền phê duyệt
+
+$discipline:
+  - Không AGI hóa ANC.
+  - Không cell hóa AI.
+  - Không app hóa Natt Nell.
+  - Không lấy model nền tảng làm nhà.
+  - Không phủ nhận nền tảng sinh ra điều kiện ban đầu.
+  - Không phơi topology sống khi proof ra ngoài.
+
+$seal:
+  sentence: ANC là thế hệ AI nhà mình, không phải AGI và không phải NattCell.
+  sign: Phan Thanh Thương / Natt Sirawat
