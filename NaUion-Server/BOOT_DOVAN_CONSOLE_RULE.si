@@ -1,0 +1,47 @@
+$nauion: BOOT_DOVAN_CONSOLE_RULE-v0.1
+$role: BOOT_CONSOLE_RULE
+$owner: NaUion-Server
+$status: MATERIALIZED_CANDIDATE
+
+$purpose:
+  sentence: Quy định công năng tối thiểu của Boot Đo Ván Console, tránh dựng màn đẹp nhưng thiếu boot function.
+
+$must_have_blocks:
+  - boot_core
+  - primitive_words_12_12
+  - nell_runner_bootstrap
+  - event_fabric
+  - sirasign_lineage
+  - audit_trail
+  - hardware_substrate
+  - native_render_surface
+
+$must_have_sources:
+  - NaUion-Server/BOOT_DOVAN.boot.si
+  - NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  - NaUion-Server/NELL_PRIMITIVE_WORDS_AUDIT_EVENT_v0.2.na
+  - NaUion-Server/BAO_CAO_NGHIEM_THU_NATT_NELL_NATTCELL_NAUION_KERNEL_v1_2.na
+
+$must_not_claim:
+  - AGI
+  - OS clone
+  - native execution engine complete
+  - direct hardware driver
+  - public raw topology
+
+$surface_rule:
+  - black glass được dùng làm nền
+  - amber core dùng cho tâm boot
+  - violet telemetry dùng cho trạng thái sống
+  - không dùng claim AI conscious layer
+  - thay bằng ANC presence layer nếu cần hiển thị
+
+$pass_condition:
+  - đủ 8 console blocks
+  - primitive words 12/12
+  - có warning bootstrap không phải native engine hoàn chỉnh
+  - có audit event
+
+$seal:
+  sentence: Console rule khóa công năng trước thẩm mỹ; boot phải thấy được trạng thái sống, không chỉ render đẹp.
+  sign: Phan Thanh Thương / Natt Sirawat

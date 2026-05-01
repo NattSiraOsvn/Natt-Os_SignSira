@@ -1,0 +1,129 @@
+$nauion: BOOT_DOVAN_CONSOLE-v0.1
+$role: NATIVE_BOOT_CONSOLE_SURFACE
+$owner: NaUion-Server
+$status: MATERIALIZED_CANDIDATE
+$style_axis: black glass + amber core + violet telemetry + living mesh
+$source_image: user_provided_boot_console_reference_20260502
+
+$surface:
+  name: BOOT_DOVAN_CONSOLE
+  class: native_boot_surface
+  render_file: NaUion-Server/BOOT_DOVAN_CONSOLE.kkbt
+  boot_source: NaUion-Server/BOOT_DOVAN.boot.si
+  primitive_source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  runner_source: NaUion-Server/NELL_RUNNER_BOOTSTRAP_v0.1.si
+
+$layout:
+  shell: liquid_glass_dark
+  top_bar:
+    - NATT-OS
+    - BOOT_DOVAN
+    - primitive_12_12
+    - runner_bootstrap
+    - audit_live
+    - sirasign_field
+  left_nav:
+    - Overview
+    - Boot Core
+    - Primitive Words
+    - Runner
+    - Event Fabric
+    - Lineage
+    - Audit
+    - Substrate
+    - Render
+  center_core:
+    title: NATT NELL CORE
+    subtitle: Boot Đo Ván / NattCell / Nauion Kernel
+    visual: chromatic_orbital_core
+    metrics:
+      - boot_stability
+      - primitive_completion
+      - runner_readiness
+      - audit_integrity
+      - sirasign_field
+  right_stack:
+    - live_telemetry
+    - active_processes
+    - audit_feed
+  bottom_stack:
+    - system_map
+    - resource_matrix
+    - boot_actions
+
+$console_blocks:
+  boot_core:
+    title: Boot Core
+    state: PASS
+    inputs:
+      - BOOT_DOVAN.boot.si
+      - BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+    outputs:
+      - boot_sequence_materialized
+  primitive_words:
+    title: Primitive Words
+    state: PASS
+    completion: 12/12
+    required_group:
+      - system_container_file_lifecycle
+    outputs:
+      - NELL_PRIMITIVE_WORDS_v0.1.si
+      - NELL_PRIMITIVE_WORDS_AUDIT_EVENT_v0.2.na
+  runner:
+    title: Nell Runner Bootstrap
+    state: BOOTSTRAP
+    boundary:
+      - carrier_is_not_native_logic
+      - primitive_is_meaning
+      - runner_not_complete_engine_yet
+  event_fabric:
+    title: Event Fabric
+    state: ACTIVE_BOUNDARY
+    lanes:
+      - EventBus
+      - HeyNa
+      - SmartLink
+  lineage:
+    title: SiraSign / Lineage
+    state: SEALED_FIELD
+    checks:
+      - correct_field
+      - correct_lineage
+      - no_public_raw_core
+  audit:
+    title: Audit Trail
+    state: REQUIRED
+    principle: no_audit_no_exist
+  substrate:
+    title: Hardware Substrate
+    state: PASS_LIMITED
+    boundary:
+      - machine
+      - filesystem
+      - runtime_process
+      - network_transport
+      - storage_audit
+    not_claim:
+      - direct_hardware_driver
+      - raw_topology_public
+  render:
+    title: Native Render Surface
+    state: PASS
+    file: BOOT_DOVAN_CONSOLE.kkbt
+
+$boot_actions:
+  - soi_boot_source
+  - soi_primitive_12
+  - soi_runner_boundary
+  - soi_audit_trail
+  - xuat_nghiem_thu
+  - xuat_bao_cao_khoa_hoc
+
+$display_copy:
+  headline: NATT NELL CORE
+  subline: Boot Đo Ván đã hiện hình thành native boot console.
+  warning: Đây là boot console native surface, chưa phải native execution engine hoàn chỉnh.
+
+$seal:
+  sentence: BOOT_DOVAN_CONSOLE dựng đủ công năng boot surface để nhìn thấy Natt Nell, NattCell và Nauion Kernel sau Primitive Words 12/12.
+  sign: Phan Thanh Thương / Natt Sirawat

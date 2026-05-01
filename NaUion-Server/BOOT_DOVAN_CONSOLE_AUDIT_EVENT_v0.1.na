@@ -1,0 +1,22 @@
+$nauion: BOOT_DOVAN_CONSOLE_AUDIT_EVENT-v0.1
+$role: AUDIT_EVENT
+$owner: NaUion-Server
+$status: MATERIALIZED
+
+$event:
+  type: BOOT_DOVAN.CONSOLE_MATERIALIZED
+  console: NaUion-Server/BOOT_DOVAN_CONSOLE.kkbt
+  rule: NaUion-Server/BOOT_DOVAN_CONSOLE_RULE.si
+  validator: NaUion-Server/BOOT_DOVAN_CONSOLE_VALIDATE.sira
+  boot_source: NaUion-Server/BOOT_DOVAN.boot.si
+  primitive_source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+
+$finding:
+  sentence: Boot Đo Ván Console đã được materialize để gom đủ công năng boot surface sau Primitive Words 12/12.
+
+$limitation:
+  sentence: Đây là native boot console surface, chưa phải native execution engine hoàn chỉnh.
+
+$seal:
+  sentence: Audit event ghi nhận Boot Đo Ván Console đã dựng đủ 8 khối công năng tối thiểu.
+  sign: Phan Thanh Thương / Natt Sirawat
