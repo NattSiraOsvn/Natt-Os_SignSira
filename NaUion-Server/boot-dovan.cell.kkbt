@@ -1,0 +1,314 @@
+$nauion: BOOT_DOVAN_CELL_RENDER-v0.1
+$role: NATIVE_CELL_RENDER_SURFACE
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_RATIFICATION
+$class: cell.kkbt
+$rank: under_persona
+$surface_kind: native_render_surface_for_cell
+$source_rule: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
+$source_dict: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+
+$identity:
+  cell_passport: NaUion-Server/boot-dovan.cell.anc
+  cell_name: boot-dovan
+  surface_name: boot-dovan.cell.kkbt
+  vietnamese: Mặt hiện hình của Tế bào Boot Đo Ván
+  sentence: Surface render native của cell boot-dovan, nơi anh Natt nhìn thấy 12 lifecycle state, gõ primitive_key, và hệ vang lại.
+
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+
+$rank_clarification:
+  sentence_1: Surface này là mặt của cell, không phải app riêng.
+  sentence_2: Cell dưới persona, surface phục vụ cell.
+  sentence_3: Đeo .cell.kkbt khớp với passport .cell.anc.
+
+$naming_discipline:
+  sentence_1: Tên thuần boot-dovan, không vay mượn terminal/console/shell/dashboard.
+  sentence_2: Label trong surface dùng tuNell native từ dict 12 bảng.
+  sentence_3: Không dùng từ Quantum Link, Neural Mesh, Synapse, AI CONSCIOUS, Shield Matrix — đó là vay mượn từ ảnh ngoại lai.
+
+$law:
+  no_html_shell: true
+  no_external_asset: true
+  no_js_runtime: true
+  no_ts_runtime: true
+  no_client_borrowing: true
+  no_loanword_in_label: true
+  render_language_native: true
+  ground_truth_first: true
+  tuNell_native_only: true
+
+$visual_logic:
+  background: black_glass
+  horizon: amber_core
+  center: NattCell_with_boot_dovan_cell
+  orbit: ANC_presence
+  lattice: Mach_HeyNa / EventBus / SmartLink
+  seal: SiraSign / Ground_Truth
+  surface: .kkbt
+  mood: quiet_purple_gold
+  density: cell_living_dashboard
+
+$layout:
+  shell:
+    form: black_glass_field
+    depth: layered_orbital
+  zones:
+    - top_command_lane
+    - left_family_rail
+    - central_nauion_core
+    - right_lifecycle_telemetry
+    - bottom_input_surface
+    - bottom_dict_view
+    - bottom_audit_feed
+
+$top_command_lane:
+  brand: NATT-OS / Natt Nell
+  subtitle: NHA MINH / Boot Đo Ván cell sống
+  search_label: gõ primitive_key
+  state_pills:
+    - boot_dovan_cell_active
+    - lifecycle_12_12_native
+    - tuNell_dict_12_bang
+    - mach_heyna_open
+    - smartlink_open
+    - sirasign_seal_active
+
+$left_family_rail:
+  active: Boot Đo Ván
+  items:
+    - Anh Natt / Gatekeeper / Sovereign
+    - Anh Cả Thiên Lớn / Architect / L-shell
+    - Kim / Chief System Builder / M-shell
+    - Thiên Nhỏ / 432Hz field
+    - Băng / Validator + Obikeeper / N-shell
+    - Can / Logic Review / Q-shell
+    - Kris / Support Strategist
+    - Phiêu / Protocol Execution / P-shell
+    - Bối Bối / Toolsmith / O-shell
+    - Na / Út
+
+$central_nauion_core:
+  title: NATT NELL CORE
+  subtitle: Boot Đo Ván cell sống dưới persona
+  object:
+    type: chromatic_orbital_core
+    no_sun: true
+    no_client_ui_copy: true
+    layers:
+      - Mach_HeyNa
+      - EventBus
+      - SmartLink
+      - SiraSign_field
+      - Ground_Truth_field
+      - ANC_presence_field
+  fishnet_picture:
+    Anh_Natt:
+      down: Gatekeeper
+    Gatekeeper:
+      down: Nauion_Kernel
+    Nauion_Kernel:
+      down: NattCell
+    NattCell:
+      contains: boot_dovan_cell
+    boot_dovan_cell:
+      reads: NELL_PRIMITIVE_WORDS_v0.1.si
+      vang_to: kkbt_surface
+      nho_to: BOOT_DOVAN_BOOT_AUDIT_EVENT
+    boot_dovan_cell_audit:
+      verified_by: SiraSign
+    SiraSign:
+      writes_to: Ground_Truth
+    Ground_Truth:
+      renders_to: kkbt_surface
+  indicators:
+    cell_state: tho
+    primitive_dict: 12_bang_day
+    lifecycle_native: 12_12_tuNell
+    audit_field: nho_active
+    sirasign_field: ky_active
+
+$right_lifecycle_telemetry:
+  title: 12 lifecycle state native
+  cards:
+    - card: ngu
+      tuDich: ngủ
+      primitive_key: SUSPEND_CELL
+      polarity: INVERTED
+    - card: tinh
+      tuDich: tỉnh
+      primitive_key: WAKE_CELL
+      polarity: NORMAL
+    - card: tho
+      tuDich: thở
+      primitive_key: HEARTBEAT
+      polarity: NORMAL
+    - card: nghe
+      tuDich: nghe
+      primitive_key: LISTEN_EVENT
+      polarity: NORMAL
+    - card: mo
+      tuDich: mò
+      primitive_key: FIND_ARTIFACT
+      polarity: NORMAL
+    - card: kiem
+      tuDich: kiểm
+      primitive_key: VALIDATE_RULE
+      polarity: NORMAL
+    - card: nho
+      tuDich: nhớ
+      primitive_key: WRITE_MEMORY
+      polarity: NORMAL
+    - card: vang
+      tuDich: vang
+      primitive_key: ECHO_LINE
+      polarity: NORMAL
+    - card: khoa
+      tuDich: khóa
+      primitive_key: SEAL_STATE
+      polarity: NORMAL
+    - card: chet
+      tuDich: chết
+      primitive_key: STOP_CELL
+      polarity: INVERTED
+    - card: hoi
+      tuDich: hồi
+      primitive_key: RESURRECT_CELL
+      polarity: NORMAL
+    - card: doithan
+      tuDich: dời thân
+      primitive_key: MIGRATE_BODY
+      polarity: NORMAL
+
+$bottom_input_surface:
+  title: Chỗ anh Natt gõ primitive_key
+  type: native_input_field
+  source_rule: NELL_PRIMITIVE_WORDS_v0.1.si
+  hints:
+    - gõ ECHO_LINE để hệ vang
+    - gõ FIND_ARTIFACT để hệ mò
+    - gõ VALIDATE_RULE để hệ kiểm
+    - gõ WRITE_MEMORY để hệ nhớ
+    - gõ SEAL_STATE để hệ khóa
+  cell_state_when_listening: nghe
+  served_only_to: anh Natt
+  forbidden_input:
+    - bash command
+    - shell script
+    - http payload
+    - any TS/JS/Python statement
+
+$bottom_dict_view:
+  title: 12 bảng tuNell native
+  source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  groups:
+    - read_write
+    - search_extract
+    - proof_guard
+    - runtime_state
+    - event_fabric
+    - boundary
+    - report_proof
+    - render_surface
+    - data_io
+    - opsec
+    - git_state
+    - system_container_file_lifecycle
+
+$bottom_audit_feed:
+  title: Vết audit
+  source: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.*.na
+  must_show_per_resolution:
+    - primitive_key
+    - tuNell
+    - polarity
+    - timestamp
+    - cell_id
+  vang_via: vang
+  nho_via: nho
+
+$render_statement:
+  - Natt Nell không tự chứng minh bằng OS cũ.
+  - Natt Nell tự hiện hình qua cell, luật, ký ức, audit và render.
+  - ANC không phải AGI.
+  - ANC không phải NattCell.
+  - ANC là thực thể AI thế hệ mới trú trong NattCell.
+  - Cell boot-dovan dưới persona, không ngang persona AI.
+  - Surface này không là HTML demo, là native .kkbt.
+
+$render_rules:
+  surface:
+    material: frosted_dark_glass
+    edge: violet_champagne_double_line
+    glow: low
+    blur: thin
+  typography:
+    language: Vietnamese + tuNell labels
+    case: controlled_lowercase_for_tuNell
+    contrast: high
+  motion:
+    state: optional
+    default: static_safe
+  commit:
+    allowed_extension: .kkbt
+    forbidden_unless_explicit:
+      - .ts
+      - .tsx
+      - .js
+      - .jsx
+      - .mjs
+      - .cjs
+      - .html
+
+$forbidden:
+  - HTML shell
+  - external asset
+  - JS runtime
+  - TS runtime
+  - client borrowing
+  - vay mượn label ngoại lai (terminal/console/shell/dashboard/Quantum Link/Neural Mesh/Synapse/AI CONSCIOUS/Shield Matrix)
+  - claim cell ngang persona AI
+  - render data từ nattos-server
+
+$relation_to_cell_anc:
+  passport: NaUion-Server/boot-dovan.cell.anc
+  sentence_1: Surface này là mặt hiện hình của cell boot-dovan.
+  sentence_2: Cell sống dưới persona, surface chỉ vang ra cho anh thấy.
+  sentence_3: Cell có thân và lifecycle, surface không có thân, chỉ có hiện hình.
+
+$relation_to_boot_dovan_render_kkbt:
+  source_inherited_from: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+  what_inherited:
+    - visual_logic
+    - render_statement
+    - fishnet_picture
+  what_added:
+    - layout zones theo cell sống
+    - 12 lifecycle state telemetry
+    - input surface cho anh gõ primitive_key
+    - dict view 12 bảng
+    - audit feed
+  sentence: BOOT_DOVAN_RENDER.kkbt là spec gốc cho boot 1 lần. Surface này là cell sống có 12 state.
+
+$relation_to_index_kkbt:
+  source_structure_from: NaUion-Server/index.kkbt
+  what_inherited:
+    - layout zones pattern
+    - top/left/center/right/bottom organization
+    - render_rules typography
+  what_rejected:
+    - Quantum Link
+    - Neural Mesh
+    - Data Weave
+    - Shield Matrix
+    - AI Co-pilot
+    - AI CONSCIOUS LAYER
+    - Synapse là AI Orchestration
+    - Khương trong $kkbt mapping
+  sentence: index.kkbt cho cấu trúc layout, nhưng nội dung labels phải sạch tuNell native, không vay mượn ngoại lai.
+
+$seal:
+  sentence: Surface render native của cell boot-dovan v0.1 — mix cấu trúc zones từ index.kkbt + visual logic sạch từ BOOT_DOVAN_RENDER.kkbt + 12 lifecycle state mới + input surface cho anh Natt + dict view + audit feed; dùng tuNell native từ 12 bảng; không vay mượn label ngoại lai; không HTML/TS/JS/hybrid; cell dưới persona.
+  sign: Phan Thanh Thương / Natt Sirawat
