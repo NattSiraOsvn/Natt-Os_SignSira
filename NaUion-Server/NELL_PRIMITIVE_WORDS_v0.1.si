@@ -1,0 +1,698 @@
+==NELL_PRIMITIVE_WORDS_V0_1_START==
+$nauion: NELL_PRIMITIVE_WORDS-v0.1
+$role: PRIMITIVE_VERB_DICTIONARY
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$principle:
+  carrier_may_be_external: true
+  primitive_semantic_must_be_nell: true
+  dictionary_first: true
+  lowercase_surface: true
+  polarity_cipher_aware: true
+
+$field_shape:
+  key: mã máy đọc dạng UPPER_SNAKE_CASE
+  tuCu: carrier ngoài hoặc từ cũ
+  tuDich: từ dịch tiếng Việt có dấu
+  tuNell: từ Nell sau chuyển ngữ, dùng cho runtime/surface
+  nghia: nghĩa tiếng Việt có dấu
+  vi: diễn giải nội hệ bằng tiếng Việt có dấu
+  carrier: công cụ có thể mượn
+  polarity: NORMAL / INVERTED / NONE
+
+$primitive_groups:
+
+  read_write:
+    - key: ECHO_LINE
+      tuCu: echo/printf
+      tuDich: vang
+      tuNell: vang
+      nghia: phát dòng hoặc tín hiệu ra mặt hiện
+      vi: hệ vang một dòng ra surface để người đọc thấy
+      carrier: printf
+      polarity: NORMAL
+    - key: OPEN_BODY
+      tuCu: cat/head/tail
+      tuDich: mở
+      tuNell: mo
+      nghia: mở thân artifact để đọc
+      vi: hệ mở thân file hoặc artifact để lấy nội dung
+      carrier: cat
+      polarity: NORMAL
+    - key: WRITE_BODY
+      tuCu: redirect/write
+      tuDich: ghi
+      tuNell: ghi
+      nghia: ghi nội dung vào artifact
+      vi: hệ ghi nội dung thành một vật mang mới
+      carrier: redirect
+      polarity: NORMAL
+    - key: APPEND_BODY
+      tuCu: append
+      tuDich: nối
+      tuNell: noi
+      nghia: nối thêm nội dung vào cuối artifact
+      vi: hệ nối dòng mới vào thân cũ mà không xoá thân cũ
+      carrier: append
+      polarity: NORMAL
+    - key: COPY_BODY
+      tuCu: cp
+      tuDich: sao
+      tuNell: sao
+      nghia: sao artifact sang nơi khác
+      vi: hệ tạo bản sao của một vật mang
+      carrier: cp
+      polarity: NORMAL
+    - key: MOVE_BODY
+      tuCu: mv
+      tuDich: dời
+      tuNell: doi
+      nghia: dời hoặc đổi tên artifact
+      vi: hệ dời vị trí hoặc tên gọi của vật mang
+      carrier: mv
+      polarity: NORMAL
+    - key: REMOVE_BODY
+      tuCu: rm
+      tuDich: gỡ
+      tuNell: go
+      nghia: gỡ artifact khỏi mặt hiện
+      vi: hệ gỡ vật mang khỏi surface làm việc
+      carrier: rm
+      polarity: INVERTED
+    - key: TRUNCATE_BODY
+      tuCu: truncate
+      tuDich: trống
+      tuNell: trong
+      nghia: làm rỗng artifact nhưng giữ thân
+      vi: hệ xoá nội dung bên trong nhưng vẫn giữ vật mang
+      carrier: truncate
+      polarity: INVERTED
+
+  search_extract:
+    - key: FIND_ARTIFACT
+      tuCu: find
+      tuDich: mò
+      tuNell: mo
+      nghia: mò artifact trong nhà
+      vi: hệ mò vật cần tìm từ trong cấu trúc nhà
+      carrier: find
+      polarity: NORMAL
+    - key: MATCH_EVIDENCE
+      tuCu: grep
+      tuDich: soi
+      tuNell: soi
+      nghia: soi dấu trong artifact
+      vi: hệ soi dấu vết để biết có bằng chứng hay không
+      carrier: grep
+      polarity: NORMAL
+    - key: EXTRACT_FIELD
+      tuCu: awk/cut
+      tuDich: rút
+      tuNell: rut
+      nghia: rút trường hoặc đoạn cần dùng
+      vi: hệ rút phần đúng trong một dòng hoặc một bảng
+      carrier: awk
+      polarity: NORMAL
+    - key: SHAPE_LINE
+      tuCu: sed
+      tuDich: nắn
+      tuNell: nan
+      nghia: nắn dòng theo luật
+      vi: hệ nắn dòng cũ thành dạng mới đúng rule
+      carrier: sed
+      polarity: NORMAL
+    - key: FILTER_SIGNAL
+      tuCu: pipe/filter
+      tuDich: lọc
+      tuNell: loc
+      nghia: lọc tín hiệu theo điều kiện
+      vi: hệ giữ phần đúng và bỏ phần lệch
+      carrier: pipe
+      polarity: NORMAL
+    - key: COUNT_EVIDENCE
+      tuCu: wc
+      tuDich: đếm
+      tuNell: dem
+      nghia: đếm dòng, file hoặc dấu vết
+      vi: hệ đếm bằng chứng để định lượng trạng thái
+      carrier: wc
+      polarity: NORMAL
+    - key: ORDER_EVIDENCE
+      tuCu: sort
+      tuDich: xếp
+      tuNell: xep
+      nghia: xếp lại thứ tự bằng chứng
+      vi: hệ xếp dấu vết để đọc theo thứ tự ổn định
+      carrier: sort
+      polarity: NORMAL
+    - key: DEDUPE_EVIDENCE
+      tuCu: uniq
+      tuDich: khử
+      tuNell: khu
+      nghia: khử trùng lặp
+      vi: hệ khử dấu vết bị lặp để tránh nhiều giả
+      carrier: uniq
+      polarity: NORMAL
+
+  proof_guard:
+    - key: HASH_EVIDENCE
+      tuCu: shasum/hash
+      tuDich: ấn
+      tuNell: an
+      nghia: ấn dấu chứng cứ
+      vi: hệ đóng dấu băm cho artifact để đối chiếu
+      carrier: shasum
+      polarity: NORMAL
+    - key: SIGN_EVIDENCE
+      tuCu: sign
+      tuDich: ký
+      tuNell: ky
+      nghia: ký chứng cứ
+      vi: hệ ký dấu để xác nhận bằng chứng có quyền
+      carrier: SiraSign
+      polarity: NORMAL
+    - key: VALIDATE_RULE
+      tuCu: validator
+      tuDich: kiểm
+      tuNell: kiem
+      nghia: kiểm điều kiện
+      vi: hệ kiểm artifact có đi đúng rule không
+      carrier: sira
+      polarity: NORMAL
+    - key: BLOCK_VIOLATION
+      tuCu: guard/block
+      tuDich: chặn
+      tuNell: chan
+      nghia: chặn khi vi phạm
+      vi: hệ chặn luồng sai không cho qua gate
+      carrier: guard
+      polarity: INVERTED
+    - key: ALLOW_PASS
+      tuCu: allow/pass
+      tuDich: qua
+      tuNell: qua
+      nghia: cho qua gate
+      vi: hệ cho artifact đi tiếp khi đủ điều kiện
+      carrier: gate
+      polarity: NORMAL
+    - key: SEAL_STATE
+      tuCu: seal/lock
+      tuDich: khóa
+      tuNell: khoa
+      nghia: khóa trạng thái
+      vi: hệ khóa một trạng thái thành mốc có hiệu lực
+      carrier: seal
+      polarity: NORMAL
+    - key: UNLOCK_STATE
+      tuCu: unlock
+      tuDich: mở khóa
+      tuNell: mokhoa
+      nghia: mở khóa có kiểm soát
+      vi: hệ mở trạng thái đã khóa khi có quyền
+      carrier: unlock
+      polarity: NORMAL
+    - key: QUARANTINE_ARTIFACT
+      tuCu: quarantine
+      tuDich: cách ly
+      tuNell: cachly
+      nghia: cách ly artifact rủi ro
+      vi: hệ đưa vật nghi vấn ra vùng riêng để không lan
+      carrier: quarantine
+      polarity: INVERTED
+
+  runtime_state:
+    - key: WRITE_MEMORY
+      tuCu: memory write
+      tuDich: nhớ
+      tuNell: nho
+      nghia: ghi ký ức
+      vi: hệ ghi điều cần giữ vào .na
+      carrier: memory
+      polarity: NORMAL
+    - key: WRITE_RUNTIME_STATE
+      tuCu: runtime state
+      tuDich: phiếu
+      tuNell: phieu
+      nghia: ghi trạng thái phiên
+      vi: hệ ghi trạng thái đang sống vào .phieu
+      carrier: state
+      polarity: NORMAL
+    - key: HEARTBEAT
+      tuCu: heartbeat
+      tuDich: thở
+      tuNell: tho
+      nghia: phát nhịp sống runtime
+      vi: hệ báo mình còn đang sống
+      carrier: heartbeat
+      polarity: NORMAL
+    - key: WAKE_CELL
+      tuCu: wake
+      tuDich: tỉnh
+      tuNell: tinh
+      nghia: kích hoạt cell
+      vi: hệ đánh thức cell vào trạng thái làm việc
+      carrier: wake
+      polarity: NORMAL
+    - key: SUSPEND_CELL
+      tuCu: suspend
+      tuDich: ngủ
+      tuNell: ngu
+      nghia: tạm nghỉ cell
+      vi: hệ cho cell nghỉ nhưng chưa chết
+      carrier: suspend
+      polarity: INVERTED
+    - key: STOP_CELL
+      tuCu: stop
+      tuDich: chết
+      tuNell: chet
+      nghia: dừng thực thể
+      vi: hệ cắt trạng thái sống của một thực thể
+      carrier: stop
+      polarity: INVERTED
+    - key: RESURRECT_CELL
+      tuCu: resurrect
+      tuDich: hồi
+      tuNell: hoi
+      nghia: hồi cell hoặc state
+      vi: hệ đưa cell hoặc trạng thái quay lại có kiểm soát
+      carrier: resurrect
+      polarity: NORMAL
+    - key: MIGRATE_BODY
+      tuCu: migrate
+      tuDich: dời thân
+      tuNell: doithan
+      nghia: chuyển thân runtime
+      vi: hệ chuyển thân vận hành sang nơi khác
+      carrier: migrate
+      polarity: NORMAL
+
+  event_fabric:
+    - key: CALL_CAPABILITY
+      tuCu: call
+      tuDich: gọi
+      tuNell: goi
+      nghia: gọi một năng lực
+      vi: hệ gọi khả năng của cell qua đúng cổng
+      carrier: call
+      polarity: NORMAL
+    - key: LISTEN_EVENT
+      tuCu: listen/subscribe
+      tuDich: nghe
+      tuNell: nghe
+      nghia: nghe event
+      vi: hệ nghe tín hiệu trên sợi lưới
+      carrier: subscribe
+      polarity: NORMAL
+    - key: EMIT_EVENT
+      tuCu: emit/publish
+      tuDich: phát
+      tuNell: phat
+      nghia: phát event
+      vi: hệ phát tín hiệu vào EventBus, HeyNa hoặc SmartLink
+      carrier: emit
+      polarity: NORMAL
+    - key: RECEIVE_EVENT
+      tuCu: receive
+      tuDich: nhận
+      tuNell: nhan
+      nghia: nhận event
+      vi: hệ nhận tín hiệu đã đi qua sợi lưới
+      carrier: receive
+      polarity: NORMAL
+    - key: TRACE_EVENT
+      tuCu: trace
+      tuDich: truy
+      tuNell: truy
+      nghia: truy vết event
+      vi: hệ lần theo dấu event để biết nguồn và đường đi
+      carrier: trace
+      polarity: NORMAL
+    - key: ANCHOR_STATE
+      tuCu: anchor
+      tuDich: neo
+      tuNell: neo
+      nghia: neo event hoặc state
+      vi: hệ neo trạng thái vào mốc không trôi
+      carrier: anchor
+      polarity: NORMAL
+    - key: SYNC_STATE
+      tuCu: sync
+      tuDich: đồng bộ
+      tuNell: dongbo
+      nghia: đồng bộ state
+      vi: hệ làm hai đầu cùng thấy một trạng thái
+      carrier: sync
+      polarity: NORMAL
+
+  boundary:
+    - key: SET_BOUNDARY
+      tuCu: boundary
+      tuDich: biên
+      tuNell: bien
+      nghia: xác định ranh giới
+      vi: hệ vẽ ranh được phép và không được phép
+      carrier: boundary
+      polarity: NORMAL
+    - key: SET_ROLE
+      tuCu: role
+      tuDich: vai
+      tuNell: vai
+      nghia: xác định vai
+      vi: hệ gắn vai cho thực thể hoặc cell
+      carrier: role
+      polarity: NORMAL
+    - key: SET_PERMISSION
+      tuCu: permission
+      tuDich: quyền
+      tuNell: quyen
+      nghia: gán quyền thao tác
+      vi: hệ xác định ai được làm gì
+      carrier: permission
+      polarity: NORMAL
+    - key: SET_LIMIT
+      tuCu: limit
+      tuDich: hạn
+      tuNell: han
+      nghia: đặt giới hạn
+      vi: hệ đặt mức tối đa để không tràn biên
+      carrier: limit
+      polarity: NORMAL
+    - key: OPEN_PORT
+      tuCu: port
+      tuDich: cửa
+      tuNell: cua
+      nghia: mở cổng vào ra
+      vi: hệ mở lối trao đổi có kiểm soát
+      carrier: port
+      polarity: NORMAL
+    - key: CLOSE_PORT
+      tuCu: close port
+      tuDich: đóng cửa
+      tuNell: dongcua
+      nghia: đóng cổng vào ra
+      vi: hệ đóng lối trao đổi khi không đủ điều kiện
+      carrier: port
+      polarity: INVERTED
+    - key: SET_HOME
+      tuCu: home
+      tuDich: nhà
+      tuNell: nha
+      nghia: xác định vùng nhà mình
+      vi: hệ đánh dấu vùng thuộc lõi nhà
+      carrier: home
+      polarity: NORMAL
+    - key: SET_CLIENT
+      tuCu: client
+      tuDich: khách
+      tuNell: khach
+      nghia: xác định vùng khách
+      vi: hệ đánh dấu vùng client hoặc ngoài lõi
+      carrier: client
+      polarity: NORMAL
+
+  report_proof:
+    - key: SUMMARIZE
+      tuCu: summary
+      tuDich: kết
+      tuNell: ket
+      nghia: kết luận đoạn
+      vi: hệ gom ý để đóng lại một đoạn
+      carrier: summary
+      polarity: NORMAL
+    - key: REASON
+      tuCu: reason
+      tuDich: luận
+      tuNell: luan
+      nghia: lập luận
+      vi: hệ nói rõ vì sao kết luận đúng
+      carrier: reason
+      polarity: NORMAL
+    - key: PROVE
+      tuCu: prove
+      tuDich: chứng
+      tuNell: chung
+      nghia: chứng minh bằng evidence
+      vi: hệ đặt bằng chứng vào câu claim
+      carrier: prove
+      polarity: NORMAL
+    - key: CITE
+      tuCu: cite/reference
+      tuDich: dẫn
+      tuNell: dan
+      nghia: dẫn chứng cứ
+      vi: hệ chỉ tới nguồn bằng chứng
+      carrier: cite
+      polarity: NORMAL
+    - key: COMPOSE_REPORT
+      tuCu: compose
+      tuDich: lập
+      tuNell: lap
+      nghia: lập báo cáo
+      vi: hệ lập các bằng chứng thành một báo cáo có cấu trúc
+      carrier: compose
+      polarity: NORMAL
+    - key: EXPORT_REPORT
+      tuCu: export
+      tuDich: xuất
+      tuNell: xuat
+      nghia: xuất artifact hoặc báo cáo
+      vi: hệ đưa bằng chứng thành mặt đọc được
+      carrier: export
+      polarity: NORMAL
+
+  render_surface:
+    - key: RENDER_SURFACE
+      tuCu: render/show
+      tuDich: hiện
+      tuNell: hien
+      nghia: hiện ra mặt surface
+      vi: hệ hiện bằng chứng trên mặt đọc được
+      carrier: render
+      polarity: NORMAL
+    - key: HIDE_SURFACE
+      tuCu: hide
+      tuDich: ẩn
+      tuNell: an
+      nghia: ẩn khỏi surface
+      vi: hệ ẩn phần không được phép hiện
+      carrier: hide
+      polarity: INVERTED
+    - key: BLUR_SURFACE
+      tuCu: blur
+      tuDich: mờ
+      tuNell: mo
+      nghia: làm mờ surface
+      vi: hệ làm mờ phần không cần rõ
+      carrier: blur
+      polarity: INVERTED
+    - key: FROST_SURFACE
+      tuCu: frost/translucent
+      tuDich: đục
+      tuNell: duc
+      nghia: làm đục mặt kính
+      vi: hệ làm trong đục để thấy nền mà không lộ hết
+      carrier: frost
+      polarity: INVERTED
+    - key: BRIGHTEN_SURFACE
+      tuCu: brighten
+      tuDich: sáng
+      tuNell: sang
+      nghia: tăng sáng
+      vi: hệ tăng độ sáng của mặt hiện
+      carrier: brighten
+      polarity: NORMAL
+    - key: DARKEN_SURFACE
+      tuCu: darken
+      tuDich: tối
+      tuNell: toi
+      nghia: giảm sáng
+      vi: hệ giảm độ sáng để hạ nhiễu
+      carrier: darken
+      polarity: INVERTED
+
+  data_io:
+    - key: LOAD_DATA
+      tuCu: load/import
+      tuDich: nạp
+      tuNell: nap
+      nghia: nạp dữ liệu vào
+      vi: hệ đưa dữ liệu vào bộ nhớ làm việc
+      carrier: load
+      polarity: NORMAL
+    - key: INGEST_DATA
+      tuCu: ingest
+      tuDich: nhập
+      tuNell: nhap
+      nghia: nhập dữ liệu vào hệ
+      vi: hệ tiếp nhận dữ liệu từ ngoài vào cell
+      carrier: ingest
+      polarity: NORMAL
+    - key: DUMP_DATA
+      tuCu: dump/export raw
+      tuDich: xả
+      tuNell: xa
+      nghia: xả dữ liệu ra
+      vi: hệ đưa dữ liệu thô ra ngoài
+      carrier: dump
+      polarity: INVERTED
+    - key: READ_DATA
+      tuCu: read
+      tuDich: đọc
+      tuNell: doc
+      nghia: đọc dữ liệu
+      vi: hệ đọc nội dung từ vật mang
+      carrier: read
+      polarity: NORMAL
+    - key: NORMALIZE_DATA
+      tuCu: normalize
+      tuDich: chuẩn
+      tuNell: chuan
+      nghia: chuẩn hóa dữ liệu
+      vi: hệ đưa dữ liệu về dạng đúng rule
+      carrier: normalize
+      polarity: NORMAL
+    - key: PARSE_DATA
+      tuCu: parse/decode
+      tuDich: giải
+      tuNell: giai
+      nghia: giải cấu trúc dữ liệu
+      vi: hệ bóc cấu trúc để hiểu nội dung
+      carrier: parse
+      polarity: NORMAL
+
+  opsec:
+    - key: REDACT_TRACE
+      tuCu: redact trace
+      tuDich: che vết
+      tuNell: chevet
+      nghia: che vết nhạy cảm
+      vi: hệ che dấu nhạy cảm trước khi ra ngoài
+      carrier: redact
+      polarity: INVERTED
+    - key: HASH_TRACE
+      tuCu: hash evidence
+      tuDich: băm vết
+      tuNell: bamvet
+      nghia: băm bằng chứng
+      vi: hệ thay raw bằng hash để đối chiếu
+      carrier: hash
+      polarity: NORMAL
+    - key: CUT_EXPOSURE
+      tuCu: remove exposure
+      tuDich: cắt lộ
+      tuNell: catlo
+      nghia: cắt phần lộ
+      vi: hệ cắt phần có nguy cơ lộ topology
+      carrier: redact
+      polarity: INVERTED
+    - key: HIDE_TOPOLOGY
+      tuCu: hide topology
+      tuDich: giấu tuyến
+      tuNell: giautuyen
+      nghia: giấu topology
+      vi: hệ không để lộ sơ đồ sống ra public
+      carrier: hide
+      polarity: INVERTED
+    - key: METRIC_ONLY
+      tuCu: metric only
+      tuDich: chỉ số
+      tuNell: chiso
+      nghia: chỉ xuất chỉ số
+      vi: hệ chỉ đưa số đếm và hash thay raw
+      carrier: metric
+      polarity: NORMAL
+    - key: CLAIM_BOUNDARY
+      tuCu: claim boundary
+      tuDich: khóa claim
+      tuNell: khoaclaim
+      nghia: khóa ranh claim
+      vi: hệ chặn claim vượt bằng chứng
+      carrier: claim
+      polarity: NORMAL
+
+  git_state:
+    - key: SEE_BRANCH
+      tuCu: branch/status
+      tuDich: nhìn nhánh
+      tuNell: nhinnhanh
+      nghia: xem nhánh hiện tại
+      vi: hệ nhìn mình đang ở nhánh nào
+      carrier: git branch
+      polarity: NORMAL
+    - key: CHECK_WORKTREE
+      tuCu: status
+      tuDich: soát sân
+      tuNell: soatsan
+      nghia: xem sân làm việc
+      vi: hệ soát các thay đổi đang tồn tại
+      carrier: git status
+      polarity: NORMAL
+    - key: STAGE_ARTIFACT
+      tuCu: git add
+      tuDich: gắn
+      tuNell: gan
+      nghia: gắn artifact vào chốt
+      vi: hệ gắn artifact đúng scope để chuẩn bị chốt
+      carrier: git add
+      polarity: NORMAL
+    - key: UNSTAGE_ARTIFACT
+      tuCu: git reset staged
+      tuDich: tháo
+      tuNell: thao
+      nghia: tháo artifact khỏi sân chốt
+      vi: hệ tháo vật ra khỏi chốt nhưng không phá thân
+      carrier: git reset
+      polarity: INVERTED
+    - key: COMMIT_STATE
+      tuCu: git commit
+      tuDich: chốt
+      tuNell: chot
+      nghia: chốt trạng thái thành mốc
+      vi: hệ chốt một trạng thái có dấu và có lời khai
+      carrier: git commit
+      polarity: NORMAL
+    - key: PUSH_STATE
+      tuCu: git push
+      tuDich: đẩy
+      tuNell: day
+      nghia: đẩy chốt ra ngoài
+      vi: hệ đẩy mốc đã chốt lên vùng chia sẻ
+      carrier: git push
+      polarity: NORMAL
+    - key: FETCH_STATE
+      tuCu: git fetch
+      tuDich: kéo
+      tuNell: keo
+      nghia: kéo ảnh ngoài về
+      vi: hệ kéo trạng thái ngoài về để đối chiếu
+      carrier: git fetch
+      polarity: NORMAL
+    - key: PICK_COMMIT
+      tuCu: cherry-pick
+      tuDich: bứng
+      tuNell: bung
+      nghia: bứng một chốt riêng
+      vi: hệ bứng riêng một mốc mà không kéo cả dòng ngoài scope
+      carrier: git cherry-pick
+      polarity: NORMAL
+
+$polarity_rule:
+  NORMAL: bật, hiện, cho qua, gắn, chốt, đẩy, kéo
+  INVERTED: tắt, ẩn, chặn, gỡ, tháo, cách ly, bọc, cắt lộ
+  mirror: C0 đổi C7, C1 đổi C6, C2 đổi C5, C3 đổi C4
+
+$discipline:
+  - Không nói awk tạo báo cáo.
+  - Nói rút trường bằng carrier awk.
+  - Không nói sed sửa báo cáo.
+  - Nói nắn dòng bằng carrier sed.
+  - Không nói echo xuất câu.
+  - Nói vang dòng bằng carrier echo.
+  - Từ điển gốc phải có dấu để người đọc hiểu.
+  - Runtime hoặc surface có thể dùng tuNell không dấu theo luật riêng.
+
+$seal:
+  sentence: Carrier được mượn; động từ nền phải thuộc Natt Nell; từ điển gốc phải có dấu.
+  sign: Phan Thanh Thương / Natt Sirawat
+==NELL_PRIMITIVE_WORDS_V0_1_END==

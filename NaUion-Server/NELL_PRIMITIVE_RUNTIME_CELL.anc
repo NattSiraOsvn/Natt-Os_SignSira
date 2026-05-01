@@ -1,0 +1,26 @@
+$nauion: NELL_PRIMITIVE_RUNTIME_CELL-v0.1
+$role: RUNTIME_CELL_IDENTITY
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$identity:
+  name: NELL_PRIMITIVE_RUNTIME_CELL
+  class: primitive semantic runtime cell
+  system: Natt Nell
+  source_dictionary: src/thienbang.si
+  primitive_dictionary: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  validator: NaUion-Server/NELL_PRIMITIVE_WORDS_VALIDATE.sira
+  audit_event: NaUion-Server/NELL_PRIMITIVE_WORDS_AUDIT_EVENT_v0.1.na
+
+$mission:
+  sentence: Cell này giữ nghĩa primitive của Natt Nell, phân biệt carrier ngoài với động từ nền của nhà mình.
+
+$boundary:
+  - Không gọi awk/sed/echo là logic chính.
+  - Chỉ gọi chúng là carrier.
+  - Logic primitive nằm ở key / tuDich / tuNell / nghĩa / vi.
+  - Từ điển gốc phải có dấu để người đọc hiểu.
+
+$seal:
+  sentence: Carrier được mượn; động từ nền thuộc Natt Nell.
+  sign: Phan Thanh Thương / Natt Sirawat

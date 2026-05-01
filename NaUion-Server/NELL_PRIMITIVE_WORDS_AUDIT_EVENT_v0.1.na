@@ -1,0 +1,22 @@
+$nauion: NELL_PRIMITIVE_WORDS_AUDIT_EVENT-v0.1
+$role: AUDIT_EVENT
+$owner: NaUion-Server
+$status: MATERIALIZED
+
+$event:
+  type: NELL_PRIMITIVE_WORDS.MATERIALIZED
+  source: src/thienbang.si
+  artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  scanner: NaUion-Server/NELL_PRIMITIVE_WORDS_VALIDATE.sira
+  sequence:
+    - dictionary first
+    - scanner/rule second
+    - audit event third
+    - runtime cell fourth
+
+$finding:
+  sentence: Nell primitive words đã được rút từ dictionary gốc, giữ tiếng Việt có dấu ở từ điển gốc, và tách tuDich khỏi tuNell.
+
+$seal:
+  sentence: Audit event ghi nhận primitive words đã qua dictionary-first materialization.
+  sign: Phan Thanh Thương / Natt Sirawat
