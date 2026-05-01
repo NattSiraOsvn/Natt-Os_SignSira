@@ -1,0 +1,12 @@
+# ROLE_CLIENT
+
+`nattos-server` được đánh dấu là CLIENT.
+
+Vai trò:
+- app client Tâm Luxury;
+- local deploy client;
+- host các màn app, archive UI, screen routes, server local port 3001;
+- không phải “nhà mình”.
+
+Output rule:
+- Khi nhắc `nattos-server`, gọi là CLIENT.

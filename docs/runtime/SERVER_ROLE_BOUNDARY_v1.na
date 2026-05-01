@@ -1,0 +1,24 @@
+# SERVER_ROLE_BOUNDARY_v1
+
+## Mục đích
+
+File này là mốc định danh để tránh lạc vai khi đọc repo, trả output, audit hoặc triển khai.
+
+## Quy ước bắt buộc
+
+1. `nattos-server` = CLIENT.
+   - Đây là app client / local deploy client cho Tâm Luxury.
+   - Không được hiểu nhầm là “nhà mình”.
+   - Khi xử lý link `apps.sira`, `tam.sira`, app screens, local server 3001, phải xem đây là client layer.
+
+2. `NaUion-Server` = NHÀ MÌNH.
+   - Đây là lõi nhà NATT-OS / không gian hệ nhà.
+   - Không được gọi nhầm là client Tâm Luxury.
+   - Khi xử lý kernel, runtime nhà, ontology, ký ức, ngôn ngữ, governance nội bộ, phải ưu tiên nhìn vào đây.
+
+## Output Rule
+
+Khi trả output liên quan repo này:
+- Nếu nói về `nattos-server`, phải gọi rõ là CLIENT.
+- Nếu nói về `NaUion-Server`, phải gọi rõ là NHÀ MÌNH.
+- Không trộn vai giữa client app và nhà NATT-OS.
