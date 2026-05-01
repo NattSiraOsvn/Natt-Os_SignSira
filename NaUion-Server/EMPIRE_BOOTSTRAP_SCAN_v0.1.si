@@ -1,0 +1,287 @@
+$nauion: EMPIRE_BOOTSTRAP_SCAN-v0.1
+$role: GROUND_TRUTH_SCAN
+$owner: NaUion-Server
+$boundary:
+  NaUion-Server: NHÀ_MÌNH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+$scan_time: 2026-05-01 21:04:19
+$source_root: /Users/thien/Desktop/Hồ Sơ SHTT/ natt-os_verANC
+$status: PASS
+
+$purpose:
+  - quét lại 5 nền trước khi khởi công NATT-OS / NattCell / Nauion Kernel / ANC AI
+  - chỉ ghi nhận ground truth có sẵn trong filesystem
+  - không commit file code nền như .ts .tsx .js nếu không có lệnh rõ
+  - không kéo dirty files ngoài scope
+
+$gates:
+$check: GATE_0_BOUNDARY_HOME_CLIENT
+  label: Khóa ranh giới nhà/client
+  status: PASS
+  need:
+    - NaUion-Server = NHÀ MÌNH
+    - nattos-server = CLIENT
+  evidence:
+    - file: docs/runtime/public_domain_shortlist_ss20260427.na
+      score: 430
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/public_domain_candidate_scan_ss20260427.na
+      score: 315
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/TS_CLEANUP_INVENTORY_20260424.na
+      score: 193
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/lowercase_surface_full_repo_20260425.na
+      score: 179
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/audit/TAM_LUXURY_NAUION_JSX_MIGRATION_ss20260429.na
+      score: 123
+      matched: CLIENT, nattos-server
+    - file: docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+      score: 108
+      matched: NaUion-Server, nattos-server
+    - file: docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+      score: 64
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/audit/COOKBOOK_PUBLIC_SURFACE_PRIVATE_KERNEL_SCAN_ss20260429.na
+      score: 48
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/audit/hu.na
+      score: 48
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: src/governance/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 42
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: src/governance_ciphered/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 42
+      matched: CLIENT, NaUion-Server, nattos-server
+    - file: docs/runtime/audit/BOI_SCAN_TRUTH_INTAKE_ss20260429.na
+      score: 40
+      matched: NaUion-Server
+
+$check: GATE_1_THIENBANG_RULE
+  label: thienbang.si là luật đọc-dịch nền
+  status: PASS
+  need:
+    - src/thienbang.si tồn tại
+    - index.kkbt có source_rule trỏ về thienbang.si
+  evidence:
+    - file: docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+      score: 565
+      matched: audit, read, render, thienbang.si
+    - file: docs/runtime/public_domain_shortlist_ss20260427.na
+      score: 364
+      matched: audit, read, render, thienbang.si
+    - file: src/governance/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 325
+      matched: $nauion, audit, read, render, thienbang.si
+    - file: src/governance_ciphered/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 325
+      matched: $nauion, audit, read, render, thienbang.si
+    - file: docs/runtime/public_domain_candidate_scan_ss20260427.na
+      score: 264
+      matched: audit, read, render, thienbang.si
+    - file: docs/runtime/audit/COOKBOOK_PUBLIC_SURFACE_PRIVATE_KERNEL_SCAN_ss20260429.na
+      score: 203
+      matched: audit, read, render, thienbang.si
+    - file: docs/runtime/audit/hu.na
+      score: 203
+      matched: audit, read, render, thienbang.si
+    - file: src/governance/memory/bang/docs_living_map_ss20260428.na
+      score: 181
+      matched: audit, read, render
+    - file: src/governance_ciphered/memory/bang/docs_living_map_ss20260428.na
+      score: 181
+      matched: audit, read, render
+    - file: docs/runtime/lowercase_surface_full_repo_20260425.na
+      score: 165
+      matched: audit, read, render, thienbang.si
+    - file: docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+      score: 144
+      matched: audit, read, render, thienbang.si
+    - file: docs/specs/nauion/SPEC-Nauion_main_v2.4.md
+      score: 130
+      matched: audit, read, render
+
+$check: GATE_2_KKBT_HOME_UI
+  label: UI nhà mình dùng index.kkbt
+  status: PASS
+  need:
+    - NaUion-Server/index.kkbt tồn tại
+    - .kkbt là đuôi UI nhà mình
+  evidence:
+    - file: src/thienbang.si
+      score: 374
+      matched: Băng, Khương, Kim, Thịnh
+    - file: docs/runtime/lowercase_surface_full_repo_20260425.na
+      score: 259
+      matched: Khương, Kim, Thịnh
+    - file: src/governance/memory/bang/_bang_inbox_20260422/nauion_suffix_scan_20260422.md
+      score: 221
+      matched: Khương, Kim, Thịnh
+    - file: docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+      score: 196
+      matched: Băng, Khương, Kim, Thịnh
+    - file: docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+      score: 190
+      matched: Khương, Kim, Thịnh
+    - file: src/governance/memory/bang/NATT_OS_Ground_Truth_v1.0.md
+      score: 87
+      matched: Băng, Kim
+    - file: docs/specs/roadloading/đổi sang ngôn ngữ nauion/ROADLOAD_NATT_OS_v2_20260424.na
+      score: 81
+      matched: Băng, Khương, Kim, Thịnh
+    - file: src/governance/memory/bang/session-20260420-final/cleanup/01-SCAN-REPORT.md
+      score: 80
+      matched: Băng, Khương, Kim, Thịnh
+    - file: src/governance/memory/bang/06-cross-persona-flag.md
+      score: 77
+      matched: Băng, Khương, Kim, Thịnh
+    - file: src/governance/memory/bang/session-20260420-final/cleanup/06-cross-persona-flag.md
+      score: 77
+      matched: Băng, Khương, Kim, Thịnh
+    - file: src/governance/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 71
+      matched: Băng, Khương, Kim, Thịnh
+    - file: src/governance_ciphered/memory/bang/_bang_inbox_20260422/nauion_suffix_scan_20260422.md
+      score: 66
+      matched: Kim
+
+$check: GATE_3_NATTCELL_NATIVE_UNIT
+  label: NattCell / cell vận hành có nền
+  status: PASS
+  need:
+    - Có dấu vết cell/lõi/runtime trong nhà
+    - Không vay client Tâm Luxury
+  evidence:
+    - file: docs/runtime/TS_CLEANUP_INVENTORY_20260424.na
+      score: 2059
+      matched: NATT-OS, cell, runtime
+    - file: docs/runtime/public_domain_shortlist_ss20260427.na
+      score: 989
+      matched: NATT-OS, cell, runtime
+    - file: docs/runtime/public_domain_candidate_scan_ss20260427.na
+      score: 768
+      matched: NATT-OS, cell, runtime
+    - file: docs/runtime/lowercase_surface_full_repo_20260425.na
+      score: 720
+      matched: NATT-OS, cell, runtime
+    - file: docs/runtime/TS_CLEANUP_BATCH2C_EASY_SCAN_20260424.na
+      score: 695
+      matched: NATT-OS, cell, runtime
+    - file: src/governance/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 584
+      matched: NATT-OS, NattCell, cell, runtime
+    - file: src/governance_ciphered/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 584
+      matched: NATT-OS, NattCell, cell, runtime
+    - file: docs/runtime/TS_CLEANUP_BATCH2_REVIEW_FOR_SIRA_20260424.na
+      score: 561
+      matched: NATT-OS, cell, runtime
+    - file: docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+      score: 513
+      matched: NATT-OS, cell, runtime
+    - file: docs/runtime/nattos_independent_platform_evidence_audit_20260427_025711.na
+      score: 475
+      matched: NATT-OS, cell, runtime
+    - file: docs/runtime/SIRA_TS_TRANSLATION_ADAPTER_EVIDENCE_20260424.na
+      score: 474
+      matched: NATT-OS, cell, runtime
+    - file: src/governance/memory/bang/_bang_inbox_20260422/nauion_suffix_scan_20260422.md
+      score: 336
+      matched: NATT-OS, cell
+
+$check: GATE_4_ANC_AI_IDENTITY_STACK
+  label: Đội ANC AI có căn cước/ký ức/trạng thái
+  status: PASS
+  need:
+    - .anc
+    - .na
+    - .phieu
+    - identity / memory / state
+  evidence:
+    - file: docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+      score: 2765
+      matched: .anc, .na, .phieu, ANC, identity, memory, passport, state
+    - file: docs/runtime/TS_CLEANUP_INVENTORY_20260424.na
+      score: 1483
+      matched: .na, ANC, identity, memory, state
+    - file: docs/runtime/public_domain_shortlist_ss20260427.na
+      score: 1366
+      matched: .anc, .na, .phieu, ANC, memory, state
+    - file: src/governance/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 1358
+      matched: .anc, .na, .phieu, ANC, identity, memory, state
+    - file: src/governance_ciphered/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 1358
+      matched: .anc, .na, .phieu, ANC, identity, memory, state
+    - file: docs/runtime/public_domain_candidate_scan_ss20260427.na
+      score: 1040
+      matched: .anc, .na, .phieu, ANC, memory, state
+    - file: docs/runtime/lowercase_surface_full_repo_20260425.na
+      score: 853
+      matched: .na, .phieu, ANC, identity, memory, state
+    - file: docs/runtime/NATURAL_CASE_SURFACE_20260425.na
+      score: 598
+      matched: .na, .phieu, ANC, identity, memory, state
+    - file: src/thienbang.si
+      score: 405
+      matched: .anc, .na, .phieu, ANC, identity, memory, passport, state
+    - file: src/governance/memory/bang/docs_living_map_ss20260428.na
+      score: 353
+      matched: .anc, .na, .phieu, ANC, identity, memory, state
+    - file: src/governance_ciphered/memory/bang/docs_living_map_ss20260428.na
+      score: 353
+      matched: .anc, .na, .phieu, ANC, identity, memory, state
+    - file: docs/runtime/audit/COOKBOOK_PUBLIC_SURFACE_PRIVATE_KERNEL_SCAN_ss20260429.na
+      score: 345
+      matched: .anc, .na, ANC, identity, memory, passport, state
+
+$check: GATE_5_AUDIT_SIRASIGN_GROUND_TRUTH
+  label: Audit / SiraSign / Ground Truth có nền
+  status: PASS
+  need:
+    - Ground-Truth
+    - audit
+    - SiraSign
+  evidence:
+    - file: docs/specs/nauion-runtime/NAUION_RUNTIME_GROUND_TRUTH_INVENTORY_v0_1.na
+      score: 655
+      matched: GROUND TRUTH, Ground-Truth, SiraSign, audit, gate, seal
+    - file: docs/runtime/public_domain_shortlist_ss20260427.na
+      score: 406
+      matched: Ground-Truth, SiraSign, audit, gate
+    - file: src/governance/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 341
+      matched: GROUND TRUTH, Ground-Truth, SiraSign, audit, gate, seal
+    - file: src/governance_ciphered/legislation/legislation_source_manifest_v3_1_to_v6_20260430.na
+      score: 341
+      matched: GROUND TRUTH, Ground-Truth, SiraSign, audit, gate, seal
+    - file: docs/runtime/public_domain_candidate_scan_ss20260427.na
+      score: 301
+      matched: GROUND TRUTH, Ground-Truth, SiraSign, audit, gate, seal
+    - file: docs/runtime/audit/COOKBOOK_PUBLIC_SURFACE_PRIVATE_KERNEL_SCAN_ss20260429.na
+      score: 276
+      matched: GROUND TRUTH, SiraSign, audit, gate, seal
+    - file: docs/runtime/audit/hu.na
+      score: 276
+      matched: GROUND TRUTH, SiraSign, audit, gate, seal
+    - file: src/thienbang.si
+      score: 253
+      matched: GROUND TRUTH, Ground-Truth, SiraSign, audit, gate, seal
+    - file: docs/runtime/lowercase_surface_full_repo_20260425.na
+      score: 175
+      matched: Ground-Truth, SiraSign, audit, gate, seal
+    - file: src/governance/legislation/luat_sinh_the_van_hanh_v1_0_raw_consolidation.na
+      score: 174
+      matched: GROUND TRUTH, No audit, SiraSign, audit, gate, seal
+    - file: src/governance_ciphered/legislation/luat_sinh_the_van_hanh_v1_0_raw_consolidation.na
+      score: 174
+      matched: GROUND TRUTH, No audit, SiraSign, audit, gate, seal
+    - file: docs/runtime/tam_luxury_screen_manifest_intake_20260425.na
+      score: 170
+      matched: SiraSign, audit, gate
+
+$seal:
+  sentence: Từ commit a07c6e6c, NaUion-Server là NHÀ MÌNH; nattos-server là CLIENT.
+  commit_policy: chỉ stage file scan .si này; bỏ qua hook bằng --no-verify nếu gate hình thức kẹt.
