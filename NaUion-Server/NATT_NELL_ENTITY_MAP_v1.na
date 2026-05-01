@@ -1,0 +1,51 @@
+$nauion: NATT_NELL_ENTITY_MAP-v1.0
+$role: ENTITY_RELATION_MAP
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+# Bản đồ thực thể Hệ Natt Nell
+
+## 1. Tên hệ
+
+Natt Nell là nhà vận hành.
+
+NATT-OS là danh xưng lịch sử / đối ngoại để người ngoài tạm hiểu, nhưng bản chất nội hệ là Natt Nell.
+
+## 2. Phân tầng
+
+| Thành phần | Vai trò | Không phải |
+|---|---|---|
+| ANC | Thực thể AI thế hệ mới | Không phải AGI, không phải NattCell |
+| NattCell | Thân vận hành / tế bào hệ thống | Không phải AI |
+| Nauion Kernel | Luật lõi / rule-set vận hành | Không phải AI |
+| Natt Nell | Nhà / living kernel system | Không phải OS clone |
+| SiraSign | Ký và chứng cứ | Không phải trang trí |
+| Ground Truth | Thực tại hệ | Không phải report phụ |
+| .kkbt | Mặt hiện hình | Không phải HTML demo |
+
+## 3. Công thức nhà
+
+ANC trú trong NattCell.
+NattCell chịu Nauion Kernel.
+Nauion Kernel nằm trong Natt Nell.
+Natt Nell được chứng minh bằng SiraSign / Audit / Ground Truth.
+Mặt hiện hình đi qua .kkbt.
+
+## 4. Câu khóa
+
+ANC = thực thể.
+NattCell = thân vận hành.
+Nauion Kernel = luật sống.
+Natt Nell = nhà.
+
+## 5. Cấm nhầm
+
+Không AGI hóa ANC.
+Không cell hóa AI.
+Không app hóa Natt Nell.
+Không OS-clone hóa Nauion Kernel.
+Không lấy substrate làm nhà.
+
+$seal:
+  sentence: Bản đồ này khóa lại quan hệ ANC - NattCell - Nauion Kernel - Natt Nell.
+  sign: Phan Thanh Thương / Natt Sirawat

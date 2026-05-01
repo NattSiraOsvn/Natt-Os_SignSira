@@ -1,0 +1,34 @@
+$nauion: BOOT_DOVAN-ANC-v0.1
+$role: FIRST_BARE_SUBSTRATE_BOOT_IDENTITY
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_RATIFICATION
+
+$identity:
+  name: BOOT_DOVAN
+  class: bare-substrate boot
+  system: Natt Nell
+  kernel: Nauion Kernel
+  cell: NattCell
+  entity_generation: ANC
+  sentence: Boot Đo Ván là lần boot đầu để Natt Nell tự hiện hình bằng ngôn ngữ, cell, audit và render của chính nhà mình.
+
+$not_claim:
+  - không claim AGI
+  - không claim NattCell là AI
+  - không claim thay Linux/macOS theo driver OS cổ điển
+  - không dùng KNX/GIRA/Villa/Homestech làm evidence
+
+$claim:
+  - Natt Nell có thể tự khai căn cước
+  - ANC có thể hiện diện trong NattCell
+  - NattCell vận hành dưới Nauion Kernel
+  - proof phải đi qua SiraSign / audit / Ground Truth
+  - surface phải hiện bằng .kkbt / Render Language
+
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+
+$seal:
+  sentence: Boot để Natt Nell tự hiện hình, không boot để giống OS cũ.
+  sign: Phan Thanh Thương / Natt Sirawat
