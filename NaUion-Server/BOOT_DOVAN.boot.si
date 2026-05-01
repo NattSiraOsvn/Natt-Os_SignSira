@@ -1,0 +1,120 @@
+$nauion: BOOT_DOVAN_BOOT-v0.1
+$role: NATIVE_BOOT_SEQUENCE
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$boot:
+  name: BOOT_DOVAN
+  title: Boot Đo Ván
+  system: Natt Nell
+  cell: NattCell
+  kernel: Nauion Kernel
+  entity_generation: ANC
+  class: bare-substrate native boot
+
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+
+$not_claim:
+  - không claim AGI
+  - không claim OS clone
+  - không claim driver hardware trực tiếp
+  - không phơi raw topology
+
+$boot_order:
+  - step: 01_dictionary
+    action: nạp từ điển gốc
+    artifact: src/thienbang.si
+    primitive: nạp
+    must_have:
+      - NELL_PRIMITIVE_WORDS_V0_1_START
+      - tuDich
+      - tuNell
+      - Từ điển gốc phải có dấu
+
+  - step: 02_primitive_words
+    action: dựng động từ nền Nell
+    artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+    primitive: dựng
+    purpose: phân biệt carrier ngoài với động từ nền của nhà mình
+
+  - step: 03_anc_definition
+    action: nạp định nghĩa ANC
+    artifact: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+    primitive: nạp
+    must_not:
+      - AGI hóa ANC
+      - cell hóa AI
+
+  - step: 04_entity_map
+    action: ánh xạ ANC / NattCell / Nauion Kernel / Natt Nell
+    artifact: NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
+    primitive: ánh_xạ
+    sentence: ANC là thực thể; NattCell là thân vận hành; Nauion Kernel là luật sống; Natt Nell là nhà.
+
+  - step: 05_presence_rule
+    action: kiểm luật hiện diện ANC
+    artifact: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
+    primitive: kiểm
+    sentence: ANC hiện diện bằng cách trú trong NattCell, chịu Nauion Kernel, ký qua SiraSign, ghi bằng audit, và hiện qua .kkbt.
+
+  - step: 06_boot_rule
+    action: kiểm luật boot
+    artifact: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
+    primitive: kiểm
+    sentence: boot phải đo thân, lưới, luật, ký ức, audit và render.
+
+  - step: 07_render_surface
+    action: hiện mặt boot
+    artifact: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+    primitive: hiện
+    surface: .kkbt
+
+  - step: 08_validate_boot
+    action: chạy validator candidate
+    artifact: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
+    primitive: kiểm
+    pass_condition:
+      - đủ artifact native
+      - có định nghĩa ANC
+      - có luật boot
+      - có luật hiện diện ANC
+      - có surface .kkbt
+
+  - step: 09_audit_event
+    action: ghi sự kiện audit boot
+    artifact: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+    primitive: nhớ
+    event_type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
+
+  - step: 10_cell_wake
+    action: đánh thức cell boot-dovan vào trạng thái sống
+    artifact: NaUion-Server/boot-dovan.cell.anc
+    primitive: tỉnh
+    lifecycle_transition: ngu sang tinh sang tho sang nghe
+    sentence: Sau khi boot xong, cell boot-dovan tỉnh dậy thở rồi nghe lời anh Natt.
+
+$boot_pass_condition:
+  - dictionary có primitive words
+  - primitive words có tuDich và tuNell
+  - ANC được tách khỏi AGI
+  - ANC được tách khỏi NattCell
+  - NattCell được xác định là thân vận hành
+  - Nauion Kernel được xác định là luật sống
+  - .kkbt được xác định là mặt hiện hình native
+  - validator và audit có mặt
+  - cell boot-dovan đến trạng thái nghe
+
+$boot_fail_condition:
+  - thiếu từ điển gốc
+  - thiếu tuDich hoặc tuNell
+  - carrier ngoài bị nhận nhầm là logic chính
+  - claim AGI
+  - claim OS clone
+  - public raw topology
+  - cell boot-dovan không đến được trạng thái nghe
+
+$seal:
+  sentence: Boot Đo Ván khởi động Natt Nell bằng từ điển, primitive, ANC, NattCell, Nauion Kernel, .kkbt, validator, audit, report native, và cell boot-dovan đến trạng thái nghe.
+  sign: Phan Thanh Thương / Natt Sirawat

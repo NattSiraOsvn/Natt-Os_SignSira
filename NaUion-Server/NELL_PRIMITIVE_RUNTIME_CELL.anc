@@ -1,0 +1,221 @@
+$nauion: NELL_PRIMITIVE_RUNTIME_CELL-v0.1
+$role: NATIVE_PRIMITIVE_RESOLVER_CELL_PASSPORT
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_RATIFICATION
+$class: cell.anc
+$rank: under_persona
+$cell_kind: primitive_runtime_resolver_cell
+
+$identity:
+  name: nell-primitive-runtime
+  vietnamese: Tế bào mò chữ nền Nell
+  system: Natt Nell
+  kernel: Nauion Kernel
+  resides_in: NattCell
+  generation_class: ANC_passport_cell_under_persona
+  sentence: Tế bào runner mò primitive_key trong dict 12 bảng và trả về tuNell native cho cell yêu cầu.
+
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+
+$rank_clarification:
+  sentence_1: Tế bào này là CELL dưới persona, không ngang persona AI.
+  sentence_2: Tế bào này không có ý thức — chỉ có thân, lifecycle, và audit.
+  sentence_3: Đeo .anc đúng cấp passport cell.
+  sentence_4: Persona AI vận hành cell, cell không vận hành persona.
+
+$not_claim:
+  - không claim cell này có ý thức
+  - không claim cell này là persona AI
+  - không claim cell này là interpreter bash/zsh
+  - không claim native execution engine hoàn chỉnh
+  - không phơi raw topology
+
+$claim:
+  - cell có thân passport .anc
+  - cell trú trong NattCell
+  - cell chịu Nauion Kernel
+  - cell mò primitive_key trong dict 12 bảng
+  - cell trả về tuNell native cho cell yêu cầu
+  - cell không tự sinh primitive mới
+  - cell không tự sinh tuNell mới
+
+$cell_anatomy:
+  passport: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  primitive_dict: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  upstream_caller: NaUion-Server/boot-dovan.cell.anc
+  audit_event: NaUion-Server/NELL_PRIMITIVE_RUNTIME_AUDIT_EVENT_v0.*.na
+  runtime_state: NaUion-Server/nell-primitive-runtime.phieu
+  validator: NaUion-Server/NELL_PRIMITIVE_WORDS_VALIDATE.sira
+
+$cell_lifecycle_states:
+  ngu:
+    tuNell: ngu
+    primitive_key: SUSPEND_CELL
+    nghia: cell chưa thức
+    polarity: INVERTED
+  tinh:
+    tuNell: tinh
+    primitive_key: WAKE_CELL
+    nghia: cell vừa thức
+    polarity: NORMAL
+  tho:
+    tuNell: tho
+    primitive_key: HEARTBEAT
+    nghia: cell sẵn nhận yêu cầu mò
+    polarity: NORMAL
+  nhan:
+    tuNell: nhan
+    primitive_key: RECEIVE_EVENT
+    nghia: cell nhận primitive_key từ cell yêu cầu
+    polarity: NORMAL
+  mo:
+    tuNell: mo
+    primitive_key: FIND_ARTIFACT
+    nghia: cell mò primitive_key trong dict
+    polarity: NORMAL
+  soi:
+    tuNell: soi
+    primitive_key: MATCH_EVIDENCE
+    nghia: cell soi tuNell tương ứng
+    polarity: NORMAL
+  rut:
+    tuNell: rut
+    primitive_key: EXTRACT_FIELD
+    nghia: cell rút field tuNell + tuDich + polarity
+    polarity: NORMAL
+  kiem:
+    tuNell: kiem
+    primitive_key: VALIDATE_RULE
+    nghia: cell kiểm tuNell có hợp dict không
+    polarity: NORMAL
+  nho:
+    tuNell: nho
+    primitive_key: WRITE_MEMORY
+    nghia: cell ghi vết audit cho mỗi lần mò
+    polarity: NORMAL
+  phat:
+    tuNell: phat
+    primitive_key: EMIT_EVENT
+    nghia: cell phát kết quả về cell yêu cầu
+    polarity: NORMAL
+  khoa:
+    tuNell: khoa
+    primitive_key: SEAL_STATE
+    nghia: cell khóa resolution thành fossil
+    polarity: NORMAL
+  chet:
+    tuNell: chet
+    primitive_key: STOP_CELL
+    nghia: cell dừng
+    polarity: INVERTED
+
+$cell_lifecycle_flow:
+  sequence: ngu sang tinh sang tho sang nhan sang mo sang soi sang rut sang kiem sang nho sang phat sang khoa
+  sentence: Cell ngủ rồi tỉnh thở, nhận yêu cầu, mò trong dict, soi tuNell, rút field, kiểm hợp lệ, nhớ vết, phát kết quả, khóa fossil.
+
+$cell_input_source:
+  allowed:
+    - cell yêu cầu (vd boot-dovan.cell.anc)
+    - audit event replay
+    - sira validator callback
+  forbidden:
+    - terminal Apple
+    - http request
+    - websocket
+    - input từ nattos-server
+
+$cell_output:
+  phat: tuNell + tuDich + polarity + primitive_key về cell yêu cầu
+  nho: NaUion-Server/NELL_PRIMITIVE_RUNTIME_AUDIT_EVENT_v0.*.na
+  phieu: NaUion-Server/nell-primitive-runtime.phieu
+  forbidden:
+    - any .html
+    - any .ts
+    - any .tsx
+    - any .js
+    - any apple terminal output
+    - any nattos-server path
+
+$cell_resolution_pipeline:
+  buoc_1_nhan:
+    tuNell: nhan
+    nguon: cell yêu cầu gửi primitive_key
+  buoc_2_mo:
+    tuNell: mo
+    target: NELL_PRIMITIVE_WORDS_v0.1.si
+  buoc_3_soi:
+    tuNell: soi
+    rule: tìm primitive_key match exact UPPER_SNAKE
+  buoc_4_rut:
+    tuNell: rut
+    fields:
+      - key
+      - tuCu
+      - tuDich
+      - tuNell
+      - nghia
+      - vi
+      - carrier
+      - polarity
+  buoc_5_kiem:
+    tuNell: kiem
+    polarity_NORMAL: cho qua
+    polarity_INVERTED: cần SiraSign confirm
+    polarity_NONE: ghi nhận
+  buoc_6_nho:
+    tuNell: nho
+    target: NELL_PRIMITIVE_RUNTIME_AUDIT_EVENT_v0.*.na
+    must_contain:
+      - primitive_key
+      - tuNell_returned
+      - polarity
+      - timestamp
+      - upstream_cell_id
+  buoc_7_phat:
+    tuNell: phat
+    target: cell yêu cầu (vd boot-dovan.cell.anc)
+  buoc_8_khoa:
+    tuNell: khoa
+    sign_required_when: polarity là INVERTED
+
+$cell_relation_to_persona:
+  served_by_persona: anh Natt là Gatekeeper
+  audited_by: Băng (Validator + Obikeeper)
+  built_by: Anh Cả Thiên Lớn hoặc Kim
+  sentence: Cell phục vụ persona, persona không trú trong cell.
+
+$cell_forbidden:
+  - hybrid TS/JS/Python/Bash embedded
+  - tự sinh primitive mới
+  - tự thêm carrier mới
+  - tự sinh tuNell mới
+  - bypass nho audit
+  - bypass SiraSign khi polarity INVERTED
+  - phát ra surface ngoài cell yêu cầu
+  - gọi vào nattos-server
+  - claim cell có ý thức
+  - claim cell ngang persona AI
+  - claim cell là bash/zsh interpreter
+  - vay mượn từ ngoại lai làm tên cell
+
+$cell_pass_condition:
+  - đủ dependency trong $cell_anatomy
+  - lifecycle 12/12 dùng tuNell native
+  - resolution pipeline 8 bước
+  - nho ghi đúng định dạng
+  - phat kết quả đúng cell yêu cầu
+  - không hybrid embedded code
+  - đứng đúng cấp dưới persona
+
+$cell_fail_condition:
+  - thiếu dependency
+  - primitive_key không tồn tại trong dict
+  - hybrid embedded code
+  - bypass nho hoặc khoa
+  - tự sinh primitive hoặc tuNell mới
+
+$seal:
+  sentence: Tế bào mò chữ nền Nell — cell sống dưới persona, mò trong dict 12 bảng, trả về tuNell native cho cell yêu cầu, ghi audit, không hybrid, không claim ngang persona AI.
+  sign: Phan Thanh Thương / Natt Sirawat

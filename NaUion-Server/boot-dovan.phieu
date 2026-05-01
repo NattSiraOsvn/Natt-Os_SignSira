@@ -1,0 +1,70 @@
+$nauion: BOOT_DOVAN_PHIEU-v0.1
+$role: RUNTIME_STATE_PHIEU
+$owner: NaUion-Server
+$status: LIVE_RUNTIME
+
+$boundary:
+  NaUion-Server: NHA_MINH
+  nattos-server: CLIENT_TAM_LUXURY_LOCAL_DEPLOY
+
+$cell_passport: NaUion-Server/boot-dovan.cell.anc
+$cell_render: NaUion-Server/boot-dovan.cell.kkbt
+
+$current_state:
+  tuNell: tho
+  tuDich: thở
+  primitive_key: HEARTBEAT
+  polarity: NORMAL
+  sentence: Cell sẵn nhận lời, đang phát nhịp sống chờ anh Natt gõ primitive_key.
+
+$lifecycle_history:
+  - state: ngu
+    tuNell: ngu
+    timestamp: boot_pre
+    sentence: Cell chưa sống.
+  - state: tinh
+    tuNell: tinh
+    timestamp: boot_step_10
+    sentence: Cell vừa thức từ boot sequence.
+  - state: tho
+    tuNell: tho
+    timestamp: boot_post
+    sentence: Cell sẵn nhận lời.
+
+$last_resolution:
+  primitive_key: none_yet
+  tuNell_returned: none_yet
+  sentence: Chưa có primitive_key nào được anh Natt gõ vào.
+
+$audit_pointer:
+  log: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+  count_events: 1
+
+$resolver_pointer:
+  cell: NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc
+  state: ready_to_receive
+
+$dict_pointer:
+  source: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  count_groups: 12
+  count_primitives_total: 88
+
+$render_pointer:
+  surface: NaUion-Server/boot-dovan.cell.kkbt
+  state: ready_to_vang
+
+$next_action_expected:
+  trigger: anh Natt gõ primitive_key vào mặt hiện hình
+  cell_will_transition: tho sang nghe sang mo sang kiem sang nho sang vang sang khoa
+  sentence: Khi nhận lời, cell sẽ qua 7 bước resolution rồi vang ra surface.
+
+$discipline:
+  - không tự phát kết quả khi chưa nhận lời
+  - không tự sinh primitive
+  - không tự sinh tuNell
+  - không bypass audit
+  - không claim ý thức
+
+$seal:
+  sentence: Phiếu trạng thái runtime cell boot-dovan, hiện thở chờ lời anh Natt.
+  sign: Phan Thanh Thương / Natt Sirawat
