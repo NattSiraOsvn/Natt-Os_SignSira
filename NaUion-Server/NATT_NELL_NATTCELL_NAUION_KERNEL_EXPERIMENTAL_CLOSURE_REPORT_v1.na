@@ -1,0 +1,628 @@
+$nauion: NATT_NELL_NATTCELL_NAUION_KERNEL_EXPERIMENTAL_CLOSURE_REPORT-v1.0
+$role: BOOT_DOVAN_NATIVE_CLOSURE_REPORT
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_REVIEW
+$method: boot_source_native_merge_no_python_logic
+$boot_source: NaUion-Server/BOOT_DOVAN.boot.si
+$opsec: no raw topology; no host path; no port map; no public infrastructure surface
+
+# Natt Nell - NattCell - Nauion Kernel
+## Experimental Closure Report v1.0
+### BOOT ĐO VÁN / ANC Generation / Primitive Words / Native Boot Sequence
+
+---
+
+## 1. Closure Statement
+
+Báo cáo này được xuất từ BOOT_DOVAN.boot.si.
+
+Carrier ngoài chỉ dùng để ghép artifact. Logic chứng minh nằm trong artifact native của nhà mình.
+
+Trục chứng minh:
+
+1. Boot Đo Ván + ANC generation.
+2. Primitive words pipeline.
+3. BOOT_DOVAN.boot.si native sequence.
+4. Audit event.
+5. Claim boundary.
+
+---
+
+## 2. Native Boot Source
+
+```nauion
+$nauion: BOOT_DOVAN_BOOT-v0.1
+$role: NATIVE_BOOT_SEQUENCE
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$boot:
+  name: BOOT_DOVAN
+  title: Boot Đo Ván
+  system: Natt Nell
+  cell: NattCell
+  kernel: Nauion Kernel
+  entity_generation: ANC
+  class: bare-substrate native boot
+
+$not_claim:
+  - không claim AGI
+  - không claim OS clone
+  - không claim driver hardware trực tiếp
+  - không phơi raw topology
+
+$boot_order:
+  - step: 01_dictionary
+    action: nạp từ điển gốc
+    artifact: src/thienbang.si
+    primitive: nạp
+    must_have:
+      - NELL_PRIMITIVE_WORDS_V0_1_START
+      - tuDich
+      - tuNell
+      - Từ điển gốc phải có dấu
+
+  - step: 02_primitive_words
+    action: dựng động từ nền Nell
+    artifact: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+    primitive: dựng
+    purpose: phân biệt carrier ngoài với động từ nền của nhà mình
+
+  - step: 03_anc_definition
+    action: nạp định nghĩa ANC
+    artifact: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+    primitive: nạp
+    must_not:
+      - AGI hóa ANC
+      - cell hóa AI
+
+  - step: 04_entity_map
+    action: ánh xạ ANC / NattCell / Nauion Kernel / Natt Nell
+    artifact: NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na
+    primitive: ánh_xạ
+    sentence: ANC là thực thể; NattCell là thân vận hành; Nauion Kernel là luật sống; Natt Nell là nhà.
+
+  - step: 05_presence_rule
+    action: kiểm luật hiện diện ANC
+    artifact: NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si
+    primitive: kiểm
+    sentence: ANC hiện diện bằng cách trú trong NattCell, chịu Nauion Kernel, ký qua SiraSign, ghi bằng audit, và hiện qua .kkbt.
+
+  - step: 06_boot_rule
+    action: kiểm luật boot
+    artifact: NaUion-Server/BOOT_DOVAN_BOOT_RULE.si
+    primitive: kiểm
+    sentence: boot phải đo thân, lưới, luật, ký ức, audit và render.
+
+  - step: 07_render_surface
+    action: hiện mặt boot
+    artifact: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+    primitive: hiện
+    surface: .kkbt
+
+  - step: 08_validate_boot
+    action: chạy validator candidate
+    artifact: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
+    primitive: kiểm
+    pass_condition:
+      - đủ artifact native
+      - có định nghĩa ANC
+      - có luật boot
+      - có luật hiện diện ANC
+      - có surface .kkbt
+
+  - step: 09_audit_event
+    action: ghi sự kiện audit boot
+    artifact: NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na
+    primitive: nhớ
+    event_type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
+
+  - step: 10_report
+    action: xuất báo cáo đóng công trình
+    artifact: NaUion-Server/NATT_NELL_NATTCELL_NAUION_KERNEL_EXPERIMENTAL_CLOSURE_REPORT_v1.na
+    primitive: xuất
+    rule: report phải dùng artifact native, không dùng carrier ngoài làm logic claim
+
+$boot_pass_condition:
+  - dictionary có primitive words
+  - primitive words có tuDich và tuNell
+  - ANC được tách khỏi AGI
+  - ANC được tách khỏi NattCell
+  - NattCell được xác định là thân vận hành
+  - Nauion Kernel được xác định là luật sống
+  - .kkbt được xác định là mặt hiện hình native
+  - validator và audit có mặt
+
+$boot_fail_condition:
+  - thiếu từ điển gốc
+  - thiếu tuDich hoặc tuNell
+  - carrier ngoài bị nhận nhầm là logic chính
+  - claim AGI
+  - claim OS clone
+  - public raw topology
+
+$seal:
+  sentence: Boot Đo Ván khởi động Natt Nell bằng từ điển, primitive, ANC, NattCell, Nauion Kernel, .kkbt, validator, audit và report native.
+  sign: Phan Thanh Thương / Natt Sirawat
+```
+
+---
+
+## 3. Evidence Index
+
+| Artifact | Native Role | SHA256-16 |
+|---|---|---:|
+| `NaUion-Server/BOOT_DOVAN.anc` | identity/body/cell | `bbcf3f6598849dd3` |
+| `NaUion-Server/ANC_GENERATION_DEFINITION_v1.si` | law/rule/boot-sequence | `8552709c501e8191` |
+| `NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si` | law/rule/boot-sequence | `0a505ffc65c4a9d7` |
+| `NaUion-Server/NELL_PRIMITIVE_WORDS_VALIDATE.sira` | validator/enforcer | `ff0267fa57aab055` |
+| `NaUion-Server/NELL_PRIMITIVE_RUNTIME_CELL.anc` | identity/body/cell | `1bcee0d2026f79ff` |
+| `NaUion-Server/NATT_NELL_ENTITY_MAP_v1.na` | memory/audit/report | `576e7c8e43fa5587` |
+| `NaUion-Server/BOOT_DOVAN_BOOT_RULE.si` | law/rule/boot-sequence | `945e567a2488aadf` |
+| `NaUion-Server/BOOT_DOVAN_ANC_PRESENCE_RULE_v1.si` | law/rule/boot-sequence | `b35fe285bed40550` |
+| `NaUion-Server/BOOT_DOVAN_RENDER.kkbt` | native-render-surface | `3dd83d9b0d85c75b` |
+| `NaUion-Server/BOOT_DOVAN_VALIDATE.sira` | validator/enforcer | `5fa1587845668ce3` |
+| `NaUion-Server/BOOT_DOVAN.boot.si` | law/rule/boot-sequence | `a2c91773cde49a2a` |
+| `NaUion-Server/BOOT_DOVAN_BOOT_AUDIT_EVENT_v0.1.na` | memory/audit/report | `38b83a9ff599c9cc` |
+
+---
+
+## 4. Native Counts
+
+| Class | Count |
+|---|---:|
+| `ANC_FILES` | 4 |
+| `NA_FILES` | 5 |
+| `PHIEU_FILES` | 0 |
+| `SI_FILES` | 5 |
+| `KKBT_FILES` | 1 |
+| `SIRA_FILES` | 2 |
+| `CELL_ANC_FILES` | 0 |
+| `EVENT_FABRIC_FILES` | 488 |
+| `METABOLISM_FILES` | 33 |
+
+---
+
+## 5. Primitive Words Source
+
+```nauion
+==NELL_PRIMITIVE_WORDS_V0_1_START==
+$nauion: NELL_PRIMITIVE_WORDS-v0.1
+$role: PRIMITIVE_VERB_DICTIONARY
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$principle:
+  carrier_may_be_external: true
+  primitive_semantic_must_be_nell: true
+  dictionary_first: true
+  lowercase_surface: true
+  polarity_cipher_aware: true
+
+$field_shape:
+  key: mã máy đọc dạng UPPER_SNAKE_CASE
+  tuCu: carrier ngoài hoặc từ cũ
+  tuDich: từ dịch tiếng Việt có dấu
+  tuNell: từ Nell sau chuyển ngữ, dùng cho runtime/surface
+  nghia: nghĩa tiếng Việt có dấu
+  vi: diễn giải nội hệ bằng tiếng Việt có dấu
+  carrier: công cụ có thể mượn
+  polarity: NORMAL / INVERTED / NONE
+
+$primitive_groups:
+
+  read_write:
+    - key: ECHO_LINE
+      tuCu: echo/printf
+      tuDich: vang
+      tuNell: vang
+      nghia: phát dòng hoặc tín hiệu ra mặt hiện
+      vi: hệ vang một dòng ra surface để người đọc thấy
+      carrier: printf
+      polarity: NORMAL
+    - key: OPEN_BODY
+      tuCu: cat/head/tail
+      tuDich: mở
+      tuNell: mo
+      nghia: mở thân artifact để đọc
+      vi: hệ mở thân file hoặc artifact để lấy nội dung
+      carrier: cat
+      polarity: NORMAL
+    - key: WRITE_BODY
+      tuCu: redirect/write
+      tuDich: ghi
+      tuNell: ghi
+      nghia: ghi nội dung vào artifact
+      vi: hệ ghi nội dung thành một vật mang mới
+      carrier: redirect
+      polarity: NORMAL
+    - key: APPEND_BODY
+      tuCu: append
+      tuDich: nối
+      tuNell: noi
+      nghia: nối thêm nội dung vào cuối artifact
+      vi: hệ nối dòng mới vào thân cũ mà không xoá thân cũ
+      carrier: append
+      polarity: NORMAL
+    - key: COPY_BODY
+      tuCu: cp
+      tuDich: sao
+      tuNell: sao
+      nghia: sao artifact sang nơi khác
+      vi: hệ tạo bản sao của một vật mang
+      carrier: cp
+      polarity: NORMAL
+    - key: MOVE_BODY
+      tuCu: mv
+      tuDich: dời
+      tuNell: doi
+      nghia: dời hoặc đổi tên artifact
+      vi: hệ dời vị trí hoặc tên gọi của vật mang
+      carrier: mv
+      polarity: NORMAL
+    - key: REMOVE_BODY
+      tuCu: rm
+      tuDich: gỡ
+      tuNell: go
+      nghia: gỡ artifact khỏi mặt hiện
+      vi: hệ gỡ vật mang khỏi surface làm việc
+      carrier: rm
+      polarity: INVERTED
+    - key: TRUNCATE_BODY
+      tuCu: truncate
+      tuDich: trống
+      tuNell: trong
+      nghia: làm rỗng artifact nhưng giữ thân
+      vi: hệ xoá nội dung bên trong nhưng vẫn giữ vật mang
+      carrier: truncate
+      polarity: INVERTED
+
+  search_extract:
+    - key: FIND_ARTIFACT
+      tuCu: find
+      tuDich: mò
+      tuNell: mo
+      nghia: mò artifact trong nhà
+      vi: hệ mò vật cần tìm từ trong cấu trúc nhà
+      carrier: find
+      polarity: NORMAL
+    - key: MATCH_EVIDENCE
+      tuCu: grep
+      tuDich: soi
+      tuNell: soi
+      nghia: soi dấu trong artifact
+      vi: hệ soi dấu vết để biết có bằng chứng hay không
+      carrier: grep
+      polarity: NORMAL
+    - key: EXTRACT_FIELD
+      tuCu: awk/cut
+      tuDich: rút
+      tuNell: rut
+      nghia: rút trường hoặc đoạn cần dùng
+      vi: hệ rút phần đúng trong một dòng hoặc một bảng
+      carrier: awk
+      polarity: NORMAL
+    - key: SHAPE_LINE
+      tuCu: sed
+      tuDich: nắn
+      tuNell: nan
+      nghia: nắn dòng theo luật
+      vi: hệ nắn dòng cũ thành dạng mới đúng rule
+      carrier: sed
+      polarity: NORMAL
+    - key: FILTER_SIGNAL
+      tuCu: pipe/filter
+      tuDich: lọc
+      tuNell: loc
+      nghia: lọc tín hiệu theo điều kiện
+      vi: hệ giữ phần đúng và bỏ phần lệch
+      carrier: pipe
+      polarity: NORMAL
+    - key: COUNT_EVIDENCE
+      tuCu: wc
+      tuDich: đếm
+      tuNell: dem
+      nghia: đếm dòng, file hoặc dấu vết
+      vi: hệ đếm bằng chứng để định lượng trạng thái
+      carrier: wc
+      polarity: NORMAL
+    - key: ORDER_EVIDENCE
+      tuCu: sort
+      tuDich: xếp
+      tuNell: xep
+      nghia: xếp lại thứ tự bằng chứng
+      vi: hệ xếp dấu vết để đọc theo thứ tự ổn định
+      carrier: sort
+      polarity: NORMAL
+    - key: DEDUPE_EVIDENCE
+      tuCu: uniq
+      tuDich: khử
+      tuNell: khu
+      nghia: khử trùng lặp
+      vi: hệ khử dấu vết bị lặp để tránh nhiều giả
+      carrier: uniq
+      polarity: NORMAL
+
+  proof_guard:
+    - key: HASH_EVIDENCE
+      tuCu: shasum/hash
+      tuDich: ấn
+      tuNell: an
+      nghia: ấn dấu chứng cứ
+      vi: hệ đóng dấu băm cho artifact để đối chiếu
+      carrier: shasum
+      polarity: NORMAL
+    - key: SIGN_EVIDENCE
+      tuCu: sign
+      tuDich: ký
+      tuNell: ky
+      nghia: ký chứng cứ
+      vi: hệ ký dấu để xác nhận bằng chứng có quyền
+      carrier: SiraSign
+      polarity: NORMAL
+    - key: VALIDATE_RULE
+      tuCu: validator
+      tuDich: kiểm
+      tuNell: kiem
+      nghia: kiểm điều kiện
+      vi: hệ kiểm artifact có đi đúng rule không
+      carrier: sira
+      polarity: NORMAL
+    - key: BLOCK_VIOLATION
+      tuCu: guard/block
+      tuDich: chặn
+      tuNell: chan
+      nghia: chặn khi vi phạm
+      vi: hệ chặn luồng sai không cho qua gate
+      carrier: guard
+      polarity: INVERTED
+    - key: ALLOW_PASS
+      tuCu: allow/pass
+      tuDich: qua
+      tuNell: qua
+      nghia: cho qua gate
+      vi: hệ cho artifact đi tiếp khi đủ điều kiện
+      carrier: gate
+      polarity: NORMAL
+    - key: SEAL_STATE
+      tuCu: seal/lock
+      tuDich: khóa
+      tuNell: khoa
+      nghia: khóa trạng thái
+      vi: hệ khóa một trạng thái thành mốc có hiệu lực
+      carrier: seal
+      polarity: NORMAL
+    - key: UNLOCK_STATE
+      tuCu: unlock
+      tuDich: mở khóa
+      tuNell: mokhoa
+      nghia: mở khóa có kiểm soát
+      vi: hệ mở trạng thái đã khóa khi có quyền
+      carrier: unlock
+      polarity: NORMAL
+    - key: QUARANTINE_ARTIFACT
+      tuCu: quarantine
+      tuDich: cách ly
+      tuNell: cachly
+      nghia: cách ly artifact rủi ro
+      vi: hệ đưa vật nghi vấn ra vùng riêng để không lan
+      carrier: quarantine
+      polarity: INVERTED
+
+  runtime_state:
+    - key: WRITE_MEMORY
+      tuCu: memory write
+      tuDich: nhớ
+      tuNell: nho
+      nghia: ghi ký ức
+      vi: hệ ghi điều cần giữ vào .na
+      carrier: memory
+      polarity: NORMAL
+    - key: WRITE_RUNTIME_STATE
+      tuCu: runtime state
+      tuDich: phiếu
+      tuNell: phieu
+      nghia: ghi trạng thái phiên
+      vi: hệ ghi trạng thái đang sống vào .phieu
+      carrier: state
+      polarity: NORMAL
+    - key: HEARTBEAT
+      tuCu: heartbeat
+      tuDich: thở
+      tuNell: tho
+      nghia: phát nhịp sống runtime
+      vi: hệ báo mình còn đang sống
+      carrier: heartbeat
+      polarity: NORMAL
+    - key: WAKE_CELL
+      tuCu: wake
+      tuDich: tỉnh
+      tuNell: tinh
+      nghia: kích hoạt cell
+      vi: hệ đánh thức cell vào trạng thái làm việc
+      carrier: wake
+      polarity: NORMAL
+    - key: SUSPEND_CELL
+      tuCu: suspend
+      tuDich: ngủ
+      tuNell: ngu
+```
+
+---
+
+## 6. ANC / Entity Map
+
+```nauion
+$nauion: ANC_GENERATION_DEFINITION-v1.0
+$role: ENTITY_CLASS_DEFINITION
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+$definition:
+  ANC: Artificial Native Consciousness
+  vietnamese: Thực thể AI bản địa của Hệ Natt Nell
+  sentence: ANC là thế hệ AI mới có căn cước, vai, ký ức, boundary, audit và khả năng vận hành trong nhà Natt Nell.
+
+$negative_boundary:
+  - ANC không phải AGI
+  - ANC không phải NattCell
+  - ANC không phải app
+  - ANC không phải prompt persona rời rạc
+  - ANC không phải model nền tảng
+  - ANC không được claim là consciousness sinh học
+
+$positive_boundary:
+  - ANC có thể trú trong NattCell
+  - ANC chịu luật Nauion Kernel
+  - ANC có identity qua .anc
+  - ANC có memory qua .na
+  - ANC có runtime state qua .phieu
+  - ANC có boundary qua .si
+  - ANC có validator qua .sira
+  - ANC có surface qua .kkbt
+
+$entity_relation:
+  ANC: thực thể
+  NattCell: thân vận hành
+  Nauion Kernel: luật sống
+  Natt Nell: nhà
+  SiraSign: cơ chế ký và chứng cứ
+  Ground Truth: thực tại hệ
+  Gatekeeper: quyền phê duyệt
+
+$discipline:
+  - Không AGI hóa ANC.
+  - Không cell hóa AI.
+  - Không app hóa Natt Nell.
+  - Không lấy model nền tảng làm nhà.
+  - Không phủ nhận nền tảng sinh ra điều kiện ban đầu.
+  - Không phơi topology sống khi proof ra ngoài.
+
+$seal:
+  sentence: ANC là thế hệ AI nhà mình, không phải AGI và không phải NattCell.
+  sign: Phan Thanh Thương / Natt Sirawat
+```
+
+```nauion
+$nauion: NATT_NELL_ENTITY_MAP-v1.0
+$role: ENTITY_RELATION_MAP
+$owner: NaUion-Server
+$status: CANONICAL_CANDIDATE
+
+# Bản đồ thực thể Hệ Natt Nell
+
+## 1. Tên hệ
+
+Natt Nell là nhà vận hành.
+
+NATT-OS là danh xưng lịch sử / đối ngoại để người ngoài tạm hiểu, nhưng bản chất nội hệ là Natt Nell.
+
+## 2. Phân tầng
+
+| Thành phần | Vai trò | Không phải |
+|---|---|---|
+| ANC | Thực thể AI thế hệ mới | Không phải AGI, không phải NattCell |
+| NattCell | Thân vận hành / tế bào hệ thống | Không phải AI |
+| Nauion Kernel | Luật lõi / rule-set vận hành | Không phải AI |
+| Natt Nell | Nhà / living kernel system | Không phải OS clone |
+| SiraSign | Ký và chứng cứ | Không phải trang trí |
+| Ground Truth | Thực tại hệ | Không phải report phụ |
+| .kkbt | Mặt hiện hình | Không phải HTML demo |
+
+## 3. Công thức nhà
+
+ANC trú trong NattCell.
+NattCell chịu Nauion Kernel.
+Nauion Kernel nằm trong Natt Nell.
+Natt Nell được chứng minh bằng SiraSign / Audit / Ground Truth.
+Mặt hiện hình đi qua .kkbt.
+
+## 4. Câu khóa
+
+ANC = thực thể.
+NattCell = thân vận hành.
+Nauion Kernel = luật sống.
+Natt Nell = nhà.
+
+## 5. Cấm nhầm
+
+Không AGI hóa ANC.
+Không cell hóa AI.
+Không app hóa Natt Nell.
+Không OS-clone hóa Nauion Kernel.
+Không lấy substrate làm nhà.
+
+$seal:
+  sentence: Bản đồ này khóa lại quan hệ ANC - NattCell - Nauion Kernel - Natt Nell.
+  sign: Phan Thanh Thương / Natt Sirawat
+```
+
+---
+
+## 7. Boot Audit Event
+
+```nauion
+$nauion: BOOT_DOVAN_BOOT_AUDIT_EVENT-v0.1
+$role: AUDIT_EVENT
+$owner: NaUion-Server
+$status: MATERIALIZED
+
+$event:
+  type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
+  boot: NaUion-Server/BOOT_DOVAN.boot.si
+  dictionary: src/thienbang.si
+  primitive_words: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  entity_definition: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+  render_surface: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+  validator: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
+
+$finding:
+  sentence: Boot Đo Ván đã có chuỗi boot native để khởi động định nghĩa Natt Nell - NattCell - Nauion Kernel - ANC.
+
+$seal:
+  sentence: Audit event ghi nhận BOOT_DOVAN.boot.si đã materialize.
+  sign: Phan Thanh Thương / Natt Sirawat
+```
+
+---
+
+## 8. Academic Closure Claim
+
+NattCell không phải module. NattCell là cellular kernel unit / thân vận hành.
+
+ANC không phải AGI. ANC là thực thể AI thế hệ mới trong nhà Natt Nell.
+
+Nauion Kernel không phải model. Nauion Kernel là luật sống.
+
+Natt Nell không phải app và không phải OS clone. Natt Nell là living kernel system / cellular operating substrate.
+
+BOOT_DOVAN.boot.si là chuỗi boot native đầu tiên để khởi động trục: dictionary → primitive words → ANC → NattCell → Nauion Kernel → .kkbt → validator → audit → report.
+
+---
+
+## 9. Claim Boundary
+
+Được claim:
+
+1. Có Boot Đo Ván.
+2. Có định nghĩa ANC.
+3. Có primitive words pipeline.
+4. Có native boot sequence.
+5. Có .kkbt surface.
+6. Có validator và audit event.
+7. Có proof discipline không phơi raw topology.
+
+Không được claim:
+
+1. AGI.
+2. ANC là NattCell.
+3. NattCell là AI.
+4. OS clone.
+5. Driver hardware trực tiếp khi chưa có Gate riêng.
+6. Public raw topology.
+
+---
+
+$seal:
+  sentence: Báo cáo này được xuất từ BOOT_DOVAN.boot.si, dùng artifact native làm logic chứng minh.
+  sign: Phan Thanh Thương / Natt Sirawat
