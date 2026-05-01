@@ -1,0 +1,20 @@
+$nauion: BOOT_DOVAN_BOOT_AUDIT_EVENT-v0.1
+$role: AUDIT_EVENT
+$owner: NaUion-Server
+$status: MATERIALIZED
+
+$event:
+  type: BOOT_DOVAN.BOOT_SEQUENCE_MATERIALIZED
+  boot: NaUion-Server/BOOT_DOVAN.boot.si
+  dictionary: src/thienbang.si
+  primitive_words: NaUion-Server/NELL_PRIMITIVE_WORDS_v0.1.si
+  entity_definition: NaUion-Server/ANC_GENERATION_DEFINITION_v1.si
+  render_surface: NaUion-Server/BOOT_DOVAN_RENDER.kkbt
+  validator: NaUion-Server/BOOT_DOVAN_VALIDATE.sira
+
+$finding:
+  sentence: Boot Đo Ván đã có chuỗi boot native để khởi động định nghĩa Natt Nell - NattCell - Nauion Kernel - ANC.
+
+$seal:
+  sentence: Audit event ghi nhận BOOT_DOVAN.boot.si đã materialize.
+  sign: Phan Thanh Thương / Natt Sirawat
