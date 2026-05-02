@@ -13,6 +13,7 @@ mod repo_root;
 mod result_writer;
 mod run_cell;
 mod legacy_json;
+mod sirasign;
 
 use std::process::ExitCode;
 use std::sync::Arc;
@@ -91,7 +92,7 @@ async fn main() -> ExitCode {
         Ok(s) => s,
         Err(e) => {
             error!(error = %e, "PHASE 1 failed");
-            return ExitCode::failURE;
+            return ExitCode::FAILURE;
         }
     };
     info!(
@@ -129,7 +130,7 @@ async fn main() -> ExitCode {
         }
         Err(e) => {
             error!(error = %e, "PHASE 4 boot failed");
-            ExitCode::failURE
+            ExitCode::FAILURE
         }
     }
 }

@@ -37,7 +37,7 @@ impl SelfTestResult {
         if self.passed >= 3 {
             ExitCode::SUCCESS
         } else {
-            ExitCode::failURE
+            ExitCode::FAILURE
         }
     }
 }
@@ -175,7 +175,7 @@ mod tests {
             all_pass: false,
             partial: false,
         };
-        assert!(matches!(result.exit_code(), ExitCode::failURE));
+        assert!(matches!(result.exit_code(), ExitCode::FAILURE));
     }
 
     #[test]

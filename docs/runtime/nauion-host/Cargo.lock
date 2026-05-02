@@ -215,6 +215,7 @@ name = "nauion-host"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "lazy_static",
  "regex",
  "serde",
  "serde_json",
