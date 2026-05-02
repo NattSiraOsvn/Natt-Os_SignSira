@@ -1,1 +1,0 @@
-export const COMPLIANCE_IDENTITY = { cellId: "compliance-cell", cellName: "Compliance — phap ly & chung nhan", version: "1.0.0", wave: 3, status: "ACTIVE", owner: "natt-os", registeredAt: "2026-03-15" } as const;

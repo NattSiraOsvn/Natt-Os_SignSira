@@ -1,1 +1,0 @@
-export const CUSTOMER_IDENTITY = { cellId: "customer-cell", cellName: "Customer — quan ly khach hang", version: "1.0.0", wave: 3, status: "ACTIVE", owner: "natt-os", registeredAt: "2026-03-15" } as const;
