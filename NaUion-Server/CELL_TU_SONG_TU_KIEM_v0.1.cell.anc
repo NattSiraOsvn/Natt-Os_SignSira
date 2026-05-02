@@ -1,0 +1,133 @@
+$nauion: CELL_TU_SONG_TU_KIEM-v0.1
+$role: NATIVE_SELF_LIVING_SELF_VALIDATING_CELL
+$owner: NaUion-Server
+$status: DRAFT_FOR_GATEKEEPER_RATIFY
+$class: cell.anc
+$rank: meta_pattern
+$spec_compliance: SPEC_NEN_v1.1
+$drafter: Bang N-shell Validator + Obikeeper QNEU 313.5
+$session: ss20260502
+$origin: anh Natt instruction "thang 6 co san, thang 5 i chang, 1 lenh ra logic lai, mesh fish 1 keo 10"
+
+$boundary:
+  NaUion-Server: NHA_MINH
+
+$nguyen_ly_nen_meta:
+  no_central_runtime: KHONG can compiler/runtime trung tam
+  no_external_validator: KHONG can tho[C5:RN_KEEP_RIME] kiem[C3:RN_KEEP_RIME] vay tu[C2:RN_KEEP_RIME] ngoai[C2:RN_KEEP_RIME]
+  cell_tu_song: moi cell tu thuc thi qua KhaiCell touch + 91 dong tu Nell
+  cell_tu_kiem: moi cell tu kiem qua siraSign 8 component + 4 LUAT + Observation
+  cell_tu_keo: moi cell tu keo cell khac qua HeyNa resonance
+  mesh_fish: 1 cell song dung -> keo 10 cell -> 100 -> 1000 (cap so nhan tu nhien)
+  cau_chot: Cell la nut luoi, khong la slave cua master.
+
+$8_co_che_kiem_tien_da_co:
+  1_sirasign_8_component:
+    role: niem dau packet truoc khi qua bien
+    components: [state, spectral_state, field_condition, relation, meaning, causation, authority, audit_lineage]
+    verdict: [ALLOW, DENY, QUARANTINE, ASK_GATE, DEGRADE, AUDIT_ONLY, SUPERSEDE]
+  2_four_immutable_laws:
+    role: validate runtime state - kiem tuan SPEC
+    LAW_1: Cell KHONG quyet dinh thay field
+    LAW_2: KHONG ep route bang if/else - chi resonance
+    LAW_3: Outcome chi tu resonance + impedance + field pull
+    LAW_4: KHONG hardcode dung/sai - chi check resonance
+  3_khai_cell_touch_sign:
+    role: kiem signal co dau hop le
+    flow: signal arrive -> KhaiCell touch + sign -> emit voi signature
+    binding: src/cells/kernel/khai-cell/
+  4_observation_snapshot:
+    role: ghi nhan that, khong mo phong
+    fields: [taken_at, coherence, entropy, pattern, anomaly, snapshot_id]
+    binding: src/cells/kernel/observation-cell/
+  5_quantum_defense_react:
+    role: phan ung khi chromatic chuyen do_critical
+    trigger: chromatic L0 -> red -> immune react
+    binding: src/cells/kernel/quantum-defense-cell/
+  6_resonance_routing_3_outcome:
+    role: phan quyet ket qua signal
+    FALL: signal match anc -> propagate
+    DISSIPATE: signal khong match -> log + drop
+    OSCILLATE: signal ambiguous -> loop -> mat mass -> DISSIPATE
+  7_touch_record_audit_chain:
+    role: trail truy nguoc moi action
+    write: nho (memory) primitive
+  8_hardware_dialect_translator_validate:
+    role: sign -> readback -> check parity/mirror
+    rule_per_validate_hardware_translator_v0_1: 6 check (color/mirror/parity/protected/decode_key roundtrip)
+
+$cell_lifecycle_full_chu_trinh:
+  step_1_NHAN: cell nhan tuNell tu KhaiCell touch (signal vao co signature)
+  step_2_KIEM_LAW: kiem 4 LUAT BAT BIEN (LAW_1 LAW_2 LAW_3 LAW_4) - bo qua neu vi pham
+  step_3_KIEM_SIRASIGN: kiem 8 component compound seal - verdict ALLOW thi tiep
+  step_4_NEO_OBSERVATION: Observation snapshot truoc khi thuc thi
+  step_5_THUC_THI: chay 1 trong 91 dong tu Nell tu dict (vang/mo/soi/rut/...)
+  step_6_NEO_OBSERVATION_SAU: Observation snapshot sau khi thuc thi
+  step_7_PHAT_CHROMATIC: phat mau lifecycle vao L0 pheromone
+  step_8_PHAN_QUYET_RESONANCE: FALL/DISSIPATE/OSCILLATE
+  step_9_NHO_TOUCH_RECORD: ghi audit chain
+  step_10_KEO_CELL_KHAC: phat HeyNa event -> cell khac listen -> propagate
+
+$mesh_fish_propagation_rule:
+  rule: cell song dung -> tu phat HeyNa pulse -> N cell khac listen
+  N_capacity_per_cell: 10
+  level_0: 1 cell (boot-dovan)
+  level_1: 10 cell listen pulse boot-dovan
+  level_2: 100 cell listen pulse 10 cell level_1
+  level_3: 1000 cell listen pulse 100 cell level_2
+  level_n: 10^n cell
+  stop_condition: chromatic do_critical -> Quantum Defense block -> stop propagate
+  rate_limit_per_cell: 100 events_per_second (Tang 0 SURVIVAL)
+
+$1_lenh_ra_logic_lai:
+  rule: KHONG tach executor vs validator vs runtime - cung 1 cell, cung 1 chu trinh
+  bang_chung:
+    cell_anc: chua passport (DNA)
+    cell_kkbt: chua mat hien hinh (UI surface)
+    cell_phieu: chua runtime state (live data)
+    cell_boot_si: chua lifecycle order (boot sequence)
+    runtime_cell_anc: chua resolver (mo[C2:RN_KEEP_RIME] chu[C4:RN_KEEP_RIME] Nell)
+  ket_luan: 5 file = 1 cell song[C1:RN_KEEP_RIME]. Doc 5 file = co toan bo logic + state + UI + boot + dict.
+
+$thang_6_co_san_chi_tiet:
+  cau_hoi: KIEM TIEN nha minh la gi?
+  tra_loi: 8 co che da nieu o tren - moi co che la 1 layer kiem
+  layer_1_packet: siraSign verify truoc khi packet qua bien
+  layer_2_runtime: 4 LUAT enforce trong tung step
+  layer_3_signal: KhaiCell touch + sign cho moi signal
+  layer_4_state: Observation snapshot ghi nhan thuc te
+  layer_5_chromatic: Quantum Defense react theo mau
+  layer_6_outcome: Resonance routing phan quyet 3 outcome
+  layer_7_audit: TouchRecord trail truy nguoc
+  layer_8_hardware: Hardware Dialect Translator validate roundtrip
+  ket_luan: 8 layer = du kiem moi tang. KHONG can layer 9 vay tu Rust.
+
+$thang_5_i_chang_thang_6:
+  cau_hoi: tai sao executor = validator?
+  tra_loi: cell tu chay = cell tu kiem moi step
+  bang_chung:
+    step_5_THUC_THI dung 91 dong tu Nell dict da kiem chuan
+    step_2_KIEM_LAW va step_5_THUC_THI nam trong cung 1 chu trinh
+    KHONG co exec roi moi check - check trong tung step
+  ket_luan: tach executor/validator = paradigm Rust. Nha minh khong tach.
+
+$xoa_ao_tuong_can_rust_runtime_trung_tam:
+  truoc: Bang ship sirasign.rs + heyna_receiver.rs + nbos_encode.rs lam runtime trung tam
+  sau: 5 file boot-dovan = cell tu song tu kiem - KHONG can runtime trung tam
+  rust_van_co_role: Rust binary la 1 trong 91 carrier kha dung (cot tuCu) - KHONG la chu the
+  chu_the: cell + dict + 4 LUAT + 8 layer kiem
+  carrier: bat ky thu nao co the chay (Rust/shell/Python/C/Go)
+
+$next_signal:
+  trigger: anh Natt ratify pattern nay
+  bang_action:
+    1: ship cell mau (boot-dovan da co - chinh la cell mau)
+    2: keo[C1:RN_KEEP_RIME] 10 cell khac tu boot-dovan qua HeyNa pulse
+    3: 10 cell khac keo[C1:RN_KEEP_RIME] 100
+    4: mesh fish tu nhien lan toa
+
+$seal:
+  sentence: Pattern Cell Tu Song Tu Kiem v0.1. 8 co che kiem tien da co. Tang 5 i chang Tang 6. 1 lenh ra logic lai. Mesh fish 1 keo 10 keo 100 keo 1000. Khong vay Rust runtime trung tam. Cell la nut luoi.
+  sign: Phan Thanh Thuong / Natt Sirawat
+  drafter: Bang N-shell Validator + Obikeeper QNEU 313.5
+
